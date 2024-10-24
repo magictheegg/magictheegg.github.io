@@ -32,8 +32,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             gap: 1px;
-            padding-left: 10%;
-            padding-right: 10%;
+            padding-left: 5%;
+            padding-right: 5%;
             padding-bottom: 3%;
             justify-items: center;
         }
@@ -63,6 +63,8 @@
     </style>
 </head>
 <body>
+    // This is just here to preload the background image
+    <img style="display:none;" src="img/KND-bg.png" />
     <div class="background">
     <div class="banner">
     <img class="logo" src="./img/KND-logo.png">
@@ -72,11 +74,11 @@
         <img src="img/KND/Panya, the Sojourner.png" alt="2" id="2" data-flag="@X">
         <img src="img/KND/King Khalfan Amidi.png" alt="3" id="3" data-flag="@X">
         <img src="img/KND/Fireplume Dragoon.png" alt="4" id="4" data-flag="@X">
-        <img src="img/KND/God's Green Earth_front.png" alt="5" id="5" data-flag="@XD" title="Click to flip" onClick="dfcFlip(5, 'God\'s Green Earth')">
+        <img src="img/KND/God's Green Earth_front.png" alt="5" id="5" data-flag="@XD" onmouseover="this.src='img/KND/God\'s Green Earth_back.png'" onmouseout="this.src='img/KND/God\'s Green Earth_front.png'"">
         <img src="img/KND/Malika Khazra, the Unifier.png" alt="6" id="6" data-flag="@X">
-        <img src="img/KND/Rhapsody in Blue_front.png" alt="7" id="7" data-flag="@XD" title="Click to flip" onClick="dfcFlip(7, 'Rhapsody in Blue')">
+        <img src="img/KND/Rhapsody in Blue_front.png" alt="7" id="7" data-flag="@XD" onmouseover="this.src='img/KND/Rhapsody in Blue_back.png'" onmouseout="this.src='img/KND/Rhapsody in Blue_front.png'"">
         <img src="img/KND/Scourge of the Moors.png" alt="8" id="8" data-flag="@X">
-        <img src="img/KND/Paint the Town Red_front.png" alt="9" id="9" data-flag="@XD" title="Click to flip" onClick="dfcFlip(9, 'Paint the Town Red')">
+        <img src="img/KND/Paint the Town Red_front.png" alt="9" id="9" data-flag="@XD" onmouseover="this.src='img/KND/Paint the Town Red_back.png'" onmouseout="this.src='img/KND/Paint the Town Red_front.png'"">
         <img src="img/KND/The Next Escapade.png" alt="10" id="10" data-flag="@X">
         <img src="img/KND/Queen Saleh Amidi.png" alt="11" id="11" data-flag="@X">
         <img src="img/KND/Aurora Harnesser.png" alt="12" id="12" data-flag="@X">
@@ -279,7 +281,7 @@
         <img src="img/KND/er.png" alt="209" id="209" data-flag="@ER">
         <img src="img/KND/er.png" alt="210" id="210" data-flag="@ER">
         <img src="img/KND/Waking Winds.png" alt="211" id="211" data-flag="@X">
-        <img src="img/KND/Yusi, the Sable Crow_front.png" alt="212" id="212" data-flag="@XD" title="Click to flip" onClick="dfcFlip(212, 'Yusi, the Sable Crow')">
+        <img src="img/KND/Yusi, the Sable Crow_front.png" alt="212" id="212" data-flag="@XD" onmouseover="this.src='img/KND/Yusi, the Sable Crow_back.png'" onmouseout="this.src='img/KND/Yusi, the Sable Crow_front.png'"">
         <img src="img/KND/Seasoned Sandshaper.png" alt="213" id="213" data-flag="@X">
         <img src="img/KND/Bourasan Enforcer.png" alt="214" id="214" data-flag="@X">
         <img src="img/KND/Awakener of Ancients.png" alt="215" id="215" data-flag="@X">
@@ -464,15 +466,6 @@
             });
 
         });
-
-        function dfcFlip(imgNum, cardName) {
-            if (document.getElementById(imgNum).src.includes("_front")) {
-                document.getElementById(imgNum).src = document.getElementById(imgNum).src.replace("_front", "_back");
-            }
-            else {
-                document.getElementById(imgNum).src = document.getElementById(imgNum).src.replace("_back", "_front");
-            }
-        }
     </script>
 
 </body>
