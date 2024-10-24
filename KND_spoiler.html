@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">  
-    <link rel="preload" href="./img/KND-bg.png" as="image"> 
+    <link rel="preload" href="./img/KND/bg.png" as="image"> 
     <link rel="preload" href="./img/card_back.png" as="image">
     <link rel="preload" href="./img/flip.png" as="image">
     <title>KND visual spoiler</title>
@@ -20,7 +20,7 @@
             padding: 0;
             height: 100%;
             overscroll-behavior: none;
-            background-image: url('img/KND-bg.png');
+            background-image: url('img/KND/bg.png');
             background-size: cover;
             background-attachment: fixed;
         }
@@ -90,15 +90,41 @@
           left: 8.5%;
           transform: translate(-50%, -50%);
         }
+        .icon-bar {
+            display: grid;
+            grid-template-columns: 3fr 2fr 3fr 2fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 3%;
+            padding-bottom: 1%;
+            justify-items: center;
+            align-items: center;
+        }
+        .icon-bar .icon img {
+            width: 100%;
+            height: auto;
+            display: block; 
+            padding: 5%;          
+        }
+        .icon-bar .dot img {
+            width: 50%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
     <div class="background">
-    <div class="banner">
-    <img class="logo" src="./img/KND-logo.png">
-    </div>
-    <div class="grid-container">
-        <div class="container"><img src="img/KND/Mafua, Oathseeker.png" alt="1" id="1" data-flag="@X"></div>
+    <div class="icon-bar">
+              <div class="icon"><a href="SHF_spoiler.html"><img src="img/SHF/icon.png"></img></a></div>          <div class="dot"><img src="img/dot.png"></img></div>          <div class="icon"><a href="KND_spoiler.html"><img src="img/KND/icon.png"></img></a></div>          <div class="dot"><img src="img/dot.png"></img></div>          <div class="icon"><a href="NJB_spoiler.html"><img src="img/NJB/icon.png"></img></a></div>
+        </div>
+        <div class="banner">
+        <img class="logo" src="./img/KND/logo.png">
+        </div>
+        <div class="grid-container">
+            <div class="container"><img src="img/KND/Mafua, Oathseeker.png" alt="1" id="1" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Panya, the Sojourner.png" alt="2" id="2" data-flag="@X"></div>
         <div class="container"><img src="img/KND/King Khalfan Amidi.png" alt="3" id="3" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Fireplume Dragoon.png" alt="4" id="4" data-flag="@X"></div>
@@ -452,7 +478,7 @@
         <div class="container"><img src="img/KND/Bird Soldier.png" alt="352" id="352" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Cat.png" alt="353" id="353" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Sand.png" alt="354" id="354" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/All-Mother's Soul.png" alt="355" id="355" data-flag="@X"></div>
+        <div class="container"><img src="img/KND/All-Mother's Soul_t.png" alt="355" id="355" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Elephant.png" alt="356" id="356" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Spider.png" alt="357" id="357" data-flag="@X"></div>
         <div class="container"><img src="img/KND/Rebel.png" alt="358" id="358" data-flag="@X"></div>

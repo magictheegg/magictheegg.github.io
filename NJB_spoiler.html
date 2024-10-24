@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">  
+    <link rel="preload" href="./img/NJB/bg.png" as="image"> 
+    <link rel="preload" href="./img/card_back.png" as="image">
+    <link rel="preload" href="./img/flip.png" as="image">
+    <title>NJB visual spoiler</title>
+    <style>
+        html {
+            overflow: hidden;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overscroll-behavior: none;
+            background-image: url('img/NJB/bg.png');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow-y: scroll;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-bottom: 3%;
+            justify-items: center;
+        }
+        .grid-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            visibility: hidden;            
+        }
+        .banner {
+            width: 100%;
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        .logo {
+            display: block;
+            margin: auto;
+            width: 40%;
+        }
+        .container {
+          position: relative;
+          width: 100%;
+        }
+        .container img {
+          width: 100%;
+          height: auto;
+        }
+        .container .btn {
+          background: url('img/flip.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 15%;
+          height: 11%;
+          cursor: pointer;
+          border: none;
+          position: absolute;
+          top: 6.5%;
+          left: 8.5%;
+          transform: translate(-50%, -50%);
+        }
+        .container .btn:hover {
+          background: url('img/flip-hover.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 15%;
+          height: 11%;
+          cursor: pointer;
+          border: none;
+          position: absolute;
+          top: 6.5%;
+          left: 8.5%;
+          transform: translate(-50%, -50%);
+        }
+        .icon-bar {
+            display: grid;
+            grid-template-columns: 3fr 2fr 3fr 2fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 3%;
+            padding-bottom: 1%;
+            justify-items: center;
+            align-items: center;
+        }
+        .icon-bar .icon img {
+            width: 100%;
+            height: auto;
+            display: block; 
+            padding: 5%;          
+        }
+        .icon-bar .dot img {
+            width: 50%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+    <div class="icon-bar">
+              <div class="icon"><a href="SHF_spoiler.html"><img src="img/SHF/icon.png"></img></a></div>          <div class="dot"><img src="img/dot.png"></img></div>          <div class="icon"><a href="KND_spoiler.html"><img src="img/KND/icon.png"></img></a></div>          <div class="dot"><img src="img/dot.png"></img></div>          <div class="icon"><a href="NJB_spoiler.html"><img src="img/NJB/icon.png"></img></a></div>
+        </div>
+        <div class="banner">
+        <img class="logo" src="./img/NJB/logo.png">
+        </div>
+        <div class="grid-container">
+            <div class="container"><img src="img/NJB/Heping, Grand Pacifist.png" alt="1" id="1" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ing'Wei, Azure Empress.png" alt="2" id="2" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Forbidden Shiangshi Arts.png" alt="3" id="3" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Entropic Inferno.png" alt="4" id="4" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Foster the Future.png" alt="5" id="5" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lijing, the Great Partisan.png" alt="6" id="6" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Panya, Who Dares to Dream.png" alt="7" id="7" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lizhao, Last Breath of the Yenzu.png" alt="8" id="8" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Hao'Tai, the Reverent.png" alt="9" id="9" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Qiyan, Great Progenitor.png" alt="10" id="10" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Cai Lan, the Puppeteer.png" alt="11" id="11" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Elder Soothsayer Chian.png" alt="12" id="12" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Birth of the Yaozu.png" alt="13" id="13" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The Art of War.png" alt="14" id="14" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Chiu, Hand of the Pack.png" alt="15" id="15" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Chronicles of the Kitsune.png" alt="16" id="16" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Juyu Offering Pool.png" alt="17" id="17" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The Blood Sun Sets.png" alt="18" id="18" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dragon Emperor's Chariot.png" alt="19" id="19" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Da'Lang, Timberheart.png" alt="20" id="20" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Diao of the Opal Infantry.png" alt="21" id="21" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kan'Gi, High Tactician.png" alt="22" id="22" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ha'Eng, Profane Scribe.png" alt="23" id="23" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Elder General Hatsuo.png" alt="24" id="24" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Heyu, Depthlurker.png" alt="25" id="25" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Gao'Wu, Humble Sibyl.png" alt="26" id="26" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Oshin, Reef Warden.png" alt="27" id="27" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kai'Jun, the Eradicator.png" alt="28" id="28" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Jiu, Daughter of the Sun.png" alt="29" id="29" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Jindao, the World Eye.png" alt="30" id="30" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The Great War Ends.png" alt="31" id="31" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Papier-Mâché Marvel.png" alt="32" id="32" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kai'Long, the Call of the Dark.png" alt="33" id="33" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Judgment of Hao'Tai.png" alt="34" id="34" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Savage Convergence.png" alt="35" id="35" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kiri, Corporeal Conduit.png" alt="36" id="36" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Shuilong Technique.png" alt="37" id="37" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kai'Zhou, the Purifier.png" alt="38" id="38" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mieng of the Pyre Waltz.png" alt="39" id="39" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Till the Queen's Gardens.png" alt="40" id="40" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Li's Moonblades.png" alt="41" id="41" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sun Yun, Master of Man.png" alt="42" id="42" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Tzelin, Cabal Liturgist.png" alt="43" id="43" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Nichang Yuyi.png" alt="44" id="44" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Wildlife Sketches.png" alt="45" id="45" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yujei, Zephyr Melodist.png" alt="46" id="46" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ushi Yun, the Curator.png" alt="47" id="47" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Xie'e Amphitheatre.png" alt="48" id="48" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Tseng, the Shooting Star.png" alt="49" id="49" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Xiejuan and Hao Lu.png" alt="50" id="50" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Adept Lieutenant.png" alt="51" id="51" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Aftermath of the Surge.png" alt="52" id="52" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bandit's Dagger.png" alt="53" id="53" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Baptism by Fire.png" alt="54" id="54" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Chaparral Hunter.png" alt="55" id="55" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Chamber of Penance.png" alt="56" id="56" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bian Lian Opera.png" alt="57" id="57" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Consign to Old Diyu.png" alt="58" id="58" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bonk.png" alt="59" id="59" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Forerunner of the Briar.png" alt="60" id="60" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Chiseled Familiar.png" alt="61" id="61" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Budding Couturier.png" alt="62" id="62" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Demon of Hubris.png" alt="63" id="63" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Draconic Cinderlance.png" alt="64" id="64" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lu'She Temple Customs.png" alt="65" id="65" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of a Glistening Glen.png" alt="66" id="66" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Cerulean Sovereign.png" alt="67" id="67" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Eaveshoppers.png" alt="68" id="68" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fervid Dragonheart.png" alt="69" id="69" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Pack Savagery.png" alt="70" id="70" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of a Radiant Meadow.png" alt="71" id="71" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Hydrolyze.png" alt="72" id="72" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Grotesque Defiler.png" alt="73" id="73" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Filigree Fan Dance.png" alt="74" id="74" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Rampaging Xiangshe.png" alt="75" id="75" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Glorious Wingwright.png" alt="76" id="76" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lunar Shachuan.png" alt="77" id="77" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mercenary of the Folded Fan.png" alt="78" id="78" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/For the Court of the Queen.png" alt="79" id="79" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Spawn of Qiyan.png" alt="80" id="80" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Heping's Acolyte.png" alt="81" id="81" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Nonpareil of the Abyss.png" alt="82" id="82" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sable Evangelist.png" alt="83" id="83" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Frisky Denmates.png" alt="84" id="84" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Spirited Florist.png" alt="85" id="85" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Leave the Den.png" alt="86" id="86" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Pon's Apprentice.png" alt="87" id="87" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Shifu of Xiangyin Temple.png" alt="88" id="88" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Keen Redtail.png" alt="89" id="89" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Thriving Viper.png" alt="90" id="90" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The People's Anthem.png" alt="91" id="91" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Reflecting Pool Drifter.png" alt="92" id="92" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Skirmish Scars.png" alt="93" id="93" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Pup of a Marigold Burrow.png" alt="94" id="94" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Timberland Hymn.png" alt="95" id="95" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Pious Flutist.png" alt="96" id="96" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sage of the Jade Baton.png" alt="97" id="97" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Soul Engulfer.png" alt="98" id="98" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Rapacious Regent.png" alt="99" id="99" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Vassal of the Wild.png" alt="100" id="100" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Red-Crowned Admiral.png" alt="101" id="101" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Stand in Opposition.png" alt="102" id="102" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Whispers of the Dead.png" alt="103" id="103" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scholar of the Staff.png" alt="104" id="104" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Verdant Druid.png" alt="105" id="105" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Seal the Gateway.png" alt="106" id="106" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Trawl the Annals.png" alt="107" id="107" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yenzu Melodrama.png" alt="108" id="108" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Vulpine Verse.png" alt="109" id="109" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Viridian Townships.png" alt="110" id="110" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Aerie Aria.png" alt="111" id="111" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Abandon the Past.png" alt="112" id="112" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Arrogant Orator.png" alt="113" id="113" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Burning of Xiangyin Temple.png" alt="114" id="114" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Adventurous Impulse.png" alt="115" id="115" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Apogee Cranes.png" alt="116" id="116" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Air of Vernal Tidings.png" alt="117" id="117" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bearer of Vile Incense.png" alt="118" id="118" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ceremonial Jian.png" alt="119" id="119" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bastion Ranger.png" alt="120" id="120" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Apostle of the Elders.png" alt="121" id="121" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ballad of the Forgotten.png" alt="122" id="122" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dirge of the Damned.png" alt="123" id="123" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Char Brewer.png" alt="124" id="124" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Called Shot.png" alt="125" id="125" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Armament Exhibition.png" alt="126" id="126" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dare to Dream.png" alt="127" id="127" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Gilded Sell-Sword.png" alt="128" id="128" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dazzling Duelist.png" alt="129" id="129" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Chords of Conflict.png" alt="130" id="130" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Festival Celebrants.png" alt="131" id="131" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dewdrop Oracle.png" alt="132" id="132" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Grim Bounty.png" alt="133" id="133" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Expedite.png" alt="134" id="134" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Cohorts of the Grove.png" alt="135" id="135" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of a New Era.png" alt="136" id="136" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Erratic Visionary.png" alt="137" id="137" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lizhao's Soulblade.png" alt="138" id="138" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Flame Juggler.png" alt="139" id="139" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Crooning Eulogist.png" alt="140" id="140" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of an Amber Dawn.png" alt="141" id="141" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Festival Decorator.png" alt="142" id="142" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Nightblade Umbra.png" alt="143" id="143" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of the Juniper Vale.png" alt="144" id="144" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Descendant of Shimaru.png" alt="145" id="145" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Guzheng Instructor.png" alt="146" id="146" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Harmony of Blossoms.png" alt="147" id="147" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Restless Oppressor.png" alt="148" id="148" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of the River Run.png" alt="149" id="149" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Edgeland Savant.png" alt="150" id="150" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lunar Flock.png" alt="151" id="151" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Horizon Glider.png" alt="152" id="152" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sanguine Muralist.png" alt="153" id="153" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Herald of the Dragon Army.png" alt="154" id="154" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Exquisite Slash.png" alt="155" id="155" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ornate Legionnaire.png" alt="156" id="156" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ing'Wei's Admonition.png" alt="157" id="157" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scar Tattooist.png" alt="158" id="158" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Jeering Kit.png" alt="159" id="159" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Gashing Panther.png" alt="160" id="160" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Outcast of the Folded Fan.png" alt="161" id="161" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kaleidoscale Drake.png" alt="162" id="162" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scatter Memories as Ashes.png" alt="163" id="163" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kuoshu Martial Arts.png" alt="164" id="164" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Harmonic Recruit.png" alt="165" id="165" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Pacifism.png" alt="166" id="166" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lamplight Tender.png" alt="167" id="167" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Serum Peddler.png" alt="168" id="168" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ode to the Red Wind.png" alt="169" id="169" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Herbal Remedy.png" alt="170" id="170" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Roadside Performer.png" alt="171" id="171" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Parasol Twirler.png" alt="172" id="172" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Spear Flourish.png" alt="173" id="173" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/One Last Dance.png" alt="174" id="174" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Hero's Journey.png" alt="175" id="175" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Russet Denmother.png" alt="176" id="176" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Prince Crab.png" alt="177" id="177" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Theatre of Cruelty.png" alt="178" id="178" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scorching Dragonfire.png" alt="179" id="179" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Jadeplate Armor.png" alt="180" id="180" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sheersilk Robes.png" alt="181" id="181" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Read the Tides.png" alt="182" id="182" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Traveler's Trial.png" alt="183" id="183" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scourge of the Sun.png" alt="184" id="184" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Journeying Packmaster.png" alt="185" id="185" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sponsor of the Folded Fan.png" alt="186" id="186" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Rest and Relaxation.png" alt="187" id="187" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Tree of Tragedies.png" alt="188" id="188" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Slapdash Matrimony.png" alt="189" id="189" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mighty Xioshu.png" alt="190" id="190" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Sword Dance.png" alt="191" id="191" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scribe of the Sky Scrolls.png" alt="192" id="192" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Trophy Collector.png" alt="193" id="193" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Stroke of Fortune.png" alt="194" id="194" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mischievous Maolu.png" alt="195" id="195" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Tale of Tranquility.png" alt="196" id="196" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Wealth of the Flood.png" alt="197" id="197" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Visit from Aunti.png" alt="198" id="198" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Violent Devotion.png" alt="199" id="199" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Suitor of the Glade.png" alt="200" id="200" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Walk the Ancestral Path.png" alt="201" id="201" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yenzu Puppeteering.png" alt="202" id="202" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yenzu Disciple.png" alt="203" id="203" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Warlord of Wun Su.png" alt="204" id="204" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Vinehorn Stag.png" alt="205" id="205" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="206" id="206" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="207" id="207" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="208" id="208" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="209" id="209" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="210" id="210" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Wang Xi, Wishes on the Wind.png" alt="211" id="211" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kiyoko of the Silver Mist.png" alt="212" id="212" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Swiftblade Ren.png" alt="213" id="213" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Autumn Symphony.png" alt="214" id="214" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Hang Up Your Lanterns.png" alt="215" id="215" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Painting Dolls.png" alt="216" id="216" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lin, the Opportunist.png" alt="217" id="217" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Xihuo, the Onyx Flame.png" alt="218" id="218" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Old Lord Xiusheng.png" alt="219" id="219" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bai of the Royal Gardens.png" alt="220" id="220" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Gemscale Drake.png" alt="221" id="221" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Path of the Outsider.png" alt="222" id="222" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Altar of Twisted Piety.png" alt="223" id="223" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Celebrations of Ferocity.png" alt="224" id="224" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ascetic of the Folded Fan.png" alt="225" id="225" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Those Lost to the Waves.png" alt="226" id="226" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yenzu Nightblade.png" alt="227" id="227" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Blackblood Feaster.png" alt="228" id="228" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Wilderkin Zealot.png" alt="229" id="229" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kanghyae Forum.png" alt="230" id="230" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="231" id="231" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="232" id="232" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="233" id="233" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="234" id="234" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="235" id="235" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Zou Meili, Cruel Justice.png" alt="236" id="236" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ma'Long, the Skystorm_front.png" data-alt_src="img/NJB/Ma'Long, the Skystorm_back.png" alt="237" id="237" data-flag="@XD"><button class="btn" onclick="imgFlip(237)"></button></div>
+        <div class="container"><img src="img/NJB/Wei Ji, Life's Rhythm.png" alt="238" id="238" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Seto San, Divine Heroine.png" alt="239" id="239" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Gui, the Brinebearer.png" alt="240" id="240" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yenzu Blood Pact.png" alt="241" id="241" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dance of Dragons.png" alt="242" id="242" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ruchong Awakening.png" alt="243" id="243" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Qulai, Orchard Shepherd.png" alt="244" id="244" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Shigurei, Vassal of the Depths.png" alt="245" id="245" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Imperious Aristocrat.png" alt="246" id="246" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The Royal Vignettes.png" alt="247" id="247" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fables of the Ill-Fated.png" alt="248" id="248" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox of a Brisk Autumn.png" alt="249" id="249" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Lady of the Nymphaeas.png" alt="250" id="250" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Memorial Plaza.png" alt="251" id="251" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Song of Wind and Fire.png" alt="252" id="252" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mire Sculptor.png" alt="253" id="253" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Seto's Private Collection.png" alt="254" id="254" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Peacetime Murals.png" alt="255" id="255" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="256" id="256" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="257" id="257" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="258" id="258" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="259" id="259" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="260" id="260" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Fang Luo, the Astral Tide.png" alt="261" id="261" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kai'Oro, Grave Betrayer.png" alt="262" id="262" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Cheng, Wild Tyrant.png" alt="263" id="263" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Zihao, Song of the Glade.png" alt="264" id="264" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ya'Ling, the Rune-Drake.png" alt="265" id="265" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The Mythical Zhiwu.png" alt="266" id="266" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Cou Ling of the Lunar Den.png" alt="267" id="267" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Emperor Dan Te Mogui.png" alt="268" id="268" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Wun Su, War's Muse.png" alt="269" id="269" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Oshu of the Bosk.png" alt="270" id="270" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="271" id="271" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="272" id="272" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="273" id="273" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="274" id="274" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="275" id="275" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Duan's Aeriform Ribbons.png" alt="276" id="276" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Xueyang San.png" alt="277" id="277" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dignitary's Rickshaw.png" alt="278" id="278" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Effigy of Ivory Fire.png" alt="279" id="279" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Ornamental Longbow.png" alt="280" id="280" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Processional Junk.png" alt="281" id="281" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Prophetic Prismite.png" alt="282" id="282" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Yenzu Ritual Vessel.png" alt="283" id="283" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/e.png" alt="284" id="284" data-flag="@E"></div>
+        <div class="container"><img src="img/NJB/e.png" alt="285" id="285" data-flag="@E"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="286" id="286" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="287" id="287" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="288" id="288" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="289" id="289" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="290" id="290" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Shrine of Elder Lords.png" alt="291" id="291" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/The Orange Orchard.png" alt="292" id="292" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Festival Centrum.png" alt="293" id="293" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Warped Landscape.png" alt="294" id="294" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/e.png" alt="295" id="295" data-flag="@E"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="296" id="296" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="297" id="297" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="298" id="298" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="299" id="299" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="300" id="300" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Tranquil Cove.png" alt="301" id="301" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dismal Backwater.png" alt="302" id="302" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bloodfell Caves.png" alt="303" id="303" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Rugged Highlands.png" alt="304" id="304" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Blossoming Sands.png" alt="305" id="305" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Scoured Barrens.png" alt="306" id="306" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Jungle Hollow.png" alt="307" id="307" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Thornwood Falls.png" alt="308" id="308" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Swiftwater Cliffs.png" alt="309" id="309" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Wind-Scarred Crag.png" alt="310" id="310" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="311" id="311" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="312" id="312" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="313" id="313" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="314" id="314" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="315" id="315" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Plains_a.png" alt="316" id="316" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Island_a.png" alt="317" id="317" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Swamp_a.png" alt="318" id="318" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mountain_a.png" alt="319" id="319" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Forest_a.png" alt="320" id="320" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Plains_b.png" alt="321" id="321" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Island_b.png" alt="322" id="322" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Swamp_b.png" alt="323" id="323" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mountain_b.png" alt="324" id="324" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Forest_b.png" alt="325" id="325" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Plains_c.png" alt="326" id="326" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Island_c.png" alt="327" id="327" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Swamp_c.png" alt="328" id="328" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mountain_c.png" alt="329" id="329" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Forest_c.png" alt="330" id="330" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Plains_d.png" alt="331" id="331" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Island_d.png" alt="332" id="332" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Swamp_d.png" alt="333" id="333" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Mountain_d.png" alt="334" id="334" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Forest_d.png" alt="335" id="335" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="336" id="336" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="337" id="337" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="338" id="338" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="339" id="339" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/er.png" alt="340" id="340" data-flag="@ER"></div>
+        <div class="container"><img src="img/NJB/Bird.png" alt="341" id="341" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Hu Li.png" alt="342" id="342" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Warrior.png" alt="343" id="343" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Drake.png" alt="344" id="344" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Kraken.png" alt="345" id="345" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Cultist.png" alt="346" id="346" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Demon.png" alt="347" id="347" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Bard.png" alt="348" id="348" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Dragon.png" alt="349" id="349" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Panda.png" alt="350" id="350" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Beast.png" alt="351" id="351" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Hydra.png" alt="352" id="352" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Panda Bear Monk.png" alt="353" id="353" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Plant.png" alt="354" id="354" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Shimaru, the Unfading.png" alt="355" id="355" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Wurm.png" alt="356" id="356" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Fox.png" alt="357" id="357" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Spirit.png" alt="358" id="358" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Idol.png" alt="359" id="359" data-flag="@X"></div>
+        <div class="container"><img src="img/NJB/Treasure.png" alt="360" id="360" data-flag="@X"></div>
+    </div></div>
+
+    <script>
+        // Function to apply logic based on the data-flag
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll('.grid-container img');
+
+            images.forEach(img => {
+                const flag = img.getAttribute('data-flag');
+
+                if (flag === '@N') {
+                    img.src = './img/card_back.png';
+                }
+
+                if (flag === '@E') {
+                    img.src = './img/e.png';
+                }
+
+                if (flag === '@ER') {
+                    img.src = './img/er.png';
+                }
+
+                img.style.visibility = 'visible';                
+            });
+
+        });
+
+    function imgFlip(num) {
+        tmp = document.getElementById(num).src;
+        document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+        document.getElementById(num).dataset.alt_src = tmp;
+    }
+    </script>
+
+</body>
+</html>
