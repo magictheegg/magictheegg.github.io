@@ -6,9 +6,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">  
-    <link rel="preload" href="./img/KND/bg.png" as="image"> 
-    <link rel="preload" href="./img/card_back.png" as="image">
-    <link rel="preload" href="./img/flip.png" as="image">
+    <link rel="preload" href="img/KND/bg.png" as="image"> 
+    <link rel="preload" href="img/card_back.png" as="image">
+    <link rel="preload" href="img/flip.png" as="image">
     <link rel="icon" type="image/png" href="img/KND/icon.png"/>
     <title>KND visual spoiler</title>
     <style>
@@ -167,7 +167,7 @@
 
         </div>
         <div class="banner">
-        <img class="logo" src="./img/KND/logo.png">
+        <img class="logo" src="img/KND/logo.png">
         </div>
         <div class="main-content" id="main-content">
             <div class="grid-container">
@@ -558,19 +558,19 @@
                 const flag = img.getAttribute('data-flag');
 
                 if (flag === '@N') {
-                    img.src = './img/card_back.png';
+                    img.src = 'img/card_back.png';
                     img.removeAttribute("onclick");
                     img.style.cursor = 'default';
                 }
 
                 if (flag === '@E') {
-                    img.src = './img/e.png';
+                    img.src = 'img/e.png';
                     img.removeAttribute("onclick");
                     img.style.cursor = 'default';
                 }
 
                 if (flag === '@ER') {
-                    img.src = './img/er.png';
+                    img.src = 'img/er.png';
                     img.removeAttribute("onclick");
                     img.style.cursor = 'default';
                 }
