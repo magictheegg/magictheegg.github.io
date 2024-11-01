@@ -12,24 +12,55 @@
     <link rel="icon" type="image/png" href="img/KND/icon.png"/>
     <title>KND visual spoiler</title>
     <style>
-        html {
-            overflow: hidden;
-        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100%;
             overscroll-behavior: none;
             background-image: url('img/KND/bg.png');
             background-size: cover;
             background-attachment: fixed;
         }
-        .background {
+        .main-content {
+            position: relative;
             width: 100%;
-            height: 100%;
-            position: fixed;
-            overflow-y: scroll;
+            float: left;
+            z-index: 2;
+        }
+        .sidebar {
+            position: sticky;
+            top: 0;
+            display: none;
+            text-align: center;
+            padding-right: 2.5%;
+            z-index: 1;
+        }
+        .sidebar img {
+            vertical-align: middle;
+            max-width: 100%;
+            width: 30%;
+        }
+        .sidebar .btn {
+          background: url('img/close.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 10%;
+          height: 10%;
+          border: none;
+          cursor: pointer;
+          position: absolute;
+          right: -1.5%;
+        }
+        .sidebar .btn:hover {
+          background: url('img/close-hover.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 10%;
+          height: 10%;
+          border: none;
+          cursor: pointer;
+          position: absolute;
+          right: -1.5%;
         }
         .grid-container {
             display: grid;
@@ -44,7 +75,8 @@
             width: 100%;
             height: auto;
             display: block;
-            visibility: hidden;            
+            visibility: hidden;
+            cursor: pointer;
         }
         .banner {
             width: 100%;
@@ -117,395 +149,405 @@
             margin: auto;
             text-align: center;
         }
+        /* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+        .footer {
+            clear: both;
+        }
     </style>
 </head>
 <body>
-    <div class="background">
     <div class="icon-bar">
-    <div class="icon"><a href="SHF_spoiler.html"><img src="img/SHF/prev_icon.png"></img></a></div>
-<div class="dot"><img src="img/dot.png"></img></div>
-<div class="icon"><a href="GSS_spoiler.html"><img src="img/GSS/icon.png"></img></a></div>
-<div class="dot"><img src="img/dot.png"></img></div>
-<div class="icon"><a href="KND_spoiler.html"><img src="img/KND/icon.png"></img></a></div>
-<div class="dot"><img src="img/dot.png"></img></div>
-<div class="icon"><a href="NJB_spoiler.html"><img src="img/NJB/icon.png"></img></a></div>
+          <div class="icon"><a href="SHF_spoiler.html"><img src="img/SHF/prev_icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="GSS_spoiler.html"><img src="img/GSS/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="KND_spoiler.html"><img src="img/KND/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="NJB_spoiler.html"><img src="img/NJB/icon.png"></img></a></div>
 
         </div>
         <div class="banner">
         <img class="logo" src="./img/KND/logo.png">
         </div>
-        <div class="grid-container">
-            <div class="container"><img src="img/KND/Mafua, Oathseeker.png" alt="1" id="1" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Panya, the Sojourner.png" alt="2" id="2" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/King Khalfan Amidi.png" alt="3" id="3" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fireplume Dragoon.png" alt="4" id="4" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/God's Green Earth_front.png" data-alt_src="img/KND/God's Green Earth_back.png" alt="5" id="5" data-flag="@XD"><button class="btn" onclick="imgFlip(5)"></button></div>
-        <div class="container"><img src="img/KND/Malika Khazra, the Unifier.png" alt="6" id="6" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rhapsody in Blue_front.png" data-alt_src="img/KND/Rhapsody in Blue_back.png" alt="7" id="7" data-flag="@XD"><button class="btn" onclick="imgFlip(7)"></button></div>
-        <div class="container"><img src="img/KND/Scourge of the Moors.png" alt="8" id="8" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Paint the Town Red_front.png" data-alt_src="img/KND/Paint the Town Red_back.png" alt="9" id="9" data-flag="@XD"><button class="btn" onclick="imgFlip(9)"></button></div>
-        <div class="container"><img src="img/KND/The Next Escapade.png" alt="10" id="10" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Queen Saleh Amidi.png" alt="11" id="11" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Aurora Harnesser.png" alt="12" id="12" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Dusk's Bitter Crown.png" alt="13" id="13" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/All-Mother's Hostility.png" alt="14" id="14" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/All-Mother's Soul.png" alt="15" id="15" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Aarakocra Champion.png" alt="16" id="16" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bleeding Dunes.png" alt="17" id="17" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Encroaching Blight.png" alt="18" id="18" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Butcher of Providence.png" alt="19" id="19" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Brigade Rises.png" alt="20" id="20" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ambassador's Graces.png" alt="21" id="21" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Croaking Chronicler.png" alt="22" id="22" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fester and Fade.png" alt="23" id="23" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Cataclysmic Downfall.png" alt="24" id="24" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Budding Harmonist.png" alt="25" id="25" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Begone.png" alt="26" id="26" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Crowspeaker.png" alt="27" id="27" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fever Tree.png" alt="28" id="28" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Hero of the Highlands.png" alt="29" id="29" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Crown the Honored One.png" alt="30" id="30" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Citadel Magistrate.png" alt="31" id="31" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Darksea Hunter.png" alt="32" id="32" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Khari Araknidi.png" alt="33" id="33" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Incendiary Historian.png" alt="34" id="34" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Frothing Gladiator.png" alt="35" id="35" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Gilded Vindicator.png" alt="36" id="36" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fool's Orrery.png" alt="37" id="37" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Necrotic Duality.png" alt="38" id="38" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Msuji Berserker.png" alt="39" id="39" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Gateway Collapse.png" alt="40" id="40" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rehengi Battle Priest.png" alt="41" id="41" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Lagoon Logistics.png" alt="42" id="42" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Pitiless Monarch.png" alt="43" id="43" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Relic Trampler.png" alt="44" id="44" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Horde Historian.png" alt="45" id="45" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rescue Strix.png" alt="46" id="46" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Opaline Prophecy.png" alt="47" id="47" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Yazeed, the Collector.png" alt="48" id="48" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rise of Cinders.png" alt="49" id="49" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Steppe Shepherd.png" alt="50" id="50" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/United We Stand.png" alt="51" id="51" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Skin to Stone.png" alt="52" id="52" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Zahadi Clairvoyant.png" alt="53" id="53" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Tactical Commerce.png" alt="54" id="54" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Verdant Auspex.png" alt="55" id="55" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Zuri Asaju, God-Hunter.png" alt="56" id="56" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/All-Mother's Tears.png" alt="57" id="57" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/As the King Decrees.png" alt="58" id="58" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Badland Savage.png" alt="59" id="59" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Amidi Beastspeaker.png" alt="60" id="60" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ceremonial Ushers.png" alt="61" id="61" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ceremony of Tribes.png" alt="62" id="62" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Carrion High Priest.png" alt="63" id="63" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Dust Conjurer.png" alt="64" id="64" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Colossal Cavalry.png" alt="65" id="65" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Defense of the Dunes.png" alt="66" id="66" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Cloudline Sovereign.png" alt="67" id="67" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Corpse Repurposer.png" alt="68" id="68" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Feral Ambush.png" alt="69" id="69" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Disciple of the Wilds.png" alt="70" id="70" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Exonerate.png" alt="71" id="71" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Disallow.png" alt="72" id="72" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Kafyabari Sneak.png" alt="73" id="73" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fires of Renewal.png" alt="74" id="74" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fallow Cultivator.png" alt="75" id="75" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Glory Chaser.png" alt="76" id="76" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ghostquill Composer.png" alt="77" id="77" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Liturgy in Smoke.png" alt="78" id="78" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Kindled Tracker.png" alt="79" id="79" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Grit.png" alt="80" id="80" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Heart of the Cause.png" alt="81" id="81" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Oracle of the Fens.png" alt="82" id="82" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Memories of Agony.png" alt="83" id="83" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ndengo Brutalizer.png" alt="84" id="84" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mafusho Rites.png" alt="85" id="85" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Honorable March.png" alt="86" id="86" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sandspinner.png" alt="87" id="87" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Plague Striker.png" alt="88" id="88" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Runic Memoirs.png" alt="89" id="89" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Patron of Twigs.png" alt="90" id="90" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Insurgent's Pet.png" alt="91" id="91" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Seek the Inevitable.png" alt="92" id="92" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rehengi Majesty.png" alt="93" id="93" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sandspout.png" alt="94" id="94" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Prairie Herd.png" alt="95" id="95" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Palemane Paladin.png" alt="96" id="96" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sundry Revelations.png" alt="97" id="97" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sanguine Scribe.png" alt="98" id="98" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Steppe Stalker.png" alt="99" id="99" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Sun Also Rises.png" alt="100" id="100" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Prophet of the Veil.png" alt="101" id="101" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Trifle Carver.png" alt="102" id="102" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Stolen Secrets.png" alt="103" id="103" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Twirling Duelist.png" alt="104" id="104" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Third Order of the Ngodo.png" alt="105" id="105" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Skyknight Armorer.png" alt="106" id="106" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Whisperwind Soothsayer.png" alt="107" id="107" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Vengeful Martyr.png" alt="108" id="108" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Wave-Bladed Sword.png" alt="109" id="109" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Underbrush Ranger.png" alt="110" id="110" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Spear of Justice.png" alt="111" id="111" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Aspiring Astronomer.png" alt="112" id="112" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Acolyte of Unkindness.png" alt="113" id="113" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Amidi Legionnaire.png" alt="114" id="114" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Am'Atambi's Wildkin.png" alt="115" id="115" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Alluring Raconteur.png" alt="116" id="116" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bewitching Glamour.png" alt="117" id="117" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/By Blood and Venom.png" alt="118" id="118" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ancestral Flame.png" alt="119" id="119" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Barren Passage.png" alt="120" id="120" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bound in Silence.png" alt="121" id="121" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Cloudcatch.png" alt="122" id="122" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Caress of Dark Fumes.png" alt="123" id="123" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Audience Participation.png" alt="124" id="124" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Broadhide Patrol.png" alt="125" id="125" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Channel the Microcosmos.png" alt="126" id="126" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Corporeal Dispute.png" alt="127" id="127" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Eternal Chaplain.png" alt="128" id="128" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Barrelling Cavalry.png" alt="129" id="129" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Broken Wings.png" alt="130" id="130" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Festooned Eagle.png" alt="131" id="131" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Croak Tales.png" alt="132" id="132" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Fall Prey to the Hunt.png" alt="133" id="133" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Between Sun and Sand.png" alt="134" id="134" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Conqueror's Mentality.png" alt="135" id="135" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Indignant Lionheart.png" alt="136" id="136" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Deep-Dune Stirrer.png" alt="137" id="137" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Gates of Ifeh.png" alt="138" id="138" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Brazen Firedancer.png" alt="139" id="139" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Crush Underfoot.png" alt="140" id="140" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Khazran Recruiter.png" alt="141" id="141" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Frostbeak Mystic.png" alt="142" id="142" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Gloomrapt Ranger.png" alt="143" id="143" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bushland Militant.png" alt="144" id="144" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Edgeland Sentry.png" alt="145" id="145" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Palace Retainer.png" alt="146" id="146" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Illusion Evoker.png" alt="147" id="147" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Gutter Scoundrel.png" alt="148" id="148" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Champion's Rage.png" alt="149" id="149" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Field Pioneer.png" alt="150" id="150" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Provisional Machete.png" alt="151" id="151" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mekini Eremite.png" alt="152" id="152" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Highland Huntress.png" alt="153" id="153" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Citadel Pyre.png" alt="154" id="154" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Hulking Herdleader.png" alt="155" id="155" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rehengi Falconer.png" alt="156" id="156" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Nightfall Raptor.png" alt="157" id="157" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Khalfani Confidant.png" alt="158" id="158" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Dust Puppeteer.png" alt="159" id="159" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Loyal Strongjaw.png" alt="160" id="160" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/See Past the Veil.png" alt="161" id="161" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Secrets of the Undercity.png" alt="162" id="162" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Looming Vulture.png" alt="163" id="163" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Edgeland Guardians.png" alt="164" id="164" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mark of the Brigade.png" alt="165" id="165" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sigil Seeker.png" alt="166" id="166" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Skywise Mentor.png" alt="167" id="167" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mambu Temple Brute.png" alt="168" id="168" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Msuji Arsonist.png" alt="169" id="169" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Megafauna Tracker.png" alt="170" id="170" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Spear Volley.png" alt="171" id="171" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sophic Augur.png" alt="172" id="172" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/No One Left Behind.png" alt="173" id="173" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rehengi Steed.png" alt="174" id="174" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Savage Silverback.png" alt="175" id="175" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Spearfang Campaigner.png" alt="176" id="176" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sorcerer's Familiar.png" alt="177" id="177" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Revenant Cleave.png" alt="178" id="178" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sandshaping.png" alt="179" id="179" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Slimefoot Knight.png" alt="180" id="180" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Strength of Spirits.png" alt="181" id="181" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Subduing Palm.png" alt="182" id="182" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Somber Anarchist.png" alt="183" id="183" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Screeching Rabble-Rousers.png" alt="184" id="184" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Speaker of the Pride.png" alt="185" id="185" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Temple Training.png" alt="186" id="186" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sugar-Cane Cultivators.png" alt="187" id="187" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Tomb of Alaj.png" alt="188" id="188" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Shock.png" alt="189" id="189" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Thundering Charge.png" alt="190" id="190" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Twilight Nomad.png" alt="191" id="191" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Warding Hex.png" alt="192" id="192" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Visions of the Uprising.png" alt="193" id="193" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Student of Korongo.png" alt="194" id="194" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Trials of the Tiny.png" alt="195" id="195" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Uchana General.png" alt="196" id="196" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Whispers on the Wind.png" alt="197" id="197" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Wayfaring Headhunter.png" alt="198" id="198" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Tomb Bandit.png" alt="199" id="199" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Unweave the Tangle.png" alt="200" id="200" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Village Matron.png" alt="201" id="201" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="202" id="202" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="203" id="203" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="204" id="204" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="205" id="205" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/er.png" alt="206" id="206" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="207" id="207" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="208" id="208" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="209" id="209" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="210" id="210" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Waking Winds.png" alt="211" id="211" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Yusi, the Sable Crow_front.png" data-alt_src="img/KND/Yusi, the Sable Crow_back.png" alt="212" id="212" data-flag="@XD"><button class="btn" onclick="imgFlip(212)"></button></div>
-        <div class="container"><img src="img/KND/Seasoned Sandshaper.png" alt="213" id="213" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bourasan Enforcer.png" alt="214" id="214" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Awakener of Ancients.png" alt="215" id="215" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Locus Sanctifier.png" alt="216" id="216" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Baneful Seer.png" alt="217" id="217" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Onele Cheats Death.png" alt="218" id="218" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Aduru Discovers Ndengo.png" alt="219" id="219" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Harvest of the Many.png" alt="220" id="220" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Merchants of Shansa.png" alt="221" id="221" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Msuji Patrol.png" alt="222" id="222" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Savannah Scavenger.png" alt="223" id="223" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Steadfast Fennec.png" alt="224" id="224" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rehengi Companion.png" alt="225" id="225" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="226" id="226" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/Swezi Steals the Moon.png" alt="227" id="227" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="228" id="228" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="229" id="229" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="230" id="230" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/er.png" alt="231" id="231" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="232" id="232" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="233" id="233" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="234" id="234" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="235" id="235" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Embrace the Blood Sun.png" alt="236" id="236" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Amber-Eye Visionary.png" alt="237" id="237" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Niah, the Necroalchemist.png" alt="238" id="238" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Blade of the Free.png" alt="239" id="239" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Six-Strike Mantid.png" alt="240" id="240" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Edgeland General.png" alt="241" id="241" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Dawn Fabulist.png" alt="242" id="242" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Nyoka, Festerlord.png" alt="243" id="243" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Akelo Forges Moyoku.png" alt="244" id="244" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Morass Vanquisher.png" alt="245" id="245" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Kojo Joins the Cause.png" alt="246" id="246" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ritual at Usi Wamane.png" alt="247" id="247" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/False Liege of Luxury.png" alt="248" id="248" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Chieftain's Warden.png" alt="249" id="249" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Silkfeather Sage.png" alt="250" id="250" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="251" id="251" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="252" id="252" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/Nkosi Enters the Veil.png" alt="253" id="253" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="254" id="254" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/The Three Rites of Ekere.png" alt="255" id="255" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/er.png" alt="256" id="256" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="257" id="257" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="258" id="258" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="259" id="259" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="260" id="260" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Siege Hippo.png" alt="261" id="261" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Kundege Oath.png" alt="262" id="262" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mpumo, the Rebel Lord.png" alt="263" id="263" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="264" id="264" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="265" id="265" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/er.png" alt="266" id="266" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="267" id="267" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="268" id="268" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="269" id="269" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="270" id="270" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Djitu's Lithified Mantle.png" alt="271" id="271" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Tika Shuguru, Blood Effigy.png" alt="272" id="272" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Veil Betwixt.png" alt="273" id="273" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Clockwork Plaguebearer.png" alt="274" id="274" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Dust Devil.png" alt="275" id="275" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Exile Queen's Crown.png" alt="276" id="276" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ironhide Processional.png" alt="277" id="277" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Kopesh of the Veil.png" alt="278" id="278" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Ocular Parasite.png" alt="279" id="279" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Star of the Sands.png" alt="280" id="280" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Timeless Watchers.png" alt="281" id="281" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Directive Replicator.png" alt="282" id="282" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Horn of Reflection.png" alt="283" id="283" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The Maker's Mask.png" alt="284" id="284" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Overseer of the Vast.png" alt="285" id="285" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Surging Sandslide.png" alt="286" id="286" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Consecrated Statuary.png" alt="287" id="287" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Dune Scrapper.png" alt="288" id="288" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mask of M'Gana.png" alt="289" id="289" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Prophetic Prism.png" alt="290" id="290" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sandstone Sentinels.png" alt="291" id="291" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Shawl of M'Gana.png" alt="292" id="292" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Staff of M'Gana.png" alt="293" id="293" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Trumpeting Caravan.png" alt="294" id="294" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="295" id="295" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/er.png" alt="296" id="296" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="297" id="297" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="298" id="298" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="299" id="299" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="300" id="300" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Unending Sands.png" alt="301" id="301" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Desolate Tract.png" alt="302" id="302" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/The God Hand.png" alt="303" id="303" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Warped Wilds.png" alt="304" id="304" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Forsaken Sanctuary.png" alt="305" id="305" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Reflecting Canyon.png" alt="306" id="306" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Vibrant Headland.png" alt="307" id="307" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="308" id="308" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="309" id="309" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/e.png" alt="310" id="310" data-flag="@E"></div>
-        <div class="container"><img src="img/KND/er.png" alt="311" id="311" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="312" id="312" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="313" id="313" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="314" id="314" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="315" id="315" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Dunesea Expanse.png" alt="316" id="316" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Crumbling Aqueduct.png" alt="317" id="317" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bloodsand Gulch.png" alt="318" id="318" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Blooming Needles.png" alt="319" id="319" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sundappled Scrub.png" alt="320" id="320" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Desiccated Trail.png" alt="321" id="321" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rot-Sand Ruins.png" alt="322" id="322" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Nestled Delta.png" alt="323" id="323" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Arcane Oasis.png" alt="324" id="324" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Arid Causeway.png" alt="325" id="325" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/er.png" alt="326" id="326" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="327" id="327" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="328" id="328" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="329" id="329" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="330" id="330" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Plains_a.png" alt="331" id="331" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Island_a.png" alt="332" id="332" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Swamp_a.png" alt="333" id="333" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mountain_a.png" alt="334" id="334" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Forest_a.png" alt="335" id="335" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Plains_b.png" alt="336" id="336" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Island_b.png" alt="337" id="337" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Swamp_b.png" alt="338" id="338" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mountain_b.png" alt="339" id="339" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Forest_b.png" alt="340" id="340" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/er.png" alt="341" id="341" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="342" id="342" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="343" id="343" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="344" id="344" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/er.png" alt="345" id="345" data-flag="@ER"></div>
-        <div class="container"><img src="img/KND/Bird.png" alt="346" id="346" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bird Knight.png" alt="347" id="347" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Mouse.png" alt="348" id="348" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bird Warrior.png" alt="349" id="349" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Shade.png" alt="350" id="350" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Snake.png" alt="351" id="351" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Bird Soldier.png" alt="352" id="352" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Cat.png" alt="353" id="353" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sand.png" alt="354" id="354" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/All-Mother's Soul_t.png" alt="355" id="355" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Elephant.png" alt="356" id="356" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Spider.png" alt="357" id="357" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Rebel.png" alt="358" id="358" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sand Shark.png" alt="359" id="359" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Frog.png" alt="360" id="360" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Army.png" alt="361" id="361" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Equipment.png" alt="362" id="362" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Jwanga Djitu.png" alt="363" id="363" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Razor's Edge.png" alt="364" id="364" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Sand Construct.png" alt="365" id="365" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Scarecrow.png" alt="366" id="366" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Treasure.png" alt="367" id="367" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Desert.png" alt="368" id="368" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/Copy.png" alt="369" id="369" data-flag="@X"></div>
-        <div class="container"><img src="img/KND/e.png" alt="370" id="370" data-flag="@E"></div>
-    </div></div>
+        <div class="main-content" id="main-content">
+            <div class="grid-container">
+              <div class="container"><img src="img/KND/Mafua, Oathseeker.png" alt="1" id="1" data-flag="@X" onclick="openSidebar(1)"></div>
+          <div class="container"><img src="img/KND/Panya, the Sojourner.png" alt="2" id="2" data-flag="@X" onclick="openSidebar(2)"></div>
+          <div class="container"><img src="img/KND/King Khalfan Amidi.png" alt="3" id="3" data-flag="@X" onclick="openSidebar(3)"></div>
+          <div class="container"><img src="img/KND/Fireplume Dragoon.png" alt="4" id="4" data-flag="@X" onclick="openSidebar(4)"></div>
+          <div class="container"><img src="img/KND/God's Green Earth_front.png" data-alt_src="img/KND/God's Green Earth_back.png" alt="5" id="5" data-flag="@XD" onclick="openSidebar(5)"><button class="btn" onclick="imgFlip(5)"></button></div>
+          <div class="container"><img src="img/KND/Malika Khazra, the Unifier.png" alt="6" id="6" data-flag="@X" onclick="openSidebar(6)"></div>
+          <div class="container"><img src="img/KND/Rhapsody in Blue_front.png" data-alt_src="img/KND/Rhapsody in Blue_back.png" alt="7" id="7" data-flag="@XD" onclick="openSidebar(7)"><button class="btn" onclick="imgFlip(7)"></button></div>
+          <div class="container"><img src="img/KND/Scourge of the Moors.png" alt="8" id="8" data-flag="@X" onclick="openSidebar(8)"></div>
+          <div class="container"><img src="img/KND/Paint the Town Red_front.png" data-alt_src="img/KND/Paint the Town Red_back.png" alt="9" id="9" data-flag="@XD" onclick="openSidebar(9)"><button class="btn" onclick="imgFlip(9)"></button></div>
+          <div class="container"><img src="img/KND/The Next Escapade.png" alt="10" id="10" data-flag="@X" onclick="openSidebar(10)"></div>
+          <div class="container"><img src="img/KND/Queen Saleh Amidi.png" alt="11" id="11" data-flag="@X" onclick="openSidebar(11)"></div>
+          <div class="container"><img src="img/KND/Aurora Harnesser.png" alt="12" id="12" data-flag="@X" onclick="openSidebar(12)"></div>
+          <div class="container"><img src="img/KND/Dusk's Bitter Crown.png" alt="13" id="13" data-flag="@X" onclick="openSidebar(13)"></div>
+          <div class="container"><img src="img/KND/All-Mother's Hostility.png" alt="14" id="14" data-flag="@X" onclick="openSidebar(14)"></div>
+          <div class="container"><img src="img/KND/All-Mother's Soul.png" alt="15" id="15" data-flag="@X" onclick="openSidebar(15)"></div>
+          <div class="container"><img src="img/KND/Aarakocra Champion.png" alt="16" id="16" data-flag="@X" onclick="openSidebar(16)"></div>
+          <div class="container"><img src="img/KND/Bleeding Dunes.png" alt="17" id="17" data-flag="@X" onclick="openSidebar(17)"></div>
+          <div class="container"><img src="img/KND/Encroaching Blight.png" alt="18" id="18" data-flag="@X" onclick="openSidebar(18)"></div>
+          <div class="container"><img src="img/KND/Butcher of Providence.png" alt="19" id="19" data-flag="@X" onclick="openSidebar(19)"></div>
+          <div class="container"><img src="img/KND/The Brigade Rises.png" alt="20" id="20" data-flag="@X" onclick="openSidebar(20)"></div>
+          <div class="container"><img src="img/KND/Ambassador's Graces.png" alt="21" id="21" data-flag="@X" onclick="openSidebar(21)"></div>
+          <div class="container"><img src="img/KND/Croaking Chronicler.png" alt="22" id="22" data-flag="@X" onclick="openSidebar(22)"></div>
+          <div class="container"><img src="img/KND/Fester and Fade.png" alt="23" id="23" data-flag="@X" onclick="openSidebar(23)"></div>
+          <div class="container"><img src="img/KND/Cataclysmic Downfall.png" alt="24" id="24" data-flag="@X" onclick="openSidebar(24)"></div>
+          <div class="container"><img src="img/KND/Budding Harmonist.png" alt="25" id="25" data-flag="@X" onclick="openSidebar(25)"></div>
+          <div class="container"><img src="img/KND/Begone.png" alt="26" id="26" data-flag="@X" onclick="openSidebar(26)"></div>
+          <div class="container"><img src="img/KND/The Crowspeaker.png" alt="27" id="27" data-flag="@X" onclick="openSidebar(27)"></div>
+          <div class="container"><img src="img/KND/Fever Tree.png" alt="28" id="28" data-flag="@X" onclick="openSidebar(28)"></div>
+          <div class="container"><img src="img/KND/Hero of the Highlands.png" alt="29" id="29" data-flag="@X" onclick="openSidebar(29)"></div>
+          <div class="container"><img src="img/KND/Crown the Honored One.png" alt="30" id="30" data-flag="@X" onclick="openSidebar(30)"></div>
+          <div class="container"><img src="img/KND/Citadel Magistrate.png" alt="31" id="31" data-flag="@X" onclick="openSidebar(31)"></div>
+          <div class="container"><img src="img/KND/Darksea Hunter.png" alt="32" id="32" data-flag="@X" onclick="openSidebar(32)"></div>
+          <div class="container"><img src="img/KND/Khari Araknidi.png" alt="33" id="33" data-flag="@X" onclick="openSidebar(33)"></div>
+          <div class="container"><img src="img/KND/Incendiary Historian.png" alt="34" id="34" data-flag="@X" onclick="openSidebar(34)"></div>
+          <div class="container"><img src="img/KND/Frothing Gladiator.png" alt="35" id="35" data-flag="@X" onclick="openSidebar(35)"></div>
+          <div class="container"><img src="img/KND/Gilded Vindicator.png" alt="36" id="36" data-flag="@X" onclick="openSidebar(36)"></div>
+          <div class="container"><img src="img/KND/Fool's Orrery.png" alt="37" id="37" data-flag="@X" onclick="openSidebar(37)"></div>
+          <div class="container"><img src="img/KND/Necrotic Duality.png" alt="38" id="38" data-flag="@X" onclick="openSidebar(38)"></div>
+          <div class="container"><img src="img/KND/Msuji Berserker.png" alt="39" id="39" data-flag="@X" onclick="openSidebar(39)"></div>
+          <div class="container"><img src="img/KND/Gateway Collapse.png" alt="40" id="40" data-flag="@X" onclick="openSidebar(40)"></div>
+          <div class="container"><img src="img/KND/Rehengi Battle Priest.png" alt="41" id="41" data-flag="@X" onclick="openSidebar(41)"></div>
+          <div class="container"><img src="img/KND/Lagoon Logistics.png" alt="42" id="42" data-flag="@X" onclick="openSidebar(42)"></div>
+          <div class="container"><img src="img/KND/Pitiless Monarch.png" alt="43" id="43" data-flag="@X" onclick="openSidebar(43)"></div>
+          <div class="container"><img src="img/KND/Relic Trampler.png" alt="44" id="44" data-flag="@X" onclick="openSidebar(44)"></div>
+          <div class="container"><img src="img/KND/Horde Historian.png" alt="45" id="45" data-flag="@X" onclick="openSidebar(45)"></div>
+          <div class="container"><img src="img/KND/Rescue Strix.png" alt="46" id="46" data-flag="@X" onclick="openSidebar(46)"></div>
+          <div class="container"><img src="img/KND/Opaline Prophecy.png" alt="47" id="47" data-flag="@X" onclick="openSidebar(47)"></div>
+          <div class="container"><img src="img/KND/Yazeed, the Collector.png" alt="48" id="48" data-flag="@X" onclick="openSidebar(48)"></div>
+          <div class="container"><img src="img/KND/Rise of Cinders.png" alt="49" id="49" data-flag="@X" onclick="openSidebar(49)"></div>
+          <div class="container"><img src="img/KND/Steppe Shepherd.png" alt="50" id="50" data-flag="@X" onclick="openSidebar(50)"></div>
+          <div class="container"><img src="img/KND/United We Stand.png" alt="51" id="51" data-flag="@X" onclick="openSidebar(51)"></div>
+          <div class="container"><img src="img/KND/Skin to Stone.png" alt="52" id="52" data-flag="@X" onclick="openSidebar(52)"></div>
+          <div class="container"><img src="img/KND/Zahadi Clairvoyant.png" alt="53" id="53" data-flag="@X" onclick="openSidebar(53)"></div>
+          <div class="container"><img src="img/KND/Tactical Commerce.png" alt="54" id="54" data-flag="@X" onclick="openSidebar(54)"></div>
+          <div class="container"><img src="img/KND/Verdant Auspex.png" alt="55" id="55" data-flag="@X" onclick="openSidebar(55)"></div>
+          <div class="container"><img src="img/KND/Zuri Asaju, God-Hunter.png" alt="56" id="56" data-flag="@X" onclick="openSidebar(56)"></div>
+          <div class="container"><img src="img/KND/All-Mother's Tears.png" alt="57" id="57" data-flag="@X" onclick="openSidebar(57)"></div>
+          <div class="container"><img src="img/KND/As the King Decrees.png" alt="58" id="58" data-flag="@X" onclick="openSidebar(58)"></div>
+          <div class="container"><img src="img/KND/Badland Savage.png" alt="59" id="59" data-flag="@X" onclick="openSidebar(59)"></div>
+          <div class="container"><img src="img/KND/Amidi Beastspeaker.png" alt="60" id="60" data-flag="@X" onclick="openSidebar(60)"></div>
+          <div class="container"><img src="img/KND/Ceremonial Ushers.png" alt="61" id="61" data-flag="@X" onclick="openSidebar(61)"></div>
+          <div class="container"><img src="img/KND/Ceremony of Tribes.png" alt="62" id="62" data-flag="@X" onclick="openSidebar(62)"></div>
+          <div class="container"><img src="img/KND/Carrion High Priest.png" alt="63" id="63" data-flag="@X" onclick="openSidebar(63)"></div>
+          <div class="container"><img src="img/KND/Dust Conjurer.png" alt="64" id="64" data-flag="@X" onclick="openSidebar(64)"></div>
+          <div class="container"><img src="img/KND/Colossal Cavalry.png" alt="65" id="65" data-flag="@X" onclick="openSidebar(65)"></div>
+          <div class="container"><img src="img/KND/Defense of the Dunes.png" alt="66" id="66" data-flag="@X" onclick="openSidebar(66)"></div>
+          <div class="container"><img src="img/KND/Cloudline Sovereign.png" alt="67" id="67" data-flag="@X" onclick="openSidebar(67)"></div>
+          <div class="container"><img src="img/KND/Corpse Repurposer.png" alt="68" id="68" data-flag="@X" onclick="openSidebar(68)"></div>
+          <div class="container"><img src="img/KND/Feral Ambush.png" alt="69" id="69" data-flag="@X" onclick="openSidebar(69)"></div>
+          <div class="container"><img src="img/KND/Disciple of the Wilds.png" alt="70" id="70" data-flag="@X" onclick="openSidebar(70)"></div>
+          <div class="container"><img src="img/KND/Exonerate.png" alt="71" id="71" data-flag="@X" onclick="openSidebar(71)"></div>
+          <div class="container"><img src="img/KND/Disallow.png" alt="72" id="72" data-flag="@X" onclick="openSidebar(72)"></div>
+          <div class="container"><img src="img/KND/Kafyabari Sneak.png" alt="73" id="73" data-flag="@X" onclick="openSidebar(73)"></div>
+          <div class="container"><img src="img/KND/Fires of Renewal.png" alt="74" id="74" data-flag="@X" onclick="openSidebar(74)"></div>
+          <div class="container"><img src="img/KND/Fallow Cultivator.png" alt="75" id="75" data-flag="@X" onclick="openSidebar(75)"></div>
+          <div class="container"><img src="img/KND/Glory Chaser.png" alt="76" id="76" data-flag="@X" onclick="openSidebar(76)"></div>
+          <div class="container"><img src="img/KND/Ghostquill Composer.png" alt="77" id="77" data-flag="@X" onclick="openSidebar(77)"></div>
+          <div class="container"><img src="img/KND/Liturgy in Smoke.png" alt="78" id="78" data-flag="@X" onclick="openSidebar(78)"></div>
+          <div class="container"><img src="img/KND/Kindled Tracker.png" alt="79" id="79" data-flag="@X" onclick="openSidebar(79)"></div>
+          <div class="container"><img src="img/KND/Grit.png" alt="80" id="80" data-flag="@X" onclick="openSidebar(80)"></div>
+          <div class="container"><img src="img/KND/Heart of the Cause.png" alt="81" id="81" data-flag="@X" onclick="openSidebar(81)"></div>
+          <div class="container"><img src="img/KND/Oracle of the Fens.png" alt="82" id="82" data-flag="@X" onclick="openSidebar(82)"></div>
+          <div class="container"><img src="img/KND/Memories of Agony.png" alt="83" id="83" data-flag="@X" onclick="openSidebar(83)"></div>
+          <div class="container"><img src="img/KND/Ndengo Brutalizer.png" alt="84" id="84" data-flag="@X" onclick="openSidebar(84)"></div>
+          <div class="container"><img src="img/KND/Mafusho Rites.png" alt="85" id="85" data-flag="@X" onclick="openSidebar(85)"></div>
+          <div class="container"><img src="img/KND/Honorable March.png" alt="86" id="86" data-flag="@X" onclick="openSidebar(86)"></div>
+          <div class="container"><img src="img/KND/Sandspinner.png" alt="87" id="87" data-flag="@X" onclick="openSidebar(87)"></div>
+          <div class="container"><img src="img/KND/Plague Striker.png" alt="88" id="88" data-flag="@X" onclick="openSidebar(88)"></div>
+          <div class="container"><img src="img/KND/Runic Memoirs.png" alt="89" id="89" data-flag="@X" onclick="openSidebar(89)"></div>
+          <div class="container"><img src="img/KND/Patron of Twigs.png" alt="90" id="90" data-flag="@X" onclick="openSidebar(90)"></div>
+          <div class="container"><img src="img/KND/Insurgent's Pet.png" alt="91" id="91" data-flag="@X" onclick="openSidebar(91)"></div>
+          <div class="container"><img src="img/KND/Seek the Inevitable.png" alt="92" id="92" data-flag="@X" onclick="openSidebar(92)"></div>
+          <div class="container"><img src="img/KND/Rehengi Majesty.png" alt="93" id="93" data-flag="@X" onclick="openSidebar(93)"></div>
+          <div class="container"><img src="img/KND/Sandspout.png" alt="94" id="94" data-flag="@X" onclick="openSidebar(94)"></div>
+          <div class="container"><img src="img/KND/Prairie Herd.png" alt="95" id="95" data-flag="@X" onclick="openSidebar(95)"></div>
+          <div class="container"><img src="img/KND/Palemane Paladin.png" alt="96" id="96" data-flag="@X" onclick="openSidebar(96)"></div>
+          <div class="container"><img src="img/KND/Sundry Revelations.png" alt="97" id="97" data-flag="@X" onclick="openSidebar(97)"></div>
+          <div class="container"><img src="img/KND/Sanguine Scribe.png" alt="98" id="98" data-flag="@X" onclick="openSidebar(98)"></div>
+          <div class="container"><img src="img/KND/Steppe Stalker.png" alt="99" id="99" data-flag="@X" onclick="openSidebar(99)"></div>
+          <div class="container"><img src="img/KND/The Sun Also Rises.png" alt="100" id="100" data-flag="@X" onclick="openSidebar(100)"></div>
+          <div class="container"><img src="img/KND/Prophet of the Veil.png" alt="101" id="101" data-flag="@X" onclick="openSidebar(101)"></div>
+          <div class="container"><img src="img/KND/Trifle Carver.png" alt="102" id="102" data-flag="@X" onclick="openSidebar(102)"></div>
+          <div class="container"><img src="img/KND/Stolen Secrets.png" alt="103" id="103" data-flag="@X" onclick="openSidebar(103)"></div>
+          <div class="container"><img src="img/KND/Twirling Duelist.png" alt="104" id="104" data-flag="@X" onclick="openSidebar(104)"></div>
+          <div class="container"><img src="img/KND/Third Order of the Ngodo.png" alt="105" id="105" data-flag="@X" onclick="openSidebar(105)"></div>
+          <div class="container"><img src="img/KND/Skyknight Armorer.png" alt="106" id="106" data-flag="@X" onclick="openSidebar(106)"></div>
+          <div class="container"><img src="img/KND/Whisperwind Soothsayer.png" alt="107" id="107" data-flag="@X" onclick="openSidebar(107)"></div>
+          <div class="container"><img src="img/KND/Vengeful Martyr.png" alt="108" id="108" data-flag="@X" onclick="openSidebar(108)"></div>
+          <div class="container"><img src="img/KND/Wave-Bladed Sword.png" alt="109" id="109" data-flag="@X" onclick="openSidebar(109)"></div>
+          <div class="container"><img src="img/KND/Underbrush Ranger.png" alt="110" id="110" data-flag="@X" onclick="openSidebar(110)"></div>
+          <div class="container"><img src="img/KND/Spear of Justice.png" alt="111" id="111" data-flag="@X" onclick="openSidebar(111)"></div>
+          <div class="container"><img src="img/KND/Aspiring Astronomer.png" alt="112" id="112" data-flag="@X" onclick="openSidebar(112)"></div>
+          <div class="container"><img src="img/KND/Acolyte of Unkindness.png" alt="113" id="113" data-flag="@X" onclick="openSidebar(113)"></div>
+          <div class="container"><img src="img/KND/Amidi Legionnaire.png" alt="114" id="114" data-flag="@X" onclick="openSidebar(114)"></div>
+          <div class="container"><img src="img/KND/Am'Atambi's Wildkin.png" alt="115" id="115" data-flag="@X" onclick="openSidebar(115)"></div>
+          <div class="container"><img src="img/KND/Alluring Raconteur.png" alt="116" id="116" data-flag="@X" onclick="openSidebar(116)"></div>
+          <div class="container"><img src="img/KND/Bewitching Glamour.png" alt="117" id="117" data-flag="@X" onclick="openSidebar(117)"></div>
+          <div class="container"><img src="img/KND/By Blood and Venom.png" alt="118" id="118" data-flag="@X" onclick="openSidebar(118)"></div>
+          <div class="container"><img src="img/KND/Ancestral Flame.png" alt="119" id="119" data-flag="@X" onclick="openSidebar(119)"></div>
+          <div class="container"><img src="img/KND/Barren Passage.png" alt="120" id="120" data-flag="@X" onclick="openSidebar(120)"></div>
+          <div class="container"><img src="img/KND/Bound in Silence.png" alt="121" id="121" data-flag="@X" onclick="openSidebar(121)"></div>
+          <div class="container"><img src="img/KND/Cloudcatch.png" alt="122" id="122" data-flag="@X" onclick="openSidebar(122)"></div>
+          <div class="container"><img src="img/KND/Caress of Dark Fumes.png" alt="123" id="123" data-flag="@X" onclick="openSidebar(123)"></div>
+          <div class="container"><img src="img/KND/Audience Participation.png" alt="124" id="124" data-flag="@X" onclick="openSidebar(124)"></div>
+          <div class="container"><img src="img/KND/Broadhide Patrol.png" alt="125" id="125" data-flag="@X" onclick="openSidebar(125)"></div>
+          <div class="container"><img src="img/KND/Channel the Microcosmos.png" alt="126" id="126" data-flag="@X" onclick="openSidebar(126)"></div>
+          <div class="container"><img src="img/KND/Corporeal Dispute.png" alt="127" id="127" data-flag="@X" onclick="openSidebar(127)"></div>
+          <div class="container"><img src="img/KND/Eternal Chaplain.png" alt="128" id="128" data-flag="@X" onclick="openSidebar(128)"></div>
+          <div class="container"><img src="img/KND/Barrelling Cavalry.png" alt="129" id="129" data-flag="@X" onclick="openSidebar(129)"></div>
+          <div class="container"><img src="img/KND/Broken Wings.png" alt="130" id="130" data-flag="@X" onclick="openSidebar(130)"></div>
+          <div class="container"><img src="img/KND/Festooned Eagle.png" alt="131" id="131" data-flag="@X" onclick="openSidebar(131)"></div>
+          <div class="container"><img src="img/KND/Croak Tales.png" alt="132" id="132" data-flag="@X" onclick="openSidebar(132)"></div>
+          <div class="container"><img src="img/KND/Fall Prey to the Hunt.png" alt="133" id="133" data-flag="@X" onclick="openSidebar(133)"></div>
+          <div class="container"><img src="img/KND/Between Sun and Sand.png" alt="134" id="134" data-flag="@X" onclick="openSidebar(134)"></div>
+          <div class="container"><img src="img/KND/Conqueror's Mentality.png" alt="135" id="135" data-flag="@X" onclick="openSidebar(135)"></div>
+          <div class="container"><img src="img/KND/Indignant Lionheart.png" alt="136" id="136" data-flag="@X" onclick="openSidebar(136)"></div>
+          <div class="container"><img src="img/KND/Deep-Dune Stirrer.png" alt="137" id="137" data-flag="@X" onclick="openSidebar(137)"></div>
+          <div class="container"><img src="img/KND/Gates of Ifeh.png" alt="138" id="138" data-flag="@X" onclick="openSidebar(138)"></div>
+          <div class="container"><img src="img/KND/Brazen Firedancer.png" alt="139" id="139" data-flag="@X" onclick="openSidebar(139)"></div>
+          <div class="container"><img src="img/KND/Crush Underfoot.png" alt="140" id="140" data-flag="@X" onclick="openSidebar(140)"></div>
+          <div class="container"><img src="img/KND/Khazran Recruiter.png" alt="141" id="141" data-flag="@X" onclick="openSidebar(141)"></div>
+          <div class="container"><img src="img/KND/Frostbeak Mystic.png" alt="142" id="142" data-flag="@X" onclick="openSidebar(142)"></div>
+          <div class="container"><img src="img/KND/Gloomrapt Ranger.png" alt="143" id="143" data-flag="@X" onclick="openSidebar(143)"></div>
+          <div class="container"><img src="img/KND/Bushland Militant.png" alt="144" id="144" data-flag="@X" onclick="openSidebar(144)"></div>
+          <div class="container"><img src="img/KND/Edgeland Sentry.png" alt="145" id="145" data-flag="@X" onclick="openSidebar(145)"></div>
+          <div class="container"><img src="img/KND/Palace Retainer.png" alt="146" id="146" data-flag="@X" onclick="openSidebar(146)"></div>
+          <div class="container"><img src="img/KND/Illusion Evoker.png" alt="147" id="147" data-flag="@X" onclick="openSidebar(147)"></div>
+          <div class="container"><img src="img/KND/Gutter Scoundrel.png" alt="148" id="148" data-flag="@X" onclick="openSidebar(148)"></div>
+          <div class="container"><img src="img/KND/Champion's Rage.png" alt="149" id="149" data-flag="@X" onclick="openSidebar(149)"></div>
+          <div class="container"><img src="img/KND/Field Pioneer.png" alt="150" id="150" data-flag="@X" onclick="openSidebar(150)"></div>
+          <div class="container"><img src="img/KND/Provisional Machete.png" alt="151" id="151" data-flag="@X" onclick="openSidebar(151)"></div>
+          <div class="container"><img src="img/KND/Mekini Eremite.png" alt="152" id="152" data-flag="@X" onclick="openSidebar(152)"></div>
+          <div class="container"><img src="img/KND/Highland Huntress.png" alt="153" id="153" data-flag="@X" onclick="openSidebar(153)"></div>
+          <div class="container"><img src="img/KND/Citadel Pyre.png" alt="154" id="154" data-flag="@X" onclick="openSidebar(154)"></div>
+          <div class="container"><img src="img/KND/Hulking Herdleader.png" alt="155" id="155" data-flag="@X" onclick="openSidebar(155)"></div>
+          <div class="container"><img src="img/KND/Rehengi Falconer.png" alt="156" id="156" data-flag="@X" onclick="openSidebar(156)"></div>
+          <div class="container"><img src="img/KND/Nightfall Raptor.png" alt="157" id="157" data-flag="@X" onclick="openSidebar(157)"></div>
+          <div class="container"><img src="img/KND/Khalfani Confidant.png" alt="158" id="158" data-flag="@X" onclick="openSidebar(158)"></div>
+          <div class="container"><img src="img/KND/Dust Puppeteer.png" alt="159" id="159" data-flag="@X" onclick="openSidebar(159)"></div>
+          <div class="container"><img src="img/KND/Loyal Strongjaw.png" alt="160" id="160" data-flag="@X" onclick="openSidebar(160)"></div>
+          <div class="container"><img src="img/KND/See Past the Veil.png" alt="161" id="161" data-flag="@X" onclick="openSidebar(161)"></div>
+          <div class="container"><img src="img/KND/Secrets of the Undercity.png" alt="162" id="162" data-flag="@X" onclick="openSidebar(162)"></div>
+          <div class="container"><img src="img/KND/Looming Vulture.png" alt="163" id="163" data-flag="@X" onclick="openSidebar(163)"></div>
+          <div class="container"><img src="img/KND/Edgeland Guardians.png" alt="164" id="164" data-flag="@X" onclick="openSidebar(164)"></div>
+          <div class="container"><img src="img/KND/Mark of the Brigade.png" alt="165" id="165" data-flag="@X" onclick="openSidebar(165)"></div>
+          <div class="container"><img src="img/KND/Sigil Seeker.png" alt="166" id="166" data-flag="@X" onclick="openSidebar(166)"></div>
+          <div class="container"><img src="img/KND/Skywise Mentor.png" alt="167" id="167" data-flag="@X" onclick="openSidebar(167)"></div>
+          <div class="container"><img src="img/KND/Mambu Temple Brute.png" alt="168" id="168" data-flag="@X" onclick="openSidebar(168)"></div>
+          <div class="container"><img src="img/KND/Msuji Arsonist.png" alt="169" id="169" data-flag="@X" onclick="openSidebar(169)"></div>
+          <div class="container"><img src="img/KND/Megafauna Tracker.png" alt="170" id="170" data-flag="@X" onclick="openSidebar(170)"></div>
+          <div class="container"><img src="img/KND/Spear Volley.png" alt="171" id="171" data-flag="@X" onclick="openSidebar(171)"></div>
+          <div class="container"><img src="img/KND/Sophic Augur.png" alt="172" id="172" data-flag="@X" onclick="openSidebar(172)"></div>
+          <div class="container"><img src="img/KND/No One Left Behind.png" alt="173" id="173" data-flag="@X" onclick="openSidebar(173)"></div>
+          <div class="container"><img src="img/KND/Rehengi Steed.png" alt="174" id="174" data-flag="@X" onclick="openSidebar(174)"></div>
+          <div class="container"><img src="img/KND/Savage Silverback.png" alt="175" id="175" data-flag="@X" onclick="openSidebar(175)"></div>
+          <div class="container"><img src="img/KND/Spearfang Campaigner.png" alt="176" id="176" data-flag="@X" onclick="openSidebar(176)"></div>
+          <div class="container"><img src="img/KND/Sorcerer's Familiar.png" alt="177" id="177" data-flag="@X" onclick="openSidebar(177)"></div>
+          <div class="container"><img src="img/KND/Revenant Cleave.png" alt="178" id="178" data-flag="@X" onclick="openSidebar(178)"></div>
+          <div class="container"><img src="img/KND/Sandshaping.png" alt="179" id="179" data-flag="@X" onclick="openSidebar(179)"></div>
+          <div class="container"><img src="img/KND/Slimefoot Knight.png" alt="180" id="180" data-flag="@X" onclick="openSidebar(180)"></div>
+          <div class="container"><img src="img/KND/Strength of Spirits.png" alt="181" id="181" data-flag="@X" onclick="openSidebar(181)"></div>
+          <div class="container"><img src="img/KND/Subduing Palm.png" alt="182" id="182" data-flag="@X" onclick="openSidebar(182)"></div>
+          <div class="container"><img src="img/KND/Somber Anarchist.png" alt="183" id="183" data-flag="@X" onclick="openSidebar(183)"></div>
+          <div class="container"><img src="img/KND/Screeching Rabble-Rousers.png" alt="184" id="184" data-flag="@X" onclick="openSidebar(184)"></div>
+          <div class="container"><img src="img/KND/Speaker of the Pride.png" alt="185" id="185" data-flag="@X" onclick="openSidebar(185)"></div>
+          <div class="container"><img src="img/KND/Temple Training.png" alt="186" id="186" data-flag="@X" onclick="openSidebar(186)"></div>
+          <div class="container"><img src="img/KND/Sugar-Cane Cultivators.png" alt="187" id="187" data-flag="@X" onclick="openSidebar(187)"></div>
+          <div class="container"><img src="img/KND/Tomb of Alaj.png" alt="188" id="188" data-flag="@X" onclick="openSidebar(188)"></div>
+          <div class="container"><img src="img/KND/Shock.png" alt="189" id="189" data-flag="@X" onclick="openSidebar(189)"></div>
+          <div class="container"><img src="img/KND/Thundering Charge.png" alt="190" id="190" data-flag="@X" onclick="openSidebar(190)"></div>
+          <div class="container"><img src="img/KND/Twilight Nomad.png" alt="191" id="191" data-flag="@X" onclick="openSidebar(191)"></div>
+          <div class="container"><img src="img/KND/Warding Hex.png" alt="192" id="192" data-flag="@X" onclick="openSidebar(192)"></div>
+          <div class="container"><img src="img/KND/Visions of the Uprising.png" alt="193" id="193" data-flag="@X" onclick="openSidebar(193)"></div>
+          <div class="container"><img src="img/KND/Student of Korongo.png" alt="194" id="194" data-flag="@X" onclick="openSidebar(194)"></div>
+          <div class="container"><img src="img/KND/Trials of the Tiny.png" alt="195" id="195" data-flag="@X" onclick="openSidebar(195)"></div>
+          <div class="container"><img src="img/KND/Uchana General.png" alt="196" id="196" data-flag="@X" onclick="openSidebar(196)"></div>
+          <div class="container"><img src="img/KND/Whispers on the Wind.png" alt="197" id="197" data-flag="@X" onclick="openSidebar(197)"></div>
+          <div class="container"><img src="img/KND/Wayfaring Headhunter.png" alt="198" id="198" data-flag="@X" onclick="openSidebar(198)"></div>
+          <div class="container"><img src="img/KND/Tomb Bandit.png" alt="199" id="199" data-flag="@X" onclick="openSidebar(199)"></div>
+          <div class="container"><img src="img/KND/Unweave the Tangle.png" alt="200" id="200" data-flag="@X" onclick="openSidebar(200)"></div>
+          <div class="container"><img src="img/KND/Village Matron.png" alt="201" id="201" data-flag="@X" onclick="openSidebar(201)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="202" id="202" data-flag="@E" onclick="openSidebar(202)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="203" id="203" data-flag="@E" onclick="openSidebar(203)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="204" id="204" data-flag="@E" onclick="openSidebar(204)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="205" id="205" data-flag="@E" onclick="openSidebar(205)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="206" id="206" data-flag="@ER" onclick="openSidebar(206)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="207" id="207" data-flag="@ER" onclick="openSidebar(207)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="208" id="208" data-flag="@ER" onclick="openSidebar(208)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="209" id="209" data-flag="@ER" onclick="openSidebar(209)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="210" id="210" data-flag="@ER" onclick="openSidebar(210)"></div>
+          <div class="container"><img src="img/KND/Waking Winds.png" alt="211" id="211" data-flag="@X" onclick="openSidebar(211)"></div>
+          <div class="container"><img src="img/KND/Yusi, the Sable Crow_front.png" data-alt_src="img/KND/Yusi, the Sable Crow_back.png" alt="212" id="212" data-flag="@XD" onclick="openSidebar(212)"><button class="btn" onclick="imgFlip(212)"></button></div>
+          <div class="container"><img src="img/KND/Seasoned Sandshaper.png" alt="213" id="213" data-flag="@X" onclick="openSidebar(213)"></div>
+          <div class="container"><img src="img/KND/Bourasan Enforcer.png" alt="214" id="214" data-flag="@X" onclick="openSidebar(214)"></div>
+          <div class="container"><img src="img/KND/Awakener of Ancients.png" alt="215" id="215" data-flag="@X" onclick="openSidebar(215)"></div>
+          <div class="container"><img src="img/KND/Locus Sanctifier.png" alt="216" id="216" data-flag="@X" onclick="openSidebar(216)"></div>
+          <div class="container"><img src="img/KND/Baneful Seer.png" alt="217" id="217" data-flag="@X" onclick="openSidebar(217)"></div>
+          <div class="container"><img src="img/KND/Onele Cheats Death.png" alt="218" id="218" data-flag="@X" onclick="openSidebar(218)"></div>
+          <div class="container"><img src="img/KND/Aduru Discovers Ndengo.png" alt="219" id="219" data-flag="@X" onclick="openSidebar(219)"></div>
+          <div class="container"><img src="img/KND/Harvest of the Many.png" alt="220" id="220" data-flag="@X" onclick="openSidebar(220)"></div>
+          <div class="container"><img src="img/KND/The Merchants of Shansa.png" alt="221" id="221" data-flag="@X" onclick="openSidebar(221)"></div>
+          <div class="container"><img src="img/KND/Msuji Patrol.png" alt="222" id="222" data-flag="@X" onclick="openSidebar(222)"></div>
+          <div class="container"><img src="img/KND/Savannah Scavenger.png" alt="223" id="223" data-flag="@X" onclick="openSidebar(223)"></div>
+          <div class="container"><img src="img/KND/Steadfast Fennec.png" alt="224" id="224" data-flag="@X" onclick="openSidebar(224)"></div>
+          <div class="container"><img src="img/KND/Rehengi Companion.png" alt="225" id="225" data-flag="@X" onclick="openSidebar(225)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="226" id="226" data-flag="@E" onclick="openSidebar(226)"></div>
+          <div class="container"><img src="img/KND/Swezi Steals the Moon.png" alt="227" id="227" data-flag="@X" onclick="openSidebar(227)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="228" id="228" data-flag="@E" onclick="openSidebar(228)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="229" id="229" data-flag="@E" onclick="openSidebar(229)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="230" id="230" data-flag="@E" onclick="openSidebar(230)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="231" id="231" data-flag="@ER" onclick="openSidebar(231)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="232" id="232" data-flag="@ER" onclick="openSidebar(232)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="233" id="233" data-flag="@ER" onclick="openSidebar(233)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="234" id="234" data-flag="@ER" onclick="openSidebar(234)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="235" id="235" data-flag="@ER" onclick="openSidebar(235)"></div>
+          <div class="container"><img src="img/KND/Embrace the Blood Sun.png" alt="236" id="236" data-flag="@X" onclick="openSidebar(236)"></div>
+          <div class="container"><img src="img/KND/Amber-Eye Visionary.png" alt="237" id="237" data-flag="@X" onclick="openSidebar(237)"></div>
+          <div class="container"><img src="img/KND/Niah, the Necroalchemist.png" alt="238" id="238" data-flag="@X" onclick="openSidebar(238)"></div>
+          <div class="container"><img src="img/KND/Blade of the Free.png" alt="239" id="239" data-flag="@X" onclick="openSidebar(239)"></div>
+          <div class="container"><img src="img/KND/Six-Strike Mantid.png" alt="240" id="240" data-flag="@X" onclick="openSidebar(240)"></div>
+          <div class="container"><img src="img/KND/Edgeland General.png" alt="241" id="241" data-flag="@X" onclick="openSidebar(241)"></div>
+          <div class="container"><img src="img/KND/Dawn Fabulist.png" alt="242" id="242" data-flag="@X" onclick="openSidebar(242)"></div>
+          <div class="container"><img src="img/KND/Nyoka, Festerlord.png" alt="243" id="243" data-flag="@X" onclick="openSidebar(243)"></div>
+          <div class="container"><img src="img/KND/Akelo Forges Moyoku.png" alt="244" id="244" data-flag="@X" onclick="openSidebar(244)"></div>
+          <div class="container"><img src="img/KND/Morass Vanquisher.png" alt="245" id="245" data-flag="@X" onclick="openSidebar(245)"></div>
+          <div class="container"><img src="img/KND/Kojo Joins the Cause.png" alt="246" id="246" data-flag="@X" onclick="openSidebar(246)"></div>
+          <div class="container"><img src="img/KND/Ritual at Usi Wamane.png" alt="247" id="247" data-flag="@X" onclick="openSidebar(247)"></div>
+          <div class="container"><img src="img/KND/False Liege of Luxury.png" alt="248" id="248" data-flag="@X" onclick="openSidebar(248)"></div>
+          <div class="container"><img src="img/KND/Chieftain's Warden.png" alt="249" id="249" data-flag="@X" onclick="openSidebar(249)"></div>
+          <div class="container"><img src="img/KND/Silkfeather Sage.png" alt="250" id="250" data-flag="@X" onclick="openSidebar(250)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="251" id="251" data-flag="@E" onclick="openSidebar(251)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="252" id="252" data-flag="@E" onclick="openSidebar(252)"></div>
+          <div class="container"><img src="img/KND/Nkosi Enters the Veil.png" alt="253" id="253" data-flag="@X" onclick="openSidebar(253)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="254" id="254" data-flag="@E" onclick="openSidebar(254)"></div>
+          <div class="container"><img src="img/KND/The Three Rites of Ekere.png" alt="255" id="255" data-flag="@X" onclick="openSidebar(255)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="256" id="256" data-flag="@ER" onclick="openSidebar(256)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="257" id="257" data-flag="@ER" onclick="openSidebar(257)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="258" id="258" data-flag="@ER" onclick="openSidebar(258)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="259" id="259" data-flag="@ER" onclick="openSidebar(259)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="260" id="260" data-flag="@ER" onclick="openSidebar(260)"></div>
+          <div class="container"><img src="img/KND/Siege Hippo.png" alt="261" id="261" data-flag="@X" onclick="openSidebar(261)"></div>
+          <div class="container"><img src="img/KND/The Kundege Oath.png" alt="262" id="262" data-flag="@X" onclick="openSidebar(262)"></div>
+          <div class="container"><img src="img/KND/Mpumo, the Rebel Lord.png" alt="263" id="263" data-flag="@X" onclick="openSidebar(263)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="264" id="264" data-flag="@E" onclick="openSidebar(264)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="265" id="265" data-flag="@E" onclick="openSidebar(265)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="266" id="266" data-flag="@ER" onclick="openSidebar(266)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="267" id="267" data-flag="@ER" onclick="openSidebar(267)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="268" id="268" data-flag="@ER" onclick="openSidebar(268)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="269" id="269" data-flag="@ER" onclick="openSidebar(269)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="270" id="270" data-flag="@ER" onclick="openSidebar(270)"></div>
+          <div class="container"><img src="img/KND/Djitu's Lithified Mantle.png" alt="271" id="271" data-flag="@X" onclick="openSidebar(271)"></div>
+          <div class="container"><img src="img/KND/Tika Shuguru, Blood Effigy.png" alt="272" id="272" data-flag="@X" onclick="openSidebar(272)"></div>
+          <div class="container"><img src="img/KND/The Veil Betwixt.png" alt="273" id="273" data-flag="@X" onclick="openSidebar(273)"></div>
+          <div class="container"><img src="img/KND/Clockwork Plaguebearer.png" alt="274" id="274" data-flag="@X" onclick="openSidebar(274)"></div>
+          <div class="container"><img src="img/KND/Dust Devil.png" alt="275" id="275" data-flag="@X" onclick="openSidebar(275)"></div>
+          <div class="container"><img src="img/KND/The Exile Queen's Crown.png" alt="276" id="276" data-flag="@X" onclick="openSidebar(276)"></div>
+          <div class="container"><img src="img/KND/Ironhide Processional.png" alt="277" id="277" data-flag="@X" onclick="openSidebar(277)"></div>
+          <div class="container"><img src="img/KND/Kopesh of the Veil.png" alt="278" id="278" data-flag="@X" onclick="openSidebar(278)"></div>
+          <div class="container"><img src="img/KND/Ocular Parasite.png" alt="279" id="279" data-flag="@X" onclick="openSidebar(279)"></div>
+          <div class="container"><img src="img/KND/Star of the Sands.png" alt="280" id="280" data-flag="@X" onclick="openSidebar(280)"></div>
+          <div class="container"><img src="img/KND/Timeless Watchers.png" alt="281" id="281" data-flag="@X" onclick="openSidebar(281)"></div>
+          <div class="container"><img src="img/KND/Directive Replicator.png" alt="282" id="282" data-flag="@X" onclick="openSidebar(282)"></div>
+          <div class="container"><img src="img/KND/Horn of Reflection.png" alt="283" id="283" data-flag="@X" onclick="openSidebar(283)"></div>
+          <div class="container"><img src="img/KND/The Maker's Mask.png" alt="284" id="284" data-flag="@X" onclick="openSidebar(284)"></div>
+          <div class="container"><img src="img/KND/Overseer of the Vast.png" alt="285" id="285" data-flag="@X" onclick="openSidebar(285)"></div>
+          <div class="container"><img src="img/KND/Surging Sandslide.png" alt="286" id="286" data-flag="@X" onclick="openSidebar(286)"></div>
+          <div class="container"><img src="img/KND/Consecrated Statuary.png" alt="287" id="287" data-flag="@X" onclick="openSidebar(287)"></div>
+          <div class="container"><img src="img/KND/Dune Scrapper.png" alt="288" id="288" data-flag="@X" onclick="openSidebar(288)"></div>
+          <div class="container"><img src="img/KND/Mask of M'Gana.png" alt="289" id="289" data-flag="@X" onclick="openSidebar(289)"></div>
+          <div class="container"><img src="img/KND/Prophetic Prism.png" alt="290" id="290" data-flag="@X" onclick="openSidebar(290)"></div>
+          <div class="container"><img src="img/KND/Sandstone Sentinels.png" alt="291" id="291" data-flag="@X" onclick="openSidebar(291)"></div>
+          <div class="container"><img src="img/KND/Shawl of M'Gana.png" alt="292" id="292" data-flag="@X" onclick="openSidebar(292)"></div>
+          <div class="container"><img src="img/KND/Staff of M'Gana.png" alt="293" id="293" data-flag="@X" onclick="openSidebar(293)"></div>
+          <div class="container"><img src="img/KND/Trumpeting Caravan.png" alt="294" id="294" data-flag="@X" onclick="openSidebar(294)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="295" id="295" data-flag="@E" onclick="openSidebar(295)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="296" id="296" data-flag="@ER" onclick="openSidebar(296)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="297" id="297" data-flag="@ER" onclick="openSidebar(297)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="298" id="298" data-flag="@ER" onclick="openSidebar(298)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="299" id="299" data-flag="@ER" onclick="openSidebar(299)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="300" id="300" data-flag="@ER" onclick="openSidebar(300)"></div>
+          <div class="container"><img src="img/KND/Unending Sands.png" alt="301" id="301" data-flag="@X" onclick="openSidebar(301)"></div>
+          <div class="container"><img src="img/KND/Desolate Tract.png" alt="302" id="302" data-flag="@X" onclick="openSidebar(302)"></div>
+          <div class="container"><img src="img/KND/The God Hand.png" alt="303" id="303" data-flag="@X" onclick="openSidebar(303)"></div>
+          <div class="container"><img src="img/KND/Warped Wilds.png" alt="304" id="304" data-flag="@X" onclick="openSidebar(304)"></div>
+          <div class="container"><img src="img/KND/Forsaken Sanctuary.png" alt="305" id="305" data-flag="@X" onclick="openSidebar(305)"></div>
+          <div class="container"><img src="img/KND/Reflecting Canyon.png" alt="306" id="306" data-flag="@X" onclick="openSidebar(306)"></div>
+          <div class="container"><img src="img/KND/Vibrant Headland.png" alt="307" id="307" data-flag="@X" onclick="openSidebar(307)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="308" id="308" data-flag="@E" onclick="openSidebar(308)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="309" id="309" data-flag="@E" onclick="openSidebar(309)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="310" id="310" data-flag="@E" onclick="openSidebar(310)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="311" id="311" data-flag="@ER" onclick="openSidebar(311)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="312" id="312" data-flag="@ER" onclick="openSidebar(312)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="313" id="313" data-flag="@ER" onclick="openSidebar(313)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="314" id="314" data-flag="@ER" onclick="openSidebar(314)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="315" id="315" data-flag="@ER" onclick="openSidebar(315)"></div>
+          <div class="container"><img src="img/KND/Dunesea Expanse.png" alt="316" id="316" data-flag="@X" onclick="openSidebar(316)"></div>
+          <div class="container"><img src="img/KND/Crumbling Aqueduct.png" alt="317" id="317" data-flag="@X" onclick="openSidebar(317)"></div>
+          <div class="container"><img src="img/KND/Bloodsand Gulch.png" alt="318" id="318" data-flag="@X" onclick="openSidebar(318)"></div>
+          <div class="container"><img src="img/KND/Blooming Needles.png" alt="319" id="319" data-flag="@X" onclick="openSidebar(319)"></div>
+          <div class="container"><img src="img/KND/Sundappled Scrub.png" alt="320" id="320" data-flag="@X" onclick="openSidebar(320)"></div>
+          <div class="container"><img src="img/KND/Desiccated Trail.png" alt="321" id="321" data-flag="@X" onclick="openSidebar(321)"></div>
+          <div class="container"><img src="img/KND/Rot-Sand Ruins.png" alt="322" id="322" data-flag="@X" onclick="openSidebar(322)"></div>
+          <div class="container"><img src="img/KND/Nestled Delta.png" alt="323" id="323" data-flag="@X" onclick="openSidebar(323)"></div>
+          <div class="container"><img src="img/KND/Arcane Oasis.png" alt="324" id="324" data-flag="@X" onclick="openSidebar(324)"></div>
+          <div class="container"><img src="img/KND/Arid Causeway.png" alt="325" id="325" data-flag="@X" onclick="openSidebar(325)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="326" id="326" data-flag="@ER" onclick="openSidebar(326)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="327" id="327" data-flag="@ER" onclick="openSidebar(327)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="328" id="328" data-flag="@ER" onclick="openSidebar(328)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="329" id="329" data-flag="@ER" onclick="openSidebar(329)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="330" id="330" data-flag="@ER" onclick="openSidebar(330)"></div>
+          <div class="container"><img src="img/KND/Plains_a.png" alt="331" id="331" data-flag="@X" onclick="openSidebar(331)"></div>
+          <div class="container"><img src="img/KND/Island_a.png" alt="332" id="332" data-flag="@X" onclick="openSidebar(332)"></div>
+          <div class="container"><img src="img/KND/Swamp_a.png" alt="333" id="333" data-flag="@X" onclick="openSidebar(333)"></div>
+          <div class="container"><img src="img/KND/Mountain_a.png" alt="334" id="334" data-flag="@X" onclick="openSidebar(334)"></div>
+          <div class="container"><img src="img/KND/Forest_a.png" alt="335" id="335" data-flag="@X" onclick="openSidebar(335)"></div>
+          <div class="container"><img src="img/KND/Plains_b.png" alt="336" id="336" data-flag="@X" onclick="openSidebar(336)"></div>
+          <div class="container"><img src="img/KND/Island_b.png" alt="337" id="337" data-flag="@X" onclick="openSidebar(337)"></div>
+          <div class="container"><img src="img/KND/Swamp_b.png" alt="338" id="338" data-flag="@X" onclick="openSidebar(338)"></div>
+          <div class="container"><img src="img/KND/Mountain_b.png" alt="339" id="339" data-flag="@X" onclick="openSidebar(339)"></div>
+          <div class="container"><img src="img/KND/Forest_b.png" alt="340" id="340" data-flag="@X" onclick="openSidebar(340)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="341" id="341" data-flag="@ER" onclick="openSidebar(341)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="342" id="342" data-flag="@ER" onclick="openSidebar(342)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="343" id="343" data-flag="@ER" onclick="openSidebar(343)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="344" id="344" data-flag="@ER" onclick="openSidebar(344)"></div>
+          <div class="container"><img src="img/KND/er.png" alt="345" id="345" data-flag="@ER" onclick="openSidebar(345)"></div>
+          <div class="container"><img src="img/KND/Bird.png" alt="346" id="346" data-flag="@X" onclick="openSidebar(346)"></div>
+          <div class="container"><img src="img/KND/Bird Knight.png" alt="347" id="347" data-flag="@X" onclick="openSidebar(347)"></div>
+          <div class="container"><img src="img/KND/Mouse.png" alt="348" id="348" data-flag="@X" onclick="openSidebar(348)"></div>
+          <div class="container"><img src="img/KND/Bird Warrior.png" alt="349" id="349" data-flag="@X" onclick="openSidebar(349)"></div>
+          <div class="container"><img src="img/KND/Shade.png" alt="350" id="350" data-flag="@X" onclick="openSidebar(350)"></div>
+          <div class="container"><img src="img/KND/Snake.png" alt="351" id="351" data-flag="@X" onclick="openSidebar(351)"></div>
+          <div class="container"><img src="img/KND/Bird Soldier.png" alt="352" id="352" data-flag="@X" onclick="openSidebar(352)"></div>
+          <div class="container"><img src="img/KND/Cat.png" alt="353" id="353" data-flag="@X" onclick="openSidebar(353)"></div>
+          <div class="container"><img src="img/KND/Sand.png" alt="354" id="354" data-flag="@X" onclick="openSidebar(354)"></div>
+          <div class="container"><img src="img/KND/All-Mother's Soul_t.png" alt="355" id="355" data-flag="@X" onclick="openSidebar(355)"></div>
+          <div class="container"><img src="img/KND/Elephant.png" alt="356" id="356" data-flag="@X" onclick="openSidebar(356)"></div>
+          <div class="container"><img src="img/KND/Spider.png" alt="357" id="357" data-flag="@X" onclick="openSidebar(357)"></div>
+          <div class="container"><img src="img/KND/Rebel.png" alt="358" id="358" data-flag="@X" onclick="openSidebar(358)"></div>
+          <div class="container"><img src="img/KND/Sand Shark.png" alt="359" id="359" data-flag="@X" onclick="openSidebar(359)"></div>
+          <div class="container"><img src="img/KND/Frog.png" alt="360" id="360" data-flag="@X" onclick="openSidebar(360)"></div>
+          <div class="container"><img src="img/KND/Army.png" alt="361" id="361" data-flag="@X" onclick="openSidebar(361)"></div>
+          <div class="container"><img src="img/KND/Equipment.png" alt="362" id="362" data-flag="@X" onclick="openSidebar(362)"></div>
+          <div class="container"><img src="img/KND/Jwanga Djitu.png" alt="363" id="363" data-flag="@X" onclick="openSidebar(363)"></div>
+          <div class="container"><img src="img/KND/Razor's Edge.png" alt="364" id="364" data-flag="@X" onclick="openSidebar(364)"></div>
+          <div class="container"><img src="img/KND/Sand Construct.png" alt="365" id="365" data-flag="@X" onclick="openSidebar(365)"></div>
+          <div class="container"><img src="img/KND/Scarecrow.png" alt="366" id="366" data-flag="@X" onclick="openSidebar(366)"></div>
+          <div class="container"><img src="img/KND/Treasure.png" alt="367" id="367" data-flag="@X" onclick="openSidebar(367)"></div>
+          <div class="container"><img src="img/KND/Desert.png" alt="368" id="368" data-flag="@X" onclick="openSidebar(368)"></div>
+          <div class="container"><img src="img/KND/Copy.png" alt="369" id="369" data-flag="@X" onclick="openSidebar(369)"></div>
+          <div class="container"><img src="img/KND/e.png" alt="370" id="370" data-flag="@E" onclick="openSidebar(370)"></div>
+    </div>
+</div>
+    <div class="sidebar" id="sidebar">
+        <img id="sidebar_img" src="img/er.png"></img>
+        <button class="btn" onclick="closeSidebar()"></button>
+    </div>
+    <div class="footer"></div>
 
     <script>
         // Function to apply logic based on the data-flag
@@ -517,27 +559,67 @@
 
                 if (flag === '@N') {
                     img.src = './img/card_back.png';
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
                 }
 
                 if (flag === '@E') {
                     img.src = './img/e.png';
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
                 }
 
                 if (flag === '@ER') {
                     img.src = './img/er.png';
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
                 }
 
-                img.style.visibility = 'visible';                
+                img.style.visibility = 'visible';
             });
 
         });
+
+    window.addEventListener('resize', function(event) {
+        setSidebarTop();
+    }, true);
+
+    function setSidebarTop() {
+        let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        let sh = document.getElementById('sidebar').offsetHeight;
+        let height = 100 * ((vh - sh) / 2) / vh;
+        document.getElementById('sidebar').style.top = height + '%';
+    }
 
     function imgFlip(num) {
         tmp = document.getElementById(num).src;
         document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
         document.getElementById(num).dataset.alt_src = tmp;
     }
-    </script>
 
+    function openSidebar(id) {
+        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+        
+        document.getElementById('sidebar').style.display = 'block';
+        document.getElementById('sidebar_img').src = document.getElementById(id).src;
+        document.getElementById('main-content').style.width = '60%';
+        
+        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+        console.log(scroll_pct + ' ' + scroll_pos + ' ' + document.documentElement.scrollHeight);
+        window.scrollTo(window.scrollX, scroll_pos);
+        setSidebarTop();
+    }
+
+    function closeSidebar() {
+        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('main-content').style.width = '100%';
+        
+
+        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+        window.scrollTo(window.scrollX, scroll_pos);
+    }
+    </script>
 </body>
 </html>
