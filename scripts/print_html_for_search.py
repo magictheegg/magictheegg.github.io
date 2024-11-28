@@ -141,11 +141,20 @@ def generate_html(img_dir, output_html_file):
 		<select name="sort-by" id="sort-by"><option value="set-code">Set Code / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select>
 		<div class="prev-next-btns">
 			<button type="submit" onclick="previousPage()" id="prevBtn" disabled>< Previous</button>
-			<button type="submit" onclick="nextPage()" id="nextBtn">Next 50 ></button>
+			<button type="submit" onclick="nextPage()" id="nextBtn">Next 30 ></button>
 		</div>
 	</div>
 
 	<div class="grid-container" id="grid">
+	</div>
+
+	<div class="button-grid">
+		<div></div>
+		<div></div>
+		<div class="prev-next-btns">
+			<button type="submit" onclick="previousPage()" id="prevBtn-footer" disabled>< Previous</button>
+			<button type="submit" onclick="nextPage()" id="nextBtn-footer">Next 30 ></button>
+		</div>
 	</div>
 
 	<script>
@@ -572,17 +581,19 @@ def generate_html(img_dir, output_html_file):
 				document.getElementById("results-text").innerText = "";
 			}
 
-			for (let i = 0; i < Math.min(50, search_results.length); i++)
+			for (let i = 0; i < Math.min(30, search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 
-				if (search_results.length <= 50)
+				if (search_results.length <= 30)
 				{
 					document.getElementById("nextBtn").disabled = true;
+					document.getElementById("nextBtn-footer").disabled = true;
 				}
 				else
 				{
 					document.getElementById("nextBtn").disabled = false;
+					document.getElementById("nextBtn-footer").disabled = false;
 				}
 			}
 		}
@@ -718,15 +729,17 @@ def generate_html(img_dir, output_html_file):
 			page = page - 1;
 			cardGrid.innerHTML = "";
 
-			for (let i = (50 * page); i < Math.min((50 * (page + 1)), search_results.length); i++)
+			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 			}
 
 			document.getElementById("nextBtn").disabled = false;
+			document.getElementById("nextBtn-footer").disabled = false;
 			if (page == 0)
 			{
 				document.getElementById("prevBtn").disabled = true;
+				document.getElementById("prevBtn-footer").disabled = true;
 			}
 		}
 
@@ -734,16 +747,21 @@ def generate_html(img_dir, output_html_file):
 			page = page + 1;
 			cardGrid.innerHTML = "";
 
-			for (let i = (50 * page); i < Math.min((50 * (page + 1)), search_results.length); i++)
+			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 			}
 
 			document.getElementById("prevBtn").disabled = false;
-			if (search_results.length <= (50 * (page + 1)))
+			document.getElementById("prevBtn-footer").disabled = false;
+			if (search_results.length <= (30 * (page + 1)))
 			{
 				document.getElementById("nextBtn").disabled = true;
+				document.getElementById("nextBtn-footer").disabled = true;
 			}
+
+			document.body.scrollTop = 0; // For Safari
+  			document.documentElement.scrollTop = 0; // For real browsers
 		}
 	</script>
 </body>
