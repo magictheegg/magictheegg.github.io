@@ -741,6 +741,9 @@ def generate_html(img_dir, output_html_file):
 				document.getElementById("prevBtn").disabled = true;
 				document.getElementById("prevBtn-footer").disabled = true;
 			}
+
+			document.body.scrollTop = 0; // For Safari
+  			document.documentElement.scrollTop = 0; // For real browsers
 		}
 
 		function nextPage() {
