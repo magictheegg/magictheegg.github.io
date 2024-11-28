@@ -10,8 +10,9 @@ def generate_html(img_dir, output_html_file, magic_card_back_image, set_code):
 
     set_img_dir = os.path.join(img_dir, set_code)
     previewed = [file for file in os.listdir(set_img_dir)]
+    script_dir = os.path.dirname(os.path.realpath(__file__))
     
-    with open(os.path.join('lists', set_code + '-list.txt')) as f:
+    with open(os.path.join(script_dir, 'lists', set_code + '-list.txt')) as f:
         cards = [card.rstrip() for card in f]
 
     # Start creating the HTML file content
@@ -320,7 +321,8 @@ def generate_html(img_dir, output_html_file, magic_card_back_image, set_code):
 # Usage
 # You must have exported the card images (as.png) to input_directory and to image_directory.
 for set_code in codes:
-    img_dir = "../img/" # Relative to this script (can be made point to the same directory as input_directory)
-    output_html_file = "../" + set_code + "_spoiler.html" # Relative to this script
-    magic_card_back_image = "../img/card_back.png" # Relative to output_html_file directory
+    container_dir = os.path.dirname(os.path.realpath(__file__))[:-8] # Minus '/scripts'
+    img_dir = container_dir + "/img/" # Relative to this script (can be made point to the same directory as input_directory)
+    output_html_file = container_dir + "/" + set_code + "_spoiler.html" # Relative to this script
+    magic_card_back_image = container_dir + "/img/card_back.png" # Relative to output_html_file directory
     generate_html(img_dir, output_html_file, magic_card_back_image, set_code)

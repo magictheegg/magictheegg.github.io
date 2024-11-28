@@ -5,8 +5,13 @@ if len(sys.argv) != 3:
 	print('to run: python3 list_to_list.py <input_file> <output_file>')
 
 else:
+	# with open(sys.argv[1]) as f:
+	# 	cards = [card.rstrip().split('\t') for card in f]
 	with open(sys.argv[1]) as f:
-		cards = [card.rstrip().split('\t') for card in f]
+		raw = f.read()
+		cards_raw = raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
+	cards_raw = cards_raw.rstrip('\\n')
+	cards = cards_raw.split('\\n')
 	
 	master_list = []
 	cards_mono = []
@@ -17,6 +22,7 @@ else:
 	cards_token = []
 
 	for card in cards:
+		card = card.split('\t')
 		# card number to int
 		card[4] = int(card[4])
 
@@ -372,8 +378,6 @@ else:
 	with open(sys.argv[2], 'w') as f:
 		for card_name in master_list:
 			print(card_name, file=f)
-
-	# 'Flesh', 'R', 'common', 'Legendary Token Creature — Cat ', '7'
 
 
 
