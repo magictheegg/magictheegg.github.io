@@ -17,6 +17,9 @@ def generate_html(img_dir, output_html_file):
 
 	# Start creating the HTML file content
 	html_content = '''<html>
+<head>
+  <title>Search</title>
+</head>
 <style>
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
@@ -133,8 +136,8 @@ def generate_html(img_dir, output_html_file):
 </style>
 <body>
 	<div class="search-grid">
-		<input type="text" placeholder="Search ..." name="search" id="search">
-		<button type="submit" onclick="search()" id="searchBtn">Search</button>
+		<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
+		<button type="submit" onclick="search(true)" id="searchBtn">Search</button>
 	</div>
 	<div class="button-grid">
 		<div class="results-text" id="results-text"></div>
@@ -196,16 +199,35 @@ def generate_html(img_dir, output_html_file):
 			cardGrid = document.getElementById("grid");
 
 			card_list_arrayified.sort(compareFunction);
-			
-			// initial search with 0 params
-			search();
+
+			page = window.location.href.indexOf("page=") == -1 ? 0 : parseInt(window.location.href.substring(window.location.href.indexOf("page=") + 5)) - 1;
+
+			// refresh page values
+			let params = decodeURIComponent(window.location.href.indexOf("?search") == -1 ? "" : window.location.href.substring(window.location.href.indexOf("?search") + 8));
+  			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replace("+", " ") : params.substring(0, params.indexOf("&page=")).replace("+", " "));
+  			if (sessionStorage.getItem("sortMethod"))
+  			{
+	  			document.getElementById("sort-by").value = sessionStorage.getItem("sortMethod");  			
+  			}
+
+  			// initial search on load
+			search(false);
 		});
 
 		document.getElementById("sort-by").onchange = changeListener;
   
   		function changeListener() {
-  			search();
+  			sessionStorage.setItem("sortMethod", document.getElementById("sort-by").value);
+  			search(false);
   		}
+
+  		window.addEventListener('popstate', function(event) {
+  			let params = decodeURIComponent(window.location.href.indexOf("?search") == -1 ? "" : window.location.href.substring(window.location.href.indexOf("?search") + 8), (window.location.href.indexOf("page=") == -1 ? window.location.href.length : window.location.href.indexOf("page=")));
+			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replace("+", " ") : params.substring(0, params.indexOf("&page=")).replace("+", " "));
+			page = window.location.href.indexOf("page=") == -1 ? 0 : parseInt(window.location.href.substring(window.location.href.indexOf("page=") + 5)) - 1;
+
+			search(false);
+		});
 
 		function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
@@ -288,16 +310,24 @@ def generate_html(img_dir, output_html_file):
 			}
 		}
 
-		function search() {
+		function search(setNewState) {
 			searchTerms = document.getElementById("search").value;
+
 			card_list_arrayified.sort(compareFunction);
-			search_results = []
-			page = 0
+			search_results = [];
+			page = setNewState ? 0 : page;
 
 			if (searchTerms != "")
 			{
-				quoteSplitRegex = /[^" ]*"[^"]+"|[^\s]+/g,
-				searchTokens = searchTerms.toLowerCase().match(quoteSplitRegex).map(e => e.replace(/"(.+)"/, "$1"));
+				if (setNewState)
+				{
+					let url = (window.location.href.indexOf("?") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("?"))));
+					let params = new URLSearchParams(url.search);
+					params.append("search", searchTerms);
+					history.pushState({}, '', url.pathname + '?' + params.toString());
+				}
+				oracleSplitRegex = /[^"“”\/ ]*["“\/][^"“”\/]+["”\/]|[^\s]+/g,
+				searchTokens = searchTerms.toLowerCase().match(oracleSplitRegex).map(e => e.replace(/"(.+)"/, "$1"));
 			}
 			else
 			{
@@ -327,15 +357,16 @@ def generate_html(img_dir, output_html_file):
 				const card_rarity = card_stats[2];
 				const card_set = card_stats[11];
 
-				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r"]
+				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
 				if (card_type.includes("token") && !searchTokens.includes("t:token"))
 				{
-					searched = false;
+					continue;
 				}
 
 				for (let token of searchTokens)
 				{
+					token = token.replace("~", card_name).replace("cardname", card_name);
 					let flip = false;
 
 					if (token.charAt(0) == '-')
@@ -430,7 +461,7 @@ def generate_html(img_dir, output_html_file):
 								searched = (searched && hasAllAndMoreChars(card_ci, check));
 							}
 						}
-						if (term == "t")
+						if (term == "t" || term == "type")
 						{
 							if (modifier == ":")
 							{
@@ -454,7 +485,15 @@ def generate_html(img_dir, output_html_file):
 						{
 							if (modifier == ":")
 							{
-								searched = (searched && card_oracle_text.includes(check));
+								if (check.charAt(0) == '/')
+								{
+									regex = new RegExp(check.substring(1,check.length - 1));
+									searched = (searched && regex.test(card_oracle_text));
+								}
+								else
+								{
+									searched = (searched && card_oracle_text.includes(check));
+								}
 							}
 							/* unsupported flows
 							if (modifier == "!" || modifier == "=")
@@ -548,6 +587,34 @@ def generate_html(img_dir, output_html_file):
 
 							} */
 						}
+						if (term == "is")
+						{
+							if (modifier == ":")
+							{
+								// all of these are implemented individually
+								if (check == "permanent")
+								{
+									searched = (searched && !card_type.includes("instant") && !card_type.includes("sorcery"));
+								}
+								if (check == "spell")
+								{
+									searched = (searched && !card_type.includes("land"));
+								}
+							}
+							/* unsupported flows
+							if (modifier == "!" || modifier == "=")
+							{
+
+							}
+							else if (modifier == "<")
+							{
+
+							}
+							else if (modifier == ">")
+							{
+
+							} */
+						}
 					}
 
 					else {
@@ -581,11 +648,22 @@ def generate_html(img_dir, output_html_file):
 				document.getElementById("results-text").innerText = "";
 			}
 
-			for (let i = 0; i < Math.min(30, search_results.length); i++)
+			if (page != 0)
+			{
+				document.getElementById("prevBtn").disabled = false;
+				document.getElementById("prevBtn-footer").disabled = false;
+			}
+			else
+			{
+				document.getElementById("prevBtn").disabled = true;
+				document.getElementById("prevBtn-footer").disabled = true;
+			}
+
+			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 
-				if (search_results.length <= 30)
+				if (search_results.length <= (30 * (page + 1)))
 				{
 					document.getElementById("nextBtn").disabled = true;
 					document.getElementById("nextBtn-footer").disabled = true;
@@ -614,7 +692,7 @@ def generate_html(img_dir, output_html_file):
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.textContent = card_stats[0] + '\xa0\xa0\xa0\xa0\xa0' + card_stats[6];
+			name_cost.textContent = card_stats[0] + (card_stats[6] != "" ? '\xa0\xa0\xa0\xa0\xa0' + card_stats[6] : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -729,6 +807,14 @@ def generate_html(img_dir, output_html_file):
 			page = page - 1;
 			cardGrid.innerHTML = "";
 
+			let url = (window.location.href.indexOf("page=") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("page="))));
+			let params = new URLSearchParams(url.search);
+			if (page != 0)
+			{
+				params.append("page", page+1);
+			}
+			history.pushState({}, '', url.pathname + (page != 0 ? '?' + params.toString(): ''));
+
 			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
@@ -748,6 +834,12 @@ def generate_html(img_dir, output_html_file):
 
 		function nextPage() {
 			page = page + 1;
+			
+			let url = (window.location.href.indexOf("page=") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("page="))));
+			let params = new URLSearchParams(url.search);
+			params.append("page", page+1);
+			history.pushState({}, '', url.pathname + '?' + params.toString());
+
 			cardGrid.innerHTML = "";
 
 			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
