@@ -39,7 +39,7 @@ def generate_html(img_dir, output_html_file):
 		height: 40px;
 		margin: auto;
 		display: grid;
-		grid-template-columns: 3fr 1fr 1fr;
+		grid-template-columns: 2fr 1fr 1fr 1fr;
 		gap: 10px;
 		padding-top: 10px;
 		padding-bottom: 40px;
@@ -85,6 +85,20 @@ def generate_html(img_dir, output_html_file):
 	.grid-container {
 		display: grid;
 		grid-template-columns: auto;
+	}
+	.image-grid-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		width: 70%;
+		margin: auto;
+		gap: 5px;
+		justify-items: center;
+		padding-bottom: 10px;
+	}
+	@media ( max-width: 750px ) {
+	  .image-grid-container {
+	    	grid-template-columns: 1fr 1fr;  
+		}
 	}
 	.image-grid {
 		width: 70%;
@@ -142,6 +156,7 @@ def generate_html(img_dir, output_html_file):
 	<div class="button-grid">
 		<div class="results-text" id="results-text"></div>
 		<select name="sort-by" id="sort-by"><option value="set-code">Set Code / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select>
+		<select name="display" id="display"><option value="cards-text">Cards + Text</option><option value="cards-only">Cards Only</option></select>
 		<div class="prev-next-btns">
 			<button type="submit" onclick="previousPage()" id="prevBtn" disabled>< Previous</button>
 			<button type="submit" onclick="nextPage()" id="nextBtn">Next 30 ></button>
@@ -151,7 +166,11 @@ def generate_html(img_dir, output_html_file):
 	<div class="grid-container" id="grid">
 	</div>
 
+	<div class="image-grid-container" id="imagesOnlyGrid"">
+	</div>
+
 	<div class="button-grid">
+		<div></div>
 		<div></div>
 		<div></div>
 		<div class="prev-next-btns">
@@ -165,6 +184,7 @@ def generate_html(img_dir, output_html_file):
 		const card_list_arrayified = card_list_stringified.split('\\n');
         let duplicates = [];
         let page = 0;
+        let pageCount = 30;
         let search_results = [];
 
 		for (let i = 0; i < card_list_arrayified.length; i++)
@@ -196,7 +216,14 @@ def generate_html(img_dir, output_html_file):
         }
 
 		document.addEventListener("DOMContentLoaded", function () {
-			cardGrid = document.getElementById("grid");
+			if (sessionStorage.getItem("display") == "cards-only")
+			{
+				cardGrid = document.getElementById("imagesOnlyGrid");
+			}
+			else
+			{
+				cardGrid = document.getElementById("grid");
+			}
 
 			card_list_arrayified.sort(compareFunction);
 
@@ -204,26 +231,46 @@ def generate_html(img_dir, output_html_file):
 
 			// refresh page values
 			let params = decodeURIComponent(window.location.href.indexOf("?search") == -1 ? "" : window.location.href.substring(window.location.href.indexOf("?search") + 8));
-  			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replace("+", " ") : params.substring(0, params.indexOf("&page=")).replace("+", " "));
+  			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replaceAll("+", " ") : params.substring(0, params.indexOf("&page=")).replaceAll("+", " "));
   			if (sessionStorage.getItem("sortMethod"))
   			{
 	  			document.getElementById("sort-by").value = sessionStorage.getItem("sortMethod");  			
   			}
+  			if (sessionStorage.getItem("display"))
+  			{
+	  			document.getElementById("display").value = sessionStorage.getItem("display");  			
+  			}
+
+  			displayStyle = document.getElementById("display").value;
+  			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
+  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 
   			// initial search on load
 			search(false);
 		});
 
-		document.getElementById("sort-by").onchange = changeListener;
+		document.getElementById("sort-by").onchange = sortChangeListener;
   
-  		function changeListener() {
+  		function sortChangeListener() {
   			sessionStorage.setItem("sortMethod", document.getElementById("sort-by").value);
+  			search(false);
+  		}
+
+  		document.getElementById("display").onchange = displayChangeListener;
+  
+  		function displayChangeListener() {
+  			displayStyle = document.getElementById("display").value;
+  			sessionStorage.setItem("display", displayStyle);
+
+  			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
+  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+
   			search(false);
   		}
 
   		window.addEventListener('popstate', function(event) {
   			let params = decodeURIComponent(window.location.href.indexOf("?search") == -1 ? "" : window.location.href.substring(window.location.href.indexOf("?search") + 8), (window.location.href.indexOf("page=") == -1 ? window.location.href.length : window.location.href.indexOf("page=")));
-			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replace("+", " ") : params.substring(0, params.indexOf("&page=")).replace("+", " "));
+			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replaceAll("+", " ") : params.substring(0, params.indexOf("&page=")).replaceAll("+", " "));
 			page = window.location.href.indexOf("page=") == -1 ? 0 : parseInt(window.location.href.substring(window.location.href.indexOf("page=") + 5)) - 1;
 
 			search(false);
@@ -260,8 +307,8 @@ def generate_html(img_dir, output_html_file):
 			}
 			if (sortMode == 'mv')
 			{
-				a_mv = isDigit(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replace('x','').length - 1 : a[6].replace('x','').length;
-				b_mv = isDigit(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replace('x','').length - 1 : b[6].replace('x','').length;
+				a_mv = isDigit(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
+				b_mv = isDigit(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
 				if (a_mv === b_mv)
 				{
 					if (a[0] === b[0])
@@ -326,7 +373,7 @@ def generate_html(img_dir, output_html_file):
 					params.append("search", searchTerms);
 					history.pushState({}, '', url.pathname + '?' + params.toString());
 				}
-				oracleSplitRegex = /[^"“”\/ ]*["“\/][^"“”\/]+["”\/]|[^\s]+/g,
+				oracleSplitRegex = /[^"“”\/() ]*["“\/(][^"“”\/()]+["”\/)]|[^\s]+/g,
 				searchTokens = searchTerms.toLowerCase().match(oracleSplitRegex).map(e => e.replace(/"(.+)"/, "$1"));
 			}
 			else
@@ -334,7 +381,14 @@ def generate_html(img_dir, output_html_file):
 				searchTokens = "";
 			}
 
-			cardGrid = document.getElementById("grid");
+			if (sessionStorage.getItem("display") == "cards-only")
+			{
+				cardGrid = document.getElementById("imagesOnlyGrid");
+			}
+			else
+			{
+				cardGrid = document.getElementById("grid");
+			}
 			cardGrid.innerHTML = "";
 
 			for (const card of card_list_arrayified) {
@@ -347,7 +401,7 @@ def generate_html(img_dir, output_html_file):
 				}
 
 				const card_name = card_stats[0];
-				const card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replace('x','').length - 1 : card_stats[6].replace('x','').length;
+				const card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
 				const card_color = card_stats[1] != "" ? card_stats[1] : "c";
 				const card_ci = card_stats[5];
 				const card_type = card_stats[3];
@@ -364,269 +418,47 @@ def generate_html(img_dir, output_html_file):
 					continue;
 				}
 
+				if (card_type.includes("basic") && !searchTokens.includes("t:basic"))
+				{
+					continue;
+				}
+
 				for (let token of searchTokens)
 				{
-					token = token.replace("~", card_name).replace("cardname", card_name);
-					let flip = false;
-
-					if (token.charAt(0) == '-')
+					if (token.charAt(0) == '(')
 					{
-						flip = true;
-						token = token.substring(1);
+						let parenSearched = false;
+						let parenSearchTokens = token.substring(1, token.length - 1).split(" or ");
+
+						for (let parenToken of parenSearchTokens)
+						{
+							if (parenToken.charAt(0) == '-')
+							{
+								if (!searchToken(parenToken.substring(1), card_name, card_mv, card_color, card_ci, card_type, card_oracle_text, card_power, card_toughness, card_rarity, card_set))
+								{
+									parenSearched = true;
+								}
+							}
+							else
+							{
+								if (searchToken(parenToken, card_name, card_mv, card_color, card_ci, card_type, card_oracle_text, card_power, card_toughness, card_rarity, card_set))
+								{
+									parenSearched = true;
+								}
+							}
+						}
+
+						searched = (searched && parenSearched);
 					}
-
-					const modifierRegex = /[!:<>=]/;
-					const match = token.search(modifierRegex);
-
-					if (match > -1)
+					else if (token.charAt(0) == '-')
 					{
-						const term = token.substring(0,match);
-						const modifier = token.charAt(match);
-						const check = token.substring(match+1);
-
-						/* template
-						if (term == "mv")
-						{
-							if (modifier == "!" || modifier == "=")
-							{
-
-							}
-							else if (modifier == ":")
-							{
-
-							}
-							else if (modifier == "<")
-							{
-
-							}
-							else if (modifier == ">")
-							{
-
-							}
-						} */
-						if (term == "mv")
-						{
-							if (modifier == "!" || modifier == "=")
-							{
-								searched = (searched && (card_mv == check));
-							}
-							else if (modifier == ":")
-							{
-								searched = (searched && (card_mv == check));
-							}
-							else if (modifier == "<")
-							{
-								searched = (searched && (card_mv < check));
-							}
-							else if (modifier == ">")
-							{
-								searched = (searched && (card_mv > check));
-							}
-						}
-						if (term == "c")
-						{
-							if (modifier == "!" || modifier == "=")
-							{
-								searched = (searched && (card_color.split("").sort().join("") == check.split("").sort().join("")));
-							}
-							else if (modifier == ":")
-							{
-								searched = (searched && hasAllChars(card_color, check));
-							}
-							else if (modifier == "<")
-							{
-								searched = (searched && hasNoChars(card_color, check));
-							}
-							else if (modifier == ">")
-							{
-								searched = (searched && hasAllAndMoreChars(card_color, check));
-							}
-						}
-						if (term == "ci")
-						{
-							if (modifier == "!" || modifier == "=")
-							{
-								searched = (searched && (card_ci.split("").sort().join("") == check.split("").sort().join("")));
-							}
-							else if (modifier == ":")
-							{
-								searched = (searched && hasAllChars(card_ci, check));
-							}
-							else if (modifier == "<")
-							{
-								searched = (searched && hasNoChars(card_ci, check));
-							}
-							else if (modifier == ">")
-							{
-								searched = (searched && hasAllAndMoreChars(card_ci, check));
-							}
-						}
-						if (term == "t" || term == "type")
-						{
-							if (modifier == ":")
-							{
-								searched = (searched && card_type.includes(check));
-							}
-							/* unsupported flows
-							if (modifier == "!" || modifier == "=")
-							{
-
-							}
-							else if (modifier == "<")
-							{
-
-							}
-							else if (modifier == ">")
-							{
-
-							} */
-						}
-						if (term == "o")
-						{
-							if (modifier == ":")
-							{
-								if (check.charAt(0) == '/')
-								{
-									regex = new RegExp(check.substring(1,check.length - 1));
-									searched = (searched && regex.test(card_oracle_text));
-								}
-								else
-								{
-									searched = (searched && card_oracle_text.includes(check));
-								}
-							}
-							/* unsupported flows
-							if (modifier == "!" || modifier == "=")
-							{
-
-							}
-							else if (modifier == "<")
-							{
-
-							}
-							else if (modifier == ">")
-							{
-
-							} */
-						}
-						if (term == "pow")
-						{
-							if (modifier == "!" || modifier == "=")
-							{
-								searched = (searched && (card_power == check));
-							}
-							else if (modifier == ":")
-							{
-								searched = (searched && (card_power == check));
-							}
-							else if (modifier == "<")
-							{
-								searched = (searched && (card_power < check));
-							}
-							else if (modifier == ">")
-							{
-								searched = (searched && (card_power > check));
-							}
-						}
-						if (term == "tou")
-						{
-							if (modifier == "!" || modifier == "=")
-							{
-								searched = (searched && (card_toughness == check));
-							}
-							else if (modifier == ":")
-							{
-								searched = (searched && (card_toughness == check));
-							}
-							else if (modifier == "<")
-							{
-								searched = (searched && (card_toughness < check));
-							}
-							else if (modifier == ">")
-							{
-								searched = (searched && (card_toughness > check));
-							}
-						}
-						if (term == "r")
-						{
-							if (modifier == ":")
-							{
-								searched = (searched && (card_rarity == check));
-							}
-							/* unsupported flows
-							if (modifier == "!" || modifier == "=")
-							{
-
-							}
-							else if (modifier == "<")
-							{
-
-							}
-							else if (modifier == ">")
-							{
-
-							} */
-						}
-						if (term == "e")
-						{
-							if (modifier == ":")
-							{
-								searched = (searched && (card_set == check));
-							}
-							/* unsupported flows
-							if (modifier == "!" || modifier == "=")
-							{
-
-							}
-							else if (modifier == "<")
-							{
-
-							}
-							else if (modifier == ">")
-							{
-
-							} */
-						}
-						if (term == "is")
-						{
-							if (modifier == ":")
-							{
-								// all of these are implemented individually
-								if (check == "permanent")
-								{
-									searched = (searched && !card_type.includes("instant") && !card_type.includes("sorcery"));
-								}
-								if (check == "spell")
-								{
-									searched = (searched && !card_type.includes("land"));
-								}
-							}
-							/* unsupported flows
-							if (modifier == "!" || modifier == "=")
-							{
-
-							}
-							else if (modifier == "<")
-							{
-
-							}
-							else if (modifier == ">")
-							{
-
-							} */
-						}
+						searched = (searched && !searchToken(token.substring(1), card_name, card_mv, card_color, card_ci, card_type, card_oracle_text, card_power, card_toughness, card_rarity, card_set));
 					}
-
-					else {
-						searched = (searched && card_name.includes(token));
-					}
-
-					// I'm sure there's a better way to do this
-					if (flip)
+					else
 					{
-						searched = !searched;
+						searched = (searched && searchToken(token, card_name, card_mv, card_color, card_ci, card_type, card_oracle_text, card_power, card_toughness, card_rarity, card_set));
 					}
-					// also this
+
 					if (!searched)
 					{
 						break;
@@ -659,11 +491,28 @@ def generate_html(img_dir, output_html_file):
 				document.getElementById("prevBtn-footer").disabled = true;
 			}
 
-			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
+			// set text of Next to match number of displayed images
+			displayStyle = document.getElementById("display").value;
+  			pageCount = displayStyle == "cards-only" ? 60 : 30;
+  			document.getElementById("nextBtn").innerText = "Next " + pageCount + " >";
+  			document.getElementById("nextBtn-footer").innerText = "Next " + pageCount + " >";
+
+  			// really awesome code block to fix the URL when switching from Cards + Text view to Cards Only view
+  			while ((pageCount * page) > search_results.length)
+  			{
+  				page = page - 1;
+
+  				let url = (window.location.href.indexOf("page=") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("page="))));
+				let params = new URLSearchParams(url.search);
+				params.append("page", page+1);
+				history.replaceState({}, '', url.pathname + '?' + params.toString());
+  			}
+
+			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 
-				if (search_results.length <= (30 * (page + 1)))
+				if (search_results.length <= (pageCount * (page + 1)))
 				{
 					document.getElementById("nextBtn").disabled = true;
 					document.getElementById("nextBtn-footer").disabled = true;
@@ -676,8 +525,271 @@ def generate_html(img_dir, output_html_file):
 			}
 		}
 
+		function searchToken(token, card_name, card_mv, card_color, card_ci, card_type, card_oracle_text, card_power, card_toughness, card_rarity, card_set)
+		{
+			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name);
+			let flip = false;
+
+			const modifierRegex = /[!:<>=]/;
+			const match = token.search(modifierRegex);
+
+			if (match > -1)
+			{
+				const term = token.substring(0, match);
+				const modifier = token.charAt(match);
+				const check = token.substring(match + 1);
+
+				/* template
+				if (term == "mv")
+				{
+					if (modifier == "!" || modifier == "=")
+					{
+
+					}
+					else if (modifier == ":")
+					{
+
+					}
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					}
+				} */
+				if (term == "mv")
+				{
+					if (modifier == "!" || modifier == "=")
+					{
+						return (card_mv == check);
+					}
+					else if (modifier == ":")
+					{
+						return (card_mv == check);
+					}
+					else if (modifier == "<")
+					{
+						return (card_mv < check);
+					}
+					else if (modifier == ">")
+					{
+						return (card_mv > check);
+					}
+				}
+				if (term == "c")
+				{
+					if (modifier == "!" || modifier == "=")
+					{
+						return (card_color.split("").sort().join("") == check.split("").sort().join(""));
+					}
+					else if (modifier == ":")
+					{
+						return hasAllChars(card_color, check);
+					}
+					else if (modifier == "<")
+					{
+						return hasNoChars(card_color, check);
+					}
+					else if (modifier == ">")
+					{
+						return hasAllAndMoreChars(card_color, check);
+					}
+				}
+				if (term == "ci")
+				{
+					if (modifier == "!" || modifier == "=")
+					{
+						return (card_ci.split("").sort().join("") == check.split("").sort().join(""));
+					}
+					else if (modifier == ":")
+					{
+						return hasAllChars(card_ci, check);
+					}
+					else if (modifier == "<")
+					{
+						return hasNoChars(card_ci, check);
+					}
+					else if (modifier == ">")
+					{
+						return hasAllAndMoreChars(card_ci, check);
+					}
+				}
+				if (term == "t" || term == "type")
+				{
+					if (modifier == ":")
+					{
+						return card_type.includes(check);
+					}
+					/* unsupported flows
+					if (modifier == "!" || modifier == "=")
+					{
+
+					}
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					} */
+				}
+				if (term == "o")
+				{
+					if (modifier == ":")
+					{
+						if (check.charAt(0) == '/')
+						{
+							regex = new RegExp(check.substring(1,check.length - 1));
+							return regex.test(card_oracle_text);
+						}
+						else
+						{
+							return card_oracle_text.includes(check);
+						}
+					}
+					/* unsupported flows
+					if (modifier == "!" || modifier == "=")
+					{
+
+					}
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					} */
+				}
+				if (term == "pow")
+				{
+					if (modifier == "!" || modifier == "=")
+					{
+						return (card_power == check);
+					}
+					else if (modifier == ":")
+					{
+						return (card_power == check);
+					}
+					else if (modifier == "<")
+					{
+						return (card_power < check);
+					}
+					else if (modifier == ">")
+					{
+						return (card_power > check);
+					}
+				}
+				if (term == "tou")
+				{
+					if (modifier == "!" || modifier == "=")
+					{
+						return (card_toughness == check);
+					}
+					else if (modifier == ":")
+					{
+						sreturn (card_toughness == check);
+					}
+					else if (modifier == "<")
+					{
+						return (card_toughness < check);
+					}
+					else if (modifier == ">")
+					{
+						return (card_toughness > check);
+					}
+				}
+				if (term == "r")
+				{
+					if (modifier == ":")
+					{
+						return (card_rarity == check);
+					}
+					/* unsupported flows
+					if (modifier == "!" || modifier == "=")
+					{
+
+					}
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					} */
+				}
+				if (term == "e")
+				{
+					if (modifier == ":")
+					{
+						return (card_set == check);
+					}
+					/* unsupported flows
+					if (modifier == "!" || modifier == "=")
+					{
+
+					}
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					} */
+				}
+				if (term == "is")
+				{
+					if (modifier == ":")
+					{
+						// all of these are implemented individually
+						if (check == "permanent")
+						{
+							return !card_type.includes("instant") && !card_type.includes("sorcery");
+						}
+						if (check == "spell")
+						{
+							return !card_type.includes("land");
+						}
+						if (check == "commander")
+						{
+							return (card_type.includes("legendary") && card_type.includes("creature")) || card_oracle_text.includes("can be your commander");
+						}
+					}
+					/* unsupported flows
+					if (modifier == "!" || modifier == "=")
+					{
+
+					}
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					} */
+				}
+			}
+
+			return card_name.includes(token);
+		}
+
 		function gridifyCard(card_stats) {
+			const displayStyle = sessionStorage.getItem("display");
 			const card_name = card_stats[0];
+
+			if (displayStyle == "cards-only")
+			{
+				const img = document.createElement("img");
+				img.className = "card-image";
+				img.src = "img/" + card_stats[11] + "/" + (card_stats[12] != "" ? card_stats[12] : card_name) + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+				return img;
+			}
 
 			const grid = document.createElement("div");
 			grid.className = "image-grid";
@@ -813,9 +925,9 @@ def generate_html(img_dir, output_html_file):
 			{
 				params.append("page", page+1);
 			}
-			history.pushState({}, '', url.pathname + (page != 0 ? '?' + params.toString(): ''));
+			history.pushState({}, '', url.pathname + '?' + params.toString());
 
-			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
+			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 			}
@@ -842,14 +954,14 @@ def generate_html(img_dir, output_html_file):
 
 			cardGrid.innerHTML = "";
 
-			for (let i = (30 * page); i < Math.min((30 * (page + 1)), search_results.length); i++)
+			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
 			}
 
 			document.getElementById("prevBtn").disabled = false;
 			document.getElementById("prevBtn-footer").disabled = false;
-			if (search_results.length <= (30 * (page + 1)))
+			if (search_results.length <= (pageCount * (page + 1)))
 			{
 				document.getElementById("nextBtn").disabled = true;
 				document.getElementById("nextBtn-footer").disabled = true;
