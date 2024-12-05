@@ -15,6 +15,9 @@ def generate_html(img_dir, output_html_file):
 			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
 	file_input = file_input.rstrip('\\n')
 
+	with open(os.path.join(script_dir, 'lists', 'all-cards.txt'), 'w') as f:
+		f.write(file_input);
+
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
@@ -154,7 +157,7 @@ def generate_html(img_dir, output_html_file):
 		<button type="submit" onclick="search(true)" id="searchBtn">Search</button>
 	</div>
 	<div class="button-grid">
-		<div class="results-text" id="results-text"></div>
+		<div class="results-text" id="results-text">Loading ...</div>
 		<select name="sort-by" id="sort-by"><option value="set-code">Set Code / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select>
 		<select name="display" id="display"><option value="cards-text">Cards + Text</option><option value="cards-only">Cards Only</option></select>
 		<div class="prev-next-btns">
@@ -166,7 +169,7 @@ def generate_html(img_dir, output_html_file):
 	<div class="grid-container" id="grid">
 	</div>
 
-	<div class="image-grid-container" id="imagesOnlyGrid"">
+	<div class="image-grid-container" id="imagesOnlyGrid">
 	</div>
 
 	<div class="button-grid">
@@ -180,42 +183,50 @@ def generate_html(img_dir, output_html_file):
 	</div>
 
 	<script>
-		const card_list_stringified = "''' + file_input + '''";
-		const card_list_arrayified = card_list_stringified.split('\\n');
         let duplicates = [];
         let page = 0;
         let pageCount = 30;
         let search_results = [];
+        let card_list_arrayified = [];
 
-		for (let i = 0; i < card_list_arrayified.length; i++)
-		{
-			card_list_arrayified[i] = card_list_arrayified[i].split('\\t');
-            for (let j = 0; j < i; j++)
+		document.addEventListener("DOMContentLoaded", async function () {
+			await fetch('./scripts/lists/all-cards.txt')
+                .then(response => response.text())
+                .then(text => {
+                    // Do something with the text content
+                    card_list_stringified = text; 
+            }).catch(error => console.error('Error:', error));
+
+            card_list_arrayified = card_list_stringified.split('\\\\n');
+
+            for (let i = 0; i < card_list_arrayified.length; i++)
             {
-                if (card_list_arrayified[i][0] == card_list_arrayified[j][0] && card_list_arrayified[i][11] == card_list_arrayified[j][11])
+                card_list_arrayified[i] = card_list_arrayified[i].split('\t');
+                for (let j = 0; j < i; j++)
                 {
-                    duplicates.push(card_list_arrayified[i][0] + card_list_arrayified[i][11]);
+                    if (card_list_arrayified[i][0] == card_list_arrayified[j][0] && card_list_arrayified[i][11] == card_list_arrayified[j][11])
+                    {
+                        duplicates.push(card_list_arrayified[i][0] + card_list_arrayified[i][11]);
+                    }
                 }
             }
-		}
-        for (let i = 0; i < card_list_arrayified.length; i++)
-        {
-            let tag = 97; // a
-            let card_name = card_list_arrayified[i][0];
-            let set_code = card_list_arrayified[i][11];
-
-            for (let j = 0; j < i; j++)
+            for (let i = 0; i < card_list_arrayified.length; i++)
             {
-                if (card_name == card_list_arrayified[j][0] && set_code == card_list_arrayified[j][11])
+                let tag = 97; // a
+                let card_name = card_list_arrayified[i][0];
+                let set_code = card_list_arrayified[i][11];
+
+                for (let j = 0; j < i; j++)
                 {
-                    tag++;
+                    if (card_name == card_list_arrayified[j][0] && set_code == card_list_arrayified[j][11])
+                    {
+                        tag++;
+                    }
                 }
+
+                card_list_arrayified[i].push(duplicates.includes(card_name + set_code) ? (card_name + "_" + String.fromCharCode(tag)) : "");
             }
 
-            card_list_arrayified[i].push(duplicates.includes(card_name + set_code) ? (card_name + "_" + String.fromCharCode(tag)) : "");
-        }
-
-		document.addEventListener("DOMContentLoaded", function () {
 			if (sessionStorage.getItem("display") == "cards-only")
 			{
 				cardGrid = document.getElementById("imagesOnlyGrid");
@@ -379,6 +390,14 @@ def generate_html(img_dir, output_html_file):
 			else
 			{
 				searchTokens = "";
+
+				if (setNewState)
+				{
+					let url = (window.location.href.indexOf("?") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("?"))));
+					let params = new URLSearchParams(url.search);
+					params.delete("search");
+					history.pushState({}, '', url.pathname + '' + params.toString());
+				}
 			}
 
 			if (sessionStorage.getItem("display") == "cards-only")
