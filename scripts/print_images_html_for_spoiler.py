@@ -1,10 +1,7 @@
 import os
 import sys
 
-gh_user = 'magictheegg'
 codes = [ 'SHF', 'GSS', 'KND', 'NJB' ]
-#gh_user = 'timespiraled'
-#codes = [ 'MC25' ]
 
 def generate_html(img_dir, output_html_file, magic_card_back_image, set_code):
 

@@ -2,7 +2,7 @@ import os
 import sys
 
 codes = [ 'SHF', 'GSS', 'KND', 'NJB' ]
-#codes = [ 'NJB' ]
+#codes = [ 'SHF', 'KND' ]
 
 def generate_html(img_dir, output_html_file):
 
@@ -22,6 +22,7 @@ def generate_html(img_dir, output_html_file):
 	html_content = '''<html>
 <head>
   <title>Search</title>
+  <link rel="icon" type="image/x-icon" href="/img/search-favicon.png">
 </head>
 <style>
 	body {
@@ -111,12 +112,10 @@ def generate_html(img_dir, output_html_file):
 		gap: 50px;
 		padding-bottom: 10px;
 		justify-items: left;
+		align-items: center;
 	}
 	.image-grid img {
 		position: relative;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
 	}
 	.card-image {
 		float: left;
@@ -150,11 +149,45 @@ def generate_html(img_dir, output_html_file):
 		display: block;
 		margin-bottom: 5px;
 	}
+    .img-container {
+      position: relative;
+      width: 100%;
+    }
+    .img-container img {
+      width: 100%;
+      height: auto;
+    }
+	.img-container .btn {
+    	background: url('img/flip.png') no-repeat;
+    	background-size: contain;
+    	background-position: center;
+    	width: 15%;
+    	height: 11%;
+    	cursor: pointer;
+    	border: none;
+    	position: absolute;
+    	top: 6.5%;
+    	left: 8.5%;
+    	transform: translate(-50%, -85%);
+    }
+    .img-container .btn:hover {
+    	background: url('img/flip-hover.png') no-repeat;
+    	background-size: contain;
+    	background-position: center;
+    	width: 15%;
+    	height: 11%;
+    	cursor: pointer;
+    	border: none;
+    	position: absolute;
+    	top: 6.5%;
+    	left: 8.5%;
+    	transform: translate(-50%, -85%);
+    }
 </style>
 <body>
 	<div class="search-grid">
 		<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
-		<button type="submit" onclick="search(true)" id="searchBtn">Search</button>
+		<button type="submit" onclick="preSearch(true)" id="searchBtn">Search</button>
 	</div>
 	<div class="button-grid">
 		<div class="results-text" id="results-text">Loading ...</div>
@@ -257,14 +290,14 @@ def generate_html(img_dir, output_html_file):
   			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 
   			// initial search on load
-			search(false);
+			preSearch(false);
 		});
 
 		document.getElementById("sort-by").onchange = sortChangeListener;
   
   		function sortChangeListener() {
   			sessionStorage.setItem("sortMethod", document.getElementById("sort-by").value);
-  			search(false);
+  			preSearch(false);
   		}
 
   		document.getElementById("display").onchange = displayChangeListener;
@@ -276,7 +309,7 @@ def generate_html(img_dir, output_html_file):
   			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
   			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 
-  			search(false);
+  			preSearch(false);
   		}
 
   		window.addEventListener('popstate', function(event) {
@@ -284,7 +317,7 @@ def generate_html(img_dir, output_html_file):
 			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replaceAll("+", " ") : params.substring(0, params.indexOf("&page=")).replaceAll("+", " "));
 			page = window.location.href.indexOf("page=") == -1 ? 0 : parseInt(window.location.href.substring(window.location.href.indexOf("page=") + 5)) - 1;
 
-			search(false);
+			preSearch(false);
 		});
 
 		function compareFunction(a, b) {
@@ -368,12 +401,16 @@ def generate_html(img_dir, output_html_file):
 			}
 		}
 
-		function search(setNewState) {
-			searchTerms = document.getElementById("search").value;
-
+		function preSearch(setNewState) {
 			card_list_arrayified.sort(compareFunction);
 			search_results = [];
 			page = setNewState ? 0 : page;
+
+			search(setNewState);
+		}
+
+		function search(setNewState) {
+			searchTerms = document.getElementById("search").value;
 
 			if (searchTerms != "")
 			{
@@ -419,16 +456,26 @@ def generate_html(img_dir, output_html_file):
 					card_stats.push(card[i].toLowerCase());
 				}
 
-				const card_name = card_stats[0];
-				const card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
-				const card_color = card_stats[1] != "" ? card_stats[1] : "c";
-				const card_ci = card_stats[5];
-				const card_type = card_stats[3];
-				const card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\\n') : card_stats[9].replaceAll("NEWLINE", '\\n');
-				const card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
-				const card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
-				const card_rarity = card_stats[2];
-				const card_set = card_stats[11];
+				let card_name = card_stats[0];
+				let card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
+				let card_color = card_stats[1] != "" ? card_stats[1] : "c";
+				let card_ci = card_stats[5];
+				let card_type = card_stats[3];
+				let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\\n') : card_stats[9].replaceAll("NEWLINE", '\\n');
+				let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
+				let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
+				let card_rarity = card_stats[2];
+				let card_set = card_stats[11];
+
+				let card_shape = card_stats[10];
+				
+				// two cards in one	
+				if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
+				{
+					card_name = card_name + "\t" + card_stats[12];
+					card_type = card_type + "\t" + card_stats[14];
+					card_oracle_text = card_oracle_text + "\t" + (card_stats[17] != "" ? card_stats[17].replaceAll("NEWLINE", '\\n') : card_stats[19].replaceAll("NEWLINE", '\\n'));
+				}
 
 				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
@@ -804,19 +851,13 @@ def generate_html(img_dir, output_html_file):
 
 			if (displayStyle == "cards-only")
 			{
-				const img = document.createElement("img");
-				img.className = "card-image";
-				img.src = "img/" + card_stats[11] + "/" + (card_stats[12] != "" ? card_stats[12] : card_name) + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
-				return img;
+				return buildImgContainer(card_stats);
 			}
 
 			const grid = document.createElement("div");
 			grid.className = "image-grid";
 
-			const img = document.createElement("img");
-			img.className = "card-image";
-			img.src = "img/" + card_stats[11] + "/" + (card_stats[12] != "" ? card_stats[12] : card_name) + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
-			grid.appendChild(img);
+			grid.appendChild(buildImgContainer(card_stats));
 			
 			const text = document.createElement("div");
 			text.className = "card-text";
@@ -852,10 +893,75 @@ def generate_html(img_dir, output_html_file):
 				pt.textContent = card_stats[8];
 				text.appendChild(pt);
 			}
+
+			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
+			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
+			{
+				const name_cost_2 = document.createElement("div");
+				name_cost_2.className = "name-cost";
+				name_cost_2.textContent = card_stats[12] + (card_stats[16] != "" ? '\xa0\xa0\xa0\xa0\xa0' + card_stats[16] : "");
+				text.appendChild(name_cost_2);
+
+				const type_2 = document.createElement("div");
+				type_2.className = "type";
+				type_2.textContent = card_stats[14];
+				text.appendChild(type_2);
+
+				const effect_2 = document.createElement("div");
+				effect_2.className = "effect";
+				let card_effects_2 = "";
+				if (card_stats[17] != "")
+				{
+					card_effects_2 = card_stats[17].split("NEWLINE");
+				}
+				else
+				{
+					card_effects_2 = card_stats[19].split("NEWLINE");
+				}
+				effect_2.innerHTML += prettifyEffects(card_effects_2);
+				text.appendChild(effect_2);
+
+				if(card_stats[18] != "")
+				{
+					const pt_2 = document.createElement("div");
+					pt_2.className = "pt";
+					pt_2.textContent = card_stats[18];
+					text.appendChild(pt_2);
+				}
+			}
 			
 			grid.appendChild(text);
 
 			return grid;
+		}
+
+		function buildImgContainer(card_stats) {
+			const imgContainer = document.createElement("div");
+			imgContainer.className = "img-container";
+			const id = card_stats[11] + "-" + card_stats[4];
+
+			const img = document.createElement("img");
+			img.className = "card-image";
+			img.id = id;
+			img.src = "img/" + card_stats[11] + "/" + (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			imgContainer.appendChild(img);
+
+			if (card_stats[10].includes("double"))
+			{
+				const imgFlipBtn = document.createElement("button");
+				imgFlipBtn.className = "btn";
+				imgFlipBtn.onclick = function() { imgFlip(id); };
+				imgContainer.appendChild(imgFlipBtn);
+			}
+
+			return imgContainer;
+		}
+
+		function imgFlip(id) {
+			cardToFlip = document.getElementById(id);
+			cardName = cardToFlip.src;
+			
+			cardToFlip.src = cardName.includes("_front") ? cardName.replace("_front", "_back") : cardName.replace("_back", "_front");
 		}
 
 		function prettifyEffects(card_effects) {
