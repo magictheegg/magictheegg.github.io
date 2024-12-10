@@ -116,7 +116,6 @@ def generate_html(img_dir, output_html_file):
 		gap: 50px;
 		padding-bottom: 10px;
 		justify-items: left;
-		align-items: center;
 	}
 	.image-grid img {
 		position: relative;
@@ -156,6 +155,7 @@ def generate_html(img_dir, output_html_file):
     .img-container {
       position: relative;
       width: 100%;
+      align-self: center;
     }
     .img-container img {
       width: 100%;
