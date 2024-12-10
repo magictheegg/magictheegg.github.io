@@ -7,15 +7,19 @@ codes = [ 'SHF', 'GSS', 'KND', 'NJB' ]
 def generate_html(img_dir, output_html_file):
 
 	script_dir = os.path.dirname(os.path.realpath(__file__))
+
+	with open(os.path.join('lists', 'set-codes.txt')) as f:
+		set_codes = f.read()
+	set_codes = set_codes.split('\n')
 	
 	file_input = ''
 	for set_code in codes:
-		with open(os.path.join(script_dir, 'lists', set_code + '-raw.txt')) as f:
+		with open(os.path.join('lists', set_code.split('\t')[0] + '-raw.txt')) as f:
 			raw = f.read()
 			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
 	file_input = file_input.rstrip('\\n')
 
-	with open(os.path.join(script_dir, 'lists', 'all-cards.txt'), 'w') as f:
+	with open(os.path.join('lists', 'all-cards.txt'), 'w') as f:
 		f.write(file_input);
 
 	# Start creating the HTML file content
@@ -223,7 +227,7 @@ def generate_html(img_dir, output_html_file):
         let card_list_arrayified = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('./scripts/lists/all-cards.txt')
+			await fetch('./lists/all-cards.txt')
                 .then(response => response.text())
                 .then(text => {
                     // Do something with the text content

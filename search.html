@@ -202,7 +202,7 @@
         let card_list_arrayified = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('./scripts/lists/all-cards.txt')
+			await fetch('./lists/all-cards.txt')
                 .then(response => response.text())
                 .then(text => {
                     // Do something with the text content
