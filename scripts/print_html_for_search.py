@@ -415,7 +415,6 @@ def generate_html(img_dir, output_html_file):
 
 		function search(setNewState) {
 			searchTerms = document.getElementById("search").value;
-			let searchTokens = [];
 
 			if (searchTerms != "")
 			{
@@ -426,43 +425,9 @@ def generate_html(img_dir, output_html_file):
 					params.append("search", searchTerms);
 					history.pushState({}, '', url.pathname + '?' + params.toString());
 				}
-
-				let key = 0;
-				let inParens = false;
-				let inQuotes = false;
-				for (let i = 0; i < searchTerms.length; i++)
-				{
-					if (searchTerms.charAt(i) == '(')
-					{
-						inParens = true;
-					}
-					if (searchTerms.charAt(i) == ')')
-					{
-						inParens = false;
-					}
-					if (!inQuotes && searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '“' || searchTerms.charAt(i) == '/')
-					{
-						inQuotes = true;
-					}
-					else if (inQuotes && searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '”' || searchTerms.charAt(i) == '/')
-					{
-						inQuotes = false;
-					}
-					if (searchTerms.charAt(i) == ' ' && !inParens && !inQuotes)
-					{
-						searchTokens.push(searchTerms.substring(key, i));
-						key = i + 1;
-					}
-					if (i == searchTerms.length - 1)
-					{
-						searchTokens.push(searchTerms.substring(key));
-					}
-				}
 			}
 			else
 			{
-				searchTokens = "";
-
 				if (setNewState)
 				{
 					let url = (window.location.href.indexOf("?") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("?"))));
@@ -493,7 +458,7 @@ def generate_html(img_dir, output_html_file):
 					continue;
 				}
 
-				searched = searchAllTokens(card, searchTokens);
+				searched = searchAllTokens(card, tokenizeTerms(searchTerms));
 
 				if (searched)
 				{
@@ -555,6 +520,44 @@ def generate_html(img_dir, output_html_file):
 			}
 		}
 
+		function tokenizeTerms(searchTerms)
+		{
+			let searchTokens = [];
+			let key = 0;
+			let inParens = false;
+			let inQuotes = false;
+			for (let i = 0; i < searchTerms.length; i++)
+			{
+				if (searchTerms.charAt(i) == '(')
+				{
+					inParens = true;
+				}
+				if (searchTerms.charAt(i) == ')')
+				{
+					inParens = false;
+				}
+				if (!inParens && !inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '“' || searchTerms.charAt(i) == '/'))
+				{
+					inQuotes = true;
+				}
+				else if (!inParens && inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '”' || searchTerms.charAt(i) == '/'))
+				{
+					inQuotes = false;
+				}
+				if (searchTerms.charAt(i) == ' ' && !inParens && !inQuotes)
+				{
+					searchTokens.push(searchTerms.substring(key, i));
+					key = i + 1;
+				}
+				if (i == searchTerms.length - 1)
+				{
+					searchTokens.push(searchTerms.substring(key));
+				}
+			}
+
+			return searchTokens;
+		}
+
 		function searchAllTokens(card, tokens)
 		{
 			if (tokens.length < 1)
@@ -581,7 +584,7 @@ def generate_html(img_dir, output_html_file):
 				}
 				if (token.charAt(0) == '(')
 				{
-					return searchAllTokens(card, token.substring(1, token.length - 1).split(' ')) && (tokens.length == 1 ? true : searchAllTokens(card, tokens.slice(1)));
+					return searchAllTokens(card, tokenizeTerms(token.substring(1, token.length - 1))) && (tokens.length == 1 ? true : searchAllTokens(card, tokens.slice(1)));
 				}
 				else
 				{
@@ -676,18 +679,34 @@ def generate_html(img_dir, output_html_file):
 				{
 					if (modifier == "!" || modifier == "=")
 					{
+						if (!isNaN(check))
+						{
+							return card_color.length == parseInt(check);
+						}
 						return (card_color.split("").sort().join("") == check.split("").sort().join(""));
 					}
 					else if (modifier == ":")
 					{
+						if (!isNaN(check))
+						{
+							return card_color.length == parseInt(check);
+						}
 						return hasAllChars(card_color, check);
 					}
 					else if (modifier == "<")
 					{
+						if (!isNaN(check))
+						{
+							return card_color.length < parseInt(check);
+						}
 						return hasNoChars(card_color, check);
 					}
 					else if (modifier == ">")
 					{
+						if (!isNaN(check))
+						{
+							return card_color.length > parseInt(check);
+						}
 						return hasAllAndMoreChars(card_color, check);
 					}
 				}
@@ -695,18 +714,36 @@ def generate_html(img_dir, output_html_file):
 				{
 					if (modifier == "!" || modifier == "=")
 					{
+						// why is this the best way to do this?
+						if (!isNaN(check))
+						{
+							return card_ci.length == parseInt(check);
+						}
 						return (card_ci.split("").sort().join("") == check.split("").sort().join(""));
 					}
 					else if (modifier == ":")
 					{
+						if (!isNaN(check))
+						{
+							return card_ci.length == parseInt(check);
+						}
 						return hasAllChars(card_ci, check);
 					}
 					else if (modifier == "<")
 					{
+						if (!isNaN(check))
+						{
+							return card_ci.length < parseInt(check);
+						}
 						return hasNoChars(card_ci, check);
 					}
 					else if (modifier == ">")
 					{
+
+						if (!isNaN(check))
+						{
+							return card_ci.length > parseInt(check);
+						}
 						return hasAllAndMoreChars(card_ci, check);
 					}
 				}
@@ -734,9 +771,11 @@ def generate_html(img_dir, output_html_file):
 				{
 					if (modifier == ":")
 					{
+						regex = new RegExp(check);
+						return regex.test(card_oracle_text);
 						if (check.charAt(0) == '/')
 						{
-							regex = new RegExp(check.substring(1,check.length - 1));
+							
 							return regex.test(card_oracle_text);
 						}
 						else
