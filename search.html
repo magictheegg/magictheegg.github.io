@@ -265,8 +265,7 @@
   			}
 
   			displayStyle = document.getElementById("display").value;
-  			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+  			setCardView();
 
   			// initial search on load
 			preSearch(false);
@@ -285,8 +284,7 @@
   			displayStyle = document.getElementById("display").value;
   			sessionStorage.setItem("display", displayStyle);
 
-  			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+  			setCardView();
 
   			preSearch(false);
   		}
@@ -298,6 +296,11 @@
 
 			preSearch(false);
 		});
+
+		function setCardView() {
+			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
+  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+		}
 
 		function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
@@ -980,7 +983,7 @@
 		function buildImgContainer(card_stats) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[4];
+			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
 
 			const img = document.createElement("img");
 			img.className = "card-image";

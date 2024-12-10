@@ -190,7 +190,7 @@ def generate_html(img_dir, output_html_file):
 </style>
 <body>
 	<div class="search-grid">
-		<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
+		<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 		<button type="submit" onclick="preSearch(true)" id="searchBtn">Search</button>
 	</div>
 	<div class="button-grid">
@@ -290,8 +290,7 @@ def generate_html(img_dir, output_html_file):
   			}
 
   			displayStyle = document.getElementById("display").value;
-  			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+  			setCardView();
 
   			// initial search on load
 			preSearch(false);
@@ -310,8 +309,7 @@ def generate_html(img_dir, output_html_file):
   			displayStyle = document.getElementById("display").value;
   			sessionStorage.setItem("display", displayStyle);
 
-  			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+  			setCardView();
 
   			preSearch(false);
   		}
@@ -323,6 +321,11 @@ def generate_html(img_dir, output_html_file):
 
 			preSearch(false);
 		});
+
+		function setCardView() {
+			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
+  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+		}
 
 		function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
@@ -1005,7 +1008,7 @@ def generate_html(img_dir, output_html_file):
 		function buildImgContainer(card_stats) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[4];
+			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
 
 			const img = document.createElement("img");
 			img.className = "card-image";
