@@ -1,0 +1,220 @@
+mse version: 2.0.0
+short name: Egg's All-in-One
+full name: Egg's All-in-One Exporter
+position hint: 009
+icon: icon.png
+version: 2025-01-07
+
+depends on:
+	package: magic.mse-game
+	version: 2008-08-08
+
+game: magic
+create directory: true
+file type: *.txt|*.txt|*.*|*.*
+
+option field:
+	type: text
+	name: set code
+	description: the typically three-character set code that identifies your set
+
+option field:
+	type: choice
+	name: export images
+	choice: yes
+	choice: no
+	description: Export images
+
+option field:
+	type: choice
+	name: export draft file
+	choice: yes
+	choice: no
+	description: Export Draftmancer file
+
+option field:
+	type: text
+	name: github repo
+	description: name of your github repo (e.g. magictheegg.github.io)
+
+option field:
+	type: text
+	name: rares
+	default: 1
+	description: number of rares per pack
+
+option field:
+	type: text
+	name: uncommons
+	default: 4
+	description: number of uncommons per pack
+
+option field:
+	type: text
+	name: commons
+	default: 7
+	description: number of commons per pack
+
+option field:
+	type: text
+	name: wildcards
+	default: 2
+	description: number of wildcard slots per pack
+
+option field:
+	type: choice
+	name: land slot
+	choice: yes
+	choice: no
+	description: land slot to replace basic lands (add "landslot" to notes of all cards that should be in this slot)
+
+script:
+	fix_tm := replace@(match:"™", replace:"TM")
+	apos_fix := replace@(match:"’", replace:"'")
+	trail_fix := replace@(match:" +$", replace:"")
+	clean_names := {trail_fix(apos_fix(remove_tags(input)))}
+
+	apos_strip := replace@(match:"'", replace: "")
+	comma_strip := replace@(match:",", replace: "")
+	quote_strip := replace@(match:"\"", replace: "")
+	remove_sp_chars := { apos_strip(comma_strip(quote_strip(input))) }
+
+	mana_script := 	replace@(match:"(2|H|W|U|B|R|G|S|C)/(W|U|B|R|G|S|C)", replace:{"\{"+_1+"/"+_2+"\}"})+
+	replace@(match:"(X|Y|Z|W|U|B|R|G|S|C)", in_context:"(?<!\{)(?<!/)<match>", replace:{"\{"+_1+"\}"})+
+	replace@(match:"([1-9][0-9])", in_context:"(?<!\{)(?<!/)<match>", replace:{"\{"+_1+"\}"})+
+	replace@(match:"([0-9])", in_context:"(?<!\{)(?<!/)<match>(?!})", replace:{"\{"+_1+"\}"})
+
+	exporter_name_filter := filter_text@(match:"!exporte?r?name [^\n]+")
+	exporter_name_grabber := replace@(match:"!exporte?r?name ", replace:"")
+
+	card_name := { 
+		test := exporter_name_grabber(exporter_name_filter(card.notes))
+		quote_strip(clean_names(if test != "" then test else card.name))
+	}
+
+	card_name_2 := {
+		test := exporter_name_grabber(exporter_name_filter(card.notes))
+		quote_strip(clean_names(if test != "" then test else card.name_2))
+	}
+
+	card_rarity := {
+		if card.rarity == "mythic rare" then "mythic" else if card.rarity == "basic land" then "common" else card.rarity
+	}
+
+	card_color :=
+	{
+		if contains(card.type, match:"land") or contains(card.rule_text, match:"Devoid") then "" else
+		(
+			 (if contains(card.card_color, match:"white") or contains(card.casting_cost, match:"W") then "W" else "")
+			+(if contains(card.card_color, match:"blue") or contains(card.casting_cost, match:"U") then "U" else "")
+			+(if contains(card.card_color, match:"black") or contains(card.casting_cost, match:"B") then "B" else "")
+			+(if contains(card.card_color, match:"red") or contains(card.casting_cost, match:"R") then "R" else "")
+			+(if contains(card.card_color, match:"green") or contains(card.casting_cost, match:"G") then "G" else "")
+		)
+	}
+
+	card_color_2 :=
+	{
+		if contains(card.type_2, match:"land") or contains(card.rule_text_2, match:"Devoid") then "" else
+		(
+			 (if contains(card.card_color_2, match:"white") or contains(card.casting_cost_2, match:"W") then "W" else "")
+			+(if contains(card.card_color_2, match:"blue") or contains(card.casting_cost_2, match:"U") then "U" else "")
+			+(if contains(card.card_color_2, match:"black") or contains(card.casting_cost_2, match:"B") then "B" else "")
+			+(if contains(card.card_color_2, match:"red") or contains(card.casting_cost_2, match:"R") then "R" else "")
+			+(if contains(card.card_color_2, match:"green") or contains(card.casting_cost_2, match:"G") then "G" else "")
+		)
+	}
+
+	corrected_card_number := { if exporter_num_grabber(exporter_num_filter(card.notes)) != "" then exporter_num_grabber(exporter_num_filter(card.notes)) else if card.custom_card_number != "" then trim_zeroes(card.custom_card_number) else card_number() }
+
+	write_card := {
+		card_name() + "\t" + card_color() + "\t" + card_rarity() + "\t" + card.type + "\t" + card_number() + "\t" + color_identity_statistic() + "\t" + card.casting_cost + "\t" + card.rule_text + "\t" + card.pt + "\t" + card.special_text + "\t" + card.shape + "\t" + options.set_code + (if contains(card.shape, match:"double") or contains(card.shape, match:"adventure") or contains(card.shape, match:"spli") then "\t" + card_name_2() + "\t" + card_color_2() + "\t" + card.type_2 + "\t" + color_identity_statistic() + "\t" + card.casting_cost_2 + "\t" + card.rule_text_2  + "\t" + card.pt_2 + "\t" + card.special_text_2 + "\t" + "REPLACEME" else "REPLACEME")
+	}
+
+	write_cards := for each card in cards do write_card()
+
+	write_draft_header := {
+		"[CustomCards]" +
+		"
+		["
+	}
+
+	github_img_path := {
+		"https://" + options.github_repo + "/" + options.set_code + "-files/img/"
+	}
+
+	write_draft_card := {
+		"\t\{\n\t\t\t\"name\": \"" + card_name() + "\",\n\t\t\t\"rarity\": \"" + card_rarity() + "\",\n\t\t\t\"mana_cost\": \"" + mana_script(card.casting_cost) + "\",\n\t\t\t\"type\": \"" + card.type + "\",\n\t\t\t\"collector_number\": \"" + card_number() + (if contains(card.shape, match:"spli") then "\",\n\t\t\t\"layout\": \"split" else "") + "\",\n\t\t\t\"image_uris\": \{\n\t\t\t\t\"en\": \"" +
+		github_img_path() + card_name() + (if contains(card.shape, match:"double") then "_front" else "") + ".png\"\n\t\t\t}" +
+		( if contains(card.shape, match:"double") then (",\n\t\t\t\"back\": \{\n\t\t\t\t\"name\": \"\",\n\t\t\t\t\"type\": \"\",\n\t\t\t\t\"image_uris\": \{\n\t\t\t\t\t\"en\": \"" + github_img_path() + card_name() + "_back.png\"\n\t\t\t\t}\n\t\t\t}\n") else "\n" ) +
+		"\t\t},\n\t"
+	}
+
+	write_draft_footer := {
+		"	]
+		"
+	}
+
+	write_draft_commons := {
+		for each card in cards do if card.rarity == "common" then (if contains(card.type, match:"Token") then "" else (if contains (card.notes, match:"landslot") then "" else "30 "+card_name()+"
+			")) else ""
+	}
+
+	write_draft_uncommons := {
+		for each card in cards do if card.rarity == "uncommon" then if contains (card.notes, match:"landslot") then "" else "9 "+card_name()+"
+			" else ""
+	
+	}
+
+	write_draft_rares := {
+		for each card in cards do if card.rarity == "rare" then if contains (card.notes, match:"landslot") then "" else "2 "+card_name()+"
+			" else ""
+	
+	}
+
+	write_draft_mythics := {
+		for each card in cards do if card.rarity == "mythic rare" then if contains (card.notes, match:"landslot") then "" else "1 "+card_name()+"
+			" else ""
+	
+	}
+
+	write_draft_landslot := {
+		for each card in cards do if contains(card.notes, match:"landslot") then "10 " + card_name() + "
+			" else ""
+	}
+
+	write_draft_wildcards := {
+		for each card in cards do if contains(card.type, match:"Token") then "" else if card.rarity == "basic land" then "" else "10 " + card_name() + "
+		"
+	}
+
+	write_all_images := {
+		for each card in cards do
+			if contains(card.shape, match:"double") then
+			if contains(card.type, match:"Battle") then write_image_file(crop(input: to_card_image(card), width: 523, height: 375, offset_x: 0, offset_y: 0), file: "img/" + card_name() + "_front" + ".png") + write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 525, offset_y: 0), file: "img/" + card_name() + "_back" + ".png")
+			else write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 0, offset_y: 0), file: "img/" + card_name() + "_front" + ".png") + write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 377, offset_y: 0), file: "img/" + card_name() + "_back" + ".png")
+			else write_image_file(card, file: "img/" + card_name() + ".png")
+	}
+
+	write_booster_contents := {
+		( if options.rares > 0 then ("[RareSlot(" + options.rares + ")]
+		"+ write_draft_rares() + write_draft_mythics()) else "" ) +
+		( if options.uncommons > 0 then ("[UncommonSlot(" + options.uncommons + ")]
+		"+ write_draft_uncommons()) else "" ) +
+		( if options.commons > 0 then ("[CommonSlot(" + options.commons + ")]
+		"+ write_draft_commons()) else "" ) +
+		( if options.wildcards > 0 then "[WildcardSlot(" + options.wildcards + ")]
+		"+ write_draft_wildcards() else "" ) +
+		( if options.land_slot == "yes" then "[LandSlot(1)]
+		"+ write_draft_landslot() else "" )
+	}
+
+	write_text_file(file: options.set_code + "-raw.txt", to_text(write_cards))
+
+	write_draft_cards := for each card in cards do write_draft_card()
+	write_booster := write_draft_header() + write_draft_cards + write_draft_footer() + write_booster_contents()
+	write_draft_file := if options.export_draft_file == "yes" then write_text_file(file: options.set_code + "-draft.txt", to_text(write_booster))
+
+	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "icon.png", width: 100, height: 100)
+	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "logo.png", width: 500, height: 500)
+	write_images := if options.export_images == "yes" then write_all_images()

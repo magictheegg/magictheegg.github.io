@@ -201,22 +201,28 @@ button:-webkit-details-marker {
             {
             	let card_stats = [];
 
-				for (let i = 0; i < card.length; i++)
-				{
-					card_stats.push(card[i].toLowerCase());
-				}
+							for (let i = 0; i < card.length; i++)
+							{
+								card_stats.push(card[i].toLowerCase());
+							}
 
-				if (!card_stats[3].includes("token") && !card_stats[3].includes("basic"))
-				{
-					card_list_cleaned.push(card);
-				}
+							if (!card_stats[3].includes("token") && !card_stats[3].includes("basic"))
+							{
+								card_list_cleaned.push(card);
+							}
             }
 
             const cotd = reallyRand(card_list_cleaned.length);
             const card_stats = card_list_cleaned[cotd].split('\t');
+            const src = 'img/' + card_stats[11] + '/' + card_stats[0] + '.png';
             const img = document.createElement("img");
-            img.src = 'img/' + card_stats[11] + '/' + card_stats[0] + '.png';
-            document.getElementById("cotd-image").append(img);
+            img.src = src;
+            
+            const a = document.createElement("a");
+            a.target = "_blank";
+            a.href = src;
+            a.append(img);
+            document.getElementById("cotd-image").append(a);
         });
 
 		document.getElementById("search").addEventListener("keypress", function(event) {

@@ -7,9 +7,8 @@ def generate_html(img_dir, output_html_file, magic_card_back_image, set_code):
 
     set_img_dir = os.path.join(img_dir, set_code)
     previewed = [file for file in os.listdir(set_img_dir)]
-    script_dir = os.path.dirname(os.path.realpath(__file__))
     
-    with open(os.path.join(script_dir, 'lists', set_code + '-list.txt')) as f:
+    with open(os.path.join(container_dir, 'lists', set_code + '-list.txt')) as f:
         cards = [card.rstrip() for card in f]
 
     # Start creating the HTML file content
