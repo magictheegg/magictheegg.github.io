@@ -7,7 +7,7 @@ def generateHTML(setCode, codes):
     set_img_dir = os.path.join('sets', setCode + '-files', 'img')
     previewed = [file[:-4] for file in os.listdir(set_img_dir)]
 
-    with open(os.path.join('lists', setCode + '-list.txt')) as f:
+    with open(os.path.join('lists', setCode + '-list.txt'), encoding='utf-8-sig') as f:
         cards = [card.rstrip() for card in f]
 
     # Start creating the HTML file content

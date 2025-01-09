@@ -6,7 +6,7 @@ def generateHTML(codes):
 	
 	file_input = ''
 	for code in codes:
-		with open(os.path.join('sets', code + '-files', code + '-raw.txt')) as f:
+		with open(os.path.join('sets', code + '-files', code + '-raw.txt'), encoding='utf-8-sig') as f:
 			raw = f.read()
 			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
 	file_input = file_input.rstrip('\\n')

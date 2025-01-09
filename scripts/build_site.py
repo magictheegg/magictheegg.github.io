@@ -40,5 +40,13 @@ for code in set_codes:
 
 	print_html_for_spoiler.generateHTML(code, set_codes)
 
+custom_img_dir = os.path.join('custom', 'img')
+if os.path.isdir(custom_img_dir):
+	for file in os.listdir(custom_img_dir):
+		filepath = os.path.join(custom_img_dir, file)
+		destination = 'img'
+		shutil.copy(filepath, destination)
+		print(filepath + ' added.')
+
 print_html_for_search.generateHTML(set_codes)
 print_html_for_index.generateHTML(set_codes)
