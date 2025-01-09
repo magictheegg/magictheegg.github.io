@@ -1,12 +1,22 @@
 <html>
 <head>
   <title>Search</title>
-  <link rel="icon" type="image/x-icon" href="/img/search-favicon.png">
+  <link rel="icon" type="image/x-icon" href="/img/search.png">
   <link rel="stylesheet" href="resources/mana.css">
 </head>
 <style>
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
+		overscroll-behavior: none;
+		margin: 0px;
+		background-color: #f3f3f3;
+	}
+	.header {
+		background-color: #171717;
+		height: 60px;
+		align-items: center;
+		justify-items: center;
+		display: flex;
 	}
 	.search-grid {
 		width: 80%;
@@ -15,15 +25,30 @@
 		display: grid;
 		grid-template-columns: 4fr 1fr;
 		gap: 10px;
-		padding-top: 30px;
 		justify-items: center;
+		align-items: center;
+	}
+	.logos-and-search {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 0.5fr 0.25fr 3.25fr;
+		justify-items: center;
+		align-items: center;
+		gap: 5px;
+		margin-top: -5px;
+	}
+	.logo {
+		height: 50px;
+	}
+	.icon {
+		height: 24px;
 	}
 	.button-grid {
 		width: 80%;
 		height: 40px;
 		margin: auto;
 		display: grid;
-		grid-template-columns: 2fr 1fr 1fr 1fr;
+		grid-template-columns: 4fr 1fr;
 		gap: 10px;
 		padding-top: 10px;
 		padding-bottom: 40px;
@@ -42,32 +67,83 @@
 	}
 	.search-grid input {
 		width: 100%;
+		height: 35px;
 		font-size: 16px;
+		background-color: #fafafa;
+		border: 1px solid #d5d9d9;
+		border-radius: 2px;
+		padding-left: 10px;
+		padding-right: 10px;
+		-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 	}
-	.search-grid button {
+	.header-links {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		align-items: center;
+		justify-items: center;
 		width: 100%;
-		height: auto;
-		font-size: 16px;
 	}
-	.button-grid .results-text {
+	.header-links a {
+		color: #f3f3f3;
+		text-decoration: none;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		gap: 5px;
 	}
-	.button-grid select {
-		width: 100%;
-		font-size: 16px;
+	.header-links a:hover {
+	  color: #ffffff;
+	  text-decoration: underline;
+	}
+	button {
+	  background-color: #fafafa;
+	  border: 1px solid #d5d9d9;
+	  border-radius: 8px;
+	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+	  color: #171717;
+	  cursor: pointer;
+	  font-size: 13px;
+	  width: 100%;
+	  height: 35px;
+	  min-width: 85px;
+	}
+	button:hover {
+	  background-color: #ffffff;
+	}
+	button:focus {
+	  border-color: #171717;
+	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+	  outline: 0;
+	}
+	button:disabled {
+		cursor: auto;
+		background-color: #f7fafa;
+		font-style: italic;
+		box-shadow: none;
+		color: #cccccc;
+	}
+	.button-grid .results-text {
+		margin-right: -3px;
+	}
+	.button-grid .select-text {
+		width: 90%;
+		display: flex;
+		align-items: center;
+		justify-content: left;
+		gap: 8px;
+		font-size: 14.5px;
+	}
+	select {
+		background-color: #fafafa;
+	  border: 1px solid #d5d9d9;
+	  border-radius: 8px;
+	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
 		text-align: center;
-	}
-	.button-grid button {
-		width: 100%;
-		height: auto;
-		font-size: 16px;
-	}
-	.prev-next-btns button {
-		width: 100%;
-		height: auto;
-		font-size: 16px;
+	  color: #171717;
+	  font-size: 13px;
+	  height: 30px;
 	}
 	.grid-container {
 		display: grid;
@@ -123,7 +199,6 @@
 	}
 	.card-text .pt {
 		font-weight: bold;
-		padding-bottom: 0px;
 	}
 	.card-text br {
 		content: "";
@@ -167,14 +242,21 @@
 	}
 </style>
 <body>
-	<div class="search-grid">
-		<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
-		<button type="submit" onclick="preSearch(true)" id="searchBtn">Search</button>
+	<div class="header">
+		<div class="search-grid">
+			<div class="logos-and-search">
+				<a href="/"><img class="logo" src="img/banner.png"></a>
+				<img class="icon" src="img/search.png">
+				<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			</div>
+			<div class="header-links">
+				<a href="www.google.com"><img src="img/sets.png" class="icon">Sets</a>
+				<a href="www.google.com"><img src="img/random.png" class="icon">Random</a>
+			</div>
+		</div>
 	</div>
 	<div class="button-grid">
-		<div class="results-text" id="results-text">Loading ...</div>
-		<select name="sort-by" id="sort-by"><option value="set-code">Set Code / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select>
-		<select name="display" id="display"><option value="cards-text">Cards + Text</option><option value="cards-only">Cards Only</option></select>
+		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-text">Cards + Text</option><option value="cards-only">Cards Only</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-code">Set / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>		
 		<div class="prev-next-btns">
 			<button type="submit" onclick="previousPage()" id="prevBtn" disabled>< Previous</button>
 			<button type="submit" onclick="nextPage()" id="nextBtn">Next 30 ></button>
@@ -370,7 +452,7 @@
 		}
 
 		function search(setNewState) {
-			searchTerms = document.getElementById("search").value;
+			searchTerms = document.getElementById("search").value.toLowerCase();
 
 			if (searchTerms != "")
 			{
@@ -462,17 +544,17 @@
 			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
 			{
 				cardGrid.appendChild(gridifyCard(search_results[i]));
+			}
 
-				if (search_results.length <= (pageCount * (page + 1)))
-				{
-					document.getElementById("nextBtn").disabled = true;
-					document.getElementById("nextBtn-footer").disabled = true;
-				}
-				else
-				{
-					document.getElementById("nextBtn").disabled = false;
-					document.getElementById("nextBtn-footer").disabled = false;
-				}
+			if (search_results.length <= (pageCount * (page + 1)))
+			{
+				document.getElementById("nextBtn").disabled = true;
+				document.getElementById("nextBtn-footer").disabled = true;
+			}
+			else
+			{
+				document.getElementById("nextBtn").disabled = false;
+				document.getElementById("nextBtn-footer").disabled = false;
 			}
 		}
 
@@ -872,17 +954,46 @@
 			return char >= '0' && char <= '9';
 		}
 
-		function symbolize(text) {
-			let symText = "{";
-			for (const char of text)
+		function tokenize(text) {
+			let tokens = [];
+
+			for (let i = 0; i < text.length; i++)
 			{
-				if (!isDecimal(char))
+				if (i < text.length - 1)
 				{
-					symText = symText + "}{";
+					if (text[i + 1] == '/')
+					{
+						tokens.push(text.substring(i, i + 3));
+						i = i + 2;
+					}
+					else if (isDecimal(text[i]) && isDecimal(text[i + 1]))
+					{
+						tokens.push(text.substring(i, i + 2));
+						i = i + 1;
+					}
+					else
+					{
+						tokens.push(text[i]);
+					}
 				}
-				symText = symText + char;
+				else
+				{
+					tokens.push(text[i]);
+				}
 			}
-			symText = symText + "}";
+
+			console.log(tokens);
+			return tokens;
+		}
+
+		function symbolize(text) {
+			let tokens = tokenize(text);
+			let symText = "";
+			for (const token of tokens)
+			{
+				symText = symText + "{" + token + "}";
+			}
+
 			return formatTextHTML(symText.replace("{}", ""));
 		}
 
@@ -950,7 +1061,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.textContent = card_stats[12] + (card_stats[16] != "" ? '     ' + card_stats[16] : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -1036,9 +1147,9 @@
 				}
 			}
 
-			let pattern1 = /([0-9]*[WUBRGCT]+)([ :,\.])/g;
-			let pattern2 = /([0-9]+)([:,])/g;
-			let pattern3 = /([Pp]ay[s]* )([0-9])/g;
+			let pattern1 = /([0-9]*[WUBRGCT/]+)([ :,\.])/g;
+			let pattern2 = /(?<![a-z] )([0-9X]+)([:,])/g;
+			let pattern3 = /([Pp]ay[s]* )([0-9X])(?! life)/g;
 			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
 				return symbolize(group1) + group2;
 			});
@@ -1101,7 +1212,7 @@
 		document.getElementById("search").addEventListener("keypress", function(event) {
 		  if (event.key === "Enter") {
 			event.preventDefault();
-			document.getElementById("searchBtn").click();
+			preSearch(true);
 		  }
 		});
 

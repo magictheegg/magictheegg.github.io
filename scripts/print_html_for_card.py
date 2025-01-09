@@ -1,7 +1,7 @@
 import os
 import sys
 
-def generateHTML(codes):
+def generateHTML(code, card):
 	output_html_file = "search.html"
 	
 	file_input = ''
