@@ -2,6 +2,7 @@
 <head>
   <title>Search</title>
   <link rel="icon" type="image/x-icon" href="/img/search-favicon.png">
+  <link rel="stylesheet" href="resources/mana.css">
 </head>
 <style>
 	body {
@@ -82,7 +83,7 @@
 	}
 	@media ( max-width: 750px ) {
 	  .image-grid-container {
-	    	grid-template-columns: 1fr 1fr;  
+			grid-template-columns: 1fr 1fr;  
 		}
 	}
 	.image-grid {
@@ -129,41 +130,41 @@
 		display: block;
 		margin-bottom: 5px;
 	}
-    .img-container {
-      position: relative;
-      width: 100%;
-      align-self: center;
-    }
-    .img-container img {
-      width: 100%;
-      height: auto;
-    }
+	.img-container {
+	  position: relative;
+	  width: 100%;
+	  align-self: center;
+	}
+	.img-container img {
+	  width: 100%;
+	  height: auto;
+	}
 	.img-container .btn {
-    	background: url('img/flip.png') no-repeat;
-    	background-size: contain;
-    	background-position: center;
-    	width: 15%;
-    	height: 11%;
-    	cursor: pointer;
-    	border: none;
-    	position: absolute;
-    	top: 6.5%;
-    	left: 8.5%;
-    	transform: translate(-50%, -85%);
-    }
-    .img-container .btn:hover {
-    	background: url('img/flip-hover.png') no-repeat;
-    	background-size: contain;
-    	background-position: center;
-    	width: 15%;
-    	height: 11%;
-    	cursor: pointer;
-    	border: none;
-    	position: absolute;
-    	top: 6.5%;
-    	left: 8.5%;
-    	transform: translate(-50%, -85%);
-    }
+		background: url('img/flip.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 15%;
+		height: 11%;
+		cursor: pointer;
+		border: none;
+		position: absolute;
+		top: 6.5%;
+		left: 8.5%;
+		transform: translate(-50%, -85%);
+	}
+	.img-container .btn:hover {
+		background: url('img/flip-hover.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 15%;
+		height: 11%;
+		cursor: pointer;
+		border: none;
+		position: absolute;
+		top: 6.5%;
+		left: 8.5%;
+		transform: translate(-50%, -85%);
+	}
 </style>
 <body>
 	<div class="search-grid">
@@ -197,49 +198,24 @@
 	</div>
 
 	<script>
-        let duplicates = [];
-        let page = 0;
-        let pageCount = 30;
-        let search_results = [];
-        let card_list_arrayified = [];
+		let page = 0;
+		let pageCount = 30;
+		let search_results = [];
+		let card_list_arrayified = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
 			await fetch('./lists/all-cards.txt')
-                .then(response => response.text())
-                .then(text => {
-                    // Do something with the text content
-                    card_list_stringified = text; 
-            }).catch(error => console.error('Error:', error));
+				.then(response => response.text())
+				.then(text => {
+					card_list_stringified = text; 
+			}).catch(error => console.error('Error:', error));
 
-            card_list_arrayified = card_list_stringified.split('\\n');
+			card_list_arrayified = card_list_stringified.split('\\n');
 
-            for (let i = 0; i < card_list_arrayified.length; i++)
-            {
-                card_list_arrayified[i] = card_list_arrayified[i].split('	');
-                for (let j = 0; j < i; j++)
-                {
-                    if (card_list_arrayified[i][0] == card_list_arrayified[j][0] && card_list_arrayified[i][11] == card_list_arrayified[j][11])
-                    {
-                        duplicates.push(card_list_arrayified[i][0] + card_list_arrayified[i][11]);
-                    }
-                }
-            }
-            for (let i = 0; i < card_list_arrayified.length; i++)
-            {
-                let tag = 97; // a
-                let card_name = card_list_arrayified[i][0];
-                let set_code = card_list_arrayified[i][11];
-
-                for (let j = 0; j < i; j++)
-                {
-                    if (card_name == card_list_arrayified[j][0] && set_code == card_list_arrayified[j][11])
-                    {
-                        tag++;
-                    }
-                }
-
-                card_list_arrayified[i].push(duplicates.includes(card_name + set_code) ? (card_name + "_" + String.fromCharCode(tag)) : "");
-            }
+			for (let i = 0; i < card_list_arrayified.length; i++)
+			{
+				card_list_arrayified[i] = card_list_arrayified[i].split('	');
+			}
 
 			if (sessionStorage.getItem("display") == "cards-only")
 			{
@@ -892,6 +868,34 @@
 			return card_name.includes(token);
 		}
 
+		function isDecimal(char) {
+			return char >= '0' && char <= '9';
+		}
+
+		function symbolize(text) {
+			let symText = "{";
+			for (const char of text)
+			{
+				if (!isDecimal(char))
+				{
+					symText = symText + "}{";
+				}
+				symText = symText + char;
+			}
+			symText = symText + "}";
+			return formatTextHTML(symText.replace("{}", ""));
+		}
+
+		function formatTextHTML(str) {
+			if(!str)
+				return "";
+			str = str.replace(/[{]([^}]+)[}]/g, function(matched, _1) {
+				let letters = _1.toLowerCase().replace("/", "")
+				return '<span class="mana mana-cost mana-' + letters + '"></span>';
+			})
+			return str;
+		}
+
 		function gridifyCard(card_stats) {
 			const displayStyle = sessionStorage.getItem("display");
 			const card_name = card_stats[0];
@@ -911,7 +915,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.textContent = card_stats[0] + (card_stats[6] != "" ? '     ' + card_stats[6] : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -1032,7 +1036,20 @@
 				}
 			}
 
-			return HTML;
+			let pattern1 = /([0-9]*[WUBRGCT]+)([ :,\.])/g;
+			let pattern2 = /([0-9]+)([:,])/g;
+			let pattern3 = /([Pp]ay[s]* )([0-9])/g;
+			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
+				return symbolize(group1) + group2;
+			});
+			regexHTML = regexHTML.replace(pattern2, function (match, group1, group2) {
+				return symbolize(group1) + group2;
+			});
+			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
+				return group1 + symbolize(group2);
+			});
+
+			return regexHTML;
 		}
 
 		function isDigit(c) {
