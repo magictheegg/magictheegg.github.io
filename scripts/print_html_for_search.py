@@ -410,8 +410,8 @@ def generateHTML(codes):
 			}
 			if (sortMode == 'mv')
 			{
-				a_mv = isDigit(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
-				b_mv = isDigit(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
+				a_mv = isDecimal(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
+				b_mv = isDecimal(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
 				if (a_mv === b_mv)
 				{
 					if (a[0] === b[0])
@@ -663,7 +663,7 @@ def generateHTML(codes):
 			let card_type = card_stats[3];
 			// 4: collector number
 			let card_ci = card_stats[5];
-			let card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
+			let card_mv = isDecimal(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
 			let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\\n') : card_stats[9].replaceAll("NEWLINE", '\\n');
 			let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
 			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
@@ -879,7 +879,7 @@ def generateHTML(codes):
 					}
 					else if (modifier == ":")
 					{
-						sreturn (card_toughness == check);
+						return (card_toughness == check);
 					}
 					else if (modifier == "<")
 					{
@@ -1123,8 +1123,12 @@ def generateHTML(codes):
 			img.className = "card-image";
 			img.id = id;
 			// (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) for posterity
-			img.src = "sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
-			imgContainer.appendChild(img);
+			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			
+			const link = document.createElement("a");
+			link.href = "/cards/" + card_stats[11] + "/" + card_stats[0];
+			link.appendChild(img);
+			imgContainer.appendChild(link);
 
 			if (card_stats[10].includes("double"))
 			{
@@ -1178,10 +1182,6 @@ def generateHTML(codes):
 			});
 
 			return regexHTML;
-		}
-
-		function isDigit(c) {
-			return c >= '0' && c <= '9';
 		}
 
 		function hasAllChars(strOut, strIn) {

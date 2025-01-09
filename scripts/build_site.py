@@ -8,6 +8,7 @@ import list_to_list
 import print_html_for_index
 import print_html_for_search
 import print_html_for_spoiler
+import print_html_for_card
 
 set_codes = []
 for entry in os.scandir('sets'):
@@ -19,6 +20,7 @@ if os.path.isdir('cards'):
 os.mkdir('cards')
 
 for code in set_codes:
+	os.mkdir(os.path.join('cards', code))
 	image_flip.flipImages(code)
 	set_dir = code + '-files'
 	with open(os.path.join('sets', set_dir, code + '-trimmed.txt'), encoding='utf-8-sig') as f:
@@ -41,9 +43,17 @@ for code in set_codes:
 				shutil.copytree(filepath, destination)
 			else:
 				shutil.copy(filepath, destination)
-			print(filepath + ' added.')
+			print(filepath + ' added')
 
 	print_html_for_spoiler.generateHTML(code, set_codes)
+
+	with open(os.path.join('sets', set_dir, code + '-raw.txt'), encoding='utf-8-sig') as f:
+		cards = f.read()
+	cards = cards.replace('\n','NEWLINE').replace('REPLACEME','\\n').rstrip('\\n')
+	card_array = cards.split('\\n')
+	for card in card_array:
+		print_html_for_card.generateHTML(code, card)
+	print(f"HTML card files saved in cards/{code}/")
 
 custom_img_dir = os.path.join('custom', 'img')
 if os.path.isdir(custom_img_dir):
@@ -51,7 +61,7 @@ if os.path.isdir(custom_img_dir):
 		filepath = os.path.join(custom_img_dir, file)
 		destination = 'img'
 		shutil.copy(filepath, destination)
-		print(filepath + ' added.')
+		print(filepath + ' added')
 
 print_html_for_search.generateHTML(set_codes)
 print_html_for_index.generateHTML(set_codes)

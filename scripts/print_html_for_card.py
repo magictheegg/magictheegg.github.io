@@ -2,24 +2,14 @@ import os
 import sys
 
 def generateHTML(code, card):
-	output_html_file = "search.html"
+	output_html_file = "cards/" + code + "/" + card.split('\t')[0] + ".html"
 	
-	file_input = ''
-	for code in codes:
-		with open(os.path.join('sets', code + '-files', code + '-raw.txt'), encoding='utf-8-sig') as f:
-			raw = f.read()
-			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
-	file_input = file_input.rstrip('\\n')
-
-	with open(os.path.join('lists', 'all-cards.txt'), 'w') as f:
-		f.write(file_input);
-
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
-  <title>Search</title>
-  <link rel="icon" type="image/x-icon" href="/img/search.png">
-  <link rel="stylesheet" href="resources/mana.css">
+  <title>''' + card.split('\t')[0] + '''</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/resources/mana.css">
 </head>
 <style>
 	body {
@@ -60,28 +50,6 @@ def generateHTML(code, card):
 	.icon {
 		height: 24px;
 	}
-	.button-grid {
-		width: 80%;
-		height: 40px;
-		margin: auto;
-		display: grid;
-		grid-template-columns: 4fr 1fr;
-		gap: 10px;
-		padding-top: 10px;
-		padding-bottom: 40px;
-		justify-items: center;
-	}
-	#footer {
-		padding-top: 40px;
-	}
-	.prev-next-btns {
-		width: 100%;
-		height: 40px;
-		margin: auto;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 5px;
-	}
 	.search-grid input {
 		width: 100%;
 		height: 35px;
@@ -114,76 +82,12 @@ def generateHTML(code, card):
 	  color: #ffffff;
 	  text-decoration: underline;
 	}
-	button {
-	  background-color: #fafafa;
-	  border: 1px solid #d5d9d9;
-	  border-radius: 8px;
-	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-	  color: #171717;
-	  cursor: pointer;
-	  font-size: 13px;
-	  width: 100%;
-	  height: 35px;
-	  min-width: 85px;
-	}
-	button:hover {
-	  background-color: #ffffff;
-	}
-	button:focus {
-	  border-color: #171717;
-	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-	  outline: 0;
-	}
-	button:disabled {
-		cursor: auto;
-		background-color: #f7fafa;
-		font-style: italic;
-		box-shadow: none;
-		color: #cccccc;
-	}
-	.button-grid .results-text {
-		margin-right: -3px;
-	}
-	.button-grid .select-text {
-		width: 90%;
-		display: flex;
-		align-items: center;
-		justify-content: left;
-		gap: 8px;
-		font-size: 14.5px;
-	}
-	select {
-		background-color: #fafafa;
-	  border: 1px solid #d5d9d9;
-	  border-radius: 8px;
-	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-		text-align: center;
-	  color: #171717;
-	  font-size: 13px;
-	  height: 30px;
-	}
-	.grid-container {
-		display: grid;
-		grid-template-columns: auto;
-	}
-	.image-grid-container {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-		width: 70%;
-		margin: auto;
-		gap: 5px;
-		justify-items: center;
-	}
-	@media ( max-width: 750px ) {
-	  .image-grid-container {
-			grid-template-columns: 1fr 1fr;  
-		}
-	}
 	.image-grid {
-		width: 70%;
+		padding-top: 40px;
+		width: 75%;
 		margin: auto;
 		display: grid;
-		grid-template-columns: minmax(150px, 1fr) minmax(300px, 2fr);
+		grid-template-columns: minmax(150px, 2fr) minmax(300px, 3fr);
 		gap: 50px;
 		padding-bottom: 10px;
 		justify-items: left;
@@ -232,7 +136,7 @@ def generateHTML(code, card):
 	  height: auto;
 	}
 	.img-container .btn {
-		background: url('img/flip.png') no-repeat;
+		background: url('/img/flip.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -245,7 +149,7 @@ def generateHTML(code, card):
 		transform: translate(-50%, -85%);
 	}
 	.img-container .btn:hover {
-		background: url('img/flip-hover.png') no-repeat;
+		background: url('/img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -262,38 +166,19 @@ def generateHTML(code, card):
 	<div class="header">
 		<div class="search-grid">
 			<div class="logos-and-search">
-				<a href="/"><img class="logo" src="img/banner.png"></a>
-				<img class="icon" src="img/search.png">
+				<a href="/"><img class="logo" src="/img/banner.png"></a>
+				<img class="icon" src="/img/search.png">
 				<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 			</div>
 			<div class="header-links">
-				<a href="www.google.com"><img src="img/sets.png" class="icon">Sets</a>
-				<a href="www.google.com"><img src="img/random.png" class="icon">Random</a>
+				<a href="/sets"><img src="/img/sets.png" class="icon">Sets</a>
+				<a href="www.google.com"><img src="/img/random.png" class="icon">Random</a>
 			</div>
-		</div>
-	</div>
-	<div class="button-grid">
-		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-text">Cards + Text</option><option value="cards-only">Cards Only</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-code">Set / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>		
-		<div class="prev-next-btns">
-			<button type="submit" onclick="previousPage()" id="prevBtn" disabled>< Previous</button>
-			<button type="submit" onclick="nextPage()" id="nextBtn">Next 30 ></button>
 		</div>
 	</div>
 
 	<div class="grid-container" id="grid">
 	</div>
-
-	<div class="image-grid-container" id="imagesOnlyGrid">
-	</div>
-
-	<div class="button-grid" id="footer">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div class="prev-next-btns">
-			<button type="submit" onclick="previousPage()" id="prevBtn-footer" disabled>< Previous</button>
-			<button type="submit" onclick="nextPage()" id="nextBtn-footer">Next 30 ></button>
-		</div>
 	</div>
 
 	<script>
@@ -303,669 +188,8 @@ def generateHTML(code, card):
 		let card_list_arrayified = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('./lists/all-cards.txt')
-				.then(response => response.text())
-				.then(text => {
-					card_list_stringified = text; 
-			}).catch(error => console.error('Error:', error));
-
-			card_list_arrayified = card_list_stringified.split('\\\\n');
-
-			for (let i = 0; i < card_list_arrayified.length; i++)
-			{
-				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
-			}
-
-			if (sessionStorage.getItem("display") == "cards-only")
-			{
-				cardGrid = document.getElementById("imagesOnlyGrid");
-			}
-			else
-			{
-				cardGrid = document.getElementById("grid");
-			}
-
-			card_list_arrayified.sort(compareFunction);
-
-			page = window.location.href.indexOf("page=") == -1 ? 0 : parseInt(window.location.href.substring(window.location.href.indexOf("page=") + 5)) - 1;
-
-			// refresh page values
-			let params = decodeURIComponent(window.location.href.indexOf("?search") == -1 ? "" : window.location.href.substring(window.location.href.indexOf("?search") + 8));
-  			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replaceAll("+", " ") : params.substring(0, params.indexOf("&page=")).replaceAll("+", " "));
-  			if (sessionStorage.getItem("sortMethod"))
-  			{
-	  			document.getElementById("sort-by").value = sessionStorage.getItem("sortMethod");  			
-  			}
-  			if (sessionStorage.getItem("display"))
-  			{
-	  			document.getElementById("display").value = sessionStorage.getItem("display");  			
-  			}
-
-  			displayStyle = document.getElementById("display").value;
-  			setCardView();
-
-  			// initial search on load
-			preSearch(false);
+			document.getElementById("grid").appendChild(gridifyCard("''' + card + '''"));
 		});
-
-		document.getElementById("sort-by").onchange = sortChangeListener;
-  
-  		function sortChangeListener() {
-  			sessionStorage.setItem("sortMethod", document.getElementById("sort-by").value);
-  			preSearch(false);
-  		}
-
-  		document.getElementById("display").onchange = displayChangeListener;
-  
-  		function displayChangeListener() {
-  			displayStyle = document.getElementById("display").value;
-  			sessionStorage.setItem("display", displayStyle);
-
-  			setCardView();
-
-  			preSearch(false);
-  		}
-
-  		window.addEventListener('popstate', function(event) {
-  			let params = decodeURIComponent(window.location.href.indexOf("?search") == -1 ? "" : window.location.href.substring(window.location.href.indexOf("?search") + 8), (window.location.href.indexOf("page=") == -1 ? window.location.href.length : window.location.href.indexOf("page=")));
-			document.getElementById("search").value = (params.indexOf("&page=") == -1 ? params.replaceAll("+", " ") : params.substring(0, params.indexOf("&page=")).replaceAll("+", " "));
-			page = window.location.href.indexOf("page=") == -1 ? 0 : parseInt(window.location.href.substring(window.location.href.indexOf("page=") + 5)) - 1;
-
-			preSearch(false);
-		});
-
-		function setCardView() {
-			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
-		}
-
-		function compareFunction(a, b) {
-			const sortMode = document.getElementById("sort-by").value;
-			
-			if (sortMode == 'set-code')
-			{
-				if (a[11] === b[11])
-				{
-					if (a[4] === b[4])
-					{
-						return 0;
-					}
-					else {
-						return (parseInt(a[4]) < parseInt(b[4])) ? -1 : 1;
-					}
-				}
-				else {
-					return (a[11] < b[11]) ? -1 : 1;
-				}
-			}
-			if (sortMode == 'name')
-			{
-				if (a[0] === b[0])
-				{
-					return 0;
-				}
-				else {
-					return (a[0] < b[0]) ? -1 : 1;
-				}
-			}
-			if (sortMode == 'mv')
-			{
-				a_mv = isDigit(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
-				b_mv = isDigit(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
-				if (a_mv === b_mv)
-				{
-					if (a[0] === b[0])
-					{
-						return 0;
-					}
-					else {
-						return (a[0] < b[0]) ? -1 : 1;
-					}
-				}
-				else {
-					return (a_mv < b_mv) ? -1 : 1;
-				}
-			}
-			if (sortMode == 'color')
-			{
-				color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
-				a_color_index = -1;
-				b_color_index = -1;
-
-				for (let i = 0; i < color_sort_order.length; i++)
-				{
-					if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
-					{
-						a_color_index = i;
-					}
-					if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
-					{
-						b_color_index = i;
-					}
-				}
-
-				if (a_color_index === b_color_index)
-				{
-					if (a[0] === b[0])
-					{
-						return 0;
-					}
-					else {
-						return (a[0] < b[0]) ? -1 : 1;
-					}
-				}
-				else {
-					return (a_color_index < b_color_index) ? -1 : 1;
-				}
-			}
-		}
-
-		function preSearch(setNewState) {
-			card_list_arrayified.sort(compareFunction);
-			search_results = [];
-			page = setNewState ? 0 : page;
-
-			search(setNewState);
-		}
-
-		function search(setNewState) {
-			searchTerms = document.getElementById("search").value.toLowerCase();
-
-			if (searchTerms != "")
-			{
-				if (setNewState)
-				{
-					let url = (window.location.href.indexOf("?") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("?"))));
-					let params = new URLSearchParams(url.search);
-					params.append("search", searchTerms);
-					history.pushState({}, '', url.pathname + '?' + params.toString());
-				}
-			}
-			else
-			{
-				if (setNewState)
-				{
-					let url = (window.location.href.indexOf("?") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("?"))));
-					let params = new URLSearchParams(url.search);
-					params.delete("search");
-					history.pushState({}, '', url.pathname + '' + params.toString());
-				}
-			}
-
-			if (sessionStorage.getItem("display") == "cards-only")
-			{
-				cardGrid = document.getElementById("imagesOnlyGrid");
-			}
-			else
-			{
-				cardGrid = document.getElementById("grid");
-			}
-			cardGrid.innerHTML = "";
-
-			for (const card of card_list_arrayified) {
-				if (card[3].includes("Token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
-				{
-					continue;
-				}
-
-				if (card[3].includes("Basic") && !searchTerms.includes("*t:basic") && !searchTerms.includes("t:basic"))
-				{
-					continue;
-				}
-
-				searched = searchAllTokens(card, tokenizeTerms(searchTerms));
-
-				if (searched)
-				{
-					search_results.push(card);
-				}
-			}
-
-			if (searchTerms != "")
-			{
-				document.getElementById("results-text").innerText = search_results.length + (search_results.length == 1 ? " result found." : " results found.");
-			}
-			else
-			{
-				document.getElementById("results-text").innerText = "";
-			}
-
-			if (page != 0)
-			{
-				document.getElementById("prevBtn").disabled = false;
-				document.getElementById("prevBtn-footer").disabled = false;
-			}
-			else
-			{
-				document.getElementById("prevBtn").disabled = true;
-				document.getElementById("prevBtn-footer").disabled = true;
-			}
-
-			// set text of Next to match number of displayed images
-			displayStyle = document.getElementById("display").value;
-  			pageCount = displayStyle == "cards-only" ? 60 : 30;
-  			document.getElementById("nextBtn").innerText = "Next " + pageCount + " >";
-  			document.getElementById("nextBtn-footer").innerText = "Next " + pageCount + " >";
-
-  			// really awesome code block to fix the URL when switching from Cards + Text view to Cards Only view
-  			while ((pageCount * page) > search_results.length)
-  			{
-  				page = page - 1;
-
-  				let url = (window.location.href.indexOf("page=") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("page="))));
-				let params = new URLSearchParams(url.search);
-				params.append("page", page+1);
-				history.replaceState({}, '', url.pathname + '?' + params.toString());
-  			}
-
-			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
-			{
-				cardGrid.appendChild(gridifyCard(search_results[i]));
-			}
-
-			if (search_results.length <= (pageCount * (page + 1)))
-			{
-				document.getElementById("nextBtn").disabled = true;
-				document.getElementById("nextBtn-footer").disabled = true;
-			}
-			else
-			{
-				document.getElementById("nextBtn").disabled = false;
-				document.getElementById("nextBtn-footer").disabled = false;
-			}
-		}
-
-		function tokenizeTerms(searchTerms)
-		{
-			let searchTokens = [];
-			let key = 0;
-			let inParens = false;
-			let inQuotes = false;
-			for (let i = 0; i < searchTerms.length; i++)
-			{
-				if (searchTerms.charAt(i) == '(')
-				{
-					inParens = true;
-				}
-				if (searchTerms.charAt(i) == ')')
-				{
-					inParens = false;
-				}
-				if (!inParens && !inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '“' || searchTerms.charAt(i) == '/'))
-				{
-					inQuotes = true;
-				}
-				else if (!inParens && inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '”' || searchTerms.charAt(i) == '/'))
-				{
-					inQuotes = false;
-				}
-				if (searchTerms.charAt(i) == ' ' && !inParens && !inQuotes)
-				{
-					searchTokens.push(searchTerms.substring(key, i));
-					key = i + 1;
-				}
-				if (i == searchTerms.length - 1)
-				{
-					searchTokens.push(searchTerms.substring(key));
-				}
-			}
-
-			return searchTokens;
-		}
-
-		function searchAllTokens(card, tokens)
-		{
-			if (tokens.length < 1)
-			{
-				return true;
-			}
-			for (let i = 0; i < tokens.length; i++)
-			{
-				if (tokens[i].charAt(0) == '*')
-				{
-					return searchAllTokens(card, tokens.slice(0, i)) && searchAllTokens(card, tokens.slice(i + 1));
-				}
-				if (tokens[i] == "or")
-				{
-					return searchAllTokens(card, tokens.slice(0, i)) || searchAllTokens(card, tokens.slice(i + 1));
-				}
-			}
-
-			for (let token of tokens)
-			{
-				if (token.charAt(0) == '-')
-				{
-					return !searchToken(card, token.substring(1)) && (tokens.length == 1 ? true : searchAllTokens(card, tokens.slice(1)));
-				}
-				if (token.charAt(0) == '(')
-				{
-					return searchAllTokens(card, tokenizeTerms(token.substring(1, token.length - 1))) && (tokens.length == 1 ? true : searchAllTokens(card, tokens.slice(1)));
-				}
-				else
-				{
-					return searchToken(card, token) && (tokens.length == 1 ? true : searchAllTokens(card, tokens.slice(1)));
-				}
-			}
-		}
-
-		function searchToken(card, token)
-		{
-			let card_stats = [];
-
-			for (let i = 0; i < card.length; i++)
-			{
-				card_stats.push(card[i].toLowerCase());
-			}
-
-			let card_name = card_stats[0];
-			let card_color = card_stats[1] != "" ? card_stats[1] : "c";
-			let card_rarity = card_stats[2];
-			let card_type = card_stats[3];
-			// 4: collector number
-			let card_ci = card_stats[5];
-			let card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
-			let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\\n') : card_stats[9].replaceAll("NEWLINE", '\\n');
-			let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
-			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
-			let card_shape = card_stats[10];
-			let card_set = card_stats[11];
-
-			// two cards in one	
-			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
-			{
-				card_name = card_name + "	" + card_stats[12];
-				card_type = card_type + "	" + card_stats[14];
-				card_oracle_text = card_oracle_text + "	" + (card_stats[17] != "" ? card_stats[17].replaceAll("NEWLINE", '\\n') : card_stats[19].replaceAll("NEWLINE", '\\n'));
-			}
-
-			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('“','').replaceAll('”','');
-
-			const modifierRegex = /[!:<>=]/;
-			const match = token.search(modifierRegex);
-
-			if (match > -1)
-			{
-				const term = token.substring(0, match);
-				const modifier = token.charAt(match);
-				const check = token.substring(match + 1);
-
-				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
-
-				/* template
-				if (term == "mv")
-				{
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
-					else if (modifier == ":")
-					{
-
-					}
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					}
-				} */
-				if (term == "mv")
-				{
-					if (modifier == "!" || modifier == "=")
-					{
-						return (card_mv == check);
-					}
-					else if (modifier == ":")
-					{
-						return (card_mv == check);
-					}
-					else if (modifier == "<")
-					{
-						return (card_mv < check);
-					}
-					else if (modifier == ">")
-					{
-						return (card_mv > check);
-					}
-				}
-				if (term == "c")
-				{
-					if (modifier == "!" || modifier == "=")
-					{
-						if (!isNaN(check))
-						{
-							return card_color.length == parseInt(check);
-						}
-						return (card_color.split("").sort().join("") == check.split("").sort().join(""));
-					}
-					else if (modifier == ":")
-					{
-						if (!isNaN(check))
-						{
-							return card_color.length == parseInt(check);
-						}
-						return hasAllChars(card_color, check);
-					}
-					else if (modifier == "<")
-					{
-						if (!isNaN(check))
-						{
-							return card_color.length < parseInt(check);
-						}
-						return hasNoChars(card_color, check);
-					}
-					else if (modifier == ">")
-					{
-						if (!isNaN(check))
-						{
-							return card_color.length > parseInt(check);
-						}
-						return hasAllAndMoreChars(card_color, check);
-					}
-				}
-				if (term == "ci")
-				{
-					if (modifier == "!" || modifier == "=")
-					{
-						// why is this the best way to do this?
-						if (!isNaN(check))
-						{
-							return card_ci.length == parseInt(check);
-						}
-						return (card_ci.split("").sort().join("") == check.split("").sort().join(""));
-					}
-					else if (modifier == ":")
-					{
-						if (!isNaN(check))
-						{
-							return card_ci.length == parseInt(check);
-						}
-						return hasAllChars(card_ci, check);
-					}
-					else if (modifier == "<")
-					{
-						if (!isNaN(check))
-						{
-							return card_ci.length < parseInt(check);
-						}
-						return hasNoChars(card_ci, check);
-					}
-					else if (modifier == ">")
-					{
-
-						if (!isNaN(check))
-						{
-							return card_ci.length > parseInt(check);
-						}
-						return hasAllAndMoreChars(card_ci, check);
-					}
-				}
-				if (term == "t" || term == "type")
-				{
-					if (modifier == ":")
-					{
-						return card_type.includes(check);
-					}
-					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
-				}
-				if (term == "o")
-				{
-					if (modifier == ":")
-					{
-						regex = new RegExp(check);
-						return regex.test(card_oracle_text);
-						if (check.charAt(0) == '/')
-						{
-							
-							return regex.test(card_oracle_text);
-						}
-						else
-						{
-							return card_oracle_text.includes(check);
-						}
-					}
-					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
-				}
-				if (term == "pow")
-				{
-					if (modifier == "!" || modifier == "=")
-					{
-						return (card_power == check);
-					}
-					else if (modifier == ":")
-					{
-						return (card_power == check);
-					}
-					else if (modifier == "<")
-					{
-						return (card_power < check);
-					}
-					else if (modifier == ">")
-					{
-						return (card_power > check);
-					}
-				}
-				if (term == "tou")
-				{
-					if (modifier == "!" || modifier == "=")
-					{
-						return (card_toughness == check);
-					}
-					else if (modifier == ":")
-					{
-						sreturn (card_toughness == check);
-					}
-					else if (modifier == "<")
-					{
-						return (card_toughness < check);
-					}
-					else if (modifier == ">")
-					{
-						return (card_toughness > check);
-					}
-				}
-				if (term == "r")
-				{
-					if (modifier == ":")
-					{
-						return (card_rarity == check);
-					}
-					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
-				}
-				if (term == "e")
-				{
-					if (modifier == ":")
-					{
-						return (card_set == check);
-					}
-					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
-				}
-				if (term == "is")
-				{
-					if (modifier == ":")
-					{
-						// all of these are implemented individually
-						if (check == "permanent")
-						{
-							return !card_type.includes("instant") && !card_type.includes("sorcery");
-						}
-						if (check == "spell")
-						{
-							return !card_type.includes("land");
-						}
-						if (check == "commander")
-						{
-							return (card_type.includes("legendary") && card_type.includes("creature")) || card_oracle_text.includes("can be your commander");
-						}
-					}
-					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
-				}
-			}
-
-			return card_name.includes(token);
-		}
 
 		function isDecimal(char) {
 			return char >= '0' && char <= '9';
@@ -1024,14 +248,9 @@ def generateHTML(code, card):
 			return str;
 		}
 
-		function gridifyCard(card_stats) {
-			const displayStyle = sessionStorage.getItem("display");
+		function gridifyCard(card) {
+			card_stats = card.split('\\t');
 			const card_name = card_stats[0];
-
-			if (displayStyle == "cards-only")
-			{
-				return buildImgContainer(card_stats);
-			}
 
 			const grid = document.createElement("div");
 			grid.className = "image-grid";
@@ -1117,13 +336,13 @@ def generateHTML(code, card):
 		function buildImgContainer(card_stats) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
+			const id = card_stats[11] + "-" + card_stats[0];
 
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
 			// (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) for posterity
-			img.src = "sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			imgContainer.appendChild(img);
 
 			if (card_stats[10].includes("double"))
@@ -1180,113 +399,15 @@ def generateHTML(code, card):
 			return regexHTML;
 		}
 
-		function isDigit(c) {
-			return c >= '0' && c <= '9';
-		}
-
-		function hasAllChars(strOut, strIn) {
-			let retVal = true;
-
-			for (let i = 0; i < strIn.length; i++)
-			{
-				if (!strOut.includes(strIn.charAt(i)))
-				{
-					retVal = false;
-				}
-			}
-
-			return retVal;
-		}
-
-		function hasNoChars(strOut, strIn) {
-			let retVal = true;
-
-			for (let i = 0; i < strIn.length; i++)
-			{
-				if (strOut.includes(strIn.charAt(i)))
-				{
-					retVal = false;
-				}
-			}
-
-			return retVal;
-		}
-
-		function hasAllAndMoreChars(strOut, strIn) {
-			let retVal = true;
-
-			for (let i = 0; i < strIn.length; i++)
-			{
-				if (!strOut.includes(strIn.charAt(i)))
-				{
-					retVal = false;
-				}
-			}
-
-			return retVal && (strOut.length > strIn.length);
-		}
-
 		document.getElementById("search").addEventListener("keypress", function(event) {
 		  if (event.key === "Enter") {
-			event.preventDefault();
-			preSearch(true);
+				event.preventDefault();
+				search();
 		  }
 		});
 
-		function previousPage() {
-			page = page - 1;
-			cardGrid.innerHTML = "";
-
-			let url = (window.location.href.indexOf("page=") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("page="))));
-			let params = new URLSearchParams(url.search);
-			if (page != 0)
-			{
-				params.append("page", page+1);
-			}
-			history.pushState({}, '', url.pathname + '?' + params.toString());
-
-			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
-			{
-				cardGrid.appendChild(gridifyCard(search_results[i]));
-			}
-
-			document.getElementById("nextBtn").disabled = false;
-			document.getElementById("nextBtn-footer").disabled = false;
-			if (page == 0)
-			{
-				document.getElementById("prevBtn").disabled = true;
-				document.getElementById("prevBtn-footer").disabled = true;
-			}
-
-			document.body.scrollTop = 0; // For Safari
-  			document.documentElement.scrollTop = 0; // For real browsers
-		}
-
-		function nextPage() {
-			page = page + 1;
-			
-			let url = (window.location.href.indexOf("page=") == -1 ? new URL(window.location.href) : new URL(window.location.href.substring(0, window.location.href.indexOf("page="))));
-			let params = new URLSearchParams(url.search);
-			params.append("page", page+1);
-			history.pushState({}, '', url.pathname + '?' + params.toString());
-
-			cardGrid.innerHTML = "";
-
-			for (let i = (pageCount * page); i < Math.min((pageCount * (page + 1)), search_results.length); i++)
-			{
-				cardGrid.appendChild(gridifyCard(search_results[i]));
-			}
-
-			document.getElementById("prevBtn").disabled = false;
-			document.getElementById("prevBtn-footer").disabled = false;
-			if (search_results.length <= (pageCount * (page + 1)))
-			{
-				document.getElementById("nextBtn").disabled = true;
-				document.getElementById("nextBtn-footer").disabled = true;
-			}
-
-			document.body.scrollTop = 0; // For Safari
-  			document.documentElement.scrollTop = 0; // For real browsers
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
 		}
 	</script>
 </body>
@@ -1295,5 +416,3 @@ def generateHTML(code, card):
 	# Write the HTML content to the output HTML file
 	with open(output_html_file, 'w') as file:
 		file.write(html_content)
-
-	print(f"HTML file saved as {output_html_file}")

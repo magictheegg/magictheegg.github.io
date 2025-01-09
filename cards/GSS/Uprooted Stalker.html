@@ -1,0 +1,407 @@
+<html>
+<head>
+  <title>Uprooted Stalker</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/resources/mana.css">
+</head>
+<style>
+	body {
+		font-family: 'Helvetica', 'Arial', sans-serif;
+		overscroll-behavior: none;
+		margin: 0px;
+		background-color: #f3f3f3;
+	}
+	.header {
+		background-color: #171717;
+		height: 60px;
+		align-items: center;
+		justify-items: center;
+		display: flex;
+	}
+	.search-grid {
+		width: 80%;
+		height: 40px;
+		margin: auto;
+		display: grid;
+		grid-template-columns: 4fr 1fr;
+		gap: 10px;
+		justify-items: center;
+		align-items: center;
+	}
+	.logos-and-search {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 0.5fr 0.25fr 3.25fr;
+		justify-items: center;
+		align-items: center;
+		gap: 5px;
+		margin-top: -5px;
+	}
+	.logo {
+		height: 50px;
+	}
+	.icon {
+		height: 24px;
+	}
+	.search-grid input {
+		width: 100%;
+		height: 35px;
+		font-size: 16px;
+		background-color: #fafafa;
+		border: 1px solid #d5d9d9;
+		border-radius: 2px;
+		padding-left: 10px;
+		padding-right: 10px;
+		-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+	}
+	.header-links {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		align-items: center;
+		justify-items: center;
+		width: 100%;
+	}
+	.header-links a {
+		color: #f3f3f3;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+	.header-links a:hover {
+	  color: #ffffff;
+	  text-decoration: underline;
+	}
+	.image-grid {
+		padding-top: 40px;
+		width: 75%;
+		margin: auto;
+		display: grid;
+		grid-template-columns: minmax(150px, 2fr) minmax(300px, 3fr);
+		gap: 50px;
+		padding-bottom: 10px;
+		justify-items: left;
+	}
+	.image-grid img {
+		position: relative;
+	}
+	.card-image {
+		float: left;
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+	.card-text {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	.card-text div {
+		white-space: normal;
+		font-size: 15px;
+		padding-bottom: 10px;
+		line-height: 155%;
+	}
+	.card-text .name-cost {
+		font-weight: bold;
+		font-size: 20px;
+	}
+	.card-text .type {
+		font-size: 16px;
+	}
+	.card-text .pt {
+		font-weight: bold;
+	}
+	.card-text br {
+		content: "";
+		display: block;
+		margin-bottom: 5px;
+	}
+	.img-container {
+	  position: relative;
+	  width: 100%;
+	  align-self: center;
+	}
+	.img-container img {
+	  width: 100%;
+	  height: auto;
+	}
+	.img-container .btn {
+		background: url('/img/flip.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 15%;
+		height: 11%;
+		cursor: pointer;
+		border: none;
+		position: absolute;
+		top: 6.5%;
+		left: 8.5%;
+		transform: translate(-50%, -85%);
+	}
+	.img-container .btn:hover {
+		background: url('/img/flip-hover.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 15%;
+		height: 11%;
+		cursor: pointer;
+		border: none;
+		position: absolute;
+		top: 6.5%;
+		left: 8.5%;
+		transform: translate(-50%, -85%);
+	}
+</style>
+<body>
+	<div class="header">
+		<div class="search-grid">
+			<div class="logos-and-search">
+				<a href="/"><img class="logo" src="/img/banner.png"></a>
+				<img class="icon" src="/img/search.png">
+				<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			</div>
+			<div class="header-links">
+				<a href="/sets"><img src="/img/sets.png" class="icon">Sets</a>
+				<a href="www.google.com"><img src="/img/random.png" class="icon">Random</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid-container" id="grid">
+	</div>
+	</div>
+
+	<script>
+		let page = 0;
+		let pageCount = 30;
+		let search_results = [];
+		let card_list_arrayified = [];
+
+		document.addEventListener("DOMContentLoaded", async function () {
+			document.getElementById("grid").appendChild(gridifyCard("Uprooted Stalker	B	common	Creature — Zombie Treefolk 	87	B	3B	Whenever Uprooted Stalker becomes tapped, target creature or Vehicle you control gains menace until end of turn.	4/1		normal	GSS"));
+		});
+
+		function isDecimal(char) {
+			return char >= '0' && char <= '9';
+		}
+
+		function tokenize(text) {
+			let tokens = [];
+
+			for (let i = 0; i < text.length; i++)
+			{
+				if (i < text.length - 1)
+				{
+					if (text[i + 1] == '/')
+					{
+						tokens.push(text.substring(i, i + 3));
+						i = i + 2;
+					}
+					else if (isDecimal(text[i]) && isDecimal(text[i + 1]))
+					{
+						tokens.push(text.substring(i, i + 2));
+						i = i + 1;
+					}
+					else
+					{
+						tokens.push(text[i]);
+					}
+				}
+				else
+				{
+					tokens.push(text[i]);
+				}
+			}
+
+			console.log(tokens);
+			return tokens;
+		}
+
+		function symbolize(text) {
+			let tokens = tokenize(text);
+			let symText = "";
+			for (const token of tokens)
+			{
+				symText = symText + "{" + token + "}";
+			}
+
+			return formatTextHTML(symText.replace("{}", ""));
+		}
+
+		function formatTextHTML(str) {
+			if(!str)
+				return "";
+			str = str.replace(/[{]([^}]+)[}]/g, function(matched, _1) {
+				let letters = _1.toLowerCase().replace("/", "")
+				return '<span class="mana mana-cost mana-' + letters + '"></span>';
+			})
+			return str;
+		}
+
+		function gridifyCard(card) {
+			card_stats = card.split('\t');
+			const card_name = card_stats[0];
+
+			const grid = document.createElement("div");
+			grid.className = "image-grid";
+
+			grid.appendChild(buildImgContainer(card_stats));
+			
+			const text = document.createElement("div");
+			text.className = "card-text";
+
+			const name_cost = document.createElement("div");
+			name_cost.className = "name-cost";
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
+			text.appendChild(name_cost);
+
+			const type = document.createElement("div");
+			type.className = "type";
+			type.textContent = card_stats[3];
+			text.appendChild(type);
+
+			const effect = document.createElement("div");
+			effect.className = "effect";
+			let card_effects = "";
+			if (card_stats[7] != "")
+			{
+				card_effects = card_stats[7].split("NEWLINE");
+			}
+			else
+			{
+				card_effects = card_stats[9].split("NEWLINE");
+			}
+			effect.innerHTML += prettifyEffects(card_effects);
+			text.appendChild(effect);
+
+			if(card_stats[8] != "")
+			{
+				const pt = document.createElement("div");
+				pt.className = "pt";
+				pt.textContent = card_stats[8];
+				text.appendChild(pt);
+			}
+
+			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
+			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
+			{
+				const name_cost_2 = document.createElement("div");
+				name_cost_2.className = "name-cost";
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				text.appendChild(name_cost_2);
+
+				const type_2 = document.createElement("div");
+				type_2.className = "type";
+				type_2.textContent = card_stats[14];
+				text.appendChild(type_2);
+
+				const effect_2 = document.createElement("div");
+				effect_2.className = "effect";
+				let card_effects_2 = "";
+				if (card_stats[17] != "")
+				{
+					card_effects_2 = card_stats[17].split("NEWLINE");
+				}
+				else
+				{
+					card_effects_2 = card_stats[19].split("NEWLINE");
+				}
+				effect_2.innerHTML += prettifyEffects(card_effects_2);
+				text.appendChild(effect_2);
+
+				if(card_stats[18] != "")
+				{
+					const pt_2 = document.createElement("div");
+					pt_2.className = "pt";
+					pt_2.textContent = card_stats[18];
+					text.appendChild(pt_2);
+				}
+			}
+			
+			grid.appendChild(text);
+
+			return grid;
+		}
+
+		function buildImgContainer(card_stats) {
+			const imgContainer = document.createElement("div");
+			imgContainer.className = "img-container";
+			const id = card_stats[11] + "-" + card_stats[0];
+
+			const img = document.createElement("img");
+			img.className = "card-image";
+			img.id = id;
+			// (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) for posterity
+			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			imgContainer.appendChild(img);
+
+			if (card_stats[10].includes("double"))
+			{
+				const imgFlipBtn = document.createElement("button");
+				imgFlipBtn.className = "btn";
+				imgFlipBtn.onclick = function() { imgFlip(id); };
+				imgContainer.appendChild(imgFlipBtn);
+			}
+
+			return imgContainer;
+		}
+
+		function imgFlip(id) {
+			cardToFlip = document.getElementById(id);
+			cardName = cardToFlip.src;
+			
+			cardToFlip.src = cardName.includes("_front") ? cardName.replace("_front", "_back") : cardName.replace("_back", "_front");
+		}
+
+		function prettifyEffects(card_effects) {
+			let HTML = "";
+
+			for (let i = 0; i < card_effects.length; i++)
+			{
+				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
+
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
+				{
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
+				}
+
+				HTML += styled_effect;
+
+				if (i != card_effects.length - 1)
+				{
+					HTML += "<br>"
+				}
+			}
+
+			let pattern1 = /([0-9]*[WUBRGCT/]+)([ :,\.])/g;
+			let pattern2 = /(?<![a-z] )([0-9X]+)([:,])/g;
+			let pattern3 = /([Pp]ay[s]* )([0-9X])(?! life)/g;
+			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
+				return symbolize(group1) + group2;
+			});
+			regexHTML = regexHTML.replace(pattern2, function (match, group1, group2) {
+				return symbolize(group1) + group2;
+			});
+			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
+				return group1 + symbolize(group2);
+			});
+
+			return regexHTML;
+		}
+
+		document.getElementById("search").addEventListener("keypress", function(event) {
+		  if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+		  }
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+	</script>
+</body>
+</html>

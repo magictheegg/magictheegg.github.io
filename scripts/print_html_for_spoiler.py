@@ -20,6 +20,7 @@ def generateHTML(setCode, codes):
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">  
     <link rel="icon" type="image/png" href="sets/''' + setCode + '''-files/icon.png"/>
+    <link rel="prefetch" href="sets/''' + setCode + '''-files/bg.png"/>
     <title>''' + setCode + ''' visual spoiler</title>
     <style>
         body {
