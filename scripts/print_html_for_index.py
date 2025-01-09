@@ -1,12 +1,8 @@
 import os
 import sys
 
-def generate_html(img_dir, output_html_file):
-	script_dir = os.path.dirname(os.path.realpath(__file__))
-
-	with open(os.path.join('lists', 'set-codes.txt')) as f:
-		set_codes = f.read()
-	set_codes = set_codes.split('\n')
+def generateHTML(set_codes):
+	output_html_file = "index_tmp.html"
 
 	# Start creating the HTML file content
 	html_content = '''<html>
@@ -176,10 +172,12 @@ def generate_html(img_dir, output_html_file):
 				<div class="icon-bar">
 					'''
 
-	for s in set_codes:
-		set_stats = s.split('\t')
-		html_content += '''					<div class="icon"><a href="''' + set_stats[0] + '''_spoiler.html"><img src="img/''' + set_stats[0] + '''/icon.png" title="''' + set_stats[1] + '''"></img></a></div>
-		'''
+	for code in set_codes:
+		if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
+			with open(os.path.join('sets', code + '-files', code + '-fullname.txt'), encoding='utf-8-sig') as f:
+				set_name = f.read()
+			html_content += '''					<div class="icon"><a href="''' + code + '''-spoiler.html"><img src="sets/''' + code + '''-files/icon.png" title="''' + set_name + '''"></img></a></div>
+			'''
 
 	html_content += '''	    	</div>
 		    	<div id="cotd-image"></div>
@@ -229,7 +227,7 @@ def generate_html(img_dir, output_html_file):
 	            const cotd = reallyRand(card_list_cleaned.length);
 	            const card_stats = card_list_cleaned[cotd].split('\\t');
 	            const img = document.createElement("img");
-	            img.src = 'img/' + card_stats[11] + '/' + card_stats[0] + '.png';
+	            img.src = 'sets/' + card_stats[11] + '-files/img/' + card_stats[4] + (card_stats[3].includes('token') ? 't_' : '_') + card_stats[0] + '.png';
 	            document.getElementById("cotd-image").append(img);
 	        });
 
@@ -301,8 +299,3 @@ def generate_html(img_dir, output_html_file):
 		file.write(html_content)
 
 	print(f"HTML file saved as {output_html_file}")
-
-container_dir = os.path.dirname(os.path.realpath(__file__))[:-8] # Minus '/scripts'
-img_dir = container_dir + "/img/" # Relative to this script (can be made point to the same directory as input_directory)
-output_html_file = container_dir + "/index_tmp.html" # Relative to this script
-generate_html(img_dir, output_html_file)

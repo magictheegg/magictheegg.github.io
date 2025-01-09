@@ -163,11 +163,11 @@
 			</div>
 			<div class="two-part-grid">
 				<div class="icon-bar">
-										<div class="icon"><a href="SHF_spoiler.html"><img src="img/SHF/icon.png" title="The Starholme Frontier"></img></a></div>
-							<div class="icon"><a href="GSS_spoiler.html"><img src="img/GSS/icon.png" title="Golden Shores of Shiryen"></img></a></div>
-							<div class="icon"><a href="KND_spoiler.html"><img src="img/KND/icon.png" title="Kahembo: New Dawn"></img></a></div>
-							<div class="icon"><a href="NJB_spoiler.html"><img src="img/NJB/icon.png" title="Nangjiao in Bloom"></img></a></div>
-			    	</div>
+										<div class="icon"><a href="SHF-spoiler.html"><img src="sets/SHF-files/icon.png" title="The Starholme Frontier"></img></a></div>
+								<div class="icon"><a href="NJB-spoiler.html"><img src="sets/NJB-files/icon.png" title="Nangjiao in Bloom"></img></a></div>
+								<div class="icon"><a href="GSS-spoiler.html"><img src="sets/GSS-files/icon.png" title="Golden Shores of Shiryen"></img></a></div>
+								<div class="icon"><a href="KND-spoiler.html"><img src="sets/KND-files/icon.png" title="Kahembo: New Dawn"></img></a></div>
+				    	</div>
 		    	<div id="cotd-image"></div>
 		    </div>
 		</div>
@@ -215,7 +215,7 @@
 	            const cotd = reallyRand(card_list_cleaned.length);
 	            const card_stats = card_list_cleaned[cotd].split('\t');
 	            const img = document.createElement("img");
-	            img.src = 'img/' + card_stats[11] + '/' + card_stats[0] + '.png';
+	            img.src = 'sets/' + card_stats[11] + '-files/img/' + card_stats[4] + (card_stats[3].includes('token') ? 't_' : '_') + card_stats[0] + '.png';
 	            document.getElementById("cotd-image").append(img);
 	        });
 

@@ -1,20 +1,12 @@
 import os
 import sys
 
-codes = [ 'SHF', 'GSS', 'KND', 'NJB' ]
-#codes = [ 'SHF', 'KND' ]
-
-def generate_html(img_dir, output_html_file):
-
-	script_dir = os.path.dirname(os.path.realpath(__file__))
-
-	with open(os.path.join('lists', 'set-codes.txt')) as f:
-		set_codes = f.read()
-	set_codes = set_codes.split('\n')
+def generateHTML(codes):
+	output_html_file = "search.html"
 	
 	file_input = ''
-	for set_code in codes:
-		with open(os.path.join('lists', set_code.split('\t')[0] + '-raw.txt')) as f:
+	for code in codes:
+		with open(os.path.join('sets', code + '-files', code + '-raw.txt')) as f:
 			raw = f.read()
 			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
 	file_input = file_input.rstrip('\\n')
@@ -52,6 +44,9 @@ def generate_html(img_dir, output_html_file):
 		padding-top: 10px;
 		padding-bottom: 40px;
 		justify-items: center;
+	}
+	#footer {
+		padding-top: 40px;
 	}
 	.prev-next-btns {
 		width: 100%;
@@ -101,7 +96,6 @@ def generate_html(img_dir, output_html_file):
 		margin: auto;
 		gap: 5px;
 		justify-items: center;
-		padding-bottom: 10px;
 	}
 	@media ( max-width: 750px ) {
 	  .image-grid-container {
@@ -209,7 +203,7 @@ def generate_html(img_dir, output_html_file):
 	<div class="image-grid-container" id="imagesOnlyGrid">
 	</div>
 
-	<div class="button-grid">
+	<div class="button-grid" id="footer">
 		<div></div>
 		<div></div>
 		<div></div>
@@ -471,7 +465,7 @@ def generate_html(img_dir, output_html_file):
 
 			if (searchTerms != "")
 			{
-				document.getElementById("results-text").innerText = search_results.length + " results found.";
+				document.getElementById("results-text").innerText = search_results.length + (search_results.length == 1 ? " result found." : " results found.");
 			}
 			else
 			{
@@ -606,18 +600,18 @@ def generate_html(img_dir, output_html_file):
 			}
 
 			let card_name = card_stats[0];
-			let card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
 			let card_color = card_stats[1] != "" ? card_stats[1] : "c";
-			let card_ci = card_stats[5];
+			let card_rarity = card_stats[2];
 			let card_type = card_stats[3];
+			// 4: collector number
+			let card_ci = card_stats[5];
+			let card_mv = isDigit(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
 			let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\\n') : card_stats[9].replaceAll("NEWLINE", '\\n');
 			let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
 			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
-			let card_rarity = card_stats[2];
+			let card_shape = card_stats[10];
 			let card_set = card_stats[11];
 
-			let card_shape = card_stats[10];
-			
 			// two cards in one	
 			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
 			{
@@ -1013,7 +1007,8 @@ def generate_html(img_dir, output_html_file):
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
-			img.src = "img/" + card_stats[11] + "/" + (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			// (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) for posterity
+			img.src = "sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			imgContainer.appendChild(img);
 
 			if (card_stats[10].includes("double"))
@@ -1174,8 +1169,3 @@ def generate_html(img_dir, output_html_file):
 		file.write(html_content)
 
 	print(f"HTML file saved as {output_html_file}")
-
-container_dir = os.path.dirname(os.path.realpath(__file__))[:-8] # Minus '/scripts'
-img_dir = container_dir + "/img/" # Relative to this script (can be made point to the same directory as input_directory)
-output_html_file = container_dir + "/search.html" # Relative to this script
-generate_html(img_dir, output_html_file)

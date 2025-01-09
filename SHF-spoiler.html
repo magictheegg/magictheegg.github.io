@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">  
+    <link rel="icon" type="image/png" href="sets/SHF-files/icon.png"/>
+    <title>SHF visual spoiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overscroll-behavior: none;
+            background-image: url('sets/SHF-files/bg.png');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .main-content {
+            position: relative;
+            width: 100%;
+            float: left;
+            z-index: 2;
+        }
+        .sidebar {
+            position: sticky;
+            top: 0;
+            display: none;
+            text-align: center;
+            padding-right: 2.5%;
+            z-index: 1;
+        }
+        .sidebar img {
+            vertical-align: middle;
+            max-width: 100%;
+            width: 30%;
+        }
+        .sidebar .btn {
+          background: url('img/close.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 10%;
+          height: 10%;
+          border: none;
+          cursor: pointer;
+          position: absolute;
+          right: -1.5%;
+        }
+        .sidebar .btn:hover {
+          background: url('img/close-hover.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 10%;
+          height: 10%;
+          border: none;
+          cursor: pointer;
+          position: absolute;
+          right: -1.5%;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-bottom: 3%;
+            justify-items: center;
+        }
+        .grid-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            visibility: hidden;
+            cursor: pointer;
+        }
+        .banner {
+            width: 100%;
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        .logo {
+            display: block;
+            margin: auto;
+            max-width: 30%;
+            max-height: 320px;
+        }
+        .container {
+          position: relative;
+          width: 100%;
+        }
+        .container img {
+          width: 100%;
+          height: auto;
+        }
+        .container .btn {
+          background: url('img/flip.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 15%;
+          height: 11%;
+          cursor: pointer;
+          border: none;
+          position: absolute;
+          top: 6.5%;
+          left: 8.5%;
+          transform: translate(-50%, -50%);
+        }
+        .container .btn:hover {
+          background: url('img/flip-hover.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 15%;
+          height: 11%;
+          cursor: pointer;
+          border: none;
+          position: absolute;
+          top: 6.5%;
+          left: 8.5%;
+          transform: translate(-50%, -50%);
+        }
+        .icon-bar {
+            display: grid;
+            grid-template-columns: 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 2%;
+            padding-bottom: 1%;
+            justify-items: center;
+            align-items: center;
+        }
+        .icon-bar .icon img {
+            width: 90%;
+            height: auto;
+            display: block;
+            padding: 5%;
+            margin: auto;
+            text-align: center;
+        }
+        .icon-bar .dot img {
+            width: 50%;
+            height: auto;
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+        /* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+        .footer {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-bar">
+          <div class="icon"><a href="SHF-spoiler.html"><img src="sets/SHF-files/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="NJB-spoiler.html"><img src="sets/NJB-files/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="GSS-spoiler.html"><img src="sets/GSS-files/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="KND-spoiler.html"><img src="sets/KND-files/icon.png"></img></a></div>
+
+        </div>
+        <div class="banner">
+        <img class="logo" src="sets/SHF-files/logo.png">
+        </div>
+        <div class="main-content" id="main-content">
+            <div class="grid-container">
+              <div class="container"><img src="sets/SHF-files/img/36_Zarax Broodqueen.png" alt="36" id="36" data-flag="@X" onclick="openSidebar('36')"></div>
+          <div class="container"><img src="sets/SHF-files/img/50_Enter the Era of Stars.png" alt="50" id="50" data-flag="@X" onclick="openSidebar('50')"></div>
+          <div class="container"><img src="sets/SHF-files/img/79_The Black Mask.png" alt="79" id="79" data-flag="@X" onclick="openSidebar('79')"></div>
+          <div class="container"><img src="sets/SHF-files/img/137_Sigrid, the Golden Gunmaiden.png" alt="137" id="137" data-flag="@X" onclick="openSidebar('137')"></div>
+          <div class="container"><img src="sets/SHF-files/img/157_Evolution Event.png" alt="157" id="157" data-flag="@X" onclick="openSidebar('157')"></div>
+          <div class="container"><img src="sets/SHF-files/img/2_Annie White Rose Harper.png" alt="2" id="2" data-flag="@X" onclick="openSidebar('2')"></div>
+          <div class="container"><img src="sets/SHF-files/img/68_Sirocco Cruiser.png" alt="68" id="68" data-flag="@X" onclick="openSidebar('68')"></div>
+          <div class="container"><img src="sets/SHF-files/img/83_Debt Collectors.png" alt="83" id="83" data-flag="@X" onclick="openSidebar('83')"></div>
+          <div class="container"><img src="sets/SHF-files/img/147_Wreckage Ravager.png" alt="147" id="147" data-flag="@X" onclick="openSidebar('147')"></div>
+          <div class="container"><img src="sets/SHF-files/img/169_Roaming Cactegu.png" alt="169" id="169" data-flag="@X" onclick="openSidebar('169')"></div>
+          <div class="container"><img src="sets/SHF-files/img/5_Blessing of the Twin Suns.png" alt="5" id="5" data-flag="@X" onclick="openSidebar('5')"></div>
+          <div class="container"><img src="sets/SHF-files/img/38_Ad Astra.png" alt="38" id="38" data-flag="@X" onclick="openSidebar('38')"></div>
+          <div class="container"><img src="sets/SHF-files/img/88_The Gallows at Whiskey Bend.png" alt="88" id="88" data-flag="@X" onclick="openSidebar('88')"></div>
+          <div class="container"><img src="sets/SHF-files/img/115_Chase the Ace.png" alt="115" id="115" data-flag="@X" onclick="openSidebar('115')"></div>
+          <div class="container"><img src="sets/SHF-files/img/172_Skinshifting Puma.png" alt="172" id="172" data-flag="@X" onclick="openSidebar('172')"></div>
+          <div class="container"><img src="sets/SHF-files/img/11_Drifting Moon.png" alt="11" id="11" data-flag="@X" onclick="openSidebar('11')"></div>
+          <div class="container"><img src="sets/SHF-files/img/39_Aione, the First Galaxian.png" alt="39" id="39" data-flag="@X" onclick="openSidebar('39')"></div>
+          <div class="container"><img src="sets/SHF-files/img/98_Nox, the Graven Gunman.png" alt="98" id="98" data-flag="@X" onclick="openSidebar('98')"></div>
+          <div class="container"><img src="sets/SHF-files/img/121_Fireball Bootleggers.png" alt="121" id="121" data-flag="@X" onclick="openSidebar('121')"></div>
+          <div class="container"><img src="sets/SHF-files/img/150_Barbed Cactimber.png" alt="150" id="150" data-flag="@X" onclick="openSidebar('150')"></div>
+          <div class="container"><img src="sets/SHF-files/img/23_Opportune Musketeer.png" alt="23" id="23" data-flag="@X" onclick="openSidebar('23')"></div>
+          <div class="container"><img src="sets/SHF-files/img/44_Canyon Maraterra.png" alt="44" id="44" data-flag="@X" onclick="openSidebar('44')"></div>
+          <div class="container"><img src="sets/SHF-files/img/105_Shadowband Posse.png" alt="105" id="105" data-flag="@X" onclick="openSidebar('105')"></div>
+          <div class="container"><img src="sets/SHF-files/img/125_Gearworks Pest.png" alt="125" id="125" data-flag="@X" onclick="openSidebar('125')"></div>
+          <div class="container"><img src="sets/SHF-files/img/156_Cross the Verge.png" alt="156" id="156" data-flag="@X" onclick="openSidebar('156')"></div>
+          <div class="container"><img src="sets/SHF-files/img/24_Procession of the Alliance.png" alt="24" id="24" data-flag="@X" onclick="openSidebar('24')"></div>
+          <div class="container"><img src="sets/SHF-files/img/55_Jack Flash Jacobs.png" alt="55" id="55" data-flag="@X" onclick="openSidebar('55')"></div>
+          <div class="container"><img src="sets/SHF-files/img/107_Spray and Pray.png" alt="107" id="107" data-flag="@X" onclick="openSidebar('107')"></div>
+          <div class="container"><img src="sets/SHF-files/img/130_Kaelan Nova, Starsplitter.png" alt="130" id="130" data-flag="@X" onclick="openSidebar('130')"></div>
+          <div class="container"><img src="sets/SHF-files/img/170_Scourge of Devil's Spine.png" alt="170" id="170" data-flag="@X" onclick="openSidebar('170')"></div>
+          <div class="container"><img src="sets/SHF-files/img/32_Sunset Over Pike's Chapel.png" alt="32" id="32" data-flag="@X" onclick="openSidebar('32')"></div>
+          <div class="container"><img src="sets/SHF-files/img/58_Lunar Fallout.png" alt="58" id="58" data-flag="@X" onclick="openSidebar('58')"></div>
+          <div class="container"><img src="sets/SHF-files/img/110_Xiong Mao, a.k.a. Rusty.png" alt="110" id="110" data-flag="@X" onclick="openSidebar('110')"></div>
+          <div class="container"><img src="sets/SHF-files/img/138_Skyfissure Dragon.png" alt="138" id="138" data-flag="@X" onclick="openSidebar('138')"></div>
+          <div class="container"><img src="sets/SHF-files/img/177_Tactical Emesis.png" alt="177" id="177" data-flag="@X" onclick="openSidebar('177')"></div>
+          <div class="container"><img src="sets/SHF-files/img/6_Boot Hill Liberator.png" alt="6" id="6" data-flag="@X" onclick="openSidebar('6')"></div>
+          <div class="container"><img src="sets/SHF-files/img/67_Shadow Puppeteer.png" alt="67" id="67" data-flag="@X" onclick="openSidebar('67')"></div>
+          <div class="container"><img src="sets/SHF-files/img/76_Backland Scrounger.png" alt="76" id="76" data-flag="@X" onclick="openSidebar('76')"></div>
+          <div class="container"><img src="sets/SHF-files/img/145_Volatile Machinations.png" alt="145" id="145" data-flag="@X" onclick="openSidebar('145')"></div>
+          <div class="container"><img src="sets/SHF-files/img/180_Verdurous Sibyl.png" alt="180" id="180" data-flag="@X" onclick="openSidebar('180')"></div>
+          <div class="container"><img src="sets/SHF-files/img/8_Caravan Sideshow.png" alt="8" id="8" data-flag="@X" onclick="openSidebar('8')"></div>
+          <div class="container"><img src="sets/SHF-files/img/40_Akimbo Specialist.png" alt="40" id="40" data-flag="@X" onclick="openSidebar('40')"></div>
+          <div class="container"><img src="sets/SHF-files/img/81_Corner the Black Market.png" alt="81" id="81" data-flag="@X" onclick="openSidebar('81')"></div>
+          <div class="container"><img src="sets/SHF-files/img/112_Beast of the Bluffs.png" alt="112" id="112" data-flag="@X" onclick="openSidebar('112')"></div>
+          <div class="container"><img src="sets/SHF-files/img/185_Where the Wild Things Are.png" alt="185" id="185" data-flag="@X" onclick="openSidebar('185')"></div>
+          <div class="container"><img src="sets/SHF-files/img/9_Celestial Disturbance.png" alt="9" id="9" data-flag="@X" onclick="openSidebar('9')"></div>
+          <div class="container"><img src="sets/SHF-files/img/42_Back Country Navigator.png" alt="42" id="42" data-flag="@X" onclick="openSidebar('42')"></div>
+          <div class="container"><img src="sets/SHF-files/img/84_Dust Devil Lieutenant.png" alt="84" id="84" data-flag="@X" onclick="openSidebar('84')"></div>
+          <div class="container"><img src="sets/SHF-files/img/113_Blitzreaver.png" alt="113" id="113" data-flag="@X" onclick="openSidebar('113')"></div>
+          <div class="container"><img src="sets/SHF-files/img/148_Aim Skyward.png" alt="148" id="148" data-flag="@X" onclick="openSidebar('148')"></div>
+          <div class="container"><img src="sets/SHF-files/img/10_Charitable Oktujo.png" alt="10" id="10" data-flag="@X" onclick="openSidebar('10')"></div>
+          <div class="container"><img src="sets/SHF-files/img/46_Crash Site Curators.png" alt="46" id="46" data-flag="@X" onclick="openSidebar('46')"></div>
+          <div class="container"><img src="sets/SHF-files/img/89_Ghost Town Crier.png" alt="89" id="89" data-flag="@X" onclick="openSidebar('89')"></div>
+          <div class="container"><img src="sets/SHF-files/img/114_Bounty Hunting.png" alt="114" id="114" data-flag="@X" onclick="openSidebar('114')"></div>
+          <div class="container"><img src="sets/SHF-files/img/151_Barging Tusker.png" alt="151" id="151" data-flag="@X" onclick="openSidebar('151')"></div>
+          <div class="container"><img src="sets/SHF-files/img/16_Hissing Sunspitter.png" alt="16" id="16" data-flag="@X" onclick="openSidebar('16')"></div>
+          <div class="container"><img src="sets/SHF-files/img/47_Crimson Sea Glider.png" alt="47" id="47" data-flag="@X" onclick="openSidebar('47')"></div>
+          <div class="container"><img src="sets/SHF-files/img/90_Grim Visionary.png" alt="90" id="90" data-flag="@X" onclick="openSidebar('90')"></div>
+          <div class="container"><img src="sets/SHF-files/img/118_Debris Pillager.png" alt="118" id="118" data-flag="@X" onclick="openSidebar('118')"></div>
+          <div class="container"><img src="sets/SHF-files/img/153_Burgeoning Cactiger.png" alt="153" id="153" data-flag="@X" onclick="openSidebar('153')"></div>
+          <div class="container"><img src="sets/SHF-files/img/17_Laden Steed.png" alt="17" id="17" data-flag="@X" onclick="openSidebar('17')"></div>
+          <div class="container"><img src="sets/SHF-files/img/51_Ephemeral Fennec.png" alt="51" id="51" data-flag="@X" onclick="openSidebar('51')"></div>
+          <div class="container"><img src="sets/SHF-files/img/92_Hunter of the Helpless.png" alt="92" id="92" data-flag="@X" onclick="openSidebar('92')"></div>
+          <div class="container"><img src="sets/SHF-files/img/120_Fire at Shaw's Chapel.png" alt="120" id="120" data-flag="@X" onclick="openSidebar('120')"></div>
+          <div class="container"><img src="sets/SHF-files/img/155_Chirring Rig.png" alt="155" id="155" data-flag="@X" onclick="openSidebar('155')"></div>
+          <div class="container"><img src="sets/SHF-files/img/18_Leave in the Dust.png" alt="18" id="18" data-flag="@X" onclick="openSidebar('18')"></div>
+          <div class="container"><img src="sets/SHF-files/img/56_Kono, Galvanic Gunman.png" alt="56" id="56" data-flag="@X" onclick="openSidebar('56')"></div>
+          <div class="container"><img src="sets/SHF-files/img/93_Hunter's Carapace.png" alt="93" id="93" data-flag="@X" onclick="openSidebar('93')"></div>
+          <div class="container"><img src="sets/SHF-files/img/126_Gearworks Supervisor.png" alt="126" id="126" data-flag="@X" onclick="openSidebar('126')"></div>
+          <div class="container"><img src="sets/SHF-files/img/159_Jake's Sentinels.png" alt="159" id="159" data-flag="@X" onclick="openSidebar('159')"></div>
+          <div class="container"><img src="sets/SHF-files/img/20_A Long Road Ahead.png" alt="20" id="20" data-flag="@X" onclick="openSidebar('20')"></div>
+          <div class="container"><img src="sets/SHF-files/img/59_Magnetic Flux.png" alt="59" id="59" data-flag="@X" onclick="openSidebar('59')"></div>
+          <div class="container"><img src="sets/SHF-files/img/95_Lever-Action at Nearly-Lethal Range.png" alt="95" id="95" data-flag="@X" onclick="openSidebar('95')"></div>
+          <div class="container"><img src="sets/SHF-files/img/127_Get the Drop.png" alt="127" id="127" data-flag="@X" onclick="openSidebar('127')"></div>
+          <div class="container"><img src="sets/SHF-files/img/161_Moss-Laden Leaper.png" alt="161" id="161" data-flag="@X" onclick="openSidebar('161')"></div>
+          <div class="container"><img src="sets/SHF-files/img/21_Luke The Duke McCall.png" alt="21" id="21" data-flag="@X" onclick="openSidebar('21')"></div>
+          <div class="container"><img src="sets/SHF-files/img/61_Qualms of Conscience.png" alt="61" id="61" data-flag="@X" onclick="openSidebar('61')"></div>
+          <div class="container"><img src="sets/SHF-files/img/96_Merciless Plunder.png" alt="96" id="96" data-flag="@X" onclick="openSidebar('96')"></div>
+          <div class="container"><img src="sets/SHF-files/img/128_Guns A-Blazing.png" alt="128" id="128" data-flag="@X" onclick="openSidebar('128')"></div>
+          <div class="container"><img src="sets/SHF-files/img/163_A New Horizon Calls.png" alt="163" id="163" data-flag="@X" onclick="openSidebar('163')"></div>
+          <div class="container"><img src="sets/SHF-files/img/25_Quickdraw Revolver.png" alt="25" id="25" data-flag="@X" onclick="openSidebar('25')"></div>
+          <div class="container"><img src="sets/SHF-files/img/63_Run Off the Tracks.png" alt="63" id="63" data-flag="@X" onclick="openSidebar('63')"></div>
+          <div class="container"><img src="sets/SHF-files/img/97_Mr. Skath of the Brain Gang.png" alt="97" id="97" data-flag="@X" onclick="openSidebar('97')"></div>
+          <div class="container"><img src="sets/SHF-files/img/129_Hemophage Infuser.png" alt="129" id="129" data-flag="@X" onclick="openSidebar('129')"></div>
+          <div class="container"><img src="sets/SHF-files/img/165_Oktujo Tracker.png" alt="165" id="165" data-flag="@X" onclick="openSidebar('165')"></div>
+          <div class="container"><img src="sets/SHF-files/img/27_Sandsteppe Trooper.png" alt="27" id="27" data-flag="@X" onclick="openSidebar('27')"></div>
+          <div class="container"><img src="sets/SHF-files/img/66_Scrapper's Shank.png" alt="66" id="66" data-flag="@X" onclick="openSidebar('66')"></div>
+          <div class="container"><img src="sets/SHF-files/img/99_Pestilent Ghelhound.png" alt="99" id="99" data-flag="@X" onclick="openSidebar('99')"></div>
+          <div class="container"><img src="sets/SHF-files/img/132_Now Watch Me Whip.png" alt="132" id="132" data-flag="@X" onclick="openSidebar('132')"></div>
+          <div class="container"><img src="sets/SHF-files/img/171_Silent Sands Wanderer.png" alt="171" id="171" data-flag="@X" onclick="openSidebar('171')"></div>
+          <div class="container"><img src="sets/SHF-files/img/29_The Shot That Saved Skyhaven.png" alt="29" id="29" data-flag="@X" onclick="openSidebar('29')"></div>
+          <div class="container"><img src="sets/SHF-files/img/69_Skyhaven Deputy.png" alt="69" id="69" data-flag="@X" onclick="openSidebar('69')"></div>
+          <div class="container"><img src="sets/SHF-files/img/100_Pit Cockatrice.png" alt="100" id="100" data-flag="@X" onclick="openSidebar('100')"></div>
+          <div class="container"><img src="sets/SHF-files/img/134_Ravine Thresher.png" alt="134" id="134" data-flag="@X" onclick="openSidebar('134')"></div>
+          <div class="container"><img src="sets/SHF-files/img/174_Slobbering Moa.png" alt="174" id="174" data-flag="@X" onclick="openSidebar('174')"></div>
+          <div class="container"><img src="sets/SHF-files/img/35_Varathian Foragers.png" alt="35" id="35" data-flag="@X" onclick="openSidebar('35')"></div>
+          <div class="container"><img src="sets/SHF-files/img/70_Slicky Glump.png" alt="70" id="70" data-flag="@X" onclick="openSidebar('70')"></div>
+          <div class="container"><img src="sets/SHF-files/img/108_Subterranean Ravager.png" alt="108" id="108" data-flag="@X" onclick="openSidebar('108')"></div>
+          <div class="container"><img src="sets/SHF-files/img/139_Slag Spitter.png" alt="139" id="139" data-flag="@X" onclick="openSidebar('139')"></div>
+          <div class="container"><img src="sets/SHF-files/img/181_Virulent Cactaipan.png" alt="181" id="181" data-flag="@X" onclick="openSidebar('181')"></div>
+          <div class="container"><img src="sets/SHF-files/img/37_Zarax Duelist.png" alt="37" id="37" data-flag="@X" onclick="openSidebar('37')"></div>
+          <div class="container"><img src="sets/SHF-files/img/71_Starshard.png" alt="71" id="71" data-flag="@X" onclick="openSidebar('71')"></div>
+          <div class="container"><img src="sets/SHF-files/img/109_Terminal Dehydration.png" alt="109" id="109" data-flag="@X" onclick="openSidebar('109')"></div>
+          <div class="container"><img src="sets/SHF-files/img/140_Snatch and Grab.png" alt="140" id="140" data-flag="@X" onclick="openSidebar('140')"></div>
+          <div class="container"><img src="sets/SHF-files/img/182_Vulture's Bounty.png" alt="182" id="182" data-flag="@X" onclick="openSidebar('182')"></div>
+          <div class="container"><img src="sets/SHF-files/img/3_Back Where You Came From.png" alt="3" id="3" data-flag="@X" onclick="openSidebar('3')"></div>
+          <div class="container"><img src="sets/SHF-files/img/72_This Town Ain't Big Enough.png" alt="72" id="72" data-flag="@X" onclick="openSidebar('72')"></div>
+          <div class="container"><img src="sets/SHF-files/img/75_Ar'Ghel Desperado.png" alt="75" id="75" data-flag="@X" onclick="openSidebar('75')"></div>
+          <div class="container"><img src="sets/SHF-files/img/144_Trickshot Artist.png" alt="144" id="144" data-flag="@X" onclick="openSidebar('144')"></div>
+          <div class="container"><img src="sets/SHF-files/img/183_Warping Wilds.png" alt="183" id="183" data-flag="@X" onclick="openSidebar('183')"></div>
+          <div class="container"><img src="sets/SHF-files/img/4_Bladetusk Herd.png" alt="4" id="4" data-flag="@X" onclick="openSidebar('4')"></div>
+          <div class="container"><img src="sets/SHF-files/img/41_Astral Projection.png" alt="41" id="41" data-flag="@X" onclick="openSidebar('41')"></div>
+          <div class="container"><img src="sets/SHF-files/img/77_Become Carrion.png" alt="77" id="77" data-flag="@X" onclick="openSidebar('77')"></div>
+          <div class="container"><img src="sets/SHF-files/img/111_Badland Hustler.png" alt="111" id="111" data-flag="@X" onclick="openSidebar('111')"></div>
+          <div class="container"><img src="sets/SHF-files/img/184_Weathered Survivor.png" alt="184" id="184" data-flag="@X" onclick="openSidebar('184')"></div>
+          <div class="container"><img src="sets/SHF-files/img/7_Boot Hill Outrider.png" alt="7" id="7" data-flag="@X" onclick="openSidebar('7')"></div>
+          <div class="container"><img src="sets/SHF-files/img/43_Breaching Slugsnout.png" alt="43" id="43" data-flag="@X" onclick="openSidebar('43')"></div>
+          <div class="container"><img src="sets/SHF-files/img/78_Bet Against Death.png" alt="78" id="78" data-flag="@X" onclick="openSidebar('78')"></div>
+          <div class="container"><img src="sets/SHF-files/img/116_Crimson Sea Sabertooth.png" alt="116" id="116" data-flag="@X" onclick="openSidebar('116')"></div>
+          <div class="container"><img src="sets/SHF-files/img/149_The Art of the Draw.png" alt="149" id="149" data-flag="@X" onclick="openSidebar('149')"></div>
+          <div class="container"><img src="sets/SHF-files/img/12_Eldoria Sureshot.png" alt="12" id="12" data-flag="@X" onclick="openSidebar('12')"></div>
+          <div class="container"><img src="sets/SHF-files/img/45_Corpus Cobbler.png" alt="45" id="45" data-flag="@X" onclick="openSidebar('45')"></div>
+          <div class="container"><img src="sets/SHF-files/img/80_Come to Collect.png" alt="80" id="80" data-flag="@X" onclick="openSidebar('80')"></div>
+          <div class="container"><img src="sets/SHF-files/img/117_Deadheat Duo.png" alt="117" id="117" data-flag="@X" onclick="openSidebar('117')"></div>
+          <div class="container"><img src="sets/SHF-files/img/152_Bristly Landing.png" alt="152" id="152" data-flag="@X" onclick="openSidebar('152')"></div>
+          <div class="container"><img src="sets/SHF-files/img/13_Feisty Scrapper.png" alt="13" id="13" data-flag="@X" onclick="openSidebar('13')"></div>
+          <div class="container"><img src="sets/SHF-files/img/48_Croak.png" alt="48" id="48" data-flag="@X" onclick="openSidebar('48')"></div>
+          <div class="container"><img src="sets/SHF-files/img/82_Dead Man Walkin'.png" alt="82" id="82" data-flag="@X" onclick="openSidebar('82')"></div>
+          <div class="container"><img src="sets/SHF-files/img/119_Dynamite in the Cargo Hold.png" alt="119" id="119" data-flag="@X" onclick="openSidebar('119')"></div>
+          <div class="container"><img src="sets/SHF-files/img/154_Cactaurus.png" alt="154" id="154" data-flag="@X" onclick="openSidebar('154')"></div>
+          <div class="container"><img src="sets/SHF-files/img/14_Fleetfinger Five-Shooter.png" alt="14" id="14" data-flag="@X" onclick="openSidebar('14')"></div>
+          <div class="container"><img src="sets/SHF-files/img/49_Crystallize.png" alt="49" id="49" data-flag="@X" onclick="openSidebar('49')"></div>
+          <div class="container"><img src="sets/SHF-files/img/85_Experiment X.png" alt="85" id="85" data-flag="@X" onclick="openSidebar('85')"></div>
+          <div class="container"><img src="sets/SHF-files/img/122_Five-Alarm Firearm.png" alt="122" id="122" data-flag="@X" onclick="openSidebar('122')"></div>
+          <div class="container"><img src="sets/SHF-files/img/158_Gang Mentality.png" alt="158" id="158" data-flag="@X" onclick="openSidebar('158')"></div>
+          <div class="container"><img src="sets/SHF-files/img/15_Galvanized Recruiter.png" alt="15" id="15" data-flag="@X" onclick="openSidebar('15')"></div>
+          <div class="container"><img src="sets/SHF-files/img/52_Fleetfoot Screecher.png" alt="52" id="52" data-flag="@X" onclick="openSidebar('52')"></div>
+          <div class="container"><img src="sets/SHF-files/img/86_Face the Night.png" alt="86" id="86" data-flag="@X" onclick="openSidebar('86')"></div>
+          <div class="container"><img src="sets/SHF-files/img/123_Frontier Justice.png" alt="123" id="123" data-flag="@X" onclick="openSidebar('123')"></div>
+          <div class="container"><img src="sets/SHF-files/img/160_Migratory Grazer.png" alt="160" id="160" data-flag="@X" onclick="openSidebar('160')"></div>
+          <div class="container"><img src="sets/SHF-files/img/19_Long Arm of the Law.png" alt="19" id="19" data-flag="@X" onclick="openSidebar('19')"></div>
+          <div class="container"><img src="sets/SHF-files/img/53_Flintlock Lass.png" alt="53" id="53" data-flag="@X" onclick="openSidebar('53')"></div>
+          <div class="container"><img src="sets/SHF-files/img/87_Fen Conservators.png" alt="87" id="87" data-flag="@X" onclick="openSidebar('87')"></div>
+          <div class="container"><img src="sets/SHF-files/img/124_Fuselage Scavenger.png" alt="124" id="124" data-flag="@X" onclick="openSidebar('124')"></div>
+          <div class="container"><img src="sets/SHF-files/img/162_New Growth in Old Haunts.png" alt="162" id="162" data-flag="@X" onclick="openSidebar('162')"></div>
+          <div class="container"><img src="sets/SHF-files/img/22_Make Your Move.png" alt="22" id="22" data-flag="@X" onclick="openSidebar('22')"></div>
+          <div class="container"><img src="sets/SHF-files/img/54_Itinerant Oktujo.png" alt="54" id="54" data-flag="@X" onclick="openSidebar('54')"></div>
+          <div class="container"><img src="sets/SHF-files/img/91_Gulch Ranger.png" alt="91" id="91" data-flag="@X" onclick="openSidebar('91')"></div>
+          <div class="container"><img src="sets/SHF-files/img/131_Lock, Stock, and Smoke.png" alt="131" id="131" data-flag="@X" onclick="openSidebar('131')"></div>
+          <div class="container"><img src="sets/SHF-files/img/164_Oktujo Migration.png" alt="164" id="164" data-flag="@X" onclick="openSidebar('164')"></div>
+          <div class="container"><img src="sets/SHF-files/img/26_Roadside Raconteur.png" alt="26" id="26" data-flag="@X" onclick="openSidebar('26')"></div>
+          <div class="container"><img src="sets/SHF-files/img/57_Lost on the Horizon.png" alt="57" id="57" data-flag="@X" onclick="openSidebar('57')"></div>
+          <div class="container"><img src="sets/SHF-files/img/94_Junkyard Vulture.png" alt="94" id="94" data-flag="@X" onclick="openSidebar('94')"></div>
+          <div class="container"><img src="sets/SHF-files/img/133_Pack Monitor.png" alt="133" id="133" data-flag="@X" onclick="openSidebar('133')"></div>
+          <div class="container"><img src="sets/SHF-files/img/166_Razorgorge Wurm.png" alt="166" id="166" data-flag="@X" onclick="openSidebar('166')"></div>
+          <div class="container"><img src="sets/SHF-files/img/28_Shoot Your Shot.png" alt="28" id="28" data-flag="@X" onclick="openSidebar('28')"></div>
+          <div class="container"><img src="sets/SHF-files/img/60_On a Cool Summer's Night.png" alt="60" id="60" data-flag="@X" onclick="openSidebar('60')"></div>
+          <div class="container"><img src="sets/SHF-files/img/101_Retribution for a Gamblin' Man.png" alt="101" id="101" data-flag="@X" onclick="openSidebar('101')"></div>
+          <div class="container"><img src="sets/SHF-files/img/135_Risky Wager.png" alt="135" id="135" data-flag="@X" onclick="openSidebar('135')"></div>
+          <div class="container"><img src="sets/SHF-files/img/167_Reedcreeper Posse.png" alt="167" id="167" data-flag="@X" onclick="openSidebar('167')"></div>
+          <div class="container"><img src="sets/SHF-files/img/30_Skychaser Trainer.png" alt="30" id="30" data-flag="@X" onclick="openSidebar('30')"></div>
+          <div class="container"><img src="sets/SHF-files/img/62_Quickdraw Broker.png" alt="62" id="62" data-flag="@X" onclick="openSidebar('62')"></div>
+          <div class="container"><img src="sets/SHF-files/img/102_Ride on the Wild Side.png" alt="102" id="102" data-flag="@X" onclick="openSidebar('102')"></div>
+          <div class="container"><img src="sets/SHF-files/img/136_Salvage Trafficker.png" alt="136" id="136" data-flag="@X" onclick="openSidebar('136')"></div>
+          <div class="container"><img src="sets/SHF-files/img/168_Rhangol Wrangler.png" alt="168" id="168" data-flag="@X" onclick="openSidebar('168')"></div>
+          <div class="container"><img src="sets/SHF-files/img/31_Skysteed.png" alt="31" id="31" data-flag="@X" onclick="openSidebar('31')"></div>
+          <div class="container"><img src="sets/SHF-files/img/64_Sandskiff Raider.png" alt="64" id="64" data-flag="@X" onclick="openSidebar('64')"></div>
+          <div class="container"><img src="sets/SHF-files/img/103_Run Train.png" alt="103" id="103" data-flag="@X" onclick="openSidebar('103')"></div>
+          <div class="container"><img src="sets/SHF-files/img/141_Sunforge Outlaw.png" alt="141" id="141" data-flag="@X" onclick="openSidebar('141')"></div>
+          <div class="container"><img src="sets/SHF-files/img/173_Skyfall Acolyte.png" alt="173" id="173" data-flag="@X" onclick="openSidebar('173')"></div>
+          <div class="container"><img src="sets/SHF-files/img/33_Tradewind Courier.png" alt="33" id="33" data-flag="@X" onclick="openSidebar('33')"></div>
+          <div class="container"><img src="sets/SHF-files/img/65_Scrapfield Migrant.png" alt="65" id="65" data-flag="@X" onclick="openSidebar('65')"></div>
+          <div class="container"><img src="sets/SHF-files/img/104_Seeker of Sinner's Court.png" alt="104" id="104" data-flag="@X" onclick="openSidebar('104')"></div>
+          <div class="container"><img src="sets/SHF-files/img/142_Tendril Trap.png" alt="142" id="142" data-flag="@X" onclick="openSidebar('142')"></div>
+          <div class="container"><img src="sets/SHF-files/img/175_Stardust Courier.png" alt="175" id="175" data-flag="@X" onclick="openSidebar('175')"></div>
+          <div class="container"><img src="sets/SHF-files/img/34_Unbridled Colt.png" alt="34" id="34" data-flag="@X" onclick="openSidebar('34')"></div>
+          <div class="container"><img src="sets/SHF-files/img/73_Wreckage of the Starbreaker.png" alt="73" id="73" data-flag="@X" onclick="openSidebar('73')"></div>
+          <div class="container"><img src="sets/SHF-files/img/106_Silent Sands Survivor.png" alt="106" id="106" data-flag="@X" onclick="openSidebar('106')"></div>
+          <div class="container"><img src="sets/SHF-files/img/143_Terror of Thrasher's Pass.png" alt="143" id="143" data-flag="@X" onclick="openSidebar('143')"></div>
+          <div class="container"><img src="sets/SHF-files/img/176_Stoic Steadhand.png" alt="176" id="176" data-flag="@X" onclick="openSidebar('176')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/74_Zarax Broodling.png" alt="74" id="74" data-flag="@X" onclick="openSidebar('74')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/146_Whiskey Bend Marshal.png" alt="146" id="146" data-flag="@X" onclick="openSidebar('146')"></div>
+          <div class="container"><img src="sets/SHF-files/img/178_Territorial Domination.png" alt="178" id="178" data-flag="@X" onclick="openSidebar('178')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/179_Travellers on Yonder.png" alt="179" id="179" data-flag="@X" onclick="openSidebar('179')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/233_Xylo, the Starfallen.png" alt="233" id="233" data-flag="@X" onclick="openSidebar('233')"></div>
+          <div class="container"><img src="sets/SHF-files/img/197_Cut from the Same Cloth.png" alt="197" id="197" data-flag="@X" onclick="openSidebar('197')"></div>
+          <div class="container"><img src="sets/SHF-files/img/190_The Blood Meridian.png" alt="190" id="190" data-flag="@X" onclick="openSidebar('190')"></div>
+          <div class="container"><img src="sets/SHF-files/img/208_Hunted Sandwurm.png" alt="208" id="208" data-flag="@X" onclick="openSidebar('208')"></div>
+          <div class="container"><img src="sets/SHF-files/img/187_Amberhorn Bear.png" alt="187" id="187" data-flag="@X" onclick="openSidebar('187')"></div>
+          <div class="container"><img src="sets/SHF-files/img/194_Cloudbreacher Oktujo.png" alt="194" id="194" data-flag="@X" onclick="openSidebar('194')"></div>
+          <div class="container"><img src="sets/SHF-files/img/204_Goon Squad.png" alt="204" id="204" data-flag="@X" onclick="openSidebar('204')"></div>
+          <div class="container"><img src="sets/SHF-files/img/219_Preacher Moore.png" alt="219" id="219" data-flag="@X" onclick="openSidebar('219')"></div>
+          <div class="container"><img src="sets/SHF-files/img/220_Ravenous Cactyrant.png" alt="220" id="220" data-flag="@X" onclick="openSidebar('220')"></div>
+          <div class="container"><img src="sets/SHF-files/img/212_Juniper Greenthumb Carter.png" alt="212" id="212" data-flag="@X" onclick="openSidebar('212')"></div>
+          <div class="container"><img src="sets/SHF-files/img/231_The Varathian Consulate.png" alt="231" id="231" data-flag="@X" onclick="openSidebar('231')"></div>
+          <div class="container"><img src="sets/SHF-files/img/205_Gulch Bandit.png" alt="205" id="205" data-flag="@X" onclick="openSidebar('205')"></div>
+          <div class="container"><img src="sets/SHF-files/img/224_The Siege at Cutler's Corral.png" alt="224" id="224" data-flag="@X" onclick="openSidebar('224')"></div>
+          <div class="container"><img src="sets/SHF-files/img/215_Maverick Mutt.png" alt="215" id="215" data-flag="@X" onclick="openSidebar('215')"></div>
+          <div class="container"><img src="sets/SHF-files/img/195_Consulate Nomads.png" alt="195" id="195" data-flag="@X" onclick="openSidebar('195')"></div>
+          <div class="container"><img src="sets/SHF-files/img/200_Force Propulsion.png" alt="200" id="200" data-flag="@X" onclick="openSidebar('200')"></div>
+          <div class="container"><img src="sets/SHF-files/img/230_Underrift War Merchant.png" alt="230" id="230" data-flag="@X" onclick="openSidebar('230')"></div>
+          <div class="container"><img src="sets/SHF-files/img/206_Hotshot Rifle.png" alt="206" id="206" data-flag="@X" onclick="openSidebar('206')"></div>
+          <div class="container"><img src="sets/SHF-files/img/232_Whiptail Manticore.png" alt="232" id="232" data-flag="@X" onclick="openSidebar('232')"></div>
+          <div class="container"><img src="sets/SHF-files/img/202_The Gang's All Here.png" alt="202" id="202" data-flag="@X" onclick="openSidebar('202')"></div>
+          <div class="container"><img src="sets/SHF-files/img/234_Zarax Supermajor.png" alt="234" id="234" data-flag="@X" onclick="openSidebar('234')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/216_Mesa Interloper.png" alt="216" id="216" data-flag="@X" onclick="openSidebar('216')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/198_Eli, Wistful Drifter.png" alt="198" id="198" data-flag="@X" onclick="openSidebar('198')"></div>
+          <div class="container"><img src="sets/SHF-files/img/199_The Folly of Yesteryear.png" alt="199" id="199" data-flag="@X" onclick="openSidebar('199')"></div>
+          <div class="container"><img src="sets/SHF-files/img/227_The Starholme Frontier.png" alt="227" id="227" data-flag="@X" onclick="openSidebar('227')"></div>
+          <div class="container"><img src="sets/SHF-files/img/193_Clementine Cogs Faraday.png" alt="193" id="193" data-flag="@X" onclick="openSidebar('193')"></div>
+          <div class="container"><img src="sets/SHF-files/img/188_Amelia Hawkeye Hayes.png" alt="188" id="188" data-flag="@X" onclick="openSidebar('188')"></div>
+          <div class="container"><img src="sets/SHF-files/img/214_Marketto, the Trafficker.png" alt="214" id="214" data-flag="@X" onclick="openSidebar('214')"></div>
+          <div class="container"><img src="sets/SHF-files/img/207_Hound of the Hellbreak.png" alt="207" id="207" data-flag="@X" onclick="openSidebar('207')"></div>
+          <div class="container"><img src="sets/SHF-files/img/213_Make Sense from Scrap.png" alt="213" id="213" data-flag="@X" onclick="openSidebar('213')"></div>
+          <div class="container"><img src="sets/SHF-files/img/209_Impavid Trailblazer.png" alt="209" id="209" data-flag="@X" onclick="openSidebar('209')"></div>
+          <div class="container"><img src="sets/SHF-files/img/192_Carson Livewire Legette.png" alt="192" id="192" data-flag="@X" onclick="openSidebar('192')"></div>
+          <div class="container"><img src="sets/SHF-files/img/217_Morris and the Lacy Gang.png" alt="217" id="217" data-flag="@X" onclick="openSidebar('217')"></div>
+          <div class="container"><img src="sets/SHF-files/img/191_Bloodsand Gorger.png" alt="191" id="191" data-flag="@X" onclick="openSidebar('191')"></div>
+          <div class="container"><img src="sets/SHF-files/img/218_Oktujo Shepherd.png" alt="218" id="218" data-flag="@X" onclick="openSidebar('218')"></div>
+          <div class="container"><img src="sets/SHF-files/img/222_Shifty Dealer.png" alt="222" id="222" data-flag="@X" onclick="openSidebar('222')"></div>
+          <div class="container"><img src="sets/SHF-files/img/223_Shootout at the Mesa.png" alt="223" id="223" data-flag="@X" onclick="openSidebar('223')"></div>
+          <div class="container"><img src="sets/SHF-files/img/189_Barron, the Smoke.png" alt="189" id="189" data-flag="@X" onclick="openSidebar('189')"></div>
+          <div class="container"><img src="sets/SHF-files/img/196_Cosmic Restitcher.png" alt="196" id="196" data-flag="@X" onclick="openSidebar('196')"></div>
+          <div class="container"><img src="sets/SHF-files/img/201_Frilled Starspitter.png" alt="201" id="201" data-flag="@X" onclick="openSidebar('201')"></div>
+          <div class="container"><img src="sets/SHF-files/img/228_Tumultuous Flare.png" alt="228" id="228" data-flag="@X" onclick="openSidebar('228')"></div>
+          <div class="container"><img src="sets/SHF-files/img/186_Hot Hands Lurk.png" alt="186" id="186" data-flag="@X" onclick="openSidebar('186')"></div>
+          <div class="container"><img src="sets/SHF-files/img/211_Jules, the Beacon.png" alt="211" id="211" data-flag="@X" onclick="openSidebar('211')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/203_Go West.png" alt="203" id="203" data-flag="@X" onclick="openSidebar('203')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/225_Six-Shot Sheriff.png" alt="225" id="225" data-flag="@X" onclick="openSidebar('225')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/210_Interstellar Realignment.png" alt="210" id="210" data-flag="@X" onclick="openSidebar('210')"></div>
+          <div class="container"><img src="sets/SHF-files/img/221_Rusty, Sidewinders Brass.png" alt="221" id="221" data-flag="@X" onclick="openSidebar('221')"></div>
+          <div class="container"><img src="sets/SHF-files/img/226_Stalker of the Bogs.png" alt="226" id="226" data-flag="@X" onclick="openSidebar('226')"></div>
+          <div class="container"><img src="sets/SHF-files/img/229_The Twilight Riders.png" alt="229" id="229" data-flag="@X" onclick="openSidebar('229')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/1_The Smoking Gun.png" alt="1" id="1" data-flag="@X" onclick="openSidebar('1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/235_The Apocalypse Dial_front.png" data-alt_src="sets/SHF-files/img/235_The Apocalypse Dial_back.png" alt="235" id="235" data-flag="@XD" onclick="openSidebar(235)"><button class="btn" onclick="imgFlip(235)"></button></div>
+          <div class="container"><img src="sets/SHF-files/img/237_Consulate Bellwether.png" alt="237" id="237" data-flag="@X" onclick="openSidebar('237')"></div>
+          <div class="container"><img src="sets/SHF-files/img/239_Fractured Turbine.png" alt="239" id="239" data-flag="@X" onclick="openSidebar('239')"></div>
+          <div class="container"><img src="sets/SHF-files/img/240_Galaxian's Best Friend.png" alt="240" id="240" data-flag="@X" onclick="openSidebar('240')"></div>
+          <div class="container"><img src="sets/SHF-files/img/241_Gunslinger's Leatherworks.png" alt="241" id="241" data-flag="@X" onclick="openSidebar('241')"></div>
+          <div class="container"><img src="sets/SHF-files/img/244_Runaway Freight.png" alt="244" id="244" data-flag="@X" onclick="openSidebar('244')"></div>
+          <div class="container"><img src="sets/SHF-files/img/238_The Eldoria Express.png" alt="238" id="238" data-flag="@X" onclick="openSidebar('238')"></div>
+          <div class="container"><img src="sets/SHF-files/img/243_Noxian Visage.png" alt="243" id="243" data-flag="@X" onclick="openSidebar('243')"></div>
+          <div class="container"><img src="sets/SHF-files/img/245_Rust Bucket.png" alt="245" id="245" data-flag="@X" onclick="openSidebar('245')"></div>
+          <div class="container"><img src="sets/SHF-files/img/248_Trusty Ten-Gallon.png" alt="248" id="248" data-flag="@X" onclick="openSidebar('248')"></div>
+          <div class="container"><img src="sets/SHF-files/img/249_Varathian Caravan.png" alt="249" id="249" data-flag="@X" onclick="openSidebar('249')"></div>
+          <div class="container"><img src="sets/SHF-files/img/251_Wrought Grotesque.png" alt="251" id="251" data-flag="@X" onclick="openSidebar('251')"></div>
+          <div class="container"><img src="sets/SHF-files/img/236_Chromatic Star.png" alt="236" id="236" data-flag="@X" onclick="openSidebar('236')"></div>
+          <div class="container"><img src="sets/SHF-files/img/242_McCall .45 Special.png" alt="242" id="242" data-flag="@X" onclick="openSidebar('242')"></div>
+          <div class="container"><img src="sets/SHF-files/img/246_Star Chart.png" alt="246" id="246" data-flag="@X" onclick="openSidebar('246')"></div>
+          <div class="container"><img src="sets/SHF-files/img/247_Steadfast Reaper.png" alt="247" id="247" data-flag="@X" onclick="openSidebar('247')"></div>
+          <div class="container"><img src="sets/SHF-files/img/250_Winestago Freighter.png" alt="250" id="250" data-flag="@X" onclick="openSidebar('250')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/261_Salt Pool Citadel.png" alt="261" id="261" data-flag="@X" onclick="openSidebar('261')"></div>
+          <div class="container"><img src="sets/SHF-files/img/258_Oil-Worn Depths.png" alt="258" id="258" data-flag="@X" onclick="openSidebar('258')"></div>
+          <div class="container"><img src="sets/SHF-files/img/252_Basalt Quarry.png" alt="252" id="252" data-flag="@X" onclick="openSidebar('252')"></div>
+          <div class="container"><img src="sets/SHF-files/img/272_Weirding Territory.png" alt="272" id="272" data-flag="@X" onclick="openSidebar('272')"></div>
+          <div class="container"><img src="sets/SHF-files/img/257_Henge of Safe Passage.png" alt="257" id="257" data-flag="@X" onclick="openSidebar('257')"></div>
+          <div class="container"><img src="sets/SHF-files/img/265_Transplanted Hive.png" alt="265" id="265" data-flag="@X" onclick="openSidebar('265')"></div>
+          <div class="container"><img src="sets/SHF-files/img/260_Pungent Smokestacks.png" alt="260" id="260" data-flag="@X" onclick="openSidebar('260')"></div>
+          <div class="container"><img src="sets/SHF-files/img/259_Phosphorescent Bileway.png" alt="259" id="259" data-flag="@X" onclick="openSidebar('259')"></div>
+          <div class="container"><img src="sets/SHF-files/img/263_Stormsurge Waypoint.png" alt="263" id="263" data-flag="@X" onclick="openSidebar('263')"></div>
+          <div class="container"><img src="sets/SHF-files/img/253_Chiseled Hideaway.png" alt="253" id="253" data-flag="@X" onclick="openSidebar('253')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/255_Crystalline Clutches.png" alt="255" id="255" data-flag="@X" onclick="openSidebar('255')"></div>
+          <div class="container"><img src="sets/SHF-files/img/256_Galactic Reach.png" alt="256" id="256" data-flag="@X" onclick="openSidebar('256')"></div>
+          <div class="container"><img src="sets/SHF-files/img/262_The Slaughterhills.png" alt="262" id="262" data-flag="@X" onclick="openSidebar('262')"></div>
+          <div class="container"><img src="sets/SHF-files/img/266_Transuding Grotto.png" alt="266" id="266" data-flag="@X" onclick="openSidebar('266')"></div>
+          <div class="container"><img src="sets/SHF-files/img/270_Varathian Watchtower.png" alt="270" id="270" data-flag="@X" onclick="openSidebar('270')"></div>
+          <div class="container"><img src="sets/SHF-files/img/264_Streets of Sunforge.png" alt="264" id="264" data-flag="@X" onclick="openSidebar('264')"></div>
+          <div class="container"><img src="sets/SHF-files/img/267_Varathian Battery.png" alt="267" id="267" data-flag="@X" onclick="openSidebar('267')"></div>
+          <div class="container"><img src="sets/SHF-files/img/268_Varathian Nucleus.png" alt="268" id="268" data-flag="@X" onclick="openSidebar('268')"></div>
+          <div class="container"><img src="sets/SHF-files/img/269_Varathian Ootheca.png" alt="269" id="269" data-flag="@X" onclick="openSidebar('269')"></div>
+          <div class="container"><img src="sets/SHF-files/img/254_Conduit Pylons.png" alt="254" id="254" data-flag="@X" onclick="openSidebar('254')"></div>
+          <div class="container"><img src="sets/SHF-files/img/271_Wayfarer's Shrine.png" alt="271" id="271" data-flag="@X" onclick="openSidebar('271')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/273_Plains.png" alt="273" id="273" data-flag="@X" onclick="openSidebar('273')"></div>
+          <div class="container"><img src="sets/SHF-files/img/274_Island.png" alt="274" id="274" data-flag="@X" onclick="openSidebar('274')"></div>
+          <div class="container"><img src="sets/SHF-files/img/275_Swamp.png" alt="275" id="275" data-flag="@X" onclick="openSidebar('275')"></div>
+          <div class="container"><img src="sets/SHF-files/img/276_Mountain.png" alt="276" id="276" data-flag="@X" onclick="openSidebar('276')"></div>
+          <div class="container"><img src="sets/SHF-files/img/277_Forest.png" alt="277" id="277" data-flag="@X" onclick="openSidebar('277')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/SHF-files/img/1t_Mercenary.png" alt="1t" id="1t" data-flag="@X" onclick="openSidebar('1t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/2t_Mercenary.png" alt="2t" id="2t" data-flag="@X" onclick="openSidebar('2t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/3t_Scooter.png" alt="3t" id="3t" data-flag="@X" onclick="openSidebar('3t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/4t_Elemental.png" alt="4t" id="4t" data-flag="@X" onclick="openSidebar('4t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/5t_Bones.png" alt="5t" id="5t" data-flag="@X" onclick="openSidebar('5t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/6t_Elemental.png" alt="6t" id="6t" data-flag="@X" onclick="openSidebar('6t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/7t_Flesh.png" alt="7t" id="7t" data-flag="@X" onclick="openSidebar('7t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/8t_Beast.png" alt="8t" id="8t" data-flag="@X" onclick="openSidebar('8t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/9t_Plant.png" alt="9t" id="9t" data-flag="@X" onclick="openSidebar('9t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/10t_Bullet.png" alt="10t" id="10t" data-flag="@X" onclick="openSidebar('10t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/11t_Equipment.png" alt="11t" id="11t" data-flag="@X" onclick="openSidebar('11t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/12t_Junk.png" alt="12t" id="12t" data-flag="@X" onclick="openSidebar('12t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/13t_Treasure.png" alt="13t" id="13t" data-flag="@X" onclick="openSidebar('13t')"></div>
+          <div class="container"><img src="sets/SHF-files/img/14t_Vehicle.png" alt="14t" id="14t" data-flag="@X" onclick="openSidebar('14t')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+    </div>
+</div>
+    <div class="sidebar" id="sidebar">
+        <img id="sidebar_img" src="img/er.png"></img>
+        <button class="btn" onclick="closeSidebar()"></button>
+    </div>
+    <div class="footer"></div>
+
+    <script>
+        // Function to apply logic based on the data-flag
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll('.grid-container img');
+
+            images.forEach(img => {
+                const flag = img.getAttribute('data-flag');
+
+                if (flag === '@N') {
+                    img.src = 'img/card_back.png';
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
+                }
+
+                if (flag === '@E') {
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
+                }
+
+                img.style.visibility = 'visible';
+            });
+
+        });
+
+    window.addEventListener('resize', function(event) {
+        setSidebarTop();
+    }, true);
+
+    function setSidebarTop() {
+        let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        let sh = document.getElementById('sidebar').offsetHeight;
+        let height = 100 * ((vh - sh) / 2) / vh;
+        document.getElementById('sidebar').style.top = height + '%';
+    }
+
+    function imgFlip(num) {
+        tmp = document.getElementById(num).src;
+        document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+        document.getElementById(num).dataset.alt_src = tmp;
+    }
+
+    function openSidebar(id) {
+        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+        
+        document.getElementById('sidebar').style.display = 'block';
+        document.getElementById('sidebar_img').src = document.getElementById(id).src;
+        document.getElementById('main-content').style.width = '60%';
+        
+        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+        window.scrollTo(window.scrollX, scroll_pos);
+        setSidebarTop();
+    }
+
+    function closeSidebar() {
+        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('main-content').style.width = '100%';
+        
+
+        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+        window.scrollTo(window.scrollX, scroll_pos);
+    }
+    </script>
+</body>
+</html>

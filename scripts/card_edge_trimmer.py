@@ -68,8 +68,12 @@ def process_image(img_path, corner_positions, corner_radius=17):
     except Exception as e:
         print(f"Error processing {img_path}: {e}")
 
-def batch_process_images(config, setCode):
-    input_dir = os.path.join('img', setCode)
+def batch_process_images(setCode):
+    # load configuration
+    config_path = "./scripts/config.json" 
+    config = load_config(config_path)
+
+    input_dir = os.path.join('sets', setCode + '-files', 'img')
     script_dir = os.path.dirname(__file__)
     corner_positions = config["corner_positions"]
     corner_radius = config["corner_radius"]
@@ -82,8 +86,3 @@ def batch_process_images(config, setCode):
             process_image(img_path, corner_positions, corner_radius)
 
     print("Batch processing complete.")
-
-# load configuration and run
-config_path = "./scripts/config.json" 
-config = load_config(config_path)
-batch_process_images(config, 'NJB')

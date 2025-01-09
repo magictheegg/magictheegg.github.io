@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">  
+    <link rel="icon" type="image/png" href="sets/GSS-files/icon.png"/>
+    <title>GSS visual spoiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overscroll-behavior: none;
+            background-image: url('sets/GSS-files/bg.png');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .main-content {
+            position: relative;
+            width: 100%;
+            float: left;
+            z-index: 2;
+        }
+        .sidebar {
+            position: sticky;
+            top: 0;
+            display: none;
+            text-align: center;
+            padding-right: 2.5%;
+            z-index: 1;
+        }
+        .sidebar img {
+            vertical-align: middle;
+            max-width: 100%;
+            width: 30%;
+        }
+        .sidebar .btn {
+          background: url('img/close.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 10%;
+          height: 10%;
+          border: none;
+          cursor: pointer;
+          position: absolute;
+          right: -1.5%;
+        }
+        .sidebar .btn:hover {
+          background: url('img/close-hover.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 10%;
+          height: 10%;
+          border: none;
+          cursor: pointer;
+          position: absolute;
+          right: -1.5%;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-bottom: 3%;
+            justify-items: center;
+        }
+        .grid-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            visibility: hidden;
+            cursor: pointer;
+        }
+        .banner {
+            width: 100%;
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        .logo {
+            display: block;
+            margin: auto;
+            max-width: 30%;
+            max-height: 320px;
+        }
+        .container {
+          position: relative;
+          width: 100%;
+        }
+        .container img {
+          width: 100%;
+          height: auto;
+        }
+        .container .btn {
+          background: url('img/flip.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 15%;
+          height: 11%;
+          cursor: pointer;
+          border: none;
+          position: absolute;
+          top: 6.5%;
+          left: 8.5%;
+          transform: translate(-50%, -50%);
+        }
+        .container .btn:hover {
+          background: url('img/flip-hover.png') no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 15%;
+          height: 11%;
+          cursor: pointer;
+          border: none;
+          position: absolute;
+          top: 6.5%;
+          left: 8.5%;
+          transform: translate(-50%, -50%);
+        }
+        .icon-bar {
+            display: grid;
+            grid-template-columns: 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr;
+            gap: 1px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 2%;
+            padding-bottom: 1%;
+            justify-items: center;
+            align-items: center;
+        }
+        .icon-bar .icon img {
+            width: 90%;
+            height: auto;
+            display: block;
+            padding: 5%;
+            margin: auto;
+            text-align: center;
+        }
+        .icon-bar .dot img {
+            width: 50%;
+            height: auto;
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+        /* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+        .footer {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-bar">
+          <div class="icon"><a href="SHF-spoiler.html"><img src="sets/SHF-files/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="NJB-spoiler.html"><img src="sets/NJB-files/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="GSS-spoiler.html"><img src="sets/GSS-files/icon.png"></img></a></div>
+       <div class="dot"><img src="img/dot.png"></img></div>
+      <div class="icon"><a href="KND-spoiler.html"><img src="sets/KND-files/icon.png"></img></a></div>
+
+        </div>
+        <div class="banner">
+        <img class="logo" src="sets/GSS-files/logo.png">
+        </div>
+        <div class="main-content" id="main-content">
+            <div class="grid-container">
+              <div class="container"><img src="sets/GSS-files/img/5_Betsy Mae Moss, Legionette.png" alt="5" id="5" data-flag="@X" onclick="openSidebar('5')"></div>
+          <div class="container"><img src="sets/GSS-files/img/43_Panya, Minikin Hero.png" alt="43" id="43" data-flag="@X" onclick="openSidebar('43')"></div>
+          <div class="container"><img src="sets/GSS-files/img/73_Curse of the Dusk Fleet.png" alt="73" id="73" data-flag="@X" onclick="openSidebar('73')"></div>
+          <div class="container"><img src="sets/GSS-files/img/92_The Butcher of Bandura.png" alt="92" id="92" data-flag="@X" onclick="openSidebar('92')"></div>
+          <div class="container"><img src="sets/GSS-files/img/119_Battle for Alas-Wana_front.png" data-alt_src="sets/GSS-files/img/119_Battle for Alas-Wana_back.png" alt="119" id="119" data-flag="@XD" onclick="openSidebar(119)"><button class="btn" onclick="imgFlip(119)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/15_First Admiral of the Bellows.png" alt="15" id="15" data-flag="@X" onclick="openSidebar('15')"></div>
+          <div class="container"><img src="sets/GSS-files/img/47_Rami Nyi, the Tsunami.png" alt="47" id="47" data-flag="@X" onclick="openSidebar('47')"></div>
+          <div class="container"><img src="sets/GSS-files/img/76_The Deep Ones.png" alt="76" id="76" data-flag="@X" onclick="openSidebar('76')"></div>
+          <div class="container"><img src="sets/GSS-files/img/101_Giradrus, the Cataclysm.png" alt="101" id="101" data-flag="@X" onclick="openSidebar('101')"></div>
+          <div class="container"><img src="sets/GSS-files/img/145_The Wakiwaki.png" alt="145" id="145" data-flag="@X" onclick="openSidebar('145')"></div>
+          <div class="container"><img src="sets/GSS-files/img/2_Arrival of the Sun Fleet.png" alt="2" id="2" data-flag="@X" onclick="openSidebar('2')"></div>
+          <div class="container"><img src="sets/GSS-files/img/31_Aurelian Drake.png" alt="31" id="31" data-flag="@X" onclick="openSidebar('31')"></div>
+          <div class="container"><img src="sets/GSS-files/img/61_Abyssal Corruption.png" alt="61" id="61" data-flag="@X" onclick="openSidebar('61')"></div>
+          <div class="container"><img src="sets/GSS-files/img/91_Battle for the Apex_front.png" data-alt_src="sets/GSS-files/img/91_Battle for the Apex_back.png" alt="91" id="91" data-flag="@XD" onclick="openSidebar(91)"><button class="btn" onclick="imgFlip(91)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/120_Battle for Prospera Depths_front.png" data-alt_src="sets/GSS-files/img/120_Battle for Prospera Depths_back.png" alt="120" id="120" data-flag="@XD" onclick="openSidebar(120)"><button class="btn" onclick="imgFlip(120)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/3_Ataxia.png" alt="3" id="3" data-flag="@X" onclick="openSidebar('3')"></div>
+          <div class="container"><img src="sets/GSS-files/img/32_Battle for the Mistwinds_front.png" data-alt_src="sets/GSS-files/img/32_Battle for the Mistwinds_back.png" alt="32" id="32" data-flag="@XD" onclick="openSidebar(32)"><button class="btn" onclick="imgFlip(32)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/62_Ascent of the Wakeborn.png" alt="62" id="62" data-flag="@X" onclick="openSidebar('62')"></div>
+          <div class="container"><img src="sets/GSS-files/img/97_Curse of the Firebrand.png" alt="97" id="97" data-flag="@X" onclick="openSidebar('97')"></div>
+          <div class="container"><img src="sets/GSS-files/img/122_Call of L'Or.png" alt="122" id="122" data-flag="@X" onclick="openSidebar('122')"></div>
+          <div class="container"><img src="sets/GSS-files/img/4_Battle for Castle Cay_front.png" data-alt_src="sets/GSS-files/img/4_Battle for Castle Cay_back.png" alt="4" id="4" data-flag="@XD" onclick="openSidebar(4)"><button class="btn" onclick="imgFlip(4)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/34_Cloudbreacher.png" alt="34" id="34" data-flag="@X" onclick="openSidebar('34')"></div>
+          <div class="container"><img src="sets/GSS-files/img/64_Battle for the Dead Strait_front.png" data-alt_src="sets/GSS-files/img/64_Battle for the Dead Strait_back.png" alt="64" id="64" data-flag="@XD" onclick="openSidebar(64)"><button class="btn" onclick="imgFlip(64)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/100_Formation of Merida.png" alt="100" id="100" data-flag="@X" onclick="openSidebar('100')"></div>
+          <div class="container"><img src="sets/GSS-files/img/126_Fathoms Spearhunter.png" alt="126" id="126" data-flag="@X" onclick="openSidebar('126')"></div>
+          <div class="container"><img src="sets/GSS-files/img/10_Dawn Patrol.png" alt="10" id="10" data-flag="@X" onclick="openSidebar('10')"></div>
+          <div class="container"><img src="sets/GSS-files/img/36_Dreadlich Captain.png" alt="36" id="36" data-flag="@X" onclick="openSidebar('36')"></div>
+          <div class="container"><img src="sets/GSS-files/img/66_Blacksea Hag.png" alt="66" id="66" data-flag="@X" onclick="openSidebar('66')"></div>
+          <div class="container"><img src="sets/GSS-files/img/103_Hamlet Shrieker.png" alt="103" id="103" data-flag="@X" onclick="openSidebar('103')"></div>
+          <div class="container"><img src="sets/GSS-files/img/131_Growth of Arbre-Mere.png" alt="131" id="131" data-flag="@X" onclick="openSidebar('131')"></div>
+          <div class="container"><img src="sets/GSS-files/img/16_Goldsmith Thadd.png" alt="16" id="16" data-flag="@X" onclick="openSidebar('16')"></div>
+          <div class="container"><img src="sets/GSS-files/img/37_Drown in Ken of Shore.png" alt="37" id="37" data-flag="@X" onclick="openSidebar('37')"></div>
+          <div class="container"><img src="sets/GSS-files/img/74_Curse of the Mother.png" alt="74" id="74" data-flag="@X" onclick="openSidebar('74')"></div>
+          <div class="container"><img src="sets/GSS-files/img/110_Pathfinder Dragon.png" alt="110" id="110" data-flag="@X" onclick="openSidebar('110')"></div>
+          <div class="container"><img src="sets/GSS-files/img/134_Merveille Pieuvre.png" alt="134" id="134" data-flag="@X" onclick="openSidebar('134')"></div>
+          <div class="container"><img src="sets/GSS-files/img/29_Tomas, Beau of the Brine.png" alt="29" id="29" data-flag="@X" onclick="openSidebar('29')"></div>
+          <div class="container"><img src="sets/GSS-files/img/45_The Price of Prosperity.png" alt="45" id="45" data-flag="@X" onclick="openSidebar('45')"></div>
+          <div class="container"><img src="sets/GSS-files/img/79_Grog Snoggers.png" alt="79" id="79" data-flag="@X" onclick="openSidebar('79')"></div>
+          <div class="container"><img src="sets/GSS-files/img/113_Self-Guided Ballistics.png" alt="113" id="113" data-flag="@X" onclick="openSidebar('113')"></div>
+          <div class="container"><img src="sets/GSS-files/img/136_Pelagic Conduit.png" alt="136" id="136" data-flag="@X" onclick="openSidebar('136')"></div>
+          <div class="container"><img src="sets/GSS-files/img/30_Wayward Crew.png" alt="30" id="30" data-flag="@X" onclick="openSidebar('30')"></div>
+          <div class="container"><img src="sets/GSS-files/img/53_The Silversea Swirls.png" alt="53" id="53" data-flag="@X" onclick="openSidebar('53')"></div>
+          <div class="container"><img src="sets/GSS-files/img/82_Mayit, the Forgotten One.png" alt="82" id="82" data-flag="@X" onclick="openSidebar('82')"></div>
+          <div class="container"><img src="sets/GSS-files/img/115_The Silversea Company.png" alt="115" id="115" data-flag="@X" onclick="openSidebar('115')"></div>
+          <div class="container"><img src="sets/GSS-files/img/140_Something Stirs Within.png" alt="140" id="140" data-flag="@X" onclick="openSidebar('140')"></div>
+          <div class="container"><img src="sets/GSS-files/img/6_The Blessing of Wealth.png" alt="6" id="6" data-flag="@X" onclick="openSidebar('6')"></div>
+          <div class="container"><img src="sets/GSS-files/img/33_The Briny Depths Await.png" alt="33" id="33" data-flag="@X" onclick="openSidebar('33')"></div>
+          <div class="container"><img src="sets/GSS-files/img/63_Barter in Blood.png" alt="63" id="63" data-flag="@X" onclick="openSidebar('63')"></div>
+          <div class="container"><img src="sets/GSS-files/img/90_Basalt Spray.png" alt="90" id="90" data-flag="@X" onclick="openSidebar('90')"></div>
+          <div class="container"><img src="sets/GSS-files/img/123_Chart the Lost Lands.png" alt="123" id="123" data-flag="@X" onclick="openSidebar('123')"></div>
+          <div class="container"><img src="sets/GSS-files/img/9_Courier of the Winds.png" alt="9" id="9" data-flag="@X" onclick="openSidebar('9')"></div>
+          <div class="container"><img src="sets/GSS-files/img/35_Crain's Creation.png" alt="35" id="35" data-flag="@X" onclick="openSidebar('35')"></div>
+          <div class="container"><img src="sets/GSS-files/img/65_Black Arts Admiral.png" alt="65" id="65" data-flag="@X" onclick="openSidebar('65')"></div>
+          <div class="container"><img src="sets/GSS-files/img/95_Curse of Marked Charts.png" alt="95" id="95" data-flag="@X" onclick="openSidebar('95')"></div>
+          <div class="container"><img src="sets/GSS-files/img/129_Greensea Amity.png" alt="129" id="129" data-flag="@X" onclick="openSidebar('129')"></div>
+          <div class="container"><img src="sets/GSS-files/img/11_Detention Officer.png" alt="11" id="11" data-flag="@X" onclick="openSidebar('11')"></div>
+          <div class="container"><img src="sets/GSS-files/img/44_Phantasmal Marauder.png" alt="44" id="44" data-flag="@X" onclick="openSidebar('44')"></div>
+          <div class="container"><img src="sets/GSS-files/img/72_Curse of the Blacksea.png" alt="72" id="72" data-flag="@X" onclick="openSidebar('72')"></div>
+          <div class="container"><img src="sets/GSS-files/img/102_Glyph Wyvern.png" alt="102" id="102" data-flag="@X" onclick="openSidebar('102')"></div>
+          <div class="container"><img src="sets/GSS-files/img/137_Polyp Architect.png" alt="137" id="137" data-flag="@X" onclick="openSidebar('137')"></div>
+          <div class="container"><img src="sets/GSS-files/img/17_Jacktar-for-Hire.png" alt="17" id="17" data-flag="@X" onclick="openSidebar('17')"></div>
+          <div class="container"><img src="sets/GSS-files/img/56_Watchful Ashwing.png" alt="56" id="56" data-flag="@X" onclick="openSidebar('56')"></div>
+          <div class="container"><img src="sets/GSS-files/img/77_Faceless Faction.png" alt="77" id="77" data-flag="@X" onclick="openSidebar('77')"></div>
+          <div class="container"><img src="sets/GSS-files/img/106_Keelhaul.png" alt="106" id="106" data-flag="@X" onclick="openSidebar('106')"></div>
+          <div class="container"><img src="sets/GSS-files/img/139_The Roil Stakes Its Claim.png" alt="139" id="139" data-flag="@X" onclick="openSidebar('139')"></div>
+          <div class="container"><img src="sets/GSS-files/img/18_Lady of the Threshers.png" alt="18" id="18" data-flag="@X" onclick="openSidebar('18')"></div>
+          <div class="container"><img src="sets/GSS-files/img/57_Waveshaping.png" alt="57" id="57" data-flag="@X" onclick="openSidebar('57')"></div>
+          <div class="container"><img src="sets/GSS-files/img/81_Light Fades to Despair.png" alt="81" id="81" data-flag="@X" onclick="openSidebar('81')"></div>
+          <div class="container"><img src="sets/GSS-files/img/109_Painted Dragon.png" alt="109" id="109" data-flag="@X" onclick="openSidebar('109')"></div>
+          <div class="container"><img src="sets/GSS-files/img/141_Soul of the Grove.png" alt="141" id="141" data-flag="@X" onclick="openSidebar('141')"></div>
+          <div class="container"><img src="sets/GSS-files/img/21_A Pirate's Life.png" alt="21" id="21" data-flag="@X" onclick="openSidebar('21')"></div>
+          <div class="container"><img src="sets/GSS-files/img/59_Windwise Drake.png" alt="59" id="59" data-flag="@X" onclick="openSidebar('59')"></div>
+          <div class="container"><img src="sets/GSS-files/img/85_Roots of All Evil.png" alt="85" id="85" data-flag="@X" onclick="openSidebar('85')"></div>
+          <div class="container"><img src="sets/GSS-files/img/112_Sabre-Happy Swashbuckler.png" alt="112" id="112" data-flag="@X" onclick="openSidebar('112')"></div>
+          <div class="container"><img src="sets/GSS-files/img/146_Withstand the Torrent.png" alt="146" id="146" data-flag="@X" onclick="openSidebar('146')"></div>
+          <div class="container"><img src="sets/GSS-files/img/7_Bluecoat Adept.png" alt="7" id="7" data-flag="@X" onclick="openSidebar('7')"></div>
+          <div class="container"><img src="sets/GSS-files/img/38_Fang Fleet Mandate.png" alt="38" id="38" data-flag="@X" onclick="openSidebar('38')"></div>
+          <div class="container"><img src="sets/GSS-files/img/60_Abyssal Corrupter.png" alt="60" id="60" data-flag="@X" onclick="openSidebar('60')"></div>
+          <div class="container"><img src="sets/GSS-files/img/89_Anchor Hauler.png" alt="89" id="89" data-flag="@X" onclick="openSidebar('89')"></div>
+          <div class="container"><img src="sets/GSS-files/img/118_Ardent Cartographer.png" alt="118" id="118" data-flag="@X" onclick="openSidebar('118')"></div>
+          <div class="container"><img src="sets/GSS-files/img/8_Chitinous Commander.png" alt="8" id="8" data-flag="@X" onclick="openSidebar('8')"></div>
+          <div class="container"><img src="sets/GSS-files/img/39_Gilded Lapwing.png" alt="39" id="39" data-flag="@X" onclick="openSidebar('39')"></div>
+          <div class="container"><img src="sets/GSS-files/img/67_Blighted Arbor.png" alt="67" id="67" data-flag="@X" onclick="openSidebar('67')"></div>
+          <div class="container"><img src="sets/GSS-files/img/93_Combustion Girl.png" alt="93" id="93" data-flag="@X" onclick="openSidebar('93')"></div>
+          <div class="container"><img src="sets/GSS-files/img/121_Breaching Serpent.png" alt="121" id="121" data-flag="@X" onclick="openSidebar('121')"></div>
+          <div class="container"><img src="sets/GSS-files/img/12_Dockside Sleuth.png" alt="12" id="12" data-flag="@X" onclick="openSidebar('12')"></div>
+          <div class="container"><img src="sets/GSS-files/img/40_Harbor Trawler.png" alt="40" id="40" data-flag="@X" onclick="openSidebar('40')"></div>
+          <div class="container"><img src="sets/GSS-files/img/68_Churn to Chum.png" alt="68" id="68" data-flag="@X" onclick="openSidebar('68')"></div>
+          <div class="container"><img src="sets/GSS-files/img/94_Crag Monarch.png" alt="94" id="94" data-flag="@X" onclick="openSidebar('94')"></div>
+          <div class="container"><img src="sets/GSS-files/img/124_Copse Creeper.png" alt="124" id="124" data-flag="@X" onclick="openSidebar('124')"></div>
+          <div class="container"><img src="sets/GSS-files/img/13_Elixir Provisioner.png" alt="13" id="13" data-flag="@X" onclick="openSidebar('13')"></div>
+          <div class="container"><img src="sets/GSS-files/img/41_Necrotic Shawl.png" alt="41" id="41" data-flag="@X" onclick="openSidebar('41')"></div>
+          <div class="container"><img src="sets/GSS-files/img/69_Crain's Accursed.png" alt="69" id="69" data-flag="@X" onclick="openSidebar('69')"></div>
+          <div class="container"><img src="sets/GSS-files/img/96_Curse of the Dragon's Coin.png" alt="96" id="96" data-flag="@X" onclick="openSidebar('96')"></div>
+          <div class="container"><img src="sets/GSS-files/img/125_Curator of Cryptic Charts.png" alt="125" id="125" data-flag="@X" onclick="openSidebar('125')"></div>
+          <div class="container"><img src="sets/GSS-files/img/14_Faithful Seasteed.png" alt="14" id="14" data-flag="@X" onclick="openSidebar('14')"></div>
+          <div class="container"><img src="sets/GSS-files/img/42_One With the Great Beyond.png" alt="42" id="42" data-flag="@X" onclick="openSidebar('42')"></div>
+          <div class="container"><img src="sets/GSS-files/img/70_Curse of Admonishment.png" alt="70" id="70" data-flag="@X" onclick="openSidebar('70')"></div>
+          <div class="container"><img src="sets/GSS-files/img/98_Curse of the Sea's Bounty.png" alt="98" id="98" data-flag="@X" onclick="openSidebar('98')"></div>
+          <div class="container"><img src="sets/GSS-files/img/127_Floating Ecocosm.png" alt="127" id="127" data-flag="@X" onclick="openSidebar('127')"></div>
+          <div class="container"><img src="sets/GSS-files/img/19_Mercantile Negotiations.png" alt="19" id="19" data-flag="@X" onclick="openSidebar('19')"></div>
+          <div class="container"><img src="sets/GSS-files/img/46_Ragged Rapscallion.png" alt="46" id="46" data-flag="@X" onclick="openSidebar('46')"></div>
+          <div class="container"><img src="sets/GSS-files/img/71_Curse of Fetid Remains.png" alt="71" id="71" data-flag="@X" onclick="openSidebar('71')"></div>
+          <div class="container"><img src="sets/GSS-files/img/99_Erode.png" alt="99" id="99" data-flag="@X" onclick="openSidebar('99')"></div>
+          <div class="container"><img src="sets/GSS-files/img/128_Frigate Architect.png" alt="128" id="128" data-flag="@X" onclick="openSidebar('128')"></div>
+          <div class="container"><img src="sets/GSS-files/img/20_Parrot Peddler.png" alt="20" id="20" data-flag="@X" onclick="openSidebar('20')"></div>
+          <div class="container"><img src="sets/GSS-files/img/48_Recon Drake.png" alt="48" id="48" data-flag="@X" onclick="openSidebar('48')"></div>
+          <div class="container"><img src="sets/GSS-files/img/75_Damned Helmsman.png" alt="75" id="75" data-flag="@X" onclick="openSidebar('75')"></div>
+          <div class="container"><img src="sets/GSS-files/img/104_Hellkite Whelp.png" alt="104" id="104" data-flag="@X" onclick="openSidebar('104')"></div>
+          <div class="container"><img src="sets/GSS-files/img/130_Greensea Brute.png" alt="130" id="130" data-flag="@X" onclick="openSidebar('130')"></div>
+          <div class="container"><img src="sets/GSS-files/img/22_Plucky Crewmate.png" alt="22" id="22" data-flag="@X" onclick="openSidebar('22')"></div>
+          <div class="container"><img src="sets/GSS-files/img/49_Rise of the Blacksea Moon.png" alt="49" id="49" data-flag="@X" onclick="openSidebar('49')"></div>
+          <div class="container"><img src="sets/GSS-files/img/78_Galleon Ravager.png" alt="78" id="78" data-flag="@X" onclick="openSidebar('78')"></div>
+          <div class="container"><img src="sets/GSS-files/img/105_Herald of the Brood.png" alt="105" id="105" data-flag="@X" onclick="openSidebar('105')"></div>
+          <div class="container"><img src="sets/GSS-files/img/132_Invasive Kelp.png" alt="132" id="132" data-flag="@X" onclick="openSidebar('132')"></div>
+          <div class="container"><img src="sets/GSS-files/img/23_Port Rose Lieutenant.png" alt="23" id="23" data-flag="@X" onclick="openSidebar('23')"></div>
+          <div class="container"><img src="sets/GSS-files/img/50_Ruin Cove Scavenger.png" alt="50" id="50" data-flag="@X" onclick="openSidebar('50')"></div>
+          <div class="container"><img src="sets/GSS-files/img/80_Islander's Bounty.png" alt="80" id="80" data-flag="@X" onclick="openSidebar('80')"></div>
+          <div class="container"><img src="sets/GSS-files/img/107_Mottled Snapwing.png" alt="107" id="107" data-flag="@X" onclick="openSidebar('107')"></div>
+          <div class="container"><img src="sets/GSS-files/img/133_Lake Cave Lurker.png" alt="133" id="133" data-flag="@X" onclick="openSidebar('133')"></div>
+          <div class="container"><img src="sets/GSS-files/img/24_Rainbow Tern.png" alt="24" id="24" data-flag="@X" onclick="openSidebar('24')"></div>
+          <div class="container"><img src="sets/GSS-files/img/51_Secrets Shimmer Like Silver.png" alt="51" id="51" data-flag="@X" onclick="openSidebar('51')"></div>
+          <div class="container"><img src="sets/GSS-files/img/83_Moment of Craving.png" alt="83" id="83" data-flag="@X" onclick="openSidebar('83')"></div>
+          <div class="container"><img src="sets/GSS-files/img/108_Open Fire.png" alt="108" id="108" data-flag="@X" onclick="openSidebar('108')"></div>
+          <div class="container"><img src="sets/GSS-files/img/135_The Mortal Plays God.png" alt="135" id="135" data-flag="@X" onclick="openSidebar('135')"></div>
+          <div class="container"><img src="sets/GSS-files/img/25_Revoke Privileges.png" alt="25" id="25" data-flag="@X" onclick="openSidebar('25')"></div>
+          <div class="container"><img src="sets/GSS-files/img/52_Sigiled Spotter.png" alt="52" id="52" data-flag="@X" onclick="openSidebar('52')"></div>
+          <div class="container"><img src="sets/GSS-files/img/84_Relentless Remains.png" alt="84" id="84" data-flag="@X" onclick="openSidebar('84')"></div>
+          <div class="container"><img src="sets/GSS-files/img/111_Poisson Slums Dealings.png" alt="111" id="111" data-flag="@X" onclick="openSidebar('111')"></div>
+          <div class="container"><img src="sets/GSS-files/img/138_Ram.png" alt="138" id="138" data-flag="@X" onclick="openSidebar('138')"></div>
+          <div class="container"><img src="sets/GSS-files/img/26_Sailor's Sendoff.png" alt="26" id="26" data-flag="@X" onclick="openSidebar('26')"></div>
+          <div class="container"><img src="sets/GSS-files/img/54_Structural Damage.png" alt="54" id="54" data-flag="@X" onclick="openSidebar('54')"></div>
+          <div class="container"><img src="sets/GSS-files/img/86_A Soul Breaks Like a Wave.png" alt="86" id="86" data-flag="@X" onclick="openSidebar('86')"></div>
+          <div class="container"><img src="sets/GSS-files/img/114_Shallows Spear-Fisher.png" alt="114" id="114" data-flag="@X" onclick="openSidebar('114')"></div>
+          <div class="container"><img src="sets/GSS-files/img/142_Trench Leviathan.png" alt="142" id="142" data-flag="@X" onclick="openSidebar('142')"></div>
+          <div class="container"><img src="sets/GSS-files/img/27_Seacraft Registrar.png" alt="27" id="27" data-flag="@X" onclick="openSidebar('27')"></div>
+          <div class="container"><img src="sets/GSS-files/img/55_Throw Overboard.png" alt="55" id="55" data-flag="@X" onclick="openSidebar('55')"></div>
+          <div class="container"><img src="sets/GSS-files/img/87_Uprooted Stalker.png" alt="87" id="87" data-flag="@X" onclick="openSidebar('87')"></div>
+          <div class="container"><img src="sets/GSS-files/img/116_Warning from Giradrus.png" alt="116" id="116" data-flag="@X" onclick="openSidebar('116')"></div>
+          <div class="container"><img src="sets/GSS-files/img/143_The Unknown Welcomes All.png" alt="143" id="143" data-flag="@X" onclick="openSidebar('143')"></div>
+          <div class="container"><img src="sets/GSS-files/img/28_Surging Current.png" alt="28" id="28" data-flag="@X" onclick="openSidebar('28')"></div>
+          <div class="container"><img src="sets/GSS-files/img/58_Whale of a Tale.png" alt="58" id="58" data-flag="@X" onclick="openSidebar('58')"></div>
+          <div class="container"><img src="sets/GSS-files/img/88_Writhing Abomination.png" alt="88" id="88" data-flag="@X" onclick="openSidebar('88')"></div>
+          <div class="container"><img src="sets/GSS-files/img/117_Wayward Mariner.png" alt="117" id="117" data-flag="@X" onclick="openSidebar('117')"></div>
+          <div class="container"><img src="sets/GSS-files/img/144_Vantage Shot.png" alt="144" id="144" data-flag="@X" onclick="openSidebar('144')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/187_Riftwind Navigator.png" alt="187" id="187" data-flag="@X" onclick="openSidebar('187')"></div>
+          <div class="container"><img src="sets/GSS-files/img/182_Last Voyage of the Selkie.png" alt="182" id="182" data-flag="@X" onclick="openSidebar('182')"></div>
+          <div class="container"><img src="sets/GSS-files/img/169_Curse of Skull Pass.png" alt="169" id="169" data-flag="@X" onclick="openSidebar('169')"></div>
+          <div class="container"><img src="sets/GSS-files/img/168_Current Pacer.png" alt="168" id="168" data-flag="@X" onclick="openSidebar('168')"></div>
+          <div class="container"><img src="sets/GSS-files/img/166_Coquille, the Rising Isle.png" alt="166" id="166" data-flag="@X" onclick="openSidebar('166')"></div>
+          <div class="container"><img src="sets/GSS-files/img/157_Battle for Verity Bay_front.png" data-alt_src="sets/GSS-files/img/157_Battle for Verity Bay_back.png" alt="157" id="157" data-flag="@XD" onclick="openSidebar(157)"><button class="btn" onclick="imgFlip(157)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/152_Battle for Ivos Isle_front.png" data-alt_src="sets/GSS-files/img/152_Battle for Ivos Isle_back.png" alt="152" id="152" data-flag="@XD" onclick="openSidebar(152)"><button class="btn" onclick="imgFlip(152)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/148_Battle for Blacksea_front.png" data-alt_src="sets/GSS-files/img/148_Battle for Blacksea_back.png" alt="148" id="148" data-flag="@XD" onclick="openSidebar(148)"><button class="btn" onclick="imgFlip(148)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/151_Battle for Highspire_front.png" data-alt_src="sets/GSS-files/img/151_Battle for Highspire_back.png" alt="151" id="151" data-flag="@XD" onclick="openSidebar(151)"><button class="btn" onclick="imgFlip(151)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/150_Battle for Fort Alderosa_front.png" data-alt_src="sets/GSS-files/img/150_Battle for Fort Alderosa_back.png" alt="150" id="150" data-flag="@XD" onclick="openSidebar(150)"><button class="btn" onclick="imgFlip(150)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/160_Captain Holly Dee.png" alt="160" id="160" data-flag="@X" onclick="openSidebar('160')"></div>
+          <div class="container"><img src="sets/GSS-files/img/159_Captain Darwin Smythe.png" alt="159" id="159" data-flag="@X" onclick="openSidebar('159')"></div>
+          <div class="container"><img src="sets/GSS-files/img/165_Commodore Egan Bristol.png" alt="165" id="165" data-flag="@X" onclick="openSidebar('165')"></div>
+          <div class="container"><img src="sets/GSS-files/img/162_Captain Rosie Wright.png" alt="162" id="162" data-flag="@X" onclick="openSidebar('162')"></div>
+          <div class="container"><img src="sets/GSS-files/img/171_The Dieu-de-Fer Twins.png" alt="171" id="171" data-flag="@X" onclick="openSidebar('171')"></div>
+          <div class="container"><img src="sets/GSS-files/img/188_Runic Visionary.png" alt="188" id="188" data-flag="@X" onclick="openSidebar('188')"></div>
+          <div class="container"><img src="sets/GSS-files/img/197_Touch of the Omen.png" alt="197" id="197" data-flag="@X" onclick="openSidebar('197')"></div>
+          <div class="container"><img src="sets/GSS-files/img/170_Curse of the Hunted.png" alt="170" id="170" data-flag="@X" onclick="openSidebar('170')"></div>
+          <div class="container"><img src="sets/GSS-files/img/196_Sunscale Drake.png" alt="196" id="196" data-flag="@X" onclick="openSidebar('196')"></div>
+          <div class="container"><img src="sets/GSS-files/img/173_Familiar's Guile.png" alt="173" id="173" data-flag="@X" onclick="openSidebar('173')"></div>
+          <div class="container"><img src="sets/GSS-files/img/172_Dwarven Gemsmith.png" alt="172" id="172" data-flag="@X" onclick="openSidebar('172')"></div>
+          <div class="container"><img src="sets/GSS-files/img/185_Putrefied Thrasher.png" alt="185" id="185" data-flag="@X" onclick="openSidebar('185')"></div>
+          <div class="container"><img src="sets/GSS-files/img/167_Crain's Devoted.png" alt="167" id="167" data-flag="@X" onclick="openSidebar('167')"></div>
+          <div class="container"><img src="sets/GSS-files/img/194_Stag of Plenty.png" alt="194" id="194" data-flag="@X" onclick="openSidebar('194')"></div>
+          <div class="container"><img src="sets/GSS-files/img/190_Sanctions Enforcer.png" alt="190" id="190" data-flag="@X" onclick="openSidebar('190')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/180_Jorah, Eternal and Insatiable.png" alt="180" id="180" data-flag="@X" onclick="openSidebar('180')"></div>
+          <div class="container"><img src="sets/GSS-files/img/177_Groveheart Tender.png" alt="177" id="177" data-flag="@X" onclick="openSidebar('177')"></div>
+          <div class="container"><img src="sets/GSS-files/img/200_A World Through the Wake.png" alt="200" id="200" data-flag="@X" onclick="openSidebar('200')"></div>
+          <div class="container"><img src="sets/GSS-files/img/186_Razortooth Roost.png" alt="186" id="186" data-flag="@X" onclick="openSidebar('186')"></div>
+          <div class="container"><img src="sets/GSS-files/img/175_Gareth Redplume IV.png" alt="175" id="175" data-flag="@X" onclick="openSidebar('175')"></div>
+          <div class="container"><img src="sets/GSS-files/img/195_Stormshroud.png" alt="195" id="195" data-flag="@X" onclick="openSidebar('195')"></div>
+          <div class="container"><img src="sets/GSS-files/img/153_Battle for Merida Keys_front.png" data-alt_src="sets/GSS-files/img/153_Battle for Merida Keys_back.png" alt="153" id="153" data-flag="@XD" onclick="openSidebar(153)"><button class="btn" onclick="imgFlip(153)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/199_Witness Forces Unknown.png" alt="199" id="199" data-flag="@X" onclick="openSidebar('199')"></div>
+          <div class="container"><img src="sets/GSS-files/img/149_Battle for Charred Atoll_front.png" data-alt_src="sets/GSS-files/img/149_Battle for Charred Atoll_back.png" alt="149" id="149" data-flag="@XD" onclick="openSidebar(149)"><button class="btn" onclick="imgFlip(149)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/147_Admiral Everett Cross.png" alt="147" id="147" data-flag="@X" onclick="openSidebar('147')"></div>
+          <div class="container"><img src="sets/GSS-files/img/156_Battle for the Stillshroud_front.png" data-alt_src="sets/GSS-files/img/156_Battle for the Stillshroud_back.png" alt="156" id="156" data-flag="@XD" onclick="openSidebar(156)"><button class="btn" onclick="imgFlip(156)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/164_Colossal Mossjaw.png" alt="164" id="164" data-flag="@X" onclick="openSidebar('164')"></div>
+          <div class="container"><img src="sets/GSS-files/img/155_Battle for Tempest Reach_front.png" data-alt_src="sets/GSS-files/img/155_Battle for Tempest Reach_back.png" alt="155" id="155" data-flag="@XD" onclick="openSidebar(155)"><button class="btn" onclick="imgFlip(155)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/161_Captain Polly Carver.png" alt="161" id="161" data-flag="@X" onclick="openSidebar('161')"></div>
+          <div class="container"><img src="sets/GSS-files/img/154_Battle for Port Plenty_front.png" data-alt_src="sets/GSS-files/img/154_Battle for Port Plenty_back.png" alt="154" id="154" data-flag="@XD" onclick="openSidebar(154)"><button class="btn" onclick="imgFlip(154)"></button></div>
+          <div class="container"><img src="sets/GSS-files/img/183_Olavan of the Silversea.png" alt="183" id="183" data-flag="@X" onclick="openSidebar('183')"></div>
+          <div class="container"><img src="sets/GSS-files/img/189_Runix of the Blacksea.png" alt="189" id="189" data-flag="@X" onclick="openSidebar('189')"></div>
+          <div class="container"><img src="sets/GSS-files/img/176_Glimpse Worlds Within Worlds.png" alt="176" id="176" data-flag="@X" onclick="openSidebar('176')"></div>
+          <div class="container"><img src="sets/GSS-files/img/191_Shrieking Seakite.png" alt="191" id="191" data-flag="@X" onclick="openSidebar('191')"></div>
+          <div class="container"><img src="sets/GSS-files/img/174_Forecastle Bosun.png" alt="174" id="174" data-flag="@X" onclick="openSidebar('174')"></div>
+          <div class="container"><img src="sets/GSS-files/img/193_Spectral Scalawag.png" alt="193" id="193" data-flag="@X" onclick="openSidebar('193')"></div>
+          <div class="container"><img src="sets/GSS-files/img/198_Withering Wanderers.png" alt="198" id="198" data-flag="@X" onclick="openSidebar('198')"></div>
+          <div class="container"><img src="sets/GSS-files/img/181_Lanne of the Greensea.png" alt="181" id="181" data-flag="@X" onclick="openSidebar('181')"></div>
+          <div class="container"><img src="sets/GSS-files/img/184_Precipice Surveyor.png" alt="184" id="184" data-flag="@X" onclick="openSidebar('184')"></div>
+          <div class="container"><img src="sets/GSS-files/img/178_Inspiring Recruitment.png" alt="178" id="178" data-flag="@X" onclick="openSidebar('178')"></div>
+          <div class="container"><img src="sets/GSS-files/img/163_Coastal Raider.png" alt="163" id="163" data-flag="@X" onclick="openSidebar('163')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/192_Silversea Titan.png" alt="192" id="192" data-flag="@X" onclick="openSidebar('192')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/158_Captain Crain.png" alt="158" id="158" data-flag="@X" onclick="openSidebar('158')"></div>
+          <div class="container"><img src="sets/GSS-files/img/179_Jara, Glade Sovereign.png" alt="179" id="179" data-flag="@X" onclick="openSidebar('179')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/1_Deacon Bay Docks.png" alt="1" id="1" data-flag="@X" onclick="openSidebar('1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/204_Fishing Docks.png" alt="204" id="204" data-flag="@X" onclick="openSidebar('204')"></div>
+          <div class="container"><img src="sets/GSS-files/img/207_Sentinels of Canica Strait.png" alt="207" id="207" data-flag="@X" onclick="openSidebar('207')"></div>
+          <div class="container"><img src="sets/GSS-files/img/203_Everfelle Gates.png" alt="203" id="203" data-flag="@X" onclick="openSidebar('203')"></div>
+          <div class="container"><img src="sets/GSS-files/img/208_Thunderball Mortars.png" alt="208" id="208" data-flag="@X" onclick="openSidebar('208')"></div>
+          <div class="container"><img src="sets/GSS-files/img/201_Citadel Tower.png" alt="201" id="201" data-flag="@X" onclick="openSidebar('201')"></div>
+          <div class="container"><img src="sets/GSS-files/img/202_Convincing Bait.png" alt="202" id="202" data-flag="@X" onclick="openSidebar('202')"></div>
+          <div class="container"><img src="sets/GSS-files/img/205_Prophetic Prism.png" alt="205" id="205" data-flag="@X" onclick="openSidebar('205')"></div>
+          <div class="container"><img src="sets/GSS-files/img/206_Seer's Lantern.png" alt="206" id="206" data-flag="@X" onclick="openSidebar('206')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/er.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="sets/GSS-files/img/220_Voyager's Passage.png" alt="220" id="220" data-flag="@X" onclick="openSidebar('220')"></div>
+          <div class="container"><img src="sets/GSS-files/img/218_Treasure Cove.png" alt="218" id="218" data-flag="@X" onclick="openSidebar('218')"></div>
+          <div class="container"><img src="sets/GSS-files/img/209_Contaminated Aquifer.png" alt="209" id="209" data-flag="@X" onclick="openSidebar('209')"></div>
+          <div class="container"><img src="sets/GSS-files/img/210_Geothermal Bog.png" alt="210" id="210" data-flag="@X" onclick="openSidebar('210')"></div>
+          <div class="container"><img src="sets/GSS-files/img/211_Haunted Mire.png" alt="211" id="211" data-flag="@X" onclick="openSidebar('211')"></div>
+          <div class="container"><img src="sets/GSS-files/img/212_Idyllic Beachfront.png" alt="212" id="212" data-flag="@X" onclick="openSidebar('212')"></div>
+          <div class="container"><img src="sets/GSS-files/img/213_Molten Tributary.png" alt="213" id="213" data-flag="@X" onclick="openSidebar('213')"></div>
+          <div class="container"><img src="sets/GSS-files/img/214_Radiant Grove.png" alt="214" id="214" data-flag="@X" onclick="openSidebar('214')"></div>
+          <div class="container"><img src="sets/GSS-files/img/215_Sacred Peaks.png" alt="215" id="215" data-flag="@X" onclick="openSidebar('215')"></div>
+          <div class="container"><img src="sets/GSS-files/img/216_Sunlit Marsh.png" alt="216" id="216" data-flag="@X" onclick="openSidebar('216')"></div>
+          <div class="container"><img src="sets/GSS-files/img/217_Tangled Islet.png" alt="217" id="217" data-flag="@X" onclick="openSidebar('217')"></div>
+          <div class="container"><img src="sets/GSS-files/img/219_Uncharted Haven.png" alt="219" id="219" data-flag="@X" onclick="openSidebar('219')"></div>
+          <div class="container"><img src="sets/GSS-files/img/221_Wooded Ridgeline.png" alt="221" id="221" data-flag="@X" onclick="openSidebar('221')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+          <div class="container"><img src="img/e.png" alt="-1" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+    </div>
+        <div class="banner">
+        <img class="logo" src="./img/GSS/mlogo.png">
+        </div>
+        <div class="grid-container">
+            <div class="container"><img src="img/GSS/The Moon and the Moors.png" id="m1" onclick="openSidebar('m1')"></div>
+            <div class="container"><img src="img/GSS/The Bones and the Brine.png" id="m2" onclick="openSidebar('m2')"></div>
+            <div class="container"><img src="img/GSS/The Spite and the Scorn.png" id="m3" onclick="openSidebar('m3')"></div>
+            <div class="container"><img src="img/GSS/The Storm and the Cedar.png" id="m4" onclick="openSidebar('m4')"></div>
+            <div class="container"><img src="img/GSS/The Heart and the Soul.png" id="m5" onclick="openSidebar('m5')"></div>
+            <div class="container"><img src="img/GSS/The Mirth and the Misery.png" id="m6" onclick="openSidebar('m6')"></div>
+            <div class="container"><img src="img/GSS/The Flesh and the Fate.png" id="m7" onclick="openSidebar('m7')"></div>
+            <div class="container"><img src="img/GSS/The Earth and the Sea.png" id="m8" onclick="openSidebar('m8')"></div>
+            <div class="container"><img src="img/GSS/The Blood and the Claw.png" id="m9" onclick="openSidebar('m9')"></div>
+            <div class="container"><img src="img/GSS/The Sun and the Spirit.png" id="m10" onclick="openSidebar('m10')"></div>
+            <div class="container"><img src="img/er.png "data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png "data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png "data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png "data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png "data-flag="@ER"></div>
+            <div class="container"><img src="img/GSS/Suitor of the Wind.png" id="m16" onclick="openSidebar('m16')"></div>
+            <div class="container"><img src="img/GSS/The Foul Omen.png" id="m17" onclick="openSidebar('m17')"></div>
+            <div class="container"><img src="img/GSS/Despair's Emissary.png" id="m18" onclick="openSidebar('m18')"></div>
+            <div class="container"><img src="img/GSS/Shining Horizon.png" id="m19" onclick="openSidebar('m19')"></div>
+            <div class="container"><img src="img/GSS/Frere et Soeur.png" id="m20" onclick="openSidebar('m20')"></div>
+            <div class="container"><img src="img/GSS/The Ashen Cross.png" id="m21" onclick="openSidebar('m21')"></div>
+            <div class="container"><img src="img/GSS/The Abyssal Pilgrim.png" id="m22" onclick="openSidebar('m22')"></div>
+            <div class="container"><img src="img/GSS/Seaskipper.png" id="m23" onclick="openSidebar('m23')"></div>
+            <div class="container"><img src="img/GSS/The Scarlet Scourge.png" id="m24" onclick="openSidebar('m24')"></div>
+            <div class="container"><img src="img/GSS/The Huntress.png" id="m25" onclick="openSidebar('m25')"></div>
+            <div class="container"><img src="img/er.png" data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png" data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png" data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png" data-flag="@ER"></div>
+            <div class="container"><img src="img/er.png" data-flag="@ER"></div>
+            <div class="container"><img src="img/GSS/Bygone Mariner.png" id="m31" onclick="openSidebar('m31')"></div>
+            <div class="container"><img src="img/GSS/Draco Ligneus.png" id="m32" onclick="openSidebar('m32')"></div>
+            <div class="container"><img src="img/GSS/H.S.S. Dreadnought.png" id="m33" onclick="openSidebar('m33')"></div>
+            <div class="container"><img src="img/GSS/Imperial Butterfly.png" id="m34" onclick="openSidebar('m34')"></div>
+            <div class="container"><img src="img/GSS/The Fell Reaper.png" id="m35" onclick="openSidebar('m35')"></div>
+            <div class="container"><img src="img/GSS/Brine Fleet Bay.png" id="m36" onclick="openSidebar('m36')"></div>
+            <div class="container"><img src="img/GSS/The Great Maw.png" id="m37" onclick="openSidebar('m37')"></div>
+            <div class="container"><img src="img/GSS/Blood Flag Convoy.png" id="m38" onclick="openSidebar('m38')"></div>
+            <div class="container"><img src="img/GSS/Colossal Flagship.png" id="m39" onclick="openSidebar('m39')"></div>
+            <div class="container"><img src="img/GSS/Jolly Drifter.png" id="m40" onclick="openSidebar('m40')"></div>
+            <div class="container"><img src="img/GSS/Relentless Destroyer.png" id="m41" onclick="openSidebar('m41')"></div>
+            <div class="container"><img src="img/GSS/Wavewrecker.png" id="m42" onclick="openSidebar('m42')"></div>
+            <div class="container"><img src="img/GSS/Agile Catamaran.png" id="m43" onclick="openSidebar('m43')"></div>
+            <div class="container"><img src="img/GSS/Relentless Galleon.png" id="m44" onclick="openSidebar('m44')"></div>
+            <div class="container"><img src="img/GSS/Royal Patroller.png" id="m45" onclick="openSidebar('m45')"></div>
+            <div class="container"><img src="img/GSS/Sea Devil.png" id="m46" onclick="openSidebar('m46')"></div>
+            <div class="container"><img src="img/GSS/Shipping Schooner.png" id="m47" onclick="openSidebar('m47')"></div>
+            <div class="container"><img src="img/GSS/Skysail Cutter.png" id="m48" onclick="openSidebar('m48')"></div>
+            <div class="container"><img src="img/e.png" data-flag="@ER"></div>
+            <div class="container"><img src="img/e.png" data-flag="@ER"></div>
+        </div></div>
+    <div class="sidebar" id="sidebar">
+        <img id="sidebar_img" src="img/er.png"></img>
+        <button class="btn" onclick="closeSidebar()"></button>
+    </div>
+    <div class="footer"></div>
+
+    <script>
+        // Function to apply logic based on the data-flag
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll('.grid-container img');
+
+            images.forEach(img => {
+                const flag = img.getAttribute('data-flag');
+
+                if (flag === '@N') {
+                    img.src = 'img/card_back.png';
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
+                }
+
+                if (flag === '@E') {
+                    img.removeAttribute("onclick");
+                    img.style.cursor = 'default';
+                }
+
+                img.style.visibility = 'visible';
+            });
+
+        });
+
+    window.addEventListener('resize', function(event) {
+        setSidebarTop();
+    }, true);
+
+    function setSidebarTop() {
+        let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        let sh = document.getElementById('sidebar').offsetHeight;
+        let height = 100 * ((vh - sh) / 2) / vh;
+        document.getElementById('sidebar').style.top = height + '%';
+    }
+
+    function imgFlip(num) {
+        tmp = document.getElementById(num).src;
+        document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+        document.getElementById(num).dataset.alt_src = tmp;
+    }
+
+    function openSidebar(id) {
+        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+        
+        document.getElementById('sidebar').style.display = 'block';
+        document.getElementById('sidebar_img').src = document.getElementById(id).src;
+        document.getElementById('main-content').style.width = '60%';
+        
+        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+        window.scrollTo(window.scrollX, scroll_pos);
+        setSidebarTop();
+    }
+
+    function closeSidebar() {
+        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('main-content').style.width = '100%';
+        
+
+        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+        window.scrollTo(window.scrollX, scroll_pos);
+    }
+    </script>
+</body>
+</html>

@@ -2,11 +2,10 @@ import os
 import sys
 import re
 
-if len(sys.argv) != 3:
-	print('to run: python3 list_to_list.py <input_file> <output_file>')
-
-else:
-	with open(sys.argv[1], errors="ignore") as f:
+def convertList(setCode):
+	inputList = os.path.join('sets', setCode + '-files', setCode + '-raw.txt')
+	outputList = os.path.join('lists', setCode + '-list.txt')
+	with open(inputList, errors="ignore") as f:
 		raw = f.read()
 		cards_raw = raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
 	cards_raw = cards_raw.rstrip('\\n')
@@ -17,7 +16,7 @@ else:
 		tmpI = re.sub("\t[0-9]+\t.*", "", cards[i])
 		for j in range(i):
 			tmpJ = re.sub("\t[0-9]+\t.*", "", cards[j])
-			if tmpI == tmpJ and "\tToken" not in tmpJ:
+			if tmpI == tmpJ and "\tToken" not in tmpJ and "\tBasic" not in tmpJ:
 				skipdex.append(j)
 	
 	master_list = []
@@ -32,8 +31,11 @@ else:
 		if i in skipdex:
 			continue
 		card = cards[i].split('\t')
+		# name to include card number
+		card[0] = card[4] + ('t_' if 'Token' in card[3] else '_') + card[0]
 		# card number to int
 		card[4] = int(card[4])
+
 
 		# clean color inputs
 		if card[1] == 'WR':
@@ -370,25 +372,9 @@ else:
 		for x in range(5 - (len(cards_token) % 5)):
 			master_list.append('e')
 
-	# clean master list for cards with same name (basics, tokens)
-	flagged_names = []
-	for card_name in master_list:
-		if master_list.count(card_name) > 1 and card_name not in flagged_names:
-			flagged_names.append(card_name)
-
-	for card_name in flagged_names:
-		chr_index = 97
-		for x in range(len(master_list)):
-			card = master_list[x]
-			if card == card_name and card != 'e' and card != 'er':
-				master_list[x] = card + '_' + chr(chr_index)
-				chr_index = chr_index + 1
-
-	with open(sys.argv[2], 'w') as f:
+	with open(outputList, 'w') as f:
 		for card_name in master_list:
-			print(card_name, file=f)
-
-
+			print(card_name.replace(u'\ufeff', ''), file=f)
 
 
 
