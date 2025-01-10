@@ -214,7 +214,7 @@ def generateHTML(code, card):
 		<a class="set-banner" id="set-banner" href="/sets/''' + code + '''">
 			<img class="set-logo" src="/sets/''' + code + '''-files/icon.png">
 			<div class="set-title">''' + set_name + '''</div>
-		</div>
+		</a>
 	</div>
 
 	<div class="grid-container" id="grid">
