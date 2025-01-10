@@ -12,7 +12,7 @@ def generateHTML(codes):
 	file_input = file_input.rstrip('\\n')
 
 	with open(os.path.join('lists', 'all-cards.txt'), 'w') as f:
-		f.write(file_input);
+		f.write(file_input)
 
 	# Start creating the HTML file content
 	html_content = '''<html>
@@ -109,6 +109,7 @@ def generateHTML(codes):
 		display: flex;
 		align-items: center;
 		gap: 5px;
+		cursor: pointer;
 	}
 	.header-links a:hover {
 	  color: #ffffff;
@@ -268,7 +269,7 @@ def generateHTML(codes):
 			</div>
 			<div class="header-links">
 				<a href="www.google.com"><img src="img/sets.png" class="icon">Sets</a>
-				<a href="www.google.com"><img src="img/random.png" class="icon">Random</a>
+				<a onclick="randomCard()"><img src="img/random.png" class="icon">Random</a>
 			</div>
 		</div>
 	</div>
@@ -999,7 +1000,6 @@ def generateHTML(codes):
 				}
 			}
 
-			console.log(tokens);
 			return tokens;
 		}
 
@@ -1126,7 +1126,7 @@ def generateHTML(codes):
 			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
-			link.href = "/cards/" + card_stats[11] + "/" + card_stats[0];
+			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_stats[0];
 			link.appendChild(img);
 			imgContainer.appendChild(link);
 
@@ -1287,6 +1287,11 @@ def generateHTML(codes):
 
 			document.body.scrollTop = 0; // For Safari
   			document.documentElement.scrollTop = 0; // For real browsers
+		}
+
+		function randomCard() {
+			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_list_arrayified[i][0]);
 		}
 	</script>
 </body>

@@ -176,7 +176,7 @@ def generateHTML(set_codes):
 		if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
 			with open(os.path.join('sets', code + '-files', code + '-fullname.txt'), encoding='utf-8-sig') as f:
 				set_name = f.read()
-			html_content += '''					<div class="icon"><a href="''' + code + '''-spoiler.html"><img src="sets/''' + code + '''-files/icon.png" title="''' + set_name + '''"></img></a></div>
+			html_content += '''					<div class="icon"><a href="''' + code + '''-spoiler"><img src="sets/''' + code + '''-files/icon.png" title="''' + set_name + '''"></img></a></div>
 			'''
 
 	html_content += '''	    	</div>
@@ -256,7 +256,7 @@ def generateHTML(set_codes):
 			}
 
 			function search() {
-				window.location = ("search.html?search=" + document.getElementById("search").value);
+				window.location = ("search?search=" + document.getElementById("search").value);
 			}
 
 			function prepareGradients() {

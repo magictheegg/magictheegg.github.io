@@ -9,11 +9,14 @@ import print_html_for_index
 import print_html_for_search
 import print_html_for_spoiler
 import print_html_for_card
+import print_html_for_set
 
 set_codes = []
 for entry in os.scandir('sets'):
 	if(entry.is_dir() and entry.name[-6:] == '-files'):
 		set_codes.append(entry.name[:-6])
+	else:
+		os.remove(entry)
 
 if os.path.isdir('cards'):
 	shutil.rmtree('cards')
@@ -21,6 +24,7 @@ os.mkdir('cards')
 
 for code in set_codes:
 	os.mkdir(os.path.join('cards', code))
+
 	image_flip.flipImages(code)
 	set_dir = code + '-files'
 	with open(os.path.join('sets', set_dir, code + '-trimmed.txt'), encoding='utf-8-sig') as f:
@@ -29,6 +33,7 @@ for code in set_codes:
 			card_edge_trimmer.batch_process_images(code)
 			with open(os.path.join('sets', set_dir, code + '-trimmed.txt'), 'w') as file:
 				file.write("true")
+
 	list_to_list.convertList(code)
 
 	custom_dir = os.path.join('custom', set_dir)
@@ -46,6 +51,7 @@ for code in set_codes:
 			print(filepath + ' added')
 
 	print_html_for_spoiler.generateHTML(code, set_codes)
+	print_html_for_set.generateHTML(code)
 
 	with open(os.path.join('sets', set_dir, code + '-raw.txt'), encoding='utf-8-sig') as f:
 		cards = f.read()

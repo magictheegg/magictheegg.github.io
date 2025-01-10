@@ -2,7 +2,10 @@ import os
 import sys
 
 def generateHTML(code, card):
-	output_html_file = "cards/" + code + "/" + card.split('\t')[0] + ".html"
+	output_html_file = "cards/" + code + "/" + card.split('\t')[4] + "_" + card.split('\t')[0] + ".html"
+
+	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8-sig') as f:
+		set_name = f.read()
 	
 	# Start creating the HTML file content
 	html_content = '''<html>
@@ -12,6 +15,10 @@ def generateHTML(code, card):
   <link rel="stylesheet" href="/resources/mana.css">
 </head>
 <style>
+	@font-face {
+	  font-family: Beleren;
+	  src: url('/resources/beleren.ttf');
+	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
 		overscroll-behavior: none;
@@ -71,23 +78,48 @@ def generateHTML(code, card):
 		justify-items: center;
 		width: 100%;
 	}
+	a {
+		text-decoration: none;
+	}
 	.header-links a {
 		color: #f3f3f3;
-		text-decoration: none;
 		display: flex;
 		align-items: center;
 		gap: 5px;
+		cursor: pointer;
 	}
 	.header-links a:hover {
 	  color: #ffffff;
 	  text-decoration: underline;
 	}
+	.banner-container {
+		width: 100%;
+		background-color: #bbbbbb;
+		display: flex;
+		justify-items: center;
+		align-items: center;
+	}
+	.set-banner {
+		font-family: Beleren;
+		display: flex;
+		gap: 30px;
+		align-items: center;
+		justify-items: center;
+		font-size: 40px;
+		color: #171717;
+		margin: auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.set-banner img {
+		width: 100px;
+	}
 	.image-grid {
 		padding-top: 40px;
-		width: 75%;
+		width: 70%;
 		margin: auto;
 		display: grid;
-		grid-template-columns: minmax(150px, 2fr) minmax(300px, 3fr);
+		grid-template-columns: minmax(200px, 2fr) minmax(200px, 2.5fr);
 		gap: 50px;
 		padding-bottom: 10px;
 		justify-items: left;
@@ -98,6 +130,7 @@ def generateHTML(code, card):
 	.card-image {
 		float: left;
 		width: 100%;
+		max-width: 375px;
 		height: auto;
 		display: block;
 	}
@@ -172,22 +205,38 @@ def generateHTML(code, card):
 			</div>
 			<div class="header-links">
 				<a href="/sets"><img src="/img/sets.png" class="icon">Sets</a>
-				<a href="www.google.com"><img src="/img/random.png" class="icon">Random</a>
+				<a onclick="randomCard()"><img src="/img/random.png" class="icon">Random</a>
 			</div>
+		</div>
+	</div>
+
+	<div class="banner-container">
+		<a class="set-banner" id="set-banner" href="/sets/''' + code + '''">
+			<img class="set-logo" src="/sets/''' + code + '''-files/icon.png">
+			<div class="set-title">''' + set_name + '''</div>
 		</div>
 	</div>
 
 	<div class="grid-container" id="grid">
 	</div>
-	</div>
 
 	<script>
-		let page = 0;
-		let pageCount = 30;
-		let search_results = [];
 		let card_list_arrayified = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
+			await fetch('/lists/all-cards.txt')
+				.then(response => response.text())
+				.then(text => {
+					card_list_stringified = text; 
+			}).catch(error => console.error('Error:', error));
+
+			card_list_arrayified = card_list_stringified.split('\\\\n');
+
+			for (let i = 0; i < card_list_arrayified.length; i++)
+			{
+				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
+			}
+
 			document.getElementById("grid").appendChild(gridifyCard("''' + card + '''"));
 		});
 
@@ -223,7 +272,6 @@ def generateHTML(code, card):
 				}
 			}
 
-			console.log(tokens);
 			return tokens;
 		}
 
@@ -408,6 +456,11 @@ def generateHTML(code, card):
 
 		function search() {
 			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_list_arrayified[i][0]);
 		}
 	</script>
 </body>
