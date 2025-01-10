@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Battle for the Apex	R	rare	Battle â€” Conquest 	91	R	1R	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When itâ€™s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for the Apex enters the battlefield, up to two target creatures canâ€™t block this turn. Until your next turn, those creatures attack each combat if able.			double faced	GSS	The Spires at Starrehold		Land	R		T: Add R.NEWLINE1R, T: You may put a creature card from your hand onto the battlefield. It gains haste. Exile that creature at the beginning of the next end step. Activate only as a sorcery.			"));
+			document.getElementById("grid").appendChild(gridifyCard("Battle for the Apex	R	rare	Battle — Conquest 	91	R	1R	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it’s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for the Apex enters the battlefield, up to two target creatures can’t block this turn. Until your next turn, those creatures attack each combat if able.			double faced	GSS	The Spires at Starrehold		Land	R		T: Add R.NEWLINE1R, T: You may put a creature card from your hand onto the battlefield. It gains haste. Exile that creature at the beginning of the next end step. Activate only as a sorcery.			"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

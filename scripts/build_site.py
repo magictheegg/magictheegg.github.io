@@ -50,7 +50,8 @@ for code in set_codes:
 				shutil.copy(filepath, destination)
 			print(filepath + ' added')
 
-	print_html_for_spoiler.generateHTML(code, set_codes)
+	if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
+		print_html_for_spoiler.generateHTML(code, set_codes)
 	print_html_for_set.generateHTML(code)
 
 	with open(os.path.join('sets', set_dir, code + '-raw.txt'), encoding='utf-8-sig') as f:

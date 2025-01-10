@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Captain Rosie Wright	RG	uncommon	Legendary Creature â€” Human Pirate 	162	RG	1RG	First mate â€” Your starting deck contains â€œShining Horizonâ€ and two lands of each basic land type. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)NEWLINEWhenever Captain Rosie Wright becomes tapped, you may sacrifice a Mountain or Forest. If you do, put a +1/+1 counter on Captain Rosie Wright, then search your library for a land card, put it onto the battlefield tapped, then shuffle.	2/2		normal	GSS"));
+			document.getElementById("grid").appendChild(gridifyCard("Captain Rosie Wright	RG	uncommon	Legendary Creature — Human Pirate 	162	RG	1RG	First mate — Your starting deck contains “Shining Horizon” and two lands of each basic land type. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)NEWLINEWhenever Captain Rosie Wright becomes tapped, you may sacrifice a Mountain or Forest. If you do, put a +1/+1 counter on Captain Rosie Wright, then search your library for a land card, put it onto the battlefield tapped, then shuffle.	2/2		normal	GSS"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

@@ -5,10 +5,10 @@ def generateHTML(setCode, codes):
     output_html_file = setCode + '-spoiler.html'
     magic_card_back_image = 'img/card_back.png'
     set_img_dir = os.path.join('sets', setCode + '-files', 'img')
-    previewed = [file[:-4] for file in os.listdir(set_img_dir)]
+    previewed = [file[:-4].replace(u'\ufeff', '') for file in os.listdir(set_img_dir)]
 
     with open(os.path.join('lists', setCode + '-list.txt'), encoding='utf-8-sig') as f:
-        cards = [card.rstrip() for card in f]
+        cards = [card.replace(u'\ufeff', '').rstrip() for card in f]
 
     # Start creating the HTML file content
     html_content = '''<!DOCTYPE html>
@@ -20,7 +20,6 @@ def generateHTML(setCode, codes):
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">  
     <link rel="icon" type="image/png" href="sets/''' + setCode + '''-files/icon.png"/>
-    <link rel="prefetch" href="sets/''' + setCode + '''-files/bg.png"/>
     <title>''' + setCode + ''' visual spoiler</title>
     <style>
         body {
@@ -161,6 +160,9 @@ def generateHTML(setCode, codes):
             margin: auto;
             text-align: center;
         }
+        .preload-hidden {
+            display: none;
+        }
         /* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
         .footer {
             clear: both;
@@ -168,6 +170,16 @@ def generateHTML(setCode, codes):
     </style>
 </head>
 <body>
+    <img class="preload-hidden" src="/img/dot.png" />
+    <img class="preload-hidden" src="/sets/''' + setCode + '''-files/logo.png" />
+    '''
+
+    for code in codes:
+        html_content += '''<img class="preload-hidden" src="/sets/''' + code + '''-files/icon.png" />
+        '''
+
+    html_content += '''
+    <img class="preload-hidden" id="bg" src="/sets/''' + setCode + '''-files/bg.png" />
     <div class="icon-bar">
     '''
 
@@ -212,9 +224,9 @@ def generateHTML(setCode, codes):
         image_path = os.path.join(image_dir, card_name + '.png')
 
         if flag == '@XD':
-            html_content += f'          <div class="container"><img src="{dfc_front_img_path}" data-alt_src="{dfc_back_img_path}" alt="{card_num}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num})"><button class="btn" onclick="imgFlip({card_num})"></button></div>\n'
+            html_content += f'          <div class="container"><img data-alt_src="{dfc_back_img_path}" alt="{dfc_front_img_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num})"><button class="btn" onclick="imgFlip({card_num})"></button></div>\n'
         else:
-            html_content += f'          <div class="container"><img src="{image_path}" alt="{card_num}" id="{card_num}" data-flag="{flag}" onclick="openSidebar(\'{card_num}\')"></div>\n'
+            html_content += f'          <div class="container"><img alt="{image_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar(\'{card_num}\')"></div>\n'
 
     # Closing the div and the rest of the HTML
     html_content += '''    </div>\n'''
@@ -233,28 +245,60 @@ def generateHTML(setCode, codes):
     <div class="footer"></div>
 
     <script>
-        // Function to apply logic based on the data-flag
-        document.addEventListener("DOMContentLoaded", function () {{
-            const images = document.querySelectorAll('.grid-container img');
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-            images.forEach(img => {{
-                const flag = img.getAttribute('data-flag');
+    document.addEventListener('DOMContentLoaded', async function() {{
+        preloadImgs = document.getElementsByClassName('preload-hidden');
+        
+        let images_loaded = []
 
-                if (flag === '@N') {{
-                    img.src = 'img/card_back.png';
-                    img.removeAttribute("onclick");
-                    img.style.cursor = 'default';
-                }}
+        do {{
+            await delay(100);
+            images_loaded = []
+            for (const img of preloadImgs)
+            {{
+                images_loaded.push(isImageOk(img));
+            }}
+            console.log(images_loaded);
+        }}
+        while (images_loaded.includes(false));
+
+        document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
+        loadImages();
+    }});
+
+    function isImageOk(img) {{
+        if (!img.complete || img.naturalWidth == 0) {{
+            return false;
+        }}
+
+        return true;
+    }}
+
+    function loadImages() {{
+        const images = document.querySelectorAll('.grid-container img');
+
+        images.forEach(img => {{
+            const flag = img.getAttribute('data-flag');
+
+            if (flag === '@N') {{
+                img.src = 'img/card_back.png';
+                img.removeAttribute("onclick");
+                img.style.cursor = 'default';
+            }}
+            else
+            {{
+                img.src = img.alt;
 
                 if (flag === '@E') {{
                     img.removeAttribute("onclick");
                     img.style.cursor = 'default';
                 }}
+            }}
 
-                img.style.visibility = 'visible';
-            }});
-
+            img.style.visibility = 'visible';
         }});
+    }}
 
     window.addEventListener('resize', function(event) {{
         setSidebarTop();
@@ -301,7 +345,7 @@ def generateHTML(setCode, codes):
 '''.format(magic_card_back_image)
 
     # Write the HTML content to the output HTML file
-    with open(output_html_file, 'w') as file:
+    with open(output_html_file, 'w', encoding="utf-8") as file:
         file.write(html_content)
 
     print(f"HTML file saved as {output_html_file}")

@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("The Art of War	R	rare	Enchantment â€” Gallery 	124	R	1RR			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen The Art of War enters the battlefield, if a source you control would deal damage this turn, it deals double that damage instead.NEWLINE2RR: Laying PlansNEWLINEThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.NEWLINE2RR: Waging WarNEWLINEWhenever a creature you control attacks, create a token copy of it thatâ€™s tapped and attacking, except the token isnâ€™t legendary. Exile those tokens at end of combat.	class	NJB"));
+			document.getElementById("grid").appendChild(gridifyCard("The Art of War	R	rare	Enchantment — Gallery 	124	R	1RR			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen The Art of War enters the battlefield, if a source you control would deal damage this turn, it deals double that damage instead.NEWLINE2RR: Laying PlansNEWLINEThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.NEWLINE2RR: Waging WarNEWLINEWhenever a creature you control attacks, create a token copy of it that’s tapped and attacking, except the token isn’t legendary. Exile those tokens at end of combat.	class	NJB"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

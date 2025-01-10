@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Battle for Merida Keys	BG	uncommon	Battle â€” Conquest 	153	BG	2BG	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When itâ€™s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Merida Keys enters the battlefield, return up to one target noncreature permanent card from your graveyard to the battlefield, then return up to one target creature card from your graveyard to your hand.			double faced	GSS	Gnarled Roots of Arbre-Mere		Land	BG		T: Add B or G.NEWLINE6, T: Create a 4/1 black and green Zombie Treefolk creature token. It canâ€™t block this turn. This ability costs 1 less to activate for each card type among cards in your graveyard.			"));
+			document.getElementById("grid").appendChild(gridifyCard("Battle for Merida Keys	BG	uncommon	Battle — Conquest 	153	BG	2BG	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it’s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Merida Keys enters the battlefield, return up to one target noncreature permanent card from your graveyard to the battlefield, then return up to one target creature card from your graveyard to your hand.			double faced	GSS	Gnarled Roots of Arbre-Mere		Land	BG		T: Add B or G.NEWLINE6, T: Create a 4/1 black and green Zombie Treefolk creature token. It can’t block this turn. This ability costs 1 less to activate for each card type among cards in your graveyard.			"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

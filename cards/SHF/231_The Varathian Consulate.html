@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("The Varathian Consulate	WU	rare	Legendary Creature â€” Galaxian Advisor 	231	WU	2WU	Whenever a permanent you control enters the battlefield from exile or you cast a spell from exile, draw a card and you gain 2 life.NEWLINE1WU: Exile target creature. Return it to the battlefield under its ownerâ€™s control at the beginning of your next upkeep. Activate only during your turn.	3/4		normal	SHF"));
+			document.getElementById("grid").appendChild(gridifyCard("The Varathian Consulate	WU	rare	Legendary Creature — Galaxian Advisor 	231	WU	2WU	Whenever a permanent you control enters the battlefield from exile or you cast a spell from exile, draw a card and you gain 2 life.NEWLINE1WU: Exile target creature. Return it to the battlefield under its owner’s control at the beginning of your next upkeep. Activate only during your turn.	3/4		normal	SHF"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

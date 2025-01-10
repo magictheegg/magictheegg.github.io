@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Kojo Joins the Cause	WB	uncommon	Enchantment â€” Saga 	215	WB	3WB			â€œOur city is already great. We need not the voices of heroes past to guide us to salvation.â€NEWLINEI â€” You may sacrifice another nonland permanent. When you do, destroy target nonland permanent an opponent controls that shares a type with the sacrificed permanent.NEWLINEII â€” Search your library for a Rebel permanent card with mana value 3 or less, put it onto the battlefield, then shuffle.NEWLINEIII â€” Each opponent loses 3 life. You gain 3 life.	saga	KND"));
+			document.getElementById("grid").appendChild(gridifyCard("Kojo Joins the Cause	WB	uncommon	Enchantment — Saga 	215	WB	3WB			“Our city is already great. We need not the voices of heroes past to guide us to salvation.”NEWLINEI — You may sacrifice another nonland permanent. When you do, destroy target nonland permanent an opponent controls that shares a type with the sacrificed permanent.NEWLINEII — Search your library for a Rebel permanent card with mana value 3 or less, put it onto the battlefield, then shuffle.NEWLINEIII — Each opponent loses 3 life. You gain 3 life.	saga	KND"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Rami Nyi, the Tsunami	U	mythic	Legendary Planeswalker â€” Rami 	47	U	2UU			Whenever you cast a spell on an opponentâ€™s turn, you may activate one of Rami Nyiâ€™s loyalty abilities. (You still pay its costs.)NEWLINE[+1]: Create a 0/1 blue Fish creature token.NEWLINE[0]: Draw a card, then discard a card unless you sacrifice a permanent.NEWLINE[-3]: The owner of target spell or nonland permanent puts that card on the top or bottom of their library.	planeswalker	GSS"));
+			document.getElementById("grid").appendChild(gridifyCard("Rami Nyi, the Tsunami	U	mythic	Legendary Planeswalker — Rami 	47	U	2UU			Whenever you cast a spell on an opponent’s turn, you may activate one of Rami Nyi’s loyalty abilities. (You still pay its costs.)NEWLINE[+1]: Create a 0/1 blue Fish creature token.NEWLINE[0]: Draw a card, then discard a card unless you sacrifice a permanent.NEWLINE[-3]: The owner of target spell or nonland permanent puts that card on the top or bottom of their library.	planeswalker	GSS"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

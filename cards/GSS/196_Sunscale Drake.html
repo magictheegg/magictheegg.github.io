@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Sunscale Drake	RG	uncommon	Creature â€” Drake Leviathan 	196	RG	3RG	Wayfarer (If youâ€™ve spent WUBRG this turn, discover Lâ€™Or.)NEWLINE5: Until end of turn, Sunscale Drake gets +1/+1 and gains your choice of agile, lure, or challenge. If youâ€™ve discovered Lâ€™Or, it gains all three instead. (A creature with agile deals combat damage first as long as itâ€™s attacking. A creature with lure must be blocked if able. A creature with challenge canâ€™t be blocked by more than one creature.)	4/4		normal	GSS"));
+			document.getElementById("grid").appendChild(gridifyCard("Sunscale Drake	RG	uncommon	Creature — Drake Leviathan 	196	RG	3RG	Wayfarer (If you’ve spent WUBRG this turn, discover L’Or.)NEWLINE5: Until end of turn, Sunscale Drake gets +1/+1 and gains your choice of agile, lure, or challenge. If you’ve discovered L’Or, it gains all three instead. (A creature with agile deals combat damage first as long as it’s attacking. A creature with lure must be blocked if able. A creature with challenge can’t be blocked by more than one creature.)	4/4		normal	GSS"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

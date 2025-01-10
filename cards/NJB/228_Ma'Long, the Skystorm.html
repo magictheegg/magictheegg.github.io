@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Ma'Long, the Skystorm	UR	mythic	Legendary Creature â€” Dragon 	228	UR	4UR	Flying, hasteNEWLINEWhenever Maâ€™Long deals combat damage to a player, draw a card, then add that much mana in any combination of U and R. Until end of turn, you donâ€™t lose this mana as steps and phases end.NEWLINEInstant and sorcery cards in your hand have showcase. The showcase cost is equal to the cardâ€™s mana cost plus 2.	4/4		modal double faced	NJB	Boxue, Imperial Ally	UR	Legendary Planeswalker â€” Boxue 	UR	1UR			[+1]: Boxue deals 1 damage to each opponent. You may draw a card, then discard a card.NEWLINE[-1]: Create a Treasure token.NEWLINE[-5]: Copy the next spell you cast this turn. You may choose new targets for the copy. (A copied permanent spell becomes a token.)	"));
+			document.getElementById("grid").appendChild(gridifyCard("Ma'Long, the Skystorm	UR	mythic	Legendary Creature — Dragon 	228	UR	4UR	Flying, hasteNEWLINEWhenever Ma’Long deals combat damage to a player, draw a card, then add that much mana in any combination of U and R. Until end of turn, you don’t lose this mana as steps and phases end.NEWLINEInstant and sorcery cards in your hand have showcase. The showcase cost is equal to the card’s mana cost plus 2.	4/4		modal double faced	NJB	Boxue, Imperial Ally	UR	Legendary Planeswalker — Boxue 	UR	1UR			[+1]: Boxue deals 1 damage to each opponent. You may draw a card, then discard a card.NEWLINE[-1]: Create a Treasure token.NEWLINE[-5]: Copy the next spell you cast this turn. You may choose new targets for the copy. (A copied permanent spell becomes a token.)	"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

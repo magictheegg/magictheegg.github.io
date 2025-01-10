@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Rhapsody in Blue	U	mythic	Legendary Enchantment â€” Saga 	67	U	2UU			â€œThis world sings a rapturous melody, if youâ€™d only spend the time to listen.â€NEWLINEReturn all nonland permanents with mana value 2 or less to their ownerâ€™s hands.NEWLINEDraw two cards, then discard two cards.NEWLINEExile this enchantment, then return it to the battlefield transformed under your control.	transform double faced	KND	Fakadeh, the Symphonic God	U	Legendary Enchantment Creature â€” Bird God 	U		FlyingNEWLINEWhenever you cast a spell from your hand, you may exile a card from your graveyard with the same mana value and a different card type. If you do, cast a copy of the exiled card without paying its mana cost.NEWLINEWhen Fakadeh dies, return this card to its ownerâ€™s hand.	3/4		"));
+			document.getElementById("grid").appendChild(gridifyCard("Rhapsody in Blue	U	mythic	Legendary Enchantment — Saga 	67	U	2UU			“This world sings a rapturous melody, if you’d only spend the time to listen.”NEWLINEReturn all nonland permanents with mana value 2 or less to their owner’s hands.NEWLINEDraw two cards, then discard two cards.NEWLINEExile this enchantment, then return it to the battlefield transformed under your control.	transform double faced	KND	Fakadeh, the Symphonic God	U	Legendary Enchantment Creature — Bird God 	U		FlyingNEWLINEWhenever you cast a spell from your hand, you may exile a card from your graveyard with the same mana value and a different card type. If you do, cast a copy of the exiled card without paying its mana cost.NEWLINEWhen Fakadeh dies, return this card to its owner’s hand.	3/4		"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

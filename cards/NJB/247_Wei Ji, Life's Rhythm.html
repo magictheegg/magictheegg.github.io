@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Wei Ji, Life's Rhythm	BG	mythic	Legendary Planeswalker â€” Ji 	247	BG	2BG			[0]: Create a 2/2 green Panda Bear Monk creature token with â€œWhen this creature dies, put a loyalty counter on a Ji planeswalker you control.â€NEWLINE[-2]: Each player sacrifices a nonland permanent. You may return a nonland permanent card from your graveyard to your hand.NEWLINE[-6]: You get an emblem with â€œWhenever a permanent you control dies, you may search you library for a card that shares a type with that permanent and put it onto the battlefield, then shuffle.â€	planeswalker	NJB"));
+			document.getElementById("grid").appendChild(gridifyCard("Wei Ji, Life's Rhythm	BG	mythic	Legendary Planeswalker — Ji 	247	BG	2BG			[0]: Create a 2/2 green Panda Bear Monk creature token with “When this creature dies, put a loyalty counter on a Ji planeswalker you control.”NEWLINE[-2]: Each player sacrifices a nonland permanent. You may return a nonland permanent card from your graveyard to your hand.NEWLINE[-6]: You get an emblem with “Whenever a permanent you control dies, you may search you library for a card that shares a type with that permanent and put it onto the battlefield, then shuffle.”	planeswalker	NJB"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

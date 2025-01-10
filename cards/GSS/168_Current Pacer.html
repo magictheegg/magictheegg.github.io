@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Current Pacer	RG	rare	Creature â€” Merfolk Scout 	168	RG	1RG	Wayfarer (If youâ€™ve spent WUBRG this turn, discover Lâ€™Or.)NEWLINEWhen Current Pacer enters the battlefield, draw a card. You may play an additional land this turn.NEWLINE4RG: Shuffle, then exile the top two cards of your library. You may play them this turn. If youâ€™ve discovered Lâ€™Or, you may play them this turn without paying their mana costs.	3/2		normal	GSS"));
+			document.getElementById("grid").appendChild(gridifyCard("Current Pacer	RG	rare	Creature — Merfolk Scout 	168	RG	1RG	Wayfarer (If you’ve spent WUBRG this turn, discover L’Or.)NEWLINEWhen Current Pacer enters the battlefield, draw a card. You may play an additional land this turn.NEWLINE4RG: Shuffle, then exile the top two cards of your library. You may play them this turn. If you’ve discovered L’Or, you may play them this turn without paying their mana costs.	3/2		normal	GSS"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

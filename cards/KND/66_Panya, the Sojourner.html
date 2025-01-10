@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Panya, the Sojourner	U	mythic	Legendary Creature â€” Mouse Warrior 	66	U	U	Panya canâ€™t be blocked by creatures with power 3 or greater.NEWLINEAt the beginning of each end step, if you cast an instant or sorcery spell this turn, put a +1/+1 counter on Panya.	1/1		adventure	KND	Grand Odyssey	U	Sorcery â€” Tale 	U	2U	Exile the top three cards of your library. For as long as they are exiled, whenever a creature you control deals combat damage to a player, you may put one into your hand.			"));
+			document.getElementById("grid").appendChild(gridifyCard("Panya, the Sojourner	U	mythic	Legendary Creature — Mouse Warrior 	66	U	U	Panya can’t be blocked by creatures with power 3 or greater.NEWLINEAt the beginning of each end step, if you cast an instant or sorcery spell this turn, put a +1/+1 counter on Panya.	1/1		adventure	KND	Grand Odyssey	U	Sorcery — Tale 	U	2U	Exile the top three cards of your library. For as long as they are exiled, whenever a creature you control deals combat damage to a player, you may put one into your hand.			"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

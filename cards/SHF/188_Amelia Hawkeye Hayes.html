@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Amelia Hawkeye Hayes	WR	mythic	Legendary Creature â€” Human Mercenary 	188	WR	2RW	At the beginning of combat on your turn, arm target creature you control. If itâ€™s equipped twice, it gains indestructible until end of turn. (Create a colorless Equipment artifact token with â€œEquipped creature gets +1/+0â€ and equip 2 attached to it.)NEWLINEWhenever Amelia attacks, she deals damage to any target equal to the number of Equipments attached to attacking creatures you control. You gain that much life.	3/4		normal	SHF"));
+			document.getElementById("grid").appendChild(gridifyCard("Amelia Hawkeye Hayes	WR	mythic	Legendary Creature — Human Mercenary 	188	WR	2RW	At the beginning of combat on your turn, arm target creature you control. If it’s equipped twice, it gains indestructible until end of turn. (Create a colorless Equipment artifact token with “Equipped creature gets +1/+0” and equip 2 attached to it.)NEWLINEWhenever Amelia attacks, she deals damage to any target equal to the number of Equipments attached to attacking creatures you control. You gain that much life.	3/4		normal	SHF"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

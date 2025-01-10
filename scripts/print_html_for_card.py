@@ -4,7 +4,7 @@ import sys
 def generateHTML(code, card):
 	output_html_file = "cards/" + code + "/" + card.split('\t')[4] + "_" + card.split('\t')[0] + ".html"
 
-	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8-sig') as f:
+	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8') as f:
 		set_name = f.read()
 	
 	# Start creating the HTML file content

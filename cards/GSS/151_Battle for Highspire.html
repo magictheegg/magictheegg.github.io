@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Battle for Highspire	RG	uncommon	Battle â€” Conquest 	151	RG	RG	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When itâ€™s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Highspire enters the battlefield, exile the top three cards of your library. You may play one of them this turn, andNEWLINEyou may play an additional land this turn.			double faced	GSS	Skypiercer		Land	RG		T: Add R or G. When that mana is spent to cast a spell, reveal cards from the top of your library until you reveal a card that costs less. If itâ€™s a land, put it onto the battlefield tapped. Otherwise, you may cast it without paying its mana cost.			"));
+			document.getElementById("grid").appendChild(gridifyCard("Battle for Highspire	RG	uncommon	Battle — Conquest 	151	RG	RG	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it’s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Highspire enters the battlefield, exile the top three cards of your library. You may play one of them this turn, andNEWLINEyou may play an additional land this turn.			double faced	GSS	Skypiercer		Land	RG		T: Add R or G. When that mana is spent to cast a spell, reveal cards from the top of your library until you reveal a card that costs less. If it’s a land, put it onto the battlefield tapped. Otherwise, you may cast it without paying its mana cost.			"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;

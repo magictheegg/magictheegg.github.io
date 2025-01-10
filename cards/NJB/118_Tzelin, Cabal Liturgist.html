@@ -227,7 +227,7 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Tzelin, Cabal Liturgist	B	rare	Legendary Creature â€” Human Wizard 	118	B	B	Golden age (If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)NEWLINEWhenever a Demon enters the battlefield under your control, put a +1/+1 counter on Tzelin.NEWLINE2B, Sacrifice Tzelin: Each opponent loses life equal to Tzelinâ€™s power. If youâ€™re in a renaissance, draw that many cards.	1/2		normal	NJB"));
+			document.getElementById("grid").appendChild(gridifyCard("Tzelin, Cabal Liturgist	B	rare	Legendary Creature — Human Wizard 	118	B	B	Golden age (If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)NEWLINEWhenever a Demon enters the battlefield under your control, put a +1/+1 counter on Tzelin.NEWLINE2B, Sacrifice Tzelin: Each opponent loses life equal to Tzelin’s power. If you’re in a renaissance, draw that many cards.	1/2		normal	NJB"));
 		});
 
 		function isDecimal(char) {
@@ -300,7 +300,7 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -335,7 +335,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? 'Â Â Â Â Â ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
@@ -408,9 +408,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("â€”") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("â€”", "â€”</i>");
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
 				}
 
 				HTML += styled_effect;
