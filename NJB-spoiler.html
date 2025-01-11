@@ -1,650 +1,684 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">  
-    <link rel="icon" type="image/png" href="sets/NJB-files/icon.png"/>
-    <title>NJB visual spoiler</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overscroll-behavior: none;
-            background-image: url('sets/NJB-files/bg.png');
-            background-size: cover;
-            background-attachment: fixed;
-        }
-        .main-content {
-            position: relative;
-            width: 100%;
-            float: left;
-            z-index: 2;
-        }
-        .sidebar {
-            position: sticky;
-            top: 0;
-            display: none;
-            text-align: center;
-            padding-right: 2.5%;
-            z-index: 1;
-        }
-        .sidebar img {
-            vertical-align: middle;
-            max-width: 100%;
-            width: 30%;
-        }
-        .sidebar .btn {
-          background: url('img/close.png') no-repeat;
-          background-size: contain;
-          background-position: center;
-          width: 10%;
-          height: 10%;
-          border: none;
-          cursor: pointer;
-          position: absolute;
-          right: -1.5%;
-        }
-        .sidebar .btn:hover {
-          background: url('img/close-hover.png') no-repeat;
-          background-size: contain;
-          background-position: center;
-          width: 10%;
-          height: 10%;
-          border: none;
-          cursor: pointer;
-          position: absolute;
-          right: -1.5%;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            gap: 1px;
-            padding-left: 5%;
-            padding-right: 5%;
-            padding-bottom: 3%;
-            justify-items: center;
-        }
-        .grid-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            visibility: hidden;
-            cursor: pointer;
-        }
-        .banner {
-            width: 100%;
-            height: auto;
-            padding-top: 20px;
-            padding-bottom: 50px;
-        }
-        .logo {
-            display: block;
-            margin: auto;
-            max-width: 30%;
-            max-height: 320px;
-        }
-        .container {
-          position: relative;
-          width: 100%;
-        }
-        .container img {
-          width: 100%;
-          height: auto;
-        }
-        .container .btn {
-          background: url('img/flip.png') no-repeat;
-          background-size: contain;
-          background-position: center;
-          width: 15%;
-          height: 11%;
-          cursor: pointer;
-          border: none;
-          position: absolute;
-          top: 6.5%;
-          left: 8.5%;
-          transform: translate(-50%, -50%);
-        }
-        .container .btn:hover {
-          background: url('img/flip-hover.png') no-repeat;
-          background-size: contain;
-          background-position: center;
-          width: 15%;
-          height: 11%;
-          cursor: pointer;
-          border: none;
-          position: absolute;
-          top: 6.5%;
-          left: 8.5%;
-          transform: translate(-50%, -50%);
-        }
-        .icon-bar {
-            display: grid;
-            grid-template-columns: 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr 2fr 3fr;
-            gap: 1px;
-            padding-left: 5%;
-            padding-right: 5%;
-            padding-top: 2%;
-            padding-bottom: 1%;
-            justify-items: center;
-            align-items: center;
-        }
-        .icon-bar .icon img {
-            width: 90%;
-            height: auto;
-            display: block;
-            padding: 5%;
-            margin: auto;
-            text-align: center;
-        }
-        .icon-bar .dot img {
-            width: 50%;
-            height: auto;
-            display: block;
-            margin: auto;
-            text-align: center;
-        }
-        .preload-hidden {
-            display: none;
-        }
-        /* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
-        .footer {
-            clear: both;
-        }
-    </style>
+	<link rel="icon" type="image/png" href="sets/NJB-files/icon.png"/>
+	<link rel="stylesheet" href="/resources/header.css">
+	<title>NJB visual spoiler</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-image: url('sets/NJB-files/bg.png');
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 2.5%;
+			z-index: 1;
+		}
+		.sidebar img {
+			vertical-align: middle;
+			max-width: 375px;
+			width: 30%;
+		}
+		.sidebar .btn {
+		  background: url('img/close.png') no-repeat;
+		  background-size: contain;
+		  background-position: center;
+		  width: 10%;
+		  height: 10%;
+		  border: none;
+		  cursor: pointer;
+		  position: absolute;
+		  right: -1.5%;
+		}
+		.sidebar .btn:hover {
+		  background: url('img/close-hover.png') no-repeat;
+		  background-size: contain;
+		  background-position: center;
+		  border: none;
+		  cursor: pointer;
+		  position: absolute;
+		  right: -1.5%;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 3%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 20px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+		  position: relative;
+		  width: 100%;
+		}
+		.container img {
+		  width: 100%;
+		  height: auto;
+		}
+		.container .btn {
+		  background: url('img/flip.png') no-repeat;
+		  background-size: contain;
+		  background-position: center;
+		  width: 15%;
+		  height: 11%;
+		  cursor: pointer;
+		  border: none;
+		  position: absolute;
+		  top: 6.5%;
+		  left: 8.5%;
+		  transform: translate(-50%, -50%);
+		}
+		.container .btn:hover {
+		  background: url('img/flip-hover.png') no-repeat;
+		  background-size: contain;
+		  background-position: center;
+		  width: 15%;
+		  height: 11%;
+		  cursor: pointer;
+		  border: none;
+		  position: absolute;
+		  top: 6.5%;
+		  left: 8.5%;
+		  transform: translate(-50%, -50%);
+		}
+		.icon-bar {
+			display: grid;
+			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
+			gap: 1px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 2%;
+			padding-bottom: 1%;
+			justify-items: center;
+			align-items: center;
+		}
+		.icon-bar .icon img {
+			width: 90%;
+			max-width: 80px;
+			height: auto;
+			display: block;
+			padding: 5%;
+			margin: auto;
+			text-align: center;
+		}
+		.icon-bar .dot img {
+			width: 50%;
+			max-width: 65px;
+			height: auto;
+			display: block;
+			margin: auto;
+			text-align: center;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
 </head>
 <body>
-    <img class="preload-hidden" src="/img/dot.png" />
-    <img class="preload-hidden" src="/sets/NJB-files/logo.png" />
-    <img class="preload-hidden" src="/sets/GSM-files/icon.png" />
-        <img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-        <img class="preload-hidden" src="/sets/KND-files/icon.png" />
-        <img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-        <img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-        
-    <img class="preload-hidden" id="bg" src="/sets/NJB-files/bg.png" />
-    <div class="icon-bar">
-           <div class="dot"><img src="img/dot.png"></img></div>
-      <div class="icon"><a href="GSS-spoiler.html"><img src="sets/GSS-files/icon.png"></img></a></div>
-       <div class="dot"><img src="img/dot.png"></img></div>
-      <div class="icon"><a href="KND-spoiler.html"><img src="sets/KND-files/icon.png"></img></a></div>
-       <div class="dot"><img src="img/dot.png"></img></div>
-      <div class="icon"><a href="NJB-spoiler.html"><img src="sets/NJB-files/icon.png"></img></a></div>
-       <div class="dot"><img src="img/dot.png"></img></div>
-      <div class="icon"><a href="SHF-spoiler.html"><img src="sets/SHF-files/icon.png"></img></a></div>
+	<img class="preload-hidden" src="/img/dot.png" />
+	<img class="preload-hidden" src="/sets/NJB-files/logo.png" />
+	<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
+		
+	<img class="preload-hidden" id="bg" src="/sets/NJB-files/bg.png" />
 
-        </div>
-        <div class="banner">
-        <img class="logo" src="sets/NJB-files/logo.png">
-        </div>
-        <div class="main-content" id="main-content">
-            <div class="grid-container">
-              <div class="container"><img alt="sets\NJB-files\img\20_Heping, Grand Pacifist.png" id="20" data-flag="@X" onclick="openSidebar('20')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\57_Ing'Wei, Azure Empress.png" id="57" data-flag="@X" onclick="openSidebar('57')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\92_Forbidden Shiangshi Arts.png" id="92" data-flag="@X" onclick="openSidebar('92')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\134_Entropic Inferno.png" id="134" data-flag="@X" onclick="openSidebar('134')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\178_Foster the Future.png" id="178" data-flag="@X" onclick="openSidebar('178')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\24_Lijing, the Great Partisan.png" id="24" data-flag="@X" onclick="openSidebar('24')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\66_Panya, Who Dares to Dream.png" id="66" data-flag="@X" onclick="openSidebar('66')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\100_Lizhao, Last Breath of the Yenzu.png" id="100" data-flag="@X" onclick="openSidebar('100')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\143_Hao'Tai, the Reverent.png" id="143" data-flag="@X" onclick="openSidebar('143')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\191_Qiyan, Great Progenitor.png" id="191" data-flag="@X" onclick="openSidebar('191')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\6_Cai Lan, the Puppeteer.png" id="6" data-flag="@X" onclick="openSidebar('6')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\51_Elder Soothsayer Chian.png" id="51" data-flag="@X" onclick="openSidebar('51')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\86_Birth of the Yaozu.png" id="86" data-flag="@X" onclick="openSidebar('86')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\124_The Art of War.png" id="124" data-flag="@X" onclick="openSidebar('124')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\169_Chiu, Hand of the Pack.png" id="169" data-flag="@X" onclick="openSidebar('169')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\9_Chronicles of the Kitsune.png" id="9" data-flag="@X" onclick="openSidebar('9')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\59_Juyu Offering Pool.png" id="59" data-flag="@X" onclick="openSidebar('59')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\87_The Blood Sun Sets.png" id="87" data-flag="@X" onclick="openSidebar('87')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\132_Dragon Emperor's Chariot.png" id="132" data-flag="@X" onclick="openSidebar('132')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\173_Da'Lang, Timberheart.png" id="173" data-flag="@X" onclick="openSidebar('173')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\10_Diao of the Opal Infantry.png" id="10" data-flag="@X" onclick="openSidebar('10')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\61_Kan'Gi, High Tactician.png" id="61" data-flag="@X" onclick="openSidebar('61')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\96_Ha'Eng, Profane Scribe.png" id="96" data-flag="@X" onclick="openSidebar('96')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\133_Elder General Hatsuo.png" id="133" data-flag="@X" onclick="openSidebar('133')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\183_Heyu, Depthlurker.png" id="183" data-flag="@X" onclick="openSidebar('183')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\16_Gao'Wu, Humble Sibyl.png" id="16" data-flag="@X" onclick="openSidebar('16')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\65_Oshin, Reef Warden.png" id="65" data-flag="@X" onclick="openSidebar('65')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\97_Kai'Jun, the Eradicator.png" id="97" data-flag="@X" onclick="openSidebar('97')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\146_Jiu, Daughter of the Sun.png" id="146" data-flag="@X" onclick="openSidebar('146')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\185_Jindao, the World Eye.png" id="185" data-flag="@X" onclick="openSidebar('185')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\18_The Great War Ends.png" id="18" data-flag="@X" onclick="openSidebar('18')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\67_Papier-Mâché Marvel.png" id="67" data-flag="@X" onclick="openSidebar('67')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\98_Kai'Long, the Call of the Dark.png" id="98" data-flag="@X" onclick="openSidebar('98')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\147_Judgment of Hao'Tai.png" id="147" data-flag="@X" onclick="openSidebar('147')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\193_Savage Convergence.png" id="193" data-flag="@X" onclick="openSidebar('193')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\22_Kiri, Corporeal Conduit.png" id="22" data-flag="@X" onclick="openSidebar('22')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\76_Shuilong Technique.png" id="76" data-flag="@X" onclick="openSidebar('76')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\99_Kai'Zhou, the Purifier.png" id="99" data-flag="@X" onclick="openSidebar('99')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\150_Mieng of the Pyre Waltz.png" id="150" data-flag="@X" onclick="openSidebar('150')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\198_Till the Queen's Gardens.png" id="198" data-flag="@X" onclick="openSidebar('198')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\25_Li's Moonblades.png" id="25" data-flag="@X" onclick="openSidebar('25')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\78_Sun Yun, Master of Man.png" id="78" data-flag="@X" onclick="openSidebar('78')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\118_Tzelin, Cabal Liturgist.png" id="118" data-flag="@X" onclick="openSidebar('118')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\151_Nichang Yuyi.png" id="151" data-flag="@X" onclick="openSidebar('151')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\204_Wildlife Sketches.png" id="204" data-flag="@X" onclick="openSidebar('204')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\41_Yujei, Zephyr Melodist.png" id="41" data-flag="@X" onclick="openSidebar('41')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\80_Ushi Yun, the Curator.png" id="80" data-flag="@X" onclick="openSidebar('80')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\121_Xie'e Amphitheatre.png" id="121" data-flag="@X" onclick="openSidebar('121')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\161_Tseng, the Shooting Star.png" id="161" data-flag="@X" onclick="openSidebar('161')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\205_Xiejuan and Hao Lu.png" id="205" data-flag="@X" onclick="openSidebar('205')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\1_Adept Lieutenant.png" id="1" data-flag="@X" onclick="openSidebar('1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\43_Aftermath of the Surge.png" id="43" data-flag="@X" onclick="openSidebar('43')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\84_Bandit's Dagger.png" id="84" data-flag="@X" onclick="openSidebar('84')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\125_Baptism by Fire.png" id="125" data-flag="@X" onclick="openSidebar('125')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\168_Chaparral Hunter.png" id="168" data-flag="@X" onclick="openSidebar('168')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\7_Chamber of Penance.png" id="7" data-flag="@X" onclick="openSidebar('7')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\46_Bian Lian Opera.png" id="46" data-flag="@X" onclick="openSidebar('46')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\88_Consign to Old Diyu.png" id="88" data-flag="@X" onclick="openSidebar('88')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\126_Bonk.png" id="126" data-flag="@X" onclick="openSidebar('126')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\177_Forerunner of the Briar.png" id="177" data-flag="@X" onclick="openSidebar('177')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\8_Chiseled Familiar.png" id="8" data-flag="@X" onclick="openSidebar('8')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\47_Budding Couturier.png" id="47" data-flag="@X" onclick="openSidebar('47')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\89_Demon of Hubris.png" id="89" data-flag="@X" onclick="openSidebar('89')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\131_Draconic Cinderlance.png" id="131" data-flag="@X" onclick="openSidebar('131')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\187_Lu'She Temple Customs.png" id="187" data-flag="@X" onclick="openSidebar('187')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\12_Fox of a Glistening Glen.png" id="12" data-flag="@X" onclick="openSidebar('12')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\48_Cerulean Sovereign.png" id="48" data-flag="@X" onclick="openSidebar('48')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\91_Eaveshoppers.png" id="91" data-flag="@X" onclick="openSidebar('91')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\136_Fervid Dragonheart.png" id="136" data-flag="@X" onclick="openSidebar('136')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\190_Pack Savagery.png" id="190" data-flag="@X" onclick="openSidebar('190')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\14_Fox of a Radiant Meadow.png" id="14" data-flag="@X" onclick="openSidebar('14')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\56_Hydrolyze.png" id="56" data-flag="@X" onclick="openSidebar('56')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\95_Grotesque Defiler.png" id="95" data-flag="@X" onclick="openSidebar('95')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\137_Filigree Fan Dance.png" id="137" data-flag="@X" onclick="openSidebar('137')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\192_Rampaging Xiangshe.png" id="192" data-flag="@X" onclick="openSidebar('192')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\17_Glorious Wingwright.png" id="17" data-flag="@X" onclick="openSidebar('17')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\63_Lunar Shachuan.png" id="63" data-flag="@X" onclick="openSidebar('63')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\102_Mercenary of the Folded Fan.png" id="102" data-flag="@X" onclick="openSidebar('102')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\139_For the Court of the Queen.png" id="139" data-flag="@X" onclick="openSidebar('139')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\194_Spawn of Qiyan.png" id="194" data-flag="@X" onclick="openSidebar('194')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\21_Heping's Acolyte.png" id="21" data-flag="@X" onclick="openSidebar('21')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\64_Nonpareil of the Abyss.png" id="64" data-flag="@X" onclick="openSidebar('64')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\105_Sable Evangelist.png" id="105" data-flag="@X" onclick="openSidebar('105')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\142_Frisky Denmates.png" id="142" data-flag="@X" onclick="openSidebar('142')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\195_Spirited Florist.png" id="195" data-flag="@X" onclick="openSidebar('195')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\23_Leave the Den.png" id="23" data-flag="@X" onclick="openSidebar('23')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\69_Pon's Apprentice.png" id="69" data-flag="@X" onclick="openSidebar('69')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\110_Shifu of Xiangyin Temple.png" id="110" data-flag="@X" onclick="openSidebar('110')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\148_Keen Redtail.png" id="148" data-flag="@X" onclick="openSidebar('148')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\197_Thriving Viper.png" id="197" data-flag="@X" onclick="openSidebar('197')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\30_The People's Anthem.png" id="30" data-flag="@X" onclick="openSidebar('30')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\72_Reflecting Pool Drifter.png" id="72" data-flag="@X" onclick="openSidebar('72')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\111_Skirmish Scars.png" id="111" data-flag="@X" onclick="openSidebar('111')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\154_Pup of a Marigold Burrow.png" id="154" data-flag="@X" onclick="openSidebar('154')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\199_Timberland Hymn.png" id="199" data-flag="@X" onclick="openSidebar('199')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\31_Pious Flutist.png" id="31" data-flag="@X" onclick="openSidebar('31')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\74_Sage of the Jade Baton.png" id="74" data-flag="@X" onclick="openSidebar('74')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\112_Soul Engulfer.png" id="112" data-flag="@X" onclick="openSidebar('112')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\155_Rapacious Regent.png" id="155" data-flag="@X" onclick="openSidebar('155')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\200_Vassal of the Wild.png" id="200" data-flag="@X" onclick="openSidebar('200')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\32_Red-Crowned Admiral.png" id="32" data-flag="@X" onclick="openSidebar('32')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\77_Stand in Opposition.png" id="77" data-flag="@X" onclick="openSidebar('77')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\120_Whispers of the Dead.png" id="120" data-flag="@X" onclick="openSidebar('120')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\156_Scholar of the Staff.png" id="156" data-flag="@X" onclick="openSidebar('156')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\201_Verdant Druid.png" id="201" data-flag="@X" onclick="openSidebar('201')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\35_Seal the Gateway.png" id="35" data-flag="@X" onclick="openSidebar('35')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\79_Trawl the Annals.png" id="79" data-flag="@X" onclick="openSidebar('79')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\123_Yenzu Melodrama.png" id="123" data-flag="@X" onclick="openSidebar('123')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\163_Vulpine Verse.png" id="163" data-flag="@X" onclick="openSidebar('163')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\203_Viridian Townships.png" id="203" data-flag="@X" onclick="openSidebar('203')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\2_Aerie Aria.png" id="2" data-flag="@X" onclick="openSidebar('2')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\42_Abandon the Past.png" id="42" data-flag="@X" onclick="openSidebar('42')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\83_Arrogant Orator.png" id="83" data-flag="@X" onclick="openSidebar('83')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\127_Burning of Xiangyin Temple.png" id="127" data-flag="@X" onclick="openSidebar('127')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\165_Adventurous Impulse.png" id="165" data-flag="@X" onclick="openSidebar('165')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\3_Apogee Cranes.png" id="3" data-flag="@X" onclick="openSidebar('3')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\44_Air of Vernal Tidings.png" id="44" data-flag="@X" onclick="openSidebar('44')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\85_Bearer of Vile Incense.png" id="85" data-flag="@X" onclick="openSidebar('85')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\128_Ceremonial Jian.png" id="128" data-flag="@X" onclick="openSidebar('128')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\166_Bastion Ranger.png" id="166" data-flag="@X" onclick="openSidebar('166')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\4_Apostle of the Elders.png" id="4" data-flag="@X" onclick="openSidebar('4')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\45_Ballad of the Forgotten.png" id="45" data-flag="@X" onclick="openSidebar('45')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\90_Dirge of the Damned.png" id="90" data-flag="@X" onclick="openSidebar('90')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\129_Char Brewer.png" id="129" data-flag="@X" onclick="openSidebar('129')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\167_Called Shot.png" id="167" data-flag="@X" onclick="openSidebar('167')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\5_Armament Exhibition.png" id="5" data-flag="@X" onclick="openSidebar('5')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\49_Dare to Dream.png" id="49" data-flag="@X" onclick="openSidebar('49')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\93_Gilded Sell-Sword.png" id="93" data-flag="@X" onclick="openSidebar('93')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\130_Dazzling Duelist.png" id="130" data-flag="@X" onclick="openSidebar('130')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\170_Chords of Conflict.png" id="170" data-flag="@X" onclick="openSidebar('170')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\11_Festival Celebrants.png" id="11" data-flag="@X" onclick="openSidebar('11')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\50_Dewdrop Oracle.png" id="50" data-flag="@X" onclick="openSidebar('50')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\94_Grim Bounty.png" id="94" data-flag="@X" onclick="openSidebar('94')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\135_Expedite.png" id="135" data-flag="@X" onclick="openSidebar('135')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\171_Cohorts of the Grove.png" id="171" data-flag="@X" onclick="openSidebar('171')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\13_Fox of a New Era.png" id="13" data-flag="@X" onclick="openSidebar('13')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\52_Erratic Visionary.png" id="52" data-flag="@X" onclick="openSidebar('52')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\101_Lizhao's Soulblade.png" id="101" data-flag="@X" onclick="openSidebar('101')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\138_Flame Juggler.png" id="138" data-flag="@X" onclick="openSidebar('138')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\172_Crooning Eulogist.png" id="172" data-flag="@X" onclick="openSidebar('172')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\15_Fox of an Amber Dawn.png" id="15" data-flag="@X" onclick="openSidebar('15')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\53_Festival Decorator.png" id="53" data-flag="@X" onclick="openSidebar('53')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\103_Nightblade Umbra.png" id="103" data-flag="@X" onclick="openSidebar('103')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\140_Fox of the Juniper Vale.png" id="140" data-flag="@X" onclick="openSidebar('140')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\174_Descendant of Shimaru.png" id="174" data-flag="@X" onclick="openSidebar('174')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\19_Guzheng Instructor.png" id="19" data-flag="@X" onclick="openSidebar('19')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\54_Harmony of Blossoms.png" id="54" data-flag="@X" onclick="openSidebar('54')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\104_Restless Oppressor.png" id="104" data-flag="@X" onclick="openSidebar('104')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\141_Fox of the River Run.png" id="141" data-flag="@X" onclick="openSidebar('141')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\175_Edgeland Savant.png" id="175" data-flag="@X" onclick="openSidebar('175')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\26_Lunar Flock.png" id="26" data-flag="@X" onclick="openSidebar('26')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\55_Horizon Glider.png" id="55" data-flag="@X" onclick="openSidebar('55')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\106_Sanguine Muralist.png" id="106" data-flag="@X" onclick="openSidebar('106')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\144_Herald of the Dragon Army.png" id="144" data-flag="@X" onclick="openSidebar('144')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\176_Exquisite Slash.png" id="176" data-flag="@X" onclick="openSidebar('176')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\27_Ornate Legionnaire.png" id="27" data-flag="@X" onclick="openSidebar('27')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\58_Ing'Wei's Admonition.png" id="58" data-flag="@X" onclick="openSidebar('58')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\107_Scar Tattooist.png" id="107" data-flag="@X" onclick="openSidebar('107')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\145_Jeering Kit.png" id="145" data-flag="@X" onclick="openSidebar('145')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\179_Gashing Panther.png" id="179" data-flag="@X" onclick="openSidebar('179')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\28_Outcast of the Folded Fan.png" id="28" data-flag="@X" onclick="openSidebar('28')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\60_Kaleidoscale Drake.png" id="60" data-flag="@X" onclick="openSidebar('60')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\108_Scatter Memories as Ashes.png" id="108" data-flag="@X" onclick="openSidebar('108')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\149_Kuoshu Martial Arts.png" id="149" data-flag="@X" onclick="openSidebar('149')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\180_Harmonic Recruit.png" id="180" data-flag="@X" onclick="openSidebar('180')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\29_Pacifism.png" id="29" data-flag="@X" onclick="openSidebar('29')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\62_Lamplight Tender.png" id="62" data-flag="@X" onclick="openSidebar('62')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\109_Serum Peddler.png" id="109" data-flag="@X" onclick="openSidebar('109')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\152_Ode to the Red Wind.png" id="152" data-flag="@X" onclick="openSidebar('152')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\181_Herbal Remedy.png" id="181" data-flag="@X" onclick="openSidebar('181')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\33_Roadside Performer.png" id="33" data-flag="@X" onclick="openSidebar('33')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\68_Parasol Twirler.png" id="68" data-flag="@X" onclick="openSidebar('68')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\113_Spear Flourish.png" id="113" data-flag="@X" onclick="openSidebar('113')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\153_One Last Dance.png" id="153" data-flag="@X" onclick="openSidebar('153')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\182_Hero's Journey.png" id="182" data-flag="@X" onclick="openSidebar('182')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\34_Russet Denmother.png" id="34" data-flag="@X" onclick="openSidebar('34')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\70_Prince Crab.png" id="70" data-flag="@X" onclick="openSidebar('70')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\114_Theatre of Cruelty.png" id="114" data-flag="@X" onclick="openSidebar('114')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\157_Scorching Dragonfire.png" id="157" data-flag="@X" onclick="openSidebar('157')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\184_Jadeplate Armor.png" id="184" data-flag="@X" onclick="openSidebar('184')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\36_Sheersilk Robes.png" id="36" data-flag="@X" onclick="openSidebar('36')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\71_Read the Tides.png" id="71" data-flag="@X" onclick="openSidebar('71')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\115_Traveler's Trial.png" id="115" data-flag="@X" onclick="openSidebar('115')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\158_Scourge of the Sun.png" id="158" data-flag="@X" onclick="openSidebar('158')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\186_Journeying Packmaster.png" id="186" data-flag="@X" onclick="openSidebar('186')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\37_Sponsor of the Folded Fan.png" id="37" data-flag="@X" onclick="openSidebar('37')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\73_Rest and Relaxation.png" id="73" data-flag="@X" onclick="openSidebar('73')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\116_Tree of Tragedies.png" id="116" data-flag="@X" onclick="openSidebar('116')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\159_Slapdash Matrimony.png" id="159" data-flag="@X" onclick="openSidebar('159')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\188_Mighty Xioshu.png" id="188" data-flag="@X" onclick="openSidebar('188')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\38_Sword Dance.png" id="38" data-flag="@X" onclick="openSidebar('38')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\75_Scribe of the Sky Scrolls.png" id="75" data-flag="@X" onclick="openSidebar('75')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\117_Trophy Collector.png" id="117" data-flag="@X" onclick="openSidebar('117')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\160_Stroke of Fortune.png" id="160" data-flag="@X" onclick="openSidebar('160')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\189_Mischievous Maolu.png" id="189" data-flag="@X" onclick="openSidebar('189')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\39_Tale of Tranquility.png" id="39" data-flag="@X" onclick="openSidebar('39')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\81_Wealth of the Flood.png" id="81" data-flag="@X" onclick="openSidebar('81')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\119_Visit from Aunti.png" id="119" data-flag="@X" onclick="openSidebar('119')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\162_Violent Devotion.png" id="162" data-flag="@X" onclick="openSidebar('162')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\196_Suitor of the Glade.png" id="196" data-flag="@X" onclick="openSidebar('196')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\40_Walk the Ancestral Path.png" id="40" data-flag="@X" onclick="openSidebar('40')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\82_Yenzu Puppeteering.png" id="82" data-flag="@X" onclick="openSidebar('82')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\122_Yenzu Disciple.png" id="122" data-flag="@X" onclick="openSidebar('122')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\164_Warlord of Wun Su.png" id="164" data-flag="@X" onclick="openSidebar('164')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\202_Vinehorn Stag.png" id="202" data-flag="@X" onclick="openSidebar('202')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\246_Wang Xi, Wishes on the Wind.png" id="246" data-flag="@X" onclick="openSidebar('246')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\225_Kiyoko of the Silver Mist.png" id="225" data-flag="@X" onclick="openSidebar('225')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\244_Swiftblade Ren.png" id="244" data-flag="@X" onclick="openSidebar('244')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\208_Autumn Symphony.png" id="208" data-flag="@X" onclick="openSidebar('208')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\221_Hang Up Your Lanterns.png" id="221" data-flag="@X" onclick="openSidebar('221')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\234_Painting Dolls.png" id="234" data-flag="@X" onclick="openSidebar('234')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\227_Lin, the Opportunist.png" id="227" data-flag="@X" onclick="openSidebar('227')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\250_Xihuo, the Onyx Flame.png" id="250" data-flag="@X" onclick="openSidebar('250')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\232_Old Lord Xiusheng.png" id="232" data-flag="@X" onclick="openSidebar('232')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\209_Bai of the Royal Gardens.png" id="209" data-flag="@X" onclick="openSidebar('209')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\219_Gemscale Drake.png" id="219" data-flag="@X" onclick="openSidebar('219')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\235_Path of the Outsider.png" id="235" data-flag="@X" onclick="openSidebar('235')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\206_Altar of Twisted Piety.png" id="206" data-flag="@X" onclick="openSidebar('206')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\211_Celebrations of Ferocity.png" id="211" data-flag="@X" onclick="openSidebar('211')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\207_Ascetic of the Folded Fan.png" id="207" data-flag="@X" onclick="openSidebar('207')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\245_Those Lost to the Waves.png" id="245" data-flag="@X" onclick="openSidebar('245')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\253_Yenzu Nightblade.png" id="253" data-flag="@X" onclick="openSidebar('253')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\210_Blackblood Feaster.png" id="210" data-flag="@X" onclick="openSidebar('210')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\248_Wilderkin Zealot.png" id="248" data-flag="@X" onclick="openSidebar('248')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\224_Kanghyae Forum.png" id="224" data-flag="@X" onclick="openSidebar('224')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\255_Zou Meili, Cruel Justice.png" id="255" data-flag="@X" onclick="openSidebar('255')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\247_Wei Ji, Life's Rhythm.png" id="247" data-flag="@X" onclick="openSidebar('247')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\220_Gui, the Brinebearer.png" id="220" data-flag="@X" onclick="openSidebar('220')"></div>
-          <div class="container"><img data-alt_src="sets\NJB-files\img\228_Ma'Long, the Skystorm_back.png" alt="sets\NJB-files\img\228_Ma'Long, the Skystorm_front.png" id="228" data-flag="@XD" onclick="openSidebar(228)"><button class="btn" onclick="imgFlip(228)"></button></div>
-          <div class="container"><img alt="sets\NJB-files\img\240_Seto San, Divine Heroine.png" id="240" data-flag="@X" onclick="openSidebar('240')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\252_Yenzu Blood Pact.png" id="252" data-flag="@X" onclick="openSidebar('252')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\239_Ruchong Awakening.png" id="239" data-flag="@X" onclick="openSidebar('239')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\242_Shigurei, Vassal of the Depths.png" id="242" data-flag="@X" onclick="openSidebar('242')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\214_Dance of Dragons.png" id="214" data-flag="@X" onclick="openSidebar('214')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\237_Qulai, Orchard Shepherd.png" id="237" data-flag="@X" onclick="openSidebar('237')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\222_Imperious Aristocrat.png" id="222" data-flag="@X" onclick="openSidebar('222')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\216_Fables of the Ill-Fated.png" id="216" data-flag="@X" onclick="openSidebar('216')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\226_Lady of the Nymphaeas.png" id="226" data-flag="@X" onclick="openSidebar('226')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\238_The Royal Vignettes.png" id="238" data-flag="@X" onclick="openSidebar('238')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\218_Fox of a Brisk Autumn.png" id="218" data-flag="@X" onclick="openSidebar('218')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\229_Memorial Plaza.png" id="229" data-flag="@X" onclick="openSidebar('229')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\230_Mire Sculptor.png" id="230" data-flag="@X" onclick="openSidebar('230')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\236_Peacetime Murals.png" id="236" data-flag="@X" onclick="openSidebar('236')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\243_Song of Wind and Fire.png" id="243" data-flag="@X" onclick="openSidebar('243')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\241_Seto's Private Collection.png" id="241" data-flag="@X" onclick="openSidebar('241')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\212_Cheng, Wild Tyrant.png" id="212" data-flag="@X" onclick="openSidebar('212')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\213_Cou Ling of the Lunar Den.png" id="213" data-flag="@X" onclick="openSidebar('213')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\215_Emperor Dan Te Mogui.png" id="215" data-flag="@X" onclick="openSidebar('215')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\217_Fang Luo, the Astral Tide.png" id="217" data-flag="@X" onclick="openSidebar('217')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\223_Kai'Oro, Grave Betrayer.png" id="223" data-flag="@X" onclick="openSidebar('223')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\231_The Mythical Zhiwu.png" id="231" data-flag="@X" onclick="openSidebar('231')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\233_Oshu of the Bosk.png" id="233" data-flag="@X" onclick="openSidebar('233')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\249_Wun Su, War's Muse.png" id="249" data-flag="@X" onclick="openSidebar('249')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\251_Ya'Ling, the Rune-Drake.png" id="251" data-flag="@X" onclick="openSidebar('251')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\254_Zihao, Song of the Glade.png" id="254" data-flag="@X" onclick="openSidebar('254')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\257_Duan's Aeriform Ribbons.png" id="257" data-flag="@X" onclick="openSidebar('257')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\262_Xueyang San.png" id="262" data-flag="@X" onclick="openSidebar('262')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\256_Dignitary's Rickshaw.png" id="256" data-flag="@X" onclick="openSidebar('256')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\258_Effigy of Ivory Fire.png" id="258" data-flag="@X" onclick="openSidebar('258')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\259_Ornamental Longbow.png" id="259" data-flag="@X" onclick="openSidebar('259')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\260_Processional Junk.png" id="260" data-flag="@X" onclick="openSidebar('260')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\261_Prophetic Prismite.png" id="261" data-flag="@X" onclick="openSidebar('261')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\263_Yenzu Ritual Vessel.png" id="263" data-flag="@X" onclick="openSidebar('263')"></div>
-          <div class="container"><img alt="img\e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\275_Tranquil Cove.png" id="275" data-flag="@X" onclick="openSidebar('275')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\266_Dismal Backwater.png" id="266" data-flag="@X" onclick="openSidebar('266')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\264_Bloodfell Caves.png" id="264" data-flag="@X" onclick="openSidebar('264')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\270_Rugged Highlands.png" id="270" data-flag="@X" onclick="openSidebar('270')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\265_Blossoming Sands.png" id="265" data-flag="@X" onclick="openSidebar('265')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\271_Scoured Barrens.png" id="271" data-flag="@X" onclick="openSidebar('271')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\268_Jungle Hollow.png" id="268" data-flag="@X" onclick="openSidebar('268')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\274_Thornwood Falls.png" id="274" data-flag="@X" onclick="openSidebar('274')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\273_Swiftwater Cliffs.png" id="273" data-flag="@X" onclick="openSidebar('273')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\277_Wind-Scarred Crag.png" id="277" data-flag="@X" onclick="openSidebar('277')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\269_The Orange Orchard.png" id="269" data-flag="@X" onclick="openSidebar('269')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\272_Shrine of Elder Lords.png" id="272" data-flag="@X" onclick="openSidebar('272')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\267_Festival Centrum.png" id="267" data-flag="@X" onclick="openSidebar('267')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\276_Warped Landscape.png" id="276" data-flag="@X" onclick="openSidebar('276')"></div>
-          <div class="container"><img alt="img\e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\278_Plains.png" id="278" data-flag="@X" onclick="openSidebar('278')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\282_Island.png" id="282" data-flag="@X" onclick="openSidebar('282')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\286_Swamp.png" id="286" data-flag="@X" onclick="openSidebar('286')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\290_Mountain.png" id="290" data-flag="@X" onclick="openSidebar('290')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\294_Forest.png" id="294" data-flag="@X" onclick="openSidebar('294')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\279_Plains.png" id="279" data-flag="@X" onclick="openSidebar('279')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\283_Island.png" id="283" data-flag="@X" onclick="openSidebar('283')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\287_Swamp.png" id="287" data-flag="@X" onclick="openSidebar('287')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\291_Mountain.png" id="291" data-flag="@X" onclick="openSidebar('291')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\295_Forest.png" id="295" data-flag="@X" onclick="openSidebar('295')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\280_Plains.png" id="280" data-flag="@X" onclick="openSidebar('280')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\284_Island.png" id="284" data-flag="@X" onclick="openSidebar('284')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\288_Swamp.png" id="288" data-flag="@X" onclick="openSidebar('288')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\292_Mountain.png" id="292" data-flag="@X" onclick="openSidebar('292')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\296_Forest.png" id="296" data-flag="@X" onclick="openSidebar('296')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\281_Plains.png" id="281" data-flag="@X" onclick="openSidebar('281')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\285_Island.png" id="285" data-flag="@X" onclick="openSidebar('285')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\289_Swamp.png" id="289" data-flag="@X" onclick="openSidebar('289')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\293_Mountain.png" id="293" data-flag="@X" onclick="openSidebar('293')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\297_Forest.png" id="297" data-flag="@X" onclick="openSidebar('297')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\1t_Spirit.png" id="1t" data-flag="@X" onclick="openSidebar('1t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\2t_Bird.png" id="2t" data-flag="@X" onclick="openSidebar('2t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\3t_Hu Li.png" id="3t" data-flag="@X" onclick="openSidebar('3t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\4t_Warrior.png" id="4t" data-flag="@X" onclick="openSidebar('4t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\5t_Drake.png" id="5t" data-flag="@X" onclick="openSidebar('5t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\6t_Kraken.png" id="6t" data-flag="@X" onclick="openSidebar('6t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\7t_Cultist.png" id="7t" data-flag="@X" onclick="openSidebar('7t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\8t_Demon.png" id="8t" data-flag="@X" onclick="openSidebar('8t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\9t_Bard.png" id="9t" data-flag="@X" onclick="openSidebar('9t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\10t_Dragon.png" id="10t" data-flag="@X" onclick="openSidebar('10t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\11t_Panda.png" id="11t" data-flag="@X" onclick="openSidebar('11t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\12t_Beast.png" id="12t" data-flag="@X" onclick="openSidebar('12t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\13t_Hydra.png" id="13t" data-flag="@X" onclick="openSidebar('13t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\14t_Panda Bear Monk.png" id="14t" data-flag="@X" onclick="openSidebar('14t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\15t_Plant.png" id="15t" data-flag="@X" onclick="openSidebar('15t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\16t_Shimaru, the Unfading.png" id="16t" data-flag="@X" onclick="openSidebar('16t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\17t_Wurm.png" id="17t" data-flag="@X" onclick="openSidebar('17t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\18t_Fox.png" id="18t" data-flag="@X" onclick="openSidebar('18t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\19t_Idol.png" id="19t" data-flag="@X" onclick="openSidebar('19t')"></div>
-          <div class="container"><img alt="sets\NJB-files\img\20t_Treasure.png" id="20t" data-flag="@X" onclick="openSidebar('20t')"></div>
-    </div>
+	<div class="header">
+		<div class="search-grid">
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+		</div>
+	</div>
+
+	<div class="icon-bar">
+		  <div class="icon"><a href="GSS-spoiler"><img src="sets/GSS-files/icon.png"></img></a></div>
+	   <div class="dot"><img src="img/dot.png"></img></div>
+	  <div class="icon"><a href="KND-spoiler"><img src="sets/KND-files/icon.png"></img></a></div>
+	   <div class="dot"><img src="img/dot.png"></img></div>
+	  <div class="icon"><a href="NJB-spoiler"><img src="sets/NJB-files/icon.png"></img></a></div>
+	   <div class="dot"><img src="img/dot.png"></img></div>
+	  <div class="icon"><a href="SHF-spoiler"><img src="sets/SHF-files/icon.png"></img></a></div>
+
+		</div>
+		<div class="banner">
+		<img class="logo" src="sets/NJB-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+			  <div class="container"><img alt="sets\NJB-files\img\20_Heping, Grand Pacifist.png" id="20" data-flag="@X" onclick="openSidebar('20')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\57_Ing'Wei, Azure Empress.png" id="57" data-flag="@X" onclick="openSidebar('57')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\92_Forbidden Shiangshi Arts.png" id="92" data-flag="@X" onclick="openSidebar('92')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\134_Entropic Inferno.png" id="134" data-flag="@X" onclick="openSidebar('134')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\178_Foster the Future.png" id="178" data-flag="@X" onclick="openSidebar('178')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\24_Lijing, the Great Partisan.png" id="24" data-flag="@X" onclick="openSidebar('24')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\66_Panya, Who Dares to Dream.png" id="66" data-flag="@X" onclick="openSidebar('66')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\100_Lizhao, Last Breath of the Yenzu.png" id="100" data-flag="@X" onclick="openSidebar('100')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\143_Hao'Tai, the Reverent.png" id="143" data-flag="@X" onclick="openSidebar('143')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\191_Qiyan, Great Progenitor.png" id="191" data-flag="@X" onclick="openSidebar('191')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\6_Cai Lan, the Puppeteer.png" id="6" data-flag="@X" onclick="openSidebar('6')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\51_Elder Soothsayer Chian.png" id="51" data-flag="@X" onclick="openSidebar('51')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\86_Birth of the Yaozu.png" id="86" data-flag="@X" onclick="openSidebar('86')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\124_The Art of War.png" id="124" data-flag="@X" onclick="openSidebar('124')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\169_Chiu, Hand of the Pack.png" id="169" data-flag="@X" onclick="openSidebar('169')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\9_Chronicles of the Kitsune.png" id="9" data-flag="@X" onclick="openSidebar('9')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\59_Juyu Offering Pool.png" id="59" data-flag="@X" onclick="openSidebar('59')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\87_The Blood Sun Sets.png" id="87" data-flag="@X" onclick="openSidebar('87')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\132_Dragon Emperor's Chariot.png" id="132" data-flag="@X" onclick="openSidebar('132')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\173_Da'Lang, Timberheart.png" id="173" data-flag="@X" onclick="openSidebar('173')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\10_Diao of the Opal Infantry.png" id="10" data-flag="@X" onclick="openSidebar('10')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\61_Kan'Gi, High Tactician.png" id="61" data-flag="@X" onclick="openSidebar('61')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\96_Ha'Eng, Profane Scribe.png" id="96" data-flag="@X" onclick="openSidebar('96')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\133_Elder General Hatsuo.png" id="133" data-flag="@X" onclick="openSidebar('133')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\183_Heyu, Depthlurker.png" id="183" data-flag="@X" onclick="openSidebar('183')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\16_Gao'Wu, Humble Sibyl.png" id="16" data-flag="@X" onclick="openSidebar('16')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\65_Oshin, Reef Warden.png" id="65" data-flag="@X" onclick="openSidebar('65')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\97_Kai'Jun, the Eradicator.png" id="97" data-flag="@X" onclick="openSidebar('97')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\146_Jiu, Daughter of the Sun.png" id="146" data-flag="@X" onclick="openSidebar('146')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\185_Jindao, the World Eye.png" id="185" data-flag="@X" onclick="openSidebar('185')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\18_The Great War Ends.png" id="18" data-flag="@X" onclick="openSidebar('18')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\67_Papier-Mâché Marvel.png" id="67" data-flag="@X" onclick="openSidebar('67')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\98_Kai'Long, the Call of the Dark.png" id="98" data-flag="@X" onclick="openSidebar('98')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\147_Judgment of Hao'Tai.png" id="147" data-flag="@X" onclick="openSidebar('147')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\193_Savage Convergence.png" id="193" data-flag="@X" onclick="openSidebar('193')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\22_Kiri, Corporeal Conduit.png" id="22" data-flag="@X" onclick="openSidebar('22')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\76_Shuilong Technique.png" id="76" data-flag="@X" onclick="openSidebar('76')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\99_Kai'Zhou, the Purifier.png" id="99" data-flag="@X" onclick="openSidebar('99')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\150_Mieng of the Pyre Waltz.png" id="150" data-flag="@X" onclick="openSidebar('150')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\198_Till the Queen's Gardens.png" id="198" data-flag="@X" onclick="openSidebar('198')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\25_Li's Moonblades.png" id="25" data-flag="@X" onclick="openSidebar('25')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\78_Sun Yun, Master of Man.png" id="78" data-flag="@X" onclick="openSidebar('78')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\118_Tzelin, Cabal Liturgist.png" id="118" data-flag="@X" onclick="openSidebar('118')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\151_Nichang Yuyi.png" id="151" data-flag="@X" onclick="openSidebar('151')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\204_Wildlife Sketches.png" id="204" data-flag="@X" onclick="openSidebar('204')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\41_Yujei, Zephyr Melodist.png" id="41" data-flag="@X" onclick="openSidebar('41')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\80_Ushi Yun, the Curator.png" id="80" data-flag="@X" onclick="openSidebar('80')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\121_Xie'e Amphitheatre.png" id="121" data-flag="@X" onclick="openSidebar('121')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\161_Tseng, the Shooting Star.png" id="161" data-flag="@X" onclick="openSidebar('161')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\205_Xiejuan and Hao Lu.png" id="205" data-flag="@X" onclick="openSidebar('205')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\1_Adept Lieutenant.png" id="1" data-flag="@X" onclick="openSidebar('1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\43_Aftermath of the Surge.png" id="43" data-flag="@X" onclick="openSidebar('43')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\84_Bandit's Dagger.png" id="84" data-flag="@X" onclick="openSidebar('84')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\125_Baptism by Fire.png" id="125" data-flag="@X" onclick="openSidebar('125')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\168_Chaparral Hunter.png" id="168" data-flag="@X" onclick="openSidebar('168')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\7_Chamber of Penance.png" id="7" data-flag="@X" onclick="openSidebar('7')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\46_Bian Lian Opera.png" id="46" data-flag="@X" onclick="openSidebar('46')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\88_Consign to Old Diyu.png" id="88" data-flag="@X" onclick="openSidebar('88')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\126_Bonk.png" id="126" data-flag="@X" onclick="openSidebar('126')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\177_Forerunner of the Briar.png" id="177" data-flag="@X" onclick="openSidebar('177')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\8_Chiseled Familiar.png" id="8" data-flag="@X" onclick="openSidebar('8')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\47_Budding Couturier.png" id="47" data-flag="@X" onclick="openSidebar('47')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\89_Demon of Hubris.png" id="89" data-flag="@X" onclick="openSidebar('89')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\131_Draconic Cinderlance.png" id="131" data-flag="@X" onclick="openSidebar('131')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\187_Lu'She Temple Customs.png" id="187" data-flag="@X" onclick="openSidebar('187')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\12_Fox of a Glistening Glen.png" id="12" data-flag="@X" onclick="openSidebar('12')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\48_Cerulean Sovereign.png" id="48" data-flag="@X" onclick="openSidebar('48')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\91_Eaveshoppers.png" id="91" data-flag="@X" onclick="openSidebar('91')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\136_Fervid Dragonheart.png" id="136" data-flag="@X" onclick="openSidebar('136')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\190_Pack Savagery.png" id="190" data-flag="@X" onclick="openSidebar('190')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\14_Fox of a Radiant Meadow.png" id="14" data-flag="@X" onclick="openSidebar('14')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\56_Hydrolyze.png" id="56" data-flag="@X" onclick="openSidebar('56')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\95_Grotesque Defiler.png" id="95" data-flag="@X" onclick="openSidebar('95')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\137_Filigree Fan Dance.png" id="137" data-flag="@X" onclick="openSidebar('137')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\192_Rampaging Xiangshe.png" id="192" data-flag="@X" onclick="openSidebar('192')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\17_Glorious Wingwright.png" id="17" data-flag="@X" onclick="openSidebar('17')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\63_Lunar Shachuan.png" id="63" data-flag="@X" onclick="openSidebar('63')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\102_Mercenary of the Folded Fan.png" id="102" data-flag="@X" onclick="openSidebar('102')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\139_For the Court of the Queen.png" id="139" data-flag="@X" onclick="openSidebar('139')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\194_Spawn of Qiyan.png" id="194" data-flag="@X" onclick="openSidebar('194')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\21_Heping's Acolyte.png" id="21" data-flag="@X" onclick="openSidebar('21')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\64_Nonpareil of the Abyss.png" id="64" data-flag="@X" onclick="openSidebar('64')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\105_Sable Evangelist.png" id="105" data-flag="@X" onclick="openSidebar('105')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\142_Frisky Denmates.png" id="142" data-flag="@X" onclick="openSidebar('142')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\195_Spirited Florist.png" id="195" data-flag="@X" onclick="openSidebar('195')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\23_Leave the Den.png" id="23" data-flag="@X" onclick="openSidebar('23')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\69_Pon's Apprentice.png" id="69" data-flag="@X" onclick="openSidebar('69')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\110_Shifu of Xiangyin Temple.png" id="110" data-flag="@X" onclick="openSidebar('110')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\148_Keen Redtail.png" id="148" data-flag="@X" onclick="openSidebar('148')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\197_Thriving Viper.png" id="197" data-flag="@X" onclick="openSidebar('197')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\30_The People's Anthem.png" id="30" data-flag="@X" onclick="openSidebar('30')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\72_Reflecting Pool Drifter.png" id="72" data-flag="@X" onclick="openSidebar('72')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\111_Skirmish Scars.png" id="111" data-flag="@X" onclick="openSidebar('111')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\154_Pup of a Marigold Burrow.png" id="154" data-flag="@X" onclick="openSidebar('154')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\199_Timberland Hymn.png" id="199" data-flag="@X" onclick="openSidebar('199')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\31_Pious Flutist.png" id="31" data-flag="@X" onclick="openSidebar('31')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\74_Sage of the Jade Baton.png" id="74" data-flag="@X" onclick="openSidebar('74')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\112_Soul Engulfer.png" id="112" data-flag="@X" onclick="openSidebar('112')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\155_Rapacious Regent.png" id="155" data-flag="@X" onclick="openSidebar('155')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\200_Vassal of the Wild.png" id="200" data-flag="@X" onclick="openSidebar('200')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\32_Red-Crowned Admiral.png" id="32" data-flag="@X" onclick="openSidebar('32')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\77_Stand in Opposition.png" id="77" data-flag="@X" onclick="openSidebar('77')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\120_Whispers of the Dead.png" id="120" data-flag="@X" onclick="openSidebar('120')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\156_Scholar of the Staff.png" id="156" data-flag="@X" onclick="openSidebar('156')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\201_Verdant Druid.png" id="201" data-flag="@X" onclick="openSidebar('201')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\35_Seal the Gateway.png" id="35" data-flag="@X" onclick="openSidebar('35')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\79_Trawl the Annals.png" id="79" data-flag="@X" onclick="openSidebar('79')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\123_Yenzu Melodrama.png" id="123" data-flag="@X" onclick="openSidebar('123')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\163_Vulpine Verse.png" id="163" data-flag="@X" onclick="openSidebar('163')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\203_Viridian Townships.png" id="203" data-flag="@X" onclick="openSidebar('203')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\2_Aerie Aria.png" id="2" data-flag="@X" onclick="openSidebar('2')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\42_Abandon the Past.png" id="42" data-flag="@X" onclick="openSidebar('42')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\83_Arrogant Orator.png" id="83" data-flag="@X" onclick="openSidebar('83')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\127_Burning of Xiangyin Temple.png" id="127" data-flag="@X" onclick="openSidebar('127')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\165_Adventurous Impulse.png" id="165" data-flag="@X" onclick="openSidebar('165')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\3_Apogee Cranes.png" id="3" data-flag="@X" onclick="openSidebar('3')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\44_Air of Vernal Tidings.png" id="44" data-flag="@X" onclick="openSidebar('44')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\85_Bearer of Vile Incense.png" id="85" data-flag="@X" onclick="openSidebar('85')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\128_Ceremonial Jian.png" id="128" data-flag="@X" onclick="openSidebar('128')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\166_Bastion Ranger.png" id="166" data-flag="@X" onclick="openSidebar('166')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\4_Apostle of the Elders.png" id="4" data-flag="@X" onclick="openSidebar('4')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\45_Ballad of the Forgotten.png" id="45" data-flag="@X" onclick="openSidebar('45')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\90_Dirge of the Damned.png" id="90" data-flag="@X" onclick="openSidebar('90')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\129_Char Brewer.png" id="129" data-flag="@X" onclick="openSidebar('129')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\167_Called Shot.png" id="167" data-flag="@X" onclick="openSidebar('167')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\5_Armament Exhibition.png" id="5" data-flag="@X" onclick="openSidebar('5')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\49_Dare to Dream.png" id="49" data-flag="@X" onclick="openSidebar('49')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\93_Gilded Sell-Sword.png" id="93" data-flag="@X" onclick="openSidebar('93')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\130_Dazzling Duelist.png" id="130" data-flag="@X" onclick="openSidebar('130')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\170_Chords of Conflict.png" id="170" data-flag="@X" onclick="openSidebar('170')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\11_Festival Celebrants.png" id="11" data-flag="@X" onclick="openSidebar('11')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\50_Dewdrop Oracle.png" id="50" data-flag="@X" onclick="openSidebar('50')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\94_Grim Bounty.png" id="94" data-flag="@X" onclick="openSidebar('94')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\135_Expedite.png" id="135" data-flag="@X" onclick="openSidebar('135')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\171_Cohorts of the Grove.png" id="171" data-flag="@X" onclick="openSidebar('171')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\13_Fox of a New Era.png" id="13" data-flag="@X" onclick="openSidebar('13')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\52_Erratic Visionary.png" id="52" data-flag="@X" onclick="openSidebar('52')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\101_Lizhao's Soulblade.png" id="101" data-flag="@X" onclick="openSidebar('101')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\138_Flame Juggler.png" id="138" data-flag="@X" onclick="openSidebar('138')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\172_Crooning Eulogist.png" id="172" data-flag="@X" onclick="openSidebar('172')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\15_Fox of an Amber Dawn.png" id="15" data-flag="@X" onclick="openSidebar('15')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\53_Festival Decorator.png" id="53" data-flag="@X" onclick="openSidebar('53')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\103_Nightblade Umbra.png" id="103" data-flag="@X" onclick="openSidebar('103')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\140_Fox of the Juniper Vale.png" id="140" data-flag="@X" onclick="openSidebar('140')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\174_Descendant of Shimaru.png" id="174" data-flag="@X" onclick="openSidebar('174')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\19_Guzheng Instructor.png" id="19" data-flag="@X" onclick="openSidebar('19')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\54_Harmony of Blossoms.png" id="54" data-flag="@X" onclick="openSidebar('54')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\104_Restless Oppressor.png" id="104" data-flag="@X" onclick="openSidebar('104')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\141_Fox of the River Run.png" id="141" data-flag="@X" onclick="openSidebar('141')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\175_Edgeland Savant.png" id="175" data-flag="@X" onclick="openSidebar('175')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\26_Lunar Flock.png" id="26" data-flag="@X" onclick="openSidebar('26')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\55_Horizon Glider.png" id="55" data-flag="@X" onclick="openSidebar('55')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\106_Sanguine Muralist.png" id="106" data-flag="@X" onclick="openSidebar('106')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\144_Herald of the Dragon Army.png" id="144" data-flag="@X" onclick="openSidebar('144')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\176_Exquisite Slash.png" id="176" data-flag="@X" onclick="openSidebar('176')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\27_Ornate Legionnaire.png" id="27" data-flag="@X" onclick="openSidebar('27')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\58_Ing'Wei's Admonition.png" id="58" data-flag="@X" onclick="openSidebar('58')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\107_Scar Tattooist.png" id="107" data-flag="@X" onclick="openSidebar('107')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\145_Jeering Kit.png" id="145" data-flag="@X" onclick="openSidebar('145')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\179_Gashing Panther.png" id="179" data-flag="@X" onclick="openSidebar('179')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\28_Outcast of the Folded Fan.png" id="28" data-flag="@X" onclick="openSidebar('28')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\60_Kaleidoscale Drake.png" id="60" data-flag="@X" onclick="openSidebar('60')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\108_Scatter Memories as Ashes.png" id="108" data-flag="@X" onclick="openSidebar('108')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\149_Kuoshu Martial Arts.png" id="149" data-flag="@X" onclick="openSidebar('149')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\180_Harmonic Recruit.png" id="180" data-flag="@X" onclick="openSidebar('180')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\29_Pacifism.png" id="29" data-flag="@X" onclick="openSidebar('29')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\62_Lamplight Tender.png" id="62" data-flag="@X" onclick="openSidebar('62')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\109_Serum Peddler.png" id="109" data-flag="@X" onclick="openSidebar('109')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\152_Ode to the Red Wind.png" id="152" data-flag="@X" onclick="openSidebar('152')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\181_Herbal Remedy.png" id="181" data-flag="@X" onclick="openSidebar('181')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\33_Roadside Performer.png" id="33" data-flag="@X" onclick="openSidebar('33')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\68_Parasol Twirler.png" id="68" data-flag="@X" onclick="openSidebar('68')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\113_Spear Flourish.png" id="113" data-flag="@X" onclick="openSidebar('113')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\153_One Last Dance.png" id="153" data-flag="@X" onclick="openSidebar('153')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\182_Hero's Journey.png" id="182" data-flag="@X" onclick="openSidebar('182')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\34_Russet Denmother.png" id="34" data-flag="@X" onclick="openSidebar('34')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\70_Prince Crab.png" id="70" data-flag="@X" onclick="openSidebar('70')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\114_Theatre of Cruelty.png" id="114" data-flag="@X" onclick="openSidebar('114')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\157_Scorching Dragonfire.png" id="157" data-flag="@X" onclick="openSidebar('157')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\184_Jadeplate Armor.png" id="184" data-flag="@X" onclick="openSidebar('184')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\36_Sheersilk Robes.png" id="36" data-flag="@X" onclick="openSidebar('36')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\71_Read the Tides.png" id="71" data-flag="@X" onclick="openSidebar('71')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\115_Traveler's Trial.png" id="115" data-flag="@X" onclick="openSidebar('115')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\158_Scourge of the Sun.png" id="158" data-flag="@X" onclick="openSidebar('158')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\186_Journeying Packmaster.png" id="186" data-flag="@X" onclick="openSidebar('186')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\37_Sponsor of the Folded Fan.png" id="37" data-flag="@X" onclick="openSidebar('37')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\73_Rest and Relaxation.png" id="73" data-flag="@X" onclick="openSidebar('73')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\116_Tree of Tragedies.png" id="116" data-flag="@X" onclick="openSidebar('116')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\159_Slapdash Matrimony.png" id="159" data-flag="@X" onclick="openSidebar('159')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\188_Mighty Xioshu.png" id="188" data-flag="@X" onclick="openSidebar('188')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\38_Sword Dance.png" id="38" data-flag="@X" onclick="openSidebar('38')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\75_Scribe of the Sky Scrolls.png" id="75" data-flag="@X" onclick="openSidebar('75')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\117_Trophy Collector.png" id="117" data-flag="@X" onclick="openSidebar('117')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\160_Stroke of Fortune.png" id="160" data-flag="@X" onclick="openSidebar('160')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\189_Mischievous Maolu.png" id="189" data-flag="@X" onclick="openSidebar('189')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\39_Tale of Tranquility.png" id="39" data-flag="@X" onclick="openSidebar('39')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\81_Wealth of the Flood.png" id="81" data-flag="@X" onclick="openSidebar('81')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\119_Visit from Aunti.png" id="119" data-flag="@X" onclick="openSidebar('119')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\162_Violent Devotion.png" id="162" data-flag="@X" onclick="openSidebar('162')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\196_Suitor of the Glade.png" id="196" data-flag="@X" onclick="openSidebar('196')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\40_Walk the Ancestral Path.png" id="40" data-flag="@X" onclick="openSidebar('40')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\82_Yenzu Puppeteering.png" id="82" data-flag="@X" onclick="openSidebar('82')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\122_Yenzu Disciple.png" id="122" data-flag="@X" onclick="openSidebar('122')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\164_Warlord of Wun Su.png" id="164" data-flag="@X" onclick="openSidebar('164')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\202_Vinehorn Stag.png" id="202" data-flag="@X" onclick="openSidebar('202')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\246_Wang Xi, Wishes on the Wind.png" id="246" data-flag="@X" onclick="openSidebar('246')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\225_Kiyoko of the Silver Mist.png" id="225" data-flag="@X" onclick="openSidebar('225')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\244_Swiftblade Ren.png" id="244" data-flag="@X" onclick="openSidebar('244')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\208_Autumn Symphony.png" id="208" data-flag="@X" onclick="openSidebar('208')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\221_Hang Up Your Lanterns.png" id="221" data-flag="@X" onclick="openSidebar('221')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\234_Painting Dolls.png" id="234" data-flag="@X" onclick="openSidebar('234')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\227_Lin, the Opportunist.png" id="227" data-flag="@X" onclick="openSidebar('227')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\250_Xihuo, the Onyx Flame.png" id="250" data-flag="@X" onclick="openSidebar('250')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\232_Old Lord Xiusheng.png" id="232" data-flag="@X" onclick="openSidebar('232')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\209_Bai of the Royal Gardens.png" id="209" data-flag="@X" onclick="openSidebar('209')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\219_Gemscale Drake.png" id="219" data-flag="@X" onclick="openSidebar('219')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\235_Path of the Outsider.png" id="235" data-flag="@X" onclick="openSidebar('235')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\206_Altar of Twisted Piety.png" id="206" data-flag="@X" onclick="openSidebar('206')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\211_Celebrations of Ferocity.png" id="211" data-flag="@X" onclick="openSidebar('211')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\207_Ascetic of the Folded Fan.png" id="207" data-flag="@X" onclick="openSidebar('207')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\245_Those Lost to the Waves.png" id="245" data-flag="@X" onclick="openSidebar('245')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\253_Yenzu Nightblade.png" id="253" data-flag="@X" onclick="openSidebar('253')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\210_Blackblood Feaster.png" id="210" data-flag="@X" onclick="openSidebar('210')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\248_Wilderkin Zealot.png" id="248" data-flag="@X" onclick="openSidebar('248')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\224_Kanghyae Forum.png" id="224" data-flag="@X" onclick="openSidebar('224')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\255_Zou Meili, Cruel Justice.png" id="255" data-flag="@X" onclick="openSidebar('255')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\247_Wei Ji, Life's Rhythm.png" id="247" data-flag="@X" onclick="openSidebar('247')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\220_Gui, the Brinebearer.png" id="220" data-flag="@X" onclick="openSidebar('220')"></div>
+		  <div class="container"><img data-alt_src="sets\NJB-files\img\228_Ma'Long, the Skystorm_back.png" alt="sets\NJB-files\img\228_Ma'Long, the Skystorm_front.png" id="228" data-flag="@XD" onclick="openSidebar(228)"><button class="btn" onclick="imgFlip(228)"></button></div>
+		  <div class="container"><img alt="sets\NJB-files\img\240_Seto San, Divine Heroine.png" id="240" data-flag="@X" onclick="openSidebar('240')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\252_Yenzu Blood Pact.png" id="252" data-flag="@X" onclick="openSidebar('252')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\239_Ruchong Awakening.png" id="239" data-flag="@X" onclick="openSidebar('239')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\242_Shigurei, Vassal of the Depths.png" id="242" data-flag="@X" onclick="openSidebar('242')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\214_Dance of Dragons.png" id="214" data-flag="@X" onclick="openSidebar('214')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\237_Qulai, Orchard Shepherd.png" id="237" data-flag="@X" onclick="openSidebar('237')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\222_Imperious Aristocrat.png" id="222" data-flag="@X" onclick="openSidebar('222')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\216_Fables of the Ill-Fated.png" id="216" data-flag="@X" onclick="openSidebar('216')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\226_Lady of the Nymphaeas.png" id="226" data-flag="@X" onclick="openSidebar('226')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\238_The Royal Vignettes.png" id="238" data-flag="@X" onclick="openSidebar('238')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\218_Fox of a Brisk Autumn.png" id="218" data-flag="@X" onclick="openSidebar('218')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\229_Memorial Plaza.png" id="229" data-flag="@X" onclick="openSidebar('229')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\230_Mire Sculptor.png" id="230" data-flag="@X" onclick="openSidebar('230')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\236_Peacetime Murals.png" id="236" data-flag="@X" onclick="openSidebar('236')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\243_Song of Wind and Fire.png" id="243" data-flag="@X" onclick="openSidebar('243')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\241_Seto's Private Collection.png" id="241" data-flag="@X" onclick="openSidebar('241')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\212_Cheng, Wild Tyrant.png" id="212" data-flag="@X" onclick="openSidebar('212')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\213_Cou Ling of the Lunar Den.png" id="213" data-flag="@X" onclick="openSidebar('213')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\215_Emperor Dan Te Mogui.png" id="215" data-flag="@X" onclick="openSidebar('215')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\217_Fang Luo, the Astral Tide.png" id="217" data-flag="@X" onclick="openSidebar('217')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\223_Kai'Oro, Grave Betrayer.png" id="223" data-flag="@X" onclick="openSidebar('223')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\231_The Mythical Zhiwu.png" id="231" data-flag="@X" onclick="openSidebar('231')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\233_Oshu of the Bosk.png" id="233" data-flag="@X" onclick="openSidebar('233')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\249_Wun Su, War's Muse.png" id="249" data-flag="@X" onclick="openSidebar('249')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\251_Ya'Ling, the Rune-Drake.png" id="251" data-flag="@X" onclick="openSidebar('251')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\254_Zihao, Song of the Glade.png" id="254" data-flag="@X" onclick="openSidebar('254')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\257_Duan's Aeriform Ribbons.png" id="257" data-flag="@X" onclick="openSidebar('257')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\262_Xueyang San.png" id="262" data-flag="@X" onclick="openSidebar('262')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\256_Dignitary's Rickshaw.png" id="256" data-flag="@X" onclick="openSidebar('256')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\258_Effigy of Ivory Fire.png" id="258" data-flag="@X" onclick="openSidebar('258')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\259_Ornamental Longbow.png" id="259" data-flag="@X" onclick="openSidebar('259')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\260_Processional Junk.png" id="260" data-flag="@X" onclick="openSidebar('260')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\261_Prophetic Prismite.png" id="261" data-flag="@X" onclick="openSidebar('261')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\263_Yenzu Ritual Vessel.png" id="263" data-flag="@X" onclick="openSidebar('263')"></div>
+		  <div class="container"><img alt="img\e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\275_Tranquil Cove.png" id="275" data-flag="@X" onclick="openSidebar('275')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\266_Dismal Backwater.png" id="266" data-flag="@X" onclick="openSidebar('266')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\264_Bloodfell Caves.png" id="264" data-flag="@X" onclick="openSidebar('264')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\270_Rugged Highlands.png" id="270" data-flag="@X" onclick="openSidebar('270')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\265_Blossoming Sands.png" id="265" data-flag="@X" onclick="openSidebar('265')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\271_Scoured Barrens.png" id="271" data-flag="@X" onclick="openSidebar('271')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\268_Jungle Hollow.png" id="268" data-flag="@X" onclick="openSidebar('268')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\274_Thornwood Falls.png" id="274" data-flag="@X" onclick="openSidebar('274')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\273_Swiftwater Cliffs.png" id="273" data-flag="@X" onclick="openSidebar('273')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\277_Wind-Scarred Crag.png" id="277" data-flag="@X" onclick="openSidebar('277')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\269_The Orange Orchard.png" id="269" data-flag="@X" onclick="openSidebar('269')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\272_Shrine of Elder Lords.png" id="272" data-flag="@X" onclick="openSidebar('272')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\267_Festival Centrum.png" id="267" data-flag="@X" onclick="openSidebar('267')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\276_Warped Landscape.png" id="276" data-flag="@X" onclick="openSidebar('276')"></div>
+		  <div class="container"><img alt="img\e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\278_Plains.png" id="278" data-flag="@X" onclick="openSidebar('278')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\282_Island.png" id="282" data-flag="@X" onclick="openSidebar('282')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\286_Swamp.png" id="286" data-flag="@X" onclick="openSidebar('286')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\290_Mountain.png" id="290" data-flag="@X" onclick="openSidebar('290')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\294_Forest.png" id="294" data-flag="@X" onclick="openSidebar('294')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\279_Plains.png" id="279" data-flag="@X" onclick="openSidebar('279')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\283_Island.png" id="283" data-flag="@X" onclick="openSidebar('283')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\287_Swamp.png" id="287" data-flag="@X" onclick="openSidebar('287')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\291_Mountain.png" id="291" data-flag="@X" onclick="openSidebar('291')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\295_Forest.png" id="295" data-flag="@X" onclick="openSidebar('295')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\280_Plains.png" id="280" data-flag="@X" onclick="openSidebar('280')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\284_Island.png" id="284" data-flag="@X" onclick="openSidebar('284')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\288_Swamp.png" id="288" data-flag="@X" onclick="openSidebar('288')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\292_Mountain.png" id="292" data-flag="@X" onclick="openSidebar('292')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\296_Forest.png" id="296" data-flag="@X" onclick="openSidebar('296')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\281_Plains.png" id="281" data-flag="@X" onclick="openSidebar('281')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\285_Island.png" id="285" data-flag="@X" onclick="openSidebar('285')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\289_Swamp.png" id="289" data-flag="@X" onclick="openSidebar('289')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\293_Mountain.png" id="293" data-flag="@X" onclick="openSidebar('293')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\297_Forest.png" id="297" data-flag="@X" onclick="openSidebar('297')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="img\er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\1t_Spirit.png" id="1t" data-flag="@X" onclick="openSidebar('1t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\2t_Bird.png" id="2t" data-flag="@X" onclick="openSidebar('2t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\3t_Hu Li.png" id="3t" data-flag="@X" onclick="openSidebar('3t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\4t_Warrior.png" id="4t" data-flag="@X" onclick="openSidebar('4t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\5t_Drake.png" id="5t" data-flag="@X" onclick="openSidebar('5t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\6t_Kraken.png" id="6t" data-flag="@X" onclick="openSidebar('6t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\7t_Cultist.png" id="7t" data-flag="@X" onclick="openSidebar('7t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\8t_Demon.png" id="8t" data-flag="@X" onclick="openSidebar('8t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\9t_Bard.png" id="9t" data-flag="@X" onclick="openSidebar('9t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\10t_Dragon.png" id="10t" data-flag="@X" onclick="openSidebar('10t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\11t_Panda.png" id="11t" data-flag="@X" onclick="openSidebar('11t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\12t_Beast.png" id="12t" data-flag="@X" onclick="openSidebar('12t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\13t_Hydra.png" id="13t" data-flag="@X" onclick="openSidebar('13t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\14t_Panda Bear Monk.png" id="14t" data-flag="@X" onclick="openSidebar('14t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\15t_Plant.png" id="15t" data-flag="@X" onclick="openSidebar('15t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\16t_Shimaru, the Unfading.png" id="16t" data-flag="@X" onclick="openSidebar('16t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\17t_Wurm.png" id="17t" data-flag="@X" onclick="openSidebar('17t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\18t_Fox.png" id="18t" data-flag="@X" onclick="openSidebar('18t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\19t_Idol.png" id="19t" data-flag="@X" onclick="openSidebar('19t')"></div>
+		  <div class="container"><img alt="sets\NJB-files\img\20t_Treasure.png" id="20t" data-flag="@X" onclick="openSidebar('20t')"></div>
+	</div>
 </div>
-    <div class="sidebar" id="sidebar">
-        <img id="sidebar_img" src="img/er.png"></img>
-        <button class="btn" onclick="closeSidebar()"></button>
-    </div>
-    <div class="footer"></div>
+	<div class="sidebar" id="sidebar">
+		<img id="sidebar_img" src="img/er.png"></img>
+		<button class="btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
 
-    <script>
-    const delay = ms => new Promise(res => setTimeout(res, ms));
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    document.addEventListener('DOMContentLoaded', async function() {
-        preloadImgs = document.getElementsByClassName('preload-hidden');
-        
-        let images_loaded = []
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch('/lists/all-cards.txt')
+			.then(response => response.text())
+			.then(text => {
+				card_list_stringified = text;
+		}).catch(error => console.error('Error:', error));
 
-        do {
-            await delay(100);
-            images_loaded = []
-            for (const img of preloadImgs)
-            {
-                images_loaded.push(isImageOk(img));
-            }
-            console.log(images_loaded);
-        }
-        while (images_loaded.includes(false));
+		card_list_arrayified = card_list_stringified.split('\\n');
 
-        document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
-        loadImages();
-    });
+		for (let i = 0; i < card_list_arrayified.length; i++)
+		{
+			card_list_arrayified[i] = card_list_arrayified[i].split('	');
+		}
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+		
+		let images_loaded = []
 
-    function isImageOk(img) {
-        if (!img.complete || img.naturalWidth == 0) {
-            return false;
-        }
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
 
-        return true;
-    }
+		document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
+		loadImages();
+	});
 
-    function loadImages() {
-        const images = document.querySelectorAll('.grid-container img');
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
 
-        images.forEach(img => {
-            const flag = img.getAttribute('data-flag');
+		return true;
+	}
 
-            if (flag === '@N') {
-                img.src = 'img/card_back.png';
-                img.removeAttribute("onclick");
-                img.style.cursor = 'default';
-            }
-            else
-            {
-                img.src = img.alt;
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
 
-                if (flag === '@E') {
-                    img.removeAttribute("onclick");
-                    img.style.cursor = 'default';
-                }
-            }
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
 
-            img.style.visibility = 'visible';
-        });
-    }
+			if (flag === '@N') {
+				img.src = 'img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = img.alt;
 
-    window.addEventListener('resize', function(event) {
-        setSidebarTop();
-    }, true);
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
 
-    function setSidebarTop() {
-        let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-        let sh = document.getElementById('sidebar').offsetHeight;
-        let height = 100 * ((vh - sh) / 2) / vh;
-        document.getElementById('sidebar').style.top = height + '%';
-    }
+			img.style.visibility = 'visible';
+		});
+	}
 
-    function imgFlip(num) {
-        tmp = document.getElementById(num).src;
-        document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
-        document.getElementById(num).dataset.alt_src = tmp;
-    }
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
 
-    function openSidebar(id) {
-        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
-        
-        document.getElementById('sidebar').style.display = 'block';
-        document.getElementById('sidebar_img').src = document.getElementById(id).src;
-        document.getElementById('main-content').style.width = '60%';
-        
-        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
-        window.scrollTo(window.scrollX, scroll_pos);
-        setSidebarTop();
-    }
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
 
-    function closeSidebar() {
-        scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+	function imgFlip(num) {
+		tmp = document.getElementById(num).src;
+		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+		document.getElementById(num).dataset.alt_src = tmp;
+	}
 
-        document.getElementById('sidebar').style.display = 'none';
-        document.getElementById('main-content').style.width = '100%';
-        
+	function openSidebar(id) {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+		
+		document.getElementById('sidebar').style.display = 'block';
+		document.getElementById('sidebar_img').src = document.getElementById(id).src;
+		document.getElementById('main-content').style.width = '60%';
+		
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
 
-        scroll_pos = scroll_pct * document.documentElement.scrollHeight;
-        window.scrollTo(window.scrollX, scroll_pos);
-    }
-    </script>
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+		
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+		  if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+		  }
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_list_arrayified[i][0]);
+		}
+	</script>
 </body>
 </html>

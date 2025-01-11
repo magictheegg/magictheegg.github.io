@@ -1,10 +1,11 @@
 import os
 import sys
 
-def generateHTML(code, card):
+def generateHTML(card):
+	code = card.split('\t')[11]
 	output_html_file = "cards/" + code + "/" + card.split('\t')[4] + "_" + card.split('\t')[0] + ".html"
 
-	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8') as f:
+	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8-sig') as f:
 		set_name = f.read()
 	
 	# Start creating the HTML file content
@@ -13,6 +14,7 @@ def generateHTML(code, card):
   <title>''' + card.split('\t')[0] + '''</title>
   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/resources/mana.css">
+  <link rel="stylesheet" href="/resources/header.css">
 </head>
 <style>
 	@font-face {
@@ -25,72 +27,8 @@ def generateHTML(code, card):
 		margin: 0px;
 		background-color: #f3f3f3;
 	}
-	.header {
-		background-color: #171717;
-		height: 60px;
-		align-items: center;
-		justify-items: center;
-		display: flex;
-	}
-	.search-grid {
-		width: 80%;
-		height: 40px;
-		margin: auto;
-		display: grid;
-		grid-template-columns: 4fr 1fr;
-		gap: 10px;
-		justify-items: center;
-		align-items: center;
-	}
-	.logos-and-search {
-		width: 100%;
-		display: grid;
-		grid-template-columns: 0.5fr 0.25fr 3.25fr;
-		justify-items: center;
-		align-items: center;
-		gap: 5px;
-		margin-top: -5px;
-	}
-	.logo {
-		height: 50px;
-	}
-	.icon {
-		height: 24px;
-	}
-	.search-grid input {
-		width: 100%;
-		height: 35px;
-		font-size: 16px;
-		background-color: #fafafa;
-		border: 1px solid #d5d9d9;
-		border-radius: 2px;
-		padding-left: 10px;
-		padding-right: 10px;
-		-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; 
-	}
-	.header-links {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 10px;
-		align-items: center;
-		justify-items: center;
-		width: 100%;
-	}
 	a {
 		text-decoration: none;
-	}
-	.header-links a {
-		color: #f3f3f3;
-		display: flex;
-		align-items: center;
-		gap: 5px;
-		cursor: pointer;
-	}
-	.header-links a:hover {
-	  color: #ffffff;
-	  text-decoration: underline;
 	}
 	.banner-container {
 		width: 100%;
@@ -117,12 +55,13 @@ def generateHTML(code, card):
 	.image-grid {
 		padding-top: 40px;
 		width: 70%;
+		max-width: 1000px;
 		margin: auto;
 		display: grid;
 		grid-template-columns: minmax(200px, 2fr) minmax(200px, 2.5fr);
-		gap: 50px;
+		gap: 30px;
 		padding-bottom: 10px;
-		justify-items: left;
+		justify-items: center;
 	}
 	.image-grid img {
 		position: relative;
@@ -137,16 +76,28 @@ def generateHTML(code, card):
 	.card-text {
 		padding-top: 20px;
 		padding-bottom: 20px;
+		background: #fcfcfc;
+		width: 100%;
+		border: 1px solid #d5d9d9;
+		border-top: 3px solid #171717;
+		border-bottom: 3px solid #171717;
+		border-radius: 6px;
+		height: fit-content;
+		min-height: 75%;
+		margin-top: 3%;
 	}
 	.card-text div {
 		white-space: normal;
 		font-size: 15px;
 		padding-bottom: 10px;
+		padding-left: 12px;
+		padding-right: 12px;
 		line-height: 155%;
 	}
 	.card-text .name-cost {
 		font-weight: bold;
 		font-size: 20px;
+		white-space: pre-wrap;
 	}
 	.card-text .type {
 		font-size: 16px;
@@ -161,7 +112,6 @@ def generateHTML(code, card):
 	}
 	.img-container {
 	  position: relative;
-	  width: 100%;
 	  align-self: center;
 	}
 	.img-container img {
@@ -198,15 +148,11 @@ def generateHTML(code, card):
 <body>
 	<div class="header">
 		<div class="search-grid">
-			<div class="logos-and-search">
-				<a href="/"><img class="logo" src="/img/banner.png"></a>
-				<img class="icon" src="/img/search.png">
-				<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
-			</div>
-			<div class="header-links">
-				<a href="/sets"><img src="/img/sets.png" class="icon">Sets</a>
-				<a onclick="randomCard()"><img src="/img/random.png" class="icon">Random</a>
-			</div>
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
 		</div>
 	</div>
 
@@ -227,7 +173,7 @@ def generateHTML(code, card):
 			await fetch('/lists/all-cards.txt')
 				.then(response => response.text())
 				.then(text => {
-					card_list_stringified = text; 
+					card_list_stringified = text;
 			}).catch(error => console.error('Error:', error));
 
 			card_list_arrayified = card_list_stringified.split('\\\\n');
@@ -310,7 +256,7 @@ def generateHTML(code, card):
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '\xa0\xa0\xa0\xa0\xa0' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -431,8 +377,8 @@ def generateHTML(code, card):
 				}
 			}
 
-			let pattern1 = /([0-9]*[WUBRGCT/]+)([ :,\.])/g;
-			let pattern2 = /(?<![a-z] )([0-9X]+)([:,])/g;
+			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.])/g;
+			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,])/g;
 			let pattern3 = /([Pp]ay[s]* )([0-9X])(?! life)/g;
 			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
 				return symbolize(group1) + group2;

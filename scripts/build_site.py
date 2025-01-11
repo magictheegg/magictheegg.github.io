@@ -11,12 +11,25 @@ import print_html_for_spoiler
 import print_html_for_card
 import print_html_for_set
 
+def genAllCards(codes):
+	file_input = ''
+	for code in codes:
+		with open(os.path.join('sets', code + '-files', code + '-raw.txt'), encoding='utf-8-sig') as f:
+			raw = f.read()
+			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
+	file_input = file_input.rstrip('\\n')
+
+	with open(os.path.join('lists', 'all-cards.txt'), 'w', encoding='utf-8-sig') as f:
+		f.write(file_input.replace('—', '–'))
+
 set_codes = []
 for entry in os.scandir('sets'):
 	if(entry.is_dir() and entry.name[-6:] == '-files'):
 		set_codes.append(entry.name[:-6])
 	else:
 		os.remove(entry)
+
+genAllCards(set_codes)
 
 if os.path.isdir('cards'):
 	shutil.rmtree('cards')
@@ -54,13 +67,13 @@ for code in set_codes:
 		print_html_for_spoiler.generateHTML(code, set_codes)
 	print_html_for_set.generateHTML(code)
 
-	with open(os.path.join('sets', set_dir, code + '-raw.txt'), encoding='utf-8-sig') as f:
-		cards = f.read()
-	cards = cards.replace('\n','NEWLINE').replace('REPLACEME','\\n').rstrip('\\n')
-	card_array = cards.split('\\n')
-	for card in card_array:
-		print_html_for_card.generateHTML(code, card)
-	print(f"HTML card files saved in cards/{code}/")
+with open(os.path.join('lists', 'all-cards.txt'), encoding='utf-8-sig') as f:
+	cards = f.read()
+cards = cards.replace('\n','NEWLINE').replace('REPLACEME','\\n').rstrip('\\n')
+card_array = cards.split('\\n')
+for card in card_array:
+	print_html_for_card.generateHTML(card)
+print(f"HTML card files saved in cards/{code}/")
 
 custom_img_dir = os.path.join('custom', 'img')
 if os.path.isdir(custom_img_dir):
