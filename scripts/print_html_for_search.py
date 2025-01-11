@@ -250,13 +250,13 @@ def generateHTML(codes):
 				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
 			}
 
-			if (sessionStorage.getItem("display") == "cards-only")
+			if (sessionStorage.getItem("display") != "cards-only")
 			{
-				cardGrid = document.getElementById("imagesOnlyGrid");
+				cardGrid = document.getElementById("grid");
 			}
 			else
 			{
-				cardGrid = document.getElementById("grid");
+				cardGrid = document.getElementById("imagesOnlyGrid");
 			}
 
 			card_list_arrayified.sort(compareFunction);
@@ -310,7 +310,7 @@ def generateHTML(codes):
 
 		function setCardView() {
 			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+  		grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 		}
 
 		function compareFunction(a, b) {
@@ -426,7 +426,7 @@ def generateHTML(codes):
 				}
 			}
 
-			if (sessionStorage.getItem("display") == "cards-only")
+			if (displayStyle == "cards-only")
 			{
 				cardGrid = document.getElementById("imagesOnlyGrid");
 			}
@@ -958,7 +958,6 @@ def generateHTML(codes):
 		}
 
 		function gridifyCard(card_stats) {
-			const displayStyle = sessionStorage.getItem("display");
 			const card_name = card_stats[0];
 
 			if (displayStyle == "cards-only")
