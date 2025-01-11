@@ -13,18 +13,16 @@
 		background-color: #f3f3f3;
 	}
 	.button-grid {
-		width: 80%;
+		width: 70%;
+		max-width: 1200px;
 		height: 40px;
 		margin: auto;
 		display: grid;
 		grid-template-columns: 4fr 1fr;
 		gap: 10px;
-		padding-top: 10px;
-		padding-bottom: 40px;
+		padding-top: 20px;
+		padding-bottom: 20px;
 		justify-items: center;
-	}
-	#footer {
-		padding-top: 40px;
 	}
 	.prev-next-btns {
 		width: 100%;
@@ -65,7 +63,7 @@
 		margin-right: -3px;
 	}
 	.button-grid .select-text {
-		width: 90%;
+		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: left;
@@ -204,7 +202,7 @@
 		</div>
 	</div>
 	<div class="button-grid">
-		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-text">Cards + Text</option><option value="cards-only">Cards Only</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-code">Set / Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>		
+		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="name">Name</option><option value="set-code">Set / Number</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>		
 		<div class="prev-next-btns">
 			<button type="submit" onclick="previousPage()" id="prevBtn" disabled>< Previous</button>
 			<button type="submit" onclick="nextPage()" id="nextBtn">Next 30 ></button>
@@ -218,8 +216,6 @@
 	</div>
 
 	<div class="button-grid" id="footer">
-		<div></div>
-		<div></div>
 		<div></div>
 		<div class="prev-next-btns">
 			<button type="submit" onclick="previousPage()" id="prevBtn-footer" disabled>< Previous</button>
