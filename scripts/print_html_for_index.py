@@ -161,7 +161,7 @@ def generateHTML(set_codes):
 		<div class="item-container">
 			<img class="banner" src="img/banner.png"></img>
 			<div class="search-grid">
-				<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
 				<button type="submit" onclick="search()" id="searchBtn">Search</button>
 			</div>
 			<div class="two-part-grid">

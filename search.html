@@ -196,7 +196,7 @@
 		<div class="search-grid">
 			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
 			<img class="sg-icon" src="/img/search.png">
-			<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
 			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
 		</div>
@@ -525,11 +525,11 @@
 				{
 					inParens = false;
 				}
-				if (!inParens && !inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == 'ì' || searchTerms.charAt(i) == '/'))
+				if (!inParens && !inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '‚Äú' || searchTerms.charAt(i) == '/'))
 				{
 					inQuotes = true;
 				}
-				else if (!inParens && inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == 'î' || searchTerms.charAt(i) == '/'))
+				else if (!inParens && inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '‚Äù' || searchTerms.charAt(i) == '/'))
 				{
 					inQuotes = false;
 				}
@@ -612,7 +612,7 @@
 				card_oracle_text = card_oracle_text + "	" + (card_stats[17] != "" ? card_stats[17].replaceAll("NEWLINE", '\n') : card_stats[19].replaceAll("NEWLINE", '\n'));
 			}
 
-			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('ì','').replaceAll('î','');
+			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('‚Äú','').replaceAll('‚Äù','');
 
 			const modifierRegex = /[!:<>=]/;
 			const match = token.search(modifierRegex);
@@ -1092,9 +1092,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("ó") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("‚Äî") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("ó", "ó</i>");
+					styled_effect = "<i>" + styled_effect.replace("‚Äî", "‚Äî</i>");
 				}
 
 				HTML += styled_effect;
