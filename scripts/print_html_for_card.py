@@ -7,7 +7,7 @@ def generateHTML(card):
 	with open(os.path.join('resources', 'replacechars.txt'), encoding='utf-8-sig') as f:
 		chars = f.read()
 	for char in chars:
-		card_name = card_name.replaceAll(char, '')
+		card_name = card_name.replace(char, '')
 	card_num = card.split('\t')[4]
 	output_html_file = "cards/" + code + "/" + card_num + "_" + card_name + ".html"
 
