@@ -17,7 +17,7 @@ def generateHTML(card):
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
-  <title>''' + card_name + '''</title>
+  <title>''' + card.split('\t')[0] + '''</title>
   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
