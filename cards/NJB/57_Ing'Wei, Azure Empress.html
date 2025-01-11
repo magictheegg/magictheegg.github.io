@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Ing'Wei, Azure Empress	U	mythic	Legendary Planeswalker – Ing’Wei 	57	U	1UU			Golden age (If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)NEWLINE[+1]: Scry 1. If you’re in a renaissance, draw a card.NEWLINE[-2]: Return target nonland permanent to its owner’s hand if its mana value is 3 or less or if you’re in a renaissance.NEWLINE[-6]: Create two 8/8 blue Kraken creature tokens. If you’re in a renaissance, take an extra turn after this one.	planeswalker	NJB"));
+			await fetch('/cards/NJB/57_Ing'Wei, Azure Empress.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Captain Rosie Wright	RG	uncommon	Legendary Creature – Human Pirate 	162	RG	1RG	First mate – Your starting deck contains “Shining Horizon” and two lands of each basic land type. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)NEWLINEWhenever Captain Rosie Wright becomes tapped, you may sacrifice a Mountain or Forest. If you do, put a +1/+1 counter on Captain Rosie Wright, then search your library for a land card, put it onto the battlefield tapped, then shuffle.	2/2		normal	GSS"));
+			await fetch('/cards/GSS/162_Captain Rosie Wright.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

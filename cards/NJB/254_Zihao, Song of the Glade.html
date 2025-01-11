@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Zihao, Song of the Glade	WRG	rare	Legendary Creature – Human Druid Bard 	254	WRG	RGW	Golden age (If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)NEWLINE2RGW: You may put a creature card from your hand onto the battlefield. It gains haste and vigilance until end of turn. Return it to your hand at the beginning of the next end step unless you’re in a renaissance.	3/3		normal	NJB"));
+			await fetch('/cards/NJB/254_Zihao, Song of the Glade.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

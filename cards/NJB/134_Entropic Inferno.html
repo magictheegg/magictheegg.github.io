@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Entropic Inferno	R	mythic	Instant	134	R	3RR	Entropic Inferno deals 5 damage divided as you choose among any number of targets. At the beginning of the next end step, for each permanent dealt damage this way, its owner puts it on the bottom of their library, then reveals cards from the top until they reveal a nonland permanent card. They put that card onto the battlefield, then shuffle the rest.			normal	NJB"));
+			await fetch('/cards/NJB/134_Entropic Inferno.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

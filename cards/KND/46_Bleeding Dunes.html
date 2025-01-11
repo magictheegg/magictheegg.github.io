@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Bleeding Dunes	U	rare	Enchantment	46	U	2U	3U, Discard Bleeding Dunes: Draw a card. Create a 4/3 blue and red Sand Shark creature token with prowess.NEWLINEAt the beginning of each end step, if you cast a noncreature spell this turn, add a 4/3 blue and red Sand Shark creature token with prowess to your bestiary. (If you would create a creature token, you may instead put one into play from your bestiary.)			normal	KND"));
+			await fetch('/cards/KND/46_Bleeding Dunes.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Sentinels of Canica Strait		rare	Artifact	207	C	2	Sentinels of Canica Strait enters the battlefield with three marble counters on it.NEWLINE2, T, Remove a marble counter from Sentinels of Canica Strait: Draw a card.NEWLINE3, T, Sacrifice Sentinels of Canica Strait: Create two 3/3 colorless Warrior artifact creature tokens. Activate only if Sentinels of Canica Strait has no marble counters on it.			normal	GSS"));
+			await fetch('/cards/GSS/207_Sentinels of Canica Strait.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

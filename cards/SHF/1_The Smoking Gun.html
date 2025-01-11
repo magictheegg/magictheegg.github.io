@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("The Smoking Gun		mythic	Legendary Planeswalker – Ghariv 	1	C	5			[+1]: Create a colorless Bullet artifact token with “T, Sacrifice this artifact: It deals 1 damage to any target.”NEWLINE[0]: Until end of turn, target noncreature artifact you control becomes a 4/4 artifact creature. The next time you would activate an ability of that artifact this turn, if it’s tapped, you may pay 0 rather than pay that ability’s costs.NEWLINE[-6]: Exile each permanent that’s one or more colors.	planeswalker	SHF"));
+			await fetch('/cards/SHF/1_The Smoking Gun.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

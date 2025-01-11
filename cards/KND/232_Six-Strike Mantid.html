@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Six-Strike Mantid	UG	mythic	Enchantment Creature – Insect Monk 	232	UG	GU	Whenever Six-Strike Mantid deals combat damage to a player, if it has deathtouch, vigilance, and menace, draw that many cards.NEWLINEGG: Teach Six-Strike Mantid deathtouch. (Put a counter of that kind on it. If it already has that ability, put a +1/+1 counter on it instead.)NEWLINEGU: Teach Six-Strike Mantid vigilance.NEWLINEUU: Teach Six-Strike Mantid menace.	2/2		normal	KND"));
+			await fetch('/cards/KND/232_Six-Strike Mantid.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

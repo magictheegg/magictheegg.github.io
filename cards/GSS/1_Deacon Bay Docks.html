@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Deacon Bay Docks		mythic	Legendary Planeswalker – Ghariv 	1	C	5			[+1]: You may put an artifact card with mana value 2 or less from your hand or graveyard onto the battlefield.NEWLINE[0]: Target artifact or creature loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 4/4 and crew 1.NEWLINE[-6]: Deacon Bay Docks loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 10/10, indestructible, crew 1, and “Whenever Deacon Bay Docks attacks, exile target permanent.” (This effect lasts indefinitely.)	planeswalker	GSS"));
+			await fetch('/cards/GSS/1_Deacon Bay Docks.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

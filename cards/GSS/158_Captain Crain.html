@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Captain Crain	UBR	mythic	Legendary Planeswalker – Crain 	158	UBR	UUBBRR			First mate – Your starting deck contains “The Fell Reaper” and each nonland card in your starting deck targets or has an ability that targets.NEWLINE[+3]: Target opponent exiles a card from their hand or a nonland permanent they control. If that player is cursed, you may play that card until end of turn.NEWLINE[-3]: Captain Crain deals 3 damage to each creature and each non-Crain planeswalker. Create three Treasure tokens.NEWLINE[-13]: Each cursed opponent loses the game.	planeswalker	GSS"));
+			await fetch('/cards/GSS/158_Captain Crain.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

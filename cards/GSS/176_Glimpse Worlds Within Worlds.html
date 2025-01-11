@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Glimpse Worlds Within Worlds	UG	uncommon	Kindred Sorcery – Kraken Revelation 	176	UG	1GU	Fathom 5GU (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent’s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)NEWLINELook at the top five cards of your library. You may reveal a land card and a nonland card from among them. Put the land card onto the battlefield tapped, the nonland card into your hand, and the rest on the bottom in any order.	5/4		normal	GSS"));
+			await fetch('/cards/GSS/176_Glimpse Worlds Within Worlds.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

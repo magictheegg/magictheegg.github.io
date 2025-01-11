@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Paint the Town Red	R	mythic	Legendary Enchantment – Saga 	147	R	2RR			“It’s time, Sirif. Today your debts will be settled, whether in gold or in blood.”NEWLINECreate a 2/2 red Cat creature token with first strike.NEWLINEPaint the Town Red deals 4 damage to target opponent unless that player has you draw two cards.NEWLINEExile this enchantment, then return it to the battlefield transformed under your control.	transform double faced	KND	Sirif, the Tremulous God	R	Legendary Enchantment Creature – Cat God 	R		First strikeNEWLINEWhenever Sirif attacks, they deal 4 damage to defending player unless that player has you create a 2/2 red and white Cat creature token with first strike that’s tapped and attacking that player.NEWLINEWhen Sirif dies, return this card to its owner’s hand.	4/2		"));
+			await fetch('/cards/KND/147_Paint the Town Red.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

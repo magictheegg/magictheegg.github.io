@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Xie'e Amphitheatre	B	rare	Enchantment – Gallery 	121	B	1BB			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Xie’e Amphitheatre enters the battlefield, search your library for a card and exile it face down, then shuffle. You may cast that card on any turn you sacrificed a permanent.NEWLINEB: Intro: TogetherNEWLINEAt the beginning of your upkeep, you lose 1 life and create a 0/1 black Cultist creature token with “1BB, Sacrifice three Cultists: Create a 5/5 black Demon creature token.”NEWLINE2B: Finale: AloneNEWLINEWhenever a Demon enters the battlefield under your control, each opponent loses life equal to its power and you gain that much life.	class	NJB"));
+			await fetch('/cards/NJB/121_Xie'e Amphitheatre.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

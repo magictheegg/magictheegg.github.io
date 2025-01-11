@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Malika Khazra, the Unifier	W	mythic	Legendary Creature – Human Rebel 	20	WUBRG	4W	When Malika Khazra enters the battlefield, for each color of mana spent to cast her, conscript a Rebel. (Look at the top four cards of your library. Reveal a Rebel from them and put it into your hand or create a 1/1 Rebel token. Put the rest on the bottom.)NEWLINE1GU: Copy target Rebel spell you control. You may choose new targets for the copy.NEWLINE1BR: Rebels you control get +1/+0 and gain menace until end of turn.	3/3		normal	KND"));
+			await fetch('/cards/KND/20_Malika Khazra, the Unifier.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

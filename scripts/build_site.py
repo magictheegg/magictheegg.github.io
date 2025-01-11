@@ -72,8 +72,11 @@ with open(os.path.join('lists', 'all-cards.txt'), encoding='utf-8-sig') as f:
 cards = cards.replace('\n','NEWLINE').replace('REPLACEME','\\n').rstrip('\\n')
 card_array = cards.split('\\n')
 for card in card_array:
+	card_stats = card.split('\t')
+	with open(os.path.join('cards', card_stats[11], card_stats[4] + '_' + card_stats[0] + '.txt'), 'w', encoding='utf-8-sig') as f:
+		f.write(card)
 	print_html_for_card.generateHTML(card)
-print(f"HTML card files saved in cards/{code}/")
+print(f"HTML card files saved as cards/<set>/<card>.html")
 
 custom_img_dir = os.path.join('custom', 'img')
 if os.path.isdir(custom_img_dir):

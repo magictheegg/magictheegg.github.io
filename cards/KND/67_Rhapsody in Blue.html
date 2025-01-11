@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Rhapsody in Blue	U	mythic	Legendary Enchantment – Saga 	67	U	2UU			“This world sings a rapturous melody, if you’d only spend the time to listen.”NEWLINEReturn all nonland permanents with mana value 2 or less to their owner’s hands.NEWLINEDraw two cards, then discard two cards.NEWLINEExile this enchantment, then return it to the battlefield transformed under your control.	transform double faced	KND	Fakadeh, the Symphonic God	U	Legendary Enchantment Creature – Bird God 	U		FlyingNEWLINEWhenever you cast a spell from your hand, you may exile a card from your graveyard with the same mana value and a different card type. If you do, cast a copy of the exiled card without paying its mana cost.NEWLINEWhen Fakadeh dies, return this card to its owner’s hand.	3/4		"));
+			await fetch('/cards/KND/67_Rhapsody in Blue.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

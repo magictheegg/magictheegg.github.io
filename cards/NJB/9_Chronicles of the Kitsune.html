@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Chronicles of the Kitsune	W	rare	Enchantment – Gallery 	9	W	W			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Chronicles of the Kitsune enters the battlefield, create a 2/1 red and white Fox creature token.NEWLINE2W: Act I: AscentNEWLINECreature tokens you control get +1/+1 and have flying.NEWLINE3WW: Act II: DescentNEWLINEAt the beginning of your end step, if you control no creatures, create Hu Li, a legendary 4/4 white Fox Spirit creature token with flying and lifelink.	class	NJB"));
+			await fetch('/cards/NJB/9_Chronicles of the Kitsune.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

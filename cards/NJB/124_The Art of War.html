@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("The Art of War	R	rare	Enchantment – Gallery 	124	R	1RR			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen The Art of War enters the battlefield, if a source you control would deal damage this turn, it deals double that damage instead.NEWLINE2RR: Laying PlansNEWLINEThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.NEWLINE2RR: Waging WarNEWLINEWhenever a creature you control attacks, create a token copy of it that’s tapped and attacking, except the token isn’t legendary. Exile those tokens at end of combat.	class	NJB"));
+			await fetch('/cards/NJB/124_The Art of War.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

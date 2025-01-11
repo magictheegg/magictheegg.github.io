@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Battle for Charred Atoll	UR	uncommon	Battle – Conquest 	149	UR	1UR	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it’s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Charred Atoll enters the battlefield,NEWLINEcreate a 2/2 blue Drake creature token with flying.			double faced	GSS	Volcanic Roost		Land	UR		T: Add U or R.NEWLINE2UR, T: Until end of turn, attacking creatures you control get +1/+0 and gain “Whenever this creature deals combat damage to an opponent, draw a card.”			"));
+			await fetch('/cards/GSS/149_Battle for Charred Atoll.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

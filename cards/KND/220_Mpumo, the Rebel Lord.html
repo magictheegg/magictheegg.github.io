@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Mpumo, the Rebel Lord	WBR	mythic	Legendary Planeswalker – Mpumo 	220	WBR	1RWB			[+1]: Mpumo deals 1 damage to each opponent. Create a 1/1 white and black Rebel creature token.NEWLINE[-3]: Target player sacrifices a nonland permanent with the greatest mana value among permanents that player controls.NEWLINE[-7]: Exile the top seven cards of your library. Whenever a creature you control attacks this turn, you may cast one of those cards without paying its mana cost.	planeswalker	KND"));
+			await fetch('/cards/KND/220_Mpumo, the Rebel Lord.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

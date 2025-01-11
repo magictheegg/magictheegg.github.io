@@ -1,7 +1,6 @@
 <html>
 <head>
   <title>Betsy Mae Moss, Legionette</title>
-  <meta charset="utf-8">
   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
@@ -173,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Betsy Mae Moss, Legionette	W	mythic	Legendary Creature – Human Pirate 	5	W	1W	AgileNEWLINEAs long as Betsy Mae Moss entered the battlefield or attacked this turn, your opponents can’t cast noncreature spells.	3/1		normal	GSS"));
+			await fetch('/cards/GSS/5_Betsy Mae Moss, Legionette.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -219,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -233,9 +238,7 @@
 		}
 
 		function gridifyCard(card) {
-			console.log(card);
 			card_stats = card.split('\t');
-			console.log(card_stats);
 			const card_name = card_stats[0];
 
 			const grid = document.createElement("div");
@@ -283,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

@@ -3,7 +3,9 @@ import sys
 
 def generateHTML(card):
 	code = card.split('\t')[11]
-	output_html_file = "cards/" + code + "/" + card.split('\t')[4] + "_" + card.split('\t')[0] + ".html"
+	card_name = card.split('\t')[0]
+	card_num = card.split('\t')[4]
+	output_html_file = "cards/" + code + "/" + card_num + "_" + card_name + ".html"
 
 	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8-sig') as f:
 		set_name = f.read()
@@ -11,7 +13,7 @@ def generateHTML(card):
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
-  <title>''' + card.split('\t')[0] + '''</title>
+  <title>''' + card_name + '''</title>
   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
@@ -183,7 +185,13 @@ def generateHTML(card):
 				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("''' + card + '''"));
+			await fetch('/cards/''' + code + '''/''' + card_num + '''_''' + card_name + '''.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -229,7 +237,7 @@ def generateHTML(card):
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {

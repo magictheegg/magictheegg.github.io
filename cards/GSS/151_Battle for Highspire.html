@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Battle for Highspire	RG	uncommon	Battle – Conquest 	151	RG	RG	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it’s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Highspire enters the battlefield, exile the top three cards of your library. You may play one of them this turn, andNEWLINEyou may play an additional land this turn.			double faced	GSS	Skypiercer		Land	RG		T: Add R or G. When that mana is spent to cast a spell, reveal cards from the top of your library until you reveal a card that costs less. If it’s a land, put it onto the battlefield tapped. Otherwise, you may cast it without paying its mana cost.			"));
+			await fetch('/cards/GSS/151_Battle for Highspire.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Yusi, the Sable Crow	UB	mythic	Legendary Planeswalker – Yusi 	237	UB	4UB			[+1]: Draw two cards, then sacrifice a permanent.NEWLINE[-2]: Create a token that’s a copy of Yusi’s back face.NEWLINE[-3]: Target opponent reveals their hand. Choose a nonland card in that player’s hand or graveyard, then exile it. You may cast it without paying its mana cost.	transform double faced	KND	Screeching Umbra	UB	Planeswalker – Yusi 	UB				NEWLINE[-3]: 	"));
+			await fetch('/cards/KND/237_Yusi, the Sable Crow.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

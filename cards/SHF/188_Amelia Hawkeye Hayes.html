@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Amelia Hawkeye Hayes	WR	mythic	Legendary Creature – Human Mercenary 	188	WR	2RW	At the beginning of combat on your turn, arm target creature you control. If it’s equipped twice, it gains indestructible until end of turn. (Create a colorless Equipment artifact token with “Equipped creature gets +1/+0” and equip 2 attached to it.)NEWLINEWhenever Amelia attacks, she deals damage to any target equal to the number of Equipments attached to attacking creatures you control. You gain that much life.	3/4		normal	SHF"));
+			await fetch('/cards/SHF/188_Amelia Hawkeye Hayes.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

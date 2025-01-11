@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Battle for Ivos Isle	UB	uncommon	Battle – Conquest 	152	UB	UB	(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it’s defeated, put it onto the battlefield transformed.)NEWLINEWhen Battle for Ivos Isle enters the battlefield, put a decayed counter on target creature an opponent controls with mana value 3 or less. (It can’t block. When it attacks, sacrifice it at end of combat.)			double faced	GSS	Pendulum Docks		Land	UB		T: Add U or B.NEWLINE2UB, T: Exile target creature card in a graveyard. When you do, create a token that’s a copy of that creature except it’s a black Zombie in addition to its other colors and types and it has decayed. Activate only as a sorcery.			"));
+			await fetch('/cards/GSS/152_Battle for Ivos Isle.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

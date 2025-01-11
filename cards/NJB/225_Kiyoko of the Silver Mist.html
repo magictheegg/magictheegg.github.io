@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Kiyoko of the Silver Mist	UB	mythic	Legendary Planeswalker – Kiyoko 	225	UB	1UB			[+1]: Create a 1/1 white Warrior creature token. Put a menace counter on it.NEWLINE[-2]: Draw a card for each tapped creature you control.NEWLINE[-5]: You get an emblem with “Creature cards in your hand have ‘1UB, Return an unblocked attacker you control to its owner’s hand: Put this card onto the battlefield tapped and attacking.’”	planeswalker	NJB"));
+			await fetch('/cards/NJB/225_Kiyoko of the Silver Mist.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

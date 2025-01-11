@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Niah, the Necroalchemist	BG	mythic	Legendary Planeswalker – Niah 	222	BG	2BG			[+1]: Mill three cards, then return a card milled this way from your graveyard to your hand.NEWLINE[-2]: Create a 0/0 black Shade creature token with “This creature gets +1/+1 for each creature card in your graveyard.”NEWLINE[-6]: Return target creature card from your graveyard to the battlefield, then merge up to two other target creature cards from your graveyard under that creature. (It has all abilities of those cards.)	planeswalker	KND"));
+			await fetch('/cards/KND/222_Niah, the Necroalchemist.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

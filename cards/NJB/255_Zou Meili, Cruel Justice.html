@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Zou Meili, Cruel Justice	WB	mythic	Legendary Planeswalker – Zou 	255	WB	2WB			[+1]: Each opponent discards a card. If a land card is discarded this way, create a 1/1 colorless Spirit creature token with flying.NEWLINE[-2]: Until end of turn, creatures you control get +1/+1 and creatures your opponents control get -1/-1.NEWLINE[-6]: Each opponent chooses up to one permanent they control of each permanent type, then sacrifices the rest.	planeswalker	NJB"));
+			await fetch('/cards/NJB/255_Zou Meili, Cruel Justice.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

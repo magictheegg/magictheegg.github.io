@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Eli, Wistful Drifter	WB	mythic	Legendary Planeswalker – Eli 	198	WB	1WB			Artifacts you control have “T, Sacrifice this artifact: It deals 1 damage to any target. Activate only as a sorcery.”NEWLINE[+1]: Mill two cards, then you may return a nonland permanent card with mana value 2NEWLINEor less from your graveyard to your hand.NEWLINE[-2]: Eli deals 3 damage to any target that was dealt damage this turn and you gain 3 life.	planeswalker	SHF"));
+			await fetch('/cards/SHF/198_Eli, Wistful Drifter.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

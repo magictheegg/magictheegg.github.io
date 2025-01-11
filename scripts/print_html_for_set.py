@@ -128,6 +128,7 @@ def generateHTML(code):
 	.card-text .name-cost {
 		font-weight: bold;
 		font-size: 20px;
+		white-space: pre-wrap;
 	}
 	.card-text .type {
 		font-size: 16px;
@@ -398,7 +399,7 @@ def generateHTML(code):
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -429,7 +430,7 @@ def generateHTML(code):
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '\xa0\xa0\xa0\xa0\xa0' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
@@ -464,7 +465,7 @@ def generateHTML(code):
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '\xa0\xa0\xa0\xa0\xa0' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

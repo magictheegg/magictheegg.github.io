@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Kanghyae Forum	WG	uncommon	Enchantment – Gallery 	224	WG	GW			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Kanghyae Forum enters the battlefield, you may return another permanent you control to its owner’s hand. If you don’t, draw a card.NEWLINE2G: A Common GoodNEWLINEIf an effect would create one or more tokens under your control, it creates that many of those tokens plus one instead.NEWLINE2W: Rebuilding TrustNEWLINEIf an effect would put one or more counters on a permanent you control, it puts that many of those counters plus one on that permanent instead.	class	NJB"));
+			await fetch('/cards/NJB/224_Kanghyae Forum.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

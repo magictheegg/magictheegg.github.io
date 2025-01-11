@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Wildlife Sketches	G	rare	Enchantment – Gallery 	204	G	G			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Wildlife Sketches enters the battlefield, reveal the top five cards of your library. Put a creature card from among them into your hand and the rest on the bottom in any order.NEWLINE1G: Carnation PetalsNEWLINEYou may cast creature spells as though they had flash.NEWLINE3G: Pecking OrderNEWLINEAt the beginning of your upkeep, you may sacrifice a creature. If you do, search your library for a creature card with mana value 1 greater than the sacrificed creature’s and put it onto the battlefield, then shuffle.	class	NJB"));
+			await fetch('/cards/NJB/204_Wildlife Sketches.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

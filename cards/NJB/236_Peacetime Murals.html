@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Peacetime Murals	UG	uncommon	Enchantment – Gallery 	236	UG	3GU			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Peacetime Murals enters the battlefield, draw three cards and you gain 3 life.NEWLINE2G: Grow as TwoNEWLINEWhenever you activate an ability of a creature you control, create a token that’s a copy of that creature except it isn’t legendary. This ability triggers only once each turn.NEWLINE2U: A Better MankindNEWLINEWhenever a creature enters the battlefield under your control, you may activate one of its abilities without paying its costs. This ability triggers only once each turn.	class	NJB"));
+			await fetch('/cards/NJB/236_Peacetime Murals.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

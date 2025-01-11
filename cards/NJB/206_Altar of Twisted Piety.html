@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Altar of Twisted Piety	BR	uncommon	Enchantment – Gallery 	206	BR	1BR			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Altar of Twisted Piety enters the battlefield, return target creature card with mana value 3 or less from your graveyard to the battlefield.NEWLINE2B: Shadows Bind UsNEWLINEB, Sacrifice three creatures: Create a 5/5 black Demon creature token. Put your choice of a flying counter or a lifelink counter on it. It can’t block this turn.NEWLINE2R: Hellfire Fills UsNEWLINER, Sacrifice a creature: Altar of Twisted Piety deals 2 damage to any target.	class	NJB"));
+			await fetch('/cards/NJB/206_Altar of Twisted Piety.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

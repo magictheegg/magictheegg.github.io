@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Emperor Dan Te Mogui	UBG	rare	Legendary Creature – Human Noble 	215	UBG	BGU	Inspired – Whenever Emperor Dan Te Mogui becomes untapped, look at the top three cards of your library. Put one into your graveyard, one on the bottom, and the other back on top.NEWLINEWhen Emperor Dan Te Mogui dies, you may put it on the bottom of your library. If you do, return target permanent card from your graveyard to your hand.	3/3		normal	NJB"));
+			await fetch('/cards/NJB/215_Emperor Dan Te Mogui.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

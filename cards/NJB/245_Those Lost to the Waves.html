@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Those Lost to the Waves	WU	uncommon	Enchantment – Gallery 	245	WU	WU			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Those Lost to the Waves enters the battlefield, search your library for an artifact card with mana value 3 or less, reveal it, put it into your hand, then shuffle.NEWLINE1W: Fight the CurrentNEWLINEEquipped creatures you control get +1/+1.NEWLINE3U: Soul of the SeaNEWLINEAt the beginning of combat on your turn, you may have target noncreature artifact become a 3/3 artifact creature until end of turn.	class	NJB"));
+			await fetch('/cards/NJB/245_Those Lost to the Waves.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

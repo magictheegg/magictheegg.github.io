@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Panya, the Sojourner	U	mythic	Legendary Creature – Mouse Warrior 	66	U	U	Panya can’t be blocked by creatures with power 3 or greater.NEWLINEAt the beginning of each end step, if you cast an instant or sorcery spell this turn, put a +1/+1 counter on Panya.	1/1		adventure	KND	Grand Odyssey	U	Sorcery – Tale 	U	2U	Exile the top three cards of your library. For as long as they are exiled, whenever a creature you control deals combat damage to a player, you may put one into your hand.			"));
+			await fetch('/cards/KND/66_Panya, the Sojourner.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");

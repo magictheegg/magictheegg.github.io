@@ -172,7 +172,13 @@
 				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 			}
 
-			document.getElementById("grid").appendChild(gridifyCard("Fables of the Ill-Fated	BG	uncommon	Enchantment – Gallery 	216	BG	2BG			(Choose only one work as a sorcery to add its ability.)NEWLINEWhen Fables of the Ill-Fated enters the battlefield, destroy target nonland permanent.NEWLINEB: The Witch’s TempleNEWLINEWhenever a nonland permanent you control dies, each opponent loses 1 life.NEWLINE3G: Enter the NestNEWLINE3G, Sacrifice two lands: Create a 0/0 green Wurm creature token with “This creature gets +1/+1 for each permanent card in your graveyard.” Activate only as a sorcery.	class	NJB"));
+			await fetch('/cards/NJB/216_Fables of the Ill-Fated.txt')
+				.then(response => response.text())
+				.then(text => {
+					card = text;
+			}).catch(error => console.error('Error:', error));
+
+			document.getElementById("grid").appendChild(gridifyCard(card));
 		});
 
 		function isDecimal(char) {
@@ -218,7 +224,7 @@
 				symText = symText + "{" + token + "}";
 			}
 
-			return formatTextHTML(symText.replace("{}", ""));
+			return formatTextHTML(symText);
 		}
 
 		function formatTextHTML(str) {
@@ -280,7 +286,7 @@
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
