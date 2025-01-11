@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>Betsy Mae Moss, Legionette</title>
+  <meta charset="utf-8">
   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
@@ -232,6 +233,7 @@
 		}
 
 		function gridifyCard(card) {
+			console.log(card);
 			card_stats = card.split('\t');
 			console.log(card_stats);
 			const card_name = card_stats[0];
