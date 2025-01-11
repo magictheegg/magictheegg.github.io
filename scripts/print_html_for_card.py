@@ -153,7 +153,7 @@ def generateHTML(card):
 			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
 			<img class="sg-icon" src="/img/search.png">
 			<input type="text" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
-			<a href="/sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
 			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
 		</div>
 	</div>

@@ -10,6 +10,7 @@ import print_html_for_search
 import print_html_for_spoiler
 import print_html_for_card
 import print_html_for_set
+import print_html_for_sets_page
 
 def genAllCards(codes):
 	file_input = ''
@@ -28,6 +29,8 @@ for entry in os.scandir('sets'):
 		set_codes.append(entry.name[:-6])
 	else:
 		os.remove(entry)
+
+set_codes.sort()
 
 genAllCards(set_codes)
 
@@ -86,6 +89,7 @@ if os.path.isdir(custom_img_dir):
 		shutil.copy(filepath, destination)
 		print(filepath + ' added')
 
+print_html_for_sets_page.generateHTML(set_codes)
 print_html_for_search.generateHTML(set_codes)
 print_html_for_index.generateHTML(set_codes)
 
