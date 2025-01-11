@@ -107,6 +107,7 @@ def generateHTML(codes):
 		</div>
 	<script>
 		let card_list_arrayified = [];
+		let specialchars = "";
 		let displayStyle = "";
 
 		document.addEventListener("DOMContentLoaded", async function () {
@@ -116,7 +117,18 @@ def generateHTML(codes):
 					card_list_stringified = text; 
 			}).catch(error => console.error('Error:', error));
 
+			await fetch('/resources/replacechars.txt')
+				.then(response => response.text())
+				.then(text => {
+					specialchars = text; 
+			}).catch(error => console.error('Error:', error));
+
 			card_list_arrayified = card_list_stringified.split('\\\\n');
+
+			for (let i = 0; i < card_list_arrayified.length; i++)
+			{
+				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
+			}
 		});
 
 		function isDecimal(char) {
@@ -136,7 +148,13 @@ def generateHTML(codes):
 
 		function randomCard() {
 			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_list_arrayified[i][0]);
+			let card_name = card_list_arrayified[i][0];
+			for (const char of specialchars)
+			{
+				card_name = card_name.replace(char, "");
+			}
+
+			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
 		}
 	</script>
 </body>

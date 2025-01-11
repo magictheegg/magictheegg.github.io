@@ -76,7 +76,12 @@ cards = cards.replace('\n','NEWLINE').replace('REPLACEME','\\n').rstrip('\\n')
 card_array = cards.split('\\n')
 for card in card_array:
 	card_stats = card.split('\t')
-	with open(os.path.join('cards', card_stats[11], card_stats[4] + '_' + card_stats[0] + '.txt'), 'w', encoding='utf-8-sig') as f:
+	card_name = card_stats[0]
+	with open(os.path.join('resources', 'replacechars.txt'), encoding='utf-8-sig') as f:
+		chars = f.read()
+	for char in chars:
+		card_name = card_name.replace(char, '')
+	with open(os.path.join('cards', card_stats[11], card_stats[4] + '_' + card_name + '.txt'), 'w', encoding='utf-8-sig') as f:
 		f.write(card)
 	print_html_for_card.generateHTML(card)
 print(f"HTML card files saved as cards/<set>/<card>.html")

@@ -212,6 +212,7 @@ def generateHTML(code):
 	<script>
 		let card_list_arrayified = [];
 		let set_list_arrayified = [];
+		let specialchars = "";
 		let displayStyle = "";
 
 		document.addEventListener("DOMContentLoaded", async function () {
@@ -219,6 +220,12 @@ def generateHTML(code):
 				.then(response => response.text())
 				.then(text => {
 					card_list_stringified = text; 
+			}).catch(error => console.error('Error:', error));
+
+			await fetch('/resources/replacechars.txt')
+				.then(response => response.text())
+				.then(text => {
+					specialchars = text; 
 			}).catch(error => console.error('Error:', error));
 
 			card_list_arrayified = card_list_stringified.split('\\\\n');
@@ -518,7 +525,12 @@ def generateHTML(code):
 			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
-			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_stats[0];
+			let card_name = card_stats[0];
+			for (const char of specialchars)
+			{
+				card_name = card_name.replace(char, "");
+			}
+			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_name;
 			link.appendChild(img);
 			imgContainer.appendChild(link);
 
@@ -589,7 +601,13 @@ def generateHTML(code):
 
 		function randomCard() {
 			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_list_arrayified[i][0]);
+			let card_name = card_list_arrayified[i][0];
+			for (const char of specialchars)
+			{
+				card_name = card_name.replace(char, "");
+			}
+
+			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
 		}
 	</script>
 </body>
