@@ -10,7 +10,7 @@ def generateHTML(code):
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
-  <title>Search</title>
+  <title>''' + set_name + '''</title>
   <link rel="icon" type="image/x-icon" href="/sets/''' + code + '''-files/icon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
