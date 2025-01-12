@@ -20,8 +20,6 @@
 		position: absolute;
 	}
 	.item-container {
-		width: 70%;
-		max-width: 1000px;
 		height: auto;
 		display: grid;
 		justify-self: center;
@@ -286,10 +284,16 @@
 				const card_stats = card_list_cleaned[cotd].split('\t');
 
 				const a = document.createElement("a");
-				a.href = '/cards/' + card_stats[11] + '/' + card_stats[4] + '_' + card_stats[0];
+				let card_name = card_stats[0];
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+				a.href = '/cards/' + card_stats[11] + '/' + card_stats[4] + '_' + card_name;
 
 				const img = document.createElement("img");
 				img.id = "cotd";
+
 				img.src = '/sets/' + card_stats[11] + '-files/img/' + card_stats[4] + '_' + card_stats[0] + '.png';
 
 				a.append(img);

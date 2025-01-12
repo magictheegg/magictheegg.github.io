@@ -618,7 +618,7 @@ def generateHTML(code):
 </html>'''
 
 	# Write the HTML content to the output HTML file
-	with open(output_html_file, 'w') as file:
+	with open(output_html_file, 'w', encoding='utf-8-sig') as file:
 		file.write(html_content)
 
 	print(f"HTML file saved as {output_html_file}")
