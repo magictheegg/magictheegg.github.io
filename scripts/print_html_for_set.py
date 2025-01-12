@@ -574,8 +574,8 @@ def generateHTML(code):
 
 			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.])/g;
 			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,])/g;
-			let pattern3 = /([Pp]ay[s]* )([0-9X])(?! life)/g;
-			let pattern4 = /([Cc]ost[s]* )([0-9X])/g;
+			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
+			let pattern5 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
 			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
 				return symbolize(group1) + group2;
 			});
@@ -585,7 +585,7 @@ def generateHTML(code):
 			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
 				return group1 + symbolize(group2);
 			});
-			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
+			regexHTML = regexHTML.replace(pattern5, function (match, group1, group2) {
 				return group1 + symbolize(group2);
 			});
 
