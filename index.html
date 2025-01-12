@@ -5,138 +5,180 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<style>
+	@font-face {
+	  font-family: 'Beleren Small Caps';
+	  src: url('/resources/beleren-caps.ttf');
+	}
 	body {
-	  background-image: linear-gradient(to top, #ffdde1, #ee9ca7);
-	  overscroll-behavior: none;
-	  font-family: 'Helvetica', 'Arial', sans-serif;
+		background-image: linear-gradient(to top, #ffdde1, #ee9ca7);
+		background-attachment: fixed;
+		overscroll-behavior: none;
+		font-family: 'Helvetica', 'Arial', sans-serif;
+		display: grid;
+	}
+	.selects {
+		position: absolute;
 	}
 	.item-container {
-	  	width: 70%;
-	  	height: auto;
-	  	position: fixed;
-	  	left: 50%;
-	  	top: 50%;
-	  	transform: translate(-50%, -50%);
+		width: 70%;
+		max-width: 1000px;
+		height: auto;
+		display: grid;
+		justify-self: center;
+		align-self: center;
 	}
 	.item-container .banner {
-	  	width: 100%;
-	  	max-width: 500px;
-	  	display: block;
-	  	margin: auto;
+		max-width: 500px;
+		max-height: 200px;
+		display: block;
+		margin: auto;
+		padding-bottom: 20px;
 	}
 	select {
+		position: absolute;
 		text-align: center;
 		font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 		font-weight: 500;
 		cursor: pointer;
 		background-color: #F3F3F3;
 	}
-	/* courtesy of https://getcssscan.com/css-buttons-examples */
-	button {
+	input {
 		width: 100%;
-		height: auto;
-		font-size: 16px;
-		appearance: none;
-		background-color: #F3F3F3;
-		border: 1px #808080 solid;
-		border-radius: 6px;
-		box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-		box-sizing: border-box;
-		color: #24292E;
-		cursor: pointer;
-		display: inline-block;
-		font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-		font-weight: 500;
-		line-height: 20px;
-		list-style: none;
-		padding: 6px 16px;
-		/*position: relative;*/
-		transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-		user-select: none;
-		-webkit-user-select: none;
-		touch-action: manipulation;
-		vertical-align: middle;
-		white-space: nowrap;
-		word-wrap: break-word;
-	}
-	button:hover {
-	  background-color: #F3F4F6;
-	  text-decoration: none;
-	  transition-duration: 0.1s;
-	}
-	button:disabled {
-	  background-color: #FAFBFC;
-	  border-color: rgba(27, 31, 35, 0.15);
-	  color: #959DA5;
-	  cursor: default;
-	}
-	button:active {
-	  background-color: #EDEFF2;
-	  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-	  transition: none 0s;
-	}
-	button:focus {
-	  outline: 1px transparent;
-	}
-	button:before {
-	  display: none;
-	}
-	button:-webkit-details-marker {
-	  display: none;
-	}
-	.search-grid {
-		width: 80%;
-		height: 40px;
+		max-width: 700px;
 		margin: auto;
-		display: grid;
-		grid-template-columns: 4fr 1fr;
-		gap: 10px;
-		padding-top: 10px;
-		justify-items: center;
+		height: 50px;
+		font-size: 24px;
+		color: #171717;
+		background-color: #f3f3f3;
+		border: 1px solid #d9d9d9;
+		border-radius: 2px;
+		padding-left: 10px;
+		padding-right: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
 	}
-	.search-grid input {
-	    width: 100%;
-	    font-size: 16px;
+	input:focus {
+		outline-color: #171717;
 	}
 	.two-part-grid {
+		width: 100%;
+		max-width: 700px;
+		margin: auto;
 		display: grid;
-		grid-template-columns: 3fr 4fr;
-		gap: 5px;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
 		justify-items: center;
-		align-items: flex-start;
 	}
 	.two-part-grid p {
+		width: 100%;
+		text-align: center;
+		padding-bottom: 8px;
 		font-size: 24px;
 		font-weight: bolder;
 		font-family: 'Georgia';
+		margin: 0;
 	}
-	.two-part-grid img {
-		width: 60%;
+	.container p {
+		padding-top: 11px;
+		padding-bottom: 16px;
+	}
+	.preview-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2px;
+		justify-items: center;
+		align-items: center;
+		padding-bottom: 20px;
+	}
+	.button-grid {
+		display: grid;
+		margin: auto;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		padding-top: 10px;
+		padding-bottom: 20px;
+	}
+	.button-grid button {
+		background-color: #171717;
+		border: none;
+		color: #f3f3f3;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 15px;
+		width: 150px;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+	}
+	button:hover {
+		background-color: #000000;
+		border: 1px solid #f3f3f3;
+	}
+	.btn-img {
+		width: 24px;
+	}
+	.container {
+		height: fit-content;
+		align-self: center;
+	}
+	.card-container {
+		background: #f3f3f3;
+		width: 90%;
+		border: 1px solid #d5d9d9;
+		border-top: 3px solid #171717;
+		border-bottom: 3px solid #171717;
+		border-radius: 6px;
+		display: grid;
+		justify-items: center;
+		gap: 8px;
+		padding-top: 8px;
+		padding-bottom: 8px;
+		height: fit-content;
+	}
+	.card-container p {
+		border-bottom: 1px solid #898989;
+	}
+	.card-container a {
+		width: 70%;
+	}
+	.card-container img {
+		width: 100%;
 		display: block;
-	  	margin: auto;
+		margin: auto;
 	}
-	.icon-bar {
-	    display: grid;
-	    grid-template-columns: 1fr 1fr;
-	    gap: 1px;
-	    padding-left: 5%;
-	    padding-right: 5%;
-	    padding-top: 2%;
-	    padding-bottom: 1%;
-	    justify-items: center;
-	    align-items: center;
+	.set-icon-container {
+		font-family: 'Beleren Small Caps';
+		font-size: 12px;
+		text-align: center;
+		display: grid;
+		justify-items: center;
+		align-items: center;
+		gap: 2px;
+		width: 100%;
+		height: 100%;
 	}
-	.icon-bar .icon img {
-	    width: 60%;
-	    height: auto;
-	    display: block;
-	    padding: 5%;
-	    margin: auto;
-	    text-align: center;
+	.set-icon-container a {
+		text-decoration: none;
+		color: #171717;
+	}
+	.set-icon {
+		height: 60px;
+		display: grid;
+		align-items: center;
+		justify-items: center;
+	}
+	.set-icon img {
+		width: 60px;
+	}
+	.set-icon-name {
+		height: 30px;
 	}
 	@media ( max-width: 750px ) {
 		.item-container {
-	    	width: 95%;  
+			width: 95%;	
 		}
 		.search-grid {
 			width: 95%;
@@ -153,30 +195,47 @@
 		</div>
 		<div class="item-container">
 			<img class="banner" src="img/banner.png"></img>
-			<div class="search-grid">
-				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
-				<button type="submit" onclick="search()" id="searchBtn">Search</button>
+			<input type="text" inputmode="search" placeholder="Search ..." autofocus="autofocus" name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
+			<div class="button-grid">
+				<button onclick="goToSets()"><img src="/img/sets.png" class="btn-img">All Sets</button>
+				<button onclick="randomCard()"><img src="/img/random.png" class="btn-img">Random Card</button>
 			</div>
 			<div class="two-part-grid">
-				<p>Preview Galleries</p>
-				<p>Random Card of the Day</p>
+				<div class="container" id="preview-container">
+					<p>Preview Galleries</p>
+					<div class="preview-container">
+					<div class="set-icon-container">
+								<a href="GSS-spoiler"><div class="set-icon"><img src="sets/GSS-files/icon.png" title="Golden Shores of Shiryen"></img></div>
+								<div class="set-icon-name">Golden Shores of Shiryen</div></a>
+							</div>
+			<div class="set-icon-container">
+								<a href="KND-spoiler"><div class="set-icon"><img src="sets/KND-files/icon.png" title="Kahembo: New Dawn"></img></div>
+								<div class="set-icon-name">Kahembo: New Dawn</div></a>
+							</div>
+			<div class="set-icon-container">
+								<a href="NJB-spoiler"><div class="set-icon"><img src="sets/NJB-files/icon.png" title="Nangjiao in Bloom"></img></div>
+								<div class="set-icon-name">Nangjiao in Bloom</div></a>
+							</div>
+			<div class="set-icon-container">
+								<a href="SHF-spoiler"><div class="set-icon"><img src="sets/SHF-files/icon.png" title="The Starholme Frontier"></img></div>
+								<div class="set-icon-name">The Starholme Frontier</div></a>
+							</div>
+							</div>
+				</div>
+				<div class="card-container" id="cotd-image">
+					<p>Card of the Day</p>
+				</div>
 			</div>
-			<div class="two-part-grid">
-				<div class="icon-bar">
-										<div class="icon"><a href="GSS-spoiler"><img src="sets/GSS-files/icon.png" title="Golden Shores of Shiryen"></img></a></div>
-								<div class="icon"><a href="KND-spoiler"><img src="sets/KND-files/icon.png" title="Kahembo: New Dawn"></img></a></div>
-								<div class="icon"><a href="NJB-spoiler"><img src="sets/NJB-files/icon.png" title="Nangjiao in Bloom"></img></a></div>
-								<div class="icon"><a href="SHF-spoiler"><img src="sets/SHF-files/icon.png" title="The Starholme Frontier"></img></a></div>
-				    	</div>
-		    	<div id="cotd-image"></div>
-		    </div>
 		</div>
 		<script>
+			const delay = ms => new Promise(res => setTimeout(res, ms));
 			let gradients = [];
+			let card_list_arrayified = [];
+			let specialchars = "";
 
 			document.addEventListener("DOMContentLoaded", async function () {
 				try {
-					const response = await fetch('./lists/gradients.txt');
+					const response = await fetch('./resources/gradients.txt');
 					raw_gradients = await response.text();
 				}
 				catch(error) {
@@ -186,20 +245,26 @@
 				gradients = raw_gradients.split('\n');
 				prepareGradients();
 
-	            // this is all to prepare a random card of the day lol
-	            await fetch('./lists/all-cards.txt')
-	                .then(response => response.text())
-	                .then(text => {
-	                    // Do something with the text content
-	                    card_list_stringified = text; 
-	            }).catch(error => console.error('Error:', error));
+				// this is all to prepare a random card of the day lol
+				await fetch('./lists/all-cards.txt')
+					.then(response => response.text())
+					.then(text => {
+						// Do something with the text content
+						card_list_stringified = text; 
+				}).catch(error => console.error('Error:', error));
 
-	            card_list_arrayified = card_list_stringified.split('\\n');
-	            card_list_cleaned = []
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
 
-	            for (const card of card_list_arrayified)
-	            {
-	            	let card_stats = [];
+				card_list_arrayified = card_list_stringified.split('\\n');
+				card_list_cleaned = [];
+
+				for (const card of card_list_arrayified)
+				{
+					let card_stats = [];
 
 					for (let i = 0; i < card.length; i++)
 					{
@@ -210,28 +275,58 @@
 					{
 						card_list_cleaned.push(card);
 					}
-	            }
+				}
 
-	            const cotd = reallyRand(card_list_cleaned.length);
-	            const card_stats = card_list_cleaned[cotd].split('\t');
-	            const img = document.createElement("img");
-	            img.src = 'sets/' + card_stats[11] + '-files/img/' + card_stats[4] + (card_stats[3].includes('token') ? 't_' : '_') + card_stats[0] + '.png';
-	            document.getElementById("cotd-image").append(img);
-	        });
+				for (let i = 0; i < card_list_arrayified.length; i++)
+				{
+					card_list_arrayified[i] = card_list_arrayified[i].split('	');
+				}
+
+				const cotd = reallyRand(card_list_cleaned.length);
+				const card_stats = card_list_cleaned[cotd].split('\t');
+
+				const a = document.createElement("a");
+				a.href = '/cards/' + card_stats[11] + '/' + card_stats[4] + '_' + card_stats[0];
+
+				const img = document.createElement("img");
+				img.id = "cotd";
+				img.src = '/sets/' + card_stats[11] + '-files/img/' + card_stats[4] + '_' + card_stats[0] + '.png';
+
+				a.append(img);
+				document.getElementById("cotd-image").append(a);
+
+				do {
+					await delay(100);
+				}
+				while (!isImageOk(document.getElementById("cotd")));
+				document.getElementById("preview-container").style.height = document.getElementById("cotd-image").offsetHeight;
+			});
 
 			document.getElementById("search").addEventListener("keypress", function(event) {
-			  if (event.key === "Enter") {
-				event.preventDefault();
-				document.getElementById("searchBtn").click();
-			  }
+				if (event.key === "Enter") {
+					event.preventDefault();
+					search();
+				}
 			});
+
+			window.addEventListener('resize', function(event) {
+				document.getElementById("preview-container").style.height = document.getElementById("cotd-image").offsetHeight;
+			}, true);
+
+			function isImageOk(img) {
+				if (!img.complete || img.naturalWidth == 0) {
+					return false;
+				}
+
+				return true;
+			}
 
 			// if this doesn't work, blame Gemini
 			function reallyRand(x) {
 				const date = new Date();
 				const seed = date.getFullYear() * 10000 + 
-			               date.getMonth() * 100 + 
-			               date.getDate();
+							 date.getMonth() * 100 + 
+							 date.getDate();
 
 				const a = 1103515245;
 				const c = 12345;
@@ -241,10 +336,6 @@
 				randomNumber = randomNumber / m;
 
 				return Math.floor(randomNumber * x);
-			}
-
-			function search() {
-				window.location = ("search?search=" + document.getElementById("search").value);
 			}
 
 			function prepareGradients() {
@@ -277,6 +368,25 @@
 				}
 
 				document.body.style.backgroundImage = `linear-gradient(to bottom, ${gradTop}, ${gradBottom})`;
+			}
+
+			function search() {
+				window.location = ("search?search=" + document.getElementById("search").value);
+			}
+
+			function goToSets() {
+				window.location = ("/all-sets");
+			}
+
+			function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i][0];
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+
+				window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
 			}
 		</script>
 	</body>

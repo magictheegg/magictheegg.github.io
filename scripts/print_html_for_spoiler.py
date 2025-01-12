@@ -285,7 +285,7 @@ def generateHTML(setCode, setCodes):
 		}
 		preloadImgs = document.getElementsByClassName('preload-hidden');
 		
-		let images_loaded = []
+		let images_loaded = [];
 
 		do {
 			await delay(100);
