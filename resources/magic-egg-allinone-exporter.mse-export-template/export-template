@@ -190,13 +190,13 @@ script:
 	}
 
 	write_booster_contents := {
-		( if options.rares > 0 then ("[RareSlot(" + options.rares + ")]
+		( if options.rares != "" then if options.rares > 0 then ("[RareSlot(" + options.rares + ")]
 		"+ write_draft_rares() + write_draft_mythics()) else "" ) +
-		( if options.uncommons > 0 then ("[UncommonSlot(" + options.uncommons + ")]
+		( if options.uncommons != "" then  if options.uncommons > 0 then ("[UncommonSlot(" + options.uncommons + ")]
 		"+ write_draft_uncommons()) else "" ) +
-		( if options.commons > 0 then ("[CommonSlot(" + options.commons + ")]
+		( if options.commons != "" then  if options.commons > 0 then ("[CommonSlot(" + options.commons + ")]
 		"+ write_draft_commons()) else "" ) +
-		( if options.wildcards > 0 then "[WildcardSlot(" + options.wildcards + ")]
+		( if options.wildcards != "" then  if options.wildcards > 0 then "[WildcardSlot(" + options.wildcards + ")]
 		"+ write_draft_wildcards() else "" ) +
 		( if options.land_slot == "yes" then "[LandSlot(1)]
 		"+ write_draft_landslot() else "" )
