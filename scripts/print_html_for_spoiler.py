@@ -31,7 +31,6 @@ def generateHTML(setCode, setCodes):
 			margin: 0;
 			padding: 0;
 			overscroll-behavior: none;
-			background-image: url('sets/''' + setCode + '''-files/bg.png');
 			background-size: cover;
 			background-attachment: fixed;
 		}
@@ -184,8 +183,11 @@ def generateHTML(setCode, setCodes):
 		html_content += '''<img class="preload-hidden" src="/sets/''' + code + '''-files/icon.png" />
 		'''
 
+	if os.path.exists(os.path.join('sets', setCode + '-files', 'bg.png')):
+		html_content +='''<img class="preload-hidden" id="bg" src="/sets/''' + setCode + '''-files/bg.png" />
+		'''
+
 	html_content += '''
-	<img class="preload-hidden" id="bg" src="/sets/''' + setCode + '''-files/bg.png" />
 
 	<div class="header">
 		<div class="search-grid">
@@ -297,7 +299,12 @@ def generateHTML(setCode, setCodes):
 		}
 		while (images_loaded.includes(false));
 
-		document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
+		'''
+
+	if os.path.exists(os.path.join('sets', setCode + '-files', 'bg.png')):
+		html_content += '''document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';'''
+
+	html_content += '''
 		loadImages();
 	});
 

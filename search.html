@@ -176,6 +176,8 @@
 		top: 6.5%;
 		left: 8.5%;
 		transform: translate(-50%, -85%);
+		border-radius: 0px;
+	  box-shadow: none;
 	}
 	.img-container .btn:hover {
 		background: url('img/flip-hover.png') no-repeat;
@@ -525,11 +527,11 @@
 				{
 					inParens = false;
 				}
-				if (!inParens && !inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == 'ì' || searchTerms.charAt(i) == '/'))
+				if (!inParens && !inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '‚Äú' || searchTerms.charAt(i) == '/'))
 				{
 					inQuotes = true;
 				}
-				else if (!inParens && inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == 'î' || searchTerms.charAt(i) == '/'))
+				else if (!inParens && inQuotes && (searchTerms.charAt(i) == '"' || searchTerms.charAt(i) == '‚Äù' || searchTerms.charAt(i) == '/'))
 				{
 					inQuotes = false;
 				}
@@ -603,16 +605,17 @@
 			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
 			let card_shape = card_stats[10];
 			let card_set = card_stats[11];
+			let card_loyalty = card_stats[12];
 
 			// two cards in one	
 			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
 			{
-				card_name = card_name + "	" + card_stats[12];
-				card_type = card_type + "	" + card_stats[14];
-				card_oracle_text = card_oracle_text + "	" + (card_stats[17] != "" ? card_stats[17].replaceAll("NEWLINE", '\n') : card_stats[19].replaceAll("NEWLINE", '\n'));
+				card_name = card_name + "	" + card_stats[13];
+				card_type = card_type + "	" + card_stats[15];
+				card_oracle_text = card_oracle_text + "	" + (card_stats[18] != "" ? card_stats[18].replaceAll("NEWLINE", '\n') : card_stats[20].replaceAll("NEWLINE", '\n'));
 			}
 
-			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('ì','').replaceAll('î','');
+			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('‚Äú','').replaceAll('‚Äù','');
 
 			const modifierRegex = /[!:<>=]/;
 			const match = token.search(modifierRegex);
@@ -997,46 +1000,55 @@
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
 
-			if(card_stats[8] != "")
+			if (card_stats[8] != "")
 			{
 				const pt = document.createElement("div");
 				pt.className = "pt";
 				pt.textContent = card_stats[8];
 				text.appendChild(pt);
 			}
+			else if (card_stats[12] != "")
+			{
+				const loyalty = document.createElement("div");
+				loyalty.className = "pt";
+				loyalty.textContent = "[" + card_stats[12] + "]";
+				text.appendChild(loyalty);
+			}
+
+			console.log(card_stats);
 
 			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
 			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[13] + (card_stats[17] != "" ? '     ' + symbolize(card_stats[17]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
 				type_2.className = "type";
-				type_2.textContent = card_stats[14];
+				type_2.textContent = card_stats[15];
 				text.appendChild(type_2);
 
 				const effect_2 = document.createElement("div");
 				effect_2.className = "effect";
 				let card_effects_2 = "";
-				if (card_stats[17] != "")
+				if (card_stats[18] != "")
 				{
-					card_effects_2 = card_stats[17].split("NEWLINE");
+					card_effects_2 = card_stats[18].split("NEWLINE");
 				}
 				else
 				{
-					card_effects_2 = card_stats[19].split("NEWLINE");
+					card_effects_2 = card_stats[18].split("NEWLINE");
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
 
-				if(card_stats[18] != "")
+				if(card_stats[19] != "")
 				{
 					const pt_2 = document.createElement("div");
 					pt_2.className = "pt";
-					pt_2.textContent = card_stats[18];
+					pt_2.textContent = card_stats[19];
 					text.appendChild(pt_2);
 				}
 			}
@@ -1054,7 +1066,7 @@
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
-			// (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) for posterity
+			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
 			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
@@ -1092,9 +1104,9 @@
 			{
 				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
 
-				if (styled_effect.includes("ó") && !styled_effect.toLowerCase().includes("choose"))
+				if (styled_effect.includes("‚Äî") && !styled_effect.toLowerCase().includes("choose"))
 				{
-					styled_effect = "<i>" + styled_effect.replace("ó", "ó</i>");
+					styled_effect = "<i>" + styled_effect.replace("‚Äî", "‚Äî</i>");
 				}
 
 				HTML += styled_effect;
@@ -1105,10 +1117,11 @@
 				}
 			}
 
-			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.])/g;
-			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,])/g;
+			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.<]|$)/g;
+			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,]| <i>\()/g;
 			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
-			let pattern5 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
+			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
+			let pattern5 = /( )([0-9X]+)( <i>\()/g;
 			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
 				return symbolize(group1) + group2;
 			});
@@ -1118,8 +1131,11 @@
 			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
 				return group1 + symbolize(group2);
 			});
-			regexHTML = regexHTML.replace(pattern5, function (match, group1, group2) {
+			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
 				return group1 + symbolize(group2);
+			});
+			regexHTML = regexHTML.replace(pattern5, function (match, group1, group2, group3) {
+				return group1 + symbolize(group2) + group3;
 			});
 
 			return regexHTML;

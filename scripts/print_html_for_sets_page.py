@@ -34,6 +34,7 @@ def generateHTML(codes):
 			display: grid;
 			grid-template-columns: 1fr;
 			padding-top: 80px;
+			padding-bottom: 40px;
 			margin: auto;
 		}
 		.set-header-row {
