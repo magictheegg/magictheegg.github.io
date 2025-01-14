@@ -27,6 +27,7 @@ def generateHTML(code):
 		background-color: #bbbbbb;
 	}
 	.banner-container {
+		width: 85%;
 		max-width: 1100px;
 		display: grid;
 		grid-template-columns: 3fr 2fr;
@@ -49,6 +50,15 @@ def generateHTML(code):
 	}
 	.set-banner img {
 		width: 50px;
+	}
+	.set-banner a {
+		font-size: 18px;
+		padding-top: 6px;
+		color: #1338be;
+		text-decoration: none;
+	}
+	.set-banner a:hover {
+		color: #0492c2;
 	}
 	.select-text {
 		display: flex;
@@ -197,7 +207,13 @@ def generateHTML(code):
 		<div class="banner-container">
 			<div class="set-banner" id="set-banner">
 				<img class="set-logo" src="/sets/''' + code + '''-files/icon.png">
-				<div class="set-title">''' + set_name + '''</div>
+				<div class="set-title">''' + set_name + '''</div>'''
+
+	if os.path.exists(os.path.join('sets', code + '-files', code + '-draft.txt')):
+		html_content += '''<a href="/sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft me!</a>
+		'''
+
+	html_content += '''
 			</div>
 			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-num">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>
 		</div>
