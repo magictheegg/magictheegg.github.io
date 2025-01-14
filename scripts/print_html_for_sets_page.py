@@ -33,7 +33,7 @@ def generateHTML(codes):
 			max-width: 1000px;
 			display: grid;
 			grid-template-columns: 1fr;
-			padding-top: 80px;
+			padding-top: 50px;
 			padding-bottom: 40px;
 			margin: auto;
 		}
