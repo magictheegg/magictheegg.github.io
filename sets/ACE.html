@@ -461,39 +461,46 @@
 				pt.textContent = card_stats[8];
 				text.appendChild(pt);
 			}
+			else if (card_stats[12] != "")
+			{
+				const loyalty = document.createElement("div");
+				loyalty.className = "pt";
+				loyalty.textContent = "[" + card_stats[12] + "]";
+				text.appendChild(loyalty);
+			}
 
 			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
 			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[12] + (card_stats[16] != "" ? '     ' + symbolize(card_stats[16]) : "");
+				name_cost_2.innerHTML = card_stats[13] + (card_stats[17] != "" ? '     ' + symbolize(card_stats[17]) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
 				type_2.className = "type";
-				type_2.textContent = card_stats[14];
+				type_2.textContent = card_stats[15];
 				text.appendChild(type_2);
 
 				const effect_2 = document.createElement("div");
 				effect_2.className = "effect";
 				let card_effects_2 = "";
-				if (card_stats[17] != "")
+				if (card_stats[18] != "")
 				{
-					card_effects_2 = card_stats[17].split("NEWLINE");
+					card_effects_2 = card_stats[18].split("NEWLINE");
 				}
 				else
 				{
-					card_effects_2 = card_stats[19].split("NEWLINE");
+					card_effects_2 = card_stats[20].split("NEWLINE");
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
 
-				if(card_stats[18] != "")
+				if(card_stats[19] != "")
 				{
 					const pt_2 = document.createElement("div");
 					pt_2.className = "pt";
-					pt_2.textContent = card_stats[18];
+					pt_2.textContent = card_stats[19];
 					text.appendChild(pt_2);
 				}
 			}
@@ -511,7 +518,7 @@
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
-			// (card_stats[12].includes("_") ? card_stats[12] : card_stats[0]) for posterity
+			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
 			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
