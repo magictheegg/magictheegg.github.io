@@ -25,9 +25,9 @@ def genAllCards(codes):
 
 set_codes = []
 for entry in os.scandir('sets'):
-	if(entry.is_dir() and entry.name[-6:] == '-files'):
+	if entry.is_dir() and entry.name[-6:] == '-files':
 		set_codes.append(entry.name[:-6])
-	else:
+	elif entry.name != 'README.md':
 		os.remove(entry)
 
 set_codes.sort()
