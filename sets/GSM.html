@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="/resources/header.css">
 </head>
 <style>
+	@font-face {
+		font-family: Beleren;
+		src: url('/resources/beleren.ttf');
+	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
 		overscroll-behavior: none;
@@ -183,6 +187,14 @@
 		left: 8.5%;
 		transform: translate(-50%, -85%);
 	}
+	.img-container .hidden-text {
+		position: absolute;
+		font-family: Beleren;
+		top: 5%;
+		left: 9%;
+		font-size: .97vw;
+		color: rgba(0, 0, 0, 0);
+	}
 </style>
 <body>
 	<div class="header">
@@ -280,7 +292,7 @@
 
 			for (const card of set_list_arrayified)
 			{
-				if (card[3].includes("Token") || card[3].includes("Basic"))
+				if (card[10].includes("token") || card[3].includes("Basic"))
 				{
 					set_tokens_basics.push(card);
 				}
@@ -309,12 +321,12 @@
 		function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
 
-			if (a[3].includes("Token") && !b[3].includes("Token"))
+			if (a[10].includes("token") && !b[10].includes("token"))
 			{
 				return 1;
 			}
 
-			if (!a[3].includes("Token") && b[3].includes("Token"))
+			if (!a[10].includes("token") && b[10].includes("token"))
 			{
 				return -1;
 			}
@@ -512,7 +524,7 @@
 
 			if (displayStyle == "cards-only")
 			{
-				return buildImgContainer(card_stats);
+				return buildImgContainer(card_stats, true);
 			}
 
 			const grid = document.createElement("div");
@@ -611,7 +623,7 @@
 			return grid;
 		}
 
-		function buildImgContainer(card_stats) {
+		function buildImgContainer(card_stats, hidden_title=false) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
 			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
@@ -620,7 +632,7 @@
 			img.className = "card-image";
 			img.id = id;
 			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
-			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[10].includes("token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
 			let card_name = card_stats[0];
@@ -638,6 +650,14 @@
 				imgFlipBtn.className = "btn";
 				imgFlipBtn.onclick = function() { imgFlip(id); };
 				imgContainer.appendChild(imgFlipBtn);
+			}
+
+			if (hidden_title)
+			{
+				const title = document.createElement("div");
+				title.innerText = card_stats[0];
+				title.className = "hidden-text";
+				imgContainer.appendChild(title);
 			}
 
 			return imgContainer;

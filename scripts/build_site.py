@@ -18,7 +18,7 @@ def genAllCards(codes):
 		with open(os.path.join('sets', code + '-files', code + '-raw.txt'), encoding='utf-8-sig') as f:
 			raw = f.read()
 			file_input += raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
-	file_input = file_input.rstrip('\\n')
+	file_input = file_input.removesuffix('\\n')
 
 	with open(os.path.join('lists', 'all-cards.txt'), 'w', encoding='utf-8-sig') as f:
 		f.write(file_input.replace('—', '–'))
@@ -27,7 +27,7 @@ set_codes = []
 for entry in os.scandir('sets'):
 	if entry.is_dir() and entry.name[-6:] == '-files':
 		set_codes.append(entry.name[:-6])
-	elif entry.name != 'README.md':
+	elif entry.name != 'README.md' and os.path.isfile(entry):
 		os.remove(entry)
 
 set_codes.sort()

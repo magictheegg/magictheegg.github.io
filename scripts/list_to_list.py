@@ -16,7 +16,7 @@ def convertList(setCode):
 		tmpI = re.sub("\t[0-9]+\t.*", "", cards[i])
 		for j in range(i):
 			tmpJ = re.sub("\t[0-9]+\t.*", "", cards[j])
-			if tmpI == tmpJ and "\tToken" not in tmpJ and "\tBasic" not in tmpJ:
+			if tmpI == tmpJ and "\ttoken\t" not in tmpJ and "\tBasic" not in tmpJ:
 				skipdex.append(j)
 	
 	master_list = []
@@ -32,10 +32,15 @@ def convertList(setCode):
 			continue
 		card = cards[i].split('\t')
 		# name to include card number
-		card[0] = card[4] + ('t_' if 'Token' in card[3] else '_') + card[0]
+		card[0] = card[4] + ('t_' if 'token' in card[10] else '_') + card[0]
 		# card number to int
 		card[4] = int(card[4])
-
+		# filter sorting tags
+		notes = card[len(card) - 1]
+		if '!sort' in notes:
+			card[len(card) - 1] = notes[notes.index('!sort') + 6:]
+		else:
+			card[len(card) - 1] = 'zzz'
 
 		# clean color inputs
 		if card[1] == 'WR':
@@ -44,8 +49,6 @@ def convertList(setCode):
 			card[1] = 'GW'
 		if card[1] == 'UG':
 			card[1] = 'GU'
-		if len(card[1]) > 2:
-			card[1] = 'gold'
 
 		# clean color identity inputs
 		if card[5] == 'WR':
@@ -54,8 +57,6 @@ def convertList(setCode):
 			card[5] = 'GW'
 		if card[5] == 'UG':
 			card[5] = 'GU'
-		if len(card[5]) > 2:
-			card[5] = 'gold'
 
 		# clean rarities
 		if card[2] == 'common':
@@ -70,7 +71,7 @@ def convertList(setCode):
 			card[2] = 5
 
 		# sort types
-		if 'Token' in card[3]:
+		if 'token' in card[10]:
 			cards_token.append(card)
 		elif len(card[1]) > 1:
 			cards_multi.append(card)
@@ -108,7 +109,7 @@ def convertList(setCode):
 	
 	for x in range(len(cards_mono_arr)):
 		card_arr = cards_mono_arr[x]
-		cards_mono_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[4]))
+		cards_mono_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 	
 	for row in range(row_count):
 		for card_arr in cards_mono_arr:
@@ -163,7 +164,7 @@ def convertList(setCode):
 
 	for x in range(len(cards_ally_arr)):
 		card_arr = cards_ally_arr[x]
-		cards_ally_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[4]))
+		cards_ally_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 	
 	for row in range(row_count):
 		for card_arr in cards_ally_arr:
@@ -181,7 +182,7 @@ def convertList(setCode):
 
 	for x in range(len(cards_enemy_arr)):
 		card_arr = cards_enemy_arr[x]
-		cards_enemy_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[4]))
+		cards_enemy_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 	
 	for row in range(row_count):
 		for card_arr in cards_enemy_arr:
@@ -194,7 +195,7 @@ def convertList(setCode):
 		master_list.append('er')
 
 	# 3c+ cards
-	cards_gold = sorted(cards_gold, key=lambda x : (x[2], x[4]))
+	cards_gold = sorted(cards_gold, key=lambda x : (len(x[1]), x[2], x[len(x) - 1], x[4]))
 
 	for card in cards_gold:
 		master_list.append(card[0])
@@ -208,7 +209,7 @@ def convertList(setCode):
 			master_list.append('er')
 
 	# artifacts
-	cards_brown = sorted(cards_brown, key=lambda x : (x[2], x[4]))
+	cards_brown = sorted(cards_brown, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 
 	for card in cards_brown:
 		master_list.append(card[0])
@@ -279,7 +280,7 @@ def convertList(setCode):
 
 	for x in range(len(lands_mono_arr)):
 		card_arr = lands_mono_arr[x]
-		lands_mono_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[4]))
+		lands_mono_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 	
 	for row in range(row_count):
 		for card_arr in lands_mono_arr:
@@ -294,7 +295,7 @@ def convertList(setCode):
 
 	for x in range(len(lands_ally_arr)):
 		card_arr = lands_ally_arr[x]
-		lands_ally_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[4]))
+		lands_ally_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 	
 	for row in range(row_count):
 		for card_arr in lands_ally_arr:
@@ -309,7 +310,7 @@ def convertList(setCode):
 
 	for x in range(len(lands_enemy_arr)):
 		card_arr = lands_enemy_arr[x]
-		lands_enemy_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[4]))
+		lands_enemy_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 	
 	for row in range(row_count):
 		for card_arr in lands_enemy_arr:
@@ -323,7 +324,7 @@ def convertList(setCode):
 			master_list.append('er')
 
 	# other lands
-	lands_other = sorted(lands_other, key=lambda x : (x[2], x[4]))
+	lands_other = sorted(lands_other, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 
 	for card in lands_other:
 		master_list.append(card[0])
@@ -337,7 +338,7 @@ def convertList(setCode):
 			master_list.append('er')
 
 	# basic lands
-	cards_basic = sorted(cards_basic, key=lambda x : (x[2], x[4]))
+	cards_basic = sorted(cards_basic, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 
 	# if you're reading this, leave me alone, I did this in like 2 minutes I know it's bad code
 	basic_types = []
@@ -363,7 +364,7 @@ def convertList(setCode):
 			master_list.append('er')
 
 	# tokens
-	cards_token = sorted(cards_token, key=lambda x : (x[2], x[4]))
+	cards_token = sorted(cards_token, key=lambda x : (x[2], x[len(x) - 1], x[4]))
 
 	for card in cards_token:
 		master_list.append(card[0])

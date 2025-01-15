@@ -13,6 +13,10 @@ def generateHTML(codes):
 	<link rel="stylesheet" href="/resources/header.css">
 </head>
 <style>
+	@font-face {
+		font-family: Beleren;
+		src: url('/resources/beleren.ttf');
+	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
 		overscroll-behavior: none;
@@ -201,6 +205,14 @@ def generateHTML(codes):
 		left: 8.5%;
 		transform: translate(-50%, -85%);
 	}
+	.img-container .hidden-text {
+		position: absolute;
+		font-family: Beleren;
+		top: 5%;
+		left: 9%;
+		font-size: .97vw;
+		color: rgba(0, 0, 0, 0);
+	}
 </style>
 <body>
 	'''
@@ -361,7 +373,7 @@ def generateHTML(codes):
 			cardGrid.innerHTML = "";
 
 			for (const card of card_list_arrayified) {
-				if (card[3].includes("Token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
+				if (card[10].includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
 				{
 					continue;
 				}
@@ -534,14 +546,15 @@ def generateHTML(codes):
 			let card_type = card_stats[3];
 			// 4: collector number
 			let card_ci = card_stats[5];
-			let card_mv = isDecimal(card_stats[6].charAt(0)) ? parseInt(card_stats[6]) + card_stats[6].replaceAll('x','').length - 1 : card_stats[6].replaceAll('x','').length;
+			let card_cost = card_stats[6];
+			let card_mv = (isDecimal(card_cost.charAt(0)) ? parseInt(card_cost) + card_cost.replaceAll('x','').length - 1 : card_cost.replaceAll('x','').length) - ((card_cost.split('/').length - 1) * 2);
 			let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\\n') : card_stats[9].replaceAll("NEWLINE", '\\n');
 			let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
 			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
 			let card_shape = card_stats[10];
 			let card_set = card_stats[11];
 			let card_loyalty = card_stats[12];
-			let card_notes = card_stats.length == 14 ? card_stats[13].replaceAll("NEWLINE", '\\n') : card_stats[22].replaceAll("NEWLINE", '\\n');
+			let card_notes = card_stats[card_stats.length - 1].replaceAll("NEWLINE", '\\n');
 
 			// two cards in one
 			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
@@ -560,7 +573,7 @@ def generateHTML(codes):
 			{
 				const term = token.substring(0, match);
 				const modifier = token.charAt(match);
-				const check = token.substring(match + 1);
+				let check = token.substring(match + 1);
 
 				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
@@ -603,7 +616,7 @@ def generateHTML(codes):
 						return (card_mv > check);
 					}
 				}
-				if (term == "c")
+				if (term == "c" || term == "color")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -701,15 +714,6 @@ def generateHTML(codes):
 					{
 						regex = new RegExp(check);
 						return regex.test(card_oracle_text);
-						if (check.charAt(0) == '/')
-						{
-							
-							return regex.test(card_oracle_text);
-						}
-						else
-						{
-							return card_oracle_text.includes(check);
-						}
 					}
 					/* unsupported flows
 					if (modifier == "!" || modifier == "=")
@@ -763,17 +767,36 @@ def generateHTML(codes):
 						return (card_toughness > check);
 					}
 				}
-				if (term == "r")
+				if (term == "r" || term == "rarity")
 				{
-					if (modifier == ":")
+					rarities = [ "common", "uncommon", "rare", "mythic" ];
+					for (const rarity of rarities)
+					{
+						if (rarity.startsWith(check))
+						{
+							check = rarity;
+						}
+					}
+					if (modifier == ":" || modifier == "!" || modifier == "=")
 					{
 						return (card_rarity == check);
 					}
-					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
+					else if (modifier == "<")
 					{
-
+						return rarities.includes(card_rarity) && rarities.indexOf(card_rarity) < rarities.indexOf(check);
 					}
+					else if (modifier == ">")
+					{
+						return rarities.includes(card_rarity) && rarities.indexOf(card_rarity) > rarities.indexOf(check);
+					}
+				}
+				if (term == "e" || term == "set")
+				{
+					if (modifier == ":" || modifier == "!" || modifier == "=")
+					{
+						return (card_set == check);
+					}
+					/* unsupported flows
 					else if (modifier == "<")
 					{
 
@@ -783,17 +806,15 @@ def generateHTML(codes):
 
 					} */
 				}
-				if (term == "e")
+				if (term == "keyword" || term=="kw" || term == "has")
 				{
-					if (modifier == ":")
+					if (modifier == ":" || modifier == "!" || modifier == "=")
 					{
-						return (card_set == check);
+						regex_kw1 = new RegExp(`(^|newline|, )${check}[^.]*($|newline|\\\\()`, "g");
+						regex_kw2 = new RegExp(`(^|newline)${check} `, "g");
+						return regex_kw1.test(card_oracle_text) || regex_kw2.test(card_oracle_text);
 					}
 					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
 					else if (modifier == "<")
 					{
 
@@ -805,7 +826,7 @@ def generateHTML(codes):
 				}
 				if (term == "is")
 				{
-					if (modifier == ":")
+					if (modifier == ":" || modifier == "!" || modifier == "=")
 					{
 						// all of these are implemented individually
 						if (check == "permanent")
@@ -820,12 +841,12 @@ def generateHTML(codes):
 						{
 							return (card_type.includes("legendary") && card_type.includes("creature")) || card_oracle_text.includes("can be your commander");
 						}
+						if (check == "hybrid")
+						{
+							return (card_cost.includes("/"));
+						}
 					}
 					/* unsupported flows
-					if (modifier == "!" || modifier == "=")
-					{
-
-					}
 					else if (modifier == "<")
 					{
 
@@ -860,7 +881,7 @@ def generateHTML(codes):
 
 			if (displayStyle == "cards-only")
 			{
-				return buildImgContainer(card_stats);
+				return buildImgContainer(card_stats, true);
 			}
 
 		'''
@@ -988,7 +1009,7 @@ def generateHTML(codes):
 </html>'''
 
 	# Write the HTML content to the output HTML file
-	with open(output_html_file, 'w') as file:
+	with open(output_html_file, 'w', encoding='utf-8-sig') as file:
 		file.write(html_content)
 
 	print(f"HTML file saved as {output_html_file}")

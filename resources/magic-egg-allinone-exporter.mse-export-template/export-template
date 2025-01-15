@@ -168,7 +168,7 @@ script:
 	}
 
 	write_draft_commons := {
-		for each card in cards do if card.rarity == "common" then (if contains(card.type, match:"Token") then "" else (if contains (card.notes, match:"landslot") then "" else "30 " + card_name() + options.optional_suffix + "
+		for each card in cards do if card.rarity == "common" then (if contains(card.shape, match:"token") then "" else (if contains (card.notes, match:"landslot") then "" else "30 " + card_name() + options.optional_suffix + "
 			")) else ""
 	}
 
@@ -196,7 +196,7 @@ script:
 	}
 
 	write_draft_wildcards := {
-		for each card in cards do if contains(card.type, match:"Token") then "" else if card.rarity == "basic land" then "" else "10 " + card_name() + options.optional_suffix + "
+		for each card in cards do if contains(card.shape, match:"token") then "" else if card.rarity == "basic land" then "" else "10 " + card_name() + options.optional_suffix + "
 		"
 	}
 
@@ -205,7 +205,7 @@ script:
 			if contains(card.shape, match:"double") then
 			if contains(card.type, match:"Battle") then write_image_file(crop(input: to_card_image(card), width: 523, height: 375, offset_x: 0, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_front" + ".png") + write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 525, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_back" + ".png")
 			else write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 0, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_front" + ".png") + write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 377, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_back" + ".png")
-			else write_image_file(card, file: "img/" + card_number() + (if contains(card.type, match:"Token") then "t_" else "_") + card_name() + ".png")
+			else write_image_file(card, file: "img/" + card_number() + (if contains(card.shape, match:"token") then "t_" else "_") + card_name() + ".png")
 	}
 
 	write_booster_contents := {

@@ -1,12 +1,12 @@
 function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
 
-			if (a[3].includes("Token") && !b[3].includes("Token"))
+			if (a[10].includes("token") && !b[10].includes("token"))
 			{
 				return 1;
 			}
 
-			if (!a[3].includes("Token") && b[3].includes("Token"))
+			if (!a[10].includes("token") && b[10].includes("token"))
 			{
 				return -1;
 			}

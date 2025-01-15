@@ -16,6 +16,10 @@ def generateHTML(code):
   <link rel="stylesheet" href="/resources/header.css">
 </head>
 <style>
+	@font-face {
+		font-family: Beleren;
+		src: url('/resources/beleren.ttf');
+	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
 		overscroll-behavior: none;
@@ -193,6 +197,14 @@ def generateHTML(code):
 		left: 8.5%;
 		transform: translate(-50%, -85%);
 	}
+	.img-container .hidden-text {
+		position: absolute;
+		font-family: Beleren;
+		top: 5%;
+		left: 9%;
+		font-size: .97vw;
+		color: rgba(0, 0, 0, 0);
+	}
 </style>
 <body>
 	'''
@@ -282,7 +294,7 @@ def generateHTML(code):
 
 			for (const card of set_list_arrayified)
 			{
-				if (card[3].includes("Token") || card[3].includes("Basic"))
+				if (card[10].includes("token") || card[3].includes("Basic"))
 				{
 					set_tokens_basics.push(card);
 				}
@@ -329,7 +341,7 @@ def generateHTML(code):
 
 			if (displayStyle == "cards-only")
 			{
-				return buildImgContainer(card_stats);
+				return buildImgContainer(card_stats, true);
 			}
 
 		'''

@@ -53,6 +53,7 @@ def generateHTML(setCode, setCodes):
 		.sidebar-container {
 			width: 80%;
 			max-width: 375px;
+			position: relative;
 		}
 		.sidebar img {
 			vertical-align: middle;
@@ -130,11 +131,7 @@ def generateHTML(setCode, setCodes):
 			background-position: center;
 		}
 		.sidebar .flip-btn {
-			right: 80%;
-			left: 7.8%;
-			top: -4%;
-			transform: none;
-
+			transform: translate(-50%, -85%);
 		}
 		.icon-bar {
 			display: grid;
@@ -251,7 +248,10 @@ def generateHTML(setCode, setCodes):
 
 	html_content += '''</div>
 	<div class="sidebar" id="sidebar">
-		<div class="sidebar-container"><img id="sidebar_img" src="img/er.png"><button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button></div>
+		<div class="sidebar-container">
+			<img id="sidebar_img" src="img/er.png">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
 		<button class="close-btn" onclick="closeSidebar()"></button>
 	</div>
 	<div class="footer"></div>

@@ -32,6 +32,7 @@
 		.sidebar-container {
 			width: 80%;
 			max-width: 375px;
+			position: relative;
 		}
 		.sidebar img {
 			vertical-align: middle;
@@ -109,11 +110,7 @@
 			background-position: center;
 		}
 		.sidebar .flip-btn {
-			right: 80%;
-			left: 7.8%;
-			top: -4%;
-			transform: none;
-
+			transform: translate(-50%, -85%);
 		}
 		.icon-bar {
 			display: grid;
@@ -526,11 +523,11 @@
 			<div class="container"><img alt="img/er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/283_Aether Implosion.png" id="283" data-flag="@X" onclick="openSidebar('283')"></div>
 			<div class="container"><img data-alt_src="sets/ACE-files/img/285_Arietta, Forsworn_back.png" alt="sets/ACE-files/img/285_Arietta, Forsworn_front.png" id="285" data-flag="@XD" onclick="openSidebar(285)"><button class="flip-btn" onclick="imgFlip(285)"></button></div>
-			<div class="container"><img alt="sets/ACE-files/img/297_Heliconfluence.png" id="297" data-flag="@X" onclick="openSidebar('297')"></div>
-			<div class="container"><img alt="sets/ACE-files/img/314_Sculptor of Wonders.png" id="314" data-flag="@X" onclick="openSidebar('314')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/318_Skyline Leveler.png" id="318" data-flag="@X" onclick="openSidebar('318')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/320_Sylvan Hostilities.png" id="320" data-flag="@X" onclick="openSidebar('320')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/326_Yonderspeaker.png" id="326" data-flag="@X" onclick="openSidebar('326')"></div>
+			<div class="container"><img alt="sets/ACE-files/img/297_Heliconfluence.png" id="297" data-flag="@X" onclick="openSidebar('297')"></div>
+			<div class="container"><img alt="sets/ACE-files/img/314_Sculptor of Wonders.png" id="314" data-flag="@X" onclick="openSidebar('314')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
@@ -735,7 +732,6 @@
 			<div class="container"><img alt="sets/ACE-files/img/29t_Cultist.png" id="29t" data-flag="@X" onclick="openSidebar('29t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/30t_Demon.png" id="30t" data-flag="@X" onclick="openSidebar('30t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/31t_Horror.png" id="31t" data-flag="@X" onclick="openSidebar('31t')"></div>
-			<div class="container"><img alt="sets/ACE-files/img/32t_Horror.png" id="32t" data-flag="@X" onclick="openSidebar('32t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/33t_Rat.png" id="33t" data-flag="@X" onclick="openSidebar('33t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/34t_Shade.png" id="34t" data-flag="@X" onclick="openSidebar('34t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/35t_Snake.png" id="35t" data-flag="@X" onclick="openSidebar('35t')"></div>
@@ -760,8 +756,6 @@
 			<div class="container"><img alt="sets/ACE-files/img/54t_Fox.png" id="54t" data-flag="@X" onclick="openSidebar('54t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/55t_Sand Shark.png" id="55t" data-flag="@X" onclick="openSidebar('55t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/56t_Clue.png" id="56t" data-flag="@X" onclick="openSidebar('56t')"></div>
-			<div class="container"><img alt="sets/ACE-files/img/57t_Construct.png" id="57t" data-flag="@X" onclick="openSidebar('57t')"></div>
-			<div class="container"><img alt="sets/ACE-files/img/58t_Construct.png" id="58t" data-flag="@X" onclick="openSidebar('58t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/59t_Construct.png" id="59t" data-flag="@X" onclick="openSidebar('59t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/60t_Equipment.png" id="60t" data-flag="@X" onclick="openSidebar('60t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/61t_Food.png" id="61t" data-flag="@X" onclick="openSidebar('61t')"></div>
@@ -776,18 +770,19 @@
 			<div class="container"><img alt="sets/ACE-files/img/70t_Sand Construct.png" id="70t" data-flag="@X" onclick="openSidebar('70t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/71t_Thopter.png" id="71t" data-flag="@X" onclick="openSidebar('71t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/72t_Treasure.png" id="72t" data-flag="@X" onclick="openSidebar('72t')"></div>
-			<div class="container"><img alt="sets/ACE-files/img/73t_Vehicle.png" id="73t" data-flag="@X" onclick="openSidebar('73t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/74t_Vehicle.png" id="74t" data-flag="@X" onclick="openSidebar('74t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/75t_Warrior.png" id="75t" data-flag="@X" onclick="openSidebar('75t')"></div>
 			<div class="container"><img alt="sets/ACE-files/img/76t_Desert.png" id="76t" data-flag="@X" onclick="openSidebar('76t')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 	</div>
 </div>
 	<div class="sidebar" id="sidebar">
-		<div class="sidebar-container"><img id="sidebar_img" src="img/er.png"><button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button></div>
+		<div class="sidebar-container">
+			<img id="sidebar_img" src="img/er.png">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
 		<button class="close-btn" onclick="closeSidebar()"></button>
 	</div>
 	<div class="footer"></div>

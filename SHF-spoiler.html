@@ -32,6 +32,7 @@
 		.sidebar-container {
 			width: 80%;
 			max-width: 375px;
+			position: relative;
 		}
 		.sidebar img {
 			vertical-align: middle;
@@ -109,11 +110,7 @@
 			background-position: center;
 		}
 		.sidebar .flip-btn {
-			right: 80%;
-			left: 7.8%;
-			top: -4%;
-			transform: none;
-
+			transform: translate(-50%, -85%);
 		}
 		.icon-bar {
 			display: grid;
@@ -193,12 +190,12 @@
 			<div class="container"><img alt="sets/SHF-files/img/50_Enter the Era of Stars.png" id="50" data-flag="@X" onclick="openSidebar('50')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/79_The Black Mask.png" id="79" data-flag="@X" onclick="openSidebar('79')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/137_Sigrid, the Golden Gunmaiden.png" id="137" data-flag="@X" onclick="openSidebar('137')"></div>
-			<div class="container"><img alt="sets/SHF-files/img/157_Evolution Event.png" id="157" data-flag="@X" onclick="openSidebar('157')"></div>
+			<div class="container"><img alt="sets/SHF-files/img/169_Roaming Cactegu.png" id="169" data-flag="@X" onclick="openSidebar('169')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/2_Annie White Rose Harper.png" id="2" data-flag="@X" onclick="openSidebar('2')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/68_Sirocco Cruiser.png" id="68" data-flag="@X" onclick="openSidebar('68')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/83_Debt Collectors.png" id="83" data-flag="@X" onclick="openSidebar('83')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/147_Wreckage Ravager.png" id="147" data-flag="@X" onclick="openSidebar('147')"></div>
-			<div class="container"><img alt="sets/SHF-files/img/169_Roaming Cactegu.png" id="169" data-flag="@X" onclick="openSidebar('169')"></div>
+			<div class="container"><img alt="sets/SHF-files/img/157_Evolution Event.png" id="157" data-flag="@X" onclick="openSidebar('157')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/5_Blessing of the Twin Suns.png" id="5" data-flag="@X" onclick="openSidebar('5')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/38_Ad Astra.png" id="38" data-flag="@X" onclick="openSidebar('38')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/88_The Gallows at Whiskey Bend.png" id="88" data-flag="@X" onclick="openSidebar('88')"></div>
@@ -524,7 +521,6 @@
 			<div class="container"><img alt="img/er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="img/er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 			<div class="container"><img alt="img/er.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
-			<div class="container"><img alt="sets/SHF-files/img/1t_Mercenary.png" id="1t" data-flag="@X" onclick="openSidebar('1t')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/2t_Mercenary.png" id="2t" data-flag="@X" onclick="openSidebar('2t')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/3t_Scooter.png" id="3t" data-flag="@X" onclick="openSidebar('3t')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/4t_Elemental.png" id="4t" data-flag="@X" onclick="openSidebar('4t')"></div>
@@ -539,10 +535,14 @@
 			<div class="container"><img alt="sets/SHF-files/img/13t_Treasure.png" id="13t" data-flag="@X" onclick="openSidebar('13t')"></div>
 			<div class="container"><img alt="sets/SHF-files/img/14t_Vehicle.png" id="14t" data-flag="@X" onclick="openSidebar('14t')"></div>
 			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
+			<div class="container"><img alt="img/e.png" id="-1" data-flag="@E" onclick="openSidebar('-1')"></div>
 	</div>
 </div>
 	<div class="sidebar" id="sidebar">
-		<div class="sidebar-container"><img id="sidebar_img" src="img/er.png"><button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button></div>
+		<div class="sidebar-container">
+			<img id="sidebar_img" src="img/er.png">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
 		<button class="close-btn" onclick="closeSidebar()"></button>
 	</div>
 	<div class="footer"></div>
