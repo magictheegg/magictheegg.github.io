@@ -20,7 +20,7 @@
 		width: 85%;
 		max-width: 1100px;
 		display: grid;
-		grid-template-columns: 3fr 2fr;
+		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		margin: auto;
 	}
@@ -57,16 +57,17 @@
 		gap: 8px;
 		font-size: 14.5px;
 		justify-self: right;
+		text-align: center;
 	}
 	select {
 		background-color: #fafafa;
-	  border: 1px solid #656565;
-	  border-radius: 8px;
-	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+		border: 1px solid #656565;
+		border-radius: 8px;
+		box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
 		text-align: center;
-	  color: #171717;
-	  font-size: 13px;
-	  height: 30px;
+		color: #171717;
+		font-size: 13px;
+		height: 30px;
 	}
 	.grid-container {
 		display: grid;
@@ -88,7 +89,7 @@
 		padding-bottom: 30px;
 	}
 	@media ( max-width: 750px ) {
-	  .image-grid-container {
+		.image-grid-container {
 			grid-template-columns: 1fr 1fr;  
 		}
 	}
@@ -148,13 +149,13 @@
 		margin-bottom: 5px;
 	}
 	.img-container {
-	  position: relative;
-	  width: 100%;
-	  align-self: center;
+		position: relative;
+		width: 100%;
+		align-self: center;
 	}
 	.img-container img {
-	  width: 100%;
-	  height: auto;
+		width: 100%;
+		height: auto;
 	}
 	.img-container .btn {
 		background: url('/img/flip.png') no-repeat;
@@ -198,8 +199,9 @@
 			<div class="set-banner" id="set-banner">
 				<img class="set-logo" src="/sets/KND-files/icon.png">
 				<div class="set-title">Kahembo: New Dawn</div><a href="/sets/KND-files/KND-draft.txt" download>Draft me!</a>
-		</div>
-			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-num">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>
+		
+			</div>
+			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-num">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>
 		</div>
 	</div>
 
@@ -217,22 +219,27 @@
 
 		document.addEventListener("DOMContentLoaded", async function () {
 			await fetch('/lists/all-cards.txt')
-				.then(response => response.text())
-				.then(text => {
-					card_list_stringified = text; 
-			}).catch(error => console.error('Error:', error));
+					.then(response => response.text())
+					.then(text => {
+						card_list_stringified = text;
+				}).catch(error => console.error('Error:', error));
 
-			await fetch('/resources/replacechars.txt')
-				.then(response => response.text())
-				.then(text => {
-					specialchars = text; 
-			}).catch(error => console.error('Error:', error));
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
 
-			card_list_arrayified = card_list_stringified.split('\\n');
+				card_list_arrayified = card_list_stringified.split('\\n');
+
+				for (let i = 0; i < card_list_arrayified.length; i++)
+				{
+					card_list_arrayified[i] = card_list_arrayified[i].split('\t');
+				}
+
 
 			for (let i = 0; i < card_list_arrayified.length; i++)
 			{
-				card_list_arrayified[i] = card_list_arrayified[i].split('	');
 				if (card_list_arrayified[i][11] == "KND")
 				{
 					set_list_arrayified.push(card_list_arrayified[i]);
@@ -244,6 +251,7 @@
 
 		document.getElementById("sort-by").onchange = displayChangeListener;
 		document.getElementById("display").onchange = displayChangeListener;
+		document.getElementById("sort-order").onchange = displayChangeListener;
   
 		function displayChangeListener() {
 			setCardView();
@@ -253,9 +261,9 @@
 			displayStyle = document.getElementById("display").value;
 
 			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  		grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 
-  		updatePageContents();
+			updatePageContents();
 		}
 
 		function updatePageContents() {
@@ -268,10 +276,32 @@
 				cardGrid = document.getElementById("grid");
 			}
 
-			set_list_arrayified.sort(compareFunction);
-			cardGrid.innerHTML = "";
+			let set_cards = [];
+			let set_tokens_basics = [];
 
 			for (const card of set_list_arrayified)
+			{
+				if (card[3].includes("Token") || card[3].includes("Basic"))
+				{
+					set_tokens_basics.push(card);
+				}
+				else
+				{
+					set_cards.push(card);
+				}
+			}
+
+			set_cards.sort(compareFunction);
+			set_tokens_basics.sort(compareFunction);
+			if (document.getElementById("sort-order").value == "descending")
+			{
+				set_cards.reverse();
+				set_tokens_basics.reverse();
+			}
+			set_list_sorted = set_cards.concat(set_tokens_basics);
+			cardGrid.innerHTML = "";
+
+			for (const card of set_list_sorted)
 			{
 				cardGrid.append(gridifyCard(card));
 			}
@@ -366,6 +396,60 @@
 					return (a_color_index < b_color_index) ? -1 : 1;
 				}
 			}
+			if (sortMode == 'rarity')
+			{
+				rarity_sort_order = [ "mythic", "rare", "uncommon", "common" ];
+				a_rarity_index = 100;
+				b_rarity_index = 100;
+
+				for (let i = 0; i < rarity_sort_order.length; i++)
+				{
+					if (a[2].toLowerCase() == rarity_sort_order[i])
+					{
+						a_rarity_index = i;
+					}
+					if (b[2].toLowerCase() == rarity_sort_order[i])
+					{
+						b_rarity_index = i;
+					}
+				}
+
+				if (a_rarity_index === b_rarity_index)
+				{
+					color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
+					a_color_index = -1;
+					b_color_index = -1;
+
+					for (let i = 0; i < color_sort_order.length; i++)
+					{
+						if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						{
+							a_color_index = i;
+						}
+						if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						{
+							b_color_index = i;
+						}
+					}
+
+					if (a_color_index === b_color_index)
+					{
+						if (a[0] === b[0])
+						{
+							return 0;
+						}
+						else {
+							return (a[0] < b[0]) ? -1 : 1;
+						}
+					}
+					else {
+						return (a_color_index < b_color_index) ? -1 : 1;
+					}		
+				}
+				else {
+					return (a_rarity_index < b_rarity_index) ? -1 : 1;
+				}
+			}
 		}
 
 		function isDecimal(char) {
@@ -439,6 +523,7 @@
 			
 			const text = document.createElement("div");
 			text.className = "card-text";
+			text.id = "card-text";
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
@@ -479,7 +564,7 @@
 				text.appendChild(loyalty);
 			}
 
-			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
+			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
 			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
 			{
 				const name_cost_2 = document.createElement("div");
@@ -512,6 +597,13 @@
 					pt_2.className = "pt";
 					pt_2.textContent = card_stats[19];
 					text.appendChild(pt_2);
+				}
+				else if (card_stats[21] != "")
+				{
+					const loyalty = document.createElement("div");
+					loyalty.className = "pt";
+					loyalty.textContent = "[" + card_stats[21] + "]";
+					text.appendChild(loyalty);
 				}
 			}
 			
@@ -583,7 +675,6 @@
 			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,]| <i>\()/g;
 			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
 			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
-			let pattern5 = /( )([0-9X]+)( <i>\()/g;
 			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
 				return symbolize(group1) + group2;
 			});
@@ -595,9 +686,6 @@
 			});
 			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
 				return group1 + symbolize(group2);
-			});
-			regexHTML = regexHTML.replace(pattern5, function (match, group1, group2, group3) {
-				return group1 + symbolize(group2) + group3;
 			});
 
 			return regexHTML;
@@ -615,15 +703,15 @@
 		}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let card_name = card_list_arrayified[i][0];
-			for (const char of specialchars)
-			{
-				card_name = card_name.replaceAll(char, "");
-			}
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i][0];
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
 
-			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
-		}
+				window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
+			}
 	</script>
 </body>
 </html>

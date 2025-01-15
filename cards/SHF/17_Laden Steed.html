@@ -74,6 +74,8 @@
 		height: fit-content;
 		min-height: 75%;
 		margin-top: 3%;
+		display: flex;
+		flex-direction: column;
 	}
 	.card-text div {
 		white-space: normal;
@@ -98,6 +100,19 @@
 		content: "";
 		display: block;
 		margin-bottom: 5px;
+	}
+	.card-text .printings {
+		margin-top: auto;
+		font-size: 12px;
+		font-weight: bold;
+		padding-bottom: 0px;
+	}
+	.printings a {
+		color: #1338be;
+		text-decoration: none;
+	}
+	.printings a:hover {
+		color: #0492c2;
 	}
 	.img-container {
 	  position: relative;
@@ -133,6 +148,9 @@
 		left: 8.5%;
 		transform: translate(-50%, -85%);
 	}
+	.hidden {
+		display: none;
+	}
 </style>
 <body>
 	<div class="header">
@@ -145,6 +163,7 @@
 		</div>
 	</div>
 
+	<input type="text" id="display" class="hidden" value="cards-and-text"> <!-- here to make img-container-defs snippet work properly -->
 	<div class="banner-container">
 		<a class="set-banner" id="set-banner" href="/sets/SHF">
 			<img class="set-logo" src="/sets/SHF-files/icon.png">
@@ -154,30 +173,30 @@
 
 	<div class="grid-container" id="grid">
 	</div>
-
+	
 	<script>
 		let card_list_arrayified = [];
 		let specialchars = "";
 
 		document.addEventListener("DOMContentLoaded", async function () {
 			await fetch('/lists/all-cards.txt')
-				.then(response => response.text())
-				.then(text => {
-					card_list_stringified = text;
-			}).catch(error => console.error('Error:', error));
+					.then(response => response.text())
+					.then(text => {
+						card_list_stringified = text;
+				}).catch(error => console.error('Error:', error));
 
-			await fetch('/resources/replacechars.txt')
-				.then(response => response.text())
-				.then(text => {
-					specialchars = text; 
-			}).catch(error => console.error('Error:', error));
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
 
-			card_list_arrayified = card_list_stringified.split('\\n');
+				card_list_arrayified = card_list_stringified.split('\\n');
 
-			for (let i = 0; i < card_list_arrayified.length; i++)
-			{
-				card_list_arrayified[i] = card_list_arrayified[i].split('	');
-			}
+				for (let i = 0; i < card_list_arrayified.length; i++)
+				{
+					card_list_arrayified[i] = card_list_arrayified[i].split('\t');
+				}
 
 			await fetch('/cards/SHF/17_Laden Steed.txt')
 				.then(response => response.text())
@@ -186,6 +205,10 @@
 			}).catch(error => console.error('Error:', error));
 
 			document.getElementById("grid").appendChild(gridifyCard(card));
+			if (document.getElementById("other-printings"))
+			{
+				document.getElementById("card-text").appendChild(document.getElementById("other-printings"));			
+			}
 		});
 
 		function isDecimal(char) {
@@ -255,6 +278,7 @@
 			
 			const text = document.createElement("div");
 			text.className = "card-text";
+			text.id = "card-text";
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
@@ -295,7 +319,7 @@
 				text.appendChild(loyalty);
 			}
 
-			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
+			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
 			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
 			{
 				const name_cost_2 = document.createElement("div");
@@ -329,6 +353,13 @@
 					pt_2.textContent = card_stats[19];
 					text.appendChild(pt_2);
 				}
+				else if (card_stats[21] != "")
+				{
+					const loyalty = document.createElement("div");
+					loyalty.className = "pt";
+					loyalty.textContent = "[" + card_stats[21] + "]";
+					text.appendChild(loyalty);
+				}
 			}
 			
 			grid.appendChild(text);
@@ -339,14 +370,23 @@
 		function buildImgContainer(card_stats) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[0];
+			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
 
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
 			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
 			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
-			imgContainer.appendChild(img);
+			
+			const link = document.createElement("a");
+			let card_name = card_stats[0];
+			for (const char of specialchars)
+			{
+				card_name = card_name.replaceAll(char, "");
+			}
+			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_name;
+			link.appendChild(img);
+			imgContainer.appendChild(link);
 
 			if (card_stats[10].includes("double"))
 			{
@@ -390,7 +430,6 @@
 			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,]| <i>\()/g;
 			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
 			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
-			let pattern5 = /( )([0-9X]+)( <i>\()/g;
 			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
 				return symbolize(group1) + group2;
 			});
@@ -402,9 +441,6 @@
 			});
 			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
 				return group1 + symbolize(group2);
-			});
-			regexHTML = regexHTML.replace(pattern5, function (match, group1, group2, group3) {
-				return group1 + symbolize(group2) + group3;
 			});
 
 			return regexHTML;
@@ -422,15 +458,15 @@
 		}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let card_name = card_list_arrayified[i][0];
-			for (const char of specialchars)
-			{
-				card_name = card_name.replaceAll(char, "");
-			}
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i][0];
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
 
-			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
-		}
+				window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
+			}
 	</script>
 </body>
 </html>

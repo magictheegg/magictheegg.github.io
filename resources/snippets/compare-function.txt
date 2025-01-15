@@ -1,0 +1,144 @@
+function compareFunction(a, b) {
+			const sortMode = document.getElementById("sort-by").value;
+
+			if (a[3].includes("Token") && !b[3].includes("Token"))
+			{
+				return 1;
+			}
+
+			if (!a[3].includes("Token") && b[3].includes("Token"))
+			{
+				return -1;
+			}
+			
+			if (sortMode == 'set-num')
+			{
+				if (a[11] === b[11])
+				{
+					if (a[4] === b[4])
+					{
+						return 0;
+					}
+					else {
+						return (parseInt(a[4]) < parseInt(b[4])) ? -1 : 1;
+					}
+				}
+				else {
+					return (a[11] < b[11]) ? -1 : 1;
+				}
+			}
+			if (sortMode == 'name')
+			{
+				if (a[0] === b[0])
+				{
+					return 0;
+				}
+				else {
+					return (a[0] < b[0]) ? -1 : 1;
+				}
+			}
+			if (sortMode == 'mv')
+			{
+				a_mv = isDecimal(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
+				b_mv = isDecimal(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
+				if (a_mv === b_mv)
+				{
+					if (a[0] === b[0])
+					{
+						return 0;
+					}
+					else {
+						return (a[0] < b[0]) ? -1 : 1;
+					}
+				}
+				else {
+					return (a_mv < b_mv) ? -1 : 1;
+				}
+			}
+			if (sortMode == 'color')
+			{
+				color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
+				a_color_index = -1;
+				b_color_index = -1;
+
+				for (let i = 0; i < color_sort_order.length; i++)
+				{
+					if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					{
+						a_color_index = i;
+					}
+					if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					{
+						b_color_index = i;
+					}
+				}
+
+				if (a_color_index === b_color_index)
+				{
+					if (a[0] === b[0])
+					{
+						return 0;
+					}
+					else {
+						return (a[0] < b[0]) ? -1 : 1;
+					}
+				}
+				else {
+					return (a_color_index < b_color_index) ? -1 : 1;
+				}
+			}
+			if (sortMode == 'rarity')
+			{
+				rarity_sort_order = [ "mythic", "rare", "uncommon", "common" ];
+				a_rarity_index = 100;
+				b_rarity_index = 100;
+
+				for (let i = 0; i < rarity_sort_order.length; i++)
+				{
+					if (a[2].toLowerCase() == rarity_sort_order[i])
+					{
+						a_rarity_index = i;
+					}
+					if (b[2].toLowerCase() == rarity_sort_order[i])
+					{
+						b_rarity_index = i;
+					}
+				}
+
+				if (a_rarity_index === b_rarity_index)
+				{
+					color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
+					a_color_index = -1;
+					b_color_index = -1;
+
+					for (let i = 0; i < color_sort_order.length; i++)
+					{
+						if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						{
+							a_color_index = i;
+						}
+						if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						{
+							b_color_index = i;
+						}
+					}
+
+					if (a_color_index === b_color_index)
+					{
+						if (a[0] === b[0])
+						{
+							return 0;
+						}
+						else {
+							return (a[0] < b[0]) ? -1 : 1;
+						}
+					}
+					else {
+						return (a_color_index < b_color_index) ? -1 : 1;
+					}		
+				}
+				else {
+					return (a_rarity_index < b_rarity_index) ? -1 : 1;
+				}
+			}
+		}

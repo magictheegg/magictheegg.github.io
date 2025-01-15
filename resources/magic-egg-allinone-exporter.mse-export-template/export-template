@@ -34,6 +34,18 @@ option field:
 
 option field:
 	type: text
+	name: optional suffix
+	description: suffix for name-to-image matching in Cockatrice; if you don't know, leave this blank
+
+option field:
+	type: choice
+	name: cube
+	choice: no
+	choice: yes
+	description: is this set a cube?
+
+option field:
+	type: text
 	name: rares
 	default: 1
 	description: number of rares per pack
@@ -82,6 +94,13 @@ script:
 	exporter_name_filter := filter_text@(match:"!exporte?r?name [^\n]+")
 	exporter_name_grabber := replace@(match:"!exporte?r?name ", replace:"")
 
+	tag_filter := filter_text@(match:"!tag .+")
+	card_tag := {
+		test := tag_filter(card.notes)
+		if test != "" then test else ""
+	}
+
+
 	card_name := { 
 		test := exporter_name_grabber(exporter_name_filter(card.notes))
 		quote_strip(clean_names(if test != "" then test else card.name))
@@ -121,7 +140,7 @@ script:
 	}
 
 	write_card := {
-		card_name() + "\t" + card_color() + "\t" + card_rarity() + "\t" + card.type + "\t" + card_number() + "\t" + color_identity_statistic() + "\t" + card.casting_cost + "\t" + card.rule_text + "\t" + card.pt + "\t" + card.special_text + "\t" + card.shape + "\t" + set.set_code + (if contains(card.shape, match:"double") or contains(card.shape, match:"adventure") or contains(card.shape, match:"spli") then "\t" + card_name_2() + "\t" + card_color_2() + "\t" + card.type_2 + "\t" + color_identity_statistic() + "\t" + card.casting_cost_2 + "\t" + card.rule_text_2  + "\t" + card.pt_2 + "\t" + card.special_text_2 + "\t" + "REPLACEME" else "REPLACEME")
+		card_name() + "\t" + card_color() + "\t" + (if options.cube == "yes" then "cube" else card_rarity()) + "\t" + card.type + "\t" + card_number() + "\t" + color_identity_statistic() + "\t" + card.casting_cost + "\t" + card.rule_text + "\t" + card.pt + "\t" + card.special_text + "\t" + card.shape + "\t" + set.set_code + "\t" + card.loyalty + "\t" + (if contains(card.shape, match:"double") or contains(card.shape, match:"adventure") or contains(card.shape, match:"spli") then card_name_2() + "\t" + card_color_2() + "\t" + card.type_2 + "\t" + color_identity_statistic() + "\t" + card.casting_cost_2 + "\t" + card.rule_text_2  + "\t" + card.pt_2 + "\t" + card.special_text_2 + "\t" + card.loyalty_2 + "\t" else "") + card.notes + "REPLACEME"
 	}
 
 	write_cards := for each card in cards do write_card()
@@ -137,7 +156,7 @@ script:
 	}
 
 	write_draft_card := {
-		"\t\{\n\t\t\t\"name\": \"" + card_name() + "\",\n\t\t\t\"rarity\": \"" + card_rarity() + "\",\n\t\t\t\"mana_cost\": \"" + mana_script(card.casting_cost) + "\",\n\t\t\t\"type\": \"" + card.type + "\",\n\t\t\t\"collector_number\": \"" + card_number() + (if contains(card.shape, match:"spli") then "\",\n\t\t\t\"layout\": \"split" else "") + "\",\n\t\t\t\"image_uris\": \{\n\t\t\t\t\"en\": \"" +
+		"\t\{\n\t\t\t\"name\": \"" + card_name() + options.optional_suffix + "\",\n\t\t\t\"rarity\": \"" + card_rarity() + "\",\n\t\t\t\"mana_cost\": \"" + mana_script(card.casting_cost) + "\",\n\t\t\t\"type\": \"" + card.type + "\",\n\t\t\t\"collector_number\": \"" + card_number() + (if contains(card.shape, match:"spli") then "\",\n\t\t\t\"layout\": \"split" else "") + "\",\n\t\t\t\"image_uris\": \{\n\t\t\t\t\"en\": \"" +
 		github_img_path() + card_number() + "_" + card_name() + (if contains(card.shape, match:"double") then "_front" else "") + ".png\"\n\t\t\t}" +
 		( if contains(card.shape, match:"double") then (",\n\t\t\t\"back\": \{\n\t\t\t\t\"name\": \"\",\n\t\t\t\t\"type\": \"\",\n\t\t\t\t\"image_uris\": \{\n\t\t\t\t\t\"en\": \"" + github_img_path() + card_number() + "_" + card_name() + "_back.png\"\n\t\t\t\t}\n\t\t\t}\n") else "\n" ) +
 		"\t\t},\n\t"
@@ -149,35 +168,35 @@ script:
 	}
 
 	write_draft_commons := {
-		for each card in cards do if card.rarity == "common" then (if contains(card.type, match:"Token") then "" else (if contains (card.notes, match:"landslot") then "" else "30 " + card_name() + "
+		for each card in cards do if card.rarity == "common" then (if contains(card.type, match:"Token") then "" else (if contains (card.notes, match:"landslot") then "" else "30 " + card_name() + options.optional_suffix + "
 			")) else ""
 	}
 
 	write_draft_uncommons := {
-		for each card in cards do if card.rarity == "uncommon" then if contains (card.notes, match:"landslot") then "" else "9 " + card_name() + "
+		for each card in cards do if card.rarity == "uncommon" then if contains (card.notes, match:"landslot") then "" else "9 " + card_name() + options.optional_suffix + "
 			" else ""
 	
 	}
 
 	write_draft_rares := {
-		for each card in cards do if card.rarity == "rare" then if contains (card.notes, match:"landslot") then "" else "2 " + card_name() + "
+		for each card in cards do if card.rarity == "rare" then if contains (card.notes, match:"landslot") then "" else "2 " + card_name() + options.optional_suffix + "
 			" else ""
 	
 	}
 
 	write_draft_mythics := {
-		for each card in cards do if card.rarity == "mythic rare" then if contains (card.notes, match:"landslot") then "" else "1 " + card_name() + "
+		for each card in cards do if card.rarity == "mythic rare" then if contains (card.notes, match:"landslot") then "" else "1 " + card_name() + options.optional_suffix + "
 			" else ""
 	
 	}
 
 	write_draft_landslot := {
-		for each card in cards do if contains(card.notes, match:"landslot") then "10 " + card_name() + "
+		for each card in cards do if contains(card.notes, match:"landslot") then "10 " + card_name() + options.optional_suffix + "
 			" else ""
 	}
 
 	write_draft_wildcards := {
-		for each card in cards do if contains(card.type, match:"Token") then "" else if card.rarity == "basic land" then "" else "10 " + card_name() + "
+		for each card in cards do if contains(card.type, match:"Token") then "" else if card.rarity == "basic land" then "" else "10 " + card_name() + options.optional_suffix + "
 		"
 	}
 

@@ -30,7 +30,7 @@ def generateHTML(code):
 		width: 85%;
 		max-width: 1100px;
 		display: grid;
-		grid-template-columns: 3fr 2fr;
+		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		margin: auto;
 	}
@@ -67,16 +67,17 @@ def generateHTML(code):
 		gap: 8px;
 		font-size: 14.5px;
 		justify-self: right;
+		text-align: center;
 	}
 	select {
 		background-color: #fafafa;
-	  border: 1px solid #656565;
-	  border-radius: 8px;
-	  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+		border: 1px solid #656565;
+		border-radius: 8px;
+		box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
 		text-align: center;
-	  color: #171717;
-	  font-size: 13px;
-	  height: 30px;
+		color: #171717;
+		font-size: 13px;
+		height: 30px;
 	}
 	.grid-container {
 		display: grid;
@@ -98,7 +99,7 @@ def generateHTML(code):
 		padding-bottom: 30px;
 	}
 	@media ( max-width: 750px ) {
-	  .image-grid-container {
+		.image-grid-container {
 			grid-template-columns: 1fr 1fr;  
 		}
 	}
@@ -158,13 +159,13 @@ def generateHTML(code):
 		margin-bottom: 5px;
 	}
 	.img-container {
-	  position: relative;
-	  width: 100%;
-	  align-self: center;
+		position: relative;
+		width: 100%;
+		align-self: center;
 	}
 	.img-container img {
-	  width: 100%;
-	  height: auto;
+		width: 100%;
+		height: auto;
 	}
 	.img-container .btn {
 		background: url('/img/flip.png') no-repeat;
@@ -194,15 +195,13 @@ def generateHTML(code):
 	}
 </style>
 <body>
-	<div class="header">
-		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
-			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
-		</div>
-	</div>
+	'''
+
+	with open(os.path.join('resources', 'snippets', 'header.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
+
+	html_content += '''
 	<div class="banner">
 		<div class="banner-container">
 			<div class="set-banner" id="set-banner">
@@ -215,7 +214,7 @@ def generateHTML(code):
 
 	html_content += '''
 			</div>
-			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-num">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option></select></div>
+			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-num">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>
 		</div>
 	</div>
 
@@ -232,23 +231,16 @@ def generateHTML(code):
 		let displayStyle = "";
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('/lists/all-cards.txt')
-				.then(response => response.text())
-				.then(text => {
-					card_list_stringified = text; 
-			}).catch(error => console.error('Error:', error));
+			'''
 
-			await fetch('/resources/replacechars.txt')
-				.then(response => response.text())
-				.then(text => {
-					specialchars = text; 
-			}).catch(error => console.error('Error:', error));
+	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-			card_list_arrayified = card_list_stringified.split('\\\\n');
+	html_content += '''
 
 			for (let i = 0; i < card_list_arrayified.length; i++)
 			{
-				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
 				if (card_list_arrayified[i][11] == "''' + code + '''")
 				{
 					set_list_arrayified.push(card_list_arrayified[i]);
@@ -260,6 +252,7 @@ def generateHTML(code):
 
 		document.getElementById("sort-by").onchange = displayChangeListener;
 		document.getElementById("display").onchange = displayChangeListener;
+		document.getElementById("sort-order").onchange = displayChangeListener;
   
 		function displayChangeListener() {
 			setCardView();
@@ -269,9 +262,9 @@ def generateHTML(code):
 			displayStyle = document.getElementById("display").value;
 
 			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
-  		grid.style.display = displayStyle == "cards-only" ? 'none' : '';
+			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 
-  		updatePageContents();
+			updatePageContents();
 		}
 
 		function updatePageContents() {
@@ -284,161 +277,52 @@ def generateHTML(code):
 				cardGrid = document.getElementById("grid");
 			}
 
-			set_list_arrayified.sort(compareFunction);
-			cardGrid.innerHTML = "";
+			let set_cards = [];
+			let set_tokens_basics = [];
 
 			for (const card of set_list_arrayified)
+			{
+				if (card[3].includes("Token") || card[3].includes("Basic"))
+				{
+					set_tokens_basics.push(card);
+				}
+				else
+				{
+					set_cards.push(card);
+				}
+			}
+
+			set_cards.sort(compareFunction);
+			set_tokens_basics.sort(compareFunction);
+			if (document.getElementById("sort-order").value == "descending")
+			{
+				set_cards.reverse();
+				set_tokens_basics.reverse();
+			}
+			set_list_sorted = set_cards.concat(set_tokens_basics);
+			cardGrid.innerHTML = "";
+
+			for (const card of set_list_sorted)
 			{
 				cardGrid.append(gridifyCard(card));
 			}
 		}
 
-		function compareFunction(a, b) {
-			const sortMode = document.getElementById("sort-by").value;
+		'''
 
-			if (a[3].includes("Token") && !b[3].includes("Token"))
-			{
-				return 1;
-			}
+	with open(os.path.join('resources', 'snippets', 'compare-function.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-			if (!a[3].includes("Token") && b[3].includes("Token"))
-			{
-				return -1;
-			}
-			
-			if (sortMode == 'set-num')
-			{
-				if (a[11] === b[11])
-				{
-					if (a[4] === b[4])
-					{
-						return 0;
-					}
-					else {
-						return (parseInt(a[4]) < parseInt(b[4])) ? -1 : 1;
-					}
-				}
-				else {
-					return (a[11] < b[11]) ? -1 : 1;
-				}
-			}
-			if (sortMode == 'name')
-			{
-				if (a[0] === b[0])
-				{
-					return 0;
-				}
-				else {
-					return (a[0] < b[0]) ? -1 : 1;
-				}
-			}
-			if (sortMode == 'mv')
-			{
-				a_mv = isDecimal(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
-				b_mv = isDecimal(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
-				if (a_mv === b_mv)
-				{
-					if (a[0] === b[0])
-					{
-						return 0;
-					}
-					else {
-						return (a[0] < b[0]) ? -1 : 1;
-					}
-				}
-				else {
-					return (a_mv < b_mv) ? -1 : 1;
-				}
-			}
-			if (sortMode == 'color')
-			{
-				color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
-				a_color_index = -1;
-				b_color_index = -1;
+	html_content += '''
 
-				for (let i = 0; i < color_sort_order.length; i++)
-				{
-					if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
-					{
-						a_color_index = i;
-					}
-					if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
-					{
-						b_color_index = i;
-					}
-				}
+		'''
 
-				if (a_color_index === b_color_index)
-				{
-					if (a[0] === b[0])
-					{
-						return 0;
-					}
-					else {
-						return (a[0] < b[0]) ? -1 : 1;
-					}
-				}
-				else {
-					return (a_color_index < b_color_index) ? -1 : 1;
-				}
-			}
-		}
+	with open(os.path.join('resources', 'snippets', 'tokenize-symbolize.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-		function isDecimal(char) {
-			return char >= '0' && char <= '9';
-		}
-
-		function tokenize(text) {
-			let tokens = [];
-
-			for (let i = 0; i < text.length; i++)
-			{
-				if (i < text.length - 1)
-				{
-					if (text[i + 1] == '/')
-					{
-						tokens.push(text.substring(i, i + 3));
-						i = i + 2;
-					}
-					else if (isDecimal(text[i]) && isDecimal(text[i + 1]))
-					{
-						tokens.push(text.substring(i, i + 2));
-						i = i + 1;
-					}
-					else
-					{
-						tokens.push(text[i]);
-					}
-				}
-				else
-				{
-					tokens.push(text[i]);
-				}
-			}
-
-			return tokens;
-		}
-
-		function symbolize(text) {
-			let tokens = tokenize(text);
-			let symText = "";
-			for (const token of tokens)
-			{
-				symText = symText + "{" + token + "}";
-			}
-
-			return formatTextHTML(symText);
-		}
-
-		function formatTextHTML(str) {
-			if(!str)
-				return "";
-			str = str.replace(/[{]([^}]+)[}]/g, function(matched, _1) {
-				let letters = _1.toLowerCase().replace("/", "")
-				return '<span class="mana mana-cost mana-' + letters + '"></span>';
-			})
-			return str;
-		}
+	html_content += '''
 
 		function gridifyCard(card_stats) {
 			const card_name = card_stats[0];
@@ -448,176 +332,13 @@ def generateHTML(code):
 				return buildImgContainer(card_stats);
 			}
 
-			const grid = document.createElement("div");
-			grid.className = "image-grid";
+		'''
 
-			grid.appendChild(buildImgContainer(card_stats));
-			
-			const text = document.createElement("div");
-			text.className = "card-text";
+	with open(os.path.join('resources', 'snippets', 'img-container-defs.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-			const name_cost = document.createElement("div");
-			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
-			text.appendChild(name_cost);
-
-			const type = document.createElement("div");
-			type.className = "type";
-			type.textContent = card_stats[3];
-			text.appendChild(type);
-
-			const effect = document.createElement("div");
-			effect.className = "effect";
-			let card_effects = "";
-			if (card_stats[7] != "")
-			{
-				card_effects = card_stats[7].split("NEWLINE");
-			}
-			else
-			{
-				card_effects = card_stats[9].split("NEWLINE");
-			}
-			effect.innerHTML += prettifyEffects(card_effects);
-			text.appendChild(effect);
-
-			if(card_stats[8] != "")
-			{
-				const pt = document.createElement("div");
-				pt.className = "pt";
-				pt.textContent = card_stats[8];
-				text.appendChild(pt);
-			}
-			else if (card_stats[12] != "")
-			{
-				const loyalty = document.createElement("div");
-				loyalty.className = "pt";
-				loyalty.textContent = "[" + card_stats[12] + "]";
-				text.appendChild(loyalty);
-			}
-
-			// 12-name	13-color	14-type	15-ci	16-cost	17-ability	18-pt	19-special-text	
-			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
-			{
-				const name_cost_2 = document.createElement("div");
-				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[13] + (card_stats[17] != "" ? '     ' + symbolize(card_stats[17]) : "");
-				text.appendChild(name_cost_2);
-
-				const type_2 = document.createElement("div");
-				type_2.className = "type";
-				type_2.textContent = card_stats[15];
-				text.appendChild(type_2);
-
-				const effect_2 = document.createElement("div");
-				effect_2.className = "effect";
-				let card_effects_2 = "";
-				if (card_stats[18] != "")
-				{
-					card_effects_2 = card_stats[18].split("NEWLINE");
-				}
-				else
-				{
-					card_effects_2 = card_stats[20].split("NEWLINE");
-				}
-				effect_2.innerHTML += prettifyEffects(card_effects_2);
-				text.appendChild(effect_2);
-
-				if(card_stats[19] != "")
-				{
-					const pt_2 = document.createElement("div");
-					pt_2.className = "pt";
-					pt_2.textContent = card_stats[19];
-					text.appendChild(pt_2);
-				}
-			}
-			
-			grid.appendChild(text);
-
-			return grid;
-		}
-
-		function buildImgContainer(card_stats) {
-			const imgContainer = document.createElement("div");
-			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
-
-			const img = document.createElement("img");
-			img.className = "card-image";
-			img.id = id;
-			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
-			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
-			
-			const link = document.createElement("a");
-			let card_name = card_stats[0];
-			for (const char of specialchars)
-			{
-				card_name = card_name.replaceAll(char, "");
-			}
-			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_name;
-			link.appendChild(img);
-			imgContainer.appendChild(link);
-
-			if (card_stats[10].includes("double"))
-			{
-				const imgFlipBtn = document.createElement("button");
-				imgFlipBtn.className = "btn";
-				imgFlipBtn.onclick = function() { imgFlip(id); };
-				imgContainer.appendChild(imgFlipBtn);
-			}
-
-			return imgContainer;
-		}
-
-		function imgFlip(id) {
-			cardToFlip = document.getElementById(id);
-			cardName = cardToFlip.src;
-			
-			cardToFlip.src = cardName.includes("_front") ? cardName.replace("_front", "_back") : cardName.replace("_back", "_front");
-		}
-
-		function prettifyEffects(card_effects) {
-			let HTML = "";
-
-			for (let i = 0; i < card_effects.length; i++)
-			{
-				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
-
-				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
-				{
-					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
-				}
-
-				HTML += styled_effect;
-
-				if (i != card_effects.length - 1)
-				{
-					HTML += "<br>"
-				}
-			}
-
-			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\\.<]|$)/g;
-			let pattern2 = /(?<![a-z] |\\/[0-9X]*)([0-9X]+)([:,]| <i>\\()/g;
-			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
-			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
-			let pattern5 = /( )([0-9X]+)( <i>\\()/g;
-			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
-				return symbolize(group1) + group2;
-			});
-			regexHTML = regexHTML.replace(pattern2, function (match, group1, group2) {
-				return symbolize(group1) + group2;
-			});
-			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
-				return group1 + symbolize(group2);
-			});
-			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
-				return group1 + symbolize(group2);
-			});
-			regexHTML = regexHTML.replace(pattern5, function (match, group1, group2, group3) {
-				return group1 + symbolize(group2) + group3;
-			});
-
-			return regexHTML;
-		}
+	html_content += '''
 
 		document.getElementById("search").addEventListener("keypress", function(event) {
 		  if (event.key === "Enter") {
@@ -630,16 +351,13 @@ def generateHTML(code):
 			window.location = ("/search?search=" + document.getElementById("search").value);
 		}
 
-		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let card_name = card_list_arrayified[i][0];
-			for (const char of specialchars)
-			{
-				card_name = card_name.replaceAll(char, "");
-			}
+		'''
 
-			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
-		}
+	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
+
+	html_content += '''
 	</script>
 </body>
 </html>'''

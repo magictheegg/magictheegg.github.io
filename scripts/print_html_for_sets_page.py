@@ -74,15 +74,13 @@ def generateHTML(codes):
 		}
 	</style>
 	<body>
-		<div class="header">
-			<div class="search-grid">
-				<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-				<img class="sg-icon" src="/img/search.png">
-				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
-				<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-				<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
-			</div>
-		</div>
+		'''
+
+	with open(os.path.join('resources', 'snippets', 'header.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
+
+	html_content += '''
 		<div class="set-table">
 		<div class="set-header-row">
 			<div></div> <!-- empty div for spacing -->
@@ -112,24 +110,13 @@ def generateHTML(codes):
 		let displayStyle = "";
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('/lists/all-cards.txt')
-				.then(response => response.text())
-				.then(text => {
-					card_list_stringified = text; 
-			}).catch(error => console.error('Error:', error));
+			'''
 
-			await fetch('/resources/replacechars.txt')
-				.then(response => response.text())
-				.then(text => {
-					specialchars = text; 
-			}).catch(error => console.error('Error:', error));
+	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-			card_list_arrayified = card_list_stringified.split('\\\\n');
-
-			for (let i = 0; i < card_list_arrayified.length; i++)
-			{
-				card_list_arrayified[i] = card_list_arrayified[i].split('\t');
-			}
+	html_content += '''
 		});
 
 		function isDecimal(char) {
@@ -147,16 +134,13 @@ def generateHTML(codes):
 			window.location = ("/search?search=" + document.getElementById("search").value);
 		}
 
-		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let card_name = card_list_arrayified[i][0];
-			for (const char of specialchars)
-			{
-				card_name = card_name.replaceAll(char, "");
-			}
+		'''
 
-			window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
-		}
+	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
+
+	html_content += '''
 	</script>
 </body>
 </html>'''

@@ -46,33 +46,33 @@ def generateHTML(setCode, setCodes):
 			top: 0;
 			display: none;
 			text-align: center;
-			padding-right: 2.5%;
+			padding-right: 3%;
 			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
 		}
 		.sidebar img {
 			vertical-align: middle;
-			max-width: 375px;
-			width: 30%;
+			width: 100%;
 		}
-		.sidebar .btn {
-		  background: url('img/close.png') no-repeat;
-		  background-size: contain;
-		  background-position: center;
-		  width: 10%;
-		  height: 10%;
-		  border: none;
-		  cursor: pointer;
-		  position: absolute;
-		  right: -1.5%;
+		.close-btn {
+			background: url('img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
 		}
-		.sidebar .btn:hover {
-		  background: url('img/close-hover.png') no-repeat;
-		  background-size: contain;
-		  background-position: center;
-		  border: none;
-		  cursor: pointer;
-		  position: absolute;
-		  right: -1.5%;
+		.close-btn:hover {
+			background: url('img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
 		}
 		.grid-container {
 			display: grid;
@@ -104,38 +104,37 @@ def generateHTML(setCode, setCodes):
 			max-height: 320px;
 		}
 		.container {
-		  position: relative;
-		  width: 100%;
+			position: relative;
+			width: 100%;
 		}
 		.container img {
-		  width: 100%;
-		  height: auto;
+			width: 100%;
+			height: auto;
 		}
-		.container .btn {
-		  background: url('img/flip.png') no-repeat;
-		  background-size: contain;
-		  background-position: center;
-		  width: 15%;
-		  height: 11%;
-		  cursor: pointer;
-		  border: none;
-		  position: absolute;
-		  top: 6.5%;
-		  left: 8.5%;
-		  transform: translate(-50%, -50%);
+		.flip-btn {
+			background: url('img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			top: 6.5%;
+			left: 8.5%;
+			transform: translate(-50%, -50%);
 		}
-		.container .btn:hover {
-		  background: url('img/flip-hover.png') no-repeat;
-		  background-size: contain;
-		  background-position: center;
-		  width: 15%;
-		  height: 11%;
-		  cursor: pointer;
-		  border: none;
-		  position: absolute;
-		  top: 6.5%;
-		  left: 8.5%;
-		  transform: translate(-50%, -50%);
+		.flip-btn:hover {
+			background: url('img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.sidebar .flip-btn {
+			right: 80%;
+			left: 7.8%;
+			top: -4%;
+			transform: none;
+
 		}
 		.icon-bar {
 			display: grid;
@@ -185,19 +184,14 @@ def generateHTML(setCode, setCodes):
 
 	if os.path.exists(os.path.join('sets', setCode + '-files', 'bg.png')):
 		html_content +='''<img class="preload-hidden" id="bg" src="/sets/''' + setCode + '''-files/bg.png" />
+		
 		'''
 
-	html_content += '''
+	with open(os.path.join('resources', 'snippets', 'header.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-	<div class="header">
-		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
-			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
-		</div>
-	</div>
+	html_content += '''
 
 	<div class="icon-bar">
 	'''
@@ -205,8 +199,8 @@ def generateHTML(setCode, setCodes):
 	for code in codes:
 		prev_path = os.path.join('sets', setCode + '-files', 'prev_icon.png')
 		if codes[0] != code:
-			html_content += '	   <div class="dot"><img src="img/dot.png"></img></div>\n'
-		html_content += f'	  <div class="icon"><a href="{code}-spoiler"><img src="sets/{code}-files/' + ('prev_' if os.path.isfile(prev_path) else '') + 'icon.png"></img></a></div>\n'
+			html_content += '		 <div class="dot"><img src="img/dot.png"></img></div>\n'
+		html_content += f'		<div class="icon"><a href="{code}-spoiler"><img src="sets/{code}-files/' + ('prev_' if os.path.isfile(prev_path) else '') + 'icon.png"></img></a></div>\n'
 
 	html_content += '''
 		</div>
@@ -242,9 +236,9 @@ def generateHTML(setCode, setCodes):
 		image_path = os.path.join(image_dir, card_name + '.png')
 
 		if flag == '@XD':
-			html_content += f'		  <div class="container"><img data-alt_src="{dfc_back_img_path}" alt="{dfc_front_img_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num})"><button class="btn" onclick="imgFlip({card_num})"></button></div>\n'
+			html_content += f'			<div class="container"><img data-alt_src="{dfc_back_img_path}" alt="{dfc_front_img_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num})"><button class="flip-btn" onclick="imgFlip({card_num})"></button></div>\n'
 		else:
-			html_content += f'		  <div class="container"><img alt="{image_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar(\'{card_num}\')"></div>\n'
+			html_content += f'			<div class="container"><img alt="{image_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar(\'{card_num}\')"></div>\n'
 
 	# Closing the div and the rest of the HTML
 	html_content += '''	</div>\n'''
@@ -257,34 +251,23 @@ def generateHTML(setCode, setCodes):
 
 	html_content += '''</div>
 	<div class="sidebar" id="sidebar">
-		<img id="sidebar_img" src="img/er.png"></img>
-		<button class="btn" onclick="closeSidebar()"></button>
+		<div class="sidebar-container"><img id="sidebar_img" src="img/er.png"><button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button></div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
 	</div>
 	<div class="footer"></div>
 
 	<script>
 	const delay = ms => new Promise(res => setTimeout(res, ms));
-    let specialchars = "";
+		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.txt')
-			.then(response => response.text())
-			.then(text => {
-				card_list_stringified = text;
-		}).catch(error => console.error('Error:', error));
+		'''
 
-        await fetch('/resources/replacechars.txt')
-                .then(response => response.text())
-                .then(text => {
-                    specialchars = text; 
-            }).catch(error => console.error('Error:', error));
+	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-		card_list_arrayified = card_list_stringified.split('\\\\n');
-
-		for (let i = 0; i < card_list_arrayified.length; i++)
-		{
-			card_list_arrayified[i] = card_list_arrayified[i].split('\t');
-		}
+	html_content += '''
 		preloadImgs = document.getElementsByClassName('preload-hidden');
 		
 		let images_loaded = [];
@@ -361,8 +344,18 @@ def generateHTML(setCode, setCodes):
 	function openSidebar(id) {
 		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
 		
-		document.getElementById('sidebar').style.display = 'block';
+		document.getElementById('sidebar').style.display = 'grid';
 		document.getElementById('sidebar_img').src = document.getElementById(id).src;
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
 		document.getElementById('main-content').style.width = '60%';
 		
 		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
@@ -382,26 +375,23 @@ def generateHTML(setCode, setCodes):
 	}
 
 	document.getElementById("search").addEventListener("keypress", function(event) {
-		  if (event.key === "Enter") {
+			if (event.key === "Enter") {
 				event.preventDefault();
 				search();
-		  }
+			}
 		});
 
 		function search() {
 			window.location = ("/search?search=" + document.getElementById("search").value);
 		}
 
-		function randomCard() {
-            let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-            let card_name = card_list_arrayified[i][0];
-            for (const char of specialchars)
-            {
-                card_name = card_name.replaceAll(char, "");
-            }
+		'''
 
-            window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
-        }
+	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
+
+	html_content += '''
 	</script>
 </body>
 </html>

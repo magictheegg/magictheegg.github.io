@@ -246,21 +246,13 @@ def generateHTML(set_codes):
 				gradients = raw_gradients.split('\\n');
 				prepareGradients();
 
-				// this is all to prepare a random card of the day lol
-				await fetch('./lists/all-cards.txt')
-					.then(response => response.text())
-					.then(text => {
-						// Do something with the text content
-						card_list_stringified = text; 
-				}).catch(error => console.error('Error:', error));
+				'''
 
-				await fetch('/resources/replacechars.txt')
-					.then(response => response.text())
-					.then(text => {
-						specialchars = text; 
-				}).catch(error => console.error('Error:', error));
+	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
 
-				card_list_arrayified = card_list_stringified.split('\\\\n');
+	html_content += '''
 				card_list_cleaned = [];
 
 				for (const card of card_list_arrayified)
@@ -278,13 +270,8 @@ def generateHTML(set_codes):
 					}
 				}
 
-				for (let i = 0; i < card_list_arrayified.length; i++)
-				{
-					card_list_arrayified[i] = card_list_arrayified[i].split('\t');
-				}
-
 				const cotd = reallyRand(card_list_cleaned.length);
-				const card_stats = card_list_cleaned[cotd].split('\\t');
+				const card_stats = card_list_cleaned[cotd];
 
 				const a = document.createElement("a");
 				let card_name = card_stats[0];
@@ -377,24 +364,21 @@ def generateHTML(set_codes):
 				document.body.style.backgroundImage = `linear-gradient(to bottom, ${gradTop}, ${gradBottom})`;
 			}
 
-			function search() {
-				window.location = ("search?search=" + document.getElementById("search").value);
-			}
-
 			function goToSets() {
 				window.location = ("/all-sets");
 			}
 
-			function randomCard() {
-				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-				let card_name = card_list_arrayified[i][0];
-				for (const char of specialchars)
-				{
-					card_name = card_name.replaceAll(char, "");
-				}
-
-				window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
+			function search() {
+				window.location = ("search?search=" + document.getElementById("search").value);
 			}
+
+			'''
+
+	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+		snippet = f.read()
+		html_content += snippet
+
+	html_content += '''
 		</script>
 	</body>
 	</html>'''

@@ -1,0 +1,174 @@
+	const grid = document.createElement("div");
+			grid.className = "image-grid";
+
+			grid.appendChild(buildImgContainer(card_stats));
+			
+			const text = document.createElement("div");
+			text.className = "card-text";
+			text.id = "card-text";
+
+			const name_cost = document.createElement("div");
+			name_cost.className = "name-cost";
+			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
+			text.appendChild(name_cost);
+
+			const type = document.createElement("div");
+			type.className = "type";
+			type.textContent = card_stats[3];
+			text.appendChild(type);
+
+			const effect = document.createElement("div");
+			effect.className = "effect";
+			let card_effects = "";
+			if (card_stats[7] != "")
+			{
+				card_effects = card_stats[7].split("NEWLINE");
+			}
+			else
+			{
+				card_effects = card_stats[9].split("NEWLINE");
+			}
+			effect.innerHTML += prettifyEffects(card_effects);
+			text.appendChild(effect);
+
+			if(card_stats[8] != "")
+			{
+				const pt = document.createElement("div");
+				pt.className = "pt";
+				pt.textContent = card_stats[8];
+				text.appendChild(pt);
+			}
+			else if (card_stats[12] != "")
+			{
+				const loyalty = document.createElement("div");
+				loyalty.className = "pt";
+				loyalty.textContent = "[" + card_stats[12] + "]";
+				text.appendChild(loyalty);
+			}
+
+			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
+			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
+			{
+				const name_cost_2 = document.createElement("div");
+				name_cost_2.className = "name-cost";
+				name_cost_2.innerHTML = card_stats[13] + (card_stats[17] != "" ? '     ' + symbolize(card_stats[17]) : "");
+				text.appendChild(name_cost_2);
+
+				const type_2 = document.createElement("div");
+				type_2.className = "type";
+				type_2.textContent = card_stats[15];
+				text.appendChild(type_2);
+
+				const effect_2 = document.createElement("div");
+				effect_2.className = "effect";
+				let card_effects_2 = "";
+				if (card_stats[18] != "")
+				{
+					card_effects_2 = card_stats[18].split("NEWLINE");
+				}
+				else
+				{
+					card_effects_2 = card_stats[20].split("NEWLINE");
+				}
+				effect_2.innerHTML += prettifyEffects(card_effects_2);
+				text.appendChild(effect_2);
+
+				if(card_stats[19] != "")
+				{
+					const pt_2 = document.createElement("div");
+					pt_2.className = "pt";
+					pt_2.textContent = card_stats[19];
+					text.appendChild(pt_2);
+				}
+				else if (card_stats[21] != "")
+				{
+					const loyalty = document.createElement("div");
+					loyalty.className = "pt";
+					loyalty.textContent = "[" + card_stats[21] + "]";
+					text.appendChild(loyalty);
+				}
+			}
+			
+			grid.appendChild(text);
+
+			return grid;
+		}
+
+		function buildImgContainer(card_stats) {
+			const imgContainer = document.createElement("div");
+			imgContainer.className = "img-container";
+			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
+
+			const img = document.createElement("img");
+			img.className = "card-image";
+			img.id = id;
+			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
+			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[3].includes("Token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			
+			const link = document.createElement("a");
+			let card_name = card_stats[0];
+			for (const char of specialchars)
+			{
+				card_name = card_name.replaceAll(char, "");
+			}
+			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_name;
+			link.appendChild(img);
+			imgContainer.appendChild(link);
+
+			if (card_stats[10].includes("double"))
+			{
+				const imgFlipBtn = document.createElement("button");
+				imgFlipBtn.className = "btn";
+				imgFlipBtn.onclick = function() { imgFlip(id); };
+				imgContainer.appendChild(imgFlipBtn);
+			}
+
+			return imgContainer;
+		}
+
+		function imgFlip(id) {
+			cardToFlip = document.getElementById(id);
+			cardName = cardToFlip.src;
+			
+			cardToFlip.src = cardName.includes("_front") ? cardName.replace("_front", "_back") : cardName.replace("_back", "_front");
+		}
+
+		function prettifyEffects(card_effects) {
+			let HTML = "";
+
+			for (let i = 0; i < card_effects.length; i++)
+			{
+				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
+
+				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
+				{
+					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
+				}
+
+				HTML += styled_effect;
+
+				if (i != card_effects.length - 1)
+				{
+					HTML += "<br>"
+				}
+			}
+
+			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.<]|$)/g;
+			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,]| <i>\()/g;
+			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
+			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
+			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
+				return symbolize(group1) + group2;
+			});
+			regexHTML = regexHTML.replace(pattern2, function (match, group1, group2) {
+				return symbolize(group1) + group2;
+			});
+			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
+				return group1 + symbolize(group2);
+			});
+			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
+				return group1 + symbolize(group2);
+			});
+
+			return regexHTML;
+		}

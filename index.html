@@ -247,12 +247,10 @@
 				gradients = raw_gradients.split('\n');
 				prepareGradients();
 
-				// this is all to prepare a random card of the day lol
-				await fetch('./lists/all-cards.txt')
+				await fetch('/lists/all-cards.txt')
 					.then(response => response.text())
 					.then(text => {
-						// Do something with the text content
-						card_list_stringified = text; 
+						card_list_stringified = text;
 				}).catch(error => console.error('Error:', error));
 
 				await fetch('/resources/replacechars.txt')
@@ -262,6 +260,12 @@
 				}).catch(error => console.error('Error:', error));
 
 				card_list_arrayified = card_list_stringified.split('\\n');
+
+				for (let i = 0; i < card_list_arrayified.length; i++)
+				{
+					card_list_arrayified[i] = card_list_arrayified[i].split('\t');
+				}
+
 				card_list_cleaned = [];
 
 				for (const card of card_list_arrayified)
@@ -279,13 +283,8 @@
 					}
 				}
 
-				for (let i = 0; i < card_list_arrayified.length; i++)
-				{
-					card_list_arrayified[i] = card_list_arrayified[i].split('	');
-				}
-
 				const cotd = reallyRand(card_list_cleaned.length);
-				const card_stats = card_list_cleaned[cotd].split('\t');
+				const card_stats = card_list_cleaned[cotd];
 
 				const a = document.createElement("a");
 				let card_name = card_stats[0];
@@ -378,12 +377,12 @@
 				document.body.style.backgroundImage = `linear-gradient(to bottom, ${gradTop}, ${gradBottom})`;
 			}
 
-			function search() {
-				window.location = ("search?search=" + document.getElementById("search").value);
-			}
-
 			function goToSets() {
 				window.location = ("/all-sets");
+			}
+
+			function search() {
+				window.location = ("search?search=" + document.getElementById("search").value);
 			}
 
 			function randomCard() {
