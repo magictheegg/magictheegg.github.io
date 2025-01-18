@@ -214,6 +214,7 @@
 			<img class="sg-icon" src="/img/search.png">
 			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
 			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
 		</div>
 	</div>
@@ -700,6 +701,29 @@
 			let card_loyalty = card_stats[12];
 			let card_notes = card_stats[card_stats.length - 1].replaceAll("NEWLINE", '\n');
 
+			let color_map = new Map([
+				["azorius", "wu"],
+				["dimir", "ub"],
+				["rakdos", "br"],
+				["gruul", "rg"],
+				["selesnya", "gw"],
+				["orzhov", "wb"],
+				["golgari", "bg"],
+				["simic", "gu"],
+				["izzet", "ur"],
+				["boros", "rw"],
+				["esper", "wub"],
+				["grixis", "ubr"],
+				["jund", "brg"],
+				["naya", "rgw"],
+				["bant", "gwu"],
+				["abzan", "wbg"],
+				["sultai", "bgu"],
+				["temur", "gur"],
+				["jeskai", "urw"],
+				["mardu", "rwb"],
+			]);
+
 			// two cards in one
 			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
 			{
@@ -710,14 +734,19 @@
 
 			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('“','').replaceAll('”','');
 
-			const modifierRegex = /[!:<>=]/;
-			const match = token.search(modifierRegex);
+			const modifierRegex = /[!:<>=]+/g;
+			const match = token.match(modifierRegex);
 
-			if (match > -1)
+			if (match)
 			{
-				const term = token.substring(0, match);
-				const modifier = token.charAt(match);
-				let check = token.substring(match + 1);
+				const modifier = match[0];
+				const term = token.substring(0, token.indexOf(modifier));
+				let check = token.substring(token.indexOf(modifier) + modifier.length);
+
+				if (color_map.has(check))
+				{
+					check = color_map.get(check);
+				}
 
 				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
@@ -759,6 +788,14 @@
 					{
 						return (card_mv > check);
 					}
+					else if (modifier == "<=")
+					{
+						return (card_mv <= check);
+					}
+					else if (modifier == ">=")
+					{
+						return (card_mv >= check);
+					}
 				}
 				if (term == "c" || term == "color")
 				{
@@ -784,7 +821,7 @@
 						{
 							return card_color.length < parseInt(check);
 						}
-						return hasNoChars(card_color, check);
+						return card_color == "c" || (check.length > card_color.length && hasAllChars(check, card_color));
 					}
 					else if (modifier == ">")
 					{
@@ -792,10 +829,26 @@
 						{
 							return card_color.length > parseInt(check);
 						}
-						return hasAllAndMoreChars(card_color, check);
+						return card_color.length > check.length && hasAllChars(card_color, check);
+					}
+					else if (modifier == "<=")
+					{
+						if (!isNaN(check))
+						{
+							return card_color.length <= parseInt(check);
+						}
+						return card_color == "c" || hasAllChars(check, card_color);
+					}
+					else if (modifier == ">=")
+					{
+						if (!isNaN(check))
+						{
+							return card_color.length >= parseInt(check);
+						}
+						return hasAllChars(card_color, check);
 					}
 				}
-				if (term == "ci")
+				if (term == "ci" || term == "id")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -820,16 +873,31 @@
 						{
 							return card_ci.length < parseInt(check);
 						}
-						return hasNoChars(card_ci, check);
+						return card_ci == "c" || (check.length > card_ci.length && hasAllChars(check, card_ci));
 					}
 					else if (modifier == ">")
 					{
-
 						if (!isNaN(check))
 						{
 							return card_ci.length > parseInt(check);
 						}
-						return hasAllAndMoreChars(card_ci, check);
+						return card_ci.length > check.length && hasAllChars(card_ci, check);
+					}
+					else if (modifier == "<=")
+					{
+						if (!isNaN(check))
+						{
+							return card_ci.length <= parseInt(check);
+						}
+						return card_ci == "c" || hasAllChars(check, card_ci);
+					}
+					else if (modifier == ">=")
+					{
+						if (!isNaN(check))
+						{
+							return card_ci.length >= parseInt(check);
+						}
+						return hasAllChars(card_ci, check);
 					}
 				}
 				if (term == "t" || term == "type")
@@ -891,6 +959,14 @@
 					{
 						return (card_power > check);
 					}
+					else if (modifier == "<=")
+					{
+						return (card_power <= check);
+					}
+					else if (modifier == ">=")
+					{
+						return (card_power >= check);
+					}
 				}
 				if (term == "tou")
 				{
@@ -909,6 +985,14 @@
 					else if (modifier == ">")
 					{
 						return (card_toughness > check);
+					}
+					else if (modifier == "<=")
+					{
+						return (card_toughness <= check);
+					}
+					else if (modifier == ">=")
+					{
+						return (card_toughness >= check);
 					}
 				}
 				if (term == "r" || term == "rarity")
@@ -932,6 +1016,14 @@
 					else if (modifier == ">")
 					{
 						return rarities.includes(card_rarity) && rarities.indexOf(card_rarity) > rarities.indexOf(check);
+					}
+					else if (modifier == "<=")
+					{
+						return rarities.includes(card_rarity) && rarities.indexOf(card_rarity) <= rarities.indexOf(check);
+					}
+					else if (modifier == ">=")
+					{
+						return rarities.includes(card_rarity) && rarities.indexOf(card_rarity) >= rarities.indexOf(check);
 					}
 				}
 				if (term == "e" || term == "set")
@@ -1006,13 +1098,20 @@
 					{
 						return card_notes.includes("!tag " + check);
 					}
+					/* unsupported flows
+					else if (modifier == "<")
+					{
+
+					}
+					else if (modifier == ">")
+					{
+
+					} */
 				}
 			}
 
 			return card_name.includes(token);
-		}
-
-		function isDecimal(char) {
+		}function isDecimal(char) {
 			return char >= '0' && char <= '9';
 		}
 
@@ -1271,34 +1370,6 @@
 			}
 
 			return retVal;
-		}
-
-		function hasNoChars(strOut, strIn) {
-			let retVal = true;
-
-			for (let i = 0; i < strIn.length; i++)
-			{
-				if (strOut.includes(strIn.charAt(i)))
-				{
-					retVal = false;
-				}
-			}
-
-			return retVal;
-		}
-
-		function hasAllAndMoreChars(strOut, strIn) {
-			let retVal = true;
-
-			for (let i = 0; i < strIn.length; i++)
-			{
-				if (!strOut.includes(strIn.charAt(i)))
-				{
-					retVal = false;
-				}
-			}
-
-			return retVal && (strOut.length > strIn.length);
 		}
 
 		document.getElementById("search").addEventListener("keypress", function(event) {

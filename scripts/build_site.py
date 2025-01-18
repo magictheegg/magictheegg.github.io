@@ -11,6 +11,7 @@ import print_html_for_spoiler
 import print_html_for_card
 import print_html_for_set
 import print_html_for_sets_page
+import print_html_for_deckbuilder
 
 def genAllCards(codes):
 	file_input = ''
@@ -96,6 +97,7 @@ if os.path.isdir(custom_img_dir):
 
 print_html_for_sets_page.generateHTML(set_codes)
 print_html_for_search.generateHTML(set_codes)
+print_html_for_deckbuilder.generateHTML(set_codes)
 print_html_for_index.generateHTML(set_codes)
 
 

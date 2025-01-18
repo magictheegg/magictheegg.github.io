@@ -34,6 +34,11 @@ option field:
 
 option field:
 	type: text
+	name: formats
+	description: formats this set is included in
+
+option field:
+	type: text
 	name: optional suffix
 	description: suffix for name-to-image matching in Cockatrice; if you don't know, leave this blank
 
@@ -228,6 +233,7 @@ script:
 	write_draft_file := if options.export_draft_file == "yes" then write_text_file(file: set.set_code + "-draft.txt", to_text(write_booster))
 	write_text_file(file: set.set_code + "-fullname.txt", to_text(set.title))
 	write_text_file(file: set.set_code + "-trimmed.txt", to_text("false"))
+	write_text_file(file: set.set_code + "-formats.txt", to_text(options.formats))
 
 	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "icon.png", width: 512, height: 512)
 	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "logo.png", width: 320, height: 320)
