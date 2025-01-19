@@ -94,7 +94,7 @@ function tokenizeTerms(searchTerms)
 			// 4: collector number
 			let card_ci = card_stats.color_identity;
 			let card_cost = card_stats.cost;
-			let card_mv = (isDecimal(card_cost.charAt(0)) ? parseInt(card_cost) + card_cost.replaceAll('x','').length - 1 : card_cost.replaceAll('x','').length) - ((card_cost.split('/').length - 1) * 2);
+			let card_mv = isDecimal(card_cost.charAt(1)) ? parseInt(card_cost.substring(1, card_cost.indexOf('}'))) + card_cost.replaceAll('x','').split('{').length - 2 : card_cost.replaceAll('x','').split('{').length - 1;
 			//Strip out the lingering [i][/i] and [b][/b] tags while we're searching just in case someone decided to bold something in the
 			//middle of their rules text for some reason
 			let card_oracle_text = card_stats.rules_text != "" ? card_stats.rules_text.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text.replace(/\[(\/)?([ib])\]/g, "");
@@ -260,6 +260,14 @@ function tokenizeTerms(searchTerms)
 							return card_color.length >= parseInt(check);
 						}
 						return hasAllChars(card_color, check);
+					}
+				}
+				if (term == "cost" || term == "mana")
+				{
+					if (modifier == "!" || modifier == "=" || modifier == ":")
+					{
+						card_cost_cleaned = card_cost.replaceAll('{', '').replaceAll('}', '');
+						return check == card_cost || check == card_cost_cleaned;
 					}
 				}
 				if (term == "ci" || term == "id")
@@ -494,7 +502,14 @@ function tokenizeTerms(searchTerms)
 						}
 						if (check == "hybrid")
 						{
-							return (card_cost.includes("/"));
+							for (let i = 0; i < card_cost.length - 2; i++)
+							{
+								if (card_cost[i] != '{' && card_cost[i] != '}' && card_cost[i + 1] != '{' && card_cost[i + 1] != '}' && !isDecimal(card_cost[i + 1]))
+								{
+									return true;
+								}
+							}
+							return false;
 						}
 					}
 					/* unsupported flows
