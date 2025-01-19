@@ -20,7 +20,7 @@ def generateHTML(card):
 	html_content = '''<html>
 <head>
   <title>''' + card.split('\t')[0] + '''</title>
-  <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/sets/''' + code + '''-files/icon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
 </head>
@@ -119,6 +119,9 @@ def generateHTML(card):
 		content: "";
 		display: block;
 		margin-bottom: 5px;
+	}
+	.printings {
+		display: none;
 	}
 	.card-text .printings {
 		margin-top: auto;
@@ -232,7 +235,8 @@ def generateHTML(card):
 			document.getElementById("grid").appendChild(gridifyCard(card));
 			if (document.getElementById("other-printings"))
 			{
-				document.getElementById("card-text").appendChild(document.getElementById("other-printings"));			
+				document.getElementById("card-text").appendChild(document.getElementById("other-printings"));	
+				document.getElementById("other-printings").style.display = "block";		
 			}
 		});
 

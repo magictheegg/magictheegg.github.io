@@ -7,7 +7,7 @@ def generateHTML(codes):
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
-	<title>Search</title>
+	<title>Deckbuilder</title>
 	<link rel="icon" type="image/x-icon" href="/img/deck.png">
 	<link rel="stylesheet" href="resources/mana.css">
 	<link rel="stylesheet" href="/resources/header.css">
@@ -26,6 +26,7 @@ def generateHTML(codes):
 	}
 	.page-container {
 		width: 98%;
+		max-width: 2000px;
 		height: 89%;
 		padding-top: 10px;
 		display: grid;
@@ -43,6 +44,7 @@ def generateHTML(codes):
 		display: grid;
 		grid-template-columns: 3fr 2fr;
 		overflow-y: hidden;
+		overflow-x: hidden;
 		height: 100%;
 	}
 	.search-container {
@@ -335,6 +337,7 @@ def generateHTML(codes):
 	}
 	.card-img-container {
 		height: 2.2vw;
+		max-height: 45px;
 		display: grid;
 		grid-template-columns: 1fr 2fr 12fr;
 		gap: 2px;
@@ -352,6 +355,7 @@ def generateHTML(codes):
 	}
 	.card-img-container .card-fx {
 		height: 2.7vw;
+		max-height: 63px;
 	}
 	.rc-menu {
 		display: none;
@@ -1012,6 +1016,7 @@ def generateHTML(codes):
 							if (card == cards_list[cards_list.length - 1])
 							{
 								card_img_container.style.height = "auto";
+								card_img_container.style.maxHeight = "100%";
 							}
 
 							card_img = document.createElement("img");

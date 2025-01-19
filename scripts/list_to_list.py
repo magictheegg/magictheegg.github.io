@@ -42,22 +42,6 @@ def convertList(setCode):
 		else:
 			card[len(card) - 1] = 'zzz'
 
-		# clean color inputs
-		if card[1] == 'WR':
-			card[1] = 'RW'
-		if card[1] == 'WG':
-			card[1] = 'GW'
-		if card[1] == 'UG':
-			card[1] = 'GU'
-
-		# clean color identity inputs
-		if card[5] == 'WR':
-			card[5] = 'RW'
-		if card[5] == 'WG':
-			card[5] = 'GW'
-		if card[5] == 'UG':
-			card[5] = 'GU'
-
 		# clean rarities
 		if card[2] == 'common':
 			card[2] = 4
@@ -75,7 +59,7 @@ def convertList(setCode):
 			cards_token.append(card)
 		elif len(card[1]) > 1:
 			cards_multi.append(card)
-		elif card[1] == '':
+		elif colorEquals(card[1], ''):
 			if 'Basic' in card[3]:
 				cards_basic.append(card)
 			elif 'Land' in card[3]:
@@ -93,15 +77,15 @@ def convertList(setCode):
 	cards_g = []
 	
 	for card in cards_mono:
-		if card[1] == 'W':
+		if colorEquals(card[1], 'W'):
 			cards_w.append(card)
-		if card[1] == 'U':
+		if colorEquals(card[1], 'U'):
 			cards_u.append(card)
-		if card[1] == 'B':
+		if colorEquals(card[1], 'B'):
 			cards_b.append(card)
-		if card[1] == 'R':
+		if colorEquals(card[1], 'R'):
 			cards_r.append(card)
-		if card[1] == 'G':
+		if colorEquals(card[1], 'G'):
 			cards_g.append(card)
 
 	row_count = max(len(cards_w),len(cards_u),len(cards_b),len(cards_r),len(cards_g))
@@ -132,29 +116,61 @@ def convertList(setCode):
 	cards_gu = []
 	cards_ur = []
 	cards_rw = []
+
+	cards_wub = []
+	cards_ubr = []
+	cards_brg = []
+	cards_rgw = []
+	cards_gwu = []
+	cards_rwb = []
+	cards_gur = []
+	cards_wbg = []
+	cards_urw = []
+	cards_bgu = []
+
 	cards_gold = []
 
 	for card in cards_multi:
-		if card[1] == 'WU':
+		if colorEquals(card[1], 'WU'):
 			cards_wu.append(card)
-		elif card[1] == 'UB':
+		elif colorEquals(card[1], 'UB'):
 			cards_ub.append(card)
-		elif card[1] == 'BR':
+		elif colorEquals(card[1], 'BR'):
 			cards_br.append(card)
-		elif card[1] == 'RG':
+		elif colorEquals(card[1], 'RG'):
 			cards_rg.append(card)
-		elif card[1] == 'GW':
+		elif colorEquals(card[1], 'GW'):
 			cards_gw.append(card)
-		elif card[1] == 'WB':
+		elif colorEquals(card[1], 'WB'):
 			cards_wb.append(card)
-		elif card[1] == 'BG':
+		elif colorEquals(card[1], 'BG'):
 			cards_bg.append(card)
-		elif card[1] == 'GU':
+		elif colorEquals(card[1], 'GU'):
 			cards_gu.append(card)
-		elif card[1] == 'UR':
+		elif colorEquals(card[1], 'UR'):
 			cards_ur.append(card)
-		elif card[1] == 'RW':
+		elif colorEquals(card[1], 'RW'):
 			cards_rw.append(card)
+		elif colorEquals(card[1], 'GWU'):
+			cards_gwu.append(card)
+		elif colorEquals(card[1], 'WUB'):
+			cards_wub.append(card)
+		elif colorEquals(card[1], 'UBR'):
+			cards_ubr.append(card)
+		elif colorEquals(card[1], 'BRG'):
+			cards_brg.append(card)
+		elif colorEquals(card[1], 'RGW'):
+			cards_rgw.append(card)
+		elif colorEquals(card[1], 'RWB'):
+			cards_rwb.append(card)
+		elif colorEquals(card[1], 'GUR'):
+			cards_gur.append(card)
+		elif colorEquals(card[1], 'WBG'):
+			cards_wbg.append(card)
+		elif colorEquals(card[1], 'URW'):
+			cards_urw.append(card)
+		elif colorEquals(card[1], 'BGU'):
+			cards_bgu.append(card)
 		else:
 			cards_gold.append(card)
 	
@@ -194,7 +210,54 @@ def convertList(setCode):
 	for x in range(5):
 		master_list.append('er')
 
-	# 3c+ cards
+	shard_count = len(cards_gwu) + len(cards_wub) + len(cards_ubr) + len(cards_brg) + len(cards_rgw)
+	wedge_count = len(cards_rwb) + len(cards_gur) + len(cards_wbg) + len(cards_urw) + len(cards_bgu)
+
+	# shards
+	row_count = max(len(cards_gwu),len(cards_wub),len(cards_ubr),len(cards_brg),len(cards_rgw))
+	cards_shard_arr = [cards_gwu, cards_wub, cards_ubr, cards_brg, cards_rgw]
+
+	for x in range(len(cards_shard_arr)):
+		card_arr = cards_shard_arr[x]
+		cards_shard_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+
+	for row in range(row_count):
+		for card_arr in cards_shard_arr:
+			if row >= len(card_arr):
+				if shard_count > 5:
+					master_list.append('e')
+			else:
+				master_list.append(card_arr[row][0])
+
+	if shard_count >= 5 or wedge_count >= 5:
+		for x in range(5):
+			master_list.append('er')
+
+	# wedges
+	row_count = max(len(cards_rwb),len(cards_gur),len(cards_wbg),len(cards_urw),len(cards_bgu))
+	cards_wedge_arr = [cards_rwb, cards_gur, cards_wbg, cards_urw, cards_bgu]
+
+	for x in range(len(cards_wedge_arr)):
+		card_arr = cards_wedge_arr[x]
+		cards_wedge_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+	
+	for row in range(row_count):
+		for card_arr in cards_wedge_arr:
+			if row >= len(card_arr):
+				if wedge_count > 5:
+					master_list.append('e')
+			else:
+				master_list.append(card_arr[row][0])
+
+	if shard_count > 0 or wedge_count > 0:
+		if (shard_count + wedge_count) % 5 != 0:
+			for x in range(5 - ((shard_count + wedge_count) % 5)):
+				master_list.append('e')
+
+		for x in range(5):
+			master_list.append('er')
+
+	# 4c+ cards
 	cards_gold = sorted(cards_gold, key=lambda x : (len(x[1]), x[2], x[len(x) - 1], x[4]))
 
 	for card in cards_gold:
@@ -228,6 +291,7 @@ def convertList(setCode):
 	lands_b = []
 	lands_r = []
 	lands_g = []
+
 	lands_wu = []
 	lands_ub = []
 	lands_br = []
@@ -238,39 +302,71 @@ def convertList(setCode):
 	lands_gu = []
 	lands_ur = []
 	lands_rw = []
+
+	lands_wub = []
+	lands_ubr = []
+	lands_brg = []
+	lands_rgw = []
+	lands_gwu = []
+	lands_rwb = []
+	lands_gur = []
+	lands_wbg = []
+	lands_urw = []
+	lands_bgu = []
+
 	lands_other = []
 
 	for card in cards_land:
-		if card[5] == 'W':
+		if colorEquals(card[5], 'W'):
 			lands_w.append(card)
-		elif card[5] == 'U':
+		elif colorEquals(card[5], 'U'):
 			lands_u.append(card)
-		elif card[5] == 'B':
+		elif colorEquals(card[5], 'B'):
 			lands_b.append(card)
-		elif card[5] == 'R':
+		elif colorEquals(card[5], 'R'):
 			lands_r.append(card)
-		elif card[5] == 'G':
+		elif colorEquals(card[5], 'G'):
 			lands_g.append(card)
-		elif card[5] == 'WU':
+		elif colorEquals(card[5], 'WU'):
 			lands_wu.append(card)
-		elif card[5] == 'UB':
+		elif colorEquals(card[5], 'UB'):
 			lands_ub.append(card)
-		elif card[5] == 'BR':
+		elif colorEquals(card[5], 'BR'):
 			lands_br.append(card)
-		elif card[5] == 'RG':
+		elif colorEquals(card[5], 'RG'):
 			lands_rg.append(card)
-		elif card[5] == 'GW':
+		elif colorEquals(card[5], 'GW'):
 			lands_gw.append(card)
-		elif card[5] == 'WB':
+		elif colorEquals(card[5], 'WB'):
 			lands_wb.append(card)
-		elif card[5] == 'BG':
+		elif colorEquals(card[5], 'BG'):
 			lands_bg.append(card)
-		elif card[5] == 'GU':
+		elif colorEquals(card[5], 'GU'):
 			lands_gu.append(card)
-		elif card[5] == 'UR':
+		elif colorEquals(card[5], 'UR'):
 			lands_ur.append(card)
-		elif card[5] == 'RW':
+		elif colorEquals(card[5], 'RW'):
 			lands_rw.append(card)
+		elif colorEquals(card[5], 'GWU'):
+			lands_gwu.append(card)
+		elif colorEquals(card[5], 'WUB'):
+			lands_wub.append(card)
+		elif colorEquals(card[5], 'UBR'):
+			lands_ubr.append(card)
+		elif colorEquals(card[5], 'BRG'):
+			lands_brg.append(card)
+		elif colorEquals(card[5], 'RGW'):
+			lands_rgw.append(card)
+		elif colorEquals(card[5], 'RWB'):
+			lands_rwb.append(card)
+		elif colorEquals(card[5], 'GUR'):
+			lands_gur.append(card)
+		elif colorEquals(card[5], 'WBG'):
+			lands_wbg.append(card)
+		elif colorEquals(card[5], 'URW'):
+			lands_urw.append(card)
+		elif colorEquals(card[5], 'BGU'):
+			lands_bgu.append(card)
 		else:
 			lands_other.append(card)
 	
@@ -319,9 +415,53 @@ def convertList(setCode):
 			else:
 				master_list.append(card_arr[row][0])
 
-	if len(cards_land) - len(lands_other) > 0:
+	land_shard_count = len(lands_gwu) + len(lands_wub) + len(lands_ubr) + len(lands_brg) + len(lands_rgw)
+	land_wedge_count = len(lands_rwb) + len(lands_gur) + len(lands_wbg) + len(lands_urw) + len(lands_bgu)
+
+	# shards
+	row_count = max(len(lands_gwu),len(lands_wub),len(lands_ubr),len(lands_brg),len(lands_rgw))
+	lands_shard_arr = [lands_gwu, lands_wub, lands_ubr, lands_brg, lands_rgw]
+
+	for x in range(len(lands_shard_arr)):
+		card_arr = lands_shard_arr[x]
+		lands_shard_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+
+	for row in range(row_count):
+		for card_arr in lands_shard_arr:
+			if row >= len(card_arr):
+				if land_shard_count > 5:
+					master_list.append('e')
+			else:
+				master_list.append(card_arr[row][0])
+
+	if land_shard_count >= 5 or land_wedge_count >= 5:
 		for x in range(5):
 			master_list.append('er')
+
+	# wedges
+	row_count = max(len(lands_rwb),len(lands_gur),len(lands_wbg),len(lands_urw),len(lands_bgu))
+	lands_wedge_arr = [lands_rwb, lands_gur, lands_wbg, lands_urw, lands_bgu]
+
+	for x in range(len(lands_wedge_arr)):
+		card_arr = lands_wedge_arr[x]
+		lands_wedge_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+	
+	for row in range(row_count):
+		for card_arr in lands_wedge_arr:
+			if row >= len(card_arr):
+				if land_wedge_count > 5:
+					master_list.append('e')
+			else:
+				master_list.append(card_arr[row][0])
+
+	if land_shard_count > 0 or land_wedge_count > 0:
+		if (land_shard_count + land_wedge_count) % 5 != 0:
+			for x in range(5 - ((land_shard_count + land_wedge_count) % 5)):
+				master_list.append('e')
+
+	if len(cards_land) - len(lands_other) > 0:
+			for x in range(5):
+				master_list.append('er')
 
 	# other lands
 	lands_other = sorted(lands_other, key=lambda x : (x[2], x[len(x) - 1], x[4]))
@@ -378,7 +518,8 @@ def convertList(setCode):
 			print(card_name.replace(u'\ufeff', ''), file=f)
 
 
-
+def colorEquals(color, match):
+	return sorted(color) == sorted(match)
 
 
 

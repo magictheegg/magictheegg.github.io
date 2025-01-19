@@ -1,7 +1,7 @@
 ﻿<html>
 <head>
   <title>Ballad of the Forgotten</title>
-  <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/sets/NJB-files/icon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
 </head>
@@ -100,6 +100,9 @@
 		content: "";
 		display: block;
 		margin-bottom: 5px;
+	}
+	.printings {
+		display: none;
 	}
 	.card-text .printings {
 		margin-top: auto;
@@ -208,7 +211,8 @@
 			document.getElementById("grid").appendChild(gridifyCard(card));
 			if (document.getElementById("other-printings"))
 			{
-				document.getElementById("card-text").appendChild(document.getElementById("other-printings"));			
+				document.getElementById("card-text").appendChild(document.getElementById("other-printings"));	
+				document.getElementById("other-printings").style.display = "block";		
 			}
 		});
 
