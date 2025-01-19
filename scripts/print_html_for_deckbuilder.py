@@ -336,7 +336,7 @@ def generateHTML(codes):
 		height: 100%;
 	}
 	.card-img-container {
-		height: 2.2vw;
+		height: 2.1vw;
 		max-height: 45px;
 		display: grid;
 		grid-template-columns: 1fr 2fr 12fr;
@@ -672,22 +672,22 @@ def generateHTML(codes):
 						}
 						for (const card of card_list_arrayified)
 						{
-							if (deck_map.has(card[0]))
+							if (deck_map.has(card.card_name))
 							{
-								for (let i = 0; i < deck_map.get(card[0]); i++)
+								for (let i = 0; i < deck_map.get(card.card_name); i++)
 								{
 									addCardToDeck(JSON.stringify(card));
 								}
-								deck_map.delete(card[0]);
+								deck_map.delete(card.card_name);
 							}
 
-							if (sb_map.has(card[0]))
+							if (sb_map.has(card.card_name))
 							{
-								for (let i = 0; i < sb_map.get(card[0]); i++)
+								for (let i = 0; i < sb_map.get(card.card_name); i++)
 								{
 									addCardToSideboard(JSON.stringify(card));
 								}
-								sb_map.delete(card[0]);
+								sb_map.delete(card.card_name);
 							}
 						}
 					}
@@ -724,7 +724,7 @@ def generateHTML(codes):
 			cardGrid.innerHTML = "";
 
 			for (const card of card_list_arrayified) {
-				if (card[10].includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
+				if (card.shape.includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
 				{
 					continue;
 				}
@@ -741,7 +741,7 @@ def generateHTML(codes):
 			{
 				const imgContainer = document.createElement("div");
 				const card_stats = search_results[i];
-				const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
+				const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
 				imgContainer.className = "img-container";
 				const card_sr_grid = gridifyCard(search_results[i]);
 				const card_sr = card_sr_grid.getElementsByTagName("img")[0];
@@ -752,7 +752,7 @@ def generateHTML(codes):
 					const gridified_card = gridifyCard(card_stats, true);
 					gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 					gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
-					if (card_stats[10].includes("double"))
+					if (card_stats.shape.includes("double"))
 					{
 						gridified_card.getElementsByTagName("button")[0].onclick = function() {
 							imgFlip("image-grid-card");
@@ -795,7 +795,7 @@ def generateHTML(codes):
 	html_content += '''
 
 		function gridifyCard(card_stats, card_text = false) {
-			const card_name = card_stats[0];
+			const card_name = card_stats.card_name;
 
 			if (!card_text)
 			{
@@ -883,7 +883,7 @@ def generateHTML(codes):
 
 			for (const card of deck)
 			{
-				card_type = JSON.parse(card)[3].toLowerCase();
+				card_type = JSON.parse(card).type.toLowerCase();
 
 				for (const [key, map] of deck_cards)
 				{
@@ -946,7 +946,7 @@ def generateHTML(codes):
 					{
 						const display_style = document.getElementById("display-select").value;
 						const card_stats = JSON.parse(card);
-						const card_name = card_stats[0];
+						const card_name = card_stats.card_name;
 
 						if (display_style == "text")
 						{
@@ -962,7 +962,7 @@ def generateHTML(codes):
 								const gridified_card = gridifyCard(card_stats, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
-								if (card_stats[10].includes("double"))
+								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
 										imgFlip("image-grid-card");
@@ -1020,7 +1020,7 @@ def generateHTML(codes):
 							}
 
 							card_img = document.createElement("img");
-							card_img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + "_" + card_stats[0] + ".png";
+							card_img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + "_" + card_stats.card_name + ".png";
 							card_img.style.cursor = "pointer";
 							card_img.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
@@ -1028,7 +1028,7 @@ def generateHTML(codes):
 								const gridified_card = gridifyCard(card_stats, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
-								if (card_stats[10].includes("double"))
+								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
 										imgFlip("image-grid-card");

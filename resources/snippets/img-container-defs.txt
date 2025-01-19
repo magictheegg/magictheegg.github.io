@@ -9,82 +9,82 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats.card_name + (card_stats.cost != "" ? '     ' + symbolize(card_stats.cost) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
 			type.className = "type";
-			type.textContent = card_stats[3];
+			type.textContent = card_stats.type;
 			text.appendChild(type);
 
 			const effect = document.createElement("div");
 			effect.className = "effect";
 			let card_effects = "";
-			if (card_stats[7] != "")
+			if (card_stats.rules_text != "")
 			{
-				card_effects = card_stats[7].split("NEWLINE");
+				card_effects = card_stats.rules_text.split("\n");
 			}
 			else
 			{
-				card_effects = card_stats[9].split("NEWLINE");
+				card_effects = card_stats.special_text.split("\n");
 			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
 
-			if(card_stats[8] != "")
+			if(card_stats.pt != "")
 			{
 				const pt = document.createElement("div");
 				pt.className = "pt";
-				pt.textContent = card_stats[8];
+				pt.textContent = card_stats.pt;
 				text.appendChild(pt);
 			}
-			else if (card_stats[12] != "")
+			else if (card_stats.loyalty != "")
 			{
 				const loyalty = document.createElement("div");
 				loyalty.className = "pt";
-				loyalty.textContent = "[" + card_stats[12] + "]";
+				loyalty.textContent = "[" + card_stats.loyalty + "]";
 				text.appendChild(loyalty);
 			}
 
 			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
-			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
+			if(card_stats.shape.includes("adventure") || card_stats.shape.includes("double") || card_stats.shape.includes("spli"))
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[13] + (card_stats[17] != "" ? '     ' + symbolize(card_stats[17]) : "");
+				name_cost_2.innerHTML = card_stats.card_name2 + (card_stats.cost2 != "" ? '     ' + symbolize(card_stats.cost2) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
 				type_2.className = "type";
-				type_2.textContent = card_stats[15];
+				type_2.textContent = card_stats.type2;
 				text.appendChild(type_2);
 
 				const effect_2 = document.createElement("div");
 				effect_2.className = "effect";
 				let card_effects_2 = "";
-				if (card_stats[18] != "")
+				if (card_stats.rules_text2 != "")
 				{
-					card_effects_2 = card_stats[18].split("NEWLINE");
+					card_effects_2 = card_stats.rules_text2.split("\n");
 				}
 				else
 				{
-					card_effects_2 = card_stats[20].split("NEWLINE");
+					card_effects_2 = card_stats.special_text2.split("\n");
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
 
-				if(card_stats[19] != "")
+				if(card_stats.pt2 != "")
 				{
 					const pt_2 = document.createElement("div");
 					pt_2.className = "pt";
-					pt_2.textContent = card_stats[19];
+					pt_2.textContent = card_stats.pt2;
 					text.appendChild(pt_2);
 				}
-				else if (card_stats[21] != "")
+				else if (card_stats.loyalty2 != "")
 				{
 					const loyalty = document.createElement("div");
 					loyalty.className = "pt";
-					loyalty.textContent = "[" + card_stats[21] + "]";
+					loyalty.textContent = "[" + card_stats.loyalty2 + "]";
 					text.appendChild(loyalty);
 				}
 			}
@@ -97,25 +97,25 @@
 		function buildImgContainer(card_stats, hidden_title=false) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
+			const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
 
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
 			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
-			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[10].includes("token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
-			let card_name = card_stats[0];
+			let card_name = card_stats.card_name;
 			for (const char of specialchars)
 			{
 				card_name = card_name.replaceAll(char, "");
 			}
-			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_name;
+			link.href = "/cards/" + card_stats.set + "/" + card_stats.number + "_" + card_name;
 			link.appendChild(img);
 			imgContainer.appendChild(link);
 
-			if (card_stats[10].includes("double"))
+			if (card_stats.shape.includes("double"))
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
@@ -126,7 +126,7 @@
 			if (hidden_title)
 			{
 				const title = document.createElement("div");
-				title.innerText = card_stats[0];
+				title.innerText = card_stats.card_name;
 				title.className = "hidden-text";
 				imgContainer.appendChild(title);
 			}
@@ -146,13 +146,12 @@
 
 			for (let i = 0; i < card_effects.length; i++)
 			{
-				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
-
-				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
-				{
-					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
-				}
-
+				let styled_effect = card_effects[i].replace(/\[i\]([^\]]+)\[\/i\]/g, function(matched, _1) {
+					return '<i>' + _1 + '</i>'
+				}).replace(/\[b\]([^\]]+)\[\/b\]/g, function(matched, _1) {
+					return '<b>' + _1 + '</b>'
+				})
+				
 				HTML += styled_effect;
 
 				if (i != card_effects.length - 1)
@@ -160,23 +159,8 @@
 					HTML += "<br>"
 				}
 			}
-
-			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.<]|$)/g;
-			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,]| <i>\()/g;
-			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
-			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
-			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
-				return symbolize(group1) + group2;
-			});
-			regexHTML = regexHTML.replace(pattern2, function (match, group1, group2) {
-				return symbolize(group1) + group2;
-			});
-			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
-				return group1 + symbolize(group2);
-			});
-			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
-				return group1 + symbolize(group2);
-			});
+			
+			let regexHTML = symbolize(HTML);
 
 			return regexHTML;
 		}

@@ -1,5 +1,8 @@
 import os
 import sys
+import json
+
+#F = Fungustober's notes
 
 def generateHTML(codes):
 	output_html_file = "search.html"
@@ -324,6 +327,9 @@ def generateHTML(codes):
 		snippet = f.read()
 		html_content += snippet
 
+	#F: I've added in a bunch of additional variables to allow people to search DFCs by info on their back faces
+	#F: For example, let's say I want to find Delver of Secrets by searching for a 3/2 (which is the p/t of Insectile Aberration)
+	#F: Alas, I don't know how to incorporate this into the search, so I will leave that up to other people.
 	html_content += '''
 
 		function preSearch(setNewState) {
@@ -373,12 +379,12 @@ def generateHTML(codes):
 			cardGrid.innerHTML = "";
 
 			for (const card of card_list_arrayified) {
-				if (card[10].includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
+				if (card.shape.includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
 				{
 					continue;
 				}
 
-				if (card[3].includes("Basic") && !searchTerms.includes("*t:basic") && !searchTerms.includes("t:basic"))
+				if (card.type.includes("Basic") && !searchTerms.includes("*t:basic") && !searchTerms.includes("t:basic"))
 				{
 					continue;
 				}
@@ -449,7 +455,7 @@ def generateHTML(codes):
 		{
 			for (const li of list)
 			{
-				if (li[0] == card[0] && li[3] == card[3])
+				if (li.card_name == card.card_name && li.type == card.type)
 				{
 					return true;
 				}
@@ -471,7 +477,7 @@ def generateHTML(codes):
 	html_content += '''
 
 		function gridifyCard(card_stats) {
-			const card_name = card_stats[0];
+			const card_name = card_stats.card_name;
 
 			if (displayStyle == "cards-only")
 			{
@@ -498,6 +504,34 @@ def generateHTML(codes):
 			}
 
 			return retVal;
+		}
+
+		function hasNoChars(strOut, strIn) {
+			let retVal = true;
+
+			for (let i = 0; i < strIn.length; i++)
+			{
+				if (strOut.includes(strIn.charAt(i)))
+				{
+					retVal = false;
+				}
+			}
+
+			return retVal;
+		}
+
+		function hasAllAndMoreChars(strOut, strIn) {
+			let retVal = true;
+
+			for (let i = 0; i < strIn.length; i++)
+			{
+				if (!strOut.includes(strIn.charAt(i)))
+				{
+					retVal = false;
+				}
+			}
+
+			return retVal && (strOut.length > strIn.length);
 		}
 
 		document.getElementById("search").addEventListener("keypress", function(event) {

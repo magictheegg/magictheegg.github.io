@@ -329,7 +329,7 @@
 		height: 100%;
 	}
 	.card-img-container {
-		height: 2.2vw;
+		height: 2.1vw;
 		max-height: 45px;
 		display: grid;
 		grid-template-columns: 1fr 2fr 12fr;
@@ -511,10 +511,10 @@
 		let active_card = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('/lists/all-cards.txt')
-					.then(response => response.text())
-					.then(text => {
-						card_list_stringified = text;
+			await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
 				await fetch('/resources/replacechars.txt')
@@ -523,12 +523,7 @@
 						specialchars = text; 
 				}).catch(error => console.error('Error:', error));
 
-				card_list_arrayified = card_list_stringified.split('\\n');
-
-				for (let i = 0; i < card_list_arrayified.length; i++)
-				{
-					card_list_arrayified[i] = card_list_arrayified[i].split('\t');
-				}
+				card_list_arrayified = card_list.cards;
 
 			cardGrid = document.getElementById("imagesOnlyGrid");
 			card_list_arrayified.sort(compareFunction);
@@ -677,22 +672,22 @@
 						}
 						for (const card of card_list_arrayified)
 						{
-							if (deck_map.has(card[0]))
+							if (deck_map.has(card.card_name))
 							{
-								for (let i = 0; i < deck_map.get(card[0]); i++)
+								for (let i = 0; i < deck_map.get(card.card_name); i++)
 								{
 									addCardToDeck(JSON.stringify(card));
 								}
-								deck_map.delete(card[0]);
+								deck_map.delete(card.card_name);
 							}
 
-							if (sb_map.has(card[0]))
+							if (sb_map.has(card.card_name))
 							{
-								for (let i = 0; i < sb_map.get(card[0]); i++)
+								for (let i = 0; i < sb_map.get(card.card_name); i++)
 								{
 									addCardToSideboard(JSON.stringify(card));
 								}
-								sb_map.delete(card[0]);
+								sb_map.delete(card.card_name);
 							}
 						}
 					}
@@ -706,54 +701,57 @@
 		function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
 
-			if (a[10].includes("token") && !b[10].includes("token"))
+			if (a.shape.includes("token") && !b.shape.includes("token"))
 			{
 				return 1;
 			}
 
-			if (!a[10].includes("token") && b[10].includes("token"))
+			if (!a.shape.includes("token") && b.shape.includes("token"))
 			{
 				return -1;
 			}
 			
 			if (sortMode == 'set-num')
 			{
-				if (a[11] === b[11])
+				if (a.set === b.set)
 				{
-					if (a[4] === b[4])
+					if (a.number === b.number)
 					{
 						return 0;
 					}
 					else {
-						return (parseInt(a[4]) < parseInt(b[4])) ? -1 : 1;
+						return (a.number < b.number) ? -1 : 1;
 					}
 				}
 				else {
-					return (a[11] < b[11]) ? -1 : 1;
+					return (a.set < b.set) ? -1 : 1;
 				}
 			}
 			if (sortMode == 'name')
 			{
-				if (a[0] === b[0])
+				if (a.card_name === b.card_name)
 				{
 					return 0;
 				}
 				else {
-					return (a[0] < b[0]) ? -1 : 1;
+					return (a.card_name < b.card_name) ? -1 : 1;
 				}
 			}
 			if (sortMode == 'mv')
 			{
-				a_mv = isDecimal(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
-				b_mv = isDecimal(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
+				//since cost is now formatted like {1}{U} instead of 1U, we need to remove the brackets from the string first
+				a_cost = a.cost.replaceAll('{', '').replaceAll('}','');
+				b_cost = b.cost.replaceAll('{', '').replaceAll('}','');
+				a_mv = isDecimal(a_cost.charAt(0)) ? parseInt(a_cost) + a_cost.replaceAll('x','').length - 1 : a_cost.replaceAll('x','').length;
+				b_mv = isDecimal(b_cost.charAt(0)) ? parseInt(b_cost) + b_cost.replaceAll('x','').length - 1 : b_cost.replaceAll('x','').length;
 				if (a_mv === b_mv)
 				{
-					if (a[0] === b[0])
+					if (a.card_name === b.card_name)
 					{
 						return 0;
 					}
 					else {
-						return (a[0] < b[0]) ? -1 : 1;
+						return (a.card_name < b.card_name) ? -1 : 1;
 					}
 				}
 				else {
@@ -768,11 +766,11 @@
 
 				for (let i = 0; i < color_sort_order.length; i++)
 				{
-					if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					if (a.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 					{
 						a_color_index = i;
 					}
-					if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					if (b.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 					{
 						b_color_index = i;
 					}
@@ -780,12 +778,12 @@
 
 				if (a_color_index === b_color_index)
 				{
-					if (a[0] === b[0])
+					if (a.card_name === b.card_name)
 					{
 						return 0;
 					}
 					else {
-						return (a[0] < b[0]) ? -1 : 1;
+						return (a.card_name < b.card_name) ? -1 : 1;
 					}
 				}
 				else {
@@ -800,11 +798,11 @@
 
 				for (let i = 0; i < rarity_sort_order.length; i++)
 				{
-					if (a[2].toLowerCase() == rarity_sort_order[i])
+					if (a.rarity.toLowerCase() == rarity_sort_order[i])
 					{
 						a_rarity_index = i;
 					}
-					if (b[2].toLowerCase() == rarity_sort_order[i])
+					if (b.rarity.toLowerCase() == rarity_sort_order[i])
 					{
 						b_rarity_index = i;
 					}
@@ -818,11 +816,11 @@
 
 					for (let i = 0; i < color_sort_order.length; i++)
 					{
-						if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						if (a.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 						{
 							a_color_index = i;
 						}
-						if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						if (b.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 						{
 							b_color_index = i;
 						}
@@ -830,12 +828,12 @@
 
 					if (a_color_index === b_color_index)
 					{
-						if (a[0] === b[0])
+						if (a.card_name === b.card_name)
 						{
 							return 0;
 						}
 						else {
-							return (a[0] < b[0]) ? -1 : 1;
+							return (a.card_name < b.card_name) ? -1 : 1;
 						}
 					}
 					else {
@@ -866,7 +864,7 @@
 			cardGrid.innerHTML = "";
 
 			for (const card of card_list_arrayified) {
-				if (card[10].includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
+				if (card.shape.includes("token") && !searchTerms.includes("*t:token") && !searchTerms.includes("t:token"))
 				{
 					continue;
 				}
@@ -883,7 +881,7 @@
 			{
 				const imgContainer = document.createElement("div");
 				const card_stats = search_results[i];
-				const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
+				const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
 				imgContainer.className = "img-container";
 				const card_sr_grid = gridifyCard(search_results[i]);
 				const card_sr = card_sr_grid.getElementsByTagName("img")[0];
@@ -894,7 +892,7 @@
 					const gridified_card = gridifyCard(card_stats, true);
 					gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 					gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
-					if (card_stats[10].includes("double"))
+					if (card_stats.shape.includes("double"))
 					{
 						gridified_card.getElementsByTagName("button")[0].onclick = function() {
 							imgFlip("image-grid-card");
@@ -1001,26 +999,40 @@
 		{
 			let card_stats = [];
 
-			for (let i = 0; i < card.length; i++)
+			for (var key in card)
 			{
-				card_stats.push(card[i].toLowerCase());
+				if (isNaN(card[key]))
+				{
+					card_stats[key] = card[key].toLowerCase();
+				}
+				else
+				{
+					card_stats[key] = card[key];
+				}
 			}
 
-			let card_name = card_stats[0];
-			let card_color = card_stats[1] != "" ? card_stats[1] : "c";
-			let card_rarity = card_stats[2];
-			let card_type = card_stats[3];
+			let card_name = card_stats.card_name;
+			let card_color = card_stats.color != "" ? card_stats.color : "c";
+			let card_rarity = card_stats.rarity;
+			let card_type = card_stats.type;
 			// 4: collector number
-			let card_ci = card_stats[5];
-			let card_cost = card_stats[6];
+			let card_ci = card_stats.color_identity;
+			let card_cost = card_stats.cost;
 			let card_mv = (isDecimal(card_cost.charAt(0)) ? parseInt(card_cost) + card_cost.replaceAll('x','').length - 1 : card_cost.replaceAll('x','').length) - ((card_cost.split('/').length - 1) * 2);
-			let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\n') : card_stats[9].replaceAll("NEWLINE", '\n');
-			let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
-			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
-			let card_shape = card_stats[10];
-			let card_set = card_stats[11];
-			let card_loyalty = card_stats[12];
-			let card_notes = card_stats[card_stats.length - 1].replaceAll("NEWLINE", '\n');
+			//Strip out the lingering [i][/i] and [b][/b] tags while we're searching just in case someone decided to bold something in the
+			//middle of their rules text for some reason
+			let card_oracle_text = card_stats.rules_text != "" ? card_stats.rules_text.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text.replace(/\[(\/)?([ib])\]/g, "");
+			let card_power = card_stats.pt.substring(0,card_stats.pt.indexOf('/'));
+			let card_toughness = card_stats.pt.substring(card_stats.pt.indexOf('/')+1);
+			let card_shape = card_stats.shape;
+			let card_set = card_stats.set;
+			let card_loyalty = card_stats.loyalty;
+			let card_notes = card_stats.notes;
+			let card_color_2 = "";
+			let card_cost_2 = "";
+			let card_power_2 = "";
+			let card_toughness_2 = "";
+			let card_loyalty_2 = ""
 
 			let color_map = new Map([
 				["azorius", "wu"],
@@ -1048,9 +1060,14 @@
 			// two cards in one
 			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
 			{
-				card_name = card_name + "	" + card_stats[13];
-				card_type = card_type + "	" + card_stats[15];
-				card_oracle_text = card_oracle_text + "	" + (card_stats[18] != "" ? card_stats[18].replaceAll("NEWLINE", '\n') : card_stats[20].replaceAll("NEWLINE", '\n'));
+				card_name = card_name + "	" + card_stats.card_name2;
+				card_type = card_type + "	" + card_stats.type2;
+				card_oracle_text = card_oracle_text + "	" + (card_stats.rules_text2 != "" ? card_stats.rules_text2.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text2.replace(/\[(\/)?([ib])\]/g, ""));
+				card_color_2 = card_stats.color2 != "" ? card_stats.color2 : "c";
+				card_cost_2 = card_stats.cost2;
+				card_power_2 = card_stats.pt2.substring(0,card_stats.pt2.indexOf('/'));
+				card_toughness_2 = card_stats.pt.substring(card_stats.pt.indexOf('/')+1);
+				card_loyalty_2 = card_stats.loyalty2;
 			}
 
 			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('“','').replaceAll('”','');
@@ -1198,6 +1215,7 @@
 					}
 					else if (modifier == ">")
 					{
+
 						if (!isNaN(check))
 						{
 							return card_ci.length > parseInt(check);
@@ -1262,7 +1280,7 @@
 
 					} */
 				}
-				if (term == "pow")
+				if (term == "pow" || term == "power")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -1289,7 +1307,7 @@
 						return (card_power >= check);
 					}
 				}
-				if (term == "tou")
+				if (term == "tou" || term == "toughness")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -1367,7 +1385,7 @@
 				{
 					if (modifier == ":" || modifier == "!" || modifier == "=")
 					{
-						regex_kw1 = new RegExp(`(^|newline|, )${check}[^.]*($|newline|\\()`, "g");
+						regex_kw1 = new RegExp(`(^|newline|, )${check}[^.]*($|newline|\\\\()`, "g");
 						regex_kw2 = new RegExp(`(^|newline)${check} `, "g");
 						return regex_kw1.test(card_oracle_text) || regex_kw2.test(card_oracle_text);
 					}
@@ -1419,15 +1437,6 @@
 					{
 						return card_notes.includes("!tag " + check);
 					}
-					/* unsupported flows
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
 				}
 			}
 
@@ -1468,28 +1477,29 @@
 		}
 
 		function symbolize(text) {
-			let tokens = tokenize(text);
-			let symText = "";
-			for (const token of tokens)
-			{
-				symText = symText + "{" + token + "}";
-			}
+			//This isn't needed now that the { & } are put into the cost & text by the exporter
+			//let tokens = tokenize(text);
+			//let symText = "";
+			//for (const token of tokens)
+			//{
+			//	symText = symText + "{" + token + "}";
+			//}
 
-			return formatTextHTML(symText);
+			return formatTextHTML(text);
 		}
 
 		function formatTextHTML(str) {
 			if(!str)
 				return "";
 			str = str.replace(/[{]([^}]+)[}]/g, function(matched, _1) {
-				let letters = _1.toLowerCase().replace("/", "")
+				let letters = _1.toLowerCase()
 				return '<span class="mana mana-cost mana-' + letters + '"></span>';
 			})
 			return str;
 		}
 
 		function gridifyCard(card_stats, card_text = false) {
-			const card_name = card_stats[0];
+			const card_name = card_stats.card_name;
 
 			if (!card_text)
 			{
@@ -1507,82 +1517,82 @@
 
 			const name_cost = document.createElement("div");
 			name_cost.className = "name-cost";
-			name_cost.innerHTML = card_stats[0] + (card_stats[6] != "" ? '     ' + symbolize(card_stats[6]) : "");
+			name_cost.innerHTML = card_stats.card_name + (card_stats.cost != "" ? '     ' + symbolize(card_stats.cost) : "");
 			text.appendChild(name_cost);
 
 			const type = document.createElement("div");
 			type.className = "type";
-			type.textContent = card_stats[3];
+			type.textContent = card_stats.type;
 			text.appendChild(type);
 
 			const effect = document.createElement("div");
 			effect.className = "effect";
 			let card_effects = "";
-			if (card_stats[7] != "")
+			if (card_stats.rules_text != "")
 			{
-				card_effects = card_stats[7].split("NEWLINE");
+				card_effects = card_stats.rules_text.split("\n");
 			}
 			else
 			{
-				card_effects = card_stats[9].split("NEWLINE");
+				card_effects = card_stats.special_text.split("\n");
 			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
 
-			if(card_stats[8] != "")
+			if(card_stats.pt != "")
 			{
 				const pt = document.createElement("div");
 				pt.className = "pt";
-				pt.textContent = card_stats[8];
+				pt.textContent = card_stats.pt;
 				text.appendChild(pt);
 			}
-			else if (card_stats[12] != "")
+			else if (card_stats.loyalty != "")
 			{
 				const loyalty = document.createElement("div");
 				loyalty.className = "pt";
-				loyalty.textContent = "[" + card_stats[12] + "]";
+				loyalty.textContent = "[" + card_stats.loyalty + "]";
 				text.appendChild(loyalty);
 			}
 
 			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
-			if(card_stats[10].includes("adventure") || card_stats[10].includes("double") || card_stats[10].includes("spli"))
+			if(card_stats.shape.includes("adventure") || card_stats.shape.includes("double") || card_stats.shape.includes("spli"))
 			{
 				const name_cost_2 = document.createElement("div");
 				name_cost_2.className = "name-cost";
-				name_cost_2.innerHTML = card_stats[13] + (card_stats[17] != "" ? '     ' + symbolize(card_stats[17]) : "");
+				name_cost_2.innerHTML = card_stats.card_name2 + (card_stats.cost2 != "" ? '     ' + symbolize(card_stats.cost2) : "");
 				text.appendChild(name_cost_2);
 
 				const type_2 = document.createElement("div");
 				type_2.className = "type";
-				type_2.textContent = card_stats[15];
+				type_2.textContent = card_stats.type2;
 				text.appendChild(type_2);
 
 				const effect_2 = document.createElement("div");
 				effect_2.className = "effect";
 				let card_effects_2 = "";
-				if (card_stats[18] != "")
+				if (card_stats.rules_text2 != "")
 				{
-					card_effects_2 = card_stats[18].split("NEWLINE");
+					card_effects_2 = card_stats.rules_text2.split("\n");
 				}
 				else
 				{
-					card_effects_2 = card_stats[20].split("NEWLINE");
+					card_effects_2 = card_stats.special_text2.split("\n");
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
 
-				if(card_stats[19] != "")
+				if(card_stats.pt2 != "")
 				{
 					const pt_2 = document.createElement("div");
 					pt_2.className = "pt";
-					pt_2.textContent = card_stats[19];
+					pt_2.textContent = card_stats.pt2;
 					text.appendChild(pt_2);
 				}
-				else if (card_stats[21] != "")
+				else if (card_stats.loyalty2 != "")
 				{
 					const loyalty = document.createElement("div");
 					loyalty.className = "pt";
-					loyalty.textContent = "[" + card_stats[21] + "]";
+					loyalty.textContent = "[" + card_stats.loyalty2 + "]";
 					text.appendChild(loyalty);
 				}
 			}
@@ -1595,25 +1605,25 @@
 		function buildImgContainer(card_stats, hidden_title=false) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
-			const id = card_stats[11] + "-" + card_stats[4] + "-" + document.getElementById("display").value;
+			const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
 
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
 			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
-			img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + (card_stats[10].includes("token") ? "t_" : "_") + card_stats[0] + ((card_stats[10].includes("double")) ? "_front" : "") + ".png";
+			img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + ".png";
 			
 			const link = document.createElement("a");
-			let card_name = card_stats[0];
+			let card_name = card_stats.card_name;
 			for (const char of specialchars)
 			{
 				card_name = card_name.replaceAll(char, "");
 			}
-			link.href = "/cards/" + card_stats[11] + "/" + card_stats[4] + "_" + card_name;
+			link.href = "/cards/" + card_stats.set + "/" + card_stats.number + "_" + card_name;
 			link.appendChild(img);
 			imgContainer.appendChild(link);
 
-			if (card_stats[10].includes("double"))
+			if (card_stats.shape.includes("double"))
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
@@ -1624,7 +1634,7 @@
 			if (hidden_title)
 			{
 				const title = document.createElement("div");
-				title.innerText = card_stats[0];
+				title.innerText = card_stats.card_name;
 				title.className = "hidden-text";
 				imgContainer.appendChild(title);
 			}
@@ -1644,13 +1654,12 @@
 
 			for (let i = 0; i < card_effects.length; i++)
 			{
-				let styled_effect = card_effects[i].replaceAll("(","<i>(").replaceAll(")",")</i>");
-
-				if (styled_effect.includes("—") && !styled_effect.toLowerCase().includes("choose"))
-				{
-					styled_effect = "<i>" + styled_effect.replace("—", "—</i>");
-				}
-
+				let styled_effect = card_effects[i].replace(/\[i\]([^\]]+)\[\/i\]/g, function(matched, _1) {
+					return '<i>' + _1 + '</i>'
+				}).replace(/\[b\]([^\]]+)\[\/b\]/g, function(matched, _1) {
+					return '<b>' + _1 + '</b>'
+				})
+				
 				HTML += styled_effect;
 
 				if (i != card_effects.length - 1)
@@ -1658,23 +1667,8 @@
 					HTML += "<br>"
 				}
 			}
-
-			let pattern1 = /([0-9X]*[WUBRGCT/]+)([ :,\.<]|$)/g;
-			let pattern2 = /(?<![a-z] |\/[0-9X]*)([0-9X]+)([:,]| <i>\()/g;
-			let pattern3 = /([Pp]ay[s]* |[Cc]ost[s]* |[Ww]ard )([0-9X])(?! life)/g;
-			let pattern4 = /(Equip [^(<]*)([0-9XWUBRGC/]+)/g;
-			let regexHTML = HTML.replace(pattern1, function (match, group1, group2) {
-				return symbolize(group1) + group2;
-			});
-			regexHTML = regexHTML.replace(pattern2, function (match, group1, group2) {
-				return symbolize(group1) + group2;
-			});
-			regexHTML = regexHTML.replace(pattern3, function (match, group1, group2) {
-				return group1 + symbolize(group2);
-			});
-			regexHTML = regexHTML.replace(pattern4, function (match, group1, group2) {
-				return group1 + symbolize(group2);
-			});
+			
+			let regexHTML = symbolize(HTML);
 
 			return regexHTML;
 		}
@@ -1752,7 +1746,7 @@
 
 			for (const card of deck)
 			{
-				card_type = JSON.parse(card)[3].toLowerCase();
+				card_type = JSON.parse(card).type.toLowerCase();
 
 				for (const [key, map] of deck_cards)
 				{
@@ -1815,7 +1809,7 @@
 					{
 						const display_style = document.getElementById("display-select").value;
 						const card_stats = JSON.parse(card);
-						const card_name = card_stats[0];
+						const card_name = card_stats.card_name;
 
 						if (display_style == "text")
 						{
@@ -1831,7 +1825,7 @@
 								const gridified_card = gridifyCard(card_stats, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
-								if (card_stats[10].includes("double"))
+								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
 										imgFlip("image-grid-card");
@@ -1889,7 +1883,7 @@
 							}
 
 							card_img = document.createElement("img");
-							card_img.src = "/sets/" + card_stats[11] + "-files/img/" + card_stats[4] + "_" + card_stats[0] + ".png";
+							card_img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + "_" + card_stats.card_name + ".png";
 							card_img.style.cursor = "pointer";
 							card_img.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
@@ -1897,7 +1891,7 @@
 								const gridified_card = gridifyCard(card_stats, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
-								if (card_stats[10].includes("double"))
+								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
 										imgFlip("image-grid-card");
@@ -2017,13 +2011,13 @@
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-				let card_name = card_list_arrayified[i][0];
+				let card_name = card_list_arrayified[i].card_name;
 				for (const char of specialchars)
 				{
 					card_name = card_name.replaceAll(char, "");
 				}
 
-				window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
 			}
 	</script>
 </body>

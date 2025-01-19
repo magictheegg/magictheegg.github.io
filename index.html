@@ -238,20 +238,20 @@
 
 			document.addEventListener("DOMContentLoaded", async function () {
 				try {
-					const response = await fetch('./resources/gradients.txt');
-					raw_gradients = await response.text();
+					const response = await fetch('./resources/gradients.json');
+					raw_gradients = await response.json();
 				}
 				catch(error) {
 					console.error('Error:', error);
 				}
 
-				gradients = raw_gradients.split('\n');
+				gradients = raw_gradients.gradients;
 				prepareGradients();
 
-				await fetch('/lists/all-cards.txt')
-					.then(response => response.text())
-					.then(text => {
-						card_list_stringified = text;
+				await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
 				await fetch('/resources/replacechars.txt')
@@ -260,12 +260,7 @@
 						specialchars = text; 
 				}).catch(error => console.error('Error:', error));
 
-				card_list_arrayified = card_list_stringified.split('\\n');
-
-				for (let i = 0; i < card_list_arrayified.length; i++)
-				{
-					card_list_arrayified[i] = card_list_arrayified[i].split('\t');
-				}
+				card_list_arrayified = card_list.cards;
 
 				card_list_cleaned = [];
 
@@ -273,12 +268,19 @@
 				{
 					let card_stats = [];
 
-					for (let i = 0; i < card.length; i++)
+					for (var key in card)
 					{
-						card_stats.push(card[i].toLowerCase());
+						if (isNaN(card[key]))
+						{
+							card_stats[key] = card[key].toLowerCase();
+						}
+						else
+						{
+							card_stats[key] = card[key];
+						}
 					}
 
-					if (!card_stats[10].includes("token") && !card_stats[3].includes("basic"))
+					if (!card_stats.shape.includes("token") && !card_stats.type.includes("basic"))
 					{
 						card_list_cleaned.push(card);
 					}
@@ -288,18 +290,18 @@
 				const card_stats = card_list_cleaned[cotd];
 
 				const a = document.createElement("a");
-				let card_name = card_stats[0];
+				let card_name = card_stats.card_name;
 				for (const char of specialchars)
 				{
 					card_name = card_name.replaceAll(char, "");
 				}
-				a.href = '/cards/' + card_stats[11] + '/' + card_stats[4] + '_' + card_name;
+				a.href = '/cards/' + card_stats.set + '/' + card_stats.number + '_' + card_name;
 
 				const img = document.createElement("img");
 				img.id = "cotd";
 
 
-				img.src = '/sets/' + card_stats[11] + '-files/img/' + card_stats[4] + '_' + card_stats[0] + (card_stats[10].includes('double') ? '_front' : '') + '.png';
+				img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.png';
 
 				a.append(img);
 				document.getElementById("cotd-image").append(a);
@@ -350,11 +352,9 @@
 			function prepareGradients() {
 				for (const gradient of gradients)
 				{
-					gradientStats = gradient.split('\t');
-
 					const opt = document.createElement("option");
-					opt.value = gradientStats[0].replace(' ', '-');
-					opt.text = gradientStats[0];
+					opt.value = gradient.name.replace(' ', '-');
+					opt.text = gradient.name;
 					document.getElementById("color-select").appendChild(opt);
 				}
 
@@ -368,11 +368,10 @@
 				gradBottom = "#FFFFFF";
 				for (const grad of gradients)
 				{
-					gradientStats = grad.split('\t');
-					if (gradient == gradientStats[0].replace(' ', '-'))
+					if (gradient == grad.name.replace(' ', '-'))
 					{
-						gradTop = gradientStats[1];
-						gradBottom = gradientStats[2];
+						gradTop = grad.color1;
+						gradBottom = grad.color2;
 					}
 				}
 
@@ -393,13 +392,13 @@
 
 			function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-				let card_name = card_list_arrayified[i][0];
+				let card_name = card_list_arrayified[i].card_name;
 				for (const char of specialchars)
 				{
 					card_name = card_name.replaceAll(char, "");
 				}
 
-				window.location = ('/cards/' + card_list_arrayified[i][11] + '/' + card_list_arrayified[i][4] + '_' + card_name);
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
 			}
 		</script>
 	</body>

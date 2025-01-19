@@ -1,54 +1,57 @@
 function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
 
-			if (a[10].includes("token") && !b[10].includes("token"))
+			if (a.shape.includes("token") && !b.shape.includes("token"))
 			{
 				return 1;
 			}
 
-			if (!a[10].includes("token") && b[10].includes("token"))
+			if (!a.shape.includes("token") && b.shape.includes("token"))
 			{
 				return -1;
 			}
 			
 			if (sortMode == 'set-num')
 			{
-				if (a[11] === b[11])
+				if (a.set === b.set)
 				{
-					if (a[4] === b[4])
+					if (a.number === b.number)
 					{
 						return 0;
 					}
 					else {
-						return (parseInt(a[4]) < parseInt(b[4])) ? -1 : 1;
+						return (a.number < b.number) ? -1 : 1;
 					}
 				}
 				else {
-					return (a[11] < b[11]) ? -1 : 1;
+					return (a.set < b.set) ? -1 : 1;
 				}
 			}
 			if (sortMode == 'name')
 			{
-				if (a[0] === b[0])
+				if (a.card_name === b.card_name)
 				{
 					return 0;
 				}
 				else {
-					return (a[0] < b[0]) ? -1 : 1;
+					return (a.card_name < b.card_name) ? -1 : 1;
 				}
 			}
 			if (sortMode == 'mv')
 			{
-				a_mv = isDecimal(a[6].charAt(0)) ? parseInt(a[6]) + a[6].replaceAll('x','').length - 1 : a[6].replaceAll('x','').length;
-				b_mv = isDecimal(b[6].charAt(0)) ? parseInt(b[6]) + b[6].replaceAll('x','').length - 1 : b[6].replaceAll('x','').length;
+				//since cost is now formatted like {1}{U} instead of 1U, we need to remove the brackets from the string first
+				a_cost = a.cost.replaceAll('{', '').replaceAll('}','');
+				b_cost = b.cost.replaceAll('{', '').replaceAll('}','');
+				a_mv = isDecimal(a_cost.charAt(0)) ? parseInt(a_cost) + a_cost.replaceAll('x','').length - 1 : a_cost.replaceAll('x','').length;
+				b_mv = isDecimal(b_cost.charAt(0)) ? parseInt(b_cost) + b_cost.replaceAll('x','').length - 1 : b_cost.replaceAll('x','').length;
 				if (a_mv === b_mv)
 				{
-					if (a[0] === b[0])
+					if (a.card_name === b.card_name)
 					{
 						return 0;
 					}
 					else {
-						return (a[0] < b[0]) ? -1 : 1;
+						return (a.card_name < b.card_name) ? -1 : 1;
 					}
 				}
 				else {
@@ -63,11 +66,11 @@ function compareFunction(a, b) {
 
 				for (let i = 0; i < color_sort_order.length; i++)
 				{
-					if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					if (a.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 					{
 						a_color_index = i;
 					}
-					if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					if (b.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 					{
 						b_color_index = i;
 					}
@@ -75,12 +78,12 @@ function compareFunction(a, b) {
 
 				if (a_color_index === b_color_index)
 				{
-					if (a[0] === b[0])
+					if (a.card_name === b.card_name)
 					{
 						return 0;
 					}
 					else {
-						return (a[0] < b[0]) ? -1 : 1;
+						return (a.card_name < b.card_name) ? -1 : 1;
 					}
 				}
 				else {
@@ -95,11 +98,11 @@ function compareFunction(a, b) {
 
 				for (let i = 0; i < rarity_sort_order.length; i++)
 				{
-					if (a[2].toLowerCase() == rarity_sort_order[i])
+					if (a.rarity.toLowerCase() == rarity_sort_order[i])
 					{
 						a_rarity_index = i;
 					}
-					if (b[2].toLowerCase() == rarity_sort_order[i])
+					if (b.rarity.toLowerCase() == rarity_sort_order[i])
 					{
 						b_rarity_index = i;
 					}
@@ -113,11 +116,11 @@ function compareFunction(a, b) {
 
 					for (let i = 0; i < color_sort_order.length; i++)
 					{
-						if (a[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						if (a.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 						{
 							a_color_index = i;
 						}
-						if (b[1].toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+						if (b.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
 						{
 							b_color_index = i;
 						}
@@ -125,12 +128,12 @@ function compareFunction(a, b) {
 
 					if (a_color_index === b_color_index)
 					{
-						if (a[0] === b[0])
+						if (a.card_name === b.card_name)
 						{
 							return 0;
 						}
 						else {
-							return (a[0] < b[0]) ? -1 : 1;
+							return (a.card_name < b.card_name) ? -1 : 1;
 						}
 					}
 					else {

@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 
 def generateHTML(set_codes):
 	output_html_file = "index.html"
@@ -221,7 +222,7 @@ def generateHTML(set_codes):
 								<div class="set-icon-name">''' + set_name + '''</div></a>
 							</div>
 			'''
-
+	
 	html_content += '''				</div>
 				</div>
 				<div class="card-container" id="cotd-image">
@@ -237,14 +238,14 @@ def generateHTML(set_codes):
 
 			document.addEventListener("DOMContentLoaded", async function () {
 				try {
-					const response = await fetch('./resources/gradients.txt');
-					raw_gradients = await response.text();
+					const response = await fetch('./resources/gradients.json');
+					raw_gradients = await response.json();
 				}
 				catch(error) {
 					console.error('Error:', error);
 				}
 
-				gradients = raw_gradients.split('\\n');
+				gradients = raw_gradients.gradients;
 				prepareGradients();
 
 				'''
@@ -252,7 +253,7 @@ def generateHTML(set_codes):
 	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
-
+	
 	html_content += '''
 				card_list_cleaned = [];
 
@@ -260,12 +261,19 @@ def generateHTML(set_codes):
 				{
 					let card_stats = [];
 
-					for (let i = 0; i < card.length; i++)
+					for (var key in card)
 					{
-						card_stats.push(card[i].toLowerCase());
+						if (isNaN(card[key]))
+						{
+							card_stats[key] = card[key].toLowerCase();
+						}
+						else
+						{
+							card_stats[key] = card[key];
+						}
 					}
 
-					if (!card_stats[10].includes("token") && !card_stats[3].includes("basic"))
+					if (!card_stats.shape.includes("token") && !card_stats.type.includes("basic"))
 					{
 						card_list_cleaned.push(card);
 					}
@@ -275,18 +283,18 @@ def generateHTML(set_codes):
 				const card_stats = card_list_cleaned[cotd];
 
 				const a = document.createElement("a");
-				let card_name = card_stats[0];
+				let card_name = card_stats.card_name;
 				for (const char of specialchars)
 				{
 					card_name = card_name.replaceAll(char, "");
 				}
-				a.href = '/cards/' + card_stats[11] + '/' + card_stats[4] + '_' + card_name;
+				a.href = '/cards/' + card_stats.set + '/' + card_stats.number + '_' + card_name;
 
 				const img = document.createElement("img");
 				img.id = "cotd";
 
 
-				img.src = '/sets/' + card_stats[11] + '-files/img/' + card_stats[4] + '_' + card_stats[0] + (card_stats[10].includes('double') ? '_front' : '') + '.png';
+				img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.png';
 
 				a.append(img);
 				document.getElementById("cotd-image").append(a);
@@ -337,11 +345,9 @@ def generateHTML(set_codes):
 			function prepareGradients() {
 				for (const gradient of gradients)
 				{
-					gradientStats = gradient.split('\\t');
-
 					const opt = document.createElement("option");
-					opt.value = gradientStats[0].replace(' ', '-');
-					opt.text = gradientStats[0];
+					opt.value = gradient.name.replace(' ', '-');
+					opt.text = gradient.name;
 					document.getElementById("color-select").appendChild(opt);
 				}
 
@@ -355,11 +361,10 @@ def generateHTML(set_codes):
 				gradBottom = "#FFFFFF";
 				for (const grad of gradients)
 				{
-					gradientStats = grad.split('\\t');
-					if (gradient == gradientStats[0].replace(' ', '-'))
+					if (gradient == grad.name.replace(' ', '-'))
 					{
-						gradTop = gradientStats[1];
-						gradBottom = gradientStats[2];
+						gradTop = grad.color1;
+						gradBottom = grad.color2;
 					}
 				}
 

@@ -13,6 +13,8 @@ game: magic
 create directory: true
 file type: *.txt|*.txt|*.*|*.*
 
+#JSON implementation by Fungustober
+
 option field:
 	type: choice
 	name: export images
@@ -31,11 +33,6 @@ option field:
 	type: text
 	name: github repo
 	description: name of your github repo (e.g. magictheegg.github.io)
-
-option field:
-	type: text
-	name: formats
-	description: formats this set is included in
 
 option field:
 	type: text
@@ -76,21 +73,19 @@ option field:
 option field:
 	type: choice
 	name: land slot
-	choice: yes
 	choice: no
+	choice: yes
 	description: land slot to replace basic lands (add "landslot" to notes of all cards that should be in this slot)
 
 script:
-	fix_tm := replace@(match:"™", replace:"TM")
+	#fix_tm := replace@(match:"™", replace:"TM")
+	
 	apos_fix := replace@(match:"’", replace:"'")
 	trail_fix := replace@(match:" +$", replace:"")
 	clean_names := {trail_fix(apos_fix(remove_tags(input)))}
 
-	apos_strip := replace@(match:"'", replace: "")
-	comma_strip := replace@(match:",", replace: "")
 	quote_strip := replace@(match:"\"", replace: "")
-	remove_sp_chars := { apos_strip(comma_strip(quote_strip(input))) }
-
+	
 	mana_script := 	replace@(match:"(2|H|W|U|B|R|G|S|C)/(W|U|B|R|G|S|C)", replace:{"\{"+_1+"/"+_2+"\}"})+
 	replace@(match:"(X|Y|Z|W|U|B|R|G|S|C)", in_context:"(?<!\{)(?<!/)<match>", replace:{"\{"+_1+"\}"})+
 	replace@(match:"([1-9][0-9])", in_context:"(?<!\{)(?<!/)<match>", replace:{"\{"+_1+"\}"})+
@@ -98,6 +93,9 @@ script:
 
 	exporter_name_filter := filter_text@(match:"!exporte?r?name [^\n]+")
 	exporter_name_grabber := replace@(match:"!exporte?r?name ", replace:"")
+
+	exporter_backname_filter := filter_text@(match:"!backf?a?c?e?name [^\n\<]+")
+	exporter_backname_grabber := replace@(match:"!backf?a?c?e?name ", replace:"")
 
 	tag_filter := filter_text@(match:"!tag .+")
 	card_tag := {
@@ -112,7 +110,7 @@ script:
 	}
 
 	card_name_2 := {
-		test := exporter_name_grabber(exporter_name_filter(card.notes))
+		test := exporter_backname_grabber(exporter_backname_filter(card.notes))
 		quote_strip(clean_names(if test != "" then test else card.name_2))
 	}
 
@@ -144,10 +142,241 @@ script:
 		)
 	}
 
-	write_card := {
-		card_name() + "\t" + card_color() + "\t" + (if options.cube == "yes" then "cube" else card_rarity()) + "\t" + card.type + "\t" + card_number() + "\t" + color_identity_statistic() + "\t" + card.casting_cost + "\t" + card.rule_text + "\t" + card.pt + "\t" + card.special_text + "\t" + card.shape + "\t" + set.set_code + "\t" + card.loyalty + "\t" + (if contains(card.shape, match:"double") or contains(card.shape, match:"adventure") or contains(card.shape, match:"spli") then card_name_2() + "\t" + card_color_2() + "\t" + card.type_2 + "\t" + color_identity_statistic() + "\t" + card.casting_cost_2 + "\t" + card.rule_text_2  + "\t" + card.pt_2 + "\t" + card.special_text_2 + "\t" + card.loyalty_2 + "\t" else "") + card.notes + "REPLACEME"
+	##Fungustober's notes:
+	#.txt implementation example:
+	#Black Lotus	artifact	cube	Artifact	0000	C	{0}	{T}, Sacrifice this artifact: Add three mana of any one color.			normal	TST		!restricted	VintageREPLACEME
+	#.json with same info:
+	#{"name":"Black Lotus","color":"artifact","rarity":"cube","type":"Artifact","card_number":"0000","color_identity":"C","casting_cost":"{0}","rules_text":"{T}, Sacrifice this artifact: Add three mana of any one color.","shape":"normal",set:"TST",notes:"!restricted Vintage"},
+		#card_number can just be a number instead of a string, because we don't need to add a or b based on which side the card object is.
+		#having the entire DFC be just one card object make this a whole lot easier
+		#loyalty definitely cannot be a number because of the possibility of X or n+X, and PT can't be a number because of the /
+		
+	#dfc example:
+	#.txt implementation:
+	#Delver of Secrets	blue	common	Creature -- Human Wizard	0001	U	{U}	At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.	1/1		double faced	TST		Insectile Aberration	blue	Creature -- Human Insect	U		3/2			no longer legal in standard :(REPLACEME
+	#.json with same info:
+	#{"name":"Delver of Secrets","color":"blue","rarity":"common","type":"Creature -- Human Wizard"card_number:"0001","color_identity":"U","cost":"{U}","rules_text":"{U}	At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.","p/t":"1/1","shape":"double faced","set":"TST","name2":"Insectile Aberration","color2":"blue","type2":"Creature -- Human Insect","rules_text2":"3/2","notes":"no longer legal in standard :("},
+		#color_identity_statistic() uses both sides of a DFC to create the color identity, so calling it twice is redundant.	
+	
+	#now that we understand how write_card works, let's reformat it to fit JSON specifications.
+	#we're also formatting this in vertical chunks so we don't have to scroll to the right to see everything
+
+
+	##various helper functions
+
+	##gets rid of the last comma in the list of card objects
+	remove_final_comma := {
+		if substring(input, begin:length(input)-1) == "," then substring(input, end:length(input)-1) 
+		else input
+	}
+	
+	escape_linebreaks := replace@(match:"\n", replace:"\\\\n")
+
+	##text processing
+
+	##symbol processing
+
+	#adding my symbol processing functions to simplify things down the road
+	#If we make all the symbols {1}{U} here, we won't have to use tokenize/symbolize in the python scripts
+	
+	#all the mana types we need this regex to detect: (css is case-insensitive, so we don't need to worry about making things upper/lowercase)
+	#w
+	#w/p -> every mana type with a slash needs to not have that by the end
+	#u, u/p, b, b/p, r, r/p, g, g/p 
+	#w/u, w/b, u/b, u/r, b/r, b/g, r/w, r/g, g/w, g/u
+	#2/w-g, c/w-g
+	#p
+	#tap-alt (?)
+	#s
+	#q
+	#half
+	#100
+	#1000000
+	#loyalty-up (?)
+	#loyalty-down (?)
+	#loyalty-zero (?)
+	#loyalty-start (?)
+	#loyalty (?)
+	#0-20
+	#x, y, z
+	#c, e
+	#chaos
+	#½
+	#∞
+	symbol_break := break_text@(match:"1000000|100|chaos|[1-2][0-9]|(2|.)(/.)*")
+	phybrid_check := match@(match:"^H/")
+	phy_check := match@(match:"H")
+	replace_slash := replace@(match:"/", replace:"")
+	
+	convert_symbols := {
+		symbol_list := symbol_break(input)
+		temp := ""
+		for each symbol in symbol_list do 
+			##convert any H/? to ?P
+			if phybrid_check(symbol) then
+				temp := temp + "\{" + substring(symbol, begin:2) + "P\}"
+			else if phy_check(symbol) then
+				temp := temp + "\{P\}"
+			else temp := temp + "\{"+replace_slash(symbol)+"\}"
+		temp
+	}
+	
+	convert_naught := replace@(match:"[\+\-=]", replace: "")
+	
+	##process planeswalker symbols
+	pw_match := match@(match:"[\+\-]([XYZ]|\d*+)")
+	naught_match := match@(match:"[\+\-]0|=[\dXYZ]+")
+	
+	symbol_processing := {
+		if pw_match(input)
+			then "[" + input + "]"
+		else if naught_match(input)
+			then "[" + convert_naught(input) + "]"
+		else convert_symbols(input)
+	}
+	
+	stitch_text := {
+		temp := ""
+		# iterate over the list,
+		# and if there's symbols left (length(sym) == length(text)-1)
+		# then add the text and the symbol onto the end of the string 
+		# otherwise just add the text
+		for i from 0 to length(text)-1 do
+			if i < length(text)-1 then
+				temp := temp + text[i] + sym[i]
+			else
+				temp := temp + text[i]
+		temp
+	}
+	
+	sym_tag_break := break_text@(match:"<sym.*?>.*?sym.*?>")
+	sym_tag_split := split_text@(match:"<sym.*?>.*?sym.*?>")
+	
+	convert_rules_symbols := {
+		## Get all the text, then split and break it with <sym.*?>.*?sym.*?>
+		## break text gets the symbols and puts it in a list
+		RT_symbols := sym_tag_break(input)
+		
+		## split text gets the rest of the rules text and puts it in another list
+		RT_text := sym_tag_split(input)
+		
+		## go through the list and 
+		## 	1. remove the <sym> tags with <.?sym.*?>
+		##	2. process what's left in another function
+		##	3. Put that into a list with []
+		proc_list := for each symbol in RT_symbols do
+			[symbol_processing(remove_tags(symbol))]
+		
+		##weave the two lists together
+		stitched_RT := stitch_text(text: RT_text, sym: proc_list)
 	}
 
+	##italics & bold processing
+	italics_tag_break := break_text@(match:"<i(-auto)?>.*?</i(-auto)?>")
+	italics_tag_split := split_text@(match:"<i(-auto)?>.*?</i(-auto)?>")
+	
+	bold_tag_break := break_text@(match:"<b>.*?</b>")
+	bold_tag_split := split_text@(match:"<b>.*?</b>")
+
+	replace_it := {
+		temp := "[i]" + input + "[/i]"
+	}
+	
+	replace_bold := {
+		temp := "[b]" + input + "[/b]"
+	}
+
+	convert_italics := {
+		italics := italics_tag_break(input)
+		regular := italics_tag_split(input)
+		it_list := for each text in italics do
+			[replace_it(remove_tags(text))]
+		
+		stitched := stitch_text(text:regular, sym:it_list)
+	}
+	
+	convert_bold := {
+		bold := bold_tag_break(input)
+		regular := bold_tag_split(input)
+		bold_list := for each text in bold do
+			[replace_bold(remove_tags(text))]
+			
+		stitched := stitch_text(text:regular, sym:bold_list)
+	}
+	
+	convert_style := { convert_bold(convert_italics(input)) }
+	
+	proc_text := { escape_linebreaks(to_text(convert_style(convert_rules_symbols(input)))) }
+
+	##Slightly more advanced CI functions to let the exporter detect land types
+	get_land_type_CI := {
+		# and !contains(color_identity_statistic(), match:"W")
+		(if contains(card.type, match:"Plains") then "W" else "")
+		+ (if contains(card.type, match:"Island") then "U" else "")
+		+ (if contains(card.type, match:"Swamp") then "B" else "")
+		+ (if contains(card.type, match:"Mountain") then "R" else "")
+		+ (if contains(card.type, match:"Forest") then "G" else "")
+	}
+
+	get_color_identity := {
+		if color_identity_statistic() == "C" and contains(card.type, match:"Land") and get_land_type_CI() != "" then get_land_type_CI()
+		else if contains(card.type, match:"Land") and get_land_type_CI() != "" then color_identity_statistic() + get_land_type_CI()
+		else color_identity_statistic()
+	}
+
+	##Shape function to deal with all the non-standard shapes
+	get_shape := {
+		if card.shape == "emblem" or card.shape == "counter" or card.shape == "rulestip" or card.shape == "checklist" then 
+			"token"
+		else card.shape
+	}
+
+	#TO DO:
+	#Add set info to the beginning of the json string
+
+	write_card := {
+		##opening bracket, name, and color
+		"\{\"card_name\":\"{card_name()}\",\"color\":\"{card_color()}\","
+			#result: {"card_name":"Black Lotus","color":"",
+		
+		##rarity, type, and number
+		+"\"rarity\":\"{(if options.cube == "yes" then "cube" else card_rarity())}\",\"type\":\"{trim(to_text(card.type))}\",\"number\":{card_number()},"
+			#result: "rarity":"cube","type":"Artifact","number":0000,
+		
+		##color identity, casting cost, and rules text
+		+"\"color_identity\":\"{get_color_identity()}\",\"cost\":\"{convert_symbols(card.casting_cost)}\",\"rules_text\":\"{proc_text(card.rule_text)}\","
+			#result: "color_identity":"C","cost":"{0}","text":"{T}, Sacrifice this artifact: Add three mana of any one color.",
+			#technically we don't *need* the cost or rules text variables, and it could gum up the json file if we have a lot of cards without 
+			#casting costs or rules text. that being said, cards without casting costs are not common, and checking if a json object has a 
+			#variable takes more effort than just putting an empty string into the website
+		
+		##p/t, special text, and shape
+		+"\"pt\":\"{card.pt}\",\"special_text\":\"{proc_text(card.special_text)}\",\"shape\":\"{get_shape()}\","
+			#result: "pt":"1/1","special_text":"","shape":"double faced"
+			#what was said for the previous chunk applies to p/t and special text as well
+		
+		##set code and loyalty; end of the one-faced card section
+		+"\"set\":\"{set.set_code}\",\"loyalty\":\"{card.loyalty}\","
+			#result: "set":"TST","loyalty":""
+		
+		##check if it's a DFC
+		+(if contains(card.shape, match:"double") or contains(card.shape, match:"adventure") or contains(card.shape, match:"spli") then
+			
+			## second name, color, and type
+			"\"card_name2\":\"{card_name_2()}\",\"color2\":\"{card_color_2()}\",\"type2\":\"{trim(to_text(card.type_2))}\","
+			
+			##second casting cost, rules text, and pt
+			+"\"cost2\":\"{convert_symbols(card.casting_cost_2)}\",\"rules_text2\":\"{proc_text(card.rule_text_2)}\",\"pt2\":\"{card.pt_2}\","
+			
+			## second special text and loyalty; end of second face section
+			+"\"special_text2\":\"{proc_text(card.special_text_2)}\",\"loyalty2\":\"{card.loyalty_2}\","
+			
+			else ""
+		)
+		##notes
+		+"\"notes\":\"{proc_text(card.notes)}\"},"
+	}
+	
 	write_cards := for each card in cards do write_card()
 
 	write_draft_header := {
@@ -226,14 +455,15 @@ script:
 		"+ write_draft_landslot() else "" )
 	}
 
-	write_text_file(file: set.set_code + "-raw.txt", to_text(write_cards))
+
+	write_main_file := "\{\"cards\":[" + remove_final_comma(write_cards) + "]\}"
+	write_text_file(file: set.set_code + ".json", to_text(write_main_file))
 
 	write_draft_cards := for each card in cards do write_draft_card()
 	write_booster := write_draft_header() + write_draft_cards + write_draft_footer() + write_booster_contents()
 	write_draft_file := if options.export_draft_file == "yes" then write_text_file(file: set.set_code + "-draft.txt", to_text(write_booster))
 	write_text_file(file: set.set_code + "-fullname.txt", to_text(set.title))
 	write_text_file(file: set.set_code + "-trimmed.txt", to_text("false"))
-	write_text_file(file: set.set_code + "-formats.txt", to_text(options.formats))
 
 	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "icon.png", width: 512, height: 512)
 	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "logo.png", width: 320, height: 320)

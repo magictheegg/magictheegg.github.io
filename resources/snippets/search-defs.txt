@@ -75,26 +75,40 @@ function tokenizeTerms(searchTerms)
 		{
 			let card_stats = [];
 
-			for (let i = 0; i < card.length; i++)
+			for (var key in card)
 			{
-				card_stats.push(card[i].toLowerCase());
+				if (isNaN(card[key]))
+				{
+					card_stats[key] = card[key].toLowerCase();
+				}
+				else
+				{
+					card_stats[key] = card[key];
+				}
 			}
 
-			let card_name = card_stats[0];
-			let card_color = card_stats[1] != "" ? card_stats[1] : "c";
-			let card_rarity = card_stats[2];
-			let card_type = card_stats[3];
+			let card_name = card_stats.card_name;
+			let card_color = card_stats.color != "" ? card_stats.color : "c";
+			let card_rarity = card_stats.rarity;
+			let card_type = card_stats.type;
 			// 4: collector number
-			let card_ci = card_stats[5];
-			let card_cost = card_stats[6];
+			let card_ci = card_stats.color_identity;
+			let card_cost = card_stats.cost;
 			let card_mv = (isDecimal(card_cost.charAt(0)) ? parseInt(card_cost) + card_cost.replaceAll('x','').length - 1 : card_cost.replaceAll('x','').length) - ((card_cost.split('/').length - 1) * 2);
-			let card_oracle_text = card_stats[7] != "" ? card_stats[7].replaceAll("NEWLINE", '\n') : card_stats[9].replaceAll("NEWLINE", '\n');
-			let card_power = card_stats[8].substring(0,card_stats[8].indexOf('/'));
-			let card_toughness = card_stats[8].substring(card_stats[8].indexOf('/')+1);
-			let card_shape = card_stats[10];
-			let card_set = card_stats[11];
-			let card_loyalty = card_stats[12];
-			let card_notes = card_stats[card_stats.length - 1].replaceAll("NEWLINE", '\n');
+			//Strip out the lingering [i][/i] and [b][/b] tags while we're searching just in case someone decided to bold something in the
+			//middle of their rules text for some reason
+			let card_oracle_text = card_stats.rules_text != "" ? card_stats.rules_text.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text.replace(/\[(\/)?([ib])\]/g, "");
+			let card_power = card_stats.pt.substring(0,card_stats.pt.indexOf('/'));
+			let card_toughness = card_stats.pt.substring(card_stats.pt.indexOf('/')+1);
+			let card_shape = card_stats.shape;
+			let card_set = card_stats.set;
+			let card_loyalty = card_stats.loyalty;
+			let card_notes = card_stats.notes;
+			let card_color_2 = "";
+			let card_cost_2 = "";
+			let card_power_2 = "";
+			let card_toughness_2 = "";
+			let card_loyalty_2 = ""
 
 			let color_map = new Map([
 				["azorius", "wu"],
@@ -122,9 +136,14 @@ function tokenizeTerms(searchTerms)
 			// two cards in one
 			if (card_shape.includes("adventure") || card_shape.includes("double") || card_shape.includes("spli"))
 			{
-				card_name = card_name + "	" + card_stats[13];
-				card_type = card_type + "	" + card_stats[15];
-				card_oracle_text = card_oracle_text + "	" + (card_stats[18] != "" ? card_stats[18].replaceAll("NEWLINE", '\n') : card_stats[20].replaceAll("NEWLINE", '\n'));
+				card_name = card_name + "	" + card_stats.card_name2;
+				card_type = card_type + "	" + card_stats.type2;
+				card_oracle_text = card_oracle_text + "	" + (card_stats.rules_text2 != "" ? card_stats.rules_text2.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text2.replace(/\[(\/)?([ib])\]/g, ""));
+				card_color_2 = card_stats.color2 != "" ? card_stats.color2 : "c";
+				card_cost_2 = card_stats.cost2;
+				card_power_2 = card_stats.pt2.substring(0,card_stats.pt2.indexOf('/'));
+				card_toughness_2 = card_stats.pt.substring(card_stats.pt.indexOf('/')+1);
+				card_loyalty_2 = card_stats.loyalty2;
 			}
 
 			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('/','').replaceAll('“','').replaceAll('”','');
@@ -272,6 +291,7 @@ function tokenizeTerms(searchTerms)
 					}
 					else if (modifier == ">")
 					{
+
 						if (!isNaN(check))
 						{
 							return card_ci.length > parseInt(check);
@@ -336,7 +356,7 @@ function tokenizeTerms(searchTerms)
 
 					} */
 				}
-				if (term == "pow")
+				if (term == "pow" || term == "power")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -363,7 +383,7 @@ function tokenizeTerms(searchTerms)
 						return (card_power >= check);
 					}
 				}
-				if (term == "tou")
+				if (term == "tou" || term == "toughness")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -441,7 +461,7 @@ function tokenizeTerms(searchTerms)
 				{
 					if (modifier == ":" || modifier == "!" || modifier == "=")
 					{
-						regex_kw1 = new RegExp(`(^|newline|, )${check}[^.]*($|newline|\\()`, "g");
+						regex_kw1 = new RegExp(`(^|newline|, )${check}[^.]*($|newline|\\\\()`, "g");
 						regex_kw2 = new RegExp(`(^|newline)${check} `, "g");
 						return regex_kw1.test(card_oracle_text) || regex_kw2.test(card_oracle_text);
 					}
@@ -493,15 +513,6 @@ function tokenizeTerms(searchTerms)
 					{
 						return card_notes.includes("!tag " + check);
 					}
-					/* unsupported flows
-					else if (modifier == "<")
-					{
-
-					}
-					else if (modifier == ">")
-					{
-
-					} */
 				}
 			}
 

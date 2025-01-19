@@ -34,21 +34,22 @@ function isDecimal(char) {
 		}
 
 		function symbolize(text) {
-			let tokens = tokenize(text);
-			let symText = "";
-			for (const token of tokens)
-			{
-				symText = symText + "{" + token + "}";
-			}
+			//This isn't needed now that the { & } are put into the cost & text by the exporter
+			//let tokens = tokenize(text);
+			//let symText = "";
+			//for (const token of tokens)
+			//{
+			//	symText = symText + "{" + token + "}";
+			//}
 
-			return formatTextHTML(symText);
+			return formatTextHTML(text);
 		}
 
 		function formatTextHTML(str) {
 			if(!str)
 				return "";
 			str = str.replace(/[{]([^}]+)[}]/g, function(matched, _1) {
-				let letters = _1.toLowerCase().replace("/", "")
+				let letters = _1.toLowerCase()
 				return '<span class="mana mana-cost mana-' + letters + '"></span>';
 			})
 			return str;

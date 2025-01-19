@@ -1,9 +1,14 @@
 import os
 import sys
+import json
+
+#F = Fungustober's notes
 
 def generateHTML(code):
+	#F: /sets/SET.html
 	output_html_file = "sets/" + code + ".html"
-
+	
+	#F: sets/SET-files/SET-fullname.txt
 	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8-sig') as f:
 		set_name = f.read()
 
@@ -208,7 +213,8 @@ def generateHTML(code):
 </style>
 <body>
 	'''
-
+	
+	#F: /resources/snippets/header.txt
 	with open(os.path.join('resources', 'snippets', 'header.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
@@ -220,6 +226,7 @@ def generateHTML(code):
 				<img class="set-logo" src="/sets/''' + code + '''-files/icon.png">
 				<div class="set-title">''' + set_name + '''</div>'''
 
+	#F: sets/SET-files/SET-draft.txt
 	if os.path.exists(os.path.join('sets', code + '-files', code + '-draft.txt')):
 		html_content += '''<a href="/sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft me!</a>
 		'''
@@ -253,7 +260,7 @@ def generateHTML(code):
 
 			for (let i = 0; i < card_list_arrayified.length; i++)
 			{
-				if (card_list_arrayified[i][11] == "''' + code + '''")
+				if (card_list_arrayified[i].set == "''' + code + '''")
 				{
 					set_list_arrayified.push(card_list_arrayified[i]);
 				}
@@ -294,7 +301,7 @@ def generateHTML(code):
 
 			for (const card of set_list_arrayified)
 			{
-				if (card[10].includes("token") || card[3].includes("Basic"))
+				if (card.shape.includes("token") || card.type.includes("Basic"))
 				{
 					set_tokens_basics.push(card);
 				}
@@ -322,6 +329,8 @@ def generateHTML(code):
 
 		'''
 
+	#F: /resources/snippets/compare-function.txt
+	#F: this is where compareFunction is from
 	with open(os.path.join('resources', 'snippets', 'compare-function.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
@@ -330,14 +339,16 @@ def generateHTML(code):
 
 		'''
 
+	#F: /resources/snippets/tokenize-symbolize.txt
+	#F: this holds the isDecimal function used in compare-function.txt, as well as something for encoding/decoding symbols
 	with open(os.path.join('resources', 'snippets', 'tokenize-symbolize.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
-
+	
 	html_content += '''
 
 		function gridifyCard(card_stats) {
-			const card_name = card_stats[0];
+			const card_name = card_stats.card_name;
 
 			if (displayStyle == "cards-only")
 			{
@@ -346,6 +357,7 @@ def generateHTML(code):
 
 		'''
 
+	#F: /resources/snippets/img-container-defs.txt
 	with open(os.path.join('resources', 'snippets', 'img-container-defs.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
@@ -365,6 +377,7 @@ def generateHTML(code):
 
 		'''
 
+	#F: resources/snippets/random-card.txt
 	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet

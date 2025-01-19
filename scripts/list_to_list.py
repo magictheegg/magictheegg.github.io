@@ -1,23 +1,31 @@
 import os
 import sys
 import re
+import json
+
+#F = Fungustober's notes
 
 def convertList(setCode):
-	inputList = os.path.join('sets', setCode + '-files', setCode + '-raw.txt')
-	outputList = os.path.join('lists', setCode + '-list.txt')
-	with open(inputList, errors="ignore") as f:
-		raw = f.read()
-		cards_raw = raw.replace('\n','NEWLINE').replace('REPLACEME','\\n')
-	cards_raw = cards_raw.rstrip('\\n')
-	cards = cards_raw.split('\\n')
+	#F: inputList = sets/SET-files/SET.json
+	inputList = os.path.join('sets', setCode + '-files', setCode + '.json')
+	#F: outputList = lists/SET-list.json
+	outputList = os.path.join('lists', setCode + '-list.json')
+	
+	#create the two blanks as dictionaries so we can fit them into the JSON structure
+	blank1 = {'card_name':'e'}
+	blank2 = {'card_name':'er'}
+	#F: open up the inputList file
+	with open(inputList, encoding='utf-8-sig') as f:
+		raw = json.load(f)
+	cards = raw['cards']
 
+	#F: array of cards to skip
 	skipdex = []
+	#F: This gets any alt-arts in a single set and adds their card number to a list of cards to skip.
 	for i in range(len(cards)):
-		tmpI = re.sub("\t[0-9]+\t.*", "", cards[i])
 		for j in range(i):
-			tmpJ = re.sub("\t[0-9]+\t.*", "", cards[j])
-			if tmpI == tmpJ and "\ttoken\t" not in tmpJ and "\tBasic" not in tmpJ:
-				skipdex.append(j)
+			if cards[i]['card_name'] == cards[j]['card_name'] and "token" not in cards[j]['shape'] and "Basic" not in cards[j]['type']:
+				skipdex.append(cards[j]['number'])
 	
 	master_list = []
 	cards_mono = []
@@ -26,43 +34,43 @@ def convertList(setCode):
 	cards_land = []
 	cards_basic = []
 	cards_token = []
-
+	
+	#F: now go over the cards again
 	for i in range(len(cards)):
-		if i in skipdex:
+		#F: skip the card if it's in the skipdex
+		if cards[i]['number'] in skipdex:
 			continue
-		card = cards[i].split('\t')
-		# name to include card number
-		card[0] = card[4] + ('t_' if 'token' in card[10] else '_') + card[0]
-		# card number to int
-		card[4] = int(card[4])
+		card = cards[i]
 		# filter sorting tags
-		notes = card[len(card) - 1]
+		notes = card['notes']
 		if '!sort' in notes:
-			card[len(card) - 1] = notes[notes.index('!sort') + 6:]
+			#F: notes = index of !sort + 6 to the end of the string
+			card['notes'] = notes[notes.index('!sort') + 6:]
 		else:
-			card[len(card) - 1] = 'zzz'
+			card['notes'] = 'zzz'
 
 		# clean rarities
-		if card[2] == 'common':
-			card[2] = 4
-		elif card[2] == 'uncommon':
-			card[2] = 3
-		elif card[2] == 'rare':
-			card[2] = 2
-		elif card[2] == 'mythic':
-			card[2] = 1
+		if card['rarity'] == 'common':
+			card['rarity'] = 4
+		elif card['rarity'] == 'uncommon':
+			card['rarity'] = 3
+		elif card['rarity'] == 'rare':
+			card['rarity'] = 2
+		elif card['rarity'] == 'mythic':
+			card['rarity'] = 1
 		else:
-			card[2] = 5
+			card['rarity'] = 5
 
 		# sort types
-		if 'token' in card[10]:
+		#EDIT - replace the array index with JSON keys; 10 = shape, 1 = color, 3 = type
+		if 'token' in card['shape']:
 			cards_token.append(card)
-		elif len(card[1]) > 1:
+		elif len(card['color']) > 1:
 			cards_multi.append(card)
-		elif colorEquals(card[1], ''):
-			if 'Basic' in card[3]:
+		elif card['color'] == '':
+			if 'Basic' in card['type']:
 				cards_basic.append(card)
-			elif 'Land' in card[3]:
+			elif 'Land' in card['type']:
 				cards_land.append(card)
 			else:
 				cards_brown.append(card)
@@ -76,34 +84,38 @@ def convertList(setCode):
 	cards_r = []
 	cards_g = []
 	
+	#EDIT - replace the array index with JSON keys
 	for card in cards_mono:
-		if colorEquals(card[1], 'W'):
+		if card['color'] == 'W':
 			cards_w.append(card)
-		if colorEquals(card[1], 'U'):
+		if card['color'] == 'U':
 			cards_u.append(card)
-		if colorEquals(card[1], 'B'):
+		if card['color'] == 'B':
 			cards_b.append(card)
-		if colorEquals(card[1], 'R'):
+		if card['color'] == 'R':
 			cards_r.append(card)
-		if colorEquals(card[1], 'G'):
+		if card['color'] == 'G':
 			cards_g.append(card)
 
 	row_count = max(len(cards_w),len(cards_u),len(cards_b),len(cards_r),len(cards_g))
+	#F: put all the monocolor things into a big array
 	cards_mono_arr = [cards_w, cards_u, cards_b, cards_r, cards_g]
 	
 	for x in range(len(cards_mono_arr)):
 		card_arr = cards_mono_arr[x]
-		cards_mono_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		cards_mono_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
+	#F: blank1 and blank2 are references to blank pngs for spoilers
 	for row in range(row_count):
 		for card_arr in cards_mono_arr:
 			if (row >= len(card_arr)):
-				master_list.append('e')
+				master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	for x in range(5):
-		master_list.append('er')
+		master_list.append(blank2)
 
 	# prepare gold lists
 	cards_wu = []
@@ -131,45 +143,45 @@ def convertList(setCode):
 	cards_gold = []
 
 	for card in cards_multi:
-		if colorEquals(card[1], 'WU'):
+		if colorEquals(card['color'], 'WU'):
 			cards_wu.append(card)
-		elif colorEquals(card[1], 'UB'):
+		elif colorEquals(card['color'], 'UB'):
 			cards_ub.append(card)
-		elif colorEquals(card[1], 'BR'):
+		elif colorEquals(card['color'], 'BR'):
 			cards_br.append(card)
-		elif colorEquals(card[1], 'RG'):
+		elif colorEquals(card['color'], 'RG'):
 			cards_rg.append(card)
-		elif colorEquals(card[1], 'GW'):
+		elif colorEquals(card['color'], 'GW'):
 			cards_gw.append(card)
-		elif colorEquals(card[1], 'WB'):
+		elif colorEquals(card['color'], 'WB'):
 			cards_wb.append(card)
-		elif colorEquals(card[1], 'BG'):
+		elif colorEquals(card['color'], 'BG'):
 			cards_bg.append(card)
-		elif colorEquals(card[1], 'GU'):
+		elif colorEquals(card['color'], 'GU'):
 			cards_gu.append(card)
-		elif colorEquals(card[1], 'UR'):
+		elif colorEquals(card['color'], 'UR'):
 			cards_ur.append(card)
-		elif colorEquals(card[1], 'RW'):
+		elif colorEquals(card['color'], 'RW'):
 			cards_rw.append(card)
-		elif colorEquals(card[1], 'GWU'):
+		elif colorEquals(card['color'], 'GWU'):
 			cards_gwu.append(card)
-		elif colorEquals(card[1], 'WUB'):
+		elif colorEquals(card['color'], 'WUB'):
 			cards_wub.append(card)
-		elif colorEquals(card[1], 'UBR'):
+		elif colorEquals(card['color'], 'UBR'):
 			cards_ubr.append(card)
-		elif colorEquals(card[1], 'BRG'):
+		elif colorEquals(card['color'], 'BRG'):
 			cards_brg.append(card)
-		elif colorEquals(card[1], 'RGW'):
+		elif colorEquals(card['color'], 'RGW'):
 			cards_rgw.append(card)
-		elif colorEquals(card[1], 'RWB'):
+		elif colorEquals(card['color'], 'RWB'):
 			cards_rwb.append(card)
-		elif colorEquals(card[1], 'GUR'):
+		elif colorEquals(card['color'], 'GUR'):
 			cards_gur.append(card)
-		elif colorEquals(card[1], 'WBG'):
+		elif colorEquals(card['color'], 'WBG'):
 			cards_wbg.append(card)
-		elif colorEquals(card[1], 'URW'):
+		elif colorEquals(card['color'], 'URW'):
 			cards_urw.append(card)
-		elif colorEquals(card[1], 'BGU'):
+		elif colorEquals(card['color'], 'BGU'):
 			cards_bgu.append(card)
 		else:
 			cards_gold.append(card)
@@ -180,17 +192,19 @@ def convertList(setCode):
 
 	for x in range(len(cards_ally_arr)):
 		card_arr = cards_ally_arr[x]
-		cards_ally_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		cards_ally_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
+	#F: blank1 and blank2 are references to blank pngs for spoilers
 	for row in range(row_count):
 		for card_arr in cards_ally_arr:
 			if (row >= len(card_arr)):
-				master_list.append('e')
+				master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	for x in range(5):
-		master_list.append('er')
+		master_list.append(blank2)
 
 	# enemy pairs
 	row_count = max(len(cards_wb),len(cards_bg),len(cards_gu),len(cards_ur),len(cards_rw))
@@ -198,17 +212,18 @@ def convertList(setCode):
 
 	for x in range(len(cards_enemy_arr)):
 		card_arr = cards_enemy_arr[x]
-		cards_enemy_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		cards_enemy_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
 	for row in range(row_count):
 		for card_arr in cards_enemy_arr:
 			if (row >= len(card_arr)):
-				master_list.append('e')
+				master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	for x in range(5):
-		master_list.append('er')
+		master_list.append(blank2)
 
 	shard_count = len(cards_gwu) + len(cards_wub) + len(cards_ubr) + len(cards_brg) + len(cards_rgw)
 	wedge_count = len(cards_rwb) + len(cards_gur) + len(cards_wbg) + len(cards_urw) + len(cards_bgu)
@@ -219,19 +234,20 @@ def convertList(setCode):
 
 	for x in range(len(cards_shard_arr)):
 		card_arr = cards_shard_arr[x]
-		cards_shard_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		cards_shard_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	for row in range(row_count):
 		for card_arr in cards_shard_arr:
 			if row >= len(card_arr):
 				if shard_count > 5:
-					master_list.append('e')
+					master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
-	if shard_count >= 5 or wedge_count >= 5:
+	if shard_count > 0 and (shard_count >= 5 or wedge_count >= 5):
 		for x in range(5):
-			master_list.append('er')
+			master_list.append(blank2)
 
 	# wedges
 	row_count = max(len(cards_rwb),len(cards_gur),len(cards_wbg),len(cards_urw),len(cards_bgu))
@@ -239,50 +255,51 @@ def convertList(setCode):
 
 	for x in range(len(cards_wedge_arr)):
 		card_arr = cards_wedge_arr[x]
-		cards_wedge_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		cards_wedge_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
 	for row in range(row_count):
 		for card_arr in cards_wedge_arr:
 			if row >= len(card_arr):
 				if wedge_count > 5:
-					master_list.append('e')
+					master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	if shard_count > 0 or wedge_count > 0:
 		if (shard_count + wedge_count) % 5 != 0:
 			for x in range(5 - ((shard_count + wedge_count) % 5)):
-				master_list.append('e')
+				master_list.append(blank1)
 
 		for x in range(5):
-			master_list.append('er')
+			master_list.append(blank2)
 
 	# 4c+ cards
-	cards_gold = sorted(cards_gold, key=lambda x : (len(x[1]), x[2], x[len(x) - 1], x[4]))
+	cards_gold = sorted(cards_gold, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	for card in cards_gold:
-		master_list.append(card[0])
+		master_list.append({'card_name':card['card_name'],'number':card['number'],'shape':card['shape']})
 
 	if len(cards_gold) % 5 != 0:
 		for x in range(5 - (len(cards_gold) % 5)):
-			master_list.append('e')
+			master_list.append(blank1)
 
 	if len(cards_gold) > 0:
 		for x in range(5):
-			master_list.append('er')
+			master_list.append(blank2)
 
 	# artifacts
-	cards_brown = sorted(cards_brown, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+	cards_brown = sorted(cards_brown, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	for card in cards_brown:
-		master_list.append(card[0])
+		master_list.append({'card_name':card['card_name'],'number':card['number'],'shape':card['shape']})
 
 	if len(cards_brown) % 5 != 0:
 		for x in range(5 - (len(cards_brown) % 5)):
-			master_list.append('e')
+			master_list.append(blank1)
 
 	for x in range(5):
-		master_list.append('er')
+		master_list.append(blank2)
 
 	# lands
 	# prepare colored land lists
@@ -317,55 +334,55 @@ def convertList(setCode):
 	lands_other = []
 
 	for card in cards_land:
-		if colorEquals(card[5], 'W'):
+		if colorEquals(card['color_identity'], 'W'):
 			lands_w.append(card)
-		elif colorEquals(card[5], 'U'):
+		elif colorEquals(card['color_identity'], 'U'):
 			lands_u.append(card)
-		elif colorEquals(card[5], 'B'):
+		elif colorEquals(card['color_identity'], 'B'):
 			lands_b.append(card)
-		elif colorEquals(card[5], 'R'):
+		elif colorEquals(card['color_identity'], 'R'):
 			lands_r.append(card)
-		elif colorEquals(card[5], 'G'):
+		elif colorEquals(card['color_identity'], 'G'):
 			lands_g.append(card)
-		elif colorEquals(card[5], 'WU'):
+		elif colorEquals(card['color_identity'], 'WU'):
 			lands_wu.append(card)
-		elif colorEquals(card[5], 'UB'):
+		elif colorEquals(card['color_identity'], 'UB'):
 			lands_ub.append(card)
-		elif colorEquals(card[5], 'BR'):
+		elif colorEquals(card['color_identity'], 'BR'):
 			lands_br.append(card)
-		elif colorEquals(card[5], 'RG'):
+		elif colorEquals(card['color_identity'], 'RG'):
 			lands_rg.append(card)
-		elif colorEquals(card[5], 'GW'):
+		elif colorEquals(card['color_identity'], 'GW'):
 			lands_gw.append(card)
-		elif colorEquals(card[5], 'WB'):
+		elif colorEquals(card['color_identity'], 'WB'):
 			lands_wb.append(card)
-		elif colorEquals(card[5], 'BG'):
+		elif colorEquals(card['color_identity'], 'BG'):
 			lands_bg.append(card)
-		elif colorEquals(card[5], 'GU'):
+		elif colorEquals(card['color_identity'], 'GU'):
 			lands_gu.append(card)
-		elif colorEquals(card[5], 'UR'):
+		elif colorEquals(card['color_identity'], 'UR'):
 			lands_ur.append(card)
-		elif colorEquals(card[5], 'RW'):
+		elif colorEquals(card['color_identity'], 'RW'):
 			lands_rw.append(card)
-		elif colorEquals(card[5], 'GWU'):
+		elif colorEquals(card['color_identity'], 'GWU'):
 			lands_gwu.append(card)
-		elif colorEquals(card[5], 'WUB'):
+		elif colorEquals(card['color_identity'], 'WUB'):
 			lands_wub.append(card)
-		elif colorEquals(card[5], 'UBR'):
+		elif colorEquals(card['color_identity'], 'UBR'):
 			lands_ubr.append(card)
-		elif colorEquals(card[5], 'BRG'):
+		elif colorEquals(card['color_identity'], 'BRG'):
 			lands_brg.append(card)
-		elif colorEquals(card[5], 'RGW'):
+		elif colorEquals(card['color_identity'], 'RGW'):
 			lands_rgw.append(card)
-		elif colorEquals(card[5], 'RWB'):
+		elif colorEquals(card['color_identity'], 'RWB'):
 			lands_rwb.append(card)
-		elif colorEquals(card[5], 'GUR'):
+		elif colorEquals(card['color_identity'], 'GUR'):
 			lands_gur.append(card)
-		elif colorEquals(card[5], 'WBG'):
+		elif colorEquals(card['color_identity'], 'WBG'):
 			lands_wbg.append(card)
-		elif colorEquals(card[5], 'URW'):
+		elif colorEquals(card['color_identity'], 'URW'):
 			lands_urw.append(card)
-		elif colorEquals(card[5], 'BGU'):
+		elif colorEquals(card['color_identity'], 'BGU'):
 			lands_bgu.append(card)
 		else:
 			lands_other.append(card)
@@ -376,14 +393,19 @@ def convertList(setCode):
 
 	for x in range(len(lands_mono_arr)):
 		card_arr = lands_mono_arr[x]
-		lands_mono_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		lands_mono_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
 	for row in range(row_count):
 		for card_arr in lands_mono_arr:
 			if (row >= len(card_arr)):
-				master_list.append('e')
+				master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
+
+	if row_count > 0:
+		for x in range(5):
+			master_list.append(blank2)
 
 	# ally pairs
 	row_count = max(len(lands_wu),len(lands_ub),len(lands_br),len(lands_rg),len(lands_gw))
@@ -391,14 +413,19 @@ def convertList(setCode):
 
 	for x in range(len(lands_ally_arr)):
 		card_arr = lands_ally_arr[x]
-		lands_ally_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		lands_ally_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
 	for row in range(row_count):
 		for card_arr in lands_ally_arr:
 			if (row >= len(card_arr)):
-				master_list.append('e')
+				master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
+
+	if row_count > 0:
+		for x in range(5):
+			master_list.append(blank2)
 
 	# enemy pairs
 	row_count = max(len(lands_wb),len(lands_bg),len(lands_gu),len(lands_ur),len(lands_rw))
@@ -406,14 +433,19 @@ def convertList(setCode):
 
 	for x in range(len(lands_enemy_arr)):
 		card_arr = lands_enemy_arr[x]
-		lands_enemy_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		lands_enemy_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
 	for row in range(row_count):
 		for card_arr in lands_enemy_arr:
 			if (row >= len(card_arr)):
-				master_list.append('e')
+				master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
+
+	if row_count > 0:
+		for x in range(5):
+			master_list.append(blank2)
 
 	land_shard_count = len(lands_gwu) + len(lands_wub) + len(lands_ubr) + len(lands_brg) + len(lands_rgw)
 	land_wedge_count = len(lands_rwb) + len(lands_gur) + len(lands_wbg) + len(lands_urw) + len(lands_bgu)
@@ -424,19 +456,20 @@ def convertList(setCode):
 
 	for x in range(len(lands_shard_arr)):
 		card_arr = lands_shard_arr[x]
-		lands_shard_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		lands_shard_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	for row in range(row_count):
 		for card_arr in lands_shard_arr:
 			if row >= len(card_arr):
 				if land_shard_count > 5:
-					master_list.append('e')
+					master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	if land_shard_count >= 5 or land_wedge_count >= 5:
 		for x in range(5):
-			master_list.append('er')
+			master_list.append(blank2)
 
 	# wedges
 	row_count = max(len(lands_rwb),len(lands_gur),len(lands_wbg),len(lands_urw),len(lands_bgu))
@@ -444,47 +477,53 @@ def convertList(setCode):
 
 	for x in range(len(lands_wedge_arr)):
 		card_arr = lands_wedge_arr[x]
-		lands_wedge_arr[x] = sorted(card_arr, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+		lands_wedge_arr[x] = sorted(card_arr, key=lambda x : (x['rarity'], x['notes'], x['number']))
 	
 	for row in range(row_count):
 		for card_arr in lands_wedge_arr:
 			if row >= len(card_arr):
 				if land_wedge_count > 5:
-					master_list.append('e')
+					master_list.append(blank1)
 			else:
-				master_list.append(card_arr[row][0])
+				ca = card_arr[row]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	if land_shard_count > 0 or land_wedge_count > 0:
 		if (land_shard_count + land_wedge_count) % 5 != 0:
 			for x in range(5 - ((land_shard_count + land_wedge_count) % 5)):
-				master_list.append('e')
+				master_list.append(blank1)
 
 	if len(cards_land) - len(lands_other) > 0:
-			for x in range(5):
-				master_list.append('er')
+		for x in range(5):
+			master_list.append(blank2)
 
 	# other lands
-	lands_other = sorted(lands_other, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+	lands_other = sorted(lands_other, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	for card in lands_other:
-		master_list.append(card[0])
+		master_list.append({'card_name':card['card_name'],'number':card['number'],'shape':card['shape']})
 
 	if len(lands_other) % 5 != 0:
 		for x in range(5 - (len(lands_other) % 5)):
-			master_list.append('e')
+			master_list.append(blank1)
 
 	if len(lands_other) > 0 and (len(cards_basic) > 0 or len(cards_token) > 0):
 		for x in range(5):
-			master_list.append('er')
+			master_list.append(blank2)
 
 	# basic lands
-	cards_basic = sorted(cards_basic, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+	#F: x[2] = rarity, x[len(x) - 1] = notes, x[4] = card number
+	#EDIT - replace them with the appropriate JSON keys
+	cards_basic = sorted(cards_basic, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	# if you're reading this, leave me alone, I did this in like 2 minutes I know it's bad code
+	#F: well, I probably wouldn't be able to do much better to be completely fair
 	basic_types = []
 	for card in cards_basic:
-		if card[3] not in basic_types:
-			basic_types.append(card[3])
+		#F: 3 = type
+		#EDIT - you know the deal
+		if card['type'] not in basic_types:
+			basic_types.append(card['type'])
 
 	if len(basic_types) == 0:
 		land_count = 0
@@ -493,40 +532,36 @@ def convertList(setCode):
 	for n in range(land_count): 
 		for x in range(len(cards_basic)):
 			if (x % land_count == n):
-				master_list.append(cards_basic[x][0])
+				#F: 0 = name
+				#EDIT - you know the deal
+				ca = cards_basic[x]
+				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
 	if len(cards_basic) % 5 != 0:
 		for x in range(5 - (len(cards_basic) % 5)):
-			master_list.append('e')
+			master_list.append(blank1)
 
 	if len(cards_basic) > 0:
 		for x in range(5):
-			master_list.append('er')
+			master_list.append(blank2)
 
 	# tokens
-	cards_token = sorted(cards_token, key=lambda x : (x[2], x[len(x) - 1], x[4]))
+	#F: x[2] = rarity, x[len(x) - 1] = notes, x[4] = card number
+	#EDIT - replace them with the appropriate JSON keys
+	cards_token = sorted(cards_token, key=lambda x : (x['rarity'], x['notes'], x['number']))
 
 	for card in cards_token:
-		master_list.append(card[0])
+		#F: 0 = name
+		#EDIT - you know the deal
+		master_list.append({'card_name':card['card_name'],'number':card['number'],'shape':card['shape']})
 
 	if len(cards_token) % 5 != 0:
 		for x in range(5 - (len(cards_token) % 5)):
-			master_list.append('e')
+			master_list.append(blank1)
 
-	with open(outputList, 'w') as f:
-		for card_name in master_list:
-			print(card_name.replace(u'\ufeff', ''), file=f)
-
+	#F: lists/SET-list.txt finally comes into play
+	with open(outputList, 'w', encoding="utf-8-sig") as f:
+		json.dump(master_list, f)
 
 def colorEquals(color, match):
 	return sorted(color) == sorted(match)
-
-
-
-
-
-
-
-
-
-

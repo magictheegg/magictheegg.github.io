@@ -1,16 +1,29 @@
 import os
 import sys
+import json
+
+#F = Fungustober's notes
 
 def generateHTML(setCode, setCodes):
+	#F: Copy the set codes over into a new variable
 	codes = setCodes.copy()
+	#F: this is SET-spoiler.html, the file that this outputs to
 	output_html_file = setCode + '-spoiler.html'
 	magic_card_back_image = 'img/card_back.png'
+	#F: /sets/SET-files/img/
 	set_img_dir = os.path.join('sets', setCode + '-files', 'img')
+	#F: get rid of the Byte Order Mark character that shouldn't be there
+	#F: and grab all of the files in the image directory
 	previewed = [file[:-4].replace(u'\ufeff', '') for file in os.listdir(set_img_dir)]
 
-	with open(os.path.join('lists', setCode + '-list.txt'), encoding='utf-8-sig') as f:
-		cards = [card.replace(u'\ufeff', '').rstrip() for card in f]
+	#F: lists/SET-list.json, defined in list_to_list.py, get rid of the BOM character that shouldn't be there
+	with open(os.path.join('lists', setCode + '-list.json'), encoding='utf-8-sig') as f:
+		cards = json.load(f)
 
+	#F: go over the codes, check if there's a /sets/SET-files/ignore.txt file for it
+	#F: if there is, remove that index from Codes
+	#F: otherwise, increment by one
+	#F: repeat until breaking out of the loop
 	i = 0
 	while i < len(codes):
 		if os.path.exists(os.path.join('sets', codes[i] + '-files', 'ignore.txt')):
@@ -184,6 +197,7 @@ def generateHTML(setCode, setCodes):
 		
 		'''
 
+	#F: goes to resources/snippets/header.txt and gets a header, inserting it after everything so far
 	with open(os.path.join('resources', 'snippets', 'header.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
@@ -192,7 +206,7 @@ def generateHTML(setCode, setCodes):
 
 	<div class="icon-bar">
 	'''
-
+	
 	for code in codes:
 		prev_path = os.path.join('sets', setCode + '-files', 'prev_icon.png')
 		if codes[0] != code:
@@ -209,15 +223,37 @@ def generateHTML(setCode, setCodes):
 	'''
 
 	# Loop over each image and create an img tag for each one
-	for card_name in cards:
-		card_num = card_name[:card_name.index('_')] if '_' in card_name else -1
+	for card in cards:
+		#F: originally, in list_to_list.py, the card names were all stitched with a number and a _ (or a number and t_ if it's a token)
+		#F: Since list_to_list.py was retrofitted by me to make the master_list output into a .json file, that process must be done here instead
+		#F: Using a JSON file for SET-list *is* slightly overkill, but it makes the card_num assignment easier.
+		card_name = ""
+		#F: originally, this script would look for a _ in the card name, and if it wasn't there, it was set to -1.
+		#F: (if it was there, it just made everything before the _ be the card number)
+		#F: we can replicate this under the JSON paradigm by having the card num be initialized as -1 and be set only if it's not a blank
+		#CE: setting card_num back to '' so we can concatenate 't' to the end of tokens
+		card_num = ''
+		if card['card_name'] == 'e':
+			card_name = 'e'
+		elif card['card_name'] == 'er':
+			card_name = 'er'
+		elif 'token' in card['shape']:
+			card_name = str(card['number']) + 't_' + card['card_name']
+			card_num = str(card['number']) + 't'
+		else:
+			card_name = str(card['number']) + '_' + card['card_name']
+			card_num = str(card['number'])
 
 		# used for DFCs only
 		dfc_front_path = card_name + '_front'
 		dfc_back_path = card_name + '_back'
 		dfc_front_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_front_path + '.png')
 		dfc_back_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_back_path + '.png')
-
+		
+		#F: these flags are used in later parts of the code, including the HTML.
+		#F: if the flag is @N, then only the card back is displayed
+		#F: if the flag is @E, then the ability to click it is removed (since it's just a blank image for positioning)
+		#F: if the flag is @X or @XD, nothing happens
 		flag = '@N'
 		if card_name in previewed:
 			flag = '@X'
@@ -228,10 +264,13 @@ def generateHTML(setCode, setCodes):
 			image_dir = 'img'
 			flag = '@E'
 		else:
+			#F: /sets/SET-files/img/
 			image_dir = os.path.join('sets', setCode + '-files', 'img')
-
+		
+		#F: /sets/SET-files/img/NUMBER(t?)_NAME.png
 		image_path = os.path.join(image_dir, card_name + '.png')
-
+		
+		#F: if the flag is @XD, add something to html_content to get the front and back images, otherwise add something else
 		if flag == '@XD':
 			html_content += f'			<div class="container"><img data-alt_src="{dfc_back_img_path}" alt="{dfc_front_img_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num})"><button class="flip-btn" onclick="imgFlip({card_num})"></button></div>\n'
 		else:
@@ -240,12 +279,14 @@ def generateHTML(setCode, setCodes):
 	# Closing the div and the rest of the HTML
 	html_content += '''	</div>\n'''
 
+	#F: find /sets/SET-files/addenda/SET-addendum.html
+	#F: then add each line of that file to the next bit of html_content
 	add_path = os.path.join('sets', setCode + '-files', 'addenda', setCode + '-addendum.html')
 	if os.path.isfile(add_path):
 		with open(add_path) as f:
 			for line in f:
 				html_content += line
-
+	
 	html_content += '''</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
@@ -263,6 +304,9 @@ def generateHTML(setCode, setCodes):
 	document.addEventListener('DOMContentLoaded', async function() {
 		'''
 
+	#F: /resources/snippets/load-files.txt
+	#F: load-files.txt's snippet adds something that goes over all the lines of lists/all-cards.txt and puts them into an array
+	#F: it also grabs from resources/replacechars.txt, which just defines all the icky no-good chars that need to be replaced
 	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
@@ -284,9 +328,12 @@ def generateHTML(setCode, setCodes):
 
 		'''
 
+	#F: sets/SET-files/bg.png
+	#F:
 	if os.path.exists(os.path.join('sets', setCode + '-files', 'bg.png')):
 		html_content += '''document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';'''
 
+	#F: this is the point where the DOMContentLoaded bit ends
 	html_content += '''
 		loadImages();
 	});
@@ -386,7 +433,9 @@ def generateHTML(setCode, setCodes):
 		}
 
 		'''
-
+	
+	#F: /resources/snippets/random-card.txt
+	#F: code that lets you go to a random card
 	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
