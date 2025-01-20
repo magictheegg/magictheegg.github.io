@@ -36,6 +36,11 @@ option field:
 
 option field:
 	type: text
+	name: formats
+	descripton: formats in which this set is included
+
+option field:
+	type: text
 	name: optional suffix
 	description: suffix for name-to-image matching in Cockatrice; if you don't know, leave this blank
 
@@ -456,14 +461,12 @@ script:
 	}
 
 
-	write_main_file := "\{\"cards\":[" + remove_final_comma(write_cards) + "]\}"
+	write_main_file := "\{\"name\": \"" + set.title + "\", \"formats\": \"" + options.formats + "\", \"trimmed\": \"n\", \"cards\":[" + remove_final_comma(write_cards) + "]\}"
 	write_text_file(file: set.set_code + ".json", to_text(write_main_file))
 
 	write_draft_cards := for each card in cards do write_draft_card()
 	write_booster := write_draft_header() + write_draft_cards + write_draft_footer() + write_booster_contents()
 	write_draft_file := if options.export_draft_file == "yes" then write_text_file(file: set.set_code + "-draft.txt", to_text(write_booster))
-	write_text_file(file: set.set_code + "-fullname.txt", to_text(set.title))
-	write_text_file(file: set.set_code + "-trimmed.txt", to_text("false"))
 
 	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "icon.png", width: 512, height: 512)
 	write_image_file({symbol_variation(symbol: set.symbol, variation: "rare")}(), file: "logo.png", width: 320, height: 320)
