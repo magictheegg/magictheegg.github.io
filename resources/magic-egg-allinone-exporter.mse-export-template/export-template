@@ -316,6 +316,7 @@ script:
 	##Slightly more advanced CI functions to let the exporter detect land types
 	get_land_type_CI := {
 		# and !contains(color_identity_statistic(), match:"W")
+		# Egg: fixing this on the code side for now
 		(if contains(card.type, match:"Plains") then "W" else "")
 		+ (if contains(card.type, match:"Island") then "U" else "")
 		+ (if contains(card.type, match:"Swamp") then "B" else "")
@@ -335,9 +336,6 @@ script:
 			"token"
 		else card.shape
 	}
-
-	#TO DO:
-	#Add set info to the beginning of the json string
 
 	write_card := {
 		##opening bracket, name, and color
