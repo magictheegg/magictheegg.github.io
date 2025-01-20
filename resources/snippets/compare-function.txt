@@ -11,7 +11,7 @@ function compareFunction(a, b) {
 				return -1;
 			}
 			
-			if (sortMode == 'set-num')
+			if (sortMode == 'set-code')
 			{
 				if (a.set === b.set)
 				{

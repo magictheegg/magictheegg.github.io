@@ -50,8 +50,8 @@ def generateHTML(codes):
 	.search-container {
 		height: 100%;
 		border: 1px solid #d5d9d9;
-		border-top: 3px solid #171717;
-		border-bottom: 3px solid #171717;
+		border-top: 4px solid #171717;
+		border-bottom: 4px solid #171717;
 		background-color: #f3f3f3;
 		border-radius: 6px;
 		display: flex;
@@ -268,8 +268,8 @@ def generateHTML(codes):
 	.deck-container {
 		height: 100%;
 		border: 1px solid #d5d9d9;
-		border-top: 3px solid #171717;
-		border-bottom: 3px solid #171717;
+		border-top: 4px solid #171717;
+		border-bottom: 4px solid #171717;
 		background-color: #f3f3f3;
 		border-radius: 6px;
 		display: flex;
