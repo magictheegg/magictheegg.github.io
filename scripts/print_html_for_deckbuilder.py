@@ -516,6 +516,7 @@ def generateHTML(codes):
 		let deck = [];
 		let sideboard = [];
 		let active_card = [];
+		let sets_json = {};
 
 		document.addEventListener("DOMContentLoaded", async function () {
 			'''
@@ -525,6 +526,13 @@ def generateHTML(codes):
 		html_content += snippet
 
 	html_content += '''
+
+			await fetch('/lists/all-sets.json')
+					.then(response => response.json())
+					.then(data => {
+						sets_json = data; 
+				}).catch(error => console.error('Error:', error));
+
 			cardGrid = document.getElementById("imagesOnlyGrid");
 			card_list_arrayified.sort(compareFunction);
 

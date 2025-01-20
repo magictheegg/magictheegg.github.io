@@ -189,24 +189,17 @@ def generateHTML(codes):
 		cursor: pointer;
 		border: none;
 		position: absolute;
-		top: 6.5%;
-		left: 8.5%;
-		transform: translate(-50%, -85%);
 		border-radius: 0px;
 		box-shadow: none;
+		left: 50%;
+		top: 48%;
+		transform: translate(-50%, -50%);
+		opacity: 0.5;
 	}
 	.img-container .btn:hover {
 		background: url('img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
-		width: 15%;
-		height: 11%;
-		cursor: pointer;
-		border: none;
-		position: absolute;
-		top: 6.5%;
-		left: 8.5%;
-		transform: translate(-50%, -85%);
 	}
 	.img-container .hidden-text {
 		position: absolute;
@@ -253,6 +246,7 @@ def generateHTML(codes):
 		let search_results = [];
 		let card_list_arrayified = [];
 		let specialchars = "";
+		let sets_json = {};
 
 		document.addEventListener("DOMContentLoaded", async function () {
 			'''
@@ -262,6 +256,15 @@ def generateHTML(codes):
 		html_content += snippet
 
 	html_content += '''
+
+			await fetch('/lists/all-sets.json')
+					.then(response => response.json())
+					.then(data => {
+						sets_json = data; 
+				}).catch(error => console.error('Error:', error));
+
+			card_list_arrayified = card_list.cards;
+
 			if (sessionStorage.getItem("display") != "cards-only")
 			{
 				cardGrid = document.getElementById("grid");

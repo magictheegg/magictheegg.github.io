@@ -8,9 +8,12 @@ def generateHTML(code):
 	#F: /sets/SET.html
 	output_html_file = "sets/" + code + ".html"
 	
-	#F: sets/SET-files/SET-fullname.txt
-	with open(os.path.join("sets", code + "-files", code + "-fullname.txt"), encoding='utf-8-sig') as f:
-		set_name = f.read()
+	with open(os.path.join('lists', 'all-sets.json'), encoding='utf-8-sig') as f:
+		data = json.load(f)
+		for s in data['sets']:
+			if s['set_code'] == code:
+				set_name = s['set_name']
+				break
 
 	# Start creating the HTML file content
 	html_content = '''<html>
@@ -185,22 +188,15 @@ def generateHTML(code):
 		cursor: pointer;
 		border: none;
 		position: absolute;
-		top: 6.5%;
-		left: 8.5%;
-		transform: translate(-50%, -85%);
+		left: 50%;
+		top: 48%;
+		transform: translate(-50%, -50%);
+		opacity: 0.5;
 	}
 	.img-container .btn:hover {
 		background: url('/img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
-		width: 15%;
-		height: 11%;
-		cursor: pointer;
-		border: none;
-		position: absolute;
-		top: 6.5%;
-		left: 8.5%;
-		transform: translate(-50%, -85%);
 	}
 	.img-container .hidden-text {
 		position: absolute;

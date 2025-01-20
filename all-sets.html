@@ -7,8 +7,12 @@
 	</head>
 	<style>
 		@font-face {
-		  font-family: Beleren;
-		  src: url('/resources/beleren.ttf');
+			font-family: 'Beleren Small Caps';
+			src: url('/resources/beleren-caps.ttf');
+		}
+		@font-face {
+			font-family: Beleren;
+			src: url('/resources/beleren.ttf');
 		}
 		body {
 			font-family: 'Helvetica', 'Arial', sans-serif;
@@ -16,6 +20,7 @@
 			margin: 0px;
 			background-color: #f3f3f3;
 			font-size: 20px;
+			padding-bottom: 30px;
 		}
 		a {
 			text-decoration: none;
@@ -26,8 +31,7 @@
 			max-width: 1000px;
 			display: grid;
 			grid-template-columns: 1fr;
-			padding-top: 50px;
-			padding-bottom: 40px;
+			padding-top: 20px;
 			margin: auto;
 		}
 		.set-header-row {
@@ -65,6 +69,12 @@
 			letter-spacing: .02em;
 			font-size: 22px;
 		}
+		.set-group {
+			font-family: Beleren Small Caps;
+			text-align: center;
+			font-size: 40px;
+			padding-top: 20px;
+		}
 	</style>
 	<body>
 		<div class="header">
@@ -76,58 +86,69 @@
 			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
 			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
 		</div>
-	</div>
-		<div class="set-table">
-		<div class="set-header-row">
-			<div></div> <!-- empty div for spacing -->
-			<div>NAME</div>
-			<div>CODE</div>
-			<div>CARDS</div>
-		</div>
-	
-		<a href="/sets/ACE" class="set-row"> 
-			<img src="/sets/ACE-files/icon.png">
-			<div class="set-title">Aldmore Cube</div>
-			<div>ACE</div>
-			<div>541</div>
-		</a>
+	</div>			<div class="set-group">Egg Standard</div>
 		
-		<a href="/sets/GSM" class="set-row"> 
-			<img src="/sets/GSM-files/icon.png">
-			<div class="set-title">Golden Shores of Shiryen (Masterpiece)</div>
-			<div>GSM</div>
-			<div>38</div>
-		</a>
+			<div class="set-table">
+			<div class="set-header-row">
+				<div></div> <!-- empty div for spacing -->
+				<div>NAME</div>
+				<div>CODE</div>
+				<div>CARDS</div>
+			</div>
 		
-		<a href="/sets/GSS" class="set-row"> 
-			<img src="/sets/GSS-files/icon.png">
-			<div class="set-title">Golden Shores of Shiryen</div>
-			<div>GSS</div>
-			<div>221</div>
-		</a>
+			<a href="/sets/SHF" class="set-row"> 
+				<img src="/sets/SHF-files/icon.png">
+				<div class="set-title">The Starholme Frontier</div>
+				<div>SHF</div>
+				<div>272</div>
+			</a>
+			
+			<a href="/sets/GSS" class="set-row"> 
+				<img src="/sets/GSS-files/icon.png">
+				<div class="set-title">Golden Shores of Shiryen</div>
+				<div>GSS</div>
+				<div>221</div>
+			</a>
+			
+			<a href="/sets/GSM" class="set-row"> 
+				<img src="/sets/GSM-files/icon.png">
+				<div class="set-title">Golden Shores of Shiryen (Masterpiece)</div>
+				<div>GSM</div>
+				<div>38</div>
+			</a>
+			
+			<a href="/sets/KND" class="set-row"> 
+				<img src="/sets/KND-files/icon.png">
+				<div class="set-title">Kahembo: New Dawn</div>
+				<div>KND</div>
+				<div>278</div>
+			</a>
+			
+			<a href="/sets/NJB" class="set-row"> 
+				<img src="/sets/NJB-files/icon.png">
+				<div class="set-title">Nangjiao in Bloom</div>
+				<div>NJB</div>
+				<div>277</div>
+			</a>
+			</div>
+					<div class="set-group">Cubes</div>
 		
-		<a href="/sets/KND" class="set-row"> 
-			<img src="/sets/KND-files/icon.png">
-			<div class="set-title">Kahembo: New Dawn</div>
-			<div>KND</div>
-			<div>312</div>
-		</a>
+			<div class="set-table">
+			<div class="set-header-row">
+				<div></div> <!-- empty div for spacing -->
+				<div>NAME</div>
+				<div>CODE</div>
+				<div>CARDS</div>
+			</div>
 		
-		<a href="/sets/NJB" class="set-row"> 
-			<img src="/sets/NJB-files/icon.png">
-			<div class="set-title">Nangjiao in Bloom</div>
-			<div>NJB</div>
-			<div>317</div>
-		</a>
+			<a href="/sets/ACE" class="set-row"> 
+				<img src="/sets/ACE-files/icon.png">
+				<div class="set-title">Aldmore Cube</div>
+				<div>ACE</div>
+				<div>450</div>
+			</a>
+			</div>
 		
-		<a href="/sets/SHF" class="set-row"> 
-			<img src="/sets/SHF-files/icon.png">
-			<div class="set-title">The Starholme Frontier</div>
-			<div>SHF</div>
-			<div>291</div>
-		</a>
-		
-		</div>
 	<script>
 		let card_list_arrayified = [];
 		let specialchars = "";

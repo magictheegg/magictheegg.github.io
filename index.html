@@ -78,8 +78,7 @@
 		margin: 0;
 	}
 	.container p {
-		padding-top: 11px;
-		padding-bottom: 16px;
+		padding: 11px 0px;
 	}
 	.preview-container {
 		display: grid;
@@ -87,7 +86,14 @@
 		gap: 2px;
 		justify-items: center;
 		align-items: center;
-		padding-bottom: 20px;
+		padding-bottom: 10px;
+	}
+	.set-group {
+		font-family: Beleren Small Caps;
+		font-size: 18px;
+		width: 100%;
+		margin-bottom: 10px;
+		border-bottom: 2px solid #171717;
 	}
 	.button-grid {
 		display: grid;
@@ -161,6 +167,7 @@
 	.set-icon-container a {
 		text-decoration: none;
 		color: #171717;
+		height: 100%;
 	}
 	.set-icon {
 		height: 60px;
@@ -172,7 +179,8 @@
 		width: 60px;
 	}
 	.set-icon-name {
-		height: 30px;
+		min-height: 30px;
+		height: 100%;
 	}
 	@media ( max-width: 750px ) {
 		.item-container {
@@ -202,28 +210,33 @@
 			<div class="two-part-grid">
 				<div class="container" id="preview-container">
 					<p>Preview Galleries</p>
-					<div class="preview-container">
-					<div class="set-icon-container">
-								<a href="ACE-spoiler"><div class="set-icon"><img src="sets/ACE-files/icon.png" title="Aldmore Cube"></img></div>
-								<div class="set-icon-name">Aldmore Cube</div></a>
-							</div>
-			<div class="set-icon-container">
-								<a href="GSS-spoiler"><div class="set-icon"><img src="sets/GSS-files/icon.png" title="Golden Shores of Shiryen"></img></div>
-								<div class="set-icon-name">Golden Shores of Shiryen</div></a>
-							</div>
-			<div class="set-icon-container">
-								<a href="KND-spoiler"><div class="set-icon"><img src="sets/KND-files/icon.png" title="Kahembo: New Dawn"></img></div>
-								<div class="set-icon-name">Kahembo: New Dawn</div></a>
-							</div>
-			<div class="set-icon-container">
-								<a href="NJB-spoiler"><div class="set-icon"><img src="sets/NJB-files/icon.png" title="Nangjiao in Bloom"></img></div>
-								<div class="set-icon-name">Nangjiao in Bloom</div></a>
-							</div>
-			<div class="set-icon-container">
-								<a href="SHF-spoiler"><div class="set-icon"><img src="sets/SHF-files/icon.png" title="The Starholme Frontier"></img></div>
-								<div class="set-icon-name">The Starholme Frontier</div></a>
-							</div>
-							</div>
+										<div class="set-group">Egg Standard</div>
+							<div class="preview-container">
+		<div class="set-icon-container">
+									<a href="SHF-spoiler"><div class="set-icon"><img src="sets/SHF-files/icon.png" title="The Starholme Frontier"></img></div>
+									<div class="set-icon-name">The Starholme Frontier</div></a>
+								</div>
+				<div class="set-icon-container">
+									<a href="GSS-spoiler"><div class="set-icon"><img src="sets/GSS-files/icon.png" title="Golden Shores of Shiryen"></img></div>
+									<div class="set-icon-name">Golden Shores of Shiryen</div></a>
+								</div>
+				<div class="set-icon-container">
+									<a href="KND-spoiler"><div class="set-icon"><img src="sets/KND-files/icon.png" title="Kahembo: New Dawn"></img></div>
+									<div class="set-icon-name">Kahembo: New Dawn</div></a>
+								</div>
+				<div class="set-icon-container">
+									<a href="NJB-spoiler"><div class="set-icon"><img src="sets/NJB-files/icon.png" title="Nangjiao in Bloom"></img></div>
+									<div class="set-icon-name">Nangjiao in Bloom</div></a>
+								</div>
+									</div>
+							<div class="set-group">Cubes</div>
+							<div class="preview-container">
+		<div class="set-icon-container">
+									<a href="ACE-spoiler"><div class="set-icon"><img src="sets/ACE-files/icon.png" title="Aldmore Cube"></img></div>
+									<div class="set-icon-name">Aldmore Cube</div></a>
+								</div>
+									</div>
+		
 				</div>
 				<div class="card-container" id="cotd-image">
 					<p>Card of the Day</p>

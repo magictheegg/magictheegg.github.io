@@ -4,9 +4,14 @@ import json
 
 #F = Fungustober's notes
 
-def generateHTML(setCode, setCodes):
-	#F: Copy the set codes over into a new variable
-	codes = setCodes.copy()
+def generateHTML(setCode):
+	with open(os.path.join('lists', 'set-order.json'), encoding='utf-8-sig') as j:
+		so_json = json.load(j)
+
+	codes = []
+	for key in so_json:
+		for code in so_json[key]:
+			codes.append(code)
 	#F: this is SET-spoiler.html, the file that this outputs to
 	output_html_file = setCode + '-spoiler.html'
 	magic_card_back_image = 'img/card_back.png'
@@ -134,17 +139,15 @@ def generateHTML(setCode, setCodes):
 			cursor: pointer;
 			border: none;
 			position: absolute;
-			top: 6.5%;
-			left: 8.5%;
+			left: 50%;
+			top: 48%;
 			transform: translate(-50%, -50%);
+			opacity: 0.5;
 		}
 		.flip-btn:hover {
 			background: url('img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
-		}
-		.sidebar .flip-btn {
-			transform: translate(-50%, -85%);
 		}
 		.icon-bar {
 			display: grid;

@@ -564,4 +564,5 @@ def convertList(setCode):
 		json.dump(master_list, f)
 
 def colorEquals(color, match):
-	return sorted(color) == sorted(match)
+
+	return sorted("".join(dict.fromkeys(color))) == sorted("".join(dict.fromkeys(match)))

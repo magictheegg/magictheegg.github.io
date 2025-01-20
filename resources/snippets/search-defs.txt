@@ -71,6 +71,21 @@ function tokenizeTerms(searchTerms)
 			}
 		}
 
+		function removeDuplicateChars(str)
+		{
+			let ret_str = '';
+
+			for (const c of str)
+			{
+				if (!ret_str.includes(c))
+				{
+					ret_str += c;
+				}
+			}
+
+			return ret_str;
+		}
+
 		function searchToken(card, token)
 		{
 			let card_stats = [];
@@ -92,7 +107,7 @@ function tokenizeTerms(searchTerms)
 			let card_rarity = card_stats.rarity;
 			let card_type = card_stats.type;
 			// 4: collector number
-			let card_ci = card_stats.color_identity;
+			let card_ci = removeDuplicateChars(card_stats.color_identity);
 			let card_cost = card_stats.cost;
 			let card_mv = isDecimal(card_cost.charAt(1)) ? parseInt(card_cost.substring(1, card_cost.indexOf('}'))) + card_cost.replaceAll('x','').split('{').length - 2 : card_cost.replaceAll('x','').split('{').length - 1;
 			//Strip out the lingering [i][/i] and [b][/b] tags while we're searching just in case someone decided to bold something in the
@@ -469,8 +484,8 @@ function tokenizeTerms(searchTerms)
 				{
 					if (modifier == ":" || modifier == "!" || modifier == "=")
 					{
-						regex_kw1 = new RegExp(`(^|newline|, )${check}[^.]*($|newline|\\\\()`, "g");
-						regex_kw2 = new RegExp(`(^|newline)${check} `, "g");
+						regex_kw1 = new RegExp(`(^|\n|, )${check}[^.]*($|\n|\\()`, "g");
+						regex_kw2 = new RegExp(`(^|\n)${check} `, "g");
 						return regex_kw1.test(card_oracle_text) || regex_kw2.test(card_oracle_text);
 					}
 					/* unsupported flows
@@ -482,6 +497,20 @@ function tokenizeTerms(searchTerms)
 					{
 
 					} */
+				}
+				if (term == "f" || term=="format")
+				{
+					if (modifier == ":" || modifier == "!" || modifier == "=")
+					{
+						for (const set of sets_json.sets)
+						{
+							if (set.set_code.toLowerCase() == card_set)
+							{
+								return set.formats.toLowerCase().includes(check);
+							}
+						}
+					}
+					return false;
 				}
 				if (term == "is")
 				{
