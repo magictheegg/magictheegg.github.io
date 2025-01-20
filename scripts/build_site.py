@@ -103,11 +103,6 @@ for code in set_codes:
 				shutil.copy(filepath, destination)
 			print(filepath + ' added')
 
-	#F: more important functions
-	if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
-		print_html_for_spoiler.generateHTML(code)
-	print_html_for_set.generateHTML(code)
-
 #F: grab lists/all-cards.txt & read it
 with open(os.path.join('lists', 'all-cards.json'), encoding='utf-8-sig') as f:
 	data = json.load(f)
@@ -132,6 +127,13 @@ set_order_data = {
 }
 with open(os.path.join('lists', 'set-order.json'), 'w', encoding='utf-8-sig') as f:
 	json.dump(set_order_data, f)
+
+for code in set_codes:
+	#F: more important functions
+	#CE: moving this down after we create the 'set-order.json' file
+	if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
+		print_html_for_spoiler.generateHTML(code)
+	print_html_for_set.generateHTML(code)
 
 custom_img_dir = os.path.join('custom', 'img')
 if os.path.isdir(custom_img_dir):
