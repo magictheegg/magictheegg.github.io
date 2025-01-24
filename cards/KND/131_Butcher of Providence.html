@@ -144,6 +144,21 @@
 		background-size: contain;
 		background-position: center;
 	}
+	.img-container .h-img {
+		transform: rotate(90deg);
+		width: 80%;
+	}
+	.img-container a {
+		height: 100%;
+		display: grid;
+		justify-self: center;
+		align-items: center;
+		justify-items: center;
+	}
+	.img-container a > * {
+		grid-row: 1;
+		grid-column: 1;
+	}
 	.hidden {
 		display: none;
 	}
@@ -196,7 +211,7 @@
 					card = json;
 			}).catch(error => console.error('Error:', error));
 
-			document.getElementById("grid").appendChild(gridifyCard(card));
+			document.getElementById("grid").appendChild(gridifyCard(card, false, true));
 			if (document.getElementById("other-printings"))
 			{
 				document.getElementById("card-text").appendChild(document.getElementById("other-printings"));
@@ -261,14 +276,14 @@
 			return str;
 		}
 
-		function gridifyCard(card) {
+		function gridifyCard(card_stats, card_text = false, rotate_card = false) {
 			card_stats = card;
 			const card_name = card_stats.card_name;
 
 			const grid = document.createElement("div");
 			grid.className = "image-grid";
 
-			grid.appendChild(buildImgContainer(card_stats));
+			grid.appendChild(buildImgContainer(card_stats, false, rotate_card));
 			
 			const text = document.createElement("div");
 			text.className = "card-text";
@@ -361,7 +376,7 @@
 			return grid;
 		}
 
-		function buildImgContainer(card_stats, hidden_title=false) {
+		function buildImgContainer(card_stats, hidden_title = false, rotate_card = false) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
 			const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
@@ -380,13 +395,26 @@
 			}
 			link.href = "/cards/" + card_stats.set + "/" + card_stats.number + "_" + card_name;
 			link.appendChild(img);
+
+			if ((card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card)
+			{
+				const rotated_img = document.createElement("img");
+				rotated_img.className = "h-img";
+				rotated_img.id = "h-img";
+				rotated_img.src = img.src;
+				rotated_img.style.display = "block";
+				img.style.filter = "blur(2px) brightness(0.7)";
+
+				link.appendChild(rotated_img);
+			}
+
 			imgContainer.appendChild(link);
 
 			if (card_stats.shape.includes("double"))
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
-				imgFlipBtn.onclick = function() { imgFlip(id); };
+				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
 				imgContainer.appendChild(imgFlipBtn);
 			}
 
@@ -401,11 +429,32 @@
 			return imgContainer;
 		}
 
-		function imgFlip(id) {
-			cardToFlip = document.getElementById(id);
-			cardName = cardToFlip.src;
+		function imgFlip(id, rotate_card = false) {
+			img = document.getElementById(id);
+			rotated_img = document.getElementById("h-img");
+
+			cardName = img.src;
 			
-			cardToFlip.src = cardName.includes("_front") ? cardName.replace("_front", "_back") : cardName.replace("_back", "_front");
+			if (cardName.includes("_front"))
+			{
+				img.src = cardName.replace("_front", "_back");
+
+				if (rotate_card)
+				{
+					rotated_img.style.display = "none";
+					img.style.filter = "";
+				}
+			}
+			else
+			{
+				img.src = cardName.replace("_back", "_front");
+
+				if (rotate_card)
+				{
+					rotated_img.style.display = "block";
+					img.style.filter = "blur(2px) brightness(0.7)";
+				}
+			}
 		}
 
 		function prettifyEffects(card_effects) {

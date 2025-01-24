@@ -25,8 +25,8 @@ def generateHTML(codes):
 		display: block;
 	}
 	.page-container {
-		width: 98%;
-		max-width: 2000px;
+		width: 2000px;
+		max-width: 98%;
 		height: 89%;
 		padding-top: 10px;
 		display: grid;
@@ -154,18 +154,15 @@ def generateHTML(codes):
 		}
 	}
 	.image-grid {
-		display: grid;
-		grid-template-rows: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		height: 100%;
 	}
 	.card-text {
-		border: 1px solid #898989;
 		border-top: 3px solid #171717;
-		border-bottom: 3px solid #171717;
-		border-radius: 4px;
-		margin: 8px;
 		overflow-y: scroll;
 		scrollbar-width: none;
+		height: 50%;
 	}
 	.card-text div {
 		white-space: normal;
@@ -236,13 +233,27 @@ def generateHTML(codes):
 		overflow-y: hidden;
 	}
 	.card-grid-container .img-container {
-		padding-top: 8px;
+		width: 100%;
+		height: 50%;
+		padding: 10px 0;
+	}
+	.img-container a {
+		height: 100%;
+		max-width: 80%;
+		display: grid;
+		justify-self: center;
+	}
+	.img-container a > * {
+		grid-row: 1;
+		grid-column: 1;
 	}
 	.card-grid-container img {
 		width: auto;
-		max-width: 95%;
+		min-width: 0;
+		max-width: 100%;
 		height: auto;
-		max-height: 45vh;
+		min-height: 0;
+		max-height: 100%;
 		display: block;
 		margin: auto;
 	}
@@ -356,6 +367,10 @@ def generateHTML(codes):
 	.card-img-container .card-fx {
 		height: 2.7vw;
 		max-height: 63px;
+	}
+	.img-container .h-img {
+		transform: rotate(90deg);
+		width: 85%;
 	}
 	.rc-menu {
 		display: none;
@@ -536,7 +551,7 @@ def generateHTML(codes):
 			cardGrid = document.getElementById("imagesOnlyGrid");
 			card_list_arrayified.sort(compareFunction);
 
-			gridified_card = gridifyCard(card_list_arrayified[0], true);
+			gridified_card = gridifyCard(card_list_arrayified[0], true, true);
 			gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 			gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 			document.getElementById("card-grid-container").appendChild(gridified_card);
@@ -757,13 +772,13 @@ def generateHTML(codes):
 				card_sr.onmouseover = function() {
 					cgc = document.getElementById("card-grid-container");
 					cgc.innerHTML = "";
-					const gridified_card = gridifyCard(card_stats, true);
+					const gridified_card = gridifyCard(card_stats, true, true);
 					gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 					gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 					if (card_stats.shape.includes("double"))
 					{
 						gridified_card.getElementsByTagName("button")[0].onclick = function() {
-							imgFlip("image-grid-card");
+							imgFlip("image-grid-card", card_stats.type.includes("Battle"));
 						}
 					}
 					cgc.appendChild(gridified_card);
@@ -802,12 +817,12 @@ def generateHTML(codes):
 
 	html_content += '''
 
-		function gridifyCard(card_stats, card_text = false) {
+		function gridifyCard(card_stats, card_text = false, rotate_card = false) {
 			const card_name = card_stats.card_name;
 
 			if (!card_text)
 			{
-				return buildImgContainer(card_stats, true);			
+				return buildImgContainer(card_stats, true, rotate_card);			
 			}
 
 		'''
@@ -967,13 +982,13 @@ def generateHTML(codes):
 							card_in_deck.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
 								cgc.innerHTML = "";
-								const gridified_card = gridifyCard(card_stats, true);
+								const gridified_card = gridifyCard(card_stats, true, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
-										imgFlip("image-grid-card");
+										imgFlip("image-grid-card", card_stats.type.includes("Battle"));
 									}
 								}
 								cgc.appendChild(gridified_card);
@@ -1033,13 +1048,13 @@ def generateHTML(codes):
 							card_img.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
 								cgc.innerHTML = "";
-								const gridified_card = gridifyCard(card_stats, true);
+								const gridified_card = gridifyCard(card_stats, true, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
-										imgFlip("image-grid-card");
+										imgFlip("image-grid-card", card_stats.type.includes("Battle"));
 									}
 								}
 								cgc.appendChild(gridified_card);

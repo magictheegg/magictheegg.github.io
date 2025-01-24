@@ -73,7 +73,15 @@ def generateHTML(setCode):
 			max-width: 375px;
 			position: relative;
 		}
-		.sidebar img {
+		.sidebar-h-img {
+			display: none;
+			transform: rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+		}
+		.sidebar-img {
 			vertical-align: middle;
 			width: 100%;
 		}
@@ -272,12 +280,13 @@ def generateHTML(setCode):
 		
 		#F: /sets/SET-files/img/NUMBER(t?)_NAME.png
 		image_path = os.path.join(image_dir, card_name + '.png')
+		rotated = str('shape' in card and 'spli' in card['shape']).lower()
 		
 		#F: if the flag is @XD, add something to html_content to get the front and back images, otherwise add something else
 		if flag == '@XD':
-			html_content += f'			<div class="container"><img data-alt_src="{dfc_back_img_path}" alt="{dfc_front_img_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num})"><button class="flip-btn" onclick="imgFlip({card_num})"></button></div>\n'
+			html_content += f'			<div class="container"><img data-alt_src="{dfc_back_img_path}" alt="{dfc_front_img_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar({card_num},{rotated})"><button class="flip-btn" onclick="imgFlip({card_num})"></button></div>\n'
 		else:
-			html_content += f'			<div class="container"><img alt="{image_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar(\'{card_num}\')"></div>\n'
+			html_content += f'			<div class="container"><img alt="{image_path}" id="{card_num}" data-flag="{flag}" onclick="openSidebar(\'{card_num}\',{rotated})"></div>\n'
 
 	# Closing the div and the rest of the HTML
 	html_content += '''	</div>\n'''
@@ -293,7 +302,8 @@ def generateHTML(setCode):
 	html_content += '''</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" src="img/er.png">
+			<img id="sidebar_img" class="sidebar-img" src="img/er.png">
+			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
 		<button class="close-btn" onclick="closeSidebar()"></button>
@@ -391,11 +401,28 @@ def generateHTML(setCode):
 		document.getElementById(num).dataset.alt_src = tmp;
 	}
 
-	function openSidebar(id) {
+	function openSidebar(id, horizontal=false) {
 		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
 		
 		document.getElementById('sidebar').style.display = 'grid';
-		document.getElementById('sidebar_img').src = document.getElementById(id).src;
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.src = document.getElementById(id).src;
+
+		if (horizontal)
+		{
+			rotated_img.src = document.getElementById(id).src;
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+
 		if (document.getElementById(id).dataset.alt_src)
 		{
 			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;

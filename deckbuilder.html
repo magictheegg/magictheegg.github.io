@@ -18,8 +18,8 @@
 		display: block;
 	}
 	.page-container {
-		width: 98%;
-		max-width: 2000px;
+		width: 2000px;
+		max-width: 98%;
 		height: 89%;
 		padding-top: 10px;
 		display: grid;
@@ -147,18 +147,15 @@
 		}
 	}
 	.image-grid {
-		display: grid;
-		grid-template-rows: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		height: 100%;
 	}
 	.card-text {
-		border: 1px solid #898989;
 		border-top: 3px solid #171717;
-		border-bottom: 3px solid #171717;
-		border-radius: 4px;
-		margin: 8px;
 		overflow-y: scroll;
 		scrollbar-width: none;
+		height: 50%;
 	}
 	.card-text div {
 		white-space: normal;
@@ -229,13 +226,27 @@
 		overflow-y: hidden;
 	}
 	.card-grid-container .img-container {
-		padding-top: 8px;
+		width: 100%;
+		height: 50%;
+		padding: 10px 0;
+	}
+	.img-container a {
+		height: 100%;
+		max-width: 80%;
+		display: grid;
+		justify-self: center;
+	}
+	.img-container a > * {
+		grid-row: 1;
+		grid-column: 1;
 	}
 	.card-grid-container img {
 		width: auto;
-		max-width: 95%;
+		min-width: 0;
+		max-width: 100%;
 		height: auto;
-		max-height: 45vh;
+		min-height: 0;
+		max-height: 100%;
 		display: block;
 		margin: auto;
 	}
@@ -349,6 +360,10 @@
 	.card-img-container .card-fx {
 		height: 2.7vw;
 		max-height: 63px;
+	}
+	.img-container .h-img {
+		transform: rotate(90deg);
+		width: 85%;
 	}
 	.rc-menu {
 		display: none;
@@ -536,7 +551,7 @@
 			cardGrid = document.getElementById("imagesOnlyGrid");
 			card_list_arrayified.sort(compareFunction);
 
-			gridified_card = gridifyCard(card_list_arrayified[0], true);
+			gridified_card = gridifyCard(card_list_arrayified[0], true, true);
 			gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 			gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 			document.getElementById("card-grid-container").appendChild(gridified_card);
@@ -896,13 +911,13 @@
 				card_sr.onmouseover = function() {
 					cgc = document.getElementById("card-grid-container");
 					cgc.innerHTML = "";
-					const gridified_card = gridifyCard(card_stats, true);
+					const gridified_card = gridifyCard(card_stats, true, true);
 					gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 					gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 					if (card_stats.shape.includes("double"))
 					{
 						gridified_card.getElementsByTagName("button")[0].onclick = function() {
-							imgFlip("image-grid-card");
+							imgFlip("image-grid-card", card_stats.type.includes("Battle"));
 						}
 					}
 					cgc.appendChild(gridified_card);
@@ -1549,18 +1564,18 @@
 			return str;
 		}
 
-		function gridifyCard(card_stats, card_text = false) {
+		function gridifyCard(card_stats, card_text = false, rotate_card = false) {
 			const card_name = card_stats.card_name;
 
 			if (!card_text)
 			{
-				return buildImgContainer(card_stats, true);			
+				return buildImgContainer(card_stats, true, rotate_card);			
 			}
 
 			const grid = document.createElement("div");
 			grid.className = "image-grid";
 
-			grid.appendChild(buildImgContainer(card_stats));
+			grid.appendChild(buildImgContainer(card_stats, false, rotate_card));
 			
 			const text = document.createElement("div");
 			text.className = "card-text";
@@ -1653,7 +1668,7 @@
 			return grid;
 		}
 
-		function buildImgContainer(card_stats, hidden_title=false) {
+		function buildImgContainer(card_stats, hidden_title = false, rotate_card = false) {
 			const imgContainer = document.createElement("div");
 			imgContainer.className = "img-container";
 			const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
@@ -1672,13 +1687,26 @@
 			}
 			link.href = "/cards/" + card_stats.set + "/" + card_stats.number + "_" + card_name;
 			link.appendChild(img);
+
+			if ((card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card)
+			{
+				const rotated_img = document.createElement("img");
+				rotated_img.className = "h-img";
+				rotated_img.id = "h-img";
+				rotated_img.src = img.src;
+				rotated_img.style.display = "block";
+				img.style.filter = "blur(2px) brightness(0.7)";
+
+				link.appendChild(rotated_img);
+			}
+
 			imgContainer.appendChild(link);
 
 			if (card_stats.shape.includes("double"))
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
-				imgFlipBtn.onclick = function() { imgFlip(id); };
+				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
 				imgContainer.appendChild(imgFlipBtn);
 			}
 
@@ -1693,11 +1721,32 @@
 			return imgContainer;
 		}
 
-		function imgFlip(id) {
-			cardToFlip = document.getElementById(id);
-			cardName = cardToFlip.src;
+		function imgFlip(id, rotate_card = false) {
+			img = document.getElementById(id);
+			rotated_img = document.getElementById("h-img");
+
+			cardName = img.src;
 			
-			cardToFlip.src = cardName.includes("_front") ? cardName.replace("_front", "_back") : cardName.replace("_back", "_front");
+			if (cardName.includes("_front"))
+			{
+				img.src = cardName.replace("_front", "_back");
+
+				if (rotate_card)
+				{
+					rotated_img.style.display = "none";
+					img.style.filter = "";
+				}
+			}
+			else
+			{
+				img.src = cardName.replace("_back", "_front");
+
+				if (rotate_card)
+				{
+					rotated_img.style.display = "block";
+					img.style.filter = "blur(2px) brightness(0.7)";
+				}
+			}
 		}
 
 		function prettifyEffects(card_effects) {
@@ -1873,13 +1922,13 @@
 							card_in_deck.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
 								cgc.innerHTML = "";
-								const gridified_card = gridifyCard(card_stats, true);
+								const gridified_card = gridifyCard(card_stats, true, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
-										imgFlip("image-grid-card");
+										imgFlip("image-grid-card", card_stats.type.includes("Battle"));
 									}
 								}
 								cgc.appendChild(gridified_card);
@@ -1939,13 +1988,13 @@
 							card_img.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
 								cgc.innerHTML = "";
-								const gridified_card = gridifyCard(card_stats, true);
+								const gridified_card = gridifyCard(card_stats, true, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
-										imgFlip("image-grid-card");
+										imgFlip("image-grid-card", card_stats.type.includes("Battle"));
 									}
 								}
 								cgc.appendChild(gridified_card);
