@@ -209,15 +209,15 @@
 			<div class="container"><img alt="sets\ACE-files\img\173_Ancestral Inspiration.png" id="173" data-flag="@X" onclick="openSidebar('173',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\229_Arboreal Library.png" id="229" data-flag="@X" onclick="openSidebar('229',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\6_Angel of Guiding Light.png" id="6" data-flag="@X" onclick="openSidebar('6',false)"></div>
-			<div class="container"><img data-alt_src="sets\ACE-files\img\62_Battle for the Mistwinds_back.png" alt="sets\ACE-files\img\62_Battle for the Mistwinds_front.png" id="62" data-flag="@XD" onclick="openSidebar(62,false)"><button class="flip-btn" onclick="imgFlip(62)"></button></div>
+			<div class="container"><img data-alt_src="sets\ACE-files\img\62_Battle for the Mistwinds_back.png" alt="sets\ACE-files\img\62_Battle for the Mistwinds_front.png" id="62" data-flag="@XD" onclick="openSidebar(62,true)"><button class="flip-btn" onclick="imgFlip(62)"></button></div>
 			<div class="container"><img alt="sets\ACE-files\img\118_Baron of Calamity.png" id="118" data-flag="@X" onclick="openSidebar('118',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\174_Badland Ravager.png" id="174" data-flag="@X" onclick="openSidebar('174',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\230_Archdruid Akhim.png" id="230" data-flag="@X" onclick="openSidebar('230',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\7_Annalisa, the Divine Light.png" id="7" data-flag="@X" onclick="openSidebar('7',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\63_Benthic Prophecy.png" id="63" data-flag="@X" onclick="openSidebar('63',false)"></div>
-			<div class="container"><img data-alt_src="sets\ACE-files\img\119_Battle for the Dead Strait_back.png" alt="sets\ACE-files\img\119_Battle for the Dead Strait_front.png" id="119" data-flag="@XD" onclick="openSidebar(119,false)"><button class="flip-btn" onclick="imgFlip(119)"></button></div>
+			<div class="container"><img data-alt_src="sets\ACE-files\img\119_Battle for the Dead Strait_back.png" alt="sets\ACE-files\img\119_Battle for the Dead Strait_front.png" id="119" data-flag="@XD" onclick="openSidebar(119,true)"><button class="flip-btn" onclick="imgFlip(119)"></button></div>
 			<div class="container"><img alt="sets\ACE-files\img\175_Blacksmith Trainee.png" id="175" data-flag="@X" onclick="openSidebar('175',false)"></div>
-			<div class="container"><img data-alt_src="sets\ACE-files\img\231_Battle for Alas-Wana_back.png" alt="sets\ACE-files\img\231_Battle for Alas-Wana_front.png" id="231" data-flag="@XD" onclick="openSidebar(231,false)"><button class="flip-btn" onclick="imgFlip(231)"></button></div>
+			<div class="container"><img data-alt_src="sets\ACE-files\img\231_Battle for Alas-Wana_back.png" alt="sets\ACE-files\img\231_Battle for Alas-Wana_front.png" id="231" data-flag="@XD" onclick="openSidebar(231,true)"><button class="flip-btn" onclick="imgFlip(231)"></button></div>
 			<div class="container"><img alt="sets\ACE-files\img\8_Arbiter of Equity.png" id="8" data-flag="@X" onclick="openSidebar('8',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\64_Bleeding Dunes.png" id="64" data-flag="@X" onclick="openSidebar('64',false)"></div>
 			<div class="container"><img alt="sets\ACE-files\img\120_Bearer of Last Wishes.png" id="120" data-flag="@X" onclick="openSidebar('120',false)"></div>
@@ -906,13 +906,30 @@
 		document.getElementById('sidebar').style.top = height + '%';
 	}
 
+	let horizontal = false;
+
 	function imgFlip(num) {
 		tmp = document.getElementById(num).src;
 		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
 		document.getElementById(num).dataset.alt_src = tmp;
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		if (horizontal && rotated_img.style.display == 'none')
+		{
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
 	}
 
-	function openSidebar(id, horizontal=false) {
+	function openSidebar(id, h=false) {
+		horizontal = h;
 		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
 		
 		document.getElementById('sidebar').style.display = 'grid';

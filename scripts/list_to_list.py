@@ -61,6 +61,10 @@ def convertList(setCode):
 		else:
 			card['rarity'] = 5
 
+		# clean shape
+		if 'Battle' in card['type']:
+			card['shape'] = card['shape'] + ' split'
+
 		# sort types
 		#EDIT - replace the array index with JSON keys; 10 = shape, 1 = color, 3 = type
 		if 'token' in card['shape']:
