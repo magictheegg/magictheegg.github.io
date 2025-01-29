@@ -33,6 +33,7 @@ def genAllCards(codes):
 					card['type2'] = card['type2'].replace('—', '–')
 					card['rules_text2'] = card['rules_text2'].replace('—', '–')
 					card['special_text2'] = card['special_text2'].replace('—', '–')
+				card['image_type'] = 'png' if 'image_type' not in raw else raw['image_type']
 				card_input['cards'].append(card)
 			set_data = {}
 			set_data['set_code'] = code

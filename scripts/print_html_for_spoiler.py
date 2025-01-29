@@ -8,6 +8,10 @@ def generateHTML(setCode):
 	with open(os.path.join('lists', 'set-order.json'), encoding='utf-8-sig') as j:
 		so_json = json.load(j)
 
+	with open(os.path.join('sets', setCode + '-files', setCode + '.json'), encoding='utf-8-sig') as j:
+		tmp = json.load(j)
+		image_type = 'png' if 'image_type' not in tmp else tmp['image_type']
+
 	codes = []
 	for key in so_json:
 		for code in so_json[key]:
@@ -258,8 +262,8 @@ def generateHTML(setCode):
 		# used for DFCs only
 		dfc_front_path = card_name + '_front'
 		dfc_back_path = card_name + '_back'
-		dfc_front_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_front_path + '.png')
-		dfc_back_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_back_path + '.png')
+		dfc_front_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_front_path + '.' + image_type)
+		dfc_back_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_back_path + '.' + image_type)
 		
 		#F: these flags are used in later parts of the code, including the HTML.
 		#F: if the flag is @N, then only the card back is displayed
@@ -279,7 +283,7 @@ def generateHTML(setCode):
 			image_dir = os.path.join('sets', setCode + '-files', 'img')
 		
 		#F: /sets/SET-files/img/NUMBER(t?)_NAME.png
-		image_path = os.path.join(image_dir, card_name + '.png')
+		image_path = os.path.join(image_dir, card_name + '.' + image_type)
 		rotated = str('shape' in card and 'spli' in card['shape']).lower()
 		
 		#F: if the flag is @XD, add something to html_content to get the front and back images, otherwise add something else
