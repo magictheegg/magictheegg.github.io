@@ -283,7 +283,7 @@ script:
 		else card.shape
 	}
 
-	is_double_card := match@(match:"double|adventure|aftermath|split")
+	is_double_card := match@(match:"double|adventure|aftermath|spli")
 	q := "\""
 	write_card := {
 		strings := [
@@ -344,7 +344,7 @@ script:
 		+ "\t\t\t{q}type{q}: {q}{card.type}{q},\n"
 		+ "\t\t\t{q}collector_number{q}: {q}{card_number()}{q},\n"
 		+ (
-			if contains(card.shape, match:"split") then 
+			if contains(card.shape, match:"spli") then 
 				"\t\t\t{q}layout{q}: {q}split{q},\n"
 			else ""
 		)

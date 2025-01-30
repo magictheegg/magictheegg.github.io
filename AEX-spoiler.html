@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="sets/AEX-files/icon.png"/>
+	<link rel="stylesheet" href="/resources/header.css">
+	<title>AEX visual spoiler</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 3%;
+			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
+			position: relative;
+		}
+		.sidebar-h-img {
+			display: none;
+			transform: rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+		}
+		.sidebar-img {
+			vertical-align: middle;
+			width: 100%;
+		}
+		.close-btn {
+			background: url('img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
+		}
+		.close-btn:hover {
+			background: url('img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 3%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 20px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+			position: relative;
+			width: 100%;
+		}
+		.container img {
+			width: 100%;
+			height: auto;
+		}
+		.flip-btn {
+			background: url('img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			left: 50%;
+			top: 48%;
+			transform: translate(-50%, -50%);
+			opacity: 0.5;
+		}
+		.flip-btn:hover {
+			background: url('img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.icon-bar {
+			display: grid;
+			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
+			gap: 1px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 2%;
+			padding-bottom: 1%;
+			justify-items: center;
+			align-items: center;
+		}
+		.icon-bar .icon img {
+			width: 90%;
+			max-width: 80px;
+			height: auto;
+			display: block;
+			padding: 5%;
+			margin: auto;
+			text-align: center;
+		}
+		.icon-bar .dot img {
+			width: 50%;
+			max-width: 65px;
+			height: auto;
+			display: block;
+			margin: auto;
+			text-align: center;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<img class="preload-hidden" src="/img/dot.png" />
+	<img class="preload-hidden" src="/sets/AEX-files/logo.png" />
+	<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+		<img class="preload-hidden" id="bg" src="/sets/AEX-files/bg.png" />
+		
+		<div class="header">
+		<div class="search-grid">
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+		</div>
+	</div>
+
+	<div class="icon-bar">
+			<div class="icon"><a href="SHF-spoiler"><img src="sets/SHF-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GSS-spoiler"><img src="sets/GSS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="KND-spoiler"><img src="sets/KND-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="NJB-spoiler"><img src="sets/NJB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="AEX-spoiler"><img src="sets/AEX-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="WAS-spoiler"><img src="sets/WAS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="SGB-spoiler"><img src="sets/SGB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GQC-spoiler"><img src="sets/GQC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="DSS-spoiler"><img src="sets/DSS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="KOD-spoiler"><img src="sets/KOD-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GHQ-spoiler"><img src="sets/GHQ-files/icon.png"></img></a></div>
+		<div class="icon"><a href="TWB-spoiler"><img src="sets/TWB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="FAU-spoiler"><img src="sets/FAU-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="MVA-spoiler"><img src="sets/MVA-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="ATB-spoiler"><img src="sets/ATB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="SUR-spoiler"><img src="sets/SUR-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GNJ-spoiler"><img src="sets/GNJ-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GSC-spoiler"><img src="sets/GSC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="FAE-spoiler"><img src="sets/FAE-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="AOD-spoiler"><img src="sets/AOD-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="ICH-spoiler"><img src="sets/ICH-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="AGH-spoiler"><img src="sets/AGH-files/icon.png"></img></a></div>
+		<div class="icon"><a href="MSR-spoiler"><img src="sets/MSR-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GLC-spoiler"><img src="sets/GLC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="ACE-spoiler"><img src="sets/ACE-files/icon.png"></img></a></div>
+
+		</div>
+		<div class="banner">
+		<img class="logo" src="sets/AEX-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+				<div class="container"><img alt="sets/AEX-files/img/33_Seto San, Glorious General.png" id="33_Seto San, Glorious General" data-flag="@X" onclick="openSidebar('33_Seto San, Glorious General',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/59_Ing'Wei, Aqueous Shaper.png" id="59_IngWei, Aqueous Shaper" data-flag="@X" onclick="openSidebar('59_IngWei, Aqueous Shaper',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/80_Cankerbough Ritualist.png" id="80_Cankerbough Ritualist" data-flag="@X" onclick="openSidebar('80_Cankerbough Ritualist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/118_Burning Hart.png" id="118_Burning Hart" data-flag="@X" onclick="openSidebar('118_Burning Hart',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/153_Attuned Archdruid.png" id="153_Attuned Archdruid" data-flag="@X" onclick="openSidebar('153_Attuned Archdruid',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/5_Archangel of Balance.png" id="5_Archangel of Balance" data-flag="@X" onclick="openSidebar('5_Archangel of Balance',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/44_Berylscale Mimic.png" id="44_Berylscale Mimic" data-flag="@X" onclick="openSidebar('44_Berylscale Mimic',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/87_Freyhild Warlord.png" id="87_Freyhild Warlord" data-flag="@X" onclick="openSidebar('87_Freyhild Warlord',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/122_Djinnis of Man's Trials.png" id="122_Djinnis of Mans Trials" data-flag="@X" onclick="openSidebar('122_Djinnis of Mans Trials',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/154_Beastmaster Myrmidon.png" id="154_Beastmaster Myrmidon" data-flag="@X" onclick="openSidebar('154_Beastmaster Myrmidon',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/7_Armistice Enforcer.png" id="7_Armistice Enforcer" data-flag="@X" onclick="openSidebar('7_Armistice Enforcer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/56_Graduate Student.png" id="56_Graduate Student" data-flag="@X" onclick="openSidebar('56_Graduate Student',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/89_Grave Harmonist.png" id="89_Grave Harmonist" data-flag="@X" onclick="openSidebar('89_Grave Harmonist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/127_Floe Prowler.png" id="127_Floe Prowler" data-flag="@X" onclick="openSidebar('127_Floe Prowler',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/162_Graupel Slime.png" id="162_Graupel Slime" data-flag="@X" onclick="openSidebar('162_Graupel Slime',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/10_Blade Savant.png" id="10_Blade Savant" data-flag="@X" onclick="openSidebar('10_Blade Savant',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/57_Herrea, the Star's Muse.png" id="57_Herrea, the Stars Muse" data-flag="@X" onclick="openSidebar('57_Herrea, the Stars Muse',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/91_Initiation Ritual.png" id="91_Initiation Ritual" data-flag="@X" onclick="openSidebar('91_Initiation Ritual',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/131_Menna, the Deserter.png" id="131_Menna, the Deserter" data-flag="@X" onclick="openSidebar('131_Menna, the Deserter',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/167_Large as Life.png" id="167_Large as Life" data-flag="@X" onclick="openSidebar('167_Large as Life',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/13_Crimson Rapture.png" id="13_Crimson Rapture" data-flag="@X" onclick="openSidebar('13_Crimson Rapture',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/63_Maritime Order.png" id="63_Maritime Order" data-flag="@X" onclick="openSidebar('63_Maritime Order',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/95_Murderous Rider.png" id="95_Murderous Rider" data-flag="@X" onclick="openSidebar('95_Murderous Rider',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/137_Sea's Spoils.png" id="137_Seas Spoils" data-flag="@X" onclick="openSidebar('137_Seas Spoils',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/171_Prismpelt Oracle.png" id="171_Prismpelt Oracle" data-flag="@X" onclick="openSidebar('171_Prismpelt Oracle',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/21_Gallery of the Lost.png" id="21_Gallery of the Lost" data-flag="@X" onclick="openSidebar('21_Gallery of the Lost',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/64_Mystic Galleon.png" id="64_Mystic Galleon" data-flag="@X" onclick="openSidebar('64_Mystic Galleon',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/109_Sora, Shadow Sage.png" id="109_Sora, Shadow Sage" data-flag="@X" onclick="openSidebar('109_Sora, Shadow Sage',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/142_Summit Crusher.png" id="142_Summit Crusher" data-flag="@X" onclick="openSidebar('142_Summit Crusher',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/178_Snowsteppe Sovereign.png" id="178_Snowsteppe Sovereign" data-flag="@X" onclick="openSidebar('178_Snowsteppe Sovereign',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/24_Iapetus, Aureate Lord.png" id="24_Iapetus, Aureate Lord" data-flag="@X" onclick="openSidebar('24_Iapetus, Aureate Lord',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/69_Otter Out of Water.png" id="69_Otter Out of Water" data-flag="@X" onclick="openSidebar('69_Otter Out of Water',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/112_Tentaclysm.png" id="112_Tentaclysm" data-flag="@X" onclick="openSidebar('112_Tentaclysm',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/143_Superconduct.png" id="143_Superconduct" data-flag="@X" onclick="openSidebar('143_Superconduct',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/182_Training Hydra.png" id="182_Training Hydra" data-flag="@X" onclick="openSidebar('182_Training Hydra',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/35_Stalwart Stoat.png" id="35_Stalwart Stoat" data-flag="@X" onclick="openSidebar('35_Stalwart Stoat',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/74_Thunder Raptor.png" id="74_Thunder Raptor" data-flag="@X" onclick="openSidebar('74_Thunder Raptor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/77_Archbaron of Jhalach.png" id="77_Archbaron of Jhalach" data-flag="@X" onclick="openSidebar('77_Archbaron of Jhalach',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/117_Britta, the Sea's Superior.png" id="117_Britta, the Seas Superior" data-flag="@X" onclick="openSidebar('117_Britta, the Seas Superior',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/161_Glade Piper.png" id="161_Glade Piper" data-flag="@X" onclick="openSidebar('161_Glade Piper',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/1_Admiraltus, the Reverent King.png" id="1_Admiraltus, the Reverent King" data-flag="@X" onclick="openSidebar('1_Admiraltus, the Reverent King',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/42_Align the Waystones.png" id="42_Align the Waystones" data-flag="@X" onclick="openSidebar('42_Align the Waystones',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/79_Blood for Bones.png" id="79_Blood for Bones" data-flag="@X" onclick="openSidebar('79_Blood for Bones',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/119_Captain's Chart.png" id="119_Captains Chart" data-flag="@X" onclick="openSidebar('119_Captains Chart',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/163_Halcyon Unguloth.png" id="163_Halcyon Unguloth" data-flag="@X" onclick="openSidebar('163_Halcyon Unguloth',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/3_Angora Paladin.png" id="3_Angora Paladin" data-flag="@X" onclick="openSidebar('3_Angora Paladin',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/45_Between Wind and Water.png" id="45_Between Wind and Water" data-flag="@X" onclick="openSidebar('45_Between Wind and Water',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/81_Cerebral Flayer.png" id="81_Cerebral Flayer" data-flag="@X" onclick="openSidebar('81_Cerebral Flayer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/120_Chemistry Instructor.png" id="120_Chemistry Instructor" data-flag="@X" onclick="openSidebar('120_Chemistry Instructor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/166_Kati, Planar Excursionist.png" id="166_Kati, Planar Excursionist" data-flag="@X" onclick="openSidebar('166_Kati, Planar Excursionist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/6_Arkemus, Radiant Emperor.png" id="6_Arkemus, Radiant Emperor" data-flag="@X" onclick="openSidebar('6_Arkemus, Radiant Emperor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/48_Bring to the Surface.png" id="48_Bring to the Surface" data-flag="@X" onclick="openSidebar('48_Bring to the Surface',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/83_Cuxuri Moray.png" id="83_Cuxuri Moray" data-flag="@X" onclick="openSidebar('83_Cuxuri Moray',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/121_Cocksure Swindler.png" id="121_Cocksure Swindler" data-flag="@X" onclick="openSidebar('121_Cocksure Swindler',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/168_Mottled Agamid.png" id="168_Mottled Agamid" data-flag="@X" onclick="openSidebar('168_Mottled Agamid',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/11_Bringer of a New Peace.png" id="11_Bringer of a New Peace" data-flag="@X" onclick="openSidebar('11_Bringer of a New Peace',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/51_Cursed Helmsman.png" id="51_Cursed Helmsman" data-flag="@X" onclick="openSidebar('51_Cursed Helmsman',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/85_Drink the Dark Blood.png" id="85_Drink the Dark Blood" data-flag="@X" onclick="openSidebar('85_Drink the Dark Blood',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/130_Herald of the Onslaught.png" id="130_Herald of the Onslaught" data-flag="@X" onclick="openSidebar('130_Herald of the Onslaught',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/169_Physiology Instructor.png" id="169_Physiology Instructor" data-flag="@X" onclick="openSidebar('169_Physiology Instructor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/15_Emissary of Anima.png" id="15_Emissary of Anima" data-flag="@X" onclick="openSidebar('15_Emissary of Anima',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/53_Fabled Scion.png" id="53_Fabled Scion" data-flag="@X" onclick="openSidebar('53_Fabled Scion',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/93_Kalemn, Seeking Freedom.png" id="93_Kalemn, Seeking Freedom" data-flag="@X" onclick="openSidebar('93_Kalemn, Seeking Freedom',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/136_Redpelt Recruit.png" id="136_Redpelt Recruit" data-flag="@X" onclick="openSidebar('136_Redpelt Recruit',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/172_Rime Leopard.png" id="172_Rime Leopard" data-flag="@X" onclick="openSidebar('172_Rime Leopard',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/22_Get Carried Away.png" id="22_Get Carried Away" data-flag="@X" onclick="openSidebar('22_Get Carried Away',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/54_Froggle, Myopic Prophet.png" id="54_Froggle, Myopic Prophet" data-flag="@X" onclick="openSidebar('54_Froggle, Myopic Prophet',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/94_Karaja, Mind Seeker.png" id="94_Karaja, Mind Seeker" data-flag="@X" onclick="openSidebar('94_Karaja, Mind Seeker',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/138_Shred.png" id="138_Shred" data-flag="@X" onclick="openSidebar('138_Shred',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/173_Riverbank Ambush.png" id="173_Riverbank Ambush" data-flag="@X" onclick="openSidebar('173_Riverbank Ambush',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/23_Honor Begets Glory.png" id="23_Honor Begets Glory" data-flag="@X" onclick="openSidebar('23_Honor Begets Glory',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/58_Horizon Diplomat.png" id="58_Horizon Diplomat" data-flag="@X" onclick="openSidebar('58_Horizon Diplomat',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/98_Pact of Warring Clans.png" id="98_Pact of Warring Clans" data-flag="@X" onclick="openSidebar('98_Pact of Warring Clans',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/139_Sleetshrieker.png" id="139_Sleetshrieker" data-flag="@X" onclick="openSidebar('139_Sleetshrieker',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/176_Simul, Esteemed Biomancer.png" id="176_Simul, Esteemed Biomancer" data-flag="@X" onclick="openSidebar('176_Simul, Esteemed Biomancer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/25_Kinematics Instructor.png" id="25_Kinematics Instructor" data-flag="@X" onclick="openSidebar('25_Kinematics Instructor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/68_Ornithology Instructor.png" id="68_Ornithology Instructor" data-flag="@X" onclick="openSidebar('68_Ornithology Instructor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/101_Portent of Blight.png" id="101_Portent of Blight" data-flag="@X" onclick="openSidebar('101_Portent of Blight',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/144_Surrender to the Storm.png" id="144_Surrender to the Storm" data-flag="@X" onclick="openSidebar('144_Surrender to the Storm',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/177_Small World.png" id="177_Small World" data-flag="@X" onclick="openSidebar('177_Small World',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/27_Mortal Sublimator.png" id="27_Mortal Sublimator" data-flag="@X" onclick="openSidebar('27_Mortal Sublimator',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/71_Skyskipper.png" id="71_Skyskipper" data-flag="@X" onclick="openSidebar('71_Skyskipper',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/102_Psychology Instructor.png" id="102_Psychology Instructor" data-flag="@X" onclick="openSidebar('102_Psychology Instructor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/148_Valiant Envoy.png" id="148_Valiant Envoy" data-flag="@X" onclick="openSidebar('148_Valiant Envoy',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/183_Tranquil Vanguard.png" id="183_Tranquil Vanguard" data-flag="@X" onclick="openSidebar('183_Tranquil Vanguard',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/28_Onoran Field Marshal.png" id="28_Onoran Field Marshal" data-flag="@X" onclick="openSidebar('28_Onoran Field Marshal',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/75_Tide Over.png" id="75_Tide Over" data-flag="@X" onclick="openSidebar('75_Tide Over',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/108_Skhorvall Horde.png" id="108_Skhorvall Horde" data-flag="@X" onclick="openSidebar('108_Skhorvall Horde',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/149_Vashla, Bon Vivant.png" id="149_Vashla, Bon Vivant" data-flag="@X" onclick="openSidebar('149_Vashla, Bon Vivant',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/184_Turn Loose.png" id="184_Turn Loose" data-flag="@X" onclick="openSidebar('184_Turn Loose',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/32_Seraph of Sacraments.png" id="32_Seraph of Sacraments" data-flag="@X" onclick="openSidebar('32_Seraph of Sacraments',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/76_Volta, Creation Conduit.png" id="76_Volta, Creation Conduit" data-flag="@X" onclick="openSidebar('76_Volta, Creation Conduit',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/78_Blind Devotee.png" id="78_Blind Devotee" data-flag="@X" onclick="openSidebar('78_Blind Devotee',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/114_Battle Scars.png" id="114_Battle Scars" data-flag="@X" onclick="openSidebar('114_Battle Scars',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/151_Alchemical Studies.png" id="151_Alchemical Studies" data-flag="@X" onclick="openSidebar('151_Alchemical Studies',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/2_Aerodynamic Aide.png" id="2_Aerodynamic Aide" data-flag="@X" onclick="openSidebar('2_Aerodynamic Aide',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/39_Adjunct Chronomancer.png" id="39_Adjunct Chronomancer" data-flag="@X" onclick="openSidebar('39_Adjunct Chronomancer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/82_Coldhearted Butcher.png" id="82_Coldhearted Butcher" data-flag="@X" onclick="openSidebar('82_Coldhearted Butcher',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/115_Besiege.png" id="115_Besiege" data-flag="@X" onclick="openSidebar('115_Besiege',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/152_Ancestral Ornaments.png" id="152_Ancestral Ornaments" data-flag="@X" onclick="openSidebar('152_Ancestral Ornaments',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/4_Appointed Vicar.png" id="4_Appointed Vicar" data-flag="@X" onclick="openSidebar('4_Appointed Vicar',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/40_Aetherhunter.png" id="40_Aetherhunter" data-flag="@X" onclick="openSidebar('40_Aetherhunter',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/84_Defy the Shadows.png" id="84_Defy the Shadows" data-flag="@X" onclick="openSidebar('84_Defy the Shadows',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/116_Bloodied Cutlass.png" id="116_Bloodied Cutlass" data-flag="@X" onclick="openSidebar('116_Bloodied Cutlass',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/155_Boreal Sibyl.png" id="155_Boreal Sibyl" data-flag="@X" onclick="openSidebar('155_Boreal Sibyl',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/8_Aromatherapist.png" id="8_Aromatherapist" data-flag="@X" onclick="openSidebar('8_Aromatherapist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/41_Aldmore Archivist.png" id="41_Aldmore Archivist" data-flag="@X" onclick="openSidebar('41_Aldmore Archivist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/86_Fathom Stalker.png" id="86_Fathom Stalker" data-flag="@X" onclick="openSidebar('86_Fathom Stalker',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/123_Dune Skirmisher.png" id="123_Dune Skirmisher" data-flag="@X" onclick="openSidebar('123_Dune Skirmisher',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/156_Burst of Strength.png" id="156_Burst of Strength" data-flag="@X" onclick="openSidebar('156_Burst of Strength',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/9_Assign Detention.png" id="9_Assign Detention" data-flag="@X" onclick="openSidebar('9_Assign Detention',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/43_Anemology Analysis.png" id="43_Anemology Analysis" data-flag="@X" onclick="openSidebar('43_Anemology Analysis',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/88_Go Deeper.png" id="88_Go Deeper" data-flag="@X" onclick="openSidebar('88_Go Deeper',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/124_Dutiful Sculptor.png" id="124_Dutiful Sculptor" data-flag="@X" onclick="openSidebar('124_Dutiful Sculptor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/157_Chimperial Sentinel.png" id="157_Chimperial Sentinel" data-flag="@X" onclick="openSidebar('157_Chimperial Sentinel',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/12_Communion Procession.png" id="12_Communion Procession" data-flag="@X" onclick="openSidebar('12_Communion Procession',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/46_Bitter Cold.png" id="46_Bitter Cold" data-flag="@X" onclick="openSidebar('46_Bitter Cold',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/90_Humanity's Wreckage.png" id="90_Humanitys Wreckage" data-flag="@X" onclick="openSidebar('90_Humanitys Wreckage',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/125_Eager Sailor.png" id="125_Eager Sailor" data-flag="@X" onclick="openSidebar('125_Eager Sailor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/158_Colossal Dreadmaw.png" id="158_Colossal Dreadmaw" data-flag="@X" onclick="openSidebar('158_Colossal Dreadmaw',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/14_Dawnfeather Eagle.png" id="14_Dawnfeather Eagle" data-flag="@X" onclick="openSidebar('14_Dawnfeather Eagle',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/47_Brine Strategist.png" id="47_Brine Strategist" data-flag="@X" onclick="openSidebar('47_Brine Strategist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/92_Jhalach Cohort.png" id="92_Jhalach Cohort" data-flag="@X" onclick="openSidebar('92_Jhalach Cohort',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/126_Explosive Miscue.png" id="126_Explosive Miscue" data-flag="@X" onclick="openSidebar('126_Explosive Miscue',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/159_Elven Ally.png" id="159_Elven Ally" data-flag="@X" onclick="openSidebar('159_Elven Ally',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/16_Enjoy the Little Things.png" id="16_Enjoy the Little Things" data-flag="@X" onclick="openSidebar('16_Enjoy the Little Things',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/49_Bubble Dancer.png" id="49_Bubble Dancer" data-flag="@X" onclick="openSidebar('49_Bubble Dancer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/96_New Lease on Life.png" id="96_New Lease on Life" data-flag="@X" onclick="openSidebar('96_New Lease on Life',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/128_Frostfield Champion.png" id="128_Frostfield Champion" data-flag="@X" onclick="openSidebar('128_Frostfield Champion',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/160_Fields of Gold.png" id="160_Fields of Gold" data-flag="@X" onclick="openSidebar('160_Fields of Gold',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/17_Expel.png" id="17_Expel" data-flag="@X" onclick="openSidebar('17_Expel',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/50_Crow Scare.png" id="50_Crow Scare" data-flag="@X" onclick="openSidebar('50_Crow Scare',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/97_Out of Your Depth.png" id="97_Out of Your Depth" data-flag="@X" onclick="openSidebar('97_Out of Your Depth',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/129_Hamlet Swordsmith.png" id="129_Hamlet Swordsmith" data-flag="@X" onclick="openSidebar('129_Hamlet Swordsmith',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/164_Highland Pioneer.png" id="164_Highland Pioneer" data-flag="@X" onclick="openSidebar('164_Highland Pioneer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/18_Feat of Resistance.png" id="18_Feat of Resistance" data-flag="@X" onclick="openSidebar('18_Feat of Resistance',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/52_Deep Dive.png" id="52_Deep Dive" data-flag="@X" onclick="openSidebar('52_Deep Dive',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/99_Pitiless Skinner.png" id="99_Pitiless Skinner" data-flag="@X" onclick="openSidebar('99_Pitiless Skinner',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/132_Might and Mane.png" id="132_Might and Mane" data-flag="@X" onclick="openSidebar('132_Might and Mane',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/165_Hinterland Ranger.png" id="165_Hinterland Ranger" data-flag="@X" onclick="openSidebar('165_Hinterland Ranger',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/19_Flatland Escort.png" id="19_Flatland Escort" data-flag="@X" onclick="openSidebar('19_Flatland Escort',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/55_Glacier Griffin.png" id="55_Glacier Griffin" data-flag="@X" onclick="openSidebar('55_Glacier Griffin',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/100_Poison-Tip Sniper.png" id="100_Poison-Tip Sniper" data-flag="@X" onclick="openSidebar('100_Poison-Tip Sniper',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/133_Mouseketeer.png" id="133_Mouseketeer" data-flag="@X" onclick="openSidebar('133_Mouseketeer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/170_Polar Bears.png" id="170_Polar Bears" data-flag="@X" onclick="openSidebar('170_Polar Bears',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/20_Freyhild Infantry.png" id="20_Freyhild Infantry" data-flag="@X" onclick="openSidebar('20_Freyhild Infantry',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/60_Interplanar Delivery.png" id="60_Interplanar Delivery" data-flag="@X" onclick="openSidebar('60_Interplanar Delivery',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/103_Purge the Heretics.png" id="103_Purge the Heretics" data-flag="@X" onclick="openSidebar('103_Purge the Heretics',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/134_Nimble Marauder.png" id="134_Nimble Marauder" data-flag="@X" onclick="openSidebar('134_Nimble Marauder',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/174_Rovian Squire.png" id="174_Rovian Squire" data-flag="@X" onclick="openSidebar('174_Rovian Squire',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/26_Metallurgy Assistant.png" id="26_Metallurgy Assistant" data-flag="@X" onclick="openSidebar('26_Metallurgy Assistant',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/61_Lead Them to Water.png" id="61_Lead Them to Water" data-flag="@X" onclick="openSidebar('61_Lead Them to Water',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/104_Rotten Carcass.png" id="104_Rotten Carcass" data-flag="@X" onclick="openSidebar('104_Rotten Carcass',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/135_Pastoral Vagrants.png" id="135_Pastoral Vagrants" data-flag="@X" onclick="openSidebar('135_Pastoral Vagrants',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/175_Roving Mammoth.png" id="175_Roving Mammoth" data-flag="@X" onclick="openSidebar('175_Roving Mammoth',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/29_Perimeter Warden.png" id="29_Perimeter Warden" data-flag="@X" onclick="openSidebar('29_Perimeter Warden',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/62_Left Behind.png" id="62_Left Behind" data-flag="@X" onclick="openSidebar('62_Left Behind',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/105_Sentry of the Eaves.png" id="105_Sentry of the Eaves" data-flag="@X" onclick="openSidebar('105_Sentry of the Eaves',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/140_Solemn Pilgrimage.png" id="140_Solemn Pilgrimage" data-flag="@X" onclick="openSidebar('140_Solemn Pilgrimage',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/179_Straight Shooter.png" id="179_Straight Shooter" data-flag="@X" onclick="openSidebar('179_Straight Shooter',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/30_Pocket Cadet.png" id="30_Pocket Cadet" data-flag="@X" onclick="openSidebar('30_Pocket Cadet',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/65_No Escape.png" id="65_No Escape" data-flag="@X" onclick="openSidebar('65_No Escape',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/106_Shifty Polecat.png" id="106_Shifty Polecat" data-flag="@X" onclick="openSidebar('106_Shifty Polecat',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/141_Student of Chemistry.png" id="141_Student of Chemistry" data-flag="@X" onclick="openSidebar('141_Student of Chemistry',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/180_Student of Physiology.png" id="180_Student of Physiology" data-flag="@X" onclick="openSidebar('180_Student of Physiology',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/31_Restless Migrants.png" id="31_Restless Migrants" data-flag="@X" onclick="openSidebar('31_Restless Migrants',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/66_Opt.png" id="66_Opt" data-flag="@X" onclick="openSidebar('66_Opt',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/107_Skhorvall Blood-Paint.png" id="107_Skhorvall Blood-Paint" data-flag="@X" onclick="openSidebar('107_Skhorvall Blood-Paint',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/145_Thrill of Possibility.png" id="145_Thrill of Possibility" data-flag="@X" onclick="openSidebar('145_Thrill of Possibility',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/181_Tinyvale Elder.png" id="181_Tinyvale Elder" data-flag="@X" onclick="openSidebar('181_Tinyvale Elder',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/34_Sparring Falchion.png" id="34_Sparring Falchion" data-flag="@X" onclick="openSidebar('34_Sparring Falchion',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/67_Ornate Kingfisher.png" id="67_Ornate Kingfisher" data-flag="@X" onclick="openSidebar('67_Ornate Kingfisher',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/110_Spark Harvest.png" id="110_Spark Harvest" data-flag="@X" onclick="openSidebar('110_Spark Harvest',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/146_Tundra Thresher.png" id="146_Tundra Thresher" data-flag="@X" onclick="openSidebar('146_Tundra Thresher',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/185_Tussle in the Timber.png" id="185_Tussle in the Timber" data-flag="@X" onclick="openSidebar('185_Tussle in the Timber',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/36_Stratus Traveler.png" id="36_Stratus Traveler" data-flag="@X" onclick="openSidebar('36_Stratus Traveler',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/70_Plunder Adept.png" id="70_Plunder Adept" data-flag="@X" onclick="openSidebar('70_Plunder Adept',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/111_Student of Psychology.png" id="111_Student of Psychology" data-flag="@X" onclick="openSidebar('111_Student of Psychology',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/147_Unguloth Herd.png" id="147_Unguloth Herd" data-flag="@X" onclick="openSidebar('147_Unguloth Herd',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/186_Unbudging Badger.png" id="186_Unbudging Badger" data-flag="@X" onclick="openSidebar('186_Unbudging Badger',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/37_Student of Kinematics.png" id="37_Student of Kinematics" data-flag="@X" onclick="openSidebar('37_Student of Kinematics',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/72_Student of Ornithology.png" id="72_Student of Ornithology" data-flag="@X" onclick="openSidebar('72_Student of Ornithology',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/113_Vitality Curator.png" id="113_Vitality Curator" data-flag="@X" onclick="openSidebar('113_Vitality Curator',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/150_Voidflare.png" id="150_Voidflare" data-flag="@X" onclick="openSidebar('150_Voidflare',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/187_Weather the Weather.png" id="187_Weather the Weather" data-flag="@X" onclick="openSidebar('187_Weather the Weather',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/38_Through the Starry Night.png" id="38_Through the Starry Night" data-flag="@X" onclick="openSidebar('38_Through the Starry Night',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/73_Tawny Scholar.png" id="73_Tawny Scholar" data-flag="@X" onclick="openSidebar('73_Tawny Scholar',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/189_Aku, Blue Sky Magnate.png" id="189_Aku, Blue Sky Magnate" data-flag="@X" onclick="openSidebar('189_Aku, Blue Sky Magnate',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/188_Abyxya, Danithra Baroness.png" id="188_Abyxya, Danithra Baroness" data-flag="@X" onclick="openSidebar('188_Abyxya, Danithra Baroness',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/222_Saffrisa, Callous Empress.png" id="222_Saffrisa, Callous Empress" data-flag="@X" onclick="openSidebar('222_Saffrisa, Callous Empress',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/197_Dante, Ruler of Wintertide.png" id="197_Dante, Ruler of Wintertide" data-flag="@X" onclick="openSidebar('197_Dante, Ruler of Wintertide',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/212_Mikkino, Destined for Greatness.png" id="212_Mikkino, Destined for Greatness" data-flag="@X" onclick="openSidebar('212_Mikkino, Destined for Greatness',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/230_Trundling Egil.png" id="230_Trundling Egil" data-flag="@X" onclick="openSidebar('230_Trundling Egil',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/192_Arli, Vile Manipulator.png" id="192_Arli, Vile Manipulator" data-flag="@X" onclick="openSidebar('192_Arli, Vile Manipulator',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/225_Sigrid, Lady Ablaze.png" id="225_Sigrid, Lady Ablaze" data-flag="@X" onclick="openSidebar('225_Sigrid, Lady Ablaze',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/206_Jiu Mao, Academy Elder.png" id="206_Jiu Mao, Academy Elder" data-flag="@X" onclick="openSidebar('206_Jiu Mao, Academy Elder',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/200_Fleet Admiral Otto.png" id="200_Fleet Admiral Otto" data-flag="@X" onclick="openSidebar('200_Fleet Admiral Otto',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/215_Nox, Academy Strix.png" id="215_Nox, Academy Strix" data-flag="@X" onclick="openSidebar('215_Nox, Academy Strix',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/220_Robin, Psychotherapist.png" id="220_Robin, Psychotherapist" data-flag="@X" onclick="openSidebar('220_Robin, Psychotherapist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/226_Silverback Golobo.png" id="226_Silverback Golobo" data-flag="@X" onclick="openSidebar('226_Silverback Golobo',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/199_Firn Tracker.png" id="199_Firn Tracker" data-flag="@X" onclick="openSidebar('199_Firn Tracker',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/210_Kimar, Beacon of Hope.png" id="210_Kimar, Beacon of Hope" data-flag="@X" onclick="openSidebar('210_Kimar, Beacon of Hope',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/232_Windsong Apprentice.png" id="232_Windsong Apprentice" data-flag="@X" onclick="openSidebar('232_Windsong Apprentice',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/221_Runepearl Diver.png" id="221_Runepearl Diver" data-flag="@X" onclick="openSidebar('221_Runepearl Diver',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/227_Skhorvall Conscript.png" id="227_Skhorvall Conscript" data-flag="@X" onclick="openSidebar('227_Skhorvall Conscript',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/234_Yvara, Nature's Oath.png" id="234_Yvara, Natures Oath" data-flag="@X" onclick="openSidebar('234_Yvara, Natures Oath',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/216_Patron of the Meek.png" id="216_Patron of the Meek" data-flag="@X" onclick="openSidebar('216_Patron of the Meek',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/219_Rivha, His Impure Liege.png" id="219_Rivha, His Impure Liege" data-flag="@X" onclick="openSidebar('219_Rivha, His Impure Liege',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/211_Lady Ilyrana Jhalach.png" id="211_Lady Ilyrana Jhalach" data-flag="@X" onclick="openSidebar('211_Lady Ilyrana Jhalach',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/191_Am'atambi, Silken Poet.png" id="191_Amatambi, Silken Poet" data-flag="@X" onclick="openSidebar('191_Amatambi, Silken Poet',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/201_Giradrus, the Ashen Inferno.png" id="201_Giradrus, the Ashen Inferno" data-flag="@X" onclick="openSidebar('201_Giradrus, the Ashen Inferno',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/218_Qayim, God of Valor.png" id="218_Qayim, God of Valor" data-flag="@X" onclick="openSidebar('218_Qayim, God of Valor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/208_Jorah, the Great Profaner.png" id="208_Jorah, the Great Profaner" data-flag="@X" onclick="openSidebar('208_Jorah, the Great Profaner',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/217_Pustulous Domino.png" id="217_Pustulous Domino" data-flag="@X" onclick="openSidebar('217_Pustulous Domino',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/229_Suarim, Keeper of the Realm.png" id="229_Suarim, Keeper of the Realm" data-flag="@X" onclick="openSidebar('229_Suarim, Keeper of the Realm',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/194_Boxue, In Search of a Friend.png" id="194_Boxue, In Search of a Friend" data-flag="@X" onclick="openSidebar('194_Boxue, In Search of a Friend',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/204_Hong Mao, the People's Hero.png" id="204_Hong Mao, the Peoples Hero" data-flag="@X" onclick="openSidebar('204_Hong Mao, the Peoples Hero',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/205_Immaculate Sisters.png" id="205_Immaculate Sisters" data-flag="@X" onclick="openSidebar('205_Immaculate Sisters',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/213_Nearly Headless Jack.png" id="213_Nearly Headless Jack" data-flag="@X" onclick="openSidebar('213_Nearly Headless Jack',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/195_Bushtail Farseer.png" id="195_Bushtail Farseer" data-flag="@X" onclick="openSidebar('195_Bushtail Farseer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/223_Salty Seadog.png" id="223_Salty Seadog" data-flag="@X" onclick="openSidebar('223_Salty Seadog',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/190_Alcazar Duelist.png" id="190_Alcazar Duelist" data-flag="@X" onclick="openSidebar('190_Alcazar Duelist',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/209_Kei, Who Sees Beyond.png" id="209_Kei, Who Sees Beyond" data-flag="@X" onclick="openSidebar('209_Kei, Who Sees Beyond',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/214_Nightshade Assailant.png" id="214_Nightshade Assailant" data-flag="@X" onclick="openSidebar('214_Nightshade Assailant',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/203_Helene, Seeking Silence.png" id="203_Helene, Seeking Silence" data-flag="@X" onclick="openSidebar('203_Helene, Seeking Silence',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/224_Sheng Fa, Swift Hooligan.png" id="224_Sheng Fa, Swift Hooligan" data-flag="@X" onclick="openSidebar('224_Sheng Fa, Swift Hooligan',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/193_Borahm, the Lightforger.png" id="193_Borahm, the Lightforger" data-flag="@X" onclick="openSidebar('193_Borahm, the Lightforger',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/228_Sprightly Young Ruchi.png" id="228_Sprightly Young Ruchi" data-flag="@X" onclick="openSidebar('228_Sprightly Young Ruchi',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/196_Crain, Black-Blooded.png" id="196_Crain, Black-Blooded" data-flag="@X" onclick="openSidebar('196_Crain, Black-Blooded',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/233_Xiong Mao, Pathfinder.png" id="233_Xiong Mao, Pathfinder" data-flag="@X" onclick="openSidebar('233_Xiong Mao, Pathfinder',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/207_Jomec Thuruk.png" id="207_Jomec Thuruk" data-flag="@X" onclick="openSidebar('207_Jomec Thuruk',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/198_Dawson, Black-Hearted.png" id="198_Dawson, Black-Hearted" data-flag="@X" onclick="openSidebar('198_Dawson, Black-Hearted',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/231_Turi, the Unfathomable.png" id="231_Turi, the Unfathomable" data-flag="@X" onclick="openSidebar('231_Turi, the Unfathomable',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/202_Headmaster Rudlington.png" id="202_Headmaster Rudlington" data-flag="@X" onclick="openSidebar('202_Headmaster Rudlington',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/243_Sword of Heart and Soul.png" id="243_Sword of Heart and Soul" data-flag="@X" onclick="openSidebar('243_Sword of Heart and Soul',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/242_Spectral Cuirass.png" id="242_Spectral Cuirass" data-flag="@X" onclick="openSidebar('242_Spectral Cuirass',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/246_Valorant.png" id="246_Valorant" data-flag="@X" onclick="openSidebar('246_Valorant',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/236_Automatarmor.png" id="236_Automatarmor" data-flag="@X" onclick="openSidebar('236_Automatarmor',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/238_Flurry Familiar.png" id="238_Flurry Familiar" data-flag="@X" onclick="openSidebar('238_Flurry Familiar',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/240_Ironscale Scholar.png" id="240_Ironscale Scholar" data-flag="@X" onclick="openSidebar('240_Ironscale Scholar',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/241_Planar Skyship.png" id="241_Planar Skyship" data-flag="@X" onclick="openSidebar('241_Planar Skyship',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/235_Aldmore Chaperone.png" id="235_Aldmore Chaperone" data-flag="@X" onclick="openSidebar('235_Aldmore Chaperone',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/237_Chapel Gargoyle.png" id="237_Chapel Gargoyle" data-flag="@X" onclick="openSidebar('237_Chapel Gargoyle',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/239_Freyhild Memorial.png" id="239_Freyhild Memorial" data-flag="@X" onclick="openSidebar('239_Freyhild Memorial',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/244_Threaded Glider.png" id="244_Threaded Glider" data-flag="@X" onclick="openSidebar('244_Threaded Glider',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/245_Universal Solvent.png" id="245_Universal Solvent" data-flag="@X" onclick="openSidebar('245_Universal Solvent',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Citadel of the Aerie.png" id="0_Citadel of the Aerie" data-flag="@X" onclick="openSidebar('0_Citadel of the Aerie',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Cuxuri Trench.png" id="0_Cuxuri Trench" data-flag="@X" onclick="openSidebar('0_Cuxuri Trench',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Freyhild Highlands, Where Legends Fell.png" id="0_Freyhild Highlands, Where Legends Fell" data-flag="@X" onclick="openSidebar('0_Freyhild Highlands, Where Legends Fell',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Rovia, the Kindled Grove.png" id="0_Rovia, the Kindled Grove" data-flag="@X" onclick="openSidebar('0_Rovia, the Kindled Grove',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Tinyvale, Bastion of Bravery.png" id="0_Tinyvale, Bastion of Bravery" data-flag="@X" onclick="openSidebar('0_Tinyvale, Bastion of Bravery',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Thorne Chapel, Sanctum of His Dark Blood.png" id="0_Thorne Chapel, Sanctum of His Dark Blood" data-flag="@X" onclick="openSidebar('0_Thorne Chapel, Sanctum of His Dark Blood',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Catacombs of Castle Jhalach.png" id="0_Catacombs of Castle Jhalach" data-flag="@X" onclick="openSidebar('0_Catacombs of Castle Jhalach',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Mekini Oasis.png" id="0_Mekini Oasis" data-flag="@X" onclick="openSidebar('0_Mekini Oasis',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Cambaro, Pirate Cove.png" id="0_Cambaro, Pirate Cove" data-flag="@X" onclick="openSidebar('0_Cambaro, Pirate Cove',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/0_Ahaban Temple, the Warrior's Tutelage.png" id="0_Ahaban Temple, the Warriors Tutelage" data-flag="@X" onclick="openSidebar('0_Ahaban Temple, the Warriors Tutelage',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/254_Chilling Constellation.png" id="254_Chilling Constellation" data-flag="@X" onclick="openSidebar('254_Chilling Constellation',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/266_Sleeping Cairn.png" id="266_Sleeping Cairn" data-flag="@X" onclick="openSidebar('266_Sleeping Cairn',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/264_Ravaging Runes.png" id="264_Ravaging Runes" data-flag="@X" onclick="openSidebar('264_Ravaging Runes',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/274_Unshaken Oak.png" id="274_Unshaken Oak" data-flag="@X" onclick="openSidebar('274_Unshaken Oak',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/262_Lumbering Vale.png" id="262_Lumbering Vale" data-flag="@X" onclick="openSidebar('262_Lumbering Vale',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/250_Arctic River.png" id="250_Arctic River" data-flag="@X" onclick="openSidebar('250_Arctic River',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/257_Frigid Outpost.png" id="257_Frigid Outpost" data-flag="@X" onclick="openSidebar('257_Frigid Outpost',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/255_Desolate Monolith.png" id="255_Desolate Monolith" data-flag="@X" onclick="openSidebar('255_Desolate Monolith',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/249_Alpine Hamlet.png" id="249_Alpine Hamlet" data-flag="@X" onclick="openSidebar('249_Alpine Hamlet',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/256_Firelit Refuge.png" id="256_Firelit Refuge" data-flag="@X" onclick="openSidebar('256_Firelit Refuge',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/265_Roaming Remains.png" id="265_Roaming Remains" data-flag="@X" onclick="openSidebar('265_Roaming Remains',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/263_Muckroot Falls.png" id="263_Muckroot Falls" data-flag="@X" onclick="openSidebar('263_Muckroot Falls',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/260_Glacial Wonder.png" id="260_Glacial Wonder" data-flag="@X" onclick="openSidebar('260_Glacial Wonder',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/272_Spirit Valley.png" id="272_Spirit Valley" data-flag="@X" onclick="openSidebar('272_Spirit Valley',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/273_Sundering Terrain.png" id="273_Sundering Terrain" data-flag="@X" onclick="openSidebar('273_Sundering Terrain',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/251_Bitter Path.png" id="251_Bitter Path" data-flag="@X" onclick="openSidebar('251_Bitter Path',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/261_Harsh Copse.png" id="261_Harsh Copse" data-flag="@X" onclick="openSidebar('261_Harsh Copse',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/258_Frosted Glen.png" id="258_Frosted Glen" data-flag="@X" onclick="openSidebar('258_Frosted Glen',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/252_Brumal Fissure.png" id="252_Brumal Fissure" data-flag="@X" onclick="openSidebar('252_Brumal Fissure',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/247_Abandoned Settlement.png" id="247_Abandoned Settlement" data-flag="@X" onclick="openSidebar('247_Abandoned Settlement',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/248_Aldmore Academy.png" id="248_Aldmore Academy" data-flag="@X" onclick="openSidebar('248_Aldmore Academy',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/259_Frozen Tomb.png" id="259_Frozen Tomb" data-flag="@X" onclick="openSidebar('259_Frozen Tomb',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/253_Brumehenge.png" id="253_Brumehenge" data-flag="@X" onclick="openSidebar('253_Brumehenge',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/267_Snow-Covered Forest.png" id="267_Snow-Covered Forest" data-flag="@X" onclick="openSidebar('267_Snow-Covered Forest',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/268_Snow-Covered Island.png" id="268_Snow-Covered Island" data-flag="@X" onclick="openSidebar('268_Snow-Covered Island',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/269_Snow-Covered Mountain.png" id="269_Snow-Covered Mountain" data-flag="@X" onclick="openSidebar('269_Snow-Covered Mountain',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/270_Snow-Covered Plains.png" id="270_Snow-Covered Plains" data-flag="@X" onclick="openSidebar('270_Snow-Covered Plains',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/271_Snow-Covered Swamp.png" id="271_Snow-Covered Swamp" data-flag="@X" onclick="openSidebar('271_Snow-Covered Swamp',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/1t_Spirit.png" id="1t_Spirit" data-flag="@X" onclick="openSidebar('1t_Spirit',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/2t_Angel.png" id="2t_Angel" data-flag="@X" onclick="openSidebar('2t_Angel',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/3t_Human Army.png" id="3t_Human Army" data-flag="@X" onclick="openSidebar('3t_Human Army',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/4t_Warrior.png" id="4t_Warrior" data-flag="@X" onclick="openSidebar('4t_Warrior',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/5t_Bird.png" id="5t_Bird" data-flag="@X" onclick="openSidebar('5t_Bird',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/6t_Kraken.png" id="6t_Kraken" data-flag="@X" onclick="openSidebar('6t_Kraken',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/7t_Otter.png" id="7t_Otter" data-flag="@X" onclick="openSidebar('7t_Otter',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/8t_Tentacle.png" id="8t_Tentacle" data-flag="@X" onclick="openSidebar('8t_Tentacle',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/9t_Cleric.png" id="9t_Cleric" data-flag="@X" onclick="openSidebar('9t_Cleric',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/10t_Horus, Dark Familiar.png" id="10t_Horus, Dark Familiar" data-flag="@X" onclick="openSidebar('10t_Horus, Dark Familiar',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/11t_Warrior.png" id="11t_Warrior" data-flag="@X" onclick="openSidebar('11t_Warrior',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/12t_Hreigr, the Blizzard's Maw.png" id="12t_Hreigr, the Blizzards Maw" data-flag="@X" onclick="openSidebar('12t_Hreigr, the Blizzards Maw',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/13t_Panda.png" id="13t_Panda" data-flag="@X" onclick="openSidebar('13t_Panda',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/14t_Sand.png" id="14t_Sand" data-flag="@X" onclick="openSidebar('14t_Sand',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/15t_Plant Mutant.png" id="15t_Plant Mutant" data-flag="@X" onclick="openSidebar('15t_Plant Mutant',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/16t_Seal.png" id="16t_Seal" data-flag="@X" onclick="openSidebar('16t_Seal',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/17t_Seal of Myrmidon.png" id="17t_Seal of Myrmidon" data-flag="@X" onclick="openSidebar('17t_Seal of Myrmidon',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/18t_Elf Archer.png" id="18t_Elf Archer" data-flag="@X" onclick="openSidebar('18t_Elf Archer',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/19t_Otter Soldier.png" id="19t_Otter Soldier" data-flag="@X" onclick="openSidebar('19t_Otter Soldier',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/20t_Pirate.png" id="20t_Pirate" data-flag="@X" onclick="openSidebar('20t_Pirate',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/21t_Azos's Spine.png" id="21t_Azoss Spine" data-flag="@X" onclick="openSidebar('21t_Azoss Spine',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/22t_Banana Peel.png" id="22t_Banana Peel" data-flag="@X" onclick="openSidebar('22t_Banana Peel',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/23t_Construct.png" id="23t_Construct" data-flag="@X" onclick="openSidebar('23t_Construct',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/24t_Omen.png" id="24t_Omen" data-flag="@X" onclick="openSidebar('24t_Omen',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/25t_Treasure.png" id="25t_Treasure" data-flag="@X" onclick="openSidebar('25t_Treasure',false)"></div>
+			<div class="container"><img alt="sets/AEX-files/img/26t_Twin Shivs.png" id="26t_Twin Shivs" data-flag="@X" onclick="openSidebar('26t_Twin Shivs',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+	</div>
+</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-container">
+			<img id="sidebar_img" class="sidebar-img" src="img/er.png">
+			<img id="sidebar_h_img" class="sidebar-h-img">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
+
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+		let specialchars = "";
+
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+		
+		let images_loaded = [];
+
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
+
+		document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
+		loadImages();
+	});
+
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
+
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
+
+			if (flag === '@N') {
+				img.src = 'img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = img.alt;
+
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
+
+			img.style.visibility = 'visible';
+		});
+	}
+
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
+
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
+
+	let horizontal = false;
+
+	function imgFlip(num) {
+		tmp = document.getElementById(num).src;
+		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+		document.getElementById(num).dataset.alt_src = tmp;
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		if (horizontal && rotated_img.style.display == 'none')
+		{
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+	}
+
+	function openSidebar(id, h=false) {
+		horizontal = h;
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+		
+		document.getElementById('sidebar').style.display = 'grid';
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.src = document.getElementById(id).src;
+
+		if (horizontal)
+		{
+			rotated_img.src = document.getElementById(id).src;
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
+		document.getElementById('main-content').style.width = '60%';
+		
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
+
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+		
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+			}
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i].card_name;
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
+			}
+	</script>
+</body>
+</html>

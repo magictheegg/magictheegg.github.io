@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="sets/MVA-files/icon.png"/>
+	<link rel="stylesheet" href="/resources/header.css">
+	<title>MVA visual spoiler</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 3%;
+			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
+			position: relative;
+		}
+		.sidebar-h-img {
+			display: none;
+			transform: rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+		}
+		.sidebar-img {
+			vertical-align: middle;
+			width: 100%;
+		}
+		.close-btn {
+			background: url('img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
+		}
+		.close-btn:hover {
+			background: url('img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 3%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 20px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+			position: relative;
+			width: 100%;
+		}
+		.container img {
+			width: 100%;
+			height: auto;
+		}
+		.flip-btn {
+			background: url('img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			left: 50%;
+			top: 48%;
+			transform: translate(-50%, -50%);
+			opacity: 0.5;
+		}
+		.flip-btn:hover {
+			background: url('img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.icon-bar {
+			display: grid;
+			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
+			gap: 1px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 2%;
+			padding-bottom: 1%;
+			justify-items: center;
+			align-items: center;
+		}
+		.icon-bar .icon img {
+			width: 90%;
+			max-width: 80px;
+			height: auto;
+			display: block;
+			padding: 5%;
+			margin: auto;
+			text-align: center;
+		}
+		.icon-bar .dot img {
+			width: 50%;
+			max-width: 65px;
+			height: auto;
+			display: block;
+			margin: auto;
+			text-align: center;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<img class="preload-hidden" src="/img/dot.png" />
+	<img class="preload-hidden" src="/sets/MVA-files/logo.png" />
+	<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+		<div class="header">
+		<div class="search-grid">
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+		</div>
+	</div>
+
+	<div class="icon-bar">
+			<div class="icon"><a href="SHF-spoiler"><img src="sets/SHF-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GSS-spoiler"><img src="sets/GSS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="KND-spoiler"><img src="sets/KND-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="NJB-spoiler"><img src="sets/NJB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="AEX-spoiler"><img src="sets/AEX-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="WAS-spoiler"><img src="sets/WAS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="SGB-spoiler"><img src="sets/SGB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GQC-spoiler"><img src="sets/GQC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="DSS-spoiler"><img src="sets/DSS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="KOD-spoiler"><img src="sets/KOD-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GHQ-spoiler"><img src="sets/GHQ-files/icon.png"></img></a></div>
+		<div class="icon"><a href="TWB-spoiler"><img src="sets/TWB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="FAU-spoiler"><img src="sets/FAU-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="MVA-spoiler"><img src="sets/MVA-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="ATB-spoiler"><img src="sets/ATB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="SUR-spoiler"><img src="sets/SUR-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GNJ-spoiler"><img src="sets/GNJ-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GSC-spoiler"><img src="sets/GSC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="FAE-spoiler"><img src="sets/FAE-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="AOD-spoiler"><img src="sets/AOD-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="ICH-spoiler"><img src="sets/ICH-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="AGH-spoiler"><img src="sets/AGH-files/icon.png"></img></a></div>
+		<div class="icon"><a href="MSR-spoiler"><img src="sets/MSR-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="GLC-spoiler"><img src="sets/GLC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="img/dot.png"></img></div>
+		<div class="icon"><a href="ACE-spoiler"><img src="sets/ACE-files/icon.png"></img></a></div>
+
+		</div>
+		<div class="banner">
+		<img class="logo" src="sets/MVA-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+				<div class="container"><img alt="sets/MVA-files/img/16_Gift of Fealty.png" id="16_Gift of Fealty" data-flag="@X" onclick="openSidebar('16_Gift of Fealty',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/52_Long Night in the Lab.png" id="52_Long Night in the Lab" data-flag="@X" onclick="openSidebar('52_Long Night in the Lab',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/90_Mad Queen's Contract.png" id="90_Mad Queens Contract" data-flag="@X" onclick="openSidebar('90_Mad Queens Contract',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/114_Grigorhon the Vast.png" id="114_Grigorhon the Vast" data-flag="@X" onclick="openSidebar('114_Grigorhon the Vast',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/144_Elder of the Arbor Song.png" id="144_Elder of the Arbor Song" data-flag="@X" onclick="openSidebar('144_Elder of the Arbor Song',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/6_Brie, Daughter of the Council.png" id="6_Brie, Daughter of the Council" data-flag="@X" onclick="openSidebar('6_Brie, Daughter of the Council',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/36_Aether Warp.png" id="36_Aether Warp" data-flag="@X" onclick="openSidebar('36_Aether Warp',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/70_Aravien, Crypt Liturgist.png" id="70_Aravien, Crypt Liturgist" data-flag="@X" onclick="openSidebar('70_Aravien, Crypt Liturgist',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/109_Fiery Justice.png" id="109_Fiery Justice" data-flag="@X" onclick="openSidebar('109_Fiery Justice',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/137_The Ancient Awaits.png" id="137_The Ancient Awaits" data-flag="@X" onclick="openSidebar('137_The Ancient Awaits',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/11_Count Cockatoo.png" id="11_Count Cockatoo" data-flag="@X" onclick="openSidebar('11_Count Cockatoo',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/37_Ashscatter Drake.png" id="37_Ashscatter Drake" data-flag="@X" onclick="openSidebar('37_Ashscatter Drake',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/72_Bathe in Blood.png" id="72_Bathe in Blood" data-flag="@X" onclick="openSidebar('72_Bathe in Blood',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/115_Hobblin' Bomb Squad.png" id="115_Hobblin Bomb Squad" data-flag="@X" onclick="openSidebar('115_Hobblin Bomb Squad',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/148_Gaeleth of the First Union.png" id="148_Gaeleth of the First Union" data-flag="@X" onclick="openSidebar('148_Gaeleth of the First Union',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/13_Detention Officer.png" id="13_Detention Officer" data-flag="@X" onclick="openSidebar('13_Detention Officer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/50_Kritch, Lab Rat.png" id="50_Kritch, Lab Rat" data-flag="@X" onclick="openSidebar('50_Kritch, Lab Rat',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/82_End of an Era.png" id="82_End of an Era" data-flag="@X" onclick="openSidebar('82_End of an Era',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/117_Iyago, Chaos Warlock.png" id="117_Iyago, Chaos Warlock" data-flag="@X" onclick="openSidebar('117_Iyago, Chaos Warlock',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/153_Master Minister Aereyn.png" id="153_Master Minister Aereyn" data-flag="@X" onclick="openSidebar('153_Master Minister Aereyn',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/18_Golem Retainer.png" id="18_Golem Retainer" data-flag="@X" onclick="openSidebar('18_Golem Retainer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/58_Raveria, Library Sage.png" id="58_Raveria, Library Sage" data-flag="@X" onclick="openSidebar('58_Raveria, Library Sage',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/84_Grisly Pardoner.png" id="84_Grisly Pardoner" data-flag="@X" onclick="openSidebar('84_Grisly Pardoner',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/121_Mirror Mastery.png" id="121_Mirror Mastery" data-flag="@X" onclick="openSidebar('121_Mirror Mastery',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/163_Rootwhomper.png" id="163_Rootwhomper" data-flag="@X" onclick="openSidebar('163_Rootwhomper',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/26_Qinhana Skysailer.png" id="26_Qinhana Skysailer" data-flag="@X" onclick="openSidebar('26_Qinhana Skysailer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/66_Tempering Witchcraft.png" id="66_Tempering Witchcraft" data-flag="@X" onclick="openSidebar('66_Tempering Witchcraft',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/85_Hemophage Coveter.png" id="85_Hemophage Coveter" data-flag="@X" onclick="openSidebar('85_Hemophage Coveter',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/126_Puppeteer Ori.png" id="126_Puppeteer Ori" data-flag="@X" onclick="openSidebar('126_Puppeteer Ori',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/164_Seismic Landslide.png" id="164_Seismic Landslide" data-flag="@X" onclick="openSidebar('164_Seismic Landslide',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/28_Sheil, Academy Partisan.png" id="28_Sheil, Academy Partisan" data-flag="@X" onclick="openSidebar('28_Sheil, Academy Partisan',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/68_Worldreader Djinn.png" id="68_Worldreader Djinn" data-flag="@X" onclick="openSidebar('68_Worldreader Djinn',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/86_Hestia, Equitable Queen.png" id="86_Hestia, Equitable Queen" data-flag="@X" onclick="openSidebar('86_Hestia, Equitable Queen',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/132_Sootmaw Sovereign.png" id="132_Sootmaw Sovereign" data-flag="@X" onclick="openSidebar('132_Sootmaw Sovereign',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/169_Unflinching Forager.png" id="169_Unflinching Forager" data-flag="@X" onclick="openSidebar('169_Unflinching Forager',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/3_Anointed Honorblade.png" id="3_Anointed Honorblade" data-flag="@X" onclick="openSidebar('3_Anointed Honorblade',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/38_Basilisk Trainer.png" id="38_Basilisk Trainer" data-flag="@X" onclick="openSidebar('38_Basilisk Trainer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/77_Daunting Nightwatch.png" id="77_Daunting Nightwatch" data-flag="@X" onclick="openSidebar('77_Daunting Nightwatch',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/108_Cliffside Crusher.png" id="108_Cliffside Crusher" data-flag="@X" onclick="openSidebar('108_Cliffside Crusher',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/140_Burgeoning Roots.png" id="140_Burgeoning Roots" data-flag="@X" onclick="openSidebar('140_Burgeoning Roots',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/7_Call of the Honor Guard.png" id="7_Call of the Honor Guard" data-flag="@X" onclick="openSidebar('7_Call of the Honor Guard',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/39_Belle of the Ball.png" id="39_Belle of the Ball" data-flag="@X" onclick="openSidebar('39_Belle of the Ball',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/79_Dragonhide Hunter.png" id="79_Dragonhide Hunter" data-flag="@X" onclick="openSidebar('79_Dragonhide Hunter',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/111_Gauntlet Champion.png" id="111_Gauntlet Champion" data-flag="@X" onclick="openSidebar('111_Gauntlet Champion',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/143_Elder of Branches.png" id="143_Elder of Branches" data-flag="@X" onclick="openSidebar('143_Elder of Branches',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/12_Curio Purveyor.png" id="12_Curio Purveyor" data-flag="@X" onclick="openSidebar('12_Curio Purveyor',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/41_Drakeform.png" id="41_Drakeform" data-flag="@X" onclick="openSidebar('41_Drakeform',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/81_East Wing Butcher.png" id="81_East Wing Butcher" data-flag="@X" onclick="openSidebar('81_East Wing Butcher',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/113_Goblin Harpist.png" id="113_Goblin Harpist" data-flag="@X" onclick="openSidebar('113_Goblin Harpist',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/151_Hinterland Pioneer.png" id="151_Hinterland Pioneer" data-flag="@X" onclick="openSidebar('151_Hinterland Pioneer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/14_Emissary of Grace.png" id="14_Emissary of Grace" data-flag="@X" onclick="openSidebar('14_Emissary of Grace',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/54_Peruse.png" id="54_Peruse" data-flag="@X" onclick="openSidebar('54_Peruse',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/83_Grave Mistake.png" id="83_Grave Mistake" data-flag="@X" onclick="openSidebar('83_Grave Mistake',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/119_Machina Maestro.png" id="119_Machina Maestro" data-flag="@X" onclick="openSidebar('119_Machina Maestro',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/152_Maiden of the Dell.png" id="152_Maiden of the Dell" data-flag="@X" onclick="openSidebar('152_Maiden of the Dell',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/19_Handiwork Treasurer.png" id="19_Handiwork Treasurer" data-flag="@X" onclick="openSidebar('19_Handiwork Treasurer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/57_Prophetic Drake.png" id="57_Prophetic Drake" data-flag="@X" onclick="openSidebar('57_Prophetic Drake',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/87_Hunt for the Truth.png" id="87_Hunt for the Truth" data-flag="@X" onclick="openSidebar('87_Hunt for the Truth',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/123_One Man's Trash.png" id="123_One Mans Trash" data-flag="@X" onclick="openSidebar('123_One Mans Trash',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/154_Memories of Yore.png" id="154_Memories of Yore" data-flag="@X" onclick="openSidebar('154_Memories of Yore',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/24_Ouhan Shepherd.png" id="24_Ouhan Shepherd" data-flag="@X" onclick="openSidebar('24_Ouhan Shepherd',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/60_Rewrite History.png" id="60_Rewrite History" data-flag="@X" onclick="openSidebar('60_Rewrite History',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/89_Lady Foxglove.png" id="89_Lady Foxglove" data-flag="@X" onclick="openSidebar('89_Lady Foxglove',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/128_Rallying Cry.png" id="128_Rallying Cry" data-flag="@X" onclick="openSidebar('128_Rallying Cry',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/158_Prescient Treespeaker.png" id="158_Prescient Treespeaker" data-flag="@X" onclick="openSidebar('158_Prescient Treespeaker',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/25_Paramount Valor.png" id="25_Paramount Valor" data-flag="@X" onclick="openSidebar('25_Paramount Valor',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/63_Skilled Animator.png" id="63_Skilled Animator" data-flag="@X" onclick="openSidebar('63_Skilled Animator',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/91_Plague Study.png" id="91_Plague Study" data-flag="@X" onclick="openSidebar('91_Plague Study',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/131_Scorch.png" id="131_Scorch" data-flag="@X" onclick="openSidebar('131_Scorch',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/160_Qinhana Matron.png" id="160_Qinhana Matron" data-flag="@X" onclick="openSidebar('160_Qinhana Matron',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/30_Snowfield Sentry.png" id="30_Snowfield Sentry" data-flag="@X" onclick="openSidebar('30_Snowfield Sentry',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/64_Sleet Screamer.png" id="64_Sleet Screamer" data-flag="@X" onclick="openSidebar('64_Sleet Screamer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/96_Show the Ropes.png" id="96_Show the Ropes" data-flag="@X" onclick="openSidebar('96_Show the Ropes',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/135_Warped Visions.png" id="135_Warped Visions" data-flag="@X" onclick="openSidebar('135_Warped Visions',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/161_Quivering Willow.png" id="161_Quivering Willow" data-flag="@X" onclick="openSidebar('161_Quivering Willow',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/34_Without a Trace.png" id="34_Without a Trace" data-flag="@X" onclick="openSidebar('34_Without a Trace',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/65_Take the Bait.png" id="65_Take the Bait" data-flag="@X" onclick="openSidebar('65_Take the Bait',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/98_Skitter of Spiders.png" id="98_Skitter of Spiders" data-flag="@X" onclick="openSidebar('98_Skitter of Spiders',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/136_Witless Warleader.png" id="136_Witless Warleader" data-flag="@X" onclick="openSidebar('136_Witless Warleader',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/170_Woodland Provocateur.png" id="170_Woodland Provocateur" data-flag="@X" onclick="openSidebar('170_Woodland Provocateur',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/1_Aerodynamic Journey.png" id="1_Aerodynamic Journey" data-flag="@X" onclick="openSidebar('1_Aerodynamic Journey',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/35_Academic Obligations.png" id="35_Academic Obligations" data-flag="@X" onclick="openSidebar('35_Academic Obligations',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/69_Agent of War.png" id="69_Agent of War" data-flag="@X" onclick="openSidebar('69_Agent of War',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/103_Amateur Pyromancer.png" id="103_Amateur Pyromancer" data-flag="@X" onclick="openSidebar('103_Amateur Pyromancer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/138_Botany Experiment.png" id="138_Botany Experiment" data-flag="@X" onclick="openSidebar('138_Botany Experiment',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/2_Aether Sculptor.png" id="2_Aether Sculptor" data-flag="@X" onclick="openSidebar('2_Aether Sculptor',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/40_Cavern Cartographer.png" id="40_Cavern Cartographer" data-flag="@X" onclick="openSidebar('40_Cavern Cartographer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/71_Arena Defiler.png" id="71_Arena Defiler" data-flag="@X" onclick="openSidebar('71_Arena Defiler',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/104_Automata Welder.png" id="104_Automata Welder" data-flag="@X" onclick="openSidebar('104_Automata Welder',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/139_Branchbashing.png" id="139_Branchbashing" data-flag="@X" onclick="openSidebar('139_Branchbashing',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/4_Aspiring Aeronaut.png" id="4_Aspiring Aeronaut" data-flag="@X" onclick="openSidebar('4_Aspiring Aeronaut',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/42_Eavesdrop.png" id="42_Eavesdrop" data-flag="@X" onclick="openSidebar('42_Eavesdrop',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/73_Blackthorn Knight.png" id="73_Blackthorn Knight" data-flag="@X" onclick="openSidebar('73_Blackthorn Knight',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/105_Bounty Plunderer.png" id="105_Bounty Plunderer" data-flag="@X" onclick="openSidebar('105_Bounty Plunderer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/141_Chomp.png" id="141_Chomp" data-flag="@X" onclick="openSidebar('141_Chomp',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/5_Bestowal of Honors.png" id="5_Bestowal of Honors" data-flag="@X" onclick="openSidebar('5_Bestowal of Honors',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/43_Engine Assembler.png" id="43_Engine Assembler" data-flag="@X" onclick="openSidebar('43_Engine Assembler',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/74_Byway Interrogators.png" id="74_Byway Interrogators" data-flag="@X" onclick="openSidebar('74_Byway Interrogators',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/106_Cauterize.png" id="106_Cauterize" data-flag="@X" onclick="openSidebar('106_Cauterize',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/142_Dowsing Baobab.png" id="142_Dowsing Baobab" data-flag="@X" onclick="openSidebar('142_Dowsing Baobab',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/8_Cloaked Legionnaire.png" id="8_Cloaked Legionnaire" data-flag="@X" onclick="openSidebar('8_Cloaked Legionnaire',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/44_Erratic Augury.png" id="44_Erratic Augury" data-flag="@X" onclick="openSidebar('44_Erratic Augury',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/75_Crimson Butcher.png" id="75_Crimson Butcher" data-flag="@X" onclick="openSidebar('75_Crimson Butcher',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/107_Charred Templar.png" id="107_Charred Templar" data-flag="@X" onclick="openSidebar('107_Charred Templar',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/145_Elvish Trailblazer.png" id="145_Elvish Trailblazer" data-flag="@X" onclick="openSidebar('145_Elvish Trailblazer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/9_Cloudgrazer Knight.png" id="9_Cloudgrazer Knight" data-flag="@X" onclick="openSidebar('9_Cloudgrazer Knight',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/45_Essence Scatter.png" id="45_Essence Scatter" data-flag="@X" onclick="openSidebar('45_Essence Scatter',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/76_Darkheart Neophyte.png" id="76_Darkheart Neophyte" data-flag="@X" onclick="openSidebar('76_Darkheart Neophyte',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/110_The Fires Within.png" id="110_The Fires Within" data-flag="@X" onclick="openSidebar('110_The Fires Within',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/146_Fierce Combatant.png" id="146_Fierce Combatant" data-flag="@X" onclick="openSidebar('146_Fierce Combatant',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/10_Continuum Tourist.png" id="10_Continuum Tourist" data-flag="@X" onclick="openSidebar('10_Continuum Tourist',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/46_Fading Memory.png" id="46_Fading Memory" data-flag="@X" onclick="openSidebar('46_Fading Memory',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/78_Definitive Expulsion.png" id="78_Definitive Expulsion" data-flag="@X" onclick="openSidebar('78_Definitive Expulsion',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/112_Goblin Fireshot.png" id="112_Goblin Fireshot" data-flag="@X" onclick="openSidebar('112_Goblin Fireshot',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/147_Flora Hermit.png" id="147_Flora Hermit" data-flag="@X" onclick="openSidebar('147_Flora Hermit',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/15_Falconform.png" id="15_Falconform" data-flag="@X" onclick="openSidebar('15_Falconform',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/47_Fickle Fables.png" id="47_Fickle Fables" data-flag="@X" onclick="openSidebar('47_Fickle Fables',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/80_Dusk Sentry.png" id="80_Dusk Sentry" data-flag="@X" onclick="openSidebar('80_Dusk Sentry',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/116_Howling Goblin.png" id="116_Howling Goblin" data-flag="@X" onclick="openSidebar('116_Howling Goblin',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/149_Grove Stomper.png" id="149_Grove Stomper" data-flag="@X" onclick="openSidebar('149_Grove Stomper',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/17_Gnomish Skirmisher.png" id="17_Gnomish Skirmisher" data-flag="@X" onclick="openSidebar('17_Gnomish Skirmisher',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/48_Gemcavern Leviathan.png" id="48_Gemcavern Leviathan" data-flag="@X" onclick="openSidebar('48_Gemcavern Leviathan',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/88_Illicit Studies.png" id="88_Illicit Studies" data-flag="@X" onclick="openSidebar('88_Illicit Studies',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/118_Juvenile Hellkite.png" id="118_Juvenile Hellkite" data-flag="@X" onclick="openSidebar('118_Juvenile Hellkite',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/150_Heroic Ride.png" id="150_Heroic Ride" data-flag="@X" onclick="openSidebar('150_Heroic Ride',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/20_Liege of Magnus.png" id="20_Liege of Magnus" data-flag="@X" onclick="openSidebar('20_Liege of Magnus',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/49_Journeyman's Respite.png" id="49_Journeymans Respite" data-flag="@X" onclick="openSidebar('49_Journeymans Respite',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/92_Plunder the Annals.png" id="92_Plunder the Annals" data-flag="@X" onclick="openSidebar('92_Plunder the Annals',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/120_Magmatic Insight.png" id="120_Magmatic Insight" data-flag="@X" onclick="openSidebar('120_Magmatic Insight',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/155_Migratory Elk.png" id="155_Migratory Elk" data-flag="@X" onclick="openSidebar('155_Migratory Elk',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/21_Lustrous Herald.png" id="21_Lustrous Herald" data-flag="@X" onclick="openSidebar('21_Lustrous Herald',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/51_Lagoon Crustacean.png" id="51_Lagoon Crustacean" data-flag="@X" onclick="openSidebar('51_Lagoon Crustacean',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/93_Sanguine Devotee.png" id="93_Sanguine Devotee" data-flag="@X" onclick="openSidebar('93_Sanguine Devotee',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/122_Molten Bellow.png" id="122_Molten Bellow" data-flag="@X" onclick="openSidebar('122_Molten Bellow',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/156_Mossy Snagtooth.png" id="156_Mossy Snagtooth" data-flag="@X" onclick="openSidebar('156_Mossy Snagtooth',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/22_Munitions Assembler.png" id="22_Munitions Assembler" data-flag="@X" onclick="openSidebar('22_Munitions Assembler',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/53_Moonlit Conservatory.png" id="53_Moonlit Conservatory" data-flag="@X" onclick="openSidebar('53_Moonlit Conservatory',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/94_Scourge of Magnus.png" id="94_Scourge of Magnus" data-flag="@X" onclick="openSidebar('94_Scourge of Magnus',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/124_Palpate Riches.png" id="124_Palpate Riches" data-flag="@X" onclick="openSidebar('124_Palpate Riches',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/157_Nesting Spiders.png" id="157_Nesting Spiders" data-flag="@X" onclick="openSidebar('157_Nesting Spiders',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/23_Oathsworn Duelist.png" id="23_Oathsworn Duelist" data-flag="@X" onclick="openSidebar('23_Oathsworn Duelist',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/55_Prescient Drake.png" id="55_Prescient Drake" data-flag="@X" onclick="openSidebar('55_Prescient Drake',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/95_Shank.png" id="95_Shank" data-flag="@X" onclick="openSidebar('95_Shank',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/125_Primordial Roar.png" id="125_Primordial Roar" data-flag="@X" onclick="openSidebar('125_Primordial Roar',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/159_Qinhana Cavalry.png" id="159_Qinhana Cavalry" data-flag="@X" onclick="openSidebar('159_Qinhana Cavalry',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/27_Rebuff.png" id="27_Rebuff" data-flag="@X" onclick="openSidebar('27_Rebuff',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/56_Professor's Dismissal.png" id="56_Professors Dismissal" data-flag="@X" onclick="openSidebar('56_Professors Dismissal',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/97_Skeleton Archer.png" id="97_Skeleton Archer" data-flag="@X" onclick="openSidebar('97_Skeleton Archer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/127_Pyrewright Trainee.png" id="127_Pyrewright Trainee" data-flag="@X" onclick="openSidebar('127_Pyrewright Trainee',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/162_Reclaimed Acreage.png" id="162_Reclaimed Acreage" data-flag="@X" onclick="openSidebar('162_Reclaimed Acreage',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/29_Siege Falcon.png" id="29_Siege Falcon" data-flag="@X" onclick="openSidebar('29_Siege Falcon',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/59_Relic Raven.png" id="59_Relic Raven" data-flag="@X" onclick="openSidebar('59_Relic Raven',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/99_Strangulate.png" id="99_Strangulate" data-flag="@X" onclick="openSidebar('99_Strangulate',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/129_Recruitment Faire.png" id="129_Recruitment Faire" data-flag="@X" onclick="openSidebar('129_Recruitment Faire',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/165_Sparring Campaigner.png" id="165_Sparring Campaigner" data-flag="@X" onclick="openSidebar('165_Sparring Campaigner',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/31_Thopter Engineering.png" id="31_Thopter Engineering" data-flag="@X" onclick="openSidebar('31_Thopter Engineering',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/61_Sample Collector.png" id="61_Sample Collector" data-flag="@X" onclick="openSidebar('61_Sample Collector',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/100_Student of Dark Arcana.png" id="100_Student of Dark Arcana" data-flag="@X" onclick="openSidebar('100_Student of Dark Arcana',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/130_Riptooth Racketeer.png" id="130_Riptooth Racketeer" data-flag="@X" onclick="openSidebar('130_Riptooth Racketeer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/166_Timber Titan.png" id="166_Timber Titan" data-flag="@X" onclick="openSidebar('166_Timber Titan',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/32_Unequip.png" id="32_Unequip" data-flag="@X" onclick="openSidebar('32_Unequip',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/62_Shoreline Shrieker.png" id="62_Shoreline Shrieker" data-flag="@X" onclick="openSidebar('62_Shoreline Shrieker',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/101_Swiftly through the Night.png" id="101_Swiftly through the Night" data-flag="@X" onclick="openSidebar('101_Swiftly through the Night',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/133_Territorial Giant.png" id="133_Territorial Giant" data-flag="@X" onclick="openSidebar('133_Territorial Giant',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/167_Travel By Night.png" id="167_Travel By Night" data-flag="@X" onclick="openSidebar('167_Travel By Night',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/33_War Eagle.png" id="33_War Eagle" data-flag="@X" onclick="openSidebar('33_War Eagle',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/67_Totally Lost.png" id="67_Totally Lost" data-flag="@X" onclick="openSidebar('67_Totally Lost',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/102_Tormenting Rain.png" id="102_Tormenting Rain" data-flag="@X" onclick="openSidebar('102_Tormenting Rain',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/134_Touch of Hysteria.png" id="134_Touch of Hysteria" data-flag="@X" onclick="openSidebar('134_Touch of Hysteria',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/168_True Volley.png" id="168_True Volley" data-flag="@X" onclick="openSidebar('168_True Volley',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/183_Tinker Savant.png" id="183_Tinker Savant" data-flag="@X" onclick="openSidebar('183_Tinker Savant',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/184_Virtuoso of Delusions.png" id="184_Virtuoso of Delusions" data-flag="@X" onclick="openSidebar('184_Virtuoso of Delusions',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/175_Cackling Forge-Feeder.png" id="175_Cackling Forge-Feeder" data-flag="@X" onclick="openSidebar('175_Cackling Forge-Feeder',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/174_Basalt Miner.png" id="174_Basalt Miner" data-flag="@X" onclick="openSidebar('174_Basalt Miner',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/177_Gleaming Aviator.png" id="177_Gleaming Aviator" data-flag="@X" onclick="openSidebar('177_Gleaming Aviator',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/176_Callous Honor Guard.png" id="176_Callous Honor Guard" data-flag="@X" onclick="openSidebar('176_Callous Honor Guard',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/179_Master Tracker.png" id="179_Master Tracker" data-flag="@X" onclick="openSidebar('179_Master Tracker',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/172_Ardent Pioneer.png" id="172_Ardent Pioneer" data-flag="@X" onclick="openSidebar('172_Ardent Pioneer',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/181_Porter of the Roost.png" id="181_Porter of the Roost" data-flag="@X" onclick="openSidebar('181_Porter of the Roost',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/173_Barracks Sergeant.png" id="173_Barracks Sergeant" data-flag="@X" onclick="openSidebar('173_Barracks Sergeant',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/178_Herve and Adela Devereaux.png" id="178_Herve and Adela Devereaux" data-flag="@X" onclick="openSidebar('178_Herve and Adela Devereaux',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/182_Syn, Spectral Empress.png" id="182_Syn, Spectral Empress" data-flag="@X" onclick="openSidebar('182_Syn, Spectral Empress',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/180_Odelia Driskelle.png" id="180_Odelia Driskelle" data-flag="@X" onclick="openSidebar('180_Odelia Driskelle',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/171_Aghar, the Last Dragonkin.png" id="171_Aghar, the Last Dragonkin" data-flag="@X" onclick="openSidebar('171_Aghar, the Last Dragonkin',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/185_Warleader Grata.png" id="185_Warleader Grata" data-flag="@X" onclick="openSidebar('185_Warleader Grata',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/186_Aqaath of the Cosmos.png" id="186_Aqaath of the Cosmos" data-flag="@X" onclick="openSidebar('186_Aqaath of the Cosmos',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/188_Citadel Colossus.png" id="188_Citadel Colossus" data-flag="@X" onclick="openSidebar('188_Citadel Colossus',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/191_Forbidden Lamp.png" id="191_Forbidden Lamp" data-flag="@X" onclick="openSidebar('191_Forbidden Lamp',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/196_Statuary Crystal.png" id="196_Statuary Crystal" data-flag="@X" onclick="openSidebar('196_Statuary Crystal',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/187_Ballasted Thoptercade.png" id="187_Ballasted Thoptercade" data-flag="@X" onclick="openSidebar('187_Ballasted Thoptercade',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/189_Coveted Statuette.png" id="189_Coveted Statuette" data-flag="@X" onclick="openSidebar('189_Coveted Statuette',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/190_Dragonlord's Carapace.png" id="190_Dragonlords Carapace" data-flag="@X" onclick="openSidebar('190_Dragonlords Carapace',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/192_Halcyon Colossus.png" id="192_Halcyon Colossus" data-flag="@X" onclick="openSidebar('192_Halcyon Colossus',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/193_Inexorable Chariot.png" id="193_Inexorable Chariot" data-flag="@X" onclick="openSidebar('193_Inexorable Chariot',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/194_Leaky Chronicle.png" id="194_Leaky Chronicle" data-flag="@X" onclick="openSidebar('194_Leaky Chronicle',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/195_Quivering Strix.png" id="195_Quivering Strix" data-flag="@X" onclick="openSidebar('195_Quivering Strix',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/197_Training Rapier.png" id="197_Training Rapier" data-flag="@X" onclick="openSidebar('197_Training Rapier',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/198_Traveler's Amulet.png" id="198_Travelers Amulet" data-flag="@X" onclick="openSidebar('198_Travelers Amulet',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/199_Blue Loon Lagoon.png" id="199_Blue Loon Lagoon" data-flag="@X" onclick="openSidebar('199_Blue Loon Lagoon',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/200_Forsaken Citadel.png" id="200_Forsaken Citadel" data-flag="@X" onclick="openSidebar('200_Forsaken Citadel',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/202_Mercurial Pinnacle.png" id="202_Mercurial Pinnacle" data-flag="@X" onclick="openSidebar('202_Mercurial Pinnacle',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/203_Polyp Tillage.png" id="203_Polyp Tillage" data-flag="@X" onclick="openSidebar('203_Polyp Tillage',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/204_Radiant Sierra.png" id="204_Radiant Sierra" data-flag="@X" onclick="openSidebar('204_Radiant Sierra',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/201_Hive of Legs.png" id="201_Hive of Legs" data-flag="@X" onclick="openSidebar('201_Hive of Legs',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/1t_Thopter.png" id="1t_Thopter" data-flag="@X" onclick="openSidebar('1t_Thopter',false)"></div>
+			<div class="container"><img alt="sets/MVA-files/img/2t_Thopter.png" id="2t_Thopter" data-flag="@X" onclick="openSidebar('2t_Thopter',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+	</div>
+</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-container">
+			<img id="sidebar_img" class="sidebar-img" src="img/er.png">
+			<img id="sidebar_h_img" class="sidebar-h-img">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
+
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+		let specialchars = "";
+
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+		
+		let images_loaded = [];
+
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
+
+		
+		loadImages();
+	});
+
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
+
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
+
+			if (flag === '@N') {
+				img.src = 'img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = img.alt;
+
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
+
+			img.style.visibility = 'visible';
+		});
+	}
+
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
+
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
+
+	let horizontal = false;
+
+	function imgFlip(num) {
+		tmp = document.getElementById(num).src;
+		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+		document.getElementById(num).dataset.alt_src = tmp;
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		if (horizontal && rotated_img.style.display == 'none')
+		{
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+	}
+
+	function openSidebar(id, h=false) {
+		horizontal = h;
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+		
+		document.getElementById('sidebar').style.display = 'grid';
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.src = document.getElementById(id).src;
+
+		if (horizontal)
+		{
+			rotated_img.src = document.getElementById(id).src;
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
+		document.getElementById('main-content').style.width = '60%';
+		
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
+
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+		
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+			}
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i].card_name;
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
+			}
+	</script>
+</body>
+</html>
