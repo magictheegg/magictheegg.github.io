@@ -218,7 +218,7 @@ def generateHTML(card):
 	cards = cards['cards']
 	for i in range(len(cards)):
 		card_stats = cards[i]
-		if card_stats['card_name'] == card_name and card_stats['type'] == card_type and (card_stats['set'] != code or card_stats['number'] != card_num) and 'Token' not in card_type:
+		if card_stats['card_name'] == card_name and card_stats['type'] == card_type and (card_stats['set'] != code or card_stats['number'] != card_num) and 'token' not in card_stats['shape']:
 			other_printings.append(card_stats)
 	if other_printings != []:
 		html_content += '''<div class="printings" id="other-printings">Other Printings: '''

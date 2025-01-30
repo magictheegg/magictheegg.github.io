@@ -4,7 +4,7 @@ import os
 import json
 from PIL import Image
 
-def process_image(img_path, img_type):
+def process_image(img_path):
     img = Image.open(img_path).convert("RGBA")
 
     width, height = img.size
@@ -26,16 +26,15 @@ def process_image(img_path, img_type):
             elif x >= pixels_to_chop[y] and x < width - pixels_to_chop[y]:
                 new_pixels[x, y] = pixels[x, y]
 
-    new_img.save(img_path, img_type)
+    new_img.save(img_path, "PNG")
 
 def batch_process_images(setCode):
     input_dir = os.path.join('sets', setCode + '-files', 'img')
 
     for file_name in os.listdir(input_dir):
-        if file_name.endswith(".png") or file_name.endswith(".jpg"):
-            img_type = file_name[-3:]
+        if file_name.endswith(".png"):
             img_path = os.path.join(input_dir, file_name)
             print(f"Processing {file_name}...")
-            process_image(img_path, img_type)
+            process_image(img_path)
 
     print("Batch processing of " + setCode + " images complete.")

@@ -24,7 +24,7 @@ def convertList(setCode):
 	#F: This gets any alt-arts in a single set and adds their card number to a list of cards to skip.
 	for i in range(len(cards)):
 		for j in range(i):
-			if cards[i]['card_name'] == cards[j]['card_name'] and "token" not in cards[j]['shape'] and "Basic" not in cards[j]['type']:
+			if cards[i]['card_name'] == cards[j]['card_name'] and "token" not in cards[i]['shape'] and "Basic" not in cards[i]['type']:
 				skipdex.append(cards[j]['number'])
 	
 	master_list = []
@@ -471,7 +471,7 @@ def convertList(setCode):
 				ca = card_arr[row]
 				master_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape']})
 
-	if land_shard_count >= 5 or land_wedge_count >= 5:
+	if (land_shard_count >= 5 and land_wedge_count > 0) or (land_shard_count > 0 and land_wedge_count >= 5):
 		for x in range(5):
 			master_list.append(blank2)
 
@@ -568,5 +568,7 @@ def convertList(setCode):
 		json.dump(master_list, f)
 
 def colorEquals(color, match):
-
 	return sorted("".join(dict.fromkeys(color))) == sorted("".join(dict.fromkeys(match)))
+
+if __name__ == "__main__":
+	convertList("GNJ")
