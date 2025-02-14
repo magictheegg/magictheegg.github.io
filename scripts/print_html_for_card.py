@@ -330,7 +330,9 @@ def generateHTML():
 		});
 
 		function search() {
-			window.location = ("/search?search=" + document.getElementById("search").value);
+			const url = new URL('search', window.location.origin);
+			url.searchParams.append('search', document.getElementById("search").value);
+			window.location.href = url;
 		}
 
 		'''
@@ -347,4 +349,3 @@ def generateHTML():
 	# Write the HTML content to the output HTML file
 	with open(output_html_file, 'w', encoding='utf-8-sig') as file:
 		file.write(html_content)
-		print("card HTML page written")

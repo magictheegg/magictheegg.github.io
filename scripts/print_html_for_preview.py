@@ -446,10 +446,10 @@ def generateHTML(setCode):
 		const sidebar_img = document.getElementById('sidebar_img');
 
 		sidebar_img.src = document.getElementById(id).src;
+		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
 
 		if (horizontal && sidebar_img.src.includes("_front"))
 		{
-			rotated_img.src = document.getElementById(id).src;
 			rotated_img.style.display = "block";
 			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
 		}
@@ -488,15 +488,17 @@ def generateHTML(setCode):
 	}
 
 	document.getElementById("search").addEventListener("keypress", function(event) {
-			if (event.key === "Enter") {
-				event.preventDefault();
-				search();
-			}
-		});
-
-		function search() {
-			window.location = ("/search?search=" + document.getElementById("search").value);
+		if (event.key === "Enter") {
+			event.preventDefault();
+			search();
 		}
+	});
+
+	function search() {
+		const url = new URL('search', window.location.origin);
+		url.searchParams.append('search', document.getElementById("search").value);
+		window.location.href = url;
+	}
 
 		'''
 	
