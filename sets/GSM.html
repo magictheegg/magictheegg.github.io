@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="/resources/header.css">
 </head>
 <style>
+		@font-face {
+			font-family: 'Beleren Small Caps';
+			src: url('/resources/beleren-caps.ttf');
+		}
 	@font-face {
 		font-family: Beleren;
 		src: url('/resources/beleren.ttf');
@@ -41,6 +45,7 @@
 		padding-bottom: 10px;
 		justify-self: left;
 		width: 100%;
+		white-space: nowrap;
 	}
 	.set-banner img {
 		width: 50px;
@@ -73,6 +78,31 @@
 		font-size: 13px;
 		height: 30px;
 	}
+	.button-container {
+		width: 50%;
+		max-width: 900px;
+		margin: auto;
+		padding: 15px 0 5px 0;
+		border-bottom: 2px solid #171717;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	.button-container button {
+		font-family: Beleren;
+		font-size: 30px;
+		width: 100%;
+		justify-self: center;
+		border: none;
+		background: none;
+		cursor: pointer;
+	}
+	.button-container button:hover {
+		color: #797979;
+	}
+	.button-container button:disabled {
+		color: #797979;
+		cursor: auto;
+	}
 	.grid-container {
 		display: grid;
 		grid-template-columns: auto;
@@ -80,6 +110,12 @@
 		padding-bottom: 30px;
 		max-width: 1200px;
 		margin: auto;
+	}
+	.splash-container {
+		width: 70%;
+		max-width: 1200px;
+		margin: auto;
+		justify-items: center;
 	}
 	.image-grid-container {
 		display: grid;
@@ -188,6 +224,16 @@
 		font-size: .97vw;
 		color: rgba(0, 0, 0, 0);
 	}
+	h1 {
+		font-family: 'Beleren Small Caps';
+		font-size: 48px;
+		margin: 24px 0;
+	}
+	h2 {
+		font-family: 'Beleren';
+		font-size: 30px;
+		margin: 15px 0;
+	}
 </style>
 <body>
 	<div class="header">
@@ -208,6 +254,14 @@
 			</div>
 			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-code">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>
 		</div>
+	</div>
+
+	<div class="button-container" id="buttons">
+		<button style="border-right: 1px solid #171717;" onclick="switchView('splash')" id="splash-button">Splash</button><button onclick="switchView('cards')"id="cards-button">Cards</button>
+	</div>
+
+	<div class="splash-container" id="splash">
+	
 	</div>
 
 	<div class="grid-container" id="grid">
@@ -245,8 +299,8 @@
 					set_list_arrayified.push(card_list_arrayified[i]);
 				}
 			}
-
-			setCardView();
+					buttons.style.display = 'none';
+		setCardView();
 		});
 
 		document.getElementById("sort-by").onchange = displayChangeListener;
@@ -257,9 +311,26 @@
 			setCardView();
 		}
 
+		function switchView(view) {
+			if (view == "splash")
+			{
+				splash.style.display = '';
+				imagesOnlyGrid.style.display = 'none';
+				grid.style.display = 'none';
+			}
+			else if (view == "cards")
+			{
+				setCardView();
+			}
+
+			document.getElementById("splash-button").disabled = (view == "splash");
+			document.getElementById("cards-button").disabled = (view == "cards");
+		}
+
 		function setCardView() {
 			displayStyle = document.getElementById("display").value;
 
+			splash.style.display = 'none';
 			imagesOnlyGrid.style.display = displayStyle == "cards-only" ? '' : 'none';
 			grid.style.display = displayStyle == "cards-only" ? 'none' : '';
 
@@ -511,7 +582,7 @@
 			return str;
 		}
 
-		function gridifyCard(card_stats, card_text = false, rotate_card = false) {
+		function gridifyCard(card_stats, card_text = false, rotate_card = false, designer_notes = false) {
 			const card_name = card_stats.card_name;
 
 			if (displayStyle == "cards-only")
@@ -565,6 +636,15 @@
 				loyalty.className = "pt";
 				loyalty.textContent = "[" + card_stats.loyalty + "]";
 				text.appendChild(loyalty);
+			}
+
+			if(designer_notes && card_stats.designer_notes != null)
+			{
+				const dnotes = document.createElement("div");
+				dnotes.className = "designer-notes";
+				dnotes.innerHTML = "<u><b>Designer Notes</b></u>";
+				dnotes.innerHTML = dnotes.innerHTML + card_stats.designer_notes;
+				text.appendChild(dnotes);
 			}
 
 			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
@@ -627,12 +707,18 @@
 			img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			
 			const link = document.createElement("a");
-			let card_name = card_stats.card_name;
-			for (const char of specialchars)
-			{
-				card_name = card_name.replaceAll(char, "");
+			
+			const url = new URL('card', window.location.origin);
+			const params = {
+				set: card_stats.set,
+				num: card_stats.number,
+				name: card_stats.card_name
 			}
-			link.href = "/cards/" + card_stats.set + "/" + card_stats.number + "_" + card_name;
+			for (const key in params) {
+				url.searchParams.append(key, params[key]);
+			}
+			link.href = url;
+
 			link.appendChild(img);
 
 			if ((card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card)

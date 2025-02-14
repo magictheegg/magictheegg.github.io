@@ -817,7 +817,7 @@ def generateHTML(codes):
 
 	html_content += '''
 
-		function gridifyCard(card_stats, card_text = false, rotate_card = false) {
+		function gridifyCard(card_stats, card_text = false, rotate_card = false, designer_notes = false) {
 			const card_name = card_stats.card_name;
 
 			if (!card_text)

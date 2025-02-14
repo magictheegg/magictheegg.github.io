@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="/sets/SUR-files/icon.png"/>
+	<link rel="stylesheet" href="/resources/header.css">
+	<title>SUR visual preview</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 3%;
+			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
+			position: relative;
+		}
+		.sidebar-h-img {
+			display: none;
+			transform: rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+		}
+		.sidebar-img {
+			vertical-align: middle;
+			width: 100%;
+		}
+		.close-btn {
+			background: url('/img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
+		}
+		.close-btn:hover {
+			background: url('/img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 3%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 20px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+			position: relative;
+			width: 100%;
+		}
+		.container img {
+			width: 100%;
+			height: auto;
+		}
+		.flip-btn {
+			background: url('/img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			left: 50%;
+			top: 48%;
+			transform: translate(-50%, -50%);
+			opacity: 0.5;
+		}
+		.flip-btn:hover {
+			background: url('/img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.icon-bar {
+			display: grid;
+			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
+			gap: 1px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 2%;
+			padding-bottom: 1%;
+			justify-items: center;
+			align-items: center;
+		}
+		.icon-bar .icon img {
+			width: 90%;
+			max-width: 80px;
+			height: auto;
+			display: block;
+			padding: 5%;
+			margin: auto;
+			text-align: center;
+		}
+		.icon-bar .dot img {
+			width: 50%;
+			max-width: 65px;
+			height: auto;
+			display: block;
+			margin: auto;
+			text-align: center;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<img class="preload-hidden" src="/img/dot.png" />
+	<img class="preload-hidden" src="/sets/SUR-files/logo.png" />
+	<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+		<div class="header">
+		<div class="search-grid">
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+		</div>
+	</div>
+
+	<div class="icon-bar">
+			<div class="icon"><a href="SHF"><img src="/sets/SHF-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="GSS"><img src="/sets/GSS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="KND"><img src="/sets/KND-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="NJB"><img src="/sets/NJB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="AEX"><img src="/sets/AEX-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="WAS"><img src="/sets/WAS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="SGB"><img src="/sets/SGB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="GQC"><img src="/sets/GQC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="DSS"><img src="/sets/DSS-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="KOD"><img src="/sets/KOD-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="GHQ"><img src="/sets/GHQ-files/icon.png"></img></a></div>
+		<div class="icon"><a href="TWB"><img src="/sets/TWB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="FAU"><img src="/sets/FAU-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="MVA"><img src="/sets/MVA-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="ATB"><img src="/sets/ATB-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="SUR"><img src="/sets/SUR-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="GNJ"><img src="/sets/GNJ-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="GSC"><img src="/sets/GSC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="FAE"><img src="/sets/FAE-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="AOD"><img src="/sets/AOD-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="ICH"><img src="/sets/ICH-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="AGH"><img src="/sets/AGH-files/icon.png"></img></a></div>
+		<div class="icon"><a href="MSR"><img src="/sets/MSR-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="GLC"><img src="/sets/GLC-files/icon.png"></img></a></div>
+		 <div class="dot"><img src="/img/dot.png"></img></div>
+		<div class="icon"><a href="ACE"><img src="/sets/ACE-files/icon.png"></img></a></div>
+
+		</div>
+		<div class="banner">
+		<img class="logo" src="/sets/SUR-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+				<div class="container"><img alt="/sets/SUR-files/img/25_Seto San, the Sacred Hand.jpg" id="25_Seto San, the Sacred Hand" data-flag="@X" onclick="openSidebar('25_Seto San, the Sacred Hand',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/43_Ing'Wei, the Surging Tide.jpg" id="43_IngWei, the Surging Tide" data-flag="@X" onclick="openSidebar('43_IngWei, the Surging Tide',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/80_Kai'Dwo, Eternal Ravager.jpg" id="80_KaiDwo, Eternal Ravager" data-flag="@X" onclick="openSidebar('80_KaiDwo, Eternal Ravager',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/114_Perplexing Turmoil.jpg" id="114_Perplexing Turmoil" data-flag="@X" onclick="openSidebar('114_Perplexing Turmoil',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/137_The Great Awakening.jpg" id="137_The Great Awakening" data-flag="@X" onclick="openSidebar('137_The Great Awakening',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/1_Acabo, the Fabled Falcon.jpg" id="1_Acabo, the Fabled Falcon" data-flag="@X" onclick="openSidebar('1_Acabo, the Fabled Falcon',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/45_Kan'Gi, the Reverent.jpg" id="45_KanGi, the Reverent" data-flag="@X" onclick="openSidebar('45_KanGi, the Reverent',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/65_Crippling Fear.jpg" id="65_Crippling Fear" data-flag="@X" onclick="openSidebar('65_Crippling Fear',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/94_Abrupt Explosion.jpg" id="94_Abrupt Explosion" data-flag="@X" onclick="openSidebar('94_Abrupt Explosion',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/127_Avatar of the Natural.jpg" id="127_Avatar of the Natural" data-flag="@X" onclick="openSidebar('127_Avatar of the Natural',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/2_Ancestral Shrine.jpg" id="2_Ancestral Shrine" data-flag="@X" onclick="openSidebar('2_Ancestral Shrine',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/48_Orichi of the Cold Mist.jpg" id="48_Orichi of the Cold Mist" data-flag="@X" onclick="openSidebar('48_Orichi of the Cold Mist',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/67_Dark Rite Cultist.jpg" id="67_Dark Rite Cultist" data-flag="@X" onclick="openSidebar('67_Dark Rite Cultist',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/104_Fang, the Lavaclasm.jpg" id="104_Fang, the Lavaclasm" data-flag="@X" onclick="openSidebar('104_Fang, the Lavaclasm',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/130_Challenge Authority.jpg" id="130_Challenge Authority" data-flag="@X" onclick="openSidebar('130_Challenge Authority',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/4_Cai Lan, the Chained.jpg" id="4_Cai Lan, the Chained" data-flag="@X" onclick="openSidebar('4_Cai Lan, the Chained',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/53_Shara, the Last Leviathan.jpg" id="53_Shara, the Last Leviathan" data-flag="@X" onclick="openSidebar('53_Shara, the Last Leviathan',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/74_Ha'Eng, Figure of Greed.jpg" id="74_HaEng, Figure of Greed" data-flag="@X" onclick="openSidebar('74_HaEng, Figure of Greed',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/105_Hasty Assault.jpg" id="105_Hasty Assault" data-flag="@X" onclick="openSidebar('105_Hasty Assault',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/139_Heyu, Immortal Hunter.jpg" id="139_Heyu, Immortal Hunter" data-flag="@X" onclick="openSidebar('139_Heyu, Immortal Hunter',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/6_Commander of the Folded Fan.jpg" id="6_Commander of the Folded Fan" data-flag="@X" onclick="openSidebar('6_Commander of the Folded Fan',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/54_Shimmering Veil.jpg" id="54_Shimmering Veil" data-flag="@X" onclick="openSidebar('54_Shimmering Veil',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/77_Hui Zhou, the Dark Visage.jpg" id="77_Hui Zhou, the Dark Visage" data-flag="@X" onclick="openSidebar('77_Hui Zhou, the Dark Visage',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/107_Heathen Rise.jpg" id="107_Heathen Rise" data-flag="@X" onclick="openSidebar('107_Heathen Rise',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/140_Hunter's Instinct.jpg" id="140_Hunters Instinct" data-flag="@X" onclick="openSidebar('140_Hunters Instinct',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/17_Liao, Seto's Shield.jpg" id="17_Liao, Setos Shield" data-flag="@X" onclick="openSidebar('17_Liao, Setos Shield',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/56_Strike Out.jpg" id="56_Strike Out" data-flag="@X" onclick="openSidebar('56_Strike Out',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/81_Kai'Wej, the Desolate.jpg" id="81_KaiWej, the Desolate" data-flag="@X" onclick="openSidebar('81_KaiWej, the Desolate',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/118_Sugon, Destruction's Fist.jpg" id="118_Sugon, Destructions Fist" data-flag="@X" onclick="openSidebar('118_Sugon, Destructions Fist',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/147_Shuye, Forever Watching.jpg" id="147_Shuye, Forever Watching" data-flag="@X" onclick="openSidebar('147_Shuye, Forever Watching',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/20_Noble Fall.jpg" id="20_Noble Fall" data-flag="@X" onclick="openSidebar('20_Noble Fall',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/57_Swelling Sea.jpg" id="57_Swelling Sea" data-flag="@X" onclick="openSidebar('57_Swelling Sea',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/83_Malefic Portal.jpg" id="83_Malefic Portal" data-flag="@X" onclick="openSidebar('83_Malefic Portal',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/124_Zhenya, the Draconic.jpg" id="124_Zhenya, the Draconic" data-flag="@X" onclick="openSidebar('124_Zhenya, the Draconic',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/155_Xira, Scatterer of Seeds.jpg" id="155_Xira, Scatterer of Seeds" data-flag="@X" onclick="openSidebar('155_Xira, Scatterer of Seeds',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/5_Circumspect Flock.jpg" id="5_Circumspect Flock" data-flag="@X" onclick="openSidebar('5_Circumspect Flock',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/32_Astute Prophet.jpg" id="32_Astute Prophet" data-flag="@X" onclick="openSidebar('32_Astute Prophet',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/66_Cunning Cephalomancer.jpg" id="66_Cunning Cephalomancer" data-flag="@X" onclick="openSidebar('66_Cunning Cephalomancer',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/96_Blazing Beam.jpg" id="96_Blazing Beam" data-flag="@X" onclick="openSidebar('96_Blazing Beam',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/126_Attuned Ancient.jpg" id="126_Attuned Ancient" data-flag="@X" onclick="openSidebar('126_Attuned Ancient',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/9_Essence Rehabilitator.jpg" id="9_Essence Rehabilitator" data-flag="@X" onclick="openSidebar('9_Essence Rehabilitator',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/37_Dimensional Plunge.jpg" id="37_Dimensional Plunge" data-flag="@X" onclick="openSidebar('37_Dimensional Plunge',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/68_Decipher the Dark Tome.jpg" id="68_Decipher the Dark Tome" data-flag="@X" onclick="openSidebar('68_Decipher the Dark Tome',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/99_Conduit of Rage.jpg" id="99_Conduit of Rage" data-flag="@X" onclick="openSidebar('99_Conduit of Rage',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/133_Deathcoil Cobra.jpg" id="133_Deathcoil Cobra" data-flag="@X" onclick="openSidebar('133_Deathcoil Cobra',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/13_Fox of the Trembling Night.jpg" id="13_Fox of the Trembling Night" data-flag="@X" onclick="openSidebar('13_Fox of the Trembling Night',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/39_Empty the Archives.jpg" id="39_Empty the Archives" data-flag="@X" onclick="openSidebar('39_Empty the Archives',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/69_Depraved Imp.jpg" id="69_Depraved Imp" data-flag="@X" onclick="openSidebar('69_Depraved Imp',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/103_Dynamic Wyvern.jpg" id="103_Dynamic Wyvern" data-flag="@X" onclick="openSidebar('103_Dynamic Wyvern',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/138_Harness the Wild.jpg" id="138_Harness the Wild" data-flag="@X" onclick="openSidebar('138_Harness the Wild',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/14_Foxflame.jpg" id="14_Foxflame" data-flag="@X" onclick="openSidebar('14_Foxflame',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/41_Finwing Drake.jpg" id="41_Finwing Drake" data-flag="@X" onclick="openSidebar('41_Finwing Drake',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/70_Dessication Ritual.jpg" id="70_Dessication Ritual" data-flag="@X" onclick="openSidebar('70_Dessication Ritual',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/109_Lightning Ox.jpg" id="109_Lightning Ox" data-flag="@X" onclick="openSidebar('109_Lightning Ox',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/143_Naiad of the Glen.jpg" id="143_Naiad of the Glen" data-flag="@X" onclick="openSidebar('143_Naiad of the Glen',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/16_Inspirited Duelist.jpg" id="16_Inspirited Duelist" data-flag="@X" onclick="openSidebar('16_Inspirited Duelist',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/44_Invoke the Anima.jpg" id="44_Invoke the Anima" data-flag="@X" onclick="openSidebar('44_Invoke the Anima',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/71_Fall from Glory.jpg" id="71_Fall from Glory" data-flag="@X" onclick="openSidebar('71_Fall from Glory',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/110_Majestic Monitor.jpg" id="110_Majestic Monitor" data-flag="@X" onclick="openSidebar('110_Majestic Monitor',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/145_Pack Familiar.jpg" id="145_Pack Familiar" data-flag="@X" onclick="openSidebar('145_Pack Familiar',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/21_Once More with Style.jpg" id="21_Once More with Style" data-flag="@X" onclick="openSidebar('21_Once More with Style',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/50_Patient Orchestration.jpg" id="50_Patient Orchestration" data-flag="@X" onclick="openSidebar('50_Patient Orchestration',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/73_Gulch Glutton.jpg" id="73_Gulch Glutton" data-flag="@X" onclick="openSidebar('73_Gulch Glutton',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/111_Maniac Macaque.jpg" id="111_Maniac Macaque" data-flag="@X" onclick="openSidebar('111_Maniac Macaque',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/146_Savage Savant.jpg" id="146_Savage Savant" data-flag="@X" onclick="openSidebar('146_Savage Savant',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/23_Pietistic Performance.jpg" id="23_Pietistic Performance" data-flag="@X" onclick="openSidebar('23_Pietistic Performance',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/52_Sea Wall.jpg" id="52_Sea Wall" data-flag="@X" onclick="openSidebar('52_Sea Wall',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/79_Infernal Portal.jpg" id="79_Infernal Portal" data-flag="@X" onclick="openSidebar('79_Infernal Portal',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/112_Monumental Siege.jpg" id="112_Monumental Siege" data-flag="@X" onclick="openSidebar('112_Monumental Siege',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/148_Solemn Stag.jpg" id="148_Solemn Stag" data-flag="@X" onclick="openSidebar('148_Solemn Stag',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/24_Resolute Crusader.jpg" id="24_Resolute Crusader" data-flag="@X" onclick="openSidebar('24_Resolute Crusader',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/55_Siphoning Slash.jpg" id="55_Siphoning Slash" data-flag="@X" onclick="openSidebar('55_Siphoning Slash',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/82_Lifeblood Leecher.jpg" id="82_Lifeblood Leecher" data-flag="@X" onclick="openSidebar('82_Lifeblood Leecher',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/115_Sharpened Tusks.jpg" id="115_Sharpened Tusks" data-flag="@X" onclick="openSidebar('115_Sharpened Tusks',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/149_Spined Tarantula.jpg" id="149_Spined Tarantula" data-flag="@X" onclick="openSidebar('149_Spined Tarantula',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/27_Stand Tall.jpg" id="27_Stand Tall" data-flag="@X" onclick="openSidebar('27_Stand Tall',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/59_Wadepool Frog.jpg" id="59_Wadepool Frog" data-flag="@X" onclick="openSidebar('59_Wadepool Frog',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/84_Malignant Afflicted.jpg" id="84_Malignant Afflicted" data-flag="@X" onclick="openSidebar('84_Malignant Afflicted',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/119_Sunspear Surge.jpg" id="119_Sunspear Surge" data-flag="@X" onclick="openSidebar('119_Sunspear Surge',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/150_Stoic Observation.jpg" id="150_Stoic Observation" data-flag="@X" onclick="openSidebar('150_Stoic Observation',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/28_Swift Savior.jpg" id="28_Swift Savior" data-flag="@X" onclick="openSidebar('28_Swift Savior',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/60_Wash Away.jpg" id="60_Wash Away" data-flag="@X" onclick="openSidebar('60_Wash Away',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/85_Mausoleum Rite.jpg" id="85_Mausoleum Rite" data-flag="@X" onclick="openSidebar('85_Mausoleum Rite',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/120_Sustaining Meditation.jpg" id="120_Sustaining Meditation" data-flag="@X" onclick="openSidebar('120_Sustaining Meditation',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/153_Wanderer of the Wilds.jpg" id="153_Wanderer of the Wilds" data-flag="@X" onclick="openSidebar('153_Wanderer of the Wilds',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/29_Til Death.jpg" id="29_Til Death" data-flag="@X" onclick="openSidebar('29_Til Death',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/62_Woken Wave.jpg" id="62_Woken Wave" data-flag="@X" onclick="openSidebar('62_Woken Wave',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/90_Skirmish Scars.jpg" id="90_Skirmish Scars" data-flag="@X" onclick="openSidebar('90_Skirmish Scars',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/122_Vindictive Pyromancer.jpg" id="122_Vindictive Pyromancer" data-flag="@X" onclick="openSidebar('122_Vindictive Pyromancer',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/154_Xiong's Gambit.jpg" id="154_Xiongs Gambit" data-flag="@X" onclick="openSidebar('154_Xiongs Gambit',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/3_Ascendant's Murmur.jpg" id="3_Ascendants Murmur" data-flag="@X" onclick="openSidebar('3_Ascendants Murmur',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/33_Clairvoyant Koi.jpg" id="33_Clairvoyant Koi" data-flag="@X" onclick="openSidebar('33_Clairvoyant Koi',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/63_Anima Interrogator.jpg" id="63_Anima Interrogator" data-flag="@X" onclick="openSidebar('63_Anima Interrogator',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/95_Akimbo Slash.jpg" id="95_Akimbo Slash" data-flag="@X" onclick="openSidebar('95_Akimbo Slash',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/125_Arbalest Barrage.jpg" id="125_Arbalest Barrage" data-flag="@X" onclick="openSidebar('125_Arbalest Barrage',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/7_Crane's Way.jpg" id="7_Cranes Way" data-flag="@X" onclick="openSidebar('7_Cranes Way',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/34_Deep Temptation.jpg" id="34_Deep Temptation" data-flag="@X" onclick="openSidebar('34_Deep Temptation',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/64_Corpsekisser.jpg" id="64_Corpsekisser" data-flag="@X" onclick="openSidebar('64_Corpsekisser',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/97_Canyon Agamid.jpg" id="97_Canyon Agamid" data-flag="@X" onclick="openSidebar('97_Canyon Agamid',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/128_Beast Hunt.jpg" id="128_Beast Hunt" data-flag="@X" onclick="openSidebar('128_Beast Hunt',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/8_Dusk Insurgent.jpg" id="8_Dusk Insurgent" data-flag="@X" onclick="openSidebar('8_Dusk Insurgent',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/35_Deepsea Denizen.jpg" id="35_Deepsea Denizen" data-flag="@X" onclick="openSidebar('35_Deepsea Denizen',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/72_Graveyard Shift.jpg" id="72_Graveyard Shift" data-flag="@X" onclick="openSidebar('72_Graveyard Shift',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/98_Concentrated Blast.jpg" id="98_Concentrated Blast" data-flag="@X" onclick="openSidebar('98_Concentrated Blast',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/129_Canopy Ratstalker.jpg" id="129_Canopy Ratstalker" data-flag="@X" onclick="openSidebar('129_Canopy Ratstalker',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/10_Fennec Fostress.jpg" id="10_Fennec Fostress" data-flag="@X" onclick="openSidebar('10_Fennec Fostress',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/36_Deluge Crab.jpg" id="36_Deluge Crab" data-flag="@X" onclick="openSidebar('36_Deluge Crab',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/75_Harrowing Infusion.jpg" id="75_Harrowing Infusion" data-flag="@X" onclick="openSidebar('75_Harrowing Infusion',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/100_Dazzling Display.jpg" id="100_Dazzling Display" data-flag="@X" onclick="openSidebar('100_Dazzling Display',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/131_Child of the Pack.jpg" id="131_Child of the Pack" data-flag="@X" onclick="openSidebar('131_Child of the Pack',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/11_Field Chaplain.jpg" id="11_Field Chaplain" data-flag="@X" onclick="openSidebar('11_Field Chaplain',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/38_Divine Dispersion.jpg" id="38_Divine Dispersion" data-flag="@X" onclick="openSidebar('38_Divine Dispersion',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/76_Haunting Illusion.jpg" id="76_Haunting Illusion" data-flag="@X" onclick="openSidebar('76_Haunting Illusion',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/101_Draconic Aspirant.jpg" id="101_Draconic Aspirant" data-flag="@X" onclick="openSidebar('101_Draconic Aspirant',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/132_Contentious Yak.jpg" id="132_Contentious Yak" data-flag="@X" onclick="openSidebar('132_Contentious Yak',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/12_Fox of the Molten Dawn.jpg" id="12_Fox of the Molten Dawn" data-flag="@X" onclick="openSidebar('12_Fox of the Molten Dawn',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/40_Enduring Rockshell.jpg" id="40_Enduring Rockshell" data-flag="@X" onclick="openSidebar('40_Enduring Rockshell',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/78_Infected Null.jpg" id="78_Infected Null" data-flag="@X" onclick="openSidebar('78_Infected Null',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/102_Dragon Initiate.jpg" id="102_Dragon Initiate" data-flag="@X" onclick="openSidebar('102_Dragon Initiate',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/134_Elder Rootwallas.jpg" id="134_Elder Rootwallas" data-flag="@X" onclick="openSidebar('134_Elder Rootwallas',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/15_Hypnotic Halo.jpg" id="15_Hypnotic Halo" data-flag="@X" onclick="openSidebar('15_Hypnotic Halo',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/42_Harmonious Meditation.jpg" id="42_Harmonious Meditation" data-flag="@X" onclick="openSidebar('42_Harmonious Meditation',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/86_Moonlight Butcher.jpg" id="86_Moonlight Butcher" data-flag="@X" onclick="openSidebar('86_Moonlight Butcher',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/106_Heated Dispute.jpg" id="106_Heated Dispute" data-flag="@X" onclick="openSidebar('106_Heated Dispute',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/135_Fierce Howl.jpg" id="135_Fierce Howl" data-flag="@X" onclick="openSidebar('135_Fierce Howl',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/18_Lightwalker.jpg" id="18_Lightwalker" data-flag="@X" onclick="openSidebar('18_Lightwalker',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/46_Mystical Dowsing.jpg" id="46_Mystical Dowsing" data-flag="@X" onclick="openSidebar('46_Mystical Dowsing',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/87_Organ Scavenger.jpg" id="87_Organ Scavenger" data-flag="@X" onclick="openSidebar('87_Organ Scavenger',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/108_Hurtling Swine.jpg" id="108_Hurtling Swine" data-flag="@X" onclick="openSidebar('108_Hurtling Swine',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/136_Golden Grizzly.jpg" id="136_Golden Grizzly" data-flag="@X" onclick="openSidebar('136_Golden Grizzly',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/19_Melodious Musician.jpg" id="19_Melodious Musician" data-flag="@X" onclick="openSidebar('19_Melodious Musician',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/47_Ocean Spray.jpg" id="47_Ocean Spray" data-flag="@X" onclick="openSidebar('47_Ocean Spray',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/88_Rapacious Demon.jpg" id="88_Rapacious Demon" data-flag="@X" onclick="openSidebar('88_Rapacious Demon',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/113_Perimeter Siege.jpg" id="113_Perimeter Siege" data-flag="@X" onclick="openSidebar('113_Perimeter Siege',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/141_Immaculate Attunement.jpg" id="141_Immaculate Attunement" data-flag="@X" onclick="openSidebar('141_Immaculate Attunement',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/22_Parrying Scholar.jpg" id="22_Parrying Scholar" data-flag="@X" onclick="openSidebar('22_Parrying Scholar',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/49_Paralysis Specialist.jpg" id="49_Paralysis Specialist" data-flag="@X" onclick="openSidebar('49_Paralysis Specialist',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/89_Robe of Shadows.jpg" id="89_Robe of Shadows" data-flag="@X" onclick="openSidebar('89_Robe of Shadows',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/116_Simian Striker.jpg" id="116_Simian Striker" data-flag="@X" onclick="openSidebar('116_Simian Striker',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/142_Impressible Cub.jpg" id="142_Impressible Cub" data-flag="@X" onclick="openSidebar('142_Impressible Cub',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/26_Staggering Brilliance.jpg" id="26_Staggering Brilliance" data-flag="@X" onclick="openSidebar('26_Staggering Brilliance',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/51_Rhythmic Distraction.jpg" id="51_Rhythmic Distraction" data-flag="@X" onclick="openSidebar('51_Rhythmic Distraction',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/91_Stitch Sinew.jpg" id="91_Stitch Sinew" data-flag="@X" onclick="openSidebar('91_Stitch Sinew',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/117_Slippery Salamander.jpg" id="117_Slippery Salamander" data-flag="@X" onclick="openSidebar('117_Slippery Salamander',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/144_Organic Corrosion.jpg" id="144_Organic Corrosion" data-flag="@X" onclick="openSidebar('144_Organic Corrosion',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/30_The Way of the Fan.jpg" id="30_The Way of the Fan" data-flag="@X" onclick="openSidebar('30_The Way of the Fan',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/58_Temporal Augury.jpg" id="58_Temporal Augury" data-flag="@X" onclick="openSidebar('58_Temporal Augury',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/92_Warpath Ghoul.jpg" id="92_Warpath Ghoul" data-flag="@X" onclick="openSidebar('92_Warpath Ghoul',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/121_Tormenting Voice.jpg" id="121_Tormenting Voice" data-flag="@X" onclick="openSidebar('121_Tormenting Voice',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/151_Tunnel Web Spider.jpg" id="151_Tunnel Web Spider" data-flag="@X" onclick="openSidebar('151_Tunnel Web Spider',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/31_Whitepeak Lookout.jpg" id="31_Whitepeak Lookout" data-flag="@X" onclick="openSidebar('31_Whitepeak Lookout',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/61_Wind Drake.jpg" id="61_Wind Drake" data-flag="@X" onclick="openSidebar('61_Wind Drake',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/93_Yenzu Mindwrencher.jpg" id="93_Yenzu Mindwrencher" data-flag="@X" onclick="openSidebar('93_Yenzu Mindwrencher',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/123_Worshipper Whelp.jpg" id="123_Worshipper Whelp" data-flag="@X" onclick="openSidebar('123_Worshipper Whelp',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/152_Vigorous Dryad.jpg" id="152_Vigorous Dryad" data-flag="@X" onclick="openSidebar('152_Vigorous Dryad',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/164_Vulpine Cloudchaser.jpg" id="164_Vulpine Cloudchaser" data-flag="@X" onclick="openSidebar('164_Vulpine Cloudchaser',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/162_Morose Harpist.jpg" id="162_Morose Harpist" data-flag="@X" onclick="openSidebar('162_Morose Harpist',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/156_Doombringer Dragon.jpg" id="156_Doombringer Dragon" data-flag="@X" onclick="openSidebar('156_Doombringer Dragon',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/158_Feral Exemplar.jpg" id="158_Feral Exemplar" data-flag="@X" onclick="openSidebar('158_Feral Exemplar',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/163_Resurging Rhino.jpg" id="163_Resurging Rhino" data-flag="@X" onclick="openSidebar('163_Resurging Rhino',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/161_Mamei, Benevolent Tyrant.jpg" id="161_Mamei, Benevolent Tyrant" data-flag="@X" onclick="openSidebar('161_Mamei, Benevolent Tyrant',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/160_Hayuan, the Misjudged.jpg" id="160_Hayuan, the Misjudged" data-flag="@X" onclick="openSidebar('160_Hayuan, the Misjudged',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/159_Gui, the Islandbringer.jpg" id="159_Gui, the Islandbringer" data-flag="@X" onclick="openSidebar('159_Gui, the Islandbringer',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/165_Xing, the Lucky Charm.jpg" id="165_Xing, the Lucky Charm" data-flag="@X" onclick="openSidebar('165_Xing, the Lucky Charm',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/157_Duan, the Fabled Rider.jpg" id="157_Duan, the Fabled Rider" data-flag="@X" onclick="openSidebar('157_Duan, the Fabled Rider',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/168_Heping's Armistice Chains.jpg" id="168_Hepings Armistice Chains" data-flag="@X" onclick="openSidebar('168_Hepings Armistice Chains',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/171_Ing'Wei's Crystal Top.jpg" id="171_IngWeis Crystal Top" data-flag="@X" onclick="openSidebar('171_IngWeis Crystal Top',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/174_Temporary Armory.jpg" id="174_Temporary Armory" data-flag="@X" onclick="openSidebar('174_Temporary Armory',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/167_Granite Sibyl.jpg" id="167_Granite Sibyl" data-flag="@X" onclick="openSidebar('167_Granite Sibyl',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/169_Illustrious Lantern.jpg" id="169_Illustrious Lantern" data-flag="@X" onclick="openSidebar('169_Illustrious Lantern',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/170_Inciting Blade.jpg" id="170_Inciting Blade" data-flag="@X" onclick="openSidebar('170_Inciting Blade',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/172_Plagued Skull.jpg" id="172_Plagued Skull" data-flag="@X" onclick="openSidebar('172_Plagued Skull',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/166_Barreling Chariot.jpg" id="166_Barreling Chariot" data-flag="@X" onclick="openSidebar('166_Barreling Chariot',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/173_Sinister Saber.jpg" id="173_Sinister Saber" data-flag="@X" onclick="openSidebar('173_Sinister Saber',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/175_Vial of Ice.jpg" id="175_Vial of Ice" data-flag="@X" onclick="openSidebar('175_Vial of Ice',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/176_Aquatic Refuge.jpg" id="176_Aquatic Refuge" data-flag="@X" onclick="openSidebar('176_Aquatic Refuge',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/183_Toxic Spring.jpg" id="183_Toxic Spring" data-flag="@X" onclick="openSidebar('183_Toxic Spring',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/181_Sunless Ridge.jpg" id="181_Sunless Ridge" data-flag="@X" onclick="openSidebar('181_Sunless Ridge',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/180_Scorched Copse.jpg" id="180_Scorched Copse" data-flag="@X" onclick="openSidebar('180_Scorched Copse',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/179_Prairie Monastery.jpg" id="179_Prairie Monastery" data-flag="@X" onclick="openSidebar('179_Prairie Monastery',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/177_Citadel of Denial.jpg" id="177_Citadel of Denial" data-flag="@X" onclick="openSidebar('177_Citadel of Denial',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/182_Temple of Brilliance.jpg" id="182_Temple of Brilliance" data-flag="@X" onclick="openSidebar('182_Temple of Brilliance',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/178_No-Man's Land.jpg" id="178_No-Mans Land" data-flag="@X" onclick="openSidebar('178_No-Mans Land',false)"></div>
+			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/1t_Bird.jpg" id="1t_Bird" data-flag="@X" onclick="openSidebar('1t_Bird',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/2t_Warrior.jpg" id="2t_Warrior" data-flag="@X" onclick="openSidebar('2t_Warrior',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/3t_Drake.jpg" id="3t_Drake" data-flag="@X" onclick="openSidebar('3t_Drake',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/4t_Demon.jpg" id="4t_Demon" data-flag="@X" onclick="openSidebar('4t_Demon',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/5t_Rat.jpg" id="5t_Rat" data-flag="@X" onclick="openSidebar('5t_Rat',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/6t_Serf.jpg" id="6t_Serf" data-flag="@X" onclick="openSidebar('6t_Serf',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/7t_Zombie.jpg" id="7t_Zombie" data-flag="@X" onclick="openSidebar('7t_Zombie',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/8t_Beast.jpg" id="8t_Beast" data-flag="@X" onclick="openSidebar('8t_Beast',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/9t_Wolf.jpg" id="9t_Wolf" data-flag="@X" onclick="openSidebar('9t_Wolf',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/10t_Hao'Tai's Blessing.jpg" id="10t_HaoTais Blessing" data-flag="@X" onclick="openSidebar('10t_HaoTais Blessing',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/11t_Resurging Rhino.jpg" id="11t_Resurging Rhino" data-flag="@X" onclick="openSidebar('11t_Resurging Rhino',false)"></div>
+			<div class="container"><img alt="/sets/SUR-files/img/12t_Idol.jpg" id="12t_Idol" data-flag="@X" onclick="openSidebar('12t_Idol',false)"></div>
+			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+	</div>
+</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-container">
+			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_h_img" class="sidebar-h-img">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
+
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+		let specialchars = "";
+
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+		
+		let images_loaded = [];
+
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
+
+		
+		loadImages();
+	});
+
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
+
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
+
+			if (flag === '@N') {
+				img.src = '/img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = img.alt;
+
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
+
+			img.style.visibility = 'visible';
+		});
+	}
+
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
+
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
+
+	let horizontal = false;
+
+	function imgFlip(num) {
+		tmp = document.getElementById(num).src;
+		console.log(num);
+		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+		document.getElementById(num).dataset.alt_src = tmp;
+
+		if (num == 'sidebar_img')
+		{
+			const rotated_img = document.getElementById('sidebar_h_img');
+			const sidebar_img = document.getElementById('sidebar_img');
+
+			if (horizontal && rotated_img.style.display == 'none')
+			{
+				rotated_img.style.display = "block";
+				sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+			}
+			else
+			{
+				rotated_img.style.display = "none";
+				sidebar_img.style.filter = "";
+			}
+		}
+	}
+
+	function openSidebar(id, h = false) {
+		horizontal = h;
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+		
+		document.getElementById('sidebar').style.display = 'grid';
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.src = document.getElementById(id).src;
+
+		if (horizontal && sidebar_img.src.includes("_front"))
+		{
+			rotated_img.src = document.getElementById(id).src;
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
+		document.getElementById('main-content').style.width = '60%';
+		
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
+
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+		
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+			}
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i].card_name;
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
+			}
+	</script>
+</body>
+</html>

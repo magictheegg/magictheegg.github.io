@@ -230,6 +230,7 @@ def generateHTML():
 		'''
 		set_codes = so_json[key]
 		for code in set_codes:
+			set_name = 'MISSING'
 			if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
 				with open(os.path.join('lists', 'all-sets.json'), encoding='utf-8-sig') as f:
 					data = json.load(f)
@@ -239,7 +240,7 @@ def generateHTML():
 							break
 
 				html_content += '''<div class="set-icon-container">
-									<a href="''' + code + '''-spoiler"><div class="set-icon"><img src="sets/''' + code + '''-files/icon.png" title="''' + set_name + '''"></img></div>
+									<a href="previews/''' + code + '''"><div class="set-icon"><img src="sets/''' + code + '''-files/icon.png" title="''' + set_name + '''"></img></div>
 									<div class="set-icon-name">''' + set_name + '''</div></a>
 								</div>
 				'''
@@ -306,12 +307,17 @@ def generateHTML():
 				const card_stats = card_list_cleaned[cotd];
 
 				const a = document.createElement("a");
-				let card_name = card_stats.card_name;
-				for (const char of specialchars)
-				{
-					card_name = card_name.replaceAll(char, "");
+
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: card_stats.set,
+					num: card_stats.number,
+					name: card_stats.card_name
 				}
-				a.href = '/cards/' + card_stats.set + '/' + card_stats.number + '_' + card_name;
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
+				a.href = url;
 
 				const img = document.createElement("img");
 				img.id = "cotd";
