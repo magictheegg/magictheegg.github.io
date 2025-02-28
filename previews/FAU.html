@@ -68,7 +68,7 @@
 			gap: 2px;
 			padding-left: 5%;
 			padding-right: 5%;
-			padding-bottom: 3%;
+			padding-bottom: 1%;
 			justify-items: center;
 			max-width: 1200px;
 		}
@@ -480,15 +480,15 @@
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 			<div class="container"><img alt="/sets/FAU-files/img/217_Lark, the Misanthrope.jpg" id="217_Lark, the Misanthrope" data-flag="@X" onclick="openSidebar('217_Lark, the Misanthrope',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/224_Wart Lord Domino.jpg" id="224_Wart Lord Domino" data-flag="@X" onclick="openSidebar('224_Wart Lord Domino',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/227_Wild World.jpg" id="227_Wild World" data-flag="@X" onclick="openSidebar('227_Wild World',false)"></div>
 			<div class="container"><img alt="/sets/FAU-files/img/213_Delia, the Fanatic.jpg" id="213_Delia, the Fanatic" data-flag="@X" onclick="openSidebar('213_Delia, the Fanatic',false)"></div>
+			<div class="container"><img alt="/sets/FAU-files/img/224_Wart Lord Domino.jpg" id="224_Wart Lord Domino" data-flag="@X" onclick="openSidebar('224_Wart Lord Domino',false)"></div>
 			<div class="container"><img data-alt_src="/sets/FAU-files/img/215_Fervid Curator_back.jpg" alt="/sets/FAU-files/img/215_Fervid Curator_front.jpg" id="215_Fervid Curator" data-flag="@XD" onclick="openSidebar('215_Fervid Curator',false)"><button class="flip-btn" onclick="imgFlip('215_Fervid Curator')"></button></div>
+			<div class="container"><img alt="/sets/FAU-files/img/227_Wild World.jpg" id="227_Wild World" data-flag="@X" onclick="openSidebar('227_Wild World',false)"></div>
 			<div class="container"><img alt="/sets/FAU-files/img/229_Wingstitcher Outcast.jpg" id="229_Wingstitcher Outcast" data-flag="@X" onclick="openSidebar('229_Wingstitcher Outcast',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/218_Merciless Pursuer.jpg" id="218_Merciless Pursuer" data-flag="@X" onclick="openSidebar('218_Merciless Pursuer',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/228_Wildwing Fae.jpg" id="228_Wildwing Fae" data-flag="@X" onclick="openSidebar('228_Wildwing Fae',false)"></div>
 			<div class="container"><img alt="/sets/FAU-files/img/220_Shrieking Skykite.jpg" id="220_Shrieking Skykite" data-flag="@X" onclick="openSidebar('220_Shrieking Skykite',false)"></div>
+			<div class="container"><img alt="/sets/FAU-files/img/218_Merciless Pursuer.jpg" id="218_Merciless Pursuer" data-flag="@X" onclick="openSidebar('218_Merciless Pursuer',false)"></div>
 			<div class="container"><img alt="/sets/FAU-files/img/219_Rousing Twinblade.jpg" id="219_Rousing Twinblade" data-flag="@X" onclick="openSidebar('219_Rousing Twinblade',false)"></div>
+			<div class="container"><img alt="/sets/FAU-files/img/228_Wildwing Fae.jpg" id="228_Wildwing Fae" data-flag="@X" onclick="openSidebar('228_Wildwing Fae',false)"></div>
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
@@ -524,11 +524,6 @@
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 			<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/248_Seeping Crater.jpg" id="248_Seeping Crater" data-flag="@X" onclick="openSidebar('248_Seeping Crater',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/243_Field of Ruin.jpg" id="243_Field of Ruin" data-flag="@X" onclick="openSidebar('243_Field of Ruin',false)"></div>
-			<div class="container"><img alt="/sets/FAU-files/img/242_Evolving Wilds.jpg" id="242_Evolving Wilds" data-flag="@X" onclick="openSidebar('242_Evolving Wilds',false)"></div>
-			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-			<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
 	</div>
 </div>
 	<div class="sidebar" id="sidebar">
@@ -660,7 +655,7 @@
 		sidebar_img.src = document.getElementById(id).src;
 		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
 
-		if (horizontal && sidebar_img.src.includes("_front"))
+		if (horizontal && !sidebar_img.src.includes("_back"))
 		{
 			rotated_img.style.display = "block";
 			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
