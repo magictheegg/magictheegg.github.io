@@ -6,6 +6,7 @@ import json
 import image_flip
 import card_edge_trimmer
 import list_to_list
+import print_draft_file
 import print_html_for_index
 import print_html_for_search
 import print_html_for_preview
@@ -13,6 +14,7 @@ import print_html_for_card
 import print_html_for_set
 import print_html_for_sets_page
 import print_html_for_deckbuilder
+
 
 import markdown
 
@@ -107,6 +109,12 @@ for code in set_codes:
 	set_dir = code + '-files'
 	with open(os.path.join('sets', code + '-files', code + '.json'), encoding='utf-8-sig') as f:
 		raw = json.load(f)
+	if 'draft_structure' in raw and not raw['draft_structure'] == 'none':
+		try:
+			print_draft_file.generateFile(code)
+			print('Generated draft file for {0}.'.format(code))
+		except:
+			print('Unable to generate draft file for {0}.'.format(code))
 	trimmed = raw['trimmed']
 	if trimmed == 'n':
 		raw['trimmed'] = 'y'

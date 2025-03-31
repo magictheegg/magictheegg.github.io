@@ -734,6 +734,7 @@
 			let card_set = card_stats.set;
 			let card_loyalty = card_stats.loyalty;
 			let card_notes = card_stats.notes;
+			let card_artist = card_stats.artist;
 			let card_color_2 = "";
 			let card_cost_2 = "";
 			let card_power_2 = "";
@@ -882,7 +883,18 @@
 					else
 					{
 						card_color = card_color == "" ? "c" : card_color;
-						if (modifier == "!" || modifier == "=")
+						if (check == "m")
+						{
+							if (modifier == "<")
+							{
+								return card_color.length < 2;
+							}
+							else
+							{
+								return card_color.length > 1;							
+							}
+						}
+						else if (modifier == "!" || modifier == "=")
 						{
 							return (card_color.split("").sort().join("") == check.split("").sort().join(""));
 						}
@@ -1206,6 +1218,13 @@
 					if (modifier == ":" || modifier == "=" || modifier == "!")
 					{
 						return card_notes.includes("!tag " + check);
+					}
+				}
+				if (term == "a" || term == "art" || term == "artist")
+				{
+					if (modifier == ":" || modifier == "=" || modifier == "!")
+					{
+						return card_artist.includes(check);
 					}
 				}
 			}
