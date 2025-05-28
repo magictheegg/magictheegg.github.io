@@ -990,7 +990,8 @@
 				{
 					if (modifier == ":")
 					{
-						return card_type.includes(check);
+						regex = new RegExp("\\b" + check + "\\b");
+						return regex.test(card_type);
 					}
 					/* unsupported flows
 					if (modifier == "!" || modifier == "=")
@@ -1217,7 +1218,8 @@
 				{
 					if (modifier == ":" || modifier == "=" || modifier == "!")
 					{
-						return card_notes.includes("!tag " + check);
+						regex = new RegExp("!tag " + check + "\\b");
+						return regex.test(card_notes);
 					}
 				}
 				if (term == "a" || term == "art" || term == "artist")

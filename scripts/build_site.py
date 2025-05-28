@@ -2,6 +2,8 @@ import os
 import sys
 import shutil
 import json
+import glob
+import re
 
 import image_flip
 import card_edge_trimmer
@@ -15,7 +17,6 @@ import print_html_for_set
 import print_html_for_sets_page
 import print_html_for_deckbuilder
 
-
 import markdown
 
 #F = Fungustober's notes
@@ -25,6 +26,8 @@ def genAllCards(codes):
 	set_input = {'sets':[]}
 	#F: ...goes over all the set codes,
 	for code in codes:
+		#CE: non-indented JSON is driving me insane
+		prettifyJSON(os.path.join('sets', code + '-files', code + '.json'))	
 		#F: grabs the corresponding file,
 		with open(os.path.join('sets', code + '-files', code + '.json'), encoding='utf-8-sig') as f:
 			#F: puts its card data into a temp dictionary,
@@ -57,6 +60,12 @@ def genAllCards(codes):
 	with open(os.path.join('lists', 'all-sets.json'), 'w', encoding='utf-8-sig') as f:
 		json.dump(set_input, f)
 
+def prettifyJSON(filepath):
+	with open(filepath, encoding='utf-8-sig') as f:
+		js_data = json.load(f)
+	with open(filepath, 'w', encoding='utf-8-sig') as f:
+		json.dump(js_data, f, indent=4)
+
 def portCustomFiles(custom_dir, export_dir):
 	for entry in os.scandir(custom_dir):
 		#CE: ignore default or generated files
@@ -70,6 +79,17 @@ def portCustomFiles(custom_dir, export_dir):
 		else:
 			shutil.copy(entry.path, os.path.join(export_dir, entry.name))
 			print(os.path.join(export_dir, entry.name) + ' added')
+
+def removeStaleFiles(set_dir):
+	filesToRemove = [ 'structure.json', 'preview-order.json' ]
+	for entry in os.scandir(set_dir):
+		#CE: ignore default or generated files
+		if entry.name in [ '.DS_Store', '__pycache__', 'README.md' ]:
+			continue
+		s_dir = os.path.join(set_dir, entry.name)
+		for set_entry in os.scandir(s_dir):
+			if set_entry.name in filesToRemove:
+				os.remove(set_entry)
 
 #CE: legacy file removal
 for entry in os.scandir('.'):
@@ -90,11 +110,13 @@ for entry in os.scandir('lists'):
 	if entry.name != 'README.md' and os.path.isfile(entry):
 		os.remove(entry)
 
+#CE: remove stale files from set directories
+removeStaleFiles('sets')
+
 #CE: copy the entire custom tree
 portCustomFiles('custom', '')
 
 #F: sort them
-
 set_codes.sort()
 
 #F: then call a previously defined function, which...
@@ -115,12 +137,78 @@ for code in set_codes:
 			print('Generated draft file for {0}.'.format(code))
 		except:
 			print('Unable to generate draft file for {0}.'.format(code))
-	trimmed = raw['trimmed']
-	if trimmed == 'n':
+
+	#CE: this code is all for version history
+	if 'version' not in raw:
+		versions = glob.glob(os.path.join('sets', 'versions', '*' + code + '_*'))
+		if len(versions) == 0:
+			shutil.copyfile(os.path.join('sets', code + '-files', code + '.json'), os.path.join('sets', 'versions', '1_' + code + '.json'))
+			prettifyJSON(os.path.join('sets', 'versions', '1_' + code + '.json'))
+			raw['version'] = 1
+			with open(os.path.join('sets', 'versions', 'changelogs', 'chl_' + code + '.txt'), 'w', encoding='utf-8-sig') as f:
+				f.write('VERSION 1 CHANGELOG\n====================\n\nFirst version published.')
+		else:
+			regex = r'[/\\]([0-9]+)_'
+			match = re.search(regex, versions[0])
+			old_version = int(match.group(1))
+			new_version = int(match.group(1)) + 1
+			changed = False
+			chl_string = 'VERSION ' + str(new_version) + ' CHANGELOG\n====================\n'
+			added_string = ''
+			removed_string = ''
+			changed_string = ''
+			with open(versions[0], encoding='utf-8-sig') as f:
+				previous_data = json.load(f)
+			# put the names into an array to reduce runtime
+			prev_card_names = []
+			for card in previous_data['cards']:
+				if 'token' in card['type'] or 'Basic' in card['type']:
+					prev_card_names.append('')
+				else:
+					prev_card_names.append(card['card_name'])
+			for card in raw['cards']:
+				# skip tokens and basics
+				if 'token' in card['type'] or 'Basic' in card['type']:
+					continue
+				if card['card_name'] not in prev_card_names:
+					changed = True
+					added_string += card['card_name'] + ' added.\n'
+				else:
+					prev_card = previous_data['cards'][prev_card_names.index(card['card_name'])]
+					prev_card_names[prev_card_names.index(card['card_name'])] = ''
+					if card != prev_card:
+						changed = True
+						changed_string += card['card_name'] + '\n'
+						for key in [ 'type', 'cost', 'rules_text', 'pt', 'special_text', 'loyalty' ]:
+							if card[key] != prev_card[key]:
+								changed_string += key + ': ' + prev_card[key] + ' => ' + card[key] + '\n'
+						changed_string += '\n'
+			for name in prev_card_names:
+				if name != '':
+					changed = True
+					removed_string += name + ' removed.\n'
+
+			with open(os.path.join('sets', 'versions', 'changelogs', 'chl_' + code + '.txt'), 'r+', encoding='utf-8-sig') as f:
+				file_content = f.read()
+				f.seek(0, 0)
+				if not changed:
+					to_write = '\n'.join( [ chl_string, 'No changes.\n' ] )
+				else:
+					to_write = '\n'.join([ chl_string, added_string, removed_string, changed_string ])
+				f.write(to_write + '\n' + file_content)
+			
+			shutil.copyfile(os.path.join('sets', code + '-files', code + '.json'), os.path.join('sets', 'versions', str(new_version) + '_' + code + '.json'))
+			prettifyJSON(os.path.join('sets', 'versions', str(new_version) + '_' + code + '.json'))
+			os.remove(os.path.join('sets', 'versions', str(old_version) + '_' + code + '.json'))
+			raw['version'] = new_version
+
+	#CE: trims border radius of images
+	if raw['trimmed'] == 'n':
 		raw['trimmed'] = 'y'
 		card_edge_trimmer.batch_process_images(code)
-		with open(os.path.join('sets', code + '-files', code + '.json'), 'w', encoding='utf-8-sig') as file:
-			json.dump(raw, file)
+
+	with open(os.path.join('sets', code + '-files', code + '.json'), 'w', encoding='utf-8-sig') as f:
+		json.dump(raw, f, indent=4)
 
 	#F: list_to_list.convertList is a long and important function
 	list_to_list.convertList(code)

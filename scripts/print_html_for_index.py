@@ -259,6 +259,7 @@ def generateHTML():
 			let gradients = [];
 			let card_list_arrayified = [];
 			let specialchars = "";
+			let initial_gradient = true;
 
 			document.addEventListener("DOMContentLoaded", async function () {
 				try {
@@ -384,7 +385,12 @@ def generateHTML():
 			}
 
 			function setGradient() {
-				gradient = document.getElementById("color-select").value;
+				if (!initial_gradient || localStorage.getItem("gradient") != null)
+				{
+					localStorage.setItem("gradient", document.getElementById("color-select").value);
+				}
+				
+				gradient = localStorage.getItem("gradient");
 
 				gradTop = "#000000";
 				gradBottom = "#FFFFFF";
@@ -396,7 +402,13 @@ def generateHTML():
 						gradBottom = grad.color2;
 					}
 				}
+				
+				if (initial_gradient)
+				{
+					document.getElementById("color-select").value = gradient;
+				}
 
+				initial_gradient = false;
 				document.body.style.backgroundImage = `linear-gradient(to bottom, ${gradTop}, ${gradBottom})`;
 			}
 

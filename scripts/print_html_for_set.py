@@ -299,13 +299,13 @@ def generateHTML(code):
 		for img_name in re.findall(img_re, md_html):
 			img_name_re = r'%' + img_name + '%'
 			if img_name == 'logo' or img_name == 'icon':
-				img_path = os.path.join('/sets', code + '-files', img_name + '.png')
+				img_path = '/'.join([ '/sets', code + '-files', img_name + '.png' ])
 			else:
 				with open(os.path.join('sets', code + '-files', code + '.json'), encoding='utf-8-sig') as f:
 					set_json = json.load(f)
 				for card in set_json['cards']:
 					if card['card_name'] == img_name:
-						img_path = os.path.join('/sets', code + '-files', 'img', str(card['number']) + ('t' if 'token' in card['shape'] else '') + '_' + img_name + '.png')
+						img_path = '/'.join([ '/sets', code + '-files', 'img', str(card['number']) + ('t' if 'token' in card['shape'] else '') + '_' + img_name + '.png' ])
 						break
 					img_path = 'missing'
 			md_html = re.sub(img_name_re, img_path, md_html)
