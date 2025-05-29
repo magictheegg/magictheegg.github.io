@@ -385,7 +385,7 @@ def generateHTML():
 			}
 
 			function setGradient() {
-				if (!initial_gradient || localStorage.getItem("gradient") != null)
+				if (!initial_gradient || !localStorage.getItem("gradient"))
 				{
 					localStorage.setItem("gradient", document.getElementById("color-select").value);
 				}
