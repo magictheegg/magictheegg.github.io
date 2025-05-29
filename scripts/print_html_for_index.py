@@ -38,7 +38,7 @@ def generateHTML():
 		max-height: 200px;
 		display: block;
 		margin: auto;
-		padding-bottom: 20px;
+		padding: 20px 0;
 	}
 	select {
 		position: absolute;
