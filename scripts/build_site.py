@@ -135,8 +135,8 @@ for code in set_codes:
 		try:
 			print_draft_file.generateFile(code)
 			print('Generated draft file for {0}.'.format(code))
-		except:
-			print('Unable to generate draft file for {0}.'.format(code))
+		except Exception as e:
+			print('Unable to generate draft file for {0}: {1}'.format(code, e))
 
 	#CE: this code is all for version history
 	if 'version' not in raw:

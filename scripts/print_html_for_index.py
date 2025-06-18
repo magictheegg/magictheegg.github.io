@@ -188,7 +188,6 @@ def generateHTML():
 	}
 	.set-icon-name {
 		min-height: 30px;
-		height: 100%;
 	}
 	@media ( max-width: 750px ) {
 		.item-container {
@@ -322,7 +321,6 @@ def generateHTML():
 
 				const img = document.createElement("img");
 				img.id = "cotd";
-
 
 				img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
 

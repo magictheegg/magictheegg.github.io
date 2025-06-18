@@ -159,7 +159,7 @@ function tokenizeTerms(searchTerms)
 
 			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('“','').replaceAll('”','');
 
-			const modifierRegex = /[!:<>=]+/g;
+			const modifierRegex = /[!:<>=][=]*/g;
 			const match = token.match(modifierRegex);
 
 			if (match)
@@ -167,15 +167,6 @@ function tokenizeTerms(searchTerms)
 				const modifier = match[0];
 				const term = token.substring(0, token.indexOf(modifier));
 				let check = token.substring(token.indexOf(modifier) + modifier.length);
-
-				if (check.charAt(0) == '/')
-				{
-					check = check.substring(1);
-				}
-				if (check.charAt(check.length - 1) == '/')
-				{
-					check = check.substring(0,check.length - 1);
-				}
 
 				if (color_map.has(check))
 				{
@@ -344,10 +335,6 @@ function tokenizeTerms(searchTerms)
 						{
 							return (card_ci.split("").sort().join("") == check.split("").sort().join(""));
 						}
-						else if (modifier == ":")
-						{
-							return hasAllChars(card_ci, check);
-						}
 						else if (modifier == "<")
 						{
 							return card_ci == "c" || (check.length > card_ci.length && hasAllChars(check, card_ci));
@@ -356,7 +343,7 @@ function tokenizeTerms(searchTerms)
 						{
 							return card_ci.length > check.length && hasAllChars(card_ci, check);
 						}
-						else if (modifier == "<=")
+						else if (modifier == ":" || modifier == "<=")
 						{
 							return card_ci == "c" || hasAllChars(check, card_ci);
 						}
@@ -391,8 +378,17 @@ function tokenizeTerms(searchTerms)
 				{
 					if (modifier == ":")
 					{
-						regex = new RegExp(check.replaceAll("+","\\+"));
-						return regex.test(card_oracle_text);
+						if (check.startsWith("/") && check.endsWith("/"))
+						{
+							check = check.substring(1, check.length - 1);
+
+							regex = new RegExp(check.replaceAll("+","\\+"));
+							return regex.test(card_oracle_text);
+						}
+						else
+						{
+							return card_oracle_text.includes(check);
+						}
 					}
 					/* unsupported flows
 					if (modifier == "!" || modifier == "=")
