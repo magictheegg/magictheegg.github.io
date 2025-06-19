@@ -69,6 +69,7 @@ def generateHTML(code):
 	}
 	.set-banner img {
 		width: 50px;
+		padding-right: 8px;
 	}
 	.set-banner a {
 		font-size: 18px;
@@ -407,6 +408,7 @@ def generateHTML(code):
 		let set_list_arrayified = [];
 		let specialchars = "";
 		let displayStyle = "";
+		let p1p1cards = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
 			'''
@@ -416,6 +418,12 @@ def generateHTML(code):
 		html_content += snippet
 
 	html_content += '''
+
+			await fetch('/sets/''' + code + '''-files/''' + code + '''-p1p1.json')
+				.then(response => response.json())
+				.then(json => {
+					p1p1_cards = json;
+			}).catch(error => console.error('Error:', error));
 
 			for (let i = 0; i < card_list_arrayified.length; i++)
 			{
@@ -524,18 +532,15 @@ def generateHTML(code):
 			}
 		}
 
-		async function packOnePickOne() {
-			await fetch('/sets/''' + code + '''-files/''' + code + '''-p1p1.json')
-				.then(response => response.json())
-				.then(json => {
-					p1p1_cards = json;
-			}).catch(error => console.error('Error:', error));
-
+		function packOnePickOne() {
 			img_list = [];
+			used_cards = [];
 			for (const slot of p1p1_cards)
 			{
-				rand_i = Math.floor(Math.random() * (slot.length));
-				card = slot[rand_i];
+				do {
+					rand_i = Math.floor(Math.random() * (slot.length));
+					card = slot[rand_i];
+				} while (used_cards.includes(card));
 
 				const img_url = '/sets/' + card.set + '-files/img/' + card.number + '_' + card.card_name + (card.shape.includes('double') ? '_front' : '') + '.' + card.image_type;
 
@@ -543,6 +548,7 @@ def generateHTML(code):
 				image.src = img_url;
 
 				img_list.push(image);
+				used_cards.push(card);
 			}
 
 			const canvas = document.getElementById("canvas");
@@ -551,22 +557,13 @@ def generateHTML(code):
 			canvas.width = 1883;
 			canvas.height = 1573;
 
-			x_offset = 0;
-			y_offset = 0;
-
-			for (let i = 1; i <= img_list.length; i++)
+			for (let i = 0; i < img_list.length; i++)
 			{
-				ctx.drawImage(img_list[i-1], x_offset, y_offset, 375, 523);
-
-				if (i % 5 == 0)
-				{
-					x_offset = 0;
-					y_offset += 525;
-				}
-				else
-				{
-					x_offset += 377;
-				}
+				img_list[i].onload = function() {
+					x_offset = 377 * (i % 5);
+					y_offset = 525 * Math.floor(i / 5);
+				    ctx.drawImage(img_list[i], x_offset, y_offset, 375, 523);
+				};
 			}
 
 			document.getElementById("p1p1").style.display = "block";
