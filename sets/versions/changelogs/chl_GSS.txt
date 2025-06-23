@@ -1,4 +1,550 @@
-﻿VERSION 1 CHANGELOG
+﻿VERSION 2 CHANGELOG
+====================
+
+Stonesmith Thadd added.
+Another Man's Treasure added.
+Dutiful Innkeeper added.
+Blacksea Thaumaturge added.
+
+Goldsmith Thadd removed.
+The Blessing of Wealth removed.
+Elixir Provisioner removed.
+Abyssal Corrupter removed.
+
+First Admiral of the Bellows
+rules_text: Shipwright 1 [i](When this enters, put a +1/+1 counter on it or a Vehicle you control.)[/i]
+Other Dwarves you control have shipwright 1.
+Whenever a Vehicle enters the battlefield under your control, create a 1/1 white Dwarf creature token. => Shipwright 1 [i](When this enters, put a +1/+1 counter on it or a Vehicle you control.)[/i]
+Other Dwarves you control have shipwright 1.
+Whenever a Vehicle enters under your control, create a 1/1 white Dwarf creature token.
+
+Betsy Mae Moss, Legionette
+rules_text: Agile
+As long as Betsy Mae Moss entered the battlefield or attacked this turn, your opponents can't cast noncreature spells. => Agile [i](This creature deals combat damage first as long as it's attacking.)[/i]
+The first spell each player casts each turn costs {2} more to cast unless it's a creature spell.
+pt: 3/1 => 2/1
+
+Panya, Minikin Hero
+rules_text: Flying
+When Panya enters the battlefield, you may search your library for a battle card, reveal it, put it into your hand, then shuffle.
+Whenever Panya attacks, if she isn't attacking a player, she has base power and toughness 4/4 until end of turn. => Flying
+When Panya enters, you may search your library for a battle card, reveal it, put it into your hand, then shuffle.
+Whenever Panya attacks, if she isn't attacking a player, she has base power and toughness 4/4 until end of turn.
+
+Curse of the Dusk Fleet
+cost: {1}{B} => {2}{B}
+rules_text: Enchant opponent
+When Curse of the Dusk Fleet enters the battlefield, it deals 3 damage to target creature or planeswalker enchanted player controls.
+{2}: Curse of the Dusk Fleet becomes a copy of another target Curse you control attached to enchanted player. => Enchant opponent
+Whenever Curse of the Dusk Fleet enters or you cast a spell that targets enchanted player, draw a card and you lose 1 life.
+At the beginning of your end step, if you control seven or more Curses attached to enchanted player, they lose 14 life.
+
+The Butcher of Bandura
+cost: {3}{R}{R} => {4}{R}{R}
+rules_text: Whenever The Butcher of Bandura enters the battlefield or attacks, each opponent who controls three or more permanents sacrifices
+a permanent.
+Whenever a permanent an opponent controls dies, if it was a creature or planeswalker, The Butcher of Bandura deals 2 damage to that player. Otherwise, create a Treasure token. => Menace
+When The Butcher of Bandura enters, destroy up to two target artifacts and/or lands.
+Whenever a permanent an opponent controls dies, exile the top card of that player's library. You may play that card until the end of your next turn.
+pt: 4/5 => 5/6
+
+Battle for Alas-Wana
+loyalty: 4 => 5
+
+Captain Crain
+special_text: First mate — Your starting deck contains “The[i] Fell Reaper[/i]” and each nonland card in your starting deck targets or has an ability that targets.
+[+3]: Target opponent exiles a card from their hand or a nonland permanent they control. If that player is cursed, you may play that card until end of turn.
+[-3]: Captain Crain deals 3 damage to each creature and each non-Crain planeswalker. Create three Treasure tokens.
+[-13]: Each cursed opponent loses the game. => First mate—Your starting deck contains “The[i] Fell Reaper[/i]” and each nonland card in your starting deck targets or has an ability that targets.
+[+3]: Target opponent exiles a card from their hand or a nonland permanent they control. If that player is cursed, you may play that card until end of turn.
+[-3]: Captain Crain deals 3 damage to each creature and each non-Crain planeswalker. Create three Treasure tokens.
+[-13]: Each cursed opponent loses the game.
+
+Wayward Crew
+rules_text: Whenever one or more creatures with power 2 or less enter the battlefield under your control, create a Clue token.
+Whenever you sacrifice a Clue, put a +1/+1 counter on target permanent you control. => Whenever one or more creatures with power 2 or less enter under your control, create a Clue token.
+Whenever you sacrifice a Clue, put a +1/+1 counter on target permanent you control.
+
+Ataxia
+rules_text: Flash
+When Ataxia enters the battlefield, choose one —
+• Until end of turn, if a creature would enter the battlefield and it wasn't cast, exile it instead.
+• Until end of turn, if a spell would resolve and no mana was spent to cast it, exile that spell instead.
+{2}, Sacrifice Ataxia: Draw a card. => Flash
+When Ataxia enters, choose one —
+• Until end of turn, if a creature would enter the battlefield and it wasn't cast, exile it instead.
+• Until end of turn, if a spell would resolve and no mana was spent to cast it, exile that spell instead.
+{2}, Sacrifice Ataxia: Draw a card.
+
+Arrival of the Sun Fleet
+
+Battle for Castle Cay
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Castle Cay enters the battlefield, each player chooses a nonbattle, nonland permanent they control, then sacrifices the rest. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Castle Cay enters, each player chooses a nonbattle, nonland permanent they control, then sacrifices the rest.
+loyalty: 4 => 5
+
+Riftwind Navigator
+rules_text: Flash
+When Riftwind Navigator enters the battlefield, exile target spell or nonland permanent an opponent controls with mana value 4 or less.
+When Riftwind Navigator leaves the battlefield, the exiled card's owner creates a 4/4 colorless Vehicle artifact token with crew 1. => Flash
+When Riftwind Navigator enters, exile target spell or nonland permanent an opponent controls with mana value 4 or less.
+When Riftwind Navigator leaves, the exiled card's owner creates a 4/4 colorless Vehicle artifact token with crew 1.
+
+Dreadlich Captain
+rules_text: Whenever you cast an instant or sorcery spell, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+{3}, Sacrifice three other Zombies: Create a 6/6 black Zombie Horror creature token. It can't block this turn. => Whenever you cast an instant or sorcery spell, create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+{3}, Sacrifice three other Zombies: Create a 6/6 black Zombie Horror creature token. It can't block this turn.
+
+Cloudbreacher
+rules_text: Flying
+Whenever Cloudbreacher or another nontoken creature with flying enters the battlefield under your control, create an Egg artifact token with “{3}, Sacrifice this: Create a 2/2 blue Drake creature token with flying.” => Flying
+Whenever Cloudbreacher or another nontoken creature with flying enters under your control, create an Egg artifact token with “{3}, Sacrifice this: Create a 2/2 blue Drake creature token with flying.”
+
+Battle for the Mistwinds
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Mistwinds enters the battlefield, look at the top five cards of your library. Put two of them into your hand
+and the rest into your graveyard. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Mistwinds enters, look at the top five cards of your library. Put two of them into your hand and the rest into your graveyard.
+loyalty: 4 => 5
+
+Last Voyage of the Selkie
+rules_text: Put all creature cards from all graveyards onto the battlefield under your control. Those creatures gain decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Put all creature cards from all graveyards onto the battlefield under your control. Those creatures gain decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Razortooth Roost
+rules_text: When Razortooth Roost enters the battlefield, create a 2/2 blue Drake creature token with flying. It gains haste.
+Whenever three or more creatures you control deal combat damage to a player, draw three cards. => When Razortooth Roost enters, create a 2/2 blue Drake creature token with flying. It gains haste.
+Whenever three or more creatures you control deal combat damage to a player, draw three cards.
+
+Mayit, the Forgotten One
+rules_text: Attacking Zombies you control have deathtouch.
+Whenever Mayit enters the battlefield or attacks, put a legion counter on it, then create a 2/2 black Zombie creature token with decayed for each legion counter on Mayit. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Attacking Zombies you control have deathtouch.
+Whenever Mayit enters or attacks, put a legion counter on it, then create a 2/2 black Zombie creature token with decayed for each legion counter on Mayit. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Blacksea Hag
+
+Grog Snoggers
+rules_text: Whenever another creature enters the battlefield, each opponent loses 1 life.
+{1}{B}, {T}: Exile target creature card from your graveyard. Create a token that's a copy of that card, then exile that token. => Whenever another creature enters, each opponent loses 1 life.
+{1}{B}, {T}: Exile target creature card from your graveyard. Create a token that's a copy of that card, then exile that token.
+
+Abyssal Corruption
+
+Ascent of the Wakeborn
+
+Battle for the Dead Strait
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Dead Strait enters the battlefield, search your library for a card, then shuffle and put that card on top. You
+lose 2 life. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Dead Strait enters, search your library for a card, then shuffle and put that card on top. You lose 2 life.
+loyalty: 4 => 5
+
+Hamlet Shrieker
+rules_text: Flying
+Whenever Hamlet Shrieker enters the battlefield or an opponent plays a nonbasic land, exile the top card of your library. You may play that card until the beginning of your next end step.
+Whenever you play a card from exile, Hamlet Shrieker deals 1 damage to any non-Dragon target. => Flying
+Whenever Hamlet Shrieker enters or an opponent plays a nonbasic land, exile the top card of your library. You may play that card until the beginning of your next end step.
+Whenever you play a card from exile, Hamlet Shrieker deals 1 damage to any non-Dragon target.
+
+Battle for the Apex
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Apex enters the battlefield, up to two target creatures can't block this turn. Until your next turn, those creatures attack each combat if able. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Apex enters, up to two target creatures can't block this turn. Until your next turn, those creatures attack each combat if able.
+loyalty: 4 => 6
+
+Current Pacer
+rules_text: Wayfarer [i](If you've spent {W}{U}{B}{R}{G} this turn, discover L'Or.)[/i]
+When Current Pacer enters the battlefield, draw a card. You may play an additional land this turn.
+{4}{R}{G}: Shuffle, then exile the top two cards of your library. You may play them this turn. If you've discovered L'Or, you may play them this turn without paying their mana costs. => Wayfarer [i](If you've spent {W}{U}{B}{R}{G} this turn, discover L'Or.)[/i]
+When Current Pacer enters, draw a card. You may play an additional land this turn.
+{4}{R}{G}: Shuffle, then exile the top two cards of your library. You may play them this turn. If you've discovered L'Or, you may play them this turn without paying their mana costs.
+
+Pelagic Conduit
+rules_text: When Pelagic Conduit enters the battlefield, look at the top eight cards of your library. You may reveal a Revelation card from among them and put it into your hand. Put the rest on the bottom in a random order.
+When Pelagic Conduit dies, create an 8/8 blue Kraken creature token. => When Pelagic Conduit enters, look at the top eight cards of your library. You may reveal a Revelation card from among them and put it into your hand. Put the rest on the bottom in a random order.
+When Pelagic Conduit dies, create an 8/8 blue Kraken creature token.
+
+Battle for Prospera Depths
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Prospera Depths enters the battlefield,
+create three 0/1 green Kelp creature tokens with “{T}: Add {G}.” => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Prospera Depths enters, create three 0/1 green Kelp creature tokens with “{T}: Add {G}.”
+loyalty: 4 => 5
+
+Sentinels of Canica Strait
+rules_text: Sentinels of Canica Strait enters the battlefield with three marble counters on it.
+{2}, {T}, Remove a marble counter from Sentinels of Canica Strait: Draw a card.
+{3}, {T}, Sacrifice Sentinels of Canica Strait: Create two 3/3 colorless Warrior artifact creature tokens. Activate only if Sentinels of Canica Strait has no marble counters on it. => Sentinels of Canica Strait enters with three marble counters on it.
+{2}, {T}, Remove a marble counter from Sentinels of Canica Strait: Draw a card.
+{3}, {T}, Sacrifice Sentinels of Canica Strait: Create two 3/3 colorless Warrior artifact creature tokens. Activate only if Sentinels of Canica Strait has no marble counters on it.
+
+Detention Officer
+rules_text: When Detention Officer enters the battlefield, you may exile another target nonland permanent. Return that card to the battlefield under its owner's control at the beginning of the next end step. => When Detention Officer enters, you may exile another target nonland permanent. Return that card to the battlefield under its owner's control at the beginning of the next end step.
+
+Jacktar-for-Hire
+rules_text: When Jacktar-for-Hire enters the battlefield, search your library for a Vehicle card, reveal it, put it into your hand, then shuffle. => When Jacktar-for-Hire enters, search your library for a Vehicle card, reveal it, put it into your hand, then shuffle.
+
+Lady of the Threshers
+
+A Pirate's Life
+
+Crain's Creation
+rules_text: When Crain's Creation enters the battlefield, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+Tap three untapped creatures you control: Target player mills three cards.
+Tap ten untapped creatures you control: Target player mills twenty cards. => When Crain's Creation enters, create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+Tap three untapped creatures you control: Target player mills three cards.
+Tap ten untapped creatures you control: Target player mills twenty cards.
+
+The Briny Depths Await
+rules_text: Fathom {4}{U}{U} [i](If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent's mana value, put this onto the battlefield as a creature after it resolves or loses targets.)[/i]
+Counter target spell.
+When The Briny Depths Await enters the battlefield, draw a card. => Fathom {4}{U}{U} [i](If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent's mana value, put this onto the battlefield as a creature after it resolves or loses targets.)[/i]
+Counter target spell.
+When The Briny Depths Await enters, draw a card.
+
+Black Arts Admiral
+
+Roots of All Evil
+rules_text: This spell costs {1} less to cast for each card type among cards in your graveyard.
+When Roots of All Evil enters the battlefield, draw two cards and you lose 2 life. => This spell costs {1} less to cast for each card type among cards in your graveyard.
+When Roots of All Evil enters, draw two cards and you lose 2 life.
+
+Faceless Faction
+rules_text: Zombies you control get +1/+1.
+At the beginning of your end step, if a nontoken creature died this turn, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Zombies you control get +1/+1.
+At the beginning of your end step, if a nontoken creature died this turn, create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Barter in Blood
+
+Curse of the Blacksea
+rules_text: Enchant opponent
+Whenever Curse of the Blacksea enters the battlefield or you cast a spell that targets enchanted player, they lose 3 life unless they sacrifice a nonland permanent or discard a card. => Enchant opponent
+Whenever Curse of the Blacksea enters or you cast a spell that targets enchanted player, they lose 3 life unless they sacrifice a nonland permanent or discard a card.
+
+Glyph Wyvern
+rules_text: Flying
+Whenever Glyph Wyvern or another creature with flying enters the battlefield under your control, create a Treasure token. => Flying
+Whenever Glyph Wyvern or another creature with flying enters under your control, create a Treasure token.
+
+Soul of the Grove
+rules_text: When Soul of the Grove enters the battlefield, mill three cards and you gain 3 life.
+When Soul of the Grove dies, create a 4/1 black and green Zombie Treefolk creature token. => When Soul of the Grove enters, mill three cards and you gain 3 life.
+When Soul of the Grove dies, create a 4/1 black and green Zombie Treefolk creature token.
+
+Greensea Amity
+rules_text: You may pay {1}{G} rather than pay this spell's mana cost. If you do, sacrifice it when it enters the battlefield.
+When Greensea Amity enters the battlefield, create a 0/1 green Kelp creature token with “{T}: Add {G}.”
+Untap all permanents you control during each other player's untap step. => You may pay {1}{G} rather than pay this spell's mana cost. If you do, sacrifice it when it enters the battlefield.
+When Greensea Amity enters, create a 0/1 green Kelp creature token with “{T}: Add {G}.”
+Untap all permanents you control during each other player's untap step.
+
+Captain Holly Dee
+rules_text: First mate — Your starting deck contains “[i]Suitor of the Wind[/i]” and at least eight other artifacts. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Captain Holly Dee becomes tapped, target creature or Vehicle you control gains flying until end of turn. => First mate—Your starting deck contains “[i]Suitor of the Wind[/i]” and at least eight other artifacts. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Captain Holly Dee becomes tapped, target creature or Vehicle you control gains flying until end of turn.
+
+Runic Visionary
+rules_text: When Runic Visionary enters the battlefield, you may search your library for a card named Prophetic Prism and/or a card named Seer's Lantern, reveal them, put them into your hand, then shuffle.
+Runic Visionary gets +2/+1 as long as you control three or more artifacts. => When Runic Visionary enters, you may search your library for a card named Prophetic Prism and/or a card named Seer's Lantern, reveal them, put them into your hand, then shuffle.
+Runic Visionary gets +2/+1 as long as you control three or more artifacts.
+
+Battle for Verity Bay
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Verity Bay enters the battlefield, you may exile target nonland permanent an opponent controls. For as long as that card remains exiled, its owner may pay {2} to put it into their hand. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Verity Bay enters, you may exile target nonland permanent an opponent controls. For as long as that card remains exiled, its owner may pay {2} to put it into their hand.
+
+Captain Darwin Smythe
+rules_text: First mate — Your starting deck contains “The [i]Foul Omen[/i]” and no nonlegendary cards with odd mana value. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Tap three untapped Zombies you control: Draw a card. You lose 1 life. => First mate—Your starting deck contains “The [i]Foul Omen[/i]” and no nonlegendary cards with odd mana value. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Tap three untapped Zombies you control: Draw a card. You lose 1 life.
+
+Touch of the Omen
+rules_text: Gain control of target creature. Put a decayed counter on it. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Gain control of target creature. Put a decayed counter on it. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Battle for Ivos Isle
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Ivos Isle enters the battlefield, put a decayed counter on target creature an opponent controls with mana value 3 or less. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Ivos Isle enters, put a decayed counter on target creature an opponent controls with mana value 3 or less. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Commodore Egan Bristol
+rules_text: First mate — Your starting deck contains “[i]Despair's Emissary[/i]” and at least eight cards that could target a player. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever you cast a spell that targets an opponent, target creature you control gets +2/+0 and gains menace until end of turn. => First mate—Your starting deck contains “[i]Despair's Emissary[/i]” and at least eight cards that could target a player. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever you cast a spell that targets an opponent, target creature you control gets +2/+0 and gains menace until end of turn.
+
+Battle for Blacksea
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Blacksea enters the battlefield, copy the next spell you cast this turn that targets an opponent when you cast it. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Blacksea enters, copy the next spell you cast this turn that targets an opponent when you cast it.
+
+Captain Rosie Wright
+rules_text: First mate — Your starting deck contains “[i]Shining Horizon[/i]” and two lands of each basic land type. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Captain Rosie Wright becomes tapped, you may sacrifice a Mountain or Forest. If you do, put a +1/+1 counter on Captain Rosie Wright, then search your library for a land card, put it onto the battlefield tapped, then shuffle. => First mate—Your starting deck contains “[i]Shining Horizon[/i]” and two lands of each basic land type. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Captain Rosie Wright becomes tapped, you may sacrifice a Mountain or Forest. If you do, put a +1/+1 counter on Captain Rosie Wright, then search your library for a land card, put it onto the battlefield tapped, then shuffle.
+
+Sunscale Drake
+rules_text: Wayfarer [i](If you've spent {W}{U}{B}{R}{G} this turn, discover L'Or.)[/i]
+{5}: Until end of turn, Sunscale Drake gets +1/+1 and gains your choice of agile, lure, or challenge. If you've discovered L'Or, it gains all three instead. [i](A creature with agile deals combat damage first as long as it's attacking. A creature with lure must be blocked if able. A creature with challenge can't be blocked by more than one creature.)[/i] => Wayfarer [i](If you've spent {W}{U}{B}{R}{G} this turn, discover L'Or.)[/i]
+{3}{R}{G}: Until end of turn, Sunscale Drake gains lure and challenge. If you've discovered L'Or, put two +1/+1 counters on it. [i](A creature with lure must be blocked if able. A creature with challenge can't be blocked by more than one creature.)[/i]
+
+Battle for Highspire
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Highspire enters the battlefield, exile the top three cards of your library. You may play one of them this turn, and
+you may play an additional land this turn. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Highspire enters, exile the top three cards of your library. You may play one of them this turn, and you may play an additional land this turn.
+loyalty: 4 => 6
+
+The Dieu-de-Fer Twins
+rules_text: First mate — Your starting deck contains “[i]Frere et Soeur[/i]” and no nonlegendary nonland cards with even mana value. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Creatures you control with +1/+1 counters on them have challenge. [i](They can't be blocked by more than one creature.)[/i] => First mate—Your starting deck contains “[i]Frere et Soeur[/i]” and no nonlegendary nonland cards with even mana value. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Creatures you control with +1/+1 counters on them have challenge. [i](They can't be blocked by more than one creature.)[/i]
+
+Familiar's Guile
+rules_text: When Familiar's Guile enters the battlefield, create a 1/1 white Bird creature token with flying.
+Whenever you attack, put a +1/+1 counter on target attacking creature or Vehicle. => When Familiar's Guile enters, create a 1/1 white Bird creature token with flying.
+Whenever you attack, put a +1/+1 counter on target attacking creature or Vehicle.
+
+Battle for Fort Alderosa
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Fort Alderosa enters the battlefield, distribute four +1/+1 counters among any number of target creatures and/or Vehicles you control, then permanents you control with +1/+1 counters on them gain vigilance until end of turn. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Fort Alderosa enters, distribute four +1/+1 counters among any number of target creatures and/or Vehicles you control, then permanents you control with +1/+1 counters on them gain vigilance until end of turn.
+
+Olavan of the Silversea
+rules_text: First mate — Your starting deck contains “The [i]Ashen Cross[/i]” and each nonland, nonlegendary permanent card in your starting deck has a triggered ability. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Olavan crews a Vehicle, that Vehicle gains deathtouch and lifelink until end of turn. => First mate—Your starting deck contains “The [i]Ashen Cross[/i]” and each nonland, nonlegendary permanent card in your starting deck has a triggered ability. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Olavan crews a Vehicle, that Vehicle gains deathtouch and lifelink until end of turn.
+
+Spectral Scalawag
+rules_text: When Spectral Scalawag enters the battlefield, target opponent loses 2 life and you gain 2 life.
+When Spectral Scalawag leaves the battlefield, reveal the top card of your library and put it into your hand. You lose life equal to its mana value. => When Spectral Scalawag enters, target opponent loses 2 life and you gain 2 life.
+When Spectral Scalawag leaves the battlefield, reveal the top card of your library and put it into your hand. You lose life equal to its mana value.
+
+Battle for the Stillshroud
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Stillshroud enters the battlefield, it deals 3 damage to target creature, player, or planeswalker and you gain
+3 life. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for the Stillshroud enters, it deals 3 damage to target creature, player, or planeswalker and you gain 3 life.
+loyalty: 4 => 5
+
+Runix of the Blacksea
+rules_text: First mate — Your starting deck contains “The [i]Abyssal Pilgrim[/i]” and no nonlegendary, nonland cards with mana value 2 or less. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+When Runix enters the battlefield, each opponent loses 1 life and you gain 1 life.
+{B}{G}, Exile two cards that don't share a type from your graveyard: Return Runix from your graveyard to the battlefield. They can't block this turn. => First mate—Your starting deck contains “The [i]Abyssal Pilgrim[/i]” and no nonlegendary, nonland cards with mana value 2 or less. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+When Runix enters, each opponent loses 1 life and you gain 1 life.
+{B}{G}, Exile two cards that don't share a type from your graveyard: Return Runix from your graveyard to the battlefield. They can't block this turn.
+
+Battle for Merida Keys
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Merida Keys enters the battlefield, return up to one target noncreature permanent card from your graveyard to the battlefield, then return up to one target creature card from your graveyard to your hand. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Merida Keys enters, return up to one target noncreature permanent card from your graveyard to the battlefield, then return up to one target creature card from your graveyard to your hand.
+
+Lanne of the Greensea
+rules_text: First mate — Your starting deck contains “[i]Seaskipper[/i]” and at least eight cards with an alternate cost. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+At the beginning of your end step, if you don't control a 0/1 green Kelp creature token with “{T}: Add {G},” create one. => First mate—Your starting deck contains “[i]Seaskipper[/i]” and at least eight cards with an alternate cost. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+At the beginning of your end step, if you don't control a 0/1 green Kelp creature token with “{T}: Add {G},” create one.
+
+Battle for Tempest Reach
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Tempest Reach enters the battlefield, return target nonland permanent an opponent controls to its owner's hand, then return target Kraken card from your graveyard to your hand. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Tempest Reach enters, return target nonland permanent an opponent controls to its owner's hand, then return target Kraken card from your graveyard to your hand.
+loyalty: 4 => 6
+
+Captain Polly Carver
+rules_text: First mate — Your starting deck contains “The [i]Scarlet Scourge[/i]” and no nonlegendary creature cards without flying. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever a Dragon or Drake you control deals damage to an opponent, exile the top card of your library, then you may have Captain Polly Carver deal 1 damage to that player. If you don't, you may play that card from exile this turn. => First mate—Your starting deck contains “The [i]Scarlet Scourge[/i]” and no nonlegendary creature cards without flying. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever a Dragon or Drake you control deals damage to an opponent, exile the top card of your library, then you may have Captain Polly Carver deal 1 damage to that player. If you don't, you may play that card from exile this turn.
+
+Battle for Charred Atoll
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Charred Atoll enters the battlefield,
+create a 2/2 blue Drake creature token with flying. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Charred Atoll enters, create a 2/2 blue Drake creature token with flying.
+loyalty: 4 => 5
+
+Admiral Everett Cross
+rules_text: First mate — Your starting deck contains “The [i]Huntress[/i]” and no nonlegendary cards with mana value 4 or greater. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Admiral Everett Cross crews a Vehicle, that Vehicle gains double strike until end of turn. => First mate—Your starting deck contains “The [i]Huntress[/i]” and no nonlegendary cards with mana value 4 or greater. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Whenever Admiral Everett Cross crews a Vehicle, that Vehicle gains double strike until end of turn.
+
+Battle for Port Plenty
+rules_text: [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Port Plenty enters the battlefield, create
+a 4/4 colorless Vehicle artifact token with crew 1. => [i](As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it's defeated, put it onto the battlefield transformed.)[/i]
+When Battle for Port Plenty enters, create a 4/4 colorless Vehicle artifact token with crew 1.
+loyalty: 4 => 5
+
+Seacraft Registrar
+type: Creature — Human Advisor => Creature — Dwarf Advisor
+
+Dockside Sleuth
+rules_text: When Dockside Sleuth enters the battlefield, create a Clue token. [i](It's an artifact with “{2}, Sacrifice this: Draw a card.”)[/i] => When Dockside Sleuth enters, create a Clue token. [i](It's an artifact with “{2}, Sacrifice this: Draw a card.”)[/i]
+
+Plucky Crewmate
+
+Faithful Seasteed
+rules_text: When Faithful Seasteed enters the battlefield, you may search your library for a card named Faithful Seasteed, reveal it, put it into your hand, then shuffle. => When Faithful Seasteed enters, you may search your library for a card named Faithful Seasteed, reveal it, put it into your hand, then shuffle.
+
+Parrot Peddler
+rules_text: When Parrot Peddler enters the battlefield, create a 1/1 white Bird creature token with flying. => When Parrot Peddler enters, create a 1/1 white Bird creature token with flying.
+
+Rainbow Tern
+
+Port Rose Lieutenant
+rules_text: When Port Rose Lieutenant enters the battlefield, exile target creature or Vehicle an opponent controls until Port Rose Lieutenant leaves the battlefield.
+Port Rose Lieutenant has ward {3} as long as you control three or more artifacts. => When Port Rose Lieutenant enters, exile target creature or Vehicle an opponent controls until Port Rose Lieutenant leaves the battlefield.
+Port Rose Lieutenant has ward {3} as long as you control three or more artifacts.
+
+Mercantile Negotiations
+
+Revoke Privileges
+
+Sailor's Sendoff
+
+Harbor Trawler
+rules_text: When Harbor Trawler enters the battlefield, you may tap two other untapped artifacts and/or creatures you control. When you do, return target instant or sorcery card from your graveyard to your hand. => When Harbor Trawler enters, you may tap two other untapped artifacts and/or creatures you control. When you do, return target instant or sorcery card from your graveyard to your hand.
+
+Necrotic Shawl
+rules_text: Target creature gets +1/+1 and gains hexproof until end of turn.
+Create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Target creature gets +1/+1 and gains hexproof until end of turn.
+Create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Rise of the Blacksea Moon
+rules_text: Tap up to two target creatures and/or Vehicles. They don't untap during their controller's next untap step.
+Create two 2/2 black Zombie creature tokens with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Tap up to two target creatures and/or Vehicles. They don't untap during their controller's next untap step.
+Create two 2/2 black Zombie creature tokens with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Crain's Accursed
+rules_text: When Crain's Accursed dies, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => When Crain's Accursed dies, create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Damned Helmsman
+rules_text: When Damned Helmsman enters the battlefield, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+{2}{B}, Sacrifice a creature or Vehicle: Draw a card. You gain 1 life. => When Damned Helmsman enters, create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+{2}{B}, Sacrifice a creature or Vehicle: Draw a card. You gain 1 life.
+
+Galleon Ravager
+rules_text: Flying, deathtouch
+When Galleon Ravager enters the battlefield, mill three cards. => Flying, deathtouch
+When Galleon Ravager enters, mill three cards.
+
+Writhing Abomination
+rules_text: When Writhing Abomination enters the battlefield, return target creature card with mana value 4 or less from your graveyard to the battlefield with a decayed counter on it. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => When Writhing Abomination enters, return target creature card with mana value 4 or less from your graveyard to the battlefield with a decayed counter on it. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Churn to Chum
+rules_text: Destroy target creature. Create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Destroy target creature. Create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Curse of Admonishment
+
+Curse of Fetid Remains
+rules_text: Enchant opponent
+Whenever Curse of Fetid Remains enters the battlefield or you cast a spell that targets enchanted player, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i] => Enchant opponent
+Whenever Curse of Fetid Remains enters or you cast a spell that targets enchanted player, create a 2/2 black Zombie creature token with decayed. [i](A creature with decayed can't block. When it attacks, sacrifice it at end of combat.)[/i]
+
+Hellkite Whelp
+rules_text: Flying
+When Hellkite Whelp enters the battlefield, search your library for a Mountain card, reveal it, put it into your hand, then shuffle. => Flying
+When Hellkite Whelp enters, search your library for a Mountain card, reveal it, put it into your hand, then shuffle.
+
+Crag Monarch
+rules_text: Flying
+When Crag Monarch enters the battlefield, it deals 1 damage to target creature, planeswalker, or battle. A creature dealt damage this way can't block this turn. => Flying
+When Crag Monarch enters, it deals 1 damage to target creature, planeswalker, or battle. A creature dealt damage this way can't block this turn.
+
+Curse of the Dragon's Coin
+rules_text: Enchant opponent
+Whenever Curse of the Dragon's Coin enters the battlefield or you cast a spell that targets enchanted player, Curse of the Dragon's Coin deals 1 damage to enchanted player. => Enchant opponent
+Whenever Curse of the Dragon's Coin enters or you cast a spell that targets enchanted player, Curse of the Dragon's Coin deals 1 damage to enchanted player.
+
+Curse of the Sea's Bounty
+rules_text: Enchant opponent
+When Curse of the Sea's Bounty enters the battlefield, create a 1/1 blue and red Pirate creature token.
+Whenever a creature attacks enchanted player, it gets +1/+0 until end of turn. => Enchant opponent
+When Curse of the Sea's Bounty enters, create a 1/1 blue and red Pirate creature token.
+Whenever a creature attacks enchanted player, it gets +1/+0 until end of turn.
+
+Frigate Architect
+rules_text: When Frigate Architect enters the battlefield, create a 4/4 colorless Vehicle artifact token with crew 1. => When Frigate Architect enters, create a 4/4 colorless Vehicle artifact token with crew 1.
+
+Stag of Plenty
+rules_text: When Stag of Plenty enters the battlefield, search your library for a basic land card, reveal it, put it into your hand, then shuffle.
+{2}: Add one mana of any color. => When Stag of Plenty enters, search your library for a basic land card, reveal it, put it into your hand, then shuffle.
+{2}: Add one mana of any color.
+
+Sanctions Enforcer
+rules_text: Each Vehicle you control enters the battlefield with an additional +1/+1 counter on it. => Each Vehicle you control enters with an additional +1/+1 counter on it.
+
+Withering Wanderers
+rules_text: When Withering Wanderers enters the battlefield, draw a card and you gain 4 life.
+{BG}, Discard Withering Wanderers: Create a Clue token. You gain 2 life. [i](It's an artifact with “{2}, Sacrifice this: Draw a card.”)[/i] => When Withering Wanderers enters, draw a card and you gain 4 life.
+{BG}, Discard Withering Wanderers: Create a Clue token. You gain 2 life. [i](It's an artifact with “{2}, Sacrifice this: Draw a card.”)[/i]
+
+Precipice Surveyor
+rules_text: Flying
+When Precipice Surveyor enters the battlefield, look at the top two cards of your library. Exile one, then put the other on the bottom of your library. You may play the exiled card until the end of your next turn. => Flying
+When Precipice Surveyor enters, look at the top two cards of your library. Exile one, then put the other on the bottom of your library. You may play the exiled card until the end of your next turn.
+
+Uncharted Haven
+rules_text: Uncharted Haven enters the battlefield tapped.
+As Uncharted Haven enters the battlefield, choose a color.
+{T}: Add one mana of the chosen color. => Uncharted Haven enters tapped.
+As Uncharted Haven enters, choose a color.
+{T}: Add one mana of the chosen color.
+
+Prophetic Prism
+rules_text: When Prophetic Prism enters the battlefield, draw a card.
+{1}, {T}: Add one mana of any color. => When Prophetic Prism enters, draw a card.
+{1}, {T}: Add one mana of any color.
+
+Idyllic Beachfront
+rules_text: [i]({T}: Add {W} or {U}.)[/i]
+Idyllic Beachfront enters the battlefield tapped. => [i]({T}: Add {W} or {U}.)[/i]
+Idyllic Beachfront enters tapped.
+
+Contaminated Aquifer
+rules_text: [i]({T}: Add {U} or {B}.)[/i]
+Contaminated Aquifer enters the battlefield tapped. => [i]({T}: Add {U} or {B}.)[/i]
+Contaminated Aquifer enters tapped.
+
+Geothermal Bog
+rules_text: [i]({T}: Add {B} or {R}.)[/i]
+Geothermal Bog enters the battlefield tapped. => [i]({T}: Add {B} or {R}.)[/i]
+Geothermal Bog enters tapped.
+
+Wooded Ridgeline
+rules_text: [i]({T}: Add {R} or {G}.)[/i]
+Wooded Ridgeline enters the battlefield tapped. => [i]({T}: Add {R} or {G}.)[/i]
+Wooded Ridgeline enters tapped.
+
+Radiant Grove
+rules_text: [i]({T}: Add {G} or {W}.)[/i]
+Radiant Grove enters the battlefield tapped. => [i]({T}: Add {G} or {W}.)[/i]
+Radiant Grove enters tapped.
+
+Sunlit Marsh
+rules_text: [i]({T}: Add {W} or {B}.)[/i]
+Sunlit Marsh enters the battlefield tapped. => [i]({T}: Add {W} or {B}.)[/i]
+Sunlit Marsh enters tapped.
+
+Haunted Mire
+rules_text: [i]({T}: Add {B} or {G}.)[/i]
+Haunted Mire enters the battlefield tapped. => [i]({T}: Add {B} or {G}.)[/i]
+Haunted Mire enters tapped.
+
+Tangled Islet
+rules_text: [i]({T}: Add {G} or {U}.)[/i]
+Tangled Islet enters the battlefield tapped. => [i]({T}: Add {G} or {U}.)[/i]
+Tangled Islet enters tapped.
+
+Molten Tributary
+rules_text: [i]({T}: Add {U} or {R}.)[/i]
+Molten Tributary enters the battlefield tapped. => [i]({T}: Add {U} or {R}.)[/i]
+Molten Tributary enters tapped.
+
+Sacred Peaks
+rules_text: [i]({T}: Add {R} or {W}.)[/i]
+Sacred Peaks enters the battlefield tapped. => [i]({T}: Add {R} or {W}.)[/i]
+Sacred Peaks enters tapped.
+
+
+VERSION 1 CHANGELOG
 ====================
 
 First version published.

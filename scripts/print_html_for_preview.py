@@ -250,7 +250,15 @@ def generateHTML(setCode):
 	# Loop over each image and create an img tag for each one
 	for card in cards:
 		if 'a->' in card:
-			html_content += f'<div id="{card[3:]}" class="anchor"></div>\n'
+			html_content += f'				<div id="{card[3:]}" class="anchor"></div>\n'
+			continue
+		if 'l->' in card:
+			html_content += f'''			</div>
+			<div class="banner">
+					<img id="{card[3:]}-logo" class="logo" src="/sets/{card[3:]}-files/logo.png">
+			</div>
+			<div class="grid-container">
+'''
 			continue
 		#F: originally, in list_to_list.py, the card names were all stitched with a number and a _ (or a number and t_ if it's a token)
 		#F: Since list_to_list.py was retrofitted by me to make the master_list output into a .json file, that process must be done here instead
@@ -279,10 +287,11 @@ def generateHTML(setCode):
 		card_name_cleaned = card_name.replace('\'','')
 
 		# used for DFCs only
+		card_code = setCode if 'set' not in card else card['set']
 		dfc_front_path = card_name + '_front'
 		dfc_back_path = card_name + '_back'
-		dfc_front_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_front_path + '.' + image_type)
-		dfc_back_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_back_path + '.' + image_type)
+		dfc_front_img_path = os.path.join('sets', card_code + '-files', 'img', dfc_front_path + '.' + image_type)
+		dfc_back_img_path = os.path.join('sets', card_code + '-files', 'img', dfc_back_path + '.' + image_type)
 
 		#F: these flags are used in later parts of the code, including the HTML.
 		#F: if the flag is @N, then only the card back is displayed
@@ -299,7 +308,7 @@ def generateHTML(setCode):
 			flag = '@E'
 		else:
 			#F: /sets/SET-files/img/
-			image_dir = os.path.join('sets', setCode + '-files', 'img')
+			image_dir = os.path.join('sets', card_code + '-files', 'img')
 
 		#F: /sets/SET-files/img/NUMBER(t?)_NAME.png
 		image_path = os.path.join(image_dir, card_name + '.' + image_type)
@@ -307,22 +316,13 @@ def generateHTML(setCode):
 
 		#F: if the flag is @XD, add something to html_content to get the front and back images, otherwise add something else
 		if flag == '@XD':
-			html_content += f'			<div class="container"><img data-alt_src="/{dfc_back_img_path}" alt="/{dfc_front_img_path}" id="{card_name_cleaned}" data-flag="{flag}" onclick="openSidebar(\'{card_name_cleaned}\',{rotated})"><button class="flip-btn" onclick="imgFlip(\'{card_name_cleaned}\')"></button></div>\n'
+			html_content += f'				<div class="container"><img data-alt_src="/{dfc_back_img_path}" alt="/{dfc_front_img_path}" id="{card_name_cleaned}" data-flag="{flag}" onclick="openSidebar(\'{card_name_cleaned}\',{rotated})"><button class="flip-btn" onclick="imgFlip(\'{card_name_cleaned}\')"></button></div>\n'
 		else:
-			html_content += f'			<div class="container"><img alt="/{image_path}" id="{card_name_cleaned}" data-flag="{flag}" onclick="openSidebar(\'{card_name_cleaned}\',{rotated})"></div>\n'
+			html_content += f'				<div class="container"><img alt="/{image_path}" id="{card_name_cleaned}" data-flag="{flag}" onclick="openSidebar(\'{card_name_cleaned}\',{rotated})"></div>\n'
 
 	# Closing the div and the rest of the HTML
-	html_content += '''	</div>\n'''
-
-	#F: find /sets/SET-files/addenda/SET-addendum.html
-	#F: then add each line of that file to the next bit of html_content
-	add_path = os.path.join('sets', setCode + '-files', 'addenda', setCode + '-addendum.html')
-	if os.path.isfile(add_path):
-		with open(add_path) as f:
-			for line in f:
-				html_content += line
-	
-	html_content += '''</div>
+	html_content += '''	</div>
+	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
 			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
