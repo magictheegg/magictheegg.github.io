@@ -23,9 +23,14 @@ def generateHTML(setCode):
 	set_img_dir = os.path.join('sets', setCode + '-files', 'img')
 	#F: get rid of the Byte Order Mark character that shouldn't be there
 	#F: and grab all of the files in the image directory
-	previewed = [file[:-4].replace(u'\ufeff', '') for file in os.listdir(set_img_dir)]
+	card_image_names = [file[:-4].replace(u'\ufeff', '')[file.index('_')+1:] for file in os.listdir(set_img_dir)]
 
-	#F: lists/SET-list.json, defined in list_to_list.py, get rid of the BOM character that shouldn't be there
+	previewed_path = os.path.join('sets', setCode + '-files', 'previewed.txt')
+	if os.path.isfile(previewed_path):
+		with open(previewed_path, encoding='utf-8-sig') as f:
+			previewed = f.read().split('\n')
+
+	#F: lists/SET-list.json, defined in list_to_list.py
 	with open(os.path.join('lists', setCode + '-list.json'), encoding='utf-8-sig') as f:
 		cards = json.load(f)
 
@@ -210,7 +215,7 @@ def generateHTML(setCode):
 
 	if os.path.exists(os.path.join('sets', setCode + '-files', 'bg.png')):
 		html_content +='''<img class="preload-hidden" id="bg" src="/sets/''' + setCode + '''-files/bg.png" />
-		
+
 		'''
 
 	#F: goes to resources/snippets/header.txt and gets a header, inserting it after everything so far
@@ -278,16 +283,16 @@ def generateHTML(setCode):
 		dfc_back_path = card_name + '_back'
 		dfc_front_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_front_path + '.' + image_type)
 		dfc_back_img_path = os.path.join('sets', setCode + '-files', 'img', dfc_back_path + '.' + image_type)
-		
+
 		#F: these flags are used in later parts of the code, including the HTML.
 		#F: if the flag is @N, then only the card back is displayed
 		#F: if the flag is @E, then the ability to click it is removed (since it's just a blank image for positioning)
 		#F: if the flag is @X or @XD, nothing happens
 		flag = '@N'
-		if card_name in previewed:
+		if 'previewed' not in locals() or card['card_name'] in previewed:
 			flag = '@X'
-		if dfc_front_path in previewed:
-			flag = '@XD'
+			if card['card_name'] + '_front' in card_image_names:
+				flag = '@XD'
 
 		if card_name == 'e' or card_name == 'er':
 			image_dir = 'img'
@@ -295,11 +300,11 @@ def generateHTML(setCode):
 		else:
 			#F: /sets/SET-files/img/
 			image_dir = os.path.join('sets', setCode + '-files', 'img')
-		
+
 		#F: /sets/SET-files/img/NUMBER(t?)_NAME.png
 		image_path = os.path.join(image_dir, card_name + '.' + image_type)
 		rotated = str('shape' in card and 'spli' in card['shape']).lower()
-		
+
 		#F: if the flag is @XD, add something to html_content to get the front and back images, otherwise add something else
 		if flag == '@XD':
 			html_content += f'			<div class="container"><img data-alt_src="/{dfc_back_img_path}" alt="/{dfc_front_img_path}" id="{card_name_cleaned}" data-flag="{flag}" onclick="openSidebar(\'{card_name_cleaned}\',{rotated})"><button class="flip-btn" onclick="imgFlip(\'{card_name_cleaned}\')"></button></div>\n'
@@ -344,7 +349,7 @@ def generateHTML(setCode):
 
 	html_content += '''
 		preloadImgs = document.getElementsByClassName('preload-hidden');
-		
+
 		let images_loaded = [];
 
 		do {
@@ -442,7 +447,7 @@ def generateHTML(setCode):
 	function openSidebar(id, h = false) {
 		horizontal = h;
 		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
-		
+
 		document.getElementById('sidebar').style.display = 'grid';
 
 		const rotated_img = document.getElementById('sidebar_h_img');
@@ -473,7 +478,7 @@ def generateHTML(setCode):
 			document.getElementById('sidebar-flip-btn').style.display = 'none';
 		}
 		document.getElementById('main-content').style.width = '60%';
-		
+
 		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
 		window.scrollTo(window.scrollX, scroll_pos);
 		setSidebarTop();
@@ -484,7 +489,7 @@ def generateHTML(setCode):
 
 		document.getElementById('sidebar').style.display = 'none';
 		document.getElementById('main-content').style.width = '100%';
-		
+
 
 		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
 		window.scrollTo(window.scrollX, scroll_pos);

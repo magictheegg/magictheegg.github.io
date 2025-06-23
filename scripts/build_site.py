@@ -140,7 +140,7 @@ for code in set_codes:
 
 	#CE: this code is all for version history
 	if 'version' not in raw:
-		versions = glob.glob(os.path.join('sets', 'versions', '*' + code + '_*'))
+		versions = glob.glob(os.path.join('sets', 'versions', '*_' + code + '*'))
 		if len(versions) == 0:
 			shutil.copyfile(os.path.join('sets', code + '-files', code + '.json'), os.path.join('sets', 'versions', '1_' + code + '.json'))
 			prettifyJSON(os.path.join('sets', 'versions', '1_' + code + '.json'))

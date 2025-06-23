@@ -96,10 +96,17 @@ def convertList(setCode):
 	for group in sort_groups:
 		cards_sorted[group] = []
 
+	#CE: set up previews if necessary
+	if 'unpreviewed' in raw and raw['unpreviewed'] == 'empty':
+		previewed_path = os.path.join('sets', setCode + '-files', 'previewed.txt')
+		if os.path.isfile(previewed_path):
+			with open(previewed_path, encoding='utf-8-sig') as f:
+				previewed = f.read().split('\n')
+
 	#F: now go over the cards again
 	for card in cards:
 		#F: skip the card if it's in the skipdex
-		if card['number'] in skipdex:
+		if card['number'] in skipdex or ('previewed' in locals() and card['card_name'] not in previewed):
 			continue
 
 		#CE: fix for devoid cards

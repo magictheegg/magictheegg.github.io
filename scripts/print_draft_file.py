@@ -34,7 +34,8 @@ def generateFile(code):
 	[
 	'''
 
-	for card in set_data['cards']:
+	for x in range(len(set_data['cards'])):
+		card = set_data['cards'][x]
 		# clean hybrids
 		h_pattern = r'\{([A-Z0-9])([A-Z])\}'
 		h_replace = r'{\1/\2}'
@@ -75,7 +76,7 @@ def generateFile(code):
 			draft_string += '''		"image_uris": {
 				"en": "https://''' + github_path + '''/sets/''' + code + '''-files/img/''' + str(card['number']) + '''_''' + card['card_name'] + '''.''' + set_data['image_type'] + '''"
 			}
-		},
+		}''' + (''',''' if x != len(set_data['cards']) - 1 else '''''') + '''
 	'''
 
 	draft_string += ''']
@@ -127,14 +128,6 @@ def generateFile(code):
 				count = 5
 
 			if count > 0:
-				for x in range(count):
-					p1p1_card = {}
-					p1p1_card['set'] = c['set']
-					p1p1_card['number'] = c['number']
-					p1p1_card['card_name'] = c['card_name']
-					p1p1_card['shape'] = c['shape']
-					p1p1_card['image_type'] = set_data['image_type']
-					slot_list.append(p1p1_card)
 				draft_string += '''	''' + str(count) + ''' ''' + c['card_name'] + '''
 '''
 		for x in range(slot['count']):
@@ -143,5 +136,3 @@ def generateFile(code):
 	with open(os.path.join('sets', code + '-files', code + '-draft.txt'), 'w', encoding='utf-8-sig') as f:
 		f.write(draft_string)
 
-	with open(os.path.join('sets', code + '-files', code + '-p1p1.json'), 'w', encoding='utf-8-sig') as f:
-		json.dump(p1p1, f, indent=4)
