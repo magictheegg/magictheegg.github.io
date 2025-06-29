@@ -67,10 +67,10 @@
             "type": "Creature \u2014 Wraith Knight",
             "number": 138,
             "color_identity": "R",
-            "cost": "{1}{R}{R}",
-            "rules_text": "Legion [i](When this creature attacks, you may pair it with another unpaired attacker until end of turn. Paired creatures gain the following abilities.)[/i]\nWhenever you cast a spell during combat, double this creature's power until end of turn.",
+            "cost": "{3}{R}{R}",
+            "rules_text": "Legion [i](When this creature attacks, you may pair it with another unpaired attacker until end of turn. Paired creatures gain the following abilities.)[/i]\nWhenever you cast an instant or sorcery spell, create a token that's a copy of this creature. If this creature is attacking, the token enters tapped and attacking. Exile that token at the beginning of the next end step.",
             "flavor_text": "[i][/i]",
-            "pt": "1/5",
+            "pt": "3/4",
             "special_text": "",
             "shape": "normal",
             "set": "ATR",
@@ -832,7 +832,7 @@
             "set": "ATR",
             "loyalty": "",
             "artist": "Daniel Oxford",
-            "notes": "!change"
+            "notes": ""
         },
         {
             "card_name": "Let the Fray Burn",
@@ -2876,7 +2876,7 @@
             "number": 232,
             "color_identity": "WG",
             "cost": "{2}{G}{W}",
-            "rules_text": "When Sky's Eye Combatant enters, create a 2/1 colorless Knight creature token.\nWhenever you attack, create a token that's a copy of target attacking token you control.",
+            "rules_text": "When Sky's Eye Combatant enters, create a 2/1 colorless Knight creature token.\nWhenever Sky's Eye Combatant attacks, create a token that's a copy of target attacking token you control.",
             "flavor_text": "[i]\u201cIt is Marisyn's charge to maintain planar harmony. Thus, it falls to us to tip the cosmic scales in her favor.\u201d[/i]",
             "pt": "1/4",
             "special_text": "",
@@ -4532,7 +4532,7 @@
             "number": 153,
             "color_identity": "G",
             "cost": "{1}{G}",
-            "rules_text": "Target creature you control deals damage equal to its whichever is greater between its power and toughness to target creature you don't control.",
+            "rules_text": "Target creature you control deals damage equal to whichever is greater between its power and toughness to target creature you don't control.",
             "flavor_text": "[i]With his back against the wall, an Ashen Oath captain threw down the gauntlet: a single-combat duel at dusk, with the winner to take the city. The Ozhkan captain agreed with a wry snarl.[/i]",
             "pt": "",
             "special_text": "",
@@ -5047,5 +5047,5 @@
             "notes": ""
         }
     ],
-    "version": 4
+    "version": 5
 }
