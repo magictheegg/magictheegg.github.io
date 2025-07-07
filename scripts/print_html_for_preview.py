@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import markdown
 
 #F = Fungustober's notes
 
@@ -198,6 +199,12 @@ def generateHTML(setCode):
 		.preload-hidden {
 			display: none;
 		}
+		.addenda-container {
+			text-align: center;
+			width: fit-content;
+			max-width: 1200px;
+			padding: 0 5%;
+		}
 		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
 		.footer {
 			clear: both;
@@ -256,6 +263,18 @@ def generateHTML(setCode):
 			html_content += f'''			</div>
 			<div class="banner">
 					<img id="{card[3:]}-logo" class="logo" src="/sets/{card[3:]}-files/logo.png">
+			</div>
+			<div class="grid-container">
+'''
+			continue
+		if 'h->' in card:
+			with open(os.path.join('sets', setCode + '-files', card[3:]), encoding='utf-8-sig') as f:
+				addenda = f.read()
+			if card[-3:] == '.md':
+				addenda = markdown.markdown(addenda)
+			html_content += f'''			</div>
+			<div class="addenda-container">
+				{addenda}
 			</div>
 			<div class="grid-container">
 '''

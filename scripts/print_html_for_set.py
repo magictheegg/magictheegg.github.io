@@ -342,8 +342,9 @@ def generateHTML(code):
 	if os.path.exists(os.path.join('sets', code + '-files', code + '-draft.txt')):
 		html_content += '''<div class="dot"> • </div><a href="/sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft</a>
 		<div class="dot"> • </div><a onclick="packOnePickOne()">P1P1</a>
-		</div>
-		'''
+'''
+	html_content += '''		</div>
+'''
 
 	html_content += '''
 			<div class="select-text">Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="set-code">Set Number</option><option value="name">Name</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>
@@ -420,7 +421,7 @@ def generateHTML(code):
 			await fetch('/sets/''' + code + '''-files/''' + code + '''-draft.txt')
 				.then(response => response.text())
 				.then(text => {
-					draft_file = text;
+					draft_file = text.replace(/},\\n\\t]/g, '}\\n\\t]');
 			}).catch(error => console.error('Error:', error));
 
 			draftmancerToP1P1(draft_file);

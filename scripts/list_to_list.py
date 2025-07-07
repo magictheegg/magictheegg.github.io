@@ -215,6 +215,11 @@ def convertList(setCode):
 					ext_cards.append(card)
 			cards_arr.append(ext_cards)
 			row_count = len(ext_cards)
+		elif 'html' in r:
+			final_list.append('h->' + r['html'])
+			for x in range(5):
+					final_list.append(blank2)
+			continue
 		else:
 			for index in r['cards']:
 				row_count = max(row_count, len(cards_sorted[index]))
