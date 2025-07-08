@@ -137,7 +137,8 @@ def generateHTML(setCode):
 		.banner {
 			width: 100%;
 			height: auto;
-			padding: 50px 0;
+			padding-top: 80px;
+			padding-bottom: 50px;
 		}
 		.logo {
 			display: block;
@@ -182,6 +183,7 @@ def generateHTML(setCode):
 			padding: 5px 0;
 			display: flex;
 			flex-direction: column;
+			z-index: 3;
 		}
 		.dropdown .set-bar {
 			font-family: Beleren;
