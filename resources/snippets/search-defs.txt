@@ -72,7 +72,7 @@ function tokenizeTerms(searchTerms)
 				{
 					mv += 2;
 				}
-				else if (token != "x")
+				else if (token != "x" && token != "")
 				{
 					mv += 1;
 				}
@@ -115,11 +115,13 @@ function tokenizeTerms(searchTerms)
 			let card_loyalty = card_stats.loyalty;
 			let card_notes = card_stats.notes;
 			let card_artist = card_stats.artist;
+			let card_alias = card_stats.alias ? card_stats.alias : ""; // do this so that we have backwards compatibility
+			let card_ft = card_stats.flavor_text;
 			let card_color_2 = "";
 			let card_cost_2 = "";
 			let card_power_2 = "";
 			let card_toughness_2 = "";
-			let card_loyalty_2 = ""
+			let card_loyalty_2 = "";
 
 			let color_map = new Map([
 				["azorius", "wu"],
@@ -150,6 +152,7 @@ function tokenizeTerms(searchTerms)
 				card_name = card_name + "	" + card_stats.card_name2;
 				card_type = card_type + "	" + card_stats.type2;
 				card_oracle_text = card_oracle_text + "	" + (card_stats.rules_text2 != "" ? card_stats.rules_text2.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text2.replace(/\[(\/)?([ib])\]/g, ""));
+				card_ft = card_ft + "\n" + card_stats.flavor_text2;
 				card_color_2 = card_stats.color2;
 				card_cost_2 = card_stats.cost2;
 				card_power_2 = card_stats.pt2.substring(0,card_stats.pt2.indexOf('/'));
@@ -605,6 +608,35 @@ function tokenizeTerms(searchTerms)
 						return card_artist.includes(check);
 					}
 				}
+				if (term == "ft" || term == "flavor" || term == "flavortext")
+				{
+					if (modifier == ":")
+					{
+						return card_ft.includes(check);
+					}
+				}
+				if (term == "godzilla" || term == "alias") {
+					if (modifier == "!" || modifier == "=")
+					{
+						return card_alias == check;
+					}
+					else if (modifier == ":")
+					{
+						return card_alias.includes(check);
+					}
+					else if (modifier == "<")
+					{
+						return card_alias < check;
+					}
+					else if (modifier == ">")
+					{
+						return card_alias > check;
+					}
+				}
+				if (modifier == ":" || modifier == "=" || modifier == "!") {
+                    let regex = new RegExp(`!tag<${term}> ${check}\\b`);
+                    return regex.test(card_notes);
+                }
 			}
 
 			return card_name.includes(token);

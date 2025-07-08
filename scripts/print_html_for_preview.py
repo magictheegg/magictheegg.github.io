@@ -10,8 +10,9 @@ def generateHTML(setCode):
 		so_json = json.load(j)
 
 	with open(os.path.join('sets', setCode + '-files', setCode + '.json'), encoding='utf-8-sig') as j:
-		tmp = json.load(j)
-		set_image_type = 'png' if 'image_type' not in tmp else tmp['image_type']
+		set_js = json.load(j)
+		set_image_type = 'png' if 'image_type' not in set_js else set_js['image_type']
+		set_name = '' if 'name' not in set_js else set_js['name']
 
 	codes = []
 	for key in so_json:
@@ -55,6 +56,10 @@ def generateHTML(setCode):
 	<link rel="stylesheet" href="/resources/header.css">
 	<title>''' + setCode + ''' visual preview</title>
 	<style>
+		@font-face {
+			font-family: Beleren;
+			src: url('/resources/beleren.ttf');
+		}
 		body {
 			font-family: Arial, sans-serif;
 			margin: 0;
@@ -132,8 +137,7 @@ def generateHTML(setCode):
 		.banner {
 			width: 100%;
 			height: auto;
-			padding-top: 20px;
-			padding-bottom: 50px;
+			padding: 50px 0;
 		}
 		.logo {
 			display: block;
@@ -168,33 +172,39 @@ def generateHTML(setCode):
 			background-size: contain;
 			background-position: center;
 		}
-		.icon-bar {
-			display: grid;
-			grid-template-columns: repeat(''' + str(header_length - 1) + ''', 3fr 2fr) 3fr;
-			gap: 1px;
-			padding-left: 5%;
-			padding-right: 5%;
-			padding-top: 2%;
-			padding-bottom: 1%;
-			justify-items: center;
+		.dropdown {
+			background: rgba(23, 23, 23, 0.8);
+			border-radius: 8px;
+			position: absolute;
+			left: 10%;
+			width: fit-content;
+			margin: 20px 0;
+			padding: 5px 0;
+			display: flex;
+			flex-direction: column;
+		}
+		.dropdown .set-bar {
+			font-family: Beleren;
+			font-size: 20px;
+			text-decoration: none;
+			color: #e3e3e3;
+			display: flex;
+			gap: 10px;
 			align-items: center;
+			padding: 0 12px;
+			margin: 5px;
 		}
-		.icon-bar .icon img {
-			width: 90%;
-			max-width: 80px;
-			height: auto;
-			display: block;
-			padding: 5%;
-			margin: auto;
-			text-align: center;
+		.dropdown .set-bar:hover {
+			background: rgba(163, 163, 163, 0.5);
+			color: #f3f3f3;
 		}
-		.icon-bar .dot img {
-			width: 50%;
-			max-width: 65px;
-			height: auto;
-			display: block;
-			margin: auto;
-			text-align: center;
+		.dropdown .set-bar img {
+			width: 32px;
+		}
+		.dropdown .inactive {
+			height: 0px;
+			overflow: hidden;
+			margin: 0px 5px;
 		}
 		.preload-hidden {
 			display: none;
@@ -232,10 +242,22 @@ def generateHTML(setCode):
 
 	html_content += '''
 
-	<div class="icon-bar">
+	<div class="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	'''
 	
 	count = 0
+	html_content += f'''
+		<a class="set-bar" href="{setCode}"><img src="/sets/{setCode}-files/icon.png">{set_name}</a>
+	'''
+	for code in codes:
+		if code == setCode:
+			continue
+		with open(os.path.join('sets', code + '-files', code + '.json'), encoding='utf-8-sig') as j:
+			js = json.load(j)
+		html_content += f'''
+		<a class="set-bar inactive" href="{code}"><img src="/sets/{code}-files/icon.png">{js['name']}</a>
+	'''
+	'''
 	for code in codes:
 		prev_path = os.path.join('sets', setCode + '-files', 'prev_icon.png')
 		if count != 0:
@@ -244,6 +266,7 @@ def generateHTML(setCode):
 		count += 1
 		if count == header_length:
 			count = 0
+	'''
 
 	html_content += '''
 		</div>
@@ -512,6 +535,24 @@ def generateHTML(setCode):
 
 		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
 		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	function rolldown() {
+		var sets = document.querySelectorAll('.inactive');
+		for(const set of sets)
+		{
+			set.style.height = "auto";
+			set.style.margin = "5px";
+		}
+	}
+
+	function rollup() {
+		var sets = document.querySelectorAll('.inactive');
+		for(const set of sets)
+		{
+			set.style.height = "0px";
+			set.style.margin = "0px 5px";
+		}
 	}
 
 	document.getElementById("search").addEventListener("keypress", function(event) {

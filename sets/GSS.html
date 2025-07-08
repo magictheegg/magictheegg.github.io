@@ -4,6 +4,7 @@
   <link rel="icon" type="image/x-icon" href="/sets/GSS-files/icon.png">
   <link rel="stylesheet" href="/resources/mana.css">
   <link rel="stylesheet" href="/resources/header.css">
+  <link rel="stylesheet" href="/resources/card-text.css">
 </head>
 <style>
 	@font-face {
@@ -165,30 +166,6 @@
 		min-height: 75%;
 		margin-top: 3%;
 	}
-	.card-text div {
-		white-space: normal;
-		font-size: 15px;
-		padding-bottom: 10px;
-		padding-left: 12px;
-		padding-right: 12px;
-		line-height: 155%;
-	}
-	.card-text .name-cost {
-		font-weight: bold;
-		font-size: 20px;
-		white-space: pre-wrap;
-	}
-	.card-text .type {
-		font-size: 16px;
-	}
-	.card-text .pt {
-		font-weight: bold;
-	}
-	.card-text br {
-		content: "";
-		display: block;
-		margin-bottom: 5px;
-	}
 	.img-container {
 		position: relative;
 		width: 100%;
@@ -301,6 +278,13 @@
 	}
 	a {
 		cursor: pointer;
+	}
+	p {
+		width: 100%;
+	}
+	p img {
+		display: block;
+		margin: auto;
 	}
 </style>
 <body>
@@ -870,11 +854,9 @@
 			let card_effects = "";
 			if (card_stats.rules_text != "")
 			{
-				card_effects = card_stats.rules_text.split("\n");
-			}
-			else
-			{
-				card_effects = card_stats.special_text.split("\n");
+				card_effects = card_stats.rules_text + (card_stats.flavor_text != "[i][/i]" ? "\n" + "<hr class=\"ft-divider text-bg\">" + "\n" + card_stats.flavor_text.replace('\n','<br>') : ""); // this expression looks cursed but what it does is check if the ft is empty, and if it isn't, insert a divider + the ft
+			} else {
+				card_effects = "";
 			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
@@ -921,11 +903,9 @@
 				let card_effects_2 = "";
 				if (card_stats.rules_text2 != "")
 				{
-					card_effects_2 = card_stats.rules_text2.split("\n");
-				}
-				else
-				{
-					card_effects_2 = card_stats.special_text2.split("\n");
+					card_effects_2 = card_stats.rules_text2 + (card_stats.flavor_text2 != "[i][/i]" ? "\n" + "<hr class=\"ft-divider text-bg\">" + "\n" + card_stats.flavor_text2.replace('\n','<br>') : "");
+				} else {
+					card_effects_2 = "";
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
@@ -1048,23 +1028,20 @@
             }, seconds * 1000);
         }
 
-		function prettifyEffects(card_effects) {
+		function prettifyEffects(card_effect) {
 			let HTML = "";
+
+			let styled_effect = card_effect.replace(/(\[i\])+(.+?)(\[\/i\])+/gs, function(matched, _1, _2) {
+				return '<i>' + _2 + '</i>'
+			}).replaceAll(/(\[b\])+(.+?)(\[\/b\])+/gs, function(matched, _1, _2) {
+				return '<b>' + _2 + '</b>'
+			});
+
+			let card_effects = styled_effect.split("\n");
 
 			for (let i = 0; i < card_effects.length; i++)
 			{
-				let styled_effect = card_effects[i].replace(/\[i\]([^\]]+)\[\/i\]/gs, function(matched, _1) {
-					return '<i>' + _1 + '</i>'
-				}).replace(/\[b\]([^\]]+)\[\/b\]/g, function(matched, _1) {
-					return '<b>' + _1 + '</b>'
-				})
-				
-				HTML += styled_effect;
-
-				if (i != card_effects.length - 1)
-				{
-					HTML += "<br>"
-				}
+				HTML += "<p>" + card_effects[i] + "</p>";
 			}
 			
 			let regexHTML = symbolize(HTML);

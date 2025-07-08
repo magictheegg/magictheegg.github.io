@@ -14,6 +14,7 @@ def generateHTML(codes):
 	<link rel="icon" type="image/x-icon" href="/img/search.png">
 	<link rel="stylesheet" href="resources/mana.css">
 	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="stylesheet" href="/resources/card-text.css">
 </head>
 <style>
 	@font-face {
@@ -146,30 +147,6 @@ def generateHTML(codes):
 		height: fit-content;
 		min-height: 75%;
 		margin-top: 3%;
-	}
-	.card-text div {
-		white-space: normal;
-		font-size: 15px;
-		padding-bottom: 10px;
-		padding-left: 12px;
-		padding-right: 12px;
-		line-height: 155%;
-	}
-	.card-text .name-cost {
-		font-weight: bold;
-		font-size: 20px;
-		white-space: pre-wrap;
-	}
-	.card-text .type {
-		font-size: 16px;
-	}
-	.card-text .pt {
-		font-weight: bold;
-	}
-	.card-text br {
-		content: "";
-		display: block;
-		margin-bottom: 5px;
 	}
 	.img-container {
 		position: relative;

@@ -11,6 +11,7 @@ def generateHTML(codes):
 	<link rel="icon" type="image/x-icon" href="/img/deck.png">
 	<link rel="stylesheet" href="resources/mana.css">
 	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="stylesheet" href="/resources/card-text.css">
 </head>
 <style>
 	@font-face {
@@ -163,26 +164,16 @@ def generateHTML(codes):
 		overflow-y: scroll;
 		scrollbar-width: none;
 		height: 50%;
+		padding: 10px 0;
 	}
 	.card-text div {
-		white-space: normal;
 		font-size: 13px;
-		padding-bottom: 10px;
-		padding-left: 12px;
-		padding-right: 12px;
-		line-height: 155%;
 	}
 	.card-text .name-cost {
-		font-weight: bold;
 		font-size: 16px;
-		white-space: pre-wrap;
-		padding-top: 10px;
 	}
 	.card-text .type {
 		font-size: 14px;
-	}
-	.card-text .pt {
-		font-weight: bold;
 	}
 	.card-text br {
 		content: "";

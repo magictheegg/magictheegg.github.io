@@ -5,6 +5,10 @@
 	<link rel="stylesheet" href="/resources/header.css">
 	<title>MSR visual preview</title>
 	<style>
+		@font-face {
+			font-family: Beleren;
+			src: url('/resources/beleren.ttf');
+		}
 		body {
 			font-family: Arial, sans-serif;
 			margin: 0;
@@ -82,8 +86,7 @@
 		.banner {
 			width: 100%;
 			height: auto;
-			padding-top: 20px;
-			padding-bottom: 50px;
+			padding: 50px 0;
 		}
 		.logo {
 			display: block;
@@ -118,33 +121,39 @@
 			background-size: contain;
 			background-position: center;
 		}
-		.icon-bar {
-			display: grid;
-			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
-			gap: 1px;
-			padding-left: 5%;
-			padding-right: 5%;
-			padding-top: 2%;
-			padding-bottom: 1%;
-			justify-items: center;
+		.dropdown {
+			background: rgba(23, 23, 23, 0.8);
+			border-radius: 8px;
+			position: absolute;
+			left: 10%;
+			width: fit-content;
+			margin: 20px 0;
+			padding: 5px 0;
+			display: flex;
+			flex-direction: column;
+		}
+		.dropdown .set-bar {
+			font-family: Beleren;
+			font-size: 20px;
+			text-decoration: none;
+			color: #e3e3e3;
+			display: flex;
+			gap: 10px;
 			align-items: center;
+			padding: 0 12px;
+			margin: 5px;
 		}
-		.icon-bar .icon img {
-			width: 90%;
-			max-width: 80px;
-			height: auto;
-			display: block;
-			padding: 5%;
-			margin: auto;
-			text-align: center;
+		.dropdown .set-bar:hover {
+			background: rgba(163, 163, 163, 0.5);
+			color: #f3f3f3;
 		}
-		.icon-bar .dot img {
-			width: 50%;
-			max-width: 65px;
-			height: auto;
-			display: block;
-			margin: auto;
-			text-align: center;
+		.dropdown .set-bar img {
+			width: 32px;
+		}
+		.dropdown .inactive {
+			height: 0px;
+			overflow: hidden;
+			margin: 0px 5px;
 		}
 		.preload-hidden {
 			display: none;
@@ -201,57 +210,60 @@
 		</div>
 	</div>
 
-	<div class="icon-bar">
-			<div class="icon"><a href="ATR"><img src="/sets/ATR-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="SHF"><img src="/sets/SHF-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="GSS"><img src="/sets/GSS-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="KND"><img src="/sets/KND-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="NJB"><img src="/sets/NJB-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="AEX"><img src="/sets/AEX-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="WAS"><img src="/sets/WAS-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="SGB"><img src="/sets/SGB-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="GQC"><img src="/sets/GQC-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="DSS"><img src="/sets/DSS-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="KOD"><img src="/sets/KOD-files/icon.png"></img></a></div>
-		<div class="icon"><a href="GHQ"><img src="/sets/GHQ-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="TWB"><img src="/sets/TWB-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="FAU"><img src="/sets/FAU-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="MVA"><img src="/sets/MVA-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="ATB"><img src="/sets/ATB-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="SUR"><img src="/sets/SUR-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="GNJ"><img src="/sets/GNJ-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="GSC"><img src="/sets/GSC-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="FAE"><img src="/sets/FAE-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="AOD"><img src="/sets/AOD-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="ICH"><img src="/sets/ICH-files/icon.png"></img></a></div>
-		<div class="icon"><a href="AGH"><img src="/sets/AGH-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="MSR"><img src="/sets/MSR-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="GLC"><img src="/sets/GLC-files/icon.png"></img></a></div>
-		 <div class="dot"><img src="/img/dot.png"></img></div>
-		<div class="icon"><a href="ACE"><img src="/sets/ACE-files/icon.png"></img></a></div>
-
+	<div class="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
+	
+		<a class="set-bar" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+	
+		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+	
+		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+	
+		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+	
+		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+	
+		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+	
+		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+	
+		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+	
+		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+	
+		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+	
+		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+	
+		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+	
+		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+	
+		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+	
+		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+	
+		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+	
+		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+	
+		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+	
+		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+	
+		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+	
+		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+	
+		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+	
+		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+	
+		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+	
+		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+	
+		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+	
 		</div>
 		<div class="banner">
 		<img class="logo" src="/sets/MSR-files/logo.png">
@@ -731,6 +743,24 @@
 
 		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
 		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	function rolldown() {
+		var sets = document.querySelectorAll('.inactive');
+		for(const set of sets)
+		{
+			set.style.height = "auto";
+			set.style.margin = "5px";
+		}
+	}
+
+	function rollup() {
+		var sets = document.querySelectorAll('.inactive');
+		for(const set of sets)
+		{
+			set.style.height = "0px";
+			set.style.margin = "0px 5px";
+		}
 	}
 
 	document.getElementById("search").addEventListener("keypress", function(event) {

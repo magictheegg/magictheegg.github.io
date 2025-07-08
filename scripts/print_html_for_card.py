@@ -14,6 +14,7 @@ def generateHTML():
 	<link rel="icon" type="image/x-icon" href="/img/favicon.png">
 	<link rel="stylesheet" href="/resources/mana.css">
 	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="stylesheet" href="/resources/card-text.css">
 </head>
 <style>
 	@font-face {
@@ -87,33 +88,9 @@ def generateHTML():
 		display: flex;
 		flex-direction: column;
 	}
-	.card-text div {
-		white-space: normal;
-		font-size: 15px;
-		padding-bottom: 10px;
-		padding-left: 12px;
-		padding-right: 12px;
-		line-height: 155%;
-	}
-	.card-text .name-cost {
-		font-weight: bold;
-		font-size: 20px;
-		white-space: pre-wrap;
-	}
-	.card-text .type {
-		font-size: 16px;
-	}
-	.card-text .pt {
-		font-weight: bold;
-	}
 	.designer-notes {
 		padding-top: 10px;
 		border-top: 1px solid #171717;
-	}
-	.card-text br {
-		content: "";
-		display: block;
-		margin-bottom: 5px;
 	}
 	.card-text .printings {
 		margin-top: auto;
@@ -253,10 +230,14 @@ def generateHTML():
 
 			document.getElementById("grid").appendChild(gridifyCard(card, false, true));
 
-
 			other_printings = [];
 			for (const c of card_list_arrayified)
 			{
+				if (c.card_name == "Warfield Excavator")
+				{
+					console.log(c);
+					console.log(card);
+				}
 				if (c.card_name == card.card_name && c.type == card.type && !c.shape.includes("Token") && (c.set != card.set || c.number != card.number))
 				{
 					other_printings.push(c);

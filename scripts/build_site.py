@@ -56,9 +56,9 @@ def genAllCards(codes):
 	with open(os.path.join('lists', 'all-cards.json'), 'w', encoding='utf-8-sig') as f:
 		#F: turns the dictionary into a json object, and puts it into the all-cards.json file
 		#F: json.dump actually preserves the \n's and the \\'s and whatnot, so we won't have to escape them ourselves
-		json.dump(card_input, f)
+		json.dump(card_input, f, indent=4)
 	with open(os.path.join('lists', 'all-sets.json'), 'w', encoding='utf-8-sig') as f:
-		json.dump(set_input, f)
+		json.dump(set_input, f, indent=4)
 
 def prettifyJSON(filepath):
 	with open(filepath, encoding='utf-8-sig') as f:
@@ -224,7 +224,7 @@ if not os.path.exists(custom_order):
 		"": set_order
 	}
 	with open(custom_order, 'w', encoding='utf-8-sig') as f:
-		json.dump(set_order_data, f)
+		json.dump(set_order_data, f, indent=4)
 
 for code in set_codes:
 	#F: more important functions

@@ -114,6 +114,10 @@ def convertList(setCode):
 		if 'devoid' in card['rules_text'].lower():
 			card['color'] = card['color_identity']
 
+		#CE: fix for split cards
+		if 'split' in card['shape']:
+			card['color'] = "".join(set(card['color'] + card['color2']))
+
 		# sort types
 		if '!group' in card['notes']:
 			for group in sort_groups:
