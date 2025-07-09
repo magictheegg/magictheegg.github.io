@@ -1,4 +1,50 @@
-﻿VERSION 5 CHANGELOG
+﻿VERSION 6 CHANGELOG
+====================
+
+
+
+Litany of Despair
+rules_text: When Litany of Despair enters, draw three cards and create three 1/1 colorless Spirit creature tokens with flying.
+Whenever you cast a spell, you lose 3 life unless you sacrifice a nonland permanent or discard a card. => When Litany of Despair enters, draw three cards and create three 1/1 colorless Spirit creature tokens with flying.
+Whenever you cast a spell, you lose 3 life unless you sacrifice a creature or discard a card.
+
+The Divine Sythor
+rules_text: Effigy {2}{UB} [i](If you cast this for its effigy cost, it isn't a creature until you pay its mana cost as a sorcery.)[/i]
+Whenever Sythor enters or you attack with two or more creatures, exile the top three cards of target opponent's library, then choose a card exiled with Sythor. You may play that card from exile as long as you control a God.
+When Sythor dies, if it's a creature, exile it. You may cast it for its effigy cost for as long as it remains exiled. => Effigy {2}{UB} [i](If you cast this for its effigy cost, it isn't a creature until you pay its mana cost as a sorcery.)[/i]
+Whenever Sythor enters or you attack with two or more creatures, exile the top three cards of target opponent's library, then choose a card exiled with Sythor. You may play that card from exile as long as you control a legendary enchantment or a God.
+When Sythor dies, if it's a creature, exile it. You may cast it for its effigy cost for as long as it remains exiled.
+
+Astral Seamstress
+rules_text: Effigy {1}{U}{U} [i](If you cast this for its effigy cost, it isn't a creature until you pay its mana cost as a sorcery.)[/i]
+When Astral Seamstress enters, gain control of target creature an opponent controls for as long as you control this enchantment. It can't attack or block unless this enchantment is attacking or blocking. => Effigy {1}{U}{U} [i](If you cast this for its effigy cost, it isn't a creature until you pay its mana cost as a sorcery.)[/i]
+When Astral Seamstress enters, gain control of target creature an opponent controls for as long as you control Astral Seamstress. As long as you control Astral Seamstress, that creature can't attack or block unless Astral Seamstress is attacking or blocking.
+
+Deathwind Whisperer
+cost: {1}{B} => {2}{B}
+rules_text: Menace
+When Deathwind Whisperer enters, Armageddon looms. [i](Create a Fated War token defended by an opponent if you don't control one. Otherwise, deal 2 damage to it.)[/i]
+Whenever you defeat a Fated War, search your library for a card, put it into your hand, then shuffle. => Menace
+At the beginning of your upkeep, draw a card and you lose 1 life. Then you may discard a card. If you do, Armageddon looms. [i](Create a Fated War token defended by an opponent if you don't control one. Otherwise, deal 2 damage to it.)[/i]
+pt: 2/1 => 3/2
+
+Enkindled Blackblade
+rules_text: Deathtouch
+When Enkindled Blackblade enters, Armageddon looms. [i](Create a Fated War token defended by an opponent if you don't control one. Otherwise, deal 2 damage to it.)[/i]
+Whenever an ability of a Fated War you control triggers, the player defending it loses 2 life and you gain 2 life. => Deathtouch
+When Enkindled Blackblade enters, Armageddon looms. [i](Create a Fated War token defended by an opponent if you don't control one. Otherwise, deal 2 damage to it.)[/i]
+Whenever an ability of a Fated War you control triggers, the player protecting it loses 2 life and you gain 2 life.
+
+Marisyni Adherent
+rules_text: Vigilance
+Whenever Marisyni Adherent attacks, target attacking token has base power and toughness 4/5 until end of turn. => Vigilance, trample
+Whenever Marisyni Adherent attacks, target attacking token has base power and toughness 4/5 until end of turn.
+
+Koryn Thael Guide
+type: Creature — Human Scout => Creature — Wraith Scout
+
+
+VERSION 5 CHANGELOG
 ====================
 
 
