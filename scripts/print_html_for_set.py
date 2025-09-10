@@ -9,6 +9,7 @@ import re
 def generateHTML(code):
 	#F: /sets/SET.html
 	output_html_file = "sets/" + code + ".html"
+	previewing = os.path.exists(os.path.join('sets', code + '-files', 'previewed.txt'))
 	
 	with open(os.path.join('lists', 'all-sets.json'), encoding='utf-8-sig') as f:
 		data = json.load(f)
@@ -82,7 +83,7 @@ def generateHTML(code):
 		color: #0492c2;
 	}
 	.select-text {
-		display: flex;
+		display: ''' + ('none' if previewing else 'flex') + ''';
 		align-items: center;
 		justify-content: left;
 		gap: 8px;
@@ -138,6 +139,7 @@ def generateHTML(code):
 		max-width: 1200px;
 		margin: auto;
 		justify-items: center;
+		padding-bottom: 20px;
 	}
 	.image-grid-container {
 		display: grid;
@@ -149,6 +151,13 @@ def generateHTML(code):
 		justify-items: center;
 		padding-top: 30px;
 		padding-bottom: 30px;
+		font-size: 36px;
+		font-family: 'Beleren';
+		color: #535353;
+	}
+	.small-caps {
+		font-family: 'Beleren Small Caps';
+		font-size: 46px;
 	}
 	@media ( max-width: 750px ) {
 		.image-grid-container {
@@ -323,7 +332,7 @@ def generateHTML(code):
 				<div class="set-title">''' + set_name + '''</div>'''
 
 	#F: sets/SET-files/SET-draft.txt
-	if os.path.exists(os.path.join('sets', code + '-files', code + '-draft.txt')):
+	if os.path.exists(os.path.join('sets', code + '-files', code + '-draft.txt')) and not previewing:
 		html_content += '''<div class="dot"> • </div><a href="/sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft</a>
 		<div class="dot"> • </div><a onclick="packOnePickOne()">P1P1</a>
 '''
@@ -472,49 +481,67 @@ def generateHTML(code):
 			{
 				cardGrid = document.getElementById("grid");
 			}
-
-			let set_cards = [];
-			let set_basics = [];
-			let set_tokens = [];
-			let set_mp = [];
-
-			for (const card of set_list_arrayified)
-			{
-				if (card.rarity.includes("masterpiece"))
-				{
-					set_mp.push(card);
-				}
-				else if (card.shape.includes("token"))
-				{
-					set_tokens.push(card);
-				}
-				else if (card.type.includes("Basic"))
-				{
-					set_basics.push(card);
-				}
-				else
-				{
-					set_cards.push(card);
-				}
-			}
-
-			set_cards.sort(compareFunction);
-			set_basics.sort(compareFunction);
-			set_tokens.sort(compareFunction);
-			set_mp.sort(compareFunction);
-			if (document.getElementById("sort-order").value == "descending")
-			{
-				set_cards.reverse();
-				set_basics.reverse();
-				set_tokens.reverse();
-				set_mp.reverse();
-			}
-			set_list_sorted = set_cards.concat(set_basics).concat(set_tokens).concat(set_mp);
 			cardGrid.innerHTML = "";
 
-			for (const card of set_list_sorted)
+			if (''' + str(previewing).lower() + ''')
 			{
-				cardGrid.append(gridifyCard(card));
+				let text1 = document.createElement("div");
+				let text2 = document.createElement("div");
+				
+				text1.innerText = "Currently Previewing";
+				text2.innerText = "check back soon";
+
+				text1.className = "small-caps";
+
+				cardGrid.appendChild(text1);
+				cardGrid.appendChild(text2);
+				cardGrid.style.gridTemplateColumns = "1fr";
+			}
+			else
+			{
+				let set_cards = [];
+				let set_basics = [];
+				let set_tokens = [];
+				let set_mp = [];
+
+				for (const card of set_list_arrayified)
+				{
+					if (card.rarity.includes("masterpiece"))
+					{
+						set_mp.push(card);
+					}
+					else if (card.shape.includes("token"))
+					{
+						set_tokens.push(card);
+					}
+					else if (card.type.includes("Basic"))
+					{
+						set_basics.push(card);
+					}
+					else
+					{
+						set_cards.push(card);
+					}
+				}
+
+				set_cards.sort(compareFunction);
+				set_basics.sort(compareFunction);
+				set_tokens.sort(compareFunction);
+				set_mp.sort(compareFunction);
+				if (document.getElementById("sort-order").value == "descending")
+				{
+					set_cards.reverse();
+					set_basics.reverse();
+					set_tokens.reverse();
+					set_mp.reverse();
+				}
+				set_list_sorted = set_cards.concat(set_basics).concat(set_tokens).concat(set_mp);
+				cardGrid.innerHTML = "";
+
+				for (const card of set_list_sorted)
+				{
+					cardGrid.append(gridifyCard(card));
+				}
 			}
 		}
 

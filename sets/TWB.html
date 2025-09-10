@@ -118,6 +118,7 @@
 		max-width: 1200px;
 		margin: auto;
 		justify-items: center;
+		padding-bottom: 20px;
 	}
 	.image-grid-container {
 		display: grid;
@@ -129,6 +130,13 @@
 		justify-items: center;
 		padding-top: 30px;
 		padding-bottom: 30px;
+		font-size: 36px;
+		font-family: 'Beleren';
+		color: #535353;
+	}
+	.small-caps {
+		font-family: 'Beleren Small Caps';
+		font-size: 46px;
 	}
 	@media ( max-width: 750px ) {
 		.image-grid-container {
@@ -421,49 +429,67 @@
 			{
 				cardGrid = document.getElementById("grid");
 			}
-
-			let set_cards = [];
-			let set_basics = [];
-			let set_tokens = [];
-			let set_mp = [];
-
-			for (const card of set_list_arrayified)
-			{
-				if (card.rarity.includes("masterpiece"))
-				{
-					set_mp.push(card);
-				}
-				else if (card.shape.includes("token"))
-				{
-					set_tokens.push(card);
-				}
-				else if (card.type.includes("Basic"))
-				{
-					set_basics.push(card);
-				}
-				else
-				{
-					set_cards.push(card);
-				}
-			}
-
-			set_cards.sort(compareFunction);
-			set_basics.sort(compareFunction);
-			set_tokens.sort(compareFunction);
-			set_mp.sort(compareFunction);
-			if (document.getElementById("sort-order").value == "descending")
-			{
-				set_cards.reverse();
-				set_basics.reverse();
-				set_tokens.reverse();
-				set_mp.reverse();
-			}
-			set_list_sorted = set_cards.concat(set_basics).concat(set_tokens).concat(set_mp);
 			cardGrid.innerHTML = "";
 
-			for (const card of set_list_sorted)
+			if (false)
 			{
-				cardGrid.append(gridifyCard(card));
+				let text1 = document.createElement("div");
+				let text2 = document.createElement("div");
+				
+				text1.innerText = "Currently Previewing";
+				text2.innerText = "check back soon";
+
+				text1.className = "small-caps";
+
+				cardGrid.appendChild(text1);
+				cardGrid.appendChild(text2);
+				cardGrid.style.gridTemplateColumns = "1fr";
+			}
+			else
+			{
+				let set_cards = [];
+				let set_basics = [];
+				let set_tokens = [];
+				let set_mp = [];
+
+				for (const card of set_list_arrayified)
+				{
+					if (card.rarity.includes("masterpiece"))
+					{
+						set_mp.push(card);
+					}
+					else if (card.shape.includes("token"))
+					{
+						set_tokens.push(card);
+					}
+					else if (card.type.includes("Basic"))
+					{
+						set_basics.push(card);
+					}
+					else
+					{
+						set_cards.push(card);
+					}
+				}
+
+				set_cards.sort(compareFunction);
+				set_basics.sort(compareFunction);
+				set_tokens.sort(compareFunction);
+				set_mp.sort(compareFunction);
+				if (document.getElementById("sort-order").value == "descending")
+				{
+					set_cards.reverse();
+					set_basics.reverse();
+					set_tokens.reverse();
+					set_mp.reverse();
+				}
+				set_list_sorted = set_cards.concat(set_basics).concat(set_tokens).concat(set_mp);
+				cardGrid.innerHTML = "";
+
+				for (const card of set_list_sorted)
+				{
+					cardGrid.append(gridifyCard(card));
+				}
 			}
 		}
 
@@ -1063,21 +1089,21 @@
 		}
 
 		function randomCard() {
-				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-				let random_card = card_list_arrayified[i];
+			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+			let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
-				const params = {
-					set: random_card.set,
-					num: random_card.number,
-					name: random_card.card_name
-				}
-				for (const key in params) {
-					url.searchParams.append(key, params[key]);
-				}
-
-				window.location.href = url;
+			const url = new URL('card', window.location.origin);
+			const params = {
+				set: random_card.set,
+				num: random_card.number,
+				name: random_card.card_name
 			}
+			for (const key in params) {
+				url.searchParams.append(key, params[key]);
+			}
+
+			window.location.href = url;
+		}
 	</script>
 </body>
 </html>

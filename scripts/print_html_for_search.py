@@ -440,7 +440,7 @@ def generateHTML(codes):
 		{
 			for (const li of list)
 			{
-				if (li.card_name == card.card_name && li.type == card.type)
+				if (li.card_name == card.card_name && li.type == card.type && li.rules_text == card.rules_text)
 				{
 					return true;
 				}

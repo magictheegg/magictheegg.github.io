@@ -233,12 +233,7 @@ def generateHTML():
 			other_printings = [];
 			for (const c of card_list_arrayified)
 			{
-				if (c.card_name == "Warfield Excavator")
-				{
-					console.log(c);
-					console.log(card);
-				}
-				if (c.card_name == card.card_name && c.type == card.type && !c.shape.includes("Token") && (c.set != card.set || c.number != card.number))
+				if (c.rules_text == card.rules_text && c.card_name == card.card_name && c.type == card.type && !c.shape.includes("Token") && (c.set != card.set || c.number != card.number))
 				{
 					other_printings.push(c);
 				}

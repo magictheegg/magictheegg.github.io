@@ -116,7 +116,7 @@ function tokenizeTerms(searchTerms)
 			let card_notes = card_stats.notes;
 			let card_artist = card_stats.artist;
 			let card_alias = card_stats.alias ? card_stats.alias : ""; // do this so that we have backwards compatibility
-			let card_ft = card_stats.flavor_text;
+			let card_ft = card_stats.flavor_text ? card_stats.flavor_text : "";
 			let card_color_2 = "";
 			let card_cost_2 = "";
 			let card_power_2 = "";
@@ -152,7 +152,10 @@ function tokenizeTerms(searchTerms)
 				card_name = card_name + "	" + card_stats.card_name2;
 				card_type = card_type + "	" + card_stats.type2;
 				card_oracle_text = card_oracle_text + "	" + (card_stats.rules_text2 != "" ? card_stats.rules_text2.replace(/\[(\/)?([ib])\]/g, "") : card_stats.special_text2.replace(/\[(\/)?([ib])\]/g, ""));
-				card_ft = card_ft + "\n" + card_stats.flavor_text2;
+				if (card_stats.flavor_text2)
+				{
+					card_ft = card_ft + "\n" + card_stats.flavor_text2;
+				}
 				card_color_2 = card_stats.color2;
 				card_cost_2 = card_stats.cost2;
 				card_power_2 = card_stats.pt2.substring(0,card_stats.pt2.indexOf('/'));
@@ -170,11 +173,6 @@ function tokenizeTerms(searchTerms)
 				const modifier = match[0];
 				const term = token.substring(0, token.indexOf(modifier));
 				let check = token.substring(token.indexOf(modifier) + modifier.length);
-
-				if (color_map.has(check))
-				{
-					check = color_map.get(check);
-				}
 
 				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
@@ -227,6 +225,10 @@ function tokenizeTerms(searchTerms)
 				}
 				if (term == "c" || term == "color")
 				{
+					if (color_map.has(check))
+					{
+						check = color_map.get(check);
+					}
 					if (!isNaN(check))
 					{
 						if (modifier == "!" || modifier == "=")
@@ -296,6 +298,10 @@ function tokenizeTerms(searchTerms)
 				}
 				if (term == "cost" || term == "mana")
 				{
+					if (color_map.has(check))
+					{
+						check = color_map.get(check);
+					}
 					if (modifier == "!" || modifier == "=" || modifier == ":")
 					{
 						card_cost_cleaned = card_cost.replaceAll('{', '').replaceAll('}', '');
@@ -304,6 +310,10 @@ function tokenizeTerms(searchTerms)
 				}
 				if (term == "ci" || term == "id")
 				{
+					if (color_map.has(check))
+					{
+						check = color_map.get(check);
+					}
 					if (!isNaN(check))
 					{
 						card_ci = card_ci == "c" ? "" : card_ci;
@@ -554,6 +564,13 @@ function tokenizeTerms(searchTerms)
 					}
 					return false;
 				}
+				if (term == "lore")
+				{
+					if (modifier == ":")
+					{
+						return card_name.includes(check) || card_ft.includes(check);
+					}
+				}
 				if (term == "is")
 				{
 					if (modifier == ":" || modifier == "!" || modifier == "=")
@@ -592,6 +609,10 @@ function tokenizeTerms(searchTerms)
 					{
 
 					} */
+				}
+				if (term == "not")
+				{
+					return !searchToken(card, token.replace("not:", "is:"));
 				}
 				if (term == "tag")
 				{

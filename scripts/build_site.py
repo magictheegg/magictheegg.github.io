@@ -26,6 +26,12 @@ def genAllCards(codes):
 	set_input = {'sets':[]}
 	#F: ...goes over all the set codes,
 	for code in codes:
+		#CE: check to see if the set is currently previewing
+		previewed_path = os.path.join('sets', code + '-files', 'previewed.txt')
+		previewed_cards = None
+		if os.path.exists(previewed_path):
+			with open(previewed_path, encoding='utf-8-sig') as f:
+				previewed_cards = f.read().split('\n')
 		#CE: non-indented JSON is driving me insane
 		prettifyJSON(os.path.join('sets', code + '-files', code + '.json'))	
 		#F: grabs the corresponding file,
@@ -46,7 +52,8 @@ def genAllCards(codes):
 				if os.path.exists(d_notes_path):
 					with open(d_notes_path, encoding='utf-8-sig') as md:
 						card['designer_notes'] = markdown.markdown(md.read())
-				card_input['cards'].append(card)
+				if previewed_cards == None or card['card_name'] in previewed_cards:
+					card_input['cards'].append(card)
 			set_data = {}
 			set_data['set_code'] = code
 			set_data['set_name'] = raw['name']
@@ -176,7 +183,14 @@ for code in set_codes:
 				else:
 					prev_card = previous_data['cards'][prev_card_names.index(card['card_name'])]
 					prev_card_names[prev_card_names.index(card['card_name'])] = ''
-					if card != prev_card:
+
+					# ignore card number, since that often changes for reasons unrelated to the card itself
+					card_copy = card.copy()
+					prev_card_copy = prev_card.copy()
+					card_copy.pop("number", None)
+					prev_card_copy.pop("number", None)
+
+					if card_copy != prev_card_copy:
 						changed = True
 						changed_string += card['card_name'] + '\n'
 						for key in [ 'type', 'cost', 'rules_text', 'pt', 'special_text', 'loyalty' ]:
@@ -231,8 +245,7 @@ for code in set_codes:
 	#CE: moving this down after we create the 'set-order.json' file
 	if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
 		print_html_for_preview.generateHTML(code)
-	if not os.path.exists(os.path.join('sets', code + '-files', 'previewed.txt')):	
-		print_html_for_set.generateHTML(code)
+	print_html_for_set.generateHTML(code)
 
 print_html_for_sets_page.generateHTML()
 print_html_for_search.generateHTML(set_codes)
