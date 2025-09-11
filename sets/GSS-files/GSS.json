@@ -4,6 +4,7 @@
     "trimmed": "y",
     "image_type": "png",
     "draft_structure": "play booster",
+    "unpreviewed": "empty",
     "cards": [
         {
             "card_name": "First Admiral of the Bellows",
@@ -21,6 +22,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Andrew Mironov",
+            "alias": "",
             "notes": ""
         },
         {
@@ -39,17 +41,18 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Waldemar Kazak",
+            "alias": "",
             "notes": ""
         },
         {
             "card_name": "Panya, Minikin Hero",
             "color": "U",
             "rarity": "mythic",
-            "type": "Legendary Creature \u2014 Mouse Warrior",
+            "type": "Legendary Creature \u2014 Mouse Pirate",
             "number": 43,
             "color_identity": "U",
             "cost": "{1}{U}",
-            "rules_text": "Flying\nWhen Panya enters, you may search your library for a battle card, reveal it, put it into your hand, then shuffle.\nWhenever Panya attacks, if she isn't attacking a player, she has base power and toughness 4/4 until end of turn.",
+            "rules_text": "{2}{U}: Panya can't be blocked this turn.\nWhen Panya enters, you may search your library for a battle card, reveal it, put it into your hand, then shuffle.\nWhenever Panya attacks, if she isn't attacking a player, she has base power and toughness 4/4 until end of turn.",
             "flavor_text": "[i][/i]",
             "pt": "1/1",
             "special_text": "",
@@ -57,6 +60,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ryota Murayama",
+            "alias": "",
             "notes": ""
         },
         {
@@ -67,7 +71,7 @@
             "number": 47,
             "color_identity": "U",
             "cost": "{2}{U}{U}",
-            "rules_text": "",
+            "rules_text": "Whenever you cast a spell on an opponent's turn, you may activate one of Rami Nyi's loyalty abilities. [i](You still pay its costs.)[/i]\n[+1]: Create a 0/1 blue Fish creature token.\n[0]: Draw a card, then discard a card unless you sacrifice a permanent.\n[-3]: The owner of target spell or nonland permanent puts that card on the top or bottom of their library.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "Whenever you cast a spell on an opponent's turn, you may activate one of Rami Nyi's loyalty abilities. [i](You still pay its costs.)[/i]\n[+1]: Create a 0/1 blue Fish creature token.\n[0]: Draw a card, then discard a card unless you sacrifice a permanent.\n[-3]: The owner of target spell or nonland permanent puts that card on the top or bottom of their library.",
@@ -75,6 +79,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Anna Steinbauer",
+            "alias": "",
             "notes": ""
         },
         {
@@ -93,6 +98,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Jakub Jagoda",
+            "alias": "",
             "notes": ""
         },
         {
@@ -111,6 +117,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Malte Madsen",
+            "alias": "",
             "notes": ""
         },
         {
@@ -129,6 +136,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Old zhang",
+            "alias": "",
             "notes": ""
         },
         {
@@ -147,6 +155,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Pavel Guzenko",
+            "alias": "",
             "notes": ""
         },
         {
@@ -165,6 +174,7 @@
             "set": "GSS",
             "loyalty": "5",
             "artist": "dechambo",
+            "alias": "",
             "card_name2": "Atine Grojogan",
             "color2": "",
             "type2": "Land",
@@ -175,6 +185,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Kaeriya",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -193,6 +204,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alex Kuhn",
+            "alias": "",
             "notes": ""
         },
         {
@@ -203,7 +215,7 @@
             "number": 200,
             "color_identity": "UG",
             "cost": "{2}{G}{U}",
-            "rules_text": "Fathom {8}{G}{U}\nReveal the top eight cards of your library. You may put a land card, a creature card, and a Kraken card from among them into your hand. Put the rest on the bottom in a random order.\nKraken Revelation spells you cast resolve as creatures.",
+            "rules_text": "Fathom {8}{G}{U} [i](If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent's mana value, put this onto the battlefield as a creature after it resolves or loses targets.)[/i]\nReveal the top eight cards of your library. You may put a land card, a creature card, and a Kraken card from among them into your hand. Put the rest on the bottom in a random order.\nKraken Revelation spells you cast resolve as creatures.",
             "flavor_text": "[i][/i]",
             "pt": "8/8",
             "special_text": "",
@@ -211,6 +223,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Polina Hristova",
+            "alias": "",
             "notes": ""
         },
         {
@@ -229,6 +242,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Robson Michel",
+            "alias": "",
             "notes": ""
         },
         {
@@ -239,7 +253,7 @@
             "number": 1,
             "color_identity": "C",
             "cost": "{5}",
-            "rules_text": "",
+            "rules_text": "[+1]: You may put an artifact card with mana value 2 or less from your hand or graveyard onto the battlefield.\n[0]: Target artifact or creature loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 4/4 and crew 1.\n[-6]: Deacon Bay Docks loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 10/10, indestructible, crew 1, and \u201cWhenever Deacon Bay Docks attacks, exile target permanent.\u201d [i](This effect lasts indefinitely.)[/i]",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "[+1]: You may put an artifact card with mana value 2 or less from your hand or graveyard onto the battlefield.\n[0]: Target artifact or creature loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 4/4 and crew 1.\n[-6]: Deacon Bay Docks loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 10/10, indestructible, crew 1, and \u201cWhenever Deacon Bay Docks attacks, exile target permanent.\u201d [i](This effect lasts indefinitely.)[/i]",
@@ -247,6 +261,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Uken Games",
+            "alias": "",
             "notes": ""
         },
         {
@@ -257,7 +272,7 @@
             "number": 180,
             "color_identity": "WB",
             "cost": "{2}{W}{B}",
-            "rules_text": "",
+            "rules_text": "[+1]: Until your next turn, up to one target creature you control gains lifelink, deathtouch, and vigilance.\n[0]: Reveal the top two cards of your library. An opponent chooses one and loses life equal to its mana value. Put that card into your graveyard and the other into your hand.\n[-2]: The next time you would create one or more creature tokens this turn, instead create that many 3/3 white and black Angel creature tokens with flying.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "[+1]: Until your next turn, up to one target creature you control gains lifelink, deathtouch, and vigilance.\n[0]: Reveal the top two cards of your library. An opponent chooses one and loses life equal to its mana value. Put that card into your graveyard and the other into your hand.\n[-2]: The next time you would create one or more creature tokens this turn, instead create that many 3/3 white and black Angel creature tokens with flying.",
@@ -265,6 +280,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Christopher Cant",
+            "alias": "",
             "notes": ""
         },
         {
@@ -275,7 +291,7 @@
             "number": 158,
             "color_identity": "UBR",
             "cost": "{U}{U}{B}{B}{R}{R}",
-            "rules_text": "",
+            "rules_text": "First mate\u2014Your starting deck contains \u201cThe[i] Fell Reaper[/i]\u201d and each nonland card in your starting deck targets or has an ability that targets.\n[+3]: Target opponent exiles a card from their hand or a nonland permanent they control. If that player is cursed, you may play that card until end of turn.\n[-3]: Captain Crain deals 3 damage to each creature and each non-Crain planeswalker. Create three Treasure tokens.\n[-13]: Each cursed opponent loses the game.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "First mate\u2014Your starting deck contains \u201cThe[i] Fell Reaper[/i]\u201d and each nonland card in your starting deck targets or has an ability that targets.\n[+3]: Target opponent exiles a card from their hand or a nonland permanent they control. If that player is cursed, you may play that card until end of turn.\n[-3]: Captain Crain deals 3 damage to each creature and each non-Crain planeswalker. Create three Treasure tokens.\n[-13]: Each cursed opponent loses the game.",
@@ -283,6 +299,7 @@
             "set": "GSS",
             "loyalty": "5",
             "artist": "Veronica O'Neill",
+            "alias": "",
             "notes": ""
         },
         {
@@ -301,6 +318,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ren YS",
+            "alias": "",
             "notes": ""
         },
         {
@@ -319,6 +337,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "7th Sea",
+            "alias": "",
             "notes": ""
         },
         {
@@ -337,6 +356,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "sandara",
+            "alias": "",
             "notes": ""
         },
         {
@@ -355,6 +375,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Clark Ocleasa",
+            "alias": "",
             "notes": ""
         },
         {
@@ -373,6 +394,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "sharandula",
+            "alias": "",
             "notes": ""
         },
         {
@@ -391,6 +413,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Caroline Soucy",
+            "alias": "",
             "notes": ""
         },
         {
@@ -409,6 +432,7 @@
             "set": "GSS",
             "loyalty": "5",
             "artist": "Piotr Krezelewski",
+            "alias": "",
             "card_name2": "The Royal Moors",
             "color2": "",
             "type2": "Land",
@@ -419,6 +443,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Julian Calle",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -437,6 +462,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "BAD MOON STUDIO",
+            "alias": "",
             "notes": ""
         },
         {
@@ -455,6 +481,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Horace Luo",
+            "alias": "",
             "notes": ""
         },
         {
@@ -473,6 +500,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Vera Radchenko",
+            "alias": "",
             "notes": ""
         },
         {
@@ -491,6 +519,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Billy Christian",
+            "alias": "",
             "notes": ""
         },
         {
@@ -509,6 +538,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "wia",
+            "alias": "",
             "notes": ""
         },
         {
@@ -527,6 +557,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Qichao Wang",
+            "alias": "",
             "notes": ""
         },
         {
@@ -545,6 +576,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Qifan Luo",
+            "alias": "",
             "notes": ""
         },
         {
@@ -563,6 +595,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ramses Melendez",
+            "alias": "",
             "notes": ""
         },
         {
@@ -581,6 +614,7 @@
             "set": "GSS",
             "loyalty": "5",
             "artist": "artofjokinen",
+            "alias": "",
             "card_name2": "Ile Des Sirenes",
             "color2": "",
             "type2": "Land",
@@ -591,6 +625,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Amir Khan Dj. Afschar",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -609,6 +644,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Will O'Brien",
+            "alias": "",
             "notes": ""
         },
         {
@@ -627,6 +663,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Linda Jansson",
+            "alias": "",
             "notes": ""
         },
         {
@@ -645,6 +682,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Jose Brand",
+            "alias": "",
             "notes": ""
         },
         {
@@ -663,6 +701,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Wizards of the Coast",
+            "alias": "",
             "notes": ""
         },
         {
@@ -681,6 +720,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Grafit Studio",
+            "alias": "",
             "notes": ""
         },
         {
@@ -699,6 +739,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Lingy-0",
+            "alias": "",
             "notes": ""
         },
         {
@@ -717,6 +758,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Anato Finnstark",
+            "alias": "",
             "notes": ""
         },
         {
@@ -735,6 +777,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Katerina Ladon",
+            "alias": "",
             "notes": ""
         },
         {
@@ -753,6 +796,7 @@
             "set": "GSS",
             "loyalty": "5",
             "artist": "Jakub Cervenka",
+            "alias": "",
             "card_name2": "Shadow Lagoon",
             "color2": "",
             "type2": "Land",
@@ -763,6 +807,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Eliz Roxs",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -781,6 +826,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Drake Brodahl",
+            "alias": "",
             "notes": ""
         },
         {
@@ -799,6 +845,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Enrique Plazola",
+            "alias": "",
             "notes": ""
         },
         {
@@ -817,6 +864,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Neil Kairanna",
+            "alias": "",
             "notes": ""
         },
         {
@@ -835,6 +883,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Gaga Turmanishvili",
+            "alias": "",
             "notes": ""
         },
         {
@@ -853,6 +902,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Mirco Paganessi",
+            "alias": "",
             "notes": ""
         },
         {
@@ -871,6 +921,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "kypcaht",
+            "alias": "",
             "notes": ""
         },
         {
@@ -889,6 +940,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Sam Keiser",
+            "alias": "",
             "notes": ""
         },
         {
@@ -907,6 +959,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Joseph Feely",
+            "alias": "",
             "notes": ""
         },
         {
@@ -923,8 +976,9 @@
             "special_text": "",
             "shape": "double faced",
             "set": "GSS",
-            "loyalty": "6",
+            "loyalty": "5",
             "artist": "Ubisoft",
+            "alias": "",
             "card_name2": "The Spires at Starrehold",
             "color2": "",
             "type2": "Land",
@@ -935,6 +989,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Titus Lunter",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -947,12 +1002,13 @@
             "cost": "{1}{R}{G}",
             "rules_text": "Wayfarer [i](If you've spent {W}{U}{B}{R}{G} this turn, discover L'Or.)[/i]\nWhen Current Pacer enters, draw a card. You may play an additional land this turn.\n{4}{R}{G}: Shuffle, then exile the top two cards of your library. You may play them this turn. If you've discovered L'Or, you may play them this turn without paying their mana costs.",
             "flavor_text": "[i][/i]",
-            "pt": "3/2",
+            "pt": "2/2",
             "special_text": "",
             "shape": "normal",
             "set": "GSS",
             "loyalty": "",
             "artist": "Victor Garcia",
+            "alias": "",
             "notes": ""
         },
         {
@@ -971,6 +1027,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Grafit Studio",
+            "alias": "",
             "notes": ""
         },
         {
@@ -989,6 +1046,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Kudos Productions",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1007,6 +1065,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Barret Frymire",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1025,6 +1084,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Will Gist",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1043,6 +1103,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "LozanoX",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1061,6 +1122,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "matago_draws",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1079,6 +1141,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Jonas Jakobsson",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1097,6 +1160,7 @@
             "set": "GSS",
             "loyalty": "5",
             "artist": "Bigball Gao",
+            "alias": "",
             "card_name2": "Lozana Shrine",
             "color2": "",
             "type2": "Land",
@@ -1107,6 +1171,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Jeremy Love",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -1125,6 +1190,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "JunYeong Shin",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1143,6 +1209,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ahmed Teilab",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1161,6 +1228,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "lok du",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1179,6 +1247,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Gokberk Kaya",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1197,6 +1266,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Lea Lebourgeois",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1215,6 +1285,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "iwanaga",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1233,6 +1304,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "mmagini",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1251,6 +1323,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "steamey",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1269,6 +1342,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Conor Burke",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1287,6 +1361,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Juhani Jokinen",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1305,6 +1380,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Stepan Gilev",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1323,6 +1399,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Dariusz Kieliszek",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -1341,6 +1418,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Christopher Pariano",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -1359,6 +1437,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Kitt Lape\u00f1a",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -1377,6 +1456,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Tulio Brito",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -1395,6 +1475,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Riot Games",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -1413,6 +1494,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Christel Michiels",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -1431,6 +1513,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "3HeadedMonkey",
+            "alias": "",
             "notes": "!u\n\nUB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1449,6 +1532,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Cygames, Inc.",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1467,6 +1551,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ubisoft",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1485,6 +1570,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "shuo SHI",
+            "alias": "",
             "notes": "f!reprint\n\nUB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1503,6 +1589,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "space gooose",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1521,6 +1608,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "DenmanRooke",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1539,6 +1627,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Gonzalo Kenny",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1557,6 +1646,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "andrewmar",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1575,6 +1665,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "ElXi-Ameyn",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1593,6 +1684,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Asur Misoa",
+            "alias": "",
             "notes": "f!reprint\n\nBR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1611,6 +1703,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Piri Reis",
+            "alias": "",
             "notes": "!u\n\nBR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1629,6 +1722,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "ERA7",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -1647,6 +1741,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alisher Mirzoev",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1665,6 +1760,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Nognumnoy",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1683,6 +1779,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Edric Cheah",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1701,6 +1798,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Applibot, Inc.",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1719,6 +1817,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "January Sun",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1737,6 +1836,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "APetruk",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -1755,6 +1855,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Elder Scrolls: Legends",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1773,6 +1874,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Matt DeMino",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1791,6 +1893,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Team17",
+            "alias": "",
             "card_name2": "Discovery Point",
             "color2": "",
             "type2": "Land",
@@ -1801,6 +1904,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Andrew Porter",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -1819,6 +1923,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Roman Dubina",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1837,6 +1942,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Karol Bem",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1855,6 +1961,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Kobe Sek",
+            "alias": "",
             "card_name2": "Pendulum Docks",
             "color2": "",
             "type2": "Land",
@@ -1865,6 +1972,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Ubisoft",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -1883,6 +1991,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alexey Kruglov",
+            "alias": "",
             "notes": "!u"
         },
         {
@@ -1901,6 +2010,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Pius Wirawan Pranoto",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1919,6 +2029,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Shan Yanan",
+            "alias": "",
             "card_name2": "Carnage Rock",
             "color2": "",
             "type2": "Land",
@@ -1929,6 +2040,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Andy Walsh",
+            "alias2": "",
             "notes": "!u"
         },
         {
@@ -1947,6 +2059,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Eilene Cherie",
+            "alias": "",
             "notes": ""
         },
         {
@@ -1965,6 +2078,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Nabranja",
+            "alias": "",
             "notes": "!u"
         },
         {
@@ -1981,8 +2095,9 @@
             "special_text": "",
             "shape": "double faced",
             "set": "GSS",
-            "loyalty": "6",
+            "loyalty": "4",
             "artist": "Ricardo Robles",
+            "alias": "",
             "card_name2": "Skypiercer",
             "color2": "",
             "type2": "Land",
@@ -1993,6 +2108,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Lorenzo Lanfranconi",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -2011,6 +2127,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "TheRealMcgee",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2029,6 +2146,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "GaudiBuendia",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2047,6 +2165,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Kobe Sek",
+            "alias": "",
             "card_name2": "Hackett's Keep",
             "color2": "",
             "type2": "Land",
@@ -2057,6 +2176,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Max Suleimanov",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -2075,6 +2195,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Nils Wellander",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2093,6 +2214,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Sebastian Duran",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2109,8 +2231,9 @@
             "special_text": "",
             "shape": "double faced",
             "set": "GSS",
-            "loyalty": "5",
+            "loyalty": "4",
             "artist": "Anastasia Bulgakova",
+            "alias": "",
             "card_name2": "Impaled Ruins",
             "color2": "",
             "type2": "Land",
@@ -2121,6 +2244,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Guang Yang",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -2139,6 +2263,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Robert Ardy",
+            "alias": "",
             "notes": "!u"
         },
         {
@@ -2157,6 +2282,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ga\u00e9tan 'Spartan' Weltzer",
+            "alias": "",
             "notes": "!u"
         },
         {
@@ -2175,6 +2301,7 @@
             "set": "GSS",
             "loyalty": "4",
             "artist": "Piotr Krezelewski",
+            "alias": "",
             "card_name2": "Gnarled Roots of Arbre-Mere",
             "color2": "",
             "type2": "Land",
@@ -2185,6 +2312,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Gunzfree",
+            "alias2": "",
             "notes": "!u"
         },
         {
@@ -2203,6 +2331,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alexander Mokhov",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2221,6 +2350,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Maria Clara Daly",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2237,8 +2367,9 @@
             "special_text": "",
             "shape": "double faced",
             "set": "GSS",
-            "loyalty": "6",
+            "loyalty": "4",
             "artist": "Greg Rutkowski",
+            "alias": "",
             "card_name2": "Eye of the Kraken",
             "color2": "",
             "type2": "Land",
@@ -2249,6 +2380,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Ducos Guillaume",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -2267,6 +2399,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Lie Setiawan",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2285,6 +2418,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Fesbra",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2301,8 +2435,9 @@
             "special_text": "",
             "shape": "double faced",
             "set": "GSS",
-            "loyalty": "5",
+            "loyalty": "4",
             "artist": "Greg Rutkowski",
+            "alias": "",
             "card_name2": "Volcanic Roost",
             "color2": "",
             "type2": "Land",
@@ -2313,6 +2448,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Paris Ioannou",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -2331,6 +2467,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Liu Yan",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2349,6 +2486,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Celladoora",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2365,8 +2503,9 @@
             "special_text": "",
             "shape": "double faced",
             "set": "GSS",
-            "loyalty": "5",
+            "loyalty": "4",
             "artist": "haryarti",
+            "alias": "",
             "card_name2": "Red Wind Harbor",
             "color2": "",
             "type2": "Land",
@@ -2377,6 +2516,7 @@
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Donald MacLeod",
+            "alias2": "",
             "notes": ""
         },
         {
@@ -2395,6 +2535,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Clark Tollefsen",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2413,6 +2554,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Thomaz Dias",
+            "alias": "",
             "notes": ""
         },
         {
@@ -2431,6 +2573,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Disney Interactive",
+            "alias": "",
             "notes": "Treasure Island"
         },
         {
@@ -2449,6 +2592,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Even Amundsen",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2467,6 +2611,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Giorgio Baroni",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2485,6 +2630,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Daniel Andersen",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2503,6 +2649,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Applibot, Inc.",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2521,6 +2668,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Applibot, Inc.",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2539,6 +2687,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Hosney Qanadelo",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2557,6 +2706,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Teresa Carcaboso Corbacho",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2575,6 +2725,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "ExitMothership",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2593,6 +2744,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "soon lee",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2611,6 +2763,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Veli Nystrom",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2629,6 +2782,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Gregory Manchess",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2647,6 +2801,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Denis Loebner",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2665,6 +2820,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Adam Littledale",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2683,6 +2839,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ubisoft",
+            "alias": "",
             "notes": "WU:\n - Five or more artifacts\n - Metalcraft\nGW:\n - Odd MVs\n - +1/+1 counters\nWB:\n - triggered abilities\n - flicker\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -2701,6 +2858,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "James Ryman",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2719,6 +2877,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Blue-Hearts",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2737,6 +2896,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "shenfeic",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2755,6 +2915,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "SixthLeafClover",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2773,6 +2934,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Eryk Szczygiel",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2791,6 +2953,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Wizards of the Coast",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2809,6 +2972,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "APixelTauros",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2827,6 +2991,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Fantasy Flight Games",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2845,6 +3010,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Anton Kokarev",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2863,6 +3029,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Sergey Shikin",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2881,6 +3048,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Applibot, Inc.",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2899,6 +3067,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Warhammer",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2917,6 +3086,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Joakim Ericsson",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2935,6 +3105,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Donato Giancola",
+            "alias": "",
             "notes": "WU:\n - five or more artifacts\n - metalcraft\nUB:\n - even MV only\n - Zombies\nGU:\n - five or more alternate costs\n - fathom\nUR:\n - all fliers\n - drakes/dragons"
         },
         {
@@ -2953,6 +3124,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Edward Delandre",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -2971,6 +3143,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Yan Li",
+            "alias": "",
             "notes": "!u\n\nUB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -2989,6 +3162,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Wisnu Tan",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3007,6 +3181,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "SavageGod",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3025,6 +3200,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "UK1FL",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3043,6 +3219,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ron Sanders",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3061,6 +3238,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Cygames, Inc.",
+            "alias": "",
             "notes": "!u\n\nUB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3079,6 +3257,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Zhuoxin Ye",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3097,6 +3276,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "5ofnovember",
+            "alias": "",
             "notes": "!u\n\nUB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3115,6 +3295,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Iqnatius Budi Whiteper",
+            "alias": "",
             "notes": "!u\n\nUB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3133,6 +3314,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "War of the Burning Sky Online",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3151,6 +3333,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Sandara Tang",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3169,6 +3352,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Kristina Gehrmann",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3187,6 +3371,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Jocelin Carmes",
+            "alias": "",
             "notes": "UB:\n - even MV only\n - Zombies\nBR:\n - Five curses\n - Curses\nWB:\n - triggered abilities\n - flicker\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3205,6 +3390,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "MILICRAFT",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3223,6 +3409,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Florian Herold",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3241,6 +3428,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Athena Erocith",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3259,6 +3447,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Idan Shani",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3277,6 +3466,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Kate Burmak",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3295,6 +3485,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alexandr Leskinen",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3313,6 +3504,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Toni Muntean",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3331,6 +3523,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "OdysseyOrigins",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3349,6 +3542,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "88grzes",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3367,6 +3561,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Michal Matczak",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3385,6 +3580,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Cai Shuisong",
+            "alias": "",
             "notes": "f!reprint\n\nBR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3403,6 +3599,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Ivan Constantinovich",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3421,6 +3618,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alexander Yakovlev",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3439,6 +3637,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Giuliano Brocani",
+            "alias": "",
             "notes": "BR:\n - Five curses\n - Curses\nRG:\n - two of each land type\n - wayfarer 5c\nUR:\n - all fliers\n - drakes/dragons\nRW:\n - MV 3 or less\n - Shipwright"
         },
         {
@@ -3457,6 +3656,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Maiwenn Kasprzyk",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3475,6 +3675,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "M. Wayne Miller",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3493,6 +3694,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Cygames, Inc.",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3511,6 +3713,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Chaoyuan Xu",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3529,6 +3732,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Jake Pleshe",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3547,6 +3751,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Anna Kand",
+            "alias": "",
             "notes": "!u\n\nGW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3565,6 +3770,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Grafit Studio",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3583,6 +3789,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Minard Maxime",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3601,6 +3808,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Wayne Wu",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3619,6 +3827,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Tami Wicinas",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3637,6 +3846,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Daniel Trajtemberg",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3655,6 +3865,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Halil Ural",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3673,6 +3884,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Chris Garrett",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3691,6 +3903,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "su jian",
+            "alias": "",
             "notes": "GW:\n - Odd MVs\n - +1/+1 counters\nRG:\n - two of each land type\n - wayfarer 5c\nGU:\n - five or more alternate costs\n - fathom\nBG:\n - mana value 3 or greater\n - graveyard (lands)"
         },
         {
@@ -3709,6 +3922,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Annadel Cinco",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3727,6 +3941,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Anna Podedworna",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3745,6 +3960,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Helder Almeida",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3763,6 +3979,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Aleksi Briclot",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3781,6 +3998,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Applibot, Inc.",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3799,6 +4017,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Raulski",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3817,6 +4036,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Lauren Covarrubias",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3835,6 +4055,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Gaetano Carlucci",
+            "alias": "",
             "notes": "!u"
         },
         {
@@ -3853,6 +4074,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alejandro Olmedo",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3871,6 +4093,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Thomas Brissot",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3889,6 +4112,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "ZQ",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3907,6 +4131,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Tiago Sousa",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -3925,6 +4150,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "ptitvinc",
+            "alias": "",
             "notes": ""
         },
         {
@@ -3943,6 +4169,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Alyn Spiller",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -3961,6 +4188,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Daniel Walker",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -3979,6 +4207,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "W-E-Z",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -3997,6 +4226,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Miro Petrov",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4015,6 +4245,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Jordan Grimmer",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4033,6 +4264,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Runa Ivana Rosenberger",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4051,6 +4283,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Anna Kand",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4069,6 +4302,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Lino Drieghe",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4087,6 +4321,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Yujin Choo",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4105,6 +4340,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Crytek",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4123,6 +4359,7 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "Anastasia Ovchinnikova",
+            "alias": "",
             "notes": "f!reprint"
         },
         {
@@ -4141,8 +4378,9 @@
             "set": "GSS",
             "loyalty": "",
             "artist": "BAND HUANG",
+            "alias": "",
             "notes": "f!reprint"
         }
     ],
-    "version": 2
+    "version": 3
 }
