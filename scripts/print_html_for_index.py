@@ -229,6 +229,8 @@ def generateHTML():
 		'''
 		set_codes = so_json[key]
 		for code in set_codes:
+			if code == "":
+				continue
 			set_name = 'MISSING'
 			if not os.path.exists(os.path.join('sets', code + '-files', 'ignore.txt')):
 				with open(os.path.join('lists', 'all-sets.json'), encoding='utf-8-sig') as f:
@@ -274,7 +276,7 @@ def generateHTML():
 
 				'''
 
-	with open(os.path.join('resources', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+	with open(os.path.join('scripts', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
 	
@@ -322,7 +324,14 @@ def generateHTML():
 				const img = document.createElement("img");
 				img.id = "cotd";
 
-				img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
+				if ("position" in card_stats)
+				{
+					img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.position + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
+				}
+				else
+				{
+					img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
+				}
 
 				a.append(img);
 				document.getElementById("cotd-image").append(a);
@@ -426,7 +435,7 @@ def generateHTML():
 
 			'''
 
-	with open(os.path.join('resources', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+	with open(os.path.join('scripts', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
 		snippet = f.read()
 		html_content += snippet
 

@@ -47,6 +47,8 @@ def genAllCards(codes):
 					card['rules_text2'] = card['rules_text2'].replace('—', '–')
 					card['special_text2'] = card['special_text2'].replace('—', '–')
 				card['image_type'] = 'png' if 'image_type' not in raw else raw['image_type']
+				if 'v_mana' in raw:
+					card['v_mana'] = raw['v_mana']
 				#CE: Designer notes (for Rachel)
 				d_notes_path = os.path.join('sets', code + '-files', 'card-notes', card['card_name'] + '.md')
 				if os.path.exists(d_notes_path):
@@ -88,15 +90,19 @@ def portCustomFiles(custom_dir, export_dir):
 			print(os.path.join(export_dir, entry.name) + ' added')
 
 def removeStaleFiles(set_dir):
-	filesToRemove = [ 'structure.json', 'preview-order.json' ]
+	filesToKeep = [ 'img', 'icon.png', 'logo.png' ]
 	for entry in os.scandir(set_dir):
 		#CE: ignore default or generated files
-		if entry.name in [ '.DS_Store', '__pycache__', 'README.md' ]:
+		if entry.name in [ '.DS_Store', '__pycache__', 'README.md', 'versions' ]:
 			continue
 		s_dir = os.path.join(set_dir, entry.name)
 		for set_entry in os.scandir(s_dir):
-			if set_entry.name in filesToRemove:
-				os.remove(set_entry)
+			filename, file_extension = os.path.splitext(set_entry.name)
+			if set_entry.name not in filesToKeep and file_extension != '.json':
+				if set_entry.is_dir():
+					shutil.rmtree(set_entry)
+				else:
+					os.remove(set_entry)
 
 #CE: legacy file removal
 for entry in os.scandir('.'):

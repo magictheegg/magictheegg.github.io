@@ -39,8 +39,8 @@
 			position: relative;
 		}
 		.sidebar-h-img {
-			display: none;
-			transform: rotate(90deg);
+			opacity: 0;
+			transform: rotateY(0deg) rotate(90deg);
 			position: absolute;
 			left: 10%;
 			top: 10%;
@@ -126,12 +126,13 @@
 			background: rgba(23, 23, 23, 0.8);
 			border-radius: 8px;
 			position: absolute;
-			left: 10%;
+			left: 5%;
 			width: fit-content;
+			max-width: 90%;
 			margin: 20px 0;
 			padding: 5px 0;
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr;
 			z-index: 3;
 		}
 		.dropdown .set-bar {
@@ -216,7 +217,7 @@
 		</div>
 	</div>
 
-	<div class="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
+	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
 		<a class="set-bar" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
@@ -280,346 +281,346 @@
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img alt="/sets/ATR-files/img/13_Heping, at War's End.png" id="13_Heping, at Wars End" data-flag="@X" onclick="openSidebar('13_Heping, at Wars End',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/54_Panya, Swift and Sure.png" id="54_Panya, Swift and Sure" data-flag="@X" onclick="openSidebar('54_Panya, Swift and Sure',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/91_Litany of Despair.png" id="91_Litany of Despair" data-flag="@X" onclick="openSidebar('91_Litany of Despair',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/138_Progeny of Bloodflame.png" id="138_Progeny of Bloodflame" data-flag="@X" onclick="openSidebar('138_Progeny of Bloodflame',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/150_Behold the Aeons.png" id="150_Behold the Aeons" data-flag="@X" onclick="openSidebar('150_Behold the Aeons',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/1_Annihilation.png" id="1_Annihilation" data-flag="@X" onclick="openSidebar('1_Annihilation',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/38_Astral Seamstress.png" id="38_Astral Seamstress" data-flag="@X" onclick="openSidebar('38_Astral Seamstress',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/75_Abyssal Promenade.png" id="75_Abyssal Promenade" data-flag="@X" onclick="openSidebar('75_Abyssal Promenade',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/118_Emberblaze Warkite.png" id="118_Emberblaze Warkite" data-flag="@X" onclick="openSidebar('118_Emberblaze Warkite',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/149_Arboreal Embrace.png" id="149_Arboreal Embrace" data-flag="@X" onclick="openSidebar('149_Arboreal Embrace',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/7_Empyrean Challenger.png" id="7_Empyrean Challenger" data-flag="@X" onclick="openSidebar('7_Empyrean Challenger',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/43_Coincidence.png" id="43_Coincidence" data-flag="@X" onclick="openSidebar('43_Coincidence',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/79_Bloodrift Overlord.png" id="79_Bloodrift Overlord" data-flag="@X" onclick="openSidebar('79_Bloodrift Overlord',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/122_Hoard.png" id="122_Hoard" data-flag="@X" onclick="openSidebar('122_Hoard',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/158_Existence.png" id="158_Existence" data-flag="@X" onclick="openSidebar('158_Existence',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/10_Fogborne Brigade.png" id="10_Fogborne Brigade" data-flag="@X" onclick="openSidebar('10_Fogborne Brigade',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/55_Prescient Phantom.png" id="55_Prescient Phantom" data-flag="@X" onclick="openSidebar('55_Prescient Phantom',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/81_Deathwind Whisperer.png" id="81_Deathwind Whisperer" data-flag="@X" onclick="openSidebar('81_Deathwind Whisperer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/128_Let the Fray Burn.png" id="128_Let the Fray Burn" data-flag="@X" onclick="openSidebar('128_Let the Fray Burn',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/165_Hinterland Overseer.png" id="165_Hinterland Overseer" data-flag="@X" onclick="openSidebar('165_Hinterland Overseer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/14_Ivory Tactician.png" id="14_Ivory Tactician" data-flag="@X" onclick="openSidebar('14_Ivory Tactician',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/56_Prismatic Nightjar.png" id="56_Prismatic Nightjar" data-flag="@X" onclick="openSidebar('56_Prismatic Nightjar',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/82_Dismay.png" id="82_Dismay" data-flag="@X" onclick="openSidebar('82_Dismay',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/129_The Liberated Onslaught.png" id="129_The Liberated Onslaught" data-flag="@X" onclick="openSidebar('129_The Liberated Onslaught',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/172_Realmsplicer.png" id="172_Realmsplicer" data-flag="@X" onclick="openSidebar('172_Realmsplicer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/16_Knightfall.png" id="16_Knightfall" data-flag="@X" onclick="openSidebar('16_Knightfall',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/59_Savior's Quandary.png" id="59_Saviors Quandary" data-flag="@X" onclick="openSidebar('59_Saviors Quandary',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/85_Enkindled Blackblade.png" id="85_Enkindled Blackblade" data-flag="@X" onclick="openSidebar('85_Enkindled Blackblade',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/130_Liege of the Pyre.png" id="130_Liege of the Pyre" data-flag="@X" onclick="openSidebar('130_Liege of the Pyre',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/174_Sky's Eye Recruit.png" id="174_Skys Eye Recruit" data-flag="@X" onclick="openSidebar('174_Skys Eye Recruit',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/29_Pledgeseeker.png" id="29_Pledgeseeker" data-flag="@X" onclick="openSidebar('29_Pledgeseeker',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/61_See the Stars Align.png" id="61_See the Stars Align" data-flag="@X" onclick="openSidebar('61_See the Stars Align',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/90_In the Shadow of Azumoth.png" id="90_In the Shadow of Azumoth" data-flag="@X" onclick="openSidebar('90_In the Shadow of Azumoth',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/146_Sorellan Lamplighter.png" id="146_Sorellan Lamplighter" data-flag="@X" onclick="openSidebar('146_Sorellan Lamplighter',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/178_Sundrop Cultivator.png" id="178_Sundrop Cultivator" data-flag="@X" onclick="openSidebar('178_Sundrop Cultivator',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/30_Sanctuary.png" id="30_Sanctuary" data-flag="@X" onclick="openSidebar('30_Sanctuary',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/62_Selenic Augur.png" id="62_Selenic Augur" data-flag="@X" onclick="openSidebar('62_Selenic Augur',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/96_Nachtengel.png" id="96_Nachtengel" data-flag="@X" onclick="openSidebar('96_Nachtengel',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/148_Verve.png" id="148_Verve" data-flag="@X" onclick="openSidebar('148_Verve',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/183_Wilderwarper.png" id="183_Wilderwarper" data-flag="@X" onclick="openSidebar('183_Wilderwarper',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/3_Become Faceless.png" id="3_Become Faceless" data-flag="@X" onclick="openSidebar('3_Become Faceless',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/39_Better Thy Ken.png" id="39_Better Thy Ken" data-flag="@X" onclick="openSidebar('39_Better Thy Ken',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/77_Auric Migrant.png" id="77_Auric Migrant" data-flag="@X" onclick="openSidebar('77_Auric Migrant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/112_Bearer of the Blood Chalice.png" id="112_Bearer of the Blood Chalice" data-flag="@X" onclick="openSidebar('112_Bearer of the Blood Chalice',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/151_Branchbrand.png" id="151_Branchbrand" data-flag="@X" onclick="openSidebar('151_Branchbrand',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/5_Eidolic Procession.png" id="5_Eidolic Procession" data-flag="@X" onclick="openSidebar('5_Eidolic Procession',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/41_Celestial Sentry.png" id="41_Celestial Sentry" data-flag="@X" onclick="openSidebar('41_Celestial Sentry',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/83_Don the Wintercrown.png" id="83_Don the Wintercrown" data-flag="@X" onclick="openSidebar('83_Don the Wintercrown',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/114_Conflagrant Legionnaire.png" id="114_Conflagrant Legionnaire" data-flag="@X" onclick="openSidebar('114_Conflagrant Legionnaire',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/154_Defile Pious Halls.png" id="154_Defile Pious Halls" data-flag="@X" onclick="openSidebar('154_Defile Pious Halls',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/9_Feather of Flight.png" id="9_Feather of Flight" data-flag="@X" onclick="openSidebar('9_Feather of Flight',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/42_Ceremonial Flock.png" id="42_Ceremonial Flock" data-flag="@X" onclick="openSidebar('42_Ceremonial Flock',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/86_Eternity Awaits.png" id="86_Eternity Awaits" data-flag="@X" onclick="openSidebar('86_Eternity Awaits',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/117_Dravak Tyrant.png" id="117_Dravak Tyrant" data-flag="@X" onclick="openSidebar('117_Dravak Tyrant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/157_Everbough Dryad.png" id="157_Everbough Dryad" data-flag="@X" onclick="openSidebar('157_Everbough Dryad',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/11_Gilded Guardian.png" id="11_Gilded Guardian" data-flag="@X" onclick="openSidebar('11_Gilded Guardian',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/44_Curio Hoarder.png" id="44_Curio Hoarder" data-flag="@X" onclick="openSidebar('44_Curio Hoarder',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/88_Gloaming Spearman.png" id="88_Gloaming Spearman" data-flag="@X" onclick="openSidebar('88_Gloaming Spearman',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/119_Flame Sweep.png" id="119_Flame Sweep" data-flag="@X" onclick="openSidebar('119_Flame Sweep',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/159_Fall on the Sword.png" id="159_Fall on the Sword" data-flag="@X" onclick="openSidebar('159_Fall on the Sword',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/15_Keeper of Ghostlight.png" id="15_Keeper of Ghostlight" data-flag="@X" onclick="openSidebar('15_Keeper of Ghostlight',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/46_Elythi Altar.png" id="46_Elythi Altar" data-flag="@X" onclick="openSidebar('46_Elythi Altar',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/92_Lithe Silhouette.png" id="92_Lithe Silhouette" data-flag="@X" onclick="openSidebar('92_Lithe Silhouette',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/123_Hollow Yew Halo.png" id="123_Hollow Yew Halo" data-flag="@X" onclick="openSidebar('123_Hollow Yew Halo',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/162_Greenwood Trooper.png" id="162_Greenwood Trooper" data-flag="@X" onclick="openSidebar('162_Greenwood Trooper',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/17_Koryn Thael Guide.png" id="17_Koryn Thael Guide" data-flag="@X" onclick="openSidebar('17_Koryn Thael Guide',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/47_Fanciful Brinedancer.png" id="47_Fanciful Brinedancer" data-flag="@X" onclick="openSidebar('47_Fanciful Brinedancer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/95_Massacre Behemoth.png" id="95_Massacre Behemoth" data-flag="@X" onclick="openSidebar('95_Massacre Behemoth',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/126_Infernal Disseverer.png" id="126_Infernal Disseverer" data-flag="@X" onclick="openSidebar('126_Infernal Disseverer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/164_Hinterland Huntsman.png" id="164_Hinterland Huntsman" data-flag="@X" onclick="openSidebar('164_Hinterland Huntsman',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/18_Majestic Seraph.png" id="18_Majestic Seraph" data-flag="@X" onclick="openSidebar('18_Majestic Seraph',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/52_Mist Whisperer.png" id="52_Mist Whisperer" data-flag="@X" onclick="openSidebar('52_Mist Whisperer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/97_Nihil Virtuoso.png" id="97_Nihil Virtuoso" data-flag="@X" onclick="openSidebar('97_Nihil Virtuoso',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/127_Kindled Bladehand.png" id="127_Kindled Bladehand" data-flag="@X" onclick="openSidebar('127_Kindled Bladehand',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/168_Marrowholt Elder.png" id="168_Marrowholt Elder" data-flag="@X" onclick="openSidebar('168_Marrowholt Elder',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/23_Marisyni Phalanx.png" id="23_Marisyni Phalanx" data-flag="@X" onclick="openSidebar('23_Marisyni Phalanx',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/53_Nightbreak Raptor.png" id="53_Nightbreak Raptor" data-flag="@X" onclick="openSidebar('53_Nightbreak Raptor',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/99_Perceive the Void.png" id="99_Perceive the Void" data-flag="@X" onclick="openSidebar('99_Perceive the Void',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/132_Magmatic Entity.png" id="132_Magmatic Entity" data-flag="@X" onclick="openSidebar('132_Magmatic Entity',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/169_Moonflower Culturist.png" id="169_Moonflower Culturist" data-flag="@X" onclick="openSidebar('169_Moonflower Culturist',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/25_Oathsworn Captain.png" id="25_Oathsworn Captain" data-flag="@X" onclick="openSidebar('25_Oathsworn Captain',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/58_Runic Occultist.png" id="58_Runic Occultist" data-flag="@X" onclick="openSidebar('58_Runic Occultist',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/100_Plague Oracle.png" id="100_Plague Oracle" data-flag="@X" onclick="openSidebar('100_Plague Oracle',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/134_Needle Knight.png" id="134_Needle Knight" data-flag="@X" onclick="openSidebar('134_Needle Knight',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/170_Overprotect.png" id="170_Overprotect" data-flag="@X" onclick="openSidebar('170_Overprotect',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/26_One Swift Strike.png" id="26_One Swift Strike" data-flag="@X" onclick="openSidebar('26_One Swift Strike',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/60_Scion of the Aurora.png" id="60_Scion of the Aurora" data-flag="@X" onclick="openSidebar('60_Scion of the Aurora',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/102_Ruin Raven.png" id="102_Ruin Raven" data-flag="@X" onclick="openSidebar('102_Ruin Raven',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/135_Ozhkan Cutthroat.png" id="135_Ozhkan Cutthroat" data-flag="@X" onclick="openSidebar('135_Ozhkan Cutthroat',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/171_Pack Acolyte.png" id="171_Pack Acolyte" data-flag="@X" onclick="openSidebar('171_Pack Acolyte',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/27_Pallid Emissary.png" id="27_Pallid Emissary" data-flag="@X" onclick="openSidebar('27_Pallid Emissary',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/64_Song to the Siren.png" id="64_Song to the Siren" data-flag="@X" onclick="openSidebar('64_Song to the Siren',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/104_Sights of the Blind.png" id="104_Sights of the Blind" data-flag="@X" onclick="openSidebar('104_Sights of the Blind',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/139_Rend in Twain.png" id="139_Rend in Twain" data-flag="@X" onclick="openSidebar('139_Rend in Twain',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/175_Slavering Greymaw.png" id="175_Slavering Greymaw" data-flag="@X" onclick="openSidebar('175_Slavering Greymaw',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/28_Paradigm of Frailty.png" id="28_Paradigm of Frailty" data-flag="@X" onclick="openSidebar('28_Paradigm of Frailty',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/65_Star-Crossed Bride.png" id="65_Star-Crossed Bride" data-flag="@X" onclick="openSidebar('65_Star-Crossed Bride',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/105_Skeletal Colossus.png" id="105_Skeletal Colossus" data-flag="@X" onclick="openSidebar('105_Skeletal Colossus',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/142_Sever Mortal Tethers.png" id="142_Sever Mortal Tethers" data-flag="@X" onclick="openSidebar('142_Sever Mortal Tethers',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/177_Starbather.png" id="177_Starbather" data-flag="@X" onclick="openSidebar('177_Starbather',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/36_Waxen Lyrist.png" id="36_Waxen Lyrist" data-flag="@X" onclick="openSidebar('36_Waxen Lyrist',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/67_Taste the Waters.png" id="67_Taste the Waters" data-flag="@X" onclick="openSidebar('67_Taste the Waters',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/108_Veleran Sellsword.png" id="108_Veleran Sellsword" data-flag="@X" onclick="openSidebar('108_Veleran Sellsword',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/143_Smoke Sovereign.png" id="143_Smoke Sovereign" data-flag="@X" onclick="openSidebar('143_Smoke Sovereign',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/179_Sylvan Sprites.png" id="179_Sylvan Sprites" data-flag="@X" onclick="openSidebar('179_Sylvan Sprites',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/37_Way of the Ashen.png" id="37_Way of the Ashen" data-flag="@X" onclick="openSidebar('37_Way of the Ashen',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/70_Upset Balance.png" id="70_Upset Balance" data-flag="@X" onclick="openSidebar('70_Upset Balance',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/111_Withering Torment.png" id="111_Withering Torment" data-flag="@X" onclick="openSidebar('111_Withering Torment',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/147_Sunhunter.png" id="147_Sunhunter" data-flag="@X" onclick="openSidebar('147_Sunhunter',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/181_Verdure Shaper.png" id="181_Verdure Shaper" data-flag="@X" onclick="openSidebar('181_Verdure Shaper',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/2_Ashen Retribution.png" id="2_Ashen Retribution" data-flag="@X" onclick="openSidebar('2_Ashen Retribution',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/40_Breaths of Eless.png" id="40_Breaths of Eless" data-flag="@X" onclick="openSidebar('40_Breaths of Eless',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/76_Ashen Persecutor.png" id="76_Ashen Persecutor" data-flag="@X" onclick="openSidebar('76_Ashen Persecutor',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/113_Carmine Hellkite.png" id="113_Carmine Hellkite" data-flag="@X" onclick="openSidebar('113_Carmine Hellkite',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/152_Commune with Marisyn.png" id="152_Commune with Marisyn" data-flag="@X" onclick="openSidebar('152_Commune with Marisyn',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/4_Cosmic Stitcher.png" id="4_Cosmic Stitcher" data-flag="@X" onclick="openSidebar('4_Cosmic Stitcher',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/45_Defy Gravity.png" id="45_Defy Gravity" data-flag="@X" onclick="openSidebar('45_Defy Gravity',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/78_Beseech the Bones.png" id="78_Beseech the Bones" data-flag="@X" onclick="openSidebar('78_Beseech the Bones',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/115_Doomed Outrider.png" id="115_Doomed Outrider" data-flag="@X" onclick="openSidebar('115_Doomed Outrider',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/153_Contest of the Just.png" id="153_Contest of the Just" data-flag="@X" onclick="openSidebar('153_Contest of the Just',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/6_Emblem of Myrenhal.png" id="6_Emblem of Myrenhal" data-flag="@X" onclick="openSidebar('6_Emblem of Myrenhal',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/48_Hypnotic Gale.png" id="48_Hypnotic Gale" data-flag="@X" onclick="openSidebar('48_Hypnotic Gale',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/80_Brittle Butcher.png" id="80_Brittle Butcher" data-flag="@X" onclick="openSidebar('80_Brittle Butcher',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/116_Draconic Resolve.png" id="116_Draconic Resolve" data-flag="@X" onclick="openSidebar('116_Draconic Resolve',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/155_Elyth's Faithful.png" id="155_Elyths Faithful" data-flag="@X" onclick="openSidebar('155_Elyths Faithful',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/8_Exemplar of Valor.png" id="8_Exemplar of Valor" data-flag="@X" onclick="openSidebar('8_Exemplar of Valor',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/49_Illusory Vanguard.png" id="49_Illusory Vanguard" data-flag="@X" onclick="openSidebar('49_Illusory Vanguard',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/84_Duskbringer.png" id="84_Duskbringer" data-flag="@X" onclick="openSidebar('84_Duskbringer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/120_Flames of Progress.png" id="120_Flames of Progress" data-flag="@X" onclick="openSidebar('120_Flames of Progress',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/156_Escort of the Helmless.png" id="156_Escort of the Helmless" data-flag="@X" onclick="openSidebar('156_Escort of the Helmless',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/12_Glintpath Attendant.png" id="12_Glintpath Attendant" data-flag="@X" onclick="openSidebar('12_Glintpath Attendant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/50_Ing'Wei's Artistry.png" id="50_IngWeis Artistry" data-flag="@X" onclick="openSidebar('50_IngWeis Artistry',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/87_Extinguish Legacies.png" id="87_Extinguish Legacies" data-flag="@X" onclick="openSidebar('87_Extinguish Legacies',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/121_Grasp at Lost Light.png" id="121_Grasp at Lost Light" data-flag="@X" onclick="openSidebar('121_Grasp at Lost Light',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/160_Gleaming Soothsayer.png" id="160_Gleaming Soothsayer" data-flag="@X" onclick="openSidebar('160_Gleaming Soothsayer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/19_Make Your Move.png" id="19_Make Your Move" data-flag="@X" onclick="openSidebar('19_Make Your Move',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/51_Mantra of Brilliance.png" id="51_Mantra of Brilliance" data-flag="@X" onclick="openSidebar('51_Mantra of Brilliance',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/89_Hero's Downfall.png" id="89_Heros Downfall" data-flag="@X" onclick="openSidebar('89_Heros Downfall',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/124_Howling Flesher.png" id="124_Howling Flesher" data-flag="@X" onclick="openSidebar('124_Howling Flesher',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/161_Gloamtender.png" id="161_Gloamtender" data-flag="@X" onclick="openSidebar('161_Gloamtender',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/20_Mantle of Gallantry.png" id="20_Mantle of Gallantry" data-flag="@X" onclick="openSidebar('20_Mantle of Gallantry',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/57_Rift Wyvern.png" id="57_Rift Wyvern" data-flag="@X" onclick="openSidebar('57_Rift Wyvern',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/93_Lunar Specter.png" id="93_Lunar Specter" data-flag="@X" onclick="openSidebar('93_Lunar Specter',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/125_Incandescent Paladin.png" id="125_Incandescent Paladin" data-flag="@X" onclick="openSidebar('125_Incandescent Paladin',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/163_Grotweaver.png" id="163_Grotweaver" data-flag="@X" onclick="openSidebar('163_Grotweaver',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/21_Mantra of Order.png" id="21_Mantra of Order" data-flag="@X" onclick="openSidebar('21_Mantra of Order',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/63_Skycloak Drake.png" id="63_Skycloak Drake" data-flag="@X" onclick="openSidebar('63_Skycloak Drake',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/94_Mantra of Necrosis.png" id="94_Mantra of Necrosis" data-flag="@X" onclick="openSidebar('94_Mantra of Necrosis',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/131_Lightning Strike.png" id="131_Lightning Strike" data-flag="@X" onclick="openSidebar('131_Lightning Strike',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/166_Lockwood Giant.png" id="166_Lockwood Giant" data-flag="@X" onclick="openSidebar('166_Lockwood Giant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/22_Marble Godhand.png" id="22_Marble Godhand" data-flag="@X" onclick="openSidebar('22_Marble Godhand',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/66_Sythori Squadron.png" id="66_Sythori Squadron" data-flag="@X" onclick="openSidebar('66_Sythori Squadron',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/98_Notion Scraper.png" id="98_Notion Scraper" data-flag="@X" onclick="openSidebar('98_Notion Scraper',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/133_Mantra of Dominance.png" id="133_Mantra of Dominance" data-flag="@X" onclick="openSidebar('133_Mantra of Dominance',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/167_Mantra of Ferocity.png" id="167_Mantra of Ferocity" data-flag="@X" onclick="openSidebar('167_Mantra of Ferocity',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/24_Noble Ashsworn.png" id="24_Noble Ashsworn" data-flag="@X" onclick="openSidebar('24_Noble Ashsworn',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/68_Touch of Oros.png" id="68_Touch of Oros" data-flag="@X" onclick="openSidebar('68_Touch of Oros',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/101_Portent of Catastrophe.png" id="101_Portent of Catastrophe" data-flag="@X" onclick="openSidebar('101_Portent of Catastrophe',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/136_Ozhkan Flayer.png" id="136_Ozhkan Flayer" data-flag="@X" onclick="openSidebar('136_Ozhkan Flayer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/173_Roots of the Hollow Yew.png" id="173_Roots of the Hollow Yew" data-flag="@X" onclick="openSidebar('173_Roots of the Hollow Yew',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/31_Spirelight Shepherd.png" id="31_Spirelight Shepherd" data-flag="@X" onclick="openSidebar('31_Spirelight Shepherd',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/69_Tracelight Wayfarer.png" id="69_Tracelight Wayfarer" data-flag="@X" onclick="openSidebar('69_Tracelight Wayfarer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/103_Shadow Lancer.png" id="103_Shadow Lancer" data-flag="@X" onclick="openSidebar('103_Shadow Lancer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/137_Perfervid Oracle.png" id="137_Perfervid Oracle" data-flag="@X" onclick="openSidebar('137_Perfervid Oracle',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/176_Solemn Packleader.png" id="176_Solemn Packleader" data-flag="@X" onclick="openSidebar('176_Solemn Packleader',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/32_Steward of the Eclipse.png" id="32_Steward of the Eclipse" data-flag="@X" onclick="openSidebar('32_Steward of the Eclipse',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/71_Wanderwight.png" id="71_Wanderwight" data-flag="@X" onclick="openSidebar('71_Wanderwight',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/106_Slaughterbrute.png" id="106_Slaughterbrute" data-flag="@X" onclick="openSidebar('106_Slaughterbrute',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/140_Searing Piker.png" id="140_Searing Piker" data-flag="@X" onclick="openSidebar('140_Searing Piker',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/180_Verdant Cavalry.png" id="180_Verdant Cavalry" data-flag="@X" onclick="openSidebar('180_Verdant Cavalry',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/33_Striding Banneret.png" id="33_Striding Banneret" data-flag="@X" onclick="openSidebar('33_Striding Banneret',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/72_Watchers on High.png" id="72_Watchers on High" data-flag="@X" onclick="openSidebar('72_Watchers on High',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/107_Taciturn Council.png" id="107_Taciturn Council" data-flag="@X" onclick="openSidebar('107_Taciturn Council',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/141_Servant of Velera.png" id="141_Servant of Velera" data-flag="@X" onclick="openSidebar('141_Servant of Velera',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/182_Warden of the Weald.png" id="182_Warden of the Weald" data-flag="@X" onclick="openSidebar('182_Warden of the Weald',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/34_Twilight Militant.png" id="34_Twilight Militant" data-flag="@X" onclick="openSidebar('34_Twilight Militant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/73_Wayward Moonblade.png" id="73_Wayward Moonblade" data-flag="@X" onclick="openSidebar('73_Wayward Moonblade',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/109_Velera's Seduction.png" id="109_Veleras Seduction" data-flag="@X" onclick="openSidebar('109_Veleras Seduction',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/144_Smoldered Monarch.png" id="144_Smoldered Monarch" data-flag="@X" onclick="openSidebar('144_Smoldered Monarch',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/184_Wraithbane's Focus.png" id="184_Wraithbanes Focus" data-flag="@X" onclick="openSidebar('184_Wraithbanes Focus',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/35_Umbral Possessor.png" id="35_Umbral Possessor" data-flag="@X" onclick="openSidebar('35_Umbral Possessor',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/74_Worldwind Serpent.png" id="74_Worldwind Serpent" data-flag="@X" onclick="openSidebar('74_Worldwind Serpent',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/110_Visions of Prostration.png" id="110_Visions of Prostration" data-flag="@X" onclick="openSidebar('110_Visions of Prostration',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/145_Sorellan Farewell.png" id="145_Sorellan Farewell" data-flag="@X" onclick="openSidebar('145_Sorellan Farewell',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/185_Wreath of Wisterias.png" id="185_Wreath of Wisterias" data-flag="@X" onclick="openSidebar('185_Wreath of Wisterias',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+					<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/0.png" id="0" data-flag="@X" onclick="openSidebar('0',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/1.png" id="1" data-flag="@X" onclick="openSidebar('1',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/2.png" id="2" data-flag="@X" onclick="openSidebar('2',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/3.png" id="3" data-flag="@X" onclick="openSidebar('3',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/4.png" id="4" data-flag="@X" onclick="openSidebar('4',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/25.png" id="25" data-flag="@X" onclick="openSidebar('25',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/28.png" id="28" data-flag="@X" onclick="openSidebar('28',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/39.png" id="39" data-flag="@X" onclick="openSidebar('39',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/43.png" id="43" data-flag="@X" onclick="openSidebar('43',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/54.png" id="54" data-flag="@X" onclick="openSidebar('54',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/21.png" id="21" data-flag="@X" onclick="openSidebar('21',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/30.png" id="30" data-flag="@X" onclick="openSidebar('30',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/35.png" id="35" data-flag="@X" onclick="openSidebar('35',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/47.png" id="47" data-flag="@X" onclick="openSidebar('47',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/51.png" id="51" data-flag="@X" onclick="openSidebar('51',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/24.png" id="24" data-flag="@X" onclick="openSidebar('24',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/27.png" id="27" data-flag="@X" onclick="openSidebar('27',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/34.png" id="34" data-flag="@X" onclick="openSidebar('34',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/46.png" id="46" data-flag="@X" onclick="openSidebar('46',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/50.png" id="50" data-flag="@X" onclick="openSidebar('50',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/20.png" id="20" data-flag="@X" onclick="openSidebar('20',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/29.png" id="29" data-flag="@X" onclick="openSidebar('29',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/38.png" id="38" data-flag="@X" onclick="openSidebar('38',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/45.png" id="45" data-flag="@X" onclick="openSidebar('45',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/49.png" id="49" data-flag="@X" onclick="openSidebar('49',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/26.png" id="26" data-flag="@X" onclick="openSidebar('26',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/33.png" id="33" data-flag="@X" onclick="openSidebar('33',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/36.png" id="36" data-flag="@X" onclick="openSidebar('36',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/42.png" id="42" data-flag="@X" onclick="openSidebar('42',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/53.png" id="53" data-flag="@X" onclick="openSidebar('53',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/23.png" id="23" data-flag="@X" onclick="openSidebar('23',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/32.png" id="32" data-flag="@X" onclick="openSidebar('32',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/40.png" id="40" data-flag="@X" onclick="openSidebar('40',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/41.png" id="41" data-flag="@X" onclick="openSidebar('41',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/48.png" id="48" data-flag="@X" onclick="openSidebar('48',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/22.png" id="22" data-flag="@X" onclick="openSidebar('22',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/31.png" id="31" data-flag="@X" onclick="openSidebar('31',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/37.png" id="37" data-flag="@X" onclick="openSidebar('37',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/44.png" id="44" data-flag="@X" onclick="openSidebar('44',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/52.png" id="52" data-flag="@X" onclick="openSidebar('52',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/90.png" id="90" data-flag="@X" onclick="openSidebar('90',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/106.png" id="106" data-flag="@X" onclick="openSidebar('106',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/111.png" id="111" data-flag="@X" onclick="openSidebar('111',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/124.png" id="124" data-flag="@X" onclick="openSidebar('124',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/149.png" id="149" data-flag="@X" onclick="openSidebar('149',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/81.png" id="81" data-flag="@X" onclick="openSidebar('81',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/102.png" id="102" data-flag="@X" onclick="openSidebar('102',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/119.png" id="119" data-flag="@X" onclick="openSidebar('119',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/123.png" id="123" data-flag="@X" onclick="openSidebar('123',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/146.png" id="146" data-flag="@X" onclick="openSidebar('146',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/92.png" id="92" data-flag="@X" onclick="openSidebar('92',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/101.png" id="101" data-flag="@X" onclick="openSidebar('101',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/118.png" id="118" data-flag="@X" onclick="openSidebar('118',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/131.png" id="131" data-flag="@X" onclick="openSidebar('131',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/139.png" id="139" data-flag="@X" onclick="openSidebar('139',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/86.png" id="86" data-flag="@X" onclick="openSidebar('86',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/98.png" id="98" data-flag="@X" onclick="openSidebar('98',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/113.png" id="113" data-flag="@X" onclick="openSidebar('113',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/133.png" id="133" data-flag="@X" onclick="openSidebar('133',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/147.png" id="147" data-flag="@X" onclick="openSidebar('147',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/80.png" id="80" data-flag="@X" onclick="openSidebar('80',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/107.png" id="107" data-flag="@X" onclick="openSidebar('107',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/109.png" id="109" data-flag="@X" onclick="openSidebar('109',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/134.png" id="134" data-flag="@X" onclick="openSidebar('134',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/140.png" id="140" data-flag="@X" onclick="openSidebar('140',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/82.png" id="82" data-flag="@X" onclick="openSidebar('82',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/94.png" id="94" data-flag="@X" onclick="openSidebar('94',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/114.png" id="114" data-flag="@X" onclick="openSidebar('114',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/130.png" id="130" data-flag="@X" onclick="openSidebar('130',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/144.png" id="144" data-flag="@X" onclick="openSidebar('144',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/89.png" id="89" data-flag="@X" onclick="openSidebar('89',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/96.png" id="96" data-flag="@X" onclick="openSidebar('96',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/121.png" id="121" data-flag="@X" onclick="openSidebar('121',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/126.png" id="126" data-flag="@X" onclick="openSidebar('126',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/145.png" id="145" data-flag="@X" onclick="openSidebar('145',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/84.png" id="84" data-flag="@X" onclick="openSidebar('84',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/100.png" id="100" data-flag="@X" onclick="openSidebar('100',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/120.png" id="120" data-flag="@X" onclick="openSidebar('120',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/127.png" id="127" data-flag="@X" onclick="openSidebar('127',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/138.png" id="138" data-flag="@X" onclick="openSidebar('138',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/85.png" id="85" data-flag="@X" onclick="openSidebar('85',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/99.png" id="99" data-flag="@X" onclick="openSidebar('99',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/112.png" id="112" data-flag="@X" onclick="openSidebar('112',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/125.png" id="125" data-flag="@X" onclick="openSidebar('125',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/148.png" id="148" data-flag="@X" onclick="openSidebar('148',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/91.png" id="91" data-flag="@X" onclick="openSidebar('91',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/95.png" id="95" data-flag="@X" onclick="openSidebar('95',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/110.png" id="110" data-flag="@X" onclick="openSidebar('110',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/129.png" id="129" data-flag="@X" onclick="openSidebar('129',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/136.png" id="136" data-flag="@X" onclick="openSidebar('136',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/83.png" id="83" data-flag="@X" onclick="openSidebar('83',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/104.png" id="104" data-flag="@X" onclick="openSidebar('104',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/117.png" id="117" data-flag="@X" onclick="openSidebar('117',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/132.png" id="132" data-flag="@X" onclick="openSidebar('132',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/137.png" id="137" data-flag="@X" onclick="openSidebar('137',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/88.png" id="88" data-flag="@X" onclick="openSidebar('88',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/97.png" id="97" data-flag="@X" onclick="openSidebar('97',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/115.png" id="115" data-flag="@X" onclick="openSidebar('115',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/135.png" id="135" data-flag="@X" onclick="openSidebar('135',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/143.png" id="143" data-flag="@X" onclick="openSidebar('143',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/87.png" id="87" data-flag="@X" onclick="openSidebar('87',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/105.png" id="105" data-flag="@X" onclick="openSidebar('105',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/108.png" id="108" data-flag="@X" onclick="openSidebar('108',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/128.png" id="128" data-flag="@X" onclick="openSidebar('128',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/142.png" id="142" data-flag="@X" onclick="openSidebar('142',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/93.png" id="93" data-flag="@X" onclick="openSidebar('93',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/103.png" id="103" data-flag="@X" onclick="openSidebar('103',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/116.png" id="116" data-flag="@X" onclick="openSidebar('116',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/122.png" id="122" data-flag="@X" onclick="openSidebar('122',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/141.png" id="141" data-flag="@X" onclick="openSidebar('141',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/192.png" id="192" data-flag="@X" onclick="openSidebar('192',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/203.png" id="203" data-flag="@X" onclick="openSidebar('203',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/214.png" id="214" data-flag="@X" onclick="openSidebar('214',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/232.png" id="232" data-flag="@X" onclick="openSidebar('232',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/254.png" id="254" data-flag="@X" onclick="openSidebar('254',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/183.png" id="183" data-flag="@X" onclick="openSidebar('183',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/205.png" id="205" data-flag="@X" onclick="openSidebar('205',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/221.png" id="221" data-flag="@X" onclick="openSidebar('221',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/225.png" id="225" data-flag="@X" onclick="openSidebar('225',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/251.png" id="251" data-flag="@X" onclick="openSidebar('251',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/191.png" id="191" data-flag="@X" onclick="openSidebar('191',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/208.png" id="208" data-flag="@X" onclick="openSidebar('208',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/216.png" id="216" data-flag="@X" onclick="openSidebar('216',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/235.png" id="235" data-flag="@X" onclick="openSidebar('235',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/240.png" id="240" data-flag="@X" onclick="openSidebar('240',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/187.png" id="187" data-flag="@X" onclick="openSidebar('187',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/197.png" id="197" data-flag="@X" onclick="openSidebar('197',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/212.png" id="212" data-flag="@X" onclick="openSidebar('212',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/239.png" id="239" data-flag="@X" onclick="openSidebar('239',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/241.png" id="241" data-flag="@X" onclick="openSidebar('241',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/186.png" id="186" data-flag="@X" onclick="openSidebar('186',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/204.png" id="204" data-flag="@X" onclick="openSidebar('204',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/219.png" id="219" data-flag="@X" onclick="openSidebar('219',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/238.png" id="238" data-flag="@X" onclick="openSidebar('238',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/243.png" id="243" data-flag="@X" onclick="openSidebar('243',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/194.png" id="194" data-flag="@X" onclick="openSidebar('194',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/206.png" id="206" data-flag="@X" onclick="openSidebar('206',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/222.png" id="222" data-flag="@X" onclick="openSidebar('222',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/228.png" id="228" data-flag="@X" onclick="openSidebar('228',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/242.png" id="242" data-flag="@X" onclick="openSidebar('242',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/180.png" id="180" data-flag="@X" onclick="openSidebar('180',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/198.png" id="198" data-flag="@X" onclick="openSidebar('198',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/215.png" id="215" data-flag="@X" onclick="openSidebar('215',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/229.png" id="229" data-flag="@X" onclick="openSidebar('229',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/249.png" id="249" data-flag="@X" onclick="openSidebar('249',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/193.png" id="193" data-flag="@X" onclick="openSidebar('193',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/196.png" id="196" data-flag="@X" onclick="openSidebar('196',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/224.png" id="224" data-flag="@X" onclick="openSidebar('224',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/234.png" id="234" data-flag="@X" onclick="openSidebar('234',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/248.png" id="248" data-flag="@X" onclick="openSidebar('248',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/185.png" id="185" data-flag="@X" onclick="openSidebar('185',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/201.png" id="201" data-flag="@X" onclick="openSidebar('201',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/211.png" id="211" data-flag="@X" onclick="openSidebar('211',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/237.png" id="237" data-flag="@X" onclick="openSidebar('237',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/246.png" id="246" data-flag="@X" onclick="openSidebar('246',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/184.png" id="184" data-flag="@X" onclick="openSidebar('184',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/207.png" id="207" data-flag="@X" onclick="openSidebar('207',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/213.png" id="213" data-flag="@X" onclick="openSidebar('213',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/230.png" id="230" data-flag="@X" onclick="openSidebar('230',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/253.png" id="253" data-flag="@X" onclick="openSidebar('253',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/182.png" id="182" data-flag="@X" onclick="openSidebar('182',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/199.png" id="199" data-flag="@X" onclick="openSidebar('199',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/210.png" id="210" data-flag="@X" onclick="openSidebar('210',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/227.png" id="227" data-flag="@X" onclick="openSidebar('227',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/245.png" id="245" data-flag="@X" onclick="openSidebar('245',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/188.png" id="188" data-flag="@X" onclick="openSidebar('188',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/195.png" id="195" data-flag="@X" onclick="openSidebar('195',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/218.png" id="218" data-flag="@X" onclick="openSidebar('218',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/231.png" id="231" data-flag="@X" onclick="openSidebar('231',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/247.png" id="247" data-flag="@X" onclick="openSidebar('247',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/189.png" id="189" data-flag="@X" onclick="openSidebar('189',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/209.png" id="209" data-flag="@X" onclick="openSidebar('209',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/217.png" id="217" data-flag="@X" onclick="openSidebar('217',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/226.png" id="226" data-flag="@X" onclick="openSidebar('226',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/244.png" id="244" data-flag="@X" onclick="openSidebar('244',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/181.png" id="181" data-flag="@X" onclick="openSidebar('181',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/200.png" id="200" data-flag="@X" onclick="openSidebar('200',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/223.png" id="223" data-flag="@X" onclick="openSidebar('223',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/233.png" id="233" data-flag="@X" onclick="openSidebar('233',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/250.png" id="250" data-flag="@X" onclick="openSidebar('250',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/190.png" id="190" data-flag="@X" onclick="openSidebar('190',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/202.png" id="202" data-flag="@X" onclick="openSidebar('202',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/220.png" id="220" data-flag="@X" onclick="openSidebar('220',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/236.png" id="236" data-flag="@X" onclick="openSidebar('236',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/252.png" id="252" data-flag="@X" onclick="openSidebar('252',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/204_The Divine Vaelias.png" id="204_The Divine Vaelias" data-flag="@X" onclick="openSidebar('204_The Divine Vaelias',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/203_The Divine Sythor.png" id="203_The Divine Sythor" data-flag="@X" onclick="openSidebar('203_The Divine Sythor',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/205_The Divine Velera.png" id="205_The Divine Velera" data-flag="@X" onclick="openSidebar('205_The Divine Velera',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/201_The Divine Ozhka.png" id="201_The Divine Ozhka" data-flag="@X" onclick="openSidebar('201_The Divine Ozhka',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/200_The Divine Marisyn.png" id="200_The Divine Marisyn" data-flag="@X" onclick="openSidebar('200_The Divine Marisyn',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/211_Form of the Blue Moon.png" id="211_Form of the Blue Moon" data-flag="@X" onclick="openSidebar('211_Form of the Blue Moon',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/236_Syzygy Visionary.png" id="236_Syzygy Visionary" data-flag="@X" onclick="openSidebar('236_Syzygy Visionary',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/196_Crypt Cleaver.png" id="196_Crypt Cleaver" data-flag="@X" onclick="openSidebar('196_Crypt Cleaver',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/222_Ozhkan Blademaster.png" id="222_Ozhkan Blademaster" data-flag="@X" onclick="openSidebar('222_Ozhkan Blademaster',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/219_Marisyni Adherent.png" id="219_Marisyni Adherent" data-flag="@X" onclick="openSidebar('219_Marisyni Adherent',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/193_Caress of Moonlight.png" id="193_Caress of Moonlight" data-flag="@X" onclick="openSidebar('193_Caress of Moonlight',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/237_Twist Perceptions.png" id="237_Twist Perceptions" data-flag="@X" onclick="openSidebar('237_Twist Perceptions',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/224_Ozhka's Ceaseless Assault.png" id="224_Ozhkas Ceaseless Assault" data-flag="@X" onclick="openSidebar('224_Ozhkas Ceaseless Assault',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/191_Calamity.png" id="191_Calamity" data-flag="@X" onclick="openSidebar('191_Calamity',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/227_Remarkable Discovery.png" id="227_Remarkable Discovery" data-flag="@X" onclick="openSidebar('227_Remarkable Discovery',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/229_Righteous Archangel.png" id="229_Righteous Archangel" data-flag="@X" onclick="openSidebar('229_Righteous Archangel',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/235_Storm Forth, Moonchild.png" id="235_Storm Forth, Moonchild" data-flag="@X" onclick="openSidebar('235_Storm Forth, Moonchild',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/189_Bloodshade Cavalier.png" id="189_Bloodshade Cavalier" data-flag="@X" onclick="openSidebar('189_Bloodshade Cavalier',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/223_Ozhkan Huntmaster.png" id="223_Ozhkan Huntmaster" data-flag="@X" onclick="openSidebar('223_Ozhkan Huntmaster',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/233_Sky's Eye Combatant.png" id="233_Skys Eye Combatant" data-flag="@X" onclick="openSidebar('233_Skys Eye Combatant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/228_Requiem Soloist.png" id="228_Requiem Soloist" data-flag="@X" onclick="openSidebar('228_Requiem Soloist',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/238_Usher of Undoing.png" id="238_Usher of Undoing" data-flag="@X" onclick="openSidebar('238_Usher of Undoing',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/197_Dakarros Goliath.png" id="197_Dakarros Goliath" data-flag="@X" onclick="openSidebar('197_Dakarros Goliath',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/225_Ozhka's Deliverance.png" id="225_Ozhkas Deliverance" data-flag="@X" onclick="openSidebar('225_Ozhkas Deliverance',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/241_Wreathed Sentinel.png" id="241_Wreathed Sentinel" data-flag="@X" onclick="openSidebar('241_Wreathed Sentinel',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/234_Squire of Vaelias.png" id="234_Squire of Vaelias" data-flag="@X" onclick="openSidebar('234_Squire of Vaelias',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/230_Ruthless Varkirn.png" id="230_Ruthless Varkirn" data-flag="@X" onclick="openSidebar('230_Ruthless Varkirn',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/186_Ashen Paragon.png" id="186_Ashen Paragon" data-flag="@X" onclick="openSidebar('186_Ashen Paragon',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/206_The Divine Xalren.png" id="206_The Divine Xalren" data-flag="@X" onclick="openSidebar('206_The Divine Xalren',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/198_The Divine Caele.png" id="198_The Divine Caele" data-flag="@X" onclick="openSidebar('198_The Divine Caele',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/202_The Divine Sorella.png" id="202_The Divine Sorella" data-flag="@X" onclick="openSidebar('202_The Divine Sorella',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/199_The Divine Elyth.png" id="199_The Divine Elyth" data-flag="@X" onclick="openSidebar('199_The Divine Elyth',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/216_Jorah, Godslayer.png" id="216_Jorah, Godslayer" data-flag="@X" onclick="openSidebar('216_Jorah, Godslayer',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/217_Kinetic Reaver.png" id="217_Kinetic Reaver" data-flag="@X" onclick="openSidebar('217_Kinetic Reaver',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/214_Icon of the Rotten Soul.png" id="214_Icon of the Rotten Soul" data-flag="@X" onclick="openSidebar('214_Icon of the Rotten Soul',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/188_Blinding Herald.png" id="188_Blinding Herald" data-flag="@X" onclick="openSidebar('188_Blinding Herald',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/218_Loamlight Shepherd.png" id="218_Loamlight Shepherd" data-flag="@X" onclick="openSidebar('218_Loamlight Shepherd',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/194_Cendris, Ashen Champion.png" id="194_Cendris, Ashen Champion" data-flag="@X" onclick="openSidebar('194_Cendris, Ashen Champion',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/232_Seer of Sword and Sun.png" id="232_Seer of Sword and Sun" data-flag="@X" onclick="openSidebar('232_Seer of Sword and Sun',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/220_Oakblight Sage.png" id="220_Oakblight Sage" data-flag="@X" onclick="openSidebar('220_Oakblight Sage',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/207_Dragonheart Technique.png" id="207_Dragonheart Technique" data-flag="@X" onclick="openSidebar('207_Dragonheart Technique',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/221_Oracle of Azumoth.png" id="221_Oracle of Azumoth" data-flag="@X" onclick="openSidebar('221_Oracle of Azumoth',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/208_Epochal Descent.png" id="208_Epochal Descent" data-flag="@X" onclick="openSidebar('208_Epochal Descent',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/192_Caldera Spawn.png" id="192_Caldera Spawn" data-flag="@X" onclick="openSidebar('192_Caldera Spawn',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/226_Pestilent Lieutenant.png" id="226_Pestilent Lieutenant" data-flag="@X" onclick="openSidebar('226_Pestilent Lieutenant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/190_Brightblade Duelist.png" id="190_Brightblade Duelist" data-flag="@X" onclick="openSidebar('190_Brightblade Duelist',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/187_Auspex of Fortitudes.png" id="187_Auspex of Fortitudes" data-flag="@X" onclick="openSidebar('187_Auspex of Fortitudes',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/195_Crosswind Partisan.png" id="195_Crosswind Partisan" data-flag="@X" onclick="openSidebar('195_Crosswind Partisan',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/231_Saint of Sword and Sun.png" id="231_Saint of Sword and Sun" data-flag="@X" onclick="openSidebar('231_Saint of Sword and Sun',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/215_Iris Crypt Reaper.png" id="215_Iris Crypt Reaper" data-flag="@X" onclick="openSidebar('215_Iris Crypt Reaper',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/209_Fellowship Veteran.png" id="209_Fellowship Veteran" data-flag="@X" onclick="openSidebar('209_Fellowship Veteran',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/212_Gnarled Lifeletter.png" id="212_Gnarled Lifeletter" data-flag="@X" onclick="openSidebar('212_Gnarled Lifeletter',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/213_Hand of the Ashen Oath.png" id="213_Hand of the Ashen Oath" data-flag="@X" onclick="openSidebar('213_Hand of the Ashen Oath',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/239_Wickerwretch.png" id="239_Wickerwretch" data-flag="@X" onclick="openSidebar('239_Wickerwretch',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/210_The Fire and the Flood.png" id="210_The Fire and the Flood" data-flag="@X" onclick="openSidebar('210_The Fire and the Flood',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/240_Worldbraider.png" id="240_Worldbraider" data-flag="@X" onclick="openSidebar('240_Worldbraider',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/5.png" id="5" data-flag="@X" onclick="openSidebar('5',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/6.png" id="6" data-flag="@X" onclick="openSidebar('6',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/7.png" id="7" data-flag="@X" onclick="openSidebar('7',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/8.png" id="8" data-flag="@X" onclick="openSidebar('8',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/9.png" id="9" data-flag="@X" onclick="openSidebar('9',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/18.png" id="18" data-flag="@X" onclick="openSidebar('18',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/58.png" id="58" data-flag="@X" onclick="openSidebar('58',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/60.png" id="60" data-flag="@X" onclick="openSidebar('60',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/17.png" id="17" data-flag="@X" onclick="openSidebar('17',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/64.png" id="64" data-flag="@X" onclick="openSidebar('64',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/55.png" id="55" data-flag="@X" onclick="openSidebar('55',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/57.png" id="57" data-flag="@X" onclick="openSidebar('57',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/59.png" id="59" data-flag="@X" onclick="openSidebar('59',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/62.png" id="62" data-flag="@X" onclick="openSidebar('62',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/63.png" id="63" data-flag="@X" onclick="openSidebar('63',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/56.png" id="56" data-flag="@X" onclick="openSidebar('56',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/153.png" id="153" data-flag="@X" onclick="openSidebar('153',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/155.png" id="155" data-flag="@X" onclick="openSidebar('155',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/61.png" id="61" data-flag="@X" onclick="openSidebar('61',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/159.png" id="159" data-flag="@X" onclick="openSidebar('159',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/151.png" id="151" data-flag="@X" onclick="openSidebar('151',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/152.png" id="152" data-flag="@X" onclick="openSidebar('152',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/154.png" id="154" data-flag="@X" onclick="openSidebar('154',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/157.png" id="157" data-flag="@X" onclick="openSidebar('157',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/158.png" id="158" data-flag="@X" onclick="openSidebar('158',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/150.png" id="150" data-flag="@X" onclick="openSidebar('150',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/156.png" id="156" data-flag="@X" onclick="openSidebar('156',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/15.png" id="15" data-flag="@X" onclick="openSidebar('15',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/13.png" id="13" data-flag="@X" onclick="openSidebar('13',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/11.png" id="11" data-flag="@X" onclick="openSidebar('11',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/14.png" id="14" data-flag="@X" onclick="openSidebar('14',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/12.png" id="12" data-flag="@X" onclick="openSidebar('12',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/10.png" id="10" data-flag="@X" onclick="openSidebar('10',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/72.png" id="72" data-flag="@X" onclick="openSidebar('72',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/16.png" id="16" data-flag="@X" onclick="openSidebar('16',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/74.png" id="74" data-flag="@X" onclick="openSidebar('74',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/69.png" id="69" data-flag="@X" onclick="openSidebar('69',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/66.png" id="66" data-flag="@X" onclick="openSidebar('66',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/71.png" id="71" data-flag="@X" onclick="openSidebar('71',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/68.png" id="68" data-flag="@X" onclick="openSidebar('68',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/73.png" id="73" data-flag="@X" onclick="openSidebar('73',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/70.png" id="70" data-flag="@X" onclick="openSidebar('70',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/65.png" id="65" data-flag="@X" onclick="openSidebar('65',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/166.png" id="166" data-flag="@X" onclick="openSidebar('166',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/67.png" id="67" data-flag="@X" onclick="openSidebar('67',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/168.png" id="168" data-flag="@X" onclick="openSidebar('168',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/164.png" id="164" data-flag="@X" onclick="openSidebar('164',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/161.png" id="161" data-flag="@X" onclick="openSidebar('161',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/167.png" id="167" data-flag="@X" onclick="openSidebar('167',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/162.png" id="162" data-flag="@X" onclick="openSidebar('162',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/169.png" id="169" data-flag="@X" onclick="openSidebar('169',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/165.png" id="165" data-flag="@X" onclick="openSidebar('165',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/160.png" id="160" data-flag="@X" onclick="openSidebar('160',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/163.png" id="163" data-flag="@X" onclick="openSidebar('163',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/19.png" id="19" data-flag="@X" onclick="openSidebar('19',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/78.png" id="78" data-flag="@X" onclick="openSidebar('78',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/242_The Apocalypse Pendulum.png" id="242_The Apocalypse Pendulum" data-flag="@X" onclick="openSidebar('242_The Apocalypse Pendulum',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/246_Hero's Forum.png" id="246_Heros Forum" data-flag="@X" onclick="openSidebar('246_Heros Forum',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/249_Memorial to the Slain.png" id="249_Memorial to the Slain" data-flag="@X" onclick="openSidebar('249_Memorial to the Slain',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/244_Flattening Ram.png" id="244_Flattening Ram" data-flag="@X" onclick="openSidebar('244_Flattening Ram',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/247_Imperious Pennant.png" id="247_Imperious Pennant" data-flag="@X" onclick="openSidebar('247_Imperious Pennant',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/248_It That Tolls for Thee.png" id="248_It That Tolls for Thee" data-flag="@X" onclick="openSidebar('248_It That Tolls for Thee',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/253_Timeworn Tome.png" id="253_Timeworn Tome" data-flag="@X" onclick="openSidebar('253_Timeworn Tome',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/243_Elythi Custodian.png" id="243_Elythi Custodian" data-flag="@X" onclick="openSidebar('243_Elythi Custodian',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/245_Fractured Orrery.png" id="245_Fractured Orrery" data-flag="@X" onclick="openSidebar('245_Fractured Orrery',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/250_Nihilo Foil.png" id="250_Nihilo Foil" data-flag="@X" onclick="openSidebar('250_Nihilo Foil',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/251_Sacred Statuary.png" id="251_Sacred Statuary" data-flag="@X" onclick="openSidebar('251_Sacred Statuary',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/252_Shackleghast.png" id="252_Shackleghast" data-flag="@X" onclick="openSidebar('252_Shackleghast',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/75.png" id="75" data-flag="@X" onclick="openSidebar('75',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/77.png" id="77" data-flag="@X" onclick="openSidebar('77',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/76.png" id="76" data-flag="@X" onclick="openSidebar('76',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/170.png" id="170" data-flag="@X" onclick="openSidebar('170',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/173.png" id="173" data-flag="@X" onclick="openSidebar('173',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/171.png" id="171" data-flag="@X" onclick="openSidebar('171',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/172.png" id="172" data-flag="@X" onclick="openSidebar('172',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/256.png" id="256" data-flag="@X" onclick="openSidebar('256',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/258.png" id="258" data-flag="@X" onclick="openSidebar('258',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/257.png" id="257" data-flag="@X" onclick="openSidebar('257',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/259.png" id="259" data-flag="@X" onclick="openSidebar('259',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/255.png" id="255" data-flag="@X" onclick="openSidebar('255',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="land" class="anchor"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/258_Paper Birch Path.png" id="258_Paper Birch Path" data-flag="@X" onclick="openSidebar('258_Paper Birch Path',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/255_Lunar Beck Path.png" id="255_Lunar Beck Path" data-flag="@X" onclick="openSidebar('255_Lunar Beck Path',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/254_Gloom Stone Path.png" id="254_Gloom Stone Path" data-flag="@X" onclick="openSidebar('254_Gloom Stone Path',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/257_Painted Cliff Path.png" id="257_Painted Cliff Path" data-flag="@X" onclick="openSidebar('257_Painted Cliff Path',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/256_Mystic Arbor Path.png" id="256_Mystic Arbor Path" data-flag="@X" onclick="openSidebar('256_Mystic Arbor Path',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/259_Tower of Measure.png" id="259_Tower of Measure" data-flag="@X" onclick="openSidebar('259_Tower of Measure',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/260_War-Scarred Remnants.png" id="260_War-Scarred Remnants" data-flag="@X" onclick="openSidebar('260_War-Scarred Remnants',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/261_Winsome Expanse.png" id="261_Winsome Expanse" data-flag="@X" onclick="openSidebar('261_Winsome Expanse',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/262_Plains.png" id="262_Plains" data-flag="@X" onclick="openSidebar('262_Plains',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/264_Island.png" id="264_Island" data-flag="@X" onclick="openSidebar('264_Island',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/266_Swamp.png" id="266_Swamp" data-flag="@X" onclick="openSidebar('266_Swamp',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/268_Mountain.png" id="268_Mountain" data-flag="@X" onclick="openSidebar('268_Mountain',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/270_Forest.png" id="270_Forest" data-flag="@X" onclick="openSidebar('270_Forest',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/263_Plains.png" id="263_Plains" data-flag="@X" onclick="openSidebar('263_Plains',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/265_Island.png" id="265_Island" data-flag="@X" onclick="openSidebar('265_Island',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/267_Swamp.png" id="267_Swamp" data-flag="@X" onclick="openSidebar('267_Swamp',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/269_Mountain.png" id="269_Mountain" data-flag="@X" onclick="openSidebar('269_Mountain',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/271_Forest.png" id="271_Forest" data-flag="@X" onclick="openSidebar('271_Forest',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/175.png" id="175" data-flag="@X" onclick="openSidebar('175',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/176.png" id="176" data-flag="@X" onclick="openSidebar('176',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/177.png" id="177" data-flag="@X" onclick="openSidebar('177',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/178.png" id="178" data-flag="@X" onclick="openSidebar('178',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/179.png" id="179" data-flag="@X" onclick="openSidebar('179',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/79.png" id="79" data-flag="@X" onclick="openSidebar('79',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/174.png" id="174" data-flag="@X" onclick="openSidebar('174',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/260.png" id="260" data-flag="@X" onclick="openSidebar('260',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/270.png" id="270" data-flag="@X" onclick="openSidebar('270',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/271.png" id="271" data-flag="@X" onclick="openSidebar('271',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/272.png" id="272" data-flag="@X" onclick="openSidebar('272',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/273.png" id="273" data-flag="@X" onclick="openSidebar('273',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/274.png" id="274" data-flag="@X" onclick="openSidebar('274',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/275.png" id="275" data-flag="@X" onclick="openSidebar('275',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/276.png" id="276" data-flag="@X" onclick="openSidebar('276',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/277.png" id="277" data-flag="@X" onclick="openSidebar('277',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/278.png" id="278" data-flag="@X" onclick="openSidebar('278',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/279.png" id="279" data-flag="@X" onclick="openSidebar('279',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/1t_Fated War.png" id="1t_Fated War" data-flag="@X" onclick="openSidebar('1t_Fated War',true)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/2t_Knight.png" id="2t_Knight" data-flag="@X" onclick="openSidebar('2t_Knight',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/3t_Spirit.png" id="3t_Spirit" data-flag="@X" onclick="openSidebar('3t_Spirit',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/8t_Omen.png" id="8t_Omen" data-flag="@X" onclick="openSidebar('8t_Omen',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/9t_Treasure.png" id="9t_Treasure" data-flag="@X" onclick="openSidebar('9t_Treasure',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/4t_Angel.png" id="4t_Angel" data-flag="@X" onclick="openSidebar('4t_Angel',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/5t_Wraith.png" id="5t_Wraith" data-flag="@X" onclick="openSidebar('5t_Wraith',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/6t_Beast.png" id="6t_Beast" data-flag="@X" onclick="openSidebar('6t_Beast',false)"></div>
-				<div class="container"><img alt="/sets/ATR-files/img/7t_Dragon.png" id="7t_Dragon" data-flag="@X" onclick="openSidebar('7t_Dragon',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/261.png" id="261" data-flag="@X" onclick="openSidebar('261',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/267.png" id="267" data-flag="@X" onclick="openSidebar('267',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/266.png" id="266" data-flag="@X" onclick="openSidebar('266',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/268.png" id="268" data-flag="@X" onclick="openSidebar('268',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/269.png" id="269" data-flag="@X" onclick="openSidebar('269',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/262.png" id="262" data-flag="@X" onclick="openSidebar('262',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/264.png" id="264" data-flag="@X" onclick="openSidebar('264',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/265.png" id="265" data-flag="@X" onclick="openSidebar('265',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/ATR-files/img/263.png" id="263" data-flag="@X" onclick="openSidebar('263',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
@@ -716,27 +717,51 @@
 	let horizontal = false;
 
 	function imgFlip(num) {
-		tmp = document.getElementById(num).src;
-		console.log(num);
-		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
-		document.getElementById(num).dataset.alt_src = tmp;
+		const img = document.getElementById(num);
+		const seconds = 0.2;
+		const rotated_img = document.getElementById('sidebar_h_img');
 
-		if (num == 'sidebar_img')
+        img.style.transition = seconds.toString() + "s";
+        img.style.transform = "rotateY(90deg)";
+
+        if (num == 'sidebar_img')
 		{
-			const rotated_img = document.getElementById('sidebar_h_img');
 			const sidebar_img = document.getElementById('sidebar_img');
 
-			if (horizontal && rotated_img.style.display == 'none')
-			{
-				rotated_img.style.display = "block";
-				sidebar_img.style.filter = "blur(2px) brightness(0.7)";
-			}
-			else
-			{
-				rotated_img.style.display = "none";
-				sidebar_img.style.filter = "";
-			}
+			if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		                img.style.filter = "none";
+		            }, (seconds / 2) * 1000);
+		        }
+		        else {
+		        	setTimeout(() => {
+		                rotated_img.style.opacity = "1";
+		                img.style.filter = "blur(2px) brightness(0.7)";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
 		}
+
+         setTimeout(function() {
+            tmp = document.getElementById(num).src;
+			document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+			document.getElementById(num).dataset.alt_src = tmp;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(0deg)";
+
+            if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+            }
+        }, seconds * 1000);
 	}
 
 	function openSidebar(id, h = false) {
@@ -748,17 +773,19 @@
 		const rotated_img = document.getElementById('sidebar_h_img');
 		const sidebar_img = document.getElementById('sidebar_img');
 
+		sidebar_img.style.transition = "none";
+		rotated_img.style.transition = "none";
 		sidebar_img.src = document.getElementById(id).src;
 		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
 
 		if (horizontal && !sidebar_img.src.includes("_back"))
 		{
-			rotated_img.style.display = "block";
+			rotated_img.style.opacity = "1";
 			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
 		}
 		else
 		{
-			rotated_img.style.display = "none";
+			rotated_img.style.opacity = "0";
 			sidebar_img.style.filter = "";
 		}
 
@@ -791,6 +818,7 @@
 	}
 
 	function rolldown() {
+		dropdown.style.gridTemplateColumns = "repeat(3, 1fr)";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -800,6 +828,7 @@
 	}
 
 	function rollup() {
+		dropdown.style.gridTemplateColumns = "1fr";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -822,21 +851,21 @@
 	}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let random_card = card_list_arrayified[i];
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
 
-			const url = new URL('card', window.location.origin);
-			const params = {
-				set: random_card.set,
-				num: random_card.number,
-				name: random_card.card_name
-			}
-			for (const key in params) {
-				url.searchParams.append(key, params[key]);
-			}
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
 
-			window.location.href = url;
-		}
+				window.location.href = url;
+			}
 	</script>
 </body>
 </html>

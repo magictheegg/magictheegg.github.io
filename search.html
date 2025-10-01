@@ -189,7 +189,7 @@
 		</div>
 	</div>
 	<div class="button-grid">
-		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="name">Name</option><option value="set-code">Set / Number</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>		
+		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="name">Name</option><option value="set-code">Set / Number</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option><option value="cube">Cube</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>		
 		<div class="prev-next-btns">
 			<button type="submit" onclick="previousPage()" id="prevBtn" disabled>< Previous</button>
 			<button type="submit" onclick="nextPage()" id="nextBtn">Next 30 ></button>
@@ -303,6 +303,7 @@
 
 		function compareFunction(a, b) {
 			const sortMode = document.getElementById("sort-by").value;
+			color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
 
 			if (a.rarity.includes("masterpiece") && !b.rarity.includes("masterpiece"))
 			{
@@ -372,7 +373,6 @@
 			}
 			if (sortMode == 'color')
 			{
-				color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
 				a_color_index = -1;
 				b_color_index = -1;
 
@@ -422,7 +422,6 @@
 
 				if (a_rarity_index === b_rarity_index)
 				{
-					color_sort_order = ["W", "U", "B", "R", "G", "WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU", "WUB", "UBR", "BRG", "RGW", "GWU", "RWB", "GUR", "WBG", "URW", "BGU", "WUBR", "UBRG", "BRGW", "RGWU", "GWUB", "WUBRG", ""];
 					a_color_index = -1;
 					b_color_index = -1;
 
@@ -454,6 +453,68 @@
 				}
 				else {
 					return (a_rarity_index < b_rarity_index) ? -1 : 1;
+				}
+			}
+			if (sortMode == 'cube')
+			{
+				type_sort_order = [ 'Creature', 'Planeswalker', 'Instant', 'Sorcery', 'Artifact', 'Enchantment', 'Battle' ];
+				// color, type, MV
+				a_color_index = -1;
+				b_color_index = -1;
+
+				for (let i = 0; i < color_sort_order.length; i++)
+				{
+					if (a.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					{
+						a_color_index = i;
+					}
+					if (b.color.toLowerCase().split('').sort().join('') == color_sort_order[i].toLowerCase().split('').sort().join(''))
+					{
+						b_color_index = i;
+					}
+				}
+
+				if (a_color_index === b_color_index)
+				{
+					a_type_index = -1;
+					b_type_index = -1;
+
+					for (let i = 0; i < type_sort_order.length; i++)
+					{
+						if (a.type.includes(type_sort_order[i]))
+						{
+							a_type_index = i;
+						}
+						if (b.type.includes(type_sort_order[i]))
+						{
+							b_type_index = i;
+						}
+					}
+
+					if (a_type_index === b_type_index)
+					{
+						a_mv = isDecimal(a.cost.charAt(1)) ? parseInt(a.cost.substring(1, a.cost.indexOf('}'))) + a.cost.replaceAll('x','').split('{').length - 2 : a.cost.replaceAll('x','').split('{').length - 1;
+						b_mv = isDecimal(b.cost.charAt(1)) ? parseInt(b.cost.substring(1, b.cost.indexOf('}'))) + b.cost.replaceAll('x','').split('{').length - 2 : b.cost.replaceAll('x','').split('{').length - 1;
+						if (a_mv === b_mv)
+						{
+							if (a.card_name === b.card_name)
+							{
+								return 0;
+							}
+							else {
+								return (a.card_name < b.card_name) ? -1 : 1;
+							}
+						}
+						else {
+							return (a_mv < b_mv) ? -1 : 1;
+						}
+					}
+					else {
+						return (a_type_index < b_type_index) ? -1 : 1;
+					}
+				}
+				else {
+					return (a_color_index < b_color_index) ? -1 : 1;
 				}
 			}
 		}
@@ -793,7 +854,7 @@
 
 					}
 				} */
-				if (term == "mv")
+				if (term == "mv" || term == "cmc")
 				{
 					if (modifier == "!" || modifier == "=")
 					{
@@ -1351,6 +1412,10 @@
 			} else {
 				card_effects = "";
 			}
+			if ("v_mana" in card_stats)
+			{
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="/img/' + card_stats.v_mana + '">');
+			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
 
@@ -1400,6 +1465,10 @@
 				} else {
 					card_effects_2 = "";
 				}
+				if ("v_mana" in card_stats)
+				{
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="/img/' + card_stats.v_mana + '">');
+				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
 
@@ -1432,8 +1501,14 @@
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
-			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
-			img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			img.loading = "lazy";
+
+			if ("position" in card_stats) {
+				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			else {
+				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
 			
 			const link = document.createElement("a");
 			
@@ -1450,7 +1525,8 @@
 
 			link.appendChild(img);
 
-			if ((card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card)
+			rotate_card = (card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card;
+			if (rotate_card)
 			{
 				const rotated_img = document.createElement("img");
 				rotated_img.className = "h-img";
@@ -1485,10 +1561,23 @@
 
 		function imgFlip(id, rotate_card = false) { // comments in here by aanginer
             const img = document.getElementById(id);
-            const seconds = 0.2; // adjust this as needed, this is half of the animation time
+            const seconds = 0.2;
 
             img.style.transition = seconds.toString() + "s";
             img.style.transform = "rotateY(90deg)"; // rotate 90 degrees
+
+            const rotated_img = document.getElementById("h-img");
+            if (rotated_img)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotate_card && rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
 
             setTimeout(function() { // wait for the rotation, then set the image's src correctly
                 const rotated_img = document.getElementById("h-img");
@@ -1501,23 +1590,29 @@
 
                     if (rotate_card)
                     {
-                        rotated_img.style.display = "none";
+                        rotated_img.style.opacity = "0";
                         img.style.filter = "";
                     }
                 }
-                else
+                else if (cardName.includes("_back"))
                 {
                     img.src = cardName.replace("_back", "_front");
 
                     if (rotate_card)
                     {
-                        rotated_img.style.display = "block";
+                        rotated_img.style.opacity = "1";
                         img.style.filter = "blur(2px) brightness(0.7)";
                     }
                 }
 
-                img.style.transition = (seconds * 2).toString() + "s"; // idk why we have to double the time but it works
+                img.style.transition = seconds.toString() + "s";
                 img.style.transform = "rotateY(0deg)";
+
+                if (rotated_img)
+	            {
+	            	rotated_img.style.transition = seconds.toString() + "s";
+	           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+	            }
             }, seconds * 1000);
         }
 
@@ -1648,21 +1743,21 @@
 		}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let random_card = card_list_arrayified[i];
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
 
-			const url = new URL('card', window.location.origin);
-			const params = {
-				set: random_card.set,
-				num: random_card.number,
-				name: random_card.card_name
-			}
-			for (const key in params) {
-				url.searchParams.append(key, params[key]);
-			}
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
 
-			window.location.href = url;
-		}
+				window.location.href = url;
+			}
 	</script>
 </body>
 </html>

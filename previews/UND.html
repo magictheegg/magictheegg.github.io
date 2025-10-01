@@ -39,8 +39,8 @@
 			position: relative;
 		}
 		.sidebar-h-img {
-			display: none;
-			transform: rotate(90deg);
+			opacity: 0;
+			transform: rotateY(0deg) rotate(90deg);
 			position: absolute;
 			left: 10%;
 			top: 10%;
@@ -126,12 +126,13 @@
 			background: rgba(23, 23, 23, 0.8);
 			border-radius: 8px;
 			position: absolute;
-			left: 10%;
+			left: 5%;
 			width: fit-content;
+			max-width: 90%;
 			margin: 20px 0;
 			padding: 5px 0;
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr;
 			z-index: 3;
 		}
 		.dropdown .set-bar {
@@ -214,7 +215,7 @@
 		</div>
 	</div>
 
-	<div class="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
+	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
 		<a class="set-bar" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
 	
@@ -278,336 +279,336 @@
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img alt="/sets/UND-files/img/1_Aeons of Unlife.png" id="1_Aeons of Unlife" data-flag="@X" onclick="openSidebar('1_Aeons of Unlife',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/53_Glark, Frost Stomper_back.png" alt="/sets/UND-files/img/53_Glark, Frost Stomper_front.png" id="53_Glark, Frost Stomper" data-flag="@XD" onclick="openSidebar('53_Glark, Frost Stomper',false)"><button class="flip-btn" onclick="imgFlip('53_Glark, Frost Stomper')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/85_Death and Dedication.png" id="85_Death and Dedication" data-flag="@X" onclick="openSidebar('85_Death and Dedication',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/116_Brittlebane Thief.png" id="116_Brittlebane Thief" data-flag="@X" onclick="openSidebar('116_Brittlebane Thief',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/164_Dungeon Cleanser.png" id="164_Dungeon Cleanser" data-flag="@X" onclick="openSidebar('164_Dungeon Cleanser',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/17_Omathor, Clattering King_back.png" alt="/sets/UND-files/img/17_Omathor, Clattering King_front.png" id="17_Omathor, Clattering King" data-flag="@XD" onclick="openSidebar('17_Omathor, Clattering King',false)"><button class="flip-btn" onclick="imgFlip('17_Omathor, Clattering King')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/58_Kacey, Errant Erudite.png" id="58_Kacey, Errant Erudite" data-flag="@X" onclick="openSidebar('58_Kacey, Errant Erudite',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/98_Naraxis, Slithering Terror_back.png" alt="/sets/UND-files/img/98_Naraxis, Slithering Terror_front.png" id="98_Naraxis, Slithering Terror" data-flag="@XD" onclick="openSidebar('98_Naraxis, Slithering Terror',false)"><button class="flip-btn" onclick="imgFlip('98_Naraxis, Slithering Terror')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/124_Essence of the Cycle.png" id="124_Essence of the Cycle" data-flag="@X" onclick="openSidebar('124_Essence of the Cycle',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/188_Zuamuruza, Everbeating_back.png" alt="/sets/UND-files/img/188_Zuamuruza, Everbeating_front.png" id="188_Zuamuruza, Everbeating" data-flag="@XD" onclick="openSidebar('188_Zuamuruza, Everbeating',false)"><button class="flip-btn" onclick="imgFlip('188_Zuamuruza, Everbeating')"></button></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/7_Glittering Goldscale_back.png" alt="/sets/UND-files/img/7_Glittering Goldscale_front.png" id="7_Glittering Goldscale" data-flag="@XD" onclick="openSidebar('7_Glittering Goldscale',false)"><button class="flip-btn" onclick="imgFlip('7_Glittering Goldscale')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/62_Mastery of the Labyrinth.png" id="62_Mastery of the Labyrinth" data-flag="@X" onclick="openSidebar('62_Mastery of the Labyrinth',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/79_Archfiend of Sin.png" id="79_Archfiend of Sin" data-flag="@X" onclick="openSidebar('79_Archfiend of Sin',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/132_Izan, Brazen Glow.png" id="132_Izan, Brazen Glow" data-flag="@X" onclick="openSidebar('132_Izan, Brazen Glow',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/165_Dungeon Naturalist.png" id="165_Dungeon Naturalist" data-flag="@X" onclick="openSidebar('165_Dungeon Naturalist',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/9_Guardians of the Core.png" id="9_Guardians of the Core" data-flag="@X" onclick="openSidebar('9_Guardians of the Core',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/39_All-Seeing Witness_back.png" alt="/sets/UND-files/img/39_All-Seeing Witness_front.png" id="39_All-Seeing Witness" data-flag="@XD" onclick="openSidebar('39_All-Seeing Witness',false)"><button class="flip-btn" onclick="imgFlip('39_All-Seeing Witness')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/83_Broodmarg, the Terrible.png" id="83_Broodmarg, the Terrible" data-flag="@X" onclick="openSidebar('83_Broodmarg, the Terrible',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/137_Mithrok, the Architect_back.png" alt="/sets/UND-files/img/137_Mithrok, the Architect_front.png" id="137_Mithrok, the Architect" data-flag="@XD" onclick="openSidebar('137_Mithrok, the Architect',false)"><button class="flip-btn" onclick="imgFlip('137_Mithrok, the Architect')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/166_Ever-Growing Ooze.png" id="166_Ever-Growing Ooze" data-flag="@X" onclick="openSidebar('166_Ever-Growing Ooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/10_Haunting Necro-Overseer.png" id="10_Haunting Necro-Overseer" data-flag="@X" onclick="openSidebar('10_Haunting Necro-Overseer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/43_Consecrated Guardian.png" id="43_Consecrated Guardian" data-flag="@X" onclick="openSidebar('43_Consecrated Guardian',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/84_Cillei, Dungeon Salesman.png" id="84_Cillei, Dungeon Salesman" data-flag="@X" onclick="openSidebar('84_Cillei, Dungeon Salesman',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/143_Rageflame Reset.png" id="143_Rageflame Reset" data-flag="@X" onclick="openSidebar('143_Rageflame Reset',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/170_Magnificent Discovery.png" id="170_Magnificent Discovery" data-flag="@X" onclick="openSidebar('170_Magnificent Discovery',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/11_Haven Overseers.png" id="11_Haven Overseers" data-flag="@X" onclick="openSidebar('11_Haven Overseers',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/47_Dungeoneer Tactician.png" id="47_Dungeoneer Tactician" data-flag="@X" onclick="openSidebar('47_Dungeoneer Tactician',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/86_Dissolve in Ooze.png" id="86_Dissolve in Ooze" data-flag="@X" onclick="openSidebar('86_Dissolve in Ooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/117_Collect the Spoils.png" id="117_Collect the Spoils" data-flag="@X" onclick="openSidebar('117_Collect the Spoils',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/175_Rooting Hydra.png" id="175_Rooting Hydra" data-flag="@X" onclick="openSidebar('175_Rooting Hydra',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/13_Lana, Seasoned Delver.png" id="13_Lana, Seasoned Delver" data-flag="@X" onclick="openSidebar('13_Lana, Seasoned Delver',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/51_Far-Sight Sphinx.png" id="51_Far-Sight Sphinx" data-flag="@X" onclick="openSidebar('51_Far-Sight Sphinx',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/93_Gutless Gorger_back.png" alt="/sets/UND-files/img/93_Gutless Gorger_front.png" id="93_Gutless Gorger" data-flag="@XD" onclick="openSidebar('93_Gutless Gorger',false)"><button class="flip-btn" onclick="imgFlip('93_Gutless Gorger')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/120_Crucible of Wrath.png" id="120_Crucible of Wrath" data-flag="@X" onclick="openSidebar('120_Crucible of Wrath',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/187_Wander the Halls.png" id="187_Wander the Halls" data-flag="@X" onclick="openSidebar('187_Wander the Halls',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/16_Muscle Memory.png" id="16_Muscle Memory" data-flag="@X" onclick="openSidebar('16_Muscle Memory',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/52_Frost Walker Legion.png" id="52_Frost Walker Legion" data-flag="@X" onclick="openSidebar('52_Frost Walker Legion',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/97_Lord of the Labyrinths.png" id="97_Lord of the Labyrinths" data-flag="@X" onclick="openSidebar('97_Lord of the Labyrinths',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/127_Gnobgob, Relic Hunter_back.png" alt="/sets/UND-files/img/127_Gnobgob, Relic Hunter_front.png" id="127_Gnobgob, Relic Hunter" data-flag="@XD" onclick="openSidebar('127_Gnobgob, Relic Hunter',false)"><button class="flip-btn" onclick="imgFlip('127_Gnobgob, Relic Hunter')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/190_Caustic River.png" id="190_Caustic River" data-flag="@X" onclick="openSidebar('190_Caustic River',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/19_Party Wipe.png" id="19_Party Wipe" data-flag="@X" onclick="openSidebar('19_Party Wipe',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/56_Honcho, Intrepid Completionist.png" id="56_Honcho, Intrepid Completionist" data-flag="@X" onclick="openSidebar('56_Honcho, Intrepid Completionist',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/106_Saboteur's Insight.png" id="106_Saboteurs Insight" data-flag="@X" onclick="openSidebar('106_Saboteurs Insight',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/139_Molten Judgment.png" id="139_Molten Judgment" data-flag="@X" onclick="openSidebar('139_Molten Judgment',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/192_Dusty Descent.png" id="192_Dusty Descent" data-flag="@X" onclick="openSidebar('192_Dusty Descent',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/4_Dubious Paragon.png" id="4_Dubious Paragon" data-flag="@X" onclick="openSidebar('4_Dubious Paragon',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/70_That of the Path Not Taken.png" id="70_That of the Path Not Taken" data-flag="@X" onclick="openSidebar('70_That of the Path Not Taken',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/78_Ambush Trap.png" id="78_Ambush Trap" data-flag="@X" onclick="openSidebar('78_Ambush Trap',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/140_Moltenheart Phoenix_back.png" alt="/sets/UND-files/img/140_Moltenheart Phoenix_front.png" id="140_Moltenheart Phoenix" data-flag="@XD" onclick="openSidebar('140_Moltenheart Phoenix',false)"><button class="flip-btn" onclick="imgFlip('140_Moltenheart Phoenix')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/157_Accumulated Might.png" id="157_Accumulated Might" data-flag="@X" onclick="openSidebar('157_Accumulated Might',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/5_Find the Group.png" id="5_Find the Group" data-flag="@X" onclick="openSidebar('5_Find the Group',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/41_Chimeric Crustacean.png" id="41_Chimeric Crustacean" data-flag="@X" onclick="openSidebar('41_Chimeric Crustacean',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/80_Balerun Demon_back.png" alt="/sets/UND-files/img/80_Balerun Demon_front.png" id="80_Balerun Demon" data-flag="@XD" onclick="openSidebar('80_Balerun Demon',false)"><button class="flip-btn" onclick="imgFlip('80_Balerun Demon')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/142_Opportunity Killer.png" id="142_Opportunity Killer" data-flag="@X" onclick="openSidebar('142_Opportunity Killer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/158_Blessings of Progress.png" id="158_Blessings of Progress" data-flag="@X" onclick="openSidebar('158_Blessings of Progress',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/6_Fortune Seeker.png" id="6_Fortune Seeker" data-flag="@X" onclick="openSidebar('6_Fortune Seeker',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/42_Compulsive Completionist.png" id="42_Compulsive Completionist" data-flag="@X" onclick="openSidebar('42_Compulsive Completionist',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/81_Beholdling.png" id="81_Beholdling" data-flag="@X" onclick="openSidebar('81_Beholdling',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/144_Raging Inferno Wyvern.png" id="144_Raging Inferno Wyvern" data-flag="@X" onclick="openSidebar('144_Raging Inferno Wyvern',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/160_Colossal Tardigrade.png" id="160_Colossal Tardigrade" data-flag="@X" onclick="openSidebar('160_Colossal Tardigrade',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/12_Knight of the Cycle.png" id="12_Knight of the Cycle" data-flag="@X" onclick="openSidebar('12_Knight of the Cycle',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/46_Demonic Interference.png" id="46_Demonic Interference" data-flag="@X" onclick="openSidebar('46_Demonic Interference',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/95_Lockpick.png" id="95_Lockpick" data-flag="@X" onclick="openSidebar('95_Lockpick',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/119_Covetous Observer.png" id="119_Covetous Observer" data-flag="@X" onclick="openSidebar('119_Covetous Observer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/169_Lurchcave Explorer.png" id="169_Lurchcave Explorer" data-flag="@X" onclick="openSidebar('169_Lurchcave Explorer',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/15_Mechanized Smiter_back.png" alt="/sets/UND-files/img/15_Mechanized Smiter_front.png" id="15_Mechanized Smiter" data-flag="@XD" onclick="openSidebar('15_Mechanized Smiter',false)"><button class="flip-btn" onclick="imgFlip('15_Mechanized Smiter')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/48_Entrapped Ferryman.png" id="48_Entrapped Ferryman" data-flag="@X" onclick="openSidebar('48_Entrapped Ferryman',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/100_Nightmare Haunt.png" id="100_Nightmare Haunt" data-flag="@X" onclick="openSidebar('100_Nightmare Haunt',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/122_Dungeon Rage.png" id="122_Dungeon Rage" data-flag="@X" onclick="openSidebar('122_Dungeon Rage',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/171_Meditative Trainee.png" id="171_Meditative Trainee" data-flag="@X" onclick="openSidebar('171_Meditative Trainee',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/18_Onyx-Crest Sword.png" id="18_Onyx-Crest Sword" data-flag="@X" onclick="openSidebar('18_Onyx-Crest Sword',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/59_Keywielder Faerie.png" id="59_Keywielder Faerie" data-flag="@X" onclick="openSidebar('59_Keywielder Faerie',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/102_Painful Revelation.png" id="102_Painful Revelation" data-flag="@X" onclick="openSidebar('102_Painful Revelation',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/123_Enrage the Boss.png" id="123_Enrage the Boss" data-flag="@X" onclick="openSidebar('123_Enrage the Boss',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/173_Overprovisioned Adventurer.png" id="173_Overprovisioned Adventurer" data-flag="@X" onclick="openSidebar('173_Overprovisioned Adventurer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/22_Sidequest.png" id="22_Sidequest" data-flag="@X" onclick="openSidebar('22_Sidequest',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/63_Psychic Wars Veteran.png" id="63_Psychic Wars Veteran" data-flag="@X" onclick="openSidebar('63_Psychic Wars Veteran',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/103_Pale Snake_back.png" alt="/sets/UND-files/img/103_Pale Snake_front.png" id="103_Pale Snake" data-flag="@XD" onclick="openSidebar('103_Pale Snake',false)"><button class="flip-btn" onclick="imgFlip('103_Pale Snake')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/125_Expedition Rouser.png" id="125_Expedition Rouser" data-flag="@X" onclick="openSidebar('125_Expedition Rouser',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/176_Run-Ending Dreadmaw.png" id="176_Run-Ending Dreadmaw" data-flag="@X" onclick="openSidebar('176_Run-Ending Dreadmaw',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/25_Treasure Seeker_back.png" alt="/sets/UND-files/img/25_Treasure Seeker_front.png" id="25_Treasure Seeker" data-flag="@XD" onclick="openSidebar('25_Treasure Seeker',false)"><button class="flip-btn" onclick="imgFlip('25_Treasure Seeker')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/64_Runaway Showboat.png" id="64_Runaway Showboat" data-flag="@X" onclick="openSidebar('64_Runaway Showboat',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/105_Rite of Death.png" id="105_Rite of Death" data-flag="@X" onclick="openSidebar('105_Rite of Death',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/129_Hoarder's Folly.png" id="129_Hoarders Folly" data-flag="@X" onclick="openSidebar('129_Hoarders Folly',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/178_Surprise Attack.png" id="178_Surprise Attack" data-flag="@X" onclick="openSidebar('178_Surprise Attack',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/27_Unassuming Skeleton_back.png" alt="/sets/UND-files/img/27_Unassuming Skeleton_front.png" id="27_Unassuming Skeleton" data-flag="@XD" onclick="openSidebar('27_Unassuming Skeleton',false)"><button class="flip-btn" onclick="imgFlip('27_Unassuming Skeleton')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/65_Scholar of the Halls.png" id="65_Scholar of the Halls" data-flag="@X" onclick="openSidebar('65_Scholar of the Halls',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/107_Sadistic Opportunist_back.png" alt="/sets/UND-files/img/107_Sadistic Opportunist_front.png" id="107_Sadistic Opportunist" data-flag="@XD" onclick="openSidebar('107_Sadistic Opportunist',false)"><button class="flip-btn" onclick="imgFlip('107_Sadistic Opportunist')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/130_Incite Violence.png" id="130_Incite Violence" data-flag="@X" onclick="openSidebar('130_Incite Violence',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/179_Swarming Anthrovore.png" id="179_Swarming Anthrovore" data-flag="@X" onclick="openSidebar('179_Swarming Anthrovore',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/30_Vengeful Spirit.png" id="30_Vengeful Spirit" data-flag="@X" onclick="openSidebar('30_Vengeful Spirit',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/68_Spectre Maestro.png" id="68_Spectre Maestro" data-flag="@X" onclick="openSidebar('68_Spectre Maestro',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/109_Sludgebound Thrall.png" id="109_Sludgebound Thrall" data-flag="@X" onclick="openSidebar('109_Sludgebound Thrall',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/134_Jutting Spike.png" id="134_Jutting Spike" data-flag="@X" onclick="openSidebar('134_Jutting Spike',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/180_Trapped Room.png" id="180_Trapped Room" data-flag="@X" onclick="openSidebar('180_Trapped Room',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/31_Vista Visitor.png" id="31_Vista Visitor" data-flag="@X" onclick="openSidebar('31_Vista Visitor',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/69_Strengthsap Trap.png" id="69_Strengthsap Trap" data-flag="@X" onclick="openSidebar('69_Strengthsap Trap',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/110_Spellseeker's Bane.png" id="110_Spellseekers Bane" data-flag="@X" onclick="openSidebar('110_Spellseekers Bane',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/136_Lavaplume Ravager.png" id="136_Lavaplume Ravager" data-flag="@X" onclick="openSidebar('136_Lavaplume Ravager',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/182_Underhalls Wayfinder.png" id="182_Underhalls Wayfinder" data-flag="@X" onclick="openSidebar('182_Underhalls Wayfinder',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/32_Wardglyph Trap.png" id="32_Wardglyph Trap" data-flag="@X" onclick="openSidebar('32_Wardglyph Trap',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/73_Under Mithrok's Gaze.png" id="73_Under Mithroks Gaze" data-flag="@X" onclick="openSidebar('73_Under Mithroks Gaze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/112_Twinhaft Challenger.png" id="112_Twinhaft Challenger" data-flag="@X" onclick="openSidebar('112_Twinhaft Challenger',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/138_Mithrok's Defector.png" id="138_Mithroks Defector" data-flag="@X" onclick="openSidebar('138_Mithroks Defector',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/184_Voracious Ooze.png" id="184_Voracious Ooze" data-flag="@X" onclick="openSidebar('184_Voracious Ooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/33_Well Armed.png" id="33_Well Armed" data-flag="@X" onclick="openSidebar('33_Well Armed',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/74_Winding Paths.png" id="74_Winding Paths" data-flag="@X" onclick="openSidebar('74_Winding Paths',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/113_Uberooze.png" id="113_Uberooze" data-flag="@X" onclick="openSidebar('113_Uberooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/145_Reckless Fireballer.png" id="145_Reckless Fireballer" data-flag="@X" onclick="openSidebar('145_Reckless Fireballer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/185_Voracious Scavenger.png" id="185_Voracious Scavenger" data-flag="@X" onclick="openSidebar('185_Voracious Scavenger',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/36_Mysterious Temple.png" id="36_Mysterious Temple" data-flag="@X" onclick="openSidebar('36_Mysterious Temple',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/76_Shadowed Hallway.png" id="76_Shadowed Hallway" data-flag="@X" onclick="openSidebar('76_Shadowed Hallway',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/115_Rancid Rivulet.png" id="115_Rancid Rivulet" data-flag="@X" onclick="openSidebar('115_Rancid Rivulet',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/150_Undead Pyromancer.png" id="150_Undead Pyromancer" data-flag="@X" onclick="openSidebar('150_Undead Pyromancer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/191_Dungeon's Engine.png" id="191_Dungeons Engine" data-flag="@X" onclick="openSidebar('191_Dungeons Engine',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/2_Armed Adept.png" id="2_Armed Adept" data-flag="@X" onclick="openSidebar('2_Armed Adept',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/77_Twisting Space.png" id="77_Twisting Space" data-flag="@X" onclick="openSidebar('77_Twisting Space',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/82_Boss Slime.png" id="82_Boss Slime" data-flag="@X" onclick="openSidebar('82_Boss Slime',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/153_Wall-Climbing Snatcher.png" id="153_Wall-Climbing Snatcher" data-flag="@X" onclick="openSidebar('153_Wall-Climbing Snatcher',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/159_Bust Through.png" id="159_Bust Through" data-flag="@X" onclick="openSidebar('159_Bust Through',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/3_Blades of Radiance.png" id="3_Blades of Radiance" data-flag="@X" onclick="openSidebar('3_Blades of Radiance',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/40_Awakened Lurker.png" id="40_Awakened Lurker" data-flag="@X" onclick="openSidebar('40_Awakened Lurker',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/87_Dracooze.png" id="87_Dracooze" data-flag="@X" onclick="openSidebar('87_Dracooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/154_Weapon Collector.png" id="154_Weapon Collector" data-flag="@X" onclick="openSidebar('154_Weapon Collector',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/161_Consuming Ooze.png" id="161_Consuming Ooze" data-flag="@X" onclick="openSidebar('161_Consuming Ooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/8_Glyph of Warding.png" id="8_Glyph of Warding" data-flag="@X" onclick="openSidebar('8_Glyph of Warding',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/44_Crafty Illusionist.png" id="44_Crafty Illusionist" data-flag="@X" onclick="openSidebar('44_Crafty Illusionist',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/88_Drop the Roof.png" id="88_Drop the Roof" data-flag="@X" onclick="openSidebar('88_Drop the Roof',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/156_Vault of Greed.png" id="156_Vault of Greed" data-flag="@X" onclick="openSidebar('156_Vault of Greed',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/162_Corridor Hewer.png" id="162_Corridor Hewer" data-flag="@X" onclick="openSidebar('162_Corridor Hewer',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/14_Maze Guide_back.png" alt="/sets/UND-files/img/14_Maze Guide_front.png" id="14_Maze Guide" data-flag="@XD" onclick="openSidebar('14_Maze Guide',false)"><button class="flip-btn" onclick="imgFlip('14_Maze Guide')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/45_Delving Deeper.png" id="45_Delving Deeper" data-flag="@X" onclick="openSidebar('45_Delving Deeper',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/89_Ethereal Dungeoneer.png" id="89_Ethereal Dungeoneer" data-flag="@X" onclick="openSidebar('89_Ethereal Dungeoneer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/118_Coreseeker Shaman.png" id="118_Coreseeker Shaman" data-flag="@X" onclick="openSidebar('118_Coreseeker Shaman',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/163_Doorslam.png" id="163_Doorslam" data-flag="@X" onclick="openSidebar('163_Doorslam',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/20_Rekindled Forerunner.png" id="20_Rekindled Forerunner" data-flag="@X" onclick="openSidebar('20_Rekindled Forerunner',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/49_Faerie Adventurer.png" id="49_Faerie Adventurer" data-flag="@X" onclick="openSidebar('49_Faerie Adventurer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/90_Expendable Hireling.png" id="90_Expendable Hireling" data-flag="@X" onclick="openSidebar('90_Expendable Hireling',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/121_Dragon's Spark.png" id="121_Dragons Spark" data-flag="@X" onclick="openSidebar('121_Dragons Spark',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/167_Floor Cleaner.png" id="167_Floor Cleaner" data-flag="@X" onclick="openSidebar('167_Floor Cleaner',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/21_Runic Steed.png" id="21_Runic Steed" data-flag="@X" onclick="openSidebar('21_Runic Steed',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/50_Fall Through the Floor.png" id="50_Fall Through the Floor" data-flag="@X" onclick="openSidebar('50_Fall Through the Floor',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/91_Fleshrender Trap.png" id="91_Fleshrender Trap" data-flag="@X" onclick="openSidebar('91_Fleshrender Trap',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/126_Fool Hopper.png" id="126_Fool Hopper" data-flag="@X" onclick="openSidebar('126_Fool Hopper',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/168_Loathsome Pusmaw.png" id="168_Loathsome Pusmaw" data-flag="@X" onclick="openSidebar('168_Loathsome Pusmaw',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/23_Stone Sentry.png" id="23_Stone Sentry" data-flag="@X" onclick="openSidebar('23_Stone Sentry',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/54_Glooped.png" id="54_Glooped" data-flag="@X" onclick="openSidebar('54_Glooped',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/92_Give Up.png" id="92_Give Up" data-flag="@X" onclick="openSidebar('92_Give Up',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/128_Hellfire Occultist_back.png" alt="/sets/UND-files/img/128_Hellfire Occultist_front.png" id="128_Hellfire Occultist" data-flag="@XD" onclick="openSidebar('128_Hellfire Occultist',false)"><button class="flip-btn" onclick="imgFlip('128_Hellfire Occultist')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/172_Nimble Trapcatcher.png" id="172_Nimble Trapcatcher" data-flag="@X" onclick="openSidebar('172_Nimble Trapcatcher',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/24_Stone-Carved Savior.png" id="24_Stone-Carved Savior" data-flag="@X" onclick="openSidebar('24_Stone-Carved Savior',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/55_Glow.png" id="55_Glow" data-flag="@X" onclick="openSidebar('55_Glow',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/94_Humiliating Defeat.png" id="94_Humiliating Defeat" data-flag="@X" onclick="openSidebar('94_Humiliating Defeat',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/131_Irate Dragoon.png" id="131_Irate Dragoon" data-flag="@X" onclick="openSidebar('131_Irate Dragoon',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/174_Plantaur.png" id="174_Plantaur" data-flag="@X" onclick="openSidebar('174_Plantaur',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/26_Tunnel Patrol_back.png" alt="/sets/UND-files/img/26_Tunnel Patrol_front.png" id="26_Tunnel Patrol" data-flag="@XD" onclick="openSidebar('26_Tunnel Patrol',false)"><button class="flip-btn" onclick="imgFlip('26_Tunnel Patrol')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/57_Illusory Gambit.png" id="57_Illusory Gambit" data-flag="@X" onclick="openSidebar('57_Illusory Gambit',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/96_Looming Sentinels.png" id="96_Looming Sentinels" data-flag="@X" onclick="openSidebar('96_Looming Sentinels',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/133_Izan's Show of Skill.png" id="133_Izans Show of Skill" data-flag="@X" onclick="openSidebar('133_Izans Show of Skill',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/177_Spriggan Wayfinder.png" id="177_Spriggan Wayfinder" data-flag="@X" onclick="openSidebar('177_Spriggan Wayfinder',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/28_Underhalls Cartographer.png" id="28_Underhalls Cartographer" data-flag="@X" onclick="openSidebar('28_Underhalls Cartographer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/60_Lacewing Drake.png" id="60_Lacewing Drake" data-flag="@X" onclick="openSidebar('60_Lacewing Drake',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/99_Necrotrick.png" id="99_Necrotrick" data-flag="@X" onclick="openSidebar('99_Necrotrick',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/135_Kobold Scavengers_back.png" alt="/sets/UND-files/img/135_Kobold Scavengers_front.png" id="135_Kobold Scavengers" data-flag="@XD" onclick="openSidebar('135_Kobold Scavengers',false)"><button class="flip-btn" onclick="imgFlip('135_Kobold Scavengers')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/181_Tutelary Delver.png" id="181_Tutelary Delver" data-flag="@X" onclick="openSidebar('181_Tutelary Delver',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/29_Underhalls Gatekeeper.png" id="29_Underhalls Gatekeeper" data-flag="@X" onclick="openSidebar('29_Underhalls Gatekeeper',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/61_Lantern Lurker.png" id="61_Lantern Lurker" data-flag="@X" onclick="openSidebar('61_Lantern Lurker',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/101_Ooze Harvester.png" id="101_Ooze Harvester" data-flag="@X" onclick="openSidebar('101_Ooze Harvester',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/141_Opportunistic Necromancer.png" id="141_Opportunistic Necromancer" data-flag="@X" onclick="openSidebar('141_Opportunistic Necromancer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/183_Unexplored Territory.png" id="183_Unexplored Territory" data-flag="@X" onclick="openSidebar('183_Unexplored Territory',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/34_Winged Automaton_back.png" alt="/sets/UND-files/img/34_Winged Automaton_front.png" id="34_Winged Automaton" data-flag="@XD" onclick="openSidebar('34_Winged Automaton',false)"><button class="flip-btn" onclick="imgFlip('34_Winged Automaton')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/66_Settlement Sentries.png" id="66_Settlement Sentries" data-flag="@X" onclick="openSidebar('66_Settlement Sentries',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/104_Provisioning Butcher.png" id="104_Provisioning Butcher" data-flag="@X" onclick="openSidebar('104_Provisioning Butcher',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/146_Shield Shatter.png" id="146_Shield Shatter" data-flag="@X" onclick="openSidebar('146_Shield Shatter',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/186_Wallbreaker Huskchops.png" id="186_Wallbreaker Huskchops" data-flag="@X" onclick="openSidebar('186_Wallbreaker Huskchops',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/35_Woven Strike.png" id="35_Woven Strike" data-flag="@X" onclick="openSidebar('35_Woven Strike',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/67_Sootscale Skulker.png" id="67_Sootscale Skulker" data-flag="@X" onclick="openSidebar('67_Sootscale Skulker',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/108_Skeletal Guardian_back.png" alt="/sets/UND-files/img/108_Skeletal Guardian_front.png" id="108_Skeletal Guardian" data-flag="@XD" onclick="openSidebar('108_Skeletal Guardian',false)"><button class="flip-btn" onclick="imgFlip('108_Skeletal Guardian')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/147_Smolderhare.png" id="147_Smolderhare" data-flag="@X" onclick="openSidebar('147_Smolderhare',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/189_Auspicious Exit.png" id="189_Auspicious Exit" data-flag="@X" onclick="openSidebar('189_Auspicious Exit',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/37_Rumbling Passage.png" id="37_Rumbling Passage" data-flag="@X" onclick="openSidebar('37_Rumbling Passage',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/71_A Treasure's Power.png" id="71_A Treasures Power" data-flag="@X" onclick="openSidebar('71_A Treasures Power',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/111_Treacherous Sorceress.png" id="111_Treacherous Sorceress" data-flag="@X" onclick="openSidebar('111_Treacherous Sorceress',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/148_Tenacious Challenger.png" id="148_Tenacious Challenger" data-flag="@X" onclick="openSidebar('148_Tenacious Challenger',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/193_Green Pool.png" id="193_Green Pool" data-flag="@X" onclick="openSidebar('193_Green Pool',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/38_Statuary Niche.png" id="38_Statuary Niche" data-flag="@X" onclick="openSidebar('38_Statuary Niche',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/72_Turn the Corner.png" id="72_Turn the Corner" data-flag="@X" onclick="openSidebar('72_Turn the Corner',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/114_Ghastly Corridor.png" id="114_Ghastly Corridor" data-flag="@X" onclick="openSidebar('114_Ghastly Corridor',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/149_Ultimate Burst Flame.png" id="149_Ultimate Burst Flame" data-flag="@X" onclick="openSidebar('149_Ultimate Burst Flame',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/194_Rearranging Device.png" id="194_Rearranging Device" data-flag="@X" onclick="openSidebar('194_Rearranging Device',true)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/75_Flooded Cavern.png" id="75_Flooded Cavern" data-flag="@X" onclick="openSidebar('75_Flooded Cavern',true)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/151_Underhalls Warden.png" id="151_Underhalls Warden" data-flag="@X" onclick="openSidebar('151_Underhalls Warden',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/152_Voltaic Chain.png" id="152_Voltaic Chain" data-flag="@X" onclick="openSidebar('152_Voltaic Chain',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/155_Book Stack.png" id="155_Book Stack" data-flag="@X" onclick="openSidebar('155_Book Stack',true)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+					<div class="container"><img loading="lazy" alt="/sets/UND-files/img/1_Aeons of Unlife.png" id="1_Aeons of Unlife" data-flag="@X" onclick="openSidebar('1_Aeons of Unlife',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/53_Glark, Frost Stomper_back.png" alt="/sets/UND-files/img/53_Glark, Frost Stomper_front.png" id="53_Glark, Frost Stomper" data-flag="@XD" onclick="openSidebar('53_Glark, Frost Stomper',false)"><button class="flip-btn" onclick="imgFlip('53_Glark, Frost Stomper')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/85_Death and Dedication.png" id="85_Death and Dedication" data-flag="@X" onclick="openSidebar('85_Death and Dedication',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/116_Brittlebane Thief.png" id="116_Brittlebane Thief" data-flag="@X" onclick="openSidebar('116_Brittlebane Thief',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/164_Dungeon Cleanser.png" id="164_Dungeon Cleanser" data-flag="@X" onclick="openSidebar('164_Dungeon Cleanser',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/17_Omathor, Clattering King_back.png" alt="/sets/UND-files/img/17_Omathor, Clattering King_front.png" id="17_Omathor, Clattering King" data-flag="@XD" onclick="openSidebar('17_Omathor, Clattering King',false)"><button class="flip-btn" onclick="imgFlip('17_Omathor, Clattering King')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/58_Kacey, Errant Erudite.png" id="58_Kacey, Errant Erudite" data-flag="@X" onclick="openSidebar('58_Kacey, Errant Erudite',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/98_Naraxis, Slithering Terror_back.png" alt="/sets/UND-files/img/98_Naraxis, Slithering Terror_front.png" id="98_Naraxis, Slithering Terror" data-flag="@XD" onclick="openSidebar('98_Naraxis, Slithering Terror',false)"><button class="flip-btn" onclick="imgFlip('98_Naraxis, Slithering Terror')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/124_Essence of the Cycle.png" id="124_Essence of the Cycle" data-flag="@X" onclick="openSidebar('124_Essence of the Cycle',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/188_Zuamuruza, Everbeating_back.png" alt="/sets/UND-files/img/188_Zuamuruza, Everbeating_front.png" id="188_Zuamuruza, Everbeating" data-flag="@XD" onclick="openSidebar('188_Zuamuruza, Everbeating',false)"><button class="flip-btn" onclick="imgFlip('188_Zuamuruza, Everbeating')"></button></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/7_Glittering Goldscale_back.png" alt="/sets/UND-files/img/7_Glittering Goldscale_front.png" id="7_Glittering Goldscale" data-flag="@XD" onclick="openSidebar('7_Glittering Goldscale',false)"><button class="flip-btn" onclick="imgFlip('7_Glittering Goldscale')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/62_Mastery of the Labyrinth.png" id="62_Mastery of the Labyrinth" data-flag="@X" onclick="openSidebar('62_Mastery of the Labyrinth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/79_Archfiend of Sin.png" id="79_Archfiend of Sin" data-flag="@X" onclick="openSidebar('79_Archfiend of Sin',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/132_Izan, Brazen Glow.png" id="132_Izan, Brazen Glow" data-flag="@X" onclick="openSidebar('132_Izan, Brazen Glow',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/165_Dungeon Naturalist.png" id="165_Dungeon Naturalist" data-flag="@X" onclick="openSidebar('165_Dungeon Naturalist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/9_Guardians of the Core.png" id="9_Guardians of the Core" data-flag="@X" onclick="openSidebar('9_Guardians of the Core',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/39_All-Seeing Witness_back.png" alt="/sets/UND-files/img/39_All-Seeing Witness_front.png" id="39_All-Seeing Witness" data-flag="@XD" onclick="openSidebar('39_All-Seeing Witness',false)"><button class="flip-btn" onclick="imgFlip('39_All-Seeing Witness')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/83_Broodmarg, the Terrible.png" id="83_Broodmarg, the Terrible" data-flag="@X" onclick="openSidebar('83_Broodmarg, the Terrible',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/137_Mithrok, the Architect_back.png" alt="/sets/UND-files/img/137_Mithrok, the Architect_front.png" id="137_Mithrok, the Architect" data-flag="@XD" onclick="openSidebar('137_Mithrok, the Architect',false)"><button class="flip-btn" onclick="imgFlip('137_Mithrok, the Architect')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/166_Ever-Growing Ooze.png" id="166_Ever-Growing Ooze" data-flag="@X" onclick="openSidebar('166_Ever-Growing Ooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/10_Haunting Necro-Overseer.png" id="10_Haunting Necro-Overseer" data-flag="@X" onclick="openSidebar('10_Haunting Necro-Overseer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/43_Consecrated Guardian.png" id="43_Consecrated Guardian" data-flag="@X" onclick="openSidebar('43_Consecrated Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/84_Cillei, Dungeon Salesman.png" id="84_Cillei, Dungeon Salesman" data-flag="@X" onclick="openSidebar('84_Cillei, Dungeon Salesman',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/143_Rageflame Reset.png" id="143_Rageflame Reset" data-flag="@X" onclick="openSidebar('143_Rageflame Reset',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/170_Magnificent Discovery.png" id="170_Magnificent Discovery" data-flag="@X" onclick="openSidebar('170_Magnificent Discovery',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/11_Haven Overseers.png" id="11_Haven Overseers" data-flag="@X" onclick="openSidebar('11_Haven Overseers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/47_Dungeoneer Tactician.png" id="47_Dungeoneer Tactician" data-flag="@X" onclick="openSidebar('47_Dungeoneer Tactician',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/86_Dissolve in Ooze.png" id="86_Dissolve in Ooze" data-flag="@X" onclick="openSidebar('86_Dissolve in Ooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/117_Collect the Spoils.png" id="117_Collect the Spoils" data-flag="@X" onclick="openSidebar('117_Collect the Spoils',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/175_Rooting Hydra.png" id="175_Rooting Hydra" data-flag="@X" onclick="openSidebar('175_Rooting Hydra',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/13_Lana, Seasoned Delver.png" id="13_Lana, Seasoned Delver" data-flag="@X" onclick="openSidebar('13_Lana, Seasoned Delver',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/51_Far-Sight Sphinx.png" id="51_Far-Sight Sphinx" data-flag="@X" onclick="openSidebar('51_Far-Sight Sphinx',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/93_Gutless Gorger_back.png" alt="/sets/UND-files/img/93_Gutless Gorger_front.png" id="93_Gutless Gorger" data-flag="@XD" onclick="openSidebar('93_Gutless Gorger',false)"><button class="flip-btn" onclick="imgFlip('93_Gutless Gorger')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/120_Crucible of Wrath.png" id="120_Crucible of Wrath" data-flag="@X" onclick="openSidebar('120_Crucible of Wrath',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/187_Wander the Halls.png" id="187_Wander the Halls" data-flag="@X" onclick="openSidebar('187_Wander the Halls',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/16_Muscle Memory.png" id="16_Muscle Memory" data-flag="@X" onclick="openSidebar('16_Muscle Memory',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/52_Frost Walker Legion.png" id="52_Frost Walker Legion" data-flag="@X" onclick="openSidebar('52_Frost Walker Legion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/97_Lord of the Labyrinths.png" id="97_Lord of the Labyrinths" data-flag="@X" onclick="openSidebar('97_Lord of the Labyrinths',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/127_Gnobgob, Relic Hunter_back.png" alt="/sets/UND-files/img/127_Gnobgob, Relic Hunter_front.png" id="127_Gnobgob, Relic Hunter" data-flag="@XD" onclick="openSidebar('127_Gnobgob, Relic Hunter',false)"><button class="flip-btn" onclick="imgFlip('127_Gnobgob, Relic Hunter')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/190_Caustic River.png" id="190_Caustic River" data-flag="@X" onclick="openSidebar('190_Caustic River',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/19_Party Wipe.png" id="19_Party Wipe" data-flag="@X" onclick="openSidebar('19_Party Wipe',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/56_Honcho, Intrepid Completionist.png" id="56_Honcho, Intrepid Completionist" data-flag="@X" onclick="openSidebar('56_Honcho, Intrepid Completionist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/106_Saboteur's Insight.png" id="106_Saboteurs Insight" data-flag="@X" onclick="openSidebar('106_Saboteurs Insight',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/139_Molten Judgment.png" id="139_Molten Judgment" data-flag="@X" onclick="openSidebar('139_Molten Judgment',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/192_Dusty Descent.png" id="192_Dusty Descent" data-flag="@X" onclick="openSidebar('192_Dusty Descent',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/4_Dubious Paragon.png" id="4_Dubious Paragon" data-flag="@X" onclick="openSidebar('4_Dubious Paragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/70_That of the Path Not Taken.png" id="70_That of the Path Not Taken" data-flag="@X" onclick="openSidebar('70_That of the Path Not Taken',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/78_Ambush Trap.png" id="78_Ambush Trap" data-flag="@X" onclick="openSidebar('78_Ambush Trap',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/140_Moltenheart Phoenix_back.png" alt="/sets/UND-files/img/140_Moltenheart Phoenix_front.png" id="140_Moltenheart Phoenix" data-flag="@XD" onclick="openSidebar('140_Moltenheart Phoenix',false)"><button class="flip-btn" onclick="imgFlip('140_Moltenheart Phoenix')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/157_Accumulated Might.png" id="157_Accumulated Might" data-flag="@X" onclick="openSidebar('157_Accumulated Might',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/5_Find the Group.png" id="5_Find the Group" data-flag="@X" onclick="openSidebar('5_Find the Group',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/41_Chimeric Crustacean.png" id="41_Chimeric Crustacean" data-flag="@X" onclick="openSidebar('41_Chimeric Crustacean',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/80_Balerun Demon_back.png" alt="/sets/UND-files/img/80_Balerun Demon_front.png" id="80_Balerun Demon" data-flag="@XD" onclick="openSidebar('80_Balerun Demon',false)"><button class="flip-btn" onclick="imgFlip('80_Balerun Demon')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/142_Opportunity Killer.png" id="142_Opportunity Killer" data-flag="@X" onclick="openSidebar('142_Opportunity Killer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/158_Blessings of Progress.png" id="158_Blessings of Progress" data-flag="@X" onclick="openSidebar('158_Blessings of Progress',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/6_Fortune Seeker.png" id="6_Fortune Seeker" data-flag="@X" onclick="openSidebar('6_Fortune Seeker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/42_Compulsive Completionist.png" id="42_Compulsive Completionist" data-flag="@X" onclick="openSidebar('42_Compulsive Completionist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/81_Beholdling.png" id="81_Beholdling" data-flag="@X" onclick="openSidebar('81_Beholdling',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/144_Raging Inferno Wyvern.png" id="144_Raging Inferno Wyvern" data-flag="@X" onclick="openSidebar('144_Raging Inferno Wyvern',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/160_Colossal Tardigrade.png" id="160_Colossal Tardigrade" data-flag="@X" onclick="openSidebar('160_Colossal Tardigrade',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/12_Knight of the Cycle.png" id="12_Knight of the Cycle" data-flag="@X" onclick="openSidebar('12_Knight of the Cycle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/46_Demonic Interference.png" id="46_Demonic Interference" data-flag="@X" onclick="openSidebar('46_Demonic Interference',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/95_Lockpick.png" id="95_Lockpick" data-flag="@X" onclick="openSidebar('95_Lockpick',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/119_Covetous Observer.png" id="119_Covetous Observer" data-flag="@X" onclick="openSidebar('119_Covetous Observer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/169_Lurchcave Explorer.png" id="169_Lurchcave Explorer" data-flag="@X" onclick="openSidebar('169_Lurchcave Explorer',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/15_Mechanized Smiter_back.png" alt="/sets/UND-files/img/15_Mechanized Smiter_front.png" id="15_Mechanized Smiter" data-flag="@XD" onclick="openSidebar('15_Mechanized Smiter',false)"><button class="flip-btn" onclick="imgFlip('15_Mechanized Smiter')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/48_Entrapped Ferryman.png" id="48_Entrapped Ferryman" data-flag="@X" onclick="openSidebar('48_Entrapped Ferryman',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/100_Nightmare Haunt.png" id="100_Nightmare Haunt" data-flag="@X" onclick="openSidebar('100_Nightmare Haunt',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/122_Dungeon Rage.png" id="122_Dungeon Rage" data-flag="@X" onclick="openSidebar('122_Dungeon Rage',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/171_Meditative Trainee.png" id="171_Meditative Trainee" data-flag="@X" onclick="openSidebar('171_Meditative Trainee',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/18_Onyx-Crest Sword.png" id="18_Onyx-Crest Sword" data-flag="@X" onclick="openSidebar('18_Onyx-Crest Sword',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/59_Keywielder Faerie.png" id="59_Keywielder Faerie" data-flag="@X" onclick="openSidebar('59_Keywielder Faerie',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/102_Painful Revelation.png" id="102_Painful Revelation" data-flag="@X" onclick="openSidebar('102_Painful Revelation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/123_Enrage the Boss.png" id="123_Enrage the Boss" data-flag="@X" onclick="openSidebar('123_Enrage the Boss',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/173_Overprovisioned Adventurer.png" id="173_Overprovisioned Adventurer" data-flag="@X" onclick="openSidebar('173_Overprovisioned Adventurer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/22_Sidequest.png" id="22_Sidequest" data-flag="@X" onclick="openSidebar('22_Sidequest',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/63_Psychic Wars Veteran.png" id="63_Psychic Wars Veteran" data-flag="@X" onclick="openSidebar('63_Psychic Wars Veteran',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/103_Pale Snake_back.png" alt="/sets/UND-files/img/103_Pale Snake_front.png" id="103_Pale Snake" data-flag="@XD" onclick="openSidebar('103_Pale Snake',false)"><button class="flip-btn" onclick="imgFlip('103_Pale Snake')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/125_Expedition Rouser.png" id="125_Expedition Rouser" data-flag="@X" onclick="openSidebar('125_Expedition Rouser',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/176_Run-Ending Dreadmaw.png" id="176_Run-Ending Dreadmaw" data-flag="@X" onclick="openSidebar('176_Run-Ending Dreadmaw',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/25_Treasure Seeker_back.png" alt="/sets/UND-files/img/25_Treasure Seeker_front.png" id="25_Treasure Seeker" data-flag="@XD" onclick="openSidebar('25_Treasure Seeker',false)"><button class="flip-btn" onclick="imgFlip('25_Treasure Seeker')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/64_Runaway Showboat.png" id="64_Runaway Showboat" data-flag="@X" onclick="openSidebar('64_Runaway Showboat',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/105_Rite of Death.png" id="105_Rite of Death" data-flag="@X" onclick="openSidebar('105_Rite of Death',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/129_Hoarder's Folly.png" id="129_Hoarders Folly" data-flag="@X" onclick="openSidebar('129_Hoarders Folly',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/178_Surprise Attack.png" id="178_Surprise Attack" data-flag="@X" onclick="openSidebar('178_Surprise Attack',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/27_Unassuming Skeleton_back.png" alt="/sets/UND-files/img/27_Unassuming Skeleton_front.png" id="27_Unassuming Skeleton" data-flag="@XD" onclick="openSidebar('27_Unassuming Skeleton',false)"><button class="flip-btn" onclick="imgFlip('27_Unassuming Skeleton')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/65_Scholar of the Halls.png" id="65_Scholar of the Halls" data-flag="@X" onclick="openSidebar('65_Scholar of the Halls',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/107_Sadistic Opportunist_back.png" alt="/sets/UND-files/img/107_Sadistic Opportunist_front.png" id="107_Sadistic Opportunist" data-flag="@XD" onclick="openSidebar('107_Sadistic Opportunist',false)"><button class="flip-btn" onclick="imgFlip('107_Sadistic Opportunist')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/130_Incite Violence.png" id="130_Incite Violence" data-flag="@X" onclick="openSidebar('130_Incite Violence',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/179_Swarming Anthrovore.png" id="179_Swarming Anthrovore" data-flag="@X" onclick="openSidebar('179_Swarming Anthrovore',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/30_Vengeful Spirit.png" id="30_Vengeful Spirit" data-flag="@X" onclick="openSidebar('30_Vengeful Spirit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/68_Spectre Maestro.png" id="68_Spectre Maestro" data-flag="@X" onclick="openSidebar('68_Spectre Maestro',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/109_Sludgebound Thrall.png" id="109_Sludgebound Thrall" data-flag="@X" onclick="openSidebar('109_Sludgebound Thrall',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/134_Jutting Spike.png" id="134_Jutting Spike" data-flag="@X" onclick="openSidebar('134_Jutting Spike',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/180_Trapped Room.png" id="180_Trapped Room" data-flag="@X" onclick="openSidebar('180_Trapped Room',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/31_Vista Visitor.png" id="31_Vista Visitor" data-flag="@X" onclick="openSidebar('31_Vista Visitor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/69_Strengthsap Trap.png" id="69_Strengthsap Trap" data-flag="@X" onclick="openSidebar('69_Strengthsap Trap',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/110_Spellseeker's Bane.png" id="110_Spellseekers Bane" data-flag="@X" onclick="openSidebar('110_Spellseekers Bane',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/136_Lavaplume Ravager.png" id="136_Lavaplume Ravager" data-flag="@X" onclick="openSidebar('136_Lavaplume Ravager',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/182_Underhalls Wayfinder.png" id="182_Underhalls Wayfinder" data-flag="@X" onclick="openSidebar('182_Underhalls Wayfinder',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/32_Wardglyph Trap.png" id="32_Wardglyph Trap" data-flag="@X" onclick="openSidebar('32_Wardglyph Trap',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/73_Under Mithrok's Gaze.png" id="73_Under Mithroks Gaze" data-flag="@X" onclick="openSidebar('73_Under Mithroks Gaze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/112_Twinhaft Challenger.png" id="112_Twinhaft Challenger" data-flag="@X" onclick="openSidebar('112_Twinhaft Challenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/138_Mithrok's Defector.png" id="138_Mithroks Defector" data-flag="@X" onclick="openSidebar('138_Mithroks Defector',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/184_Voracious Ooze.png" id="184_Voracious Ooze" data-flag="@X" onclick="openSidebar('184_Voracious Ooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/33_Well Armed.png" id="33_Well Armed" data-flag="@X" onclick="openSidebar('33_Well Armed',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/74_Winding Paths.png" id="74_Winding Paths" data-flag="@X" onclick="openSidebar('74_Winding Paths',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/113_Uberooze.png" id="113_Uberooze" data-flag="@X" onclick="openSidebar('113_Uberooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/145_Reckless Fireballer.png" id="145_Reckless Fireballer" data-flag="@X" onclick="openSidebar('145_Reckless Fireballer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/185_Voracious Scavenger.png" id="185_Voracious Scavenger" data-flag="@X" onclick="openSidebar('185_Voracious Scavenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/36_Mysterious Temple.png" id="36_Mysterious Temple" data-flag="@X" onclick="openSidebar('36_Mysterious Temple',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/76_Shadowed Hallway.png" id="76_Shadowed Hallway" data-flag="@X" onclick="openSidebar('76_Shadowed Hallway',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/115_Rancid Rivulet.png" id="115_Rancid Rivulet" data-flag="@X" onclick="openSidebar('115_Rancid Rivulet',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/150_Undead Pyromancer.png" id="150_Undead Pyromancer" data-flag="@X" onclick="openSidebar('150_Undead Pyromancer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/191_Dungeon's Engine.png" id="191_Dungeons Engine" data-flag="@X" onclick="openSidebar('191_Dungeons Engine',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/2_Armed Adept.png" id="2_Armed Adept" data-flag="@X" onclick="openSidebar('2_Armed Adept',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/77_Twisting Space.png" id="77_Twisting Space" data-flag="@X" onclick="openSidebar('77_Twisting Space',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/82_Boss Slime.png" id="82_Boss Slime" data-flag="@X" onclick="openSidebar('82_Boss Slime',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/153_Wall-Climbing Snatcher.png" id="153_Wall-Climbing Snatcher" data-flag="@X" onclick="openSidebar('153_Wall-Climbing Snatcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/159_Bust Through.png" id="159_Bust Through" data-flag="@X" onclick="openSidebar('159_Bust Through',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/3_Blades of Radiance.png" id="3_Blades of Radiance" data-flag="@X" onclick="openSidebar('3_Blades of Radiance',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/40_Awakened Lurker.png" id="40_Awakened Lurker" data-flag="@X" onclick="openSidebar('40_Awakened Lurker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/87_Dracooze.png" id="87_Dracooze" data-flag="@X" onclick="openSidebar('87_Dracooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/154_Weapon Collector.png" id="154_Weapon Collector" data-flag="@X" onclick="openSidebar('154_Weapon Collector',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/161_Consuming Ooze.png" id="161_Consuming Ooze" data-flag="@X" onclick="openSidebar('161_Consuming Ooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/8_Glyph of Warding.png" id="8_Glyph of Warding" data-flag="@X" onclick="openSidebar('8_Glyph of Warding',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/44_Crafty Illusionist.png" id="44_Crafty Illusionist" data-flag="@X" onclick="openSidebar('44_Crafty Illusionist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/88_Drop the Roof.png" id="88_Drop the Roof" data-flag="@X" onclick="openSidebar('88_Drop the Roof',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/156_Vault of Greed.png" id="156_Vault of Greed" data-flag="@X" onclick="openSidebar('156_Vault of Greed',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/162_Corridor Hewer.png" id="162_Corridor Hewer" data-flag="@X" onclick="openSidebar('162_Corridor Hewer',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/14_Maze Guide_back.png" alt="/sets/UND-files/img/14_Maze Guide_front.png" id="14_Maze Guide" data-flag="@XD" onclick="openSidebar('14_Maze Guide',false)"><button class="flip-btn" onclick="imgFlip('14_Maze Guide')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/45_Delving Deeper.png" id="45_Delving Deeper" data-flag="@X" onclick="openSidebar('45_Delving Deeper',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/89_Ethereal Dungeoneer.png" id="89_Ethereal Dungeoneer" data-flag="@X" onclick="openSidebar('89_Ethereal Dungeoneer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/118_Coreseeker Shaman.png" id="118_Coreseeker Shaman" data-flag="@X" onclick="openSidebar('118_Coreseeker Shaman',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/163_Doorslam.png" id="163_Doorslam" data-flag="@X" onclick="openSidebar('163_Doorslam',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/20_Rekindled Forerunner.png" id="20_Rekindled Forerunner" data-flag="@X" onclick="openSidebar('20_Rekindled Forerunner',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/49_Faerie Adventurer.png" id="49_Faerie Adventurer" data-flag="@X" onclick="openSidebar('49_Faerie Adventurer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/90_Expendable Hireling.png" id="90_Expendable Hireling" data-flag="@X" onclick="openSidebar('90_Expendable Hireling',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/121_Dragon's Spark.png" id="121_Dragons Spark" data-flag="@X" onclick="openSidebar('121_Dragons Spark',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/167_Floor Cleaner.png" id="167_Floor Cleaner" data-flag="@X" onclick="openSidebar('167_Floor Cleaner',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/21_Runic Steed.png" id="21_Runic Steed" data-flag="@X" onclick="openSidebar('21_Runic Steed',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/50_Fall Through the Floor.png" id="50_Fall Through the Floor" data-flag="@X" onclick="openSidebar('50_Fall Through the Floor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/91_Fleshrender Trap.png" id="91_Fleshrender Trap" data-flag="@X" onclick="openSidebar('91_Fleshrender Trap',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/126_Fool Hopper.png" id="126_Fool Hopper" data-flag="@X" onclick="openSidebar('126_Fool Hopper',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/168_Loathsome Pusmaw.png" id="168_Loathsome Pusmaw" data-flag="@X" onclick="openSidebar('168_Loathsome Pusmaw',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/23_Stone Sentry.png" id="23_Stone Sentry" data-flag="@X" onclick="openSidebar('23_Stone Sentry',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/54_Glooped.png" id="54_Glooped" data-flag="@X" onclick="openSidebar('54_Glooped',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/92_Give Up.png" id="92_Give Up" data-flag="@X" onclick="openSidebar('92_Give Up',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/128_Hellfire Occultist_back.png" alt="/sets/UND-files/img/128_Hellfire Occultist_front.png" id="128_Hellfire Occultist" data-flag="@XD" onclick="openSidebar('128_Hellfire Occultist',false)"><button class="flip-btn" onclick="imgFlip('128_Hellfire Occultist')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/172_Nimble Trapcatcher.png" id="172_Nimble Trapcatcher" data-flag="@X" onclick="openSidebar('172_Nimble Trapcatcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/24_Stone-Carved Savior.png" id="24_Stone-Carved Savior" data-flag="@X" onclick="openSidebar('24_Stone-Carved Savior',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/55_Glow.png" id="55_Glow" data-flag="@X" onclick="openSidebar('55_Glow',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/94_Humiliating Defeat.png" id="94_Humiliating Defeat" data-flag="@X" onclick="openSidebar('94_Humiliating Defeat',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/131_Irate Dragoon.png" id="131_Irate Dragoon" data-flag="@X" onclick="openSidebar('131_Irate Dragoon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/174_Plantaur.png" id="174_Plantaur" data-flag="@X" onclick="openSidebar('174_Plantaur',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/26_Tunnel Patrol_back.png" alt="/sets/UND-files/img/26_Tunnel Patrol_front.png" id="26_Tunnel Patrol" data-flag="@XD" onclick="openSidebar('26_Tunnel Patrol',false)"><button class="flip-btn" onclick="imgFlip('26_Tunnel Patrol')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/57_Illusory Gambit.png" id="57_Illusory Gambit" data-flag="@X" onclick="openSidebar('57_Illusory Gambit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/96_Looming Sentinels.png" id="96_Looming Sentinels" data-flag="@X" onclick="openSidebar('96_Looming Sentinels',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/133_Izan's Show of Skill.png" id="133_Izans Show of Skill" data-flag="@X" onclick="openSidebar('133_Izans Show of Skill',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/177_Spriggan Wayfinder.png" id="177_Spriggan Wayfinder" data-flag="@X" onclick="openSidebar('177_Spriggan Wayfinder',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/28_Underhalls Cartographer.png" id="28_Underhalls Cartographer" data-flag="@X" onclick="openSidebar('28_Underhalls Cartographer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/60_Lacewing Drake.png" id="60_Lacewing Drake" data-flag="@X" onclick="openSidebar('60_Lacewing Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/99_Necrotrick.png" id="99_Necrotrick" data-flag="@X" onclick="openSidebar('99_Necrotrick',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/135_Kobold Scavengers_back.png" alt="/sets/UND-files/img/135_Kobold Scavengers_front.png" id="135_Kobold Scavengers" data-flag="@XD" onclick="openSidebar('135_Kobold Scavengers',false)"><button class="flip-btn" onclick="imgFlip('135_Kobold Scavengers')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/181_Tutelary Delver.png" id="181_Tutelary Delver" data-flag="@X" onclick="openSidebar('181_Tutelary Delver',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/29_Underhalls Gatekeeper.png" id="29_Underhalls Gatekeeper" data-flag="@X" onclick="openSidebar('29_Underhalls Gatekeeper',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/61_Lantern Lurker.png" id="61_Lantern Lurker" data-flag="@X" onclick="openSidebar('61_Lantern Lurker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/101_Ooze Harvester.png" id="101_Ooze Harvester" data-flag="@X" onclick="openSidebar('101_Ooze Harvester',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/141_Opportunistic Necromancer.png" id="141_Opportunistic Necromancer" data-flag="@X" onclick="openSidebar('141_Opportunistic Necromancer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/183_Unexplored Territory.png" id="183_Unexplored Territory" data-flag="@X" onclick="openSidebar('183_Unexplored Territory',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/34_Winged Automaton_back.png" alt="/sets/UND-files/img/34_Winged Automaton_front.png" id="34_Winged Automaton" data-flag="@XD" onclick="openSidebar('34_Winged Automaton',false)"><button class="flip-btn" onclick="imgFlip('34_Winged Automaton')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/66_Settlement Sentries.png" id="66_Settlement Sentries" data-flag="@X" onclick="openSidebar('66_Settlement Sentries',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/104_Provisioning Butcher.png" id="104_Provisioning Butcher" data-flag="@X" onclick="openSidebar('104_Provisioning Butcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/146_Shield Shatter.png" id="146_Shield Shatter" data-flag="@X" onclick="openSidebar('146_Shield Shatter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/186_Wallbreaker Huskchops.png" id="186_Wallbreaker Huskchops" data-flag="@X" onclick="openSidebar('186_Wallbreaker Huskchops',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/35_Woven Strike.png" id="35_Woven Strike" data-flag="@X" onclick="openSidebar('35_Woven Strike',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/67_Sootscale Skulker.png" id="67_Sootscale Skulker" data-flag="@X" onclick="openSidebar('67_Sootscale Skulker',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/108_Skeletal Guardian_back.png" alt="/sets/UND-files/img/108_Skeletal Guardian_front.png" id="108_Skeletal Guardian" data-flag="@XD" onclick="openSidebar('108_Skeletal Guardian',false)"><button class="flip-btn" onclick="imgFlip('108_Skeletal Guardian')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/147_Smolderhare.png" id="147_Smolderhare" data-flag="@X" onclick="openSidebar('147_Smolderhare',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/189_Auspicious Exit.png" id="189_Auspicious Exit" data-flag="@X" onclick="openSidebar('189_Auspicious Exit',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/37_Rumbling Passage.png" id="37_Rumbling Passage" data-flag="@X" onclick="openSidebar('37_Rumbling Passage',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/71_A Treasure's Power.png" id="71_A Treasures Power" data-flag="@X" onclick="openSidebar('71_A Treasures Power',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/111_Treacherous Sorceress.png" id="111_Treacherous Sorceress" data-flag="@X" onclick="openSidebar('111_Treacherous Sorceress',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/148_Tenacious Challenger.png" id="148_Tenacious Challenger" data-flag="@X" onclick="openSidebar('148_Tenacious Challenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/193_Green Pool.png" id="193_Green Pool" data-flag="@X" onclick="openSidebar('193_Green Pool',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/38_Statuary Niche.png" id="38_Statuary Niche" data-flag="@X" onclick="openSidebar('38_Statuary Niche',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/72_Turn the Corner.png" id="72_Turn the Corner" data-flag="@X" onclick="openSidebar('72_Turn the Corner',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/114_Ghastly Corridor.png" id="114_Ghastly Corridor" data-flag="@X" onclick="openSidebar('114_Ghastly Corridor',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/149_Ultimate Burst Flame.png" id="149_Ultimate Burst Flame" data-flag="@X" onclick="openSidebar('149_Ultimate Burst Flame',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/194_Rearranging Device.png" id="194_Rearranging Device" data-flag="@X" onclick="openSidebar('194_Rearranging Device',true)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/75_Flooded Cavern.png" id="75_Flooded Cavern" data-flag="@X" onclick="openSidebar('75_Flooded Cavern',true)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/151_Underhalls Warden.png" id="151_Underhalls Warden" data-flag="@X" onclick="openSidebar('151_Underhalls Warden',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/152_Voltaic Chain.png" id="152_Voltaic Chain" data-flag="@X" onclick="openSidebar('152_Voltaic Chain',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/155_Book Stack.png" id="155_Book Stack" data-flag="@X" onclick="openSidebar('155_Book Stack',true)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img alt="/sets/UND-files/img/212_Lords of Gilded Halls.png" id="212_Lords of Gilded Halls" data-flag="@X" onclick="openSidebar('212_Lords of Gilded Halls',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/225_Shadow of the Underhalls.png" id="225_Shadow of the Underhalls" data-flag="@X" onclick="openSidebar('225_Shadow of the Underhalls',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/217_Pinnacle of Rivals.png" id="217_Pinnacle of Rivals" data-flag="@X" onclick="openSidebar('217_Pinnacle of Rivals',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/210_Keep Pushing Through.png" id="210_Keep Pushing Through" data-flag="@X" onclick="openSidebar('210_Keep Pushing Through',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/206_Enigmatic Elder.png" id="206_Enigmatic Elder" data-flag="@X" onclick="openSidebar('206_Enigmatic Elder',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/213_Lost in the Halls.png" id="213_Lost in the Halls" data-flag="@X" onclick="openSidebar('213_Lost in the Halls',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/226_Shinae, Master Trapsetter.png" id="226_Shinae, Master Trapsetter" data-flag="@X" onclick="openSidebar('226_Shinae, Master Trapsetter',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/219_Reckless Iteration.png" id="219_Reckless Iteration" data-flag="@X" onclick="openSidebar('219_Reckless Iteration',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/211_Krotoka, Nature's Revenge.png" id="211_Krotoka, Natures Revenge" data-flag="@X" onclick="openSidebar('211_Krotoka, Natures Revenge',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/239_Shattered Bridge.png" id="239_Shattered Bridge" data-flag="@X" onclick="openSidebar('239_Shattered Bridge',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/227_Soulblade Explorer.png" id="227_Soulblade Explorer" data-flag="@X" onclick="openSidebar('227_Soulblade Explorer',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/196_Amon, Thief in the Dark.png" id="196_Amon, Thief in the Dark" data-flag="@X" onclick="openSidebar('196_Amon, Thief in the Dark',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/198_Cadaver Commander.png" id="198_Cadaver Commander" data-flag="@X" onclick="openSidebar('198_Cadaver Commander',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/224_Serin, Battlemaster.png" id="224_Serin, Battlemaster" data-flag="@X" onclick="openSidebar('224_Serin, Battlemaster',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/229_Underhalls Ecologist.png" id="229_Underhalls Ecologist" data-flag="@X" onclick="openSidebar('229_Underhalls Ecologist',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/230_Underhalls Monitor.png" id="230_Underhalls Monitor" data-flag="@X" onclick="openSidebar('230_Underhalls Monitor',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/199_Clattercrypt Champion.png" id="199_Clattercrypt Champion" data-flag="@X" onclick="openSidebar('199_Clattercrypt Champion',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/201_Corpsethief.png" id="201_Corpsethief" data-flag="@X" onclick="openSidebar('201_Corpsethief',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/202_Dee, Ascending Underling.png" id="202_Dee, Ascending Underling" data-flag="@X" onclick="openSidebar('202_Dee, Ascending Underling',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/235_Wealthy Outpost.png" id="235_Wealthy Outpost" data-flag="@X" onclick="openSidebar('235_Wealthy Outpost',true)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/207_Feathered Sneak.png" id="207_Feathered Sneak" data-flag="@X" onclick="openSidebar('207_Feathered Sneak',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/203_Difficulty Spike.png" id="203_Difficulty Spike" data-flag="@X" onclick="openSidebar('203_Difficulty Spike',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/218_Practice Run.png" id="218_Practice Run" data-flag="@X" onclick="openSidebar('218_Practice Run',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/232_The Wight of Drake Hill.png" id="232_The Wight of Drake Hill" data-flag="@X" onclick="openSidebar('232_The Wight of Drake Hill',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/238_Leeching Lake.png" id="238_Leeching Lake" data-flag="@X" onclick="openSidebar('238_Leeching Lake',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/204_Dreadrot Servant.png" id="204_Dreadrot Servant" data-flag="@X" onclick="openSidebar('204_Dreadrot Servant',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/195_Accomplished Gish.png" id="195_Accomplished Gish" data-flag="@X" onclick="openSidebar('195_Accomplished Gish',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/231_Voracious Intellect.png" id="231_Voracious Intellect" data-flag="@X" onclick="openSidebar('231_Voracious Intellect',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/214_Necrospawner.png" id="214_Necrospawner" data-flag="@X" onclick="openSidebar('214_Necrospawner',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/215_Neverending Run.png" id="215_Neverending Run" data-flag="@X" onclick="openSidebar('215_Neverending Run',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/236_Bone Cathedral.png" id="236_Bone Cathedral" data-flag="@X" onclick="openSidebar('236_Bone Cathedral',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/223_Self-Improvement.png" id="223_Self-Improvement" data-flag="@X" onclick="openSidebar('223_Self-Improvement',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/234_Overgrown Halls.png" id="234_Overgrown Halls" data-flag="@X" onclick="openSidebar('234_Overgrown Halls',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/221_Repeated Reanimation.png" id="221_Repeated Reanimation" data-flag="@X" onclick="openSidebar('221_Repeated Reanimation',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/237_Lava Fountain.png" id="237_Lava Fountain" data-flag="@X" onclick="openSidebar('237_Lava Fountain',true)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/200_Congealing Mass.png" id="200_Congealing Mass" data-flag="@X" onclick="openSidebar('200_Congealing Mass',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/197_Arms Mastery.png" id="197_Arms Mastery" data-flag="@X" onclick="openSidebar('197_Arms Mastery',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/216_Passageway Sage.png" id="216_Passageway Sage" data-flag="@X" onclick="openSidebar('216_Passageway Sage',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/220_Reclaiming the Spoils.png" id="220_Reclaiming the Spoils" data-flag="@X" onclick="openSidebar('220_Reclaiming the Spoils',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/205_Elemental Force.png" id="205_Elemental Force" data-flag="@X" onclick="openSidebar('205_Elemental Force',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/228_Spawn Point.png" id="228_Spawn Point" data-flag="@X" onclick="openSidebar('228_Spawn Point',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/209_Gilded Guardian_back.png" alt="/sets/UND-files/img/209_Gilded Guardian_front.png" id="209_Gilded Guardian" data-flag="@XD" onclick="openSidebar('209_Gilded Guardian',false)"><button class="flip-btn" onclick="imgFlip('209_Gilded Guardian')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/233_Fungal Stocks.png" id="233_Fungal Stocks" data-flag="@X" onclick="openSidebar('233_Fungal Stocks',true)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/222_Revenant Captain_back.png" alt="/sets/UND-files/img/222_Revenant Captain_front.png" id="222_Revenant Captain" data-flag="@XD" onclick="openSidebar('222_Revenant Captain',false)"><button class="flip-btn" onclick="imgFlip('222_Revenant Captain')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/208_Flashy Battlemage.png" id="208_Flashy Battlemage" data-flag="@X" onclick="openSidebar('208_Flashy Battlemage',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/212_Lords of Gilded Halls.png" id="212_Lords of Gilded Halls" data-flag="@X" onclick="openSidebar('212_Lords of Gilded Halls',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/225_Shadow of the Underhalls.png" id="225_Shadow of the Underhalls" data-flag="@X" onclick="openSidebar('225_Shadow of the Underhalls',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/217_Pinnacle of Rivals.png" id="217_Pinnacle of Rivals" data-flag="@X" onclick="openSidebar('217_Pinnacle of Rivals',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/210_Keep Pushing Through.png" id="210_Keep Pushing Through" data-flag="@X" onclick="openSidebar('210_Keep Pushing Through',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/206_Enigmatic Elder.png" id="206_Enigmatic Elder" data-flag="@X" onclick="openSidebar('206_Enigmatic Elder',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/213_Lost in the Halls.png" id="213_Lost in the Halls" data-flag="@X" onclick="openSidebar('213_Lost in the Halls',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/226_Shinae, Master Trapsetter.png" id="226_Shinae, Master Trapsetter" data-flag="@X" onclick="openSidebar('226_Shinae, Master Trapsetter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/219_Reckless Iteration.png" id="219_Reckless Iteration" data-flag="@X" onclick="openSidebar('219_Reckless Iteration',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/211_Krotoka, Nature's Revenge.png" id="211_Krotoka, Natures Revenge" data-flag="@X" onclick="openSidebar('211_Krotoka, Natures Revenge',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/239_Shattered Bridge.png" id="239_Shattered Bridge" data-flag="@X" onclick="openSidebar('239_Shattered Bridge',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/227_Soulblade Explorer.png" id="227_Soulblade Explorer" data-flag="@X" onclick="openSidebar('227_Soulblade Explorer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/196_Amon, Thief in the Dark.png" id="196_Amon, Thief in the Dark" data-flag="@X" onclick="openSidebar('196_Amon, Thief in the Dark',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/198_Cadaver Commander.png" id="198_Cadaver Commander" data-flag="@X" onclick="openSidebar('198_Cadaver Commander',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/224_Serin, Battlemaster.png" id="224_Serin, Battlemaster" data-flag="@X" onclick="openSidebar('224_Serin, Battlemaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/229_Underhalls Ecologist.png" id="229_Underhalls Ecologist" data-flag="@X" onclick="openSidebar('229_Underhalls Ecologist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/230_Underhalls Monitor.png" id="230_Underhalls Monitor" data-flag="@X" onclick="openSidebar('230_Underhalls Monitor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/199_Clattercrypt Champion.png" id="199_Clattercrypt Champion" data-flag="@X" onclick="openSidebar('199_Clattercrypt Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/201_Corpsethief.png" id="201_Corpsethief" data-flag="@X" onclick="openSidebar('201_Corpsethief',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/202_Dee, Ascending Underling.png" id="202_Dee, Ascending Underling" data-flag="@X" onclick="openSidebar('202_Dee, Ascending Underling',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/235_Wealthy Outpost.png" id="235_Wealthy Outpost" data-flag="@X" onclick="openSidebar('235_Wealthy Outpost',true)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/207_Feathered Sneak.png" id="207_Feathered Sneak" data-flag="@X" onclick="openSidebar('207_Feathered Sneak',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/203_Difficulty Spike.png" id="203_Difficulty Spike" data-flag="@X" onclick="openSidebar('203_Difficulty Spike',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/218_Practice Run.png" id="218_Practice Run" data-flag="@X" onclick="openSidebar('218_Practice Run',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/232_The Wight of Drake Hill.png" id="232_The Wight of Drake Hill" data-flag="@X" onclick="openSidebar('232_The Wight of Drake Hill',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/238_Leeching Lake.png" id="238_Leeching Lake" data-flag="@X" onclick="openSidebar('238_Leeching Lake',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/204_Dreadrot Servant.png" id="204_Dreadrot Servant" data-flag="@X" onclick="openSidebar('204_Dreadrot Servant',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/195_Accomplished Gish.png" id="195_Accomplished Gish" data-flag="@X" onclick="openSidebar('195_Accomplished Gish',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/231_Voracious Intellect.png" id="231_Voracious Intellect" data-flag="@X" onclick="openSidebar('231_Voracious Intellect',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/214_Necrospawner.png" id="214_Necrospawner" data-flag="@X" onclick="openSidebar('214_Necrospawner',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/215_Neverending Run.png" id="215_Neverending Run" data-flag="@X" onclick="openSidebar('215_Neverending Run',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/236_Bone Cathedral.png" id="236_Bone Cathedral" data-flag="@X" onclick="openSidebar('236_Bone Cathedral',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/223_Self-Improvement.png" id="223_Self-Improvement" data-flag="@X" onclick="openSidebar('223_Self-Improvement',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/234_Overgrown Halls.png" id="234_Overgrown Halls" data-flag="@X" onclick="openSidebar('234_Overgrown Halls',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/221_Repeated Reanimation.png" id="221_Repeated Reanimation" data-flag="@X" onclick="openSidebar('221_Repeated Reanimation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/237_Lava Fountain.png" id="237_Lava Fountain" data-flag="@X" onclick="openSidebar('237_Lava Fountain',true)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/200_Congealing Mass.png" id="200_Congealing Mass" data-flag="@X" onclick="openSidebar('200_Congealing Mass',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/197_Arms Mastery.png" id="197_Arms Mastery" data-flag="@X" onclick="openSidebar('197_Arms Mastery',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/216_Passageway Sage.png" id="216_Passageway Sage" data-flag="@X" onclick="openSidebar('216_Passageway Sage',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/220_Reclaiming the Spoils.png" id="220_Reclaiming the Spoils" data-flag="@X" onclick="openSidebar('220_Reclaiming the Spoils',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/205_Elemental Force.png" id="205_Elemental Force" data-flag="@X" onclick="openSidebar('205_Elemental Force',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/228_Spawn Point.png" id="228_Spawn Point" data-flag="@X" onclick="openSidebar('228_Spawn Point',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/209_Gilded Guardian_back.png" alt="/sets/UND-files/img/209_Gilded Guardian_front.png" id="209_Gilded Guardian" data-flag="@XD" onclick="openSidebar('209_Gilded Guardian',false)"><button class="flip-btn" onclick="imgFlip('209_Gilded Guardian')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/233_Fungal Stocks.png" id="233_Fungal Stocks" data-flag="@X" onclick="openSidebar('233_Fungal Stocks',true)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/222_Revenant Captain_back.png" alt="/sets/UND-files/img/222_Revenant Captain_front.png" id="222_Revenant Captain" data-flag="@XD" onclick="openSidebar('222_Revenant Captain',false)"><button class="flip-btn" onclick="imgFlip('222_Revenant Captain')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/208_Flashy Battlemage.png" id="208_Flashy Battlemage" data-flag="@X" onclick="openSidebar('208_Flashy Battlemage',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img alt="/sets/UND-files/img/246_Dungeon Compass.png" id="246_Dungeon Compass" data-flag="@X" onclick="openSidebar('246_Dungeon Compass',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/240_Ancient Prize.png" id="240_Ancient Prize" data-flag="@X" onclick="openSidebar('240_Ancient Prize',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/241_Animated Adamantium_back.png" alt="/sets/UND-files/img/241_Animated Adamantium_front.png" id="241_Animated Adamantium" data-flag="@XD" onclick="openSidebar('241_Animated Adamantium',false)"><button class="flip-btn" onclick="imgFlip('241_Animated Adamantium')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/242_Arcane Shopkeep.png" id="242_Arcane Shopkeep" data-flag="@X" onclick="openSidebar('242_Arcane Shopkeep',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/249_Fountain of Fortunes.png" id="249_Fountain of Fortunes" data-flag="@X" onclick="openSidebar('249_Fountain of Fortunes',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/250_Granite Shieldbearer_back.png" alt="/sets/UND-files/img/250_Granite Shieldbearer_front.png" id="250_Granite Shieldbearer" data-flag="@XD" onclick="openSidebar('250_Granite Shieldbearer',false)"><button class="flip-btn" onclick="imgFlip('250_Granite Shieldbearer')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/251_The Junk Mother.png" id="251_The Junk Mother" data-flag="@X" onclick="openSidebar('251_The Junk Mother',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/253_Masterwork Colossus.png" id="253_Masterwork Colossus" data-flag="@X" onclick="openSidebar('253_Masterwork Colossus',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/243_Automap.png" id="243_Automap" data-flag="@X" onclick="openSidebar('243_Automap',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/244_Blight Dagger.png" id="244_Blight Dagger" data-flag="@X" onclick="openSidebar('244_Blight Dagger',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/245_Disenchanted Ring.png" id="245_Disenchanted Ring" data-flag="@X" onclick="openSidebar('245_Disenchanted Ring',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/247_Dungeon Snacks.png" id="247_Dungeon Snacks" data-flag="@X" onclick="openSidebar('247_Dungeon Snacks',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/254_Orb of Knowledge.png" id="254_Orb of Knowledge" data-flag="@X" onclick="openSidebar('254_Orb of Knowledge',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/256_Sentinel of Conflict.png" id="256_Sentinel of Conflict" data-flag="@X" onclick="openSidebar('256_Sentinel of Conflict',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/258_Shield Guardian.png" id="258_Shield Guardian" data-flag="@X" onclick="openSidebar('258_Shield Guardian',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/248_Flashfrost Blade.png" id="248_Flashfrost Blade" data-flag="@X" onclick="openSidebar('248_Flashfrost Blade',false)"></div>
-				<div class="container"><img data-alt_src="/sets/UND-files/img/252_Living Armament_back.png" alt="/sets/UND-files/img/252_Living Armament_front.png" id="252_Living Armament" data-flag="@XD" onclick="openSidebar('252_Living Armament',false)"><button class="flip-btn" onclick="imgFlip('252_Living Armament')"></button></div>
-				<div class="container"><img alt="/sets/UND-files/img/255_Scope Thopter.png" id="255_Scope Thopter" data-flag="@X" onclick="openSidebar('255_Scope Thopter',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/257_Sentinel of the Old Dungeon.png" id="257_Sentinel of the Old Dungeon" data-flag="@X" onclick="openSidebar('257_Sentinel of the Old Dungeon',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/259_Starlight Amulet.png" id="259_Starlight Amulet" data-flag="@X" onclick="openSidebar('259_Starlight Amulet',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/260_Trapping Thorns.png" id="260_Trapping Thorns" data-flag="@X" onclick="openSidebar('260_Trapping Thorns',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/262_Armory Crypt.png" id="262_Armory Crypt" data-flag="@X" onclick="openSidebar('262_Armory Crypt',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/263_Divination Chamber.png" id="263_Divination Chamber" data-flag="@X" onclick="openSidebar('263_Divination Chamber',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/264_Experience Exchange.png" id="264_Experience Exchange" data-flag="@X" onclick="openSidebar('264_Experience Exchange',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/265_The Underhalls.png" id="265_The Underhalls" data-flag="@X" onclick="openSidebar('265_The Underhalls',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/246_Dungeon Compass.png" id="246_Dungeon Compass" data-flag="@X" onclick="openSidebar('246_Dungeon Compass',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/240_Ancient Prize.png" id="240_Ancient Prize" data-flag="@X" onclick="openSidebar('240_Ancient Prize',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/241_Animated Adamantium_back.png" alt="/sets/UND-files/img/241_Animated Adamantium_front.png" id="241_Animated Adamantium" data-flag="@XD" onclick="openSidebar('241_Animated Adamantium',false)"><button class="flip-btn" onclick="imgFlip('241_Animated Adamantium')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/242_Arcane Shopkeep.png" id="242_Arcane Shopkeep" data-flag="@X" onclick="openSidebar('242_Arcane Shopkeep',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/249_Fountain of Fortunes.png" id="249_Fountain of Fortunes" data-flag="@X" onclick="openSidebar('249_Fountain of Fortunes',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/250_Granite Shieldbearer_back.png" alt="/sets/UND-files/img/250_Granite Shieldbearer_front.png" id="250_Granite Shieldbearer" data-flag="@XD" onclick="openSidebar('250_Granite Shieldbearer',false)"><button class="flip-btn" onclick="imgFlip('250_Granite Shieldbearer')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/251_The Junk Mother.png" id="251_The Junk Mother" data-flag="@X" onclick="openSidebar('251_The Junk Mother',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/253_Masterwork Colossus.png" id="253_Masterwork Colossus" data-flag="@X" onclick="openSidebar('253_Masterwork Colossus',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/243_Automap.png" id="243_Automap" data-flag="@X" onclick="openSidebar('243_Automap',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/244_Blight Dagger.png" id="244_Blight Dagger" data-flag="@X" onclick="openSidebar('244_Blight Dagger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/245_Disenchanted Ring.png" id="245_Disenchanted Ring" data-flag="@X" onclick="openSidebar('245_Disenchanted Ring',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/247_Dungeon Snacks.png" id="247_Dungeon Snacks" data-flag="@X" onclick="openSidebar('247_Dungeon Snacks',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/254_Orb of Knowledge.png" id="254_Orb of Knowledge" data-flag="@X" onclick="openSidebar('254_Orb of Knowledge',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/256_Sentinel of Conflict.png" id="256_Sentinel of Conflict" data-flag="@X" onclick="openSidebar('256_Sentinel of Conflict',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/258_Shield Guardian.png" id="258_Shield Guardian" data-flag="@X" onclick="openSidebar('258_Shield Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/248_Flashfrost Blade.png" id="248_Flashfrost Blade" data-flag="@X" onclick="openSidebar('248_Flashfrost Blade',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="/sets/UND-files/img/252_Living Armament_back.png" alt="/sets/UND-files/img/252_Living Armament_front.png" id="252_Living Armament" data-flag="@XD" onclick="openSidebar('252_Living Armament',false)"><button class="flip-btn" onclick="imgFlip('252_Living Armament')"></button></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/255_Scope Thopter.png" id="255_Scope Thopter" data-flag="@X" onclick="openSidebar('255_Scope Thopter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/257_Sentinel of the Old Dungeon.png" id="257_Sentinel of the Old Dungeon" data-flag="@X" onclick="openSidebar('257_Sentinel of the Old Dungeon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/259_Starlight Amulet.png" id="259_Starlight Amulet" data-flag="@X" onclick="openSidebar('259_Starlight Amulet',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/260_Trapping Thorns.png" id="260_Trapping Thorns" data-flag="@X" onclick="openSidebar('260_Trapping Thorns',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/262_Armory Crypt.png" id="262_Armory Crypt" data-flag="@X" onclick="openSidebar('262_Armory Crypt',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/263_Divination Chamber.png" id="263_Divination Chamber" data-flag="@X" onclick="openSidebar('263_Divination Chamber',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/264_Experience Exchange.png" id="264_Experience Exchange" data-flag="@X" onclick="openSidebar('264_Experience Exchange',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/265_The Underhalls.png" id="265_The Underhalls" data-flag="@X" onclick="openSidebar('265_The Underhalls',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img alt="/sets/UND-files/img/9t_Golem.png" id="9t_Golem" data-flag="@X" onclick="openSidebar('9t_Golem',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/10t_Treasure.png" id="10t_Treasure" data-flag="@X" onclick="openSidebar('10t_Treasure',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/1t_Spirit.png" id="1t_Spirit" data-flag="@X" onclick="openSidebar('1t_Spirit',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/2t_Monkey.png" id="2t_Monkey" data-flag="@X" onclick="openSidebar('2t_Monkey',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/3t_Skeleton.png" id="3t_Skeleton" data-flag="@X" onclick="openSidebar('3t_Skeleton',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/4t_Skeleton.png" id="4t_Skeleton" data-flag="@X" onclick="openSidebar('4t_Skeleton',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/5t_Illusion Rogue.png" id="5t_Illusion Rogue" data-flag="@X" onclick="openSidebar('5t_Illusion Rogue',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/6t_Fungus.png" id="6t_Fungus" data-flag="@X" onclick="openSidebar('6t_Fungus',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/7t_Ooze.png" id="7t_Ooze" data-flag="@X" onclick="openSidebar('7t_Ooze',false)"></div>
-				<div class="container"><img alt="/sets/UND-files/img/8t_Plant Horror.png" id="8t_Plant Horror" data-flag="@X" onclick="openSidebar('8t_Plant Horror',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/9t_Golem.png" id="9t_Golem" data-flag="@X" onclick="openSidebar('9t_Golem',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/10t_Treasure.png" id="10t_Treasure" data-flag="@X" onclick="openSidebar('10t_Treasure',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/1t_Spirit.png" id="1t_Spirit" data-flag="@X" onclick="openSidebar('1t_Spirit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/2t_Monkey.png" id="2t_Monkey" data-flag="@X" onclick="openSidebar('2t_Monkey',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/3t_Skeleton.png" id="3t_Skeleton" data-flag="@X" onclick="openSidebar('3t_Skeleton',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/4t_Skeleton.png" id="4t_Skeleton" data-flag="@X" onclick="openSidebar('4t_Skeleton',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/5t_Illusion Rogue.png" id="5t_Illusion Rogue" data-flag="@X" onclick="openSidebar('5t_Illusion Rogue',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/6t_Fungus.png" id="6t_Fungus" data-flag="@X" onclick="openSidebar('6t_Fungus',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/7t_Ooze.png" id="7t_Ooze" data-flag="@X" onclick="openSidebar('7t_Ooze',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/UND-files/img/8t_Plant Horror.png" id="8t_Plant Horror" data-flag="@X" onclick="openSidebar('8t_Plant Horror',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
@@ -704,27 +705,51 @@
 	let horizontal = false;
 
 	function imgFlip(num) {
-		tmp = document.getElementById(num).src;
-		console.log(num);
-		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
-		document.getElementById(num).dataset.alt_src = tmp;
+		const img = document.getElementById(num);
+		const seconds = 0.2;
+		const rotated_img = document.getElementById('sidebar_h_img');
 
-		if (num == 'sidebar_img')
+        img.style.transition = seconds.toString() + "s";
+        img.style.transform = "rotateY(90deg)";
+
+        if (num == 'sidebar_img')
 		{
-			const rotated_img = document.getElementById('sidebar_h_img');
 			const sidebar_img = document.getElementById('sidebar_img');
 
-			if (horizontal && rotated_img.style.display == 'none')
-			{
-				rotated_img.style.display = "block";
-				sidebar_img.style.filter = "blur(2px) brightness(0.7)";
-			}
-			else
-			{
-				rotated_img.style.display = "none";
-				sidebar_img.style.filter = "";
-			}
+			if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		                img.style.filter = "none";
+		            }, (seconds / 2) * 1000);
+		        }
+		        else {
+		        	setTimeout(() => {
+		                rotated_img.style.opacity = "1";
+		                img.style.filter = "blur(2px) brightness(0.7)";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
 		}
+
+         setTimeout(function() {
+            tmp = document.getElementById(num).src;
+			document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+			document.getElementById(num).dataset.alt_src = tmp;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(0deg)";
+
+            if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+            }
+        }, seconds * 1000);
 	}
 
 	function openSidebar(id, h = false) {
@@ -736,17 +761,19 @@
 		const rotated_img = document.getElementById('sidebar_h_img');
 		const sidebar_img = document.getElementById('sidebar_img');
 
+		sidebar_img.style.transition = "none";
+		rotated_img.style.transition = "none";
 		sidebar_img.src = document.getElementById(id).src;
 		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
 
 		if (horizontal && !sidebar_img.src.includes("_back"))
 		{
-			rotated_img.style.display = "block";
+			rotated_img.style.opacity = "1";
 			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
 		}
 		else
 		{
-			rotated_img.style.display = "none";
+			rotated_img.style.opacity = "0";
 			sidebar_img.style.filter = "";
 		}
 
@@ -779,6 +806,7 @@
 	}
 
 	function rolldown() {
+		dropdown.style.gridTemplateColumns = "repeat(3, 1fr)";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -788,6 +816,7 @@
 	}
 
 	function rollup() {
+		dropdown.style.gridTemplateColumns = "1fr";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -810,21 +839,21 @@
 	}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let random_card = card_list_arrayified[i];
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
 
-			const url = new URL('card', window.location.origin);
-			const params = {
-				set: random_card.set,
-				num: random_card.number,
-				name: random_card.card_name
-			}
-			for (const key in params) {
-				url.searchParams.append(key, params[key]);
-			}
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
 
-			window.location.href = url;
-		}
+				window.location.href = url;
+			}
 	</script>
 </body>
 </html>

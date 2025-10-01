@@ -126,7 +126,7 @@
 		background-position: center;
 	}
 	.img-container .h-img {
-		transform: rotate(90deg);
+		transform: rotateY(0deg) rotate(90deg);
 		width: 80%;
 	}
 	.img-container a {
@@ -367,6 +367,10 @@
 			} else {
 				card_effects = "";
 			}
+			if ("v_mana" in card_stats)
+			{
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="/img/' + card_stats.v_mana + '">');
+			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
 
@@ -416,6 +420,10 @@
 				} else {
 					card_effects_2 = "";
 				}
+				if ("v_mana" in card_stats)
+				{
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="/img/' + card_stats.v_mana + '">');
+				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
 
@@ -448,8 +456,14 @@
 			const img = document.createElement("img");
 			img.className = "card-image";
 			img.id = id;
-			// (card_stats[13].includes("_") ? card_stats[13] : card_stats[0]) for posterity
-			img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			img.loading = "lazy";
+
+			if ("position" in card_stats) {
+				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			else {
+				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
 			
 			const link = document.createElement("a");
 			
@@ -466,7 +480,8 @@
 
 			link.appendChild(img);
 
-			if ((card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card)
+			rotate_card = (card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card;
+			if (rotate_card)
 			{
 				const rotated_img = document.createElement("img");
 				rotated_img.className = "h-img";
@@ -501,10 +516,23 @@
 
 		function imgFlip(id, rotate_card = false) { // comments in here by aanginer
             const img = document.getElementById(id);
-            const seconds = 0.2; // adjust this as needed, this is half of the animation time
+            const seconds = 0.2;
 
             img.style.transition = seconds.toString() + "s";
             img.style.transform = "rotateY(90deg)"; // rotate 90 degrees
+
+            const rotated_img = document.getElementById("h-img");
+            if (rotated_img)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotate_card && rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
 
             setTimeout(function() { // wait for the rotation, then set the image's src correctly
                 const rotated_img = document.getElementById("h-img");
@@ -517,23 +545,29 @@
 
                     if (rotate_card)
                     {
-                        rotated_img.style.display = "none";
+                        rotated_img.style.opacity = "0";
                         img.style.filter = "";
                     }
                 }
-                else
+                else if (cardName.includes("_back"))
                 {
                     img.src = cardName.replace("_back", "_front");
 
                     if (rotate_card)
                     {
-                        rotated_img.style.display = "block";
+                        rotated_img.style.opacity = "1";
                         img.style.filter = "blur(2px) brightness(0.7)";
                     }
                 }
 
-                img.style.transition = (seconds * 2).toString() + "s"; // idk why we have to double the time but it works
+                img.style.transition = seconds.toString() + "s";
                 img.style.transform = "rotateY(0deg)";
+
+                if (rotated_img)
+	            {
+	            	rotated_img.style.transition = seconds.toString() + "s";
+	           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+	            }
             }, seconds * 1000);
         }
 
@@ -572,21 +606,21 @@
 		}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let random_card = card_list_arrayified[i];
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
 
-			const url = new URL('card', window.location.origin);
-			const params = {
-				set: random_card.set,
-				num: random_card.number,
-				name: random_card.card_name
-			}
-			for (const key in params) {
-				url.searchParams.append(key, params[key]);
-			}
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
 
-			window.location.href = url;
-		}
+				window.location.href = url;
+			}
 	</script>
 </body>
 </html>

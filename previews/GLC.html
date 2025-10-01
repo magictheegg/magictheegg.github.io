@@ -39,8 +39,8 @@
 			position: relative;
 		}
 		.sidebar-h-img {
-			display: none;
-			transform: rotate(90deg);
+			opacity: 0;
+			transform: rotateY(0deg) rotate(90deg);
 			position: absolute;
 			left: 10%;
 			top: 10%;
@@ -126,12 +126,13 @@
 			background: rgba(23, 23, 23, 0.8);
 			border-radius: 8px;
 			position: absolute;
-			left: 10%;
+			left: 5%;
 			width: fit-content;
+			max-width: 90%;
 			margin: 20px 0;
 			padding: 5px 0;
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr;
 			z-index: 3;
 		}
 		.dropdown .set-bar {
@@ -214,7 +215,7 @@
 		</div>
 	</div>
 
-	<div class="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
+	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
 		<a class="set-bar" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
 	
@@ -278,306 +279,306 @@
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img alt="/sets/GLC-files/img/12_Empress of Strahn.jpg" id="12_Empress of Strahn" data-flag="@X" onclick="openSidebar('12_Empress of Strahn',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/81_Veshaa Twins, Tundraborn.jpg" id="81_Veshaa Twins, Tundraborn" data-flag="@X" onclick="openSidebar('81_Veshaa Twins, Tundraborn',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/110_Pestilent Shade.jpg" id="110_Pestilent Shade" data-flag="@X" onclick="openSidebar('110_Pestilent Shade',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/151_Splinter Symmetry.jpg" id="151_Splinter Symmetry" data-flag="@X" onclick="openSidebar('151_Splinter Symmetry',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/175_Guardian of the Glacial Hunt.jpg" id="175_Guardian of the Glacial Hunt" data-flag="@X" onclick="openSidebar('175_Guardian of the Glacial Hunt',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/7_Balgor of Strahn.jpg" id="7_Balgor of Strahn" data-flag="@X" onclick="openSidebar('7_Balgor of Strahn',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/51_Crysalis of the Blue Storm.jpg" id="51_Crysalis of the Blue Storm" data-flag="@X" onclick="openSidebar('51_Crysalis of the Blue Storm',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/87_Coldblooded Aberration.jpg" id="87_Coldblooded Aberration" data-flag="@X" onclick="openSidebar('87_Coldblooded Aberration',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/123_Bloodsteel Captain.jpg" id="123_Bloodsteel Captain" data-flag="@X" onclick="openSidebar('123_Bloodsteel Captain',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/161_Ancestral Mage.jpg" id="161_Ancestral Mage" data-flag="@X" onclick="openSidebar('161_Ancestral Mage',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/9_Cryonova.jpg" id="9_Cryonova" data-flag="@X" onclick="openSidebar('9_Cryonova',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/54_Degenerate Horde.jpg" id="54_Degenerate Horde" data-flag="@X" onclick="openSidebar('54_Degenerate Horde',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/93_Demonic Possession.jpg" id="93_Demonic Possession" data-flag="@X" onclick="openSidebar('93_Demonic Possession',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/124_Brittlewing Phoenix.jpg" id="124_Brittlewing Phoenix" data-flag="@X" onclick="openSidebar('124_Brittlewing Phoenix',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/164_Battle Roar.jpg" id="164_Battle Roar" data-flag="@X" onclick="openSidebar('164_Battle Roar',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/25_Priestess of the Snow.jpg" id="25_Priestess of the Snow" data-flag="@X" onclick="openSidebar('25_Priestess of the Snow',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/55_Descent of the Icewings.jpg" id="55_Descent of the Icewings" data-flag="@X" onclick="openSidebar('55_Descent of the Icewings',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/100_Harbinger of Darkness.jpg" id="100_Harbinger of Darkness" data-flag="@X" onclick="openSidebar('100_Harbinger of Darkness',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/128_Cruel Kahoji.jpg" id="128_Cruel Kahoji" data-flag="@X" onclick="openSidebar('128_Cruel Kahoji',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/167_Caretaker of the Wild.jpg" id="167_Caretaker of the Wild" data-flag="@X" onclick="openSidebar('167_Caretaker of the Wild',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/27_Ryu of the White Storm.jpg" id="27_Ryu of the White Storm" data-flag="@X" onclick="openSidebar('27_Ryu of the White Storm',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/57_Elmlake Puppeteer.jpg" id="57_Elmlake Puppeteer" data-flag="@X" onclick="openSidebar('57_Elmlake Puppeteer',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/101_Haunting Purge.jpg" id="101_Haunting Purge" data-flag="@X" onclick="openSidebar('101_Haunting Purge',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/141_Mountain Surveyor.jpg" id="141_Mountain Surveyor" data-flag="@X" onclick="openSidebar('141_Mountain Surveyor',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/168_Clean Recovery.jpg" id="168_Clean Recovery" data-flag="@X" onclick="openSidebar('168_Clean Recovery',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/29_Snow Shield.jpg" id="29_Snow Shield" data-flag="@X" onclick="openSidebar('29_Snow Shield',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/68_Master of Absolutes.jpg" id="68_Master of Absolutes" data-flag="@X" onclick="openSidebar('68_Master of Absolutes',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/106_Nekraa, Raiser of the Dead.jpg" id="106_Nekraa, Raiser of the Dead" data-flag="@X" onclick="openSidebar('106_Nekraa, Raiser of the Dead',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/144_Peaktop Hellkite.jpg" id="144_Peaktop Hellkite" data-flag="@X" onclick="openSidebar('144_Peaktop Hellkite',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/171_Frostscale Hydra.jpg" id="171_Frostscale Hydra" data-flag="@X" onclick="openSidebar('171_Frostscale Hydra',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/33_Splintershriek.jpg" id="33_Splintershriek" data-flag="@X" onclick="openSidebar('33_Splintershriek',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/74_Strahn Mistwitch.jpg" id="74_Strahn Mistwitch" data-flag="@X" onclick="openSidebar('74_Strahn Mistwitch',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/112_Resurrect.jpg" id="112_Resurrect" data-flag="@X" onclick="openSidebar('112_Resurrect',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/153_Thaw to the Core.jpg" id="153_Thaw to the Core" data-flag="@X" onclick="openSidebar('153_Thaw to the Core',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/177_Ironhoof Goliath.jpg" id="177_Ironhoof Goliath" data-flag="@X" onclick="openSidebar('177_Ironhoof Goliath',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/36_Tawny Scatterwing.jpg" id="36_Tawny Scatterwing" data-flag="@X" onclick="openSidebar('36_Tawny Scatterwing',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/75_Strahn Truthteller.jpg" id="75_Strahn Truthteller" data-flag="@X" onclick="openSidebar('75_Strahn Truthteller',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/119_Sootland Scourge.jpg" id="119_Sootland Scourge" data-flag="@X" onclick="openSidebar('119_Sootland Scourge',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/157_Unsoul Thresher.jpg" id="157_Unsoul Thresher" data-flag="@X" onclick="openSidebar('157_Unsoul Thresher',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/178_Jurgsen Behemoth.jpg" id="178_Jurgsen Behemoth" data-flag="@X" onclick="openSidebar('178_Jurgsen Behemoth',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/43_Wintry Angel.jpg" id="43_Wintry Angel" data-flag="@X" onclick="openSidebar('43_Wintry Angel',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/76_Stutter.jpg" id="76_Stutter" data-flag="@X" onclick="openSidebar('76_Stutter',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/121_Strahn City Terror.jpg" id="121_Strahn City Terror" data-flag="@X" onclick="openSidebar('121_Strahn City Terror',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/159_Wisdom Wheel.jpg" id="159_Wisdom Wheel" data-flag="@X" onclick="openSidebar('159_Wisdom Wheel',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/195_White Forest Tiger.jpg" id="195_White Forest Tiger" data-flag="@X" onclick="openSidebar('195_White Forest Tiger',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/13_Expansive Journey.jpg" id="13_Expansive Journey" data-flag="@X" onclick="openSidebar('13_Expansive Journey',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/48_Cryolight Spirit.jpg" id="48_Cryolight Spirit" data-flag="@X" onclick="openSidebar('48_Cryolight Spirit',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/85_Boglurker.jpg" id="85_Boglurker" data-flag="@X" onclick="openSidebar('85_Boglurker',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/129_Devilish Plaything.jpg" id="129_Devilish Plaything" data-flag="@X" onclick="openSidebar('129_Devilish Plaything',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/160_Alpha Authority.jpg" id="160_Alpha Authority" data-flag="@X" onclick="openSidebar('160_Alpha Authority',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/14_Fleeting Succubus.jpg" id="14_Fleeting Succubus" data-flag="@X" onclick="openSidebar('14_Fleeting Succubus',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/52_Deathchill Warrior.jpg" id="52_Deathchill Warrior" data-flag="@X" onclick="openSidebar('52_Deathchill Warrior',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/88_Corpse Outfitter.jpg" id="88_Corpse Outfitter" data-flag="@X" onclick="openSidebar('88_Corpse Outfitter',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/132_Goblin Archer.jpg" id="132_Goblin Archer" data-flag="@X" onclick="openSidebar('132_Goblin Archer',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/162_Ancient Restoration.jpg" id="162_Ancient Restoration" data-flag="@X" onclick="openSidebar('162_Ancient Restoration',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/17_Griffin of the Ring.jpg" id="17_Griffin of the Ring" data-flag="@X" onclick="openSidebar('17_Griffin of the Ring',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/53_Declare Void.jpg" id="53_Declare Void" data-flag="@X" onclick="openSidebar('53_Declare Void',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/90_Creepy Crawler.jpg" id="90_Creepy Crawler" data-flag="@X" onclick="openSidebar('90_Creepy Crawler',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/135_Goblin Messenger.jpg" id="135_Goblin Messenger" data-flag="@X" onclick="openSidebar('135_Goblin Messenger',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/163_Art of Battle.jpg" id="163_Art of Battle" data-flag="@X" onclick="openSidebar('163_Art of Battle',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/21_Naysayer's Wane.jpg" id="21_Naysayers Wane" data-flag="@X" onclick="openSidebar('21_Naysayers Wane',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/60_Frostgrip Ghoul.jpg" id="60_Frostgrip Ghoul" data-flag="@X" onclick="openSidebar('60_Frostgrip Ghoul',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/96_Glacial Demon.jpg" id="96_Glacial Demon" data-flag="@X" onclick="openSidebar('96_Glacial Demon',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/137_Headcleaver.jpg" id="137_Headcleaver" data-flag="@X" onclick="openSidebar('137_Headcleaver',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/166_Bloom Protector.jpg" id="166_Bloom Protector" data-flag="@X" onclick="openSidebar('166_Bloom Protector',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/22_One from the Ranks.jpg" id="22_One from the Ranks" data-flag="@X" onclick="openSidebar('22_One from the Ranks',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/61_Harpy of the Veshaa.jpg" id="61_Harpy of the Veshaa" data-flag="@X" onclick="openSidebar('61_Harpy of the Veshaa',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/104_Mental Torture.jpg" id="104_Mental Torture" data-flag="@X" onclick="openSidebar('104_Mental Torture',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/145_Rugged-Hill Captain.jpg" id="145_Rugged-Hill Captain" data-flag="@X" onclick="openSidebar('145_Rugged-Hill Captain',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/169_Dragonfist Axeman.jpg" id="169_Dragonfist Axeman" data-flag="@X" onclick="openSidebar('169_Dragonfist Axeman',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/24_Powdercloak.jpg" id="24_Powdercloak" data-flag="@X" onclick="openSidebar('24_Powdercloak',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/65_Iceshard Ghoul.jpg" id="65_Iceshard Ghoul" data-flag="@X" onclick="openSidebar('65_Iceshard Ghoul',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/109_Panglacial Purge.jpg" id="109_Panglacial Purge" data-flag="@X" onclick="openSidebar('109_Panglacial Purge',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/149_Sootland Stonecrusher.jpg" id="149_Sootland Stonecrusher" data-flag="@X" onclick="openSidebar('149_Sootland Stonecrusher',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/181_Padfoot Mammoth.jpg" id="181_Padfoot Mammoth" data-flag="@X" onclick="openSidebar('181_Padfoot Mammoth',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/30_Snowground Rider.jpg" id="30_Snowground Rider" data-flag="@X" onclick="openSidebar('30_Snowground Rider',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/66_Maiden of the Mansion.jpg" id="66_Maiden of the Mansion" data-flag="@X" onclick="openSidebar('66_Maiden of the Mansion',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/113_Rotting Dragon.jpg" id="113_Rotting Dragon" data-flag="@X" onclick="openSidebar('113_Rotting Dragon',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/152_Temporary Insanity.jpg" id="152_Temporary Insanity" data-flag="@X" onclick="openSidebar('152_Temporary Insanity',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/185_Powerbloom.jpg" id="185_Powerbloom" data-flag="@X" onclick="openSidebar('185_Powerbloom',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/31_Spirit Guard.jpg" id="31_Spirit Guard" data-flag="@X" onclick="openSidebar('31_Spirit Guard',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/73_Stormbent Drake.jpg" id="73_Stormbent Drake" data-flag="@X" onclick="openSidebar('73_Stormbent Drake',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/115_Sabretooth Rat.jpg" id="115_Sabretooth Rat" data-flag="@X" onclick="openSidebar('115_Sabretooth Rat',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/154_Townrazer Viking.jpg" id="154_Townrazer Viking" data-flag="@X" onclick="openSidebar('154_Townrazer Viking',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/192_Tieran Tigress.jpg" id="192_Tieran Tigress" data-flag="@X" onclick="openSidebar('192_Tieran Tigress',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/38_Tieran Wolftamer.jpg" id="38_Tieran Wolftamer" data-flag="@X" onclick="openSidebar('38_Tieran Wolftamer',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/79_Torpedo Shark.jpg" id="79_Torpedo Shark" data-flag="@X" onclick="openSidebar('79_Torpedo Shark',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/118_Sootland Rogue.jpg" id="118_Sootland Rogue" data-flag="@X" onclick="openSidebar('118_Sootland Rogue',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/155_Twice Burned.jpg" id="155_Twice Burned" data-flag="@X" onclick="openSidebar('155_Twice Burned',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/193_Underling Channeler.jpg" id="193_Underling Channeler" data-flag="@X" onclick="openSidebar('193_Underling Channeler',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/42_Vengeful Battlegeist.jpg" id="42_Vengeful Battlegeist" data-flag="@X" onclick="openSidebar('42_Vengeful Battlegeist',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/82_Wall of Frost.jpg" id="82_Wall of Frost" data-flag="@X" onclick="openSidebar('82_Wall of Frost',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/120_Steeljawed Veteran.jpg" id="120_Steeljawed Veteran" data-flag="@X" onclick="openSidebar('120_Steeljawed Veteran',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/156_Unrelenting Flames.jpg" id="156_Unrelenting Flames" data-flag="@X" onclick="openSidebar('156_Unrelenting Flames',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/194_Viking Mauler.jpg" id="194_Viking Mauler" data-flag="@X" onclick="openSidebar('194_Viking Mauler',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/8_Cliffside Patrol.jpg" id="8_Cliffside Patrol" data-flag="@X" onclick="openSidebar('8_Cliffside Patrol',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/45_Accursed Sojourner.jpg" id="45_Accursed Sojourner" data-flag="@X" onclick="openSidebar('45_Accursed Sojourner',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/84_Berserk Viking.jpg" id="84_Berserk Viking" data-flag="@X" onclick="openSidebar('84_Berserk Viking',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/122_Bloodfury.jpg" id="122_Bloodfury" data-flag="@X" onclick="openSidebar('122_Bloodfury',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/165_Blinding Flurry.jpg" id="165_Blinding Flurry" data-flag="@X" onclick="openSidebar('165_Blinding Flurry',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/10_Crystallization.jpg" id="10_Crystallization" data-flag="@X" onclick="openSidebar('10_Crystallization',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/46_Æther Messenger.jpg" id="46_Æther Messenger" data-flag="@X" onclick="openSidebar('46_Æther Messenger',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/86_Burn Victim.jpg" id="86_Burn Victim" data-flag="@X" onclick="openSidebar('86_Burn Victim',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/125_Burst Breath.jpg" id="125_Burst Breath" data-flag="@X" onclick="openSidebar('125_Burst Breath',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/170_Frostcap Giant.jpg" id="170_Frostcap Giant" data-flag="@X" onclick="openSidebar('170_Frostcap Giant',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/11_Dreamsmoke Wisp.jpg" id="11_Dreamsmoke Wisp" data-flag="@X" onclick="openSidebar('11_Dreamsmoke Wisp',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/47_Cryoceptualize.jpg" id="47_Cryoceptualize" data-flag="@X" onclick="openSidebar('47_Cryoceptualize',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/89_Creepy Corpse.jpg" id="89_Creepy Corpse" data-flag="@X" onclick="openSidebar('89_Creepy Corpse',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/126_Clifftreader Viking.jpg" id="126_Clifftreader Viking" data-flag="@X" onclick="openSidebar('126_Clifftreader Viking',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/172_Frozen Skies.jpg" id="172_Frozen Skies" data-flag="@X" onclick="openSidebar('172_Frozen Skies',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/15_Flurry of Icicles.jpg" id="15_Flurry of Icicles" data-flag="@X" onclick="openSidebar('15_Flurry of Icicles',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/49_Cryoshift.jpg" id="49_Cryoshift" data-flag="@X" onclick="openSidebar('49_Cryoshift',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/91_Cruel Desperation.jpg" id="91_Cruel Desperation" data-flag="@X" onclick="openSidebar('91_Cruel Desperation',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/127_Corroding Wastes.jpg" id="127_Corroding Wastes" data-flag="@X" onclick="openSidebar('127_Corroding Wastes',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/173_Glacier Pass Spider.jpg" id="173_Glacier Pass Spider" data-flag="@X" onclick="openSidebar('173_Glacier Pass Spider',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/16_Gallery of Armor.jpg" id="16_Gallery of Armor" data-flag="@X" onclick="openSidebar('16_Gallery of Armor',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/50_Crysalis' Caverns.jpg" id="50_Crysalis Caverns" data-flag="@X" onclick="openSidebar('50_Crysalis Caverns',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/92_Darkplague Axeman.jpg" id="92_Darkplague Axeman" data-flag="@X" onclick="openSidebar('92_Darkplague Axeman',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/130_Fiery Ice.jpg" id="130_Fiery Ice" data-flag="@X" onclick="openSidebar('130_Fiery Ice',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/174_Greenheart Druid.jpg" id="174_Greenheart Druid" data-flag="@X" onclick="openSidebar('174_Greenheart Druid',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/18_Lifebound Geist.jpg" id="18_Lifebound Geist" data-flag="@X" onclick="openSidebar('18_Lifebound Geist',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/56_Dungeon Lug.jpg" id="56_Dungeon Lug" data-flag="@X" onclick="openSidebar('56_Dungeon Lug',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/94_Fleshpulp Viking.jpg" id="94_Fleshpulp Viking" data-flag="@X" onclick="openSidebar('94_Fleshpulp Viking',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/131_Fire-Axe Warrior.jpg" id="131_Fire-Axe Warrior" data-flag="@X" onclick="openSidebar('131_Fire-Axe Warrior',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/176_Invigoration of Battle.jpg" id="176_Invigoration of Battle" data-flag="@X" onclick="openSidebar('176_Invigoration of Battle',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/19_Lure the Lost.jpg" id="19_Lure the Lost" data-flag="@X" onclick="openSidebar('19_Lure the Lost',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/58_Freeze Over.jpg" id="58_Freeze Over" data-flag="@X" onclick="openSidebar('58_Freeze Over',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/95_Fleshrot Warhorse.jpg" id="95_Fleshrot Warhorse" data-flag="@X" onclick="openSidebar('95_Fleshrot Warhorse',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/133_Goblin Initiator.jpg" id="133_Goblin Initiator" data-flag="@X" onclick="openSidebar('133_Goblin Initiator',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/179_Jurgsen Tactician.jpg" id="179_Jurgsen Tactician" data-flag="@X" onclick="openSidebar('179_Jurgsen Tactician',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/20_Mystery of the Dark.jpg" id="20_Mystery of the Dark" data-flag="@X" onclick="openSidebar('20_Mystery of the Dark',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/59_Frostbitten Soldier.jpg" id="59_Frostbitten Soldier" data-flag="@X" onclick="openSidebar('59_Frostbitten Soldier',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/97_Glacier Troll.jpg" id="97_Glacier Troll" data-flag="@X" onclick="openSidebar('97_Glacier Troll',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/134_Goblin Lug.jpg" id="134_Goblin Lug" data-flag="@X" onclick="openSidebar('134_Goblin Lug',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/180_Jurgsen Thrasher.jpg" id="180_Jurgsen Thrasher" data-flag="@X" onclick="openSidebar('180_Jurgsen Thrasher',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/23_Pacifism.jpg" id="23_Pacifism" data-flag="@X" onclick="openSidebar('23_Pacifism',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/62_Hostile Icewing.jpg" id="62_Hostile Icewing" data-flag="@X" onclick="openSidebar('62_Hostile Icewing',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/98_Graveyard Menace.jpg" id="98_Graveyard Menace" data-flag="@X" onclick="openSidebar('98_Graveyard Menace',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/136_Goblin Prankster.jpg" id="136_Goblin Prankster" data-flag="@X" onclick="openSidebar('136_Goblin Prankster',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/182_Pathrazer Viking.jpg" id="182_Pathrazer Viking" data-flag="@X" onclick="openSidebar('182_Pathrazer Viking',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/26_Reflection of Youth.jpg" id="26_Reflection of Youth" data-flag="@X" onclick="openSidebar('26_Reflection of Youth',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/63_Howling Undead.jpg" id="63_Howling Undead" data-flag="@X" onclick="openSidebar('63_Howling Undead',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/99_Hail of Crows.jpg" id="99_Hail of Crows" data-flag="@X" onclick="openSidebar('99_Hail of Crows',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/138_Hyperkindling.jpg" id="138_Hyperkindling" data-flag="@X" onclick="openSidebar('138_Hyperkindling',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/183_Petrify.jpg" id="183_Petrify" data-flag="@X" onclick="openSidebar('183_Petrify',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/28_Snogsmeet Rider.jpg" id="28_Snogsmeet Rider" data-flag="@X" onclick="openSidebar('28_Snogsmeet Rider',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/64_Ice Elemental.jpg" id="64_Ice Elemental" data-flag="@X" onclick="openSidebar('64_Ice Elemental',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/102_Lacerate.jpg" id="102_Lacerate" data-flag="@X" onclick="openSidebar('102_Lacerate',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/139_Icicle Volley.jpg" id="139_Icicle Volley" data-flag="@X" onclick="openSidebar('139_Icicle Volley',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/184_Pitfall Viper.jpg" id="184_Pitfall Viper" data-flag="@X" onclick="openSidebar('184_Pitfall Viper',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/32_Spirit of the Wind.jpg" id="32_Spirit of the Wind" data-flag="@X" onclick="openSidebar('32_Spirit of the Wind',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/67_Mansion Apparition.jpg" id="67_Mansion Apparition" data-flag="@X" onclick="openSidebar('67_Mansion Apparition',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/103_Menacing Creep.jpg" id="103_Menacing Creep" data-flag="@X" onclick="openSidebar('103_Menacing Creep',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/140_Madfoot Caravan.jpg" id="140_Madfoot Caravan" data-flag="@X" onclick="openSidebar('140_Madfoot Caravan',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/186_Preacher to the Winds.jpg" id="186_Preacher to the Winds" data-flag="@X" onclick="openSidebar('186_Preacher to the Winds',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/34_Strahn Paladin.jpg" id="34_Strahn Paladin" data-flag="@X" onclick="openSidebar('34_Strahn Paladin',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/69_Moonlight Wanderer.jpg" id="69_Moonlight Wanderer" data-flag="@X" onclick="openSidebar('69_Moonlight Wanderer',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/105_Mortal Wound.jpg" id="105_Mortal Wound" data-flag="@X" onclick="openSidebar('105_Mortal Wound',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/142_Muleback Brute.jpg" id="142_Muleback Brute" data-flag="@X" onclick="openSidebar('142_Muleback Brute',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/187_Rookie Daggerfist.jpg" id="187_Rookie Daggerfist" data-flag="@X" onclick="openSidebar('187_Rookie Daggerfist',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/35_Strahn War-Lion.jpg" id="35_Strahn War-Lion" data-flag="@X" onclick="openSidebar('35_Strahn War-Lion',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/70_Patrol Drake.jpg" id="70_Patrol Drake" data-flag="@X" onclick="openSidebar('70_Patrol Drake',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/107_Night Lurkers.jpg" id="107_Night Lurkers" data-flag="@X" onclick="openSidebar('107_Night Lurkers',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/143_Muscled Brawler.jpg" id="143_Muscled Brawler" data-flag="@X" onclick="openSidebar('143_Muscled Brawler',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/188_Seer of the Front.jpg" id="188_Seer of the Front" data-flag="@X" onclick="openSidebar('188_Seer of the Front',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/37_Tieran Elite.jpg" id="37_Tieran Elite" data-flag="@X" onclick="openSidebar('37_Tieran Elite',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/71_Reality Leak.jpg" id="71_Reality Leak" data-flag="@X" onclick="openSidebar('71_Reality Leak',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/108_On Hell's Leash.jpg" id="108_On Hells Leash" data-flag="@X" onclick="openSidebar('108_On Hells Leash',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/146_Shieldforge Axeman.jpg" id="146_Shieldforge Axeman" data-flag="@X" onclick="openSidebar('146_Shieldforge Axeman',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/189_Stanislav's Disciple.jpg" id="189_Stanislavs Disciple" data-flag="@X" onclick="openSidebar('189_Stanislavs Disciple',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/39_Valiant Warsteed.jpg" id="39_Valiant Warsteed" data-flag="@X" onclick="openSidebar('39_Valiant Warsteed',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/72_Redead Archivist.jpg" id="72_Redead Archivist" data-flag="@X" onclick="openSidebar('72_Redead Archivist',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/111_Pull to the Pit.jpg" id="111_Pull to the Pit" data-flag="@X" onclick="openSidebar('111_Pull to the Pit',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/147_Shredtusk Razorback.jpg" id="147_Shredtusk Razorback" data-flag="@X" onclick="openSidebar('147_Shredtusk Razorback',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/190_Tamed Grizzly.jpg" id="190_Tamed Grizzly" data-flag="@X" onclick="openSidebar('190_Tamed Grizzly',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/40_Valley Geist.jpg" id="40_Valley Geist" data-flag="@X" onclick="openSidebar('40_Valley Geist',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/77_Swirling Blizzard.jpg" id="77_Swirling Blizzard" data-flag="@X" onclick="openSidebar('77_Swirling Blizzard',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/114_Rotting Fleshhound.jpg" id="114_Rotting Fleshhound" data-flag="@X" onclick="openSidebar('114_Rotting Fleshhound',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/148_Skeleton Smasher.jpg" id="148_Skeleton Smasher" data-flag="@X" onclick="openSidebar('148_Skeleton Smasher',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/191_Tieran Ranger.jpg" id="191_Tieran Ranger" data-flag="@X" onclick="openSidebar('191_Tieran Ranger',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/41_Valley Icewalker.jpg" id="41_Valley Icewalker" data-flag="@X" onclick="openSidebar('41_Valley Icewalker',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/78_Tomb Butcher.jpg" id="78_Tomb Butcher" data-flag="@X" onclick="openSidebar('78_Tomb Butcher',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/116_Skinshred Zombie.jpg" id="116_Skinshred Zombie" data-flag="@X" onclick="openSidebar('116_Skinshred Zombie',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/150_Sootland Swordmaster.jpg" id="150_Sootland Swordmaster" data-flag="@X" onclick="openSidebar('150_Sootland Swordmaster',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/196_Wingwrench.jpg" id="196_Wingwrench" data-flag="@X" onclick="openSidebar('196_Wingwrench',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/44_Wisp Away.jpg" id="44_Wisp Away" data-flag="@X" onclick="openSidebar('44_Wisp Away',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/80_Tundra Turtle.jpg" id="80_Tundra Turtle" data-flag="@X" onclick="openSidebar('80_Tundra Turtle',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/117_Skullculler.jpg" id="117_Skullculler" data-flag="@X" onclick="openSidebar('117_Skullculler',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/158_Viking Veteran.jpg" id="158_Viking Veteran" data-flag="@X" onclick="openSidebar('158_Viking Veteran',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/197_Winter Expedition.jpg" id="197_Winter Expedition" data-flag="@X" onclick="openSidebar('197_Winter Expedition',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/83_Wisher of the Well.jpg" id="83_Wisher of the Well" data-flag="@X" onclick="openSidebar('83_Wisher of the Well',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+					<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/12_Empress of Strahn.jpg" id="12_Empress of Strahn" data-flag="@X" onclick="openSidebar('12_Empress of Strahn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/81_Veshaa Twins, Tundraborn.jpg" id="81_Veshaa Twins, Tundraborn" data-flag="@X" onclick="openSidebar('81_Veshaa Twins, Tundraborn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/110_Pestilent Shade.jpg" id="110_Pestilent Shade" data-flag="@X" onclick="openSidebar('110_Pestilent Shade',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/151_Splinter Symmetry.jpg" id="151_Splinter Symmetry" data-flag="@X" onclick="openSidebar('151_Splinter Symmetry',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/175_Guardian of the Glacial Hunt.jpg" id="175_Guardian of the Glacial Hunt" data-flag="@X" onclick="openSidebar('175_Guardian of the Glacial Hunt',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/7_Balgor of Strahn.jpg" id="7_Balgor of Strahn" data-flag="@X" onclick="openSidebar('7_Balgor of Strahn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/51_Crysalis of the Blue Storm.jpg" id="51_Crysalis of the Blue Storm" data-flag="@X" onclick="openSidebar('51_Crysalis of the Blue Storm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/87_Coldblooded Aberration.jpg" id="87_Coldblooded Aberration" data-flag="@X" onclick="openSidebar('87_Coldblooded Aberration',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/123_Bloodsteel Captain.jpg" id="123_Bloodsteel Captain" data-flag="@X" onclick="openSidebar('123_Bloodsteel Captain',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/161_Ancestral Mage.jpg" id="161_Ancestral Mage" data-flag="@X" onclick="openSidebar('161_Ancestral Mage',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/9_Cryonova.jpg" id="9_Cryonova" data-flag="@X" onclick="openSidebar('9_Cryonova',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/54_Degenerate Horde.jpg" id="54_Degenerate Horde" data-flag="@X" onclick="openSidebar('54_Degenerate Horde',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/93_Demonic Possession.jpg" id="93_Demonic Possession" data-flag="@X" onclick="openSidebar('93_Demonic Possession',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/124_Brittlewing Phoenix.jpg" id="124_Brittlewing Phoenix" data-flag="@X" onclick="openSidebar('124_Brittlewing Phoenix',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/164_Battle Roar.jpg" id="164_Battle Roar" data-flag="@X" onclick="openSidebar('164_Battle Roar',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/25_Priestess of the Snow.jpg" id="25_Priestess of the Snow" data-flag="@X" onclick="openSidebar('25_Priestess of the Snow',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/55_Descent of the Icewings.jpg" id="55_Descent of the Icewings" data-flag="@X" onclick="openSidebar('55_Descent of the Icewings',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/100_Harbinger of Darkness.jpg" id="100_Harbinger of Darkness" data-flag="@X" onclick="openSidebar('100_Harbinger of Darkness',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/128_Cruel Kahoji.jpg" id="128_Cruel Kahoji" data-flag="@X" onclick="openSidebar('128_Cruel Kahoji',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/167_Caretaker of the Wild.jpg" id="167_Caretaker of the Wild" data-flag="@X" onclick="openSidebar('167_Caretaker of the Wild',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/27_Ryu of the White Storm.jpg" id="27_Ryu of the White Storm" data-flag="@X" onclick="openSidebar('27_Ryu of the White Storm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/57_Elmlake Puppeteer.jpg" id="57_Elmlake Puppeteer" data-flag="@X" onclick="openSidebar('57_Elmlake Puppeteer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/101_Haunting Purge.jpg" id="101_Haunting Purge" data-flag="@X" onclick="openSidebar('101_Haunting Purge',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/141_Mountain Surveyor.jpg" id="141_Mountain Surveyor" data-flag="@X" onclick="openSidebar('141_Mountain Surveyor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/168_Clean Recovery.jpg" id="168_Clean Recovery" data-flag="@X" onclick="openSidebar('168_Clean Recovery',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/29_Snow Shield.jpg" id="29_Snow Shield" data-flag="@X" onclick="openSidebar('29_Snow Shield',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/68_Master of Absolutes.jpg" id="68_Master of Absolutes" data-flag="@X" onclick="openSidebar('68_Master of Absolutes',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/106_Nekraa, Raiser of the Dead.jpg" id="106_Nekraa, Raiser of the Dead" data-flag="@X" onclick="openSidebar('106_Nekraa, Raiser of the Dead',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/144_Peaktop Hellkite.jpg" id="144_Peaktop Hellkite" data-flag="@X" onclick="openSidebar('144_Peaktop Hellkite',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/171_Frostscale Hydra.jpg" id="171_Frostscale Hydra" data-flag="@X" onclick="openSidebar('171_Frostscale Hydra',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/33_Splintershriek.jpg" id="33_Splintershriek" data-flag="@X" onclick="openSidebar('33_Splintershriek',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/74_Strahn Mistwitch.jpg" id="74_Strahn Mistwitch" data-flag="@X" onclick="openSidebar('74_Strahn Mistwitch',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/112_Resurrect.jpg" id="112_Resurrect" data-flag="@X" onclick="openSidebar('112_Resurrect',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/153_Thaw to the Core.jpg" id="153_Thaw to the Core" data-flag="@X" onclick="openSidebar('153_Thaw to the Core',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/177_Ironhoof Goliath.jpg" id="177_Ironhoof Goliath" data-flag="@X" onclick="openSidebar('177_Ironhoof Goliath',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/36_Tawny Scatterwing.jpg" id="36_Tawny Scatterwing" data-flag="@X" onclick="openSidebar('36_Tawny Scatterwing',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/75_Strahn Truthteller.jpg" id="75_Strahn Truthteller" data-flag="@X" onclick="openSidebar('75_Strahn Truthteller',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/119_Sootland Scourge.jpg" id="119_Sootland Scourge" data-flag="@X" onclick="openSidebar('119_Sootland Scourge',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/157_Unsoul Thresher.jpg" id="157_Unsoul Thresher" data-flag="@X" onclick="openSidebar('157_Unsoul Thresher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/178_Jurgsen Behemoth.jpg" id="178_Jurgsen Behemoth" data-flag="@X" onclick="openSidebar('178_Jurgsen Behemoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/43_Wintry Angel.jpg" id="43_Wintry Angel" data-flag="@X" onclick="openSidebar('43_Wintry Angel',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/76_Stutter.jpg" id="76_Stutter" data-flag="@X" onclick="openSidebar('76_Stutter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/121_Strahn City Terror.jpg" id="121_Strahn City Terror" data-flag="@X" onclick="openSidebar('121_Strahn City Terror',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/159_Wisdom Wheel.jpg" id="159_Wisdom Wheel" data-flag="@X" onclick="openSidebar('159_Wisdom Wheel',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/195_White Forest Tiger.jpg" id="195_White Forest Tiger" data-flag="@X" onclick="openSidebar('195_White Forest Tiger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/13_Expansive Journey.jpg" id="13_Expansive Journey" data-flag="@X" onclick="openSidebar('13_Expansive Journey',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/48_Cryolight Spirit.jpg" id="48_Cryolight Spirit" data-flag="@X" onclick="openSidebar('48_Cryolight Spirit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/85_Boglurker.jpg" id="85_Boglurker" data-flag="@X" onclick="openSidebar('85_Boglurker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/129_Devilish Plaything.jpg" id="129_Devilish Plaything" data-flag="@X" onclick="openSidebar('129_Devilish Plaything',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/160_Alpha Authority.jpg" id="160_Alpha Authority" data-flag="@X" onclick="openSidebar('160_Alpha Authority',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/14_Fleeting Succubus.jpg" id="14_Fleeting Succubus" data-flag="@X" onclick="openSidebar('14_Fleeting Succubus',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/52_Deathchill Warrior.jpg" id="52_Deathchill Warrior" data-flag="@X" onclick="openSidebar('52_Deathchill Warrior',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/88_Corpse Outfitter.jpg" id="88_Corpse Outfitter" data-flag="@X" onclick="openSidebar('88_Corpse Outfitter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/132_Goblin Archer.jpg" id="132_Goblin Archer" data-flag="@X" onclick="openSidebar('132_Goblin Archer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/162_Ancient Restoration.jpg" id="162_Ancient Restoration" data-flag="@X" onclick="openSidebar('162_Ancient Restoration',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/17_Griffin of the Ring.jpg" id="17_Griffin of the Ring" data-flag="@X" onclick="openSidebar('17_Griffin of the Ring',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/53_Declare Void.jpg" id="53_Declare Void" data-flag="@X" onclick="openSidebar('53_Declare Void',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/90_Creepy Crawler.jpg" id="90_Creepy Crawler" data-flag="@X" onclick="openSidebar('90_Creepy Crawler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/135_Goblin Messenger.jpg" id="135_Goblin Messenger" data-flag="@X" onclick="openSidebar('135_Goblin Messenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/163_Art of Battle.jpg" id="163_Art of Battle" data-flag="@X" onclick="openSidebar('163_Art of Battle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/21_Naysayer's Wane.jpg" id="21_Naysayers Wane" data-flag="@X" onclick="openSidebar('21_Naysayers Wane',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/60_Frostgrip Ghoul.jpg" id="60_Frostgrip Ghoul" data-flag="@X" onclick="openSidebar('60_Frostgrip Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/96_Glacial Demon.jpg" id="96_Glacial Demon" data-flag="@X" onclick="openSidebar('96_Glacial Demon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/137_Headcleaver.jpg" id="137_Headcleaver" data-flag="@X" onclick="openSidebar('137_Headcleaver',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/166_Bloom Protector.jpg" id="166_Bloom Protector" data-flag="@X" onclick="openSidebar('166_Bloom Protector',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/22_One from the Ranks.jpg" id="22_One from the Ranks" data-flag="@X" onclick="openSidebar('22_One from the Ranks',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/61_Harpy of the Veshaa.jpg" id="61_Harpy of the Veshaa" data-flag="@X" onclick="openSidebar('61_Harpy of the Veshaa',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/104_Mental Torture.jpg" id="104_Mental Torture" data-flag="@X" onclick="openSidebar('104_Mental Torture',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/145_Rugged-Hill Captain.jpg" id="145_Rugged-Hill Captain" data-flag="@X" onclick="openSidebar('145_Rugged-Hill Captain',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/169_Dragonfist Axeman.jpg" id="169_Dragonfist Axeman" data-flag="@X" onclick="openSidebar('169_Dragonfist Axeman',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/24_Powdercloak.jpg" id="24_Powdercloak" data-flag="@X" onclick="openSidebar('24_Powdercloak',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/65_Iceshard Ghoul.jpg" id="65_Iceshard Ghoul" data-flag="@X" onclick="openSidebar('65_Iceshard Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/109_Panglacial Purge.jpg" id="109_Panglacial Purge" data-flag="@X" onclick="openSidebar('109_Panglacial Purge',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/149_Sootland Stonecrusher.jpg" id="149_Sootland Stonecrusher" data-flag="@X" onclick="openSidebar('149_Sootland Stonecrusher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/181_Padfoot Mammoth.jpg" id="181_Padfoot Mammoth" data-flag="@X" onclick="openSidebar('181_Padfoot Mammoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/30_Snowground Rider.jpg" id="30_Snowground Rider" data-flag="@X" onclick="openSidebar('30_Snowground Rider',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/66_Maiden of the Mansion.jpg" id="66_Maiden of the Mansion" data-flag="@X" onclick="openSidebar('66_Maiden of the Mansion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/113_Rotting Dragon.jpg" id="113_Rotting Dragon" data-flag="@X" onclick="openSidebar('113_Rotting Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/152_Temporary Insanity.jpg" id="152_Temporary Insanity" data-flag="@X" onclick="openSidebar('152_Temporary Insanity',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/185_Powerbloom.jpg" id="185_Powerbloom" data-flag="@X" onclick="openSidebar('185_Powerbloom',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/31_Spirit Guard.jpg" id="31_Spirit Guard" data-flag="@X" onclick="openSidebar('31_Spirit Guard',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/73_Stormbent Drake.jpg" id="73_Stormbent Drake" data-flag="@X" onclick="openSidebar('73_Stormbent Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/115_Sabretooth Rat.jpg" id="115_Sabretooth Rat" data-flag="@X" onclick="openSidebar('115_Sabretooth Rat',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/154_Townrazer Viking.jpg" id="154_Townrazer Viking" data-flag="@X" onclick="openSidebar('154_Townrazer Viking',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/192_Tieran Tigress.jpg" id="192_Tieran Tigress" data-flag="@X" onclick="openSidebar('192_Tieran Tigress',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/38_Tieran Wolftamer.jpg" id="38_Tieran Wolftamer" data-flag="@X" onclick="openSidebar('38_Tieran Wolftamer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/79_Torpedo Shark.jpg" id="79_Torpedo Shark" data-flag="@X" onclick="openSidebar('79_Torpedo Shark',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/118_Sootland Rogue.jpg" id="118_Sootland Rogue" data-flag="@X" onclick="openSidebar('118_Sootland Rogue',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/155_Twice Burned.jpg" id="155_Twice Burned" data-flag="@X" onclick="openSidebar('155_Twice Burned',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/193_Underling Channeler.jpg" id="193_Underling Channeler" data-flag="@X" onclick="openSidebar('193_Underling Channeler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/42_Vengeful Battlegeist.jpg" id="42_Vengeful Battlegeist" data-flag="@X" onclick="openSidebar('42_Vengeful Battlegeist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/82_Wall of Frost.jpg" id="82_Wall of Frost" data-flag="@X" onclick="openSidebar('82_Wall of Frost',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/120_Steeljawed Veteran.jpg" id="120_Steeljawed Veteran" data-flag="@X" onclick="openSidebar('120_Steeljawed Veteran',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/156_Unrelenting Flames.jpg" id="156_Unrelenting Flames" data-flag="@X" onclick="openSidebar('156_Unrelenting Flames',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/194_Viking Mauler.jpg" id="194_Viking Mauler" data-flag="@X" onclick="openSidebar('194_Viking Mauler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/8_Cliffside Patrol.jpg" id="8_Cliffside Patrol" data-flag="@X" onclick="openSidebar('8_Cliffside Patrol',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/45_Accursed Sojourner.jpg" id="45_Accursed Sojourner" data-flag="@X" onclick="openSidebar('45_Accursed Sojourner',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/84_Berserk Viking.jpg" id="84_Berserk Viking" data-flag="@X" onclick="openSidebar('84_Berserk Viking',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/122_Bloodfury.jpg" id="122_Bloodfury" data-flag="@X" onclick="openSidebar('122_Bloodfury',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/165_Blinding Flurry.jpg" id="165_Blinding Flurry" data-flag="@X" onclick="openSidebar('165_Blinding Flurry',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/10_Crystallization.jpg" id="10_Crystallization" data-flag="@X" onclick="openSidebar('10_Crystallization',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/46_Æther Messenger.jpg" id="46_Æther Messenger" data-flag="@X" onclick="openSidebar('46_Æther Messenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/86_Burn Victim.jpg" id="86_Burn Victim" data-flag="@X" onclick="openSidebar('86_Burn Victim',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/125_Burst Breath.jpg" id="125_Burst Breath" data-flag="@X" onclick="openSidebar('125_Burst Breath',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/170_Frostcap Giant.jpg" id="170_Frostcap Giant" data-flag="@X" onclick="openSidebar('170_Frostcap Giant',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/11_Dreamsmoke Wisp.jpg" id="11_Dreamsmoke Wisp" data-flag="@X" onclick="openSidebar('11_Dreamsmoke Wisp',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/47_Cryoceptualize.jpg" id="47_Cryoceptualize" data-flag="@X" onclick="openSidebar('47_Cryoceptualize',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/89_Creepy Corpse.jpg" id="89_Creepy Corpse" data-flag="@X" onclick="openSidebar('89_Creepy Corpse',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/126_Clifftreader Viking.jpg" id="126_Clifftreader Viking" data-flag="@X" onclick="openSidebar('126_Clifftreader Viking',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/172_Frozen Skies.jpg" id="172_Frozen Skies" data-flag="@X" onclick="openSidebar('172_Frozen Skies',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/15_Flurry of Icicles.jpg" id="15_Flurry of Icicles" data-flag="@X" onclick="openSidebar('15_Flurry of Icicles',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/49_Cryoshift.jpg" id="49_Cryoshift" data-flag="@X" onclick="openSidebar('49_Cryoshift',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/91_Cruel Desperation.jpg" id="91_Cruel Desperation" data-flag="@X" onclick="openSidebar('91_Cruel Desperation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/127_Corroding Wastes.jpg" id="127_Corroding Wastes" data-flag="@X" onclick="openSidebar('127_Corroding Wastes',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/173_Glacier Pass Spider.jpg" id="173_Glacier Pass Spider" data-flag="@X" onclick="openSidebar('173_Glacier Pass Spider',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/16_Gallery of Armor.jpg" id="16_Gallery of Armor" data-flag="@X" onclick="openSidebar('16_Gallery of Armor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/50_Crysalis' Caverns.jpg" id="50_Crysalis Caverns" data-flag="@X" onclick="openSidebar('50_Crysalis Caverns',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/92_Darkplague Axeman.jpg" id="92_Darkplague Axeman" data-flag="@X" onclick="openSidebar('92_Darkplague Axeman',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/130_Fiery Ice.jpg" id="130_Fiery Ice" data-flag="@X" onclick="openSidebar('130_Fiery Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/174_Greenheart Druid.jpg" id="174_Greenheart Druid" data-flag="@X" onclick="openSidebar('174_Greenheart Druid',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/18_Lifebound Geist.jpg" id="18_Lifebound Geist" data-flag="@X" onclick="openSidebar('18_Lifebound Geist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/56_Dungeon Lug.jpg" id="56_Dungeon Lug" data-flag="@X" onclick="openSidebar('56_Dungeon Lug',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/94_Fleshpulp Viking.jpg" id="94_Fleshpulp Viking" data-flag="@X" onclick="openSidebar('94_Fleshpulp Viking',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/131_Fire-Axe Warrior.jpg" id="131_Fire-Axe Warrior" data-flag="@X" onclick="openSidebar('131_Fire-Axe Warrior',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/176_Invigoration of Battle.jpg" id="176_Invigoration of Battle" data-flag="@X" onclick="openSidebar('176_Invigoration of Battle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/19_Lure the Lost.jpg" id="19_Lure the Lost" data-flag="@X" onclick="openSidebar('19_Lure the Lost',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/58_Freeze Over.jpg" id="58_Freeze Over" data-flag="@X" onclick="openSidebar('58_Freeze Over',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/95_Fleshrot Warhorse.jpg" id="95_Fleshrot Warhorse" data-flag="@X" onclick="openSidebar('95_Fleshrot Warhorse',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/133_Goblin Initiator.jpg" id="133_Goblin Initiator" data-flag="@X" onclick="openSidebar('133_Goblin Initiator',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/179_Jurgsen Tactician.jpg" id="179_Jurgsen Tactician" data-flag="@X" onclick="openSidebar('179_Jurgsen Tactician',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/20_Mystery of the Dark.jpg" id="20_Mystery of the Dark" data-flag="@X" onclick="openSidebar('20_Mystery of the Dark',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/59_Frostbitten Soldier.jpg" id="59_Frostbitten Soldier" data-flag="@X" onclick="openSidebar('59_Frostbitten Soldier',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/97_Glacier Troll.jpg" id="97_Glacier Troll" data-flag="@X" onclick="openSidebar('97_Glacier Troll',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/134_Goblin Lug.jpg" id="134_Goblin Lug" data-flag="@X" onclick="openSidebar('134_Goblin Lug',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/180_Jurgsen Thrasher.jpg" id="180_Jurgsen Thrasher" data-flag="@X" onclick="openSidebar('180_Jurgsen Thrasher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/23_Pacifism.jpg" id="23_Pacifism" data-flag="@X" onclick="openSidebar('23_Pacifism',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/62_Hostile Icewing.jpg" id="62_Hostile Icewing" data-flag="@X" onclick="openSidebar('62_Hostile Icewing',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/98_Graveyard Menace.jpg" id="98_Graveyard Menace" data-flag="@X" onclick="openSidebar('98_Graveyard Menace',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/136_Goblin Prankster.jpg" id="136_Goblin Prankster" data-flag="@X" onclick="openSidebar('136_Goblin Prankster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/182_Pathrazer Viking.jpg" id="182_Pathrazer Viking" data-flag="@X" onclick="openSidebar('182_Pathrazer Viking',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/26_Reflection of Youth.jpg" id="26_Reflection of Youth" data-flag="@X" onclick="openSidebar('26_Reflection of Youth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/63_Howling Undead.jpg" id="63_Howling Undead" data-flag="@X" onclick="openSidebar('63_Howling Undead',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/99_Hail of Crows.jpg" id="99_Hail of Crows" data-flag="@X" onclick="openSidebar('99_Hail of Crows',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/138_Hyperkindling.jpg" id="138_Hyperkindling" data-flag="@X" onclick="openSidebar('138_Hyperkindling',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/183_Petrify.jpg" id="183_Petrify" data-flag="@X" onclick="openSidebar('183_Petrify',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/28_Snogsmeet Rider.jpg" id="28_Snogsmeet Rider" data-flag="@X" onclick="openSidebar('28_Snogsmeet Rider',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/64_Ice Elemental.jpg" id="64_Ice Elemental" data-flag="@X" onclick="openSidebar('64_Ice Elemental',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/102_Lacerate.jpg" id="102_Lacerate" data-flag="@X" onclick="openSidebar('102_Lacerate',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/139_Icicle Volley.jpg" id="139_Icicle Volley" data-flag="@X" onclick="openSidebar('139_Icicle Volley',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/184_Pitfall Viper.jpg" id="184_Pitfall Viper" data-flag="@X" onclick="openSidebar('184_Pitfall Viper',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/32_Spirit of the Wind.jpg" id="32_Spirit of the Wind" data-flag="@X" onclick="openSidebar('32_Spirit of the Wind',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/67_Mansion Apparition.jpg" id="67_Mansion Apparition" data-flag="@X" onclick="openSidebar('67_Mansion Apparition',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/103_Menacing Creep.jpg" id="103_Menacing Creep" data-flag="@X" onclick="openSidebar('103_Menacing Creep',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/140_Madfoot Caravan.jpg" id="140_Madfoot Caravan" data-flag="@X" onclick="openSidebar('140_Madfoot Caravan',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/186_Preacher to the Winds.jpg" id="186_Preacher to the Winds" data-flag="@X" onclick="openSidebar('186_Preacher to the Winds',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/34_Strahn Paladin.jpg" id="34_Strahn Paladin" data-flag="@X" onclick="openSidebar('34_Strahn Paladin',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/69_Moonlight Wanderer.jpg" id="69_Moonlight Wanderer" data-flag="@X" onclick="openSidebar('69_Moonlight Wanderer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/105_Mortal Wound.jpg" id="105_Mortal Wound" data-flag="@X" onclick="openSidebar('105_Mortal Wound',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/142_Muleback Brute.jpg" id="142_Muleback Brute" data-flag="@X" onclick="openSidebar('142_Muleback Brute',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/187_Rookie Daggerfist.jpg" id="187_Rookie Daggerfist" data-flag="@X" onclick="openSidebar('187_Rookie Daggerfist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/35_Strahn War-Lion.jpg" id="35_Strahn War-Lion" data-flag="@X" onclick="openSidebar('35_Strahn War-Lion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/70_Patrol Drake.jpg" id="70_Patrol Drake" data-flag="@X" onclick="openSidebar('70_Patrol Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/107_Night Lurkers.jpg" id="107_Night Lurkers" data-flag="@X" onclick="openSidebar('107_Night Lurkers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/143_Muscled Brawler.jpg" id="143_Muscled Brawler" data-flag="@X" onclick="openSidebar('143_Muscled Brawler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/188_Seer of the Front.jpg" id="188_Seer of the Front" data-flag="@X" onclick="openSidebar('188_Seer of the Front',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/37_Tieran Elite.jpg" id="37_Tieran Elite" data-flag="@X" onclick="openSidebar('37_Tieran Elite',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/71_Reality Leak.jpg" id="71_Reality Leak" data-flag="@X" onclick="openSidebar('71_Reality Leak',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/108_On Hell's Leash.jpg" id="108_On Hells Leash" data-flag="@X" onclick="openSidebar('108_On Hells Leash',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/146_Shieldforge Axeman.jpg" id="146_Shieldforge Axeman" data-flag="@X" onclick="openSidebar('146_Shieldforge Axeman',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/189_Stanislav's Disciple.jpg" id="189_Stanislavs Disciple" data-flag="@X" onclick="openSidebar('189_Stanislavs Disciple',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/39_Valiant Warsteed.jpg" id="39_Valiant Warsteed" data-flag="@X" onclick="openSidebar('39_Valiant Warsteed',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/72_Redead Archivist.jpg" id="72_Redead Archivist" data-flag="@X" onclick="openSidebar('72_Redead Archivist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/111_Pull to the Pit.jpg" id="111_Pull to the Pit" data-flag="@X" onclick="openSidebar('111_Pull to the Pit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/147_Shredtusk Razorback.jpg" id="147_Shredtusk Razorback" data-flag="@X" onclick="openSidebar('147_Shredtusk Razorback',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/190_Tamed Grizzly.jpg" id="190_Tamed Grizzly" data-flag="@X" onclick="openSidebar('190_Tamed Grizzly',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/40_Valley Geist.jpg" id="40_Valley Geist" data-flag="@X" onclick="openSidebar('40_Valley Geist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/77_Swirling Blizzard.jpg" id="77_Swirling Blizzard" data-flag="@X" onclick="openSidebar('77_Swirling Blizzard',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/114_Rotting Fleshhound.jpg" id="114_Rotting Fleshhound" data-flag="@X" onclick="openSidebar('114_Rotting Fleshhound',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/148_Skeleton Smasher.jpg" id="148_Skeleton Smasher" data-flag="@X" onclick="openSidebar('148_Skeleton Smasher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/191_Tieran Ranger.jpg" id="191_Tieran Ranger" data-flag="@X" onclick="openSidebar('191_Tieran Ranger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/41_Valley Icewalker.jpg" id="41_Valley Icewalker" data-flag="@X" onclick="openSidebar('41_Valley Icewalker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/78_Tomb Butcher.jpg" id="78_Tomb Butcher" data-flag="@X" onclick="openSidebar('78_Tomb Butcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/116_Skinshred Zombie.jpg" id="116_Skinshred Zombie" data-flag="@X" onclick="openSidebar('116_Skinshred Zombie',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/150_Sootland Swordmaster.jpg" id="150_Sootland Swordmaster" data-flag="@X" onclick="openSidebar('150_Sootland Swordmaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/196_Wingwrench.jpg" id="196_Wingwrench" data-flag="@X" onclick="openSidebar('196_Wingwrench',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/44_Wisp Away.jpg" id="44_Wisp Away" data-flag="@X" onclick="openSidebar('44_Wisp Away',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/80_Tundra Turtle.jpg" id="80_Tundra Turtle" data-flag="@X" onclick="openSidebar('80_Tundra Turtle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/117_Skullculler.jpg" id="117_Skullculler" data-flag="@X" onclick="openSidebar('117_Skullculler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/158_Viking Veteran.jpg" id="158_Viking Veteran" data-flag="@X" onclick="openSidebar('158_Viking Veteran',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/197_Winter Expedition.jpg" id="197_Winter Expedition" data-flag="@X" onclick="openSidebar('197_Winter Expedition',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/83_Wisher of the Well.jpg" id="83_Wisher of the Well" data-flag="@X" onclick="openSidebar('83_Wisher of the Well',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/217_Sacred Majesty.jpg" id="217_Sacred Majesty" data-flag="@X" onclick="openSidebar('217_Sacred Majesty',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/210_Ghol, Necrolord of Strahn.jpg" id="210_Ghol, Necrolord of Strahn" data-flag="@X" onclick="openSidebar('210_Ghol, Necrolord of Strahn',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/218_Sarkhan, Heir to Kraek.jpg" id="218_Sarkhan, Heir to Kraek" data-flag="@X" onclick="openSidebar('218_Sarkhan, Heir to Kraek',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/199_Bruv of the Jurgsen Clan.jpg" id="199_Bruv of the Jurgsen Clan" data-flag="@X" onclick="openSidebar('199_Bruv of the Jurgsen Clan',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/213_Kaj, the Summer-Hunter.jpg" id="213_Kaj, the Summer-Hunter" data-flag="@X" onclick="openSidebar('213_Kaj, the Summer-Hunter',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/226_Syrina, the Storm-Infused.jpg" id="226_Syrina, the Storm-Infused" data-flag="@X" onclick="openSidebar('226_Syrina, the Storm-Infused',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/214_Malicious Reaper.jpg" id="214_Malicious Reaper" data-flag="@X" onclick="openSidebar('214_Malicious Reaper',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/221_Sjurg of the Sootland Clan.jpg" id="221_Sjurg of the Sootland Clan" data-flag="@X" onclick="openSidebar('221_Sjurg of the Sootland Clan',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/208_Earthcore Elemental.jpg" id="208_Earthcore Elemental" data-flag="@X" onclick="openSidebar('208_Earthcore Elemental',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/224_Stanislav, Captain of Strahn.jpg" id="224_Stanislav, Captain of Strahn" data-flag="@X" onclick="openSidebar('224_Stanislav, Captain of Strahn',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/205_Decree of the Mansion.jpg" id="205_Decree of the Mansion" data-flag="@X" onclick="openSidebar('205_Decree of the Mansion',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/206_Decree of the Strahn Tomb.jpg" id="206_Decree of the Strahn Tomb" data-flag="@X" onclick="openSidebar('206_Decree of the Strahn Tomb',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/203_Decree of the Dragonsky.jpg" id="203_Decree of the Dragonsky" data-flag="@X" onclick="openSidebar('203_Decree of the Dragonsky',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/204_Decree of the Jurgsen.jpg" id="204_Decree of the Jurgsen" data-flag="@X" onclick="openSidebar('204_Decree of the Jurgsen',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/207_Decree of Tieran.jpg" id="207_Decree of Tieran" data-flag="@X" onclick="openSidebar('207_Decree of Tieran',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/200_Bubble Shield.jpg" id="200_Bubble Shield" data-flag="@X" onclick="openSidebar('200_Bubble Shield',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/220_Sewer Ghoul.jpg" id="220_Sewer Ghoul" data-flag="@X" onclick="openSidebar('220_Sewer Ghoul',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/211_Grisly Gates.jpg" id="211_Grisly Gates" data-flag="@X" onclick="openSidebar('211_Grisly Gates',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/209_Empowered Atmosphere.jpg" id="209_Empowered Atmosphere" data-flag="@X" onclick="openSidebar('209_Empowered Atmosphere',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/198_Acolyte of Kaj.jpg" id="198_Acolyte of Kaj" data-flag="@X" onclick="openSidebar('198_Acolyte of Kaj',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/201_Caller of the Chord.jpg" id="201_Caller of the Chord" data-flag="@X" onclick="openSidebar('201_Caller of the Chord',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/225_Sweet Nothings.jpg" id="225_Sweet Nothings" data-flag="@X" onclick="openSidebar('225_Sweet Nothings',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/219_Sarkhan's Terror.jpg" id="219_Sarkhans Terror" data-flag="@X" onclick="openSidebar('219_Sarkhans Terror',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/216_Pervasive Aggressor.jpg" id="216_Pervasive Aggressor" data-flag="@X" onclick="openSidebar('216_Pervasive Aggressor',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/202_Decorated Warrior.jpg" id="202_Decorated Warrior" data-flag="@X" onclick="openSidebar('202_Decorated Warrior',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/215_Mitsuji, Specter of the Snow.jpg" id="215_Mitsuji, Specter of the Snow" data-flag="@X" onclick="openSidebar('215_Mitsuji, Specter of the Snow',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/222_Sleetskin Dragon.jpg" id="222_Sleetskin Dragon" data-flag="@X" onclick="openSidebar('222_Sleetskin Dragon',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/223_Snowscale Snake.jpg" id="223_Snowscale Snake" data-flag="@X" onclick="openSidebar('223_Snowscale Snake',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/212_Herald of the Fox.jpg" id="212_Herald of the Fox" data-flag="@X" onclick="openSidebar('212_Herald of the Fox',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/227_Tundra Guard Hound.jpg" id="227_Tundra Guard Hound" data-flag="@X" onclick="openSidebar('227_Tundra Guard Hound',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/217_Sacred Majesty.jpg" id="217_Sacred Majesty" data-flag="@X" onclick="openSidebar('217_Sacred Majesty',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/210_Ghol, Necrolord of Strahn.jpg" id="210_Ghol, Necrolord of Strahn" data-flag="@X" onclick="openSidebar('210_Ghol, Necrolord of Strahn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/218_Sarkhan, Heir to Kraek.jpg" id="218_Sarkhan, Heir to Kraek" data-flag="@X" onclick="openSidebar('218_Sarkhan, Heir to Kraek',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/199_Bruv of the Jurgsen Clan.jpg" id="199_Bruv of the Jurgsen Clan" data-flag="@X" onclick="openSidebar('199_Bruv of the Jurgsen Clan',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/213_Kaj, the Summer-Hunter.jpg" id="213_Kaj, the Summer-Hunter" data-flag="@X" onclick="openSidebar('213_Kaj, the Summer-Hunter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/226_Syrina, the Storm-Infused.jpg" id="226_Syrina, the Storm-Infused" data-flag="@X" onclick="openSidebar('226_Syrina, the Storm-Infused',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/214_Malicious Reaper.jpg" id="214_Malicious Reaper" data-flag="@X" onclick="openSidebar('214_Malicious Reaper',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/221_Sjurg of the Sootland Clan.jpg" id="221_Sjurg of the Sootland Clan" data-flag="@X" onclick="openSidebar('221_Sjurg of the Sootland Clan',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/208_Earthcore Elemental.jpg" id="208_Earthcore Elemental" data-flag="@X" onclick="openSidebar('208_Earthcore Elemental',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/224_Stanislav, Captain of Strahn.jpg" id="224_Stanislav, Captain of Strahn" data-flag="@X" onclick="openSidebar('224_Stanislav, Captain of Strahn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/205_Decree of the Mansion.jpg" id="205_Decree of the Mansion" data-flag="@X" onclick="openSidebar('205_Decree of the Mansion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/206_Decree of the Strahn Tomb.jpg" id="206_Decree of the Strahn Tomb" data-flag="@X" onclick="openSidebar('206_Decree of the Strahn Tomb',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/203_Decree of the Dragonsky.jpg" id="203_Decree of the Dragonsky" data-flag="@X" onclick="openSidebar('203_Decree of the Dragonsky',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/204_Decree of the Jurgsen.jpg" id="204_Decree of the Jurgsen" data-flag="@X" onclick="openSidebar('204_Decree of the Jurgsen',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/207_Decree of Tieran.jpg" id="207_Decree of Tieran" data-flag="@X" onclick="openSidebar('207_Decree of Tieran',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/200_Bubble Shield.jpg" id="200_Bubble Shield" data-flag="@X" onclick="openSidebar('200_Bubble Shield',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/220_Sewer Ghoul.jpg" id="220_Sewer Ghoul" data-flag="@X" onclick="openSidebar('220_Sewer Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/211_Grisly Gates.jpg" id="211_Grisly Gates" data-flag="@X" onclick="openSidebar('211_Grisly Gates',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/209_Empowered Atmosphere.jpg" id="209_Empowered Atmosphere" data-flag="@X" onclick="openSidebar('209_Empowered Atmosphere',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/198_Acolyte of Kaj.jpg" id="198_Acolyte of Kaj" data-flag="@X" onclick="openSidebar('198_Acolyte of Kaj',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/201_Caller of the Chord.jpg" id="201_Caller of the Chord" data-flag="@X" onclick="openSidebar('201_Caller of the Chord',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/225_Sweet Nothings.jpg" id="225_Sweet Nothings" data-flag="@X" onclick="openSidebar('225_Sweet Nothings',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/219_Sarkhan's Terror.jpg" id="219_Sarkhans Terror" data-flag="@X" onclick="openSidebar('219_Sarkhans Terror',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/216_Pervasive Aggressor.jpg" id="216_Pervasive Aggressor" data-flag="@X" onclick="openSidebar('216_Pervasive Aggressor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/202_Decorated Warrior.jpg" id="202_Decorated Warrior" data-flag="@X" onclick="openSidebar('202_Decorated Warrior',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/215_Mitsuji, Specter of the Snow.jpg" id="215_Mitsuji, Specter of the Snow" data-flag="@X" onclick="openSidebar('215_Mitsuji, Specter of the Snow',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/222_Sleetskin Dragon.jpg" id="222_Sleetskin Dragon" data-flag="@X" onclick="openSidebar('222_Sleetskin Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/223_Snowscale Snake.jpg" id="223_Snowscale Snake" data-flag="@X" onclick="openSidebar('223_Snowscale Snake',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/212_Herald of the Fox.jpg" id="212_Herald of the Fox" data-flag="@X" onclick="openSidebar('212_Herald of the Fox',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/227_Tundra Guard Hound.jpg" id="227_Tundra Guard Hound" data-flag="@X" onclick="openSidebar('227_Tundra Guard Hound',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/233_Whiptail Masticore.jpg" id="233_Whiptail Masticore" data-flag="@X" onclick="openSidebar('233_Whiptail Masticore',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/1_Chromatic Frostbender.jpg" id="1_Chromatic Frostbender" data-flag="@X" onclick="openSidebar('1_Chromatic Frostbender',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/6_Snowveil Serpent.jpg" id="6_Snowveil Serpent" data-flag="@X" onclick="openSidebar('6_Snowveil Serpent',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/228_Blade of Free Will.jpg" id="228_Blade of Free Will" data-flag="@X" onclick="openSidebar('228_Blade of Free Will',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/229_Bonemasher.jpg" id="229_Bonemasher" data-flag="@X" onclick="openSidebar('229_Bonemasher',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/2_Iceolation.jpg" id="2_Iceolation" data-flag="@X" onclick="openSidebar('2_Iceolation',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/4_Snow Charm.jpg" id="4_Snow Charm" data-flag="@X" onclick="openSidebar('4_Snow Charm',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/232_Relic of the Unreal.jpg" id="232_Relic of the Unreal" data-flag="@X" onclick="openSidebar('232_Relic of the Unreal',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/3_Polar Bear.jpg" id="3_Polar Bear" data-flag="@X" onclick="openSidebar('3_Polar Bear',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/5_Snowkin Elder.jpg" id="5_Snowkin Elder" data-flag="@X" onclick="openSidebar('5_Snowkin Elder',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/230_Bronze-Clad Armor.jpg" id="230_Bronze-Clad Armor" data-flag="@X" onclick="openSidebar('230_Bronze-Clad Armor',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/231_Citizen Cleaver.jpg" id="231_Citizen Cleaver" data-flag="@X" onclick="openSidebar('231_Citizen Cleaver',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/235_Strahn, the Frozen Foundation.jpg" id="235_Strahn, the Frozen Foundation" data-flag="@X" onclick="openSidebar('235_Strahn, the Frozen Foundation',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/234_Snowstorm Shrine.jpg" id="234_Snowstorm Shrine" data-flag="@X" onclick="openSidebar('234_Snowstorm Shrine',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/241_Snow-Covered Swamp.jpg" id="241_Snow-Covered Swamp" data-flag="@X" onclick="openSidebar('241_Snow-Covered Swamp',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/242_Snow-Covered Mountain.jpg" id="242_Snow-Covered Mountain" data-flag="@X" onclick="openSidebar('242_Snow-Covered Mountain',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/238_Snow-Covered Island.jpg" id="238_Snow-Covered Island" data-flag="@X" onclick="openSidebar('238_Snow-Covered Island',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/239_Snow-Covered Island.jpg" id="239_Snow-Covered Island" data-flag="@X" onclick="openSidebar('239_Snow-Covered Island',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/240_Snow-Covered Swamp.jpg" id="240_Snow-Covered Swamp" data-flag="@X" onclick="openSidebar('240_Snow-Covered Swamp',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/244_Snow-Covered Forest.jpg" id="244_Snow-Covered Forest" data-flag="@X" onclick="openSidebar('244_Snow-Covered Forest',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/237_Snow-Covered Plains.jpg" id="237_Snow-Covered Plains" data-flag="@X" onclick="openSidebar('237_Snow-Covered Plains',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/245_Snow-Covered Forest.jpg" id="245_Snow-Covered Forest" data-flag="@X" onclick="openSidebar('245_Snow-Covered Forest',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/243_Snow-Covered Mountain.jpg" id="243_Snow-Covered Mountain" data-flag="@X" onclick="openSidebar('243_Snow-Covered Mountain',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/236_Snow-Covered Plains.jpg" id="236_Snow-Covered Plains" data-flag="@X" onclick="openSidebar('236_Snow-Covered Plains',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/233_Whiptail Masticore.jpg" id="233_Whiptail Masticore" data-flag="@X" onclick="openSidebar('233_Whiptail Masticore',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/1_Chromatic Frostbender.jpg" id="1_Chromatic Frostbender" data-flag="@X" onclick="openSidebar('1_Chromatic Frostbender',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/6_Snowveil Serpent.jpg" id="6_Snowveil Serpent" data-flag="@X" onclick="openSidebar('6_Snowveil Serpent',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/228_Blade of Free Will.jpg" id="228_Blade of Free Will" data-flag="@X" onclick="openSidebar('228_Blade of Free Will',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/229_Bonemasher.jpg" id="229_Bonemasher" data-flag="@X" onclick="openSidebar('229_Bonemasher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/2_Iceolation.jpg" id="2_Iceolation" data-flag="@X" onclick="openSidebar('2_Iceolation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/4_Snow Charm.jpg" id="4_Snow Charm" data-flag="@X" onclick="openSidebar('4_Snow Charm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/232_Relic of the Unreal.jpg" id="232_Relic of the Unreal" data-flag="@X" onclick="openSidebar('232_Relic of the Unreal',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/3_Polar Bear.jpg" id="3_Polar Bear" data-flag="@X" onclick="openSidebar('3_Polar Bear',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/5_Snowkin Elder.jpg" id="5_Snowkin Elder" data-flag="@X" onclick="openSidebar('5_Snowkin Elder',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/230_Bronze-Clad Armor.jpg" id="230_Bronze-Clad Armor" data-flag="@X" onclick="openSidebar('230_Bronze-Clad Armor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/231_Citizen Cleaver.jpg" id="231_Citizen Cleaver" data-flag="@X" onclick="openSidebar('231_Citizen Cleaver',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/235_Strahn, the Frozen Foundation.jpg" id="235_Strahn, the Frozen Foundation" data-flag="@X" onclick="openSidebar('235_Strahn, the Frozen Foundation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/234_Snowstorm Shrine.jpg" id="234_Snowstorm Shrine" data-flag="@X" onclick="openSidebar('234_Snowstorm Shrine',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/241_Snow-Covered Swamp.jpg" id="241_Snow-Covered Swamp" data-flag="@X" onclick="openSidebar('241_Snow-Covered Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/242_Snow-Covered Mountain.jpg" id="242_Snow-Covered Mountain" data-flag="@X" onclick="openSidebar('242_Snow-Covered Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/238_Snow-Covered Island.jpg" id="238_Snow-Covered Island" data-flag="@X" onclick="openSidebar('238_Snow-Covered Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/239_Snow-Covered Island.jpg" id="239_Snow-Covered Island" data-flag="@X" onclick="openSidebar('239_Snow-Covered Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/240_Snow-Covered Swamp.jpg" id="240_Snow-Covered Swamp" data-flag="@X" onclick="openSidebar('240_Snow-Covered Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/244_Snow-Covered Forest.jpg" id="244_Snow-Covered Forest" data-flag="@X" onclick="openSidebar('244_Snow-Covered Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/237_Snow-Covered Plains.jpg" id="237_Snow-Covered Plains" data-flag="@X" onclick="openSidebar('237_Snow-Covered Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/245_Snow-Covered Forest.jpg" id="245_Snow-Covered Forest" data-flag="@X" onclick="openSidebar('245_Snow-Covered Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/243_Snow-Covered Mountain.jpg" id="243_Snow-Covered Mountain" data-flag="@X" onclick="openSidebar('243_Snow-Covered Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/236_Snow-Covered Plains.jpg" id="236_Snow-Covered Plains" data-flag="@X" onclick="openSidebar('236_Snow-Covered Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/9t_Kaj, the Summer Hunter.jpg" id="9t_Kaj, the Summer Hunter" data-flag="@X" onclick="openSidebar('9t_Kaj, the Summer Hunter',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/1t_Cat.jpg" id="1t_Cat" data-flag="@X" onclick="openSidebar('1t_Cat',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/2t_Fox.jpg" id="2t_Fox" data-flag="@X" onclick="openSidebar('2t_Fox',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/3t_Spirit.jpg" id="3t_Spirit" data-flag="@X" onclick="openSidebar('3t_Spirit',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/4t_Dragon.jpg" id="4t_Dragon" data-flag="@X" onclick="openSidebar('4t_Dragon',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/5t_Elemental.jpg" id="5t_Elemental" data-flag="@X" onclick="openSidebar('5t_Elemental',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/6t_Wolf.jpg" id="6t_Wolf" data-flag="@X" onclick="openSidebar('6t_Wolf',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/7t_Wurm.jpg" id="7t_Wurm" data-flag="@X" onclick="openSidebar('7t_Wurm',false)"></div>
-				<div class="container"><img alt="/sets/GLC-files/img/8t_Cat Soldier.jpg" id="8t_Cat Soldier" data-flag="@X" onclick="openSidebar('8t_Cat Soldier',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/9t_Kaj, the Summer Hunter.jpg" id="9t_Kaj, the Summer Hunter" data-flag="@X" onclick="openSidebar('9t_Kaj, the Summer Hunter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/1t_Cat.jpg" id="1t_Cat" data-flag="@X" onclick="openSidebar('1t_Cat',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/2t_Fox.jpg" id="2t_Fox" data-flag="@X" onclick="openSidebar('2t_Fox',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/3t_Spirit.jpg" id="3t_Spirit" data-flag="@X" onclick="openSidebar('3t_Spirit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/4t_Dragon.jpg" id="4t_Dragon" data-flag="@X" onclick="openSidebar('4t_Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/5t_Elemental.jpg" id="5t_Elemental" data-flag="@X" onclick="openSidebar('5t_Elemental',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/6t_Wolf.jpg" id="6t_Wolf" data-flag="@X" onclick="openSidebar('6t_Wolf',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/7t_Wurm.jpg" id="7t_Wurm" data-flag="@X" onclick="openSidebar('7t_Wurm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GLC-files/img/8t_Cat Soldier.jpg" id="8t_Cat Soldier" data-flag="@X" onclick="openSidebar('8t_Cat Soldier',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
@@ -674,27 +675,51 @@
 	let horizontal = false;
 
 	function imgFlip(num) {
-		tmp = document.getElementById(num).src;
-		console.log(num);
-		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
-		document.getElementById(num).dataset.alt_src = tmp;
+		const img = document.getElementById(num);
+		const seconds = 0.2;
+		const rotated_img = document.getElementById('sidebar_h_img');
 
-		if (num == 'sidebar_img')
+        img.style.transition = seconds.toString() + "s";
+        img.style.transform = "rotateY(90deg)";
+
+        if (num == 'sidebar_img')
 		{
-			const rotated_img = document.getElementById('sidebar_h_img');
 			const sidebar_img = document.getElementById('sidebar_img');
 
-			if (horizontal && rotated_img.style.display == 'none')
-			{
-				rotated_img.style.display = "block";
-				sidebar_img.style.filter = "blur(2px) brightness(0.7)";
-			}
-			else
-			{
-				rotated_img.style.display = "none";
-				sidebar_img.style.filter = "";
-			}
+			if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		                img.style.filter = "none";
+		            }, (seconds / 2) * 1000);
+		        }
+		        else {
+		        	setTimeout(() => {
+		                rotated_img.style.opacity = "1";
+		                img.style.filter = "blur(2px) brightness(0.7)";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
 		}
+
+         setTimeout(function() {
+            tmp = document.getElementById(num).src;
+			document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+			document.getElementById(num).dataset.alt_src = tmp;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(0deg)";
+
+            if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+            }
+        }, seconds * 1000);
 	}
 
 	function openSidebar(id, h = false) {
@@ -706,17 +731,19 @@
 		const rotated_img = document.getElementById('sidebar_h_img');
 		const sidebar_img = document.getElementById('sidebar_img');
 
+		sidebar_img.style.transition = "none";
+		rotated_img.style.transition = "none";
 		sidebar_img.src = document.getElementById(id).src;
 		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
 
 		if (horizontal && !sidebar_img.src.includes("_back"))
 		{
-			rotated_img.style.display = "block";
+			rotated_img.style.opacity = "1";
 			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
 		}
 		else
 		{
-			rotated_img.style.display = "none";
+			rotated_img.style.opacity = "0";
 			sidebar_img.style.filter = "";
 		}
 
@@ -749,6 +776,7 @@
 	}
 
 	function rolldown() {
+		dropdown.style.gridTemplateColumns = "repeat(3, 1fr)";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -758,6 +786,7 @@
 	}
 
 	function rollup() {
+		dropdown.style.gridTemplateColumns = "1fr";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -780,21 +809,21 @@
 	}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let random_card = card_list_arrayified[i];
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
 
-			const url = new URL('card', window.location.origin);
-			const params = {
-				set: random_card.set,
-				num: random_card.number,
-				name: random_card.card_name
-			}
-			for (const key in params) {
-				url.searchParams.append(key, params[key]);
-			}
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
 
-			window.location.href = url;
-		}
+				window.location.href = url;
+			}
 	</script>
 </body>
 </html>

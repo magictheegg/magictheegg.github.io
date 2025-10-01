@@ -1,0 +1,252 @@
+	const grid = document.createElement("div");
+			grid.className = "image-grid";
+
+			grid.appendChild(buildImgContainer(card_stats, false, rotate_card));
+			
+			const text = document.createElement("div");
+			text.className = "card-text";
+			text.id = "card-text";
+
+			const name_cost = document.createElement("div");
+			name_cost.className = "name-cost";
+			name_cost.innerHTML = card_stats.card_name + (card_stats.cost != "" ? '     ' + symbolize(card_stats.cost) : "");
+			text.appendChild(name_cost);
+
+			const type = document.createElement("div");
+			type.className = "type";
+			type.textContent = card_stats.type;
+			text.appendChild(type);
+
+			const effect = document.createElement("div");
+			effect.className = "effect";
+			let card_effects = "";
+			if (card_stats.rules_text != "")
+			{
+				card_effects = card_stats.rules_text + (card_stats.flavor_text != "[i][/i]" ? "\n" + "<hr class=\"ft-divider text-bg\">" + "\n" + card_stats.flavor_text.replace('\n','<br>') : ""); // this expression looks cursed but what it does is check if the ft is empty, and if it isn't, insert a divider + the ft
+			} else {
+				card_effects = "";
+			}
+			if ("v_mana" in card_stats)
+			{
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="/img/' + card_stats.v_mana + '">');
+			}
+			effect.innerHTML += prettifyEffects(card_effects);
+			text.appendChild(effect);
+
+			if(card_stats.pt != "")
+			{
+				const pt = document.createElement("div");
+				pt.className = "pt";
+				pt.textContent = card_stats.pt;
+				text.appendChild(pt);
+			}
+			else if (card_stats.loyalty != "")
+			{
+				const loyalty = document.createElement("div");
+				loyalty.className = "pt";
+				loyalty.textContent = "[" + card_stats.loyalty + "]";
+				text.appendChild(loyalty);
+			}
+
+			if(designer_notes && card_stats.designer_notes != null)
+			{
+				const dnotes = document.createElement("div");
+				dnotes.className = "designer-notes";
+				dnotes.innerHTML = "<u><b>Designer Notes</b></u>";
+				dnotes.innerHTML = dnotes.innerHTML + card_stats.designer_notes;
+				text.appendChild(dnotes);
+			}
+
+			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
+			if(card_stats.shape.includes("adventure") || card_stats.shape.includes("double") || card_stats.shape.includes("spli"))
+			{
+				const name_cost_2 = document.createElement("div");
+				name_cost_2.className = "name-cost";
+				name_cost_2.innerHTML = card_stats.card_name2 + (card_stats.cost2 != "" ? '     ' + symbolize(card_stats.cost2) : "");
+				text.appendChild(name_cost_2);
+
+				const type_2 = document.createElement("div");
+				type_2.className = "type";
+				type_2.textContent = card_stats.type2;
+				text.appendChild(type_2);
+
+				const effect_2 = document.createElement("div");
+				effect_2.className = "effect";
+				let card_effects_2 = "";
+				if (card_stats.rules_text2 != "")
+				{
+					card_effects_2 = card_stats.rules_text2 + (card_stats.flavor_text2 != "[i][/i]" ? "\n" + "<hr class=\"ft-divider text-bg\">" + "\n" + card_stats.flavor_text2.replace('\n','<br>') : "");
+				} else {
+					card_effects_2 = "";
+				}
+				if ("v_mana" in card_stats)
+				{
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="/img/' + card_stats.v_mana + '">');
+				}
+				effect_2.innerHTML += prettifyEffects(card_effects_2);
+				text.appendChild(effect_2);
+
+				if(card_stats.pt2 != "")
+				{
+					const pt_2 = document.createElement("div");
+					pt_2.className = "pt";
+					pt_2.textContent = card_stats.pt2;
+					text.appendChild(pt_2);
+				}
+				else if (card_stats.loyalty2 != "")
+				{
+					const loyalty = document.createElement("div");
+					loyalty.className = "pt";
+					loyalty.textContent = "[" + card_stats.loyalty2 + "]";
+					text.appendChild(loyalty);
+				}
+			}
+			
+			grid.appendChild(text);
+
+			return grid;
+		}
+
+		function buildImgContainer(card_stats, hidden_title = false, rotate_card = false) {
+			const imgContainer = document.createElement("div");
+			imgContainer.className = "img-container";
+			const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
+
+			const img = document.createElement("img");
+			img.className = "card-image";
+			img.id = id;
+			img.loading = "lazy";
+
+			if ("position" in card_stats) {
+				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			else {
+				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			
+			const link = document.createElement("a");
+			
+			const url = new URL('card', window.location.origin);
+			const params = {
+				set: card_stats.set,
+				num: card_stats.number,
+				name: card_stats.card_name
+			}
+			for (const key in params) {
+				url.searchParams.append(key, params[key]);
+			}
+			link.href = url;
+
+			link.appendChild(img);
+
+			rotate_card = (card_stats.shape.includes("spli") || card_stats.type.includes("Battle")) && rotate_card;
+			if (rotate_card)
+			{
+				const rotated_img = document.createElement("img");
+				rotated_img.className = "h-img";
+				rotated_img.id = "h-img";
+				rotated_img.src = img.src;
+				rotated_img.style.display = "block";
+				img.style.filter = "blur(2px) brightness(0.7)";
+
+				link.appendChild(rotated_img);
+			}
+
+			imgContainer.appendChild(link);
+
+			if (card_stats.shape.includes("double"))
+			{
+				const imgFlipBtn = document.createElement("button");
+				imgFlipBtn.className = "btn";
+				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
+				imgContainer.appendChild(imgFlipBtn);
+			}
+
+			if (hidden_title)
+			{
+				const title = document.createElement("div");
+				title.innerText = card_stats.card_name;
+				title.className = "hidden-text";
+				imgContainer.appendChild(title);
+			}
+
+			return imgContainer;
+		}
+
+		function imgFlip(id, rotate_card = false) { // comments in here by aanginer
+            const img = document.getElementById(id);
+            const seconds = 0.2;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(90deg)"; // rotate 90 degrees
+
+            const rotated_img = document.getElementById("h-img");
+            if (rotated_img)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotate_card && rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
+
+            setTimeout(function() { // wait for the rotation, then set the image's src correctly
+                const rotated_img = document.getElementById("h-img");
+
+                const cardName = img.src;
+                
+                if (cardName.includes("_front"))
+                {
+                    img.src = cardName.replace("_front", "_back");
+
+                    if (rotate_card)
+                    {
+                        rotated_img.style.opacity = "0";
+                        img.style.filter = "";
+                    }
+                }
+                else if (cardName.includes("_back"))
+                {
+                    img.src = cardName.replace("_back", "_front");
+
+                    if (rotate_card)
+                    {
+                        rotated_img.style.opacity = "1";
+                        img.style.filter = "blur(2px) brightness(0.7)";
+                    }
+                }
+
+                img.style.transition = seconds.toString() + "s";
+                img.style.transform = "rotateY(0deg)";
+
+                if (rotated_img)
+	            {
+	            	rotated_img.style.transition = seconds.toString() + "s";
+	           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+	            }
+            }, seconds * 1000);
+        }
+
+		function prettifyEffects(card_effect) {
+			let HTML = "";
+
+			let styled_effect = card_effect.replace(/(\[i\])+(.+?)(\[\/i\])+/gs, function(matched, _1, _2) {
+				return '<i>' + _2 + '</i>'
+			}).replaceAll(/(\[b\])+(.+?)(\[\/b\])+/gs, function(matched, _1, _2) {
+				return '<b>' + _2 + '</b>'
+			});
+
+			let card_effects = styled_effect.split("\n");
+
+			for (let i = 0; i < card_effects.length; i++)
+			{
+				HTML += "<p>" + card_effects[i] + "</p>";
+			}
+			
+			let regexHTML = symbolize(HTML);
+
+			return regexHTML;
+		}

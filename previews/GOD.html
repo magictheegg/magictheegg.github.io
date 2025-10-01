@@ -39,8 +39,8 @@
 			position: relative;
 		}
 		.sidebar-h-img {
-			display: none;
-			transform: rotate(90deg);
+			opacity: 0;
+			transform: rotateY(0deg) rotate(90deg);
 			position: absolute;
 			left: 10%;
 			top: 10%;
@@ -126,12 +126,13 @@
 			background: rgba(23, 23, 23, 0.8);
 			border-radius: 8px;
 			position: absolute;
-			left: 10%;
+			left: 5%;
 			width: fit-content;
+			max-width: 90%;
 			margin: 20px 0;
 			padding: 5px 0;
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr;
 			z-index: 3;
 		}
 		.dropdown .set-bar {
@@ -214,7 +215,7 @@
 		</div>
 	</div>
 
-	<div class="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
+	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
 		<a class="set-bar" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
 	
@@ -278,331 +279,331 @@
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img alt="/sets/GOD-files/img/16_Hope Perseveres.png" id="16_Hope Perseveres" data-flag="@X" onclick="openSidebar('16_Hope Perseveres',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/47_Cu, Promise of Change.png" id="47_Cu, Promise of Change" data-flag="@X" onclick="openSidebar('47_Cu, Promise of Change',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/98_Hypothermia.png" id="98_Hypothermia" data-flag="@X" onclick="openSidebar('98_Hypothermia',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/118_Bo, Promise of Fury.png" id="118_Bo, Promise of Fury" data-flag="@X" onclick="openSidebar('118_Bo, Promise of Fury',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/165_Frostbite Mammoth.png" id="165_Frostbite Mammoth" data-flag="@X" onclick="openSidebar('165_Frostbite Mammoth',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/36_Va, Promise of Solitude.png" id="36_Va, Promise of Solitude" data-flag="@X" onclick="openSidebar('36_Va, Promise of Solitude',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/62_Midnight Sun Madness.png" id="62_Midnight Sun Madness" data-flag="@X" onclick="openSidebar('62_Midnight Sun Madness',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/100_Ke, Promise of Endings.png" id="100_Ke, Promise of Endings" data-flag="@X" onclick="openSidebar('100_Ke, Promise of Endings',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/125_Frostflame Phoenix.png" id="125_Frostflame Phoenix" data-flag="@X" onclick="openSidebar('125_Frostflame Phoenix',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/172_In Search of Luster.png" id="172_In Search of Luster" data-flag="@X" onclick="openSidebar('172_In Search of Luster',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/4_Dove Caller.png" id="4_Dove Caller" data-flag="@X" onclick="openSidebar('4_Dove Caller',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/39_Anatoli, Nurad Pioneer.png" id="39_Anatoli, Nurad Pioneer" data-flag="@X" onclick="openSidebar('39_Anatoli, Nurad Pioneer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/102_Olug, Last of the Old Guard.png" id="102_Olug, Last of the Old Guard" data-flag="@X" onclick="openSidebar('102_Olug, Last of the Old Guard',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/122_Campsite Nine.png" id="122_Campsite Nine" data-flag="@X" onclick="openSidebar('122_Campsite Nine',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/175_Ji, Promise of Passage.png" id="175_Ji, Promise of Passage" data-flag="@X" onclick="openSidebar('175_Ji, Promise of Passage',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/5_Elder Sje.png" id="5_Elder Sje" data-flag="@X" onclick="openSidebar('5_Elder Sje',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/48_Curious Descent.png" id="48_Curious Descent" data-flag="@X" onclick="openSidebar('48_Curious Descent',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/86_Demon of Frozen Secrets.png" id="86_Demon of Frozen Secrets" data-flag="@X" onclick="openSidebar('86_Demon of Frozen Secrets',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/126_Frosting Flames.png" id="126_Frosting Flames" data-flag="@X" onclick="openSidebar('126_Frosting Flames',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/159_Boreal Bears.png" id="159_Boreal Bears" data-flag="@X" onclick="openSidebar('159_Boreal Bears',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/12_Fonti Packtamer.png" id="12_Fonti Packtamer" data-flag="@X" onclick="openSidebar('12_Fonti Packtamer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/52_False Sunrise.png" id="52_False Sunrise" data-flag="@X" onclick="openSidebar('52_False Sunrise',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/88_Doctor Nitings.png" id="88_Doctor Nitings" data-flag="@X" onclick="openSidebar('88_Doctor Nitings',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/128_Halhrimian Smoldershade.png" id="128_Halhrimian Smoldershade" data-flag="@X" onclick="openSidebar('128_Halhrimian Smoldershade',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/161_Cerebral Invader.png" id="161_Cerebral Invader" data-flag="@X" onclick="openSidebar('161_Cerebral Invader',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/13_Frozen Resolve.png" id="13_Frozen Resolve" data-flag="@X" onclick="openSidebar('13_Frozen Resolve',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/58_Iced Kraken.png" id="58_Iced Kraken" data-flag="@X" onclick="openSidebar('58_Iced Kraken',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/94_Glacial Wanderings.png" id="94_Glacial Wanderings" data-flag="@X" onclick="openSidebar('94_Glacial Wanderings',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/129_Horde of the Sacrum.png" id="129_Horde of the Sacrum" data-flag="@X" onclick="openSidebar('129_Horde of the Sacrum',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/164_Desperate Reclamation.png" id="164_Desperate Reclamation" data-flag="@X" onclick="openSidebar('164_Desperate Reclamation',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/29_Skyfire Shepherd.png" id="29_Skyfire Shepherd" data-flag="@X" onclick="openSidebar('29_Skyfire Shepherd',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/65_Shifting Snowstorm.png" id="65_Shifting Snowstorm" data-flag="@X" onclick="openSidebar('65_Shifting Snowstorm',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/103_Osteomalgam.png" id="103_Osteomalgam" data-flag="@X" onclick="openSidebar('103_Osteomalgam',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/141_Push Too Far.png" id="141_Push Too Far" data-flag="@X" onclick="openSidebar('141_Push Too Far',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/176_Mammoth Herd.png" id="176_Mammoth Herd" data-flag="@X" onclick="openSidebar('176_Mammoth Herd',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/33_Suicidal Hysteria.png" id="33_Suicidal Hysteria" data-flag="@X" onclick="openSidebar('33_Suicidal Hysteria',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/66_Sleetcloak Strix.png" id="66_Sleetcloak Strix" data-flag="@X" onclick="openSidebar('66_Sleetcloak Strix',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/106_Rimefall.png" id="106_Rimefall" data-flag="@X" onclick="openSidebar('106_Rimefall',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/149_Splintershell Abomination.png" id="149_Splintershell Abomination" data-flag="@X" onclick="openSidebar('149_Splintershell Abomination',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/178_Moltenhorn Herd.png" id="178_Moltenhorn Herd" data-flag="@X" onclick="openSidebar('178_Moltenhorn Herd',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/35_Supply Runner.png" id="35_Supply Runner" data-flag="@X" onclick="openSidebar('35_Supply Runner',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/76_Winterlight Cavalry.png" id="76_Winterlight Cavalry" data-flag="@X" onclick="openSidebar('76_Winterlight Cavalry',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/109_Shadow Monarch.png" id="109_Shadow Monarch" data-flag="@X" onclick="openSidebar('109_Shadow Monarch',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/152_Trail of Blood.png" id="152_Trail of Blood" data-flag="@X" onclick="openSidebar('152_Trail of Blood',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/190_Velus, the Northern Sky.png" id="190_Velus, the Northern Sky" data-flag="@X" onclick="openSidebar('190_Velus, the Northern Sky',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/1_Aurora Wolf.png" id="1_Aurora Wolf" data-flag="@X" onclick="openSidebar('1_Aurora Wolf',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/40_Arctic Explorers.png" id="40_Arctic Explorers" data-flag="@X" onclick="openSidebar('40_Arctic Explorers',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/115_Verglas.png" id="115_Verglas" data-flag="@X" onclick="openSidebar('115_Verglas',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/117_Bloodthirsty Yeti.png" id="117_Bloodthirsty Yeti" data-flag="@X" onclick="openSidebar('117_Bloodthirsty Yeti',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/191_Winter Claims What It Will.png" id="191_Winter Claims What It Will" data-flag="@X" onclick="openSidebar('191_Winter Claims What It Will',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/2_Beast of the Sacrum.png" id="2_Beast of the Sacrum" data-flag="@X" onclick="openSidebar('2_Beast of the Sacrum',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/41_Aurora Channeling.png" id="41_Aurora Channeling" data-flag="@X" onclick="openSidebar('41_Aurora Channeling',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/77_Bonefeaster.png" id="77_Bonefeaster" data-flag="@X" onclick="openSidebar('77_Bonefeaster',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/119_Bo's Aurora.png" id="119_Bos Aurora" data-flag="@X" onclick="openSidebar('119_Bos Aurora',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/154_Aurochs of the Peak.png" id="154_Aurochs of the Peak" data-flag="@X" onclick="openSidebar('154_Aurochs of the Peak',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/3_Disciple of Va.png" id="3_Disciple of Va" data-flag="@X" onclick="openSidebar('3_Disciple of Va',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/42_Aurora Stalker.png" id="42_Aurora Stalker" data-flag="@X" onclick="openSidebar('42_Aurora Stalker',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/78_Chill Haunting.png" id="78_Chill Haunting" data-flag="@X" onclick="openSidebar('78_Chill Haunting',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/130_Iceborn Hellion.png" id="130_Iceborn Hellion" data-flag="@X" onclick="openSidebar('130_Iceborn Hellion',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/156_Aurora Lumbaris.png" id="156_Aurora Lumbaris" data-flag="@X" onclick="openSidebar('156_Aurora Lumbaris',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/7_Entrenched Foothold.png" id="7_Entrenched Foothold" data-flag="@X" onclick="openSidebar('7_Entrenched Foothold',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/43_Back to Ice.png" id="43_Back to Ice" data-flag="@X" onclick="openSidebar('43_Back to Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/79_Claimed by the Ice.png" id="79_Claimed by the Ice" data-flag="@X" onclick="openSidebar('79_Claimed by the Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/132_Igor, Nurad Researcher.png" id="132_Igor, Nurad Researcher" data-flag="@X" onclick="openSidebar('132_Igor, Nurad Researcher',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/162_Claim the North.png" id="162_Claim the North" data-flag="@X" onclick="openSidebar('162_Claim the North',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/8_Eternal Avalanche.png" id="8_Eternal Avalanche" data-flag="@X" onclick="openSidebar('8_Eternal Avalanche',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/45_Blizzard Predator.png" id="45_Blizzard Predator" data-flag="@X" onclick="openSidebar('45_Blizzard Predator',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/82_Crushed Ice.png" id="82_Crushed Ice" data-flag="@X" onclick="openSidebar('82_Crushed Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/133_Lightningcrafter.png" id="133_Lightningcrafter" data-flag="@X" onclick="openSidebar('133_Lightningcrafter',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/163_Curious Giffler.png" id="163_Curious Giffler" data-flag="@X" onclick="openSidebar('163_Curious Giffler',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/9_Expedition Mess Sergeant.png" id="9_Expedition Mess Sergeant" data-flag="@X" onclick="openSidebar('9_Expedition Mess Sergeant',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/46_Chasm Capture.png" id="46_Chasm Capture" data-flag="@X" onclick="openSidebar('46_Chasm Capture',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/83_Cunning Heart-Eater.png" id="83_Cunning Heart-Eater" data-flag="@X" onclick="openSidebar('83_Cunning Heart-Eater',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/135_Maddened Sycophant.png" id="135_Maddened Sycophant" data-flag="@X" onclick="openSidebar('135_Maddened Sycophant',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/166_Frostmaw Prawn.png" id="166_Frostmaw Prawn" data-flag="@X" onclick="openSidebar('166_Frostmaw Prawn',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/15_Helping Hand.png" id="15_Helping Hand" data-flag="@X" onclick="openSidebar('15_Helping Hand',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/50_Drowsing Iceborne.png" id="50_Drowsing Iceborne" data-flag="@X" onclick="openSidebar('50_Drowsing Iceborne',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/84_Darkness of the Ice.png" id="84_Darkness of the Ice" data-flag="@X" onclick="openSidebar('84_Darkness of the Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/137_Melt Away.png" id="137_Melt Away" data-flag="@X" onclick="openSidebar('137_Melt Away',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/168_Grizzled Spotter.png" id="168_Grizzled Spotter" data-flag="@X" onclick="openSidebar('168_Grizzled Spotter',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/17_Journey Unending.png" id="17_Journey Unending" data-flag="@X" onclick="openSidebar('17_Journey Unending',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/53_Freeze Frame.png" id="53_Freeze Frame" data-flag="@X" onclick="openSidebar('53_Freeze Frame',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/87_Desperation.png" id="87_Desperation" data-flag="@X" onclick="openSidebar('87_Desperation',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/138_Overenthusiastic Recruit.png" id="138_Overenthusiastic Recruit" data-flag="@X" onclick="openSidebar('138_Overenthusiastic Recruit',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/169_Howling Frostscourge.png" id="169_Howling Frostscourge" data-flag="@X" onclick="openSidebar('169_Howling Frostscourge',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/26_Salvage Spoils.png" id="26_Salvage Spoils" data-flag="@X" onclick="openSidebar('26_Salvage Spoils',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/56_Frozen Over.png" id="56_Frozen Over" data-flag="@X" onclick="openSidebar('56_Frozen Over',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/89_Drifter in Distress.png" id="89_Drifter in Distress" data-flag="@X" onclick="openSidebar('89_Drifter in Distress',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/139_Phoenix of Clear Skies.png" id="139_Phoenix of Clear Skies" data-flag="@X" onclick="openSidebar('139_Phoenix of Clear Skies',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/177_Man's Best Friend.png" id="177_Mans Best Friend" data-flag="@X" onclick="openSidebar('177_Mans Best Friend',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/30_Snowstorm Searcher.png" id="30_Snowstorm Searcher" data-flag="@X" onclick="openSidebar('30_Snowstorm Searcher',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/57_Hunker Down.png" id="57_Hunker Down" data-flag="@X" onclick="openSidebar('57_Hunker Down',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/95_Grim Guide.png" id="95_Grim Guide" data-flag="@X" onclick="openSidebar('95_Grim Guide',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/142_Reignition Ritual.png" id="142_Reignition Ritual" data-flag="@X" onclick="openSidebar('142_Reignition Ritual',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/179_Outsize.png" id="179_Outsize" data-flag="@X" onclick="openSidebar('179_Outsize',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/31_Specialist Cookie.png" id="31_Specialist Cookie" data-flag="@X" onclick="openSidebar('31_Specialist Cookie',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/59_Inquisitive Stoat.png" id="59_Inquisitive Stoat" data-flag="@X" onclick="openSidebar('59_Inquisitive Stoat',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/97_Heartless Act.png" id="97_Heartless Act" data-flag="@X" onclick="openSidebar('97_Heartless Act',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/144_Savage Struggle.png" id="144_Savage Struggle" data-flag="@X" onclick="openSidebar('144_Savage Struggle',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/180_Rambling Collector.png" id="180_Rambling Collector" data-flag="@X" onclick="openSidebar('180_Rambling Collector',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/32_Stubborn Beast.png" id="32_Stubborn Beast" data-flag="@X" onclick="openSidebar('32_Stubborn Beast',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/60_Light of the Lost.png" id="60_Light of the Lost" data-flag="@X" onclick="openSidebar('60_Light of the Lost',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/104_Rations Thief.png" id="104_Rations Thief" data-flag="@X" onclick="openSidebar('104_Rations Thief',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/146_Sinew Saber.png" id="146_Sinew Saber" data-flag="@X" onclick="openSidebar('146_Sinew Saber',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/181_Rimeborn Grasper.png" id="181_Rimeborn Grasper" data-flag="@X" onclick="openSidebar('181_Rimeborn Grasper',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/34_Supply Run.png" id="34_Supply Run" data-flag="@X" onclick="openSidebar('34_Supply Run',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/64_Relic Twiddler.png" id="64_Relic Twiddler" data-flag="@X" onclick="openSidebar('64_Relic Twiddler',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/110_Shambling Gravesite.png" id="110_Shambling Gravesite" data-flag="@X" onclick="openSidebar('110_Shambling Gravesite',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/148_Snow-Blind Rage.png" id="148_Snow-Blind Rage" data-flag="@X" onclick="openSidebar('148_Snow-Blind Rage',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/187_Splinter Surveyor.png" id="187_Splinter Surveyor" data-flag="@X" onclick="openSidebar('187_Splinter Surveyor',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/38_Wraith in the White.png" id="38_Wraith in the White" data-flag="@X" onclick="openSidebar('38_Wraith in the White',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/67_Slumbering Terror.png" id="67_Slumbering Terror" data-flag="@X" onclick="openSidebar('67_Slumbering Terror',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/112_Solitary Survivalist.png" id="112_Solitary Survivalist" data-flag="@X" onclick="openSidebar('112_Solitary Survivalist',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/151_Taken from the Flames.png" id="151_Taken from the Flames" data-flag="@X" onclick="openSidebar('151_Taken from the Flames',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/188_Splintering Emergence.png" id="188_Splintering Emergence" data-flag="@X" onclick="openSidebar('188_Splintering Emergence',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/6_Embitter the Expedition.png" id="6_Embitter the Expedition" data-flag="@X" onclick="openSidebar('6_Embitter the Expedition',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/44_Beneath the Ice.png" id="44_Beneath the Ice" data-flag="@X" onclick="openSidebar('44_Beneath the Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/113_Stunning Loneliness.png" id="113_Stunning Loneliness" data-flag="@X" onclick="openSidebar('113_Stunning Loneliness',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/116_Beastblood Tracker.png" id="116_Beastblood Tracker" data-flag="@X" onclick="openSidebar('116_Beastblood Tracker',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/192_Wintermane Pack.png" id="192_Wintermane Pack" data-flag="@X" onclick="openSidebar('192_Wintermane Pack',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/10_Expedition Quartermaster.png" id="10_Expedition Quartermaster" data-flag="@X" onclick="openSidebar('10_Expedition Quartermaster',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/49_Dancing Lights.png" id="49_Dancing Lights" data-flag="@X" onclick="openSidebar('49_Dancing Lights',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/80_Cold to the Touch.png" id="80_Cold to the Touch" data-flag="@X" onclick="openSidebar('80_Cold to the Touch',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/120_Burn Through.png" id="120_Burn Through" data-flag="@X" onclick="openSidebar('120_Burn Through',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/155_Aurochs Pair.png" id="155_Aurochs Pair" data-flag="@X" onclick="openSidebar('155_Aurochs Pair',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/11_Fonti Hunting Group.png" id="11_Fonti Hunting Group" data-flag="@X" onclick="openSidebar('11_Fonti Hunting Group',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/51_Faithful Acolyte.png" id="51_Faithful Acolyte" data-flag="@X" onclick="openSidebar('51_Faithful Acolyte',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/81_Cold-Hearted Scrounger.png" id="81_Cold-Hearted Scrounger" data-flag="@X" onclick="openSidebar('81_Cold-Hearted Scrounger',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/121_Butcher's Suppliers.png" id="121_Butchers Suppliers" data-flag="@X" onclick="openSidebar('121_Butchers Suppliers',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/157_Bitter Chill Bravery.png" id="157_Bitter Chill Bravery" data-flag="@X" onclick="openSidebar('157_Bitter Chill Bravery',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/14_Gone Astray.png" id="14_Gone Astray" data-flag="@X" onclick="openSidebar('14_Gone Astray',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/54_Frostfell Observer.png" id="54_Frostfell Observer" data-flag="@X" onclick="openSidebar('54_Frostfell Observer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/85_Death Rattle Behemoth.png" id="85_Death Rattle Behemoth" data-flag="@X" onclick="openSidebar('85_Death Rattle Behemoth',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/123_Combustible Squall.png" id="123_Combustible Squall" data-flag="@X" onclick="openSidebar('123_Combustible Squall',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/158_Boreal Arboreal.png" id="158_Boreal Arboreal" data-flag="@X" onclick="openSidebar('158_Boreal Arboreal',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/18_Known Uncertainty.png" id="18_Known Uncertainty" data-flag="@X" onclick="openSidebar('18_Known Uncertainty',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/55_Frozen Bone Barrier.png" id="55_Frozen Bone Barrier" data-flag="@X" onclick="openSidebar('55_Frozen Bone Barrier',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/90_Enthralled Enforcer.png" id="90_Enthralled Enforcer" data-flag="@X" onclick="openSidebar('90_Enthralled Enforcer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/124_Feed the Snow.png" id="124_Feed the Snow" data-flag="@X" onclick="openSidebar('124_Feed the Snow',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/160_Cave Delver.png" id="160_Cave Delver" data-flag="@X" onclick="openSidebar('160_Cave Delver',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/19_Lone Scout.png" id="19_Lone Scout" data-flag="@X" onclick="openSidebar('19_Lone Scout',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/61_Lurking Iceshark.png" id="61_Lurking Iceshark" data-flag="@X" onclick="openSidebar('61_Lurking Iceshark',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/91_Frostbite Fiend.png" id="91_Frostbite Fiend" data-flag="@X" onclick="openSidebar('91_Frostbite Fiend',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/127_Glacial Fracture.png" id="127_Glacial Fracture" data-flag="@X" onclick="openSidebar('127_Glacial Fracture',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/167_Grapple with the Past.png" id="167_Grapple with the Past" data-flag="@X" onclick="openSidebar('167_Grapple with the Past',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/20_Midnight Patrol.png" id="20_Midnight Patrol" data-flag="@X" onclick="openSidebar('20_Midnight Patrol',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/63_Put on Ice.png" id="63_Put on Ice" data-flag="@X" onclick="openSidebar('63_Put on Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/92_Frostbrood Matriarch.png" id="92_Frostbrood Matriarch" data-flag="@X" onclick="openSidebar('92_Frostbrood Matriarch',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/131_Ichordregs.png" id="131_Ichordregs" data-flag="@X" onclick="openSidebar('131_Ichordregs',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/170_Hyperfrost.png" id="170_Hyperfrost" data-flag="@X" onclick="openSidebar('170_Hyperfrost',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/21_Persistent Chill.png" id="21_Persistent Chill" data-flag="@X" onclick="openSidebar('21_Persistent Chill',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/68_Snow-Coated Sable.png" id="68_Snow-Coated Sable" data-flag="@X" onclick="openSidebar('68_Snow-Coated Sable',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/93_Frosted Elk.png" id="93_Frosted Elk" data-flag="@X" onclick="openSidebar('93_Frosted Elk',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/134_Lupine Scavenger.png" id="134_Lupine Scavenger" data-flag="@X" onclick="openSidebar('134_Lupine Scavenger',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/171_Icemaw Wurm.png" id="171_Icemaw Wurm" data-flag="@X" onclick="openSidebar('171_Icemaw Wurm',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/22_Pod of the Forgotten.png" id="22_Pod of the Forgotten" data-flag="@X" onclick="openSidebar('22_Pod of the Forgotten',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/69_Snowclad Dejection.png" id="69_Snowclad Dejection" data-flag="@X" onclick="openSidebar('69_Snowclad Dejection',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/96_Harbinger of Ke.png" id="96_Harbinger of Ke" data-flag="@X" onclick="openSidebar('96_Harbinger of Ke',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/136_Marrow Haulers.png" id="136_Marrow Haulers" data-flag="@X" onclick="openSidebar('136_Marrow Haulers',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/173_Insatiable Hunger.png" id="173_Insatiable Hunger" data-flag="@X" onclick="openSidebar('173_Insatiable Hunger',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/23_Ravenous Hare.png" id="23_Ravenous Hare" data-flag="@X" onclick="openSidebar('23_Ravenous Hare',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/70_Stormwake Serpent.png" id="70_Stormwake Serpent" data-flag="@X" onclick="openSidebar('70_Stormwake Serpent',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/99_Ichorous Malignant.png" id="99_Ichorous Malignant" data-flag="@X" onclick="openSidebar('99_Ichorous Malignant',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/140_Phoenixheart Vagabond.png" id="140_Phoenixheart Vagabond" data-flag="@X" onclick="openSidebar('140_Phoenixheart Vagabond',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/174_Invigorated Assault.png" id="174_Invigorated Assault" data-flag="@X" onclick="openSidebar('174_Invigorated Assault',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/24_Requested Reinforcements.png" id="24_Requested Reinforcements" data-flag="@X" onclick="openSidebar('24_Requested Reinforcements',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/71_Thawing Wisdom.png" id="71_Thawing Wisdom" data-flag="@X" onclick="openSidebar('71_Thawing Wisdom',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/101_Last Breath.png" id="101_Last Breath" data-flag="@X" onclick="openSidebar('101_Last Breath',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/143_Rimeborn Outburst.png" id="143_Rimeborn Outburst" data-flag="@X" onclick="openSidebar('143_Rimeborn Outburst',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/182_Rimewood Guardian.png" id="182_Rimewood Guardian" data-flag="@X" onclick="openSidebar('182_Rimewood Guardian',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/25_Sabrespine Lion.png" id="25_Sabrespine Lion" data-flag="@X" onclick="openSidebar('25_Sabrespine Lion',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/72_Uncover.png" id="72_Uncover" data-flag="@X" onclick="openSidebar('72_Uncover',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/105_Reallocate Rations.png" id="105_Reallocate Rations" data-flag="@X" onclick="openSidebar('105_Reallocate Rations',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/145_Shatterfrost Avalanche.png" id="145_Shatterfrost Avalanche" data-flag="@X" onclick="openSidebar('145_Shatterfrost Avalanche',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/183_Roaming Cryosaurs.png" id="183_Roaming Cryosaurs" data-flag="@X" onclick="openSidebar('183_Roaming Cryosaurs',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/27_Seek Shelter.png" id="27_Seek Shelter" data-flag="@X" onclick="openSidebar('27_Seek Shelter',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/73_Voice of Frost.png" id="73_Voice of Frost" data-flag="@X" onclick="openSidebar('73_Voice of Frost',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/107_Scour the Remains.png" id="107_Scour the Remains" data-flag="@X" onclick="openSidebar('107_Scour the Remains',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/147_Ski Scout.png" id="147_Ski Scout" data-flag="@X" onclick="openSidebar('147_Ski Scout',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/184_Snowtop Rescuer.png" id="184_Snowtop Rescuer" data-flag="@X" onclick="openSidebar('184_Snowtop Rescuer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/28_Shoreline Scavenger.png" id="28_Shoreline Scavenger" data-flag="@X" onclick="openSidebar('28_Shoreline Scavenger',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/74_Walrus Sentry.png" id="74_Walrus Sentry" data-flag="@X" onclick="openSidebar('74_Walrus Sentry',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/108_Seclude.png" id="108_Seclude" data-flag="@X" onclick="openSidebar('108_Seclude',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/150_Splintertooth Tiger.png" id="150_Splintertooth Tiger" data-flag="@X" onclick="openSidebar('150_Splintertooth Tiger',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/185_Something Like a Spider.png" id="185_Something Like a Spider" data-flag="@X" onclick="openSidebar('185_Something Like a Spider',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/37_Watchful Companion.png" id="37_Watchful Companion" data-flag="@X" onclick="openSidebar('37_Watchful Companion',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/75_What Doesn't Kill Us.png" id="75_What Doesnt Kill Us" data-flag="@X" onclick="openSidebar('75_What Doesnt Kill Us',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/111_Snow Angel.png" id="111_Snow Angel" data-flag="@X" onclick="openSidebar('111_Snow Angel',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/153_Tundra Mammoth.png" id="153_Tundra Mammoth" data-flag="@X" onclick="openSidebar('153_Tundra Mammoth',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/186_Spineless Spawn.png" id="186_Spineless Spawn" data-flag="@X" onclick="openSidebar('186_Spineless Spawn',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/114_To the Ones Below.png" id="114_To the Ones Below" data-flag="@X" onclick="openSidebar('114_To the Ones Below',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/189_Tideshaper Behemoth.png" id="189_Tideshaper Behemoth" data-flag="@X" onclick="openSidebar('189_Tideshaper Behemoth',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+					<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/16_Hope Perseveres.png" id="16_Hope Perseveres" data-flag="@X" onclick="openSidebar('16_Hope Perseveres',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/47_Cu, Promise of Change.png" id="47_Cu, Promise of Change" data-flag="@X" onclick="openSidebar('47_Cu, Promise of Change',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/98_Hypothermia.png" id="98_Hypothermia" data-flag="@X" onclick="openSidebar('98_Hypothermia',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/118_Bo, Promise of Fury.png" id="118_Bo, Promise of Fury" data-flag="@X" onclick="openSidebar('118_Bo, Promise of Fury',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/165_Frostbite Mammoth.png" id="165_Frostbite Mammoth" data-flag="@X" onclick="openSidebar('165_Frostbite Mammoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/36_Va, Promise of Solitude.png" id="36_Va, Promise of Solitude" data-flag="@X" onclick="openSidebar('36_Va, Promise of Solitude',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/62_Midnight Sun Madness.png" id="62_Midnight Sun Madness" data-flag="@X" onclick="openSidebar('62_Midnight Sun Madness',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/100_Ke, Promise of Endings.png" id="100_Ke, Promise of Endings" data-flag="@X" onclick="openSidebar('100_Ke, Promise of Endings',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/125_Frostflame Phoenix.png" id="125_Frostflame Phoenix" data-flag="@X" onclick="openSidebar('125_Frostflame Phoenix',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/172_In Search of Luster.png" id="172_In Search of Luster" data-flag="@X" onclick="openSidebar('172_In Search of Luster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/4_Dove Caller.png" id="4_Dove Caller" data-flag="@X" onclick="openSidebar('4_Dove Caller',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/39_Anatoli, Nurad Pioneer.png" id="39_Anatoli, Nurad Pioneer" data-flag="@X" onclick="openSidebar('39_Anatoli, Nurad Pioneer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/102_Olug, Last of the Old Guard.png" id="102_Olug, Last of the Old Guard" data-flag="@X" onclick="openSidebar('102_Olug, Last of the Old Guard',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/122_Campsite Nine.png" id="122_Campsite Nine" data-flag="@X" onclick="openSidebar('122_Campsite Nine',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/175_Ji, Promise of Passage.png" id="175_Ji, Promise of Passage" data-flag="@X" onclick="openSidebar('175_Ji, Promise of Passage',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/5_Elder Sje.png" id="5_Elder Sje" data-flag="@X" onclick="openSidebar('5_Elder Sje',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/48_Curious Descent.png" id="48_Curious Descent" data-flag="@X" onclick="openSidebar('48_Curious Descent',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/86_Demon of Frozen Secrets.png" id="86_Demon of Frozen Secrets" data-flag="@X" onclick="openSidebar('86_Demon of Frozen Secrets',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/126_Frosting Flames.png" id="126_Frosting Flames" data-flag="@X" onclick="openSidebar('126_Frosting Flames',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/159_Boreal Bears.png" id="159_Boreal Bears" data-flag="@X" onclick="openSidebar('159_Boreal Bears',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/12_Fonti Packtamer.png" id="12_Fonti Packtamer" data-flag="@X" onclick="openSidebar('12_Fonti Packtamer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/52_False Sunrise.png" id="52_False Sunrise" data-flag="@X" onclick="openSidebar('52_False Sunrise',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/88_Doctor Nitings.png" id="88_Doctor Nitings" data-flag="@X" onclick="openSidebar('88_Doctor Nitings',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/128_Halhrimian Smoldershade.png" id="128_Halhrimian Smoldershade" data-flag="@X" onclick="openSidebar('128_Halhrimian Smoldershade',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/161_Cerebral Invader.png" id="161_Cerebral Invader" data-flag="@X" onclick="openSidebar('161_Cerebral Invader',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/13_Frozen Resolve.png" id="13_Frozen Resolve" data-flag="@X" onclick="openSidebar('13_Frozen Resolve',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/58_Iced Kraken.png" id="58_Iced Kraken" data-flag="@X" onclick="openSidebar('58_Iced Kraken',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/94_Glacial Wanderings.png" id="94_Glacial Wanderings" data-flag="@X" onclick="openSidebar('94_Glacial Wanderings',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/129_Horde of the Sacrum.png" id="129_Horde of the Sacrum" data-flag="@X" onclick="openSidebar('129_Horde of the Sacrum',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/164_Desperate Reclamation.png" id="164_Desperate Reclamation" data-flag="@X" onclick="openSidebar('164_Desperate Reclamation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/29_Skyfire Shepherd.png" id="29_Skyfire Shepherd" data-flag="@X" onclick="openSidebar('29_Skyfire Shepherd',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/65_Shifting Snowstorm.png" id="65_Shifting Snowstorm" data-flag="@X" onclick="openSidebar('65_Shifting Snowstorm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/103_Osteomalgam.png" id="103_Osteomalgam" data-flag="@X" onclick="openSidebar('103_Osteomalgam',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/141_Push Too Far.png" id="141_Push Too Far" data-flag="@X" onclick="openSidebar('141_Push Too Far',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/176_Mammoth Herd.png" id="176_Mammoth Herd" data-flag="@X" onclick="openSidebar('176_Mammoth Herd',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/33_Suicidal Hysteria.png" id="33_Suicidal Hysteria" data-flag="@X" onclick="openSidebar('33_Suicidal Hysteria',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/66_Sleetcloak Strix.png" id="66_Sleetcloak Strix" data-flag="@X" onclick="openSidebar('66_Sleetcloak Strix',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/106_Rimefall.png" id="106_Rimefall" data-flag="@X" onclick="openSidebar('106_Rimefall',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/149_Splintershell Abomination.png" id="149_Splintershell Abomination" data-flag="@X" onclick="openSidebar('149_Splintershell Abomination',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/178_Moltenhorn Herd.png" id="178_Moltenhorn Herd" data-flag="@X" onclick="openSidebar('178_Moltenhorn Herd',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/35_Supply Runner.png" id="35_Supply Runner" data-flag="@X" onclick="openSidebar('35_Supply Runner',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/76_Winterlight Cavalry.png" id="76_Winterlight Cavalry" data-flag="@X" onclick="openSidebar('76_Winterlight Cavalry',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/109_Shadow Monarch.png" id="109_Shadow Monarch" data-flag="@X" onclick="openSidebar('109_Shadow Monarch',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/152_Trail of Blood.png" id="152_Trail of Blood" data-flag="@X" onclick="openSidebar('152_Trail of Blood',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/190_Velus, the Northern Sky.png" id="190_Velus, the Northern Sky" data-flag="@X" onclick="openSidebar('190_Velus, the Northern Sky',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/1_Aurora Wolf.png" id="1_Aurora Wolf" data-flag="@X" onclick="openSidebar('1_Aurora Wolf',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/40_Arctic Explorers.png" id="40_Arctic Explorers" data-flag="@X" onclick="openSidebar('40_Arctic Explorers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/115_Verglas.png" id="115_Verglas" data-flag="@X" onclick="openSidebar('115_Verglas',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/117_Bloodthirsty Yeti.png" id="117_Bloodthirsty Yeti" data-flag="@X" onclick="openSidebar('117_Bloodthirsty Yeti',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/191_Winter Claims What It Will.png" id="191_Winter Claims What It Will" data-flag="@X" onclick="openSidebar('191_Winter Claims What It Will',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/2_Beast of the Sacrum.png" id="2_Beast of the Sacrum" data-flag="@X" onclick="openSidebar('2_Beast of the Sacrum',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/41_Aurora Channeling.png" id="41_Aurora Channeling" data-flag="@X" onclick="openSidebar('41_Aurora Channeling',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/77_Bonefeaster.png" id="77_Bonefeaster" data-flag="@X" onclick="openSidebar('77_Bonefeaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/119_Bo's Aurora.png" id="119_Bos Aurora" data-flag="@X" onclick="openSidebar('119_Bos Aurora',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/154_Aurochs of the Peak.png" id="154_Aurochs of the Peak" data-flag="@X" onclick="openSidebar('154_Aurochs of the Peak',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/3_Disciple of Va.png" id="3_Disciple of Va" data-flag="@X" onclick="openSidebar('3_Disciple of Va',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/42_Aurora Stalker.png" id="42_Aurora Stalker" data-flag="@X" onclick="openSidebar('42_Aurora Stalker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/78_Chill Haunting.png" id="78_Chill Haunting" data-flag="@X" onclick="openSidebar('78_Chill Haunting',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/130_Iceborn Hellion.png" id="130_Iceborn Hellion" data-flag="@X" onclick="openSidebar('130_Iceborn Hellion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/156_Aurora Lumbaris.png" id="156_Aurora Lumbaris" data-flag="@X" onclick="openSidebar('156_Aurora Lumbaris',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/7_Entrenched Foothold.png" id="7_Entrenched Foothold" data-flag="@X" onclick="openSidebar('7_Entrenched Foothold',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/43_Back to Ice.png" id="43_Back to Ice" data-flag="@X" onclick="openSidebar('43_Back to Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/79_Claimed by the Ice.png" id="79_Claimed by the Ice" data-flag="@X" onclick="openSidebar('79_Claimed by the Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/132_Igor, Nurad Researcher.png" id="132_Igor, Nurad Researcher" data-flag="@X" onclick="openSidebar('132_Igor, Nurad Researcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/162_Claim the North.png" id="162_Claim the North" data-flag="@X" onclick="openSidebar('162_Claim the North',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/8_Eternal Avalanche.png" id="8_Eternal Avalanche" data-flag="@X" onclick="openSidebar('8_Eternal Avalanche',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/45_Blizzard Predator.png" id="45_Blizzard Predator" data-flag="@X" onclick="openSidebar('45_Blizzard Predator',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/82_Crushed Ice.png" id="82_Crushed Ice" data-flag="@X" onclick="openSidebar('82_Crushed Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/133_Lightningcrafter.png" id="133_Lightningcrafter" data-flag="@X" onclick="openSidebar('133_Lightningcrafter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/163_Curious Giffler.png" id="163_Curious Giffler" data-flag="@X" onclick="openSidebar('163_Curious Giffler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/9_Expedition Mess Sergeant.png" id="9_Expedition Mess Sergeant" data-flag="@X" onclick="openSidebar('9_Expedition Mess Sergeant',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/46_Chasm Capture.png" id="46_Chasm Capture" data-flag="@X" onclick="openSidebar('46_Chasm Capture',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/83_Cunning Heart-Eater.png" id="83_Cunning Heart-Eater" data-flag="@X" onclick="openSidebar('83_Cunning Heart-Eater',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/135_Maddened Sycophant.png" id="135_Maddened Sycophant" data-flag="@X" onclick="openSidebar('135_Maddened Sycophant',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/166_Frostmaw Prawn.png" id="166_Frostmaw Prawn" data-flag="@X" onclick="openSidebar('166_Frostmaw Prawn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/15_Helping Hand.png" id="15_Helping Hand" data-flag="@X" onclick="openSidebar('15_Helping Hand',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/50_Drowsing Iceborne.png" id="50_Drowsing Iceborne" data-flag="@X" onclick="openSidebar('50_Drowsing Iceborne',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/84_Darkness of the Ice.png" id="84_Darkness of the Ice" data-flag="@X" onclick="openSidebar('84_Darkness of the Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/137_Melt Away.png" id="137_Melt Away" data-flag="@X" onclick="openSidebar('137_Melt Away',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/168_Grizzled Spotter.png" id="168_Grizzled Spotter" data-flag="@X" onclick="openSidebar('168_Grizzled Spotter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/17_Journey Unending.png" id="17_Journey Unending" data-flag="@X" onclick="openSidebar('17_Journey Unending',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/53_Freeze Frame.png" id="53_Freeze Frame" data-flag="@X" onclick="openSidebar('53_Freeze Frame',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/87_Desperation.png" id="87_Desperation" data-flag="@X" onclick="openSidebar('87_Desperation',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/138_Overenthusiastic Recruit.png" id="138_Overenthusiastic Recruit" data-flag="@X" onclick="openSidebar('138_Overenthusiastic Recruit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/169_Howling Frostscourge.png" id="169_Howling Frostscourge" data-flag="@X" onclick="openSidebar('169_Howling Frostscourge',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/26_Salvage Spoils.png" id="26_Salvage Spoils" data-flag="@X" onclick="openSidebar('26_Salvage Spoils',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/56_Frozen Over.png" id="56_Frozen Over" data-flag="@X" onclick="openSidebar('56_Frozen Over',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/89_Drifter in Distress.png" id="89_Drifter in Distress" data-flag="@X" onclick="openSidebar('89_Drifter in Distress',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/139_Phoenix of Clear Skies.png" id="139_Phoenix of Clear Skies" data-flag="@X" onclick="openSidebar('139_Phoenix of Clear Skies',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/177_Man's Best Friend.png" id="177_Mans Best Friend" data-flag="@X" onclick="openSidebar('177_Mans Best Friend',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/30_Snowstorm Searcher.png" id="30_Snowstorm Searcher" data-flag="@X" onclick="openSidebar('30_Snowstorm Searcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/57_Hunker Down.png" id="57_Hunker Down" data-flag="@X" onclick="openSidebar('57_Hunker Down',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/95_Grim Guide.png" id="95_Grim Guide" data-flag="@X" onclick="openSidebar('95_Grim Guide',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/142_Reignition Ritual.png" id="142_Reignition Ritual" data-flag="@X" onclick="openSidebar('142_Reignition Ritual',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/179_Outsize.png" id="179_Outsize" data-flag="@X" onclick="openSidebar('179_Outsize',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/31_Specialist Cookie.png" id="31_Specialist Cookie" data-flag="@X" onclick="openSidebar('31_Specialist Cookie',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/59_Inquisitive Stoat.png" id="59_Inquisitive Stoat" data-flag="@X" onclick="openSidebar('59_Inquisitive Stoat',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/97_Heartless Act.png" id="97_Heartless Act" data-flag="@X" onclick="openSidebar('97_Heartless Act',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/144_Savage Struggle.png" id="144_Savage Struggle" data-flag="@X" onclick="openSidebar('144_Savage Struggle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/180_Rambling Collector.png" id="180_Rambling Collector" data-flag="@X" onclick="openSidebar('180_Rambling Collector',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/32_Stubborn Beast.png" id="32_Stubborn Beast" data-flag="@X" onclick="openSidebar('32_Stubborn Beast',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/60_Light of the Lost.png" id="60_Light of the Lost" data-flag="@X" onclick="openSidebar('60_Light of the Lost',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/104_Rations Thief.png" id="104_Rations Thief" data-flag="@X" onclick="openSidebar('104_Rations Thief',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/146_Sinew Saber.png" id="146_Sinew Saber" data-flag="@X" onclick="openSidebar('146_Sinew Saber',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/181_Rimeborn Grasper.png" id="181_Rimeborn Grasper" data-flag="@X" onclick="openSidebar('181_Rimeborn Grasper',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/34_Supply Run.png" id="34_Supply Run" data-flag="@X" onclick="openSidebar('34_Supply Run',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/64_Relic Twiddler.png" id="64_Relic Twiddler" data-flag="@X" onclick="openSidebar('64_Relic Twiddler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/110_Shambling Gravesite.png" id="110_Shambling Gravesite" data-flag="@X" onclick="openSidebar('110_Shambling Gravesite',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/148_Snow-Blind Rage.png" id="148_Snow-Blind Rage" data-flag="@X" onclick="openSidebar('148_Snow-Blind Rage',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/187_Splinter Surveyor.png" id="187_Splinter Surveyor" data-flag="@X" onclick="openSidebar('187_Splinter Surveyor',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/38_Wraith in the White.png" id="38_Wraith in the White" data-flag="@X" onclick="openSidebar('38_Wraith in the White',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/67_Slumbering Terror.png" id="67_Slumbering Terror" data-flag="@X" onclick="openSidebar('67_Slumbering Terror',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/112_Solitary Survivalist.png" id="112_Solitary Survivalist" data-flag="@X" onclick="openSidebar('112_Solitary Survivalist',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/151_Taken from the Flames.png" id="151_Taken from the Flames" data-flag="@X" onclick="openSidebar('151_Taken from the Flames',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/188_Splintering Emergence.png" id="188_Splintering Emergence" data-flag="@X" onclick="openSidebar('188_Splintering Emergence',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/6_Embitter the Expedition.png" id="6_Embitter the Expedition" data-flag="@X" onclick="openSidebar('6_Embitter the Expedition',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/44_Beneath the Ice.png" id="44_Beneath the Ice" data-flag="@X" onclick="openSidebar('44_Beneath the Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/113_Stunning Loneliness.png" id="113_Stunning Loneliness" data-flag="@X" onclick="openSidebar('113_Stunning Loneliness',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/116_Beastblood Tracker.png" id="116_Beastblood Tracker" data-flag="@X" onclick="openSidebar('116_Beastblood Tracker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/192_Wintermane Pack.png" id="192_Wintermane Pack" data-flag="@X" onclick="openSidebar('192_Wintermane Pack',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/10_Expedition Quartermaster.png" id="10_Expedition Quartermaster" data-flag="@X" onclick="openSidebar('10_Expedition Quartermaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/49_Dancing Lights.png" id="49_Dancing Lights" data-flag="@X" onclick="openSidebar('49_Dancing Lights',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/80_Cold to the Touch.png" id="80_Cold to the Touch" data-flag="@X" onclick="openSidebar('80_Cold to the Touch',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/120_Burn Through.png" id="120_Burn Through" data-flag="@X" onclick="openSidebar('120_Burn Through',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/155_Aurochs Pair.png" id="155_Aurochs Pair" data-flag="@X" onclick="openSidebar('155_Aurochs Pair',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/11_Fonti Hunting Group.png" id="11_Fonti Hunting Group" data-flag="@X" onclick="openSidebar('11_Fonti Hunting Group',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/51_Faithful Acolyte.png" id="51_Faithful Acolyte" data-flag="@X" onclick="openSidebar('51_Faithful Acolyte',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/81_Cold-Hearted Scrounger.png" id="81_Cold-Hearted Scrounger" data-flag="@X" onclick="openSidebar('81_Cold-Hearted Scrounger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/121_Butcher's Suppliers.png" id="121_Butchers Suppliers" data-flag="@X" onclick="openSidebar('121_Butchers Suppliers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/157_Bitter Chill Bravery.png" id="157_Bitter Chill Bravery" data-flag="@X" onclick="openSidebar('157_Bitter Chill Bravery',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/14_Gone Astray.png" id="14_Gone Astray" data-flag="@X" onclick="openSidebar('14_Gone Astray',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/54_Frostfell Observer.png" id="54_Frostfell Observer" data-flag="@X" onclick="openSidebar('54_Frostfell Observer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/85_Death Rattle Behemoth.png" id="85_Death Rattle Behemoth" data-flag="@X" onclick="openSidebar('85_Death Rattle Behemoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/123_Combustible Squall.png" id="123_Combustible Squall" data-flag="@X" onclick="openSidebar('123_Combustible Squall',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/158_Boreal Arboreal.png" id="158_Boreal Arboreal" data-flag="@X" onclick="openSidebar('158_Boreal Arboreal',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/18_Known Uncertainty.png" id="18_Known Uncertainty" data-flag="@X" onclick="openSidebar('18_Known Uncertainty',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/55_Frozen Bone Barrier.png" id="55_Frozen Bone Barrier" data-flag="@X" onclick="openSidebar('55_Frozen Bone Barrier',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/90_Enthralled Enforcer.png" id="90_Enthralled Enforcer" data-flag="@X" onclick="openSidebar('90_Enthralled Enforcer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/124_Feed the Snow.png" id="124_Feed the Snow" data-flag="@X" onclick="openSidebar('124_Feed the Snow',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/160_Cave Delver.png" id="160_Cave Delver" data-flag="@X" onclick="openSidebar('160_Cave Delver',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/19_Lone Scout.png" id="19_Lone Scout" data-flag="@X" onclick="openSidebar('19_Lone Scout',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/61_Lurking Iceshark.png" id="61_Lurking Iceshark" data-flag="@X" onclick="openSidebar('61_Lurking Iceshark',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/91_Frostbite Fiend.png" id="91_Frostbite Fiend" data-flag="@X" onclick="openSidebar('91_Frostbite Fiend',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/127_Glacial Fracture.png" id="127_Glacial Fracture" data-flag="@X" onclick="openSidebar('127_Glacial Fracture',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/167_Grapple with the Past.png" id="167_Grapple with the Past" data-flag="@X" onclick="openSidebar('167_Grapple with the Past',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/20_Midnight Patrol.png" id="20_Midnight Patrol" data-flag="@X" onclick="openSidebar('20_Midnight Patrol',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/63_Put on Ice.png" id="63_Put on Ice" data-flag="@X" onclick="openSidebar('63_Put on Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/92_Frostbrood Matriarch.png" id="92_Frostbrood Matriarch" data-flag="@X" onclick="openSidebar('92_Frostbrood Matriarch',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/131_Ichordregs.png" id="131_Ichordregs" data-flag="@X" onclick="openSidebar('131_Ichordregs',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/170_Hyperfrost.png" id="170_Hyperfrost" data-flag="@X" onclick="openSidebar('170_Hyperfrost',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/21_Persistent Chill.png" id="21_Persistent Chill" data-flag="@X" onclick="openSidebar('21_Persistent Chill',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/68_Snow-Coated Sable.png" id="68_Snow-Coated Sable" data-flag="@X" onclick="openSidebar('68_Snow-Coated Sable',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/93_Frosted Elk.png" id="93_Frosted Elk" data-flag="@X" onclick="openSidebar('93_Frosted Elk',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/134_Lupine Scavenger.png" id="134_Lupine Scavenger" data-flag="@X" onclick="openSidebar('134_Lupine Scavenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/171_Icemaw Wurm.png" id="171_Icemaw Wurm" data-flag="@X" onclick="openSidebar('171_Icemaw Wurm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/22_Pod of the Forgotten.png" id="22_Pod of the Forgotten" data-flag="@X" onclick="openSidebar('22_Pod of the Forgotten',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/69_Snowclad Dejection.png" id="69_Snowclad Dejection" data-flag="@X" onclick="openSidebar('69_Snowclad Dejection',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/96_Harbinger of Ke.png" id="96_Harbinger of Ke" data-flag="@X" onclick="openSidebar('96_Harbinger of Ke',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/136_Marrow Haulers.png" id="136_Marrow Haulers" data-flag="@X" onclick="openSidebar('136_Marrow Haulers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/173_Insatiable Hunger.png" id="173_Insatiable Hunger" data-flag="@X" onclick="openSidebar('173_Insatiable Hunger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/23_Ravenous Hare.png" id="23_Ravenous Hare" data-flag="@X" onclick="openSidebar('23_Ravenous Hare',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/70_Stormwake Serpent.png" id="70_Stormwake Serpent" data-flag="@X" onclick="openSidebar('70_Stormwake Serpent',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/99_Ichorous Malignant.png" id="99_Ichorous Malignant" data-flag="@X" onclick="openSidebar('99_Ichorous Malignant',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/140_Phoenixheart Vagabond.png" id="140_Phoenixheart Vagabond" data-flag="@X" onclick="openSidebar('140_Phoenixheart Vagabond',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/174_Invigorated Assault.png" id="174_Invigorated Assault" data-flag="@X" onclick="openSidebar('174_Invigorated Assault',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/24_Requested Reinforcements.png" id="24_Requested Reinforcements" data-flag="@X" onclick="openSidebar('24_Requested Reinforcements',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/71_Thawing Wisdom.png" id="71_Thawing Wisdom" data-flag="@X" onclick="openSidebar('71_Thawing Wisdom',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/101_Last Breath.png" id="101_Last Breath" data-flag="@X" onclick="openSidebar('101_Last Breath',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/143_Rimeborn Outburst.png" id="143_Rimeborn Outburst" data-flag="@X" onclick="openSidebar('143_Rimeborn Outburst',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/182_Rimewood Guardian.png" id="182_Rimewood Guardian" data-flag="@X" onclick="openSidebar('182_Rimewood Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/25_Sabrespine Lion.png" id="25_Sabrespine Lion" data-flag="@X" onclick="openSidebar('25_Sabrespine Lion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/72_Uncover.png" id="72_Uncover" data-flag="@X" onclick="openSidebar('72_Uncover',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/105_Reallocate Rations.png" id="105_Reallocate Rations" data-flag="@X" onclick="openSidebar('105_Reallocate Rations',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/145_Shatterfrost Avalanche.png" id="145_Shatterfrost Avalanche" data-flag="@X" onclick="openSidebar('145_Shatterfrost Avalanche',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/183_Roaming Cryosaurs.png" id="183_Roaming Cryosaurs" data-flag="@X" onclick="openSidebar('183_Roaming Cryosaurs',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/27_Seek Shelter.png" id="27_Seek Shelter" data-flag="@X" onclick="openSidebar('27_Seek Shelter',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/73_Voice of Frost.png" id="73_Voice of Frost" data-flag="@X" onclick="openSidebar('73_Voice of Frost',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/107_Scour the Remains.png" id="107_Scour the Remains" data-flag="@X" onclick="openSidebar('107_Scour the Remains',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/147_Ski Scout.png" id="147_Ski Scout" data-flag="@X" onclick="openSidebar('147_Ski Scout',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/184_Snowtop Rescuer.png" id="184_Snowtop Rescuer" data-flag="@X" onclick="openSidebar('184_Snowtop Rescuer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/28_Shoreline Scavenger.png" id="28_Shoreline Scavenger" data-flag="@X" onclick="openSidebar('28_Shoreline Scavenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/74_Walrus Sentry.png" id="74_Walrus Sentry" data-flag="@X" onclick="openSidebar('74_Walrus Sentry',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/108_Seclude.png" id="108_Seclude" data-flag="@X" onclick="openSidebar('108_Seclude',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/150_Splintertooth Tiger.png" id="150_Splintertooth Tiger" data-flag="@X" onclick="openSidebar('150_Splintertooth Tiger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/185_Something Like a Spider.png" id="185_Something Like a Spider" data-flag="@X" onclick="openSidebar('185_Something Like a Spider',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/37_Watchful Companion.png" id="37_Watchful Companion" data-flag="@X" onclick="openSidebar('37_Watchful Companion',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/75_What Doesn't Kill Us.png" id="75_What Doesnt Kill Us" data-flag="@X" onclick="openSidebar('75_What Doesnt Kill Us',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/111_Snow Angel.png" id="111_Snow Angel" data-flag="@X" onclick="openSidebar('111_Snow Angel',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/153_Tundra Mammoth.png" id="153_Tundra Mammoth" data-flag="@X" onclick="openSidebar('153_Tundra Mammoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/186_Spineless Spawn.png" id="186_Spineless Spawn" data-flag="@X" onclick="openSidebar('186_Spineless Spawn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/114_To the Ones Below.png" id="114_To the Ones Below" data-flag="@X" onclick="openSidebar('114_To the Ones Below',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/189_Tideshaper Behemoth.png" id="189_Tideshaper Behemoth" data-flag="@X" onclick="openSidebar('189_Tideshaper Behemoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/208_Fears Made Flesh.png" id="208_Fears Made Flesh" data-flag="@X" onclick="openSidebar('208_Fears Made Flesh',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/193_Abandoned Expedition.png" id="193_Abandoned Expedition" data-flag="@X" onclick="openSidebar('193_Abandoned Expedition',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/195_Blastminer's Tundrig.png" id="195_Blastminers Tundrig" data-flag="@X" onclick="openSidebar('195_Blastminers Tundrig',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/205_Esko, the Abomination.png" id="205_Esko, the Abomination" data-flag="@X" onclick="openSidebar('205_Esko, the Abomination',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/204_Elgur, the Gleaming Frost.png" id="204_Elgur, the Gleaming Frost" data-flag="@X" onclick="openSidebar('204_Elgur, the Gleaming Frost',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/231_Shepherd of the Rime.png" id="231_Shepherd of the Rime" data-flag="@X" onclick="openSidebar('231_Shepherd of the Rime',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/234_The Unresting.png" id="234_The Unresting" data-flag="@X" onclick="openSidebar('234_The Unresting',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/217_Impatient Explorer.png" id="217_Impatient Explorer" data-flag="@X" onclick="openSidebar('217_Impatient Explorer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/203_Discovery of the Gold Road.png" id="203_Discovery of the Gold Road" data-flag="@X" onclick="openSidebar('203_Discovery of the Gold Road',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/228_Sanctified Campfire.png" id="228_Sanctified Campfire" data-flag="@X" onclick="openSidebar('228_Sanctified Campfire',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/214_Glorious Purpose.png" id="214_Glorious Purpose" data-flag="@X" onclick="openSidebar('214_Glorious Purpose',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/199_Chilling Phantom.png" id="199_Chilling Phantom" data-flag="@X" onclick="openSidebar('199_Chilling Phantom',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/197_Caravan Mauler.png" id="197_Caravan Mauler" data-flag="@X" onclick="openSidebar('197_Caravan Mauler',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/216_Icecliff Colossus.png" id="216_Icecliff Colossus" data-flag="@X" onclick="openSidebar('216_Icecliff Colossus',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/232_Sotrin, Fonti Troopmaster.png" id="232_Sotrin, Fonti Troopmaster" data-flag="@X" onclick="openSidebar('232_Sotrin, Fonti Troopmaster',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/235_Vigilant Explorer.png" id="235_Vigilant Explorer" data-flag="@X" onclick="openSidebar('235_Vigilant Explorer',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/220_Keeper of the Mount.png" id="220_Keeper of the Mount" data-flag="@X" onclick="openSidebar('220_Keeper of the Mount',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/225_Omen of Famine.png" id="225_Omen of Famine" data-flag="@X" onclick="openSidebar('225_Omen of Famine',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/201_Deadfall Peak Ambushers.png" id="201_Deadfall Peak Ambushers" data-flag="@X" onclick="openSidebar('201_Deadfall Peak Ambushers',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/194_Alpine Hunt.png" id="194_Alpine Hunt" data-flag="@X" onclick="openSidebar('194_Alpine Hunt',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/210_Fonti Expedition.png" id="210_Fonti Expedition" data-flag="@X" onclick="openSidebar('210_Fonti Expedition',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/200_Companions' Follower.png" id="200_Companions Follower" data-flag="@X" onclick="openSidebar('200_Companions Follower',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/227_Revela, Cold-Touched.png" id="227_Revela, Cold-Touched" data-flag="@X" onclick="openSidebar('227_Revela, Cold-Touched',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/196_Brave the Blizzard.png" id="196_Brave the Blizzard" data-flag="@X" onclick="openSidebar('196_Brave the Blizzard',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/207_The Eyeless Screecher.png" id="207_The Eyeless Screecher" data-flag="@X" onclick="openSidebar('207_The Eyeless Screecher',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/222_Kolshmir, Aurora's Breath.png" id="222_Kolshmir, Auroras Breath" data-flag="@X" onclick="openSidebar('222_Kolshmir, Auroras Breath',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/198_Cervicalem Entity.png" id="198_Cervicalem Entity" data-flag="@X" onclick="openSidebar('198_Cervicalem Entity',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/202_Deathless Frontguard.png" id="202_Deathless Frontguard" data-flag="@X" onclick="openSidebar('202_Deathless Frontguard',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/226_Prowling Frostburn.png" id="226_Prowling Frostburn" data-flag="@X" onclick="openSidebar('226_Prowling Frostburn',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/218_It Wakes the Dogs.png" id="218_It Wakes the Dogs" data-flag="@X" onclick="openSidebar('218_It Wakes the Dogs',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/215_Hale-Breasted Phoenix.png" id="215_Hale-Breasted Phoenix" data-flag="@X" onclick="openSidebar('215_Hale-Breasted Phoenix',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/219_Ivorik, the Avalanche.png" id="219_Ivorik, the Avalanche" data-flag="@X" onclick="openSidebar('219_Ivorik, the Avalanche',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/213_Glacial Emergence.png" id="213_Glacial Emergence" data-flag="@X" onclick="openSidebar('213_Glacial Emergence',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/206_Expedition Packleader.png" id="206_Expedition Packleader" data-flag="@X" onclick="openSidebar('206_Expedition Packleader',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/238_Waker of Calamities.png" id="238_Waker of Calamities" data-flag="@X" onclick="openSidebar('238_Waker of Calamities',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/239_Whispers in the Ice.png" id="239_Whispers in the Ice" data-flag="@X" onclick="openSidebar('239_Whispers in the Ice',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/223_Lost Resources.png" id="223_Lost Resources" data-flag="@X" onclick="openSidebar('223_Lost Resources',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/236_Volkyr Charm.png" id="236_Volkyr Charm" data-flag="@X" onclick="openSidebar('236_Volkyr Charm',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/212_Frostbite Drake.png" id="212_Frostbite Drake" data-flag="@X" onclick="openSidebar('212_Frostbite Drake',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/224_Lumbering Decay.png" id="224_Lumbering Decay" data-flag="@X" onclick="openSidebar('224_Lumbering Decay',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/209_Felton, Shrewd Scavenger.png" id="209_Felton, Shrewd Scavenger" data-flag="@X" onclick="openSidebar('209_Felton, Shrewd Scavenger',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/229_Shadow of the Coil.png" id="229_Shadow of the Coil" data-flag="@X" onclick="openSidebar('229_Shadow of the Coil',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/237_Volkyr Salvagers.png" id="237_Volkyr Salvagers" data-flag="@X" onclick="openSidebar('237_Volkyr Salvagers',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/233_Unfathomable Cravings.png" id="233_Unfathomable Cravings" data-flag="@X" onclick="openSidebar('233_Unfathomable Cravings',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/211_Forever Upwards.png" id="211_Forever Upwards" data-flag="@X" onclick="openSidebar('211_Forever Upwards',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/221_Klurg, Coil of Issendrak.png" id="221_Klurg, Coil of Issendrak" data-flag="@X" onclick="openSidebar('221_Klurg, Coil of Issendrak',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/230_The Shattered Eclipse.png" id="230_The Shattered Eclipse" data-flag="@X" onclick="openSidebar('230_The Shattered Eclipse',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/208_Fears Made Flesh.png" id="208_Fears Made Flesh" data-flag="@X" onclick="openSidebar('208_Fears Made Flesh',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/193_Abandoned Expedition.png" id="193_Abandoned Expedition" data-flag="@X" onclick="openSidebar('193_Abandoned Expedition',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/195_Blastminer's Tundrig.png" id="195_Blastminers Tundrig" data-flag="@X" onclick="openSidebar('195_Blastminers Tundrig',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/205_Esko, the Abomination.png" id="205_Esko, the Abomination" data-flag="@X" onclick="openSidebar('205_Esko, the Abomination',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/204_Elgur, the Gleaming Frost.png" id="204_Elgur, the Gleaming Frost" data-flag="@X" onclick="openSidebar('204_Elgur, the Gleaming Frost',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/231_Shepherd of the Rime.png" id="231_Shepherd of the Rime" data-flag="@X" onclick="openSidebar('231_Shepherd of the Rime',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/234_The Unresting.png" id="234_The Unresting" data-flag="@X" onclick="openSidebar('234_The Unresting',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/217_Impatient Explorer.png" id="217_Impatient Explorer" data-flag="@X" onclick="openSidebar('217_Impatient Explorer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/203_Discovery of the Gold Road.png" id="203_Discovery of the Gold Road" data-flag="@X" onclick="openSidebar('203_Discovery of the Gold Road',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/228_Sanctified Campfire.png" id="228_Sanctified Campfire" data-flag="@X" onclick="openSidebar('228_Sanctified Campfire',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/214_Glorious Purpose.png" id="214_Glorious Purpose" data-flag="@X" onclick="openSidebar('214_Glorious Purpose',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/199_Chilling Phantom.png" id="199_Chilling Phantom" data-flag="@X" onclick="openSidebar('199_Chilling Phantom',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/197_Caravan Mauler.png" id="197_Caravan Mauler" data-flag="@X" onclick="openSidebar('197_Caravan Mauler',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/216_Icecliff Colossus.png" id="216_Icecliff Colossus" data-flag="@X" onclick="openSidebar('216_Icecliff Colossus',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/232_Sotrin, Fonti Troopmaster.png" id="232_Sotrin, Fonti Troopmaster" data-flag="@X" onclick="openSidebar('232_Sotrin, Fonti Troopmaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/235_Vigilant Explorer.png" id="235_Vigilant Explorer" data-flag="@X" onclick="openSidebar('235_Vigilant Explorer',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/220_Keeper of the Mount.png" id="220_Keeper of the Mount" data-flag="@X" onclick="openSidebar('220_Keeper of the Mount',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/225_Omen of Famine.png" id="225_Omen of Famine" data-flag="@X" onclick="openSidebar('225_Omen of Famine',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/201_Deadfall Peak Ambushers.png" id="201_Deadfall Peak Ambushers" data-flag="@X" onclick="openSidebar('201_Deadfall Peak Ambushers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/194_Alpine Hunt.png" id="194_Alpine Hunt" data-flag="@X" onclick="openSidebar('194_Alpine Hunt',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/210_Fonti Expedition.png" id="210_Fonti Expedition" data-flag="@X" onclick="openSidebar('210_Fonti Expedition',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/200_Companions' Follower.png" id="200_Companions Follower" data-flag="@X" onclick="openSidebar('200_Companions Follower',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/227_Revela, Cold-Touched.png" id="227_Revela, Cold-Touched" data-flag="@X" onclick="openSidebar('227_Revela, Cold-Touched',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/196_Brave the Blizzard.png" id="196_Brave the Blizzard" data-flag="@X" onclick="openSidebar('196_Brave the Blizzard',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/207_The Eyeless Screecher.png" id="207_The Eyeless Screecher" data-flag="@X" onclick="openSidebar('207_The Eyeless Screecher',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/222_Kolshmir, Aurora's Breath.png" id="222_Kolshmir, Auroras Breath" data-flag="@X" onclick="openSidebar('222_Kolshmir, Auroras Breath',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/198_Cervicalem Entity.png" id="198_Cervicalem Entity" data-flag="@X" onclick="openSidebar('198_Cervicalem Entity',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/202_Deathless Frontguard.png" id="202_Deathless Frontguard" data-flag="@X" onclick="openSidebar('202_Deathless Frontguard',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/226_Prowling Frostburn.png" id="226_Prowling Frostburn" data-flag="@X" onclick="openSidebar('226_Prowling Frostburn',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/218_It Wakes the Dogs.png" id="218_It Wakes the Dogs" data-flag="@X" onclick="openSidebar('218_It Wakes the Dogs',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/215_Hale-Breasted Phoenix.png" id="215_Hale-Breasted Phoenix" data-flag="@X" onclick="openSidebar('215_Hale-Breasted Phoenix',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/219_Ivorik, the Avalanche.png" id="219_Ivorik, the Avalanche" data-flag="@X" onclick="openSidebar('219_Ivorik, the Avalanche',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/213_Glacial Emergence.png" id="213_Glacial Emergence" data-flag="@X" onclick="openSidebar('213_Glacial Emergence',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/206_Expedition Packleader.png" id="206_Expedition Packleader" data-flag="@X" onclick="openSidebar('206_Expedition Packleader',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/238_Waker of Calamities.png" id="238_Waker of Calamities" data-flag="@X" onclick="openSidebar('238_Waker of Calamities',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/239_Whispers in the Ice.png" id="239_Whispers in the Ice" data-flag="@X" onclick="openSidebar('239_Whispers in the Ice',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/223_Lost Resources.png" id="223_Lost Resources" data-flag="@X" onclick="openSidebar('223_Lost Resources',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/236_Volkyr Charm.png" id="236_Volkyr Charm" data-flag="@X" onclick="openSidebar('236_Volkyr Charm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/212_Frostbite Drake.png" id="212_Frostbite Drake" data-flag="@X" onclick="openSidebar('212_Frostbite Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/224_Lumbering Decay.png" id="224_Lumbering Decay" data-flag="@X" onclick="openSidebar('224_Lumbering Decay',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/209_Felton, Shrewd Scavenger.png" id="209_Felton, Shrewd Scavenger" data-flag="@X" onclick="openSidebar('209_Felton, Shrewd Scavenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/229_Shadow of the Coil.png" id="229_Shadow of the Coil" data-flag="@X" onclick="openSidebar('229_Shadow of the Coil',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/237_Volkyr Salvagers.png" id="237_Volkyr Salvagers" data-flag="@X" onclick="openSidebar('237_Volkyr Salvagers',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/233_Unfathomable Cravings.png" id="233_Unfathomable Cravings" data-flag="@X" onclick="openSidebar('233_Unfathomable Cravings',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/211_Forever Upwards.png" id="211_Forever Upwards" data-flag="@X" onclick="openSidebar('211_Forever Upwards',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/221_Klurg, Coil of Issendrak.png" id="221_Klurg, Coil of Issendrak" data-flag="@X" onclick="openSidebar('221_Klurg, Coil of Issendrak',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/230_The Shattered Eclipse.png" id="230_The Shattered Eclipse" data-flag="@X" onclick="openSidebar('230_The Shattered Eclipse',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/249_Godhead, Expeditions' Bane.png" id="249_Godhead, Expeditions Bane" data-flag="@X" onclick="openSidebar('249_Godhead, Expeditions Bane',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/241_Banner of the Fonti.png" id="241_Banner of the Fonti" data-flag="@X" onclick="openSidebar('241_Banner of the Fonti',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/242_Enveloping Prison.png" id="242_Enveloping Prison" data-flag="@X" onclick="openSidebar('242_Enveloping Prison',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/244_The FNS Plutonic.png" id="244_The FNS Plutonic" data-flag="@X" onclick="openSidebar('244_The FNS Plutonic',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/245_Forgotten Golem.png" id="245_Forgotten Golem" data-flag="@X" onclick="openSidebar('245_Forgotten Golem',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/250_Godless Idol.png" id="250_Godless Idol" data-flag="@X" onclick="openSidebar('250_Godless Idol',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/258_Spinal Column.png" id="258_Spinal Column" data-flag="@X" onclick="openSidebar('258_Spinal Column',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/261_Veintapped Relic.png" id="261_Veintapped Relic" data-flag="@X" onclick="openSidebar('261_Veintapped Relic',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/240_Abandoned Sentry.png" id="240_Abandoned Sentry" data-flag="@X" onclick="openSidebar('240_Abandoned Sentry',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/243_Explorer's Essentials.png" id="243_Explorers Essentials" data-flag="@X" onclick="openSidebar('243_Explorers Essentials',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/248_Glacial Prison.png" id="248_Glacial Prison" data-flag="@X" onclick="openSidebar('248_Glacial Prison',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/253_Protective Automaton.png" id="253_Protective Automaton" data-flag="@X" onclick="openSidebar('253_Protective Automaton',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/254_Pulsing Vein.png" id="254_Pulsing Vein" data-flag="@X" onclick="openSidebar('254_Pulsing Vein',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/255_Ration Komatik.png" id="255_Ration Komatik" data-flag="@X" onclick="openSidebar('255_Ration Komatik',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/256_Restored Android.png" id="256_Restored Android" data-flag="@X" onclick="openSidebar('256_Restored Android',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/260_Utility Crossbike.png" id="260_Utility Crossbike" data-flag="@X" onclick="openSidebar('260_Utility Crossbike',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/246_Fresh Rations.png" id="246_Fresh Rations" data-flag="@X" onclick="openSidebar('246_Fresh Rations',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/247_Frozen Wardsphere.png" id="247_Frozen Wardsphere" data-flag="@X" onclick="openSidebar('247_Frozen Wardsphere',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/251_Perilous Icicle.png" id="251_Perilous Icicle" data-flag="@X" onclick="openSidebar('251_Perilous Icicle',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/252_Preprogrammed Guide.png" id="252_Preprogrammed Guide" data-flag="@X" onclick="openSidebar('252_Preprogrammed Guide',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/257_Rustwing Wayfinder.png" id="257_Rustwing Wayfinder" data-flag="@X" onclick="openSidebar('257_Rustwing Wayfinder',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/259_Stormbound Walker.png" id="259_Stormbound Walker" data-flag="@X" onclick="openSidebar('259_Stormbound Walker',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/262_Derelict Marker.png" id="262_Derelict Marker" data-flag="@X" onclick="openSidebar('262_Derelict Marker',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/263_Polar Pine.png" id="263_Polar Pine" data-flag="@X" onclick="openSidebar('263_Polar Pine',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/264_Snow-Filled Graveyard.png" id="264_Snow-Filled Graveyard" data-flag="@X" onclick="openSidebar('264_Snow-Filled Graveyard',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/265_Unfathomable Chasm.png" id="265_Unfathomable Chasm" data-flag="@X" onclick="openSidebar('265_Unfathomable Chasm',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/249_Godhead, Expeditions' Bane.png" id="249_Godhead, Expeditions Bane" data-flag="@X" onclick="openSidebar('249_Godhead, Expeditions Bane',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/241_Banner of the Fonti.png" id="241_Banner of the Fonti" data-flag="@X" onclick="openSidebar('241_Banner of the Fonti',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/242_Enveloping Prison.png" id="242_Enveloping Prison" data-flag="@X" onclick="openSidebar('242_Enveloping Prison',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/244_The FNS Plutonic.png" id="244_The FNS Plutonic" data-flag="@X" onclick="openSidebar('244_The FNS Plutonic',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/245_Forgotten Golem.png" id="245_Forgotten Golem" data-flag="@X" onclick="openSidebar('245_Forgotten Golem',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/250_Godless Idol.png" id="250_Godless Idol" data-flag="@X" onclick="openSidebar('250_Godless Idol',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/258_Spinal Column.png" id="258_Spinal Column" data-flag="@X" onclick="openSidebar('258_Spinal Column',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/261_Veintapped Relic.png" id="261_Veintapped Relic" data-flag="@X" onclick="openSidebar('261_Veintapped Relic',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/240_Abandoned Sentry.png" id="240_Abandoned Sentry" data-flag="@X" onclick="openSidebar('240_Abandoned Sentry',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/243_Explorer's Essentials.png" id="243_Explorers Essentials" data-flag="@X" onclick="openSidebar('243_Explorers Essentials',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/248_Glacial Prison.png" id="248_Glacial Prison" data-flag="@X" onclick="openSidebar('248_Glacial Prison',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/253_Protective Automaton.png" id="253_Protective Automaton" data-flag="@X" onclick="openSidebar('253_Protective Automaton',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/254_Pulsing Vein.png" id="254_Pulsing Vein" data-flag="@X" onclick="openSidebar('254_Pulsing Vein',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/255_Ration Komatik.png" id="255_Ration Komatik" data-flag="@X" onclick="openSidebar('255_Ration Komatik',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/256_Restored Android.png" id="256_Restored Android" data-flag="@X" onclick="openSidebar('256_Restored Android',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/260_Utility Crossbike.png" id="260_Utility Crossbike" data-flag="@X" onclick="openSidebar('260_Utility Crossbike',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/246_Fresh Rations.png" id="246_Fresh Rations" data-flag="@X" onclick="openSidebar('246_Fresh Rations',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/247_Frozen Wardsphere.png" id="247_Frozen Wardsphere" data-flag="@X" onclick="openSidebar('247_Frozen Wardsphere',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/251_Perilous Icicle.png" id="251_Perilous Icicle" data-flag="@X" onclick="openSidebar('251_Perilous Icicle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/252_Preprogrammed Guide.png" id="252_Preprogrammed Guide" data-flag="@X" onclick="openSidebar('252_Preprogrammed Guide',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/257_Rustwing Wayfinder.png" id="257_Rustwing Wayfinder" data-flag="@X" onclick="openSidebar('257_Rustwing Wayfinder',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/259_Stormbound Walker.png" id="259_Stormbound Walker" data-flag="@X" onclick="openSidebar('259_Stormbound Walker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/262_Derelict Marker.png" id="262_Derelict Marker" data-flag="@X" onclick="openSidebar('262_Derelict Marker',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/263_Polar Pine.png" id="263_Polar Pine" data-flag="@X" onclick="openSidebar('263_Polar Pine',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/264_Snow-Filled Graveyard.png" id="264_Snow-Filled Graveyard" data-flag="@X" onclick="openSidebar('264_Snow-Filled Graveyard',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/265_Unfathomable Chasm.png" id="265_Unfathomable Chasm" data-flag="@X" onclick="openSidebar('265_Unfathomable Chasm',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/1t_Dog.png" id="1t_Dog" data-flag="@X" onclick="openSidebar('1t_Dog',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/2t_Human.png" id="2t_Human" data-flag="@X" onclick="openSidebar('2t_Human',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/3t_Spirit.png" id="3t_Spirit" data-flag="@X" onclick="openSidebar('3t_Spirit',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/4t_Tentacle.png" id="4t_Tentacle" data-flag="@X" onclick="openSidebar('4t_Tentacle',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/5t_God's Embrace.png" id="5t_Gods Embrace" data-flag="@X" onclick="openSidebar('5t_Gods Embrace',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/6t_Horror.png" id="6t_Horror" data-flag="@X" onclick="openSidebar('6t_Horror',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/7t_Yeti Horror.png" id="7t_Yeti Horror" data-flag="@X" onclick="openSidebar('7t_Yeti Horror',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/8t_Aurochs.png" id="8t_Aurochs" data-flag="@X" onclick="openSidebar('8t_Aurochs',false)"></div>
-				<div class="container"><img alt="/sets/GOD-files/img/9t_Trovik.png" id="9t_Trovik" data-flag="@X" onclick="openSidebar('9t_Trovik',false)"></div>
-				<div class="container"><img alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
-				<div class="container"><img alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/1t_Dog.png" id="1t_Dog" data-flag="@X" onclick="openSidebar('1t_Dog',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/2t_Human.png" id="2t_Human" data-flag="@X" onclick="openSidebar('2t_Human',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/3t_Spirit.png" id="3t_Spirit" data-flag="@X" onclick="openSidebar('3t_Spirit',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/4t_Tentacle.png" id="4t_Tentacle" data-flag="@X" onclick="openSidebar('4t_Tentacle',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/5t_God's Embrace.png" id="5t_Gods Embrace" data-flag="@X" onclick="openSidebar('5t_Gods Embrace',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/6t_Horror.png" id="6t_Horror" data-flag="@X" onclick="openSidebar('6t_Horror',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/7t_Yeti Horror.png" id="7t_Yeti Horror" data-flag="@X" onclick="openSidebar('7t_Yeti Horror',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/8t_Aurochs.png" id="8t_Aurochs" data-flag="@X" onclick="openSidebar('8t_Aurochs',false)"></div>
+				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/9t_Trovik.png" id="9t_Trovik" data-flag="@X" onclick="openSidebar('9t_Trovik',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+				<div class="container"><img loading="lazy" alt="/img/er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
@@ -699,27 +700,51 @@
 	let horizontal = false;
 
 	function imgFlip(num) {
-		tmp = document.getElementById(num).src;
-		console.log(num);
-		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
-		document.getElementById(num).dataset.alt_src = tmp;
+		const img = document.getElementById(num);
+		const seconds = 0.2;
+		const rotated_img = document.getElementById('sidebar_h_img');
 
-		if (num == 'sidebar_img')
+        img.style.transition = seconds.toString() + "s";
+        img.style.transform = "rotateY(90deg)";
+
+        if (num == 'sidebar_img')
 		{
-			const rotated_img = document.getElementById('sidebar_h_img');
 			const sidebar_img = document.getElementById('sidebar_img');
 
-			if (horizontal && rotated_img.style.display == 'none')
-			{
-				rotated_img.style.display = "block";
-				sidebar_img.style.filter = "blur(2px) brightness(0.7)";
-			}
-			else
-			{
-				rotated_img.style.display = "none";
-				sidebar_img.style.filter = "";
-			}
+			if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		                img.style.filter = "none";
+		            }, (seconds / 2) * 1000);
+		        }
+		        else {
+		        	setTimeout(() => {
+		                rotated_img.style.opacity = "1";
+		                img.style.filter = "blur(2px) brightness(0.7)";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
 		}
+
+         setTimeout(function() {
+            tmp = document.getElementById(num).src;
+			document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+			document.getElementById(num).dataset.alt_src = tmp;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(0deg)";
+
+            if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+            }
+        }, seconds * 1000);
 	}
 
 	function openSidebar(id, h = false) {
@@ -731,17 +756,19 @@
 		const rotated_img = document.getElementById('sidebar_h_img');
 		const sidebar_img = document.getElementById('sidebar_img');
 
+		sidebar_img.style.transition = "none";
+		rotated_img.style.transition = "none";
 		sidebar_img.src = document.getElementById(id).src;
 		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
 
 		if (horizontal && !sidebar_img.src.includes("_back"))
 		{
-			rotated_img.style.display = "block";
+			rotated_img.style.opacity = "1";
 			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
 		}
 		else
 		{
-			rotated_img.style.display = "none";
+			rotated_img.style.opacity = "0";
 			sidebar_img.style.filter = "";
 		}
 
@@ -774,6 +801,7 @@
 	}
 
 	function rolldown() {
+		dropdown.style.gridTemplateColumns = "repeat(3, 1fr)";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -783,6 +811,7 @@
 	}
 
 	function rollup() {
+		dropdown.style.gridTemplateColumns = "1fr";
 		var sets = document.querySelectorAll('.inactive');
 		for(const set of sets)
 		{
@@ -805,21 +834,21 @@
 	}
 
 		function randomCard() {
-			let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
-			let random_card = card_list_arrayified[i];
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
 
-			const url = new URL('card', window.location.origin);
-			const params = {
-				set: random_card.set,
-				num: random_card.number,
-				name: random_card.card_name
-			}
-			for (const key in params) {
-				url.searchParams.append(key, params[key]);
-			}
+				const url = new URL('card', window.location.origin);
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
 
-			window.location.href = url;
-		}
+				window.location.href = url;
+			}
 	</script>
 </body>
 </html>
