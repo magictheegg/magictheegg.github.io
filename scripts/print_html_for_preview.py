@@ -26,12 +26,10 @@ def generateHTML(setCode):
 	magic_card_back_image = '/img/card_back.png'
 	#F: /sets/SET-files/img/
 	set_img_dir = os.path.join('sets', setCode + '-files', 'img')
-	#F: get rid of the Byte Order Mark character that shouldn't be there
-	#F: and grab all of the files in the image directory
 	card_image_names = [f
-	    if f.endswith(('_front', '_back')) and re.sub(r'^\d*t?_', '', f).replace('_front', '').replace('_back', '') == ''
-	    else re.sub(r'^\d*t?_', '', f) 
-	    for f in (file[:-4].replace(u'\ufeff', '') for file in os.listdir(set_img_dir))
+	   if f.endswith(('_front', '_back')) and re.sub(r'^\d+_', '', f) in ['front', 'back']
+	   else re.sub(r'^\d+_', '', f) 
+	   for f in (file[:-4].replace(u'\ufeff', '') for file in os.listdir(set_img_dir))
 	]
 
 	previewed_path = os.path.join('sets', setCode + '-files', 'previewed.txt')

@@ -5,6 +5,8 @@
     "image_type": "png",
     "draft_structure": "play booster",
     "unpreviewed": "empty",
+    "image_name": "position",
+    "v_mana": "",
     "cards": [
         {
             "card_name": "Omathor, Clattering King",
@@ -23,6 +25,7 @@
             "loyalty": "",
             "artist": "Greg Danton",
             "alias": "",
+            "position": "0",
             "card_name2": "Spine of Omathor",
             "color2": "W",
             "type2": "Legendary Artifact \u2014 Equipment",
@@ -53,6 +56,7 @@
             "loyalty": "",
             "artist": "Raluca Marinescu",
             "alias": "",
+            "position": "1",
             "notes": "https://www.artstation.com/artwork/kBbxz"
         },
         {
@@ -72,6 +76,7 @@
             "loyalty": "",
             "artist": "Eduardo Dominguez",
             "alias": "",
+            "position": "2",
             "card_name2": "Frost Walker's Regalia",
             "color2": "U",
             "type2": "Legendary Artifact \u2014 Equipment",
@@ -102,6 +107,7 @@
             "loyalty": "",
             "artist": "Kurolines",
             "alias": "",
+            "position": "3",
             "card_name2": "The Plate of Naraxis",
             "color2": "B",
             "type2": "Legendary Artifact \u2014 Equipment",
@@ -132,6 +138,7 @@
             "loyalty": "",
             "artist": "Llyncis",
             "alias": "",
+            "position": "4",
             "notes": "Underhalls \u2014 Black Mythic\n!ft"
         },
         {
@@ -139,7 +146,7 @@
             "color": "R",
             "rarity": "mythic",
             "type": "Legendary Creature \u2014 Dragon Wizard",
-            "number": 137,
+            "number": 136,
             "color_identity": "R",
             "cost": "{4}{R}{R}",
             "rules_text": "Flying, trample\nWhenever Mithrok enters or attacks, each player exiles the top card of their library with a dungeon counter on it. You may play those cards this turn.\nSpoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]",
@@ -151,6 +158,7 @@
             "loyalty": "",
             "artist": "Fred Fields",
             "alias": "",
+            "position": "5",
             "card_name2": "Tome of the Worldshaper",
             "color2": "R",
             "type2": "Legendary Artifact \u2014 Equipment",
@@ -169,7 +177,7 @@
             "color": "R",
             "rarity": "mythic",
             "type": "Legendary Planeswalker \u2014 Izan",
-            "number": 132,
+            "number": 131,
             "color_identity": "R",
             "cost": "{1}{R}{R}",
             "rules_text": "Whenever you create one or more tokens for the first time each turn, create a tapped Treasure token.\n[+1]: Create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\n[-3]: Create an X/X red Illusion Rogue creature token with menace and haste, where X is the number of artifacts you control.",
@@ -181,6 +189,7 @@
             "loyalty": "3",
             "artist": "HOU",
             "alias": "",
+            "position": "6",
             "notes": ""
         },
         {
@@ -188,7 +197,7 @@
             "color": "G",
             "rarity": "mythic",
             "type": "Legendary Creature \u2014 Hydra",
-            "number": 188,
+            "number": 187,
             "color_identity": "G",
             "cost": "{2}{G}{G}",
             "rules_text": "Vigilance, trample\nWhenever a creature you control deals combat damage during your turn, put a +1/+1 counter on it.\nSpoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]",
@@ -200,6 +209,7 @@
             "loyalty": "",
             "artist": "Lightning Luminoso",
             "alias": "",
+            "position": "7",
             "card_name2": "Heart of the Underhalls",
             "color2": "",
             "type2": "Legendary Artifact \u2014 Equipment",
@@ -218,7 +228,7 @@
             "color": "G",
             "rarity": "mythic",
             "type": "Creature \u2014 Ooze",
-            "number": 164,
+            "number": 163,
             "color_identity": "G",
             "cost": "{5}{G}{G}",
             "rules_text": "Trample\nWhenever Dungeon Cleanser enters or attacks, for each noncreature permanent type, destroy up to one target permanent\nof that type. [i](Artifact, battle, enchantment,[/i]\n[i]land, and planeswalker are noncreature permanent types.)[/i]",
@@ -230,17 +240,18 @@
             "loyalty": "",
             "artist": "Ihor Reshetnikov",
             "alias": "",
+            "position": "8",
             "notes": ""
         },
         {
-            "card_name": "Kacey, Errant Erudite",
+            "card_name": "Shizu, Errant Erudite",
             "color": "U",
             "rarity": "mythic",
             "type": "Legendary Creature \u2014 Dog Wizard",
-            "number": 58,
+            "number": 66,
             "color_identity": "WUBRG",
             "cost": "{1}{U}",
-            "rules_text": "At the beginning of your end step, the player to your left gains control of Kacey, Errant Erudite. If it's untapped, its owner draws a card.\n{WU}, {T}: Surveil 1. If you own Kacey, untap it. Otherwise, its owner may surveil 1.\n{1}{RG}, {T}: Create an Encounter token. Kacey's owner creates a Treasure token.\n{2}{UB}, {T}: Draw a card. You lose 3 life.",
+            "rules_text": "At the beginning of your end step, the player to your left gains control of Shizu, Errant Erudite. If it's untapped, its owner draws a card.\n{WU}, {T}: Surveil 1. If you own Shizu, untap it. Otherwise, its owner may surveil 1.\n{1}{RG}, {T}: Create an Encounter token. Shizu's owner creates a Treasure token.\n{2}{UB}, {T}: Draw a card. You lose 3 life.",
             "flavor_text": "[i][/i]",
             "pt": "0/3",
             "special_text": "",
@@ -249,25 +260,27 @@
             "loyalty": "",
             "artist": "\nGeezer-gun // KueshkaArt\nAug 3, 2024",
             "alias": "",
+            "position": "9",
             "notes": "!name !ft !design\n\nhad to make this legendary, didn't really make much sense alone"
         },
         {
-            "card_name": "Brittlebane Thief",
-            "color": "R",
+            "card_name": "Enni, Shiv Savant",
+            "color": "WR",
             "rarity": "mythic",
-            "type": "Creature \u2014 Fox Rogue",
-            "number": 116,
-            "color_identity": "R",
-            "cost": "{2}{R}",
-            "rules_text": "Haste, first strike\nWhenever Brittlebane Thief deals combat damage to a player, gain control of up to one target nontoken artifact that player controls. That player creates an Equipment artifact token with \u201cEquipped creature gets +1/+1\u201d and equip {2}.",
+            "type": "Legendary Creature \u2014 Fox Rogue",
+            "number": 206,
+            "color_identity": "WR",
+            "cost": "{1}{R}{W}",
+            "rules_text": "Enni, Shiv Savant has double strike as long as she's equipped.\nWhenever Enni deals combat damage to a player, exile the top card of your library. You may cast that card. If you don't, Enni deals 1 damage to any target and you gain 1 life.",
             "flavor_text": "[i][/i]",
-            "pt": "3/1",
+            "pt": "2/3",
             "special_text": "",
             "shape": "normal",
             "set": "UND",
             "loyalty": "",
             "artist": "Conqista",
             "alias": "",
+            "position": "10",
             "notes": ""
         },
         {
@@ -275,7 +288,7 @@
             "color": "U",
             "rarity": "mythic",
             "type": "Enchantment",
-            "number": 62,
+            "number": 61,
             "color_identity": "U",
             "cost": "{4}{U}{U}",
             "rules_text": "At the beginning of your end step, you may search your library for a Room card, exile that card, then shuffle. If you do, you may cast that card without paying its mana cost.",
@@ -287,6 +300,7 @@
             "loyalty": "",
             "artist": "Navkaran Dewett",
             "alias": "",
+            "position": "11",
             "notes": ""
         },
         {
@@ -297,15 +311,16 @@
             "number": 225,
             "color_identity": "UB",
             "cost": "{1}{U}{B}",
-            "rules_text": "Final form {4}{U}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{U}{B} as a sorcery: Skip to max level.)[/i]\nMenace, deathtouch\n[b]Level 1+[/b] 3/4\nWhenever Shadow of the Underhalls deals combat damage to a player or battle, defending player mills three cards.\n[b]Level 3+[/b] 3/5\nWhen Shadow of the Underhalls dies, return it to the battlefield tapped under its owner's control at the beginning of the next end step.\n[b]Level 5[/b] */6\nShadow of the Underhalls's power is equal to the number of cards in your opponents' graveyards.",
+            "rules_text": "Final form {4}{U}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{U}{B} as a sorcery: Skip to max level.)[/i]\nMenace, deathtouch\n[b]Level 1+[/b] 3/3\nWhenever Shadow of the Underhalls deals combat damage to a player, planeswalker, or battle, that player or permanent's controller mills that many cards.\n[b]Level 4[/b] */6\nShadow of the Underhalls's power is equal to the number of cards in your opponents' graveyards.",
             "flavor_text": "[i][/i]",
             "pt": "3/3",
-            "special_text": "Final form {4}{U}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{U}{B} as a sorcery: Skip to max level.)[/i]\nMenace, deathtouch\n[b]Level 1+[/b] 3/4\nWhenever Shadow of the Underhalls deals combat damage to a player or battle, defending player mills three cards.\n[b]Level 3+[/b] 3/5\nWhen Shadow of the Underhalls dies, return it to the battlefield tapped under its owner's control at the beginning of the next end step.\n[b]Level 5[/b] */6\nShadow of the Underhalls's power is equal to the number of cards in your opponents' graveyards.",
+            "special_text": "Final form {4}{U}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{U}{B} as a sorcery: Skip to max level.)[/i]\nMenace, deathtouch\n[b]Level 1+[/b] 3/3\nWhenever Shadow of the Underhalls deals combat damage to a player, planeswalker, or battle, that player or permanent's controller mills that many cards.\n[b]Level 4[/b] */6\nShadow of the Underhalls's power is equal to the number of cards in your opponents' graveyards.",
             "shape": "class",
             "set": "UND",
             "loyalty": "",
             "artist": "Alexander Boyce",
             "alias": "",
+            "position": "12",
             "notes": "MX04"
         },
         {
@@ -325,6 +340,7 @@
             "loyalty": "",
             "artist": "Emma le Galldiedrich",
             "alias": "",
+            "position": "13",
             "notes": "Underhall"
         },
         {
@@ -332,10 +348,10 @@
             "color": "R",
             "rarity": "mythic",
             "type": "Enchantment",
-            "number": 143,
+            "number": 142,
             "color_identity": "R",
             "cost": "{2}{R}{R}{R}",
-            "rules_text": "When Rageflame Reset enters, it deals 5 damage to each creature. If a creature dealt damage this way would die this turn, exile it instead.\n{2}{R}: Put a creature card exiled with Rageflame Reset onto the battlefield under your control. It gains haste. Sacrifice it at the beginning of the next end step. Activate only during your turn.",
+            "rules_text": "When Rageflame Reset enters, if it was cast, it deals 5 damage to each creature. If a creature dealt damage this way would die this turn, exile it instead.\n{2}{R}: Put a creature card exiled with Rageflame Reset onto the battlefield under your control. It gains haste. Sacrifice it at the beginning of the next end step. Activate only during your turn.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -344,6 +360,7 @@
             "loyalty": "",
             "artist": "Matt Forsyth",
             "alias": "",
+            "position": "14",
             "notes": ""
         },
         {
@@ -363,6 +380,7 @@
             "loyalty": "",
             "artist": "Aaron Lovett",
             "alias": "",
+            "position": "15",
             "notes": ""
         },
         {
@@ -382,6 +400,7 @@
             "loyalty": "",
             "artist": "India-Lee Crews",
             "alias": "",
+            "position": "16",
             "notes": "Underhalls\nMX08\n\n!ft possibly"
         },
         {
@@ -401,6 +420,7 @@
             "loyalty": "",
             "artist": "Valentina Garofani",
             "alias": "",
+            "position": "17",
             "card_name2": "Mesmeric Mirror",
             "color2": "R",
             "type2": "",
@@ -431,7 +451,28 @@
             "loyalty": "",
             "artist": "TonkyP",
             "alias": "",
+            "position": "18",
             "notes": ""
+        },
+        {
+            "card_name": "Essence of the Cycle",
+            "color": "R",
+            "rarity": "mythic",
+            "type": "Creature \u2014 Avatar",
+            "number": 123,
+            "color_identity": "R",
+            "cost": "{2}{R}{R}",
+            "rules_text": "When Essence of the Cycle enters, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\nWhenever one or more creatures you control deal combat damage to a battle for the first time each turn, untap each creature that dealt combat damage to a battle this turn. After this phase, there is an additional combat phase.",
+            "flavor_text": "[i][/i]",
+            "pt": "4/4",
+            "special_text": "",
+            "shape": "normal",
+            "set": "UND",
+            "loyalty": "",
+            "artist": "Reza Afshar",
+            "alias": "",
+            "position": "19",
+            "notes": "Underhalls: MU02 (replaced with a red card since we have too many blue mythics)"
         },
         {
             "card_name": "Haunting Necro-Overseer",
@@ -450,6 +491,7 @@
             "loyalty": "",
             "artist": "Guillem H. Pongiluppi",
             "alias": "",
+            "position": "20",
             "notes": "RW final form cycle"
         },
         {
@@ -469,6 +511,7 @@
             "loyalty": "",
             "artist": "Peter Balogh",
             "alias": "",
+            "position": "21",
             "notes": "WU: Artifact + Enchantment midrange\nWG: Rooms Enchantress\nWB: Weaponize aristocrats\nWR: Weaponize Aggro"
         },
         {
@@ -488,6 +531,7 @@
             "loyalty": "",
             "artist": "Chris Cold",
             "alias": "",
+            "position": "22",
             "notes": "!ft maybe"
         },
         {
@@ -507,6 +551,7 @@
             "loyalty": "",
             "artist": "Juan Richard Feliz",
             "alias": "",
+            "position": "23",
             "notes": ""
         },
         {
@@ -526,6 +571,7 @@
             "loyalty": "",
             "artist": "Anato Finnstark",
             "alias": "",
+            "position": "24",
             "notes": "!ft"
         },
         {
@@ -545,6 +591,7 @@
             "loyalty": "",
             "artist": "Gabriel Andrade",
             "alias": "",
+            "position": "25",
             "card_name2": "Gittering Blade",
             "color2": "W",
             "type2": "Artifact \u2014 Equipment",
@@ -575,6 +622,7 @@
             "loyalty": "",
             "artist": "Konstantinos Skenteridis",
             "alias": "",
+            "position": "26",
             "notes": ""
         },
         {
@@ -594,6 +642,7 @@
             "loyalty": "",
             "artist": "Vladimir Matyukhin",
             "alias": "",
+            "position": "27",
             "card_name2": "Sightless Eye",
             "color2": "U",
             "type2": "Artifact \u2014 Equipment",
@@ -624,6 +673,7 @@
             "loyalty": "",
             "artist": "Grosnez",
             "alias": "",
+            "position": "28",
             "notes": "RU02 Rare Blue, Underhalls\n!pronouns"
         },
         {
@@ -643,6 +693,7 @@
             "loyalty": "",
             "artist": "Necipcan Karakus",
             "alias": "",
+            "position": "29",
             "notes": ""
         },
         {
@@ -662,6 +713,7 @@
             "loyalty": "",
             "artist": "Irina Nordsol",
             "alias": "",
+            "position": "30",
             "notes": "!community\n\nUnderhalls RU04"
         },
         {
@@ -681,18 +733,19 @@
             "loyalty": "",
             "artist": "Javier Charro",
             "alias": "",
+            "position": "31",
             "notes": "U is in:\nArtifact + Enchantment midrange\nSaboteurs\n\"Backtracking\" (Rooms + ways to close them)\ndraw-two encounters"
         },
         {
-            "card_name": "Frost Walker Legion",
+            "card_name": "Frost Walker Legionnaire",
             "color": "U",
             "rarity": "rare",
             "type": "Creature \u2014 Elemental Knight",
             "number": 52,
             "color_identity": "U",
             "cost": "{1}{U}",
-            "rules_text": "Flash\nWhenever Frost Walker Legion enters or attacks, up to one other target nonland permanent phases out. [i](Treat it and anything attached to it as though they don't exist until its controller's next turn.)[/i]",
-            "flavor_text": "[i]\u201cWhen you feel the cold bite, stay low. Stay hidden. Fighting against them only spells death.\u201d\n\u2014Kacey Longwhisker[/i]",
+            "rules_text": "Flash\nWhenever Frost Walker Legionnaire enters or attacks, up to one other target nonland permanent phases out. [i](Treat it and anything attached to it as though they don't exist until its controller's next turn.)[/i]",
+            "flavor_text": "[i]\u201cWhen you feel the cold bite, stay low. Stay hidden. Fighting against them only spells death.\u201d\n\u2014Kacey, tutelary delver[/i]",
             "pt": "2/1",
             "special_text": "",
             "shape": "normal",
@@ -700,6 +753,7 @@
             "loyalty": "",
             "artist": "Andrew Chou",
             "alias": "",
+            "position": "32",
             "notes": ""
         },
         {
@@ -719,6 +773,7 @@
             "loyalty": "",
             "artist": "cobaltplasma",
             "alias": "",
+            "position": "33",
             "notes": "Underhalls\nRU07 \nMulticlassed Mimic\nOne of the Path Not Chosen\nThat of the Unchosen Path\n\n\u2022 Knight and Vigilance.\n\u2022 Wizard and Flying."
         },
         {
@@ -738,6 +793,7 @@
             "loyalty": "",
             "artist": "cobaltplasma",
             "alias": "",
+            "position": "34",
             "notes": "RB03"
         },
         {
@@ -757,6 +813,7 @@
             "loyalty": "",
             "artist": "mingrutu",
             "alias": "",
+            "position": "35",
             "notes": "https://www.deviantart.com/mingrutu/art/White-bonemonster-467938010\n\n!pronouns \u2014 probably she/her, because brood?"
         },
         {
@@ -776,6 +833,7 @@
             "loyalty": "",
             "artist": "Jakub Bazyluk",
             "alias": "",
+            "position": "36",
             "card_name2": "Gutripper Blade",
             "color2": "",
             "type2": "Artifact \u2014 Equipment",
@@ -806,6 +864,7 @@
             "loyalty": "",
             "artist": "Deryl Braun",
             "alias": "",
+            "position": "37",
             "notes": ""
         },
         {
@@ -825,6 +884,7 @@
             "loyalty": "",
             "artist": "Syzmon Marczyk",
             "alias": "",
+            "position": "38",
             "notes": ""
         },
         {
@@ -844,6 +904,7 @@
             "loyalty": "",
             "artist": "Boris Stanisic",
             "alias": "",
+            "position": "39",
             "notes": "Done\n!pronouns"
         },
         {
@@ -863,6 +924,7 @@
             "loyalty": "",
             "artist": "Drawing_Sofa",
             "alias": "",
+            "position": "40",
             "notes": "rB07 Underhalls\n\nhttps://www.furaffinity.net/view/55306037/"
         },
         {
@@ -870,7 +932,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Creature \u2014 Dragon",
-            "number": 144,
+            "number": 143,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "Final form {4}{R}{R} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{R}{R} as a sorcery: Skip to max level.)[/i]\nFlying\n{1}{R}: Raging Inferno Wyvern gets +X/+0 until end of turn, where X is the number of level counters on it.\n[b]Level 2+[/b] 2/4\nWhenever Raging Inferno Wyvern deals combat damage to a player, you may have it deal that much damage to target battle they protect.\n[b]Level 4[/b] 2/5\nDuring your turn, Raging Inferno Wyvern has double strike.",
@@ -882,6 +944,7 @@
             "loyalty": "",
             "artist": "Anato Finnstark",
             "alias": "",
+            "position": "41",
             "notes": "UR: draw-two encounters\nWR: Weaponize Aggro\nBR: Morbid (combat-oriented)\nRG: Final form stompy\n\nRR01\n\nFinal Form cycle\n\nIf this creature would deal excess damage to a planeswalker or battle, it deals that damage to the defending player instead\nmaybe a bit too strong with the double strike? might just keep it as is\n\n!ft"
         },
         {
@@ -889,7 +952,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Enchantment",
-            "number": 120,
+            "number": 119,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "During your turn, each creature you control with a counter on it has first strike.\nWhenever a battle you control is defeated, put a +1/+1 counter on target creature you control. If that creature attacked this turn, that creature deals 2 damage to target opponent or planeswalker.",
@@ -901,6 +964,7 @@
             "loyalty": "",
             "artist": "Albert Urmanov",
             "alias": "",
+            "position": "42",
             "notes": ""
         },
         {
@@ -908,7 +972,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Sorcery",
-            "number": 117,
+            "number": 116,
             "color_identity": "R",
             "cost": "{3}{R}{R}",
             "rules_text": "Discard your hand, then draw four cards. Then return any number of cards you discarded this way with spoils abilities to the battlefield transformed. For each card returned this way, you may attach it to a creature you control.",
@@ -920,6 +984,7 @@
             "loyalty": "",
             "artist": "Gustavo Dias",
             "alias": "",
+            "position": "43",
             "notes": ""
         },
         {
@@ -927,7 +992,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Creature \u2014 Human Assassin",
-            "number": 142,
+            "number": 141,
             "color_identity": "R",
             "cost": "{2}{R}{R}",
             "rules_text": "Menace\nWhenever Opportunity Killer deals combat damage to a player, discard a card, then draw a card. If a creature card with spoils was discarded this way, return it to the battlefield transformed.",
@@ -939,6 +1004,7 @@
             "loyalty": "",
             "artist": "Ironmace",
             "alias": "",
+            "position": "44",
             "notes": "Underhalls\n\nMorbid combat\nFinal Form Stompy\nDraw two encounter\nWeaponize Aggro"
         },
         {
@@ -946,7 +1012,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Sorcery",
-            "number": 139,
+            "number": 138,
             "color_identity": "R",
             "cost": "{X}{R}{R}{R}",
             "rules_text": "Choose a number of targets equal to one plus the amount of mana produced by Treasures spent to cast this spell. Molten Judgment deals X damage to each of those targets.\n{2}{R}, Discard Molten Judgment: Create two Encounter tokens. [i](They're colorless battles with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
@@ -958,6 +1024,7 @@
             "loyalty": "",
             "artist": "Felipe P\u00e9rez",
             "alias": "",
+            "position": "45",
             "notes": ""
         },
         {
@@ -965,7 +1032,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Creature \u2014 Phoenix",
-            "number": 140,
+            "number": 139,
             "color_identity": "R",
             "cost": "{1}{R}{R}",
             "rules_text": "Flying, haste\nSpoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]",
@@ -977,6 +1044,7 @@
             "loyalty": "",
             "artist": "Hideaki Takamura",
             "alias": "",
+            "position": "46",
             "card_name2": "Mantle of Flame",
             "color2": "R",
             "type2": "Artifact \u2014 Equipment",
@@ -995,7 +1063,7 @@
             "color": "R",
             "rarity": "rare",
             "type": "Legendary Creature \u2014 Goblin Pirate",
-            "number": 127,
+            "number": 126,
             "color_identity": "R",
             "cost": "{R}",
             "rules_text": "During your turn, Gnobgob has first strike.\nWhenever Gnobgob attacks, if defending player doesn't protect a battle, create an Encounter token they protect. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\nSpoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]",
@@ -1007,6 +1075,7 @@
             "loyalty": "",
             "artist": "Joseph Weston",
             "alias": "",
+            "position": "47",
             "card_name2": "Fang of Gnobgob",
             "color2": "R",
             "type2": "Legendary Artifact \u2014 Equipment",
@@ -1025,7 +1094,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Enchantment \u2014 Room",
-            "number": 190,
+            "number": 189,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "When you unlock this door, destroy target artifact, enchantment, or battle an opponent controls.",
@@ -1037,6 +1106,7 @@
             "loyalty": "",
             "artist": "Jordangrimmer",
             "alias": "",
+            "position": "48",
             "card_name2": "Rumbling Crypt",
             "color2": "G",
             "type2": "",
@@ -1055,7 +1125,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Sorcery",
-            "number": 187,
+            "number": 186,
             "color_identity": "G",
             "cost": "{1}{G}{G}",
             "rules_text": "Reveal cards from the top of your library until you reveal a creature card with mana value less than or equal to the number of lands you control. Put that card onto the battlefield and the rest on the bottom of your library in a random order.\nFlashback {3}{G}{G} [i](You may cast this card from your graveyard for its flashback cost. Then exile it.)[/i]",
@@ -1067,6 +1137,7 @@
             "loyalty": "",
             "artist": "thetechromancer",
             "alias": "",
+            "position": "49",
             "notes": "Underhalls\n\nRG02\n\nThis\n\nhttps://www.deviantart.com/thetechromancer/art/All-Manner-of-Ghouls-Hags-and-Wraiths-845865886"
         },
         {
@@ -1074,7 +1145,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Enchantment",
-            "number": 170,
+            "number": 169,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "Enchantment spells you cast cost {1} less to cast.\nUnlock costs you pay cost {1} less.\nWhenever you attack, if there are four or more unlocked doors among Rooms you control, draw a card. Then you may lock a door of a Room you control.",
@@ -1086,6 +1157,7 @@
             "loyalty": "",
             "artist": "Daniel Conway",
             "alias": "",
+            "position": "50",
             "notes": "Complete\nhttps://www.artstation.com/artwork/kDBO5x"
         },
         {
@@ -1093,7 +1165,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Enchantment \u2014 Room",
-            "number": 192,
+            "number": 191,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "When you unlock this door, create three 1/1 white Human creature tokens.",
@@ -1105,6 +1177,7 @@
             "loyalty": "",
             "artist": "Manzanedo",
             "alias": "",
+            "position": "51",
             "card_name2": "Perilous Hall",
             "color2": "G",
             "type2": "",
@@ -1123,7 +1196,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Creature \u2014 Ooze",
-            "number": 166,
+            "number": 165,
             "color_identity": "G",
             "cost": "{G}",
             "rules_text": "Final form {3}{G}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {3}{G}{G} as a sorcery: Skip to max level.)[/i]\nEver-Growing Ooze gets +1/+1 for each level counter on it.\n[b]Level 2+[/b] 1/1\n{1}, Remove a level counter from Ever-\nGrowing Ooze: It gains indestructible until end of turn. Tap it. \n[b]Level 5[/b] 1/1\nYou may have Ever-\nGrowing Ooze assign its combat damage as though it weren't blocked.",
@@ -1135,6 +1208,7 @@
             "loyalty": "",
             "artist": "art_of_neight",
             "alias": "",
+            "position": "52",
             "notes": "in another timeline this is a 0/1 but we ball"
         },
         {
@@ -1142,7 +1216,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Creature \u2014 Human Druid",
-            "number": 165,
+            "number": 164,
             "color_identity": "G",
             "cost": "{1}{G}{G}",
             "rules_text": "Whenever a creature you control dies, if it had counters on it, you may put one of those counters onto another target creature you control.\n{2}{G}: Put a +1/+1 counter on target creature you control. Activate only as a sorcery.",
@@ -1154,6 +1228,7 @@
             "loyalty": "",
             "artist": "Grant Griffin",
             "alias": "",
+            "position": "53",
             "notes": "RG: Final form stompy\nGW: Rooms Enchantress\nBG: Ooze typal w/ token subtheme\nGU: \"Backtracking\" (Rooms + ways to close them)\n\ncould use a tad more power? (3/4 from matte)\nconcerned about on-board tricks? (if instant speed)\n\nRG06"
         },
         {
@@ -1161,7 +1236,7 @@
             "color": "G",
             "rarity": "rare",
             "type": "Creature \u2014 Hydra",
-            "number": 175,
+            "number": 176,
             "color_identity": "G",
             "cost": "{4}{G}",
             "rules_text": "Trample\nRooting Hydra enters with a +1/+1 counter on\nit for each counter among other permanents you control.\nWhenever Rooting Hydra deals combat damage\nto a player or battle, put a +1/+1 counter on each of up to that many target creatures.",
@@ -1173,6 +1248,7 @@
             "loyalty": "",
             "artist": "Adrien Gonzalez",
             "alias": "",
+            "position": "54",
             "notes": "Done\n\n!ft ?"
         },
         {
@@ -1192,6 +1268,7 @@
             "loyalty": "",
             "artist": "Klaher Baklaher",
             "alias": "",
+            "position": "55",
             "notes": "!underhalls\n\nSTOLEN SLOT\n\n!ft maybe"
         },
         {
@@ -1211,6 +1288,7 @@
             "loyalty": "",
             "artist": "Nele Diel",
             "alias": "",
+            "position": "56",
             "notes": "Whenever this Vehicle enters or attacks, exile up to one other target creature until this Vehicle leaves the battlefield. If a creature is put into exile this way, return each other card exiled with this Vehicle to the battlefield under its owner's control.\n\nAt the beginning of your end step, exile up to one target creature until you exile another creature with Lost in the Halls."
         },
         {
@@ -1218,7 +1296,7 @@
             "color": "UB",
             "rarity": "rare",
             "type": "Legendary Creature \u2014 Human Warlock",
-            "number": 196,
+            "number": 195,
             "color_identity": "UB",
             "cost": "{1}{U}{B}",
             "rules_text": "Menace, deathtouch\nWhenever Amon deals combat damage to a player or battle, you may gain control of target artifact or enchantment defending player controls for as long as you control Amon.",
@@ -1230,6 +1308,7 @@
             "loyalty": "",
             "artist": "Alexandre Reynaud",
             "alias": "",
+            "position": "57",
             "notes": "Saboteurs\nRUB01\n\nmore exciting?\n\n!pronouns"
         },
         {
@@ -1237,7 +1316,7 @@
             "color": "UB",
             "rarity": "rare",
             "type": "Creature \u2014 Zombie Wizard",
-            "number": 199,
+            "number": 198,
             "color_identity": "UB",
             "cost": "{3}{U}{B}",
             "rules_text": "Whenever Clattercrypt Champion deals combat damage to a player or battle, draw a card and create a 4/1 black Skeleton creature token with menace.\n{5}{U}{B}, Sacrifice an unblocked attacking creature: Return Clattercrypt Champion from your graveyard to the battlefield tapped and attacking the same player or noncreature permanent as the sacrificed creature.",
@@ -1249,6 +1328,7 @@
             "loyalty": "",
             "artist": "Jacob Atienza",
             "alias": "",
+            "position": "58",
             "notes": "potentially !ft\n!chop\nWhenever Clattercrypt Champion deals combat damage to a player or battle, draw a card and create a 4/1 black Skeleton creature token with menace.\n5UB, Sacrifice an unblocked attacking creature: Return Clattercrypt Champion from your graveyard to the battlefield tapped and attacking. It's attacking the same player or noncreature permanent."
         },
         {
@@ -1268,6 +1348,7 @@
             "loyalty": "",
             "artist": "Red Right Hand Studios",
             "alias": "",
+            "position": "59",
             "notes": "Black / Red: Morbid (combat-oriented)\n\n!ft maybe"
         },
         {
@@ -1287,6 +1368,7 @@
             "loyalty": "",
             "artist": "Aaron Borgman",
             "alias": "",
+            "position": "60",
             "notes": ""
         },
         {
@@ -1306,6 +1388,7 @@
             "loyalty": "",
             "artist": "Donggeon Son",
             "alias": "",
+            "position": "61",
             "notes": "Underhalls\nFinal Form Stompy\nUnderhalls RRG01\n!pronouns \u2014 they/them?\n\nThe furious will of the natural world that Alzigrak destroyed to form the Underhalls.\nThe embodiment of the natural world Alzigrak destroyed to create the Underhalls.\nAfter countless years and years of waiting, what remains of Lanzaroth now strikes.\nWhen Alzigrak striked down the natural world to create the Underhalls, he never considered it might one day strike back."
         },
         {
@@ -1325,6 +1408,7 @@
             "loyalty": "",
             "artist": "Roman Groph",
             "alias": "",
+            "position": "62",
             "notes": "!ft maybe"
         },
         {
@@ -1344,6 +1428,7 @@
             "loyalty": "",
             "artist": "Grosnez",
             "alias": "",
+            "position": "63",
             "card_name2": "Endless Pit",
             "color2": "G",
             "type2": "",
@@ -1362,7 +1447,7 @@
             "color": "WG",
             "rarity": "rare",
             "type": "Creature \u2014 Elf Wizard Citizen",
-            "number": 206,
+            "number": 205,
             "color_identity": "WG",
             "cost": "{2}{G}{W}",
             "rules_text": "Vigilance, ward {4}\n{T}: Add {C}{C}{C}{C}. Spend this mana only to cast spells or activate abilities that target a creature you control that entered this turn.",
@@ -1374,6 +1459,7 @@
             "loyalty": "",
             "artist": "Kichisu",
             "alias": "",
+            "position": "64",
             "notes": ""
         },
         {
@@ -1393,6 +1479,7 @@
             "loyalty": "",
             "artist": "Luiz Prado (Savedra)",
             "alias": "",
+            "position": "65",
             "notes": ""
         },
         {
@@ -1412,6 +1499,7 @@
             "loyalty": "",
             "artist": "Devin Platts",
             "alias": "",
+            "position": "66",
             "notes": ""
         },
         {
@@ -1419,7 +1507,7 @@
             "color": "BG",
             "rarity": "rare",
             "type": "Creature \u2014 Zombie Knight",
-            "number": 204,
+            "number": 203,
             "color_identity": "BG",
             "cost": "{1}{B}{G}",
             "rules_text": "Dreadrot Servant enters with three +1/+1 counters on it.\n{1}{B}{G}: Put a +1/+1 counter on Dreadrot Servant.\n{T}, Sacrifice Dreadrot Servant: Exile target creature card not named Dreadrot Servant with mana value X or less from your graveyard, where X is Dreadrot Servant's power. Create a token that's a copy of the exiled card.",
@@ -1431,6 +1519,7 @@
             "loyalty": "",
             "artist": "Russell Dongjun Lu",
             "alias": "",
+            "position": "67",
             "notes": "BG rare\nshouldn't be a room\nfinal form? token?\n\nBlack / Green: Ooze typal w/ token subtheme\n\ntoken\nnot necessarily ooze\nrot guy?\nrevive?"
         },
         {
@@ -1450,6 +1539,7 @@
             "loyalty": "",
             "artist": "Tarmo Juhola",
             "alias": "",
+            "position": "68",
             "card_name2": "Mildewed Church",
             "color2": "G",
             "type2": "",
@@ -1480,6 +1570,7 @@
             "loyalty": "",
             "artist": "Created with MidjourneyAI",
             "alias": "",
+            "position": "69",
             "card_name2": "Glowing Study",
             "color2": "UG",
             "type2": "",
@@ -1510,6 +1601,7 @@
             "loyalty": "",
             "artist": "Mateusz Michalski",
             "alias": "",
+            "position": "70",
             "notes": ""
         },
         {
@@ -1529,6 +1621,7 @@
             "loyalty": "",
             "artist": "Charlotte Veldhuizen",
             "alias": "",
+            "position": "71",
             "card_name2": "Heated Territory",
             "color2": "U",
             "type2": "",
@@ -1559,6 +1652,7 @@
             "loyalty": "",
             "artist": "Michel Donze",
             "alias": "",
+            "position": "72",
             "notes": ""
         },
         {
@@ -1566,7 +1660,7 @@
             "color": "WR",
             "rarity": "rare",
             "type": "Creature \u2014 Human Knight Wizard",
-            "number": 195,
+            "number": 194,
             "color_identity": "WR",
             "cost": "{2}{R}{W}",
             "rules_text": "Vigilance, haste\nAs long as Accomplished Gish is equipped, it gets +X/+X and has ward {X}, where X is the number of Equipment attached to it.\n{1}{R}{W}, {T}: Tap up to X target creatures, where X is the number of Equipment attached to Accomplished Gish as you activate this ability. It deal 1 damage to each of those creature's controllers.",
@@ -1578,6 +1672,7 @@
             "loyalty": "",
             "artist": "Caio Santos",
             "alias": "",
+            "position": "73",
             "notes": "!ft maybe"
         },
         {
@@ -1597,6 +1692,7 @@
             "loyalty": "",
             "artist": "Goodname Studio",
             "alias": "",
+            "position": "74",
             "notes": "!ft maybe\n\nWhenever a creature you control with spoils attacks, you may create a token that's a copy of that creature's backside attached to that creature. Sacrifice the token at the beginning of the next end step."
         },
         {
@@ -1616,6 +1712,7 @@
             "loyalty": "",
             "artist": "Jeremy McHugh",
             "alias": "",
+            "position": "75",
             "notes": "!pronouns \u2014 she/her"
         },
         {
@@ -1635,6 +1732,7 @@
             "loyalty": "",
             "artist": "David Calabrese",
             "alias": "",
+            "position": "76",
             "card_name2": "Impervious Plate",
             "color2": "",
             "type2": "Artifact \u2014 Equipment",
@@ -1665,6 +1763,7 @@
             "loyalty": "",
             "artist": "Grok 2",
             "alias": "",
+            "position": "77",
             "card_name2": "Spiked Roundshield",
             "color2": "",
             "type2": "Artifact \u2014 Equipment",
@@ -1695,6 +1794,7 @@
             "loyalty": "",
             "artist": "Nicolas Souclier",
             "alias": "",
+            "position": "78",
             "notes": "underhalls\n\nIf one or more artifact tokens would be created under your control, twice that many of those tokens are created instead."
         },
         {
@@ -1714,6 +1814,7 @@
             "loyalty": "",
             "artist": "Ruslan",
             "alias": "",
+            "position": "79",
             "notes": "Underhalls: Colorless rare"
         },
         {
@@ -1733,6 +1834,7 @@
             "loyalty": "",
             "artist": "Laura Anderson",
             "alias": "",
+            "position": "80",
             "notes": "Whenever a creature you control attacks, put a coin counter on Fountain of Fortunes."
         },
         {
@@ -1752,6 +1854,7 @@
             "loyalty": "",
             "artist": "LeeJJ",
             "alias": "",
+            "position": "81",
             "notes": "Making it 2-3 to a creature could also work, and having it only be 1 to a battle is an option. And so on and so fourth.\nRC07\n!ft"
         },
         {
@@ -1771,6 +1874,7 @@
             "loyalty": "",
             "artist": "Matt Stawicki",
             "alias": "",
+            "position": "82",
             "notes": "!ft maybe"
         },
         {
@@ -1790,6 +1894,7 @@
             "loyalty": "",
             "artist": "Mads Samuel",
             "alias": "",
+            "position": "83",
             "notes": "UW01 \u2014 1mv unc white"
         },
         {
@@ -1809,6 +1914,7 @@
             "loyalty": "",
             "artist": "Ricardo Caria",
             "alias": "",
+            "position": "84",
             "card_name2": "Lucky Talisman",
             "color2": "R",
             "type2": "Artifact \u2014 Equipment",
@@ -1839,6 +1945,7 @@
             "loyalty": "",
             "artist": "Gonzalo Kenny",
             "alias": "",
+            "position": "85",
             "notes": "GW Rooms Enchantress"
         },
         {
@@ -1858,6 +1965,7 @@
             "loyalty": "",
             "artist": "JohnnyD",
             "alias": "",
+            "position": "86",
             "notes": "WU Support\nWU: Artifacts / Enchantments Midrange\nUW05"
         },
         {
@@ -1877,6 +1985,7 @@
             "loyalty": "",
             "artist": "MiffedMist",
             "alias": "",
+            "position": "87",
             "notes": "Underhalls\n\nUW06 \u2014 Creature (mana value 3)\n\nhttps://deviantart.com/miffedmist/art/Akalazar-the-Magnificent-884954528\n\nTHIS"
         },
         {
@@ -1896,6 +2005,7 @@
             "loyalty": "",
             "artist": "Billy Christian // Ricardo Robles",
             "alias": "",
+            "position": "88",
             "notes": ""
         },
         {
@@ -1915,6 +2025,7 @@
             "loyalty": "",
             "artist": "Marc Simonetti",
             "alias": "",
+            "position": "89",
             "card_name2": "Bone Dagger",
             "color2": "W",
             "type2": "Artifact \u2014 Equipment",
@@ -1945,6 +2056,7 @@
             "loyalty": "",
             "artist": "Ilya Bondarenko",
             "alias": "",
+            "position": "90",
             "card_name2": "Smiteful Codex",
             "color2": "W",
             "type2": "Artifact \u2014 Equipment",
@@ -1975,6 +2087,7 @@
             "loyalty": "",
             "artist": "Ralph Horsley",
             "alias": "",
+            "position": "91",
             "notes": "UW10 Uncommon noncreature, underhalls\n\n!ft lacking details"
         },
         {
@@ -1994,6 +2107,7 @@
             "loyalty": "",
             "artist": "Bryan Sola",
             "alias": "",
+            "position": "92",
             "notes": ""
         },
         {
@@ -2013,6 +2127,7 @@
             "loyalty": "",
             "artist": "Mateusz Mizak",
             "alias": "",
+            "position": "93",
             "notes": "This spell costs 2 less to cast if an opponent targeted a permanent you control with a spell or ability this turn."
         },
         {
@@ -2032,6 +2147,7 @@
             "loyalty": "",
             "artist": "Krasen Maximov // Lenika86",
             "alias": "",
+            "position": "94",
             "card_name2": "Buried Hall",
             "color2": "W",
             "type2": "",
@@ -2062,6 +2178,7 @@
             "loyalty": "",
             "artist": "Mark \"G-Hamm\" Graham",
             "alias": "",
+            "position": "95",
             "notes": "!ft"
         },
         {
@@ -2069,7 +2186,7 @@
             "color": "U",
             "rarity": "uncommon",
             "type": "Creature \u2014 Faerie",
-            "number": 59,
+            "number": 58,
             "color_identity": "U",
             "cost": "{1}{U}",
             "rules_text": "Flying\nAt the beginning of your end step, if you unlocked a door this turn, draw a card, then discard a card.",
@@ -2081,6 +2198,7 @@
             "loyalty": "",
             "artist": "Avery Ota",
             "alias": "",
+            "position": "96",
             "notes": "!ft"
         },
         {
@@ -2100,6 +2218,7 @@
             "loyalty": "",
             "artist": "Felipe Castro",
             "alias": "",
+            "position": "97",
             "notes": ""
         },
         {
@@ -2107,7 +2226,7 @@
             "color": "U",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Rogue",
-            "number": 64,
+            "number": 63,
             "color_identity": "U",
             "cost": "{2}{U}",
             "rules_text": "Flash\nWhenever Runaway Showboat enters or attacks, another target creature you\ncontrol with power 2 or less gains hexproof until end of turn and can't be blocked this turn.",
@@ -2119,6 +2238,7 @@
             "loyalty": "",
             "artist": "Irina Kuzmina",
             "alias": "",
+            "position": "98",
             "notes": ""
         },
         {
@@ -2138,6 +2258,7 @@
             "loyalty": "",
             "artist": "Gaby Nascimento",
             "alias": "",
+            "position": "99",
             "notes": ""
         },
         {
@@ -2157,6 +2278,7 @@
             "loyalty": "",
             "artist": "Maxime \"Istrandar\" Minard",
             "alias": "",
+            "position": "100",
             "notes": "!ft"
         },
         {
@@ -2164,7 +2286,7 @@
             "color": "U",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Wizard",
-            "number": 65,
+            "number": 64,
             "color_identity": "U",
             "cost": "{3}{U}{U}",
             "rules_text": "Flying\nWhen Scholar of the Halls enters, you may return another target nonland permanent\nto its owner's hand. If you controlled that permanent, draw a card, then discard a card.",
@@ -2176,6 +2298,7 @@
             "loyalty": "",
             "artist": "Anthony Catillaz",
             "alias": "",
+            "position": "101",
             "notes": ""
         },
         {
@@ -2183,7 +2306,7 @@
             "color": "U",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Wizard",
-            "number": 63,
+            "number": 62,
             "color_identity": "U",
             "cost": "{4}{U}",
             "rules_text": "This spell costs {1} less to cast for each card you've drawn this turn.\nWhen Psychic Wars Veteran enters, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
@@ -2195,6 +2318,7 @@
             "loyalty": "",
             "artist": "Nghi Vo",
             "alias": "",
+            "position": "102",
             "notes": "This should just latch onto encounter RT when put in proper file right\n\n!ft okay it's not flavor text but the name here stinks imo"
         },
         {
@@ -2214,6 +2338,7 @@
             "loyalty": "",
             "artist": "Sora Kim",
             "alias": "",
+            "position": "103",
             "notes": ""
         },
         {
@@ -2233,6 +2358,7 @@
             "loyalty": "",
             "artist": "Tommaso Gomez",
             "alias": "",
+            "position": "104",
             "card_name2": "Safe Study Hall",
             "color2": "U",
             "type2": "",
@@ -2263,6 +2389,7 @@
             "loyalty": "",
             "artist": "Artur Gurin",
             "alias": "",
+            "position": "105",
             "notes": "noncreature\nWhite / Blue: Artifact + Enchantment midrange\nBlue / Black: Saboteurs\nGreen / Blue: \"Backtracking\" (Rooms + ways to close them)\nBlue / Red: draw-two encounters\n\nencounter??\n...counterspell?\ntrap"
         },
         {
@@ -2282,6 +2409,7 @@
             "loyalty": "",
             "artist": "Jose Golzman",
             "alias": "",
+            "position": "106",
             "card_name2": "Vestiges of Glamour",
             "color2": "U",
             "type2": "",
@@ -2312,6 +2440,7 @@
             "loyalty": "",
             "artist": "Jan Ditlev",
             "alias": "",
+            "position": "107",
             "notes": "!ft maybe"
         },
         {
@@ -2331,6 +2460,7 @@
             "loyalty": "",
             "artist": "Lina Tellefsen",
             "alias": "",
+            "position": "108",
             "notes": "UU13 \u2014 rare blue non-c"
         },
         {
@@ -2350,6 +2480,7 @@
             "loyalty": "",
             "artist": "Mark Erskine",
             "alias": "",
+            "position": "109",
             "notes": "Noncreature\nWhite / Blue: Artifact + Enchantment midrange\nBlue / Red: draw-two encounters\nBlue / Black: Saboteurs"
         },
         {
@@ -2369,6 +2500,7 @@
             "loyalty": "",
             "artist": "Crime .",
             "alias": "",
+            "position": "110",
             "card_name2": "Palevenom Blade",
             "color2": "",
             "type2": "Artifact \u2014 Equipment",
@@ -2390,7 +2522,7 @@
             "number": 112,
             "color_identity": "B",
             "cost": "{1}{B}",
-            "rules_text": "Menace\nWhenever a battle you control is defeated or an attacking creature you control dies, the defending player loses 1 life.",
+            "rules_text": "Menace\nWhenever an attacking creature you control dies and whenever a Battle you control is defeated, target opponent loses 1 life.",
             "flavor_text": "[i]Once dutiful stewards of the Underhalls, their honor was twisted by death's transience into a cult of glory and sacrifice.[/i]",
             "pt": "3/1",
             "special_text": "",
@@ -2399,6 +2531,7 @@
             "loyalty": "",
             "artist": "Step\u00e1n Kapko",
             "alias": "",
+            "position": "111",
             "notes": "nB02 Underhalls\n\nhttps://www.artstation.com/artwork/48E8k8"
         },
         {
@@ -2418,6 +2551,7 @@
             "loyalty": "",
             "artist": "Maxime \"Istrandar\" Minard",
             "alias": "",
+            "position": "112",
             "notes": ""
         },
         {
@@ -2437,6 +2571,7 @@
             "loyalty": "",
             "artist": "pindurski",
             "alias": "",
+            "position": "113",
             "card_name2": "Cloak of Damned Souls",
             "color2": "B",
             "type2": "Artifact \u2014 Equipment",
@@ -2467,6 +2602,7 @@
             "loyalty": "",
             "artist": "shousuke0716",
             "alias": "",
+            "position": "114",
             "notes": "Underhalls: UB05"
         },
         {
@@ -2486,6 +2622,7 @@
             "loyalty": "",
             "artist": "Sergio Mayo",
             "alias": "",
+            "position": "115",
             "notes": "!ft"
         },
         {
@@ -2505,6 +2642,7 @@
             "loyalty": "",
             "artist": "Andre Castro",
             "alias": "",
+            "position": "116",
             "card_name2": "Balestone Ring",
             "color2": "B",
             "type2": "Artifact \u2014 Equipment",
@@ -2535,6 +2673,7 @@
             "loyalty": "",
             "artist": "Hiro Morino",
             "alias": "",
+            "position": "117",
             "notes": ""
         },
         {
@@ -2554,6 +2693,7 @@
             "loyalty": "",
             "artist": "Francis Brunet",
             "alias": "",
+            "position": "118",
             "notes": "black noncreature\ntrap\n\nwould love to call this \"monster house\"\n\nnote: one of these arts was probably used lol."
         },
         {
@@ -2573,6 +2713,7 @@
             "loyalty": "",
             "artist": "Nick Moskvin",
             "alias": "",
+            "position": "119",
             "notes": "Complete?\nBRO Gruesome Realization\nONE Sheoldred's Edict\nhttps://www.artstation.com/artwork/JemQOd"
         },
         {
@@ -2592,6 +2733,7 @@
             "loyalty": "",
             "artist": "Netmarble",
             "alias": "",
+            "position": "120",
             "card_name2": "Thriving Sewers",
             "color2": "B",
             "type2": "",
@@ -2622,6 +2764,7 @@
             "loyalty": "",
             "artist": "Clement Blum",
             "alias": "",
+            "position": "121",
             "notes": "NONCREATURE\nUB12"
         },
         {
@@ -2641,6 +2784,7 @@
             "loyalty": "",
             "artist": "Jakub Jagoda",
             "alias": "",
+            "position": "122",
             "notes": "Flavor text should be credited to a person with a name\n!ft"
         },
         {
@@ -2660,6 +2804,7 @@
             "loyalty": "",
             "artist": "Eren ARIK",
             "alias": "",
+            "position": "123",
             "notes": ""
         },
         {
@@ -2667,7 +2812,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Rogue",
-            "number": 153,
+            "number": 152,
             "color_identity": "R",
             "cost": "{R}",
             "rules_text": "Reach\nWhenever Wall-Climbing Snatcher deals combat damage to a creature, create a Treasure token. [i](It's an artifact with \u201c{T}, Sacrifice this artifact: Add one mana of any color.\u201d)[/i]",
@@ -2679,6 +2824,7 @@
             "loyalty": "",
             "artist": "Dall-E",
             "alias": "",
+            "position": "124",
             "notes": "!ft maybe"
         },
         {
@@ -2686,7 +2832,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Goblin Pirate",
-            "number": 125,
+            "number": 124,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "When Expedition Rouser enters, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\nWhenever a battle you control is defeated, Expedition Rouser deals 1 damage to each opponent.",
@@ -2698,6 +2844,7 @@
             "loyalty": "",
             "artist": "Robin Benes",
             "alias": "",
+            "position": "125",
             "notes": "UR Encounter Drawtwo\n!ft"
         },
         {
@@ -2705,7 +2852,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Kobold",
-            "number": 138,
+            "number": 137,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "Haste\nAt the beginning of combat on your turn, another target creature you control gets +1/+0 and gains haste until end of turn.",
@@ -2717,6 +2864,7 @@
             "loyalty": "",
             "artist": "JackAKaiser",
             "alias": "",
+            "position": "126",
             "notes": "UR03 2 mana value uncommon red card, Underhalls\n!ft"
         },
         {
@@ -2724,7 +2872,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Zombie Shaman",
-            "number": 150,
+            "number": 149,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "When Undead Pyromancer enters, if a creature died this turn, Undead Pyromancer deals 3 damage to any target.",
@@ -2736,6 +2884,7 @@
             "loyalty": "",
             "artist": "LozanoX",
             "alias": "",
+            "position": "127",
             "notes": "!ft\n!design"
         },
         {
@@ -2743,7 +2892,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Warrior",
-            "number": 154,
+            "number": 153,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "During your turn, as long as Weapon Collector is equipped, it has first strike.\nEquip abilities you activate that target Weapon Collector cost {1} less to activate.",
@@ -2755,14 +2904,15 @@
             "loyalty": "",
             "artist": "Heonhwa Choe",
             "alias": "",
-            "notes": "mv3 RW support creature\nWeaponize Aggro\n!ft"
+            "position": "128",
+            "notes": "mv3 RW support creature\nWeaponize Aggro"
         },
         {
             "card_name": "Lavaplume Ravager",
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Elemental Beast",
-            "number": 136,
+            "number": 135,
             "color_identity": "R",
             "cost": "{3}{R}",
             "rules_text": "Final form {4}{R}{R} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{R}{R} as a sorcery: Skip to max level.)[/i]\nWhenever one or more level counters are put on a creature you control, creatures you control get +1/+0 until end of turn. This ability triggers only once each turn.\n[b]Level 2+[/b] 3/3\nMenace\n[b]Level 3[/b] 4/3\nDouble strike",
@@ -2774,6 +2924,7 @@
             "loyalty": "",
             "artist": "Peachy-Peach1",
             "alias": "",
+            "position": "129",
             "notes": "Underhall \u2014 RG Support"
         },
         {
@@ -2781,7 +2932,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Wizard",
-            "number": 145,
+            "number": 144,
             "color_identity": "R",
             "cost": "{3}{R}{R}",
             "rules_text": "Haste\nWhenever Reckless Fireballer attacks, you may discard a nonland card. When you do, destroy up to one target artifact and Reckless Fireballer deals 2 damage to each player.",
@@ -2793,6 +2944,7 @@
             "loyalty": "",
             "artist": "Martin Paz",
             "alias": "",
+            "position": "130",
             "notes": "!ft maybe"
         },
         {
@@ -2800,7 +2952,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Creature \u2014 Beholder",
-            "number": 119,
+            "number": 118,
             "color_identity": "R",
             "cost": "{4}{R}",
             "rules_text": "At the beginning of combat on your turn, you may discard a card or sacrifice a land. If you do, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\nWhenever a creature you control deals combat damage to a player, you may have it deal that much damage to target battle that player protects.",
@@ -2812,6 +2964,7 @@
             "loyalty": "",
             "artist": "Hinchel Or",
             "alias": "",
+            "position": "131",
             "notes": ""
         },
         {
@@ -2819,7 +2972,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Sorcery",
-            "number": 130,
+            "number": 129,
             "color_identity": "R",
             "cost": "{3}{R}",
             "rules_text": "Gain control of target creature until end of turn. Untap it. It gets +2/+0 and gains\nhaste until end of turn. \nCreate an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
@@ -2831,14 +2984,15 @@
             "loyalty": "",
             "artist": "Sean O'Daniels",
             "alias": "",
-            "notes": "!ft"
+            "position": "132",
+            "notes": ""
         },
         {
             "card_name": "Vault of Greed",
             "color": "R",
             "rarity": "uncommon",
             "type": "Enchantment \u2014 Room",
-            "number": 156,
+            "number": 155,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "At the beginning of your end step, if you attacked this turn, create a Treasure token. [i](It's an artifact with \u201c{T}, Sacrifice this artifact: Add one mana of any color.\u201d)[/i]",
@@ -2850,6 +3004,7 @@
             "loyalty": "",
             "artist": "Andrea Piparo",
             "alias": "",
+            "position": "133",
             "card_name2": "Dragon's Den",
             "color2": "R",
             "type2": "",
@@ -2868,7 +3023,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Instant",
-            "number": 123,
+            "number": 122,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "Choose one. If Enrage the Boss targets a creature you control at max level, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\n\u2022 Target creature you control deals damage equal to its power to target creature you don't control.\n\u2022 Target creature gets +1/+0 and gains double strike until end of turn.",
@@ -2880,6 +3035,7 @@
             "loyalty": "",
             "artist": "Anato Finnstark",
             "alias": "",
+            "position": "134",
             "notes": "R is in:\nBlack / Red: Morbid (combat-oriented)\nRed / Green: Final form stompy\ndraw-two encounters\nRed / White: Weaponize Aggro"
         },
         {
@@ -2887,7 +3043,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Instant \u2014 Trap",
-            "number": 129,
+            "number": 128,
             "color_identity": "R",
             "cost": "{3}{R}{R}",
             "rules_text": "This spell costs {1} less to cast for each 1 life your opponents have gained this turn.\nHoarder's Folly deals 5 damage to any target.",
@@ -2899,6 +3055,7 @@
             "loyalty": "",
             "artist": "Sam Keiser",
             "alias": "",
+            "position": "135",
             "notes": ""
         },
         {
@@ -2906,7 +3063,7 @@
             "color": "R",
             "rarity": "uncommon",
             "type": "Instant \u2014 Trap",
-            "number": 134,
+            "number": 133,
             "color_identity": "R",
             "cost": "{R}",
             "rules_text": "Jutting Spike deals 2 damage to target creature. If that creature is attacking, Jutting Spike deals 4 damage to it instead.\nIf a creature dealt damage by Jutting Spike would die this turn, exile it instead.",
@@ -2918,14 +3075,15 @@
             "loyalty": "",
             "artist": "Henry Peters",
             "alias": "",
-            "notes": "Done\n!ft"
+            "position": "136",
+            "notes": "Done"
         },
         {
             "card_name": "Dungeon Rage",
             "color": "R",
             "rarity": "uncommon",
             "type": "Enchantment \u2014 Aura",
-            "number": 122,
+            "number": 121,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "Enchant creature\nEnchanted creature gets +1/+1, has menace and trample, and attacks each combat if able.\nWhen enchanted creature dies, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
@@ -2937,6 +3095,7 @@
             "loyalty": "",
             "artist": "Biagio D'Alessandro",
             "alias": "",
+            "position": "137",
             "notes": ""
         },
         {
@@ -2944,7 +3103,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Bear Horror",
-            "number": 160,
+            "number": 159,
             "color_identity": "G",
             "cost": "{G}",
             "rules_text": "Colossal Tardigrade enters with a +1/+1 counter on it.\n{T}, Remove a counter from Colossal Tardigrade: Add one mana of any color.\n{T}: Move a counter from another target creature you control onto Colossal Tardigrade. Activate only as a sorcery.",
@@ -2956,6 +3115,7 @@
             "loyalty": "",
             "artist": "Elizah Leigh",
             "alias": "",
+            "position": "138",
             "notes": "!ft maybe? this chop just looks like shit tbh, sorryyyy"
         },
         {
@@ -2975,6 +3135,7 @@
             "loyalty": "",
             "artist": "Klaher Baklaher",
             "alias": "",
+            "position": "139",
             "notes": ""
         },
         {
@@ -2982,7 +3143,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Insect",
-            "number": 179,
+            "number": 180,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "Final form {4}{G}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{G}{G} as a sorcery: Skip to max level.)[/i]\nReach\n[b]Level 2+[/b] 4/5\nTrample\n[b]Level 4[/b] 4/5\nWhen Swarming Anthrovore becomes max level, create a token that's a copy of it. [i](The token has no counters and isn't max level.)[/i]",
@@ -2994,18 +3155,19 @@
             "loyalty": "2/22/2",
             "artist": "Nadine Sch\u00e4kel",
             "alias": "",
+            "position": "140",
             "notes": ""
         },
         {
-            "card_name": "Voracious Scavenger",
+            "card_name": "Noxious Scavenger",
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Ooze",
-            "number": 185,
+            "number": 172,
             "color_identity": "G",
             "cost": "{1}{G}",
-            "rules_text": "Trample\nWhenever a non-Treasure token you control leaves the battlefield, put a +1/+1 counter on Voracious Scavenger.",
-            "flavor_text": "[i]\u201cSee those gaps between the stones? In the ceiling? Nasty things can hide in those. Eyes up. Try not to look edible.\u201d\n\u2014Kacey Longwhisker[/i]",
+            "rules_text": "Trample\nWhenever a non-Treasure token you control leaves the battlefield, put a +1/+1 counter on Noxious Scavenger.",
+            "flavor_text": "[i]\u201cSee those gaps between the stones? In the ceiling? Nasty things can hide in those. Eyes up. Try not to look edible.\u201d\n\u2014Kacey, tutelary delver[/i]",
             "pt": "2/2",
             "special_text": "",
             "shape": "normal",
@@ -3013,6 +3175,7 @@
             "loyalty": "",
             "artist": "Matt DeMino",
             "alias": "",
+            "position": "141",
             "notes": "BG: Ooze typal w/ token subtheme\n\n!underhalls"
         },
         {
@@ -3020,7 +3183,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Wizard",
-            "number": 171,
+            "number": 170,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "When Meditative Trainee enters, you may return target enchantment to its owner's hand.",
@@ -3032,6 +3195,7 @@
             "loyalty": "",
             "artist": "ARIGATO SAN",
             "alias": "",
+            "position": "142",
             "notes": "!ft"
         },
         {
@@ -3039,7 +3203,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Scout",
-            "number": 182,
+            "number": 183,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "Whenever an enchantment you control enters, target creature you control gets +1/+1 until end of turn. If it's a Room, put a +1/+1 counter on that creature instead.",
@@ -3051,6 +3215,7 @@
             "loyalty": "",
             "artist": "Mathew Dobrich",
             "alias": "",
+            "position": "143",
             "notes": "3 mana value, GW Support (Rooms Enchantress)\nUG06"
         },
         {
@@ -3058,7 +3223,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Human Scout",
-            "number": 169,
+            "number": 168,
             "color_identity": "G",
             "cost": "{3}{G}",
             "rules_text": "Vigilance\nWhenever Lurchcave Explorer attacks, you may return another permanent you control to its owner's hand. If you do, create a 1/1 green Ooze creature token with \u201cWhen this\ncreature dies, put a +1/+1 counter on up to one target creature.\u201d",
@@ -3070,17 +3235,18 @@
             "loyalty": "",
             "artist": "Florian Herold",
             "alias": "",
+            "position": "144",
             "notes": ""
         },
         {
-            "card_name": "Voracious Ooze",
+            "card_name": "Ravenous Ooze",
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Ooze",
-            "number": 184,
+            "number": 175,
             "color_identity": "G",
             "cost": "{4}{G}",
-            "rules_text": "Voracious Ooze can't be blocked by creature tokens.\nEach creature you control with a counter on it has vigilance and trample.",
+            "rules_text": "Ravenous Ooze can't be blocked by creature tokens.\nEach creature you control with a counter on it has vigilance and trample.",
             "flavor_text": "[i]\u201cA beast like that\u2014tamed, it's a useful ally, but one wrong move and you're dead meat.\u201d\n\u2014Kaiden Ro, veteran delver[/i]",
             "pt": "5/3",
             "special_text": "",
@@ -3089,6 +3255,7 @@
             "loyalty": "",
             "artist": "Luca Zontini",
             "alias": "",
+            "position": "145",
             "notes": "Complete?\nhttps://hearthstone.wiki.gg/wiki/Corrosive_Sludge"
         },
         {
@@ -3096,7 +3263,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Creature \u2014 Dinosaur",
-            "number": 176,
+            "number": 177,
             "color_identity": "G",
             "cost": "{4}{G}{G}",
             "rules_text": "Trample\nWhen Run-Ending Dreadmaw enters, draw a card for each creature you control with a counter on it.",
@@ -3108,6 +3275,7 @@
             "loyalty": "",
             "artist": "Raph Lomotan",
             "alias": "",
+            "position": "146",
             "notes": "!ft"
         },
         {
@@ -3115,7 +3283,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Enchantment \u2014 Room",
-            "number": 191,
+            "number": 190,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "When you unlock this door, draw a card. You may put a land card from your hand onto the battlefield tapped.",
@@ -3127,6 +3295,7 @@
             "loyalty": "",
             "artist": "Calder Moore",
             "alias": "",
+            "position": "147",
             "card_name2": "Soul Repository",
             "color2": "G",
             "type2": "",
@@ -3145,7 +3314,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Enchantment",
-            "number": 158,
+            "number": 157,
             "color_identity": "G",
             "cost": "{3}{G}",
             "rules_text": "Whenever Blessings of Progress or another enchantment you control enters and whenever you fully unlock a Room, choose one \u2014\n\u2022 Put a +1/+1 counter on target creature you control.\n\u2022 Put a level counter on target creature you control.\n\u2022 Create a Treasure token.",
@@ -3157,6 +3326,7 @@
             "loyalty": "",
             "artist": "Nathalia Gomes",
             "alias": "",
+            "position": "148",
             "notes": "Noncreature"
         },
         {
@@ -3164,7 +3334,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Instant \u2014 Trap",
-            "number": 180,
+            "number": 181,
             "color_identity": "G",
             "cost": "{3}{G}",
             "rules_text": "If an opponent unlocked a door this turn, you may pay {1}{G} rather than pay this spell's mana cost.\nCreate two 1/1 green Ooze creature tokens with \u201cWhen this creature dies, put a +1/+1 counter on target creature you control.\u201d",
@@ -3176,6 +3346,7 @@
             "loyalty": "",
             "artist": "Matt DeMino",
             "alias": "",
+            "position": "149",
             "notes": "RG: Final form stompy\nWG: Rooms Enchantress\nBG: Ooze typal w/ token subtheme\nGU: \"Backtracking\" (Rooms + ways to close them)\n\nUG12 noncreature\n!ft"
         },
         {
@@ -3183,7 +3354,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Instant",
-            "number": 178,
+            "number": 179,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "This spell costs {2} less to cast if it targets a creature that entered this turn.\nTarget creature you control fights target creature you don't control. Create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
@@ -3195,6 +3366,7 @@
             "loyalty": "",
             "artist": "Sucdeportocale",
             "alias": "",
+            "position": "150",
             "notes": "UG13 Underhalls green noncreature"
         },
         {
@@ -3202,7 +3374,7 @@
             "color": "G",
             "rarity": "uncommon",
             "type": "Enchantment \u2014 Aura",
-            "number": 157,
+            "number": 156,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "Enchant creature\nEnchanted creature gets +1/+1 for each counter on it.\nWhen enchanted creature dies, draw a card.",
@@ -3214,6 +3386,7 @@
             "loyalty": "",
             "artist": "Kang Jihun",
             "alias": "",
+            "position": "151",
             "notes": "Done\n!ft"
         },
         {
@@ -3233,6 +3406,7 @@
             "loyalty": "",
             "artist": "Natalie Bernard",
             "alias": "",
+            "position": "152",
             "notes": ""
         },
         {
@@ -3252,6 +3426,7 @@
             "loyalty": "",
             "artist": "Patrik \"Patriartis\" Bjorkstrom",
             "alias": "",
+            "position": "153",
             "notes": "!ft maybe"
         },
         {
@@ -3271,6 +3446,7 @@
             "loyalty": "",
             "artist": "Devtexture",
             "alias": "",
+            "position": "154",
             "notes": "!chop\n!ft"
         },
         {
@@ -3290,6 +3466,7 @@
             "loyalty": "",
             "artist": "chichibio",
             "alias": "",
+            "position": "155",
             "notes": "UB: Saboteurs\n\n!ft"
         },
         {
@@ -3297,7 +3474,7 @@
             "color": "BR",
             "rarity": "uncommon",
             "type": "Creature \u2014 Dwarf Rogue",
-            "number": 201,
+            "number": 200,
             "color_identity": "BR",
             "cost": "{1}{B}{R}",
             "rules_text": "Menace\nWhenever another creature you control dies, if it wasn't blocking, create a tapped Treasure token, then exile the top card of target opponent's library. Until the end of your next turn, you may play that card.",
@@ -3309,6 +3486,7 @@
             "loyalty": "",
             "artist": "Mithril Interactive",
             "alias": "",
+            "position": "156",
             "notes": "\u201cIf they're busy being revived, they won't need all this stuff...\u201d"
         },
         {
@@ -3316,7 +3494,7 @@
             "color": "BR",
             "rarity": "uncommon",
             "type": "Creature \u2014 Zombie Warlock",
-            "number": 198,
+            "number": 197,
             "color_identity": "BR",
             "cost": "{B}{R}",
             "rules_text": "At the beginning of combat on your turn, create a 1/1 black Skeleton creature token. It gains haste until end of turn.\nAt the beginning of your end step, if a creature didn't die under your control this turn, sacrifice a creature.",
@@ -3328,6 +3506,7 @@
             "loyalty": "",
             "artist": "Iwo Widuli\u0144ski",
             "alias": "",
+            "position": "157",
             "notes": "Underhalls: UBR02\n!ft maybe"
         },
         {
@@ -3335,7 +3514,7 @@
             "color": "RG",
             "rarity": "uncommon",
             "type": "Legendary Creature \u2014 Human Minion",
-            "number": 202,
+            "number": 201,
             "color_identity": "RG",
             "cost": "{1}{R}{G}",
             "rules_text": "Final form {3}{R}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {3}{R}{G} as a sorcery: Skip to max level.)[/i]\nWhenever a creature with a level counter on it dies, you may put a level counter on Dee, Ascending Underling. \n[b]Level 2+[/b] 3/4\nAt the beginning of combat on your turn, each creature you control with final form gains vigilance and haste until end of turn. You may move a level counter from Dee onto one of them.\n[b]Level 4[/b] 4/5\nWhen Dee becomes max level, it deals 2 damage to any target.",
@@ -3347,6 +3526,7 @@
             "loyalty": "",
             "artist": "Mads Ahm & Marko Djurdjevic",
             "alias": "",
+            "position": "158",
             "notes": "Red / Green: Final form stompy\n!pronouns it/its \nif you don't have a version of this template that supports the Vorthos box I can get you one"
         },
         {
@@ -3354,7 +3534,7 @@
             "color": "RG",
             "rarity": "uncommon",
             "type": "Enchantment",
-            "number": 203,
+            "number": 202,
             "color_identity": "RG",
             "cost": "{R}{G}",
             "rules_text": "Flash\nWhen Difficulty Spike enters, put a +1/+1 counter on target creature you control.\nIf you would put one or more counters on a creature you control, you may put that many plus one of each of those kinds of counters on that creature instead.",
@@ -3366,6 +3546,7 @@
             "loyalty": "",
             "artist": "Maxim Verehin",
             "alias": "",
+            "position": "159",
             "notes": "Underhalls: URG02"
         },
         {
@@ -3385,6 +3566,7 @@
             "loyalty": "",
             "artist": "Victor Coehlo",
             "alias": "",
+            "position": "160",
             "notes": ""
         },
         {
@@ -3404,6 +3586,7 @@
             "loyalty": "",
             "artist": "Piotr Arendzikowski",
             "alias": "",
+            "position": "161",
             "card_name2": "Rest Area",
             "color2": "WG",
             "type2": "",
@@ -3434,6 +3617,7 @@
             "loyalty": "",
             "artist": "Nikolay Moskvin",
             "alias": "",
+            "position": "162",
             "card_name2": "Tome of Undead Secrets",
             "color2": "WB",
             "type2": "Artifact \u2014 Equipment",
@@ -3464,6 +3648,7 @@
             "loyalty": "",
             "artist": "Madeline Nevelos",
             "alias": "",
+            "position": "163",
             "notes": "Uncommon White/Black noncreature, nonroom, Underhalls UWB02"
         },
         {
@@ -3471,7 +3656,7 @@
             "color": "BG",
             "rarity": "uncommon",
             "type": "Creature \u2014 Ooze",
-            "number": 200,
+            "number": 199,
             "color_identity": "BG",
             "cost": "{3}{B}{G}",
             "rules_text": "When Congealing Mass dies, create X tapped 1/1 green Ooze creature tokens with \u201cWhen this creature dies, put a +1/+1 counter on target creature you control,\u201d where X is Congealing Mass's power.",
@@ -3483,6 +3668,7 @@
             "loyalty": "",
             "artist": "Sebastian Barth",
             "alias": "",
+            "position": "164",
             "notes": "!ft"
         },
         {
@@ -3502,6 +3688,7 @@
             "loyalty": "",
             "artist": "Nathan Sanchez",
             "alias": "",
+            "position": "165",
             "notes": "UBG02"
         },
         {
@@ -3521,6 +3708,7 @@
             "loyalty": "",
             "artist": "David Koo",
             "alias": "",
+            "position": "166",
             "notes": ""
         },
         {
@@ -3540,6 +3728,7 @@
             "loyalty": "",
             "artist": "Geoffrey Ernault",
             "alias": "",
+            "position": "167",
             "card_name2": "Canker Cavern",
             "color2": "UG",
             "type2": "",
@@ -3570,6 +3759,7 @@
             "loyalty": "",
             "artist": "ArtofBlake",
             "alias": "",
+            "position": "168",
             "notes": ""
         },
         {
@@ -3577,7 +3767,7 @@
             "color": "UR",
             "rarity": "uncommon",
             "type": "Enchantment",
-            "number": 205,
+            "number": 204,
             "color_identity": "UR",
             "cost": "{1}{U}{R}",
             "rules_text": "Creatures you control get +1/+0.\nWhenever you attack, tap target creature defending player controls. If you're attacking a battle, put a stun counter on that creature.",
@@ -3589,6 +3779,7 @@
             "loyalty": "",
             "artist": "Annelie",
             "alias": "",
+            "position": "169",
             "notes": "!ft"
         },
         {
@@ -3608,6 +3799,7 @@
             "loyalty": "",
             "artist": "Dominik Mayer",
             "alias": "",
+            "position": "170",
             "card_name2": "Glimmering Heirloom",
             "color2": "WR",
             "type2": "Artifact \u2014 Equipment",
@@ -3626,7 +3818,7 @@
             "color": "WR",
             "rarity": "uncommon",
             "type": "Enchantment",
-            "number": 197,
+            "number": 196,
             "color_identity": "WR",
             "cost": "{R}{W}",
             "rules_text": "At the beginning of combat on your turn, you may attach target Equipment you control to target creature you control.\nEquipped creature you control has haste and \u201cWhenever this creature attacks, it gets +1/+1 until end of turn.\u201d",
@@ -3638,6 +3830,7 @@
             "loyalty": "",
             "artist": "Westly Gardner",
             "alias": "",
+            "position": "171",
             "notes": "\"Noncreature\" (Weaponize Aggro)\nURW02"
         },
         {
@@ -3657,6 +3850,7 @@
             "loyalty": "",
             "artist": "SuperTitans",
             "alias": "",
+            "position": "172",
             "notes": "!ft"
         },
         {
@@ -3676,6 +3870,7 @@
             "loyalty": "",
             "artist": "Nowio",
             "alias": "",
+            "position": "173",
             "notes": "https://www.deviantart.com/nowio/art/Wardens-of-the-Iron-Gate-610338171"
         },
         {
@@ -3695,6 +3890,7 @@
             "loyalty": "",
             "artist": "Agustin Marceillac",
             "alias": "",
+            "position": "174",
             "notes": ""
         },
         {
@@ -3714,6 +3910,7 @@
             "loyalty": "",
             "artist": "DevBurmak",
             "alias": "",
+            "position": "175",
             "notes": "UC04\n\nName or make the flavor text it something about how Mithrok now spends his days creating bigger and better monsters"
         },
         {
@@ -3733,6 +3930,7 @@
             "loyalty": "",
             "artist": "Lukasz Slebodzinski",
             "alias": "",
+            "position": "176",
             "notes": ""
         },
         {
@@ -3752,6 +3950,7 @@
             "loyalty": "",
             "artist": "Basith Ibrahim",
             "alias": "",
+            "position": "177",
             "notes": "Complete?"
         },
         {
@@ -3771,6 +3970,7 @@
             "loyalty": "",
             "artist": "Volmi Games",
             "alias": "",
+            "position": "178",
             "notes": ""
         },
         {
@@ -3790,6 +3990,7 @@
             "loyalty": "",
             "artist": "Scribble Pad Studios",
             "alias": "",
+            "position": "179",
             "notes": ""
         },
         {
@@ -3809,6 +4010,7 @@
             "loyalty": "",
             "artist": "Darek Zabrocki",
             "alias": "",
+            "position": "180",
             "notes": "!ft"
         },
         {
@@ -3828,6 +4030,7 @@
             "loyalty": "",
             "artist": "Agalpa",
             "alias": "",
+            "position": "181",
             "notes": "!ft"
         },
         {
@@ -3847,6 +4050,7 @@
             "loyalty": "",
             "artist": "Stable Diffusion",
             "alias": "",
+            "position": "182",
             "notes": "Underhalls\nLand\n\n!ft maybe"
         },
         {
@@ -3866,6 +4070,7 @@
             "loyalty": "",
             "artist": "Jason Nguyen",
             "alias": "",
+            "position": "183",
             "card_name2": "Feathered Apparatus",
             "color2": "W",
             "type2": "Artifact \u2014 Equipment",
@@ -3896,6 +4101,7 @@
             "loyalty": "",
             "artist": "Mahealani Rodriguez",
             "alias": "",
+            "position": "184",
             "notes": "!ft maybe"
         },
         {
@@ -3915,18 +4121,19 @@
             "loyalty": "",
             "artist": "Michael Anthony Gonzales",
             "alias": "",
+            "position": "185",
             "card_name2": "Gilded Gavel",
             "color2": "W",
             "type2": "Artifact \u2014 Equipment",
             "cost2": "",
             "rules_text2": "During your turn, equipped creature gets +1/+0 and has first strike.\nEquip {3}",
-            "flavor_text2": "[i][/i]",
+            "flavor_text2": "[i]\u201cIt's like I always say: Speak softly, move swiftly, and hit hard.\u201d\n\u2014Enni Ashfang[/i]",
             "pt2": "",
             "special_text2": "",
             "loyalty2": "",
             "artist2": "Brian Huong",
             "alias2": "",
-            "notes": "!ft"
+            "notes": ""
         },
         {
             "card_name": "Armed Adept",
@@ -3945,6 +4152,7 @@
             "loyalty": "",
             "artist": "Milica Celikovic",
             "alias": "",
+            "position": "186",
             "notes": ""
         },
         {
@@ -3964,6 +4172,7 @@
             "loyalty": "",
             "artist": "Max Hay",
             "alias": "",
+            "position": "187",
             "card_name2": "Golden Hall",
             "color2": "W",
             "type2": "",
@@ -3994,6 +4203,7 @@
             "loyalty": "",
             "artist": "Konstantin Vavilov",
             "alias": "",
+            "position": "188",
             "card_name2": "Pathway Guidestone",
             "color2": "W",
             "type2": "Artifact \u2014 Equipment",
@@ -4024,6 +4234,7 @@
             "loyalty": "",
             "artist": "Gabriel Rubio",
             "alias": "",
+            "position": "189",
             "notes": ""
         },
         {
@@ -4043,6 +4254,7 @@
             "loyalty": "",
             "artist": "Bogdan Antoci",
             "alias": "",
+            "position": "190",
             "notes": ""
         },
         {
@@ -4062,6 +4274,7 @@
             "loyalty": "",
             "artist": "Dan Ramos",
             "alias": "",
+            "position": "191",
             "notes": "!ft"
         },
         {
@@ -4081,6 +4294,7 @@
             "loyalty": "",
             "artist": "NovaEden",
             "alias": "",
+            "position": "192",
             "notes": "CW10 5/6 Drop GW Support"
         },
         {
@@ -4100,6 +4314,7 @@
             "loyalty": "",
             "artist": "Qinda Teng",
             "alias": "",
+            "position": "193",
             "notes": "CW11 \u2014 landcycler\n!ft maybe"
         },
         {
@@ -4119,6 +4334,7 @@
             "loyalty": "",
             "artist": "Michael Donze",
             "alias": "",
+            "position": "194",
             "notes": ""
         },
         {
@@ -4138,6 +4354,7 @@
             "loyalty": "",
             "artist": "Ranoartwork",
             "alias": "",
+            "position": "195",
             "notes": "!communityhttps://www.deviantart.com/ranoartwork/art/Shield-of-Faith-718429603\n\nUnderhalls CW13"
         },
         {
@@ -4157,6 +4374,7 @@
             "loyalty": "",
             "artist": "Jo\u00e3o Bragato",
             "alias": "",
+            "position": "196",
             "notes": "CW14 White common combat trick, Underhalls"
         },
         {
@@ -4176,6 +4394,7 @@
             "loyalty": "",
             "artist": "u/Ekhion_art",
             "alias": "",
+            "position": "197",
             "card_name2": "Crashing Boulder",
             "color2": "W",
             "type2": "",
@@ -4206,6 +4425,7 @@
             "loyalty": "",
             "artist": "Ray Greaves",
             "alias": "",
+            "position": "198",
             "notes": "https://www.artstation.com/artwork/48ZyEn"
         },
         {
@@ -4213,7 +4433,7 @@
             "color": "U",
             "rarity": "common",
             "type": "Creature \u2014 Human Rogue",
-            "number": 61,
+            "number": 60,
             "color_identity": "UB",
             "cost": "{1}{U}",
             "rules_text": "Whenever Lantern Lurker deals combat damage to a player or battle, put a +1/+1 counter on Lantern Lurker.\n{1}{B}: Lantern Lurker gains deathtouch until end of turn. Activate only if Lantern Lurker is attacking.",
@@ -4225,6 +4445,7 @@
             "loyalty": "",
             "artist": "Ray Greaves",
             "alias": "",
+            "position": "199",
             "notes": "https://www.artstation.com/artwork/4xPl1"
         },
         {
@@ -4232,7 +4453,7 @@
             "color": "U",
             "rarity": "common",
             "type": "Creature \u2014 Drake",
-            "number": 60,
+            "number": 59,
             "color_identity": "U",
             "cost": "{2}{U}",
             "rules_text": "Flying\nWhenever an artifact or enchantment you control enters, surveil 1. [i](Look at the top card of your library. You may put it into your graveyard.)[/i]",
@@ -4244,6 +4465,7 @@
             "loyalty": "",
             "artist": "Michael Pedro",
             "alias": "",
+            "position": "200",
             "notes": "!ft"
         },
         {
@@ -4251,7 +4473,7 @@
             "color": "U",
             "rarity": "common",
             "type": "Creature \u2014 Human Scout",
-            "number": 66,
+            "number": 65,
             "color_identity": "U",
             "cost": "{2}{U}",
             "rules_text": "When Settlement Sentries enters, create a 1/1 white Cat creature token.\nSettlement Sentries can't be blocked by creatures with power 3 or greater.",
@@ -4263,6 +4485,7 @@
             "loyalty": "",
             "artist": "Ognjen Sporin",
             "alias": "",
+            "position": "201",
             "notes": ""
         },
         {
@@ -4282,6 +4505,7 @@
             "loyalty": "",
             "artist": "Iris Muddy",
             "alias": "",
+            "position": "202",
             "notes": "!ft"
         },
         {
@@ -4301,6 +4525,7 @@
             "loyalty": "",
             "artist": "Mike Pape",
             "alias": "",
+            "position": "203",
             "notes": "4 mana value, UB Support, (Saboteur, creatures that have an effect when they deal damage to an opponent (or, ideally, in this set, opponent or battle)\nCU06"
         },
         {
@@ -4320,6 +4545,7 @@
             "loyalty": "",
             "artist": "Thomas Chamberlain-Keen",
             "alias": "",
+            "position": "204",
             "notes": "mana value 5 or 6\nWU support (Artifact + Enchantment midrange)\nCommon landcycler cycle"
         },
         {
@@ -4339,6 +4565,7 @@
             "loyalty": "",
             "artist": "Alex van der Linde",
             "alias": "",
+            "position": "205",
             "card_name2": "Dire Depths",
             "color2": "U",
             "type2": "",
@@ -4369,6 +4596,7 @@
             "loyalty": "",
             "artist": "Dmitry Burmak",
             "alias": "",
+            "position": "206",
             "notes": "!ft"
         },
         {
@@ -4388,6 +4616,7 @@
             "loyalty": "",
             "artist": "Lou LL",
             "alias": "",
+            "position": "207",
             "notes": ""
         },
         {
@@ -4407,6 +4636,7 @@
             "loyalty": "",
             "artist": "Rafael Batista",
             "alias": "",
+            "position": "208",
             "notes": ""
         },
         {
@@ -4426,6 +4656,7 @@
             "loyalty": "",
             "artist": "Peter Bergting",
             "alias": "",
+            "position": "209",
             "notes": ""
         },
         {
@@ -4445,6 +4676,7 @@
             "loyalty": "",
             "artist": "Rhineville",
             "alias": "",
+            "position": "210",
             "notes": ""
         },
         {
@@ -4464,6 +4696,7 @@
             "loyalty": "",
             "artist": "Aveyn Knight // VincentASM",
             "alias": "",
+            "position": "211",
             "notes": "!ft maybe"
         },
         {
@@ -4483,6 +4716,7 @@
             "loyalty": "",
             "artist": "Anna Butova",
             "alias": "",
+            "position": "212",
             "notes": "Underhall \nModal"
         },
         {
@@ -4502,6 +4736,7 @@
             "loyalty": "",
             "artist": "Gerald Parel",
             "alias": "",
+            "position": "213",
             "notes": "White / Black: Weaponize aristocrats\n\n!ft rewrite so we can chop this in a way that doesn't look like ass\n!chop"
         },
         {
@@ -4521,6 +4756,7 @@
             "loyalty": "",
             "artist": "Sandara Tang",
             "alias": "",
+            "position": "214",
             "notes": "Complete?\nUB Support: Saboteurs\nAFR Hoard Robber\nhttps://www.artstation.com/artwork/NyWvOz"
         },
         {
@@ -4540,6 +4776,7 @@
             "loyalty": "",
             "artist": "Grafit Studio",
             "alias": "",
+            "position": "215",
             "notes": "!ft"
         },
         {
@@ -4559,6 +4796,7 @@
             "loyalty": "",
             "artist": "Alec Thomas",
             "alias": "",
+            "position": "216",
             "notes": "CB04 3 drop UB Support"
         },
         {
@@ -4578,6 +4816,7 @@
             "loyalty": "",
             "artist": "Robin Boer",
             "alias": "",
+            "position": "217",
             "notes": "cB05 Underhalls\n\nhttps://www.deviantart.com/robin-boer/art/Minotaur-579160839"
         },
         {
@@ -4597,6 +4836,7 @@
             "loyalty": "",
             "artist": "Peter Polach",
             "alias": "",
+            "position": "218",
             "notes": "BR support \u2014 Morbid (combat-oriented)\noffcolor activated\n\nty chill and piguy"
         },
         {
@@ -4616,6 +4856,7 @@
             "loyalty": "",
             "artist": "Denis Alekseev",
             "alias": "",
+            "position": "219",
             "card_name2": "Ribtickler",
             "color2": "B",
             "type2": "Artifact \u2014 Equipment",
@@ -4646,6 +4887,7 @@
             "loyalty": "",
             "artist": "Timi Honkanen",
             "alias": "",
+            "position": "220",
             "notes": ""
         },
         {
@@ -4665,6 +4907,7 @@
             "loyalty": "",
             "artist": "HyeRim Hwang",
             "alias": "",
+            "position": "221",
             "notes": ""
         },
         {
@@ -4684,6 +4927,7 @@
             "loyalty": "",
             "artist": "Rambling Rhubarb",
             "alias": "",
+            "position": "222",
             "notes": ""
         },
         {
@@ -4703,6 +4947,7 @@
             "loyalty": "",
             "artist": "Damien Mammoliti",
             "alias": "",
+            "position": "223",
             "notes": "https://www.artstation.com/artwork/lVOvmV\n\n!ft"
         },
         {
@@ -4722,6 +4967,7 @@
             "loyalty": "",
             "artist": "pu reum lee",
             "alias": "",
+            "position": "224",
             "notes": ""
         },
         {
@@ -4741,6 +4987,7 @@
             "loyalty": "",
             "artist": "Alyn Spiller",
             "alias": "",
+            "position": "225",
             "card_name2": "Secret Entrance",
             "color2": "B",
             "type2": "",
@@ -4771,6 +5018,7 @@
             "loyalty": "",
             "artist": "Luca Diaz",
             "alias": "",
+            "position": "226",
             "notes": ""
         },
         {
@@ -4790,6 +5038,7 @@
             "loyalty": "",
             "artist": "Dekades8",
             "alias": "",
+            "position": "227",
             "notes": "!ft"
         },
         {
@@ -4797,7 +5046,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Kobold Warrior",
-            "number": 135,
+            "number": 134,
             "color_identity": "R",
             "cost": "{R}",
             "rules_text": "Menace\nSpoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]",
@@ -4809,6 +5058,7 @@
             "loyalty": "",
             "artist": "Jorge Jacinto",
             "alias": "",
+            "position": "228",
             "card_name2": "Scavenged Spear",
             "color2": "R",
             "type2": "Artifact \u2014 Equipment",
@@ -4827,7 +5077,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Dwarf Shaman",
-            "number": 128,
+            "number": 127,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "Haste\nSpoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]",
@@ -4839,6 +5089,7 @@
             "loyalty": "",
             "artist": "Mark Erskine",
             "alias": "",
+            "position": "229",
             "card_name2": "Hellfire Spellbook",
             "color2": "R",
             "type2": "Artifact \u2014 Equipment",
@@ -4857,7 +5108,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Elemental Rabbit",
-            "number": 147,
+            "number": 146,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "\nFinal form {5}{R} [i](Whenever this creature attacks, add a level counter, up to max. Pay {5}{R} as a sorcery: Skip to max level.)[/i]\nAt the beginning of combat on your turn, target creature gains first strike until end of turn.\n[b]Level 3[/b] [b]3/1[/b]\nAt the beginning of combat on your turn, target creature gains double strike until end of turn.\n Level 3\n\u200b",
@@ -4869,6 +5120,7 @@
             "loyalty": "",
             "artist": "Fuxia",
             "alias": "",
+            "position": "230",
             "notes": "Whenever you attack, you may sacrifice a land. If you do, draw a card."
         },
         {
@@ -4876,7 +5128,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Goblin Pirate",
-            "number": 131,
+            "number": 130,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "Menace\n{4}{R}: Irate Dragoon deals 2 damage to target noncreature permanent.",
@@ -4888,6 +5140,7 @@
             "loyalty": "",
             "artist": "Marcelo Orsi Blanco",
             "alias": "",
+            "position": "231",
             "notes": "!ft"
         },
         {
@@ -4895,7 +5148,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Frog Plant",
-            "number": 126,
+            "number": 125,
             "color_identity": "RG",
             "cost": "{2}{R}",
             "rules_text": "Whenever Fool Hopper becomes blocked, it deals 1 damage to the player or permanent it's attacking.\n{G}: Fool Hopper must be blocked this turn if able.",
@@ -4907,6 +5160,7 @@
             "loyalty": "",
             "artist": "Mika\u00ebl Morin-Hamelin",
             "alias": "",
+            "position": "232",
             "notes": "Underhalls\n\nCR05 \u2014 Creature (mana value 3) (RG support \u2014 Final Form stompy) (should have an off-color (green) AA)\n\nhttps://www.artstation.com/artwork/qA9bVn\n\nTHIS"
         },
         {
@@ -4914,7 +5168,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Giant Shaman",
-            "number": 118,
+            "number": 117,
             "color_identity": "UR",
             "cost": "{3}{R}",
             "rules_text": "Reach\n{2}{U}: Draw a card, then discard a card.",
@@ -4926,6 +5180,7 @@
             "loyalty": "",
             "artist": "Beto Lima",
             "alias": "",
+            "position": "233",
             "notes": ""
         },
         {
@@ -4933,11 +5188,11 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Orc Warrior",
-            "number": 148,
+            "number": 147,
             "color_identity": "R",
             "cost": "{4}{R}",
             "rules_text": "When Tenacious Challenger enters, you may discard a card. If you do, create two Encounter tokens. [i](They're colorless battles with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
-            "flavor_text": "[i][/i]",
+            "flavor_text": "[i]\u201cFinally, a fair fight. Blades up.\u201d\n\u2014Enni Ashfang[/i]",
             "pt": "5/4",
             "special_text": "",
             "shape": "normal",
@@ -4945,14 +5200,15 @@
             "loyalty": "",
             "artist": "Milan Nikolic",
             "alias": "",
-            "notes": "!ft maybe"
+            "position": "234",
+            "notes": ""
         },
         {
             "card_name": "Opportunistic Necromancer",
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Human Warlock",
-            "number": 141,
+            "number": 140,
             "color_identity": "R",
             "cost": "{4}{R}",
             "rules_text": "This spell costs {1} less to cast for each creature that died this turn.\nWhen Opportunistic Necromancer enters, create a 1/1 black Skeleton creature token.",
@@ -4964,6 +5220,7 @@
             "loyalty": "",
             "artist": "JC Art & Design",
             "alias": "",
+            "position": "235",
             "notes": "!ft flavor text suggests skeletons are sometimes considered undesirable or unappealing but this card makes skeletons anyway"
         },
         {
@@ -4971,7 +5228,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Creature \u2014 Giant",
-            "number": 151,
+            "number": 150,
             "color_identity": "R",
             "cost": "{4}{R}{R}",
             "rules_text": "Trample, reach\nBasic landcycling {2} [i]({2}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)[/i]",
@@ -4983,6 +5240,7 @@
             "loyalty": "",
             "artist": "Pixoloid Studios",
             "alias": "",
+            "position": "236",
             "notes": "Done\n!chop"
         },
         {
@@ -4990,7 +5248,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Instant",
-            "number": 121,
+            "number": 120,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "Dragon's Spark deals 2 damage to\nany target. When a permanent dealt damage this way is put into a graveyard this turn, create a Treasure token. [i](It's an artifact with \u201c{T}, Sacrifice this artifact: Add one mana of any color.\u201d)[/i]",
@@ -5002,6 +5260,7 @@
             "loyalty": "",
             "artist": "Patrik \"Patriartis\" Bjorkstrom",
             "alias": "",
+            "position": "237",
             "notes": "!ft"
         },
         {
@@ -5009,7 +5268,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Instant",
-            "number": 133,
+            "number": 132,
             "color_identity": "R",
             "cost": "{2}{R}",
             "rules_text": "Target creature you control gets +4/+2 and gains trample and trample over battles until end of turn. [i](That creature can deal excess combat damage to the player or permanent it's attacking. It also deals excess combat damage to the protector of the battle it's attacking.)[/i]",
@@ -5021,6 +5280,7 @@
             "loyalty": "",
             "artist": "Joshua Brian Smith",
             "alias": "",
+            "position": "238",
             "notes": ""
         },
         {
@@ -5028,9 +5288,9 @@
             "color": "R",
             "rarity": "common",
             "type": "Enchantment \u2014 Room",
-            "number": 155,
+            "number": 154,
             "color_identity": "R",
-            "cost": "{R}",
+            "cost": "{1}{R}",
             "rules_text": "When you unlock this door, exile the top card of your library. You may play it until the end of your next turn.",
             "flavor_text": "[i][/i]",
             "pt": "",
@@ -5040,6 +5300,7 @@
             "loyalty": "",
             "artist": "Loic Lemoine",
             "alias": "",
+            "position": "239",
             "card_name2": "Library Depths",
             "color2": "R",
             "type2": "",
@@ -5058,7 +5319,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Instant",
-            "number": 146,
+            "number": 145,
             "color_identity": "R",
             "cost": "{1}{R}",
             "rules_text": "Choose one \u2014\n\u2022 Destroy target artifact.\n\u2022 Target creature gets +3/+1 and gains trample until end of turn.",
@@ -5070,6 +5331,7 @@
             "loyalty": "",
             "artist": "Yanmo Zhang",
             "alias": "",
+            "position": "240",
             "notes": ""
         },
         {
@@ -5077,7 +5339,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Sorcery",
-            "number": 152,
+            "number": 151,
             "color_identity": "R",
             "cost": "{1}{R}{R}",
             "rules_text": "Voltaic Chain deals 4 damage to target creature and 2 damage to up to one noncreature target.",
@@ -5089,6 +5351,7 @@
             "loyalty": "",
             "artist": "Konstantin Vavilov",
             "alias": "",
+            "position": "241",
             "notes": "Noncreature, 4 damage\n!ft"
         },
         {
@@ -5096,7 +5359,7 @@
             "color": "R",
             "rarity": "common",
             "type": "Instant",
-            "number": 149,
+            "number": 148,
             "color_identity": "R",
             "cost": "{4}{R}",
             "rules_text": "This spell costs {1} less to cast for each level counter among creatures you control.\nUltimate Burst Flame deals 6 damage to target creature. If that creature would die this turn, exile it instead.",
@@ -5108,6 +5371,7 @@
             "loyalty": "",
             "artist": "Carlos Herrera",
             "alias": "",
+            "position": "242",
             "notes": "MAKO\n!ft"
         },
         {
@@ -5115,7 +5379,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Kithkin Rogue",
-            "number": 172,
+            "number": 171,
             "color_identity": "G",
             "cost": "{G}",
             "rules_text": "Trample\nWhenever you put one or more counters on another creature you control, Nimble Trapcatcher gets +1/+1 until end of turn.",
@@ -5127,6 +5391,7 @@
             "loyalty": "",
             "artist": "Mad 1984",
             "alias": "",
+            "position": "243",
             "notes": ""
         },
         {
@@ -5134,7 +5399,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Enchantment \u2014 Room",
-            "number": 193,
+            "number": 192,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "When you unlock this door, create a 1/1 green Ooze creature token with \u201cWhen this creature dies, put a +1/+1 counter on target creature you control,\u201d then put a +1/+1 counter on it.",
@@ -5146,6 +5411,7 @@
             "loyalty": "",
             "artist": "Alex van der Linde",
             "alias": "",
+            "position": "244",
             "card_name2": "Strenuous Annex",
             "color2": "G",
             "type2": "",
@@ -5164,7 +5430,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Ouphe Scout",
-            "number": 177,
+            "number": 178,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "When Spriggan Wayfinder enters, mill four cards. You may put a land or Room\ncard milled this way into your hand.",
@@ -5176,6 +5442,7 @@
             "loyalty": "",
             "artist": "Spikulec",
             "alias": "",
+            "position": "245",
             "notes": ""
         },
         {
@@ -5183,7 +5450,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Ooze",
-            "number": 161,
+            "number": 160,
             "color_identity": "BG",
             "cost": "{2}{G}",
             "rules_text": "When Consuming Ooze dies, put a +1/+1\ncounter on target creature you control.\n{2}{B}, Sacrifice Consuming Ooze or another creature: Draw a card. Activate only as a sorcery.",
@@ -5195,6 +5462,7 @@
             "loyalty": "",
             "artist": "Gun Gunawan",
             "alias": "",
+            "position": "246",
             "notes": "BG Support, mana value 3\n!ft"
         },
         {
@@ -5214,6 +5482,7 @@
             "loyalty": "",
             "artist": "Northyme",
             "alias": "",
+            "position": "247",
             "notes": "https://northyme.com/\n\nOG art_1:\n\nhttps://x.com/k_a_m_9_9/status/1573387661556973571/photo/3\n\n\nOG_2:\nYou may cast this spell as though it has flash if a creature you control is in its final form.\nVigilance\n\nOG_1:\nThis spell has flash as long as there are two or more unlocked doors among Rooms you control.\nReach"
         },
         {
@@ -5221,7 +5490,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Ooze",
-            "number": 167,
+            "number": 166,
             "color_identity": "G",
             "cost": "{3}{G}",
             "rules_text": "Trample\nWhenever another Ooze you control enters, put a +1/+1 counter on Floor Cleaner.",
@@ -5233,6 +5502,7 @@
             "loyalty": "",
             "artist": "ConceptartistJR",
             "alias": "",
+            "position": "248",
             "notes": ""
         },
         {
@@ -5240,7 +5510,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Human Warrior",
-            "number": 181,
+            "number": 182,
             "color_identity": "WG",
             "cost": "{3}{G}",
             "rules_text": "{2}{W}: Look at the top four cards of your library. You may reveal an enchantment card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
@@ -5252,6 +5522,7 @@
             "loyalty": "",
             "artist": "Adam barker",
             "alias": "",
+            "position": "249",
             "notes": "* One of these has to have an off colour activation. Check with dewillpower\n\nGW: Rooms Enchantress\n\n!underhalls"
         },
         {
@@ -5259,7 +5530,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Ooze",
-            "number": 168,
+            "number": 167,
             "color_identity": "G",
             "cost": "{4}{G}",
             "rules_text": "Reach\nWhenever you unlock a door, put a +1/+1 counter on Loathsome Pusmaw.",
@@ -5271,6 +5542,7 @@
             "loyalty": "",
             "artist": "Ecletixx",
             "alias": "",
+            "position": "250",
             "notes": "!ft"
         },
         {
@@ -5278,7 +5550,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Giant Warrior",
-            "number": 162,
+            "number": 161,
             "color_identity": "G",
             "cost": "{4}{G}{G}",
             "rules_text": "Trample\nThe first final form ability you activate during each of your turns costs {2} less to activate.",
@@ -5290,6 +5562,7 @@
             "loyalty": "",
             "artist": "Caio Monteiro",
             "alias": "",
+            "position": "251",
             "notes": "Underhalls \u2014 RG Support\n!ft"
         },
         {
@@ -5297,7 +5570,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Creature \u2014 Beast",
-            "number": 186,
+            "number": 185,
             "color_identity": "G",
             "cost": "{5}{G}{G}",
             "rules_text": "Trample\nWhen Wallbreaker Huskchops enters, you\ngain 3 life.\nBasic landcycling {2} [i]({2}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)[/i]",
@@ -5309,6 +5582,7 @@
             "loyalty": "",
             "artist": "- Grosnez -",
             "alias": "",
+            "position": "252",
             "notes": ""
         },
         {
@@ -5316,7 +5590,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Enchantment \u2014 Room",
-            "number": 189,
+            "number": 188,
             "color_identity": "G",
             "cost": "{4}{G}",
             "rules_text": "When you unlock\nthis door, put a +1/+1 counter on each creature you control.",
@@ -5328,6 +5602,7 @@
             "loyalty": "",
             "artist": "Yari Lute",
             "alias": "",
+            "position": "253",
             "card_name2": "Hall of the Fallen",
             "color2": "G",
             "type2": "",
@@ -5346,7 +5621,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Sorcery",
-            "number": 163,
+            "number": 162,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "Target creature you control deals damage equal to its power to target creature you don't control. If there are two or more unlocked doors among Rooms you control, excess damage is dealt to that creature's controller instead.",
@@ -5358,6 +5633,7 @@
             "loyalty": "",
             "artist": "Mariano Merchante",
             "alias": "",
+            "position": "254",
             "notes": "!ft maybe"
         },
         {
@@ -5365,7 +5641,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Instant",
-            "number": 159,
+            "number": 158,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "Target creature gets +3/+3 until end of turn. If there are two or more unlocked doors among Rooms you control, it gets +5/+5 and gains trample until end of turn instead.",
@@ -5377,6 +5653,7 @@
             "loyalty": "",
             "artist": "Jeff Easly",
             "alias": "",
+            "position": "255",
             "notes": ""
         },
         {
@@ -5384,7 +5661,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Sorcery",
-            "number": 183,
+            "number": 184,
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.\nCreate an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]",
@@ -5396,6 +5673,7 @@
             "loyalty": "",
             "artist": "Tiago Sousa",
             "alias": "",
+            "position": "256",
             "notes": ""
         },
         {
@@ -5403,7 +5681,7 @@
             "color": "G",
             "rarity": "common",
             "type": "Enchantment \u2014 Room",
-            "number": 194,
+            "number": 193,
             "color_identity": "G",
             "cost": "{1}{G}",
             "rules_text": "When you unlock this door, mill four cards. You may return a creature, land, or Room card milled this way\nto your hand.",
@@ -5415,6 +5693,7 @@
             "loyalty": "",
             "artist": "Swang.",
             "alias": "",
+            "position": "257",
             "card_name2": "Shaded Backrooms",
             "color2": "G",
             "type2": "",
@@ -5445,6 +5724,7 @@
             "loyalty": "",
             "artist": "Mathieu Virassamy Sacri",
             "alias": "",
+            "position": "258",
             "notes": "!ft maybe"
         },
         {
@@ -5464,6 +5744,7 @@
             "loyalty": "",
             "artist": "calabresearts",
             "alias": "",
+            "position": "259",
             "card_name2": "Repurposed Armament",
             "color2": "",
             "type2": "Artifact \u2014 Equipment",
@@ -5494,6 +5775,7 @@
             "loyalty": "",
             "artist": "DAriusz Kieliszek",
             "alias": "",
+            "position": "260",
             "notes": "Underhalls CC03\nGraveyard hate maybe?"
         },
         {
@@ -5513,6 +5795,7 @@
             "loyalty": "",
             "artist": "David Mar\u00edn",
             "alias": "",
+            "position": "261",
             "notes": ""
         },
         {
@@ -5532,6 +5815,7 @@
             "loyalty": "",
             "artist": "Yuri Chuchmay",
             "alias": "",
+            "position": "262",
             "notes": ""
         },
         {
@@ -5551,6 +5835,7 @@
             "loyalty": "",
             "artist": "Christina Bindon",
             "alias": "",
+            "position": "263",
             "notes": ""
         },
         {
@@ -5570,6 +5855,7 @@
             "loyalty": "",
             "artist": "Cordelia Wolf",
             "alias": "",
+            "position": "264",
             "notes": "underhalls"
         },
         {
@@ -5589,6 +5875,7 @@
             "loyalty": "",
             "artist": "Rob Brunette",
             "alias": "",
+            "position": "265",
             "notes": ""
         },
         {
@@ -5608,6 +5895,7 @@
             "loyalty": "",
             "artist": "Junling Wang",
             "alias": "",
+            "position": "266",
             "notes": ""
         },
         {
@@ -5627,6 +5915,7 @@
             "loyalty": "",
             "artist": "J\u00e9r\u00e9mie Fleury",
             "alias": "",
+            "position": "267",
             "notes": ""
         },
         {
@@ -5646,6 +5935,7 @@
             "loyalty": "",
             "artist": "Konstantinos Skenteridis",
             "alias": "",
+            "position": "268",
             "notes": ""
         },
         {
@@ -5665,6 +5955,7 @@
             "loyalty": "",
             "artist": "HOU",
             "alias": "",
+            "position": "269",
             "notes": ""
         },
         {
@@ -5684,6 +5975,7 @@
             "loyalty": "",
             "artist": "schastlivaya-ch",
             "alias": "",
+            "position": "270",
             "notes": ""
         },
         {
@@ -5703,6 +5995,7 @@
             "loyalty": "",
             "artist": "RushN",
             "alias": "",
+            "position": "271",
             "notes": ""
         },
         {
@@ -5722,6 +6015,7 @@
             "loyalty": "",
             "artist": "Created with MidjourneyAI",
             "alias": "",
+            "position": "272",
             "notes": "!underhalls"
         },
         {
@@ -5741,6 +6035,7 @@
             "loyalty": "",
             "artist": "Alynspiller",
             "alias": "",
+            "position": "273",
             "notes": ""
         },
         {
@@ -5760,27 +6055,9 @@
             "loyalty": "",
             "artist": "Alex Petruk",
             "alias": "",
+            "position": "274",
             "notes": ""
-        },
-        {
-            "card_name": "Essence of the Cycle",
-            "color": "R",
-            "rarity": "mythic",
-            "type": "Creature \u2014 Avatar",
-            "number": 124,
-            "color_identity": "R",
-            "cost": "{2}{R}{R}",
-            "rules_text": "When Essence of the Cycle enters, create an Encounter token. [i](It's a colorless battle with 2 defense and \u201cWhen this battle is defeated, draw a card and create a Treasure token.\u201d)[/i]\nWhenever one or more creatures you control deal combat damage to a battle for the first time each turn, untap each creature that dealt combat damage to a battle this turn. After this phase, there is an additional combat phase.",
-            "flavor_text": "[i][/i]",
-            "pt": "4/4",
-            "special_text": "",
-            "shape": "normal",
-            "set": "UND",
-            "loyalty": "",
-            "artist": "Reza Afshar",
-            "alias": "",
-            "notes": "Underhalls: MU02 (replaced with a red card since we have too many blue mythics)"
         }
     ],
-    "version": 1
+    "version": 2
 }
