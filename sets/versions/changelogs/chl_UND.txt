@@ -1,4 +1,115 @@
-﻿VERSION 2 CHANGELOG
+﻿VERSION 3 CHANGELOG
+====================
+
+
+
+Zuamuruza, Everbeating
+
+Dungeon Cleanser
+rules_text: Trample
+Whenever Dungeon Cleanser enters or attacks, for each noncreature permanent type, destroy up to one target permanent
+of that type. [i](Artifact, battle, enchantment,[/i]
+[i]land, and planeswalker are noncreature permanent types.)[/i] => Trample
+Whenever Dungeon Cleanser enters or attacks, for each noncreature permanent type, destroy up to one target nonbasic permanent of that type. [i](Artifact, battle, enchantment, [i]land, and planeswalker are noncreature permanent types.)[/i][/i]
+
+Glittering Goldscale
+
+Broodmarg, the Terrible
+rules_text: Final form—{2}{B}{B}, Sacrifice another creature. [i](Whenever this creature attacks, add a level counter, up to max. Pay {2}{B}{B} and sacrifice another creature as a sorcery: Skip to max level.)[/i]
+Deathtouch
+[b]Level 2+[/b] 4/3
+Flying
+[b]Level 5[/b] 5/4
+When Broodmarg becomes max level, search your library for a card, exile it face down, then shuffle. You may cast the exiled card without paying its mana cost if it's multicolored.
+If you don't cast it, put
+it into your hand. => Final form—{2}{B}{B}, Sacrifice another creature. [i](Whenever this creature attacks, add a level counter, up to max. Pay {2}{B}{B} and sacrifice another creature as a sorcery: Skip to max level.)[/i]
+Deathtouch
+[b]Level 2+[/b] 3/4
+Flying
+[b]Level 5[/b] 4/5
+When Broodmarg becomes max level, search your library for a card, put it into your hand, then shuffle.
+pt: 3/2 => 2/3
+special_text: Final form—{2}{B}{B}, Sacrifice another creature. [i](Whenever this creature attacks, add a level counter, up to max. Pay {2}{B}{B} and sacrifice another creature as a sorcery: Skip to max level.)[/i]
+Deathtouch
+[b]Level 2+[/b] 4/3
+Flying
+[b]Level 5[/b] 5/4
+When Broodmarg becomes max level, search your library for a card, exile it face down, then shuffle. You may cast the exiled card without paying its mana cost if it's multicolored.
+If you don't cast it, put
+it into your hand. => Final form—{2}{B}{B}, Sacrifice another creature. [i](Whenever this creature attacks, add a level counter, up to max. Pay {2}{B}{B} and sacrifice another creature as a sorcery: Skip to max level.)[/i]
+Deathtouch
+[b]Level 2+[/b] 3/4
+Flying
+[b]Level 5[/b] 4/5
+When Broodmarg becomes max level, search your library for a card, put it into your hand, then shuffle.
+
+Archfiend of Sin
+rules_text: Final form {4}{B}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{B}{B} as a sorcery: Skip to max level.)[/i]
+Flying, trample
+[b]Level 2+[/b] 5/5
+At the beginning of your end step, sacrifice a non-Demon creature.
+[b]Level 4[/b] 6/6
+Whenever another creature you control dies, you gain 2 life and draw a card. => Final form {4}{B}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{B}{B} as a sorcery: Skip to max level.)[/i]
+Flying, trample
+[b]Level 1+[/b] 4/4
+At the beginning of your end step, sacrifice a non-Demon creature.
+[b]Level 4[/b] 6/6
+Whenever another creature you control dies, you gain 2 life and draw a card.
+pt: 4/4 => 2/2
+special_text: Final form {4}{B}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{B}{B} as a sorcery: Skip to max level.)[/i]
+Flying, trample
+[b]Level 2+[/b] 5/5
+At the beginning of your end step, sacrifice a non-Demon creature.
+[b]Level 4[/b] 6/6
+Whenever another creature you control dies, you gain 2 life and draw a card. => Final form {4}{B}{B} [i](Whenever this creature attacks, add a level counter, up to max. Pay {4}{B}{B} as a sorcery: Skip to max level.)[/i]
+Flying, trample
+[b]Level 1+[/b] 4/4
+At the beginning of your end step, sacrifice a non-Demon creature.
+[b]Level 4[/b] 6/6
+Whenever another creature you control dies, you gain 2 life and draw a card.
+
+Gnobgob, Relic Hunter
+rules_text: During your turn, Gnobgob has first strike.
+Whenever Gnobgob attacks, if defending player doesn't protect a battle, create an Encounter token they protect. [i](It's a colorless battle with 2 defense and “When this battle is defeated, draw a card and create a Treasure token.”)[/i]
+Spoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i] => During your turn, Gnobgob has first strike.
+At the beginning of combat on your turn, you may discard a card. If you do, create an Encounter token. [i](It's a colorless battle with 2 defense and “When this battle is defeated, draw a card and create a Treasure token.”)[/i]
+Spoils [i](When this creature dies, return it to the battlefield transformed. You may attach it to a creature you control.)[/i]
+
+Ever-Growing Ooze
+rules_text: Final form {3}{G}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {3}{G}{G} as a sorcery: Skip to max level.)[/i]
+Ever-Growing Ooze gets +1/+1 for each level counter on it.
+[b]Level 2+[/b] 1/1
+{1}, Remove a level counter from Ever-
+Growing Ooze: It gains indestructible until end of turn. Tap it. 
+[b]Level 5[/b] 1/1
+You may have Ever-
+Growing Ooze assign its combat damage as though it weren't blocked. => Final form {3}{G}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {3}{G}{G} as a sorcery: Skip to max level.)[/i]
+Ever-Growing Ooze gets +1/+0 for each level counter on it.
+[b]Level 2+[/b] 1/1
+{1}, Remove a level counter from Ever-
+Growing Ooze: It gains indestructible until end of turn. Tap it. 
+[b]Level 5[/b] 1/1
+You may have Ever-
+Growing Ooze assign its combat damage as though it weren't blocked.
+pt: 1/1 => 1/2
+special_text: Final form {3}{G}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {3}{G}{G} as a sorcery: Skip to max level.)[/i]
+Ever-Growing Ooze gets +1/+1 for each level counter on it.
+[b]Level 2+[/b] 1/1
+{1}, Remove a level counter from Ever-
+Growing Ooze: It gains indestructible until end of turn. Tap it. 
+[b]Level 5[/b] 1/1
+You may have Ever-
+Growing Ooze assign its combat damage as though it weren't blocked. => Final form {3}{G}{G} [i](Whenever this creature attacks, add a level counter, up to max. Pay {3}{G}{G} as a sorcery: Skip to max level.)[/i]
+Ever-Growing Ooze gets +1/+0 for each level counter on it.
+[b]Level 2+[/b] 1/1
+{1}, Remove a level counter from Ever-
+Growing Ooze: It gains indestructible until end of turn. Tap it. 
+[b]Level 5[/b] 1/1
+You may have Ever-
+Growing Ooze assign its combat damage as though it weren't blocked.
+
+
+VERSION 2 CHANGELOG
 ====================
 
 Shizu, Errant Erudite added.
