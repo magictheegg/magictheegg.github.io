@@ -479,7 +479,7 @@
 					a_type_index = -1;
 					b_type_index = -1;
 
-					for (let i = 0; i < type_sort_order.length; i++)
+					for (let i = type_sort_order.length - 1; i >= 0; i--)
 					{
 						if (a.type.includes(type_sort_order[i]))
 						{
@@ -1175,6 +1175,13 @@
 					{
 
 					} */
+				}
+				if (term == "cube")
+				{
+					if (modifier == ":" || modifier == "!" || modifier == "=")
+					{
+						return (card_notes.includes("cube:" + check));
+					}
 				}
 				if (term == "keyword" || term=="kw" || term == "has")
 				{

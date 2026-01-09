@@ -518,6 +518,13 @@ function tokenizeTerms(searchTerms)
 
 					} */
 				}
+				if (term == "cube")
+				{
+					if (modifier == ":" || modifier == "!" || modifier == "=")
+					{
+						return (card_notes.includes("cube:" + check));
+					}
+				}
 				if (term == "keyword" || term=="kw" || term == "has")
 				{
 					if (modifier == ":" || modifier == "!" || modifier == "=")
