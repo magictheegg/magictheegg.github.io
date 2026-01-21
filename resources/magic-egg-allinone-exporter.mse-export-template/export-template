@@ -258,10 +258,10 @@ script:
 		card_image := to_card_image(card)
 		card_width := width_of(card_image)
 		if contains(card.shape, match:"double") and lang_setting("is_battle")(card.super_type) and width_of(card_image) == 900
-			then "True"
+			then "true"
 		else if card_width == 523 or card_width == 902 or card_width == 1039 or card_width == 1046
-			then "True"
-		else "False"
+			then "true"
+		else "false"
 	}
 
 	is_double_card := match@(match:"double|adventure|aftermath|spli|flip")

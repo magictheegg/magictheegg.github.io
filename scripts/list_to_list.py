@@ -254,7 +254,7 @@ def convertList(setCode):
 						final_list.append(blank1)
 					else:
 						ca = arr[row]
-						final_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape'],'set':code,'position':('' if 'position' not in ca else ca['position'])})
+						final_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape'],'set':code,'rotated':(False if 'rotated' not in ca else ca['rotated']),'position':('' if 'position' not in ca else ca['position'])})
 
 			if len(r['cards']) == 1: # single-card categories
 				if not row_count % 5 == 0:

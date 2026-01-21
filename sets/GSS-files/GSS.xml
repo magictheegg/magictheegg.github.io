@@ -1,0 +1,4242 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>GSS</name>
+			<longname>Golden Shores of Shiryen</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>First Admiral of the Bellows</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+Other Dwarves you control have shipwright 1.
+Whenever a Vehicle enters under your control, create a 1/1 white Dwarf creature token.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/0.png" num="15">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Betsy Mae Moss, Legionette</name>
+			<text>Agile (This creature deals combat damage first as long as it&apos;s attacking.)
+The first spell each player casts each turn costs {2} more to cast unless it&apos;s a creature spell.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/1.png" num="6">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Panya, Minikin Hero</name>
+			<text>{2}{U}: Panya can&apos;t be blocked this turn.
+When Panya enters, you may search your library for a battle card, reveal it, put it into your hand, then shuffle.
+Whenever Panya attacks, if she isn&apos;t attacking a player, she has base power and toughness 4/4 until end of turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/2.png" num="43">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Mouse Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rami Nyi, the Tsunami</name>
+			<text>Whenever you cast a spell on an opponent&apos;s turn, you may activate one of Rami Nyi&apos;s loyalty abilities. (You still pay its costs.)
+[+1]: Create a 0/1 blue Fish creature token.
+[0]: Draw a card, then discard a card unless you sacrifice a permanent.
+[-3]: The owner of target spell or nonland permanent puts that card on the top or bottom of their library.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/3.png" num="47">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Rami</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>The Deep Ones</name>
+			<text>Deathtouch
+Whenever The Deep Ones deals combat damage to a player, look at the top three cards of that player&apos;s library. Exile one face down, then put the rest into that player&apos;s graveyard.
+{1}{B}{B}, Discard your hand: Cast any number of cards exiled with The Deep Ones without paying their mana costs. You lose life equal to the total mana value of cards cast this way.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/4.png" num="76">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Dusk Fleet</name>
+			<text>Enchant opponent
+Whenever Curse of the Dusk Fleet enters or you cast a spell that targets enchanted player, draw a card and you lose 1 life.
+At the beginning of your end step, if you control seven or more Curses attached to enchanted player, they lose 14 life.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/5.png" num="73">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Giradrus, the Cataclysm</name>
+			<text>Flying, haste
+Whenever Giradrus attacks for the first time each turn, untap it and any number of other creatures you control. Put a decayed counter on each other creature untapped this way. After this phase, there is an additional combat phase.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/6.png" num="101">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>5RR</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Butcher of Bandura</name>
+			<text>Menace
+When The Butcher of Bandura enters, destroy up to two target artifacts and/or lands.
+Whenever a permanent an opponent controls dies, exile the top card of that player&apos;s library. You may play that card until the end of your next turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/7.png" num="92">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Shark Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4RR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Alas-Wana</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+Whenever a player taps a land for mana, that player
+adds one mana of any type that land produced.
+---
+(Back): Atine Grojogan</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/8_front.png" num="119a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Atine Grojogan</related>
+		</card>
+		<card>
+			<name>Atine Grojogan</name>
+			<text>{T}: Add {G} for each land you control.
+{20}, Sacrifice Atine Grojogan: Create Alas-Wali, a legendary 20/20 green Avatar creature token with trample and indestructible.
+---
+(Front): Battle for Alas-Wana</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/8_back.png" num="119b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Alas-Wana</related>
+		</card>
+		<card>
+			<name>The Wakiwaki</name>
+			<text>Vigilance, deathtouch
+Whenever The Wakiwaki deals combat damage to a player, destroy target nonbasic, noncreature permanent that player controls. They create a tapped Island token.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/9.png" num="145">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Fish Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>A World Through the Wake</name>
+			<text>Fathom {8}{G}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Reveal the top eight cards of your library. You may put a land card, a creature card, and a Kraken card from among them into your hand. Put the rest on the bottom in a random order.
+Kraken Revelation spells you cast resolve as creatures.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/10.png" num="200">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Instant — Kraken Revelation</type>
+				<maintype>Instant</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>8/8</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Jara, Glade Sovereign</name>
+			<text>Flying, trample, ward {2}
+Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Whenever Jara deals combat damage to a player, you may reveal a permanent card you own from outside the game and put it into your hand. If you&apos;ve discovered L&apos;Or, you may put that card onto the battlefield instead.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/11.png" num="179">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dragon Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>2RGW</manacost>
+				<cmc>5</cmc>
+				<colors>WRG</colors>
+				<coloridentity>WRG</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Deacon Bay Docks</name>
+			<text>[+1]: You may put an artifact card with mana value 2 or less from your hand or graveyard onto the battlefield.
+[0]: Target artifact or creature loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 4/4 and crew 1.
+[-6]: Deacon Bay Docks loses all abilities and becomes a colorless Vehicle artifact with base power and toughness 10/10, indestructible, crew 1, and &quot;Whenever Deacon Bay Docks attacks, exile target permanent.&quot; (This effect lasts indefinitely.)</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/12.png" num="1">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Ghariv</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Jorah, Eternal and Insatiable</name>
+			<text>[+1]: Until your next turn, up to one target creature you control gains lifelink, deathtouch, and vigilance.
+[0]: Reveal the top two cards of your library. An opponent chooses one and loses life equal to its mana value. Put that card into your graveyard and the other into your hand.
+[-2]: The next time you would create one or more creature tokens this turn, instead create that many 3/3 white and black Angel creature tokens with flying.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/13.png" num="180">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Jorah</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Captain Crain</name>
+			<text>First mate—Your starting deck contains &quot;The Fell Reaper&quot; and each nonland card in your starting deck targets or has an ability that targets.
+[+3]: Target opponent exiles a card from their hand or a nonland permanent they control. If that player is cursed, you may play that card until end of turn.
+[-3]: Captain Crain deals 3 damage to each creature and each non-Crain planeswalker. Create three Treasure tokens.
+[-13]: Each cursed opponent loses the game.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSS-files/img/14.png" num="158">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Crain</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>UUBBRR</manacost>
+				<cmc>6</cmc>
+				<colors>UBR</colors>
+				<coloridentity>UBR</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Tomas, Beau of the Brine</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+As long as you control a creature with flying, each creature you control with a +1/+1 counter on it has flying. The same is true for agile, first strike, double strike, challenge, deathtouch, indestructible, lifelink, lure, menace, trample, and vigilance.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/15.png" num="29">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wayward Crew</name>
+			<text>Whenever one or more creatures with power 2 or less enter under your control, create a Clue token.
+Whenever you sacrifice a Clue, put a +1/+1 counter on target permanent you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/16.png" num="30">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dawn Patrol</name>
+			<text>Flying
+Whenever Dawn Patrol attacks, you may exile another target attacking non-Vehicle creature you control, then return it to the battlefield tapped and attacking. That creature gains flying until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/17.png" num="10">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Griffin</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stonesmith Thadd</name>
+			<text>Vigilance
+Whenever Stonesmith Thadd attacks, return target artifact card from your graveyard to your hand. If its mana value is 4 or less, return it to the battlefield instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/18.png" num="27">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dwarf Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ataxia</name>
+			<text>Flash
+When Ataxia enters, choose one —
+• Until end of turn, if a creature would enter the battlefield and it wasn&apos;t cast, exile it instead.
+• Until end of turn, if a spell would resolve and no mana was spent to cast it, exile that spell instead.
+{2}, Sacrifice Ataxia: Draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/19.png" num="4">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Arrival of the Sun Fleet</name>
+			<text>Search your library for a Vehicle card, put it onto the battlefield, then shuffle. Create a 1/1 white Pirate creature token with &quot;This creature crews Vehicles as though its power were 2 greater.&quot;
+Swansong (Then you may exile this. If you do, you can&apos;t cast spells for the rest of the game, and at the beginning of each of your upkeeps, copy this spell except for swansong.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/20.png" num="3">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4WW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for Castle Cay</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Castle Cay enters, each player chooses a nonbattle, nonland permanent they control, then sacrifices the rest.
+---
+(Back): The Royal Moors</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/21_front.png" num="5a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">The Royal Moors</related>
+		</card>
+		<card>
+			<name>The Royal Moors</name>
+			<text>{T}: Add {W}.
+{T}: Exile target nonland permanent if its controller controls another nonland permanent that shares a type with it. Activate only as a sorcery.
+---
+(Front): Battle for Castle Cay</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/21_back.png" num="5b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Castle Cay</related>
+		</card>
+		<card>
+			<name>Riftwind Navigator</name>
+			<text>Flash
+When Riftwind Navigator enters, exile target spell or nonland permanent an opponent controls with mana value 4 or less.
+When Riftwind Navigator leaves, the exiled card&apos;s owner creates a 4/4 colorless Vehicle artifact token with crew 1.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/22.png" num="187">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2WU</manacost>
+				<cmc>4</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stormshroud</name>
+			<text>When Stormshroud enters the battlefield, you gain 3 life.
+Pay 3 life: Exile target creature, then return all other cards exiled with Stormshroud to the battlefield under their owner&apos;s control. Activate only during your turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/23.png" num="195">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Aurelian Drake</name>
+			<text>Flying
+Aurelian Drake gets +2/+1 as long as you control three or more artifacts.
+Whenever Aurelian Drake deals combat damage to a player, surveil X, where X is the amount of damage dealt.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/24.png" num="31">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dreadlich Captain</name>
+			<text>Whenever you cast an instant or sorcery spell, create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)
+{3}, Sacrifice three other Zombies: Create a 6/6 black Zombie Horror creature token. It can&apos;t block this turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/25.png" num="36">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cloudbreacher</name>
+			<text>Flying
+Whenever Cloudbreacher or another nontoken creature with flying enters under your control, create an Egg artifact token with &quot;{3}, Sacrifice this: Create a 2/2 blue Drake creature token with flying.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/26.png" num="34">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Price of Prosperity</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Each player shuffles their hand and graveyard into their library, then draws seven cards. If you&apos;ve discovered L&apos;Or, create five Treasure tokens.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/27.png" num="45">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4UU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Drown in Ken of Shore</name>
+			<text>Fathom {8}{U}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Each opponent mills eight cards.
+Whenever Drown in Ken of Shore attacks, exile target instant or sorcery card from defending player&apos;s graveyard. You may cast a copy of it without paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/28.png" num="37">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/8</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>The Silversea Swirls</name>
+			<text>Each player returns two permanents they control to their owner&apos;s hands, then you create two 1/1 blue Tentacle creature tokens. If you have eight or more cards in your hand, you may create an 8/8 blue Kraken creature token instead.
+Swansong (Then you may exile this. If you do, you can&apos;t cast spells for the rest of the game, and at the beginning of each of your upkeeps, copy this spell except for swansong.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/29.png" num="53">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>5UU</manacost>
+				<cmc>7</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for the Mistwinds</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for the Mistwinds enters, look at the top five cards of your library. Put two of them into your hand and the rest into your graveyard.
+---
+(Back): Ile Des Sirenes</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/30_front.png" num="32a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Ile Des Sirenes</related>
+		</card>
+		<card>
+			<name>Ile Des Sirenes</name>
+			<text>{T}: Add {U}.
+{2}{U}, {T}: Mill two cards, then draw a card. If your library has no cards in it, you win the game instead.
+---
+(Front): Battle for the Mistwinds</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/30_back.png" num="32b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for the Mistwinds</related>
+		</card>
+		<card>
+			<name>Last Voyage of the Selkie</name>
+			<text>Put all creature cards from all graveyards onto the battlefield under your control. Those creatures gain decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/31.png" num="182">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>6UB</manacost>
+				<cmc>8</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Razortooth Roost</name>
+			<text>When Razortooth Roost enters, create a 2/2 blue Drake creature token with flying. It gains haste.
+Whenever three or more creatures you control deal combat damage to a player, draw three cards.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/32.png" num="186">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mayit, the Forgotten One</name>
+			<text>Attacking Zombies you control have deathtouch.
+Whenever Mayit enters or attacks, put a legion counter on it, then create a 2/2 black Zombie creature token with decayed for each legion counter on Mayit. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/33.png" num="82">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Zombie Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blacksea Hag</name>
+			<text>Deathtouch
+Whenever Blacksea Hag attacks, mill two cards.
+Whenever Blacksea Hag deals combat damage to a player, that player loses life equal to the number of card types among cards in your graveyard.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/34.png" num="65">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Warlock</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Grog Snoggers</name>
+			<text>Whenever another creature enters, each opponent loses 1 life.
+{1}{B}, {T}: Exile target creature card from your graveyard. Create a token that&apos;s a copy of that card, then exile that token.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/35.png" num="79">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Skeleton Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Abyssal Corruption</name>
+			<text>As an additional cost to cast this spell, pay X life.
+Destroy each creature with mana value X or less.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/36.png" num="60">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Mother</name>
+			<text>Enchant opponent
+If a card would be put into enchanted player&apos;s graveyard from anywhere, instead exile it with a smoke counter on it.
+Once each turn, you may cast an exiled card enchanted player owns with a smoke counter on it by paying life equal to its mana value rather than paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/37.png" num="74">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Ascent of the Wakeborn</name>
+			<text>Each player mills three cards, then for each player you may put a creature card from that player&apos;s graveyard onto the battlefield. They gain &quot;When this creature would leave the battlefield, exile it instead.&quot;
+Swansong (Then you may exile this. If you do, you can&apos;t cast spells for the rest of the game, and at the beginning of each of your upkeeps, copy this spell except for swansong.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/38.png" num="61">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>7BB</manacost>
+				<cmc>9</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for the Dead Strait</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for the Dead Strait enters, search your library for a card, then shuffle and put that card on top. You lose 2 life.
+---
+(Back): Shadow Lagoon</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/39_front.png" num="63a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Shadow Lagoon</related>
+		</card>
+		<card>
+			<name>Shadow Lagoon</name>
+			<text>{T}: Add {B}.
+{1}{B}, {T}: Exile the top five cards of your library, then search your library for a card, shuffle, and put that card on top.
+---
+(Front): Battle for the Dead Strait</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/39_back.png" num="63b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for the Dead Strait</related>
+		</card>
+		<card>
+			<name>Curse of Skull Pass</name>
+			<text>Enchant opponent
+Spells enchanted player casts cost an additional {2} or 2 life to cast.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/40.png" num="169">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>BR</manacost>
+				<cmc>2</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Groveheart Tender</name>
+			<text>Menace, lifelink
+Groveheart Tender&apos;s power and toughness are each equal to the number of card types among cards in your graveyard.
+You may cast Groveheart Tender from your graveyard by exiling two other cards from your graveyard that don&apos;t share a card type in addition to paying its other costs.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/41.png" num="177">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>*/*</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hamlet Shrieker</name>
+			<text>Flying
+Whenever Hamlet Shrieker enters or an opponent plays a nonbasic land, exile the top card of your library. You may play that card until the beginning of your next end step.
+Whenever you play a card from exile, Hamlet Shrieker deals 1 damage to any non-Dragon target.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/42.png" num="103">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pathfinder Dragon</name>
+			<text>Flying
+Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+{2}{R}: Pathfinder Dragon gets +2/+0 until end of turn.
+When Pathfinder Dragon dies, if you&apos;ve discovered L&apos;Or, it deals damage equal to its power to any target.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/43.png" num="110">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Silversea Company</name>
+			<text>Trample
+Whenever The Silversea Company attacks, look at the top seven cards of your library. You may put a creature or Vehicle card from among them onto the battlefield tapped. A Vehicle put onto the battlefield this way becomes a creature until end of turn. That permanent is attacking. Put the rest on the bottom of your library in a random order.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/44.png" num="115">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>5RR</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>7/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Self-Guided Ballistics</name>
+			<text>As an additional cost to cast this spell, pay {2}{R} or sacrifice a creature and an artifact.
+Self-Guided Ballistics deals 4 damage to each creature and each planeswalker.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/45.png" num="113">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Firebrand</name>
+			<text>Enchant opponent
+At the beginning of combat on your turn, create a 4/4 red Dragon creature token with flying and haste. It attacks enchanted player this combat if able. Exile that token at end of combat.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/46.png" num="97">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Formation of Merida</name>
+			<text>Sacrifice a Mountain. When you do, create a colorless Volcano land token with &quot;{T}: Add {R}&quot; and &quot;{1}, {T}: This land deals 4 damage to any target.&quot;
+Swansong (Then you may exile this. If you do, you can&apos;t cast spells for the rest of the game, and at the beginning of each of your upkeeps, copy this spell except for swansong.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/47.png" num="100">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>5RR</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for the Apex</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for the Apex enters, up to two target creatures can&apos;t block this turn. Until your next turn, those creatures attack each combat if able.
+---
+(Back): The Spires at Starrehold</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/48_front.png" num="91a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">The Spires at Starrehold</related>
+		</card>
+		<card>
+			<name>The Spires at Starrehold</name>
+			<text>{T}: Add {R}.
+{1}{R}, {T}: You may put a creature card from your hand onto the battlefield. It gains haste. Exile that creature at the beginning of the next end step. Activate only as a sorcery.
+---
+(Front): Battle for the Apex</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/48_back.png" num="91b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for the Apex</related>
+		</card>
+		<card>
+			<name>Current Pacer</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+When Current Pacer enters, draw a card. You may play an additional land this turn.
+{4}{R}{G}: Shuffle, then exile the top two cards of your library. You may play them this turn. If you&apos;ve discovered L&apos;Or, you may play them this turn without paying their mana costs.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/49.png" num="168">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1RG</manacost>
+				<cmc>3</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gareth Redplume IV</name>
+			<text>Haste
+{T}: Each noncreature Vehicle you control becomes an artifact creature until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/50.png" num="175">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>3RW</manacost>
+				<cmc>5</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fathoms Spearhunter</name>
+			<text>Whenever you spend three or more colors of mana to activate an ability of Fathoms Spearhunter, put a +1/+1 counter on it.
+{2}{RW}: Fathoms Spearhunter gains double strike until end of turn.
+{3}{UB}: Look at the top two cards of your library. Put one into your hand and the other into your graveyard.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/51.png" num="126">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pelagic Conduit</name>
+			<text>When Pelagic Conduit enters, look at the top eight cards of your library. You may reveal a Revelation card from among them and put it into your hand. Put the rest on the bottom in a random order.
+When Pelagic Conduit dies, create an 8/8 blue Kraken creature token.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/52.png" num="136">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Call of L&apos;Or</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Search your library for a basic land card, reveal it, put it into your hand, then shuffle. If you&apos;ve discovered L&apos;Or, search your library for a green or colorless permanent card instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/53.png" num="122">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Merveille Pieuvre</name>
+			<text>Vigilance
+Lands you control have shipwright 3. (When a land you control enters, put three +1/+1 counters on it or a Vehicle you control.)
+At the beginning of combat on your turn, any number of target lands you control become 0/0 green Elemental creatures with vigilance until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/54.png" num="134">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Octopus</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Something Stirs Within</name>
+			<text>Fathom {G}{G}{G} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Search your library for a green creature card with mana value X or less, put it onto the battlefield, then shuffle. If this spell was cast for its fathom cost, X is 1 plus the sacrificed permanent&apos;s mana value.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/55.png" num="140">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>XGG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Growth of Arbre-Mere</name>
+			<text>Put any number of land cards from your hand onto the battlefield, then draw that many cards. When you do, target land you control becomes an Elemental creature with vigilance, haste, and &quot;This creature&apos;s power and toughness are each equal to the number of lands you control.&quot; (It&apos;s still a land.)
+Swansong (Then you may exile this. If you do, you can&apos;t cast spells for the rest of the game, and at the beginning of each of your upkeeps, copy this spell except for swansong.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/56.png" num="131">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>6GG</manacost>
+				<cmc>8</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for Prospera Depths</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Prospera Depths enters, create three 0/1 green Kelp creature tokens with &quot;{T}: Add {G}.&quot;
+---
+(Back): Lozana Shrine</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/57_front.png" num="120a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Lozana Shrine</related>
+		</card>
+		<card>
+			<name>Lozana Shrine</name>
+			<text>{T}: Add {G}.
+{4}{G}{G}, {T}: Creatures you control have base power and toughness 4/4 until end of turn. Activate only as a sorcery.
+---
+(Front): Battle for Prospera Depths</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/57_back.png" num="120b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Prospera Depths</related>
+		</card>
+		<card>
+			<name>Coquille, the Rising Isle</name>
+			<text>If an effect you control would cause one or more counters to be put on a permanent you control, that many of those counters plus one are put on that permanent instead.
+Creatures you control with +1/+1 counters on them have lure. (They must be blocked if able.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/58.png" num="166">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dragon Turtle</type>
+				<maintype>Creature</maintype>
+				<manacost>2GW</manacost>
+				<cmc>4</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Witness Forces Unknown</name>
+			<text>Fathom {7}{G}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Draw a card. Create a 1/1 blue Tentacle creature token.
+Whenever you draw a card, create a 1/1 blue Tentacle creature token.
+Sacrifice two Tentacles: Target Kraken you control gains hexproof until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/59.png" num="199">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sentinels of Canica Strait</name>
+			<text>Sentinels of Canica Strait enters with three marble counters on it.
+{2}, {T}, Remove a marble counter from Sentinels of Canica Strait: Draw a card.
+{3}, {T}, Sacrifice Sentinels of Canica Strait: Create two 3/3 colorless Warrior artifact creature tokens. Activate only if Sentinels of Canica Strait has no marble counters on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/60.png" num="207">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Fishing Docks</name>
+			<text>{1}, {T}: Create a 0/1 blue Fish creature token.
+{T}, Sacrifice a Fish: Create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)
+{T}, Sacrifice a Food: Create a Treasure token and draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/61.png" num="204">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Voyager&apos;s Passage</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+{T}: Add {C}.
+{1}, {T}: Add one mana of any color.
+{3}: Voyager&apos;s Passage becomes a 5/5 Elemental creature with vigilance and trample until end of turn. It&apos;s still a land. Activate only if you&apos;ve discovered L&apos;Or.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSS-files/img/62.png" num="220">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Detention Officer</name>
+			<text>When Detention Officer enters, you may exile another target nonland permanent. Return that card to the battlefield under its owner&apos;s control at the beginning of the next end step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/63.png" num="11">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Courier of the Winds</name>
+			<text>Flying
+Sacrifice Courier of the Winds: Target artifact you control gains indestructible until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/64.png" num="9">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jacktar-for-Hire</name>
+			<text>When Jacktar-for-Hire enters, search your library for a Vehicle card, reveal it, put it into your hand, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/65.png" num="16">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lady of the Threshers</name>
+			<text>Shipwright 2 (When this enters, put two +1/+1 counters on it or a Vehicle you control.)
+Creatures you control with +1/+1 counters on them have lifelink.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/66.png" num="17">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>A Pirate&apos;s Life</name>
+			<text>Exile target nonland permanent an opponent controls. That player creates a 4/4 colorless Vehicle artifact token with crew 1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/67.png" num="20">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Another Man&apos;s Treasure</name>
+			<text>Whenever a creature enters under your control, you gain 1 life.
+If an artifact or creature entering the battlefield causes a triggered ability of another permanent you control to trigger and your life total is greater than your starting life total, that ability triggers an additional time.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/68.png" num="2">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Windwise Drake</name>
+			<text>Flying
+{2}{U}: Create a Clue token. If you control three or more artifacts, you may draw a card instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/69.png" num="59">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crain&apos;s Creation</name>
+			<text>When Crain&apos;s Creation enters, create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)
+Tap three untapped creatures you control: Target player mills three cards.
+Tap ten untapped creatures you control: Target player mills twenty cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/70.png" num="35">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Watchful Ashwing</name>
+			<text>Flying, vigilance
+Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Watchful Ashwing has ward {4} as long as you&apos;ve discovered L&apos;Or.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/71.png" num="56">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>4UU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Waveshaping</name>
+			<text>As long as you control an Island, you may tap four untapped creatures and/or Vehicles you control rather than pay this spell&apos;s mana cost.
+Scry 2, then draw two cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/72.png" num="57">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Phantasmal Marauder</name>
+			<text>At the beginning of combat on your turn, another target Zombie you control gets +1/+1 and gain flying until end of turn.
+Whenever you sacrifice a token, scry 2.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/73.png" num="44">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Spirit Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Briny Depths Await</name>
+			<text>Fathom {4}{U}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Counter target spell.
+When The Briny Depths Await enters, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/74.png" num="33">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Instant — Kraken Revelation</type>
+				<maintype>Instant</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Black Arts Admiral</name>
+			<text>Whenever Black Arts Admiral becomes tapped, mill two cards, then you may pay {B} and sacrifice another creature. When you do, return target creature card from your graveyard to your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/75.png" num="64">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Roots of All Evil</name>
+			<text>This spell costs {1} less to cast for each card type among cards in your graveyard.
+When Roots of All Evil enters, draw two cards and you lose 2 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/76.png" num="85">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>6BB</manacost>
+				<cmc>8</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Faceless Faction</name>
+			<text>Zombies you control get +1/+1.
+At the beginning of your end step, if a nontoken creature died this turn, create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/77.png" num="77">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Barter in Blood</name>
+			<text>Each player sacrifices two creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/78.png" num="62">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Light Fades to Despair</name>
+			<text>Fathom {5}{B}{B} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Target opponent reveals their hand. You choose a nonland card from it. That player discards that card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/79.png" num="81">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>6/4</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Blacksea</name>
+			<text>Enchant opponent
+Whenever Curse of the Blacksea enters or you cast a spell that targets enchanted player, they lose 3 life unless they sacrifice a nonland permanent or discard a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/80.png" num="72">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sabre-Happy Swashbuckler</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+Creatures you control with +1/+1 counters on them have agile. (They deal combat damage first as long as they&apos;re attacking.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/81.png" num="112">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Glyph Wyvern</name>
+			<text>Flying
+Whenever Glyph Wyvern or another creature with flying enters under your control, create a Treasure token.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/82.png" num="102">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Painted Dragon</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Flying
+Whenever Painted Dragon becomes tapped, if you&apos;ve discovered L&apos;Or, you may discard your hand. If you do, draw three cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/83.png" num="109">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Keelhaul</name>
+			<text>Target Vehicle creature you control deals damage equal to its power to any target. If a creature or planeswalker dealt damage this way would die this turn, exile it instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/84.png" num="106">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curse of Marked Charts</name>
+			<text>Enchant opponent
+Whenever you cast a spell that targets enchanted player, exile the top card of your library. You may play that card until you exile another card with Curse of Marked Charts.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/85.png" num="95">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Basalt Spray</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Basalt Spray deals 2 damage to target creature or planeswalker. If you&apos;ve discovered L&apos;Or, Basalt Spray deals 5 damage to that permanent instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/86.png" num="90">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Soul of the Grove</name>
+			<text>When Soul of the Grove enters, mill three cards and you gain 3 life.
+When Soul of the Grove dies, create a 4/1 black and green Zombie Treefolk creature token.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/87.png" num="141">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Polyp Architect</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+If damage would be dealt to a creature you control during your turn, you may remove a +1/+1 counter from that creature to prevent that damage.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/88.png" num="137">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chart the Lost Lands</name>
+			<text>Sacrifice a land. Search your library for up to two Forest cards, put them onto the battlefield tapped, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/89.png" num="123">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>The Roil Stakes Its Claim</name>
+			<text>Fathom {5}{G}{G} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Destroy target artifact, enchantment, planeswalker, or nonbasic land.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/90.png" num="139">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Greensea Amity</name>
+			<text>You may pay {1}{G} rather than pay this spell&apos;s mana cost. If you do, sacrifice it when it enters the battlefield.
+When Greensea Amity enters, create a 0/1 green Kelp creature token with &quot;{T}: Add {G}.&quot;
+Untap all permanents you control during each other player&apos;s untap step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/91.png" num="129">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Withstand the Torrent</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+You gain 8 life. Return target permanent card from your graveyard to your hand. If you&apos;ve discovered L&apos;Or, you may put that card onto the battlefield instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/92.png" num="146">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Captain Holly Dee</name>
+			<text>First mate—Your starting deck contains &quot;Suitor of the Wind&quot; and at least eight other artifacts. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Whenever Captain Holly Dee becomes tapped, target creature or Vehicle you control gains flying until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/93.png" num="160">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2WU</manacost>
+				<cmc>4</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Runic Visionary</name>
+			<text>When Runic Visionary enters, you may search your library for a card named Prophetic Prism and/or a card named Seer&apos;s Lantern, reveal them, put them into your hand, then shuffle.
+Runic Visionary gets +2/+1 as long as you control three or more artifacts.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/94.png" num="188">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>WU</manacost>
+				<cmc>2</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Verity Bay</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Verity Bay enters, you may exile target nonland permanent an opponent controls. For as long as that card remains exiled, its owner may pay {2} to put it into their hand.
+---
+(Back): Discovery Point</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/95_front.png" num="157a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>1WU</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Discovery Point</related>
+		</card>
+		<card>
+			<name>Discovery Point</name>
+			<text>{T}: Add {W} or {U}.
+{2}, {T}: Create a Clue token. (It&apos;s an artifact with &quot;{2}, Sacrifice this: Draw a card.&quot;)
+---
+(Front): Battle for Verity Bay</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/95_back.png" num="157b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Verity Bay</related>
+		</card>
+		<card>
+			<name>Captain Darwin Smythe</name>
+			<text>First mate—Your starting deck contains &quot;The Foul Omen&quot; and no nonlegendary cards with odd mana value. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Tap three untapped Zombies you control: Draw a card. You lose 1 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/96.png" num="159">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1UB</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Touch of the Omen</name>
+			<text>Gain control of target creature. Put a decayed counter on it. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/97.png" num="197">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2UB</manacost>
+				<cmc>4</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for Ivos Isle</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Ivos Isle enters, put a decayed counter on target creature an opponent controls with mana value 3 or less. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)
+---
+(Back): Pendulum Docks</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/98_front.png" num="152a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>UB</manacost>
+				<cmc>2</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Pendulum Docks</related>
+		</card>
+		<card>
+			<name>Pendulum Docks</name>
+			<text>{T}: Add {U} or {B}.
+{2}{U}{B}, {T}: Exile target creature card in a graveyard. When you do, create a token that&apos;s a copy of that creature except it&apos;s a black Zombie in addition to its other colors and types and it has decayed. Activate only as a sorcery.
+---
+(Front): Battle for Ivos Isle</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/98_back.png" num="152b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Ivos Isle</related>
+		</card>
+		<card>
+			<name>Commodore Egan Bristol</name>
+			<text>First mate—Your starting deck contains &quot;Despair&apos;s Emissary&quot; and at least eight cards that could target a player. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Whenever you cast a spell that targets an opponent, target creature you control gets +2/+0 and gains menace until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/99.png" num="165">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1BR</manacost>
+				<cmc>3</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Hunted</name>
+			<text>Enchant opponent
+At the beginning of combat on your turn, create X 2/2 black Zombie creature tokens with decayed, where X is the number of Auras attached to enchanted player. Those tokens gain haste and attack this combat if able. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/100.png" num="170">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3BR</manacost>
+				<cmc>5</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Battle for Blacksea</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Blacksea enters, copy the next spell you cast this turn that targets an opponent when you cast it.
+---
+(Back): Carnage Rock</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/101_front.png" num="148a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>BR</manacost>
+				<cmc>2</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Carnage Rock</related>
+		</card>
+		<card>
+			<name>Carnage Rock</name>
+			<text>{T}: Add {B} or {R}. When that mana is spent to cast a spell that targets an opponent, they lose 3 life unless they discard a card or sacrifice a nonland permanent.
+---
+(Front): Battle for Blacksea</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/101_back.png" num="148b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Blacksea</related>
+		</card>
+		<card>
+			<name>Captain Rosie Wright</name>
+			<text>First mate—Your starting deck contains &quot;Shining Horizon&quot; and two lands of each basic land type. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Whenever Captain Rosie Wright becomes tapped, you may sacrifice a Mountain or Forest. If you do, put a +1/+1 counter on Captain Rosie Wright, then search your library for a land card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/102.png" num="162">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1RG</manacost>
+				<cmc>3</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sunscale Drake</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+{3}{R}{G}: Until end of turn, Sunscale Drake gains lure and challenge. If you&apos;ve discovered L&apos;Or, put two +1/+1 counters on it. (A creature with lure must be blocked if able. A creature with challenge can&apos;t be blocked by more than one creature.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/103.png" num="196">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake Leviathan</type>
+				<maintype>Creature</maintype>
+				<manacost>3RG</manacost>
+				<cmc>5</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Highspire</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Highspire enters, exile the top three cards of your library. You may play one of them this turn, and you may play an additional land this turn.
+---
+(Back): Skypiercer</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/104_front.png" num="151a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>RG</manacost>
+				<cmc>2</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Skypiercer</related>
+		</card>
+		<card>
+			<name>Skypiercer</name>
+			<text>{T}: Add {R} or {G}. When that mana is spent to cast a spell, reveal cards from the top of your library until you reveal a card that costs less. If it&apos;s a land, put it onto the battlefield tapped. Otherwise, you may cast it without paying its mana cost.
+---
+(Front): Battle for Highspire</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/104_back.png" num="151b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Highspire</related>
+		</card>
+		<card>
+			<name>The Dieu-de-Fer Twins</name>
+			<text>First mate—Your starting deck contains &quot;Frere et Soeur&quot; and no nonlegendary nonland cards with even mana value. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Creatures you control with +1/+1 counters on them have challenge. (They can&apos;t be blocked by more than one creature.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/105.png" num="171">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>GW</manacost>
+				<cmc>2</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Familiar&apos;s Guile</name>
+			<text>When Familiar&apos;s Guile enters, create a 1/1 white Bird creature token with flying.
+Whenever you attack, put a +1/+1 counter on target attacking creature or Vehicle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/106.png" num="173">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1GW</manacost>
+				<cmc>3</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Battle for Fort Alderosa</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Fort Alderosa enters, distribute four +1/+1 counters among any number of target creatures and/or Vehicles you control, then permanents you control with +1/+1 counters on them gain vigilance until end of turn.
+---
+(Back): Hackett&apos;s Keep</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/107_front.png" num="150a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>3GW</manacost>
+				<cmc>5</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Hackett&apos;s Keep</related>
+		</card>
+		<card>
+			<name>Hackett&apos;s Keep</name>
+			<text>{T}: Add {G} or {W}.
+{G}{W}, {T}: Put a +1/+1 counter on target creature or Vehicle you control. All creatures able to block it this turn do so. Activate only as a sorcery.
+---
+(Front): Battle for Fort Alderosa</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/107_back.png" num="150b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Fort Alderosa</related>
+		</card>
+		<card>
+			<name>Olavan of the Silversea</name>
+			<text>First mate—Your starting deck contains &quot;The Ashen Cross&quot; and each nonland, nonlegendary permanent card in your starting deck has a triggered ability. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Whenever Olavan crews a Vehicle, that Vehicle gains deathtouch and lifelink until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/108.png" num="183">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spectral Scalawag</name>
+			<text>When Spectral Scalawag enters, target opponent loses 2 life and you gain 2 life.
+When Spectral Scalawag leaves the battlefield, reveal the top card of your library and put it into your hand. You lose life equal to its mana value.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/109.png" num="193">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Spirit Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>WB</manacost>
+				<cmc>2</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for the Stillshroud</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for the Stillshroud enters, it deals 3 damage to target creature, player, or planeswalker and you gain 3 life.
+---
+(Back): Impaled Ruins</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/110_front.png" num="156a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Impaled Ruins</related>
+		</card>
+		<card>
+			<name>Impaled Ruins</name>
+			<text>{T}: Add {W} or {B}.
+{3}{W}{B}: Until end of turn, Impaled Ruins becomes a 3/5 white and black Elemental creature with lifelink. It&apos;s still a land.
+---
+(Front): Battle for the Stillshroud</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/110_back.png" num="156b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for the Stillshroud</related>
+		</card>
+		<card>
+			<name>Runix of the Blacksea</name>
+			<text>First mate—Your starting deck contains &quot;The Abyssal Pilgrim&quot; and no nonlegendary, nonland cards with mana value 2 or less. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+When Runix enters, each opponent loses 1 life and you gain 1 life.
+{B}{G}, Exile two cards that don&apos;t share a type from your graveyard: Return Runix from your graveyard to the battlefield. They can&apos;t block this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/111.png" num="189">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Colossal Mossjaw</name>
+			<text>Whenever Colossal Mossjaw becomes tapped, look at the top two cards of your library. Put any number of them into your graveyard and the rest back on top in any order.
+{8}{B}{G}: Destroy target permanent. This ability costs {1} less to activate for each card type among cards in your graveyard. Activate only once.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/112.png" num="164">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk Crocodile</type>
+				<maintype>Creature</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Merida Keys</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Merida Keys enters, return up to one target noncreature permanent card from your graveyard to the battlefield, then return up to one target creature card from your graveyard to your hand.
+---
+(Back): Gnarled Roots of Arbre-Mere</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/113_front.png" num="153a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Gnarled Roots of Arbre-Mere</related>
+		</card>
+		<card>
+			<name>Gnarled Roots of Arbre-Mere</name>
+			<text>{T}: Add {B} or {G}.
+{6}, {T}: Create a 4/1 black and green Zombie Treefolk creature token. It can&apos;t block this turn. This ability costs {1} less to activate for each card type among cards in your graveyard.
+---
+(Front): Battle for Merida Keys</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/113_back.png" num="153b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Merida Keys</related>
+		</card>
+		<card>
+			<name>Lanne of the Greensea</name>
+			<text>First mate—Your starting deck contains &quot;Seaskipper&quot; and at least eight cards with an alternate cost. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+At the beginning of your end step, if you don&apos;t control a 0/1 green Kelp creature token with &quot;{T}: Add {G},&quot; create one.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/114.png" num="181">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Glimpse Worlds Within Worlds</name>
+			<text>Fathom {5}{G}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Look at the top five cards of your library. You may reveal a land card and a nonland card from among them. Put the land card onto the battlefield tapped, the nonland card into your hand, and the rest on the bottom in any order.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/115.png" num="176">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battle for Tempest Reach</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Tempest Reach enters, return target nonland permanent an opponent controls to its owner&apos;s hand, then return target Kraken card from your graveyard to your hand.
+---
+(Back): Eye of the Kraken</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/116_front.png" num="155a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Eye of the Kraken</related>
+		</card>
+		<card>
+			<name>Eye of the Kraken</name>
+			<text>{T}: Add {G} or {U}. When that mana is spent to cast a spell with mana value 3 or less, copy that spell. You may choose new targets for the copy. (A copy of a permanent spell enters as a token.)
+---
+(Front): Battle for Tempest Reach</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/116_back.png" num="155b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Tempest Reach</related>
+		</card>
+		<card>
+			<name>Captain Polly Carver</name>
+			<text>First mate—Your starting deck contains &quot;The Scarlet Scourge&quot; and no nonlegendary creature cards without flying. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Whenever a Dragon or Drake you control deals damage to an opponent, exile the top card of your library, then you may have Captain Polly Carver deal 1 damage to that player. If you don&apos;t, you may play that card from exile this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/117.png" num="161">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shrieking Seakite</name>
+			<text>Flying
+Whenever an opponent casts a spell or activates an ability that targets a Dragon or Drake you control, Shrieking Seakite deals 3 damage to that player.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/118.png" num="191">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Charred Atoll</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Charred Atoll enters, create a 2/2 blue Drake creature token with flying.
+---
+(Back): Volcanic Roost</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/119_front.png" num="149a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Volcanic Roost</related>
+		</card>
+		<card>
+			<name>Volcanic Roost</name>
+			<text>{T}: Add {U} or {R}.
+{2}{U}{R}, {T}: Until end of turn, attacking creatures you control get +1/+0 and gain &quot;Whenever this creature deals combat damage to an opponent, draw a card.&quot;
+---
+(Front): Battle for Charred Atoll</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/119_back.png" num="149b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Charred Atoll</related>
+		</card>
+		<card>
+			<name>Admiral Everett Cross</name>
+			<text>First mate—Your starting deck contains &quot;The Huntress&quot; and no nonlegendary cards with mana value 4 or greater. (If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)
+Whenever Admiral Everett Cross crews a Vehicle, that Vehicle gains double strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/120.png" num="147">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Forecastle Bosun</name>
+			<text>Shipwright 2 (When this enters, put two +1/+1 counters on it or a Vehicle you control.)
+Whenever Forecastle Bosun becomes tapped, target creature or Vehicle you control gains trample until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/121.png" num="174">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>0/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Port Plenty</name>
+			<text>(As a Conquest enters, choose an opponent to protect it. You and others can attack it. When it&apos;s defeated, put it onto the battlefield transformed.)
+When Battle for Port Plenty enters, create a 4/4 colorless Vehicle artifact token with crew 1.
+---
+(Back): Red Wind Harbor</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/122_front.png" num="154a">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Battle — Conquest</type>
+				<maintype>Battle</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Red Wind Harbor</related>
+		</card>
+		<card>
+			<name>Red Wind Harbor</name>
+			<text>{T}: Add {R} or {W}.
+{T}: Target Vehicle you control becomes an artifact creature until end of turn. It gains haste until end of turn.
+---
+(Front): Battle for Port Plenty</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/122_back.png" num="154b">GSS</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+			<related attach="transform">Battle for Port Plenty</related>
+		</card>
+		<card>
+			<name>Everfelle Gates</name>
+			<text>Defender
+{1}, {T}: Target creature or Vehicle can&apos;t attack or block this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/123.png" num="203">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Thunderball Mortars</name>
+			<text>Equipped creature gets +2/+0 and has trample.
+Equip {4}
+Equip Vehicle {2} ({2}: Attach to target Vehicle you control. This doesn&apos;t unattach while that Vehicle isn&apos;t a creature. Equip only as a sorcery.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/124.png" num="208">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Treasure Cove</name>
+			<text>{T}: Add {C}.
+{T}: Add one mana of any type an artifact you control could produce.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSS-files/img/125.png" num="218">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Seacraft Registrar</name>
+			<text>Defender
+Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/126.png" num="26">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dockside Sleuth</name>
+			<text>When Dockside Sleuth enters, create a Clue token. (It&apos;s an artifact with &quot;{2}, Sacrifice this: Draw a card.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/127.png" num="12">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dutiful Innkeeper</name>
+			<text>When Dutiful Innkeeper enters, you gain 3 life.
+{2}, {T}, Sacrifice Dutiful Innkeeper: Return target artifact card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/128.png" num="13">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Citizen</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bluecoat Adept</name>
+			<text>Bluecoat Adept crews Vehicles as though its power were 2 greater.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/129.png" num="7">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Plucky Crewmate</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+Creatures you control with +1/+1 counters on them have vigilance.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/130.png" num="21">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Faithful Seasteed</name>
+			<text>When Faithful Seasteed enters, you may search your library for a card named Faithful Seasteed, reveal it, put it into your hand, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/131.png" num="14">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish Horse</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Parrot Peddler</name>
+			<text>When Parrot Peddler enters, create a 1/1 white Bird creature token with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/132.png" num="19">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rainbow Tern</name>
+			<text>Flying
+Whenever Rainbow Tern becomes tapped, you gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/133.png" num="23">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Port Rose Lieutenant</name>
+			<text>When Port Rose Lieutenant enters, exile target creature or Vehicle an opponent controls until Port Rose Lieutenant leaves the battlefield.
+Port Rose Lieutenant has ward {3} as long as you control three or more artifacts.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/134.png" num="22">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chitinous Commander</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+Whenever Chitinous Commander becomes tapped during your turn, tap target creature or Vehicle an opponent controls.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/135.png" num="8">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mercantile Negotiations</name>
+			<text>Put a +1/+1 counter on target creature. Create a Clue token. (It&apos;s an artifact with &quot;{2}, Sacrifice this: Draw a card.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/136.png" num="18">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Surging Current</name>
+			<text>Surging Current deals 2 damage to target tapped creature. If it&apos;s a Vehicle, Surging Current deals 4 damage instead.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/137.png" num="28">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Revoke Privileges</name>
+			<text>Enchant creature
+Enchanted creature can&apos;t attack, block, or crew Vehicles.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/138.png" num="24">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sailor&apos;s Sendoff</name>
+			<text>Exile up to one target creature or Vehicle you control and up to one target creature or Vehicle an opponent controls. Return those cards to the battlefield under their owner&apos;s control at the beginning of the next end step.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/139.png" num="25">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Ragged Rapscallion</name>
+			<text>Whenever Ragged Rapscallion becomes tapped during your turn, target creature or Vehicle an opponent controls gets -2/-0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/140.png" num="46">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Recon Drake</name>
+			<text>Flash
+Flying
+When Recon Drake dies, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/141.png" num="48">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sigiled Spotter</name>
+			<text>Whenever Sigiled Spotter attacks, create a Clue token. (It&apos;s an artifact with &quot;{2}, Sacrifice this: Draw a card.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/142.png" num="52">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gilded Lapwing</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Flying
+Whenever Gilded Lapwing becomes tapped, scry 1. If you&apos;ve discovered L&apos;Or, scry 2 instead.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/143.png" num="39">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Harbor Trawler</name>
+			<text>When Harbor Trawler enters, you may tap two other untapped artifacts and/or creatures you control. When you do, return target instant or sorcery card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/144.png" num="40">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Merfolk</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ruin Cove Scavenger</name>
+			<text>You may pay {1}{U} and exile a creature or Vehicle card from your graveyard rather than pay this spell&apos;s mana cost.
+Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/145.png" num="50">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Secrets Shimmer Like Silver</name>
+			<text>Fathom {4}{U}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Look at the top three cards of your library. Put one into your hand and the rest on the bottom in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/146.png" num="51">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fang Fleet Mandate</name>
+			<text>Counter target spell unless its controller pays {2}. If you control three or more artifacts, counter that spell unless its controller pays {4} instead.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/147.png" num="38">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Necrotic Shawl</name>
+			<text>Target creature gets +1/+1 and gains hexproof until end of turn.
+Create a 2/2 black Zombie creature token with decayed. (It can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/148.png" num="41">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Whale of a Tale</name>
+			<text>Counter target permanent spell.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/149.png" num="58">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>One With the Great Beyond</name>
+			<text>Fathom {3}{U}{U} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Return target nonland permanent to its owner&apos;s hand.
+Menace</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/150.png" num="42">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rise of the Blacksea Moon</name>
+			<text>Tap up to two target creatures and/or Vehicles. They don&apos;t untap during their controller&apos;s next untap step.
+Create two 2/2 black Zombie creature tokens with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/151.png" num="49">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Throw Overboard</name>
+			<text>You may pay {U} and tap any number of untapped creatures you control with total power 3 or greater rather than pay this spell&apos;s cost.
+Put target creature into its owner&apos;s library third from the top.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/152.png" num="55">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Structural Damage</name>
+			<text>Enchant artifact or creature
+Enchanted permanent doesn&apos;t untap during its controller&apos;s untap step and its activated abilities can&apos;t be activated.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/153.png" num="54">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Relentless Remains</name>
+			<text>{4}{B}: Return Relentless Remains from your graveyard to the battlefield tapped. This ability costs {1} less to activate for each Curse you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/154.png" num="84">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crain&apos;s Accursed</name>
+			<text>When Crain&apos;s Accursed dies, create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/155.png" num="69">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blacksea Thaumaturge</name>
+			<text>When Blacksea Thaumaturge enters, if you cast it, choose one —
+• Return to the battlefield target creature card in your graveyard that was put there from the battlefield this turn.
+• Destroy target creature that was dealt damage this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/156.png" num="66">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Warlock</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blighted Arbor</name>
+			<text>{12}: Each opponent loses 3 life. This ability costs {1} less to activate for each card type among cards in your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/157.png" num="67">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Uprooted Stalker</name>
+			<text>Whenever Uprooted Stalker becomes tapped, target creature or Vehicle you control gains menace until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/158.png" num="87">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Damned Helmsman</name>
+			<text>When Damned Helmsman enters, create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)
+{2}{B}, Sacrifice a creature or Vehicle: Draw a card. You gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/159.png" num="75">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Galleon Ravager</name>
+			<text>Flying, deathtouch
+When Galleon Ravager enters, mill three cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/160.png" num="78">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Griffin</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Writhing Abomination</name>
+			<text>When Writhing Abomination enters, return target creature card with mana value 4 or less from your graveyard to the battlefield with a decayed counter on it. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/161.png" num="88">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Islander&apos;s Bounty</name>
+			<text>Mill four cards, then you may return up to two creature and/or Vehicle cards from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/162.png" num="80">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Moment of Craving</name>
+			<text>Target creature gets -2/-2 until end of turn. You gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/163.png" num="83">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>A Soul Breaks Like a Wave</name>
+			<text>Fathom {5}{B}{B} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Target player discards two cards and loses 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/164.png" num="86">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Churn to Chum</name>
+			<text>Destroy target creature. Create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/165.png" num="68">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curse of Admonishment</name>
+			<text>Enchant opponent
+At the beginning of enchanted player&apos;s upkeep, they lose 1 life and you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/166.png" num="70">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Curse of Fetid Remains</name>
+			<text>Enchant opponent
+Whenever Curse of Fetid Remains enters or you cast a spell that targets enchanted player, create a 2/2 black Zombie creature token with decayed. (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/167.png" num="71">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mottled Snapwing</name>
+			<text>Flying, haste
+Whenever you cast a spell that targets an opponent, Mottled Snapwing gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/168.png" num="107">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Herald of the Brood</name>
+			<text>Flying
+{5}{R}{R}: Create a 4/4 red Dragon creature token with flying. It gains haste. Exile that token at the beginning of the next end step. Activate only as a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/169.png" num="105">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wayward Mariner</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+Whenever Wayward Mariner becomes tapped, you may discard a card. If you do, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/170.png" num="117">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hellkite Whelp</name>
+			<text>Flying
+When Hellkite Whelp enters, search your library for a Mountain card, reveal it, put it into your hand, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/171.png" num="104">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shallows Spear-Fisher</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Shallows Spear-Fisher has double strike as long as you&apos;ve discovered L&apos;Or.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/172.png" num="114">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Combustion Girl</name>
+			<text>Reach
+Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/173.png" num="93">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Anchor Hauler</name>
+			<text>Shipwright 2 (When this enters, put two +1/+1 counters on it or a Vehicle you control.)
+Anchor Hauler can&apos;t attack or block unless you control a Vehicle creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/174.png" num="89">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crag Monarch</name>
+			<text>Flying
+When Crag Monarch enters, it deals 1 damage to target creature, planeswalker, or battle. A creature dealt damage this way can&apos;t block this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/175.png" num="94">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Poisson Slums Dealings</name>
+			<text>As an additional cost to cast this spell, discard a card or sacrifice an artifact.
+Draw two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/176.png" num="111">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Erode</name>
+			<text>Destroy target artifact or land. If a land is destroyed this way, its controller searches their library for a basic land card, puts it onto the battlefield, then shuffles.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/177.png" num="99">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Open Fire</name>
+			<text>Open Fire deals 3 damage to any target.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/178.png" num="108">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Warning from Giradrus</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Warning from Giradrus deals 5 damage to target creature or planeswalker. If you&apos;ve discovered L&apos;Or, Warning from Giradrus deals 3 damage to that permanent&apos;s controller.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/179.png" num="116">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Dragon&apos;s Coin</name>
+			<text>Enchant opponent
+Whenever Curse of the Dragon&apos;s Coin enters or you cast a spell that targets enchanted player, Curse of the Dragon&apos;s Coin deals 1 damage to enchanted player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/180.png" num="96">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Curse of the Sea&apos;s Bounty</name>
+			<text>Enchant opponent
+When Curse of the Sea&apos;s Bounty enters, create a 1/1 blue and red Pirate creature token.
+Whenever a creature attacks enchanted player, it gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/181.png" num="98">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Invasive Kelp</name>
+			<text>Invasive Kelp must be blocked if able.
+{2}{G}, Exile Invasive Kelp from your graveyard: Put a +1/+1 counter on target creature or Vehicle you control. It must be blocked this turn if able. Activate only as a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/182.png" num="132">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Curator of Cryptic Charts</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+{T}: Untap target land you control. If you&apos;ve discovered L&apos;Or, you may have that land become a 4/4 Elemental creature with haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/183.png" num="125">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lake Cave Lurker</name>
+			<text>When Lake Cave Lurker dies, create a Treasure token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/184.png" num="133">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish Serpent</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Frigate Architect</name>
+			<text>When Frigate Architect enters, create a 4/4 colorless Vehicle artifact token with crew 1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/185.png" num="128">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greensea Brute</name>
+			<text>Shipwright 1 (When this enters, put a +1/+1 counter on it or a Vehicle you control.)
+Creatures you control with +1/+1 counters on them have trample.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/186.png" num="130">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Copse Creeper</name>
+			<text>When Copse Creeper dies, mill three cards.
+{4}{G}, Exile Copse Creeper from your graveyard: Create a 4/1 black and green Zombie Treefolk token. It can&apos;t block this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/187.png" num="124">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ardent Cartographer</name>
+			<text>Wayfarer (If you&apos;ve spent {W}{U}{B}{R}{G} this turn, discover L&apos;Or.)
+Whenever Ardent Cartographer becomes tapped, you may mill two cards. If you&apos;ve discovered L&apos;Or,
+you may surveil 2 instead.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/188.png" num="118">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Trench Leviathan</name>
+			<text>{12}: Trench Leviathan gets +5/+5 until end of turn. This ability costs {1} less to activate for each card type among cards in your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/189.png" num="142">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Leviathan</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Breaching Serpent</name>
+			<text>Reach, ward {3}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/190.png" num="121">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Serpent</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Floating Ecocosm</name>
+			<text>You may pay {W}{U}{B}{R}{G} rather than pay this spell&apos;s mana cost.
+Floating Ecocosm can&apos;t be blocked by creatures with power 2 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/191.png" num="127">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Whale</type>
+				<maintype>Creature</maintype>
+				<manacost>5GG</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>7/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Vantage Shot</name>
+			<text>Destroy target artifact, enchantment, or creature with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/192.png" num="144">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>The Mortal Plays God</name>
+			<text>Fathom {4}{G} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Put a +1/+1 counter on each of up to two target creatures.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/193.png" num="135">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>The Unknown Welcomes All</name>
+			<text>Fathom {5}{G}{G} (If you cast this by sacrificing a creature or Vehicle and paying the fathom cost reduced by that permanent&apos;s mana value, put this onto the battlefield as a creature after it resolves or loses targets.)
+Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/194.png" num="143">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Kindred Sorcery — Kraken Revelation</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Ram</name>
+			<text>You may pay {G} and tap any number of untapped creatures you control with total power 3 or greater rather than pay this spell&apos;s cost.
+Target creature you control deals damage equal to its power to target creature you don&apos;t control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/195.png" num="138">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Gemsmith</name>
+			<text>Artifact spells you cast cost {1} less to cast.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/196.png" num="172">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>WU</manacost>
+				<cmc>2</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Putrefied Thrasher</name>
+			<text>Decayed (A creature with decayed can&apos;t block. When it attacks, sacrifice it at end of combat.)
+When Putrefied Thrasher dies, draw two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/197.png" num="185">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Serpent</type>
+				<maintype>Creature</maintype>
+				<manacost>2UB</manacost>
+				<cmc>4</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crain&apos;s Devoted</name>
+			<text>Trample
+Whenever Crain&apos;s Devoted attacks, it gets +1/+0 until end of turn for each Curse attached to defending player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/198.png" num="167">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>BR</manacost>
+				<cmc>2</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stag of Plenty</name>
+			<text>When Stag of Plenty enters, search your library for a basic land card, reveal it, put it into your hand, then shuffle.
+{2}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/199.png" num="194">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elk</type>
+				<maintype>Creature</maintype>
+				<manacost>2RG</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sanctions Enforcer</name>
+			<text>Each Vehicle you control enters with an additional +1/+1 counter on it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/200.png" num="190">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1GW</manacost>
+				<cmc>3</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Coastal Raider</name>
+			<text>Whenever Coastal Raider becomes tapped, each opponent loses 1 life and you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/201.png" num="163">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Shark Merfolk Pirate</type>
+				<maintype>Creature</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Withering Wanderers</name>
+			<text>When Withering Wanderers enters, draw a card and you gain 4 life.
+{BG}, Discard Withering Wanderers: Create a Clue token. You gain 2 life. (It&apos;s an artifact with &quot;{2}, Sacrifice this: Draw a card.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/202.png" num="198">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>5BG</manacost>
+				<cmc>7</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>4/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Silversea Titan</name>
+			<text>You may cast this spell by paying {3}{G}{U} and sacrificing a creature or Vehicle rather than pay this spell&apos;s mana cost.
+Challenge (This can&apos;t be blocked by more than one creature.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/203.png" num="192">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Leviathan</type>
+				<maintype>Creature</maintype>
+				<manacost>6GU</manacost>
+				<cmc>8</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>8/8</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Precipice Surveyor</name>
+			<text>Flying
+When Precipice Surveyor enters, look at the top two cards of your library. Exile one, then put the other on the bottom of your library. You may play the exiled card until the end of your next turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/204.png" num="184">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>3UR</manacost>
+				<cmc>5</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Inspiring Recruitment</name>
+			<text>Create two 1/1 white Pirate creature tokens with &quot;This creature crews Vehicles as though its power were 2 greater.&quot;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/205.png" num="178">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Citadel Tower</name>
+			<text>Defender, reach
+{2}: Until end of turn, Citadel Tower crews Vehicles using its toughness rather than its power.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/206.png" num="201">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Uncharted Haven</name>
+			<text>Uncharted Haven enters tapped.
+As Uncharted Haven enters, choose a color.
+{T}: Add one mana of the chosen color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/207.png" num="219">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Convincing Bait</name>
+			<text>{1}, {T}, Sacrifice Convincing Bait: Draw a card.
+{7}, {T}, Sacrifice Convincing Bait: Destroy target permanent.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/208.png" num="202">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Prophetic Prism</name>
+			<text>When Prophetic Prism enters, draw a card.
+{1}, {T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/209.png" num="205">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Seer&apos;s Lantern</name>
+			<text>{T}: Add {C}.
+{2}, {T}: Scry 1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/210.png" num="206">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Idyllic Beachfront</name>
+			<text>({T}: Add {W} or {U}.)
+Idyllic Beachfront enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/211.png" num="212">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Contaminated Aquifer</name>
+			<text>({T}: Add {U} or {B}.)
+Contaminated Aquifer enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/212.png" num="209">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Geothermal Bog</name>
+			<text>({T}: Add {B} or {R}.)
+Geothermal Bog enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/213.png" num="210">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Wooded Ridgeline</name>
+			<text>({T}: Add {R} or {G}.)
+Wooded Ridgeline enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/214.png" num="221">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Radiant Grove</name>
+			<text>({T}: Add {G} or {W}.)
+Radiant Grove enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/215.png" num="214">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Sunlit Marsh</name>
+			<text>({T}: Add {W} or {B}.)
+Sunlit Marsh enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/216.png" num="216">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Haunted Mire</name>
+			<text>({T}: Add {B} or {G}.)
+Haunted Mire enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/217.png" num="211">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tangled Islet</name>
+			<text>({T}: Add {G} or {U}.)
+Tangled Islet enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/218.png" num="217">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Molten Tributary</name>
+			<text>({T}: Add {U} or {R}.)
+Molten Tributary enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/219.png" num="213">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Sacred Peaks</name>
+			<text>({T}: Add {R} or {W}.)
+Sacred Peaks enters tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSS-files/img/220.png" num="215">GSS</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

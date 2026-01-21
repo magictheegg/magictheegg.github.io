@@ -548,7 +548,7 @@ def generateHTML(codes):
 			cardGrid = document.getElementById("imagesOnlyGrid");
 			card_list_arrayified.sort(compareFunction);
 
-			gridified_card = gridifyCard(card_list_arrayified[0], true, true);
+			gridified_card = gridifyCard(card_list_arrayified[0], true);
 			gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 			gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 			document.getElementById("card-grid-container").appendChild(gridified_card);
@@ -763,13 +763,13 @@ def generateHTML(codes):
 				const card_stats = search_results[i];
 				const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
 				imgContainer.className = "img-container";
-				const card_sr_grid = gridifyCard(search_results[i]);
+				const card_sr_grid = gridifyCard(search_results[i], true, true);
 				const card_sr = card_sr_grid.getElementsByTagName("img")[0];
 
 				card_sr.onmouseover = function() {
 					cgc = document.getElementById("card-grid-container");
 					cgc.innerHTML = "";
-					const gridified_card = gridifyCard(card_stats, true, true);
+					const gridified_card = gridifyCard(card_stats, true);
 					gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 					gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 					if (card_stats.shape.includes("double"))
@@ -814,8 +814,9 @@ def generateHTML(codes):
 
 	html_content += '''
 
-		function gridifyCard(card_stats, card_text = false, rotate_card = false, designer_notes = false) {
+		function gridifyCard(card_stats, card_text = false, small = false, designer_notes = false) {
 			const card_name = card_stats.card_name;
+			rotate_card = !small && card_stats.rotated;
 
 			if (!card_text)
 			{
@@ -979,7 +980,7 @@ def generateHTML(codes):
 							card_in_deck.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
 								cgc.innerHTML = "";
-								const gridified_card = gridifyCard(card_stats, true, true);
+								const gridified_card = gridifyCard(card_stats, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 								if (card_stats.shape.includes("double"))
@@ -1072,7 +1073,7 @@ def generateHTML(codes):
 							card_img.onmouseover = function() {
 								cgc = document.getElementById("card-grid-container");
 								cgc.innerHTML = "";
-								const gridified_card = gridifyCard(card_stats, true, true);
+								const gridified_card = gridifyCard(card_stats, true);
 								gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
 								gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
 								if (card_stats.shape.includes("double"))
