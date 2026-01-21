@@ -1,0 +1,4408 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>GSC</name>
+			<longname>Ghariv, the Sacred City</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>Jorah, the High and Holy</name>
+			<text>Whenever Jorah, the High and Holy enters the battlefield or attacks, you get {V} (an influence counter).
+Creatures you don&apos;t control with power less than or equal to your influence can&apos;t attack or block.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/23_Jorah, the High and Holy.jpg" num="23">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unholy Spirit</name>
+			<text>Return target creature card from your graveyard to the battlefield. If {W} was spent to cast Unholy Spirit, put a +1/+1 counter on that creature for each other creature card in all graveyards. If {B} was spent to cast Unholy Spirit, that creature assimilates all creatures cards in all graveyards.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/228_Unholy Spirit.jpg" num="228">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2W/BW/B</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mangled Sanity</name>
+			<text>Enchant player
+Whenever enchanted player casts a spell, you may reveal a card from your hand that shares a type with that spell and cast it without paying its mana cost.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/62_Mangled Sanity.jpg" num="62">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Æthereal Elemental</name>
+			<text>Flash
+When Æthereal Elemental enters the battlefield, change the target of target spell that targets only a single creature to Æthereal Elemental.
+When Æthereal Elemental dies, draw two cards, then discards two cards.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/200_Æthereal Elemental.jpg" num="200">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>U/RU/R</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crippling Abnormality</name>
+			<text>Flying, menace
+When Crippling Abnormality enters the battlefield, target opponent controls you during your next turn. (That player sees all cards you could see and makes all decisions for you.)</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/87_Crippling Abnormality.jpg" num="87">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Phylogelly</name>
+			<text>Haste
+{1{B}G}, {T}, Sacrifice another creature: Search your library for a creature card with base power equal to 1 plus the sacrificed creature&apos;s base power, put it onto the battlefield, then shuffle your library. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/220_Phylogelly.jpg" num="220">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ooze</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1BG/}B/G</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>God&apos;s Ruinous Wake</name>
+			<text>God&apos;s Ruinous Wake deals 10 damage to each creature and each planeswalker. Lands you don&apos;t control don&apos;t untap during their controllers&apos; next untap steps.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/132_God&apos;s Ruinous Wake.jpg" num="132">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4RR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hallowed Lieutenant</name>
+			<text>Double strike
+Whenever Hallowed Lieutenant or another creature enters the battlefield under your control, create a colorless Equipment artifact token with &quot;Equipped creature gets +1/+1&quot; and equip {1}, then attach it to that creature.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/213_Hallowed Lieutenant.jpg" num="213">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RW/}R/W</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lumbering Ancient</name>
+			<text>Trample
+When Lumbering Ancient dies, put eight +1/+1 counters on target creature you control.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/174_Lumbering Ancient.jpg" num="174">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>8/8</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ancient Gharial</name>
+			<text>Flash
+Ancient Gharial can&apos;t be countered.
+When Ancient Gharial enters the battlefield, scry 3.
+When Ancient Gharial leaves the battlefield, shuffle it into its owner&apos;s library.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/201_Ancient Gharial.jpg" num="201">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crocodile</type>
+				<maintype>Creature</maintype>
+				<manacost>5G/UG/U</manacost>
+				<cmc>7</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>7/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Good Book of God</name>
+			<text>{4}, {T}: Shuffle your library, then reveal the top card. If it&apos;s a nonland card with converted mana cost less than or equal to your influence, you may cast it without paying its mana cost. Otherwise, put it into your hand and you get {V} (an influence counter).</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/233_The Good Book of God.jpg" num="233">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Cirno, Sly Arcanist</name>
+			<text>Any number of target players each draw a card.
+Cirno, Sly Arcanist deals damage to target player equal to the number of cards in their hand.
+You get an emblem with &quot;Whenever an opponent would draw a card outside of his or her draw step, instead you draw a card and this emblem deals 3 damage to that player.&quot;</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/196_Cirno, Sly Arcanist.jpg" num="196">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Cirno</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>3UR</manacost>
+				<cmc>5</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Jin, the Fabled Child</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/197_Jin, the Fabled Child.jpg" num="197">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Jin</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>RGW</manacost>
+				<cmc>3</cmc>
+				<colors>WRG</colors>
+				<coloridentity>WRG</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>U&apos;ru, Grim Harvester</name>
+			<text>Up to one target creature you control gets +1/+1 until end of turn. Up to one target creature you don&apos;t control gets -1/-1 until end of turn.
+Target opponent sacrifices a creature. Up to one target creature you control assimilates that card.
+You get an emblem with &quot;Whenever a nontoken creature you control dies, return that card to its owner&apos;s hand.&quot;</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/198_U&apos;ru, Grim Harvester.jpg" num="198">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — U&apos;ru</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Vera, the Corrupted</name>
+			<text>Exile the top card of target player&apos;s library and up to one target card in that player&apos;s graveyard.
+Until end of turn, Vera, the Corrupted becomes a 4/4 Nightmare creature with indestructible and all abilities of creatures cards exiled with her that&apos;s still a planeswalker. Prevent all damage that would be dealt to her this turn.
+Exile target creature.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/GSC-files/img/199_Vera, the Corrupted.jpg" num="199">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Vera</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1WUB</manacost>
+				<cmc>4</cmc>
+				<colors>WUB</colors>
+				<coloridentity>WUB</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Cunning Strategist</name>
+			<text>Whenever a creature enters the battlefield under your control, you get {V} (an influence counter).
+Whenever Cunning Strategist attacks, you may have creatures you control have base power and toughness X/X until end of turn, where X is your influence.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/12_Cunning Strategist.jpg" num="12">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>High Priest of the Locus</name>
+			<text>When High Priest of the Locus enters the battlefield, suppress target nonland permanent an opponent controls until High Priest of the Locus leaves the battlefield. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/21_High Priest of the Locus.jpg" num="21">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bishop&apos;s Steed</name>
+			<text>Flying, vigilance
+Attacking creatures you control get +1/+0.
+Blocking creatures you control get +0/+1.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/7_Bishop&apos;s Steed.jpg" num="7">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Pegasus</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ladria, Windwatcher</name>
+			<text>When Ladria, Windwatcher enters the battlefield, create two 1/1 white Bird creature tokens with flying.
+Whenever Ladria attacks, put a +1/+1 counter on each other creature you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/25_Ladria, Windwatcher.jpg" num="25">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Centaur Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>3WWW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Holtun-Band Emissary</name>
+			<text>While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
+Whenever Holtun-Band Emissary becomes the target of a spell or ability, other Centaurs you control gain indestructible until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/22_Holtun-Band Emissary.jpg" num="22">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Flagbearer</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The First Cleanse</name>
+			<text>You get {V} (an influence counter), then choose any number of creatures with total power less than or equal to your influence. Destroy the rest.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/16_The First Cleanse.jpg" num="16">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Absolute Scripture</name>
+			<text>Choose a card name. Until your next turn, your opponents can&apos;t cast spells with the chosen name or attack with creatures with the chosen name.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/1_Absolute Scripture.jpg" num="1">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Grace of God</name>
+			<text>At the beginning of each end step, if you lost life this turn, put a blessing counter on Grace of God.
+If a source would deal damage to you for the first time each turn, prevent up to X of that damage, where X is the number of blessing counters on Grace of God.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/19_Grace of God.jpg" num="19">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Forgotten Journey</name>
+			<text>Exile all creatures. Return them to the battlefield under their owners&apos; control at the beginning of the next end step.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/211_Forgotten Journey.jpg" num="211">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>{/1WU/}W/U</manacost>
+				<cmc>4</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Locus Informant</name>
+			<text>Flash
+When Locus Informant enters the battlefield, look at target opponent&apos;s hand. You may have that player put all the cards in their hand on the bottom of their library in a random order, then draw that many cards.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/61_Locus Informant.jpg" num="61">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Incandescent Drake</name>
+			<text>Flying
+Whenever you cast an instant or sorcery spell, suppress target nonland permanent an opponent controls until your next turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/58_Incandescent Drake.jpg" num="58">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Souleater Hag</name>
+			<text>{U}, Return another creature you control to its owner&apos;s hand: Souleater Hag becomes a copy of that creature until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/74_Souleater Hag.jpg" num="74">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Letholda, Manic Archivist</name>
+			<text>Hexproof
+You have no maximum hand size.
+At the beginning of your end step, draw a card if you have seven or more cards in hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/60_Letholda, Manic Archivist.jpg" num="60">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Hag Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>UUU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dubious Exorcism</name>
+			<text>Target creature&apos;s controller shuffles it into their library, then reveals cards from the top of their library until they reveal a creature card. The player puts that card onto the battlefield, then shuffles the rest of the revealed cards into their library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/49_Dubious Exorcism.jpg" num="49">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Transcend</name>
+			<text>The next spell you cast this turn costs {4}{U} to cast.
+Draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/76_Transcend.jpg" num="76">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mistranslate</name>
+			<text>Exile target creature or spell. Its controller may cast that card without paying its mana cost at the beginning of their next upkeep.
+Reprise {U} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/64_Mistranslate.jpg" num="64">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fated Path</name>
+			<text>Whenever you reprise onto an instant or sorcery spell, you may pay {U}. If you do, create a 2/2 blue Spirit creature token with flying.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/53_Fated Path.jpg" num="53">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Soulstirrer Hag</name>
+			<text>{2}{U}: Counter target noncreature spell unless its controller pays {1}.
+{2}{B}: Destroy another target creature unless its controller pays {1}.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/226_Soulstirrer Hag.jpg" num="226">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1UB/}U/B</manacost>
+				<cmc>4</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Silt Basin Scorpion</name>
+			<text>When Silt Basin Scorpion enters the battlefield, it assimilates target creature an opponent controls. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/106_Silt Basin Scorpion.jpg" num="106">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Scorpion</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Grisly Misanthrope</name>
+			<text>Menace
+Whenever Grisly Misanthrope deals combat damage to a player, remove a counter from that player and from up to one target permanent that player controls.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/93_Grisly Misanthrope.jpg" num="93">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skullseer Priest</name>
+			<text>{2}, Sacrifice another creature: You get {V} (an influence counter).
+{2}{B}{B}: Return target creature card with converted mana cost less than or equal to your influence from your graveyard to the battlefield tapped. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/108_Skullseer Priest.jpg" num="108">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blarglou the Magnificent</name>
+			<text>Whenever an opponent loses life, that player reveals their hand. You choose a nonland card from it with converted mana cost less than or equal to the life that player lost. That player discards that card.
+Whenever an opponent discards a creature card, create a tapped 2/2 black Zombie Orc creature token.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/81_Blarglou the Magnificent.jpg" num="81">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Orc Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>2BBB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Slough Stalker</name>
+			<text>Whenever Slough Stalker or another Hag you control deals combat damage to an opponent, you draw a card and you lose 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/109_Slough Stalker.jpg" num="109">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Canker Purge</name>
+			<text>Destroy target creature whose power and toughness aren&apos;t equal.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/83_Canker Purge.jpg" num="83">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Twisted Testament</name>
+			<text>You get {V} (an influence counter), then search your library for a card, put that card into your graveyard, then shuffle your library. If its converted mana cost is less than or equal to your influence, you may reveal it and put it into your hand instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/115_Twisted Testament.jpg" num="115">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bite the Dust</name>
+			<text>Exile target creature or planeswalker. Up to one target permanent you control that shares a type with that card assimilates it. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/80_Bite the Dust.jpg" num="80">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bloodstained Warcaller</name>
+			<text>Menace
+Whenever Bloodstained Warcaller deals combat damage to a player, create that many 1/1 black and red Orc Berserker creature tokens with &quot;When this creature dies, it deals 1 damage to target opponent.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/203_Bloodstained Warcaller.jpg" num="203">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/RB/R</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stormcaster Mage</name>
+			<text>Flash
+When Stormcaster Mage enters the battlefield, target instant or sorcery card in your graveyard with converted mana cost 3 or less gains reprise {0} until end of turn. (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.) (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/149_Stormcaster Mage.jpg" num="149">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Slaughterous Swine</name>
+			<text>Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)
+Players can&apos;t gain life.
+Damage dealt by sources you control can&apos;t be prevented.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/147_Slaughterous Swine.jpg" num="147">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Boar</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Conflagrant Clairvoyant</name>
+			<text>This spell costs {1} less to cast for each instant and sorcery card in your graveyard.
+Whenever you reprise onto an instant or sorcery spell, copy it. You may choose new targets for the copy.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/126_Conflagrant Clairvoyant.jpg" num="126">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>6RR</manacost>
+				<cmc>8</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hadra, the Last Dragon</name>
+			<text>Flying
+Whenever a source you control deals damage to one or more creatures an opponent controls, put a +1/+1 counter on Hadra, the Last Dragon.
+Whenever a source you control deals damage to an opponent, exile the top card of your library. You may play that card for as long as you control Hadra.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/134_Hadra, the Last Dragon.jpg" num="134">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dragon Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>1RRR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Oathbreaker Orc</name>
+			<text>Oathbreaker Orc attacks each combat if able.
+Whenever Oathbreaker Orc attacks, it deals 2 damage to defending player unless that player sacrifices a permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/140_Oathbreaker Orc.jpg" num="140">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Temper Tantrum</name>
+			<text>Target creature gets +2/+2 until end of turn. If that creature would deal damage to a permanent or player this turn, it deals double that damage to that permanent or player instead. If a source would deal damage to the creature this turn, it deals double that damage to the creature instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/151_Temper Tantrum.jpg" num="151">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Thunderous Roar</name>
+			<text>Target creature you control gets +X/+0 until end of turn. It deals damage equal to its power to target creature you don&apos;t control.
+Reprise—{1}{R}, Discard X cards. (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/153_Thunderous Roar.jpg" num="153">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>XRR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mind Meld</name>
+			<text>Whenever an opponent casts a spell, reveal cards from the top of your library until you reveal a card with converted mana cost equal to that spell&apos;s. You may cast that card without paying its mana cost. Put the rest on the bottom of your library in a random order.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/138_Mind Meld.jpg" num="138">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Elder Stag</name>
+			<text>Trample
+Whenever Elder Stag deals combat damage to a player, add that much mana in any combination of {R} and/or {G} at the beginning of your next postcombat main phase.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/210_Elder Stag.jpg" num="210">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elk</type>
+				<maintype>Creature</maintype>
+				<manacost>2R/GR/G</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Phytocreeper</name>
+			<text>When Phytocreeper enters the battlefield, it assimilates up to one creature card in your hand. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)
+Whenever a creature card is assimilated by a creature you control, you may draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/181_Phytocreeper.jpg" num="181">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Centauri Watchmen</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+If a spell or ability an opponent controls would cause you to discard a creature card, put that card onto the battlefield instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/161_Centauri Watchmen.jpg" num="161">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greenglade Bugler</name>
+			<text>Play with the top card of your library revealed.
+{1}{G}, {T}: If the top card of your library is a land card, put it into your hand. Otherwise, another target creature gets +2/+2 until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/165_Greenglade Bugler.jpg" num="165">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jevara Wildborn</name>
+			<text>Beasts you control get +1/+1 and have trample.
+{2}{G}{G}{G}: Create a 3/3 green Beast creature token.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/172_Jevara Wildborn.jpg" num="172">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>2GGG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pack Partisan</name>
+			<text>Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)
+Creature spells you control and spells you control that target one or more creatures you control can&apos;t be countered by spells or abilities.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/180_Pack Partisan.jpg" num="180">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wolf</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Uproot</name>
+			<text>Put the top four cards of your library into your graveyard, then for each permanent type, return up to one card of that type from your graveyard to your hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/192_Uproot.jpg" num="192">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hunter&apos;s Prowess</name>
+			<text>Until end of turn, target creature gets +3/+3 and gains trample and &quot;Whenever this creature deals combat damage to a player, draw that many cards.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/170_Hunter&apos;s Prowess.jpg" num="170">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Reforestation Rite</name>
+			<text>Whenever a creature enters the battlefield under your control, you may put a land card from your hand onto the battlefield tapped.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/183_Reforestation Rite.jpg" num="183">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Greenglade Chevalier</name>
+			<text>Whenever Greenglade Chevalier or another Centaur enters the battlefield under your control, you may pay {GW}. If you do, put a +1/+1 counter on that creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/212_Greenglade Chevalier.jpg" num="212">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>G/WG/W</manacost>
+				<cmc>2</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crematory Wagon</name>
+			<text>Whenever one or more creatures crew Crematory Wagon, Crematory Wagon gains all abilities of those creatures until end of turn.
+Crew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/231_Crematory Wagon.jpg" num="231">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Vehicle</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Web of Wonders</name>
+			<text>{3}, {T}: Activate an activated ability of target creature you control without paying its costs.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/241_Web of Wonders.jpg" num="241">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Hallowed Chapel</name>
+			<text>When Hallowed Chapel enters the battlefield, you get {V} (an influence counter).
+{T}: Add {C}.
+{3}, {T}: Draw a card, then put a card from your hand on the bottom of your library. Activate this ability only if your influence is 3 or greater.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/246_Hallowed Chapel.jpg" num="246">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Sunlit Stream</name>
+			<text>({T}: Add {W} or {U}.)
+Sunlit Stream enters the battlefield tapped unless you control a colored permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/248_Sunlit Stream.jpg" num="248">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Grim Quagmire</name>
+			<text>({T}: Add {U} or {B}.)
+Grim Quagmire enters the battlefield tapped unless you control a colored permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/245_Grim Quagmire.jpg" num="245">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Scorched Ruins</name>
+			<text>({T}: Add {B} or {R}.)
+Scorched Ruins enters the battlefield tapped unless you control a colored permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/247_Scorched Ruins.jpg" num="247">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Thriving Peaks</name>
+			<text>({T}: Add {R} or {G}.)
+Thriving Peaks enters the battlefield tapped unless you control a colored permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/249_Thriving Peaks.jpg" num="249">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Cloistered Mill</name>
+			<text>({T}: Add {G} or {W}.)
+Cloistered Mill enters the battlefield tapped unless you control a colored permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/GSC-files/img/242_Cloistered Mill.jpg" num="242">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Wakestone Gargoyle</name>
+			<text>Defender (This creature can&apos;t attack.)
+Flying
+{1}{W}: Creatures you control with defender can attack this turn as though they didn&apos;t have defender.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/38_Wakestone Gargoyle.jpg" num="38">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gargoyle</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cybres-Band Lancer</name>
+			<text>First strike
+Whenever Cybres-Band Lancer attacks, another target attacking Centaur you control gets +1/+1 and gains first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/13_Cybres-Band Lancer.jpg" num="13">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Maiden of the Golden Graves</name>
+			<text>When Maiden of the Golden Graves enters the battlefield, you get {V} (an influence counter), then return up to one creature card with converted mana cost less than or equal to your influence from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/30_Maiden of the Golden Graves.jpg" num="30">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Faithful Scribe</name>
+			<text>When Faithful Scribe enters the battlefield, you get {V} (an influence counter).
+Faithful Scribe gets +1/+1 as long as your influence is 3 or greater.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/15_Faithful Scribe.jpg" num="15">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Apprentice Lancer</name>
+			<text>When Apprentice Lancer enters the battlefield, you may reveal a Centaur card from your hand. If you do, put a +1/+1 counter on Apprentice Lancer.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/3_Apprentice Lancer.jpg" num="3">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hero of Hedria</name>
+			<text>Double strike</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/20_Hero of Hedria.jpg" num="20">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sanguine Ritualist</name>
+			<text>Vigilance
+Whenever a creature attacks you, suppress it until end of turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/35_Sanguine Ritualist.jpg" num="35">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blacktalon Griffin</name>
+			<text>Flying
+As long as Blacktalon Griffin is attacking, it gets +1/+0.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/8_Blacktalon Griffin.jpg" num="8">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Griffin</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Message of Warfare</name>
+			<text>Create two 2/2 white Centaur Knight creature tokens with vigilance. If you attacked with a Page this turn, put a +1/+1 counter on each creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/31_Message of Warfare.jpg" num="31">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Visions of Peace</name>
+			<text>You get {V} (an influence counter), then Visions of Peace deals damage equal to your influence divided as you choose among any number of target attacking or blocking creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/37_Visions of Peace.jpg" num="37">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Last Bastion</name>
+			<text>Choose one —
+• Create two 1/1 red and white Citizen creature tokens.
+• Create a 0/4 colorless Wall artifact creature token with defender.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/26_Last Bastion.jpg" num="26">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Arbitrate</name>
+			<text>Exile target nonland permanent with one or fewer abilities. Its controller gains 4 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/4_Arbitrate.jpg" num="4">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sacrament of Penance</name>
+			<text>When Sacrament of Penance enters the battlefield, exile target creature an opponent controls until Sacrament of Penance leaves the battlefield.
+At the beginning of each upkeep, suppress all creatures that share a creature type with the exiled card. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/34_Sacrament of Penance.jpg" num="34">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Crippling Warbler</name>
+			<text>Crippling Warbler can&apos;t be blocked unless defending player pays {2} for each creature blocking it.
+Sacrifice Crippling Warbler: Counter target spell or ability that targets you or a permanent you control unless that spell&apos;s controller pays {2}.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/47_Crippling Warbler.jpg" num="47">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ætherstewer</name>
+			<text>Whenever Ætherstewer or another Hag you control deals combat damage to a player, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/41_Ætherstewer.jpg" num="41">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Corrupted Seer</name>
+			<text>When Corrupted Seer enters the battlefield, look at the top two cards of your library. Put one of them into your hand and the other back on top of your library or into your graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/46_Corrupted Seer.jpg" num="46">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Keeper of the Ancient Winds</name>
+			<text>Prowess
+When Keeper of the Ancient Winds enters the battlefield, you may search your library for an instant or sorcery card with reprise, put that card into your graveyard, then shuffle your library.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/59_Keeper of the Ancient Winds.jpg" num="59">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Empyrean Owl</name>
+			<text>Flying
+Whenever you reprise onto an instant or sorcery spell, Empyrean Owl gets +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/51_Empyrean Owl.jpg" num="51">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ghast of Councils Past</name>
+			<text>Flying
+Whenever a creature an opponent controls becomes the target of a spell or ability, suppress that creature until end of turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/55_Ghast of Councils Past.jpg" num="55">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scorner of the Meek</name>
+			<text>When Scorner of the Meek enters the battlefield, you may return target nonland permanent with one or fewer abilities to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/69_Scorner of the Meek.jpg" num="69">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>On Wondrous Winds</name>
+			<text>Exile target creature you control and target creature you don&apos;t control. Return those cards to the battlefield under their owners&apos; control at the beginning of the next end step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/65_On Wondrous Winds.jpg" num="65">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Message of Discovery</name>
+			<text>Draw two cards. If you attacked with a Page this turn, return up to one target instant or sorcery card from your graveyard to your hand. Exile Message of Discovery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/63_Message of Discovery.jpg" num="63">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Chapel&apos;s Edict</name>
+			<text>You get {V} (an influence counter), then counter target spell unless its controller pays X, where X is your influence.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/44_Chapel&apos;s Edict.jpg" num="44">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Unspoken Sermon</name>
+			<text>Whenever one or more creatures you control deal combat damage to a player, suppress up to one target nonland permanent that player controls until your next turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/77_Unspoken Sermon.jpg" num="77">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Persuasive Distraction</name>
+			<text>Return target creature to its owner&apos;s hand.
+Reprise {3}{U} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/66_Persuasive Distraction.jpg" num="66">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Chronicle</name>
+			<text>Scry 3.
+Reprise {U} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/45_Chronicle.jpg" num="45">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Carrion Coyote</name>
+			<text>When Carrion Coyote enters the battlefield, it assimilates target creature card in your graveyard. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/85_Carrion Coyote.jpg" num="85">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Coyote</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Locus Inquisitor</name>
+			<text>When Locus Inquisitor enters the battlefield, you get {V} (an influence counter), then another target creature gets -X/-X until end of turn, where X is your influence.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/96_Locus Inquisitor.jpg" num="96">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Festerleech</name>
+			<text>At the beginning of your upkeep, you lose 1 life.
+When Festerleech dies, target creature an opponent controls assimilates it. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/90_Festerleech.jpg" num="90">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Leech</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Nightwing Witch</name>
+			<text>Flying
+Nightwing Witch enters the battlefield tapped.
+When Nightwing Witch enters the battlefield, target opponent loses life equal to the number of tapped Hags you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/101_Nightwing Witch.jpg" num="101">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skullcruncher</name>
+			<text>When Skullcruncher dies, you may exile it. If you do, put the top three cards of your library into your graveyard, then return up to one creature card from your graveyard to your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/107_Skullcruncher.jpg" num="107">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Trisir Blood Priest</name>
+			<text>When Trisir Blood Priest enters the battlefield, you get {V} (an influence counter).
+Trisir Blood Priest has deathtouch as long as your influence is 3 or greater.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/114_Trisir Blood Priest.jpg" num="114">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chittering Bloodsucker</name>
+			<text>{1}{B}, Sacrifice another creature: Target opponent loses 2 life and you gain 2 life. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/86_Chittering Bloodsucker.jpg" num="86">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jorah&apos;s Devout</name>
+			<text>Whenever you get an influence counter, you may return Jorah&apos;s Devout from your graveyard to your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/95_Jorah&apos;s Devout.jpg" num="95">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Thought Persecution</name>
+			<text>You get {V} (an influence counter), then target player reveals their hand. You choose a nonland card from it with converted mana cost less than or equal to your influence. That player discards that card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/113_Thought Persecution.jpg" num="113">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Message of Admonition</name>
+			<text>Target player discards two cards. If you attacked with a Page this turn, that player loses 4 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/98_Message of Admonition.jpg" num="98">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Necrotic Buffet</name>
+			<text>When Necrotic Buffet enters the battlefield, put the top three cards of your library into your graveyard.
+Whenever one or more creature cards are put into your graveyard from your library, create a 1/1 blue and black Hag creature token with &quot;This creature can&apos;t be blocked unless defending player pays {2} for each creature blocking it.&quot;</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/100_Necrotic Buffet.jpg" num="100">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Fester</name>
+			<text>Target non-Hag creature gets -5/-5 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/89_Fester.jpg" num="89">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Soul Anguish</name>
+			<text>Lifelink (Damage dealt by this spell also causes you to gain that much life.)
+Soul Anguish deals 2 damage to target player and 2 damage to target creature that player controls.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/110_Soul Anguish.jpg" num="110">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Boundary Parapet</name>
+			<text>Defender, reach
+Whenever Boundary Parapet or another creature with defender enters the battlefield under your control, Boundary Parapet deals damage to target opponent equal to the number of creatures you control with defender.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/122_Boundary Parapet.jpg" num="122">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>0/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fireplume Bustard</name>
+			<text>Flying
+Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/130_Fireplume Bustard.jpg" num="130">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Volatile Ootheca</name>
+			<text>Defender (This creature can&apos;t attack.)
+When Volatile Ootheca dies, it deals 4 damage to target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/155_Volatile Ootheca.jpg" num="155">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Egg</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>0/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rampaging Stag</name>
+			<text>Haste
+Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/145_Rampaging Stag.jpg" num="145">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elk</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Deranged Pursuer</name>
+			<text>When Deranged Pursuer dies, target player sacrifices a permanent.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/128_Deranged Pursuer.jpg" num="128">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cavern Monitor</name>
+			<text>When Cavern Monitor enters the battlefield, create two 0/1 red Egg creature tokens. Exile those tokens when Cavern Monitor leaves the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/125_Cavern Monitor.jpg" num="125">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Studious Trainee</name>
+			<text>First strike
+Whenever you reprise onto an instant or sorcery spell, Studious Trainee gets +2/+0 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/150_Studious Trainee.jpg" num="150">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Punitive Stoning</name>
+			<text>You get {V} (an influence counter), then Punitive Stoning deals damage to target creature equal to your influence.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/141_Punitive Stoning.jpg" num="141">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Message of Incursion</name>
+			<text>Message of Incursion deals 3 damage divided as you choose among any number of target creatures. If you attacked with a Page this turn, Message of Incursion deals 3 damage to target player or planeswalker.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/137_Message of Incursion.jpg" num="137">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Territorial Rage</name>
+			<text>Target creature you control gets +2/+0 and gains your choice of double strike or trample until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/152_Territorial Rage.jpg" num="152">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Radicalize</name>
+			<text>Radicalize deals 1 damage to target player. Create a 1/1 red and white Citizen creature token.
+Reprise {1}{R} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/143_Radicalize.jpg" num="143">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Grimwood Purification</name>
+			<text>Grimwood Purification deals 2 damage to each creature.
+Reprise {2}{R} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/133_Grimwood Purification.jpg" num="133">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fatal Furor</name>
+			<text>Untap target creature you control. After this main phase, there is an additional combat phase followed by an additional main phase. Sacrifice that creature at the beginning of the next end step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/129_Fatal Furor.jpg" num="129">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Murkborn Mammoth</name>
+			<text>Trample
+Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/178_Murkborn Mammoth.jpg" num="178">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elephant</type>
+				<maintype>Creature</maintype>
+				<manacost>5GG</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>7/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cybres-Band Ranger</name>
+			<text>Vigilance
+Reach (This creature can block creatures with flying.)
+{3}{G}: Cybres-Band Ranger gets +2/+2 until end of turn. Activate this ability only once each turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/163_Cybres-Band Ranger.jpg" num="163">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Archer</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Centaur Wayfinder</name>
+			<text>Whenever Centaur Wayfinder attacks, up to two target Centaurs you control each get +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/160_Centaur Wayfinder.jpg" num="160">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Holtun-Band Elder</name>
+			<text>When Holtun-Band Elder dies, create two 2/2 green and white Centaur Knight creature tokens with vigilance.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/169_Holtun-Band Elder.jpg" num="169">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Clever Fox</name>
+			<text>Hexproof (This creature can&apos;t be the target of spells or abilities your opponents control.)
+Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/162_Clever Fox.jpg" num="162">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fox</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Branchbasher</name>
+			<text>When Branchbasher enters the battlefield, it fights target creature you don&apos;t control. (Each deals damage to its power to the other.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/157_Branchbasher.jpg" num="157">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Meandering Mossback</name>
+			<text>When Meandering Mossback enters the battlefield, put the top three cards of your library into your graveyard, then Meandering Mossback assimilates a land card in your graveyard. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/175_Meandering Mossback.jpg" num="175">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant Lizard</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Grimwood Guardian</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+When Grimwood Guardian enters the battlefield, another target creature gets +2/+2 until end of turn. Untap it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/167_Grimwood Guardian.jpg" num="167">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Invocation of Strength</name>
+			<text>You get {V} (an influence counter), then target creature you control gains trample and gets +X/+X until end of turn, where X is your influence.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/171_Invocation of Strength.jpg" num="171">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Heightened Senses</name>
+			<text>This spell costs {2} less to cast if it targets a Centaur.
+Put two +1/+1 counters on target creature you control. That creature gains hexproof until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/168_Heightened Senses.jpg" num="168">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Message of Expansion</name>
+			<text>Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library. If you attacked with a Page this turn, untap all lands you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/176_Message of Expansion.jpg" num="176">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Root Through Ruins</name>
+			<text>Destroy target artifact or enchantment. If that permanent wasn&apos;t an Aura or Equipment, target creature you control assimilates that card. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/184_Root Through Ruins.jpg" num="184">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Verdant Rebirth</name>
+			<text>Until end of turn, target creature gains &quot;When this creature dies, return it to its owner&apos;s hand.&quot;
+Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/193_Verdant Rebirth.jpg" num="193">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hand of the High and Holy</name>
+			<text>At the beginning of each upkeep, suppress target creature an opponent controls until end of turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/214_Hand of the High and Holy.jpg" num="214">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1WU/}W/U</manacost>
+				<cmc>4</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Murk Maiden</name>
+			<text>Other Hags you control get +1/+1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/219_Murk Maiden.jpg" num="219">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>U/BU/B</manacost>
+				<cmc>2</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Murderous Exhibitionist</name>
+			<text>First strike
+{1{B}R}, Sacrifice a creature: Other creatures you control get +2/+0 until end of turn and attack this turn if able. Activate this only any time you could cast a sorcery and only once each turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/218_Murderous Exhibitionist.jpg" num="218">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/RB/R</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Canopy Sovereign</name>
+			<text>Trample
+Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)
+Spells that target creatures you control cost {1} less to cast.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/205_Canopy Sovereign.jpg" num="205">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat</type>
+				<maintype>Creature</maintype>
+				<manacost>3R/GR/G</manacost>
+				<cmc>5</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warband Lieutenant</name>
+			<text>Other Centaurs you control get +1/+1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/229_Warband Lieutenant.jpg" num="229">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>G/WG/W</manacost>
+				<cmc>2</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sanctum Soultender</name>
+			<text>When Sanctum Soultender enters the battlefield, you get {V} (an influence counter), then exile target creature an opponent controls until Sanctum Soultender leaves the battlefield. If that creature&apos;s power is less than or equal to your influence, destroy it instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/224_Sanctum Soultender.jpg" num="224">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>2W/BW/B</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arcane Scholar</name>
+			<text>Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+Whenever you reprise onto an instant or sorcery spell, you may draw a card. If you do, discard a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/202_Arcane Scholar.jpg" num="202">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1UR/}U/R</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hinterland Basilisk</name>
+			<text>Trample, deathtouch
+{1{B}G}{BG}: Target creature you control assimilates Hinterland Basilisk. Activate this ability only if Hinterland Basilisk is in your graveyard. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/216_Hinterland Basilisk.jpg" num="216">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Basilisk</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/GB/G</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dragonfire Ballista</name>
+			<text>Defender (This creature can&apos;t attack.)
+{1{R}W}, {T}: Dragonfire Ballista deals damage to target attacking creature equal to the number of creatures you control with defender.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/208_Dragonfire Ballista.jpg" num="208">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RW/}R/W</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Primal Amalgam</name>
+			<text>When Primal Amalgam enters the battlefield, choose one —
+• Another target creature has base power and toughness 1/1 until end of turn.
+• Another target creature has base power and toughness 5/5 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/221_Primal Amalgam.jpg" num="221">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1GU/}G/U</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>His Majesty&apos;s Skyship</name>
+			<text>Flying
+Crew 4 (Tap any number of creatures you control with total power 4 or more: This Vehicle becomes an artifact creature until end of turn.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/234_His Majesty&apos;s Skyship.jpg" num="234">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Vehicle</type>
+				<maintype>Artifact</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Riverway Gondola</name>
+			<text>Riverway Gondola can&apos;t be blocked unless defending player pays {2} for each creature blocking it.
+Crew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/239_Riverway Gondola.jpg" num="239">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Vehicle</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Trip Noose</name>
+			<text>{2}, {T}: Tap target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/240_Trip Noose.jpg" num="240">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mortuary Shovel</name>
+			<text>{T}: Exile target card from a graveyard.
+{1}, {T}, Sacrifice Mortuary Shovel: Target player shuffles up to three target cards from their graveyard into their library.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/237_Mortuary Shovel.jpg" num="237">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Entrenching Silt</name>
+			<text>{T}: Add {C}.
+{1}, {T}: Suppress target nonbasic land until end of turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/GSC-files/img/243_Entrenching Silt.jpg" num="243">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Golden Raven Squire</name>
+			<text>When Golden Raven Squire enters the battlefield, you get {V} (an influence counter).
+As long as your influence is 3 or greater, Golden Raven Squire gets +0/+1 and has vigilance.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/18_Golden Raven Squire.jpg" num="18">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Keeper of the Sacred Oath</name>
+			<text>When Keeper of the Sacred Oath enters the battlefield, you get {V} (an influence counter).
+{W}, {T}: Tap target creature with power less than or equal to your influence.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/24_Keeper of the Sacred Oath.jpg" num="24">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blessed Ramparts</name>
+			<text>Defender (This creature can&apos;t attack.)
+When Blessed Ramparts enters the battlefield, you gain 3 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/9_Blessed Ramparts.jpg" num="9">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>0/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Last Line Enforcer</name>
+			<text>Defender (This creature can&apos;t attack.)
+When Last Line Enforcer enters the battlefield, put two +1/+1 counters on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/27_Last Line Enforcer.jpg" num="27">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Low Priest of the Locus</name>
+			<text>When Low Priest of the Locus enters the battlefield, suppress target creature until your next turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/28_Low Priest of the Locus.jpg" num="28">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Envoy of the Pure</name>
+			<text>Vigilance
+When Envoy of the Pure enters the battlefield, other creatures you control get +1/+1 and gain vigilance until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/14_Envoy of the Pure.jpg" num="14">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Borderland Warden</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/10_Borderland Warden.jpg" num="10">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fleetfoot Courier</name>
+			<text>First strike
+Whenever Fleetfoot Courier deals combat damage to a player, untap target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/17_Fleetfoot Courier.jpg" num="17">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Page</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arroyd Pass Shepherd</name>
+			<text>Lifelink</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/5_Arroyd Pass Shepherd.jpg" num="5">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Luminous Doves</name>
+			<text>Flying
+Whenever Luminous Doves attacks, you may tap target creature without flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/29_Luminous Doves.jpg" num="29">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Assault Griffin</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/6_Assault Griffin.jpg" num="6">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Griffin</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warrior&apos;s Ways</name>
+			<text>Target creature you control gets +2/+2 until end of turn. Put a +1/+1 counter on up to one target Centaur you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/39_Warrior&apos;s Ways.jpg" num="39">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Answered Prayers</name>
+			<text>You get {V} (an influence counter), then you gain life equal to twice your influence.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/2_Answered Prayers.jpg" num="2">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Comeuppance</name>
+			<text>Enchant creature
+When Comeuppance enters the battlefield, suppress enchanted creature until Comeuppance leaves the battlefield. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)
+Enchanted creature can&apos;t attack or block.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/11_Comeuppance.jpg" num="11">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Righteous Purge</name>
+			<text>Destroy target creature with toughness 4 or greater.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/33_Righteous Purge.jpg" num="33">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Swift Retribution</name>
+			<text>Swift Retribution deals 3 damage to target attacking creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/36_Swift Retribution.jpg" num="36">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Nightly Preparations</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Enchant creature
+When Nightly Preparations enters the battlefield, untap enchanted creature.
+Enchanted creature gets +1/+1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/32_Nightly Preparations.jpg" num="32">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Hasty Sanctions</name>
+			<text>Tap target creature. Suppress it until your next turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/215_Hasty Sanctions.jpg" num="215">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>{/1WU/}</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Disciple of the Cloth</name>
+			<text>When Disciple of the Cloth enters the battlefield, you get {V} (an influence counter).
+As long as your influence is 3 or greater, Disciple of the Cloth gets +1/+1 and has lifelink.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/207_Disciple of the Cloth.jpg" num="207">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>3W/B</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Third Hand of the Magistrate</name>
+			<text>{U}, {T}: Suppress target creature until end of turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/75_Third Hand of the Magistrate.jpg" num="75">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cauldron Diviner</name>
+			<text>When Cauldron Diviner enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/43_Cauldron Diviner.jpg" num="43">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Prophecy Babbler</name>
+			<text>When Prophecy Babbler enters the battlefield, draw two cards, then put two cards from your hand on the bottom of your library in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/67_Prophecy Babbler.jpg" num="67">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Withered Visage</name>
+			<text>When Withered Visage enters the battlefield, target creature gets -4/-0 until your next turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/78_Withered Visage.jpg" num="78">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sleetscale Serpent</name>
+			<text>Flying
+When Sleetscale Serpent enters the battlefield, tap target creature an opponent controls. It doesn&apos;t untap during its controller&apos;s next untap step.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/72_Sleetscale Serpent.jpg" num="72">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shrewd Courier</name>
+			<text>Whenever Shrewd Courier deals combat damage to a player, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/71_Shrewd Courier.jpg" num="71">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Page</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Acolyte of the Golden Raven</name>
+			<text>When Acolyte of the Golden Raven enters the battlefield, you get {V} (an influence counter).
+Acolyte of the Golden Raven has flying as long as your influence is 3 or greater.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/40_Acolyte of the Golden Raven.jpg" num="40">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>4U</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Riverway Koi</name>
+			<text>Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+Riverway Koi can&apos;t be blocked as long as you control a card in exile.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/68_Riverway Koi.jpg" num="68">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gale Raven</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/54_Gale Raven.jpg" num="54">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Guide Through the Gale</name>
+			<text>Target creature you control gets +1/+1 and gains flying until end of turn. If it&apos;s a Hag, whenever it whenever it deals combat damage to a player this turn, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/56_Guide Through the Gale.jpg" num="56">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Doze Off</name>
+			<text>Target creature has base power and toughness 1/1 until end of turn. Suppress that creature until end of turn. (A suppressed permanent loses all abilities and can&apos;t have or gain abilities.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/48_Doze Off.jpg" num="48">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Echoing Knowledge</name>
+			<text>Draw a card.
+Reprise {2} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/50_Echoing Knowledge.jpg" num="50">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Smokestream</name>
+			<text>Tap up to three target creatures.
+Reprise {2}{U} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/73_Smokestream.jpg" num="73">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Setting Sail</name>
+			<text>This spell costs {2} less to cast if it targets a permanent you control.
+Return target permanent to its owner&apos;s hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/70_Setting Sail.jpg" num="70">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Expel</name>
+			<text>Counter target spell unless its controller pays {3}.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/52_Expel.jpg" num="52">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hypnotic Trance</name>
+			<text>Enchant creature
+{1}: Tap enchanted creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/57_Hypnotic Trance.jpg" num="57">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Broken Will</name>
+			<text>Counter target spell with converted mana cost 4 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/42_Broken Will.jpg" num="42">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Madams of the Marsh</name>
+			<text>Create two 1/1 blue and black Hag creature tokens with &quot;This creature can&apos;t be blocked unless defending player pays {2} for each creature blocking it.&quot;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/217_Madams of the Marsh.jpg" num="217">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2U/B</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Prophet&apos;s Ramblings</name>
+			<text>Draw two cards, then discard two cards.
+Reprise {1{U}R} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/222_Prophet&apos;s Ramblings.jpg" num="222">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>{/1UR/}</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Moonglove Beetle</name>
+			<text>Deathtouch
+When Moonglove Beetle dies, you may pay {1}{B}. If you do, target creature you control assimilates it. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/99_Moonglove Beetle.jpg" num="99">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sovereign of the Slums</name>
+			<text>When Sovereign of the Slums enters the battlefield, you get {V} (an influence counter).
+As long as your influence is 3 or greater, Sovereign of the Slums gets +1/+0 and has menace.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/111_Sovereign of the Slums.jpg" num="111">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cardinal of Sin</name>
+			<text>When Cardinal of Sin enters the battlefield, you get {V} (an influence counter), then target opponent loses life equal to half your influence, rounded down.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/84_Cardinal of Sin.jpg" num="84">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wailing Wanderer</name>
+			<text>At the beginning of each opponent&apos;s upkeep, that player loses 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/116_Wailing Wanderer.jpg" num="116">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shambling Emissary</name>
+			<text>At the beginning of combat on your turn, target Hag you control gets +1/+0 and gains &quot;Whenever this creature deals combat damage to a player, that player discards a card&quot; until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/104_Shambling Emissary.jpg" num="104">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sporegraft Slime</name>
+			<text>When Sporegraft Slime dies, put two +1/+1 counters on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/112_Sporegraft Slime.jpg" num="112">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fungus</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Silt Basin Scavenger</name>
+			<text>{B}, Sacrifice another creature: Silt Basin Scavenger gets +2/-1 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/105_Silt Basin Scavenger.jpg" num="105">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fetid Courier</name>
+			<text>Whenever Fetid Courier deals combat damage to a player, that player loses 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/91_Fetid Courier.jpg" num="91">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag Page</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wretched Headhunter</name>
+			<text>When Wretched Headhunter enters the battlefield, if you control another Hag, you draw a card and you lose 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/117_Wretched Headhunter.jpg" num="117">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hag</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pestilent Leopardfly</name>
+			<text>Flying
+Whenever another creature dies, Pestilent Leopardfly gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/102_Pestilent Leopardfly.jpg" num="102">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Altar&apos;s Reap</name>
+			<text>As an additional cost to cast this spell, sacrifice a creature.
+Draw two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/79_Altar&apos;s Reap.jpg" num="79">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Greater Prey</name>
+			<text>Target creature you control gets +2/+0 until end of turn. When that creature dies this turn, another creature you control assimilates that card. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/92_Greater Prey.jpg" num="92">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Maintain the Crypts</name>
+			<text>You get {V} (an influence counter). Target opponent discards a card, then you exile a number of cards from that player&apos;s graveyard equal to your influence.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/97_Maintain the Crypts.jpg" num="97">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Recall the Lost</name>
+			<text>Return up to two target creature cards from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/103_Recall the Lost.jpg" num="103">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Easy Prey</name>
+			<text>Destroy target creature with power 3 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/88_Easy Prey.jpg" num="88">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bleed Out</name>
+			<text>Destroy target creature. Its controller loses 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/82_Bleed Out.jpg" num="82">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Incapacitate</name>
+			<text>Up to two target creatures each get -1/-1 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/94_Incapacitate.jpg" num="94">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Shrieking Pusbag</name>
+			<text>Flying
+When Shrieking Pusbag enters the battlefield, sacrifice it unless you sacrifice another creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/225_Shrieking Pusbag.jpg" num="225">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1BR/}B/R</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Reclaimed Rot</name>
+			<text>Reveal the top five cards of your library. You may put a land or creature card from among them into your hand, then up to one target creature assimilates a creature card from among them. Put the rest into your graveyard. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/223_Reclaimed Rot.jpg" num="223">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>{/1BG/}</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tradeway Patrol</name>
+			<text>Defender (This creature can&apos;t attack.)
+First strike</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/154_Tradeway Patrol.jpg" num="154">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ammunition Corps</name>
+			<text>Defender (This creature can&apos;t attack.)
+{T}: Ammunition Corps deals 1 damage to each opponent.
+{4}: Untap Ammunition Corps.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/120_Ammunition Corps.jpg" num="120">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Molten Slagspitter</name>
+			<text>When Molten Slagspitter dies, it deals 1 damage to any target.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/139_Molten Slagspitter.jpg" num="139">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Burning Hart</name>
+			<text>First strike
+Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/124_Burning Hart.jpg" num="124">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elk</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Masked Courier</name>
+			<text>Menace
+Whenever Masked Courier deals combat damage to a player, put a +1/+1 counter on it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/136_Masked Courier.jpg" num="136">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Page</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Locus Enforcer</name>
+			<text>When Locus Enforcer enters the battlefield, you get {V} (an influence counter).
+Locus Enforcer gets +3/+0 as long as your influence is 3 or greater.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/135_Locus Enforcer.jpg" num="135">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scourge of Arroyd Pass</name>
+			<text>Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)
+{1}{R}: Scourge of Arroyd Pass gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/146_Scourge of Arroyd Pass.jpg" num="146">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wolf Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Zealous Aspirant</name>
+			<text>Haste
+Zealous Aspirant can&apos;t block.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/156_Zealous Aspirant.jpg" num="156">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Alleyway Instigator</name>
+			<text>Whenever Alleyway Instigator attacks, target creature can&apos;t block this turn if you control a card in exile.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/119_Alleyway Instigator.jpg" num="119">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spellbook Apprentice</name>
+			<text>Whenever Spellbook Apprentice deals combat damage to an opponent, the next noncreature spell you cast this turn costs {1} less to cast.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/148_Spellbook Apprentice.jpg" num="148">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rallying Chant</name>
+			<text>Target creature you control gets +2/+0 until end of turn. Other creatures you control get +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/144_Rallying Chant.jpg" num="144">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Flurry of Arrows</name>
+			<text>Flurry of Arrows deals 2 damage to target creature.
+Reprise {3}{R} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/131_Flurry of Arrows.jpg" num="131">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Brutal Blow</name>
+			<text>Destroy target artifact.
+Reprise {R} (As you cast an instant or sorcery spell, you may exile one card with reprise from your graveyard and pay its reprise cost. If you do, add its effects to that spell.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/123_Brutal Blow.jpg" num="123">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Deploy the Militia</name>
+			<text>Create three 1/1 red and white Citizen creature tokens. Those tokens gain haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/127_Deploy the Militia.jpg" num="127">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bloodscent Frenzy</name>
+			<text>Target creature gets +4/+1 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/121_Bloodscent Frenzy.jpg" num="121">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Act of Treason</name>
+			<text>Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/118_Act of Treason.jpg" num="118">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Pyretic Cleansing</name>
+			<text>Pyretic Cleansing deals 5 damage to target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/142_Pyretic Cleansing.jpg" num="142">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>To Battle</name>
+			<text>Put a +1/+1 counter on target creature you control. That creature gains haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/227_To Battle.jpg" num="227">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R/G</manacost>
+				<cmc>1</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Boisterous Braggart</name>
+			<text>First strike
+Whenever Boisterous Braggart attacks, it gets +1/+0 until end of turn for each untapped creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/204_Boisterous Braggart.jpg" num="204">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RW/}</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bristled Direbear</name>
+			<text>Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/158_Bristled Direbear.jpg" num="158">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bear</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sanctuary Centaur</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/186_Sanctuary Centaur.jpg" num="186">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warband Rallier</name>
+			<text>When Warband Rallier enters the battlefield, put two +1/+1 counters on target Centaur you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/195_Warband Rallier.jpg" num="195">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Centaur Cartographer</name>
+			<text>When Centaur Cartographer enters the battlefield, reveal the top card of your library. If it&apos;s a land card, put it onto the battlefield tapped. Otherwise, put it into your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/159_Centaur Cartographer.jpg" num="159">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Traipsing Seedstrewer</name>
+			<text>When Traipsing Seedstrewer enters the battlefield, create two 1/1 green Plant creature tokens.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/190_Traipsing Seedstrewer.jpg" num="190">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sporesucker</name>
+			<text>When Sporesucker enters the battlefield, look at the top three cards of your library. You may have Sporesucker assimilate a creature card from among them. Put the rest into your graveyard. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/189_Sporesucker.jpg" num="189">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warband Courier</name>
+			<text>Whenever Warband Courier deals combat damage to a player, untap up to two target lands.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/194_Warband Courier.jpg" num="194">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Page</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greenglade Informant</name>
+			<text>When Greenglade Informant enters the battlefield, you get {V} (an influence counter).
+As long as your influence is 3 or greater, Greenglade Informant gets +1/+1 and has trample.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/166_Greenglade Informant.jpg" num="166">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Slinking Ocelot</name>
+			<text>Adaptive (Whenever you cast an instant or sorcery spell that targets only this creature, copy it.)
+Slinking Ocelot can&apos;t be blocked except by creatures with flying or reach.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/187_Slinking Ocelot.jpg" num="187">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rootbound Grovetender</name>
+			<text>Reach (This creature can block creatures with flying.)
+Whenever one or more creatures an opponent controls with flying attack you, untap Rootbound Grovetender.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/185_Rootbound Grovetender.jpg" num="185">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Snipe</name>
+			<text>Target creature with flying gets -3/-3 until end of turn. Scry 1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/188_Snipe.jpg" num="188">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Predatory Consumption</name>
+			<text>Target creature you control deals damage equal to its power to target creature you don&apos;t control. When the creature you don&apos;t control dies this turn, the creature you control assimilates that card. (Exile the assimilated card with its host. The host gains all abilities of the assimilated card as long as it&apos;s on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/182_Predatory Consumption.jpg" num="182">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Entreat the Glade</name>
+			<text>Target creature you control gets +1/+1 until end of turn. You gain life equal to its toughness.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/164_Entreat the Glade.jpg" num="164">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Unfettered Expanse</name>
+			<text>Enchant land
+When Unfettered Expanse enters the battlefield, up to one target creature you control gets +2/+2 until end of turn.
+Enchanted land has &quot;{T}: Add two mana of any color.&quot;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/191_Unfettered Expanse.jpg" num="191">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Overgrowth</name>
+			<text>Destroy target artifact or enchantment. You gain 4 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/179_Overgrowth.jpg" num="179">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Let There Be Peace</name>
+			<text>Prevent all combat damage that would be dealt to you and creatures this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/173_Let There Be Peace.jpg" num="173">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Might of the Masses</name>
+			<text>Target creature you control gets +1/+1 until end of turn for each creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/177_Might of the Masses.jpg" num="177">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Cybres-Band Recruiter</name>
+			<text>When Cybres-Band Recruiter enters the battlefield, create a 2/2 green and white Centaur Knight creature token with vigilance.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/206_Cybres-Band Recruiter.jpg" num="206">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4G/W</manacost>
+				<cmc>5</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Earthbender Anaconda</name>
+			<text>Hexproof (This creature can&apos;t be the target of spells or abilities your opponents control.)
+When Earthbender Anaconda enters the battlefield, return another creature you control to its owner&apos;s hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/209_Earthbender Anaconda.jpg" num="209">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Snake</type>
+				<maintype>Creature</maintype>
+				<manacost>5G/U</manacost>
+				<cmc>6</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lava-Moat Parapet</name>
+			<text>Defender (This creature can&apos;t attack.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/236_Lava-Moat Parapet.jpg" num="236">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rickety Glider</name>
+			<text>Equipped creature gets +0/+2 and has flying.
+Equip {1}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/238_Rickety Glider.jpg" num="238">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Initiate&apos;s Loadout</name>
+			<text>Equipped creature gets +2/+1.
+Equip creature with power 2 or less {0} ({0}: Attach to target creature with power 2 or less you control. Equip only as a sorcery.)
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/235_Initiate&apos;s Loadout.jpg" num="235">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Burning Tar Trap</name>
+			<text>{5}, {T}, Sacrifice Burning Tar Trap: It deals 3 damage to target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/230_Burning Tar Trap.jpg" num="230">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Cryptic Relics</name>
+			<text>{T}: Add {C}.
+{3}, {T}, Sacrifice Cryptic Relics: Put two +1/+1 counters on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/232_Cryptic Relics.jpg" num="232">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Evolving Wilds</name>
+			<text>{T}, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/244_Evolving Wilds.jpg" num="244">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Plains</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/250_Plains.jpg" num="250">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Island</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/251_Island.jpg" num="251">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Swamp</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/252_Swamp.jpg" num="252">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Mountain</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/253_Mountain.jpg" num="253">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Forest</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/254_Forest.jpg" num="254">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Hag GSC</name>
+			<text>This creature can&apos;t be blocked unless defending player pays {2} for each creature blocking it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/4t_Hag.jpg" num="4">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Hag</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Citizen GSC</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/1t_Citizen.jpg" num="1">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Citizen</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Plant GSC</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/2t_Plant.jpg" num="2">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Centaur Knight GSC</name>
+			<text>Vigilance</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/GSC-files/img/3t_Centaur Knight.jpg" num="3">GSC</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Centaur Knight</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

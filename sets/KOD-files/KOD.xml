@@ -1,0 +1,4936 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>KOD</name>
+			<longname>Kahembo: Olde Dawn</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>End of Days</name>
+			<text>Choose a nonland permanent type, then destroy all nonland permanents that aren&apos;t of the chosen type.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/8_End of Days.jpg" num="8">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>All-Enduring Mafua</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/176_All-Enduring Mafua.jpg" num="176">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Mafua</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2W/BW/B</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Prodigious Panya // Great Escapade</name>
+			<text>Flash
+Flying
+Prodigious Panya has base power and toughness 4/4 during extra turns.
+
+---
+
+If it isn&apos;t an extra turn, take an extra turn after this one. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/42_Prodigious Panya.jpg" num="42">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Legendary Creature — Mouse Warrior // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>U // 3UU</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Plaxolotl</name>
+			<text>This spell costs {1} less to cast if you cast a spell with a mana payment of exactly {U} this turn. The same is true for {R}.
+Once each turn, when you cast a blue or red instant or sorcery spell with mana value 1, you may pay its mana cost. If you do, copy it. You may choose new targets for the copy.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/218_Plaxolotl.jpg" num="218">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Salamander</type>
+				<maintype>Creature</maintype>
+				<manacost>2U/R</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Trouble Brewing</name>
+			<text>Return all creature cards from your graveyard to the battlefield, then exile all but one of them.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/79_Trouble Brewing.jpg" num="79">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Threshing Sundew</name>
+			<text>When Threshing Sundew enters, merge up to one target creature card in your graveyard under it. Threshing Sundew has that card&apos;s abilities.
+When Threshing Sundew dies, return all other cards merged with it to their owner&apos;s hand.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/236_Threshing Sundew.jpg" num="236">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1BG/}B/G</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rainbow Phoenix</name>
+			<text>Flying, haste
+{2}{R}{R}, Exile a multicolored card from your graveyard: Return Rainbow Phoenix from your graveyard to the battlefield tapped. If it&apos;s your declare attackers step, it enters attacking.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/98_Rainbow Phoenix.jpg" num="98">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Phoenix</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warhound Shuja</name>
+			<text>Whenever Warhound Shuja attacks, look at the top three cards of your library. You may put a creature card with mana value less than or equal to Shuja&apos;s power from among them onto the battlefield tapped and attacking. Put the rest on the bottom of your library in any order.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/240_Warhound Shuja.jpg" num="240">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RW/}R/W</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>A Wide World Awaits</name>
+			<text>Play with the top card of your library revealed.
+You may cast creature spells from the top of your library.
+You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for creature spells you cast.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/133_A Wide World Awaits.jpg" num="133">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Pangoling</name>
+			<text>{GU}: Pangoling gains hexproof until end of turn.
+{GU}: Move a counter from target creature you control onto Pangoling.
+{GU}: Whenever Pangoling deals combat damage to a player this turn, draw a card. Activate only once each turn.
+{1}: Pangoling gets +1/-1 or -1/+1 until end of turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/216_Pangoling.jpg" num="216">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Pangolin Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1GU/}G/U</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Msuji Sureshot</name>
+			<text>Protection from spells
+When Msuji Sureshot enters, search your library for an instant, sorcery, or Aura card that targets, reveal it, put it into your hand, then shuffle.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/212_Msuji Sureshot.jpg" num="212">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Archer</type>
+				<maintype>Creature</maintype>
+				<manacost>4W/UB</manacost>
+				<cmc>6</cmc>
+				<colors>WUB</colors>
+				<coloridentity>WUB</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Manic River-Fishers</name>
+			<text>Menace, haste
+Whenever Manic River-Fishers attacks, you may search defending player&apos;s library for an instant or sorcery card that shares a name with a card in their graveyard and cast it without paying its mana cost. That player shuffles.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/209_Manic River-Fishers.jpg" num="209">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Warrior Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2U/BR</manacost>
+				<cmc>4</cmc>
+				<colors>UBR</colors>
+				<coloridentity>UBR</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Xiong Mao, Restless Waif</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/242_Xiong Mao, Restless Waif.jpg" num="242">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Xiong Mao</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2B/RG</manacost>
+				<cmc>4</cmc>
+				<colors>BRG</colors>
+				<coloridentity>BRG</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Hembwe, the All-Mother&apos;s Hand</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/201_Hembwe, the All-Mother&apos;s Hand.jpg" num="201">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Hembwe</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>3R/GW</manacost>
+				<cmc>5</cmc>
+				<colors>WRG</colors>
+				<coloridentity>WRG</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Ruchi, the Effervescent</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/KOD-files/img/223_Ruchi, the Effervescent.jpg" num="223">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Ruchi</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>{/1GW/}U</manacost>
+				<cmc>4</cmc>
+				<colors>WUG</colors>
+				<coloridentity>WUG</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Frontier Savior</name>
+			<text>When Frontier Savior enters, return up to two target creature cards with mana value 3 or less from your graveyard to the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/9_Frontier Savior.jpg" num="9">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4WW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tal, Locus Sentry</name>
+			<text>Flying
+When Tal, Locus Sentry enters, choose a noncreature, nonland card type.
+Spells of the chosen type cost {1} more to cast.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/234_Tal, Locus Sentry.jpg" num="234">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Bird Monk</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1WU/}</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Will of a Fickle Lord</name>
+			<text>At the beginning of each player&apos;s upkeep, you may exile target permanent that player controls. If you do, return that card to the battlefield under its owner&apos;s control at the beginning of the next end step.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/241_Will of a Fickle Lord.jpg" num="241">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2W/UW/U</manacost>
+				<cmc>4</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Kambiro, the Untrue King</name>
+			<text>{WB}: Kambiro, the Untrue King gets +1/+1 until end of turn.
+Whenever a storied permanent you control enters, if you cast it, return target creature card from your graveyard to your hand. If that creature&apos;s power is less than Kambiro&apos;s power, you may return it to the battlefield instead. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/204_Kambiro, the Untrue King.jpg" num="204">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Lemur Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>3W/BW/B</manacost>
+				<cmc>5</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Take the Bait</name>
+			<text>Each player sacrifices a creature with the highest power among creatures they control and a creature with the lowest power among creatures they control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/233_Take the Bait.jpg" num="233">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2W/BW/B</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lunar Emissary</name>
+			<text>Flash
+Flying
+When Lunar Emissary enters, exile another target creature you control until Lunar Emissary leaves the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/156_Lunar Emissary.jpg" num="156">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>1WU</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Eternal Deliverance</name>
+			<text>Enchant player
+At the beginning of enchanted player&apos;s upkeep, their life total becomes 10.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/142_Eternal Deliverance.jpg" num="142">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3WB</manacost>
+				<cmc>5</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Badru, the Skyshadow</name>
+			<text>Flying
+{BG}, Discard a creature card: Badru, the Skyshadow becomes a copy of the discarded card until end of turn, except he has flying and is 5/5.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/183_Badru, the Skyshadow.jpg" num="183">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Bird Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/GWU</manacost>
+				<cmc>5</cmc>
+				<colors>WUBG</colors>
+				<coloridentity>WUBG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Sungaru Gang</name>
+			<text>Deathtouch, lifelink
+At the beginning of combat on your turn, for each creature your opponents control, you may tap an untapped creature you control. If you do, those creatures fight each other.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/232_The Sungaru Gang.jpg" num="232">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Rabbit Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2R/GWB</manacost>
+				<cmc>5</cmc>
+				<colors>WBRG</colors>
+				<coloridentity>WBRG</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ophidian Augury</name>
+			<text>Once each turn, you may pay {U} rather than pay the mana cost for a blue spell you cast.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/41_Ophidian Augury.jpg" num="41">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>4UU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Blind Blackguard</name>
+			<text>Flash
+Blind Blackguard can&apos;t block.
+When Blind Blackguard enters, target player draws a card, then reveals their hand. You choose a nonland card from that player&apos;s hand, then that player puts the chosen card on the bottom of their library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/186_Blind Blackguard.jpg" num="186">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Salamander Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1UB/}U/B</manacost>
+				<cmc>4</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Neural Contagion</name>
+			<text>Enchant opponent
+Enchanted player plays with the top card of their library revealed.
+You may cast the top card of enchanted player&apos;s library, and you may spend mana as though it were mana of any type to cast it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/213_Neural Contagion.jpg" num="213">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura Curse</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3U/BU/B</manacost>
+				<cmc>5</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Flatboat Artisan // Ride the Wave</name>
+			<text>Instant and sorcery spells you cast cost {1} less to cast.
+
+---
+
+Copy target instant or sorcery spell you control. You may choose new targets for the copy.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/195_Flatboat Artisan.jpg" num="195">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Otter Rogue // Instant — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>U/RU/R // U/RU/R</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Animorph</name>
+			<text>The owner of target creature or planeswalker shuffles it into their library, then they may create two 1/1 blue Bird creature tokens with flying. If they don&apos;t, they reveal cards from the top of their library until they reveal a nonland permanent card, then they put that card onto the battlefield and shuffle the rest into their library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/178_Animorph.jpg" num="178">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3U/R</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fume Whisperer // Brainwash</name>
+			<text>Whenever you cast a spell that targets, Fume Whisperer gets +1/+1 until end of turn and can&apos;t be blocked this turn.
+
+---
+
+Gain control of target permanent. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/145_Fume Whisperer.jpg" num="145">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Lizard Wizard // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>1UB // 3UB</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fractured Illusion</name>
+			<text>Choose any target. Change the text of target instant or sorcery spell to &quot;This spell deals 3 damage to the chosen target. Draw a card.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/144_Fractured Illusion.jpg" num="144">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fakadeh, Florid Queen</name>
+			<text>Flying
+Whenever Fakadeh, Florid Queen attacks, you may exile an instant or sorcery card from your graveyard with mana value 3 or less.
+Whenever Fakadeh deals combat damage to a player, cast any number of cards exiled with her without paying their mana costs.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/192_Fakadeh, Florid Queen.jpg" num="192">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Bird Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RW/}UB</manacost>
+				<cmc>5</cmc>
+				<colors>WUBR</colors>
+				<coloridentity>WUBR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Artful Chari</name>
+			<text>{1{G}W}: Put a +1/+1 counter on Artful Chari.
+Whenever you cast an instant or sorcery spell, you may remove a number of +1/+1 counters from Chari equal to that spell&apos;s mana value. If you do, copy that spell, and you may choose new targets for the copy.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/181_Artful Chari.jpg" num="181">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Frog Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>G/WUR</manacost>
+				<cmc>3</cmc>
+				<colors>WURG</colors>
+				<coloridentity>WURG</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Butcher of Shallow Graves</name>
+			<text>Deathtouch
+Once each turn, you may cast a creature spell from your graveyard by paying life equal to its mana value rather than paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/61_Butcher of Shallow Graves.jpg" num="61">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crocodile Warlock</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Raiding Gnoll-Band</name>
+			<text>Whenever an Aura you control becomes attached to a creature, choose one —
+• Raiding Gnoll-Band deals 3 damage to that creature.
+• That creature gets +3/+0 until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/221_Raiding Gnoll-Band.jpg" num="221">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/RB/R</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rage of the Ravaged</name>
+			<text>Players can&apos;t gain life.
+Whenever a player casts a spell, Rage of the Ravaged deals 1 damage to that player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/220_Rage of the Ravaged.jpg" num="220">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>{/1BR/}B/R</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Colony Queen</name>
+			<text>When Colony Queen enters, create three 1/1 green Insect creature tokens.
+Insect tokens you control have flying and deathtouch.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/188_Colony Queen.jpg" num="188">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>3B/GB/G</manacost>
+				<cmc>5</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Agrestal Decay</name>
+			<text>At the beginning of your first main phase, exile target card in a graveyard. If it&apos;s a creature card, put a +1/+1 counter on target creature you control. If it&apos;s a land card, add {C}. If it&apos;s a noncreature, nonland card, you gain 3 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/175_Agrestal Decay.jpg" num="175">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>{/1BG/}</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Howling Shieldbreaker</name>
+			<text>Menace
+Whenever an opponent activates an ability of a permanent, if it isn&apos;t a mana ability, Howling Shieldbreaker deals 2 damage to that permanent or player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/150_Howling Shieldbreaker.jpg" num="150">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>BR</manacost>
+				<cmc>2</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Petrify</name>
+			<text>Enchant permanent
+Enchanted permanent is a colorless Swamp Forest land.
+Whenever enchanted permanent becomes tapped, its controller loses 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/161_Petrify.jpg" num="161">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Thrice-Clawed Troika</name>
+			<text>Haste
+At the beginning of combat on your turn, create two nonlegendary token copies of Thrice-Clawed Troika. Then for each creature token created this way, create token copies of each permanent attached to Thrice-Clawed Troika and attach them to that creature token. Exile all tokens created this way at end of combat.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/237_Thrice-Clawed Troika.jpg" num="237">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Cat Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1GU/}BR</manacost>
+				<cmc>5</cmc>
+				<colors>UBRG</colors>
+				<coloridentity>UBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Berylscale Alaj</name>
+			<text>At the beginning of your upkeep, mill a card.
+Whenever a creature card is put into your graveyard from anywhere, if that card has flying, you may put a flying counter on Berylscale Alaj. Repeat this process for first strike, double strike, deathtouch, hexproof, lifelink, menace, reach, trample, and vigilance.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/185_Berylscale Alaj.jpg" num="185">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Lizard Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>W/UBG</manacost>
+				<cmc>3</cmc>
+				<colors>WUBG</colors>
+				<coloridentity>WUBG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fateful Eruption</name>
+			<text>Each player sacrifices six permanents.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/85_Fateful Eruption.jpg" num="85">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4RR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lumbering Ox</name>
+			<text>Trample
+Lumbering Ox gets +1/+1 for each land you control.
+At the beginning of your upkeep, reveal the top card of your library. If it&apos;s a land card, you may exile it and repeat this process.
+You may play cards exiled with Lumbering Ox.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/208_Lumbering Ox.jpg" num="208">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ox Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RG/}R/G</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rumble in the Jungle</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/224_Rumble in the Jungle.jpg" num="224">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>5R/GR/G</manacost>
+				<cmc>7</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Greypelt Emissary</name>
+			<text>Whenever a Hound you control is dealt damage, Greypelt Emissary deals 1 damage to any target.
+Whenever Greypelt Emissary attacks, you choose how target creature blocks this combat.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/199_Greypelt Emissary.jpg" num="199">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RW/}R/W</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Triumphant Tactics</name>
+			<text>Creatures you control gain double strike until end of turn. Whenever a creature you control deals combat damage this turn, put a +1/+1 counter on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/238_Triumphant Tactics.jpg" num="238">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3R/WR/W</manacost>
+				<cmc>5</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Ruinous Naga // Spit on the Grave</name>
+			<text>Trample
+Whenever a noncreature permanent is put into a graveyard from the battlefield, put a +1/+1 counter on Ruinous Naga.
+
+---
+
+Destroy target artifact or enchantment. Spit on the Grave deals 2 damage to that permanent&apos;s controller.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/164_Ruinous Naga.jpg" num="164">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Snake Warrior // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>1RG // RG</manacost>
+				<cmc>3</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Settle the Dust</name>
+			<text>Settle the Dust deals 4 damage to each tapped creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/166_Settle the Dust.jpg" num="166">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fearless King Shabil</name>
+			<text>When Fearless King Shabil enters, reveal the top five cards of your library. You may put a Cat card from among them into your hand. Put the rest on the bottom of your library in any order.
+At the beginning of combat on your turn, each Cat you control gains all abilities of each other Cat you control until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/193_Fearless King Shabil.jpg" num="193">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Cat Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>2W/BRG</manacost>
+				<cmc>5</cmc>
+				<colors>WBRG</colors>
+				<coloridentity>WBRG</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kiana, the Unyielding</name>
+			<text>Vigilance
+If you would take a combat phase or a main phase, take the other instead.
+{UB}, Pay 1 life: Untap target creature you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/205_Kiana, the Unyielding.jpg" num="205">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Hound Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1UB/}RW</manacost>
+				<cmc>5</cmc>
+				<colors>WUBR</colors>
+				<coloridentity>WUBR</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crashing Mammoth</name>
+			<text>Trample, haste
+All creatures able to block Crashing Mammoth do so.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/114_Crashing Mammoth.jpg" num="114">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elephant</type>
+				<maintype>Creature</maintype>
+				<manacost>6GG</manacost>
+				<cmc>8</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>8/8</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unlikeliest Heroes</name>
+			<text>{GW}: If Unlikeliest Heroes doesn&apos;t have a +1/+1 counter on it, put a +1/+1 counter on it.
+{2}{GW}{GW}: If Unlikeliest Heroes has a +1/+1 counter on it and doesn&apos;t have vigilance, put two +1/+1 counters and a vigilance counter on it.
+{3}{GW}{GW}{GW}: If Unlikeliest Heroes has vigilance and not indestructible, put four +1/+1 counters and an indestructible counter on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/239_Unlikeliest Heroes.jpg" num="239">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mouse Army</type>
+				<maintype>Creature</maintype>
+				<manacost>G/W</manacost>
+				<cmc>1</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Art of Evasion</name>
+			<text>You gain hexproof until end of turn. Permanents you control gain indestructible until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/180_Art of Evasion.jpg" num="180">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>{/1GW/}</manacost>
+				<cmc>3</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mercurial Chameleon</name>
+			<text>{2}{GU}{GU}, {T}: Untap each non-Lizard permanent you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/210_Mercurial Chameleon.jpg" num="210">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard</type>
+				<maintype>Creature</maintype>
+				<manacost>2G/UG/U</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Anuran Encounters</name>
+			<text>This spell can&apos;t be countered.
+Draw a card for each different mana value among nonland permanents you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/179_Anuran Encounters.jpg" num="179">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G/UG/U</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Anomalion</name>
+			<text>Anomalion enters with a +1/+1 counter on it.
+{1}{G}{W}: Permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/134_Anomalion.jpg" num="134">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat</type>
+				<maintype>Creature</maintype>
+				<manacost>GW</manacost>
+				<cmc>2</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kalosi Invoker</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, if you cast it from your hand, look at the top four cards of your library. You may cast a multicolored card that&apos;s different colors and costs less from among them without paying its mana cost. Put the rest on the bottom of your library in any order.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/152_Kalosi Invoker.jpg" num="152">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crocodile Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Olde King Koswe</name>
+			<text>Vigilance
+When Olde King Koswe enters, reveal the top eight cards of your library. Put any number of permanent cards from among them onto the battlefield under an opponent&apos;s control, then put the rest on the bottom of your library in a random order.
+At the beginning of your end step, gain control of target permanent you own.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/214_Olde King Koswe.jpg" num="214">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Ape Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>4U/RGW</manacost>
+				<cmc>7</cmc>
+				<colors>WURG</colors>
+				<coloridentity>WURG</coloridentity>
+				<pt>8/8</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Am&apos;atambi, Fable Weaver</name>
+			<text>At the beginning of each other player&apos;s upkeep, draw a card, then discard a card unless you have Am&apos;atambi, Fable Weaver deal 3 damage to you.
+You may reveal creature cards as you draw them. Once each turn, when you reveal a creature card this way, you may pay {3}. If you do, create a token that&apos;s a copy of it, except it&apos;s 3/3.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/177_Am&apos;atambi, Fable Weaver.jpg" num="177">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Spider Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/RGU</manacost>
+				<cmc>5</cmc>
+				<colors>UBRG</colors>
+				<coloridentity>UBRG</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>An&apos;yama, Elder Guardian</name>
+			<text>If another multicolored card would be put into your graveyard from anywhere other than your hand or library, if no cards exiled with An&apos;yama, Elder Guardian are exactly that card&apos;s colors, you may instead exile that card and put a +1/+1 counter on An&apos;yama.
+As long as An&apos;yama has four or more counters on them, they have protection from everything.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/135_An&apos;yama, Elder Guardian.jpg" num="135">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Cat Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>WUBRG</manacost>
+				<cmc>5</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Aparodist</name>
+			<text>As Aparodist enters, choose a non-Human creature type.
+Aparodist is the chosen type in addition to its other types.
+{1}, {T}: Put a +1/+1 counter on each creature you control of the chosen type.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/1_Aparodist.jpg" num="1">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Canid Simulacrum</name>
+			<text>Canid Simulacrum enters with each counter on it from among +1/+1, flying, first strike, deathtouch, lifelink, menace, reach, shield, trample, and vigilance. (If it would be dealt damage or destroyed, remove a shield counter from it instead.)
+Whenever a creature you control enters, move two random counters from Canid Simulacrum onto that creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/244_Canid Simulacrum.jpg" num="244">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Vast Savannah</name>
+			<text>{T}, Pay 1 life: Add {W}.
+{T}, Pay 1 life, Sacrifice Vast Savannah: Search your library for a Plains card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/254_Vast Savannah.jpg" num="254">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Gleaming River</name>
+			<text>{T}, Pay 1 life: Add {U}.
+{T}, Pay 1 life, Sacrifice Gleaming River: Search your library for an Island card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/250_Gleaming River.jpg" num="250">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Murky Peat</name>
+			<text>{T}, Pay 1 life: Add {B}.
+{T}, Pay 1 life, Sacrifice Murky Peat: Search your library for a Swamp card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/251_Murky Peat.jpg" num="251">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Sunwashed Spires</name>
+			<text>{T}, Pay 1 life: Add {R}.
+{T}, Pay 1 life, Sacrifice Sunwashed Spires: Search your library for a Mountain card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/252_Sunwashed Spires.jpg" num="252">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tropical Grove</name>
+			<text>{T}, Pay 1 life: Add {G}.
+{T}, Pay 1 life, Sacrifice Tropical Grove: Search your library for a Forest card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/KOD-files/img/253_Tropical Grove.jpg" num="253">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Greypelt Initiate</name>
+			<text>Whenever another Hound you control enters, put a +1/+1 counter on Greypelt Initiate.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/12_Greypelt Initiate.jpg" num="12">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bourasan Street Watch</name>
+			<text>Whenever Bourasan Street Watch attacks, you may pay {W}. If you do, Bourasan Street Watch gains indestructible until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/7_Bourasan Street Watch.jpg" num="7">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mythos Scribe</name>
+			<text>When Mythos Scribe enters, you may return target storied card from your graveyard to your hand. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/14_Mythos Scribe.jpg" num="14">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Batiga Escort</name>
+			<text>When Batiga Escort enters, create a 1/1 blue Bird creature token with flying.
+{2}{W}, {T}: Put a +1/+1 counter on each creature you control with flying.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/5_Batiga Escort.jpg" num="5">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fox</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>T&apos;nege, Skyguard</name>
+			<text>Flying
+When T&apos;nege, Skyguard enters, exile another target creature you control until T&apos;nege leaves the battlefield. If you do, exile target creature an opponent controls until T&apos;nege leaves the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/25_T&apos;nege, Skyguard.jpg" num="25">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Bird Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beyond the Boneyard</name>
+			<text>When Beyond the Boneyard enters, exile another target nonland permanent until Beyond the Boneyard leaves the battlefield.
+Your opponents can&apos;t cast spells that share a card type with the exiled card during postcombat main phases.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/6_Beyond the Boneyard.jpg" num="6">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Shabil&apos;s Absolute Triumph</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/24_Shabil&apos;s Absolute Triumph.jpg" num="24">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Provincial Loyalty</name>
+			<text>When Provincial Loyalty enters, put a vigilance counter on each of up to two target creatures you control.
+At the beginning of combat on your turn, permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/20_Provincial Loyalty.jpg" num="20">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Nectarkin</name>
+			<text>Flying
+Nectarkin enters with a +1/+1 counter on it.
+Whenever Nectarkin deals combat damage to a player, permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/39_Nectarkin.jpg" num="39">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Serum Smoker</name>
+			<text>Whenever you cast a Tale, exile target creature an opponent controls until its owner pays {2}. (It enters under its owner&apos;s control.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/47_Serum Smoker.jpg" num="47">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Aether Sculptor // Sentient Steel</name>
+			<text>When Aether Sculptor enters, create a tapped colorless artifact token named Lotus Petal with &quot;{T}, Sacrifice this artifact: Add one mana of any color.&quot;
+
+---
+
+Target noncreature artifact you control becomes a 0/0 artifact creature. Put three +1/+1 counters on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/29_Aether Sculptor.jpg" num="29">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Lizard Artificer // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>3U // 1U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sage of Storms</name>
+			<text>Flying
+When Sage of Storms enters, untap another target creature you control with flying and put a +1/+1 counter on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/44_Sage of Storms.jpg" num="44">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>5U</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arcane Refusal</name>
+			<text>Counter target spell.
+Look at the top three cards of your library. Put one on top and the rest on the bottom in any order.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/30_Arcane Refusal.jpg" num="30">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Into Waridi Valley</name>
+			<text>This spell costs {1} less to cast for each multicolored card in your graveyard.
+Draw four cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/34_Into Waridi Valley.jpg" num="34">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>7U</manacost>
+				<cmc>8</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>On Marvelous Wings</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/40_On Marvelous Wings.jpg" num="40">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Tanager Typhoon</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, you may pay {1}. If you do, exile target nonland permanent, then return it to the battlefield tapped under its owner&apos;s control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/51_Tanager Typhoon.jpg" num="51">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Pakka, the Shadowcloak // Conclusion</name>
+			<text>Whenever a creature dies, Pakka, the Shadowcloak deals 1 damage to each opponent.
+
+---
+
+Destroy target creature. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/72_Pakka, the Shadowcloak.jpg" num="72">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Legendary Creature — Cat Rogue // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>1B // 2B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pestilent Vermin</name>
+			<text>When Pestilent Vermin enters, target opponent loses 2 life unless they discard a card.
+Whenever you cast a Tale, you may return Pestilent Vermin from your graveyard to your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/73_Pestilent Vermin.jpg" num="73">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Rat Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shrieking Gnoll</name>
+			<text>Lifelink
+Whenever an Aura becomes attached to Shrieking Gnoll, put a +1/+1 counter on Shrieking Gnoll, then target creature an opponent controls gets -1/-1 until end of turn for each +1/+1 counter on Shrieking Gnoll.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/75_Shrieking Gnoll.jpg" num="75">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hero Slayer</name>
+			<text>Deathtouch
+Whenever a storied permanent you control enters, remove up to two counters from target creature or planeswalker an opponent controls. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/66_Hero Slayer.jpg" num="66">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stygian Condor</name>
+			<text>Flying
+{B}, Sacrifice another creature: Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/77_Stygian Condor.jpg" num="77">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Twilight Ambush</name>
+			<text>Destroy target creature with power or toughness 2 or less.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/80_Twilight Ambush.jpg" num="80">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Pact of Dark Power</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has flying and indestructible.
+At the beginning of your upkeep, sacrifice a creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/71_Pact of Dark Power.jpg" num="71">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>A Grave Sentence</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/64_A Grave Sentence.jpg" num="64">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Fierce Combatant // War Rages On</name>
+			<text>Haste
+
+---
+
+Creatures you control get +1/+0 and gain haste until end of turn. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/86_Fierce Combatant.jpg" num="86">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>R // 1R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Thorny Bushwacker</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, Thorny Bushwacker has base power and toughness 5/3 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/105_Thorny Bushwacker.jpg" num="105">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Quill Sniper</name>
+			<text>{T}: Quill Sniper deals 1 damage to any target if it&apos;s an opponent or if you control a storied permanent. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/97_Quill Sniper.jpg" num="97">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Porcupine Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Harnessing of Fire</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/89_The Harnessing of Fire.jpg" num="89">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mwiti, Ever-Scarred</name>
+			<text>Menace
+Other attacking Hounds you control get +2/+0.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/94_Mwiti, Ever-Scarred.jpg" num="94">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Vibrant Flames</name>
+			<text>As an additional cost to cast this spell, exile a multicolored card from your graveyard or pay {2}.
+Vibrant Flames deals 3 damage to any target.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/106_Vibrant Flames.jpg" num="106">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Canine Acumen</name>
+			<text>You may cast this spell with no targets for {2}{R}. If you do, as it resolves, create a 1/1 red Hound creature token, then attach Canine Acumen to that token.
+Enchant creature
+Enchanted creature gets +2/+0 and has first strike.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/83_Canine Acumen.jpg" num="83">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Calamity of Yore</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/82_Calamity of Yore.jpg" num="82">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Babyscale Bruiser</name>
+			<text>When Babyscale Bruiser enters, you may reveal a creature card from your hand. If you do, Babyscale Bruiser deals damage to target creature an opponent controls equal to the revealed card&apos;s power. That creature deals damage equal to its power to Babyscale Bruiser.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/108_Babyscale Bruiser.jpg" num="108">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Coldblood Bender</name>
+			<text>At the beginning of combat on your turn, target creature you control has base power and toughness 4/4 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/112_Coldblood Bender.jpg" num="112">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Disciple of the All-Mother</name>
+			<text>{4}, {T}: Add {W}{U}{B}{R}{G}.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/115_Disciple of the All-Mother.jpg" num="115">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crocodile Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle for Msuji Highlands</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/109_Battle for Msuji Highlands.jpg" num="109">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Grotto Scarab</name>
+			<text>When Grotto Scarab enters, create two 1/1 green Insect creature tokens for each creature you controlled that died this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/121_Grotto Scarab.jpg" num="121">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lair Recluse</name>
+			<text>Lair Recluse enters with a vigilance counter and a reach counter on it.
+At the beginning of your upkeep, permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/126_Lair Recluse.jpg" num="126">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spider</type>
+				<maintype>Creature</maintype>
+				<manacost>5G</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rains Bring New Life</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/128_Rains Bring New Life.jpg" num="128">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Join the Colony</name>
+			<text>Choose two. You may choose the same mode twice —
+• Create a 1/1 green Insect creature token.
+• Put a +1/+1 counter on target creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/124_Join the Colony.jpg" num="124">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Theurgic Flock</name>
+			<text>Flying
+Whenever Theurgic Flock deals combat damage to a player, if it doesn&apos;t have a +1/+1 counter on it, put a +1/+1 counter on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/170_Theurgic Flock.jpg" num="170">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>1WU</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Darkwing Wretch // Easy Peckings</name>
+			<text>Flying
+At the beginning of your upkeep, if you have at least two more cards in hand than any opponent, scry 1.
+
+---
+
+Target player reveals their hand. You choose a nonland card from it. That player discards that card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/140_Darkwing Wretch.jpg" num="140">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Bird // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>UB // UB</manacost>
+				<cmc>2</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Back-Alley Gnoll</name>
+			<text>First strike
+Back-Alley Gnoll has lifelink as long as it&apos;s enchanted by a black Aura.
+Back-Alley Gnoll gets +2/+0 as long as it&apos;s enchanted by a red Aura.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/136_Back-Alley Gnoll.jpg" num="136">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1BR</manacost>
+				<cmc>3</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Trials of Ndengo</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/171_Trials of Ndengo.jpg" num="171">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2RG</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Kutaan Incubation</name>
+			<text>Create three 1/1 green Insect creature tokens, then put a +1/+1 counter on each of them.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/153_Kutaan Incubation.jpg" num="153">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3GW</manacost>
+				<cmc>5</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Milunda, Prairie Prince</name>
+			<text>Lifelink
+When Milunda, Prairie Prince enters, each opponent loses life equal to the number of storied permanents you control and you gain that much life. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/157_Milunda, Prairie Prince.jpg" num="157">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Horse Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Parrot Pools</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, create a 1/1 blue Bird creature token with flying. It gains haste until end of turn.
+Whenever three or more creatures you control deal combat damage to a player, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/160_Parrot Pools.jpg" num="160">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Chitterrax // Brood Spawn</name>
+			<text>{1}, Sacrifice a creature: Put a +1/+1 counter on Chitterrax, then each opponent loses 1 life and you gain 1 life.
+
+---
+
+Create two 1/1 green Insect creature tokens. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/139_Chitterrax.jpg" num="139">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Insect // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>2BG // 1BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bourasan Highguard</name>
+			<text>Other Hounds you control get +1/+1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/137_Bourasan Highguard.jpg" num="137">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wise Farseer Chini // Apex</name>
+			<text>When Wise Farseer Chini enters, create a tapped colorless land token named Far-Off Lands with &quot;{T}: Add one mana of any color.&quot;
+
+---
+
+Draw three cards. You gain 3 life. Apex deals 3 damage to any target.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/174_Wise Farseer Chini.jpg" num="174">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Legendary Creature — Squirrel Scout // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>3GU // 3WUBRG</manacost>
+				<cmc>5</cmc>
+				<colors>UG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tawny Prophet</name>
+			<text>Flying
+Tawny Prophet enters with three +1/+1 counters on it.
+{WU}, Remove a +1/+1 counter from Tawny Prophet: Scry 1, then draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/169_Tawny Prophet.jpg" num="169">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3WU</manacost>
+				<cmc>5</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Reticulate Chemist</name>
+			<text>Flash
+Whenever you cast a Tale, look at the top two cards of your library. Put one into your hand and the other back on top or into your graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/163_Reticulate Chemist.jpg" num="163">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Snake Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1UB</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kafyabari Enforcer</name>
+			<text>Haste
+Whenever another creature you control dies, you may return an Aura that was attached to that creature to the battlefield attached to Kafyabari Enforcer.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/151_Kafyabari Enforcer.jpg" num="151">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2BR</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Savannah Huntsman</name>
+			<text>When Savannah Huntsman enters, it deals X damage to target creature or planeswalker, where X is the number of counters among permanents you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/165_Savannah Huntsman.jpg" num="165">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3RG</manacost>
+				<cmc>5</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Primation</name>
+			<text>Distribute a vigilance, trample, first strike, and lifelink counter among up to four target creatures you control, then distribute four +1/+1 counters among those creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/162_Primation.jpg" num="162">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4GW</manacost>
+				<cmc>6</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Netherform</name>
+			<text>Return target permanent card from your graveyard to the battlefield. If that permanent is storied, Netherform becomes an Aura enchantment with enchant permanent. Attach it to that permanent. (Enchantments and legendary permanents are storied.)
+Enchanted permanent has indestructible.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/158_Netherform.jpg" num="158">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4WB</manacost>
+				<cmc>6</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Wisdom Beyond Age</name>
+			<text>Look at the top three cards of your library. Exile one, put one into your hand, and put the rest on the bottom of your library. Wisdom Beyond Age deals damage to target creature or planeswalker equal to the exiled card&apos;s mana value.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/173_Wisdom Beyond Age.jpg" num="173">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fester Swarm</name>
+			<text>Whenever a creature you control dies, put a rot counter on Fester Swarm and you gain 1 life.
+{B}{G}, Remove two or more rot counters from Fester Swarm: Create a 1/1 green Insect creature token, then put a +1/+1 counter on it for each rot counter removed this way.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/143_Fester Swarm.jpg" num="143">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Umala, the Reverent</name>
+			<text>Other Hounds you control have trample.
+{RW}, {T}: Put a +1/+1 counter on target Hound you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/172_Umala, the Reverent.jpg" num="172">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Hound Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ornery Bloom</name>
+			<text>Draw two cards. Create a tapped colorless artifact token named Lotus Petal with &quot;{T}, Sacrifice this artifact: Add one mana of any color.&quot;</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/159_Ornery Bloom.jpg" num="159">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Runescale Brawler</name>
+			<text>Runescale Brawler enters with three +1/+1 counters on it.
+If damage would be dealt to Runescale Brawler while it has a +1/+1 counter on it, prevent that damage and remove a +1/+1 counter from Runescale Brawler.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/225_Runescale Brawler.jpg" num="225">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1GU/}W</manacost>
+				<cmc>4</cmc>
+				<colors>WUG</colors>
+				<coloridentity>WUG</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bwema, the Ruthless</name>
+			<text>Bwema, the Ruthless enters with your choice of two different counters on it from among menace, first strike, vigilance, and lifelink.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/187_Bwema, the Ruthless.jpg" num="187">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/RW</manacost>
+				<cmc>4</cmc>
+				<colors>WBR</colors>
+				<coloridentity>WBR</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sheltered Diviner // Just Resting</name>
+			<text>When Sheltered Diviner enters, each player mills three cards.
+
+---
+
+Return target creature card with mana value 3 or less from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/48_Sheltered Diviner.jpg" num="48">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Turtle Wizard // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>1U // 3W/B</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>WUB</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Azure Caterwauler</name>
+			<text>Flying, trample
+Prismatic — Whenever you cast a multicolored spell, put a +1/+1 counter on Azure Caterwauler.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/182_Azure Caterwauler.jpg" num="182">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1RG/}U</manacost>
+				<cmc>4</cmc>
+				<colors>URG</colors>
+				<coloridentity>URG</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Msuji Operative</name>
+			<text>Menace
+Whenever Msuji Operative deals combat damage to a player, reveal the top card of your library, put it into your hand, then you lose life equal to its mana value unless you discard a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/211_Msuji Operative.jpg" num="211">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1UR/}B</manacost>
+				<cmc>4</cmc>
+				<colors>UBR</colors>
+				<coloridentity>UBR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pith Wilt</name>
+			<text>Destroy target nonland permanent if its mana value is less than or equal to the number of colors among spells you&apos;ve cast this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/217_Pith Wilt.jpg" num="217">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G/WB</manacost>
+				<cmc>2</cmc>
+				<colors>WBG</colors>
+				<coloridentity>WBG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Oozing Adder</name>
+			<text>Deathtouch
+Whenever Oozing Adder attacks, you may have target creature defending player controls block it this combat if able.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/215_Oozing Adder.jpg" num="215">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Snake</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1BG/}R</manacost>
+				<cmc>4</cmc>
+				<colors>BRG</colors>
+				<coloridentity>BRG</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Virtuorangutan // Birdsong</name>
+			<text>Trample
+Whenever you cast a noncreature spell, put a +1/+1 counter on Virtuorangutan.
+
+---
+
+Create a 1/1 blue Bird creature token with flying. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/107_Virtuorangutan.jpg" num="107">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Ape Bard // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>2R // W/U</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>WUR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>King Shabil&apos;s Tournament</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/206_King Shabil&apos;s Tournament.jpg" num="206">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3R/WG</manacost>
+				<cmc>5</cmc>
+				<colors>WRG</colors>
+				<coloridentity>WRG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Explore Forgotten Lands</name>
+			<text>Mill five cards, then return up to one creature card, up to one land card, and up to one noncreature, nonland card from your graveyard to your hand. Exile Explore Forgotten Lands.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/191_Explore Forgotten Lands.jpg" num="191">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3U/BG</manacost>
+				<cmc>5</cmc>
+				<colors>UBG</colors>
+				<coloridentity>UBG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Guide to the Wayward</name>
+			<text>Guide to the Wayward enters with a +1/+1 counter on it.
+{1{W}U}, {T}: Permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/200_Guide to the Wayward.jpg" num="200">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goat Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1WU/}</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shrewd Sikoyo</name>
+			<text>Shrewd Sikoyo can&apos;t be blocked by creatures with power 4 or greater.
+Shrewd Sikoyo gets +1/+0 as long as you have at least two more cards in hand than any opponent.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/228_Shrewd Sikoyo.jpg" num="228">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1UB/}</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Feline Furor</name>
+			<text>Enchant creature
+When Feline Furor enters, it deals 2 damage to enchanted creature.
+Enchanted creature gets +2/+0 and has menace.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/194_Feline Furor.jpg" num="194">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>{/1BR/}</manacost>
+				<cmc>3</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sirif of the Lord&apos;s Legion</name>
+			<text>Whenever Sirif of the Lord&apos;s Legion attacks, you may put a lore counter on target Saga you control.
+Whenever Sirif deals combat damage to a player, you may remove a lore counter from target Saga you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/230_Sirif of the Lord&apos;s Legion.jpg" num="230">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Cat Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3R/G</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Homestead</name>
+			<text>At the beginning of your upkeep, put a crop counter on Homestead.
+{GW}, Remove a crop counter from Homestead: Put a +1/+1 counter on target creature.
+{GW}, Remove three crop counters from Homestead: Put a +1/+1 counter on each creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/202_Homestead.jpg" num="202">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G/W</manacost>
+				<cmc>3</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>The Banishment of Seh&apos;a</name>
+			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/184_The Banishment of Seh&apos;a.jpg" num="184">KOD</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>{/1WB/}W/B</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Distorted Reflection</name>
+			<text>Draw three cards, then exile three cards from your hand. Until end of turn, you may cast nonland cards exiled this way.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/189_Distorted Reflection.jpg" num="189">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>{/1UR/}U/R</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Silthway Scuttler</name>
+			<text>{2}{BG}: Return Silthway Scuttler from your graveyard to your hand.
+{2}{BG}, Exile Silthway Scuttler from your graveyard: Put two +1/+1 counters on target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/229_Silthway Scuttler.jpg" num="229">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>B/GB/G</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greypelt Brute</name>
+			<text></text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/198_Greypelt Brute.jpg" num="198">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>R/W</manacost>
+				<cmc>1</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Glinthide Hero</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/196_Glinthide Hero.jpg" num="196">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>{/1GU/}G/U</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Resting Wildehound</name>
+			<text>{W}, {T}: Tap target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/21_Resting Wildehound.jpg" num="21">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greypelt Clergy</name>
+			<text>When Greypelt Clergy enters, choose one —
+• Put a +1/+1 counter on Greypelt Clergy.
+• Permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/11_Greypelt Clergy.jpg" num="11">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jowly Recruit // Initiation</name>
+			<text>Vigilance
+
+---
+
+Put two +1/+1 counters on target creature. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/13_Jowly Recruit.jpg" num="13">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Hound Knight // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>1W // 3W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ambitious Ostrich</name>
+			<text>Ambitious Ostrich has flying as long as you control a storied permanent. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/3_Ambitious Ostrich.jpg" num="3">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Windwatch Eagle</name>
+			<text>Flying
+Windwatch Eagle has vigilance as long as it has a +1/+1 counter on it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/27_Windwatch Eagle.jpg" num="27">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Palace Vanguard</name>
+			<text>When Palace Vanguard enters, choose one —
+• Create a 1/1 blue Bird creature token with flying.
+• Create a 2/2 white Cat creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/18_Palace Vanguard.jpg" num="18">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Royal Bloodhound</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/22_Royal Bloodhound.jpg" num="22">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Aerie Warden</name>
+			<text>Flying, first strike</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/2_Aerie Warden.jpg" num="2">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Aspirant of Legend</name>
+			<text>Whenever a storied permanent you control enters, tap target creature an opponent controls. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/4_Aspirant of Legend.jpg" num="4">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Nest Matriarch</name>
+			<text>Flying
+When Nest Matriarch enters, put a +1/+1 counter on another target creature you control. That creature gains lifelink until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/15_Nest Matriarch.jpg" num="15">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Paint Over</name>
+			<text>Target player sacrifices an enchantment. You gain 4 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/17_Paint Over.jpg" num="17">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Glory in the Fray</name>
+			<text>Creatures you control gain first strike and vigilance until end of turn. Permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/10_Glory in the Fray.jpg" num="10">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sandblast</name>
+			<text>Sandblast deals 5 damage to target attacking or blocking creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/23_Sandblast.jpg" num="23">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Twinklewings</name>
+			<text>Enchant creature
+When Twinklewings enters, draw a card.
+Enchanted creature has flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/26_Twinklewings.jpg" num="26">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Pacifism</name>
+			<text>Enchant creature
+Enchanted creature can&apos;t attack or block.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/16_Pacifism.jpg" num="16">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Samaki School</name>
+			<text>{7}, {T}, Sacrifice Samaki School: Look at the top four cards of your library. Put two into your hand and the rest on the bottom of your library in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/45_Samaki School.jpg" num="45">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Welkin Tern</name>
+			<text>Flying
+Welkin Tern can block only creatures with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/53_Welkin Tern.jpg" num="53">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kafyabari Patrol</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, target player mills two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/36_Kafyabari Patrol.jpg" num="36">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sable Hoopoe</name>
+			<text>Flying
+When Sable Hoopoe enters, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/43_Sable Hoopoe.jpg" num="43">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Student of the Scroll // Translate</name>
+			<text>When Student of the Scroll enters, scry 2.
+
+---
+
+Draw a card. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/50_Student of the Scroll.jpg" num="50">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Hound Wizard // Instant — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>2U // 1U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gharial Bandit // Lurking Below</name>
+			<text>---
+
+Put a +1/+1 counter on target creature. It can&apos;t be blocked this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/32_Gharial Bandit.jpg" num="32">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Crocodile Rogue // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>3U // U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lustrous Shrike</name>
+			<text>Flying
+Prismatic — Whenever you cast a multicolored spell, scry 1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/37_Lustrous Shrike.jpg" num="37">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>4U</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Icecap Tortoise</name>
+			<text>Icecap Tortoise enters with three ice counters on it.
+Icecap Tortoise has defender as long as it has an ice counter on it.
+{1}{U}: Remove an ice counter from Icecap Tortoise.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/33_Icecap Tortoise.jpg" num="33">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Turtle Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>5U</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Murmuring Typhoon</name>
+			<text>Return target creature to its owner&apos;s hand. You may shuffle up to four target cards from your graveyard into your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/38_Murmuring Typhoon.jpg" num="38">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Wind Ward</name>
+			<text>Counter target spell that targets you or a permanent you control. If that spell targeted a creature, put a +1/+1 counter on that creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/54_Wind Ward.jpg" num="54">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Croak Tales</name>
+			<text>This spell costs {2} less to cast if you control a creature with a Tale.
+Draw two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/31_Croak Tales.jpg" num="31">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Aether Runes</name>
+			<text>Counter target spell unless its controller pays {3}. Its controller mills three cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/28_Aether Runes.jpg" num="28">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Spirit Transfusion</name>
+			<text>Counter target creature spell.
+Permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/49_Spirit Transfusion.jpg" num="49">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Unbracing Rain</name>
+			<text>Up to two target creatures each get -3/-0 until end of turn. Tap those creatures. They don&apos;t untap during their controller&apos;s next untap step.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/52_Unbracing Rain.jpg" num="52">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Serenity of Youth</name>
+			<text>Enchant creature
+Enchanted creature doesn&apos;t untap during its controller&apos;s untap step unless its controller controls no other creatures.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/46_Serenity of Youth.jpg" num="46">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Barbed Cocoon</name>
+			<text>{2}{B}, Exile Barbed Cocoon from your graveyard: Create two 1/1 green Insect creature tokens. Activate only as a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/55_Barbed Cocoon.jpg" num="55">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hemophage Parasite // Brain Food</name>
+			<text>Lifelink
+
+---
+
+Target opponent discards two cards. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/65_Hemophage Parasite.jpg" num="65">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Leech // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>1B // 4B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloodied Wulfhound</name>
+			<text>{1}, {T}, Sacrifice another creature: Put a +1/+1 counter on Bloodied Wulfhound.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/57_Bloodied Wulfhound.jpg" num="57">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stupefied Piper</name>
+			<text>Whenever a storied permanent you control enters, each opponent loses 2 life. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/76_Stupefied Piper.jpg" num="76">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Rabbit Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blackmoat Bully</name>
+			<text>Menace
+When Blackmoat Bully dies, put a +1/+1 counter and a menace counter on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/56_Blackmoat Bully.jpg" num="56">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crocodile Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Boneyard Mantis // Spit Blood</name>
+			<text>Deathtouch
+
+---
+
+Target creature gets -1/-1 until end of turn. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/60_Boneyard Mantis.jpg" num="60">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Insect // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>3B // B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Foul Vulture</name>
+			<text>Flying
+When Foul Vulture enters, create a 1/1 red Hound creature token.
+Foul Vulture gets +1/+0 as long as a creature you controlled died this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/62_Foul Vulture.jpg" num="62">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Nightmare Chanter</name>
+			<text>Whenever a storied permanent you control enters, each opponent discards a card. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/70_Nightmare Chanter.jpg" num="70">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Manglehorn Hunter</name>
+			<text>When Manglehorn Hunter enters, draw a card and you lose 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/69_Manglehorn Hunter.jpg" num="69">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ox Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>5B</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bone Splinters</name>
+			<text>As an additional cost to cast this spell, sacrifice a creature.
+Destroy target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/59_Bone Splinters.jpg" num="59">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lupine Ferocity</name>
+			<text>Choose target creature, then choose two —
+• Put a +1/+1 counter on the chosen creature.
+• The chosen creature gains lifelink until end of turn.
+• The chosen creature gains indestructible until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/67_Lupine Ferocity.jpg" num="67">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fuel the Arcflame</name>
+			<text>Look at the top three cards of your library. Put one on top and the rest on the bottom in any order.
+Draw two cards. You lose 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/63_Fuel the Arcflame.jpg" num="63">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rip to Shreds</name>
+			<text>Destroy target creature. Its controller loses 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/74_Rip to Shreds.jpg" num="74">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bogfume Pact</name>
+			<text>Enchant creature
+When Bogfume Pact enters, each opponent sacrifices a creature.
+When enchanted creature dies, return it to its owner&apos;s hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/58_Bogfume Pact.jpg" num="58">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Malnourish</name>
+			<text>Enchant creature
+Enchanted creature gets -3/-3.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/68_Malnourish.jpg" num="68">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Ruthless Mastiff</name>
+			<text>{2}{R}: Ruthless Mastiff gets +3/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/102_Ruthless Mastiff.jpg" num="102">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Siamang Minstrel</name>
+			<text>When Siamang Minstrel enters, you may put a lore counter on target Saga you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/104_Siamang Minstrel.jpg" num="104">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ape Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greypelt Ruffian</name>
+			<text>Trample
+Greypelt Ruffian gets +1/+1 as long as you control a storied permanent. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/88_Greypelt Ruffian.jpg" num="88">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scale-Crown Archer</name>
+			<text>Defender
+{T}: Scale-Crown Archer deals 1 damage to each opponent.
+Prismatic — Whenever you cast a multicolored spell, untap Scale-Crown Archer.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/103_Scale-Crown Archer.jpg" num="103">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Archer</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ox of Blood Bend // Butcher</name>
+			<text>---
+
+Butcher deals 3 damage to target player. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/96_Ox of Blood Bend.jpg" num="96">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Ox Warrior // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>2R // 2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ravenous Pack</name>
+			<text>Double strike</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/100_Ravenous Pack.jpg" num="100">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gnarled Challenger</name>
+			<text>Prismatic — Whenever you cast a multicolored spell, you may discard a card. If you do, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/87_Gnarled Challenger.jpg" num="87">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kwende Peak Sentry</name>
+			<text>Reach
+Whenever a lore counter is put on a Saga you control, Kwende Peak Sentry deals 1 damage to each opponent.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/91_Kwende Peak Sentry.jpg" num="91">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ape Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Nip at the Heel</name>
+			<text>Nip at the Heel deals 1 damage to any target. Create a 1/1 red Hound creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/95_Nip at the Heel.jpg" num="95">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Brushfire</name>
+			<text>Brushfire deals 3 damage to target creature. If that creature would die this turn, exile it instead.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/81_Brushfire.jpg" num="81">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rugged Ferocity</name>
+			<text>Choose target creature, then choose two —
+• The chosen creature gets +3/+0 until end of turn.
+• The chosen creature gains trample until end of turn.
+• The chosen creature gains first strike until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/101_Rugged Ferocity.jpg" num="101">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Maddening Thoughts</name>
+			<text>As an additional cost to cast this spell, discard a card.
+Draw three cards, then discard a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/92_Maddening Thoughts.jpg" num="92">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Desert Storm</name>
+			<text>Desert Storm deals 6 damage to target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/84_Desert Storm.jpg" num="84">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Indomitable Rage</name>
+			<text>Enchant creature
+Enchanted creature gets +3/+2 and attacks each combat if able.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/90_Indomitable Rage.jpg" num="90">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Rapacious Instinct</name>
+			<text>Enchant creature you control
+When Rapacious Instinct enters, enchanted creature deals damage equal to its power to target creature you don&apos;t control.
+Enchanted creature gets +1/+0.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/99_Rapacious Instinct.jpg" num="99">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Blisterbug</name>
+			<text>When Blisterbug dies, put two +1/+1 counters on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/110_Blisterbug.jpg" num="110">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ring-Tailed Ascetic</name>
+			<text>Saga spells you cast cost {1} less to cast.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/129_Ring-Tailed Ascetic.jpg" num="129">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lemur Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Panthera Magus</name>
+			<text>{T}: Add {G}.
+{T}: Add {W}, {U}, {R}, or {B}. Spend this mana only to cast a multicolored spell.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/127_Panthera Magus.jpg" num="127">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Elken Grovetender // See the Forest</name>
+			<text>---
+
+Search your library for a basic land card, reveal it, put it into your hand, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/116_Elken Grovetender.jpg" num="116">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Elk Druid // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>2G // G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Colony Soldier</name>
+			<text>When Colony Soldier enters, create a 1/1 green Insect creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/113_Colony Soldier.jpg" num="113">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gentle Giraffe</name>
+			<text>Reach
+Prismatic — Whenever you cast a multicolored spell, you gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/119_Gentle Giraffe.jpg" num="119">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Giraffe</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chimperial Guard</name>
+			<text>Trample
+Whenever a lore counter is put on a Saga you control, Chimperial Guard gets +2/+2 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/111_Chimperial Guard.jpg" num="111">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ape Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Silverhorn Tactician</name>
+			<text>When Silverhorn Tactician enters, permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/130_Silverhorn Tactician.jpg" num="130">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ox Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kwende Peak Huntsman</name>
+			<text>Vigilance
+Prismatic — Whenever you cast a multicolored spell, put a +1/+1 counter on Kwende Peak Huntsman.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/125_Kwende Peak Huntsman.jpg" num="125">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Suncrown Mastodon</name>
+			<text>You may pay {W}{U}{B}{R}{G} rather than pay this spell&apos;s mana cost.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/131_Suncrown Mastodon.jpg" num="131">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elephant</type>
+				<maintype>Creature</maintype>
+				<manacost>6G</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>7/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Iron Hide</name>
+			<text>Target creature you control gets +2/+2 until end of turn. If it&apos;s blocked or blocking, it gets an additional +2/+2 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/123_Iron Hide.jpg" num="123">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Turf War</name>
+			<text>Target creature you control fights target creature you don&apos;t control. If the creature you control survives, put a +1/+1 counter on it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/132_Turf War.jpg" num="132">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Felling Vines</name>
+			<text>You gain 3 life. Choose one —
+• Destroy target artifact.
+• Destroy target enchantment.
+• Destroy target creature with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/117_Felling Vines.jpg" num="117">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Infestation</name>
+			<text>Create two 1/1 green Insect creature tokens, then put a +1/+1 counter on target creature you control for each Insect you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/122_Infestation.jpg" num="122">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Grace of Timber</name>
+			<text>Enchant land
+When Grace of Timber enters, put a +1/+1 counter on target creature you control.
+Enchanted land has &quot;{T}: Add two mana of different colors.&quot;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/120_Grace of Timber.jpg" num="120">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Lace-Barred Owl</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/154_Lace-Barred Owl.jpg" num="154">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>WU</manacost>
+				<cmc>2</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cave Eel // Spelunking</name>
+			<text>When Cave Eel enters, look at the top three cards of your library. Put one on top and the rest on the bottom in any order.
+
+---
+
+Return target nonland card from your graveyard to your hand. (Cast a copy of this spell once while this creature is on the battlefield.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/138_Cave Eel.jpg" num="138">KOD</set>
+			<prop>
+				<layout>adventure</layout>
+				<side>front</side>
+				<type>Creature — Fish // Sorcery — Tale</type>
+				<maintype>Creature</maintype>
+				<manacost>UB // 2UB</manacost>
+				<cmc>2</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Speckled Outcast</name>
+			<text>Speckled Outcast has menace as long as it&apos;s enchanted.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/168_Speckled Outcast.jpg" num="168">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1BR</manacost>
+				<cmc>3</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Simian Sentinel</name>
+			<text>Trample
+Whenever Simian Sentinel attacks, it gets +X/+0 until end of turn, where X is the number of lore counters on Sagas you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/167_Simian Sentinel.jpg" num="167">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Monkey Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RG</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Herd Matron</name>
+			<text>When Herd Matron enters, distribute two +1/+1 counters among one or two target creatures you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/149_Herd Matron.jpg" num="149">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Antelope Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>2GW</manacost>
+				<cmc>4</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Devious Paladin</name>
+			<text>Whenever a storied permanent you control enters, you gain 1 life and each opponent loses 1 life. (Enchantments and legendary permanents are storied.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/141_Devious Paladin.jpg" num="141">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Badger Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lava Spill</name>
+			<text>Lava Spill deals 2 damage to any target.
+Look at the top three cards of your library. Put one on top and the rest on the bottom in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/155_Lava Spill.jpg" num="155">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Headhunter Mantis</name>
+			<text>Reach
+When Headhunter Mantis enters, if a creature you controlled died this turn, create a 1/1 green Insect creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/148_Headhunter Mantis.jpg" num="148">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Greypelt Trooper</name>
+			<text>{1}, {T}: Search your library for a card named Greypelt Trooper, reveal it, put it into your hand, then shuffle. Activate only as a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/147_Greypelt Trooper.jpg" num="147">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Great Migration</name>
+			<text>Reveal the top three cards of your library. You may put a land card from among them onto the battlefield tapped, then you may put a creature card from among them into your hand. Put the rest on the bottom of your library in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/146_Great Migration.jpg" num="146">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Golden Gust</name>
+			<text>Tap up to two target creatures.
+Permutate. (You may remove a counter from a creature you control. If you do, put two +1/+1 counters on a different creature you control.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/197_Golden Gust.jpg" num="197">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>{/1WU/}</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Shadow Stalker</name>
+			<text>Flash
+When Shadow Stalker enters, for each player, look at the top card of that player&apos;s library. You may have that player put that card into their graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/227_Shadow Stalker.jpg" num="227">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2U/B</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Joyful Deviant</name>
+			<text>When Joyful Deviant enters or dies, it deals 1 damage to any target.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/203_Joyful Deviant.jpg" num="203">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hyena Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/R</manacost>
+				<cmc>3</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kwende Peak Partisan</name>
+			<text>When Kwende Peak Partisan enters, exile the top card of your library. If it&apos;s a land card, you may play it this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/207_Kwende Peak Partisan.jpg" num="207">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>3R/G</manacost>
+				<cmc>4</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Elegant Agility</name>
+			<text>Put a +1/+1 counter on target creature you control. Untap that creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/190_Elegant Agility.jpg" num="190">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G/W</manacost>
+				<cmc>1</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Scavenger&apos;s Feast</name>
+			<text>Exile target creature with mana value 2 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/226_Scavenger&apos;s Feast.jpg" num="226">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>{/1WB/}</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Squall Serpent</name>
+			<text>Defender
+Prismatic — Whenever you cast a multicolored spell, Squall Serpent gets +1/+1 until end of turn and can attack this turn as though it didn&apos;t have defender.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/231_Squall Serpent.jpg" num="231">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Snake</type>
+				<maintype>Creature</maintype>
+				<manacost>2U/R</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pungent Beetle</name>
+			<text>Pungent Beetle enters with a +1/+1 counter on it for each creature you controlled that died this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/219_Pungent Beetle.jpg" num="219">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>2B/G</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rousing Battlehound</name>
+			<text>When Rousing Battlehound enters, other creatures you control get +1/+1 until end of turn. Other Hounds you control gain first strike until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/222_Rousing Battlehound.jpg" num="222">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4R/W</manacost>
+				<cmc>5</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tarrying Gharial</name>
+			<text>Hexproof</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/235_Tarrying Gharial.jpg" num="235">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crocodile</type>
+				<maintype>Creature</maintype>
+				<manacost>5G/U</manacost>
+				<cmc>6</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>4/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Punja Stick Trap</name>
+			<text>{3}, {T}, Sacrifice Punja Stick Trap: Punja Stick Trap deals 2 damage to target creature. Tap it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/247_Punja Stick Trap.jpg" num="247">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Prophetic Prism</name>
+			<text>When Prophetic Prism enters, draw a card.
+{1}, {T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/246_Prophetic Prism.jpg" num="246">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Esoteric Egg</name>
+			<text>Esoteric Egg is all colors.
+{T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/245_Esoteric Egg.jpg" num="245">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<coloridentity>WUBRG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Wings of Liberty</name>
+			<text>Wings of Liberty enters with a +1/+1 counter on it.
+{1}: Move a +1/+1 counter from Wings of Liberty to equipped creature.
+Equipped creature has flying.
+Equip {1}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/248_Wings of Liberty.jpg" num="248">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Aetherspear</name>
+			<text>Equipped creature gets +2/+1.
+Equip multicolored creature {1}
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/243_Aetherspear.jpg" num="243">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Evolving Wilds</name>
+			<text>{T}, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/249_Evolving Wilds.jpg" num="249">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tranquil Cove</name>
+			<text>Tranquil Cove enters tapped.
+When Tranquil Cove enters, you gain 1 life.
+{T}: Add {W} or {U}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Tranquil Cove.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Dismal Backwater</name>
+			<text>Dismal Backwater enters tapped.
+When Dismal Backwater enters, you gain 1 life.
+{T}: Add {U} or {B}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Dismal Backwater.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Bloodfell Caves</name>
+			<text>Bloodfell Caves enters tapped.
+When Bloodfell Caves enters, you gain 1 life.
+{T}: Add {B} or {R}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Bloodfell Caves.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Rugged Highlands</name>
+			<text>Rugged Highlands enters tapped.
+When Rugged Highlands enters, you gain 1 life.
+{T}: Add {R} or {G}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Rugged Highlands.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Blossoming Sands</name>
+			<text>Blossoming Sands enters tapped.
+When Blossoming Sands enters, you gain 1 life.
+{T}: Add {G} or {W}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Blossoming Sands.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Scoured Barrens</name>
+			<text>Scoured Barrens enters tapped.
+When Scoured Barrens enters, you gain 1 life.
+{T}: Add {W} or {B}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Scoured Barrens.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Swiftwater Cliffs</name>
+			<text>Swiftwater Cliffs enters tapped.
+When Swiftwater Cliffs enters, you gain 1 life.
+{T}: Add {U} or {R}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Swiftwater Cliffs.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Jungle Hollow</name>
+			<text>Jungle Hollow enters tapped.
+When Jungle Hollow enters, you gain 1 life.
+{T}: Add {B} or {G}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Jungle Hollow.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Wind-Scarred Crag</name>
+			<text>Wind-Scarred Crag enters tapped.
+When Wind-Scarred Crag enters, you gain 1 life.
+{T}: Add {R} or {W}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Wind-Scarred Crag.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Thornwood Falls</name>
+			<text>Thornwood Falls enters tapped.
+When Thornwood Falls enters, you gain 1 life.
+{T}: Add {G} or {U}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Thornwood Falls.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Coastal Dominion</name>
+			<text>({T}: Add {W}, {U}, or {B}.)
+Coastal Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Coastal Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Island Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WUB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Bleak Dominion</name>
+			<text>({T}: Add {U}, {B}, or {R}.)
+Bleak Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Bleak Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Swamp Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UBR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Primal Dominion</name>
+			<text>({T}: Add {B}, {R}, or {G}.)
+Primal Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Primal Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Mountain Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BRG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Rugged Dominion</name>
+			<text>({T}: Add {R}, {G}, or {W}.)
+Rugged Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Rugged Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Forest Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WRG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Stalwart Dominion</name>
+			<text>({T}: Add {G}, {W}, or {U}.)
+Stalwart Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Stalwart Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Plains Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WUG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Majestic Dominion</name>
+			<text>({T}: Add {W}, {B}, or {G}.)
+Majestic Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Majestic Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Swamp Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WBG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Ancient Dominion</name>
+			<text>({T}: Add {U}, {R}, or {W}.)
+Ancient Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Ancient Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Mountain Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WUR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Verdant Dominion</name>
+			<text>({T}: Add {B}, {G}, or {U}.)
+Verdant Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Verdant Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Forest Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UBG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Desolate Dominion</name>
+			<text>({T}: Add {R}, {W}, or {B}.)
+Desolate Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Desolate Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Plains Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WBR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Pristine Dominion</name>
+			<text>({T}: Add {G}, {U}, or {R}.)
+Pristine Dominion enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/KOD-files/img/0_Pristine Dominion.jpg" num="0">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Island Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>URG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Plains</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/19_Plains.jpg" num="19">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type></type>
+				<maintype></maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Island</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/35_Island.jpg" num="35">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type></type>
+				<maintype></maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Swamp</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/78_Swamp.jpg" num="78">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type></type>
+				<maintype></maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mountain</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/93_Mountain.jpg" num="93">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type></type>
+				<maintype></maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Forest</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/118_Forest.jpg" num="118">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type></type>
+				<maintype></maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Cat KOD</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/1t_Cat.jpg" num="1">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Cat</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Bird KOD</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/2t_Bird.jpg" num="2">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Hound KOD</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/3t_Hound.jpg" num="3">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Ox KOD</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/4t_Ox.jpg" num="4">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Ox</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Insect KOD</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/5t_Insect.jpg" num="5">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Rhino Warrior KOD</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/6t_Rhino Warrior.jpg" num="6">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Rhino Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Lotus Petal KOD</name>
+			<text>{T}, Sacrifice this artifact: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/7t_Lotus Petal.jpg" num="7">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Far-Off Lands KOD</name>
+			<text>{T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/8t_Far-Off Lands.jpg" num="8">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Emblem KOD</name>
+			<text>Permanents you control have &quot;{T}: Draw a card.&quot;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/KOD-files/img/9t_Emblem.jpg" num="9">KOD</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Emblem — Ruchi</type>
+				<maintype>Emblem</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

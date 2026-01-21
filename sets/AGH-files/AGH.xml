@@ -1,0 +1,2813 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>AGH</name>
+			<longname>Aghesh Unraveled</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>Nightmare Hunter</name>
+			<text>Lifelink
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/18_Nightmare Hunter.jpg" num="18">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Duskwatch Scout</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/10_Duskwatch Scout.jpg" num="10">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sootfoot Spelunker</name>
+			<text>When Sootfoot Spelunker enters the battlefield, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Sacrifice a Loot token: Put a +1/+1 counter on Sootfoot Spelunker.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/22_Sootfoot Spelunker.jpg" num="22">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Helmsguard Cannoneers</name>
+			<text>Whenever Helmsguard Cannoneers attacks, you may tap target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/16_Helmsguard Cannoneers.jpg" num="16">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blade Merchant</name>
+			<text>Protection from equipped creatures (This creature can&apos;t be blocked, targeted or dealt damage by creatures.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/6_Blade Merchant.jpg" num="6">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fair Fight</name>
+			<text>Destroy all Auras attached to creatures and unattach all Equipments attached to creatures.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/13_Fair Fight.jpg" num="13">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Doctor&apos;s Orders</name>
+			<text>Multikicker {W} (You may pay an additional {W} any number of times as you cast this spell.)
+Target creature you control gains protection from the color of your choice until end of turn. You gain 2 life for each time Doctor&apos;s Orders was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/9_Doctor&apos;s Orders.jpg" num="9">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Runeweaving</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has first strike.
+When Dwarven Runeweaving is put into your graveyard from the battlefield, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/11_Dwarven Runeweaving.jpg" num="11">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Brasswing Faerie</name>
+			<text>Flying
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/25_Brasswing Faerie.jpg" num="25">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Faerie Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lumbering Chains</name>
+			<text>When Lumbering Chains dies, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/31_Lumbering Chains.jpg" num="31">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fog Whisperer</name>
+			<text>When Fog Whisperer enters the battlefield, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Sacrifice a Loot token: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/29_Fog Whisperer.jpg" num="29">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>4U</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unmaker Priestess</name>
+			<text>Whenever Unmaker Priestess deals combat damage to a player, each player puts the top card of his or her library into his or her graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/42_Unmaker Priestess.jpg" num="42">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skywinder Drake</name>
+			<text>Flying
+Skywinder Drake can block only creatures with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/38_Skywinder Drake.jpg" num="38">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Deter</name>
+			<text>Counter target spell. If that spell is countered in this way, put it on the bottom of its owner&apos;s library instead of into that player&apos;s graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/27_Deter.jpg" num="27">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Future Folding</name>
+			<text>Multikicker {1}{U} (You may pay an additional {1}{U} any number of times as you cast this spell.)
+Look at the top five cards of your library, then put them back in any order. Then, draw a card for each time Future Folding was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/30_Future Folding.jpg" num="30">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Val Runeweaving</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has hexproof.
+When Val Runeweaving is put into a graveyard from the battlefield, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/43_Val Runeweaving.jpg" num="43">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Armored Corpse</name>
+			<text>Deathtouch
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/46_Armored Corpse.jpg" num="46">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Putrid Carcass</name>
+			<text>Whenever Putrid Carcass attacks, you lose 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/56_Putrid Carcass.jpg" num="56">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scourge Hunter</name>
+			<text>When Scourge Hunter enters the battlefield, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Sacrifice a Loot token: Each opponent loses 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/60_Scourge Hunter.jpg" num="60">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloodvell Crossblade</name>
+			<text>First strike
+Whenever Bloodvell Crossblade deals combat damage to a player, put a +1/+1 counter on Bloodvell Crossblade.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/48_Bloodvell Crossblade.jpg" num="48">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Nightmare Riders</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/54_Nightmare Riders.jpg" num="54">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Self-Inflicted Wound</name>
+			<text>Target creature gets -1/-1 until end of turn. If it&apos;s equipped, destroy it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/61_Self-Inflicted Wound.jpg" num="61">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Eyes of Fear</name>
+			<text>Multikicker {1}{B} (You may pay an additional {1}{B} any number of times as you cast this spell.)
+Target creature you control gains intimidate until end of turn. That creature gets +2/+0 until end of turn for each time Eyes of Fear was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/51_Eyes of Fear.jpg" num="51">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bloodvell Runeweaving</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has lifelink.
+When Bloodvell Runeweaving is put into a graveyard from the battlefield, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/49_Bloodvell Runeweaving.jpg" num="49">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Treasure Blitzer</name>
+			<text>Haste
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/87_Treasure Blitzer.jpg" num="87">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jeering Battlebruiser</name>
+			<text>Jeering Battlebruiser must be blocked if able.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/77_Jeering Battlebruiser.jpg" num="77">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>5R</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Factory Scrapper</name>
+			<text>When Factory Scrapper enters the battlefield, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Sacrifice a Loot token: Put a 1/1 colorless Construct artifact creature token onto the battlefield.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/74_Factory Scrapper.jpg" num="74">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spitfire Golem</name>
+			<text>When Spitfire Golem enters the battlefield or dies, it deals 1 damage to each player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/84_Spitfire Golem.jpg" num="84">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Outlands Captain</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/78_Outlands Captain.jpg" num="78">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chop Shop</name>
+			<text>Discard any number of cards, then if you have fewer than three cards in hand, draw cards equal to the difference.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/71_Chop Shop.jpg" num="71">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rain of Flames</name>
+			<text>Multikicker {R} (You may pay an additional {R} any number of times as you cast this spell.)
+Choose target creature, then choose another target creature for each time Rain of Flames was kicked. Rain of Flames deals 1 damage to each of those creatures. Creatures dealt damage in this way can&apos;t block this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/79_Rain of Flames.jpg" num="79">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tvornica Runeweaving</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has haste.
+When Tvornica Runeweaving is put into a graveyard from the battlefield, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/88_Tvornica Runeweaving.jpg" num="88">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Poisontip Archer</name>
+			<text>Reach
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/106_Poisontip Archer.jpg" num="106">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Underbrush Savage</name>
+			<text>Deathtouch</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/112_Underbrush Savage.jpg" num="112">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Goldenroot Growth</name>
+			<text>When Goldenroot Growth enters the battlefield, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Sacrifice a Loot token: Goldenroot Growth gets +2/+2 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/96_Goldenroot Growth.jpg" num="96">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spiny Rootwyrm</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/109_Spiny Rootwyrm.jpg" num="109">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Plant Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Runewoven Stag</name>
+			<text>{G}: Runewoven Stag gets +2/+2 until end of turn. Activate this ability only once per turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/107_Runewoven Stag.jpg" num="107">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elk</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dig Deeper</name>
+			<text>Put up to two target land cards in your graveyard onto the battlefield tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/91_Dig Deeper.jpg" num="91">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Natural Camouflage</name>
+			<text>Multikicker {1}{G} (You may pay an additional {1}{G} any number of times as you cast this spell.)
+Prevent all damage that would be dealt to target creature this turn. Put a +1/+1 counter on that creature for each time Natural Camouflage was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/105_Natural Camouflage.jpg" num="105">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Jungle Runeweaving</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has trample.
+When Jungle Runeweaving is put into a graveyard from the battlefield, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/102_Jungle Runeweaving.jpg" num="102">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Cruel Captivator</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+When Cruel Captivator enters the battlefield, target opponent reveals his or her hand. You choose a card from it for each time Cruel Captivator was kicked, then that player discards the chosen cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/125_Cruel Captivator.jpg" num="125">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Afterthought</name>
+			<text>Destroy target creature. Put a 1/1 white and black Spirit creature token with flying onto the battlefield under your control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/116_Afterthought.jpg" num="116">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4WB</manacost>
+				<cmc>6</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mudhobble Wrench</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+When Mudhobble Wrench enters the battlefield, put a 1/1 colorless Construct artifact creature token onto the battlefield for each time it was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/137_Mudhobble Wrench.jpg" num="137">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Goblin Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beta Test</name>
+			<text>Beta Test deals 2 damage to target creature. That creature gets +2/+0 and gains flying until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/120_Beta Test.jpg" num="120">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Possessed Frysselia</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Possessed Frysselia enters the battlefield with two +1/+1 counters on it for each time it was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/139_Possessed Frysselia.jpg" num="139">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>3BG</manacost>
+				<cmc>5</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cavern Collapse</name>
+			<text>Target creature gets -1/-1 until end of turn for each land you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/123_Cavern Collapse.jpg" num="123">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Thunderhammer Vigilante</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+When Thunderhammer Vigilante enters the battlefield, choose an artifact for each time it was kicked. Destroy those artifacts.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/145_Thunderhammer Vigilante.jpg" num="145">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>4/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rage Diffusion</name>
+			<text>Target creature attacks this turn if able. Whenever that creature would deal damage this turn, instead you gain that much life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/140_Rage Diffusion.jpg" num="140">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Disciple of the Silent Mind</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Flash
+When Disciple of the Silent Mind enters the battlefield, target creature gets +1/+1 until end of turn for each time Disciple of the Silent Mind was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/126_Disciple of the Silent Mind.jpg" num="126">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ethereal Fusion</name>
+			<text>Return target creature you don&apos;t control to its owner&apos;s hand. Target creature you control gets +4/+4 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/129_Ethereal Fusion.jpg" num="129">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3GU</manacost>
+				<cmc>5</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Footsoldier&apos;s Shield</name>
+			<text>Equipped creature gets +0/+4.
+Equip {2}{W}
+Bloodbond — {1}{W}{W}, Sacrifice equipped creature: Untap each creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/14_Footsoldier&apos;s Shield.jpg" num="14">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Staff of Inquiry</name>
+			<text>Whenever equipped creature deals combat damage to a player, that player puts that many cards from the top of his or her library into his or her graveyard.
+Equip {3}{U}
+Bloodbond — {U}{U}, Sacrifice equipped creature: Each player puts the top five cards of his or her library into his or her graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/39_Staff of Inquiry.jpg" num="39">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Toxic Dagger</name>
+			<text>Equipped creature gets +1/+0 and has deathtouch.
+Equip {1}{B}
+Bloodbond — {3}{B}{B}, Sacrifice equipped creature: Creatures you control gain deathtouch until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/66_Toxic Dagger.jpg" num="66">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Devil&apos;s Skull Mask</name>
+			<text>Equipped creature gets +2/+0 and has first strike.
+Equip {3}{R}
+Bloodbond — {2}{R}{R}, Sacrifice equipped creature: Devil&apos;s Skull Mask deals 2 damage to target creature or player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/72_Devil&apos;s Skull Mask.jpg" num="72">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Jungleskin</name>
+			<text>Equipped creature gets +4/+4.
+Equip {3}{G}
+Bloodbond — {3}{G}{G}, Sacrifice equipped creature: Target creature gets +4/+4 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/103_Jungleskin.jpg" num="103">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Helm of Vibrance</name>
+			<text>Augment {2}{BR} ({2}{BR}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+2.
+Equipped creature has intimidate as long as Helm of Vibrance has a charge counter on it. (That creature can&apos;t be blocked except by artifact creatures and/or creatures that share a color with it.)
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/15_Helm of Vibrance.jpg" num="15">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>WBR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Maestro&apos;s Steamsuit</name>
+			<text>Augment {2}{RG} ({2}{RG}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+2.
+Equipped creature has trample as long as Maestro&apos;s Steamsuit has a charge counter on it.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/32_Maestro&apos;s Steamsuit.jpg" num="32">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>URG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Risen Carapace</name>
+			<text>Augment {2}{GW} ({2}{GW}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+2.
+Equipped creature has vigilance as long as Risen Carapace has a charge counter on it.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/58_Risen Carapace.jpg" num="58">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>WBG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Backstrap Turbine</name>
+			<text>Augment {2}{WU} ({2}{WU}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+2.
+Equipped creature has flying as long as Backstrap Turbine has a charge counter on it.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/68_Backstrap Turbine.jpg" num="68">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>WUR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Fighter&apos;s Greatblades</name>
+			<text>Augment {2}{UB} ({2}{UB}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+2.
+Equipped creature can&apos;t be blocked as long as Fighter&apos;s Greatblades has a charge counter on it.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/AGH-files/img/93_Fighter&apos;s Greatblades.jpg" num="93">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>UBG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Exploration Broker</name>
+			<text>Whenever another creature enters the battlefield, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Whenever a land card is put into your graveyard from your library, you may gain 2 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/12_Exploration Broker.jpg" num="12">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Angelic Progeny</name>
+			<text>Flying, vigilance
+Whenever Angelic Progeny attacks or blocks, put a +1/+1 counter on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/1_Angelic Progeny.jpg" num="1">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battlefront Cavalry</name>
+			<text>First strike
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/4_Battlefront Cavalry.jpg" num="4">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bearer of Burdens</name>
+			<text></text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/5_Bearer of Burdens.jpg" num="5">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shredding Mist</name>
+			<text>Shredding Mist deals damage to target attacking or blocking creature equal to its power.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/20_Shredding Mist.jpg" num="20">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Unified Inspiration</name>
+			<text>Creatures you control get +3/+3 until end of turn. Untap each creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/23_Unified Inspiration.jpg" num="23">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3WWW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Band of Brothers</name>
+			<text>Put a 1/1 white Dwarf creature token with first strike onto the battlefield for each white creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/3_Band of Brothers.jpg" num="3">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Trinket Hoarder</name>
+			<text>Whenever another nontoken artifact enters the battlefield under your control, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Whenever a land card is put into your graveyard from your library, untap target artifact you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/40_Trinket Hoarder.jpg" num="40">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scraptrap Apparition</name>
+			<text>Flying
+{3}{U}{U}, Sacrifice an artifact: Return Scraptrap Apparition from your graveyard to the battlefield tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/37_Scraptrap Apparition.jpg" num="37">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Spirit Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Vallen Foglurker</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Vallen Foglurker can&apos;t be blocked.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/44_Vallen Foglurker.jpg" num="44">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Eager Skycaller</name>
+			<text>Eager Skycaller enters the battlefield with a +1/+1 counter on it.
+{2}{U}, Remove a +1/+1 counter from Eager Skycaller: Put a 2/2 blue Drake creature token with flying onto the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/28_Eager Skycaller.jpg" num="28">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Delusional Perception</name>
+			<text>The next time a creature becomes the target of a spell or ability this turn, that creature&apos;s controller sacrifices it.
+Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/26_Delusional Perception.jpg" num="26">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Relentless Maelstrom</name>
+			<text>Return all creatures your opponents control to their owner&apos;s hands.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/36_Relentless Maelstrom.jpg" num="36">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>6UU</manacost>
+				<cmc>8</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Arcane Meddling</name>
+			<text>Counter target activated ability from a permanent source. Return that permanent to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/24_Arcane Meddling.jpg" num="24">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Patchwork of Extremities</name>
+			<text>When Patchwork of Extremities dies, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Whenever a land card is put into your graveyard from your library, return Patchwork of Extremities from your graveyard to the battlefield tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/55_Patchwork of Extremities.jpg" num="55">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shambling Legion</name>
+			<text>Shambling Legion enters the battlefield with two +1/+1 counters on it.
+Whenever a card is put into a graveyard from anywhere, put a +1/+1 counter on Shambling Legion.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/62_Shambling Legion.jpg" num="62">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ghessian Sellsword</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Ghessian Sellsword can&apos;t block.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/53_Ghessian Sellsword.jpg" num="53">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Suitor of Death</name>
+			<text>When Suitor of Death dies, each opponent sacrifices a creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/64_Suitor of Death.jpg" num="64">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wave of Terror</name>
+			<text>All creatures get -X/-X until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/67_Wave of Terror.jpg" num="67">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>XBB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Strip Search</name>
+			<text>Target player chooses a card in his or her hand, then reveals the rest. You choose a nonland card from among them. That player discards that card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/63_Strip Search.jpg" num="63">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rattling Bones</name>
+			<text>Put the top four cards of your library into your graveyard. For each land card put into your graveyard in this way, put a 1/1 black Skeleton creature token onto the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/57_Rattling Bones.jpg" num="57">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Helmsguard Treasure Hunter</name>
+			<text>Whenever Helmsguard Treasure Hunter attacks, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Whenever a land card is put into your graveyard from your library, Helmsguard Treasure Hunter gets +2/+0 and gains first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/75_Helmsguard Treasure Hunter.jpg" num="75">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cavern Raider</name>
+			<text>Cavern Raider can&apos;t be blocked by creatures with power 1 or less.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/70_Cavern Raider.jpg" num="70">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Steelwork Lynx</name>
+			<text>Intimidate (This creature can&apos;t be blocked except by artifact creatures and/or creatures that share a color with it.)
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/85_Steelwork Lynx.jpg" num="85">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Cat Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rust Husk</name>
+			<text>Defender, first strike</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/81_Rust Husk.jpg" num="81">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Seismic Shatter</name>
+			<text>As an additional cost to cast Seismic Shatter, sacrifice a land.
+Destroy target land.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/83_Seismic Shatter.jpg" num="83">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Violent Tendencies</name>
+			<text>All creatures get +1/-1 until end of turn and attack this turn if able.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/90_Violent Tendencies.jpg" num="90">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Searing Breath</name>
+			<text>Target creature you control gets +X/+0 until end of turn and deals X damage to another target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/82_Searing Breath.jpg" num="82">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>XR</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Greenwood Ritualist</name>
+			<text>Whenever a land enters the battlefield under your control, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+Whenever a land card is put into your graveyard from your library, add {G} to your mana pool.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/97_Greenwood Ritualist.jpg" num="97">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Python</name>
+			<text>When Mimic of the Python dies, draw two cards and you gain 2 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/104_Mimic of the Python.jpg" num="104">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stomping Branchbeast</name>
+			<text>Trample
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/110_Stomping Branchbeast.jpg" num="110">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Plant Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hydra Tendrils</name>
+			<text>Whenever Hydra Tendrils is dealt damage, put twice that many +1/+1 counters on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/99_Hydra Tendrils.jpg" num="99">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Growth of the Greenwood</name>
+			<text>Target creature you control gets +X/+X until end of turn, where X is the number of lands you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/98_Growth of the Greenwood.jpg" num="98">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Explore</name>
+			<text>You may play an additional land card this turn.
+Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/92_Explore.jpg" num="92">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Influence of the Serpent</name>
+			<text>Target creature must be blocked this turn if able. Regenerate it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/101_Influence of the Serpent.jpg" num="101">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Her Majesty&apos;s Neophyte</name>
+			<text>When Her Majesty&apos;s Neophyte enters the battlefield, you may destroy target creature with power 2 or less. Otherwise, put a +1/+1 counter on Her Majesty&apos;s Neophyte.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/132_Her Majesty&apos;s Neophyte.jpg" num="132">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Draining Chant</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Choose one, then choose another for each time Draining Chant was kicked —
+• You draw two cards and you lose 2 life.
+• Destroy target creature. You lose 3 life.
+• You gain 5 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/127_Draining Chant.jpg" num="127">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Steel-Armored Drakon</name>
+			<text>Flying, haste</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/143_Steel-Armored Drakon.jpg" num="143">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Drakon Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Clairvoyant Coercion</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Choose one, then choose another for each time Clairvoyant Coercion was kicked —
+• Gain control of up to two target creatures until end of turn.
+• Untap up to two target creatures.
+• Up to two target creatures get +1/+0 and gain haste until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/124_Clairvoyant Coercion.jpg" num="124">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Twigrib Scavenger</name>
+			<text>Whenever a creature card would be put into a graveyard from anywhere, you may pay {B}. If you do, exile that card instead.
+Whenever a creature card is exiled from anywhere, you may pay {G}. If you do, put a +1/+1 counter on Twigrib Scavenger.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/146_Twigrib Scavenger.jpg" num="146">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arboreal Contortion</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Choose one, then choose another for each time Arboreal Contortion was kicked —
+• Target creature you control gets +2/+2 until end of turn.
+• Target creature you don&apos;t control gets -2/-2 until end of turn.
+• Target creature you control fights target creature you don&apos;t control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/117_Arboreal Contortion.jpg" num="117">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Damsel</name>
+			<text>Whenever Dwarven Damsel blocks or is blocked, it gets +3/+0 and gains first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/128_Dwarven Damsel.jpg" num="128">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Adrenaline Rush</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Choose one, then choose another for each time Adrenaline Rush was kicked —
+• Target creature you control gains indestructible until end of turn.
+• Target creature you control gains double strike until end of turn.
+• Target creature you control can&apos;t be blocked this turn except by two or more creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/114_Adrenaline Rush.jpg" num="114">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mirage Mystic</name>
+			<text>{2}{G}{U}: Counter target spell targeting Mirage Mystic.
+Whenever Mirage Mystic becomes the target of a spell, it gets +2/+2 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/136_Mirage Mystic.jpg" num="136">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mystical Menagerie</name>
+			<text>Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)
+Choose one, then choose another for each time Mystical Menagerie was kicked —
+• Put a 4/4 green Rhino creature token with trample onto the battlefield.
+• Put two 1/1 blue Bird creature tokens with flying onto the battlefield.
+• Put three 1/1 green Pygmy Beast creature tokens onto the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/138_Mystical Menagerie.jpg" num="138">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dark Spirit Scythe</name>
+			<text>Equipped creature gets +6/+6.
+Equip {6}
+Bloodbond — {6}, Sacrifice equipped creature: Target creature gets -6/-6 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/152_Dark Spirit Scythe.jpg" num="152">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>6</manacost>
+				<cmc>6</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Guardian Plate</name>
+			<text>Whenever Guardian Plate becomes attached to a creature, untap that creature.
+Equipped creature gets +0/+1 and has protection from attacking creatures. (This permanent can&apos;t be targeted or dealt damage by attacking creatures.)
+Equip {5}
+Bloodbond — {2}, Sacrifice equipped creature: Attach Guardian Plate to target creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/153_Guardian Plate.jpg" num="153">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Brass Sabres</name>
+			<text>Augment {6} ({6}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+2.
+Equipped creature has double strike as long as Brass Sabres has a charge counter on it.
+Equip {3}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/151_Brass Sabres.jpg" num="151">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Backblast Cannon</name>
+			<text>Augment {1} ({1}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+0 for each charge counter on Backblast Cannon.
+At the beginning of your end step, if equipped creature attacked this turn, remove all charge counters from Backblast Cannon and it deals X damage to equipped creature, where X is the number of charge counters removed in this way.
+Equip {2}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/149_Backblast Cannon.jpg" num="149">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Nighthunter&apos;s Arbalest</name>
+			<text>Equipped creature has &quot;{T}: Put an arrowhead counter on Nighthunter&apos;s Arbalest&quot; and &quot;{T}, Remove an arrowhead counter from Nighthunter&apos;s Arbalest: This creature deals 2 damage to target creature or player.&quot;
+Equip {4}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/154_Nighthunter&apos;s Arbalest.jpg" num="154">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Tower of Harvest</name>
+			<text>Tower of Harvest enters the battlefield tapped.
+{T}: Add {W} or {B} to your mana pool.
+When Tower of Harvest is put into a graveyard from anywhere, add {W} or {B} to your mana pool.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/157_Tower of Harvest.jpg" num="157">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tower of Invention</name>
+			<text>Tower of Invention enters the battlefield tapped.
+{T}: Add {U} or {R} to your mana pool.
+When Tower of Invention is put into a graveyard from anywhere, add {U} or {R} to your mana pool.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/158_Tower of Invention.jpg" num="158">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tower of Remains</name>
+			<text>Tower of Remains enters the battlefield tapped.
+{T}: Add {B} or {G} to your mana pool.
+When Tower of Remains is put into a graveyard from anywhere, add {B} or {G} to your mana pool.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/160_Tower of Remains.jpg" num="160">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tower of Armaments</name>
+			<text>Tower of Armaments enters the battlefield tapped.
+{T}: Add {R} or {W} to your mana pool.
+When Tower of Armaments is put into a graveyard from anywhere, add {R} or {W} to your mana pool.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/156_Tower of Armaments.jpg" num="156">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tower of Knowledge</name>
+			<text>Tower of Knowledge enters the battlefield tapped.
+{T}: Add {G} or {U} to your mana pool.
+When Tower of Knowledge is put into a graveyard from anywhere, add {G} or {U} to your mana pool.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/AGH-files/img/159_Tower of Knowledge.jpg" num="159">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Crafter of Bloodvials</name>
+			<text>Multikicker {1}{B} (You may pay an additional {1}{B} any number of times as you cast this spell.)
+When Crafter of Bloodvials enters the battlefield, target opponent discards a card for each time it was kicked.
+Whenever a card is put into a graveyard from anywhere, you gain 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/8_Crafter of Bloodvials.jpg" num="8">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sootfoot Expedition Leader</name>
+			<text>{2}{W}{W}, Tap another untapped white creature you control: Excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+{W}, Exile a land card from your graveyard: Put a 1/1 white Dwarf Warrior creature token with first strike onto the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/21_Sootfoot Expedition Leader.jpg" num="21">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Courier of Subdual</name>
+			<text>Flying
+Activated abilities of artifacts cost {2} more to activate unless they&apos;re mana abilities.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/7_Courier of Subdual.jpg" num="7">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Artisan&apos;s Favor</name>
+			<text>Search your library for up to two Equipment cards with different names, reveal them, and put them onto the battlefield attached to target creature you control. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/2_Artisan&apos;s Favor.jpg" num="2">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>7W</manacost>
+				<cmc>8</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Judgment of Purity</name>
+			<text>Cast Judgment of Purity only during combat after blockers are declared.
+Judgment of Purity deals 2 damage to each attacking creature. You gain 2 life for each blocking creature you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/17_Judgment of Purity.jpg" num="17">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Whiplash Sorcerer</name>
+			<text>Multikicker {1}{R} (You may pay an additional {1}{R} any number of times as you cast this spell.)
+Flash
+When Whiplash Sorcerer enters the battlefield, copy target instant or sorcery spell X times, where X is the number of times Whiplash Sorcerer was kicked. You may choose new targets for the copies.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/45_Whiplash Sorcerer.jpg" num="45">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Basilisk</name>
+			<text>Whenever Mimic of the Basilisk deals combat damage to a player, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+{1}{U}, Exile a land card from your graveyard: Mimic of the Basilisk gets +2/+0 and can&apos;t be blocked until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/33_Mimic of the Basilisk.jpg" num="33">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ramshackle Contraption</name>
+			<text>When Ramshackle Contraption dies, you may return it to the battlefield as a copy of target noncreature artifact.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/35_Ramshackle Contraption.jpg" num="35">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Twinsoul Ritual</name>
+			<text>Search target opponent&apos;s library for a creature card and exile it. Creatures you control become copies of that card until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/41_Twinsoul Ritual.jpg" num="41">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Perjury of Fortune</name>
+			<text>Counter target spell. Its controller puts a 4/4 blue Sphinx creature token with flying onto the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/34_Perjury of Fortune.jpg" num="34">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Corpse Dredger</name>
+			<text>Multikicker {2}{G} (You may pay an additional {2}{G} any number of times as you cast this spell.)
+When Corpse Dredger enters the battlefield, return up to X target cards from your graveyard to your hand, where X is the number of times Corpse Dredger was kicked. Put a +1/+1 counter on Corpse Dredger for each creature card returned to your hand in this way.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/50_Corpse Dredger.jpg" num="50">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ruins Marauder</name>
+			<text>{B}{B}, Sacrifice a land: Excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+{3}{B}{B}, Exile a land card from your graveyard: Destroy target nonbasic land. Its controller loses 2 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/59_Ruins Marauder.jpg" num="59">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ghessian Ossiomancer</name>
+			<text>Skeleton creatures you control get +1/+1.
+Whenever a land card is put into your graveyard from anywhere, put a 1/1 black Skeleton creature token onto the battlefield.
+{1}{B}: Regenerate target Skeleton you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/52_Ghessian Ossiomancer.jpg" num="52">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Zombie Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloodcall</name>
+			<text>Until end of turn, whenever a creature enters the battlefield, that creature&apos;s controller sacrifices it.
+Whenever a creature dies this turn, that creature&apos;s controller loses 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/47_Bloodcall.jpg" num="47">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Thoughtless Brutality</name>
+			<text>Until end of turn, target creature gets +2/-2 and gains &quot;Whenever this creature deals combat damage to an opponent, sacrifice that many permanents.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/65_Thoughtless Brutality.jpg" num="65">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Helmsguard Warcaller</name>
+			<text>Multikicker {1}{W} (You may pay an additional {1}{W} any number of times as you cast this spell.)
+When Helmsguard Warcaller enters the battlefield, exile X target creatures, then return them to the battlefield under their owner&apos;s control, where X is the number of times Helmsguard Warcaller was kicked.
+Whenever another creature enters the battlefield under your control, that creature gets +1/+0 and gains haste until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/76_Helmsguard Warcaller.jpg" num="76">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Expert Gemworker</name>
+			<text>Whenever another red source you control deals damage to an opponent, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+{5}{R}{R}, Exile a land card from your graveyard: Put a 4/4 red Dragon artifact creature token with flying onto the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/73_Expert Gemworker.jpg" num="73">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Razorback Trenchrunner</name>
+			<text>Haste
+When Razorback Trenchrunner dies, put a 3/3 red Boar creature token onto the battlefield. It fights target creature an opponent controls.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/80_Razorback Trenchrunner.jpg" num="80">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Big Bad Boom Barrel</name>
+			<text>Whenever another artifact is put into your graveyard from the battlefield, put a charge counter on Big Bad Boom Barrel.
+Sacrifice Big Bad Boom Barrel: Big Bad Boom Barrel deals X damage to target creature or player, where X is the number of charge counters on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/69_Big Bad Boom Barrel.jpg" num="69">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Tracing Flames</name>
+			<text>Tracing Flames deals 3 damage to target creature. When that creature dies this turn, you may pay {R}. If you do, cast Tracing Flames from your graveyard without paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/86_Tracing Flames.jpg" num="86">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vallen Drakespeaker</name>
+			<text>Multikicker {2}{U} (You may pay an additional {2}{U} any number of times as you cast this spell.)
+When Vallen Drakespeaker enters the battlefield, put a 2/2 blue Drake creature token with flying onto the battlefield for each time it was kicked.
+Vallen Drakespeaker gets +1/+1 for each creature with flying you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/113_Vallen Drakespeaker.jpg" num="113">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Infested Webs</name>
+			<text>Whenever a creature with flying attacks you, excavate. (Put the bottom card of your library into your graveyard. If it&apos;s a land card, put a colorless artifact token named Loot onto the battlefield. It has ‘Sacrifice this artifact: Add {1} to your mana pool.&apos;)
+{2}{G}{G}, Exile a land card from your graveyard: Put two 1/2 green Spider creature tokens with reach onto the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/100_Infested Webs.jpg" num="100">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Seer of a Blue Future</name>
+			<text>Play with the top card of your library revealed.
+You may cast the top card of your library if it&apos;s a creature card, and you may cast it as though it had flash.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/108_Seer of a Blue Future.jpg" num="108">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ghessian Memories</name>
+			<text>Put a 3/3 green Centaur creature token onto the battlefield.
+Until the beginning of your next end step, creatures you control gain your choice of hexproof, reach, or trample.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/95_Ghessian Memories.jpg" num="95">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Forbidden Fruit</name>
+			<text>You gain X life and draw X cards, where X is the greatest toughness among creatures your opponents control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/94_Forbidden Fruit.jpg" num="94">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Baron Von K&apos;alinn</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Whenever Baron Von K&apos;alinn blocks or is blocked by a creature with greater power, exile that creature. You lose life equal to its power.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/119_Baron Von K&apos;alinn.jpg" num="119">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>4WB</manacost>
+				<cmc>6</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Catlin, the Treasurer</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Whenever Catlin, the Treasurer deals combat damage to a player, put that many colorless artifact tokens named Loot onto the battlefield. They have &quot;Sacrifice this artifact: Add {1} to your mana pool.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/122_Catlin, the Treasurer.jpg" num="122">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Root of All Evil</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Other Zombie creatures you control get +1/+1 for each Equipment attached to Root of All Evil.
+Whenever a non-Zombie creature you control dies, put a 2/2 black Zombie creature token onto the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/141_Root of All Evil.jpg" num="141">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Plant Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bamdo the Professional</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Whenever Bamdo the Professional or another creature you control attacks alone, look at the top four cards of your library. You may put an Equipment card with converted mana cost 3 or less from among them onto the battlefield attached to that creature. Put the rest on the bottom of your library in any order.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/118_Bamdo the Professional.jpg" num="118">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Adriini, Blue of Birth</name>
+			<text>Trample
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Whenever Adriini, Blue of Birth attacks, put a 5/5 blue Dragon creature token with flying onto the battlefield tapped and attacking. Exile that token at end of combat.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/115_Adriini, Blue of Birth.jpg" num="115">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3GU</manacost>
+				<cmc>5</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Steeledge of the Elders</name>
+			<text>Equipped creature gets +2/+2 and has indestructible.
+Equip {2}{W}{B}
+Bloodbond — {6}{W}{B}, Sacrifice equipped creature: Put an 8/8 black and white Elder Vampire creature token with flying onto the battlefield, then attach Steeledge of the Elders to it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/144_Steeledge of the Elders.jpg" num="144">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mask of Insanities</name>
+			<text>Augment {1} ({1}: Put a charge counter on this card. Augment only as a sorcery.)
+Whenever equipped creature deals combat damage to a player, exile the top X cards of your library, where X is the number of charge counters on Mask of Insanities. You may cast any number of instant or sorcery cards from among them with converted mana cost less than the number of charge counters on Mask of Insanities without paying their mana costs.
+Equip—Discard your hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/135_Mask of Insanities.jpg" num="135">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Infested Chainmail</name>
+			<text>Equipped creature gets +2/+2.
+When equipped creature dies, if it wasn&apos;t a token, you may pay {2}. If you do, put a 2/2 black Zombie creature token onto the battlefield and attach Infested Chainmail to it.
+Equip {4}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/133_Infested Chainmail.jpg" num="133">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Exterminator&apos;s Loadout</name>
+			<text>Equipped creature gets +10/+10.
+Equip—Tap any number of untapped creatures you control other than target creature with total power 10 or greater.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/130_Exterminator&apos;s Loadout.jpg" num="130">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3RW</manacost>
+				<cmc>5</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Warden&apos;s Staff</name>
+			<text>Whenever equipped creature deals combat damage to a player, put two charge counters on Warden&apos;s Staff.
+{1}, Remove a charge counter from Warden&apos;s Staff: Choose one —
+• Equipped creature gets +2/+2 until end of turn.
+• Tap target creature.
+• Counter target spell that targets only equipped creature.
+Equip {2}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/AGH-files/img/147_Warden&apos;s Staff.jpg" num="147">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bloodchild of the Moon</name>
+			<text>As long as a creature card with flying is in your graveyard, Bloodchild of the Moon has flying. The same is true for first strike, deathtouch, and lifelink.
+As long as Bloodchild of the Moon has flying, first strike, deathtouch, and lifelink, it gets +6/+6 and has protection from instants and sorceries.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/121_Bloodchild of the Moon.jpg" num="121">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Flashbot, Steel Savior</name>
+			<text>When Flashbot, Steel Savior enters or leaves the battlefield, untap each other artifact you control.
+{4}{U}{R}: Return target artifact card from your graveyard to the battlefield.
+Whenever you draw a card, if it&apos;s the third card you drew this turn, you may return Flashbot, Steel Savior from your graveyard to the battlefield.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/131_Flashbot, Steel Savior.jpg" num="131">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3UR</manacost>
+				<cmc>5</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Servants of Dydren</name>
+			<text>When you cast Servants of Dydren, return all other creatures named Servants of Dydren from your graveyard to the battlefield.
+Servants of Dydren gets +2/+2 for each other creature you control named Servants of Dydren.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/142_Servants of Dydren.jpg" num="142">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centaur Zombie</type>
+				<maintype>Creature</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kaggard&apos;s Legacy</name>
+			<text>At the beginning of your second main phase, untap each creature you control. After this phase, there is an additional combat phase, followed by an additional main phase.
+{5}{R}{W}: Creatures you control get +3/+3 and gain lifelink and double strike until end of turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/134_Kaggard&apos;s Legacy.jpg" num="134">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>5RW</manacost>
+				<cmc>7</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Yrisa, Wood Whisperer</name>
+			<text>Another target permanent you control gains hexproof until your next turn.
+Return target creature to its owner&apos;s hand. That creature&apos;s controller draws a card.
+Gain control of target creature with power X or less.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/148_Yrisa, Wood Whisperer.jpg" num="148">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Yrisa</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<loyalty>2</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sacred Harmony</name>
+			<text>Each player who controls more lands than you sacrifices a land. Players discard cards, sacrifice creatures, and sacrifice artifacts the same way.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/19_Sacred Harmony.jpg" num="19">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vaeco, Prince of Chaos</name>
+			<text>Switch up to one target creature&apos;s power and toughness until end of turn. That creature attacks or blocks this turn if able.
+Gain control of target permanent until end of turn. Untap that permanent. If it&apos;s a creature, it gains haste until end of turn.
+For each nonland permanent, choose a player at random. Then each player gains control of each permanent for which he or she was chosen.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/89_Vaeco, Prince of Chaos.jpg" num="89">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Vaeco</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Territorial Cragwyrm</name>
+			<text>Trample
+Territorial Cragwyrm can&apos;t be countered.
+Whenever Territorial Cragwyrm would die, instead put it on the bottom of your library.
+Whenever Territorial Cragwyrm is put into your graveyard from anywhere, you may pay {2}{G}{G}. If you do, put Territorial Cragwyrm onto the battlefield.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/111_Territorial Cragwyrm.jpg" num="111">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wurm</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blade of a Shattered Realm</name>
+			<text>Equipped creature has hexproof and can&apos;t block or be blocked.
+Whenever equipped creature would die, exile it instead and sacrifice Blade of a Shattered Realm.
+Whenever a nontoken creature you control dies, if Blade of a Shattered Realm is in your graveyard, return that creature to the battlefield, then return Blade of a Shattered Realm from your graveyard to the battlefield attached to that creature.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/150_Blade of a Shattered Realm.jpg" num="150">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Overseer&apos;s Emissary</name>
+			<text>Indestructible
+Equipped creature gets +6/+6 and has flying and vigilance.
+{0}: Until end of turn, Overseer&apos;s Emissary becomes a 6/6 colorless creature with flying and vigilance that&apos;s no longer an Equipment. Activate this ability only if Overseer&apos;s Emissary isn&apos;t attached to a creature.
+Equip {6}</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/AGH-files/img/155_Overseer&apos;s Emissary.jpg" num="155">AGH</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>8</manacost>
+				<cmc>8</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

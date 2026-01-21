@@ -188,6 +188,7 @@ def generateHTML(codes):
 	.img-container img {
 		width: 100%;
 		height: auto;
+		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
 		background: url('img/flip.png') no-repeat;
@@ -247,6 +248,7 @@ def generateHTML(codes):
 		max-height: 100%;
 		display: block;
 		margin: auto;
+		border-radius: 3.733% / 2.677%;
 	}
 	.card-grid-container .btn {
 		left: 50%;
@@ -348,6 +350,7 @@ def generateHTML(codes):
 	}
 	.card-img-container img {
 		width: 100%;
+		border-radius: 3.733% / 2.677%;
 	}
 	.card-fx {
 		display: grid;
@@ -362,6 +365,7 @@ def generateHTML(codes):
 	.img-container .h-img {
 		transform: rotateY(0deg) rotate(90deg);
 		width: 85%;
+		border-radius: 3.733% / 2.677%;
 	}
 	.rc-menu {
 		display: none;
@@ -771,7 +775,7 @@ def generateHTML(codes):
 					if (card_stats.shape.includes("double"))
 					{
 						gridified_card.getElementsByTagName("button")[0].onclick = function() {
-							imgFlip("image-grid-card", card_stats.type.includes("Battle"));
+							imgFlip("image-grid-card", card_stats.rotated);
 						}
 					}
 					cgc.appendChild(gridified_card);
@@ -981,7 +985,7 @@ def generateHTML(codes):
 								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
-										imgFlip("image-grid-card", card_stats.type.includes("Battle"));
+										imgFlip("image-grid-card", card_stats.rotated);
 									}
 								}
 								cgc.appendChild(gridified_card);
@@ -1074,7 +1078,7 @@ def generateHTML(codes):
 								if (card_stats.shape.includes("double"))
 								{
 									gridified_card.getElementsByTagName("button")[0].onclick = function() {
-										imgFlip("image-grid-card", card_stats.type.includes("Battle"));
+										imgFlip("image-grid-card", card_stats.rotated);
 									}
 								}
 								cgc.appendChild(gridified_card);

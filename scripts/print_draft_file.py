@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import re
+import utils
 
 #F = Fungustober's notes
 def filtered(card, filters):
@@ -26,8 +27,6 @@ def generateFile(code):
 
 	filters = []
 	booster = {}
-
-	github_path = os.path.split(os.getcwd())[1] # this gets the current working directory, so it's an easy failcase
 
 	for slot in structure:
 		booster[slot['name']] = []
@@ -57,11 +56,19 @@ def generateFile(code):
 
 		draft_string += '''	{
 			"name": "''' + card['card_name'] + '''",
-			"rarity": "''' + ('special' if card['rarity'] == 'cube' or card['rarity'] == 'masterpiece' else card['rarity']) + '''",
+			"rarity": "''' + ('special' if card['rarity'] in ['cube','masterpiece'] else card['rarity']) + '''",
 			"mana_cost": "''' + re.sub(h_pattern, h_replace, card['cost']) + '''",
 			"type": "''' + card['type'] + '''",
 			"collector_number": "''' + str(card['number']) + '''",
 	'''
+
+		# CE: this is for any custom types that use a rotated frame
+		split_types = [ 'Projectile' ]
+		for type in split_types:
+			if type in card['type']:
+				draft_string += '''		"layout": "split",
+	'''
+
 
 		card_file_name = (str(card['number']) + '_' + card['card_name']) if ('position' not in card) else card['position']
 		if 'double' in card['shape']:
@@ -69,17 +76,17 @@ def generateFile(code):
 				"name": "",
 				"type": "",
 				"image_uris": {
-					"en": "https://''' + github_path + '''/sets/''' + card['set'] + '''-files/img/''' + card_file_name + '''_back.''' + (set_data['image_type'] if 'image_type' not in card else card['image_type']) + '''"
+					"en": "''' + utils.get_picurl(set_data, card, True) + '''"
 				}
 			},
 			"image_uris": {
-				"en": "https://''' + github_path + '''/sets/''' + card['set'] + '''-files/img/''' + card_file_name + '''_front.''' + (set_data['image_type'] if 'image_type' not in card else card['image_type']) + '''"
+				"en": "''' + utils.get_picurl(set_data, card, False) + '''"
 			}
 		},
 	'''
 		else:
 			draft_string += '''		"image_uris": {
-				"en": "https://''' + github_path + '''/sets/''' + card['set'] + '''-files/img/''' + card_file_name + '''.''' + (set_data['image_type'] if 'image_type' not in card else card['image_type']) + '''"
+				"en": "''' + utils.get_picurl(set_data, card) + '''"
 			}
 		}''' + (''',''' if x != len(set_data['cards']) - 1 else '''''') + '''
 	'''

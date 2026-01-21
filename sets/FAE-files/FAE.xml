@@ -1,0 +1,4385 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>FAE</name>
+			<longname>Faerie Tales</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>Sanguine Prayers</name>
+			<text>Enchant creature you control
+At the beginning of your upkeep, if your life total is equal to enchanted creature&apos;s power, you win the game.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/32_Sanguine Prayers.jpg" num="32">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2WWW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Elder of the Fae</name>
+			<text>Flying
+Anticipate — {T}: At the beginning of your next upkeep, your life total becomes 10. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/7_Elder of the Fae.jpg" num="7">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>4WW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Temporal Tonic</name>
+			<text>Untap all nonland permanents you control. Draw a card.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/82_Temporal Tonic.jpg" num="82">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Herrea of the Night Stars</name>
+			<text>Draw a card, then put a card from your hand on top of your library.
+Target creature has base power and toughness 0/2 until your next turn.
+You get an emblem with &quot;Whenever a creature deals combat damage to you, gain control of it.&quot;</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/60_Herrea of the Night Stars.jpg" num="60">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Herrea</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<loyalty>2</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>King Morund Jhalach IV</name>
+			<text>Deathtouch
+Whenever a creature enters the battlefield under an opponent&apos;s control, you may pay {B}. If you do, that creature gets -2/-2 until end of turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/114_King Morund Jhalach IV.jpg" num="114">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Elf Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cauldron of Sin</name>
+			<text>Search your library for a card, then shuffle your library and put that card on top of it.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/94_Cauldron of Sin.jpg" num="94">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Cackling Rabblerouser</name>
+			<text>First strike
+Whenever Cackling Rabblerouser deals combat damage to an opponent, look at the top three cards of your library. Put up to one creature card from among them onto the battlefield tapped and attacking, then put the rest on the bottom of your library in any order. Exile all cards put onto the battlefield this way at end of combat.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/136_Cackling Rabblerouser.jpg" num="136">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Last Hurrah</name>
+			<text>Exile your hand and the top seven cards of your library. You may play cards exiled this way this turn.
+At the beginning of the next end step, you lose the game.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/150_Last Hurrah.jpg" num="150">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lady Ilyrana Glyris</name>
+			<text>When Lady Ilyrana Glyris enters the battlefield, create a 1/1 green Elf creature token for each Forest you control.
+{6}{G}: You gain 1 life for each Elf and each Forest you control.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/195_Lady Ilyrana Glyris.jpg" num="195">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Elf Druid Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>3GGG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Burgeoning Blossoms</name>
+			<text>You may play an additional land on each of your turns.
+You may play land cards from your graveyard.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/181_Burgeoning Blossoms.jpg" num="181">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Granny Bofflenose</name>
+			<text>Vigilance
+{WU}, {T}: Untap each other tapped creature you control that didn&apos;t attack this turn. Activate this ability only during your postcombat main phase.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/222_Granny Bofflenose.jpg" num="222">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>3WU</manacost>
+				<cmc>5</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Reciprocal Torturer</name>
+			<text>Lifelink, vigilance
+{1}{W}{B}, {T}: Reciprocal Torturer deals damage to target creature equal to the amount of damage that creature has dealt this turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/224_Reciprocal Torturer.jpg" num="224">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Splinterscale Pangolin</name>
+			<text>Flash, hexproof
+Splinterscale Pangolin can&apos;t be countered.
+Masochism 3 (This creature enters the battlefield with three +1/+1 counters on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/225_Splinterscale Pangolin.jpg" num="225">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4GU</manacost>
+				<cmc>6</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Daretti, the Iron Fist</name>
+			<text>Exile the top card of your library. You may cast it this turn. If it&apos;s an artifact, Daretti, the Iron Fist deals 2 damage to each opponent.
+Gain control of target artifact. It gains haste. Sacrifice it at the beginning of the next end step.
+Create a colorless Bomb artifact creature token with &quot;{R}, Sacrifice Bomb: Bomb deals 10 damage divided as you choose among any number of target creatures and/or players.&quot;</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/138_Daretti, the Iron Fist.jpg" num="138">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Daretti</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>The Dominomicon</name>
+			<text>{T}, Sacrifice X lands: Search your library for a nonland card with converted mana cost X and cast it without paying its mana cost, then shuffle your library.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/FAE-files/img/229_The Dominomicon.jpg" num="229">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gang Up</name>
+			<text>As an additional cost to cast Gang Up, tap any number of untapped creatures you control.
+Exile target creature if it has power less than or equal to the total power of creatures tapped to cast Gang Up.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/12_Gang Up.jpg" num="12">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Jubilant Collective</name>
+			<text>Flying
+When Jubilant Collective enters the battlefield, choose one —
+• Put three +1/+1 counters on Jubilant Collective.
+• Create three 1/1 white and blue Faerie creature tokens with flying.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/21_Jubilant Collective.jpg" num="21">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unassuming Troika</name>
+			<text>Whenever you gain life, choose one, where X is the amount of life gained —
+• Put X +1/+1 counters on target creature.
+• Exile target artifact or enchantment with converted mana cost X or less.
+• Return target permanent card with converted mana cost X or less from your graveyard to the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/40_Unassuming Troika.jpg" num="40">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>4WW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spiritweaver Mystic</name>
+			<text>When Spiritweaver Mystic enters the battlefield, you may search your library for an Aura card, reveal it, put it into your hand, then shuffle your library.
+{2}{W}, {T}: You may put an Aura card from your hand onto the battlefield attached to target creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/37_Spiritweaver Mystic.jpg" num="37">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Curious Kitten</name>
+			<text>Lifelink
+Anticipate — {T}: At the beginning of your next upkeep, Curious Kitten gets +3/+2 until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/4_Curious Kitten.jpg" num="4">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tanpip Paladin</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, Tanpip Paladin gains double strike until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/38_Tanpip Paladin.jpg" num="38">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rite of Purity</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+As Rite of Purity enters the battlefield, choose a card type. Spells of the chosen type can&apos;t be cast until end of turn.
+Creatures you control get +1/+1.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/31_Rite of Purity.jpg" num="31">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Serene Prayers</name>
+			<text>You gain 8 life.
+At the beginning of your upkeep, if Serene Prayers is in your graveyard and you control a white creature, you gain 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/33_Serene Prayers.jpg" num="33">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Moonlight Piper</name>
+			<text>Flying
+Anticipate — {T}: At the beginning of your next upkeep, create a 1/1 white and blue Faerie creature token with flying. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/67_Moonlight Piper.jpg" num="67">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Conclave Atoner</name>
+			<text>Flying
+When Conclave Atoner enters the battlefield, return up to one instant card and up to one sorcery card from your graveyard to your hand. For each card returned to your hand this way, put the top two cards of your library into your graveyard.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/47_Conclave Atoner.jpg" num="47">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>To the Skies</name>
+			<text>Return each nonland permanent to its owner&apos;s hand.
+Impetuous {2}{U} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/84_To the Skies.jpg" num="84">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>4UU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Wavering Visage</name>
+			<text>{3}{U}: Wavering Visage becomes a copy of another target creature and gains this ability.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/86_Wavering Visage.jpg" num="86">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Matron of the Moon</name>
+			<text>Flying
+{U}: Matron of the Moon gains hexproof and has base power and toughness 1/1 until your next turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/65_Matron of the Moon.jpg" num="65">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stumble Upon</name>
+			<text>Create a 1/1 white and blue Faerie creature token with flying, then counter target spell unless its controller pays {X}, where X is the number of Faeries you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/79_Stumble Upon.jpg" num="79">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Stoic Spellsnitch</name>
+			<text>Flash
+When Stoic Spellsnitch enters the battlefield, exile up to one target instant or sorcery card from a graveyard. You may cast that card this turn. If it would be put into a graveyard this turn, exile it instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/78_Stoic Spellsnitch.jpg" num="78">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Essence of Temptation</name>
+			<text>Gain control of target creature with power 2 or less.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/53_Essence of Temptation.jpg" num="53">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Kill on Sight</name>
+			<text>Destroy each creature that entered the battlefield this turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/113_Kill on Sight.jpg" num="113">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Jhalach Scoundrel</name>
+			<text>When Jhalach Scoundrel enters the battlefield, discard your hand, search your library for up to two cards and put them into your hand, then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/110_Jhalach Scoundrel.jpg" num="110">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Juvenile Delinquent</name>
+			<text>Masochism 3 (This creature enters the battlefield with three +1/+1 counters on it if you&apos;ve lost life this turn.)
+When Juvenile Delinquent enters the battlefield, destroy target creature if it has power greater than Juvenile Delinquent&apos;s power.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/112_Juvenile Delinquent.jpg" num="112">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Illicit Gains</name>
+			<text>At the beginning of each end step, if a creature you controlled died this turn, you draw a card and gain 1 life.
+At the beginning of each end step, if you lost life this turn, you draw a card and gain 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/109_Illicit Gains.jpg" num="109">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Secondhand Shopkeep</name>
+			<text>Whenever a permanent card is put into your graveyard from the battlefield, you may exile it. If you do, return target permanent card that shares a type with the exiled permanent from your graveyard to your hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/121_Secondhand Shopkeep.jpg" num="121">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rooftop Renegade</name>
+			<text>Menace
+Whenever Rooftop Renegade deals combat damage to a player, reveal the top card of your library and put it into your hand. You lose life equal to its converted mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/119_Rooftop Renegade.jpg" num="119">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Contempt</name>
+			<text>Choose a card name, then target opponent reveals his or her hand and exiles all cards with the chosen name. If no cards were exiled this way, search that player&apos;s graveyard and library for any number of cards with the chosen name and exile them. Then that player shuffles his or her library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/98_Contempt.jpg" num="98">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mark of Suffocation</name>
+			<text>Enchant nonland permanent
+At the beginning of each end step, if enchanted permanent attacked, blocked, or activated an ability this turn, its controller sacrifices it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/118_Mark of Suffocation.jpg" num="118">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Vicious Lindworm</name>
+			<text>Masochism 2 (This creature enters the battlefield with two +1/+1 counters on it if you&apos;ve lost life this turn.)
+Vicious Lindworm has flying as long as it has one or more +1/+1 counters on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/171_Vicious Lindworm.jpg" num="171">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wurm</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wurtnook Firebrew</name>
+			<text>Enchant creature
+At the beginning of enchanted creature&apos;s controller&apos;s upkeep, tap it and it deals 4 damage to another creature chosen at random.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/174_Wurtnook Firebrew.jpg" num="174">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Firebrew Savant</name>
+			<text>{R}: Firebrew Savant gets +1/+0 until end of turn.
+Whenever Firebrew Savant deals combat damage to an opponent, exile that many cards from the top of your library. You may play up to one card exiled this way this turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/144_Firebrew Savant.jpg" num="144">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cauther Hellkite</name>
+			<text>Flying, haste
+Whenever Cauther Hellkite attacks, it deals 1 damage to each creature your opponents control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/137_Cauther Hellkite.jpg" num="137">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Delia&apos;s Brew</name>
+			<text>Delia&apos;s Brew deals 2 damage to target player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/140_Delia&apos;s Brew.jpg" num="140">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Boiling Point</name>
+			<text>Boiling Point deals 3 damage to each creature.
+Impetuous {R}{R} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/134_Boiling Point.jpg" num="134">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Merk, the Matchmaker</name>
+			<text>Haste
+Whenever a player casts a spell, Merk, the Matchmaker deals 1 damage to that player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/154_Merk, the Matchmaker.jpg" num="154">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Goblin</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Frontal Assault</name>
+			<text>As an additional cost to cast Frontal Assault, sacrifice all creatures you control.
+Frontal Assault deals damage to target player equal to the total power of creatures sacrificed to cast Frontal Assault.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/145_Frontal Assault.jpg" num="145">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4RR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dazzling Dreamspinner</name>
+			<text>Tap two Elf creatures you control: Add {G}{G} to your mana pool.
+{6}{G}{G}: Create an 8/8 green Elemental creature token.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/183_Dazzling Dreamspinner.jpg" num="183">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shiv Specialist</name>
+			<text>Whenever Shiv Specialist attacks, other attacking creatures you control with base power less than Shiv Specialist&apos;s power get +X/+X until end of turn, where X is Shiv Specialist&apos;s power.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/209_Shiv Specialist.jpg" num="209">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wistari, Shepherd of Flora</name>
+			<text>{2}, {T}: Add {G} to your mana pool for each land card in your graveyard.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/216_Wistari, Shepherd of Flora.jpg" num="216">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beseech the Wilderness</name>
+			<text>Reveal the top five cards of your library. Target opponent chooses a creature card from among them. Put the chosen card onto the battlefield and the rest on the bottom of your library in any order.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/178_Beseech the Wilderness.jpg" num="178">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>A Whole New World</name>
+			<text>For each basic land type, search your library for a card of that type and put it onto the battlefield tapped. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/215_A Whole New World.jpg" num="215">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Thriving Thicket</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, you may put a green creature card from your hand onto the battlefield. If you do, it gains haste. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/212_Thriving Thicket.jpg" num="212">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fungahydra</name>
+			<text>Fungahydra enters the battlefield with X +1/+1 counters on it.
+Remove a +1/+1 counter from Fungahydra: Add {G} to your mana pool. You gain 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/187_Fungahydra.jpg" num="187">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fungus Hydra</type>
+				<maintype>Creature</maintype>
+				<manacost>XG</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Harmonious Gathering</name>
+			<text>Draw a card for each Elf you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/192_Harmonious Gathering.jpg" num="192">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mythic Dais</name>
+			<text>{1}, {T}: Target permanent&apos;s abilities can&apos;t be activated this turn. As long as this ability in on the stack, players can&apos;t cast spells or activate abilities.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/233_Mythic Dais.jpg" num="233">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Potion of Depletion</name>
+			<text>Return target spell to its owner&apos;s hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/71_Potion of Depletion.jpg" num="71">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant — Elixir</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Gibliver Ruffians</name>
+			<text>Pay 2 life: Gibliver Ruffians gains menace until end of turn. Activate this ability only once each turn.
+Pay 2 life: Gibliver Ruffians gets +2/+2 until end of turn. Activate this ability only once each turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/221_Gibliver Ruffians.jpg" num="221">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>BR</manacost>
+				<cmc>2</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wriwth Renegade</name>
+			<text>Trample
+Whenever Wriwth Renegade deals combat damage to an opponent, put that many +1/+1 counters on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/226_Wriwth Renegade.jpg" num="226">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>1RG</manacost>
+				<cmc>3</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Braided Sentinel</name>
+			<text>Vigilance
+{G}{W}: Braided Sentinel gains indestructible until end of turn.
+{G}{W}: Put a +1/+1 counter on Braided Sentinel.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/218_Braided Sentinel.jpg" num="218">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>GW</manacost>
+				<cmc>2</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lark Lithenfeld</name>
+			<text>No more than one creature can attack each combat.
+At the beginning of your postcombat main phase, you gain 2 life and draw a card if you control two or more tapped creatures.
+At the beginning of each opponent&apos;s postcombat main phase, you gain 2 life and draw a card if that player controls two or more untapped creatures.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/223_Lark Lithenfeld.jpg" num="223">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>2WU</manacost>
+				<cmc>4</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Delia Lithenfeld</name>
+			<text>Haste
+Whenever Delia Lithenfeld attacks, you may exile a card from your hand. If you do, Delia Lithenfeld gets +2/+0 until end of turn and can&apos;t be blocked this turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/219_Delia Lithenfeld.jpg" num="219">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Domino, Toadstool King</name>
+			<text>{2}, Sacrifice a land: Put two +1/+1 counters on another target creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/220_Domino, Toadstool King.jpg" num="220">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Frog</type>
+				<maintype>Creature</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Streambank Hut</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}, {T}, Pay 1 life: Add {W}{U} to your mana pool.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/246_Streambank Hut.jpg" num="246">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Wetland Ruins</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}, {T}, Pay 1 life: Add {U}{B} to your mana pool.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/248_Wetland Ruins.jpg" num="248">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Burning Bridges</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}, {T}, Pay 1 life: Add {B}{R} to your mana pool.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/240_Burning Bridges.jpg" num="240">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Hall of the Feast</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}, {T}, Pay 1 life: Add {R}{G} to your mana pool.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/242_Hall of the Feast.jpg" num="242">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>RG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Blooming Orchard</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}, {T}, Pay 1 life: Add {G}{W} to your mana pool.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/FAE-files/img/239_Blooming Orchard.jpg" num="239">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Quagmire Usher</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, target creature you control gains indestructible until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/30_Quagmire Usher.jpg" num="30">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fleeting Awareness</name>
+			<text>Target creature you control gains indestructible until end of turn.
+Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/9_Fleeting Awareness.jpg" num="9">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Garos Aeronaut</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, Garos Aeronaut gets +1/+1 and gains flying until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/13_Garos Aeronaut.jpg" num="13">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Flittering Pixie</name>
+			<text>Flying
+Whenever Flittering Pixie attacks, it gets +1/+1 until end of turn if you control another attacking creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/10_Flittering Pixie.jpg" num="10">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Children of the Flock</name>
+			<text>Creatures you control with base power and toughness 1/1 get +1/+1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/3_Children of the Flock.jpg" num="3">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wishful Thinker</name>
+			<text>Flying
+Whenever you gain life, put a +1/+1 counter on Wishful Thinker.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/43_Wishful Thinker.jpg" num="43">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Granny&apos;s Reinforcements</name>
+			<text>If you have less life than each opponent, you gain 4 life. If you control fewer creatures than each opponent, create two 1/1 white Gnome creature tokens.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/18_Granny&apos;s Reinforcements.jpg" num="18">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Silent Sergeant</name>
+			<text>Vigilance, lifelink</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/35_Silent Sergeant.jpg" num="35">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Judgment of the Wisps</name>
+			<text>Enchant creature
+Enchanted creature gets +2/+2 as long as you control it. Otherwise, it can&apos;t attack or block.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/22_Judgment of the Wisps.jpg" num="22">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Marshal-for-Hire</name>
+			<text>Tap another untapped creature you control: Marshal-for-Hire gets +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/24_Marshal-for-Hire.jpg" num="24">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Venerable Hunt</name>
+			<text>Choose target creature you control, then destroy another target creature if its power is greater than the chosen creature&apos;s power.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/42_Venerable Hunt.jpg" num="42">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tenacity</name>
+			<text>Creatures you control get +1/+1 and gain lifelink until end of turn. Untap those creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/39_Tenacity.jpg" num="39">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lifeblood Salve</name>
+			<text>Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/23_Lifeblood Salve.jpg" num="23">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Guidance of the Fae</name>
+			<text>Enchant creature
+Enchanted creature has flying.
+Whenever a creature enters the battlefield under your control, you may pay {1}{W}. If you do, return Guidance of the Fae from your graveyard to the battlefield attached to that creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/19_Guidance of the Fae.jpg" num="19">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Rehearsal Elixir</name>
+			<text>Scry 3.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/72_Rehearsal Elixir.jpg" num="72">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Wriwth Fortune Teller</name>
+			<text>When Wriwth Fortune Teller enters the battlefield, look at the top four cards of your library. You may reveal an Elixir card from among them and put it into your hand, then put the rest on the bottom of your library in any order.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/87_Wriwth Fortune Teller.jpg" num="87">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Conclave Escort</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Flying
+When Conclave Escort enters the battlefield, return target creature you control to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/48_Conclave Escort.jpg" num="48">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Granny&apos;s Guise</name>
+			<text>Creatures target player controls get -1/-0 and can&apos;t be blocked until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/59_Granny&apos;s Guise.jpg" num="59">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lament</name>
+			<text>Counter target spell.
+Impetuous {1}{U} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/63_Lament.jpg" num="63">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fae of Frost</name>
+			<text>Flying
+Anticipate — {T}: At the beginning of your next upkeep, tap target creature. That creature doesn&apos;t untap during its controller&apos;s next untap step. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/55_Fae of Frost.jpg" num="55">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jovial Communion</name>
+			<text>Cast Jovial Communion only during your postcombat main phase.
+Draw a card for each untapped creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/62_Jovial Communion.jpg" num="62">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Archive Assistant</name>
+			<text>Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+{2}{U}, {T}, Exile an instant or sorcery card from your graveyard: Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/45_Archive Assistant.jpg" num="45">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gnomish Meddling</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Enchant creature
+{1}{U}: Tap enchanted creature.
+{1}{U}: Untap enchanted creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/57_Gnomish Meddling.jpg" num="57">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Splintering Squall</name>
+			<text>Exile target creature you control, then return that card the battlefield under its owner&apos;s control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/76_Splintering Squall.jpg" num="76">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant — Elixir</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tanpip Foreman</name>
+			<text>When Tanpip Foreman enters the battlefield, another target creature you control gains &quot;{T}: Draw a card&quot; until Tanpip Foreman leaves the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/80_Tanpip Foreman.jpg" num="80">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spectacled Pilot</name>
+			<text>Flying
+Whenever Spectacled Pilot deals combat damage to a player, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/75_Spectacled Pilot.jpg" num="75">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Transfigure</name>
+			<text>Destroy target creature. Its controller creates a 3/3 blue Frog creature token.
+Impetuous {1}{U} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/85_Transfigure.jpg" num="85">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Consult the Wisps</name>
+			<text>Whenever you cast an instant or sorcery spell, you may exile two cards from your graveyard. If you do, create a 1/1 white and blue Faerie creature token with flying.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/49_Consult the Wisps.jpg" num="49">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Boiling Tar</name>
+			<text>Target creature gets -2/-2 until end of turn, then another target creature gets -1/-1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/91_Boiling Tar.jpg" num="91">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Toadstool Trafficker</name>
+			<text>Menace
+When Toadstool Trafficker enters the battlefield, another target creature gets -1/-1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/126_Toadstool Trafficker.jpg" num="126">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dark Dispatch</name>
+			<text>Target player discards three cards and loses 3 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/99_Dark Dispatch.jpg" num="99">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bubbling Beyond</name>
+			<text>Exile any number of target cards from graveyards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/93_Bubbling Beyond.jpg" num="93">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Shadow Alchemist</name>
+			<text>{2}{B}, Exile an instant or sorcery card from your graveyard: Target creature gets -2/-2 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/124_Shadow Alchemist.jpg" num="124">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Depraved Elder</name>
+			<text>Depraved Elder doesn&apos;t untap during your untap step unless you pay 1 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/101_Depraved Elder.jpg" num="101">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jhalach&apos;s Familiar</name>
+			<text>Flying, lifelink
+Masochism 2 (This creature enters the battlefield with two +1/+1 counters on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/111_Jhalach&apos;s Familiar.jpg" num="111">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Harpy</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Caustic Cynic</name>
+			<text>Whenever you gain life, each player loses 1 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/96_Caustic Cynic.jpg" num="96">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Knocking Nightmares</name>
+			<text>Target player reveals his or her hand. You choose a nonland card from among it. That player discards that card. You gain life equal to that card&apos;s converted mana cost.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/115_Knocking Nightmares.jpg" num="115">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Blighted Charlatan</name>
+			<text>When Blighted Charlatan enters the battlefield, each player loses 1 life, discards a card, sacrifices a creature, then sacrifices a land.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/90_Blighted Charlatan.jpg" num="90">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Goliath Slimehusk</name>
+			<text>Whenever Goliath Slimehusk attacks or blocks, sacrifice a land.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/104_Goliath Slimehusk.jpg" num="104">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Slug</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>6/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ruins Rummaging</name>
+			<text>At the beginning of your upkeep, you may exile a nonland card from your hand. If you do, create X 1/1 black Goblin Rogue creature tokens, where X is the converted mana cost of the exiled card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/120_Ruins Rummaging.jpg" num="120">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Grisly Edict</name>
+			<text>Target player sacrifices a creature.
+Impetuous {B} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/106_Grisly Edict.jpg" num="106">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Trench Prowler</name>
+			<text>Masochism 2 (This creature enters the battlefield with two +1/+1 counters on it if you&apos;ve lost life this turn.)
+Trench Prowler can&apos;t block.
+{1}{B}, Pay 2 life, Exile a card from your hand: Return Trench Prowler from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/129_Trench Prowler.jpg" num="129">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tag Along</name>
+			<text>Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.
+Impetuous {1}{R} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/168_Tag Along.jpg" num="168">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Daughter&apos;s Scorn</name>
+			<text>Exile your hand, then draw three cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/139_Daughter&apos;s Scorn.jpg" num="139">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Heedless Shaman</name>
+			<text>Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+{2}{R}, {T}, Exile an instant or sorcery card from your graveyard: Heedless Shaman deals 2 damage to target creature or player.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/147_Heedless Shaman.jpg" num="147">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jeering Cellguard</name>
+			<text>First strike
+When Jeering Cellguard enters the battlefield, target creature an opponent controls attacks if able during its controller&apos;s next turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/148_Jeering Cellguard.jpg" num="148">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Errant Sniper</name>
+			<text>{T}: Errant Sniper deals 1 damage to another target creature or player and 1 damage to you.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/141_Errant Sniper.jpg" num="141">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Archer</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Raging Renegade</name>
+			<text>Haste
+Masochism 2 (This creature enters the battlefield with two +1/+1 counters on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/158_Raging Renegade.jpg" num="158">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Magmatic Whelp</name>
+			<text>Whenever Magmatic Whelp attacks, target creature without flying can&apos;t block this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/153_Magmatic Whelp.jpg" num="153">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Raucous Eruption</name>
+			<text>Raucous Eruption deals 5 damage divided as you choose among up to two target creatures and/or players.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/160_Raucous Eruption.jpg" num="160">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Wurtnook Brawler</name>
+			<text>Double strike (This creature deals both first-strike and regular combat damage.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/173_Wurtnook Brawler.jpg" num="173">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Novice Pyromancy</name>
+			<text>Enchant creature
+When Novice Pyromancy enters the battlefield, you may have it deal 2 damage to target creature.
+Enchanted creature gets +2/+0.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/155_Novice Pyromancy.jpg" num="155">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Fire-Up Shot</name>
+			<text>Create two 1/1 red Goblin creature tokens.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/143_Fire-Up Shot.jpg" num="143">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant — Elixir</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Unquenched Sadism</name>
+			<text>Target creature gets +3/+0 until end of turn.
+Target creature gains first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/170_Unquenched Sadism.jpg" num="170">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Self Loathing</name>
+			<text>Enchant creature
+Whenever enchanted creature becomes tapped, it deals damage to itself equal to its power.
+{1}{R}: Enchanted creature attacks this turn if able.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/166_Self Loathing.jpg" num="166">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Boar Cavalry</name>
+			<text>Masochism 2 (This creature enters the battlefield with two +1/+1 counters on it if you&apos;ve lost life this turn.)
+Boar Cavalry can&apos;t be blocked by creatures with less power.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/133_Boar Cavalry.jpg" num="133">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>5RR</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Maturation Ceremony</name>
+			<text>Put a +1/+1 counter on each creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/197_Maturation Ceremony.jpg" num="197">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mother&apos;s Plea</name>
+			<text>Search your library for a creature card that shares a type with a creature you control, reveal it, and put it into your hand, then shuffle your library.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/198_Mother&apos;s Plea.jpg" num="198">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Enter the Ballroom</name>
+			<text>Until end of turn, up to two target creatures each get +1/+1 and gain &quot;Whenever this creature deals combat damage to a player, draw a card.&quot;</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/184_Enter the Ballroom.jpg" num="184">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Glyris Missionary</name>
+			<text>When Glyris Missionary enters the battlefield, you may put a basic land card from your hand onto the battlefield tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/189_Glyris Missionary.jpg" num="189">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Oaken Elder</name>
+			<text>Hexproof
+When Oaken Elder enters the battlefield, you gain 4 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/201_Oaken Elder.jpg" num="201">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wriwth Ranger</name>
+			<text>Return another creature you control to its owner&apos;s hand: Untap Wriwth Ranger. Activate this ability only once each turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/217_Wriwth Ranger.jpg" num="217">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Thicket Researcher</name>
+			<text>Whenever one or more creatures with base power and toughness 1/1 enter the battlefield under your control, you may draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/211_Thicket Researcher.jpg" num="211">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Neurotic Fosterer</name>
+			<text>When Neurotic Fosterer enters the battlefield, sacrifice up to two lands. For each land sacrificed this way, create two 1/1 green Ferret creature tokens.
+{2}{G}, Sacrifice a land: Ferret creatures you control get +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/200_Neurotic Fosterer.jpg" num="200">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rite of the Dominomicon</name>
+			<text>{2}, Sacrifice a land: Return target land card from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/203_Rite of the Dominomicon.jpg" num="203">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Canopy Ambusher</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Reach
+When Canopy Ambusher enters the battlefield, target creature gets +2/+2 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/182_Canopy Ambusher.jpg" num="182">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Archer</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Frontier Guide</name>
+			<text>{3}{G}, {T}: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/186_Frontier Guide.jpg" num="186">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blueglass Centipede</name>
+			<text>Deathtouch
+Whenever Blueglass Centipede deals combat damage to an opponent, untap target creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/179_Blueglass Centipede.jpg" num="179">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Centipede</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arboreal Savant</name>
+			<text>Vigilance
+Anticipate — {T}: At the beginning of your next upkeep, you may pay {3}{G}. If you do, put three +1/+1 counters on Arboreal Savant. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/176_Arboreal Savant.jpg" num="176">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Grizzled with Age</name>
+			<text>Enchant creature
+When Grizzled with Age enters the battlefield, enchanted creature deals damage equal to its power to target creature you don&apos;t control.
+Enchanted creature gets +2/+2.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/191_Grizzled with Age.jpg" num="191">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bristled Scarecrow</name>
+			<text>Reach (This creature can block creatures with flying.)
+Creatures with flying your opponents control get -1/-1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/227_Bristled Scarecrow.jpg" num="227">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Festival Mask</name>
+			<text>Equipped creature gets +1/+0 and has hexproof.
+Equip {2}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/230_Festival Mask.jpg" num="230">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Woven Warden</name>
+			<text>When Woven Warden dies, exile all cards from graveyards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/238_Woven Warden.jpg" num="238">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crushing Sledge</name>
+			<text>Equipped creature gets +4/+1.
+Equip {3}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/228_Crushing Sledge.jpg" num="228">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Talisman of the Occult</name>
+			<text>{T}: Untap target land you control.
+{3}: Untap Talisman of the Occult.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/237_Talisman of the Occult.jpg" num="237">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Toadstool Kingdom</name>
+			<text>{T}: Add {C} to your mana pool.
+{2}{W}, {T}, Sacrifice Toadstool Kingdom: Creatures you control gain protection from the color of your choice until end of turn. (This permanent can&apos;t be targeted, dealt damage, enchanted, or equipped by anything of that color until end of turn.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/247_Toadstool Kingdom.jpg" num="247">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Wondrous Falls</name>
+			<text>{T}: Add {C} to your mana pool.
+{2}{U}, {T}, Sacrifice Wondrous Falls: Scry 2, then draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/249_Wondrous Falls.jpg" num="249">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Desolate Mire</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}{B}, {T}, Sacrifice Desolate Mire: Target creature gets -2/-2 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/241_Desolate Mire.jpg" num="241">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Simmering Lava Pit</name>
+			<text>{T}: Add {C} to your mana pool.
+{1}{R}, {T}, Sacrifice Simmering Lava Pit: Create a 4/4 red Elemental creature token with haste. Exile that token at end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/244_Simmering Lava Pit.jpg" num="244">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Spectral Arbor</name>
+			<text>{T}: Add {C} to your mana pool.
+{G}, {T}, Sacrifice Spectral Arbor: Prevent all combat damage that would be dealt to you this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/FAE-files/img/245_Spectral Arbor.jpg" num="245">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Maternal Care</name>
+			<text>Prevent all damage that would be dealt to creatures you control this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/25_Maternal Care.jpg" num="25">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Catch Red-Handed</name>
+			<text>Catch Red-Handed deals 5 damage to target attacking or blocking creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/2_Catch Red-Handed.jpg" num="2">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vassal Cage</name>
+			<text>Enchant creature with converted mana cost 3 or less
+Enchanted creature can&apos;t attack or block, and its activated abilities can&apos;t be activated.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/41_Vassal Cage.jpg" num="41">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gnomish Youth</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, you gain 2 life. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/17_Gnomish Youth.jpg" num="17">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Indentured Yak</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, Indentured Yak gets +3/+0 until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/20_Indentured Yak.jpg" num="20">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Yak</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fog of Paralysia</name>
+			<text>Enchant creature
+Whenever enchanted creature becomes untapped, you may pay {W}. If you do, tap target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/11_Fog of Paralysia.jpg" num="11">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Pass the Torch</name>
+			<text>Target creature you control gets +1/+1 until end of turn. When that creature dies this turn, create a 1/1 white Gnome creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/27_Pass the Torch.jpg" num="27">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Garos Merrymaker</name>
+			<text>When Garos Merrymaker enters the battlefield, you gain 1 life for each creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/15_Garos Merrymaker.jpg" num="15">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Earnest Matron</name>
+			<text>When Earnest Matron enters the battlefield, create a 1/1 white Gnome creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/6_Earnest Matron.jpg" num="6">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Seven-Card Stud</name>
+			<text>Whenever you gain life, Seven-Card Stud gains first strike until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/34_Seven-Card Stud.jpg" num="34">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ephemeral Optimism</name>
+			<text>You gain 5 life. Shuffle Ephemeral Optimism into its owner&apos;s library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/8_Ephemeral Optimism.jpg" num="8">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Soul Aegis</name>
+			<text>Enchant creature
+When Soul Aegis enters the battlefield, you gain 2 life.
+Enchanted creature gets +1/+2.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/36_Soul Aegis.jpg" num="36">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Glyris Partisan</name>
+			<text>Glyris Partisan gets +0/+1 for each permanent attached to it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/16_Glyris Partisan.jpg" num="16">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dream Teacher</name>
+			<text>Flying, vigilance</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/5_Dream Teacher.jpg" num="5">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bridled Mule</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/1_Bridled Mule.jpg" num="1">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Donkey</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pup of the Pasture</name>
+			<text>When Pup of the Pasture enters the battlefield, create a 1/1 white and blue Faerie creature token with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/28_Pup of the Pasture.jpg" num="28">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Garos Cleanser</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, exile target card in a graveyard. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/14_Garos Cleanser.jpg" num="14">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Northern Tawny</name>
+			<text>Flying
+When Northern Tawny enters the battlefield, creatures you control get +1/+1 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/26_Northern Tawny.jpg" num="26">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Purge from Reality</name>
+			<text>Exile target artifact or enchantment with converted mana cost 3 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/29_Purge from Reality.jpg" num="29">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Forget at Home</name>
+			<text>Return target creature to its owner&apos;s hand.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/56_Forget at Home.jpg" num="56">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Emergency Coolant</name>
+			<text>Tap up to two target creatures.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/52_Emergency Coolant.jpg" num="52">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant — Elixir</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Pixie Post Courier</name>
+			<text>When Pixie Post Courier enters the battlefield, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/70_Pixie Post Courier.jpg" num="70">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie Frog</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Granny&apos;s Escapist</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, target creature can&apos;t be blocked until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/58_Granny&apos;s Escapist.jpg" num="58">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Melancholy Messenger</name>
+			<text>When Melancholy Messenger enters the battlefield, put the top two cards of your library into your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/66_Melancholy Messenger.jpg" num="66">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tanpip Prospector</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, draw a card, then discard a card. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/81_Tanpip Prospector.jpg" num="81">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Gnome</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Insidious Augur</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, target player puts the top two cards of his or her library into his or her graveyard. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/61_Insidious Augur.jpg" num="61">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Extract of Yesteryear</name>
+			<text>Shuffle up to three target cards from your graveyard into your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/54_Extract of Yesteryear.jpg" num="54">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant — Elixir</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Thought Blot</name>
+			<text>Each player puts the top four cards of his or her library into his or her graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/83_Thought Blot.jpg" num="83">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mystify</name>
+			<text>Target creature gets -4/-0 until end of turn.
+Impetuous {1}{U} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/68_Mystify.jpg" num="68">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Doubtful Dabbler</name>
+			<text>Whenever you cast an instant or sorcery spell, Doubtful Dabbler gains flying until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/51_Doubtful Dabbler.jpg" num="51">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Starsign Dowser</name>
+			<text>Flying
+Whenever Starsign Dowser deals combat damage to a player, look at the top card of your library. You may exile that card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/77_Starsign Dowser.jpg" num="77">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dewdrop Spy</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Flying
+When Dewdrop Spy enters the battlefield, look at the top card of target player&apos;s library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/50_Dewdrop Spy.jpg" num="50">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Reticulate Telepath</name>
+			<text>{3}{U}: Scry 2.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/73_Reticulate Telepath.jpg" num="73">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Alchemise</name>
+			<text>Draw two cards, then discard two cards unless you exile two cards from your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/44_Alchemise.jpg" num="44">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lucid Dreaming</name>
+			<text>Put target permanent into its owner&apos;s library fourth from the top.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/64_Lucid Dreaming.jpg" num="64">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4U</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Negate</name>
+			<text>Counter target noncreature spell.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/69_Negate.jpg" num="69">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Binding Fumes</name>
+			<text>Enchant creature
+When Binding Fumes enters the battlefield, tap enchanted creature.
+Enchanted creature doesn&apos;t untap during its controller&apos;s untap step unless its controller pays {4}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/46_Binding Fumes.jpg" num="46">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Soothsay</name>
+			<text>Target player puts the top two cards of his or her library into his or her graveyard.
+Draw a card.
+Impetuous {U} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/74_Soothsay.jpg" num="74">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tar Drooler</name>
+			<text>Flying, deathtouch</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/125_Tar Drooler.jpg" num="125">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bat</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bone Picker</name>
+			<text>Defender
+Pay 3 life: Bone Picker can attack this turn as though it didn&apos;t have defender. Activate this ability only once each turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/92_Bone Picker.jpg" num="92">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lace with Duskwort</name>
+			<text>Target creature gets -5/-5 until end of turn.
+Impetuous {B}{B} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/116_Lace with Duskwort.jpg" num="116">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Drow Fieldhand</name>
+			<text>When Drow Fieldhand enters the battlefield, sacrifice a land.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/102_Drow Fieldhand.jpg" num="102">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hostage Smuggler</name>
+			<text>When Hostage Smuggler enters the battlefield, put up to one target creature card in your graveyard on top of your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/108_Hostage Smuggler.jpg" num="108">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Debilitating Serum</name>
+			<text>Target opponent loses 3 life and you gain 3 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/100_Debilitating Serum.jpg" num="100">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Set Afloat</name>
+			<text>Target player discards two cards. Put the top X cards of your library into your graveyard, where X is the combined converted mana cost of cards discarded this way.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/123_Set Afloat.jpg" num="123">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Exultant Embalmer</name>
+			<text>Whenever one or more cards are put into your graveyard from anywhere for the first time each turn, Exultant Embalmer gets +1/+0 and gains menace until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/103_Exultant Embalmer.jpg" num="103">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hideous Skinner</name>
+			<text>Menace
+Masochism 1 (This creature enters the battlefield with a +1/+1 counter on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/107_Hideous Skinner.jpg" num="107">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Toxic Blade</name>
+			<text>Target creature you control gets +1/+0 and gains deathtouch until end of turn. You lose 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/128_Toxic Blade.jpg" num="128">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Torpid Vulture</name>
+			<text>Flying
+Whenever you gain life, Torpid Vulture gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/127_Torpid Vulture.jpg" num="127">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Malevolent Youth</name>
+			<text>When Malevolent Youth enters the battlefield or dies, target player loses 1 life and you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/117_Malevolent Youth.jpg" num="117">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Certain Death</name>
+			<text>Destroy target creature. Its controller loses 2 life and you gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/97_Certain Death.jpg" num="97">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>5B</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Grim Discovery</name>
+			<text>Choose one or both —
+• Return target creature card from your graveyard to your hand.
+• Return target land card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/105_Grim Discovery.jpg" num="105">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Absorbent Leeches</name>
+			<text>Absorbent Leeches gets +1/+1 and has lifelink as long as there is a land card in your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/88_Absorbent Leeches.jpg" num="88">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Leech</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cauldron Steward</name>
+			<text>When Cauldron Steward dies, each player discards a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/95_Cauldron Steward.jpg" num="95">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Serum Splash</name>
+			<text>You draw two cards and you lose 2 life. Scry 2.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/122_Serum Splash.jpg" num="122">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bandit Raid</name>
+			<text>Exile up to two target cards from graveyards. For each card exiled this way, create a 1/1 black Goblin Rogue creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/89_Bandit Raid.jpg" num="89">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Wurtnook Initiate</name>
+			<text>Masochism 1 (This creature enters the battlefield with a +1/+1 counter on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/130_Wurtnook Initiate.jpg" num="130">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Timber Splinter</name>
+			<text>Timber Splinter deals 3 damage to target creature or player.
+Impetuous {R} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/169_Timber Splinter.jpg" num="169">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Volcanic Newt</name>
+			<text>{R}: Volcanic Newt gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/172_Volcanic Newt.jpg" num="172">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Act on Adrenaline</name>
+			<text>Target creature gets +1/+0 until end of turn and attacks this turn if able.
+Impetuous {R} (If this card is put into exile from anywhere other than the stack, you may cast it for its impetuous cost. Then exile it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/132_Act on Adrenaline.jpg" num="132">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Reckless Blaze</name>
+			<text>Reckless Blaze deals 6 damage to target creature and 3 damage to you.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/162_Reckless Blaze.jpg" num="162">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Savage Stabber</name>
+			<text>First strike
+Masochism 1 (This creature enters the battlefield with a +1/+1 counter on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/164_Savage Stabber.jpg" num="164">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gibliver Wanderer</name>
+			<text>When Gibliver Wanderer dies, it deals 2 damage to you.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/146_Gibliver Wanderer.jpg" num="146">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brute Strength</name>
+			<text>Target creature gets +3/+1 and gains trample until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/135_Brute Strength.jpg" num="135">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Surprise Attack</name>
+			<text>Target creature you control deals damage equal to its power to target creature you don&apos;t control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/167_Surprise Attack.jpg" num="167">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Pouncing Cougar</name>
+			<text>Trample
+When Pouncing Cougar enters the battlefield, it deals 1 damage to another target creature or player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/157_Pouncing Cougar.jpg" num="157">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Perilous Indulgence</name>
+			<text>As an additional cost to cast Perilous Indulgence, exile a card from your hand.
+Target creature gets +2/+1 and gains double strike until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/156_Perilous Indulgence.jpg" num="156">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Abstruse Hellhorn</name>
+			<text>Whenever you cast an instant or sorcery spell, switch Abstruse Hellhorn&apos;s power and toughness until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/131_Abstruse Hellhorn.jpg" num="131">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental Elk</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Feral Sabretusk</name>
+			<text>Trample
+Masochism 1 (This creature enters the battlefield with a +1/+1 counter on it if you&apos;ve lost life this turn.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/142_Feral Sabretusk.jpg" num="142">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Boar</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scoundrel Slayer</name>
+			<text>Scoundrel Slayer gets +1/+0 for each permanent attached to it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/165_Scoundrel Slayer.jpg" num="165">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Madcap Skills</name>
+			<text>Enchant creature
+Enchanted creature gets +3/+0 and has menace. (It can&apos;t be blocked except by two or more creatures.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/152_Madcap Skills.jpg" num="152">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Reverent Ancestory</name>
+			<text>Exile a card from your hand, Sacrifice Reverent Ancestory: Reverent Ancestory deals 2 damage to target creature or player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/163_Reverent Ancestory.jpg" num="163">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Raving Rapscallion</name>
+			<text>Raving Rapscallion attacks each turn if able.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/161_Raving Rapscallion.jpg" num="161">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Goblin Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jhalach Warlock</name>
+			<text>Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/149_Jhalach Warlock.jpg" num="149">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Light it Up</name>
+			<text>Destroy target artifact or land. Light it Up deals 2 damage to that permanent&apos;s controller.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/151_Light it Up.jpg" num="151">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Random Accusation</name>
+			<text>As an additional cost to cast Random Accusation, discard a card at random.
+Exile the top three cards of your library. You may play those cards this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/159_Random Accusation.jpg" num="159">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vulture Hunt</name>
+			<text>Destroy target creature with flying. Scry 1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/213_Vulture Hunt.jpg" num="213">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Secrets of the Soil</name>
+			<text>Create a 1/1 green Insect creature token, then put a +1/+1 counter on a creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/207_Secrets of the Soil.jpg" num="207">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hasty Harvest</name>
+			<text>Search your library for up to three basic land cards and reveal them, then shuffle your library and put those cards on top of it in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/193_Hasty Harvest.jpg" num="193">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mystic Shepherd</name>
+			<text>{T}: Add {G} to your mana pool.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/199_Mystic Shepherd.jpg" num="199">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Flaunt Dominance</name>
+			<text>Target creature you control gets +1/+1 until end of turn. It fights target creature you don&apos;t control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/185_Flaunt Dominance.jpg" num="185">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Savage Grizzly</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/205_Savage Grizzly.jpg" num="205">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bear</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gladecover Scout</name>
+			<text>Hexproof</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/188_Gladecover Scout.jpg" num="188">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Selfless Sage</name>
+			<text>{G}, Sacrifice Selfless Sage: Destroy target artifact or enchantment.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/208_Selfless Sage.jpg" num="208">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scrupulous Gardener</name>
+			<text>When Scrupulous Gardener enters the battlefield, you may return target land card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/206_Scrupulous Gardener.jpg" num="206">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Territorial Direwolf</name>
+			<text>Territorial Direwolf gets +1/+1 and has trample as long as there is a land card in your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/210_Territorial Direwolf.jpg" num="210">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wolf</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hunter&apos;s Ritual</name>
+			<text>Put three +1/+1 counters on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/194_Hunter&apos;s Ritual.jpg" num="194">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Glyris Pacifist</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+When Glyris Pacifist enters the battlefield, prevent all combat damage that would be dealt this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/190_Glyris Pacifist.jpg" num="190">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Watchful Bowmaster</name>
+			<text>Reach
+{3}{G}: Watchful Bowmaster gets +1/+1 until end of turn. Untap it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/214_Watchful Bowmaster.jpg" num="214">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Archer</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rootsong Shaman</name>
+			<text>Anticipate — {T}: At the beginning of your next upkeep, target creature you control gets +1/+1 until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/204_Rootsong Shaman.jpg" num="204">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lifeheart Clairvoyant</name>
+			<text>Trample
+Anticipate — {T}: At the beginning of your next upkeep, Lifeheart Clairvoyant gets +2/+2 until end of turn. Activate this ability only any time you could cast a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/196_Lifeheart Clairvoyant.jpg" num="196">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rainbow Weevil</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/202_Rainbow Weevil.jpg" num="202">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>5GG</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>6/8</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brandish Dominance</name>
+			<text>Target creature gets +6/+6 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/180_Brandish Dominance.jpg" num="180">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Aim High</name>
+			<text>Untap target creature. It gets +2/+2 and gains reach until end of turn. (It can block creatures with flying.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/175_Aim High.jpg" num="175">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Aromatic Balm</name>
+			<text>Reveal the top four cards of your library. You may put a creature or land card from among them into your hand. Put the rest into your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/177_Aromatic Balm.jpg" num="177">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery — Elixir</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sanctum Compass</name>
+			<text>{1}, {T}, Sacrifice Sanctum Compass: Search your library for a basic land card that shares a type with a land you control and put it onto the battlefield tapped, then shuffle your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/234_Sanctum Compass.jpg" num="234">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Field Creeper</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/231_Field Creeper.jpg" num="231">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skull Rattler</name>
+			<text>Defender
+Whenever Skull Rattler blocks a creature, that creature gets -2/-0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/235_Skull Rattler.jpg" num="235">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fiery Pike</name>
+			<text>Equipped creature gets +1/+0.
+Whenever equipped creature becomes blocked by a creature, it deals 1 damage to that creature.
+Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/232_Fiery Pike.jpg" num="232">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Soothsayer&apos;s Staff</name>
+			<text>Equipped creature gets +1/+1.
+Whenever you cast an instant or sorcery spell, you may attach Soothsayer&apos;s Staff to target creature you control.
+Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/236_Soothsayer&apos;s Staff.jpg" num="236">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Harvest Prairie</name>
+			<text>{T}: Add {C} to your mana pool.
+{2}, {T}, Sacrifice Harvest Prairie: Search your library for a land card that shares a type with a basic land you control and put it onto the battlefield tapped, then shuffle your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/243_Harvest Prairie.jpg" num="243">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Plains</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/250_Plains.jpg" num="250">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Plains</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/251_Plains.jpg" num="251">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Island</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/252_Island.jpg" num="252">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Island</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/253_Island.jpg" num="253">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Swamp</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/254_Swamp.jpg" num="254">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Swamp</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/255_Swamp.jpg" num="255">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Mountain</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/256_Mountain.jpg" num="256">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Mountain</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/257_Mountain.jpg" num="257">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Forest</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/258_Forest.jpg" num="258">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Forest</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/FAE-files/img/259_Forest.jpg" num="259">FAE</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

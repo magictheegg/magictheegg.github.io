@@ -45,10 +45,12 @@
 			left: 10%;
 			top: 10%;
 			width: 85%;
+			boarder-radius: 3.733% / 2.677%;
 		}
 		.sidebar-img {
 			vertical-align: middle;
 			width: 100%;
+			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
 			background: url('/img/close.png') no-repeat;
@@ -82,6 +84,7 @@
 			display: block;
 			visibility: hidden;
 			cursor: pointer;
+			border-radius: 3.733% / 2.677%;
 		}
 		.banner {
 			width: 100%;
@@ -102,6 +105,7 @@
 		.container img {
 			width: 100%;
 			height: auto;
+			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
 			background: url('/img/flip.png') no-repeat;
@@ -205,6 +209,8 @@
 		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
 		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
 		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+		<img class="preload-hidden" id="bg" src="/sets/WAS-files/bg.png" />
+
 		<div class="header">
 		<div class="search-grid">
 			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
@@ -677,7 +683,7 @@
 		}
 		while (images_loaded.includes(false));
 
-		
+		document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
 		loadImages();
 	});
 

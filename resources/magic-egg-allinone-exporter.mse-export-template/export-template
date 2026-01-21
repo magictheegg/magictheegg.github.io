@@ -1,4 +1,4 @@
-mse version: 2.0.0
+mse version: 2.5.8
 short name: Egg's All-in-One
 full name: Egg's All-in-One Exporter
 position hint: 009
@@ -8,19 +8,15 @@ version: 2025-03-31
 depends on:
 	package: magic.mse-game
 	version: 2008-08-08
+depends on:
+	package: magic-modules.mse-include
+	version: 2024-10-01
 
 game: magic
 create directory: true
 file type: *.txt|*.txt|*.*|*.*
 
 #JSON implementation by Fungustober
-
-option field:
-	type: choice
-	name: export images
-	choice: yes
-	choice: no
-	description: Export images
 
 option field:
 	type: choice
@@ -56,6 +52,21 @@ option field:
 	type: text
 	name: v mana replacement
 	description: The replacement mana symbol icon for Mainframe Mana
+
+option field:
+	type: choice
+	name: export description
+	choice: no
+	choice: yes
+	description: Export set description as splash page
+
+option field:
+	type: choice
+	name: unpreviewed card image
+	choice: card back
+	choice: empty
+	description: What should display on the preview gallery for unpreviewed cards
+
 script:
 	fix_tm := replace@(match:"™", replace:"TM")
 	remove_quotes := replace@(match:"\"", replace:"")
@@ -227,18 +238,31 @@ script:
 		else base_ci
 	}
 
+	##Grab special_text if it's not empty, otherwise grab rule_text
+	full_text := { if card.special_text != "" then card.special_text else card.rule_text }
+	full_text2 := { if card.special_text_2 != "" then card.special_text_2 else card.rule_text_2 }
+	full_text3 := { card.rule_text_3 }
+
 	##Shape function to deal with all the non-standard shapes
 	get_shape := {
 		if card.shape == "emblem"
 		or card.shape == "counter"
 		or card.shape == "rulestip"
 		or card.shape == "checklist"
-		or contains (card.notes, match:"!token")
+		or contains (card.notes, match:"!token") and not contains (card.notes, match:"!tokens")
 			then "token"
 		else card.shape
 	}
 
-	is_double_card := match@(match:"double|adventure|aftermath|spli")
+	is_rotated := {
+		if contains(card.shape, match:"double") and lang_setting("is_battle")(card.super_type) and width_of(card_image) == 900
+			then "True"
+		else if card_width == 523 or card_width == 902 or card_width == 1039 or card_width == 1046
+			then "True"
+		else "False"
+	}
+
+	is_double_card := match@(match:"double|adventure|aftermath|spli|flip")
 	q := "\""
 	write_card := {
 		strings := [
@@ -249,28 +273,33 @@ script:
 			"{q}number{q}: {sanitize(card_number())}",
 			"{q}color_identity{q}: {q}{get_color_identity()}{q}",
 			"{q}cost{q}: {q}{mana_cost_replacement_css(card.casting_cost)}{q}",
-			"{q}rules_text{q}: {q}{format_textbox(card.rule_text)}{q}",
+			"{q}rules_text{q}: {q}{format_textbox(full_text())}{q}",
 			"{q}flavor_text{q}: {q}{format_textbox(card.flavor_text)}{q}",
 			"{q}pt{q}: {q}{sanitize(card.pt)}{q}",
 			"{q}special_text{q}: {q}{format_textbox(card.special_text)}{q}",
 			"{q}shape{q}: {q}{get_shape()}{q}",
 			"{q}set{q}: {q}{adj_setcode()}{q}",
 			"{q}loyalty{q}: {q}{sanitize(card.loyalty)}{q}",
-			"{q}artist{q}: {q}{sanitize(card.illustrator)}{q}"
+			"{q}artist{q}: {q}{sanitize(card.illustrator)}{q}",
+			"{q}alias{q}: {q}{sanitize(card.alias)}{q}",
+			"{q}position{q}: {q}{position(of:card, in:set)}{q}"
 		]
 		if is_double_card(card.shape) then strings := strings + [
 			"{q}card_name2{q}: {q}{card_name_2()}{q}",
 			"{q}color2{q}: {q}{card_color_2()}{q}",
 			"{q}type2{q}: {q}{sanitize(card.type_2)}{q}",
 			"{q}cost2{q}: {q}{mana_cost_replacement_css(card.casting_cost_2)}{q}",
-			"{q}rules_text2{q}: {q}{format_textbox(card.rule_text_2)}{q}",
+			"{q}rules_text2{q}: {q}{format_textbox(full_text2())}{q}",
 			"{q}flavor_text2{q}: {q}{format_textbox(card.flavor_text_2)}{q}",
 			"{q}pt2{q}: {q}{sanitize(sanitize(card.pt_2))}{q}",
 			"{q}special_text2{q}: {q}{format_textbox(card.special_text_2)}{q}",
 			"{q}loyalty2{q}: {q}{sanitize(card.loyalty_2)}{q}",
-			"{q}artist2{q}: {q}{sanitize(card.illustrator_2)}{q}"
+			"{q}artist2{q}: {q}{sanitize(card.illustrator_2)}{q}",
+			"{q}alias2{q}: {q}{sanitize(card.alias_2)}{q}",
+			"{q}rules_text3{q}: {q}{format_textbox(full_text3())}{q}"
 		]
 		strings := strings + [
+			"{q}rotated{q}: {is_rotated()}",
 			"{q}notes{q}: {q}{sanitize(card.notes)}{q}"
 		]
 		"\{" + join(strings) + "}"
@@ -281,26 +310,67 @@ script:
 		join(strings)
 	}
 
+	#### load corner masks for the most common card dimensions, so we dont re-load them for every card
+	corner_masks := [
+		"523"  : invert_image("/magic-modules.mse-include/corners/375x523 rounded and antialiased.png"),
+		"902"  : invert_image("/magic-modules.mse-include/corners/646x902 rounded and antialiased.png"),
+		"1039" : invert_image("/magic-modules.mse-include/corners/744x1039 rounded and antialiased.png"),
+		"1046" : invert_image("/magic-modules.mse-include/corners/750x1046 rounded and antialiased.png")
+	]
+
 	write_all_images := {
-		for each card in cards do
-			if contains(card.shape, match:"double") then
-			if contains(card.type, match:"Battle") then write_image_file(crop(input: to_card_image(card), width: 523, height: 375, offset_x: 0, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_front" + ".{options.image_type}") + write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 525, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_back" + ".{options.image_type}")
-			else write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 0, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_front" + ".{options.image_type}") + write_image_file(crop(input: to_card_image(card), width: 375, height: 523, offset_x: 377, offset_y: 0), file: "img/" + card_number() + "_" + card_name() + "_back" + ".{options.image_type}")
-			else write_image_file(card, file: "img/" + card_number() + (if contains(get_shape(), match:"token") then "t_" else "_") + card_name() + ".{options.image_type}")
+		for each card in cards do (
+			card_position := position(of:card, in:set)
+			card_image := to_card_image(card)
+			#### double faced templates
+			if contains(card.shape, match:"double") then (
+				#### check if we need to rotate the front face (if it's a battle)
+				rotated := lang_setting("is_battle")(card.super_type) and width_of(card_image) == 900
+				front_width := if rotated then 523 else 375
+				front_height := if rotated then 375 else 523
+				front_image := crop(card_image, width: front_width, height: front_height, offset_x: 0, offset_y: 0)
+				back_image := crop(card_image, width: 375, height: 523, offset_x: front_width + 2, offset_y: 0)
+				if rotated then front_image := rotate_image(front_image, angle: 90)
+				#### add transparent corners (all double faced templates are 375x523)
+				front_image := set_mask(image: front_image, mask: corner_masks["523"])
+				back_image := set_mask(image: back_image, mask: corner_masks["523"])
+				#### write to disk
+				write_image_file(front_image, file: "img/" + card_position + "_front." + options.image_type)
+				write_image_file(back_image, file: "img/" + card_position + "_back." + options.image_type)
+			)
+			#### single faced templates
+			else (
+				#### check if we need to rotate the card image (if it's a battle)
+				card_width := width_of(card_image)
+				rotated := card_width == 523 or card_width == 902 or card_width == 1039 or card_width == 1046
+				if rotated then card_image := rotate_image(card_image, angle: 90)
+				#### add transparent corners
+				mask_height := to_string(if rotated then card_width else height_of(card_image))
+				corner_mask := corner_masks[mask_height] or else corner_masks["1046"]
+				card_image := set_mask(image: card_image, mask: corner_mask)
+				#### write to disk
+				write_image_file(card_image, file: "img/" + card_position + "." + options.image_type)
+			)
+		)
 	}
 
 	main_keys := [
 		"{q}name{q}: {q}{set.title}{q}",
 		"{q}formats{q}: {q}{options.formats}{q}",
-		"{q}trimmed{q}: {q}n{q}",
 		"{q}image_type{q}: {q}{options.image_type}{q}",
 		"{q}draft_structure{q}: {q}{options.draft_structure}{q}",
+		"{q}unpreviewed{q}: {q}{options.unpreviewed_card_image}{q}",
+		"{q}image_name{q}: {q}position{q}",
+		"{q}v_mana{q}: {q}{options.v_mana_replacement}{q}",
 		"{q}cards{q}: [{write_cards()}]"
 	]
 	write_text_file(file: adj_setcode() + ".json", "\{" + join(main_keys) + "}")
 
 	write_image_file({symbol_variation(symbol: set.symbol, variation: options.symbol_rarity)}(), file: "icon.png", width: 512, height: 512)
 	write_image_file({symbol_variation(symbol: set.symbol, variation: options.symbol_rarity)}(), file: "logo.png", width: 320, height: 320)
-	
-	write_images := if options.export_images == "yes" then write_all_images() else ""
+
+	if options.export_description == "yes"
+		then write_text_file(file: "splash.md", set.description)
+
+	write_all_images()
 	"This file doesn't contain anything. Exported files can be found in the name-files folder with the same name you saved as."

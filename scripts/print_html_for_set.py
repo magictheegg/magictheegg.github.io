@@ -174,6 +174,7 @@ def generateHTML(code):
 	}
 	.image-grid img {
 		position: relative;
+		border-radius: 3.733% / 2.677%;
 	}
 	.card-image {
 		float: left;
@@ -202,6 +203,7 @@ def generateHTML(code):
 	.img-container img {
 		width: 100%;
 		height: auto;
+		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
 		background: url('/img/flip.png') no-repeat;
@@ -341,6 +343,12 @@ def generateHTML(code):
 		html_content += '''<a href="/sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft</a><div class="dot"> • </div>
 			<a onclick="packOnePickOne()">P1P1</a><div class="dot"> • </div>
 '''
+
+	#C: sets/SET-files/SET.xml
+		if os.path.exists(os.path.join('sets', code + '-files', code + '.xml')) and not previewing:
+			html_content += '''<a href="/sets/''' + code + '''-files/''' + code + '''.xml" download>Play</a><div class="dot"> • </div>
+'''
+
 	html_content += '''			<a onclick="randomSetCard()">I'm Feeling Lucky</a>
 				</div>
 			</div>

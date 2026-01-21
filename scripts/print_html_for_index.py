@@ -160,6 +160,7 @@ def generateHTML():
 		width: 100%;
 		display: block;
 		margin: auto;
+		border-radius: 3.733% / 2.677%;
 	}
 	.set-icon-container {
 		font-family: 'Beleren Small Caps';

@@ -1,0 +1,4401 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>MSR</name>
+			<longname>Realms of Mashara</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>Petrova, Blood Queen</name>
+			<text>Kicker {2}
+Flying
+When Petrova, Blood Queen enters the battlefield, destroy target creature. If Petrova was kicked, put a number of +1/+1 counters on it equal to the destroyed creature&apos;s power.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/197_Petrova, Blood Queen.jpg" num="197">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>3WB</manacost>
+				<cmc>5</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Aeris, Forged by the Queen</name>
+			<text>Equipped creature gets +3/+1 and has lifelink.
+Equip {3}{W}{B}
+Bloodbond — Pay 3 life, sacrifice equipped creature: Return target creature card from your graveyard to the battlefield tapped, then attach Aeris to it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/161_Aeris, Forged by the Queen.jpg" num="161">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Kreg Stoutbeard</name>
+			<text>Kicker {X}
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+When Kreg Stoutbeard enters the battlefield, if it was kicked, search your library for an equipment with converted mana cost X and put it onto the battlefield attached to Kreg Stoutbeard, then shuffle your library.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/190_Kreg Stoutbeard.jpg" num="190">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warhammer Kreg</name>
+			<text>Equipped creature gets +1/+1 and has double strike.
+Equip {2}{R}{W}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/219_Warhammer Kreg.jpg" num="219">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Re&apos;eti the Chosen</name>
+			<text>Kicker {1}
+Re&apos;eti the Chosen enters the battlefield with a +1/+1 counter on it if it was kicked.
+Whenever Re&apos;eti the Chosen deals combat damage to a player, draw a card, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/200_Re&apos;eti the Chosen.jpg" num="200">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Re&apos;eti&apos;s Divining Rod</name>
+			<text>Re&apos;eti&apos;s Divining Rod enters the battlefield with two charge counters on it.
+Equipped creature can&apos;t be blocked and gets +1/+1 for each charge counter on Re&apos;eti&apos;s Divining Rod.
+{1}, Remove a charge counter from Re&apos;eti&apos;s Divining Rod: Equipped creature gains hexproof until end of turn.
+Equip {2}{G}{U}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/201_Re&apos;eti&apos;s Divining Rod.jpg" num="201">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Vetrayel of the Aghesh</name>
+			<text>Kicker {2}
+Trample
+When Vetrayel of the Aghesh enters the battlefield, if it was kicked, return target Equipment card from your graveyard to the battlefield.
+Sacrifice a creature or artifact: Vetrayel gets +2/+2 until end of turn.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/216_Vetrayel of the Aghesh.jpg" num="216">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Plant Mutant</type>
+				<maintype>Creature</maintype>
+				<manacost>4BG</manacost>
+				<cmc>6</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>4/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tendrils of the Aghesh</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +1/+1 and has deathtouch and &quot;{T}: This creature fights another target creature.&quot;
+Equip {5}{B}{G}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/213_Tendrils of the Aghesh.jpg" num="213">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3BG</manacost>
+				<cmc>5</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Jalenne, Master Mechanist</name>
+			<text>Kicker {3}
+When Jalenne, Master Mechanist enters the battlefield, if it was kicked, draw three cards, then discard two cards.
+{R}, Discard a card: Untap Jalenne, Master Mechanist.
+{2}{U}, {T}: Draw two cards.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/186_Jalenne, Master Mechanist.jpg" num="186">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jalenne&apos;s Masterpiece</name>
+			<text>Augment {1}{U}{R} ({1}{U}{R}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+0.
+Whenever equipped creature deals combat damage to a player, you may cast target instant or sorcery card from a graveyard. If you do, copy it for each charge counter on Jalenne&apos;s Masterpiece, then exile it.
+Equip {U}{R}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/187_Jalenne&apos;s Masterpiece.jpg" num="187">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Standard-Issue Sword</name>
+			<text>When you cast Standard-Issue Sword, you may pay {2}. If you do, search your library for a card named Standard-Issue Shield and put it onto the battlefield. Then shuffle your library.
+Equipped creature gets +2/+0.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/123_Standard-Issue Sword.jpg" num="123">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Standard-Issue Shield</name>
+			<text>When you cast Standard-Issue Sword, you may pay {2}. If you do, search your library for a card named Standard-Issue Sword and put it onto the battlefield. Then shuffle your library.
+Equipped creature gets +0/+2.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/30_Standard-Issue Shield.jpg" num="30">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Keeper of the Chapel</name>
+			<text>Lifelink
+Whenever Keeper of the Chapel or another creature you control dies, you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/21_Keeper of the Chapel.jpg" num="21">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloodvell Pureheart</name>
+			<text>When Bloodvell Pureheart dies, put a 1/1 black Bat creature token with flying onto the battlefield.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/6_Bloodvell Pureheart.jpg" num="6">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Corruptible Contessa</name>
+			<text>Kicker {B} (You may pay an additional {B} as you cast this spell.)
+When Corruptible Contessa enters the battlefield, if it was kicked, target opponent loses 1 life and you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/11_Corruptible Contessa.jpg" num="11">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Watchguard</name>
+			<text>Dwarven Watchguard has first strike as long as it&apos;s equipped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/15_Dwarven Watchguard.jpg" num="15">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kaggard Hammersmith</name>
+			<text>Vigilance
+Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/19_Kaggard Hammersmith.jpg" num="19">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>5W</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cordial Warrior</name>
+			<text>Kicker {2}{R} (You may pay an additional {2}{R} as you cast this spell.)
+When Cordial Warrior enters the battlefield, if it was kicked, another target creature gets +3/+2 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/10_Cordial Warrior.jpg" num="10">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skyshear Hawk</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/28_Skyshear Hawk.jpg" num="28">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mashara Bloodhound</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/22_Mashara Bloodhound.jpg" num="22">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hound</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spirited Masquerade</name>
+			<text>Target creature gets +1/+1 and gains lifelink until end of turn.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/29_Spirited Masquerade.jpg" num="29">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Denounce</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Target player sacrifices an attacking creature.
+If Denounce was kicked, prevent all combat damage that would be dealt to you this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/13_Denounce.jpg" num="13">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dream Snap</name>
+			<text>Exile target nonland permanent, then return it to the battlefield under its owner&apos;s control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/14_Dream Snap.jpg" num="14">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Militarize</name>
+			<text>Put three 1/1 white Dwarf Warrior creature tokens with first strike onto the battlefield.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/23_Militarize.jpg" num="23">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Warding Cross</name>
+			<text>Equipped creature gets +1/+3.
+Equip {2}{W}
+Bloodbond — {W}, Sacrifice equipped creature: Target creature gains protection from all colors until end of turn. (This permanent can&apos;t be targeted, dealt damage, enchanted, or equipped by anything that&apos;s white, blue, black, red, or green until end of turn.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/32_Warding Cross.jpg" num="32">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bloodstitched Cloak</name>
+			<text>Equipped creature gets +3/+1.
+Equip {2}{B}
+Bloodbond — {B}, Sacrifice equipped creature: Regenerate target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/67_Bloodstitched Cloak.jpg" num="67">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Devil&apos;s Child</name>
+			<text>Whenever another creature dies, put a +1/+1 counter on Devil&apos;s Child.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/76_Devil&apos;s Child.jpg" num="76">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloodbound Beauty</name>
+			<text>When Bloodbound Beauty dies, each player loses life equal to its power.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/66_Bloodbound Beauty.jpg" num="66">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Servant of Petrova</name>
+			<text>Kicker {W} (You may pay an additional {W} as you cast this spell.)
+When Servant of Petrova enters the battlefield, if it was kicked, tap target creature with power 3 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/86_Servant of Petrova.jpg" num="86">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Territorial Beetle</name>
+			<text>Territorial Beetle attacks each turn if able.
+{B}: Regenerate Territorial Beetle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/90_Territorial Beetle.jpg" num="90">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>5B</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Carnivorous Snaptrap</name>
+			<text>Defender, deathtouch</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/71_Carnivorous Snaptrap.jpg" num="71">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Corpselurker Fly</name>
+			<text>Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.)
+Flying
+Corpselurker Fly enters the battlefield with two +1/+1 counters on it if it was kicked.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/74_Corpselurker Fly.jpg" num="74">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Slimy Swamphopper</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/87_Slimy Swamphopper.jpg" num="87">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Frog</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wicked Shadow</name>
+			<text>{B}: Wicked Shadow gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/94_Wicked Shadow.jpg" num="94">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Shade</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Inescapable Nightmare</name>
+			<text>Destroy target creature. Each player loses life equal to that creature&apos;s toughness.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/81_Inescapable Nightmare.jpg" num="81">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bound in Horrors</name>
+			<text>Target player discards two cards and loses 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/70_Bound in Horrors.jpg" num="70">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Arachnid&apos;s Prey</name>
+			<text>Target creature gets -3/-3 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/64_Arachnid&apos;s Prey.jpg" num="64">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Guise of Gore</name>
+			<text>Kicker {6} (You may pay an additional {6} as you cast this spell.)
+Each player sacrifices a creature.
+If Guise of Gore was kicked, each opponent sacrifices an additional creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/79_Guise of Gore.jpg" num="79">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Blood Taster</name>
+			<text>{W}{B}, Sacrifice another creature: Blood Taster gets +1/+1 and gains lifelink until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/171_Blood Taster.jpg" num="171">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>WB</manacost>
+				<cmc>2</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Batling Overseer</name>
+			<text>Kicker {1} (You may pay an additional {1} as you cast this spell.)
+Flying
+When Batling Overseer enters the battlefield, if it was kicked, put a 1/1 black Bat creature token with flying onto the battlefield.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/165_Batling Overseer.jpg" num="165">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fresh Blood</name>
+			<text>Target player sacrifices a creature. You gain 5 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/180_Fresh Blood.jpg" num="180">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3WB</manacost>
+				<cmc>5</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Kiss of the Coven</name>
+			<text>Kiss of the Coven deals 2 damage to target creature and you gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/189_Kiss of the Coven.jpg" num="189">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>WB</manacost>
+				<cmc>2</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Deplete</name>
+			<text>Exile target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/174_Deplete.jpg" num="174">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Woolly Tarantula</name>
+			<text>Reach
+Prevent all damage that would be dealt to Woolly Tarantula by creatures with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/157_Woolly Tarantula.jpg" num="157">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spider</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Predatory Phytogrowth</name>
+			<text>Whenever a creature dealt damage by Predatory Phytogrowth this turn dies, put a +1/+1 counter on Predatory Phytogrowth.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/143_Predatory Phytogrowth.jpg" num="143">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>5G</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Vine Leech</name>
+			<text>Kicker {B} (You may pay an additional {B} as you cast this spell.)
+When Vine Leech enters the battlefield, if it was kicked, exile target creature card from a graveyard. You gain life equal to that card&apos;s toughness.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/156_Vine Leech.jpg" num="156">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant Leech Mutant</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Coyote</name>
+			<text>When Mimic of the Coyote enters the battlefield, put a +1/+1 counter on target creature you control, then proliferate.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/137_Mimic of the Coyote.jpg" num="137">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Diviner Shaman</name>
+			<text>When Diviner Shaman enters the battlefield, reveal the top three cards of your library. You may put a creature or land card from among them into your hand. Put the rest into your graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/132_Diviner Shaman.jpg" num="132">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Child of the Wild</name>
+			<text>Kicker {U} (You may pay an additional {U} as you cast this spell.)
+When Child of the Wild enters the battlefield, if it was kicked, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/129_Child of the Wild.jpg" num="129">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tree of Hopes</name>
+			<text>Defender
+{T}: Add {G} to your mana pool.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/153_Tree of Hopes.jpg" num="153">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Underbrush Capbalta</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/154_Underbrush Capbalta.jpg" num="154">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sting and Flee</name>
+			<text>Target creature gains deathtouch until end of turn. Regenerate it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/151_Sting and Flee.jpg" num="151">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Nature&apos;s Way</name>
+			<text>Destroy target nonland, noncreature permanent.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/142_Nature&apos;s Way.jpg" num="142">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Daring Challenge</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Target creature you control fights target creature you don&apos;t control.
+If Daring Challenge was kicked, the creature you control gets +2/+2 until end of turn before it fights.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/131_Daring Challenge.jpg" num="131">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Channel the Ancestors</name>
+			<text>Put a +1/+1 counter on target creature.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/128_Channel the Ancestors.jpg" num="128">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sword of Stability</name>
+			<text>At the beginning of your upkeep, put a +1/+1 counter on equipped creature.
+Equip {W}
+Bloodbond — {B}, Sacrifice equipped creature: Target creature gets -X/-X until end of turn, where X is the number of +1/+1 counters on the sacrificed creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/211_Sword of Stability.jpg" num="211">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1WB</manacost>
+				<cmc>3</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Rotstomper</name>
+			<text>When Rotstomper enters the battlefield, you may destroy target artifact or enchantment.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/146_Rotstomper.jpg" num="146">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Fungus Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Acid-Spitter Spider</name>
+			<text>Deathtouch
+{T}, Pay 1 life: Acid-Spitter Spider deals 1 damage to target creature with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/159_Acid-Spitter Spider.jpg" num="159">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spider</type>
+				<maintype>Creature</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Corpsefeeder Leech</name>
+			<text>Kicker {3} (You may pay an additional {3} as you cast this spell.)
+When Corpsefeeder Leech enters the battlefield, if it was kicked, exile target creature card from a graveyard and put a number of +1/+1 counters on Corpsefeeder Leech equal to that card&apos;s converted mana cost.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/173_Corpsefeeder Leech.jpg" num="173">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Leech</type>
+				<maintype>Creature</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Circle of Life</name>
+			<text>As an additional cost to cast Circle of Life, discard a creature card.
+Return up to two target creature cards from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/172_Circle of Life.jpg" num="172">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Feast on Flesh</name>
+			<text>Target creature gets +4/+4 until end of turn. Another target creature gets -4/-4 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/178_Feast on Flesh.jpg" num="178">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>5BG</manacost>
+				<cmc>7</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vicious Spines</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +2/+2.
+Pay 2 life: Equipped creature gets +2/+2 until end of turn. Activate this ability only once each turn.
+Equip {5}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/217_Vicious Spines.jpg" num="217">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Necrofungal Armor</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +2/+2 and has intimidate. (That creature can&apos;t be blocked except by artifact creatures and/or creatures that share a color with it.)
+Equip {3}{B}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/82_Necrofungal Armor.jpg" num="82">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bramblehoard</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +5/+5.
+Equip {5}{G}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/127_Bramblehoard.jpg" num="127">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gauntlet of the Wolf</name>
+			<text>Gauntlet of the Wolf enters the battlefield with two charge counters on it.
+Equipped creature has trample.
+{1}{G}, Remove a charge counter from Gauntlet of the Wolf: Equipped creature gets +2/+2 until end of turn.
+Equip {G}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/133_Gauntlet of the Wolf.jpg" num="133">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Scepter of the Drake</name>
+			<text>Scepter of the Drake enters the battlefield with two charge counters on it.
+Equipped creature has flying.
+{U}, Remove a charge counter from Scepter of the Drake: Equipped creature gets +1/-1 or -1/+1 until end of turn.
+Equip {1}{U}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/56_Scepter of the Drake.jpg" num="56">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Owl</name>
+			<text>Flying
+Whenever Mimic of the Owl deals combat damage to a player, proliferate.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/48_Mimic of the Owl.jpg" num="48">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brewer of Mysteries</name>
+			<text>Brewer of Mysteries enters the battlefield with a +1/+1 counter on it.
+{2}{U}, {T}, Remove a +1/+1 counter from Brewer of Mysteries: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/34_Brewer of Mysteries.jpg" num="34">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Val Navigator</name>
+			<text>Kicker {G} (You may pay an additional {G} as you cast this spell.)
+When Val Navigator enters the battlefield, if it was kicked, search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/63_Val Navigator.jpg" num="63">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scrap Falcon</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/57_Scrap Falcon.jpg" num="57">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Bird Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sentinel Golem</name>
+			<text>Sentinel Golem has hexproof as long as it&apos;s untapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/58_Sentinel Golem.jpg" num="58">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4UU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Apprentice Scrapcrafter</name>
+			<text>Kicker {2}{R} (You may pay an additional {2}{R} as you cast this spell.)
+When Apprentice Scrapcrafter enters the battlefield, if it was kicked, return target instant, sorcery, or artifact card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/33_Apprentice Scrapcrafter.jpg" num="33">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Passer of the Tides</name>
+			<text>{U}: Passer of the Tides can&apos;t be blocked this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/53_Passer of the Tides.jpg" num="53">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chilling Drake</name>
+			<text>Flash, flying
+When Chilling Drake enters the battlefield, tap target creature. That creature doesn&apos;t untap during its controller&apos;s next untap step.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/35_Chilling Drake.jpg" num="35">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tempt with Secrets</name>
+			<text>Tap target creature.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/62_Tempt with Secrets.jpg" num="62">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hold at Parity</name>
+			<text>Counter target creature or Equipment spell.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/44_Hold at Parity.jpg" num="44">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Divination</name>
+			<text>Draw two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/39_Divination.jpg" num="39">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Evict</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Return target creature to its owner&apos;s hand. If Evict was kicked, return all permanents attached to that creature to their owners&apos; hands.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/41_Evict.jpg" num="41">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Orchard Muse</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Orchard Muse enters the battlefield with a +1/+1 counter on it if it was kicked.
+Orchard Muse can&apos;t be blocked except by creatures with flying or reach.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/196_Orchard Muse.jpg" num="196">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Lizard</name>
+			<text>{G}{U}, {T}: Proliferate.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/192_Mimic of the Lizard.jpg" num="192">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mystic Treachery</name>
+			<text>Put target creature on top of its owner&apos;s library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/195_Mystic Treachery.jpg" num="195">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Heart of the Jungle</name>
+			<text>Permanents you control gain hexproof until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/184_Heart of the Jungle.jpg" num="184">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Miser&apos;s Wand</name>
+			<text>Whenever equipped creature deals combat damage to a player, you may draw a card.
+Equip {1}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/194_Miser&apos;s Wand.jpg" num="194">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Frost Chains</name>
+			<text>Augment {3}{U} ({3}{U}: Put a charge counter on this card. Augment only as a sorcery.)
+Whenever equipped creature attacks, tap target creature. That creature doesn&apos;t untap during its controller&apos;s next untap step if Frost Chains has a charge counter on it.
+Equip {2}{U}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/43_Frost Chains.jpg" num="43">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Rusty Pike</name>
+			<text>Augment {2}{R} ({2}{R}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +2/+0.
+Whenever equipped creature attacks, if Rusty Pike has a charge counter on it, target creature can&apos;t block this turn.
+Equip {1}{R}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/118_Rusty Pike.jpg" num="118">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sedimentary Mauler</name>
+			<text>Creatures with power less than Sedimentary Mauler&apos;s power can&apos;t block it.
+{2}: Sedimentary Mauler gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/206_Sedimentary Mauler.jpg" num="206">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>5UR</manacost>
+				<cmc>7</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bauble Builder</name>
+			<text>Kicker {1} (You may pay an additional {1} as you cast this spell.)
+When Bauble Builder enters the battlefield, if it was kicked, search your library for an artifact with converted mana cost 1 or less, reveal it, and put it into your hand. If you do, shuffle your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/168_Bauble Builder.jpg" num="168">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Forced Misfire</name>
+			<text>Counter target noncreature spell. Forced Misfire deals damage equal to that spells converted mana cost to its controller.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/179_Forced Misfire.jpg" num="179">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Accelerated Learning</name>
+			<text>Reveal the top card of your library. You may have Accelerated Learning deal damage to target creature or player equal to that card&apos;s converted mana cost. If you do, exile that card.
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/158_Accelerated Learning.jpg" num="158">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3UR</manacost>
+				<cmc>5</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dragon Suit</name>
+			<text>Augment {U}{R} ({U}{R}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +1/+0 for each charge counter on Dragon Suit.
+Equipped creature has flying and first strike as long as Dragon Suit has five or more charge counters on it.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/175_Dragon Suit.jpg" num="175">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Reckless Scrapwork</name>
+			<text>First strike
+Reckless Scrapwork attacks each turn if able.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/117_Reckless Scrapwork.jpg" num="117">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Flameweld Golem</name>
+			<text>When Flameweld Golem dies, it deals 3 damage to target creature or player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/106_Flameweld Golem.jpg" num="106">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Eager Inventor</name>
+			<text>Kicker {U} (You may pay an additional {U} as you cast this spell.)
+When Eager Inventor enters the battlefield, if it was kicked, target creature gets +2/+0 and gains flying and haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/103_Eager Inventor.jpg" num="103">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Helmsguard Gladiator</name>
+			<text>Helmsguard Gladiator has intimidate as long as it&apos;s equipped. (This creature can&apos;t be blocked except by artifact creatures and/or creatures that share a color with it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/109_Helmsguard Gladiator.jpg" num="109">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Footsoldier</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/102_Dwarven Footsoldier.jpg" num="102">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Armguard of the Keep</name>
+			<text>Kicker {W} (You may pay an additional {W} as you cast this spell.)
+When Armguard of the Keep enters the battlefield, if it was kicked, prevent all damage that would be dealt to target creature this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/97_Armguard of the Keep.jpg" num="97">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>5/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mashara Outlander</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/113_Mashara Outlander.jpg" num="113">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Armed Lunatic</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/96_Armed Lunatic.jpg" num="96">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Disrupt the Masses</name>
+			<text>Creatures you control get +2/+0 until end of turn.
+Creatures with power 2 or less can&apos;t block this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/101_Disrupt the Masses.jpg" num="101">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>5RR</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Carve with Flames</name>
+			<text>Carve with Flames deals 4 damage to target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/100_Carve with Flames.jpg" num="100">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rash Demolition</name>
+			<text>Kicker {3} (You may pay an additional {3} as you cast this spell.)
+Destroy target artifact. If Rash Demolition was kicked, it deals 3 damage to that artifact&apos;s controller.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/116_Rash Demolition.jpg" num="116">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Master the Craft</name>
+			<text>Gain control of target artifact until end of turn. If it&apos;s a creature, untap it and it gains haste until end of turn. If it&apos;s an equipment, you may attach it to target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/114_Master the Craft.jpg" num="114">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Kaggard Axesmith</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+When Kaggard Axesmith enters the battlefield, you may attach an equipment you control to it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/188_Kaggard Axesmith.jpg" num="188">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RW</manacost>
+				<cmc>4</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skullcapper</name>
+			<text>Kicker {4} (You may pay an additional {4} as you cast this spell.)
+When Skullcapper enters the battlefield, if it was kicked, you may have it deal 3 damage to target creature that blocked this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/207_Skullcapper.jpg" num="207">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pummel</name>
+			<text>Put a +1/+1 counter on target creature you control and untap it. That creature deals damage equal to its power to another target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/199_Pummel.jpg" num="199">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3RW</manacost>
+				<cmc>5</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Gift of the Ax</name>
+			<text>Attach target equipment you control to target creature you control. That creature gains double strike until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/181_Gift of the Ax.jpg" num="181">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Gold-Plated Warhammer</name>
+			<text>Equipped creature gets +2/+2.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/182_Gold-Plated Warhammer.jpg" num="182">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bloodvell Stockpiles</name>
+			<text>({T}: Add {W} or {B} to your mana pool.)
+Bloodvell Stockpiles enters the battlefield tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/232_Bloodvell Stockpiles.jpg" num="232">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Spires of Tvornica</name>
+			<text>({T}: Add {U} or {R} to your mana pool.)
+Spires of Tvornica enters the battlefield tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/239_Spires of Tvornica.jpg" num="239">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Fungal Marsh</name>
+			<text>({T}: Add {B} or {G} to your mana pool.)
+Fungal Marsh enters the battlefield tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/233_Fungal Marsh.jpg" num="233">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Kingdom of Dwarves</name>
+			<text>({T}: Add {R} or {W} to your mana pool.)
+Kingdom of Dwarves enters the battlefield tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/235_Kingdom of Dwarves.jpg" num="235">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Jungle Utopia</name>
+			<text>({T}: Add {G} or {U} to your mana pool.)
+Jungle Utopia enters the battlefield tapped.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/234_Jungle Utopia.jpg" num="234">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Chapel Seeker</name>
+			<text>Whenever you gain life, put a +1/+1 counter on Chapel Seeker.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/8_Chapel Seeker.jpg" num="8">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Moonlit Maiden</name>
+			<text>When Moonlit Maiden dies, return target creature with converted mana cost 2 or less from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/24_Moonlit Maiden.jpg" num="24">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mourner&apos;s Mask</name>
+			<text>Put a +1/+1 counter on target creature you control. That creature gains protection from creatures until end of turn. (It can&apos;t be blocked, targeted or dealt damage by creatures until end of turn.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/25_Mourner&apos;s Mask.jpg" num="25">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bulwark Sentry</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/7_Bulwark Sentry.jpg" num="7">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Strongwilled Captain</name>
+			<text>Vigilance
+Other Dwarf creatures you control have vigilance and can block an additional creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/31_Strongwilled Captain.jpg" num="31">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Reforge</name>
+			<text>Return target Equipment card from your graveyard to the battlefield, then attach it to a creature you control if able.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/26_Reforge.jpg" num="26">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Blinding Rays</name>
+			<text>Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.)
+Tap up to two target creatures. Those creatures don&apos;t untap during their controllers&apos; next untap step if Blinding Rays was kicked.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/5_Blinding Rays.jpg" num="5">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Severed Shackles</name>
+			<text>Put target nonland permanent on bottom of its owner&apos;s library. That permanent&apos;s controller puts a 1/1 white and black Spirit creature token with flying onto the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/27_Severed Shackles.jpg" num="27">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Acolyte of the Bloodvell</name>
+			<text>Lifelink
+{1}{W}{B}, Sacrifice another creature: Put a 1/1 black Bat creature token with flying onto the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/160_Acolyte of the Bloodvell.jpg" num="160">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>WB</manacost>
+				<cmc>2</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Batform</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Target creature gets +2/+2 and gains flying until end of turn. If Batform was kicked, that creature gains deathtouch and lifelink until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/164_Batform.jpg" num="164">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>WB</manacost>
+				<cmc>2</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vengeful Sorceress</name>
+			<text>When Vengeful Sorceress dies, remove all counters from permanents.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/93_Vengeful Sorceress.jpg" num="93">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blood Augur</name>
+			<text>Whenever a creature you control dies, each opponent loses 1 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/65_Blood Augur.jpg" num="65">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Caught Tresspassing</name>
+			<text>Destroy target non-Vampire creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/72_Caught Tresspassing.jpg" num="72">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Blossoming Dragonvine</name>
+			<text>Flying
+When Blossoming Dragonvine enters the battlefield, each player loses 3 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/68_Blossoming Dragonvine.jpg" num="68">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant Mutant</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Toxic Sporecap</name>
+			<text>Whenever Toxic Sporecap blocks a creature, you may pay {1}{B}. If you do, reduce that creature&apos;s base power to 0 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/91_Toxic Sporecap.jpg" num="91">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Plant</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>0/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rot Plague</name>
+			<text>Target opponent reveals his or her hand, then discards all creature and artifact cards revealed in this way.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/85_Rot Plague.jpg" num="85">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Harrowing Journey</name>
+			<text>Target player draws three cards and loses 3 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/80_Harrowing Journey.jpg" num="80">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bonerattling Incantation</name>
+			<text>Kicker {5}{B} (You may pay an additional {5}{B} as you cast this spell.)
+Exile target player&apos;s graveyard. If Bonerattling Incantation was kicked, put an X/X black Horror creature token onto the battlefield, where X is the number of cards exiled in this way.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/69_Bonerattling Incantation.jpg" num="69">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Assassin Cobra</name>
+			<text>Flash, deathtouch
+{1}{B}{G}: Regenerate Assassin Cobra.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/162_Assassin Cobra.jpg" num="162">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Snake</type>
+				<maintype>Creature</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mend from Moss</name>
+			<text>Kicker {4} (You may pay an additional {4} as you cast this spell.)
+Return target creature or artifact card from your graveyard to your hand. If Mend from Moss was kicked, return that card to the battlefield instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/191_Mend from Moss.jpg" num="191">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Vital Harvest</name>
+			<text>Each creature gets -X/-X until end of turn, where X is equal to two plus the number of +1/+1 counters on that creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/218_Vital Harvest.jpg" num="218">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3BG</manacost>
+				<cmc>5</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Primal Vinebeast</name>
+			<text>Trample
+Whenever Primal Vinebeast deals combat damage to a player, put a +1/+1 counter on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/144_Primal Vinebeast.jpg" num="144">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Plant Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>5GG</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Natural Enhancement</name>
+			<text>Put four +1/+1 counters on target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/141_Natural Enhancement.jpg" num="141">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Ox</name>
+			<text>When Mimic of the Ox enters the battlefield, put a +1/+1 counter on each other creature you control.
+When Mimic of the Ox dies, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/138_Mimic of the Ox.jpg" num="138">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Seer of the New Way</name>
+			<text>When Seer of the New Way enters the battlefield, reveal the top card of your library. If it&apos;s a creature card, put it into your hand. If it&apos;s a land card, you gain 3 life. If it&apos;s a noncreature, nonland card, put two +1/+1 counters on Seer of the New Way.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/148_Seer of the New Way.jpg" num="148">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Trace the Roots</name>
+			<text>Search your library for up to two basic land cards and put them onto the battlefield tapped. Then shuffle your library.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/152_Trace the Roots.jpg" num="152">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Unprecedented Stature</name>
+			<text>Kicker {G} (You may pay an additional {G} as you cast this spell.)
+Target creature gets +2/+2 until end of turn. If Unprecedented Stature was kicked, that creature gets an additional +2/+2 and gains trample until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/155_Unprecedented Stature.jpg" num="155">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Heedless Mist</name>
+			<text>Prevent all combat damage that would be dealt by attacking creatures this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/134_Heedless Mist.jpg" num="134">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Venerable Sage</name>
+			<text>When Venerable Sage enters the battlefield, return target creature to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/215_Venerable Sage.jpg" num="215">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Miniaturize</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Until end of turn, target creature loses all abilities and has base power and toughness 1/1.
+If Miniaturize was kicked, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/193_Miniaturize.jpg" num="193">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>GU</manacost>
+				<cmc>2</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Ritual of Tumultuous Skies</name>
+			<text>Creatures you control gain flying until end of turn.
+Creatures your opponents control lose flying until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/203_Ritual of Tumultuous Skies.jpg" num="203">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Quetzal</name>
+			<text>Flying
+Whenever Mimic of the Quetzal becomes untapped, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/49_Mimic of the Quetzal.jpg" num="49">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>5U</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Essence Delver</name>
+			<text>Essence Delver enters the battlefield with a +1/+1 counter on it.
+{U}, {T}, Remove a +1/+1 counter from Essence Delver: Return target creature to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/40_Essence Delver.jpg" num="40">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rite of Knowledge</name>
+			<text>Target player draws four cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/55_Rite of Knowledge.jpg" num="55">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UUU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Silverskin Drake</name>
+			<text>Flying
+When Silverskin Drake enters the battlefield, return an artifact you control to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/59_Silverskin Drake.jpg" num="59">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Drake Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Icebound Golem</name>
+			<text>Defender
+Whenever Icebound Golem blocks a creature, tap that creature. That creature doesn&apos;t untap during its controller&apos;s next untap step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/45_Icebound Golem.jpg" num="45">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spirit of the Golem</name>
+			<text>Creatures you control get +0/+3 until end of turn.
+Creatures you don&apos;t control get -3/-0 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/60_Spirit of the Golem.jpg" num="60">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Repress</name>
+			<text>Kicker {U} (You may pay an additional {U} as you cast this spell.)
+Counter target spell unless its controller pays {2}.
+If Repress was kicked, counter that spell instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/54_Repress.jpg" num="54">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Consult the Scroll</name>
+			<text>Look at the top five cards of your library. Put two of them into your hand and the rest into your graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/37_Consult the Scroll.jpg" num="37">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Steelwork Cougar</name>
+			<text>Haste
+{1}: Steelwork Cougar gets +1/-1 until end of turn.
+{1}: Steelwork Cougar gets -1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/209_Steelwork Cougar.jpg" num="209">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Cat Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sculptor&apos;s Spoils</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Draw two cards, then discard a card. If Sculptor&apos;s Spoils was kicked, it deals damage equal to the discarded card&apos;s converted mana cost to target creature or player.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/205_Sculptor&apos;s Spoils.jpg" num="205">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Swerve</name>
+			<text>Change the target of target spell with a single target.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/210_Swerve.jpg" num="210">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Smelt Warrior</name>
+			<text>{R}: Smelt Warrior gains first strike until end of turn.
+Whenever Smelt Warrior attacks, it gets +2/+0 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/121_Smelt Warrior.jpg" num="121">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fireball Colossus</name>
+			<text>{3}{R}{R}, Sacrifice Fireball Colossus: Fireball Colossus deals 4 damage to target creature or player.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/105_Fireball Colossus.jpg" num="105">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Forge from the Ashes</name>
+			<text>Forge from the Ashes deals 6 damage to target creature. When that creature dies this turn, put three 1/1 colorless Construct artifact creature tokens onto the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/107_Forge from the Ashes.jpg" num="107">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>6R</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Weapon Idolizer</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+{R}: Weapon Idolizer gets +X/+0 until end of turn, where X is the number of equipments attached to Weapon Idolizer. Activate this ability only once each turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/125_Weapon Idolizer.jpg" num="125">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Swiftfoot Captain</name>
+			<text>Haste
+Other Dwarf creatures you control have haste and can&apos;t be blocked except by two or more creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/124_Swiftfoot Captain.jpg" num="124">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Battle Plan</name>
+			<text>Creatures you control get +1/+0 and gain first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/99_Battle Plan.jpg" num="99">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lavaspill</name>
+			<text>Kicker {R} (You may pay an additional {R} as you cast this spell.)
+Lavaspill deals 3 damage to target creature or player.
+If Lavaspill was kicked, you may divide that damage among one, two, or three target creatures and/or players instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/111_Lavaspill.jpg" num="111">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Slapdash Raid</name>
+			<text>Draw three cards, then discard two cards at random.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/120_Slapdash Raid.jpg" num="120">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battalion Exhorter</name>
+			<text>Whenever a source you control deals damage to a player, put a +1/+1 counter on Battalion Exhorter.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/166_Battalion Exhorter.jpg" num="166">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Work Up</name>
+			<text>Kicker {3} (You may pay an additional {3} as you cast this spell.)
+Blocked creatures you control get +3/+0 until end of turn. If Work Up was kicked, those creatures gain first strike and trample until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/220_Work Up.jpg" num="220">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tavern Brawl</name>
+			<text>Tavern Brawl deals 4 damage to target creature or player and you gain 2 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/212_Tavern Brawl.jpg" num="212">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Exorcist&apos;s Gown</name>
+			<text>Equipped creature gets +1/+1 and has flying.
+Equip {2}{W}{W}
+Bloodbond — {X}{W}{W}, Sacrifice equipped creature: Exile target creature with power X or less.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/16_Exorcist&apos;s Gown.jpg" num="16">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Cutthroat Katana</name>
+			<text>Equipped creature gets +1/+1 and has first strike.
+Equip {1}{B}{B}
+Bloodbond — {1}{B}, Sacrifice equipped creature: Each opponent loses 2 life and you gain that much life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/75_Cutthroat Katana.jpg" num="75">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Plasmutant Ram</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +2/+1 and can&apos;t block.
+Equip {4}{B}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/83_Plasmutant Ram.jpg" num="83">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Skylash Webs</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +3/+3, has reach, and can only block creatures with flying.
+Equip {4}{G}{G}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/149_Skylash Webs.jpg" num="149">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Staff of Divine Protection</name>
+			<text>Staff of Divine Protection enters the battlefield with two charge counters on it.
+Equipped creature gets +1/+1.
+{G}, Remove a charge counter from Staff of Divine Protection: Regenerate equipped creature. (The next time this permanent would be destroyed this turn, it isn&apos;t. Instead tap it.)
+Equip {2}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/150_Staff of Divine Protection.jpg" num="150">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Orb of the Revealing Path</name>
+			<text>Orb of the Revealing Path enters the battlefield with two charge counters on it.
+Equipped creature gets +1/+1.
+{1}{U}, Remove a charge counter from Orb of the Revealing Path: Equipped creature can&apos;t be blocked this turn.
+Equip {2}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/52_Orb of the Revealing Path.jpg" num="52">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Exoskeleton Prototype</name>
+			<text>Augment {5}{U} ({5}{U}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +5/+5.
+Whenever equipped creature becomes the target of a spell or ability, sacrifice it unless Exoskeleton Prototype has a charge counter on it.
+Equip {1}{U}{U}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/42_Exoskeleton Prototype.jpg" num="42">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Pyrobracers</name>
+			<text>Augment {1}{R} ({1}{R}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature has &quot;{R}: This creature gets +1/+0 until end of turn for each charge counter on Pyrobracers.&quot;
+Equip {R}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/115_Pyrobracers.jpg" num="115">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Spark Hammer</name>
+			<text>Equipped creature gets +1/+0 for each equipment attached to it.
+Whenever equipped creature attacks, it deals damage to defending player equal to the number of equipments attached to it.
+Equip {2}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/122_Spark Hammer.jpg" num="122">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Battle-Grade Armor</name>
+			<text>Equipped creature gets +0/+1 for each equipment attached to it.
+Whenever equipped creature attacks, you gain life equal to the number of equipments attached to it.
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/4_Battle-Grade Armor.jpg" num="4">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Aghesh Pendant</name>
+			<text>Equipped creature has &quot;{T}: Add {B} or {G} to your mana pool.&quot;
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/221_Aghesh Pendant.jpg" num="221">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Val Pendant</name>
+			<text>Equipped creature has &quot;{T}: Add {G} or {U} to your mana pool.&quot;
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/230_Val Pendant.jpg" num="230">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Tvornica Pendant</name>
+			<text>Equipped creature has &quot;{T}: Add {U} or {R} to your mana pool.&quot;
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/229_Tvornica Pendant.jpg" num="229">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Helmsguard Pendant</name>
+			<text>Equipped creature has &quot;{T}: Add {W} or {R} to your mana pool.&quot;
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/225_Helmsguard Pendant.jpg" num="225">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bloodvell Pendant</name>
+			<text>Equipped creature has &quot;{T}: Add {W} or {B} to your mana pool.&quot;
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/MSR-files/img/222_Bloodvell Pendant.jpg" num="222">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Chapel Soultender</name>
+			<text>Flash
+When Chapel Soultender enters the battlefield, creatures target player controls don&apos;t untap during that player&apos;s next untap step.
+When Chapel Soultender leaves the battlefield, tap all creatures target player controls.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/9_Chapel Soultender.jpg" num="9">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crisis of Faith</name>
+			<text>Choose one —
+• Exile all nonwhite creatures.
+• Exile all non-Vampire creatures.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/12_Crisis of Faith.jpg" num="12">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4WWW</manacost>
+				<cmc>7</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Kaggard&apos;s Keep Noble</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Kaggard&apos;s Keep Noble has indestructible as long as it&apos;s equipped.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/20_Kaggard&apos;s Keep Noble.jpg" num="20">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Avid Guardian</name>
+			<text>Other Dwarf creatures you control get +1/+1.
+{2}{W}: Untap target Dwarf creature you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/3_Avid Guardian.jpg" num="3">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Soldier</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Angel of Undying Hope</name>
+			<text>Flying, vigilance
+Whenever Angel of Undying Hope is dealt damage, you gain that much life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/2_Angel of Undying Hope.jpg" num="2">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Angel</type>
+				<maintype>Creature</maintype>
+				<manacost>4WW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Improvised Drill</name>
+			<text>Kicker {2}{W} (You may pay an additional {2}{W} as you cast this spell.)
+Put a +1/+1 counter on each creature you control. If Improvised Drill was kicked, creatures you control gain double strike until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/18_Improvised Drill.jpg" num="18">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Battalion Pioneer</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+When Battalion Pioneer enters the battlefield, if it was kicked, creatures you control get +1/+0 and gain trample and haste until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/167_Battalion Pioneer.jpg" num="167">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3RW</manacost>
+				<cmc>5</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Imprisonment</name>
+			<text>Dwarven Imprisonment deals 3 damage to target player. That player can&apos;t cast spells this turn. (Spells cast before this resolves are unaffected.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/176_Dwarven Imprisonment.jpg" num="176">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>RW</manacost>
+				<cmc>2</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Skilled Combatant</name>
+			<text>Artillery (This creature gets +1/+1 for each Equipment attached to it.)
+Whenever Skilled Combatant attacks, you may gain control of target Equipment until end of turn. If you do, attach it to Skilled Combatant.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/119_Skilled Combatant.jpg" num="119">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Helmsguard Shenanigans</name>
+			<text>Each player may put a creature from his or her hand onto the battlefield. Each player that does must return a creature he or she controls to its owner&apos;s hand. Repeat this process for artifacts, enchantments, lands, and planeswalkers.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/110_Helmsguard Shenanigans.jpg" num="110">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>5RR</manacost>
+				<cmc>7</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Backup Plan Strategist</name>
+			<text>Other artifact creatures you control get +1/+0.
+{3}{R}, Sacrifice an artifact: Put X 1/1 colorless Construct artifact creature tokens onto the battlefield, where X is the sacrificed artifact&apos;s converted mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/98_Backup Plan Strategist.jpg" num="98">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Great Steam Dragon</name>
+			<text>Flying, haste
+Whenever Great Steam Dragon deals combat damage to a player, add {R}{R}{R}{R}{R}{R} to your mana pool at the beginning of your next postcombat main phase.
+{2}{R}: Great Steam Dragon deals 1 damage to target creature or player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/108_Great Steam Dragon.jpg" num="108">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Dragon Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>4RR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Maniacal Scourge</name>
+			<text>Whenever a red instant or sorcery spell you control deals damage to a creature or player, Maniacal Scourge gets +X/+0 until end of turn, where X is equal to the damage dealt.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/112_Maniacal Scourge.jpg" num="112">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Devil</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Eccentric Visions</name>
+			<text>Kicker {R} (You may pay an additional {R} as you cast this spell.)
+Exile the top card of your library. You may play that card this turn.
+If Eccentric Visions was kicked, exile the top three cards of your library instead. You may play those cards this turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/104_Eccentric Visions.jpg" num="104">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sashira and Hulk V3.1</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+When Sashira and Hulk V3.1 enters the battlefield, if it was kicked, put two 1/1 colorless Construct artifact creature tokens onto the battlefield.
+{U}{R}, Sacrifice another artifact: Put two 1/1 colorless Construct artifact creature tokens onto the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/204_Sashira and Hulk V3.1.jpg" num="204">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>UR</manacost>
+				<cmc>2</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Automated Assembly Line</name>
+			<text>Put three 1/1 colorless Construct artifact creature tokens onto the battlefield, then choose one —
+• Automated Assembly Line deals damage to target creature or player equal to the number of artifacts you control.
+• Draw a card for each artifact you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/163_Automated Assembly Line.jpg" num="163">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4UR</manacost>
+				<cmc>6</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mercurial Golem</name>
+			<text>Defender
+{1}: Until end of turn, Mercurial Golem loses all other abilities and gains your choice of flying, hexproof, or indestructible. Activate this ability only once per turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/47_Mercurial Golem.jpg" num="47">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dimensional Cyclone</name>
+			<text>Return all nonartifact creatures to their owners&apos; hands.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/38_Dimensional Cyclone.jpg" num="38">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3UUU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mystic Temptress</name>
+			<text>Mystic Temptress enters the battlefield with a +1/+1 counter on it.
+{1}{U}{U}, {T}, Remove a +1/+1 counter from Mystic Temptress: Put a +1/+1 counter on another target creature.
+{3}{U}{U}, {T}: Gain control of target creature with a +1/+1 counter on it for as long as you control Mystic Temptress.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/51_Mystic Temptress.jpg" num="51">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>0/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Stag</name>
+			<text>Hexproof
+Whenever you cast an instant or sorcery spell, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/50_Mimic of the Stag.jpg" num="50">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Clairvoyant Sphinx</name>
+			<text>Flying
+Whenever Clairvoyant Sphinx deals combat damage to a player, look at that player&apos;s hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/36_Clairvoyant Sphinx.jpg" num="36">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Sphinx</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Study the Tradewinds</name>
+			<text>Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.)
+Draw a card.
+If Study the Tradewinds was kicked, whenever you cast another instant or sorcery spell this turn, draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/61_Study the Tradewinds.jpg" num="61">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Being of Myth</name>
+			<text>Kicker {5} (You may pay an additional {5} as you cast this spell.)
+Being of Myth&apos;s power and toughness are equal to the number of cards in your hand.
+Being of Myth has trample as long as its power is seven or greater.
+When Being of Myth enters the battlefield, if it was kicked and you have fewer than seven cards in hand, draw cards equal to the difference.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/169_Being of Myth.jpg" num="169">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1GU</manacost>
+				<cmc>3</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>*/*</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spectacle of Power</name>
+			<text>Remove all +1/+1 counters from among creatures you control and all charge counters from among artifacts you control. Creatures you control become X/X until end of turn, where X is the number of counters removed in this way.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/208_Spectacle of Power.jpg" num="208">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mimic of the Woods</name>
+			<text>You may play an additional land on each of your turns.
+Whenever a land enters the battlefield under your control, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/139_Mimic of the Woods.jpg" num="139">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Savage Summoning</name>
+			<text>Savage Summoning can&apos;t be countered.
+The next creature card you cast this turn can be cast as though it had flash. That spell can&apos;t be countered. That creature enters the battlefield with an additional +1/+1 counter on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/147_Savage Summoning.jpg" num="147">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Arachnid Queen</name>
+			<text>Reach
+When Arachnid Queen enters the battlefield, put a 1/2 green Spider creature token with reach onto the battlefield for each creature with flying your opponents control.
+{3}{G}{G}: Other spider creatures you control gain deathtouch until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/126_Arachnid Queen.jpg" num="126">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spider</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jungle Hydra</name>
+			<text>Jungle Hydra enters the battlefield with a +1/+1 counter on it for each Forest you control.
+Whenever a Forest enters the battlefield under your control, double the number of +1/+1 counters on Jungle Hydra and it gains trample until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/135_Jungle Hydra.jpg" num="135">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hydra</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Prowling Capbalta</name>
+			<text>Prowling Capbalta has hexproof unless it&apos;s attacking or blocking.
+{1}{G}: Remove Prowling Capbalta from combat. If it was attacking, untap it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/145_Prowling Capbalta.jpg" num="145">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Compliant Harmony</name>
+			<text>Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.)
+Put target noncreature permanent on top of its owner&apos;s library. Then if Compliant Harmony was kicked, that player shuffles his or her library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/130_Compliant Harmony.jpg" num="130">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Gravefeeder Ooze</name>
+			<text>Kicker {4} (You may pay an additional {4} as you cast this spell.)
+When Gravefeeder Ooze enters the battlefield, if it was kicked, target player discards two cards.
+Whenever a card is put into an opponent&apos;s graveyard from anywhere, put a +1/+1 counter on Gravefeeder Ooze.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/183_Gravefeeder Ooze.jpg" num="183">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ooze</type>
+				<maintype>Creature</maintype>
+				<manacost>BG</manacost>
+				<cmc>2</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Proclamation of Vetrayel</name>
+			<text>Destroy target nonland permanent and all other nonland permanents with the same converted mana cost as that permanent.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/198_Proclamation of Vetrayel.jpg" num="198">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2BG</manacost>
+				<cmc>4</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tunneling Cragwyrm</name>
+			<text>Whenever a creature enters the battlefield under an opponent&apos;s control, put a 1/1 green Insect creature token onto the battlefield.
+{B}, Sacrifice an Insect: Put a +1/+1 counter on Tunneling Cragwyrm and regenerate it. (The next time this creature would be destroyed this turn, it isn&apos;t. Instead tap it, remove all damage from it, and remove it from combat.)</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/92_Tunneling Cragwyrm.jpg" num="92">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wurm</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Strike from the Darkness</name>
+			<text>As an additional cost to cast Strike from the Darkness, tap an untapped creature you control.
+Destroy target creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/89_Strike from the Darkness.jpg" num="89">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Entrail Merchant</name>
+			<text>Whenever another creature dies, you draw a card and lose 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/77_Entrail Merchant.jpg" num="77">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Corpse Puppeteer</name>
+			<text>{1}{B}{B}, {T}, Pay 1 life: Return target creature card from a graveyard to the battlefield under your control, except it&apos;s a Puppet in addition to its other types and gains defender and &quot;this creature&apos;s activated abilities can&apos;t be activated.&quot;
+{T}, Pay 1 life: Target Puppet you control loses defender until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/73_Corpse Puppeteer.jpg" num="73">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gatekeeper Demon</name>
+			<text>Flying
+Pay 6 life: Target player sacrifices a creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/78_Gatekeeper Demon.jpg" num="78">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Demon</type>
+				<maintype>Creature</maintype>
+				<manacost>3BBB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Riddle of the Crypt</name>
+			<text>Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.)
+Search your library for a card and put that card into your graveyard, then shuffle your library. If Riddle of the Crypt was kicked, instead search your library for a card and put that card into your hand, then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/84_Riddle of the Crypt.jpg" num="84">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bitter Incarcerator</name>
+			<text>Kicker {2} (You may pay an additional {2} as you cast this spell.)
+Flying
+Bitter Incarcerator enters the battlefield tapped unless it was kicked.
+When Bitter Incarcerator enters the battlefield, destroy all tapped creatures.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/170_Bitter Incarcerator.jpg" num="170">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rite of Renewal</name>
+			<text>As an additional cost to cast Rite of Renewal, sacrifice all creatures you control but one.
+Your life total becomes equal to your starting life total. Put a 1/1 black Bat creature token with flying onto the battlefield for each nontoken creature sacrificed to cast Rite of Renewal.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/202_Rite of Renewal.jpg" num="202">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>5WB</manacost>
+				<cmc>7</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hydra Maw</name>
+			<text>Living weapon (When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.)
+Equipped creature gets +4/+4 and has trample.
+{B}{G}: Put a +1/+1 counter on equipped creature.
+Equip {5}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/226_Hydra Maw.jpg" num="226">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+				<coloridentity>BG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Orb of Mimicry</name>
+			<text>Orb of Mimicry enters the battlefield with two charge counters on it.
+Equipped creature gets +3/+3.
+{2}{G}{U}, Remove a charge counter from Orb of Mimicry: Equipped creature becomes a copy of target creature until end of turn.
+Equip {3}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/228_Orb of Mimicry.jpg" num="228">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<coloridentity>UG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Nimble Autarmor</name>
+			<text>Augment {1}{U}{R} ({1}{U}{R}: Put a charge counter on this card. Augment only as a sorcery.)
+Equipped creature gets +1/+0 and has haste.
+{1}: Return equipped creature to its owner&apos;s hand. Activate this ability only if Nimble Autarmor has a charge counter on it.
+Equip {1}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/227_Nimble Autarmor.jpg" num="227">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<coloridentity>UR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Hunting Bow</name>
+			<text>Equipped creature gets +1/+1 and has &quot;{R}{W}, {T}: This creature deals 1 damage to target creature. Tap that creature.&quot;
+Equip {0}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/223_Dwarven Hunting Bow.jpg" num="223">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Enchanted Trinket</name>
+			<text>When Enchanted Trinket enters the battlefield, choose a color.
+Equipped creature gets +1/+1 and has protection from the chosen color. (This permanent can&apos;t be targeted, dealt damage, enchanted, or equipped by anything with that color.)
+Equip {2}
+Bloodbond — {4}{W}{B}, Sacrifice equipped creature: Destroy target permanent of the chosen color.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/224_Enchanted Trinket.jpg" num="224">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<coloridentity>WB</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Marsh Flats</name>
+			<text>{T}, Pay 1 life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/236_Marsh Flats.jpg" num="236">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Scalding Tarn</name>
+			<text>{T}, Pay 1 life, Sacrifice Scalding Tarn: Search your library for an Island or Mountain card and put it onto the battlefield. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/238_Scalding Tarn.jpg" num="238">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Verdant Catacombs</name>
+			<text>{T}, Pay 1 life, Verdant Catacombs: Search your library for a Swamp or Forest card and put it onto the battlefield. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/240_Verdant Catacombs.jpg" num="240">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Arid Mesa</name>
+			<text>{T}, Pay 1 life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card and put it onto the battlefield. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/231_Arid Mesa.jpg" num="231">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Misty Rainforest</name>
+			<text>{T}, Pay 1 life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/MSR-files/img/237_Misty Rainforest.jpg" num="237">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Grand Arsenal of the Keep</name>
+			<text>Defender
+When Grand Arsenal of the Keep enters the battlefield, you may search your library for any number of Equipment cards and exile them. If you do, shuffle your library.
+Whenever another creature enters the battlefield under your control, you may pay {W}. If you do, put an Equipment card exiled with Grand Arsenal of the Keep onto the battlefield, then attach it to that creature.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/17_Grand Arsenal of the Keep.jpg" num="17">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wall</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>0/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mental Mastery</name>
+			<text>Enchant planeswalker
+You control enchanted planeswalker.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/46_Mental Mastery.jpg" num="46">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Soulsapper Slime</name>
+			<text>Kicker {3} (You may pay an additional {3} as you cast this spell.)
+When Soulsapper Slime enters the battlefield, if it was kicked, exile all creature cards from graveyards.
+{4}{B}{B}: Exile target creature.
+Soulsapper Slime gets +1/+1 for each creature card exiled with it and has all activated abilities of those cards.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/88_Soulsapper Slime.jpg" num="88">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ooze</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Apocryphal Offering</name>
+			<text>Apocryphal Offering can&apos;t be countered.
+Put six 1/1 red Human creature tokens named Cultist onto the battlefield tapped, then put three 5/5 colorless Golem artifact creature tokens named Idol onto the battlefield.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/95_Apocryphal Offering.jpg" num="95">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>6RRR</manacost>
+				<cmc>9</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Leader of the Herd</name>
+			<text>Kicker {2}{G}{G} (You may pay an additional {2}{G}{G} as you cast this spell.)
+Trample
+When Leader of the Herd enters the battlefield, if it was kicked, search your library for any number of creature cards with total power 8 or less and put them onto the battlefield. Then shuffle your library.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/136_Leader of the Herd.jpg" num="136">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elephant</type>
+				<maintype>Creature</maintype>
+				<manacost>3GGG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>8/8</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Grand Overseer</name>
+			<text>Until your next turn, another target permanent you control gains protection from all colors. (This permanent can&apos;t be targeted, dealt damage, enchanted, or equipped by anything that&apos;s white, blue, black, red, or green.)
+Search your library for a colorless card, reveal it, and put it into your hand. Then shuffle your library.
+Put a 10/10 colorless creature token named Worldcleanser with indestructible onto the battlefield, then exile all colored permanents.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/1_The Grand Overseer.jpg" num="1">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>6</manacost>
+				<cmc>6</cmc>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Hexbender Warlock</name>
+			<text>Flash
+Whenever a player would draw a card, instead that player exiles the top card of his or her library. If the exiled card is a permanent card, each player may put a token that&apos;s a copy of that card onto the battlefield. If the exiled card is an instant or sorcery card, each player may cast a copy of that card without paying its mana cost.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/185_Hexbender Warlock.jpg" num="185">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Human Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3UR</manacost>
+				<cmc>5</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tezzeret, the Mad Tinkerer</name>
+			<text>Look at the top card of your library. If it&apos;s an artifact card, you may reveal it and put it into your hand.
+Target player draws X cards and loses X life, where X is the number of artifacts you control.
+You get an emblem with &quot;Artifacts you control have ‘{T}: Each opponent loses 2 life and you gain that much life.&apos;&quot;</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/214_Tezzeret, the Mad Tinkerer.jpg" num="214">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Tezzeret</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1UB</manacost>
+				<cmc>3</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Elspeth of Tainted Heart</name>
+			<text>Put a 1/1 white and black Spirit creature token with flying onto the battlefield.
+Put target creature card in a graveyard on top of its owner&apos;s library.
+You get an emblem with &quot;Creatures you control get +1/+1 and have deathtouch and lifelink.&quot;</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/177_Elspeth of Tainted Heart.jpg" num="177">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Planeswalker — Elspeth</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>3WB</manacost>
+				<cmc>5</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mystic of Unbridled Power</name>
+			<text>{3}{G}{G}: Target land you control becomes an 8/8 green Elemental creature with trample. It&apos;s still a land.
+Whenever a land you control deals combat damage to a player, put that many +1/+1 counters on Mystic of Unbridled Power.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/MSR-files/img/140_Mystic of Unbridled Power.jpg" num="140">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Elspeth of Tainted Heart MSR</name>
+			<text>Creatures you control get +1/+1 and have deathtouch and lifelink.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/12t_Elspeth of Tainted Heart.jpg" num="12">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Emblem</type>
+				<maintype>Emblem</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Tezzeret, the Mad Tinkerer MSR</name>
+			<text>Artifacts you control have ‘{T}: Each opponent loses 2 life and you gain that much life.&apos;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/13t_Tezzeret, the Mad Tinkerer.jpg" num="13">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Emblem</type>
+				<maintype>Emblem</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Germ MSR</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/4t_Germ.jpg" num="4">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Germ</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Bat MSR</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/3t_Bat.jpg" num="3">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Bat</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Dwarf Warrior MSR</name>
+			<text>First strike</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/2t_Dwarf Warrior.jpg" num="2">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Dwarf Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Horror MSR</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/5t_Horror.jpg" num="5">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Horror</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>*/*</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Construct MSR</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/10t_Construct.jpg" num="10">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Spider MSR</name>
+			<text>Reach</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/8t_Spider.jpg" num="8">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Spider</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Insect MSR</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/7t_Insect.jpg" num="7">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Cultist MSR</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/6t_Cultist.jpg" num="6">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Idol MSR</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/11t_Idol.jpg" num="11">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Worldcleanser MSR</name>
+			<text>Indestructible</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/1t_Worldcleanser.jpg" num="1">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>10/10</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Spirit MSR</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/MSR-files/img/9t_Spirit.jpg" num="9">MSR</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

@@ -115,6 +115,7 @@ def generateHTML():
 	.img-container img {
 		width: 100%;
 		height: auto;
+		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
 		background: url('/img/flip.png') no-repeat;

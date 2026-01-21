@@ -1,0 +1,3705 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>SGB</name>
+			<longname>Strombo&apos;s Grand Banquet</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>Sinuous Bat</name>
+			<text>Flying, lifelink
+When Sinuous Bat dies, create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/96_Sinuous Bat.jpg" num="96">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bat</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hinterland Trapper</name>
+			<text>When Hinterland Trapper enters the battlefield, create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)
+{2}, Sacrifice a Food: Hinterland Trapper gets +2/+2 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/152_Hinterland Trapper.jpg" num="152">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arm and a Leg</name>
+			<text>Target creature gets -3/-3 until end of turn. Create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/70_Arm and a Leg.jpg" num="70">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Spleen Harvester</name>
+			<text>Whenever you sacrifice a permanent, put a +1/+1 counter on Spleen Harvester.
+{2}, Sacrifice another creature: Create a Food token. If that creature had mana value 2 or greater, create two of those tokens instead. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/186_Spleen Harvester.jpg" num="186">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe</type>
+				<maintype>Creature</maintype>
+				<manacost>1BG</manacost>
+				<cmc>3</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Edible Effigy</name>
+			<text>When Edible Effigy enters the battlefield, create two Food tokens. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)
+{3}{G}: Put three +1/+1 counters on another target noncreature permanent you control. It becomes a 0/0 Elemental creature in addition to its other types. Activate only as a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/145_Edible Effigy.jpg" num="145">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gourmand Strombo</name>
+			<text>When Strombo enters the battlefield, create a Food token for each creature card in your graveyard. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)
+{T}, Sacrifice a Food and a non-Food permanent: Search your library for a permanent card, reveal it, and put it into your hand, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/177_Gourmand Strombo.jpg" num="177">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Ouphe Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>3BG</manacost>
+				<cmc>5</cmc>
+				<colors>BG</colors>
+				<coloridentity>BG</coloridentity>
+				<pt>3/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cloud Nomad</name>
+			<text>Vigilance
+When Cloud Nomad enters the battlefield, creatures you control get +1/+1 and gain vigilance until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/7_Cloud Nomad.jpg" num="7">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Giant Nomad</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bauble Smuggler</name>
+			<text>Flying
+When Bauble Smuggler enters the battlefield, draw a card.
+Bauble Smuggler can block only creatures with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/39_Bauble Smuggler.jpg" num="39">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Peregrinate</name>
+			<text>Exile target permanent you control, then return it to the battlefield under its owner&apos;s control. You gain 4 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/25_Peregrinate.jpg" num="25">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curio Sphinx</name>
+			<text>Flying
+When Curio Sphinx enters the battlefield, draw a card, then put a +1/+1 counter on a creature you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/176_Curio Sphinx.jpg" num="176">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Sphinx Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3WU</manacost>
+				<cmc>5</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sump Gumpie</name>
+			<text>When Sump Gumpie enters the battlefield, return another permanent you control to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/65_Sump Gumpie.jpg" num="65">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Star-Crossed Lovers</name>
+			<text>Whenever you cast a permanent spell, you may exile target permanent that shares a card type with it, then return that card to the battlefield under its owner&apos;s control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/187_Star-Crossed Lovers.jpg" num="187">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>1WU</manacost>
+				<cmc>3</cmc>
+				<colors>WU</colors>
+				<coloridentity>WU</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Freed from the Real</name>
+			<text>Enchant creature
+{U}: Tap enchanted creature.
+{U}: Untap enchanted creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/46_Freed from the Real.jpg" num="46">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Quelling Tethers</name>
+			<text>Enchant creature
+Enchanted creature can&apos;t block.
+{2}{B}: Destroy enchanted creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/94_Quelling Tethers.jpg" num="94">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sable Seer</name>
+			<text>When Sable Seer enters the battlefield, look at the top three cards of your library, then put them back in any order. If you control an Aura attached to a permanent an opponent controls, you may put any number of those cards into your graveyard instead.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/57_Sable Seer.jpg" num="57">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warlock</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Spitebound Twins</name>
+			<text>Flying, deathtouch
+When Spitebound Twins enters the battlefield, you may gain control of target permanent an opponent controls enchanted by an Aura you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/185_Spitebound Twins.jpg" num="185">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Faerie Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>4UB</manacost>
+				<cmc>6</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gloom Slayer</name>
+			<text>Flash
+When Gloom Slayer enters the battlefield, target creature an opponent controls gets -2/-2 until end of turn. If that creature is enchanted, destroy it instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/83_Gloom Slayer.jpg" num="83">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe Assassin</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kikiro of the Golden Loch</name>
+			<text>Flying
+At the beginning of your upkeep, look at the top two cards of your library, then reveal a card from among them. If it&apos;s an Aura card, you may put it onto the battlefield attached to a creature an opponent controls. If you don&apos;t, put it into your hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/180_Kikiro of the Golden Loch.jpg" num="180">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Faerie Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3UB</manacost>
+				<cmc>5</cmc>
+				<colors>UB</colors>
+				<coloridentity>UB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>What Remains to be Seen</name>
+			<text>When What Remains to be Seen enters the battlefield, create a blue Aura enchantment token named Mirror attached to target creature an opponent controls. The token has enchant creature and &quot;At the beginning of your upkeep, create a token that&apos;s a copy of enchanted creature.&quot;
+{3}, {T}: Attach target Aura enchanting a permanent to another permanent with the same controller.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/68_What Remains to be Seen.jpg" num="68">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Reflection</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Vaporwing Elemental</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/67_Vaporwing Elemental.jpg" num="67">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Pyrinas Hotfoot</name>
+			<text>{3}{R}: Create a 3/1 red Elemental creature token with haste. Sacrifice that token at the beginning of the next end step. Activate this ability only as a sorcery.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/125_Pyrinas Hotfoot.jpg" num="125">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Runic Tremors</name>
+			<text>This spell costs {1} less to cast if you control an Elemental.
+Draw two cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/56_Runic Tremors.jpg" num="56">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Smogspewer</name>
+			<text>Flying, trample
+Whenever you cast a sorcery or Elemental spell, creatures you control get +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/184_Smogspewer.jpg" num="184">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>1UR</manacost>
+				<cmc>3</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Magmatic Awakening</name>
+			<text>Create a 3/1 red Elemental creature token with haste, then Elemental creatures you control gain trample until end of turn. Whenever a creature you control deals combat damage to a player this turn, exile the top card of your library. Until the end of your next turn, you may play those cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/119_Magmatic Awakening.jpg" num="119">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Queva, the Eternal Ash</name>
+			<text>Flying, haste
+At the beginning of combat on your turn, if you&apos;ve cast a sorcery spell and an Elemental spell this turn, you may return Queva from your graveyard to the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/183_Queva, the Eternal Ash.jpg" num="183">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Elemental Phoenix</type>
+				<maintype>Creature</maintype>
+				<manacost>2UR</manacost>
+				<cmc>4</cmc>
+				<colors>UR</colors>
+				<coloridentity>UR</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Templar of Castle Brache</name>
+			<text>Whenever you gain life, you may pay {W}. If you do, put a +1/+1 counter on Templar of Castle Brache.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/31_Templar of Castle Brache.jpg" num="31">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Haggard Bandit</name>
+			<text>Whenever you gain life, Haggard Bandit gets +1/+0 and gains menace until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/84_Haggard Bandit.jpg" num="84">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Watchful Courier</name>
+			<text>Vigilance, lifelink</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/34_Watchful Courier.jpg" num="34">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jaded Cynic</name>
+			<text>Jaded Cynic gets +2/+2 as long as you gained life this turn.
+{3}{W}{B}: Each opponent loses 1 life and you gain 1 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/179_Jaded Cynic.jpg" num="179">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>WB</manacost>
+				<cmc>2</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Antiquated Hunt</name>
+			<text>Target creature gets -4/-4 until end of turn. When that creature dies this turn, you gain 4 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/69_Antiquated Hunt.jpg" num="69">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bloodlord Romrikh</name>
+			<text>Flying, lifelink, deathtouch
+Whenever another creature enters the battlefield under your control, you may pay {WB}{WB}. If you do, put a flying counter, a lifelink counter, and a deathtouch counter on that creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/173_Bloodlord Romrikh.jpg" num="173">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>2WB</manacost>
+				<cmc>4</cmc>
+				<colors>WB</colors>
+				<coloridentity>WB</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sigrid&apos;s Liege</name>
+			<text>{1}{R}: Sigrid&apos;s Liege gains flying until end of turn. Activate only during your turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/130_Sigrid&apos;s Liege.jpg" num="130">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Knight of the North</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/22_Knight of the North.jpg" num="22">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Joustabout</name>
+			<text>You may attach an Equipment you control to target creature you control if that creature is a Knight. Then that creature deals damage equal to its power to target creature you don&apos;t control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/114_Joustabout.jpg" num="114">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Cardinal Court Lancer</name>
+			<text>First strike
+Other attacking Knights you control get +1/+0 and have first strike.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/174_Cardinal Court Lancer.jpg" num="174">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Sentinel</name>
+			<text>Vigilance
+Prevent all combat damage that would be dealt to other attacking Knights you control as long as Dwarven Sentinel is attacking.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/11_Dwarven Sentinel.jpg" num="11">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Baragus, the Prized Bulwark</name>
+			<text>Equipped creature gets +2/+1 and has vigilance and double strike.
+{2}{R}{W}: Look at the top four cards of your library. You may reveal a Knight creature card with mana value 4 or less from among them and put it onto the battlefield, then attach Baragus to it. Activate only if Baragus is unattached.
+Equip {2}{R}{W}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/171_Baragus, the Prized Bulwark.jpg" num="171">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1RW</manacost>
+				<cmc>3</cmc>
+				<colors>WR</colors>
+				<coloridentity>WR</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Lady Sigrid of Cardinal Court</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/115_Lady Sigrid of Cardinal Court.jpg" num="115">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Sigrid</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Rafter Cackler</name>
+			<text>Reach</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/160_Rafter Cackler.jpg" num="160">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Thrumming Thopter</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/32_Thrumming Thopter.jpg" num="32">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Thopter</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gilded Greatshield</name>
+			<text>Equipped creature gets +0/+2 and has trample.
+Equip {1}{G}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/150_Gilded Greatshield.jpg" num="150">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mithril Vanguard</name>
+			<text>Vigilance
+Each creature you control assigns combat damage equal to its toughness rather than its power.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/181_Mithril Vanguard.jpg" num="181">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1GW</manacost>
+				<cmc>3</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sage Court Savior</name>
+			<text>First strike, vigilance, lifelink</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/28_Sage Court Savior.jpg" num="28">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Steelheart Scarecrow</name>
+			<text>When The Steelheart Scarecrow enters the battlefield, create two 0/2 colorless Puppet artifact creature tokens.
+{1}{G}{W}: Until end of turn, each creature you control assigns combat damage equal to whichever is higher between its power and toughness.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/188_The Steelheart Scarecrow.jpg" num="188">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>2GW</manacost>
+				<cmc>4</cmc>
+				<colors>WG</colors>
+				<coloridentity>WG</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mesa Charger</name>
+			<text>Mesa Charger gets +2/+0 as long as it has a mount.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/123_Mesa Charger.jpg" num="123">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beastkin Ouphe</name>
+			<text>Beastkin Ouphe can&apos;t be blocked by more than one creature as long as it has a mount.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/141_Beastkin Ouphe.jpg" num="141">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Magma Driveler</name>
+			<text>{2}{R}: Magma Driveler gets +2/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/118_Magma Driveler.jpg" num="118">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Salamander Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cragrider&apos;s Raptor</name>
+			<text>Vigilance
+Whenever a creature you control mounts, put a +1/+1 counter on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/175_Cragrider&apos;s Raptor.jpg" num="175">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dinosaur</type>
+				<maintype>Creature</maintype>
+				<manacost>1RG</manacost>
+				<cmc>3</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Migratory Lambeodon</name>
+			<text>Migratory Lambeodon and creatures you control with mounts can&apos;t be blocked by creatures with power 2 or less.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/157_Migratory Lambeodon.jpg" num="157">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dinosaur</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Zane, the Underdog</name>
+			<text>Whenever a creature mounts Zane, that creature deals damage equal to its power to any target.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/190_Zane, the Underdog.jpg" num="190">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dog</type>
+				<maintype>Creature</maintype>
+				<manacost>RG</manacost>
+				<cmc>2</cmc>
+				<colors>RG</colors>
+				<coloridentity>RG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Barony Confidant</name>
+			<text>When Barony Confidant enters the battlefield, if you control a legendary creature, you draw a card and you lose 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/72_Barony Confidant.jpg" num="72">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloodrust Veteran</name>
+			<text>Bloodrust Veteran has first strike as long as you control a legendary creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/105_Bloodrust Veteran.jpg" num="105">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Uncertain Terms</name>
+			<text>Choose one or both —
+• Return target creature card from your graveyard to your hand.
+• Return target legendary card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/101_Uncertain Terms.jpg" num="101">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hayla, Blighted Tyrant</name>
+			<text>When Hayla enters the battlefield, you may sacrifice another creature. If you do, each opponent sacrifices a creature. Repeat this process for discarding cards.
+Whenever a nonland card is put into a graveyard from anywhere, Hayla deals 1 damage to each opponent.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/178_Hayla, Blighted Tyrant.jpg" num="178">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>3BR</manacost>
+				<cmc>5</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gistley, the Hot Hand</name>
+			<text>When Gistley enters the battlefield, he deals X damage to target creature an opponent controls, where X is the number of legendary creatures you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/111_Gistley, the Hot Hand.jpg" num="111">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Ouphe Artificer</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Veros, the Crimson Storm</name>
+			<text>Flying, menace
+Whenever Veros becomes the target of a spell or ability an opponent controls, Veros deals 4 damage to that player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/189_Veros, the Crimson Storm.jpg" num="189">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>2BR</manacost>
+				<cmc>4</cmc>
+				<colors>BR</colors>
+				<coloridentity>BR</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ozulos, Council of the Barony</name>
+			<text>When Ozulos enters the battlefield, choose one for each time a permanent named Ozulos has entered the battlefield under your control this game —
+• You draw a card and you lose 1 life.
+• Each opponent discards a card.
+• Target creature gets -3/-3 until end of turn.
+• Each opponent loses 3 life and you gain 3 life.
+When Ozulos dies, you may put it into its owner&apos;s library third from the top.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/93_Ozulos, Council of the Barony.jpg" num="93">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Avid Botanist</name>
+			<text>{T}: Add {G}.
+Menagerie — {T}: Add two mana of any one color. Activate only if there are five or more creature types among creatures you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/139_Avid Botanist.jpg" num="139">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ossean Displacer</name>
+			<text>Menagerie — When Ossean Displacer enters the battlefield, if there are five or more creature types among creatures you control, return target creature an opponent controls to its owner&apos;s hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/53_Ossean Displacer.jpg" num="53">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Skeleton Warlock</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lurking Guppython</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/155_Lurking Guppython.jpg" num="155">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Fish Snake Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bloated Brewmaster</name>
+			<text>When Bloated Brewmaster enters the battlefield, create a 1/2 colorless Food Golem artifact creature token with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;
+Menagerie — At the beginning of your upkeep, if there are five or more creature types among creatures you control, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/172_Bloated Brewmaster.jpg" num="172">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Frog Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>2GU</manacost>
+				<cmc>4</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Maven of Misdirection</name>
+			<text>Flying
+Menagerie — Maven of Misdirection has shroud as long as there are five or more creature types among creatures you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/50_Maven of Misdirection.jpg" num="50">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Sphinx Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Mythical Pantheron</name>
+			<text>Flying, trample
+At the beginning of your upkeep, look at the top card of your library. If it&apos;s a land card, you may put it onto the battlefield.
+{G}{U}, Return two lands you control to their owner&apos;s hand: Return The Mythical Pantheron to its owner&apos;s hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/182_The Mythical Pantheron.jpg" num="182">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Cat Bird Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>5GU</manacost>
+				<cmc>7</cmc>
+				<colors>UG</colors>
+				<coloridentity>UG</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chimera Handler</name>
+			<text>When Chimera Handler enters the battlefield, you gain life equal to the greatest toughness among creatures you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/6_Chimera Handler.jpg" num="6">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skydiving</name>
+			<text>Return target creature you control to its owner&apos;s hand. Choose one —
+• Return target creature an opponent controls to its owner&apos;s hand.
+• Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/62_Skydiving.jpg" num="62">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Highborn Dealbreaker</name>
+			<text>Highborn Dealbreaker has deathtouch as long as you control an Aura attached to a creature an opponent controls.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/86_Highborn Dealbreaker.jpg" num="86">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Razorback Pact</name>
+			<text>When Razorback Pact enters the battlefield, create a 1/1 red Dwarf Knight creature token.
+Mount abilities of creatures you control cost {1} less to activate.
+Creatures you control that have mounts get +1/+1.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/127_Razorback Pact.jpg" num="127">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Skywolf Spider</name>
+			<text>Reach
+When Skywolf Spider enters the battlefield, it fights up to one target creature with flying.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/166_Skywolf Spider.jpg" num="166">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spider Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arbiter of the Alliance</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Flying
+When Arbiter of the Alliance enters the battlefield, until end of turn, abilities don&apos;t trigger.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/2_Arbiter of the Alliance.jpg" num="2">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Angel Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Strongshell Stag</name>
+			<text>{U}: Strongshell Stag gets +0/+3 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/64_Strongshell Stag.jpg" num="64">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elk Turtle Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>5U</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blood Merchant</name>
+			<text>When Blood Merchant enters the battlefield, each opponent loses 2 life and you gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/74_Blood Merchant.jpg" num="74">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Luck of the Laymen</name>
+			<text>Luck of the Laymen deals 5 damage to target creature an opponent controls, then Luck of the Laymen deals 3 damage to that creature&apos;s controller if you control a legendary creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/117_Luck of the Laymen.jpg" num="117">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mating Grounds</name>
+			<text>When Mating Grounds enters the battlefield, create a 3/3 green Dinosaur Beast creature token with trample.
+Menagerie — At the beginning of your end step, if there are five or more creature types among creatures you control, create a 3/3 green Dinosaur Beast creature token with trample.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/156_Mating Grounds.jpg" num="156">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Priestess of Pale Fortune</name>
+			<text>When Priestess of Pale Fortune enters the battlefield, exile target nonland permanent an opponent controls.
+When Priestess of Pale Fortune leaves the battlefield, target opponent creates a 3/3 colorless Spirit creature token.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/26_Priestess of Pale Fortune.jpg" num="26">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shifty Gambler</name>
+			<text>When Shifty Gambler enters the battlefield, an opponent chooses a number between 0 and 5.
+{T}: Draw three cards. Activate only if you have the chosen number of cards in hand.
+{2}{U}{U}: Return a permanent you control to its owner&apos;s hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/60_Shifty Gambler.jpg" num="60">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Herald of Prosperity</name>
+			<text>When Herald of Prosperity enters the battlefield, search your library for a permanent card with a mana ability, reveal it, put it into your hand, then shuffle.
+Whenever you tap a creature for mana, put a +1/+1 counter on that creature, add an additional {G}, and you gain 2 life.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/151_Herald of Prosperity.jpg" num="151">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Treefolk</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fear of the Dark</name>
+			<text>Target opponent sacrifices a creature, discards a card, and loses 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/81_Fear of the Dark.jpg" num="81">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lavahewn Weird</name>
+			<text>Whenever you cast a sorcery or Elemental spell, put a +1/+1 counter on Lavahewn Weird.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/116_Lavahewn Weird.jpg" num="116">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Juvenile Dreadmaw</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/153_Juvenile Dreadmaw.jpg" num="153">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dinosaur</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dreadless Paladin</name>
+			<text>Flying, vigilance
+Whenever you gain life, Dreadless Paladin gains double strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/8_Dreadless Paladin.jpg" num="8">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Teraphobia</name>
+			<text>Enchant creature
+When Teraphobia enters the battlefield, you may draw a card. If you don&apos;t, tap enchanted creature.
+Enchanted creature doesn&apos;t untap during its controller&apos;s untap step as long as that player controls another creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/66_Teraphobia.jpg" num="66">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Tortuous Encore</name>
+			<text>Each player sacrifices a creature. Create two 0/2 colorless Puppet artifact creature tokens.
+As long as Tortuous Encore is in your graveyard, Puppets you control have &quot;{1}{B}, Sacrifice this creature: Return target creature card from your graveyard to the battlefield.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/100_Tortuous Encore.jpg" num="100">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Flameforged Rapier</name>
+			<text>Equipped creature gets +2/+0.
+Equipped creature has first strike as long as it&apos;s a Knight.
+Equipped creature has trample as long as it&apos;s an Elemental.
+Equip {3}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/110_Flameforged Rapier.jpg" num="110">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sapslime Froglet</name>
+			<text>When Sapslime Froglet enters the battlefield, choose one —
+• Put a +1/+1 counter on another target creature you control.
+• Create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/162_Sapslime Froglet.jpg" num="162">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Frog</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Heir&apos;s Liege</name>
+			<text>Heir&apos;s Liege has first strike as long as it&apos;s attacking.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/19_Heir&apos;s Liege.jpg" num="19">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sea Spawn</name>
+			<text>When Sea Spawn enters the battlefield, scry 2.
+Whenever you cast a sorcery or Elemental spell, you may draw a card. If you do, discard a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/58_Sea Spawn.jpg" num="58">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beatrix, Firstborn of Brache</name>
+			<text>When Beatrix enters the battlefield, destroy target creature an opponent controls with mana value 3 or less.
+{1}{B}, {T}: Exile target creature card from a graveyard. Put a +1/+1 counter on Beatrix.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/73_Beatrix, Firstborn of Brache.jpg" num="73">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Virnut, the Capricious Fissure</name>
+			<text>When Virnut enters the battlefield, create a 3/1 red Elemental creature token with haste. Sacrifice that token at the beginning of the next end step.
+Whenever a creature token you control leaves the battlefield, put a rift counter on Virnut.
+When there are ten or more rift counters on Virnut, sacrifice it. If you do, it deals 30 damage to any target.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/135_Virnut, the Capricious Fissure.jpg" num="135">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Untold Lands</name>
+			<text>Search your library for a basic land card and put it onto the battlefield tapped, then shuffle. Put a +1/+1 counter on up to one target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/168_Untold Lands.jpg" num="168">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Earnest Storyteller</name>
+			<text>{W}, {T}: Tap target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/12_Earnest Storyteller.jpg" num="12">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Absent Muse</name>
+			<text>Whenever Absent Muse attacks, draw a card.
+Whenever Absent Muse deals combat damage to a player, discard a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/35_Absent Muse.jpg" num="35">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Campfire Tales</name>
+			<text>As an additional cost to cast this spell, pay 2 life or sacrifice a Food.
+Draw two cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/78_Campfire Tales.jpg" num="78">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Matieu, the Acclaimed</name>
+			<text>When Matieu enters the battlefield, search your library for an Equipment card with mana value 3 or less, reveal it, put it into your hand, then shuffle.
+Whenever Matieu attacks, another target creature you control gets +X/+0 until end of turn, where X is Matieu&apos;s power.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/120_Matieu, the Acclaimed.jpg" num="120">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Arboreal Library</name>
+			<text>Archive 1 (As this enters the battlefield, shuffle the top card of your main library into a new face up library. Sacrifice this after the archived library is empty.)
+At the beginning of your upkeep, look at the top three cards of your main library. Put one of them back on top and the other two on the bottom of the archived library. Then if the top card of the archived library is a land card, put it into your hand.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/137_Arboreal Library.jpg" num="137">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Study</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>The Legend of Syr Kinne</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/23_The Legend of Syr Kinne.jpg" num="23">SGB</set>
+			<prop>
+				<layout>saga</layout>
+				<side>front</side>
+				<type>Enchantment — Saga</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Evening Feast</name>
+			<text>Target creature you control gets +2/+2 until end of turn. Create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/15_Evening Feast.jpg" num="15">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Into the Starry Night</name>
+			<text>Destroy target enchantment or tapped creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/21_Into the Starry Night.jpg" num="21">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Duskbind</name>
+			<text>Enchant creature or planeswalker
+Enchanted permanent can&apos;t attack or block, and its activated abilities can&apos;t be activated.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/9_Duskbind.jpg" num="9">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Eclipsed</name>
+			<text>Exile target creature until another creature leaves the battlefield. (It enters the battlefield under its owner&apos;s control.)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/13_Eclipsed.jpg" num="13">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Blood of the Innocent</name>
+			<text>Enchant creature
+Enchanted creature gets +1/+1 and has lifelink.
+Creatures you control have protection from enchanted creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/5_Blood of the Innocent.jpg" num="5">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gremhüld of Utmost Honor</name>
+			<text>When Gremhüld enters the battlefield, create two 1/1 red Dwarf Knight creature tokens.
+{1}{W}, Sacrifice Gremhüld: Creatures you control gain indestructible until end of turn. Activate only if Gremhüld is tapped.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/17_Gremhüld of Utmost Honor.jpg" num="17">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Dwarf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hurl Obscenities</name>
+			<text>Untap target creature an opponent controls. It blocks this turn if able.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/112_Hurl Obscenities.jpg" num="112">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fervid Desecration</name>
+			<text>As an additional cost to cast this spell, discard a card.
+Exile the top three cards of your library. You may play those cards until the end of your next turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/109_Fervid Desecration.jpg" num="109">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Impious Lout</name>
+			<text>When Impious Lout enters the battlefield, choose one —
+• Destroy target artifact.
+• Impious Lout gets +2/+2 and gains haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/113_Impious Lout.jpg" num="113">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blasphemous Backlash</name>
+			<text>Blasphemous Backlash deals 3 damage to target creature. If that creature dealt damage this turn, Blasphemous Backlash deals 6 damage to it instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/104_Blasphemous Backlash.jpg" num="104">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rikkit, Career Heretic</name>
+			<text>When Rikkit enters the battlefield, draw two cards, then discard a card at random.
+If you would discard a card, exile it instead. You may cast that card until you exile another card with Rikkit.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/128_Rikkit, Career Heretic.jpg" num="128">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Ouphe Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>The Pyre-God Rises</name>
+			<text>Menagerie — Choose one. If there are five or more creature types among creatures you control, you may choose both instead.
+• Create a 5/5 red Dragon creature token with flying.
+• The Pyre-God Rises deals 5 damage to each non-Dragon creature.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/124_The Pyre-God Rises.jpg" num="124">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Cajoling Chorus</name>
+			<text>Choose two —
+• Tap target creature. It doesn&apos;t untap during its controller&apos;s next untap step.
+• Tap target creature. It doesn&apos;t untap during its controller&apos;s next untap step.
+• Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/41_Cajoling Chorus.jpg" num="41">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Alluring Wisps</name>
+			<text>Flying
+Whenever Alluring Wisps attacks, target creature defending player controls gets -2/-0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/37_Alluring Wisps.jpg" num="37">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Glamour of the Veil</name>
+			<text>Enchant creature
+Enchanted creature gets -1/-0 and has flying.
+Sacrifice Glamour of the Veil: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/47_Glamour of the Veil.jpg" num="47">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Artiflector&apos;s Charm</name>
+			<text>Enchant artifact
+Enchanted artifact is a creature with base power and toughness 4/4 in addition to its other types.
+When enchanted creature becomes the target of a spell, return Artiflector&apos;s Charm to your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/38_Artiflector&apos;s Charm.jpg" num="38">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Seaside Symphony</name>
+			<text>Return target creature or planeswalker spell to its owner&apos;s hand. You may cast a creature or planeswalker you control without paying its mana cost.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/59_Seaside Symphony.jpg" num="59">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mercurial Talisman</name>
+			<text>Whenever Mercurial Talisman becomes attached to a creature, choose one for as long as Mercurial Talisman remains attached —
+• Equipped creature has shroud.
+• Equipped creature can&apos;t be blocked.
+• Whenever equipped creature attacks, draw a card, then discard a card.
+Equip {U}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/51_Mercurial Talisman.jpg" num="51">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Adelaide, the Soloist</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/36_Adelaide, the Soloist.jpg" num="36">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Adelaide</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Flitting Phantasm</name>
+			<text>Flitting Phantasm can&apos;t block or be blocked.
+{4}{B}, Sacrifice Flitting Phantasm: Each opponent loses 3 life and you gain 3 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/82_Flitting Phantasm.jpg" num="82">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ominous Presence</name>
+			<text>Menace
+Whenever you gain life, each opponent loses 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/92_Ominous Presence.jpg" num="92">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unruly Poltergeists</name>
+			<text>When Unruly Poltergeists enters the battlefield, you may return target creature card with mana value 2 or less from your graveyard to the battlefield.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/102_Unruly Poltergeists.jpg" num="102">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Moor Specter</name>
+			<text>{B}{B}: Moor Specter gets +2/+2 until end of turn. Activate only if you gained life this turn.
+When Moor Specter dies, if it was tapped, each opponent discards two cards.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/90_Moor Specter.jpg" num="90">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Shade Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Soul Ingester</name>
+			<text>When Soul Ingester enters the battlefield, if a creature died this turn, create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)
+{2}, {T}, Sacrifice a Food: Each opponent loses 2 life and you gain 2 life.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/98_Soul Ingester.jpg" num="98">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Miloch of the Spectral Flock</name>
+			<text>Flying
+At the beginning of your end step, if you control fewer than three Birds, create a 1/1 black Bird Spirit creature token with flying and you lose 1 life.
+Whenever an opponent loses exactly 3 life, you gain 3 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/88_Miloch of the Spectral Flock.jpg" num="88">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brawler&apos;s Foresight</name>
+			<text>Target creature gets +2/+2 until end of turn. If that creature is attacking, untap it and it gains trample until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/142_Brawler&apos;s Foresight.jpg" num="142">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Ruthless Linebacker</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/161_Ruthless Linebacker.jpg" num="161">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Mercenary</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Backwood Cudgel</name>
+			<text>Equipped creature gets +3/+3.
+Equip {2}{G}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/140_Backwood Cudgel.jpg" num="140">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Strike Back</name>
+			<text>Target tapped creature you control deals damage equal to its power to target creature or planeswalker an opponent controls.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/167_Strike Back.jpg" num="167">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sashimi Bludgeoner</name>
+			<text>When Sashimi Bludgeoner enters the battlefield, create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)
+Whenever another creature enters the battlefield under your control, you may sacrifice a Food. If you do, put a +1/+1 counter on that creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/163_Sashimi Bludgeoner.jpg" num="163">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crowd Pleaser</name>
+			<text>Vigilance, haste
+Whenever Crowd Pleaser becomes blocked, you gain 4 life.
+Menagerie — Whenever Crowd Pleaser deals damage to a player, if there are five or more creature types among creatures you control, draw two cards.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/144_Crowd Pleaser.jpg" num="144">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Minotaur Mercenary</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mortuary Butcher</name>
+			<text>When Mortuary Butcher enters the battlefield, you may sacrifice a Food. If you do, target creature an opponent controls gets -3/-3 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/91_Mortuary Butcher.jpg" num="91">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc</type>
+				<maintype>Creature</maintype>
+				<manacost>4B</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Council&apos;s Hindsight</name>
+			<text>Look at the top three cards of your library. Put two of them into your hand and the other into your graveyard. You lose 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/79_Council&apos;s Hindsight.jpg" num="79">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lose Your Head</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Enchant creature
+Enchanted creature gets -2/-2.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/87_Lose Your Head.jpg" num="87">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Swift Postmortem</name>
+			<text>This spell costs {2} less to cast if it targets a legendary creature card.
+Return target creature card from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/99_Swift Postmortem.jpg" num="99">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Breath of Death</name>
+			<text>Enchant creature
+Enchanted creature has &quot;Other creatures you control get -1/-1.&quot;</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/76_Breath of Death.jpg" num="76">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Her Majesty Preisha</name>
+			<text>Deathtouch
+Sacrifice a creature: Her Majesty Preisha gains indestructible until end of turn.
+Whenever Preisha deals combat damage to a player, put target creature card from that player&apos;s graveyard onto the battlefield under your control with a defender counter on it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/85_Her Majesty Preisha.jpg" num="85">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shanti, Tainted Cuisinier</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/95_Shanti, Tainted Cuisinier.jpg" num="95">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Shanti</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Corn Husker</name>
+			<text>Vigilance
+{T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/192_Corn Husker.jpg" num="192">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ornamental Rapier</name>
+			<text>When Ornamental Rapier enters the battlefield, attach it to target creature you control with mana value 3 or less.
+Equipped creature gets +2/+1.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/194_Ornamental Rapier.jpg" num="194">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Evolving Wilds</name>
+			<text>{T}, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/196_Evolving Wilds.jpg" num="196">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Mystery Meat</name>
+			<text>When Mystery Meat enters the battlefield, put a +1/+1 counter on target creature you control.
+{2}, {T}, Sacrifice Mystery Meat: You gain 3 life.
+{3}, {T}, Sacrifice Mystery Meat: Draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/193_Mystery Meat.jpg" num="193">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Food</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Trinket Carver</name>
+			<text>Scarecrows and Puppets you control get +1/+1.
+{4}, {T}, Sacrifice another artifact: Search your library for a Scarecrow card, reveal it, put it into your hand, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/195_Trinket Carver.jpg" num="195">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beryl Fluxblade</name>
+			<text>Beryl Fluxblade enters the battlefield with X charge counters on it.
+Equipped creature gets +1/+1 for each charge counter on Beryl Fluxblade.
+Remove a charge counter from Beryl Fluxblade: Beryl Fluxblade deals 1 damage to any target.
+Equip {1}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/191_Beryl Fluxblade.jpg" num="191">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>XX</manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Wanton Sandwurm</name>
+			<text>Trample
+Whenever Wanton Sandwurm attacks, it gets +1/+0 until end of turn for each Elemental you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/136_Wanton Sandwurm.jpg" num="136">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental Wurm</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brache Pyresteed</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/106_Brache Pyresteed.jpg" num="106">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental Horse</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Easy Pickings</name>
+			<text>Easy Pickings deals 2 damage to target creature.
+Menagerie — Easy Pickings deals 4 damage to that creature instead if there are five or more creature types among creatures you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/107_Easy Pickings.jpg" num="107">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Maya and Perci, Rakish Twins</name>
+			<text>Double strike
+Equip costs you pay cost {1} less.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/121_Maya and Perci, Rakish Twins.jpg" num="121">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Elf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Raffishorn</name>
+			<text>Trample
+Whenever one or more Elementals you control deal combat to a player, exile the top card of your library, then you may discard a card. If you do, put a card exiled with Raffishorn into your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/126_Raffishorn.jpg" num="126">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental Goat</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Undistinguished Guests</name>
+			<text>Whenever an opponent casts a spell, exile Undistinguished Guests.
+You may cast Undistinguished Guests from exile.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/133_Undistinguished Guests.jpg" num="133">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe Citizen</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Royal Butler</name>
+			<text>Menagerie — When Royal Butler enters the battlefield, create a Food token. If there are five or more creature types among creatures you control, create two of those tokens instead. (They&apos;re artifacts with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/27_Royal Butler.jpg" num="27">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Inspirited Bard</name>
+			<text>Menagerie — When Inspirited Bard enters the battlefield, if there are five or more creature types among creatures you control, tap up to two target creatures your opponents control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/20_Inspirited Bard.jpg" num="20">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Bard</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fabled Pterosaurs</name>
+			<text>Flying
+Fabled Pterosaurs enters the battlefield with a +1/+1 counter on it if you gained life this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/16_Fabled Pterosaurs.jpg" num="16">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dinosaur</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Griffin of the Crags</name>
+			<text>Flying</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/18_Griffin of the Crags.jpg" num="18">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Griffin</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Timeworn Etchings</name>
+			<text>Whenever a creature enters the battlefield under your control, choose one —
+• Put a charge counter on Timeworn Etchings.
+• Remove a charge counter from Timeworn Etchings. If you do, put a +1/+1 counter on that creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/33_Timeworn Etchings.jpg" num="33">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Stage Directions</name>
+			<text>When Stage Directions enters the battlefield, create a 0/2 colorless Puppet artifact creature token.
+Menagerie — Creatures you control get +1/+1 as long as there are five or more creature types among creatures you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/30_Stage Directions.jpg" num="30">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Arietta, the Blade Foretold</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/3_Arietta, the Blade Foretold.jpg" num="3">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Arietta</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>4WW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<loyalty>5</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Domestic Expo</name>
+			<text>Counter target spell unless its controller pays {X}, where X is the number of creature types among creatures you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/43_Domestic Expo.jpg" num="43">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Party Favors</name>
+			<text>Look at the top four cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/54_Party Favors.jpg" num="54">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Ego Exhibitionist</name>
+			<text>When Ego Exhibitionist enters the battlefield, create a colorless 3/3 Spirit creature token.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/44_Ego Exhibitionist.jpg" num="44">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf</type>
+				<maintype>Creature</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Flaunt Luxury</name>
+			<text>Draw three cards. Create three Treasure tokens. (Treasure tokens are artifacts with &quot;{T}, Sacrifice this artifact: Add one mana of any color.&quot;)</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/45_Flaunt Luxury.jpg" num="45">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Skycloak Thief</name>
+			<text>When Skycloak Thief enters the battlefield, gain control of target artifact an opponent controls until Skycloak Thief leaves the battlefield. If that artifact is an equipment, you may attach it to Skycloak Thief.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/61_Skycloak Thief.jpg" num="61">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mhurio, the Fool&apos;s Hoard</name>
+			<text>Flying
+Whenever Mhurio attacks, reveal the top three cards of your library, then secretly exile one of them face down. An opponent chooses a card name, then reveal the exiled card. If that card doesn&apos;t have the chosen name, put it into your hand. Put the rest on the bottom of your library in any order.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/52_Mhurio, the Fool&apos;s Hoard.jpg" num="52">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Sphinx</type>
+				<maintype>Creature</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Autumnal Gale</name>
+			<text>Choose one —
+• Prevent all combat damage that would be dealt this turn.
+• Destroy target creature with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/138_Autumnal Gale.jpg" num="138">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>End of the Road</name>
+			<text>Search your library for a basic land card, reveal it, put it into your hand, then shuffle. Create a Food token. (It&apos;s an artifact with &quot;{2}, {T}, Sacrifice this artifact: You gain 3 life.&quot;)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/146_End of the Road.jpg" num="146">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fogthrasher</name>
+			<text>Fogthrasher can&apos;t be blocked by creatures with flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/147_Fogthrasher.jpg" num="147">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4GG</manacost>
+				<cmc>6</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Obfuscated Form</name>
+			<text>Until end of turn, up to two target creatures you control become green Elementals with base power and toughness 4/4.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/158_Obfuscated Form.jpg" num="158">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Pangolichen</name>
+			<text>Pangolichen can&apos;t be blocked by more than one creature.
+{2}{G}: Pangolichen gets +2/+2 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/159_Pangolichen.jpg" num="159">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental Pangolin</type>
+				<maintype>Creature</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Weald Trappers</name>
+			<text>You may cast Weald Trappers from the battlefield.
+{2}{G}: Put a survival counter on Weald Trappers. It has base power and toughness 1/1 and gains hexproof.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/169_Weald Trappers.jpg" num="169">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>GGG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bees</name>
+			<text>Bees deals 4 damage to target attacking or blocking creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/4_Bees.jpg" num="4">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Protect the Hive</name>
+			<text>Counter target noncreature spell. If that spell targets you or a permanent you control, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/55_Protect the Hive.jpg" num="55">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fangs of the Swarm</name>
+			<text>Target creature gains deathtouch until end of turn. If it&apos;s attacking, it gains indestructible until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/80_Fangs of the Swarm.jpg" num="80">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Mephitic Sodmoth</name>
+			<text>{T}: Mephitic Sodmoth deals damage equal to its power to any target.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/122_Mephitic Sodmoth.jpg" num="122">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Chitinous Herd</name>
+			<text>Trample
+Menagerie — Whenever Chitinous Herd attacks, if there are five or more creature types among creatures you control, other creatures you control get +1/+1 and gain trample until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/143_Chitinous Herd.jpg" num="143">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Insect Ox</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dwarven Phalanx</name>
+			<text>Vigilance
+At the beginning of combat on your turn, put a +1/+1 counter on another target creature you control. That creature gains indestructible until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/10_Dwarven Phalanx.jpg" num="10">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dwarf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>4W</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Titan of Cracked Earth</name>
+			<text>At the beginning of combat on your turn, create a 3/1 red Elemental creature token with haste. Sacrifice that token at the beginning of the next end step.
+Whenever an Elemental you control dies, Titan of Cracked Earth deals 3 damage to any target.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/132_Titan of Cracked Earth.jpg" num="132">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>4RR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bustling Barkeep</name>
+			<text>When Bustling Barkeep enters the battlefield, target creature doesn&apos;t untap during its controller&apos;s next untap step.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/40_Bustling Barkeep.jpg" num="40">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mince Meat</name>
+			<text>Destroy target creature with toughness 3 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/89_Mince Meat.jpg" num="89">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Rise Up</name>
+			<text>Target attacking creature gets +3/+3 until end of turn. If it&apos;s legendary, it gains trample until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/129_Rise Up.jpg" num="129">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Seasoned Connoisseur</name>
+			<text>Whenever you sacrifice a Food, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/164_Seasoned Connoisseur.jpg" num="164">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Allegiant Meathead</name>
+			<text>Defender
+Whenever Allegiant Meathead is dealt damage by a source an opponent controls, put a +1/+1 counter on Allegiant Meathead.
+Allegiant Meathead can attack as though it didn&apos;t have defender as long as it has two or more +1/+1 counters on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/1_Allegiant Meathead.jpg" num="1">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Orc Knight</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Helke the Bodysnatcher</name>
+			<text>When Helke enters the battlefield, put target creature an opponent controls into its owner&apos;s library third from the top. Helke becomes a copy of that creature, except it&apos;s still legendary and it gains &quot;Whenever a creature with the same name as this creature enters the battlefield, return this creature to its owner&apos;s hand.&quot;</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/48_Helke the Bodysnatcher.jpg" num="48">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Ouphe Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>4U</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Slumyard Ouphe</name>
+			<text>When Slumyard Ouphe enters the battlefield, target opponent reveals their hand. You choose a nonland card from it. That player discards that card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/97_Slumyard Ouphe.jpg" num="97">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>5B</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Act of Treason</name>
+			<text>Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/103_Act of Treason.jpg" num="103">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Show of Fortitude</name>
+			<text>Choose target creature you control and target creature an opponent controls. Each of those creatures deals damage equal to its toughness to the other.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/165_Show of Fortitude.jpg" num="165">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Lorren, Anxious Duchess</name>
+			<text>Lorren is a 4/4 black Demon with flying as long as you control no other creatures.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/24_Lorren, Anxious Duchess.jpg" num="24">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Jitter</name>
+			<text>Counter target spell. If that spell is countered this way, you may put it into its owner&apos;s library third from the top instead of putting it into its owner&apos;s graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/49_Jitter.jpg" num="49">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Bone-Laden Mindflayer</name>
+			<text>Deathtouch
+At the beginning of your upkeep, exile the top card of target opponent&apos;s library. You lose life equal to that card&apos;s mana value. You may play that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast it.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/75_Bone-Laden Mindflayer.jpg" num="75">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Scarecrow</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Elusive Halfback</name>
+			<text>{2}{R}: Target creature can&apos;t block Elusive Halfback this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/108_Elusive Halfback.jpg" num="108">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Mercenary</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Frontier Tracker</name>
+			<text>When Frontier Tracker enters the battlefield, search your library for a basic Forest card, reveal it, put it into your hand, then shuffle.
+Menagerie — You may put that card onto the battlefield instead if there are five or more creature types among creatures you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/149_Frontier Tracker.jpg" num="149">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elf Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Edge of Their Seats</name>
+			<text>Creatures you control get +1/+1 until end of turn. You gain 1 life for each creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/14_Edge of Their Seats.jpg" num="14">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Soaring Cloudkin</name>
+			<text>Flying
+When Soaring Cloudkin enters the battlefield, target creature gains flying until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/63_Soaring Cloudkin.jpg" num="63">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brink of the Grave</name>
+			<text>Destroy target creature or planeswalker with mana value less than or equal to the number of cards in its controller&apos;s graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/77_Brink of the Grave.jpg" num="77">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Stud Dealer</name>
+			<text>Whenever a player casts a spell with mana value 1, 2, 3, 4, or 5, note that number if you haven&apos;t yet.
+When you note the fifth number for Stud Dealer, discard your hand, then draw five cards.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/131_Stud Dealer.jpg" num="131">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Ouphe Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Forum Brawler</name>
+			<text>{4}{G}{G}: Put two +1/+1 counters on Forum Brawler.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/148_Forum Brawler.jpg" num="148">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Skyline Griffin</name>
+			<text>Flying
+Skyline Griffin has first strike as long as it&apos;s attacking.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/29_Skyline Griffin.jpg" num="29">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Griffin</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crafty Consultant</name>
+			<text>Menagerie — When Crafty Consultant enters the battlefield, if there are five or more creature types among creatures you control, draw three cards, then put two cards from your hand on top of your library in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/42_Crafty Consultant.jpg" num="42">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Vampire Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>4U</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Avrithe, Wayward Empress</name>
+			<text>Flying
+Menagerie — When Avrithe enters the battlefield, if there are five or more creature types among creatures you control, search your library for a card, put it into your hand, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/71_Avrithe, Wayward Empress.jpg" num="71">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Vampire Noble</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unk, the Punchline</name>
+			<text>When Unk enters the battlefield, for each player, Unk fights a creature that player controls of their choice.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/SGB-files/img/134_Unk, the Punchline.jpg" num="134">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Ouphe Berserker</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Whooping Raptor</name>
+			<text>Flash
+Whenever Whooping Raptor deals combat damage to a player, draw that many cards.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/SGB-files/img/170_Whooping Raptor.jpg" num="170">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dinosaur</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kism, Daughter of Fates</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/SGB-files/img/154_Kism, Daughter of Fates.jpg" num="154">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Kism</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Syr Kinne SGB</name>
+			<text>First strike</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/2t_Syr Kinne.jpg" num="2">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Token Creature — Human Knight</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Mirror SGB</name>
+			<text>Enchant creature
+At the beginning of your upkeep, create a token that&apos;s a copy of enchanted creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/3t_Mirror.jpg" num="3">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Bird Spirit SGB</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/4t_Bird Spirit.jpg" num="4">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Bird Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Dwarf Knight SGB</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/6t_Dwarf Knight.jpg" num="6">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Dwarf Knight</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Dragon SGB</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/5t_Dragon.jpg" num="5">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Elemental SGB</name>
+			<text>Haste</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/7t_Elemental.jpg" num="7">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Elemental</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Dinosaur Beast SGB</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/8t_Dinosaur Beast.jpg" num="8">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Dinosaur Beast</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Spirit SGB</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/1t_Spirit.jpg" num="1">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Puppet SGB</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/11t_Puppet.jpg" num="11">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact Creature — Puppet</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Food Golem SGB</name>
+			<text>{2}, {T}, Sacrifice this artifact: You gain 3 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/10t_Food Golem.jpg" num="10">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact Creature — Food Golem</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>The Savior&apos;s Sword SGB</name>
+			<text>Equipped creature gets +3/+0 and has vigilance and lifelink.
+Equip {3}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/12t_The Savior&apos;s Sword.jpg" num="12">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Token Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Food SGB</name>
+			<text>{2}, {T}, Sacrifice this artifact: You gain 3 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/9t_Food.jpg" num="9">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact — Food</type>
+				<maintype>Artifact</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Treasure SGB</name>
+			<text>{T}, Sacrifice this artifact: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/13t_Treasure.jpg" num="13">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact — Treasure</type>
+				<maintype>Artifact</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Plains</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/197_Plains.jpg" num="197">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Plains</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Island</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/198_Island.jpg" num="198">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Island</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Swamp</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/199_Swamp.jpg" num="199">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Swamp</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Mountain</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/200_Mountain.jpg" num="200">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Mountain</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Forest</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/SGB-files/img/201_Forest.jpg" num="201">SGB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Basic Land — Forest</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+	</cards>
+</cockatrice_carddatabase>

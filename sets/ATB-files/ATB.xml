@@ -1,0 +1,4891 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cockatrice_carddatabase version='4'>
+	<sets>
+		<set>
+			<name>ATB</name>
+			<longname>Al Tabaq</longname>
+			<settype>Custom</settype>
+			<releasedate>2026-01-20</releasedate>
+		</set>
+	</sets>
+	<cards>
+		<card>
+			<name>Asham&apos;s Path</name>
+			<text>When Asham&apos;s Path enters, you gain 8 life.
+{1}{W}{W}: Transform Asham&apos;s Path. Activate only if your fealty to Plains is five or greater.
+---
+(Back): Asham, God of Morality</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/2_Asham&apos;s Path_front.jpg" num="2a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Legendary Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Asham, God of Morality</related>
+		</card>
+		<card>
+			<name>Asham, God of Morality</name>
+			<text>Indestructible
+Asham, God of Morality&apos;s power is equal to your life total.
+Creatures you don&apos;t control have base power 1.
+---
+(Front): Asham&apos;s Path</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/2_Asham&apos;s Path_back.jpg" num="2b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Legendary Enchantment Creature — God</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>*/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Asham&apos;s Path</related>
+		</card>
+		<card>
+			<name>Seto San, Summer Blossom</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/31_Seto San, Summer Blossom.jpg" num="31">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Seto</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Mercantile Accords</name>
+			<text>As Mercantile Accords enters, choose a number.
+Whenever an opponent casts a spell with the chosen mana value, you draw a card and create a Treasure token.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/19_Mercantile Accords.jpg" num="19">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>WWW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Iekin&apos;s Portal</name>
+			<text>When Iekin&apos;s Portal enters, look at the top five cards of your library. Put one into your hand and the rest into your graveyard.
+{1}{U}{U}: Transform Iekin&apos;s Portal. Activate only if your fealty to Islands is five or greater.
+---
+(Back): Iekin, God of Wisdom</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/58_Iekin&apos;s Portal_front.jpg" num="58a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Legendary Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Iekin, God of Wisdom</related>
+		</card>
+		<card>
+			<name>Iekin, God of Wisdom</name>
+			<text>Indestructible
+You have no maximum hand size.
+Whenever an opponent draws a card, you draw a card.
+If you would lose the game other than for having 0 or less life, you win the game instead. (Another player winning the game does not cause you to lose the game.)
+---
+(Front): Iekin&apos;s Portal</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/58_Iekin&apos;s Portal_back.jpg" num="58b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Legendary Enchantment Creature — God</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Iekin&apos;s Portal</related>
+		</card>
+		<card>
+			<name>Mischievous Romish</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/62_Mischievous Romish.jpg" num="62">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Romish</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<loyalty>3</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Hafiq the Wise</name>
+			<text>Hafiq the Wise has hexproof as long as you&apos;ve cast a spell this turn.
+{U}, Discard a card with mana value X: Counter target spell with mana value X.
+{U}, Sacrifice another permanent with mana value X: Return target instant or sorcery card with mana value X from your graveyard to your hand.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/54_Hafiq the Wise.jpg" num="54">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Creature — Human Advisor</type>
+				<maintype>Creature</maintype>
+				<manacost>UUU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bal&apos;s Descent</name>
+			<text>When Bal&apos;s Descent enters, each player sacrifices a creature, discards two cards, and mills three cards.
+{1}{B}{B}: Transform Bal&apos;s Descent. Activate only if your fealty to Swamps is five or greater.
+---
+(Back): Bal, God of Destiny</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/77_Bal&apos;s Descent_front.jpg" num="77a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Legendary Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Bal, God of Destiny</related>
+		</card>
+		<card>
+			<name>Bal, God of Destiny</name>
+			<text>Indestructible
+You may play cards from your graveyard.
+If you would draw one or more cards, mill that many cards instead.
+If a card would be put into your graveyard from anywhere other than your library, exile it instead.
+---
+(Front): Bal&apos;s Descent</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/77_Bal&apos;s Descent_back.jpg" num="77b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Legendary Enchantment Creature — God</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Bal&apos;s Descent</related>
+		</card>
+		<card>
+			<name>Mukhif the Grim</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/94_Mukhif the Grim.jpg" num="94">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Mukhif</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<loyalty>4</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Deathless Siege</name>
+			<text>You don&apos;t lose the game for having 0 or less life.
+Whenever you&apos;re dealt damage, mill that many cards.
+{B}, Pay 2 life: Put target card in your graveyard on the bottom of your library.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/83_Deathless Siege.jpg" num="83">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>BBB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Ninhasir&apos;s March</name>
+			<text>When Ninhasir&apos;s March enters, it deals 3 damage to any target.
+{1}{R}{R}: Transform Ninhasir&apos;s March. Activate only if your fealty to Mountains is five or greater.
+---
+(Back): Ninhasir, God of Creation</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/135_Ninhasir&apos;s March_front.jpg" num="135a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Legendary Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Ninhasir, God of Creation</related>
+		</card>
+		<card>
+			<name>Ninhasir, God of Creation</name>
+			<text>Indestructible
+When this creature transforms into Ninhasir, God of Creation, discard all the cards in your hand, then draw that many cards plus one.
+Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy.
+---
+(Front): Ninhasir&apos;s March</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/135_Ninhasir&apos;s March_back.jpg" num="135b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Legendary Enchantment Creature — God</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Ninhasir&apos;s March</related>
+		</card>
+		<card>
+			<name>Menna Al-Mejjat</name>
+			<text></text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/134_Menna Al-Mejjat.jpg" num="134">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Planeswalker — Menna</type>
+				<maintype>Planeswalker</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<loyalty>2</loyalty>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Emissary of Antiquity</name>
+			<text>Flying, haste
+Whenever Emissary of Antiquity deals combat damage to a player, you may cast an instant or sorcery spell with mana value 3 or less from your hand without paying its mana cost.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/120_Emissary of Antiquity.jpg" num="120">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>RRR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sabne&apos;s Autumn</name>
+			<text>When Sabne&apos;s Autumn enters, search your library for a Forest card, reveal it, put it into your hand, then shuffle. You gain 3 life.
+{1}{G}{G}: Transform Sabne&apos;s Autumn. Activate only if your fealty to Forests is five or greater.
+---
+(Back): Sabne, God of Harvest</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/175_Sabne&apos;s Autumn_front.jpg" num="175a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Legendary Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<related attach="transform">Sabne, God of Harvest</related>
+		</card>
+		<card>
+			<name>Sabne, God of Harvest</name>
+			<text>Indestructible
+Lands you control have &quot;{T}: Add {G}{G}.&quot;
+{5}{G}{G}: Double the power and toughness of each creature you control until end of turn.
+---
+(Front): Sabne&apos;s Autumn</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/175_Sabne&apos;s Autumn_back.jpg" num="175b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Legendary Enchantment Creature — God</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Sabne&apos;s Autumn</related>
+		</card>
+		<card>
+			<name>Magnific Wilderkin</name>
+			<text>At the beginning of each combat, if you control a creature with flying, Magnific Wilderkin gets +1/+1 and gains flying until end of turn. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/164_Magnific Wilderkin.jpg" num="164">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Chimera</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Thriving Hydra</name>
+			<text>Trample, haste
+Thriving Hydra enters with four +1/+1 counters on it.
+When Thriving Hydra enters, for each other creature you control, put X +1/+1 counters on that creature, where X is four minus its power.
+Whenever Thriving Hydra attacks, double the number of +1/+1 counters on each creature you control.</text>
+			<set rarity="mythic" picurl="https://magictheegg.github.io/sets/ATB-files/img/182_Thriving Hydra.jpg" num="182">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Hydra</type>
+				<maintype>Creature</maintype>
+				<manacost>4GGGG</manacost>
+				<cmc>8</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sandstreamer</name>
+			<text>Flash
+Flying
+When Sandstreamer enters, target permanent gains indestructible until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/28_Sandstreamer.jpg" num="28">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Keeper of Holy Lands</name>
+			<text>Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+When Keeper of Holy Lands enters, you may search your library for an enchantment card, reveal it, then shuffle and put that card on top.
+---
+(Back): Watcher of Sacred Skies</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/16_Keeper of Holy Lands_front.jpg" num="16a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Watcher of Sacred Skies</related>
+		</card>
+		<card>
+			<name>Watcher of Sacred Skies</name>
+			<text>Flying
+Whenever a nontoken, noncreature, nonland permanent you control enters, create a token that&apos;s a copy of that permanent except it has no mana cost and it isn&apos;t legendary.
+---
+(Front): Keeper of Holy Lands</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/16_Keeper of Holy Lands_back.jpg" num="16b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon Scout</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Keeper of Holy Lands</related>
+		</card>
+		<card>
+			<name>Skyline Tracer</name>
+			<text>Survivors you control have flying.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/33_Skyline Tracer.jpg" num="33">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>2W</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ridge Warden</name>
+			<text>This spell costs {2} less to cast and may be cast as though it had flash if an opponent searched their library this turn.
+When Ridge Warden enters, exile another target nonland permanent with mana value 4 or less until Ridge Warden leaves the battlefield.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/25_Ridge Warden.jpg" num="25">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Archangel of Accord</name>
+			<text>Flying
+Concord — When Archangel of Accord enters, if there are four or more card types among permanents you control, destroy all other creatures.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/1_Archangel of Accord.jpg" num="1">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Angel</type>
+				<maintype>Creature</maintype>
+				<manacost>3WWW</manacost>
+				<cmc>6</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bewitching Vapors</name>
+			<text>Exile target nonland permanent. Its controller gains 5 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/4_Bewitching Vapors.jpg" num="4">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Guiding Light</name>
+			<text>As Guiding Light enters, choose a color.
+You have hexproof from the chosen color.
+If a creature you control would be dealt damage by a source of the chosen color, prevent 1 of that damage.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/12_Guiding Light.jpg" num="12">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gentry Infiltrator</name>
+			<text>Whenever Gentry Infiltrator deals combat damage to a player, you may search that player&apos;s library for a creature card and exile it. If you do, that player shuffles.
+{2}{U}{U}: Gentry Infiltrator becomes a copy of a creature card exiled with it until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/52_Gentry Infiltrator.jpg" num="52">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hajir Soothsayer</name>
+			<text>Whenever a Survivor you control enters, look at the top card of target opponent&apos;s library. You may have them put that card into their graveyard.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/55_Hajir Soothsayer.jpg" num="55">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>2U</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Horizon Augur</name>
+			<text>Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+Whenever you cast an instant or sorcery spell, scry 1, then Horizon Augur gets +1/+1 until end of turn.
+---
+(Back): Maven of Perspective</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/57_Horizon Augur_front.jpg" num="57a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost>3U</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Maven of Perspective</related>
+		</card>
+		<card>
+			<name>Maven of Perspective</name>
+			<text>Flying
+Whenever you cast a spell, draw a card, then put a +1/+1 counter on Maven of Perspective.
+---
+(Front): Horizon Augur</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/57_Horizon Augur_back.jpg" num="57b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Horizon Augur</related>
+		</card>
+		<card>
+			<name>Veiled Virtuoso</name>
+			<text>Flying
+Concord — At the beginning of your upkeep, if there are four or more card types among permanents you control, exile the top card of your library. You may cast that card this turn without paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/74_Veiled Virtuoso.jpg" num="74">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>2UUU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Decree of Bias</name>
+			<text>Counter target creature spell, planeswalker spell, or activated ability.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/46_Decree of Bias.jpg" num="46">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Morrow Probe</name>
+			<text>Target opponent mills five cards, then you exile up to two instant and/or sorcery cards from that player&apos;s graveyard. You may cast those cards for as long as they remain exiled, and you may spend mana as though it were mana of any type to cast them.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/63_Morrow Probe.jpg" num="63">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Astral Alignment</name>
+			<text>At the beginning of your upkeep, if the number of permanents you control, the number of cards in your hand, and the number of cards in your graveyard are all equal, you win the game.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/39_Astral Alignment.jpg" num="39">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sultan of Avarice</name>
+			<text>Menace
+At the beginning of your upkeep, you may pay 3 life. If you do, draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/103_Sultan of Avarice.jpg" num="103">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gaunt Abnormality</name>
+			<text>At the beginning of your upkeep, mill two cards.
+{1}{B}{B}: Until end of turn, Gaunt Abnormality becomes a copy of target creature card in your graveyard, except it&apos;s 3/3.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/88_Gaunt Abnormality.jpg" num="88">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Shapeshifter</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Tomb Steward</name>
+			<text>Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+When Tomb Steward enters, search your library for a card and put it into your graveyard. Then shuffle.
+---
+(Back): Profaner of Graves</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/105_Tomb Steward_front.jpg" num="105a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Mutant Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Profaner of Graves</related>
+		</card>
+		<card>
+			<name>Profaner of Graves</name>
+			<text>Flying, lifelink
+Pay 5 life: Put target permanent card in a graveyard onto the battlefield under your control.
+---
+(Front): Tomb Steward</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/105_Tomb Steward_back.jpg" num="105b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Tomb Steward</related>
+		</card>
+		<card>
+			<name>Selfish Journeyman</name>
+			<text>Whenever a Survivor you control dies, you draw a card and you lose 1 life.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/97_Selfish Journeyman.jpg" num="97">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>3B</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Liege of Luxury</name>
+			<text>Flying
+Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Liege of Luxury desecrates a permanent, target player reveals their hand. You choose a card from it and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/91_Liege of Luxury.jpg" num="91">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>2BBB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Violent Collapse</name>
+			<text>All creatures get -3/-3 until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/110_Violent Collapse.jpg" num="110">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Depravity</name>
+			<text>Whenever a source you control deals damage to a creature or planeswalker an opponent controls, exile that creature or planeswalker.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/84_Depravity.jpg" num="84">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1BBB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Herald of the Humble</name>
+			<text>Haste
+Whenever Herald of the Humble deals combat damage to a player, that player reveals the top card of their library. If it&apos;s a nonland card with mana value 3 or less, they may cast it without paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/130_Herald of the Humble.jpg" num="130">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Emerald Warcaller</name>
+			<text>Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+At the beginning of combat on your turn, create a 1/1 red Warrior creature token with haste. That token attacks this combat if able.
+---
+(Back): Crimson Skycaller</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/119_Emerald Warcaller_front.jpg" num="119a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2R</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Crimson Skycaller</related>
+		</card>
+		<card>
+			<name>Crimson Skycaller</name>
+			<text>Flying
+At the beginning of combat on your turn, create a 5/5 red Dragon creature token with flying and haste. That token attacks this combat if able.
+---
+(Front): Emerald Warcaller</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/119_Emerald Warcaller_back.jpg" num="119b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Emerald Warcaller</related>
+		</card>
+		<card>
+			<name>Beastback Raider</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Beastback Raider desecrates a permanent, discard your hand, then draw three cards.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/113_Beastback Raider.jpg" num="113">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wayfaring Falconer</name>
+			<text>Survivors you control have double strike.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/148_Wayfaring Falconer.jpg" num="148">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>4R</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Trove Tyrant</name>
+			<text>Flying
+When Trove Tyrant enters, exile the top five cards of your library.
+Whenever Trove Tyrant deals combat damage to a player, you may cast an artifact card exiled with it without paying its mana cost.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/145_Trove Tyrant.jpg" num="145">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>3RRR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Brazen Sacrilege</name>
+			<text>Brazen Sacrilege deals 2 damage to any target. Until end of turn, if a red source you control would deal damage to that player or to that permanent&apos;s controller, it deals that much damage plus 1 instead.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/116_Brazen Sacrilege.jpg" num="116">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Curio Pavilion</name>
+			<text>When Curio Pavilion enters, create two Treasure tokens. (They&apos;re artifacts with &quot;{T}, Sacrifice this artifact: Add one mana of any color.&quot;)
+Whenever an artifact you control leaves the battlefield, you may discard a card. If you do, draw a card.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/117_Curio Pavilion.jpg" num="117">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Hero of the Stained Blade</name>
+			<text>Vigilance
+Concord — {G}: Hero of the Stained Blade gets +2/+2 and gains trample until end of turn. Activate only if there are four or more card types among permanents you control and only once each turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/161_Hero of the Stained Blade.jpg" num="161">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sower of Wishes</name>
+			<text>Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+When Sower of Wishes enters, reveal the top three cards of your library. Put all land cards revealed this way into your hand and the rest back on top in any order.
+---
+(Back): Harbinger of Fantasy</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/179_Sower of Wishes_front.jpg" num="179a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Harbinger of Fantasy</related>
+		</card>
+		<card>
+			<name>Harbinger of Fantasy</name>
+			<text>Flying
+At the beginning of your first main phase, you may put any number of land cards from your hand onto the battlefield, then draw a card for each land put onto the battlefield this way.
+---
+(Front): Sower of Wishes</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/179_Sower of Wishes_back.jpg" num="179b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon Druid</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Sower of Wishes</related>
+		</card>
+		<card>
+			<name>Mesa Brute</name>
+			<text>Survivors you control get +3/+3.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/166_Mesa Brute.jpg" num="166">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>4G</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Kalib Kabir</name>
+			<text>Kalib Kabir has hexproof as long as it has no +1/+1 counters on it.
+Kalib Kabir has trample as long as it has a +1/+1 counter on it.
+{G}: If Kalib Kabir has a +1/+1 counter on it, remove all +1/+1 counters from it. Otherwise, put a +1/+1 counter on it. Activate only once each turn and only during your turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/163_Kalib Kabir.jpg" num="163">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>5GGG</manacost>
+				<cmc>8</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>9/9</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Menagerie Expo</name>
+			<text>Draw X cards and you gain X life, where X is the number of card types among permanents you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/165_Menagerie Expo.jpg" num="165">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Broadened Horizons</name>
+			<text>Whenever you play a land, you may search your library for a land card that shares a subtype with it, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/151_Broadened Horizons.jpg" num="151">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Scaleback Steed</name>
+			<text>Enchant creature
+Enchanted creature gets +4/+4 and has trample.
+When enchanted creature dies, create a 4/4 green Beast creature token with trample.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/178_Scaleback Steed.jpg" num="178">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Volatile Stonework</name>
+			<text>Haste
+When Volatile Stonework enters, choose target creature or planeswalker an opponent controls.
+When Volatile Stonework dies, it deals 4 damage to the chosen creature or planeswalker.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/234_Volatile Stonework.jpg" num="234">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gilded Wyvern</name>
+			<text>Flying
+Whenever a player shuffles their library, Gilded Wyvern deals 2 damage to that player.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/208_Gilded Wyvern.jpg" num="208">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Prismatic Basilisk</name>
+			<text>When Prismatic Basilisk enters, you may search your library for a permanent card with mana value 1 or less, reveal it, put it into your hand, then shuffle.
+{2W}{2U}{2B}{2R}{2G}: Prismatic Basilisk gets +5/+5 and gains flying until end of turn.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/220_Prismatic Basilisk.jpg" num="220">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Facsimile Sculptor</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Facsimile Sculptor desecrates a permanent, create a token that&apos;s a copy of another target creature you control, except it&apos;s an artifact (not a creature).</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/204_Facsimile Sculptor.jpg" num="204">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Seismic Colossus</name>
+			<text>Concord — This spell costs {4} less to cast if there are four or more card types among permanents you control.
+Vigilance, trample, lifelink, haste</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/227_Seismic Colossus.jpg" num="227">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>8</manacost>
+				<cmc>8</cmc>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Saber of Defiled Rites</name>
+			<text>Equipped creature gets +2/+0 and can&apos;t be blocked.
+Whenever a Rogue you control attacks, you may pay {1}. If you do, attach Saber of Defiled Rites to it.
+Equip {5}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/224_Saber of Defiled Rites.jpg" num="224">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Dancing Mirrorblade</name>
+			<text>Whenever equipped creature attacks, create a token that&apos;s a copy of it and that&apos;s tapped and attacking, except that token isn&apos;t legendary if equipped creature is legendary. Exile that token at end of combat.
+Equip {3}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/196_Dancing Mirrorblade.jpg" num="196">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Ash-Withered Cloak</name>
+			<text>Equipped creature gets +2/+2.
+Whenever a player casts a spell or activates an ability that targets only equipped creature, copy that spell or ability. You may choose new targets for the copy.
+Equip {4}</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/188_Ash-Withered Cloak.jpg" num="188">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Egg of Avarice</name>
+			<text>{T}, Sacrifice a creature: Search your library for a creature card with mana value 1, put it onto the battlefield, then shuffle. Activate only as a sorcery.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/203_Egg of Avarice.jpg" num="203">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Curious Dais</name>
+			<text>At the beginning of your first upkeep each turn, choose one —
+• Replace your first main phase this turn with an additional upkeep step.
+• Replace your second main phase this turn with an additional combat phase.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/195_Curious Dais.jpg" num="195">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Chromatic Lantern</name>
+			<text>Lands you control have &quot;{T}: Add one mana of any color.&quot;
+{T}: Add one mana of any color.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/192_Chromatic Lantern.jpg" num="192">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Proselytic Shrine</name>
+			<text>At the beginning of combat on your turn, choose one that hasn&apos;t been chosen —
+• Creatures you control get +1/+1 and gain flying until end of turn.
+• Creatures you control get +1/+1 and gain lifelink until end of turn.
+• Creatures you control get +3/+3 until end of turn.
+• Sacrifice each creature you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/222_Proselytic Shrine.jpg" num="222">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>6</manacost>
+				<cmc>6</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>El-Mazar, Wayward Palace</name>
+			<text>{T}: Add {C}.
+{2}, {T}: Add {C} for each Desert you control.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/238_El-Mazar, Wayward Palace.jpg" num="238">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Legendary Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Sunrazed Ruins</name>
+			<text>Sunrazed Ruins enters tapped.
+{T}: Add {W}.
+{2W}{2W}: Sunrazed Ruins becomes a 2/3 white Elemental creature with lifelink until end of turn. It&apos;s still a land.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/248_Sunrazed Ruins.jpg" num="248">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Tomb of Great Drakes</name>
+			<text>Tomb of Great Drakes enters tapped.
+{T}: Add {U}.
+{2U}{2U}: Tomb of Great Drakes becomes a 2/2 blue Elemental creature with flying until end of turn. It&apos;s still a land.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/249_Tomb of Great Drakes.jpg" num="249">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Barren Boneyard</name>
+			<text>Barren Boneyard enters tapped.
+{T}: Add {B}.
+{2B}{2B}: Barren Boneyard becomes a 2/3 black Elemental creature with deathtouch until end of turn. It&apos;s still a land.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/236_Barren Boneyard.jpg" num="236">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Immolated Grave</name>
+			<text>Immolated Grave enters tapped.
+{T}: Add {R}.
+{2R}{2R}: Immolated Grave becomes a 3/1 red Elemental creature with first strike until end of turn. It&apos;s still a land.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/241_Immolated Grave.jpg" num="241">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Ravaged Monument</name>
+			<text>Ravaged Monument enters tapped.
+{T}: Add {G}.
+{2G}{2G}: Ravaged Monument becomes a 4/4 green Elemental creature until end of turn. It&apos;s still a land.</text>
+			<set rarity="rare" picurl="https://magictheegg.github.io/sets/ATB-files/img/243_Ravaged Monument.jpg" num="243">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Suraj Militant</name>
+			<text>When Suraj Militant enters, target creature gets +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/36_Suraj Militant.jpg" num="36">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sleepless Spirit</name>
+			<text>Flying, vigilance</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/34_Sleepless Spirit.jpg" num="34">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shawlbinder</name>
+			<text>When Shawlbinder enters, if you control a Desert, exile another target permanent. Return that card to the battlefield under its owner&apos;s control at the beginning of the next end step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/32_Shawlbinder.jpg" num="32">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hand of Fidelity</name>
+			<text>When Hand of Fidelity enters, creatures you control get +1/+1 until end of turn.
+At the beginning of your upkeep, if your fealty to Plains is five or greater, transform Hand of Fidelity. (Each Plains you control counts towards your fealty to Plains.)
+---
+(Back): Liege of Asham</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/15_Hand of Fidelity_front.jpg" num="15a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Liege of Asham</related>
+		</card>
+		<card>
+			<name>Liege of Asham</name>
+			<text>Vigilance
+Whenever Liege of Asham attacks or blocks, other attacking or blocking creatures you control get +1/+1 until end of turn.
+---
+(Front): Hand of Fidelity</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/15_Hand of Fidelity_back.jpg" num="15b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Hand of Fidelity</related>
+		</card>
+		<card>
+			<name>Pristine Duelist</name>
+			<text>Double strike
+Concord — Pristine Duelist gets +2/+1 as long as there are four or more card types among permanents you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/24_Pristine Duelist.jpg" num="24">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Roving Chaplains</name>
+			<text>When Roving Chaplains enters, create two 1/1 white Spirit creature tokens with flying.
+{W}, Tap another untapped creature you control: Tap target nonland permanent an opponent controls.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/26_Roving Chaplains.jpg" num="26">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Cleric</type>
+				<maintype>Creature</maintype>
+				<manacost>WWW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Cass-o&apos;-Warrior</name>
+			<text>Survivors you control have lifelink.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/7_Cass-o&apos;-Warrior.jpg" num="7">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Seraph of Renewal</name>
+			<text>Flying
+When Seraph of Renewal leaves the battlefield, you may return target permanent card with mana value 3 or less from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/30_Seraph of Renewal.jpg" num="30">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Angel</type>
+				<maintype>Creature</maintype>
+				<manacost>2WWW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Mortal Pilgrimage</name>
+			<text>Exile target creature. If its power is 3 or greater, return that card to the battlefield under its owner&apos;s control at the beginning of the next end step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/20_Mortal Pilgrimage.jpg" num="20">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Brittle Bequest</name>
+			<text>Distribute three +1/+1 counters among up to three target creatures you control. Those creatures gain first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/5_Brittle Bequest.jpg" num="5">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Stasis Snare</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+When Stasis Snare enters, exile target creature an opponent controls until Stasis Snare leaves the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/35_Stasis Snare.jpg" num="35">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Venerable Judgment</name>
+			<text>Enchant creature
+Enchanted creature gets +2/+2.
+At the beginning of combat on your turn, enchanted creature gains your choice of flying, vigilance, or lifelink until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/37_Venerable Judgment.jpg" num="37">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Raving Rover</name>
+			<text>Whenever a Survivor you control enters, you may draw a card. If you do, discard a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/68_Raving Rover.jpg" num="68">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hand of Dominion</name>
+			<text>When Hand of Dominion enters, tap target creature an opponent controls. It doesn&apos;t untap during its controller&apos;s next untap step.
+At the beginning of your upkeep, if your fealty to Islands is five or greater, transform Hand of Dominion. (Each Island you control counts towards your fealty to Islands.)
+---
+(Back): Liege of Iekin</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/56_Hand of Dominion_front.jpg" num="56a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Liege of Iekin</related>
+		</card>
+		<card>
+			<name>Liege of Iekin</name>
+			<text>Flying
+Whenever Liege of Iekin attacks, tap target permanent an opponent controls. It doesn&apos;t untap during its controller&apos;s next untap step.
+---
+(Front): Hand of Dominion</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/56_Hand of Dominion_back.jpg" num="56b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Human Wizard</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Hand of Dominion</related>
+		</card>
+		<card>
+			<name>Memoria Thief</name>
+			<text>Whenever Memoria Thief deals combat damage to a player, look at that player&apos;s hand. You may choose a nonland card from it. If you do, that player reveals the chosen card, puts it on the bottom of their library, then draws a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/61_Memoria Thief.jpg" num="61">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Carpet Racers</name>
+			<text>Flash (You may cast this spell any time you could cast an instant.)
+Flying
+Tapped creatures you control have hexproof.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/43_Carpet Racers.jpg" num="43">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>UUU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Djinni of Whispers</name>
+			<text>Flying
+When Djinni of Whispers enters, untap up to three Islands.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/49_Djinni of Whispers.jpg" num="49">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>2UUU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Crested Crustacean</name>
+			<text>This spell costs {1} less to cast for each Desert you control.
+When Crested Crustacean enters, return target permanent to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/45_Crested Crustacean.jpg" num="45">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Crab Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>6UU</manacost>
+				<cmc>8</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Follow the Light</name>
+			<text>Exile target creature. Its controller creates a 2/2 colorless Spirit creature token with flying.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/51_Follow the Light.jpg" num="51">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Dissipate</name>
+			<text>Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner&apos;s graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/48_Dissipate.jpg" num="48">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Outspoken Seminar</name>
+			<text>Draw three cards, then reveal your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/67_Outspoken Seminar.jpg" num="67">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sights Beyond</name>
+			<text>When Sights Beyond enters, scry 3.
+Concord — At the beginning of your upkeep, if there are four or more card types among permanents you control, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/71_Sights Beyond.jpg" num="71">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Sticky Fingers</name>
+			<text>Enchant creature
+When Sticky Fingers enters, draw a card.
+Enchanted creature gets +2/+0 and can&apos;t be blocked.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/73_Sticky Fingers.jpg" num="73">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Meat Puppet</name>
+			<text>Enchant creature
+You control enchanted creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/60_Meat Puppet.jpg" num="60">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1UUU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Shadowband Consul</name>
+			<text>Shadowband Consul enters tapped.
+{B}, Pay 2 life: Return Shadowband Consul from your graveyard to the battlefield. Activate only if an opponent lost life this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/99_Shadowband Consul.jpg" num="99">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Back-Alley Vandal</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Back-Alley Vandal desecrates a permanent, put a +1/+1 counter on Back-Alley Vandal.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/76_Back-Alley Vandal.jpg" num="76">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blood Jade Prophet</name>
+			<text>When Blood Jade Prophet enters, reveal the top three cards of your library. For each card revealed this way, you may pay 3 life. If you do, put that card into your hand. Otherwise, put it into your graveyard.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/80_Blood Jade Prophet.jpg" num="80">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>BBB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ruthless Vagrant</name>
+			<text>Whenever a Survivor you control dies, target creature you don&apos;t control gets -1/-1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/96_Ruthless Vagrant.jpg" num="96">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hand of Consequence</name>
+			<text>When Hand of Consequence enters, creatures your opponents control get -1/-1 until end of turn.
+At the beginning of your upkeep, if your fealty to Swamps is five or greater, transform Hand of Consequence. (Each Swamp you control counts towards your fealty to Swamps.)
+---
+(Back): Liege of Bal</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/90_Hand of Consequence_front.jpg" num="90a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Mutant</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Liege of Bal</related>
+		</card>
+		<card>
+			<name>Liege of Bal</name>
+			<text>Creatures you don&apos;t control get -1/-1.
+---
+(Front): Hand of Consequence</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/90_Hand of Consequence_back.jpg" num="90b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Mutant Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Hand of Consequence</related>
+		</card>
+		<card>
+			<name>Flayed Dunerazer</name>
+			<text>Menace
+Whenever Flayed Dunerazer attacks or blocks, sacrifice a permanent.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/87_Flayed Dunerazer.jpg" num="87">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>6/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Unfettered Atrocity</name>
+			<text>Flying
+When Unfettered Atrocity enters, destroy target creature or planeswalker.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/108_Unfettered Atrocity.jpg" num="108">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn Horror</type>
+				<maintype>Creature</maintype>
+				<manacost>5BBB</manacost>
+				<cmc>8</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sink into the Floor</name>
+			<text>Mill a card. Target creature gets -X/-X until end of turn, where X is the number of cards put into your graveyard from anywhere this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/100_Sink into the Floor.jpg" num="100">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Liturgic Tutor</name>
+			<text>Search your library for a card, then shuffle and reveal that card. Any opponent may have you put it into your graveyard. If a player does, draw a card. Otherwise, put it into your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/92_Liturgic Tutor.jpg" num="92">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Strangulate</name>
+			<text>Target creature gets -2/-2 until end of turn. If you control two or more Deserts, destroy that creature instead.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/102_Strangulate.jpg" num="102">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Tip the Scales</name>
+			<text>Return target creature card from your graveyard to the battlefield, then destroy target creature an opponent controls that doesn&apos;t share a creature type with it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/104_Tip the Scales.jpg" num="104">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3BBB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Cruel Consultation</name>
+			<text>At the beginning of your upkeep, mill a card.
+{B}, Sacrifice Cruel Consultation: Exile any number of cards from your graveyard. Create an X/X black Djinn Horror creature token, where X is the number of card types among cards exiled this way.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/82_Cruel Consultation.jpg" num="82">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Madcap Mercenary</name>
+			<text>As an additional cost to cast this spell, discard a card or pay {2}.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/133_Madcap Mercenary.jpg" num="133">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Mercenary</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Badland Zealot</name>
+			<text>Menace, haste</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/112_Badland Zealot.jpg" num="112">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Smoldering Djinni</name>
+			<text>Defender
+{T}: Smoldering Djinni deals 1 damage to each opponent.
+Whenever you cast a red spell, untap Smoldering Djinni.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/143_Smoldering Djinni.jpg" num="143">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Wandering Hussar</name>
+			<text>Survivors you control have menace.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/147_Wandering Hussar.jpg" num="147">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rapacious Rattler</name>
+			<text>First strike
+When Rapacious Rattler enters, choose one or two targets you don&apos;t control. It deals 2 damage to the first and 1 damage to the second.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/137_Rapacious Rattler.jpg" num="137">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Snake Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>RRR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hand of Fury</name>
+			<text>When Hand of Fury enters, it gets +2/+2 and gains haste until end of turn.
+At the beginning of your upkeep, if your fealty to Mountains is five or greater, transform Hand of Fury. (Each Mountain you control counts towards your fealty to Mountains.)
+---
+(Back): Liege of Ninhasir</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/127_Hand of Fury_front.jpg" num="127a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Liege of Ninhasir</related>
+		</card>
+		<card>
+			<name>Liege of Ninhasir</name>
+			<text>At the beginning of combat on your turn, target creature gets +1/+1 and gains haste until end of turn.
+---
+(Front): Hand of Fury</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/127_Hand of Fury_back.jpg" num="127b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Hand of Fury</related>
+		</card>
+		<card>
+			<name>Bloodboil Harlequin</name>
+			<text>Haste
+Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Bloodboil Harlequin desecrates a permanent, up to two target creatures can&apos;t block this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/115_Bloodboil Harlequin.jpg" num="115">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rubble Scavenger</name>
+			<text>Flying
+Whenever Rubble Scavenger deals combat damage to a player, you may return target artifact card with mana value 4 or less from your graveyard to the battlefield.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/138_Rubble Scavenger.jpg" num="138">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost>3RRR</manacost>
+				<cmc>6</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Venom Infusion</name>
+			<text>Target creature gets +2/-2 and gains first strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/146_Venom Infusion.jpg" num="146">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fierce Contempt</name>
+			<text>Fierce Contempt deals 6 damage to target creature.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/125_Fierce Contempt.jpg" num="125">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1RRR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hostile Atmosphere</name>
+			<text>Tap an untapped Desert you control: Hostile Atmosphere deals 1 damage to any target.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/131_Hostile Atmosphere.jpg" num="131">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bizarre Bazaar</name>
+			<text>At the beginning of your upkeep, exile the top card of your library. If a land card is exiled this way, add {R}{R}. You don&apos;t lose this mana as steps and phases end this turn. Otherwise, you may cast that card this turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/114_Bizarre Bazaar.jpg" num="114">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2RR</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Flora Acolyte</name>
+			<text>Whenever an Aura you control enters, draw a card.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/157_Flora Acolyte.jpg" num="157">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Druid</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hand of the Harvest</name>
+			<text>Trample
+At the beginning of your upkeep, if your fealty to Forests is five or greater, transform Hand of the Harvest. (Each Forest you control counts towards your fealty to Forests.)
+---
+(Back): Liege of Sabne</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/160_Hand of the Harvest_front.jpg" num="160a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Pangolin</type>
+				<maintype>Creature</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Liege of Sabne</related>
+		</card>
+		<card>
+			<name>Liege of Sabne</name>
+			<text>Trample
+---
+(Front): Hand of the Harvest</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/160_Hand of the Harvest_back.jpg" num="160b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Pangolin Beast</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>5/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Hand of the Harvest</related>
+		</card>
+		<card>
+			<name>Bleak Gorge Convoy</name>
+			<text>When Bleak Gorge Convoy enters, you may search your library for a Desert card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/150_Bleak Gorge Convoy.jpg" num="150">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Petal Scatterer</name>
+			<text>When Petal Scatterer enters, create a green Aura enchantment token named Blossom attached to target land. It has enchant land and &quot;Enchanted land has ‘{T}: Add {G}{G}.&apos;&quot;
+Petal Scatterer gets +1/+1 for each noncreature, nonland permanent you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/168_Petal Scatterer.jpg" num="168">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>GGG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Beetleback Forager</name>
+			<text>Concord — When Beetleback Forager enters, if there are four or more card types among permanents you control, return target card from your graveyard to your hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/149_Beetleback Forager.jpg" num="149">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Scout</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Salt Flat Survivors</name>
+			<text>Survivors you control get +2/+2.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/177_Salt Flat Survivors.jpg" num="177">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sahalia Dragoons</name>
+			<text>Vigilance
+{1}{G}{G}: Sahalia Dragoons gets +4/+4 until end of turn. Activate only once each turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/176_Sahalia Dragoons.jpg" num="176">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Plated Crusher</name>
+			<text>Trample, hexproof</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/169_Plated Crusher.jpg" num="169">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4GGG</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>7/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Raise a Ruckus</name>
+			<text>Target creature you control gets +2/+2 until end of turn and must be blocked this turn if able.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/171_Raise a Ruckus.jpg" num="171">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Promised Land</name>
+			<text>Search your library for a basic land card and a Desert card, put them onto the battlefield tapped, then shuffle.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/170_Promised Land.jpg" num="170">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>3G</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Crossridge Commerce</name>
+			<text>Look at the top six cards of your library. For each permanent type, you may reveal a card of that type from among them and put it into your hand. Put the rest on the bottom of your library in any order.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/154_Crossridge Commerce.jpg" num="154">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2GGG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Warrior&apos;s Discipline</name>
+			<text>Enchant creature
+When Warrior&apos;s Discipline enters, put a +1/+1 counter on enchanted creature.
+Whenever enchanted creature deals combat damage to a player, double the number of +1/+1 counters on it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/185_Warrior&apos;s Discipline.jpg" num="185">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Meddling Gargoyle</name>
+			<text>Flying
+{2B}{2B}, {T}, Sacrifice Meddling Gargoyle: Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. Activate only as a sorcery.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/217_Meddling Gargoyle.jpg" num="217">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Gargoyle</type>
+				<maintype>Creature</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Churning Rough-Roller</name>
+			<text>{2R}{2R}: Churning Rough-Roller gets +1/+1 and gains double strike until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/193_Churning Rough-Roller.jpg" num="193">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<coloridentity>R</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Temple Attendant</name>
+			<text>Concord — Temple Attendant gets +1/+1 and has indestructible as long as there are four or more card types among permanents you control.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/233_Temple Attendant.jpg" num="233">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Shrapnel Golem</name>
+			<text>{2W}{2W}: Shrapnel Golem deals 3 damage to target creature blocking it.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/228_Shrapnel Golem.jpg" num="228">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scabrous Automaton</name>
+			<text>When Scabrous Automaton dies, draw a card, then add {C}{C}. Until end of turn, you don&apos;t lose this mana as steps and phases end.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/225_Scabrous Automaton.jpg" num="225">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Laden Bruiser</name>
+			<text>Trample
+{2G}{2G}, {T}: Put two +1/+1 counters on Laden Bruiser.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/215_Laden Bruiser.jpg" num="215">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gulch Custodian</name>
+			<text>When Gulch Custodian enters, return an artifact you control to its owner&apos;s hand.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/210_Gulch Custodian.jpg" num="210">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Aeriform Remnant</name>
+			<text>Flying
+{2U}{2U}: Exile Aeriform Remnant. Return it to the battlefield under its owner&apos;s control at the beginning of the next end step.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/186_Aeriform Remnant.jpg" num="186">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+				<coloridentity>U</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Igneous Pulverizer</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Igneous Pulverizer desecrates a permanent, destroy target nonland permanent.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/213_Igneous Pulverizer.jpg" num="213">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>7</manacost>
+				<cmc>7</cmc>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Blighted Dagger</name>
+			<text>Equipped creature gets +2/-1.
+Equip {1}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/191_Blighted Dagger.jpg" num="191">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Helm of Princes</name>
+			<text>Equipped creature has hexproof.
+Whenever equipped creature dies, draw a card.
+Equip {2}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/211_Helm of Princes.jpg" num="211">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Plumed Carpet</name>
+			<text>Equipped creature gets +2/+1 and has flying.
+Equip {3}</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/219_Plumed Carpet.jpg" num="219">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Promenade Banner</name>
+			<text>Promenade Banner enters tapped.
+{1}, {T}: Creatures you control get +1/+1 until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/221_Promenade Banner.jpg" num="221">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Secluded Monument</name>
+			<text>When Secluded Monument enters, choose a color.
+Whenever you cast a spell of the chosen color, Secluded Monument becomes a 5/5 Golem creature until end of turn.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/226_Secluded Monument.jpg" num="226">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Zoetic Tomb</name>
+			<text>When Zoetic Tomb enters, exile target creature.
+{4}: Until end of turn, Zoetic Tomb becomes a Golem artifact creature with power and toughness equal to the exiled creature&apos;s base power and toughness.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/235_Zoetic Tomb.jpg" num="235">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Calcified Dunes</name>
+			<text>({T}: Add {W}.)
+As Calcified Dunes enters, you may pay 1 life. If you don&apos;t, Calcified Dunes enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/237_Calcified Dunes.jpg" num="237">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Plains Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Saturated Dunes</name>
+			<text>({T}: Add {U}.)
+As Saturated Dunes enters, you may pay 1 life. If you don&apos;t, Saturated Dunes enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/245_Saturated Dunes.jpg" num="245">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Island Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Stygian Dunes</name>
+			<text>({T}: Add {B}.)
+As Stygian Dunes enters, you may pay 1 life. If you don&apos;t, Stygian Dunes enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/247_Stygian Dunes.jpg" num="247">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Swamp Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Highland Dunes</name>
+			<text>({T}: Add {R}.)
+As Highland Dunes enters, you may pay 1 life. If you don&apos;t, Highland Dunes enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/240_Highland Dunes.jpg" num="240">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Mountain Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Flourishing Dunes</name>
+			<text>({T}: Add {G}.)
+As Flourishing Dunes enters, you may pay 1 life. If you don&apos;t, Flourishing Dunes enters tapped.</text>
+			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/ATB-files/img/239_Flourishing Dunes.jpg" num="239">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Forest Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Ephemeral Soultender</name>
+			<text>Flying, lifelink</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/10_Ephemeral Soultender.jpg" num="10">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Palace Dancer</name>
+			<text>{2W}, {T}: Tap target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/22_Palace Dancer.jpg" num="22">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hajir Sentinel</name>
+			<text>Survivors you control have vigilance.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/13_Hajir Sentinel.jpg" num="13">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>1W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Masabh Legionnaire</name>
+			<text>First strike</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/18_Masabh Legionnaire.jpg" num="18">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Patron of Asham</name>
+			<text>Whenever Patron of Asham attacks, tap target creature an opponent controls with power less than or equal to your fealty to Plains. (Each Plains you control counts towards your fealty to Plains.) (Each Plain you control counts towards your fealty to Plains.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/23_Patron of Asham.jpg" num="23">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dune Wraith</name>
+			<text>Flying
+When Dune Wraith enters, distribute two +1/+1 counters among Spirits you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/9_Dune Wraith.jpg" num="9">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>0/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sandbank Guardian</name>
+			<text>Vigilance
+Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+---
+(Back): Archon of Favor</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/27_Sandbank Guardian_front.jpg" num="27a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>3W</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Archon of Favor</related>
+		</card>
+		<card>
+			<name>Archon of Favor</name>
+			<text>Flying, vigilance
+---
+(Front): Sandbank Guardian</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/27_Sandbank Guardian_back.jpg" num="27b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Sandbank Guardian</related>
+		</card>
+		<card>
+			<name>Bazaar Equestrian</name>
+			<text>Concord — When Bazaar Equestrian enters, if there are four or more card types among permanents you control, you gain 4 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/3_Bazaar Equestrian.jpg" num="3">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Citizen</type>
+				<maintype>Creature</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Lurking Lahasia</name>
+			<text>Concord — Lurking Lahasia has first strike and lifelink as long as there are four or more card types among permanents you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/17_Lurking Lahasia.jpg" num="17">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>3WW</manacost>
+				<cmc>5</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>5/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Scimitar Techniques</name>
+			<text>Target creature you control gets +1/+2 until end of turn. If that creature is white, create a white Aura enchantment token with enchant creature and &quot;Enchanted creature has first strike&quot; attached to that creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/29_Scimitar Techniques.jpg" num="29">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>W</manacost>
+				<cmc>1</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Buried by Time</name>
+			<text>Exile target artifact or enchantment with mana value 4 or less.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/6_Buried by Time.jpg" num="6">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Outflank</name>
+			<text>Destroy target attacking or blocking creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/21_Outflank.jpg" num="21">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1WW</manacost>
+				<cmc>3</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Hall of Remembrance</name>
+			<text>When Hall of Remembrance enters, create two 1/1 white Spirit creature tokens with flying.
+Whenever a Spirit you control enters, you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/14_Hall of Remembrance.jpg" num="14">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2WW</manacost>
+				<cmc>4</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Djinni Imprisonment</name>
+			<text>Enchant creature
+Enchanted creature can&apos;t attack or block.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/8_Djinni Imprisonment.jpg" num="8">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>WW</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Bashful Drake</name>
+			<text>Flying
+Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+---
+(Back): Archon of Supremacy</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/40_Bashful Drake_front.jpg" num="40a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Drake</type>
+				<maintype>Creature</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>0/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Archon of Supremacy</related>
+		</card>
+		<card>
+			<name>Archon of Supremacy</name>
+			<text>Flying
+{1}: Archon of Supremacy gets +1/-1 until end of turn.
+---
+(Front): Bashful Drake</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/40_Bashful Drake_back.jpg" num="40b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Bashful Drake</related>
+		</card>
+		<card>
+			<name>Canyon Mystic</name>
+			<text>Whenever Canyon Mystic deals combat damage to a player, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/42_Canyon Mystic.jpg" num="42">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sage of the Sands</name>
+			<text>Whenever a Survivor you control enters, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/69_Sage of the Sands.jpg" num="69">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bazaar Informant</name>
+			<text>Whenever Bazaar Informant deals combat damage to a player, reveal the top card of that player&apos;s library. If it&apos;s a nonland card, put a +1/+1 counter on Bazaar Informant, then that player puts that card into their graveyard.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/41_Bazaar Informant.jpg" num="41">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>1UU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Sensory Gouger</name>
+			<text>{2U}, {T}: Target creature gets -4/-0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/70_Sensory Gouger.jpg" num="70">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>2/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Oasis Glutton</name>
+			<text>Defender
+As long as your fealty to Islands is six or greater, Oasis Glutton can attack as though it didn&apos;t have defender. (Each Island you control counts towards your fealty to Islands.) (Each Island you control counts towards your fealty to Islands.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/64_Oasis Glutton.jpg" num="64">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>3UU</manacost>
+				<cmc>5</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>5/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Judicious Djinni</name>
+			<text>Flying
+Concord — When Judicious Djinni enters, if there are four or more card types among permanents you control, return target instant or sorcery card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/59_Judicious Djinni.jpg" num="59">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>4UU</manacost>
+				<cmc>6</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Stabilize</name>
+			<text>Counter target artifact or sorcery spell.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/72_Stabilize.jpg" num="72">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>U</manacost>
+				<cmc>1</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Obscuring Sandstorm</name>
+			<text>Return target creature to its owner&apos;s hand.
+Concord — If there are four or more card types among permanents you control, draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/65_Obscuring Sandstorm.jpg" num="65">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Eccentric Musings</name>
+			<text>Choose two —
+• Scry 2.
+• Draw a card.
+• Untap up to one land.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/50_Eccentric Musings.jpg" num="50">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>UU</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Apt Countermeasure</name>
+			<text>Counter target spell. Draw a card, then discard a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/38_Apt Countermeasure.jpg" num="38">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Chart the Stars</name>
+			<text>Draw three cards, then discard a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/44_Chart the Stars.jpg" num="44">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>UUU</manacost>
+				<cmc>3</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>One With the Wind</name>
+			<text>Enchant creature
+Enchanted creature gets +2/+2 and has flying.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/66_One With the Wind.jpg" num="66">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Dilapidate</name>
+			<text>Enchant artifact or creature
+When Dilapidate enters, tap enchanted permanent.
+Enchanted permanent loses all abilities and doesn&apos;t untap during its controller&apos;s untap step.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/47_Dilapidate.jpg" num="47">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2UU</manacost>
+				<cmc>4</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Shadow Ambusher</name>
+			<text>At the beginning of your upkeep, you lose 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/98_Shadow Ambusher.jpg" num="98">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Rogue</type>
+				<maintype>Creature</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Warpblade Warrior</name>
+			<text>Discard a card: Warpblade Warrior gets +1/+1 and gains menace until end of turn. Activate only once each turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/111_Warpblade Warrior.jpg" num="111">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Vengeful Cohort</name>
+			<text>Whenever a Survivor you control dies, each opponent loses 1 life and you gain 1 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/109_Vengeful Cohort.jpg" num="109">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>1B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bleak Condor</name>
+			<text>Flying
+When Bleak Condor enters, mill four cards.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/79_Bleak Condor.jpg" num="79">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Twisted Gladiator</name>
+			<text>Menace
+Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+---
+(Back): Archon of Triumph</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/106_Twisted Gladiator_front.jpg" num="106a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2B</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Archon of Triumph</related>
+		</card>
+		<card>
+			<name>Archon of Triumph</name>
+			<text>Flying, menace
+---
+(Front): Twisted Gladiator</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/106_Twisted Gladiator_back.jpg" num="106b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Twisted Gladiator</related>
+		</card>
+		<card>
+			<name>Bitter Wanderer</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Bitter Wanderer desecrates a permanent, each opponent loses 2 life and you gain 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/78_Bitter Wanderer.jpg" num="78">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>2/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Umbral Stalker</name>
+			<text>{2B}: Umbral Stalker gains indestructible until end of turn. Tap it.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/107_Umbral Stalker.jpg" num="107">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Exemplar of Disdain</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Exemplar of Disdain desecrates a permanent, target creature you don&apos;t control gets -3/-3 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/86_Exemplar of Disdain.jpg" num="86">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>3BB</manacost>
+				<cmc>5</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Slum Scrounger</name>
+			<text>Deathtouch
+When Slum Scrounger enters, put up to two target creature cards in your graveyard on top of your library in any order.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/101_Slum Scrounger.jpg" num="101">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>4BB</manacost>
+				<cmc>6</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>4/6</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Princely Mettle</name>
+			<text>Target creature you control gets +2/+0 and gains indestructible until end of turn. You lose 2 life.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/95_Princely Mettle.jpg" num="95">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>B</manacost>
+				<cmc>1</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Due Judgment</name>
+			<text>Target creature gets -3/-3 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/85_Due Judgment.jpg" num="85">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>BB</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Loose Threads</name>
+			<text>You lose 2 life. Look at the top two cards of your library. You may mill two cards. Draw two cards, then mill two cards if you didn&apos;t mill before.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/93_Loose Threads.jpg" num="93">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1BB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Atrophy</name>
+			<text>Destroy target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/75_Atrophy.jpg" num="75">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>BBB</manacost>
+				<cmc>3</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Chosen of Bal</name>
+			<text>Return target creature card with power less than or equal to your fealty to Swamps from your graveyard to the battlefield. (Each Swamp you control counts towards your fealty to Swamps.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/81_Chosen of Bal.jpg" num="81">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>2BB</manacost>
+				<cmc>4</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Scorned Figurant</name>
+			<text>Whenever you cast a spell, Scorned Figurant gets +1/+1 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/140_Scorned Figurant.jpg" num="140">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Mutant</type>
+				<maintype>Creature</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Fervent Ensign</name>
+			<text>Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+Whenever Fervent Ensign attacks, add {R} at the beginning of your next main phase.
+---
+(Back): Archon of Inspiration</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/124_Fervent Ensign_front.jpg" num="124a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Mutant Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Archon of Inspiration</related>
+		</card>
+		<card>
+			<name>Archon of Inspiration</name>
+			<text>Flying
+Whenever Archon of Inspiration attacks, add three mana in any combination of colors at the beginning of your next main phase.
+---
+(Front): Fervent Ensign</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/124_Fervent Ensign_back.jpg" num="124b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Fervent Ensign</related>
+		</card>
+		<card>
+			<name>Suraj Outrider</name>
+			<text>{2R}: Suraj Outrider gets +1/+0 until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/144_Suraj Outrider.jpg" num="144">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dreamchaser Djinni</name>
+			<text>Dreamchaser Djinni attacks each combat if able.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/118_Dreamchaser Djinni.jpg" num="118">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Djinn</type>
+				<maintype>Creature</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Encrusted Sahalia</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Encrusted Sahalia desecrates a permanent, it deals 3 damage to target player.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/122_Encrusted Sahalia.jpg" num="122">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>1RR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Nurtured Sandwolf</name>
+			<text>Survivors you control have haste.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/136_Nurtured Sandwolf.jpg" num="136">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wolf Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>3R</manacost>
+				<cmc>4</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Siltsplitter</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Siltsplitter desecrates a permanent, each opponent sacrifices an artifact.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/141_Siltsplitter.jpg" num="141">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Wurm</type>
+				<maintype>Creature</maintype>
+				<manacost>3RR</manacost>
+				<cmc>5</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>4/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rush of Adrenaline</name>
+			<text>Target creature gets +2/+1 and gains trample until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/139_Rush of Adrenaline.jpg" num="139">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Fanciful Bloom</name>
+			<text>Create a Treasure token. (It&apos;s an artifact with &quot;{T}, Sacrifice this artifact: Add one mana of any color.&quot;)
+Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/123_Fanciful Bloom.jpg" num="123">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Encampment Raid</name>
+			<text>Choose one —
+• Creatures you control get +2/+0 until end of turn.
+• Creatures your opponents control can&apos;t block creatures with less power this turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/121_Encampment Raid.jpg" num="121">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Skin from Bone</name>
+			<text>Skin from Bone deals damage to target creature equal to your fealty to Mountains. (Each Mountain you control counts towards your fealty to Mountains.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/142_Skin from Bone.jpg" num="142">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>RR</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Harsh Erosion</name>
+			<text>Destroy target colorless nonbasic permanent. Harsh Erosion deals 2 damage to that permanent&apos;s controller.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/128_Harsh Erosion.jpg" num="128">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>RRR</manacost>
+				<cmc>3</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Heat Ray</name>
+			<text>Heat Ray deals X damage to target creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/129_Heat Ray.jpg" num="129">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>XR</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Impish Delights</name>
+			<text>Enchant creature
+When Impish Delights enters, draw a card.
+Enchanted creature gets +2/+0.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/132_Impish Delights.jpg" num="132">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>R</manacost>
+				<cmc>1</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Highland Hermit</name>
+			<text>Concord — Highland Hermit gets +1/+1 and has hexproof as long as there are four or more card types among permanents you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/162_Highland Hermit.jpg" num="162">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Roaming Falconer</name>
+			<text>Trample
+Chosen one ({W}{U}{B}{R}{G}: Transform this permanent.)
+---
+(Back): Archon of Plenty</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/173_Roaming Falconer_front.jpg" num="173a">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>front</side>
+				<type>Creature — Human</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>3/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Archon of Plenty</related>
+		</card>
+		<card>
+			<name>Archon of Plenty</name>
+			<text>Flying, trample
+---
+(Front): Roaming Falconer</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/173_Roaming Falconer_back.jpg" num="173b">ATB</set>
+			<prop>
+				<layout>transform</layout>
+				<side>back</side>
+				<type>Creature — Archon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>WUBRG</colors>
+				<coloridentity>WUBRG</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<related attach="transform">Roaming Falconer</related>
+		</card>
+		<card>
+			<name>Dutiful Camel</name>
+			<text>When Dutiful Camel enters, put a +1/+1 counter on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/156_Dutiful Camel.jpg" num="156">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Camel</type>
+				<maintype>Creature</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Court Beastmaster</name>
+			<text>{T}: Add {G}.
+Concord — {T}: Add two mana in any combination of colors. Activate only if there are four or more card types among permanents you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/153_Court Beastmaster.jpg" num="153">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Shaman</type>
+				<maintype>Creature</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Hajir Allegiant</name>
+			<text>Survivors you control get +1/+1.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/159_Hajir Allegiant.jpg" num="159">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Human Survivor</type>
+				<maintype>Creature</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Dromedary Packbeast</name>
+			<text>{2G}, {T}: Put a +1/+1 counter on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/155_Dromedary Packbeast.jpg" num="155">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Camel</type>
+				<maintype>Creature</maintype>
+				<manacost>2GG</manacost>
+				<cmc>4</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Rift Prowler</name>
+			<text>Trample
+Rift Prowler enters with X +1/+1 counters on it, where X is your fealty to Forests. (Each Forest you control counts towards your fealty to Forests.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/172_Rift Prowler.jpg" num="172">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Cat Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>3GG</manacost>
+				<cmc>5</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>0/0</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Ruins Monitor</name>
+			<text>Ruins Monitor can&apos;t be blocked by more than one creature.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/174_Ruins Monitor.jpg" num="174">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Creature — Lizard Beast</type>
+				<maintype>Creature</maintype>
+				<manacost>5GG</manacost>
+				<cmc>7</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>7/7</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Colossal Camouflage</name>
+			<text>Target creature gets +1/+1 and gains indestructible until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/152_Colossal Camouflage.jpg" num="152">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>G</manacost>
+				<cmc>1</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Oasis Cartography</name>
+			<text>Search your library for two basic land cards, reveal them, put them into your hand, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/167_Oasis Cartography.jpg" num="167">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Sorcery</type>
+				<maintype>Sorcery</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Visceral Assault</name>
+			<text>Target creature you control deals damage equal to its power to target creature you don&apos;t control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/184_Visceral Assault.jpg" num="184">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>GG</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Strike Down</name>
+			<text>Choose one —
+• Destroy target creature with flying.
+• Destroy target artifact.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/180_Strike Down.jpg" num="180">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Instant</type>
+				<maintype>Instant</maintype>
+				<manacost>1GG</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>3</tablerow>
+		</card>
+		<card>
+			<name>Sultan&apos;s Strength</name>
+			<text>Enchant creature
+Enchanted creature has base power and toughness 3/3.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/181_Sultan&apos;s Strength.jpg" num="181">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>1G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Verdant Haven</name>
+			<text>Enchant land
+When Verdant Haven enters, you gain 2 life.
+Whenever enchanted land is tapped for mana, its controller adds an additional one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/183_Verdant Haven.jpg" num="183">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost>2G</manacost>
+				<cmc>3</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Globule of Sanctuary</name>
+			<text>When Globule of Sanctuary enters or leaves the battlefield, you gain 2 life.
+{2W}, {T}, Sacrifice Globule of Sanctuary: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/11_Globule of Sanctuary.jpg" num="11">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2/W</manacost>
+				<cmc>2</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Globule of Intuition</name>
+			<text>When Globule of Intuition enters or leaves the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+{2U}, {T}, Sacrifice Globule of Intuition: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/53_Globule of Intuition.jpg" num="53">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2/U</manacost>
+				<cmc>2</cmc>
+				<colors>U</colors>
+				<coloridentity>U</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Globule of Agony</name>
+			<text>When Globule of Agony enters or leaves the battlefield, target player loses 1 life.
+{2B}, {T}, Sacrifice Globule of Agony: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/89_Globule of Agony.jpg" num="89">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2/B</manacost>
+				<cmc>2</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Globule of Turmoil</name>
+			<text>When Globule of Turmoil enters or leaves the battlefield, up to one target creature can&apos;t block this turn.
+{2R}, {T}, Sacrifice Globule of Turmoil: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/126_Globule of Turmoil.jpg" num="126">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2/R</manacost>
+				<cmc>2</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Globule of Vigor</name>
+			<text>When Globule of Vigor enters or leaves the battlefield, up to one target creature gets +1/+1 until end of turn.
+{2G}, {T}, Sacrifice Globule of Vigor: Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/158_Globule of Vigor.jpg" num="158">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2/G</manacost>
+				<cmc>2</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Effigy of Morality</name>
+			<text>Lifelink
+Effigy of Morality gets +1/+1 as long as your fealty to Plains is four or greater. (Each Plains you control counts towards your fealty to Plains.) (Each Plain you control counts towards your fealty to Plains.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/201_Effigy of Morality.jpg" num="201">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Effigy of Wisdom</name>
+			<text>Flying
+Effigy of Wisdom gets +1/+1 as long as your fealty to Islands is four or greater. (Each Island you control counts towards your fealty to Islands.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/202_Effigy of Wisdom.jpg" num="202">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>1/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Effigy of Destiny</name>
+			<text>Menace
+Effigy of Destiny gets +1/+1 as long as your fealty to Swamps is four or greater. (Each Swamp you control counts towards your fealty to Swamps.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/199_Effigy of Destiny.jpg" num="199">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Effigy of Creation</name>
+			<text>First strike
+Effigy of Creation gets +1/+1 as long as your fealty to Mountains is four or greater. (Each Mountain you control counts towards your fealty to Mountains.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/198_Effigy of Creation.jpg" num="198">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Effigy of Harvest</name>
+			<text>Trample
+Effigy of Harvest gets +1/+1 as long as your fealty to Forests is four or greater. (Each Forest you control counts towards your fealty to Forests.)</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/200_Effigy of Harvest.jpg" num="200">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>3/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Alquyut Mount</name>
+			<text>Alquyut Mount can&apos;t attack or block alone.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/187_Alquyut Mount.jpg" num="187">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+				<pt>2/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Silt Conduit</name>
+			<text>{T}: Add {C}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/229_Silt Conduit.jpg" num="229">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Gemplate Golem</name>
+			<text>When Gemplate Golem enters or dies, put a +1/+1 counter on target creature you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/207_Gemplate Golem.jpg" num="207">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>0/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Idol of the Dead God</name>
+			<text>Flying
+Whenever Idol of the Dead God deals combat damage to a player, search your library for any number of creature cards named Idol of the Dead God, reveal them, put them into your hand, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/212_Idol of the Dead God.jpg" num="212">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Runed Servitor</name>
+			<text>When Runed Servitor dies, each player draws a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/223_Runed Servitor.jpg" num="223">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Drift Tracer</name>
+			<text>When Drift Tracer enters, search your library for a basic land card that shares a type with a basic land you control and put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/197_Drift Tracer.jpg" num="197">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Construct</type>
+				<maintype>Creature</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Silt-Trench Brute</name>
+			<text>Concord — Silt-Trench Brute gets +3/+3 and has trample as long as there are four or more card types among permanents you control.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/230_Silt-Trench Brute.jpg" num="230">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>3/3</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Bearer of Old Growth</name>
+			<text>When Bearer of Old Growth enters, choose one —
+• Untap up to two target artifacts.
+• Draw a card.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/189_Bearer of Old Growth.jpg" num="189">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Congruous Simulacrum</name>
+			<text>Spend only mana of one color to cast this spell.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/194_Congruous Simulacrum.jpg" num="194">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>4</manacost>
+				<cmc>4</cmc>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Furnace Golem</name>
+			<text>Desecrate (When this creature enters, you may sacrifice an artifact or land.)
+When Furnace Golem desecrates a permanent, you may return target artifact card from your graveyard to your hand.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/205_Furnace Golem.jpg" num="205">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Golem</type>
+				<maintype>Creature</maintype>
+				<manacost>5</manacost>
+				<cmc>5</cmc>
+				<pt>3/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Palace Gargoyle</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/218_Palace Gargoyle.jpg" num="218">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact Creature — Gargoyle</type>
+				<maintype>Creature</maintype>
+				<manacost>6</manacost>
+				<cmc>6</cmc>
+				<pt>3/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+		</card>
+		<card>
+			<name>Soul Chalice</name>
+			<text>Whenever equipped creature attacks or blocks, you gain 2 life.
+Equip {3}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/231_Soul Chalice.jpg" num="231">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>0</manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Granite Plating</name>
+			<text>Equipped creature has vigilance and can block an additional creature each combat.
+Equip {2}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/209_Granite Plating.jpg" num="209">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>1</manacost>
+				<cmc>1</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Blade of Burning Sand</name>
+			<text>Equipped creature gets +3/+1.
+Equip {4}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/190_Blade of Burning Sand.jpg" num="190">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Strider Harness</name>
+			<text>Equipped creature gets +1/+1 and has haste.
+Equip {1}</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/232_Strider Harness.jpg" num="232">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact — Equipment</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Macabre Ruins</name>
+			<text>{X}, {T}, Sacrifice Macabre Ruins: Target creature gets -X/-X until end of turn.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/216_Macabre Ruins.jpg" num="216">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Kaleidostone</name>
+			<text>When Kaleidostone enters, draw a card.
+{5}, {T}, Sacrifice Kaleidostone: Add {W}{U}{B}{R}{G}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/214_Kaleidostone.jpg" num="214">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>2</manacost>
+				<cmc>2</cmc>
+				<coloridentity>WUBRG</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Gateway Statues</name>
+			<text>When Gateway Statues enters, put a +1/+1 counter on target creature you control.
+{T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/206_Gateway Statues.jpg" num="206">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Artifact</type>
+				<maintype>Artifact</maintype>
+				<manacost>3</manacost>
+				<cmc>3</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+		</card>
+		<card>
+			<name>Skeletal Oasis</name>
+			<text>{T}, Sacrifice Skeletal Oasis: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/246_Skeletal Oasis.jpg" num="246">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Painted Bluffs</name>
+			<text>{T}: Add {C}.
+{1}, {T}: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/242_Painted Bluffs.jpg" num="242">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Sandswept Bazaar</name>
+			<text>When Sandswept Bazaar enters, you gain 2 life.
+{T}: Add {C}.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/244_Sandswept Bazaar.jpg" num="244">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Land — Desert</type>
+				<maintype>Land</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>0</tablerow>
+		</card>
+		<card>
+			<name>Emblem ATB</name>
+			<text>Play with the top card of your library revealed.
+You may play the top card of your library.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/12t_Emblem.jpg" num="12">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Emblem — Romish</type>
+				<maintype>Emblem</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Spirit ATB</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/3t_Spirit.jpg" num="3">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Aura ATB</name>
+			<text>Enchant creature
+Enchanted creature has first strike.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/2t_Aura.jpg" num="2">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Spirit ATB</name>
+			<text>Flying</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/1t_Spirit.jpg" num="1">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Spirit</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<pt>2/2</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Djinn Horror ATB</name>
+			<text></text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/6t_Djinn Horror.jpg" num="6">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Djinn Horror</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>*/*</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Bird ATB</name>
+			<text>Flying, deathtouch</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/5t_Bird.jpg" num="5">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Bird</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>B</colors>
+				<coloridentity>B</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Beast ATB</name>
+			<text>Trample</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/9t_Beast.jpg" num="9">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Beast</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+				<pt>4/4</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Treasure ATB</name>
+			<text>{T}, Sacrifice this artifact: Add one mana of any color.</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/11t_Treasure.jpg" num="11">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Artifact — Treasure</type>
+				<maintype>Artifact</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Blossom ATB</name>
+			<text>Enchant land
+Enchanted land has &quot;{T}: Add {G}{G}.&quot;</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/10t_Blossom.jpg" num="10">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Enchantment — Aura</type>
+				<maintype>Enchantment</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>G</colors>
+				<coloridentity>G</coloridentity>
+			</prop>
+			<tablerow>1</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Dragon ATB</name>
+			<text>Flying, haste</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/7t_Dragon.jpg" num="7">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Dragon</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>5/5</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Warrior ATB</name>
+			<text>Haste</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/8t_Warrior.jpg" num="8">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>R</colors>
+				<coloridentity>R</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+		<card>
+			<name>Warrior ATB</name>
+			<text>Lifelink</text>
+			<set rarity="common" picurl="https://magictheegg.github.io/sets/ATB-files/img/4t_Warrior.jpg" num="4">ATB</set>
+			<prop>
+				<layout>normal</layout>
+				<side>front</side>
+				<type>Token Creature — Warrior</type>
+				<maintype>Creature</maintype>
+				<manacost></manacost>
+				<cmc>0</cmc>
+				<colors>W</colors>
+				<coloridentity>W</coloridentity>
+				<pt>1/1</pt>
+			</prop>
+			<tablerow>2</tablerow>
+			<token>1</token>
+		</card>
+	</cards>
+</cockatrice_carddatabase>
