@@ -11,15 +11,18 @@ def generateHTML():
 	html_content = '''<html>
 <head>
 	<title>Card</title>
-	<link rel="icon" type="image/x-icon" href="/img/favicon.png">
-	<link rel="stylesheet" href="/resources/mana.css">
-	<link rel="stylesheet" href="/resources/header.css">
-	<link rel="stylesheet" href="/resources/card-text.css">
+	<link rel="icon" type="image/x-icon" href="./img/favicon.png">
+	<link rel="stylesheet" href="./resources/mana.css">
+	<link rel="stylesheet" href="./resources/header.css">
+	<link rel="stylesheet" href="./resources/card-text.css">
 </head>
+<script title="root">
+	const rootPath = ".";
+</script>
 <style>
 	@font-face {
 		font-family: Beleren;
-		src: url('/resources/beleren.ttf');
+		src: url('./resources/beleren.ttf');
 	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
@@ -118,7 +121,7 @@ def generateHTML():
 		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
-		background: url('/img/flip.png') no-repeat;
+		background: url('./img/flip.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -132,7 +135,7 @@ def generateHTML():
 		opacity: 0.5;
 	}
 	.img-container .btn:hover {
-		background: url('/img/flip-hover.png') no-repeat;
+		background: url('./img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 	}
@@ -187,7 +190,7 @@ def generateHTML():
 		html_content += snippet
 	
 	html_content += '''
-			await fetch('/lists/all-sets.json')
+			await fetch(rootPath + '/lists/all-sets.json')
 					.then(response => response.json())
 					.then(json => {
 						set_list = json;
@@ -209,7 +212,7 @@ def generateHTML():
 			}
 
 			var link = document.querySelector("link[rel~='icon']");
-			link.href = '/sets/' + set + '-files/icon.png';
+			link.href = rootPath + '/sets/' + set + '-files/icon.png';
 
 			document.title = name;
 
@@ -217,8 +220,8 @@ def generateHTML():
 			const banner_logo = document.getElementById("set-banner-logo");
 			const banner_title = document.getElementById("set-banner-title");
 
-			banner.href = '/sets/' + set;
-			banner_logo.src = '/sets/' + set + '-files/icon.png';
+			banner.href = rootPath + '/sets/' + set;
+			banner_logo.src = rootPath + '/sets/' + set + '-files/icon.png';
 
 			for (const set_stats of set_list.sets)
 			{
@@ -229,7 +232,7 @@ def generateHTML():
 				}
 			}			
 
-			document.getElementById("grid").appendChild(gridifyCard(card, false, true));
+			document.getElementById("grid").appendChild(gridifyCard(card, false, card.rotated));
 
 			other_printings = [];
 			for (const c of card_list_arrayified)
@@ -249,23 +252,22 @@ def generateHTML():
 
 				for (let i = 0; i < other_printings.length; i++)
 				{
-					const printing = other_printings[i];
-					const setlink = document.createElement("a");
-					setlink.innerText = printing.set;
+                    const printing = other_printings[i];
+                    const setlink = document.createElement("a");
+                    setlink.innerText = printing.set;
 
-					const url = new URL('card', window.location.origin);
-					const params = {
-						set: printing.set,
-						num: printing.number,
-						name: printing.card_name
-					}
-					for (const key in params) {
-						url.searchParams.append(key, params[key]);
-					}
-					setlink.href = url;
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: printing.set,
+                        num: printing.number,
+                        name: printing.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    setlink.href = url.pathname + url.search;
 
-					printings.appendChild(setlink);
-
+                    printings.appendChild(setlink);
 					if (i != other_printings.length - 1)
 					{
 						const dot = document.createElement("text");
@@ -307,9 +309,9 @@ def generateHTML():
 		});
 
 		function search() {
-			const url = new URL('search', window.location.origin);
+			const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			url.searchParams.append('search', document.getElementById("search").value);
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		'''

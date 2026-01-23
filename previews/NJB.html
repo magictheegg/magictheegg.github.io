@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/NJB-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/NJB-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>NJB visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,499 +181,512 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/NJB-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
-		<img class="preload-hidden" id="bg" src="/sets/NJB-files/bg.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/NJB-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
+		<img class="preload-hidden" id="bg" src="../sets/NJB-files/bg.png" />
 
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/NJB-files/logo.png">
+		<img class="logo" src="../sets/NJB-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/1.png" id="NJB_1" data-flag="@X" onclick="openSidebar('NJB_1',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/2.png" id="NJB_2" data-flag="@X" onclick="openSidebar('NJB_2',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/5.png" id="NJB_5" data-flag="@X" onclick="openSidebar('NJB_5',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/7.png" id="NJB_7" data-flag="@X" onclick="openSidebar('NJB_7',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/9.png" id="NJB_9" data-flag="@X" onclick="openSidebar('NJB_9',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/0.png" id="NJB_0" data-flag="@X" onclick="openSidebar('NJB_0',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/3.png" id="NJB_3" data-flag="@X" onclick="openSidebar('NJB_3',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/4.png" id="NJB_4" data-flag="@X" onclick="openSidebar('NJB_4',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/6.png" id="NJB_6" data-flag="@X" onclick="openSidebar('NJB_6',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/8.png" id="NJB_8" data-flag="@X" onclick="openSidebar('NJB_8',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/23.png" id="NJB_23" data-flag="@X" onclick="openSidebar('NJB_23',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/33.png" id="NJB_33" data-flag="@X" onclick="openSidebar('NJB_33',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/49.png" id="NJB_49" data-flag="@X" onclick="openSidebar('NJB_49',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/63.png" id="NJB_63" data-flag="@X" onclick="openSidebar('NJB_63',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/69.png" id="NJB_69" data-flag="@X" onclick="openSidebar('NJB_69',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/27.png" id="NJB_27" data-flag="@X" onclick="openSidebar('NJB_27',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/39.png" id="NJB_39" data-flag="@X" onclick="openSidebar('NJB_39',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/50.png" id="NJB_50" data-flag="@X" onclick="openSidebar('NJB_50',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/62.png" id="NJB_62" data-flag="@X" onclick="openSidebar('NJB_62',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/68.png" id="NJB_68" data-flag="@X" onclick="openSidebar('NJB_68',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/25.png" id="NJB_25" data-flag="@X" onclick="openSidebar('NJB_25',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/36.png" id="NJB_36" data-flag="@X" onclick="openSidebar('NJB_36',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/45.png" id="NJB_45" data-flag="@X" onclick="openSidebar('NJB_45',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/57.png" id="NJB_57" data-flag="@X" onclick="openSidebar('NJB_57',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/70.png" id="NJB_70" data-flag="@X" onclick="openSidebar('NJB_70',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/21.png" id="NJB_21" data-flag="@X" onclick="openSidebar('NJB_21',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/32.png" id="NJB_32" data-flag="@X" onclick="openSidebar('NJB_32',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/46.png" id="NJB_46" data-flag="@X" onclick="openSidebar('NJB_46',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/56.png" id="NJB_56" data-flag="@X" onclick="openSidebar('NJB_56',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/71.png" id="NJB_71" data-flag="@X" onclick="openSidebar('NJB_71',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/26.png" id="NJB_26" data-flag="@X" onclick="openSidebar('NJB_26',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/38.png" id="NJB_38" data-flag="@X" onclick="openSidebar('NJB_38',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/47.png" id="NJB_47" data-flag="@X" onclick="openSidebar('NJB_47',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/61.png" id="NJB_61" data-flag="@X" onclick="openSidebar('NJB_61',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/73.png" id="NJB_73" data-flag="@X" onclick="openSidebar('NJB_73',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/20.png" id="NJB_20" data-flag="@X" onclick="openSidebar('NJB_20',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/37.png" id="NJB_37" data-flag="@X" onclick="openSidebar('NJB_37',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/48.png" id="NJB_48" data-flag="@X" onclick="openSidebar('NJB_48',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/58.png" id="NJB_58" data-flag="@X" onclick="openSidebar('NJB_58',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/74.png" id="NJB_74" data-flag="@X" onclick="openSidebar('NJB_74',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/24.png" id="NJB_24" data-flag="@X" onclick="openSidebar('NJB_24',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/35.png" id="NJB_35" data-flag="@X" onclick="openSidebar('NJB_35',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/44.png" id="NJB_44" data-flag="@X" onclick="openSidebar('NJB_44',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/60.png" id="NJB_60" data-flag="@X" onclick="openSidebar('NJB_60',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/75.png" id="NJB_75" data-flag="@X" onclick="openSidebar('NJB_75',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/22.png" id="NJB_22" data-flag="@X" onclick="openSidebar('NJB_22',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/34.png" id="NJB_34" data-flag="@X" onclick="openSidebar('NJB_34',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/51.png" id="NJB_51" data-flag="@X" onclick="openSidebar('NJB_51',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/59.png" id="NJB_59" data-flag="@X" onclick="openSidebar('NJB_59',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/72.png" id="NJB_72" data-flag="@X" onclick="openSidebar('NJB_72',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/89.png" id="NJB_89" data-flag="@X" onclick="openSidebar('NJB_89',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/106.png" id="NJB_106" data-flag="@X" onclick="openSidebar('NJB_106',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/118.png" id="NJB_118" data-flag="@X" onclick="openSidebar('NJB_118',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/130.png" id="NJB_130" data-flag="@X" onclick="openSidebar('NJB_130',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/134.png" id="NJB_134" data-flag="@X" onclick="openSidebar('NJB_134',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/95.png" id="NJB_95" data-flag="@X" onclick="openSidebar('NJB_95',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/104.png" id="NJB_104" data-flag="@X" onclick="openSidebar('NJB_104',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/115.png" id="NJB_115" data-flag="@X" onclick="openSidebar('NJB_115',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/127.png" id="NJB_127" data-flag="@X" onclick="openSidebar('NJB_127',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/136.png" id="NJB_136" data-flag="@X" onclick="openSidebar('NJB_136',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/88.png" id="NJB_88" data-flag="@X" onclick="openSidebar('NJB_88',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/103.png" id="NJB_103" data-flag="@X" onclick="openSidebar('NJB_103',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/114.png" id="NJB_114" data-flag="@X" onclick="openSidebar('NJB_114',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/121.png" id="NJB_121" data-flag="@X" onclick="openSidebar('NJB_121',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/140.png" id="NJB_140" data-flag="@X" onclick="openSidebar('NJB_140',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/87.png" id="NJB_87" data-flag="@X" onclick="openSidebar('NJB_87',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/100.png" id="NJB_100" data-flag="@X" onclick="openSidebar('NJB_100',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/108.png" id="NJB_108" data-flag="@X" onclick="openSidebar('NJB_108',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/122.png" id="NJB_122" data-flag="@X" onclick="openSidebar('NJB_122',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/142.png" id="NJB_142" data-flag="@X" onclick="openSidebar('NJB_142',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/85.png" id="NJB_85" data-flag="@X" onclick="openSidebar('NJB_85',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/101.png" id="NJB_101" data-flag="@X" onclick="openSidebar('NJB_101',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/113.png" id="NJB_113" data-flag="@X" onclick="openSidebar('NJB_113',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/128.png" id="NJB_128" data-flag="@X" onclick="openSidebar('NJB_128',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/137.png" id="NJB_137" data-flag="@X" onclick="openSidebar('NJB_137',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/86.png" id="NJB_86" data-flag="@X" onclick="openSidebar('NJB_86',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/107.png" id="NJB_107" data-flag="@X" onclick="openSidebar('NJB_107',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/112.png" id="NJB_112" data-flag="@X" onclick="openSidebar('NJB_112',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/131.png" id="NJB_131" data-flag="@X" onclick="openSidebar('NJB_131',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/139.png" id="NJB_139" data-flag="@X" onclick="openSidebar('NJB_139',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/91.png" id="NJB_91" data-flag="@X" onclick="openSidebar('NJB_91',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/99.png" id="NJB_99" data-flag="@X" onclick="openSidebar('NJB_99',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/110.png" id="NJB_110" data-flag="@X" onclick="openSidebar('NJB_110',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/125.png" id="NJB_125" data-flag="@X" onclick="openSidebar('NJB_125',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/133.png" id="NJB_133" data-flag="@X" onclick="openSidebar('NJB_133',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/92.png" id="NJB_92" data-flag="@X" onclick="openSidebar('NJB_92',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/98.png" id="NJB_98" data-flag="@X" onclick="openSidebar('NJB_98',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/109.png" id="NJB_109" data-flag="@X" onclick="openSidebar('NJB_109',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/124.png" id="NJB_124" data-flag="@X" onclick="openSidebar('NJB_124',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/138.png" id="NJB_138" data-flag="@X" onclick="openSidebar('NJB_138',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/93.png" id="NJB_93" data-flag="@X" onclick="openSidebar('NJB_93',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/97.png" id="NJB_97" data-flag="@X" onclick="openSidebar('NJB_97',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/116.png" id="NJB_116" data-flag="@X" onclick="openSidebar('NJB_116',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/120.png" id="NJB_120" data-flag="@X" onclick="openSidebar('NJB_120',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/141.png" id="NJB_141" data-flag="@X" onclick="openSidebar('NJB_141',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/167.png" id="NJB_167" data-flag="@X" onclick="openSidebar('NJB_167',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/96.png" id="NJB_96" data-flag="@X" onclick="openSidebar('NJB_96',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/111.png" id="NJB_111" data-flag="@X" onclick="openSidebar('NJB_111',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/126.png" id="NJB_126" data-flag="@X" onclick="openSidebar('NJB_126',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/132.png" id="NJB_132" data-flag="@X" onclick="openSidebar('NJB_132',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/90.png" id="NJB_90" data-flag="@X" onclick="openSidebar('NJB_90',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/105.png" id="NJB_105" data-flag="@X" onclick="openSidebar('NJB_105',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/117.png" id="NJB_117" data-flag="@X" onclick="openSidebar('NJB_117',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/123.png" id="NJB_123" data-flag="@X" onclick="openSidebar('NJB_123',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/135.png" id="NJB_135" data-flag="@X" onclick="openSidebar('NJB_135',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/94.png" id="NJB_94" data-flag="@X" onclick="openSidebar('NJB_94',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/102.png" id="NJB_102" data-flag="@X" onclick="openSidebar('NJB_102',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/119.png" id="NJB_119" data-flag="@X" onclick="openSidebar('NJB_119',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/237.png" id="NJB_237" data-flag="@X" onclick="openSidebar('NJB_237',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/143.png" id="NJB_143" data-flag="@X" onclick="openSidebar('NJB_143',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/179.png" id="NJB_179" data-flag="@X" onclick="openSidebar('NJB_179',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/200.png" id="NJB_200" data-flag="@X" onclick="openSidebar('NJB_200',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/210.png" id="NJB_210" data-flag="@X" onclick="openSidebar('NJB_210',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/238.png" id="NJB_238" data-flag="@X" onclick="openSidebar('NJB_238',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/259.png" id="NJB_259" data-flag="@X" onclick="openSidebar('NJB_259',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/173.png" id="NJB_173" data-flag="@X" onclick="openSidebar('NJB_173',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/196.png" id="NJB_196" data-flag="@X" onclick="openSidebar('NJB_196',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/215.png" id="NJB_215" data-flag="@X" onclick="openSidebar('NJB_215',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/242.png" id="NJB_242" data-flag="@X" onclick="openSidebar('NJB_242',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/251.png" id="NJB_251" data-flag="@X" onclick="openSidebar('NJB_251',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/175.png" id="NJB_175" data-flag="@X" onclick="openSidebar('NJB_175',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/201.png" id="NJB_201" data-flag="@X" onclick="openSidebar('NJB_201',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/219.png" id="NJB_219" data-flag="@X" onclick="openSidebar('NJB_219',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/225.png" id="NJB_225" data-flag="@X" onclick="openSidebar('NJB_225',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/257.png" id="NJB_257" data-flag="@X" onclick="openSidebar('NJB_257',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/180.png" id="NJB_180" data-flag="@X" onclick="openSidebar('NJB_180',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/199.png" id="NJB_199" data-flag="@X" onclick="openSidebar('NJB_199',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/209.png" id="NJB_209" data-flag="@X" onclick="openSidebar('NJB_209',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/226.png" id="NJB_226" data-flag="@X" onclick="openSidebar('NJB_226',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/255.png" id="NJB_255" data-flag="@X" onclick="openSidebar('NJB_255',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/178.png" id="NJB_178" data-flag="@X" onclick="openSidebar('NJB_178',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/193.png" id="NJB_193" data-flag="@X" onclick="openSidebar('NJB_193',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/217.png" id="NJB_217" data-flag="@X" onclick="openSidebar('NJB_217',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/240.png" id="NJB_240" data-flag="@X" onclick="openSidebar('NJB_240',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/248.png" id="NJB_248" data-flag="@X" onclick="openSidebar('NJB_248',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/169.png" id="NJB_169" data-flag="@X" onclick="openSidebar('NJB_169',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/187.png" id="NJB_187" data-flag="@X" onclick="openSidebar('NJB_187',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/206.png" id="NJB_206" data-flag="@X" onclick="openSidebar('NJB_206',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/229.png" id="NJB_229" data-flag="@X" onclick="openSidebar('NJB_229',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/244.png" id="NJB_244" data-flag="@X" onclick="openSidebar('NJB_244',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/174.png" id="NJB_174" data-flag="@X" onclick="openSidebar('NJB_174',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/190.png" id="NJB_190" data-flag="@X" onclick="openSidebar('NJB_190',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/220.png" id="NJB_220" data-flag="@X" onclick="openSidebar('NJB_220',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/230.png" id="NJB_230" data-flag="@X" onclick="openSidebar('NJB_230',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/250.png" id="NJB_250" data-flag="@X" onclick="openSidebar('NJB_250',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/172.png" id="NJB_172" data-flag="@X" onclick="openSidebar('NJB_172',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/197.png" id="NJB_197" data-flag="@X" onclick="openSidebar('NJB_197',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/213.png" id="NJB_213" data-flag="@X" onclick="openSidebar('NJB_213',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/227.png" id="NJB_227" data-flag="@X" onclick="openSidebar('NJB_227',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/243.png" id="NJB_243" data-flag="@X" onclick="openSidebar('NJB_243',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/177.png" id="NJB_177" data-flag="@X" onclick="openSidebar('NJB_177',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/191.png" id="NJB_191" data-flag="@X" onclick="openSidebar('NJB_191',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/222.png" id="NJB_222" data-flag="@X" onclick="openSidebar('NJB_222',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/224.png" id="NJB_224" data-flag="@X" onclick="openSidebar('NJB_224',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/254.png" id="NJB_254" data-flag="@X" onclick="openSidebar('NJB_254',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/171.png" id="NJB_171" data-flag="@X" onclick="openSidebar('NJB_171',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/198.png" id="NJB_198" data-flag="@X" onclick="openSidebar('NJB_198',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/211.png" id="NJB_211" data-flag="@X" onclick="openSidebar('NJB_211',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/228.png" id="NJB_228" data-flag="@X" onclick="openSidebar('NJB_228',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/247.png" id="NJB_247" data-flag="@X" onclick="openSidebar('NJB_247',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/84.png" id="NJB_84" data-flag="@X" onclick="openSidebar('NJB_84',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/192.png" id="NJB_192" data-flag="@X" onclick="openSidebar('NJB_192',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/223.png" id="NJB_223" data-flag="@X" onclick="openSidebar('NJB_223',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/234.png" id="NJB_234" data-flag="@X" onclick="openSidebar('NJB_234',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/245.png" id="NJB_245" data-flag="@X" onclick="openSidebar('NJB_245',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/185.png" id="NJB_185" data-flag="@X" onclick="openSidebar('NJB_185',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/186.png" id="NJB_186" data-flag="@X" onclick="openSidebar('NJB_186',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/208.png" id="NJB_208" data-flag="@X" onclick="openSidebar('NJB_208',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/236.png" id="NJB_236" data-flag="@X" onclick="openSidebar('NJB_236',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/256.png" id="NJB_256" data-flag="@X" onclick="openSidebar('NJB_256',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/168.png" id="NJB_168" data-flag="@X" onclick="openSidebar('NJB_168',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/188.png" id="NJB_188" data-flag="@X" onclick="openSidebar('NJB_188',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/216.png" id="NJB_216" data-flag="@X" onclick="openSidebar('NJB_216',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/233.png" id="NJB_233" data-flag="@X" onclick="openSidebar('NJB_233',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/261.png" id="NJB_261" data-flag="@X" onclick="openSidebar('NJB_261',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/176.png" id="NJB_176" data-flag="@X" onclick="openSidebar('NJB_176',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/195.png" id="NJB_195" data-flag="@X" onclick="openSidebar('NJB_195',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/212.png" id="NJB_212" data-flag="@X" onclick="openSidebar('NJB_212',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/235.png" id="NJB_235" data-flag="@X" onclick="openSidebar('NJB_235',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/260.png" id="NJB_260" data-flag="@X" onclick="openSidebar('NJB_260',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/184.png" id="NJB_184" data-flag="@X" onclick="openSidebar('NJB_184',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/202.png" id="NJB_202" data-flag="@X" onclick="openSidebar('NJB_202',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/218.png" id="NJB_218" data-flag="@X" onclick="openSidebar('NJB_218',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/231.png" id="NJB_231" data-flag="@X" onclick="openSidebar('NJB_231',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/258.png" id="NJB_258" data-flag="@X" onclick="openSidebar('NJB_258',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/170.png" id="NJB_170" data-flag="@X" onclick="openSidebar('NJB_170',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/204.png" id="NJB_204" data-flag="@X" onclick="openSidebar('NJB_204',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/205.png" id="NJB_205" data-flag="@X" onclick="openSidebar('NJB_205',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/239.png" id="NJB_239" data-flag="@X" onclick="openSidebar('NJB_239',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/253.png" id="NJB_253" data-flag="@X" onclick="openSidebar('NJB_253',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/181.png" id="NJB_181" data-flag="@X" onclick="openSidebar('NJB_181',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/189.png" id="NJB_189" data-flag="@X" onclick="openSidebar('NJB_189',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/214.png" id="NJB_214" data-flag="@X" onclick="openSidebar('NJB_214',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/129.png" id="NJB_129" data-flag="@X" onclick="openSidebar('NJB_129',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/246.png" id="NJB_246" data-flag="@X" onclick="openSidebar('NJB_246',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/182.png" id="NJB_182" data-flag="@X" onclick="openSidebar('NJB_182',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/194.png" id="NJB_194" data-flag="@X" onclick="openSidebar('NJB_194',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/221.png" id="NJB_221" data-flag="@X" onclick="openSidebar('NJB_221',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/241.png" id="NJB_241" data-flag="@X" onclick="openSidebar('NJB_241',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/252.png" id="NJB_252" data-flag="@X" onclick="openSidebar('NJB_252',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/183.png" id="NJB_183" data-flag="@X" onclick="openSidebar('NJB_183',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/203.png" id="NJB_203" data-flag="@X" onclick="openSidebar('NJB_203',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/207.png" id="NJB_207" data-flag="@X" onclick="openSidebar('NJB_207',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/232.png" id="NJB_232" data-flag="@X" onclick="openSidebar('NJB_232',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/249.png" id="NJB_249" data-flag="@X" onclick="openSidebar('NJB_249',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/NJB-files/img/1.png" id="NJB_1" data-flag="@X" onclick="openSidebar('NJB_1',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/2.png" id="NJB_2" data-flag="@X" onclick="openSidebar('NJB_2',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/5.png" id="NJB_5" data-flag="@X" onclick="openSidebar('NJB_5',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/7.png" id="NJB_7" data-flag="@X" onclick="openSidebar('NJB_7',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/9.png" id="NJB_9" data-flag="@X" onclick="openSidebar('NJB_9',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/0.png" id="NJB_0" data-flag="@X" onclick="openSidebar('NJB_0',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/3.png" id="NJB_3" data-flag="@X" onclick="openSidebar('NJB_3',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/4.png" id="NJB_4" data-flag="@X" onclick="openSidebar('NJB_4',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/6.png" id="NJB_6" data-flag="@X" onclick="openSidebar('NJB_6',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/8.png" id="NJB_8" data-flag="@X" onclick="openSidebar('NJB_8',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/23.png" id="NJB_23" data-flag="@X" onclick="openSidebar('NJB_23',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/33.png" id="NJB_33" data-flag="@X" onclick="openSidebar('NJB_33',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/49.png" id="NJB_49" data-flag="@X" onclick="openSidebar('NJB_49',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/63.png" id="NJB_63" data-flag="@X" onclick="openSidebar('NJB_63',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/69.png" id="NJB_69" data-flag="@X" onclick="openSidebar('NJB_69',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/27.png" id="NJB_27" data-flag="@X" onclick="openSidebar('NJB_27',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/39.png" id="NJB_39" data-flag="@X" onclick="openSidebar('NJB_39',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/50.png" id="NJB_50" data-flag="@X" onclick="openSidebar('NJB_50',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/62.png" id="NJB_62" data-flag="@X" onclick="openSidebar('NJB_62',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/68.png" id="NJB_68" data-flag="@X" onclick="openSidebar('NJB_68',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/25.png" id="NJB_25" data-flag="@X" onclick="openSidebar('NJB_25',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/36.png" id="NJB_36" data-flag="@X" onclick="openSidebar('NJB_36',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/45.png" id="NJB_45" data-flag="@X" onclick="openSidebar('NJB_45',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/57.png" id="NJB_57" data-flag="@X" onclick="openSidebar('NJB_57',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/70.png" id="NJB_70" data-flag="@X" onclick="openSidebar('NJB_70',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/21.png" id="NJB_21" data-flag="@X" onclick="openSidebar('NJB_21',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/32.png" id="NJB_32" data-flag="@X" onclick="openSidebar('NJB_32',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/46.png" id="NJB_46" data-flag="@X" onclick="openSidebar('NJB_46',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/56.png" id="NJB_56" data-flag="@X" onclick="openSidebar('NJB_56',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/71.png" id="NJB_71" data-flag="@X" onclick="openSidebar('NJB_71',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/26.png" id="NJB_26" data-flag="@X" onclick="openSidebar('NJB_26',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/38.png" id="NJB_38" data-flag="@X" onclick="openSidebar('NJB_38',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/47.png" id="NJB_47" data-flag="@X" onclick="openSidebar('NJB_47',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/61.png" id="NJB_61" data-flag="@X" onclick="openSidebar('NJB_61',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/73.png" id="NJB_73" data-flag="@X" onclick="openSidebar('NJB_73',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/20.png" id="NJB_20" data-flag="@X" onclick="openSidebar('NJB_20',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/37.png" id="NJB_37" data-flag="@X" onclick="openSidebar('NJB_37',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/48.png" id="NJB_48" data-flag="@X" onclick="openSidebar('NJB_48',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/58.png" id="NJB_58" data-flag="@X" onclick="openSidebar('NJB_58',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/74.png" id="NJB_74" data-flag="@X" onclick="openSidebar('NJB_74',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/24.png" id="NJB_24" data-flag="@X" onclick="openSidebar('NJB_24',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/35.png" id="NJB_35" data-flag="@X" onclick="openSidebar('NJB_35',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/44.png" id="NJB_44" data-flag="@X" onclick="openSidebar('NJB_44',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/60.png" id="NJB_60" data-flag="@X" onclick="openSidebar('NJB_60',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/75.png" id="NJB_75" data-flag="@X" onclick="openSidebar('NJB_75',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/22.png" id="NJB_22" data-flag="@X" onclick="openSidebar('NJB_22',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/34.png" id="NJB_34" data-flag="@X" onclick="openSidebar('NJB_34',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/51.png" id="NJB_51" data-flag="@X" onclick="openSidebar('NJB_51',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/59.png" id="NJB_59" data-flag="@X" onclick="openSidebar('NJB_59',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/72.png" id="NJB_72" data-flag="@X" onclick="openSidebar('NJB_72',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/89.png" id="NJB_89" data-flag="@X" onclick="openSidebar('NJB_89',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/106.png" id="NJB_106" data-flag="@X" onclick="openSidebar('NJB_106',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/118.png" id="NJB_118" data-flag="@X" onclick="openSidebar('NJB_118',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/130.png" id="NJB_130" data-flag="@X" onclick="openSidebar('NJB_130',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/134.png" id="NJB_134" data-flag="@X" onclick="openSidebar('NJB_134',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/95.png" id="NJB_95" data-flag="@X" onclick="openSidebar('NJB_95',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/104.png" id="NJB_104" data-flag="@X" onclick="openSidebar('NJB_104',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/115.png" id="NJB_115" data-flag="@X" onclick="openSidebar('NJB_115',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/127.png" id="NJB_127" data-flag="@X" onclick="openSidebar('NJB_127',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/136.png" id="NJB_136" data-flag="@X" onclick="openSidebar('NJB_136',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/88.png" id="NJB_88" data-flag="@X" onclick="openSidebar('NJB_88',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/103.png" id="NJB_103" data-flag="@X" onclick="openSidebar('NJB_103',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/114.png" id="NJB_114" data-flag="@X" onclick="openSidebar('NJB_114',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/121.png" id="NJB_121" data-flag="@X" onclick="openSidebar('NJB_121',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/140.png" id="NJB_140" data-flag="@X" onclick="openSidebar('NJB_140',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/87.png" id="NJB_87" data-flag="@X" onclick="openSidebar('NJB_87',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/100.png" id="NJB_100" data-flag="@X" onclick="openSidebar('NJB_100',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/108.png" id="NJB_108" data-flag="@X" onclick="openSidebar('NJB_108',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/122.png" id="NJB_122" data-flag="@X" onclick="openSidebar('NJB_122',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/142.png" id="NJB_142" data-flag="@X" onclick="openSidebar('NJB_142',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/85.png" id="NJB_85" data-flag="@X" onclick="openSidebar('NJB_85',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/101.png" id="NJB_101" data-flag="@X" onclick="openSidebar('NJB_101',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/113.png" id="NJB_113" data-flag="@X" onclick="openSidebar('NJB_113',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/128.png" id="NJB_128" data-flag="@X" onclick="openSidebar('NJB_128',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/137.png" id="NJB_137" data-flag="@X" onclick="openSidebar('NJB_137',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/86.png" id="NJB_86" data-flag="@X" onclick="openSidebar('NJB_86',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/107.png" id="NJB_107" data-flag="@X" onclick="openSidebar('NJB_107',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/112.png" id="NJB_112" data-flag="@X" onclick="openSidebar('NJB_112',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/131.png" id="NJB_131" data-flag="@X" onclick="openSidebar('NJB_131',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/139.png" id="NJB_139" data-flag="@X" onclick="openSidebar('NJB_139',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/91.png" id="NJB_91" data-flag="@X" onclick="openSidebar('NJB_91',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/99.png" id="NJB_99" data-flag="@X" onclick="openSidebar('NJB_99',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/110.png" id="NJB_110" data-flag="@X" onclick="openSidebar('NJB_110',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/125.png" id="NJB_125" data-flag="@X" onclick="openSidebar('NJB_125',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/133.png" id="NJB_133" data-flag="@X" onclick="openSidebar('NJB_133',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/92.png" id="NJB_92" data-flag="@X" onclick="openSidebar('NJB_92',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/98.png" id="NJB_98" data-flag="@X" onclick="openSidebar('NJB_98',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/109.png" id="NJB_109" data-flag="@X" onclick="openSidebar('NJB_109',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/124.png" id="NJB_124" data-flag="@X" onclick="openSidebar('NJB_124',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/138.png" id="NJB_138" data-flag="@X" onclick="openSidebar('NJB_138',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/93.png" id="NJB_93" data-flag="@X" onclick="openSidebar('NJB_93',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/97.png" id="NJB_97" data-flag="@X" onclick="openSidebar('NJB_97',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/116.png" id="NJB_116" data-flag="@X" onclick="openSidebar('NJB_116',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/120.png" id="NJB_120" data-flag="@X" onclick="openSidebar('NJB_120',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/141.png" id="NJB_141" data-flag="@X" onclick="openSidebar('NJB_141',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/167.png" id="NJB_167" data-flag="@X" onclick="openSidebar('NJB_167',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/96.png" id="NJB_96" data-flag="@X" onclick="openSidebar('NJB_96',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/111.png" id="NJB_111" data-flag="@X" onclick="openSidebar('NJB_111',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/126.png" id="NJB_126" data-flag="@X" onclick="openSidebar('NJB_126',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/132.png" id="NJB_132" data-flag="@X" onclick="openSidebar('NJB_132',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/90.png" id="NJB_90" data-flag="@X" onclick="openSidebar('NJB_90',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/105.png" id="NJB_105" data-flag="@X" onclick="openSidebar('NJB_105',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/117.png" id="NJB_117" data-flag="@X" onclick="openSidebar('NJB_117',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/123.png" id="NJB_123" data-flag="@X" onclick="openSidebar('NJB_123',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/135.png" id="NJB_135" data-flag="@X" onclick="openSidebar('NJB_135',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/94.png" id="NJB_94" data-flag="@X" onclick="openSidebar('NJB_94',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/102.png" id="NJB_102" data-flag="@X" onclick="openSidebar('NJB_102',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/119.png" id="NJB_119" data-flag="@X" onclick="openSidebar('NJB_119',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/237.png" id="NJB_237" data-flag="@X" onclick="openSidebar('NJB_237',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/143.png" id="NJB_143" data-flag="@X" onclick="openSidebar('NJB_143',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/179.png" id="NJB_179" data-flag="@X" onclick="openSidebar('NJB_179',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/200.png" id="NJB_200" data-flag="@X" onclick="openSidebar('NJB_200',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/210.png" id="NJB_210" data-flag="@X" onclick="openSidebar('NJB_210',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/238.png" id="NJB_238" data-flag="@X" onclick="openSidebar('NJB_238',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/259.png" id="NJB_259" data-flag="@X" onclick="openSidebar('NJB_259',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/173.png" id="NJB_173" data-flag="@X" onclick="openSidebar('NJB_173',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/196.png" id="NJB_196" data-flag="@X" onclick="openSidebar('NJB_196',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/215.png" id="NJB_215" data-flag="@X" onclick="openSidebar('NJB_215',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/242.png" id="NJB_242" data-flag="@X" onclick="openSidebar('NJB_242',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/251.png" id="NJB_251" data-flag="@X" onclick="openSidebar('NJB_251',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/175.png" id="NJB_175" data-flag="@X" onclick="openSidebar('NJB_175',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/201.png" id="NJB_201" data-flag="@X" onclick="openSidebar('NJB_201',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/219.png" id="NJB_219" data-flag="@X" onclick="openSidebar('NJB_219',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/225.png" id="NJB_225" data-flag="@X" onclick="openSidebar('NJB_225',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/257.png" id="NJB_257" data-flag="@X" onclick="openSidebar('NJB_257',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/180.png" id="NJB_180" data-flag="@X" onclick="openSidebar('NJB_180',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/199.png" id="NJB_199" data-flag="@X" onclick="openSidebar('NJB_199',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/209.png" id="NJB_209" data-flag="@X" onclick="openSidebar('NJB_209',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/226.png" id="NJB_226" data-flag="@X" onclick="openSidebar('NJB_226',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/255.png" id="NJB_255" data-flag="@X" onclick="openSidebar('NJB_255',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/178.png" id="NJB_178" data-flag="@X" onclick="openSidebar('NJB_178',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/193.png" id="NJB_193" data-flag="@X" onclick="openSidebar('NJB_193',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/217.png" id="NJB_217" data-flag="@X" onclick="openSidebar('NJB_217',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/240.png" id="NJB_240" data-flag="@X" onclick="openSidebar('NJB_240',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/248.png" id="NJB_248" data-flag="@X" onclick="openSidebar('NJB_248',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/169.png" id="NJB_169" data-flag="@X" onclick="openSidebar('NJB_169',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/187.png" id="NJB_187" data-flag="@X" onclick="openSidebar('NJB_187',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/206.png" id="NJB_206" data-flag="@X" onclick="openSidebar('NJB_206',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/229.png" id="NJB_229" data-flag="@X" onclick="openSidebar('NJB_229',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/244.png" id="NJB_244" data-flag="@X" onclick="openSidebar('NJB_244',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/174.png" id="NJB_174" data-flag="@X" onclick="openSidebar('NJB_174',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/190.png" id="NJB_190" data-flag="@X" onclick="openSidebar('NJB_190',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/220.png" id="NJB_220" data-flag="@X" onclick="openSidebar('NJB_220',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/230.png" id="NJB_230" data-flag="@X" onclick="openSidebar('NJB_230',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/250.png" id="NJB_250" data-flag="@X" onclick="openSidebar('NJB_250',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/172.png" id="NJB_172" data-flag="@X" onclick="openSidebar('NJB_172',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/197.png" id="NJB_197" data-flag="@X" onclick="openSidebar('NJB_197',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/213.png" id="NJB_213" data-flag="@X" onclick="openSidebar('NJB_213',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/227.png" id="NJB_227" data-flag="@X" onclick="openSidebar('NJB_227',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/243.png" id="NJB_243" data-flag="@X" onclick="openSidebar('NJB_243',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/177.png" id="NJB_177" data-flag="@X" onclick="openSidebar('NJB_177',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/191.png" id="NJB_191" data-flag="@X" onclick="openSidebar('NJB_191',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/222.png" id="NJB_222" data-flag="@X" onclick="openSidebar('NJB_222',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/224.png" id="NJB_224" data-flag="@X" onclick="openSidebar('NJB_224',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/254.png" id="NJB_254" data-flag="@X" onclick="openSidebar('NJB_254',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/171.png" id="NJB_171" data-flag="@X" onclick="openSidebar('NJB_171',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/198.png" id="NJB_198" data-flag="@X" onclick="openSidebar('NJB_198',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/211.png" id="NJB_211" data-flag="@X" onclick="openSidebar('NJB_211',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/228.png" id="NJB_228" data-flag="@X" onclick="openSidebar('NJB_228',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/247.png" id="NJB_247" data-flag="@X" onclick="openSidebar('NJB_247',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/84.png" id="NJB_84" data-flag="@X" onclick="openSidebar('NJB_84',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/192.png" id="NJB_192" data-flag="@X" onclick="openSidebar('NJB_192',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/223.png" id="NJB_223" data-flag="@X" onclick="openSidebar('NJB_223',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/234.png" id="NJB_234" data-flag="@X" onclick="openSidebar('NJB_234',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/245.png" id="NJB_245" data-flag="@X" onclick="openSidebar('NJB_245',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/185.png" id="NJB_185" data-flag="@X" onclick="openSidebar('NJB_185',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/186.png" id="NJB_186" data-flag="@X" onclick="openSidebar('NJB_186',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/208.png" id="NJB_208" data-flag="@X" onclick="openSidebar('NJB_208',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/236.png" id="NJB_236" data-flag="@X" onclick="openSidebar('NJB_236',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/256.png" id="NJB_256" data-flag="@X" onclick="openSidebar('NJB_256',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/168.png" id="NJB_168" data-flag="@X" onclick="openSidebar('NJB_168',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/188.png" id="NJB_188" data-flag="@X" onclick="openSidebar('NJB_188',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/216.png" id="NJB_216" data-flag="@X" onclick="openSidebar('NJB_216',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/233.png" id="NJB_233" data-flag="@X" onclick="openSidebar('NJB_233',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/261.png" id="NJB_261" data-flag="@X" onclick="openSidebar('NJB_261',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/176.png" id="NJB_176" data-flag="@X" onclick="openSidebar('NJB_176',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/195.png" id="NJB_195" data-flag="@X" onclick="openSidebar('NJB_195',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/212.png" id="NJB_212" data-flag="@X" onclick="openSidebar('NJB_212',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/235.png" id="NJB_235" data-flag="@X" onclick="openSidebar('NJB_235',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/260.png" id="NJB_260" data-flag="@X" onclick="openSidebar('NJB_260',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/184.png" id="NJB_184" data-flag="@X" onclick="openSidebar('NJB_184',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/202.png" id="NJB_202" data-flag="@X" onclick="openSidebar('NJB_202',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/218.png" id="NJB_218" data-flag="@X" onclick="openSidebar('NJB_218',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/231.png" id="NJB_231" data-flag="@X" onclick="openSidebar('NJB_231',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/258.png" id="NJB_258" data-flag="@X" onclick="openSidebar('NJB_258',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/170.png" id="NJB_170" data-flag="@X" onclick="openSidebar('NJB_170',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/204.png" id="NJB_204" data-flag="@X" onclick="openSidebar('NJB_204',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/205.png" id="NJB_205" data-flag="@X" onclick="openSidebar('NJB_205',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/239.png" id="NJB_239" data-flag="@X" onclick="openSidebar('NJB_239',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/253.png" id="NJB_253" data-flag="@X" onclick="openSidebar('NJB_253',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/181.png" id="NJB_181" data-flag="@X" onclick="openSidebar('NJB_181',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/189.png" id="NJB_189" data-flag="@X" onclick="openSidebar('NJB_189',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/214.png" id="NJB_214" data-flag="@X" onclick="openSidebar('NJB_214',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/129.png" id="NJB_129" data-flag="@X" onclick="openSidebar('NJB_129',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/246.png" id="NJB_246" data-flag="@X" onclick="openSidebar('NJB_246',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/182.png" id="NJB_182" data-flag="@X" onclick="openSidebar('NJB_182',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/194.png" id="NJB_194" data-flag="@X" onclick="openSidebar('NJB_194',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/221.png" id="NJB_221" data-flag="@X" onclick="openSidebar('NJB_221',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/241.png" id="NJB_241" data-flag="@X" onclick="openSidebar('NJB_241',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/252.png" id="NJB_252" data-flag="@X" onclick="openSidebar('NJB_252',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/183.png" id="NJB_183" data-flag="@X" onclick="openSidebar('NJB_183',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/203.png" id="NJB_203" data-flag="@X" onclick="openSidebar('NJB_203',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/207.png" id="NJB_207" data-flag="@X" onclick="openSidebar('NJB_207',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/232.png" id="NJB_232" data-flag="@X" onclick="openSidebar('NJB_232',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/249.png" id="NJB_249" data-flag="@X" onclick="openSidebar('NJB_249',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/11.png" id="NJB_11" data-flag="@X" onclick="openSidebar('NJB_11',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/16.png" id="NJB_16" data-flag="@X" onclick="openSidebar('NJB_16',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/12.png" id="NJB_12" data-flag="@X" onclick="openSidebar('NJB_12',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/18.png" id="NJB_18" data-flag="@X" onclick="openSidebar('NJB_18',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/10.png" id="NJB_10" data-flag="@X" onclick="openSidebar('NJB_10',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/28.png" id="NJB_28" data-flag="@X" onclick="openSidebar('NJB_28',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/40.png" id="NJB_40" data-flag="@X" onclick="openSidebar('NJB_40',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/52.png" id="NJB_52" data-flag="@X" onclick="openSidebar('NJB_52',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/64.png" id="NJB_64" data-flag="@X" onclick="openSidebar('NJB_64',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/76.png" id="NJB_76" data-flag="@X" onclick="openSidebar('NJB_76',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/144.png" id="NJB_144" data-flag="@X" onclick="openSidebar('NJB_144',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/147.png" id="NJB_147" data-flag="@X" onclick="openSidebar('NJB_147',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/149.png" id="NJB_149" data-flag="@X" onclick="openSidebar('NJB_149',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/151.png" id="NJB_151" data-flag="@X" onclick="openSidebar('NJB_151',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/152.png" id="NJB_152" data-flag="@X" onclick="openSidebar('NJB_152',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/145.png" id="NJB_145" data-flag="@X" onclick="openSidebar('NJB_145',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/146.png" id="NJB_146" data-flag="@X" onclick="openSidebar('NJB_146',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/148.png" id="NJB_148" data-flag="@X" onclick="openSidebar('NJB_148',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/150.png" id="NJB_150" data-flag="@X" onclick="openSidebar('NJB_150',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/153.png" id="NJB_153" data-flag="@X" onclick="openSidebar('NJB_153',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/14.png" id="NJB_14" data-flag="@X" onclick="openSidebar('NJB_14',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/NJB-files/img/19_back.png" alt="/sets/NJB-files/img/19_front.png" id="NJB_19" data-flag="@XD" onclick="openSidebar('NJB_19',false)"><button class="flip-btn" onclick="imgFlip('NJB_19')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/15.png" id="NJB_15" data-flag="@X" onclick="openSidebar('NJB_15',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/17.png" id="NJB_17" data-flag="@X" onclick="openSidebar('NJB_17',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/13.png" id="NJB_13" data-flag="@X" onclick="openSidebar('NJB_13',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/29.png" id="NJB_29" data-flag="@X" onclick="openSidebar('NJB_29',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/41.png" id="NJB_41" data-flag="@X" onclick="openSidebar('NJB_41',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/53.png" id="NJB_53" data-flag="@X" onclick="openSidebar('NJB_53',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/65.png" id="NJB_65" data-flag="@X" onclick="openSidebar('NJB_65',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/77.png" id="NJB_77" data-flag="@X" onclick="openSidebar('NJB_77',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/154.png" id="NJB_154" data-flag="@X" onclick="openSidebar('NJB_154',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/157.png" id="NJB_157" data-flag="@X" onclick="openSidebar('NJB_157',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/159.png" id="NJB_159" data-flag="@X" onclick="openSidebar('NJB_159',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/160.png" id="NJB_160" data-flag="@X" onclick="openSidebar('NJB_160',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/162.png" id="NJB_162" data-flag="@X" onclick="openSidebar('NJB_162',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/155.png" id="NJB_155" data-flag="@X" onclick="openSidebar('NJB_155',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/156.png" id="NJB_156" data-flag="@X" onclick="openSidebar('NJB_156',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/158.png" id="NJB_158" data-flag="@X" onclick="openSidebar('NJB_158',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/161.png" id="NJB_161" data-flag="@X" onclick="openSidebar('NJB_161',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/163.png" id="NJB_163" data-flag="@X" onclick="openSidebar('NJB_163',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/42.png" id="NJB_42" data-flag="@X" onclick="openSidebar('NJB_42',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/54.png" id="NJB_54" data-flag="@X" onclick="openSidebar('NJB_54',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/66.png" id="NJB_66" data-flag="@X" onclick="openSidebar('NJB_66',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/78.png" id="NJB_78" data-flag="@X" onclick="openSidebar('NJB_78',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/30.png" id="NJB_30" data-flag="@X" onclick="openSidebar('NJB_30',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/31.png" id="NJB_31" data-flag="@X" onclick="openSidebar('NJB_31',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/43.png" id="NJB_43" data-flag="@X" onclick="openSidebar('NJB_43',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/55.png" id="NJB_55" data-flag="@X" onclick="openSidebar('NJB_55',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/67.png" id="NJB_67" data-flag="@X" onclick="openSidebar('NJB_67',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/79.png" id="NJB_79" data-flag="@X" onclick="openSidebar('NJB_79',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/11.png" id="NJB_11" data-flag="@X" onclick="openSidebar('NJB_11',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/16.png" id="NJB_16" data-flag="@X" onclick="openSidebar('NJB_16',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/12.png" id="NJB_12" data-flag="@X" onclick="openSidebar('NJB_12',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/18.png" id="NJB_18" data-flag="@X" onclick="openSidebar('NJB_18',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/10.png" id="NJB_10" data-flag="@X" onclick="openSidebar('NJB_10',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/28.png" id="NJB_28" data-flag="@X" onclick="openSidebar('NJB_28',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/40.png" id="NJB_40" data-flag="@X" onclick="openSidebar('NJB_40',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/52.png" id="NJB_52" data-flag="@X" onclick="openSidebar('NJB_52',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/64.png" id="NJB_64" data-flag="@X" onclick="openSidebar('NJB_64',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/76.png" id="NJB_76" data-flag="@X" onclick="openSidebar('NJB_76',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/144.png" id="NJB_144" data-flag="@X" onclick="openSidebar('NJB_144',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/147.png" id="NJB_147" data-flag="@X" onclick="openSidebar('NJB_147',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/149.png" id="NJB_149" data-flag="@X" onclick="openSidebar('NJB_149',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/151.png" id="NJB_151" data-flag="@X" onclick="openSidebar('NJB_151',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/152.png" id="NJB_152" data-flag="@X" onclick="openSidebar('NJB_152',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/145.png" id="NJB_145" data-flag="@X" onclick="openSidebar('NJB_145',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/146.png" id="NJB_146" data-flag="@X" onclick="openSidebar('NJB_146',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/148.png" id="NJB_148" data-flag="@X" onclick="openSidebar('NJB_148',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/150.png" id="NJB_150" data-flag="@X" onclick="openSidebar('NJB_150',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/153.png" id="NJB_153" data-flag="@X" onclick="openSidebar('NJB_153',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/14.png" id="NJB_14" data-flag="@X" onclick="openSidebar('NJB_14',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/NJB-files/img/19_back.png" alt="sets/NJB-files/img/19_front.png" id="NJB_19" data-flag="@XD" onclick="openSidebar('NJB_19',false)"><button class="flip-btn" onclick="imgFlip('NJB_19')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/15.png" id="NJB_15" data-flag="@X" onclick="openSidebar('NJB_15',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/17.png" id="NJB_17" data-flag="@X" onclick="openSidebar('NJB_17',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/13.png" id="NJB_13" data-flag="@X" onclick="openSidebar('NJB_13',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/29.png" id="NJB_29" data-flag="@X" onclick="openSidebar('NJB_29',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/41.png" id="NJB_41" data-flag="@X" onclick="openSidebar('NJB_41',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/53.png" id="NJB_53" data-flag="@X" onclick="openSidebar('NJB_53',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/65.png" id="NJB_65" data-flag="@X" onclick="openSidebar('NJB_65',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/77.png" id="NJB_77" data-flag="@X" onclick="openSidebar('NJB_77',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/154.png" id="NJB_154" data-flag="@X" onclick="openSidebar('NJB_154',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/157.png" id="NJB_157" data-flag="@X" onclick="openSidebar('NJB_157',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/159.png" id="NJB_159" data-flag="@X" onclick="openSidebar('NJB_159',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/160.png" id="NJB_160" data-flag="@X" onclick="openSidebar('NJB_160',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/162.png" id="NJB_162" data-flag="@X" onclick="openSidebar('NJB_162',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/155.png" id="NJB_155" data-flag="@X" onclick="openSidebar('NJB_155',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/156.png" id="NJB_156" data-flag="@X" onclick="openSidebar('NJB_156',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/158.png" id="NJB_158" data-flag="@X" onclick="openSidebar('NJB_158',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/161.png" id="NJB_161" data-flag="@X" onclick="openSidebar('NJB_161',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/163.png" id="NJB_163" data-flag="@X" onclick="openSidebar('NJB_163',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/42.png" id="NJB_42" data-flag="@X" onclick="openSidebar('NJB_42',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/54.png" id="NJB_54" data-flag="@X" onclick="openSidebar('NJB_54',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/66.png" id="NJB_66" data-flag="@X" onclick="openSidebar('NJB_66',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/78.png" id="NJB_78" data-flag="@X" onclick="openSidebar('NJB_78',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/30.png" id="NJB_30" data-flag="@X" onclick="openSidebar('NJB_30',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/31.png" id="NJB_31" data-flag="@X" onclick="openSidebar('NJB_31',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/43.png" id="NJB_43" data-flag="@X" onclick="openSidebar('NJB_43',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/55.png" id="NJB_55" data-flag="@X" onclick="openSidebar('NJB_55',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/67.png" id="NJB_67" data-flag="@X" onclick="openSidebar('NJB_67',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/79.png" id="NJB_79" data-flag="@X" onclick="openSidebar('NJB_79',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/80.png" id="NJB_80" data-flag="@X" onclick="openSidebar('NJB_80',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/82.png" id="NJB_82" data-flag="@X" onclick="openSidebar('NJB_82',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/165.png" id="NJB_165" data-flag="@X" onclick="openSidebar('NJB_165',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/164.png" id="NJB_164" data-flag="@X" onclick="openSidebar('NJB_164',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/264.png" id="NJB_264" data-flag="@X" onclick="openSidebar('NJB_264',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/263.png" id="NJB_263" data-flag="@X" onclick="openSidebar('NJB_263',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/265.png" id="NJB_265" data-flag="@X" onclick="openSidebar('NJB_265',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/262.png" id="NJB_262" data-flag="@X" onclick="openSidebar('NJB_262',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="NJB_e" data-flag="@E" onclick="openSidebar('NJB_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="NJB_e" data-flag="@E" onclick="openSidebar('NJB_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/287.png" id="NJB_287" data-flag="@X" onclick="openSidebar('NJB_287',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/288.png" id="NJB_288" data-flag="@X" onclick="openSidebar('NJB_288',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/289.png" id="NJB_289" data-flag="@X" onclick="openSidebar('NJB_289',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/290.png" id="NJB_290" data-flag="@X" onclick="openSidebar('NJB_290',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/291.png" id="NJB_291" data-flag="@X" onclick="openSidebar('NJB_291',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/292.png" id="NJB_292" data-flag="@X" onclick="openSidebar('NJB_292',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/295.png" id="NJB_295" data-flag="@X" onclick="openSidebar('NJB_295',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/293.png" id="NJB_293" data-flag="@X" onclick="openSidebar('NJB_293',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/296.png" id="NJB_296" data-flag="@X" onclick="openSidebar('NJB_296',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/294.png" id="NJB_294" data-flag="@X" onclick="openSidebar('NJB_294',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/81.png" id="NJB_81" data-flag="@X" onclick="openSidebar('NJB_81',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/83.png" id="NJB_83" data-flag="@X" onclick="openSidebar('NJB_83',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/166.png" id="NJB_166" data-flag="@X" onclick="openSidebar('NJB_166',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/266.png" id="NJB_266" data-flag="@X" onclick="openSidebar('NJB_266',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="NJB_e" data-flag="@E" onclick="openSidebar('NJB_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/267.png" id="NJB_267" data-flag="@X" onclick="openSidebar('NJB_267',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/268.png" id="NJB_268" data-flag="@X" onclick="openSidebar('NJB_268',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/269.png" id="NJB_269" data-flag="@X" onclick="openSidebar('NJB_269',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/270.png" id="NJB_270" data-flag="@X" onclick="openSidebar('NJB_270',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/271.png" id="NJB_271" data-flag="@X" onclick="openSidebar('NJB_271',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/272.png" id="NJB_272" data-flag="@X" onclick="openSidebar('NJB_272',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/273.png" id="NJB_273" data-flag="@X" onclick="openSidebar('NJB_273',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/274.png" id="NJB_274" data-flag="@X" onclick="openSidebar('NJB_274',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/275.png" id="NJB_275" data-flag="@X" onclick="openSidebar('NJB_275',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/276.png" id="NJB_276" data-flag="@X" onclick="openSidebar('NJB_276',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/277.png" id="NJB_277" data-flag="@X" onclick="openSidebar('NJB_277',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/278.png" id="NJB_278" data-flag="@X" onclick="openSidebar('NJB_278',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/279.png" id="NJB_279" data-flag="@X" onclick="openSidebar('NJB_279',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/280.png" id="NJB_280" data-flag="@X" onclick="openSidebar('NJB_280',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/281.png" id="NJB_281" data-flag="@X" onclick="openSidebar('NJB_281',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/282.png" id="NJB_282" data-flag="@X" onclick="openSidebar('NJB_282',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/283.png" id="NJB_283" data-flag="@X" onclick="openSidebar('NJB_283',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/284.png" id="NJB_284" data-flag="@X" onclick="openSidebar('NJB_284',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/285.png" id="NJB_285" data-flag="@X" onclick="openSidebar('NJB_285',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/286.png" id="NJB_286" data-flag="@X" onclick="openSidebar('NJB_286',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/80.png" id="NJB_80" data-flag="@X" onclick="openSidebar('NJB_80',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/82.png" id="NJB_82" data-flag="@X" onclick="openSidebar('NJB_82',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/165.png" id="NJB_165" data-flag="@X" onclick="openSidebar('NJB_165',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/164.png" id="NJB_164" data-flag="@X" onclick="openSidebar('NJB_164',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/264.png" id="NJB_264" data-flag="@X" onclick="openSidebar('NJB_264',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/263.png" id="NJB_263" data-flag="@X" onclick="openSidebar('NJB_263',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/265.png" id="NJB_265" data-flag="@X" onclick="openSidebar('NJB_265',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/262.png" id="NJB_262" data-flag="@X" onclick="openSidebar('NJB_262',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="NJB_e" data-flag="@E" onclick="openSidebar('NJB_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="NJB_e" data-flag="@E" onclick="openSidebar('NJB_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/287.png" id="NJB_287" data-flag="@X" onclick="openSidebar('NJB_287',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/288.png" id="NJB_288" data-flag="@X" onclick="openSidebar('NJB_288',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/289.png" id="NJB_289" data-flag="@X" onclick="openSidebar('NJB_289',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/290.png" id="NJB_290" data-flag="@X" onclick="openSidebar('NJB_290',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/291.png" id="NJB_291" data-flag="@X" onclick="openSidebar('NJB_291',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/292.png" id="NJB_292" data-flag="@X" onclick="openSidebar('NJB_292',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/295.png" id="NJB_295" data-flag="@X" onclick="openSidebar('NJB_295',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/293.png" id="NJB_293" data-flag="@X" onclick="openSidebar('NJB_293',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/296.png" id="NJB_296" data-flag="@X" onclick="openSidebar('NJB_296',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/294.png" id="NJB_294" data-flag="@X" onclick="openSidebar('NJB_294',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/81.png" id="NJB_81" data-flag="@X" onclick="openSidebar('NJB_81',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/83.png" id="NJB_83" data-flag="@X" onclick="openSidebar('NJB_83',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/166.png" id="NJB_166" data-flag="@X" onclick="openSidebar('NJB_166',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/266.png" id="NJB_266" data-flag="@X" onclick="openSidebar('NJB_266',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="NJB_e" data-flag="@E" onclick="openSidebar('NJB_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/267.png" id="NJB_267" data-flag="@X" onclick="openSidebar('NJB_267',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/268.png" id="NJB_268" data-flag="@X" onclick="openSidebar('NJB_268',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/269.png" id="NJB_269" data-flag="@X" onclick="openSidebar('NJB_269',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/270.png" id="NJB_270" data-flag="@X" onclick="openSidebar('NJB_270',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/271.png" id="NJB_271" data-flag="@X" onclick="openSidebar('NJB_271',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/272.png" id="NJB_272" data-flag="@X" onclick="openSidebar('NJB_272',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/273.png" id="NJB_273" data-flag="@X" onclick="openSidebar('NJB_273',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/274.png" id="NJB_274" data-flag="@X" onclick="openSidebar('NJB_274',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/275.png" id="NJB_275" data-flag="@X" onclick="openSidebar('NJB_275',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/276.png" id="NJB_276" data-flag="@X" onclick="openSidebar('NJB_276',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/277.png" id="NJB_277" data-flag="@X" onclick="openSidebar('NJB_277',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/278.png" id="NJB_278" data-flag="@X" onclick="openSidebar('NJB_278',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/279.png" id="NJB_279" data-flag="@X" onclick="openSidebar('NJB_279',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/280.png" id="NJB_280" data-flag="@X" onclick="openSidebar('NJB_280',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/281.png" id="NJB_281" data-flag="@X" onclick="openSidebar('NJB_281',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/282.png" id="NJB_282" data-flag="@X" onclick="openSidebar('NJB_282',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/283.png" id="NJB_283" data-flag="@X" onclick="openSidebar('NJB_283',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/284.png" id="NJB_284" data-flag="@X" onclick="openSidebar('NJB_284',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/285.png" id="NJB_285" data-flag="@X" onclick="openSidebar('NJB_285',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/286.png" id="NJB_286" data-flag="@X" onclick="openSidebar('NJB_286',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/314.png" id="NJB_314" data-flag="@X" onclick="openSidebar('NJB_314',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/316.png" id="NJB_316" data-flag="@X" onclick="openSidebar('NJB_316',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/315.png" id="NJB_315" data-flag="@X" onclick="openSidebar('NJB_315',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/298.png" id="NJB_298" data-flag="@X" onclick="openSidebar('NJB_298',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/299.png" id="NJB_299" data-flag="@X" onclick="openSidebar('NJB_299',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/297.png" id="NJB_297" data-flag="@X" onclick="openSidebar('NJB_297',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/300.png" id="NJB_300" data-flag="@X" onclick="openSidebar('NJB_300',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/301.png" id="NJB_301" data-flag="@X" onclick="openSidebar('NJB_301',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/302.png" id="NJB_302" data-flag="@X" onclick="openSidebar('NJB_302',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/303.png" id="NJB_303" data-flag="@X" onclick="openSidebar('NJB_303',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/304.png" id="NJB_304" data-flag="@X" onclick="openSidebar('NJB_304',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/306.png" id="NJB_306" data-flag="@X" onclick="openSidebar('NJB_306',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/305.png" id="NJB_305" data-flag="@X" onclick="openSidebar('NJB_305',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/311.png" id="NJB_311" data-flag="@X" onclick="openSidebar('NJB_311',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/307.png" id="NJB_307" data-flag="@X" onclick="openSidebar('NJB_307',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/310.png" id="NJB_310" data-flag="@X" onclick="openSidebar('NJB_310',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/309.png" id="NJB_309" data-flag="@X" onclick="openSidebar('NJB_309',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/312.png" id="NJB_312" data-flag="@X" onclick="openSidebar('NJB_312',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/308.png" id="NJB_308" data-flag="@X" onclick="openSidebar('NJB_308',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/NJB-files/img/313.png" id="NJB_313" data-flag="@X" onclick="openSidebar('NJB_313',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/314.png" id="NJB_314" data-flag="@X" onclick="openSidebar('NJB_314',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/316.png" id="NJB_316" data-flag="@X" onclick="openSidebar('NJB_316',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/315.png" id="NJB_315" data-flag="@X" onclick="openSidebar('NJB_315',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/298.png" id="NJB_298" data-flag="@X" onclick="openSidebar('NJB_298',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/299.png" id="NJB_299" data-flag="@X" onclick="openSidebar('NJB_299',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/297.png" id="NJB_297" data-flag="@X" onclick="openSidebar('NJB_297',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/300.png" id="NJB_300" data-flag="@X" onclick="openSidebar('NJB_300',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/301.png" id="NJB_301" data-flag="@X" onclick="openSidebar('NJB_301',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/302.png" id="NJB_302" data-flag="@X" onclick="openSidebar('NJB_302',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/303.png" id="NJB_303" data-flag="@X" onclick="openSidebar('NJB_303',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/304.png" id="NJB_304" data-flag="@X" onclick="openSidebar('NJB_304',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/306.png" id="NJB_306" data-flag="@X" onclick="openSidebar('NJB_306',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/305.png" id="NJB_305" data-flag="@X" onclick="openSidebar('NJB_305',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/311.png" id="NJB_311" data-flag="@X" onclick="openSidebar('NJB_311',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/307.png" id="NJB_307" data-flag="@X" onclick="openSidebar('NJB_307',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/310.png" id="NJB_310" data-flag="@X" onclick="openSidebar('NJB_310',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/309.png" id="NJB_309" data-flag="@X" onclick="openSidebar('NJB_309',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/312.png" id="NJB_312" data-flag="@X" onclick="openSidebar('NJB_312',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/308.png" id="NJB_308" data-flag="@X" onclick="openSidebar('NJB_308',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/NJB-files/img/313.png" id="NJB_313" data-flag="@X" onclick="openSidebar('NJB_313',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="NJB_er" data-flag="@E" onclick="openSidebar('NJB_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -683,13 +699,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -822,13 +838,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -982,16 +1001,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -1001,7 +1020,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

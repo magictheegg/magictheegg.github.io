@@ -28,7 +28,7 @@
 			}
 			if ("v_mana" in card_stats)
 			{
-				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="/img/' + card_stats.v_mana + '">');
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
 			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
@@ -81,7 +81,7 @@
 				}
 				if ("v_mana" in card_stats)
 				{
-					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="/img/' + card_stats.v_mana + '">');
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
@@ -118,15 +118,15 @@
 			img.loading = "lazy";
 
 			if ("position" in card_stats) {
-				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			}
 			else {
-				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			}
 			
 			const link = document.createElement("a");
 			
-			const url = new URL('card', window.location.origin);
+			const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			const params = {
 				set: card_stats.set,
 				num: card_stats.number,
@@ -135,7 +135,7 @@
 			for (const key in params) {
 				url.searchParams.append(key, params[key]);
 			}
-			link.href = url;
+			link.href = url.pathname + url.search;
 
 			link.appendChild(img);
 
@@ -157,6 +157,19 @@
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
+				imgFlipBtn.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+				imgFlipBtn.style.backgroundSize = "contain";
+				imgFlipBtn.style.backgroundPosition = "center";
+				imgFlipBtn.onmouseover = function() {
+					this.style.background = "url('" + rootPath + "/img/flip-hover.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
+				imgFlipBtn.onmouseout = function() {
+					this.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
 				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
 				imgContainer.appendChild(imgFlipBtn);
 			}

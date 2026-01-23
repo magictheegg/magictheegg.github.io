@@ -1,19 +1,22 @@
 ﻿<html>
 <head>
   <title>Kahembo: New Dawn</title>
-  <link rel="icon" type="image/x-icon" href="/sets/KND-files/icon.png">
-  <link rel="stylesheet" href="/resources/mana.css">
-  <link rel="stylesheet" href="/resources/header.css">
-  <link rel="stylesheet" href="/resources/card-text.css">
+  <link rel="icon" type="image/x-icon" href="../sets/KND-files/icon.png">
+  <link rel="stylesheet" href="../resources/mana.css">
+  <link rel="stylesheet" href="../resources/header.css">
+  <link rel="stylesheet" href="../resources/card-text.css">
 </head>
+<script title="root">
+	const rootPath = "..";
+</script>
 <style>
 	@font-face {
 		font-family: 'Beleren Small Caps';
-		src: url('/resources/beleren-caps.ttf');
+		src: url('../resources/beleren-caps.ttf');
 	}
 	@font-face {
 		font-family: Beleren;
-		src: url('/resources/beleren.ttf');
+		src: url('../resources/beleren.ttf');
 	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
@@ -185,7 +188,7 @@
 		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
-		background: url('/img/flip.png') no-repeat;
+		background: url('../img/flip.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -199,7 +202,7 @@
 		opacity: 0.5;
 	}
 	.img-container .btn:hover {
-		background: url('/img/flip-hover.png') no-repeat;
+		background: url('../img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 	}
@@ -240,7 +243,7 @@
 		font-size: 34px;
 	}
 	.close-btn {
-		background: url('/img/close.png') no-repeat;
+		background: url('../img/close.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 50px;
@@ -249,7 +252,7 @@
 		cursor: pointer;
 	}
 	.copy-btn {
-		background: url('/img/copy.png') no-repeat;
+		background: url('../img/copy.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 50px;
@@ -303,24 +306,40 @@
 <body>
 	<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 	<div class="banner">
 		<div class="banner-container">
 			<div class="set-banner" id="set-banner">
-				<img class="set-logo" src="/sets/KND-files/icon.png">
+				<img class="set-logo" src="../sets/KND-files/icon.png">
 				<div class="banner-text">
 					<div class="set-title">Kahembo: New Dawn</div>
-					<div class="extras-container">			<a onclick="randomSetCard()">I'm Feeling Lucky</a>
+					<div class="extras-container"><a href="../sets/KND-files/KND-draft.txt" download>Draft</a><div class="dot"> • </div>
+			<a onclick="packOnePickOne()">P1P1</a><div class="dot"> • </div>
+<a href="../sets/KND-files/KND.xml" download>Play</a><div class="dot"> • </div>
+			<a onclick="randomSetCard()">I'm Feeling Lucky</a>
 				</div>
 			</div>
 		</div>
@@ -363,13 +382,13 @@
 		let p1p1cards = [];
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('/lists/all-cards.json')
+			await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -470,7 +489,7 @@
 				}
 
 
-			await fetch('/sets/KND-files/KND-draft.txt')
+			await fetch(rootPath + '/sets/KND-files/KND-draft.txt')
 				.then(response => response.text())
 				.then(text => {
 					draft_file = text.replace(/},\n\t]/g, '}\n\t]');
@@ -619,7 +638,7 @@
 					{
 						card_images.push({
 							name: card.name,
-							url: card.image_uris.en
+							url: rootPath + '/' + card.image_uris.en
 						});
 					}
 
@@ -1050,7 +1069,7 @@
 			}
 			if ("v_mana" in card_stats)
 			{
-				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="/img/' + card_stats.v_mana + '">');
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
 			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
@@ -1103,7 +1122,7 @@
 				}
 				if ("v_mana" in card_stats)
 				{
-					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="/img/' + card_stats.v_mana + '">');
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
@@ -1140,15 +1159,15 @@
 			img.loading = "lazy";
 
 			if ("position" in card_stats) {
-				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			}
 			else {
-				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			}
 			
 			const link = document.createElement("a");
 			
-			const url = new URL('card', window.location.origin);
+			const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			const params = {
 				set: card_stats.set,
 				num: card_stats.number,
@@ -1157,7 +1176,7 @@
 			for (const key in params) {
 				url.searchParams.append(key, params[key]);
 			}
-			link.href = url;
+			link.href = url.pathname + url.search;
 
 			link.appendChild(img);
 
@@ -1179,6 +1198,19 @@
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
+				imgFlipBtn.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+				imgFlipBtn.style.backgroundSize = "contain";
+				imgFlipBtn.style.backgroundPosition = "center";
+				imgFlipBtn.onmouseover = function() {
+					this.style.background = "url('" + rootPath + "/img/flip-hover.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
+				imgFlipBtn.onmouseout = function() {
+					this.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
 				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
 				imgContainer.appendChild(imgFlipBtn);
 			}
@@ -1280,9 +1312,9 @@
 		});
 
 		function search() {
-			const url = new URL('search', window.location.origin);
+			const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			url.searchParams.append('search', document.getElementById("search").value);
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		function randomSetCard() {
@@ -1297,7 +1329,7 @@
 			let i = Math.floor(Math.random() * (set_card_list.length + 1));
 			let random_card = set_card_list[i];
 
-			const url = new URL('card', window.location.origin);
+			const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			const params = {
 				set: random_card.set,
 				num: random_card.number,
@@ -1307,14 +1339,14 @@
 				url.searchParams.append(key, params[key]);
 			}
 
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -1324,7 +1356,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

@@ -8,15 +8,18 @@ def generateHTML(codes):
 	html_content = '''<html>
 <head>
 	<title>Deckbuilder</title>
-	<link rel="icon" type="image/x-icon" href="/img/deck.png">
-	<link rel="stylesheet" href="resources/mana.css">
-	<link rel="stylesheet" href="/resources/header.css">
-	<link rel="stylesheet" href="/resources/card-text.css">
+	<link rel="icon" type="image/x-icon" href="./img/deck.png">
+	<link rel="stylesheet" href="./resources/mana.css">
+	<link rel="stylesheet" href="./resources/header.css">
+	<link rel="stylesheet" href="./resources/card-text.css">
 </head>
+<script title="root">
+	const rootPath = ".";
+</script>
 <style>
 	@font-face {
 		font-family: Beleren;
-		src: url('/resources/beleren.ttf');
+		src: url('./resources/beleren.ttf');
 	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
@@ -107,7 +110,7 @@ def generateHTML(codes):
 		box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
 		outline: 0;
 	}
-	button:disabled {
+	button:disabled, select:disabled {
 		cursor: auto;
 		background-color: #f7fafa;
 		font-style: italic;
@@ -191,7 +194,7 @@ def generateHTML(codes):
 		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
-		background: url('img/flip.png') no-repeat;
+		background: url('./img/flip.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -206,7 +209,7 @@ def generateHTML(codes):
 		box-shadow: none;
 	}
 	.img-container .btn:hover {
-		background: url('img/flip-hover.png') no-repeat;
+		background: url('./img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 	}
@@ -400,13 +403,22 @@ def generateHTML(codes):
 <body>
 	<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png" onclick="goToSearch()">
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+	</script>
 	<div id="myContextMenu" class="rc-menu">
 		<ul>
 			<li id="add-to-deck">Add to Deck</li>
@@ -539,7 +551,7 @@ def generateHTML(codes):
 
 	html_content += '''
 
-			await fetch('/lists/all-sets.json')
+			await fetch(rootPath + '/lists/all-sets.json')
 					.then(response => response.json())
 					.then(data => {
 						sets_json = data; 
@@ -727,6 +739,49 @@ def generateHTML(codes):
 	html_content += '''
 
 		function preSearch() {
+			const searchTerms = document.getElementById("search").value.toLowerCase();
+			const tokens = tokenizeTerms(searchTerms) || [];
+			const sortBySelect = document.getElementById("sort-by");
+			const sortOrderSelect = document.getElementById("sort-order");
+
+			sortBySelect.disabled = false;
+			sortOrderSelect.disabled = false;
+
+			tokens.forEach(token => {
+				if (token.startsWith("sort:")) {
+					const val = token.substring(5);
+					const map = {
+						"name": "name",
+						"set": "set-code",
+						"mv": "mv",
+						"color": "color",
+						"rarity": "rarity",
+						"cube": "cube"
+					};
+					if (map[val]) {
+						const option = Array.from(sortBySelect.options).find(opt => opt.value === map[val]);
+						if (option) {
+							sortBySelect.value = map[val];
+							sortBySelect.disabled = true;
+						}
+					}
+				}
+				if (token.startsWith("direction:")) {
+					const val = token.substring(10);
+					const map = {
+						"asc": "ascending",
+						"desc": "descending"
+					};
+					if (map[val]) {
+						const option = Array.from(sortOrderSelect.options).find(opt => opt.value === map[val]);
+						if (option) {
+							sortOrderSelect.value = map[val];
+							sortOrderSelect.disabled = true;
+						}
+					}
+				}
+			});
+
 			card_list_arrayified.sort(compareFunction);
 			if (document.getElementById("sort-order").value == "descending")
 			{
@@ -1002,13 +1057,13 @@ def generateHTML(codes):
 
 							if (key == "sideboard")
 							{
-								del_btn.src = "/img/sb-delete.png";
+								del_btn.src = rootPath + "/img/sb-delete.png";
 								del_btn.onclick = function() {
 									sideboard.splice(sideboard.indexOf(card), 1);
 									processDeck();
 								}
 
-								add_btn.src = "/img/sb-add.png";
+								add_btn.src = rootPath + "/img/sb-add.png";
 								add_btn.onclick = function() {
 									sideboard.push(card);
 									processDeck();
@@ -1021,13 +1076,13 @@ def generateHTML(codes):
 							}
 							else
 							{
-								del_btn.src = "/img/delete.png";
+								del_btn.src = rootPath + "/img/delete.png";
 								del_btn.onclick = function() {
 									deck.splice(deck.indexOf(card), 1);
 									processDeck();
 								}
 
-								add_btn.src = "/img/add.png";
+								add_btn.src = rootPath + "/img/add.png";
 								add_btn.onclick = function() {
 									deck.push(card);
 									processDeck();
@@ -1098,13 +1153,13 @@ def generateHTML(codes):
 
 							if (key == "sideboard")
 							{
-								del_btn.src = "/img/sb-delete.png";
+								del_btn.src = rootPath + "/img/sb-delete.png";
 								del_btn.onclick = function() {
 									sideboard.splice(sideboard.indexOf(card), 1);
 									processDeck();
 								}
 
-								add_btn.src = "/img/sb-add.png";
+								add_btn.src = rootPath + "/img/sb-add.png";
 								add_btn.onclick = function() {
 									sideboard.push(card);
 									processDeck();
@@ -1117,13 +1172,13 @@ def generateHTML(codes):
 							}
 							else
 							{
-								del_btn.src = "/img/delete.png";
+								del_btn.src = rootPath + "/img/delete.png";
 								del_btn.onclick = function() {
 									deck.splice(deck.indexOf(card), 1);
 									processDeck();
 								}
 
-								add_btn.src = "/img/add.png";
+								add_btn.src = rootPath + "/img/add.png";
 								add_btn.onclick = function() {
 									deck.push(card);
 									processDeck();
@@ -1233,7 +1288,7 @@ def generateHTML(codes):
 		}
 
 		function goToSearch() {
-			window.location = ("/search");
+			window.location = (rootPath + "/search");
 		}
 
 		document.getElementById("search").addEventListener("keypress", function(event) {

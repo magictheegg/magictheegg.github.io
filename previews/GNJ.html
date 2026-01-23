@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/GNJ-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/GNJ-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>GNJ visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,467 +181,480 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/GNJ-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/GNJ-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/GNJ-files/logo.png">
+		<img class="logo" src="../sets/GNJ-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/27_Lijing, the True Divinity.jpg" id="GNJ_27_Lijing, the True Divinity" data-flag="@X" onclick="openSidebar('GNJ_27_Lijing, the True Divinity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/75_Shigurei, the Floodbringer.jpg" id="GNJ_75_Shigurei, the Floodbringer" data-flag="@X" onclick="openSidebar('GNJ_75_Shigurei, the Floodbringer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/110_Lizhao, Lord of the Yaogu.jpg" id="GNJ_110_Lizhao, Lord of the Yaogu" data-flag="@X" onclick="openSidebar('GNJ_110_Lizhao, Lord of the Yaogu',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/152_Hao'Tai, the Ancient One.jpg" id="GNJ_152_HaoTai, the Ancient One" data-flag="@X" onclick="openSidebar('GNJ_152_HaoTai, the Ancient One',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/208_Qiyan, Serpent of Seven Heads.jpg" id="GNJ_208_Qiyan, Serpent of Seven Heads" data-flag="@X" onclick="openSidebar('GNJ_208_Qiyan, Serpent of Seven Heads',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/40_Twin Lis of the Divine Realm.jpg" id="GNJ_40_Twin Lis of the Divine Realm" data-flag="@X" onclick="openSidebar('GNJ_40_Twin Lis of the Divine Realm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/58_Ing'Wei of the Flood Realm.jpg" id="GNJ_58_IngWei of the Flood Realm" data-flag="@X" onclick="openSidebar('GNJ_58_IngWei of the Flood Realm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/130_Tzelin of the Demon Realm.jpg" id="GNJ_130_Tzelin of the Demon Realm" data-flag="@X" onclick="openSidebar('GNJ_130_Tzelin of the Demon Realm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/175_Xiusheng of the Dragon Realm.jpg" id="GNJ_175_Xiusheng of the Dragon Realm" data-flag="@X" onclick="openSidebar('GNJ_175_Xiusheng of the Dragon Realm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/184_Chiu of the Wild Realm.jpg" id="GNJ_184_Chiu of the Wild Realm" data-flag="@X" onclick="openSidebar('GNJ_184_Chiu of the Wild Realm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/22_Heping, Master Arbitrator.jpg" id="GNJ_22_Heping, Master Arbitrator" data-flag="@X" onclick="openSidebar('GNJ_22_Heping, Master Arbitrator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/48_Artful Coercion.jpg" id="GNJ_48_Artful Coercion" data-flag="@X" onclick="openSidebar('GNJ_48_Artful Coercion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/90_Admirer of the Lost.jpg" id="GNJ_90_Admirer of the Lost" data-flag="@X" onclick="openSidebar('GNJ_90_Admirer of the Lost',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/141_Brutal Descent.jpg" id="GNJ_141_Brutal Descent" data-flag="@X" onclick="openSidebar('GNJ_141_Brutal Descent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/194_Jiayin, the Harmonious.jpg" id="GNJ_194_Jiayin, the Harmonious" data-flag="@X" onclick="openSidebar('GNJ_194_Jiayin, the Harmonious',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/1_Achieve Greatness.jpg" id="GNJ_1_Achieve Greatness" data-flag="@X" onclick="openSidebar('GNJ_1_Achieve Greatness',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/52_Chian, Augury Adept.jpg" id="GNJ_52_Chian, Augury Adept" data-flag="@X" onclick="openSidebar('GNJ_52_Chian, Augury Adept',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/93_Bane of the Folded Fan.jpg" id="GNJ_93_Bane of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_93_Bane of the Folded Fan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/144_Crimson Hellmaw.jpg" id="GNJ_144_Crimson Hellmaw" data-flag="@X" onclick="openSidebar('GNJ_144_Crimson Hellmaw',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/195_Jindao, the Coiled Prophet.jpg" id="GNJ_195_Jindao, the Coiled Prophet" data-flag="@X" onclick="openSidebar('GNJ_195_Jindao, the Coiled Prophet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/4_Call to Attention.jpg" id="GNJ_4_Call to Attention" data-flag="@X" onclick="openSidebar('GNJ_4_Call to Attention',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/53_Coax Under.jpg" id="GNJ_53_Coax Under" data-flag="@X" onclick="openSidebar('GNJ_53_Coax Under',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/107_Kai'Jun, the Annihilator.jpg" id="GNJ_107_KaiJun, the Annihilator" data-flag="@X" onclick="openSidebar('GNJ_107_KaiJun, the Annihilator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/145_Desecrate Antiquities.jpg" id="GNJ_145_Desecrate Antiquities" data-flag="@X" onclick="openSidebar('GNJ_145_Desecrate Antiquities',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/198_Kou, Primal Shepherd.jpg" id="GNJ_198_Kou, Primal Shepherd" data-flag="@X" onclick="openSidebar('GNJ_198_Kou, Primal Shepherd',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/9_Cou Ling of Many Tails.jpg" id="GNJ_9_Cou Ling of Many Tails" data-flag="@X" onclick="openSidebar('GNJ_9_Cou Ling of Many Tails',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/67_Mull Over.jpg" id="GNJ_67_Mull Over" data-flag="@X" onclick="openSidebar('GNJ_67_Mull Over',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/108_Kai'Long, Dark Immolator.jpg" id="GNJ_108_KaiLong, Dark Immolator" data-flag="@X" onclick="openSidebar('GNJ_108_KaiLong, Dark Immolator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/153_Hatsuo, Honored General.jpg" id="GNJ_153_Hatsuo, Honored General" data-flag="@X" onclick="openSidebar('GNJ_153_Hatsuo, Honored General',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/200_Loamwrecker.jpg" id="GNJ_200_Loamwrecker" data-flag="@X" onclick="openSidebar('GNJ_200_Loamwrecker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/12_Diao, Dragoon Captain.jpg" id="GNJ_12_Diao, Dragoon Captain" data-flag="@X" onclick="openSidebar('GNJ_12_Diao, Dragoon Captain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/72_Oshin, Keeper of the Shoal.jpg" id="GNJ_72_Oshin, Keeper of the Shoal" data-flag="@X" onclick="openSidebar('GNJ_72_Oshin, Keeper of the Shoal',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/109_Kugoja, Perished Conduit.jpg" id="GNJ_109_Kugoja, Perished Conduit" data-flag="@X" onclick="openSidebar('GNJ_109_Kugoja, Perished Conduit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/158_Mieng, Who Dances With Dragons.jpg" id="GNJ_158_Mieng, Who Dances With Dragons" data-flag="@X" onclick="openSidebar('GNJ_158_Mieng, Who Dances With Dragons',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/206_Pecking Order.jpg" id="GNJ_206_Pecking Order" data-flag="@X" onclick="openSidebar('GNJ_206_Pecking Order',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/19_Gao'Wu, Master Soothsayer.jpg" id="GNJ_19_GaoWu, Master Soothsayer" data-flag="@X" onclick="openSidebar('GNJ_19_GaoWu, Master Soothsayer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/74_Pon, Twister of Forms.jpg" id="GNJ_74_Pon, Twister of Forms" data-flag="@X" onclick="openSidebar('GNJ_74_Pon, Twister of Forms',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/119_Rise from the Depths.jpg" id="GNJ_119_Rise from the Depths" data-flag="@X" onclick="openSidebar('GNJ_119_Rise from the Depths',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/159_Overzealous Tutor.jpg" id="GNJ_159_Overzealous Tutor" data-flag="@X" onclick="openSidebar('GNJ_159_Overzealous Tutor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/212_Savage Congregation.jpg" id="GNJ_212_Savage Congregation" data-flag="@X" onclick="openSidebar('GNJ_212_Savage Congregation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/21_General of the Folded Fan.jpg" id="GNJ_21_General of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_21_General of the Folded Fan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/77_Shojiro, the Wavewaker.jpg" id="GNJ_77_Shojiro, the Wavewaker" data-flag="@X" onclick="openSidebar('GNJ_77_Shojiro, the Wavewaker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/120_Rummage Through Remains.jpg" id="GNJ_120_Rummage Through Remains" data-flag="@X" onclick="openSidebar('GNJ_120_Rummage Through Remains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/161_Recalibrate.jpg" id="GNJ_161_Recalibrate" data-flag="@X" onclick="openSidebar('GNJ_161_Recalibrate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/214_Sonwu, the Mighty.jpg" id="GNJ_214_Sonwu, the Mighty" data-flag="@X" onclick="openSidebar('GNJ_214_Sonwu, the Mighty',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/26_Kiri, Cloudwalker.jpg" id="GNJ_26_Kiri, Cloudwalker" data-flag="@X" onclick="openSidebar('GNJ_26_Kiri, Cloudwalker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/79_Sun Yun, Master of Self.jpg" id="GNJ_79_Sun Yun, Master of Self" data-flag="@X" onclick="openSidebar('GNJ_79_Sun Yun, Master of Self',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/123_Seng, Fevered Fanatic.jpg" id="GNJ_123_Seng, Fevered Fanatic" data-flag="@X" onclick="openSidebar('GNJ_123_Seng, Fevered Fanatic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/170_Tseng, Warden of the Peak.jpg" id="GNJ_170_Tseng, Warden of the Peak" data-flag="@X" onclick="openSidebar('GNJ_170_Tseng, Warden of the Peak',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/220_Wild Germination.jpg" id="GNJ_220_Wild Germination" data-flag="@X" onclick="openSidebar('GNJ_220_Wild Germination',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/33_Quell Mutiny.jpg" id="GNJ_33_Quell Mutiny" data-flag="@X" onclick="openSidebar('GNJ_33_Quell Mutiny',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/86_Way of Kindred Mind.jpg" id="GNJ_86_Way of Kindred Mind" data-flag="@X" onclick="openSidebar('GNJ_86_Way of Kindred Mind',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/132_Undeath Comes.jpg" id="GNJ_132_Undeath Comes" data-flag="@X" onclick="openSidebar('GNJ_132_Undeath Comes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/174_Wun Su, Guru of the Staff.jpg" id="GNJ_174_Wun Su, Guru of the Staff" data-flag="@X" onclick="openSidebar('GNJ_174_Wun Su, Guru of the Staff',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/221_Xiejuan, the Regal Beast.jpg" id="GNJ_221_Xiejuan, the Regal Beast" data-flag="@X" onclick="openSidebar('GNJ_221_Xiejuan, the Regal Beast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/45_Yujei, Crane Companion.jpg" id="GNJ_45_Yujei, Crane Companion" data-flag="@X" onclick="openSidebar('GNJ_45_Yujei, Crane Companion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/46_Albino Drake.jpg" id="GNJ_46_Albino Drake" data-flag="@X" onclick="openSidebar('GNJ_46_Albino Drake',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/95_Descend into Insanity.jpg" id="GNJ_95_Descend into Insanity" data-flag="@X" onclick="openSidebar('GNJ_95_Descend into Insanity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/134_Anointed General.jpg" id="GNJ_134_Anointed General" data-flag="@X" onclick="openSidebar('GNJ_134_Anointed General',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/179_Blades of the Many.jpg" id="GNJ_179_Blades of the Many" data-flag="@X" onclick="openSidebar('GNJ_179_Blades of the Many',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/2_Aerial Adept.jpg" id="GNJ_2_Aerial Adept" data-flag="@X" onclick="openSidebar('GNJ_2_Aerial Adept',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/49_Barterer of Passage.jpg" id="GNJ_49_Barterer of Passage" data-flag="@X" onclick="openSidebar('GNJ_49_Barterer of Passage',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/97_Disinter.jpg" id="GNJ_97_Disinter" data-flag="@X" onclick="openSidebar('GNJ_97_Disinter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/137_Bone Pit Raptor.jpg" id="GNJ_137_Bone Pit Raptor" data-flag="@X" onclick="openSidebar('GNJ_137_Bone Pit Raptor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/183_Bringer of the Pack.jpg" id="GNJ_183_Bringer of the Pack" data-flag="@X" onclick="openSidebar('GNJ_183_Bringer of the Pack',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/3_Battle Acumen.jpg" id="GNJ_3_Battle Acumen" data-flag="@X" onclick="openSidebar('GNJ_3_Battle Acumen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/56_Deep in Thought.jpg" id="GNJ_56_Deep in Thought" data-flag="@X" onclick="openSidebar('GNJ_56_Deep in Thought',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/100_Emissary of the Wicked.jpg" id="GNJ_100_Emissary of the Wicked" data-flag="@X" onclick="openSidebar('GNJ_100_Emissary of the Wicked',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/138_Brazen Chimera.jpg" id="GNJ_138_Brazen Chimera" data-flag="@X" onclick="openSidebar('GNJ_138_Brazen Chimera',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/186_Courageous Charge.jpg" id="GNJ_186_Courageous Charge" data-flag="@X" onclick="openSidebar('GNJ_186_Courageous Charge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/6_The Charmer's Curse.jpg" id="GNJ_6_The Charmers Curse" data-flag="@X" onclick="openSidebar('GNJ_6_The Charmers Curse',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/59_Isle Conservator.jpg" id="GNJ_59_Isle Conservator" data-flag="@X" onclick="openSidebar('GNJ_59_Isle Conservator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/101_Engulfing Incubus.jpg" id="GNJ_101_Engulfing Incubus" data-flag="@X" onclick="openSidebar('GNJ_101_Engulfing Incubus',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/140_Brothers in Arms.jpg" id="GNJ_140_Brothers in Arms" data-flag="@X" onclick="openSidebar('GNJ_140_Brothers in Arms',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/189_Entangled Roots.jpg" id="GNJ_189_Entangled Roots" data-flag="@X" onclick="openSidebar('GNJ_189_Entangled Roots',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/7_Chords of Order.jpg" id="GNJ_7_Chords of Order" data-flag="@X" onclick="openSidebar('GNJ_7_Chords of Order',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/61_Lost Among the Lilies.jpg" id="GNJ_61_Lost Among the Lilies" data-flag="@X" onclick="openSidebar('GNJ_61_Lost Among the Lilies',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/103_Fleshwrithe Ghoul.jpg" id="GNJ_103_Fleshwrithe Ghoul" data-flag="@X" onclick="openSidebar('GNJ_103_Fleshwrithe Ghoul',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/146_Dragon Grip.jpg" id="GNJ_146_Dragon Grip" data-flag="@X" onclick="openSidebar('GNJ_146_Dragon Grip',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/190_Fallen Forest Wolf.jpg" id="GNJ_190_Fallen Forest Wolf" data-flag="@X" onclick="openSidebar('GNJ_190_Fallen Forest Wolf',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/10_Crane Legionnaire.jpg" id="GNJ_10_Crane Legionnaire" data-flag="@X" onclick="openSidebar('GNJ_10_Crane Legionnaire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/65_Master of Tranquility.jpg" id="GNJ_65_Master of Tranquility" data-flag="@X" onclick="openSidebar('GNJ_65_Master of Tranquility',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/111_Nightcloak Ritualist.jpg" id="GNJ_111_Nightcloak Ritualist" data-flag="@X" onclick="openSidebar('GNJ_111_Nightcloak Ritualist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/148_Firebelly Toad.jpg" id="GNJ_148_Firebelly Toad" data-flag="@X" onclick="openSidebar('GNJ_148_Firebelly Toad',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/193_Invoke the Wild.jpg" id="GNJ_193_Invoke the Wild" data-flag="@X" onclick="openSidebar('GNJ_193_Invoke the Wild',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/14_Fell the Beast.jpg" id="GNJ_14_Fell the Beast" data-flag="@X" onclick="openSidebar('GNJ_14_Fell the Beast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/66_Mother of Owls.jpg" id="GNJ_66_Mother of Owls" data-flag="@X" onclick="openSidebar('GNJ_66_Mother of Owls',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/112_Pitiless Judgment.jpg" id="GNJ_112_Pitiless Judgment" data-flag="@X" onclick="openSidebar('GNJ_112_Pitiless Judgment',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/154_Lavatongue Lizard.jpg" id="GNJ_154_Lavatongue Lizard" data-flag="@X" onclick="openSidebar('GNJ_154_Lavatongue Lizard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/197_Kiss of the Dryad.jpg" id="GNJ_197_Kiss of the Dryad" data-flag="@X" onclick="openSidebar('GNJ_197_Kiss of the Dryad',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/18_Fox of the Sunset Legion.jpg" id="GNJ_18_Fox of the Sunset Legion" data-flag="@X" onclick="openSidebar('GNJ_18_Fox of the Sunset Legion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/69_Neutralize.jpg" id="GNJ_69_Neutralize" data-flag="@X" onclick="openSidebar('GNJ_69_Neutralize',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/114_Rabid Rodent.jpg" id="GNJ_114_Rabid Rodent" data-flag="@X" onclick="openSidebar('GNJ_114_Rabid Rodent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/155_Lord's Call.jpg" id="GNJ_155_Lords Call" data-flag="@X" onclick="openSidebar('GNJ_155_Lords Call',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/199_Leafmantle Dryad.jpg" id="GNJ_199_Leafmantle Dryad" data-flag="@X" onclick="openSidebar('GNJ_199_Leafmantle Dryad',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/23_Hostile Hermit.jpg" id="GNJ_23_Hostile Hermit" data-flag="@X" onclick="openSidebar('GNJ_23_Hostile Hermit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/70_Nurturing Knowledge.jpg" id="GNJ_70_Nurturing Knowledge" data-flag="@X" onclick="openSidebar('GNJ_70_Nurturing Knowledge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/115_Radiant Maleficence.jpg" id="GNJ_115_Radiant Maleficence" data-flag="@X" onclick="openSidebar('GNJ_115_Radiant Maleficence',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/156_Manic Illusionist.jpg" id="GNJ_156_Manic Illusionist" data-flag="@X" onclick="openSidebar('GNJ_156_Manic Illusionist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/201_Lurking Hippo.jpg" id="GNJ_201_Lurking Hippo" data-flag="@X" onclick="openSidebar('GNJ_201_Lurking Hippo',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/24_Join the Flock.jpg" id="GNJ_24_Join the Flock" data-flag="@X" onclick="openSidebar('GNJ_24_Join the Flock',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/71_Obscure Apostle.jpg" id="GNJ_71_Obscure Apostle" data-flag="@X" onclick="openSidebar('GNJ_71_Obscure Apostle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/121_Sanguine Oracle.jpg" id="GNJ_121_Sanguine Oracle" data-flag="@X" onclick="openSidebar('GNJ_121_Sanguine Oracle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/157_Miasma Spewer.jpg" id="GNJ_157_Miasma Spewer" data-flag="@X" onclick="openSidebar('GNJ_157_Miasma Spewer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/204_Midnight Predator.jpg" id="GNJ_204_Midnight Predator" data-flag="@X" onclick="openSidebar('GNJ_204_Midnight Predator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/34_Spear of the Folded Fan.jpg" id="GNJ_34_Spear of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_34_Spear of the Folded Fan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/80_Twisted Mist.jpg" id="GNJ_80_Twisted Mist" data-flag="@X" onclick="openSidebar('GNJ_80_Twisted Mist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/122_Scribal Puppeteer.jpg" id="GNJ_122_Scribal Puppeteer" data-flag="@X" onclick="openSidebar('GNJ_122_Scribal Puppeteer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/160_Peakblazer Dragon.jpg" id="GNJ_160_Peakblazer Dragon" data-flag="@X" onclick="openSidebar('GNJ_160_Peakblazer Dragon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/205_Orchard Botanist.jpg" id="GNJ_205_Orchard Botanist" data-flag="@X" onclick="openSidebar('GNJ_205_Orchard Botanist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/36_Surging Stream.jpg" id="GNJ_36_Surging Stream" data-flag="@X" onclick="openSidebar('GNJ_36_Surging Stream',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/81_Undead Archivist.jpg" id="GNJ_81_Undead Archivist" data-flag="@X" onclick="openSidebar('GNJ_81_Undead Archivist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/126_Soulless Decree.jpg" id="GNJ_126_Soulless Decree" data-flag="@X" onclick="openSidebar('GNJ_126_Soulless Decree',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/162_Reverent Flame.jpg" id="GNJ_162_Reverent Flame" data-flag="@X" onclick="openSidebar('GNJ_162_Reverent Flame',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/209_Ruinous Glutton.jpg" id="GNJ_209_Ruinous Glutton" data-flag="@X" onclick="openSidebar('GNJ_209_Ruinous Glutton',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/37_Temperate Gazebo.jpg" id="GNJ_37_Temperate Gazebo" data-flag="@X" onclick="openSidebar('GNJ_37_Temperate Gazebo',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/85_Warrior's Perspective.jpg" id="GNJ_85_Warriors Perspective" data-flag="@X" onclick="openSidebar('GNJ_85_Warriors Perspective',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/131_Undead Banneret.jpg" id="GNJ_131_Undead Banneret" data-flag="@X" onclick="openSidebar('GNJ_131_Undead Banneret',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/164_Shock Blast.jpg" id="GNJ_164_Shock Blast" data-flag="@X" onclick="openSidebar('GNJ_164_Shock Blast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/217_Unleash the Beasts.jpg" id="GNJ_217_Unleash the Beasts" data-flag="@X" onclick="openSidebar('GNJ_217_Unleash the Beasts',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/41_Vanishing Memory.jpg" id="GNJ_41_Vanishing Memory" data-flag="@X" onclick="openSidebar('GNJ_41_Vanishing Memory',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/89_Yawning Crane.jpg" id="GNJ_89_Yawning Crane" data-flag="@X" onclick="openSidebar('GNJ_89_Yawning Crane',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/133_Wicked Rites.jpg" id="GNJ_133_Wicked Rites" data-flag="@X" onclick="openSidebar('GNJ_133_Wicked Rites',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/171_Unsettled Rivalry.jpg" id="GNJ_171_Unsettled Rivalry" data-flag="@X" onclick="openSidebar('GNJ_171_Unsettled Rivalry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/218_Vigorous Stag.jpg" id="GNJ_218_Vigorous Stag" data-flag="@X" onclick="openSidebar('GNJ_218_Vigorous Stag',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/42_Warchief of the Folded Fan.jpg" id="GNJ_42_Warchief of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_42_Warchief of the Folded Fan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/47_Ancient Crab.jpg" id="GNJ_47_Ancient Crab" data-flag="@X" onclick="openSidebar('GNJ_47_Ancient Crab',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/91_Allure of the Dark Grove.jpg" id="GNJ_91_Allure of the Dark Grove" data-flag="@X" onclick="openSidebar('GNJ_91_Allure of the Dark Grove',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/135_Ash Breather.jpg" id="GNJ_135_Ash Breather" data-flag="@X" onclick="openSidebar('GNJ_135_Ash Breather',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/178_Ambush Viper.jpg" id="GNJ_178_Ambush Viper" data-flag="@X" onclick="openSidebar('GNJ_178_Ambush Viper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/5_Charmer of the Folded Fan.jpg" id="GNJ_5_Charmer of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_5_Charmer of the Folded Fan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/50_Bathophobia.jpg" id="GNJ_50_Bathophobia" data-flag="@X" onclick="openSidebar('GNJ_50_Bathophobia',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/92_Apothecary's Remedy.jpg" id="GNJ_92_Apothecarys Remedy" data-flag="@X" onclick="openSidebar('GNJ_92_Apothecarys Remedy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/136_Battering Swine.jpg" id="GNJ_136_Battering Swine" data-flag="@X" onclick="openSidebar('GNJ_136_Battering Swine',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/180_Blooming Future.jpg" id="GNJ_180_Blooming Future" data-flag="@X" onclick="openSidebar('GNJ_180_Blooming Future',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/8_Collared Kugsha.jpg" id="GNJ_8_Collared Kugsha" data-flag="@X" onclick="openSidebar('GNJ_8_Collared Kugsha',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/51_Beckon from the Depths.jpg" id="GNJ_51_Beckon from the Depths" data-flag="@X" onclick="openSidebar('GNJ_51_Beckon from the Depths',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/94_Deranged Apothecary.jpg" id="GNJ_94_Deranged Apothecary" data-flag="@X" onclick="openSidebar('GNJ_94_Deranged Apothecary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/139_Breath of Hao'Tai.jpg" id="GNJ_139_Breath of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_139_Breath of HaoTai',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/181_Branch Prowler.jpg" id="GNJ_181_Branch Prowler" data-flag="@X" onclick="openSidebar('GNJ_181_Branch Prowler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/11_Demystifying Tide.jpg" id="GNJ_11_Demystifying Tide" data-flag="@X" onclick="openSidebar('GNJ_11_Demystifying Tide',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/54_Consult the Dewdrops.jpg" id="GNJ_54_Consult the Dewdrops" data-flag="@X" onclick="openSidebar('GNJ_54_Consult the Dewdrops',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/96_Diseased Prophet.jpg" id="GNJ_96_Diseased Prophet" data-flag="@X" onclick="openSidebar('GNJ_96_Diseased Prophet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/142_Caress the Fleets.jpg" id="GNJ_142_Caress the Fleets" data-flag="@X" onclick="openSidebar('GNJ_142_Caress the Fleets',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/182_Breath of Fresh Air.jpg" id="GNJ_182_Breath of Fresh Air" data-flag="@X" onclick="openSidebar('GNJ_182_Breath of Fresh Air',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/13_Ethereal Guidance.jpg" id="GNJ_13_Ethereal Guidance" data-flag="@X" onclick="openSidebar('GNJ_13_Ethereal Guidance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/55_Contort Reality.jpg" id="GNJ_55_Contort Reality" data-flag="@X" onclick="openSidebar('GNJ_55_Contort Reality',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/98_The Dragon's Madness.jpg" id="GNJ_98_The Dragons Madness" data-flag="@X" onclick="openSidebar('GNJ_98_The Dragons Madness',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/143_Consuming Flame.jpg" id="GNJ_143_Consuming Flame" data-flag="@X" onclick="openSidebar('GNJ_143_Consuming Flame',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/185_Come Crashing Down.jpg" id="GNJ_185_Come Crashing Down" data-flag="@X" onclick="openSidebar('GNJ_185_Come Crashing Down',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/15_Folded Fan Recruit.jpg" id="GNJ_15_Folded Fan Recruit" data-flag="@X" onclick="openSidebar('GNJ_15_Folded Fan Recruit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/57_Gliding Serpent.jpg" id="GNJ_57_Gliding Serpent" data-flag="@X" onclick="openSidebar('GNJ_57_Gliding Serpent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/99_Dragon's Twisted Shadow.jpg" id="GNJ_99_Dragons Twisted Shadow" data-flag="@X" onclick="openSidebar('GNJ_99_Dragons Twisted Shadow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/147_Ferocity of Hao'Tai.jpg" id="GNJ_147_Ferocity of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_147_Ferocity of HaoTai',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/187_Empowering Chant.jpg" id="GNJ_187_Empowering Chant" data-flag="@X" onclick="openSidebar('GNJ_187_Empowering Chant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/16_Fox of the Fallen Forest.jpg" id="GNJ_16_Fox of the Fallen Forest" data-flag="@X" onclick="openSidebar('GNJ_16_Fox of the Fallen Forest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/60_Keeper of Blue Incense.jpg" id="GNJ_60_Keeper of Blue Incense" data-flag="@X" onclick="openSidebar('GNJ_60_Keeper of Blue Incense',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/102_Fetid Nibbler.jpg" id="GNJ_102_Fetid Nibbler" data-flag="@X" onclick="openSidebar('GNJ_102_Fetid Nibbler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/149_Flame Ascetic.jpg" id="GNJ_149_Flame Ascetic" data-flag="@X" onclick="openSidebar('GNJ_149_Flame Ascetic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/188_Endangered Rhino.jpg" id="GNJ_188_Endangered Rhino" data-flag="@X" onclick="openSidebar('GNJ_188_Endangered Rhino',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/17_Fox of the Orange Orchard.jpg" id="GNJ_17_Fox of the Orange Orchard" data-flag="@X" onclick="openSidebar('GNJ_17_Fox of the Orange Orchard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/62_Lumbering Stoneshell.jpg" id="GNJ_62_Lumbering Stoneshell" data-flag="@X" onclick="openSidebar('GNJ_62_Lumbering Stoneshell',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/104_Forlorn Murklurker.jpg" id="GNJ_104_Forlorn Murklurker" data-flag="@X" onclick="openSidebar('GNJ_104_Forlorn Murklurker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/150_Four-Headed Shredder.jpg" id="GNJ_150_Four-Headed Shredder" data-flag="@X" onclick="openSidebar('GNJ_150_Four-Headed Shredder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/191_For Glory.jpg" id="GNJ_191_For Glory" data-flag="@X" onclick="openSidebar('GNJ_191_For Glory',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/20_Gaze of the Golden Fox.jpg" id="GNJ_20_Gaze of the Golden Fox" data-flag="@X" onclick="openSidebar('GNJ_20_Gaze of the Golden Fox',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/63_The Mad Sage's Scroll.jpg" id="GNJ_63_The Mad Sages Scroll" data-flag="@X" onclick="openSidebar('GNJ_63_The Mad Sages Scroll',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/105_Form of the Demon.jpg" id="GNJ_105_Form of the Demon" data-flag="@X" onclick="openSidebar('GNJ_105_Form of the Demon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/151_Frilled Drakeling.jpg" id="GNJ_151_Frilled Drakeling" data-flag="@X" onclick="openSidebar('GNJ_151_Frilled Drakeling',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/192_Foraging Chipmunk.jpg" id="GNJ_192_Foraging Chipmunk" data-flag="@X" onclick="openSidebar('GNJ_192_Foraging Chipmunk',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/25_Kicking Crane Technique.jpg" id="GNJ_25_Kicking Crane Technique" data-flag="@X" onclick="openSidebar('GNJ_25_Kicking Crane Technique',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/64_Magnificent Liturgy.jpg" id="GNJ_64_Magnificent Liturgy" data-flag="@X" onclick="openSidebar('GNJ_64_Magnificent Liturgy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/106_Gilded Figurehead.jpg" id="GNJ_106_Gilded Figurehead" data-flag="@X" onclick="openSidebar('GNJ_106_Gilded Figurehead',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/163_Roaring Dracowyrm.jpg" id="GNJ_163_Roaring Dracowyrm" data-flag="@X" onclick="openSidebar('GNJ_163_Roaring Dracowyrm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/196_Juvenile Boa.jpg" id="GNJ_196_Juvenile Boa" data-flag="@X" onclick="openSidebar('GNJ_196_Juvenile Boa',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/28_Mastery of the Silken Strand.jpg" id="GNJ_28_Mastery of the Silken Strand" data-flag="@X" onclick="openSidebar('GNJ_28_Mastery of the Silken Strand',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/68_Negate.jpg" id="GNJ_68_Negate" data-flag="@X" onclick="openSidebar('GNJ_68_Negate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/113_Preacher of the Yenzu.jpg" id="GNJ_113_Preacher of the Yenzu" data-flag="@X" onclick="openSidebar('GNJ_113_Preacher of the Yenzu',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/165_Simian Stick Fighter.jpg" id="GNJ_165_Simian Stick Fighter" data-flag="@X" onclick="openSidebar('GNJ_165_Simian Stick Fighter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/202_Maiden of the Daffodils.jpg" id="GNJ_202_Maiden of the Daffodils" data-flag="@X" onclick="openSidebar('GNJ_202_Maiden of the Daffodils',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/29_Moonlight Stag.jpg" id="GNJ_29_Moonlight Stag" data-flag="@X" onclick="openSidebar('GNJ_29_Moonlight Stag',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/73_Peddler of Commonwares.jpg" id="GNJ_73_Peddler of Commonwares" data-flag="@X" onclick="openSidebar('GNJ_73_Peddler of Commonwares',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/116_Ravaging Ghoul.jpg" id="GNJ_116_Ravaging Ghoul" data-flag="@X" onclick="openSidebar('GNJ_116_Ravaging Ghoul',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/166_Skeletal Shredwing.jpg" id="GNJ_166_Skeletal Shredwing" data-flag="@X" onclick="openSidebar('GNJ_166_Skeletal Shredwing',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/203_Meadow Macaque.jpg" id="GNJ_203_Meadow Macaque" data-flag="@X" onclick="openSidebar('GNJ_203_Meadow Macaque',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/30_Mother of Cranes.jpg" id="GNJ_30_Mother of Cranes" data-flag="@X" onclick="openSidebar('GNJ_30_Mother of Cranes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/76_Shimmering Seadragon.jpg" id="GNJ_76_Shimmering Seadragon" data-flag="@X" onclick="openSidebar('GNJ_76_Shimmering Seadragon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/117_Read the Bones.jpg" id="GNJ_117_Read the Bones" data-flag="@X" onclick="openSidebar('GNJ_117_Read the Bones',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/167_Slicing Legion.jpg" id="GNJ_167_Slicing Legion" data-flag="@X" onclick="openSidebar('GNJ_167_Slicing Legion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/207_Plodding Moose.jpg" id="GNJ_207_Plodding Moose" data-flag="@X" onclick="openSidebar('GNJ_207_Plodding Moose',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/31_Pious Flutist.jpg" id="GNJ_31_Pious Flutist" data-flag="@X" onclick="openSidebar('GNJ_31_Pious Flutist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/78_Shredskin Sky Horror.jpg" id="GNJ_78_Shredskin Sky Horror" data-flag="@X" onclick="openSidebar('GNJ_78_Shredskin Sky Horror',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/118_Resurrection Plea.jpg" id="GNJ_118_Resurrection Plea" data-flag="@X" onclick="openSidebar('GNJ_118_Resurrection Plea',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/168_Spitfire.jpg" id="GNJ_168_Spitfire" data-flag="@X" onclick="openSidebar('GNJ_168_Spitfire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/210_Runewart Hog.jpg" id="GNJ_210_Runewart Hog" data-flag="@X" onclick="openSidebar('GNJ_210_Runewart Hog',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/32_Put to Rest.jpg" id="GNJ_32_Put to Rest" data-flag="@X" onclick="openSidebar('GNJ_32_Put to Rest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/82_Unyielding Presence.jpg" id="GNJ_82_Unyielding Presence" data-flag="@X" onclick="openSidebar('GNJ_82_Unyielding Presence',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/124_Shadow Infestation.jpg" id="GNJ_124_Shadow Infestation" data-flag="@X" onclick="openSidebar('GNJ_124_Shadow Infestation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/169_Technique of Hao'Tai.jpg" id="GNJ_169_Technique of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_169_Technique of HaoTai',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/211_Ruthless Predator.jpg" id="GNJ_211_Ruthless Predator" data-flag="@X" onclick="openSidebar('GNJ_211_Ruthless Predator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/35_Student of the Crane.jpg" id="GNJ_35_Student of the Crane" data-flag="@X" onclick="openSidebar('GNJ_35_Student of the Crane',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/83_Wander Ashore.jpg" id="GNJ_83_Wander Ashore" data-flag="@X" onclick="openSidebar('GNJ_83_Wander Ashore',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/125_Sightless Blight.jpg" id="GNJ_125_Sightless Blight" data-flag="@X" onclick="openSidebar('GNJ_125_Sightless Blight',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/172_Volcanic Whelp.jpg" id="GNJ_172_Volcanic Whelp" data-flag="@X" onclick="openSidebar('GNJ_172_Volcanic Whelp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/213_Silken Spinner.jpg" id="GNJ_213_Silken Spinner" data-flag="@X" onclick="openSidebar('GNJ_213_Silken Spinner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/38_Temple Cranes.jpg" id="GNJ_38_Temple Cranes" data-flag="@X" onclick="openSidebar('GNJ_38_Temple Cranes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/84_Warrior's Meditation.jpg" id="GNJ_84_Warriors Meditation" data-flag="@X" onclick="openSidebar('GNJ_84_Warriors Meditation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/127_Succumb.jpg" id="GNJ_127_Succumb" data-flag="@X" onclick="openSidebar('GNJ_127_Succumb',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/173_Wisdom of Hao'Tai.jpg" id="GNJ_173_Wisdom of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_173_Wisdom of HaoTai',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/215_Spidery Grasp.jpg" id="GNJ_215_Spidery Grasp" data-flag="@X" onclick="openSidebar('GNJ_215_Spidery Grasp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/39_Test the Winds.jpg" id="GNJ_39_Test the Winds" data-flag="@X" onclick="openSidebar('GNJ_39_Test the Winds',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/87_Welkin Tern.jpg" id="GNJ_87_Welkin Tern" data-flag="@X" onclick="openSidebar('GNJ_87_Welkin Tern',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/128_Tomb Scavenger.jpg" id="GNJ_128_Tomb Scavenger" data-flag="@X" onclick="openSidebar('GNJ_128_Tomb Scavenger',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/176_Xiusheng's Teachings.jpg" id="GNJ_176_Xiushengs Teachings" data-flag="@X" onclick="openSidebar('GNJ_176_Xiushengs Teachings',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/216_Superiority Complex.jpg" id="GNJ_216_Superiority Complex" data-flag="@X" onclick="openSidebar('GNJ_216_Superiority Complex',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/43_Warrior of the Folded Fan.jpg" id="GNJ_43_Warrior of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_43_Warrior of the Folded Fan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/88_Whitepeak Channeler.jpg" id="GNJ_88_Whitepeak Channeler" data-flag="@X" onclick="openSidebar('GNJ_88_Whitepeak Channeler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/129_Trophy Collector.jpg" id="GNJ_129_Trophy Collector" data-flag="@X" onclick="openSidebar('GNJ_129_Trophy Collector',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/177_Young Dragonheart.jpg" id="GNJ_177_Young Dragonheart" data-flag="@X" onclick="openSidebar('GNJ_177_Young Dragonheart',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/219_Walk the Traveled Path.jpg" id="GNJ_219_Walk the Traveled Path" data-flag="@X" onclick="openSidebar('GNJ_219_Walk the Traveled Path',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/44_Whitepeak Predator.jpg" id="GNJ_44_Whitepeak Predator" data-flag="@X" onclick="openSidebar('GNJ_44_Whitepeak Predator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/27_Lijing, the True Divinity.jpg" id="GNJ_27_Lijing, the True Divinity" data-flag="@X" onclick="openSidebar('GNJ_27_Lijing, the True Divinity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/75_Shigurei, the Floodbringer.jpg" id="GNJ_75_Shigurei, the Floodbringer" data-flag="@X" onclick="openSidebar('GNJ_75_Shigurei, the Floodbringer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/110_Lizhao, Lord of the Yaogu.jpg" id="GNJ_110_Lizhao, Lord of the Yaogu" data-flag="@X" onclick="openSidebar('GNJ_110_Lizhao, Lord of the Yaogu',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/152_Hao'Tai, the Ancient One.jpg" id="GNJ_152_HaoTai, the Ancient One" data-flag="@X" onclick="openSidebar('GNJ_152_HaoTai, the Ancient One',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/208_Qiyan, Serpent of Seven Heads.jpg" id="GNJ_208_Qiyan, Serpent of Seven Heads" data-flag="@X" onclick="openSidebar('GNJ_208_Qiyan, Serpent of Seven Heads',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/40_Twin Lis of the Divine Realm.jpg" id="GNJ_40_Twin Lis of the Divine Realm" data-flag="@X" onclick="openSidebar('GNJ_40_Twin Lis of the Divine Realm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/58_Ing'Wei of the Flood Realm.jpg" id="GNJ_58_IngWei of the Flood Realm" data-flag="@X" onclick="openSidebar('GNJ_58_IngWei of the Flood Realm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/130_Tzelin of the Demon Realm.jpg" id="GNJ_130_Tzelin of the Demon Realm" data-flag="@X" onclick="openSidebar('GNJ_130_Tzelin of the Demon Realm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/175_Xiusheng of the Dragon Realm.jpg" id="GNJ_175_Xiusheng of the Dragon Realm" data-flag="@X" onclick="openSidebar('GNJ_175_Xiusheng of the Dragon Realm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/184_Chiu of the Wild Realm.jpg" id="GNJ_184_Chiu of the Wild Realm" data-flag="@X" onclick="openSidebar('GNJ_184_Chiu of the Wild Realm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/22_Heping, Master Arbitrator.jpg" id="GNJ_22_Heping, Master Arbitrator" data-flag="@X" onclick="openSidebar('GNJ_22_Heping, Master Arbitrator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/48_Artful Coercion.jpg" id="GNJ_48_Artful Coercion" data-flag="@X" onclick="openSidebar('GNJ_48_Artful Coercion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/90_Admirer of the Lost.jpg" id="GNJ_90_Admirer of the Lost" data-flag="@X" onclick="openSidebar('GNJ_90_Admirer of the Lost',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/141_Brutal Descent.jpg" id="GNJ_141_Brutal Descent" data-flag="@X" onclick="openSidebar('GNJ_141_Brutal Descent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/194_Jiayin, the Harmonious.jpg" id="GNJ_194_Jiayin, the Harmonious" data-flag="@X" onclick="openSidebar('GNJ_194_Jiayin, the Harmonious',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/1_Achieve Greatness.jpg" id="GNJ_1_Achieve Greatness" data-flag="@X" onclick="openSidebar('GNJ_1_Achieve Greatness',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/52_Chian, Augury Adept.jpg" id="GNJ_52_Chian, Augury Adept" data-flag="@X" onclick="openSidebar('GNJ_52_Chian, Augury Adept',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/93_Bane of the Folded Fan.jpg" id="GNJ_93_Bane of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_93_Bane of the Folded Fan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/144_Crimson Hellmaw.jpg" id="GNJ_144_Crimson Hellmaw" data-flag="@X" onclick="openSidebar('GNJ_144_Crimson Hellmaw',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/195_Jindao, the Coiled Prophet.jpg" id="GNJ_195_Jindao, the Coiled Prophet" data-flag="@X" onclick="openSidebar('GNJ_195_Jindao, the Coiled Prophet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/4_Call to Attention.jpg" id="GNJ_4_Call to Attention" data-flag="@X" onclick="openSidebar('GNJ_4_Call to Attention',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/53_Coax Under.jpg" id="GNJ_53_Coax Under" data-flag="@X" onclick="openSidebar('GNJ_53_Coax Under',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/107_Kai'Jun, the Annihilator.jpg" id="GNJ_107_KaiJun, the Annihilator" data-flag="@X" onclick="openSidebar('GNJ_107_KaiJun, the Annihilator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/145_Desecrate Antiquities.jpg" id="GNJ_145_Desecrate Antiquities" data-flag="@X" onclick="openSidebar('GNJ_145_Desecrate Antiquities',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/198_Kou, Primal Shepherd.jpg" id="GNJ_198_Kou, Primal Shepherd" data-flag="@X" onclick="openSidebar('GNJ_198_Kou, Primal Shepherd',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/9_Cou Ling of Many Tails.jpg" id="GNJ_9_Cou Ling of Many Tails" data-flag="@X" onclick="openSidebar('GNJ_9_Cou Ling of Many Tails',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/67_Mull Over.jpg" id="GNJ_67_Mull Over" data-flag="@X" onclick="openSidebar('GNJ_67_Mull Over',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/108_Kai'Long, Dark Immolator.jpg" id="GNJ_108_KaiLong, Dark Immolator" data-flag="@X" onclick="openSidebar('GNJ_108_KaiLong, Dark Immolator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/153_Hatsuo, Honored General.jpg" id="GNJ_153_Hatsuo, Honored General" data-flag="@X" onclick="openSidebar('GNJ_153_Hatsuo, Honored General',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/200_Loamwrecker.jpg" id="GNJ_200_Loamwrecker" data-flag="@X" onclick="openSidebar('GNJ_200_Loamwrecker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/12_Diao, Dragoon Captain.jpg" id="GNJ_12_Diao, Dragoon Captain" data-flag="@X" onclick="openSidebar('GNJ_12_Diao, Dragoon Captain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/72_Oshin, Keeper of the Shoal.jpg" id="GNJ_72_Oshin, Keeper of the Shoal" data-flag="@X" onclick="openSidebar('GNJ_72_Oshin, Keeper of the Shoal',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/109_Kugoja, Perished Conduit.jpg" id="GNJ_109_Kugoja, Perished Conduit" data-flag="@X" onclick="openSidebar('GNJ_109_Kugoja, Perished Conduit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/158_Mieng, Who Dances With Dragons.jpg" id="GNJ_158_Mieng, Who Dances With Dragons" data-flag="@X" onclick="openSidebar('GNJ_158_Mieng, Who Dances With Dragons',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/206_Pecking Order.jpg" id="GNJ_206_Pecking Order" data-flag="@X" onclick="openSidebar('GNJ_206_Pecking Order',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/19_Gao'Wu, Master Soothsayer.jpg" id="GNJ_19_GaoWu, Master Soothsayer" data-flag="@X" onclick="openSidebar('GNJ_19_GaoWu, Master Soothsayer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/74_Pon, Twister of Forms.jpg" id="GNJ_74_Pon, Twister of Forms" data-flag="@X" onclick="openSidebar('GNJ_74_Pon, Twister of Forms',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/119_Rise from the Depths.jpg" id="GNJ_119_Rise from the Depths" data-flag="@X" onclick="openSidebar('GNJ_119_Rise from the Depths',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/159_Overzealous Tutor.jpg" id="GNJ_159_Overzealous Tutor" data-flag="@X" onclick="openSidebar('GNJ_159_Overzealous Tutor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/212_Savage Congregation.jpg" id="GNJ_212_Savage Congregation" data-flag="@X" onclick="openSidebar('GNJ_212_Savage Congregation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/21_General of the Folded Fan.jpg" id="GNJ_21_General of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_21_General of the Folded Fan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/77_Shojiro, the Wavewaker.jpg" id="GNJ_77_Shojiro, the Wavewaker" data-flag="@X" onclick="openSidebar('GNJ_77_Shojiro, the Wavewaker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/120_Rummage Through Remains.jpg" id="GNJ_120_Rummage Through Remains" data-flag="@X" onclick="openSidebar('GNJ_120_Rummage Through Remains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/161_Recalibrate.jpg" id="GNJ_161_Recalibrate" data-flag="@X" onclick="openSidebar('GNJ_161_Recalibrate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/214_Sonwu, the Mighty.jpg" id="GNJ_214_Sonwu, the Mighty" data-flag="@X" onclick="openSidebar('GNJ_214_Sonwu, the Mighty',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/26_Kiri, Cloudwalker.jpg" id="GNJ_26_Kiri, Cloudwalker" data-flag="@X" onclick="openSidebar('GNJ_26_Kiri, Cloudwalker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/79_Sun Yun, Master of Self.jpg" id="GNJ_79_Sun Yun, Master of Self" data-flag="@X" onclick="openSidebar('GNJ_79_Sun Yun, Master of Self',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/123_Seng, Fevered Fanatic.jpg" id="GNJ_123_Seng, Fevered Fanatic" data-flag="@X" onclick="openSidebar('GNJ_123_Seng, Fevered Fanatic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/170_Tseng, Warden of the Peak.jpg" id="GNJ_170_Tseng, Warden of the Peak" data-flag="@X" onclick="openSidebar('GNJ_170_Tseng, Warden of the Peak',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/220_Wild Germination.jpg" id="GNJ_220_Wild Germination" data-flag="@X" onclick="openSidebar('GNJ_220_Wild Germination',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/33_Quell Mutiny.jpg" id="GNJ_33_Quell Mutiny" data-flag="@X" onclick="openSidebar('GNJ_33_Quell Mutiny',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/86_Way of Kindred Mind.jpg" id="GNJ_86_Way of Kindred Mind" data-flag="@X" onclick="openSidebar('GNJ_86_Way of Kindred Mind',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/132_Undeath Comes.jpg" id="GNJ_132_Undeath Comes" data-flag="@X" onclick="openSidebar('GNJ_132_Undeath Comes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/174_Wun Su, Guru of the Staff.jpg" id="GNJ_174_Wun Su, Guru of the Staff" data-flag="@X" onclick="openSidebar('GNJ_174_Wun Su, Guru of the Staff',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/221_Xiejuan, the Regal Beast.jpg" id="GNJ_221_Xiejuan, the Regal Beast" data-flag="@X" onclick="openSidebar('GNJ_221_Xiejuan, the Regal Beast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/45_Yujei, Crane Companion.jpg" id="GNJ_45_Yujei, Crane Companion" data-flag="@X" onclick="openSidebar('GNJ_45_Yujei, Crane Companion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/46_Albino Drake.jpg" id="GNJ_46_Albino Drake" data-flag="@X" onclick="openSidebar('GNJ_46_Albino Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/95_Descend into Insanity.jpg" id="GNJ_95_Descend into Insanity" data-flag="@X" onclick="openSidebar('GNJ_95_Descend into Insanity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/134_Anointed General.jpg" id="GNJ_134_Anointed General" data-flag="@X" onclick="openSidebar('GNJ_134_Anointed General',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/179_Blades of the Many.jpg" id="GNJ_179_Blades of the Many" data-flag="@X" onclick="openSidebar('GNJ_179_Blades of the Many',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/2_Aerial Adept.jpg" id="GNJ_2_Aerial Adept" data-flag="@X" onclick="openSidebar('GNJ_2_Aerial Adept',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/49_Barterer of Passage.jpg" id="GNJ_49_Barterer of Passage" data-flag="@X" onclick="openSidebar('GNJ_49_Barterer of Passage',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/97_Disinter.jpg" id="GNJ_97_Disinter" data-flag="@X" onclick="openSidebar('GNJ_97_Disinter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/137_Bone Pit Raptor.jpg" id="GNJ_137_Bone Pit Raptor" data-flag="@X" onclick="openSidebar('GNJ_137_Bone Pit Raptor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/183_Bringer of the Pack.jpg" id="GNJ_183_Bringer of the Pack" data-flag="@X" onclick="openSidebar('GNJ_183_Bringer of the Pack',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/3_Battle Acumen.jpg" id="GNJ_3_Battle Acumen" data-flag="@X" onclick="openSidebar('GNJ_3_Battle Acumen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/56_Deep in Thought.jpg" id="GNJ_56_Deep in Thought" data-flag="@X" onclick="openSidebar('GNJ_56_Deep in Thought',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/100_Emissary of the Wicked.jpg" id="GNJ_100_Emissary of the Wicked" data-flag="@X" onclick="openSidebar('GNJ_100_Emissary of the Wicked',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/138_Brazen Chimera.jpg" id="GNJ_138_Brazen Chimera" data-flag="@X" onclick="openSidebar('GNJ_138_Brazen Chimera',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/186_Courageous Charge.jpg" id="GNJ_186_Courageous Charge" data-flag="@X" onclick="openSidebar('GNJ_186_Courageous Charge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/6_The Charmer's Curse.jpg" id="GNJ_6_The Charmers Curse" data-flag="@X" onclick="openSidebar('GNJ_6_The Charmers Curse',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/59_Isle Conservator.jpg" id="GNJ_59_Isle Conservator" data-flag="@X" onclick="openSidebar('GNJ_59_Isle Conservator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/101_Engulfing Incubus.jpg" id="GNJ_101_Engulfing Incubus" data-flag="@X" onclick="openSidebar('GNJ_101_Engulfing Incubus',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/140_Brothers in Arms.jpg" id="GNJ_140_Brothers in Arms" data-flag="@X" onclick="openSidebar('GNJ_140_Brothers in Arms',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/189_Entangled Roots.jpg" id="GNJ_189_Entangled Roots" data-flag="@X" onclick="openSidebar('GNJ_189_Entangled Roots',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/7_Chords of Order.jpg" id="GNJ_7_Chords of Order" data-flag="@X" onclick="openSidebar('GNJ_7_Chords of Order',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/61_Lost Among the Lilies.jpg" id="GNJ_61_Lost Among the Lilies" data-flag="@X" onclick="openSidebar('GNJ_61_Lost Among the Lilies',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/103_Fleshwrithe Ghoul.jpg" id="GNJ_103_Fleshwrithe Ghoul" data-flag="@X" onclick="openSidebar('GNJ_103_Fleshwrithe Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/146_Dragon Grip.jpg" id="GNJ_146_Dragon Grip" data-flag="@X" onclick="openSidebar('GNJ_146_Dragon Grip',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/190_Fallen Forest Wolf.jpg" id="GNJ_190_Fallen Forest Wolf" data-flag="@X" onclick="openSidebar('GNJ_190_Fallen Forest Wolf',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/10_Crane Legionnaire.jpg" id="GNJ_10_Crane Legionnaire" data-flag="@X" onclick="openSidebar('GNJ_10_Crane Legionnaire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/65_Master of Tranquility.jpg" id="GNJ_65_Master of Tranquility" data-flag="@X" onclick="openSidebar('GNJ_65_Master of Tranquility',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/111_Nightcloak Ritualist.jpg" id="GNJ_111_Nightcloak Ritualist" data-flag="@X" onclick="openSidebar('GNJ_111_Nightcloak Ritualist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/148_Firebelly Toad.jpg" id="GNJ_148_Firebelly Toad" data-flag="@X" onclick="openSidebar('GNJ_148_Firebelly Toad',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/193_Invoke the Wild.jpg" id="GNJ_193_Invoke the Wild" data-flag="@X" onclick="openSidebar('GNJ_193_Invoke the Wild',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/14_Fell the Beast.jpg" id="GNJ_14_Fell the Beast" data-flag="@X" onclick="openSidebar('GNJ_14_Fell the Beast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/66_Mother of Owls.jpg" id="GNJ_66_Mother of Owls" data-flag="@X" onclick="openSidebar('GNJ_66_Mother of Owls',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/112_Pitiless Judgment.jpg" id="GNJ_112_Pitiless Judgment" data-flag="@X" onclick="openSidebar('GNJ_112_Pitiless Judgment',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/154_Lavatongue Lizard.jpg" id="GNJ_154_Lavatongue Lizard" data-flag="@X" onclick="openSidebar('GNJ_154_Lavatongue Lizard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/197_Kiss of the Dryad.jpg" id="GNJ_197_Kiss of the Dryad" data-flag="@X" onclick="openSidebar('GNJ_197_Kiss of the Dryad',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/18_Fox of the Sunset Legion.jpg" id="GNJ_18_Fox of the Sunset Legion" data-flag="@X" onclick="openSidebar('GNJ_18_Fox of the Sunset Legion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/69_Neutralize.jpg" id="GNJ_69_Neutralize" data-flag="@X" onclick="openSidebar('GNJ_69_Neutralize',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/114_Rabid Rodent.jpg" id="GNJ_114_Rabid Rodent" data-flag="@X" onclick="openSidebar('GNJ_114_Rabid Rodent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/155_Lord's Call.jpg" id="GNJ_155_Lords Call" data-flag="@X" onclick="openSidebar('GNJ_155_Lords Call',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/199_Leafmantle Dryad.jpg" id="GNJ_199_Leafmantle Dryad" data-flag="@X" onclick="openSidebar('GNJ_199_Leafmantle Dryad',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/23_Hostile Hermit.jpg" id="GNJ_23_Hostile Hermit" data-flag="@X" onclick="openSidebar('GNJ_23_Hostile Hermit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/70_Nurturing Knowledge.jpg" id="GNJ_70_Nurturing Knowledge" data-flag="@X" onclick="openSidebar('GNJ_70_Nurturing Knowledge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/115_Radiant Maleficence.jpg" id="GNJ_115_Radiant Maleficence" data-flag="@X" onclick="openSidebar('GNJ_115_Radiant Maleficence',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/156_Manic Illusionist.jpg" id="GNJ_156_Manic Illusionist" data-flag="@X" onclick="openSidebar('GNJ_156_Manic Illusionist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/201_Lurking Hippo.jpg" id="GNJ_201_Lurking Hippo" data-flag="@X" onclick="openSidebar('GNJ_201_Lurking Hippo',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/24_Join the Flock.jpg" id="GNJ_24_Join the Flock" data-flag="@X" onclick="openSidebar('GNJ_24_Join the Flock',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/71_Obscure Apostle.jpg" id="GNJ_71_Obscure Apostle" data-flag="@X" onclick="openSidebar('GNJ_71_Obscure Apostle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/121_Sanguine Oracle.jpg" id="GNJ_121_Sanguine Oracle" data-flag="@X" onclick="openSidebar('GNJ_121_Sanguine Oracle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/157_Miasma Spewer.jpg" id="GNJ_157_Miasma Spewer" data-flag="@X" onclick="openSidebar('GNJ_157_Miasma Spewer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/204_Midnight Predator.jpg" id="GNJ_204_Midnight Predator" data-flag="@X" onclick="openSidebar('GNJ_204_Midnight Predator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/34_Spear of the Folded Fan.jpg" id="GNJ_34_Spear of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_34_Spear of the Folded Fan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/80_Twisted Mist.jpg" id="GNJ_80_Twisted Mist" data-flag="@X" onclick="openSidebar('GNJ_80_Twisted Mist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/122_Scribal Puppeteer.jpg" id="GNJ_122_Scribal Puppeteer" data-flag="@X" onclick="openSidebar('GNJ_122_Scribal Puppeteer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/160_Peakblazer Dragon.jpg" id="GNJ_160_Peakblazer Dragon" data-flag="@X" onclick="openSidebar('GNJ_160_Peakblazer Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/205_Orchard Botanist.jpg" id="GNJ_205_Orchard Botanist" data-flag="@X" onclick="openSidebar('GNJ_205_Orchard Botanist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/36_Surging Stream.jpg" id="GNJ_36_Surging Stream" data-flag="@X" onclick="openSidebar('GNJ_36_Surging Stream',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/81_Undead Archivist.jpg" id="GNJ_81_Undead Archivist" data-flag="@X" onclick="openSidebar('GNJ_81_Undead Archivist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/126_Soulless Decree.jpg" id="GNJ_126_Soulless Decree" data-flag="@X" onclick="openSidebar('GNJ_126_Soulless Decree',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/162_Reverent Flame.jpg" id="GNJ_162_Reverent Flame" data-flag="@X" onclick="openSidebar('GNJ_162_Reverent Flame',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/209_Ruinous Glutton.jpg" id="GNJ_209_Ruinous Glutton" data-flag="@X" onclick="openSidebar('GNJ_209_Ruinous Glutton',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/37_Temperate Gazebo.jpg" id="GNJ_37_Temperate Gazebo" data-flag="@X" onclick="openSidebar('GNJ_37_Temperate Gazebo',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/85_Warrior's Perspective.jpg" id="GNJ_85_Warriors Perspective" data-flag="@X" onclick="openSidebar('GNJ_85_Warriors Perspective',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/131_Undead Banneret.jpg" id="GNJ_131_Undead Banneret" data-flag="@X" onclick="openSidebar('GNJ_131_Undead Banneret',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/164_Shock Blast.jpg" id="GNJ_164_Shock Blast" data-flag="@X" onclick="openSidebar('GNJ_164_Shock Blast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/217_Unleash the Beasts.jpg" id="GNJ_217_Unleash the Beasts" data-flag="@X" onclick="openSidebar('GNJ_217_Unleash the Beasts',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/41_Vanishing Memory.jpg" id="GNJ_41_Vanishing Memory" data-flag="@X" onclick="openSidebar('GNJ_41_Vanishing Memory',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/89_Yawning Crane.jpg" id="GNJ_89_Yawning Crane" data-flag="@X" onclick="openSidebar('GNJ_89_Yawning Crane',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/133_Wicked Rites.jpg" id="GNJ_133_Wicked Rites" data-flag="@X" onclick="openSidebar('GNJ_133_Wicked Rites',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/171_Unsettled Rivalry.jpg" id="GNJ_171_Unsettled Rivalry" data-flag="@X" onclick="openSidebar('GNJ_171_Unsettled Rivalry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/218_Vigorous Stag.jpg" id="GNJ_218_Vigorous Stag" data-flag="@X" onclick="openSidebar('GNJ_218_Vigorous Stag',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/42_Warchief of the Folded Fan.jpg" id="GNJ_42_Warchief of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_42_Warchief of the Folded Fan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/47_Ancient Crab.jpg" id="GNJ_47_Ancient Crab" data-flag="@X" onclick="openSidebar('GNJ_47_Ancient Crab',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/91_Allure of the Dark Grove.jpg" id="GNJ_91_Allure of the Dark Grove" data-flag="@X" onclick="openSidebar('GNJ_91_Allure of the Dark Grove',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/135_Ash Breather.jpg" id="GNJ_135_Ash Breather" data-flag="@X" onclick="openSidebar('GNJ_135_Ash Breather',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/178_Ambush Viper.jpg" id="GNJ_178_Ambush Viper" data-flag="@X" onclick="openSidebar('GNJ_178_Ambush Viper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/5_Charmer of the Folded Fan.jpg" id="GNJ_5_Charmer of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_5_Charmer of the Folded Fan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/50_Bathophobia.jpg" id="GNJ_50_Bathophobia" data-flag="@X" onclick="openSidebar('GNJ_50_Bathophobia',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/92_Apothecary's Remedy.jpg" id="GNJ_92_Apothecarys Remedy" data-flag="@X" onclick="openSidebar('GNJ_92_Apothecarys Remedy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/136_Battering Swine.jpg" id="GNJ_136_Battering Swine" data-flag="@X" onclick="openSidebar('GNJ_136_Battering Swine',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/180_Blooming Future.jpg" id="GNJ_180_Blooming Future" data-flag="@X" onclick="openSidebar('GNJ_180_Blooming Future',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/8_Collared Kugsha.jpg" id="GNJ_8_Collared Kugsha" data-flag="@X" onclick="openSidebar('GNJ_8_Collared Kugsha',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/51_Beckon from the Depths.jpg" id="GNJ_51_Beckon from the Depths" data-flag="@X" onclick="openSidebar('GNJ_51_Beckon from the Depths',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/94_Deranged Apothecary.jpg" id="GNJ_94_Deranged Apothecary" data-flag="@X" onclick="openSidebar('GNJ_94_Deranged Apothecary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/139_Breath of Hao'Tai.jpg" id="GNJ_139_Breath of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_139_Breath of HaoTai',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/181_Branch Prowler.jpg" id="GNJ_181_Branch Prowler" data-flag="@X" onclick="openSidebar('GNJ_181_Branch Prowler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/11_Demystifying Tide.jpg" id="GNJ_11_Demystifying Tide" data-flag="@X" onclick="openSidebar('GNJ_11_Demystifying Tide',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/54_Consult the Dewdrops.jpg" id="GNJ_54_Consult the Dewdrops" data-flag="@X" onclick="openSidebar('GNJ_54_Consult the Dewdrops',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/96_Diseased Prophet.jpg" id="GNJ_96_Diseased Prophet" data-flag="@X" onclick="openSidebar('GNJ_96_Diseased Prophet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/142_Caress the Fleets.jpg" id="GNJ_142_Caress the Fleets" data-flag="@X" onclick="openSidebar('GNJ_142_Caress the Fleets',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/182_Breath of Fresh Air.jpg" id="GNJ_182_Breath of Fresh Air" data-flag="@X" onclick="openSidebar('GNJ_182_Breath of Fresh Air',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/13_Ethereal Guidance.jpg" id="GNJ_13_Ethereal Guidance" data-flag="@X" onclick="openSidebar('GNJ_13_Ethereal Guidance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/55_Contort Reality.jpg" id="GNJ_55_Contort Reality" data-flag="@X" onclick="openSidebar('GNJ_55_Contort Reality',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/98_The Dragon's Madness.jpg" id="GNJ_98_The Dragons Madness" data-flag="@X" onclick="openSidebar('GNJ_98_The Dragons Madness',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/143_Consuming Flame.jpg" id="GNJ_143_Consuming Flame" data-flag="@X" onclick="openSidebar('GNJ_143_Consuming Flame',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/185_Come Crashing Down.jpg" id="GNJ_185_Come Crashing Down" data-flag="@X" onclick="openSidebar('GNJ_185_Come Crashing Down',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/15_Folded Fan Recruit.jpg" id="GNJ_15_Folded Fan Recruit" data-flag="@X" onclick="openSidebar('GNJ_15_Folded Fan Recruit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/57_Gliding Serpent.jpg" id="GNJ_57_Gliding Serpent" data-flag="@X" onclick="openSidebar('GNJ_57_Gliding Serpent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/99_Dragon's Twisted Shadow.jpg" id="GNJ_99_Dragons Twisted Shadow" data-flag="@X" onclick="openSidebar('GNJ_99_Dragons Twisted Shadow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/147_Ferocity of Hao'Tai.jpg" id="GNJ_147_Ferocity of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_147_Ferocity of HaoTai',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/187_Empowering Chant.jpg" id="GNJ_187_Empowering Chant" data-flag="@X" onclick="openSidebar('GNJ_187_Empowering Chant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/16_Fox of the Fallen Forest.jpg" id="GNJ_16_Fox of the Fallen Forest" data-flag="@X" onclick="openSidebar('GNJ_16_Fox of the Fallen Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/60_Keeper of Blue Incense.jpg" id="GNJ_60_Keeper of Blue Incense" data-flag="@X" onclick="openSidebar('GNJ_60_Keeper of Blue Incense',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/102_Fetid Nibbler.jpg" id="GNJ_102_Fetid Nibbler" data-flag="@X" onclick="openSidebar('GNJ_102_Fetid Nibbler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/149_Flame Ascetic.jpg" id="GNJ_149_Flame Ascetic" data-flag="@X" onclick="openSidebar('GNJ_149_Flame Ascetic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/188_Endangered Rhino.jpg" id="GNJ_188_Endangered Rhino" data-flag="@X" onclick="openSidebar('GNJ_188_Endangered Rhino',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/17_Fox of the Orange Orchard.jpg" id="GNJ_17_Fox of the Orange Orchard" data-flag="@X" onclick="openSidebar('GNJ_17_Fox of the Orange Orchard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/62_Lumbering Stoneshell.jpg" id="GNJ_62_Lumbering Stoneshell" data-flag="@X" onclick="openSidebar('GNJ_62_Lumbering Stoneshell',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/104_Forlorn Murklurker.jpg" id="GNJ_104_Forlorn Murklurker" data-flag="@X" onclick="openSidebar('GNJ_104_Forlorn Murklurker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/150_Four-Headed Shredder.jpg" id="GNJ_150_Four-Headed Shredder" data-flag="@X" onclick="openSidebar('GNJ_150_Four-Headed Shredder',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/191_For Glory.jpg" id="GNJ_191_For Glory" data-flag="@X" onclick="openSidebar('GNJ_191_For Glory',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/20_Gaze of the Golden Fox.jpg" id="GNJ_20_Gaze of the Golden Fox" data-flag="@X" onclick="openSidebar('GNJ_20_Gaze of the Golden Fox',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/63_The Mad Sage's Scroll.jpg" id="GNJ_63_The Mad Sages Scroll" data-flag="@X" onclick="openSidebar('GNJ_63_The Mad Sages Scroll',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/105_Form of the Demon.jpg" id="GNJ_105_Form of the Demon" data-flag="@X" onclick="openSidebar('GNJ_105_Form of the Demon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/151_Frilled Drakeling.jpg" id="GNJ_151_Frilled Drakeling" data-flag="@X" onclick="openSidebar('GNJ_151_Frilled Drakeling',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/192_Foraging Chipmunk.jpg" id="GNJ_192_Foraging Chipmunk" data-flag="@X" onclick="openSidebar('GNJ_192_Foraging Chipmunk',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/25_Kicking Crane Technique.jpg" id="GNJ_25_Kicking Crane Technique" data-flag="@X" onclick="openSidebar('GNJ_25_Kicking Crane Technique',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/64_Magnificent Liturgy.jpg" id="GNJ_64_Magnificent Liturgy" data-flag="@X" onclick="openSidebar('GNJ_64_Magnificent Liturgy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/106_Gilded Figurehead.jpg" id="GNJ_106_Gilded Figurehead" data-flag="@X" onclick="openSidebar('GNJ_106_Gilded Figurehead',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/163_Roaring Dracowyrm.jpg" id="GNJ_163_Roaring Dracowyrm" data-flag="@X" onclick="openSidebar('GNJ_163_Roaring Dracowyrm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/196_Juvenile Boa.jpg" id="GNJ_196_Juvenile Boa" data-flag="@X" onclick="openSidebar('GNJ_196_Juvenile Boa',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/28_Mastery of the Silken Strand.jpg" id="GNJ_28_Mastery of the Silken Strand" data-flag="@X" onclick="openSidebar('GNJ_28_Mastery of the Silken Strand',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/68_Negate.jpg" id="GNJ_68_Negate" data-flag="@X" onclick="openSidebar('GNJ_68_Negate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/113_Preacher of the Yenzu.jpg" id="GNJ_113_Preacher of the Yenzu" data-flag="@X" onclick="openSidebar('GNJ_113_Preacher of the Yenzu',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/165_Simian Stick Fighter.jpg" id="GNJ_165_Simian Stick Fighter" data-flag="@X" onclick="openSidebar('GNJ_165_Simian Stick Fighter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/202_Maiden of the Daffodils.jpg" id="GNJ_202_Maiden of the Daffodils" data-flag="@X" onclick="openSidebar('GNJ_202_Maiden of the Daffodils',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/29_Moonlight Stag.jpg" id="GNJ_29_Moonlight Stag" data-flag="@X" onclick="openSidebar('GNJ_29_Moonlight Stag',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/73_Peddler of Commonwares.jpg" id="GNJ_73_Peddler of Commonwares" data-flag="@X" onclick="openSidebar('GNJ_73_Peddler of Commonwares',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/116_Ravaging Ghoul.jpg" id="GNJ_116_Ravaging Ghoul" data-flag="@X" onclick="openSidebar('GNJ_116_Ravaging Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/166_Skeletal Shredwing.jpg" id="GNJ_166_Skeletal Shredwing" data-flag="@X" onclick="openSidebar('GNJ_166_Skeletal Shredwing',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/203_Meadow Macaque.jpg" id="GNJ_203_Meadow Macaque" data-flag="@X" onclick="openSidebar('GNJ_203_Meadow Macaque',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/30_Mother of Cranes.jpg" id="GNJ_30_Mother of Cranes" data-flag="@X" onclick="openSidebar('GNJ_30_Mother of Cranes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/76_Shimmering Seadragon.jpg" id="GNJ_76_Shimmering Seadragon" data-flag="@X" onclick="openSidebar('GNJ_76_Shimmering Seadragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/117_Read the Bones.jpg" id="GNJ_117_Read the Bones" data-flag="@X" onclick="openSidebar('GNJ_117_Read the Bones',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/167_Slicing Legion.jpg" id="GNJ_167_Slicing Legion" data-flag="@X" onclick="openSidebar('GNJ_167_Slicing Legion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/207_Plodding Moose.jpg" id="GNJ_207_Plodding Moose" data-flag="@X" onclick="openSidebar('GNJ_207_Plodding Moose',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/31_Pious Flutist.jpg" id="GNJ_31_Pious Flutist" data-flag="@X" onclick="openSidebar('GNJ_31_Pious Flutist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/78_Shredskin Sky Horror.jpg" id="GNJ_78_Shredskin Sky Horror" data-flag="@X" onclick="openSidebar('GNJ_78_Shredskin Sky Horror',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/118_Resurrection Plea.jpg" id="GNJ_118_Resurrection Plea" data-flag="@X" onclick="openSidebar('GNJ_118_Resurrection Plea',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/168_Spitfire.jpg" id="GNJ_168_Spitfire" data-flag="@X" onclick="openSidebar('GNJ_168_Spitfire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/210_Runewart Hog.jpg" id="GNJ_210_Runewart Hog" data-flag="@X" onclick="openSidebar('GNJ_210_Runewart Hog',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/32_Put to Rest.jpg" id="GNJ_32_Put to Rest" data-flag="@X" onclick="openSidebar('GNJ_32_Put to Rest',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/82_Unyielding Presence.jpg" id="GNJ_82_Unyielding Presence" data-flag="@X" onclick="openSidebar('GNJ_82_Unyielding Presence',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/124_Shadow Infestation.jpg" id="GNJ_124_Shadow Infestation" data-flag="@X" onclick="openSidebar('GNJ_124_Shadow Infestation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/169_Technique of Hao'Tai.jpg" id="GNJ_169_Technique of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_169_Technique of HaoTai',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/211_Ruthless Predator.jpg" id="GNJ_211_Ruthless Predator" data-flag="@X" onclick="openSidebar('GNJ_211_Ruthless Predator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/35_Student of the Crane.jpg" id="GNJ_35_Student of the Crane" data-flag="@X" onclick="openSidebar('GNJ_35_Student of the Crane',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/83_Wander Ashore.jpg" id="GNJ_83_Wander Ashore" data-flag="@X" onclick="openSidebar('GNJ_83_Wander Ashore',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/125_Sightless Blight.jpg" id="GNJ_125_Sightless Blight" data-flag="@X" onclick="openSidebar('GNJ_125_Sightless Blight',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/172_Volcanic Whelp.jpg" id="GNJ_172_Volcanic Whelp" data-flag="@X" onclick="openSidebar('GNJ_172_Volcanic Whelp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/213_Silken Spinner.jpg" id="GNJ_213_Silken Spinner" data-flag="@X" onclick="openSidebar('GNJ_213_Silken Spinner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/38_Temple Cranes.jpg" id="GNJ_38_Temple Cranes" data-flag="@X" onclick="openSidebar('GNJ_38_Temple Cranes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/84_Warrior's Meditation.jpg" id="GNJ_84_Warriors Meditation" data-flag="@X" onclick="openSidebar('GNJ_84_Warriors Meditation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/127_Succumb.jpg" id="GNJ_127_Succumb" data-flag="@X" onclick="openSidebar('GNJ_127_Succumb',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/173_Wisdom of Hao'Tai.jpg" id="GNJ_173_Wisdom of HaoTai" data-flag="@X" onclick="openSidebar('GNJ_173_Wisdom of HaoTai',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/215_Spidery Grasp.jpg" id="GNJ_215_Spidery Grasp" data-flag="@X" onclick="openSidebar('GNJ_215_Spidery Grasp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/39_Test the Winds.jpg" id="GNJ_39_Test the Winds" data-flag="@X" onclick="openSidebar('GNJ_39_Test the Winds',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/87_Welkin Tern.jpg" id="GNJ_87_Welkin Tern" data-flag="@X" onclick="openSidebar('GNJ_87_Welkin Tern',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/128_Tomb Scavenger.jpg" id="GNJ_128_Tomb Scavenger" data-flag="@X" onclick="openSidebar('GNJ_128_Tomb Scavenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/176_Xiusheng's Teachings.jpg" id="GNJ_176_Xiushengs Teachings" data-flag="@X" onclick="openSidebar('GNJ_176_Xiushengs Teachings',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/216_Superiority Complex.jpg" id="GNJ_216_Superiority Complex" data-flag="@X" onclick="openSidebar('GNJ_216_Superiority Complex',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/43_Warrior of the Folded Fan.jpg" id="GNJ_43_Warrior of the Folded Fan" data-flag="@X" onclick="openSidebar('GNJ_43_Warrior of the Folded Fan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/88_Whitepeak Channeler.jpg" id="GNJ_88_Whitepeak Channeler" data-flag="@X" onclick="openSidebar('GNJ_88_Whitepeak Channeler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/129_Trophy Collector.jpg" id="GNJ_129_Trophy Collector" data-flag="@X" onclick="openSidebar('GNJ_129_Trophy Collector',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/177_Young Dragonheart.jpg" id="GNJ_177_Young Dragonheart" data-flag="@X" onclick="openSidebar('GNJ_177_Young Dragonheart',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/219_Walk the Traveled Path.jpg" id="GNJ_219_Walk the Traveled Path" data-flag="@X" onclick="openSidebar('GNJ_219_Walk the Traveled Path',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/44_Whitepeak Predator.jpg" id="GNJ_44_Whitepeak Predator" data-flag="@X" onclick="openSidebar('GNJ_44_Whitepeak Predator',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_An and En, Destined Souls.jpg" id="GNJ_0_An and En, Destined Souls" data-flag="@X" onclick="openSidebar('GNJ_0_An and En, Destined Souls',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Kai'Shi, Anguished One.jpg" id="GNJ_0_KaiShi, Anguished One" data-flag="@X" onclick="openSidebar('GNJ_0_KaiShi, Anguished One',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Merciless Xun Huang.jpg" id="GNJ_0_Merciless Xun Huang" data-flag="@X" onclick="openSidebar('GNJ_0_Merciless Xun Huang',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Guawu the Untamed.jpg" id="GNJ_0_Guawu the Untamed" data-flag="@X" onclick="openSidebar('GNJ_0_Guawu the Untamed',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Lei, Yak Herder.jpg" id="GNJ_0_Lei, Yak Herder" data-flag="@X" onclick="openSidebar('GNJ_0_Lei, Yak Herder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Tyrannic Judgment.jpg" id="GNJ_0_Tyrannic Judgment" data-flag="@X" onclick="openSidebar('GNJ_0_Tyrannic Judgment',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Infuse the Apparatus.jpg" id="GNJ_0_Infuse the Apparatus" data-flag="@X" onclick="openSidebar('GNJ_0_Infuse the Apparatus',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Da'Lang, Forest Guardian.jpg" id="GNJ_0_DaLang, Forest Guardian" data-flag="@X" onclick="openSidebar('GNJ_0_DaLang, Forest Guardian',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Pan, Honored Sergeant.jpg" id="GNJ_0_Pan, Honored Sergeant" data-flag="@X" onclick="openSidebar('GNJ_0_Pan, Honored Sergeant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/222_Kiora, Empress of the Flood.jpg" id="GNJ_222_Kiora, Empress of the Flood" data-flag="@X" onclick="openSidebar('GNJ_222_Kiora, Empress of the Flood',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Zhehan, the Mediator.jpg" id="GNJ_0_Zhehan, the Mediator" data-flag="@X" onclick="openSidebar('GNJ_0_Zhehan, the Mediator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Foolhardy Huo.jpg" id="GNJ_0_Foolhardy Huo" data-flag="@X" onclick="openSidebar('GNJ_0_Foolhardy Huo',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Fei'Xing the Marvelous.jpg" id="GNJ_0_FeiXing the Marvelous" data-flag="@X" onclick="openSidebar('GNJ_0_FeiXing the Marvelous',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Xiong Mao, Survivalist.jpg" id="GNJ_0_Xiong Mao, Survivalist" data-flag="@X" onclick="openSidebar('GNJ_0_Xiong Mao, Survivalist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_An and En, Destined Souls.jpg" id="GNJ_0_An and En, Destined Souls" data-flag="@X" onclick="openSidebar('GNJ_0_An and En, Destined Souls',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Kai'Shi, Anguished One.jpg" id="GNJ_0_KaiShi, Anguished One" data-flag="@X" onclick="openSidebar('GNJ_0_KaiShi, Anguished One',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Merciless Xun Huang.jpg" id="GNJ_0_Merciless Xun Huang" data-flag="@X" onclick="openSidebar('GNJ_0_Merciless Xun Huang',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Guawu the Untamed.jpg" id="GNJ_0_Guawu the Untamed" data-flag="@X" onclick="openSidebar('GNJ_0_Guawu the Untamed',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Lei, Yak Herder.jpg" id="GNJ_0_Lei, Yak Herder" data-flag="@X" onclick="openSidebar('GNJ_0_Lei, Yak Herder',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Tyrannic Judgment.jpg" id="GNJ_0_Tyrannic Judgment" data-flag="@X" onclick="openSidebar('GNJ_0_Tyrannic Judgment',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Infuse the Apparatus.jpg" id="GNJ_0_Infuse the Apparatus" data-flag="@X" onclick="openSidebar('GNJ_0_Infuse the Apparatus',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Da'Lang, Forest Guardian.jpg" id="GNJ_0_DaLang, Forest Guardian" data-flag="@X" onclick="openSidebar('GNJ_0_DaLang, Forest Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Pan, Honored Sergeant.jpg" id="GNJ_0_Pan, Honored Sergeant" data-flag="@X" onclick="openSidebar('GNJ_0_Pan, Honored Sergeant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/222_Kiora, Empress of the Flood.jpg" id="GNJ_222_Kiora, Empress of the Flood" data-flag="@X" onclick="openSidebar('GNJ_222_Kiora, Empress of the Flood',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Zhehan, the Mediator.jpg" id="GNJ_0_Zhehan, the Mediator" data-flag="@X" onclick="openSidebar('GNJ_0_Zhehan, the Mediator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Foolhardy Huo.jpg" id="GNJ_0_Foolhardy Huo" data-flag="@X" onclick="openSidebar('GNJ_0_Foolhardy Huo',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Fei'Xing the Marvelous.jpg" id="GNJ_0_FeiXing the Marvelous" data-flag="@X" onclick="openSidebar('GNJ_0_FeiXing the Marvelous',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Xiong Mao, Survivalist.jpg" id="GNJ_0_Xiong Mao, Survivalist" data-flag="@X" onclick="openSidebar('GNJ_0_Xiong Mao, Survivalist',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_The First Idol.jpg" id="GNJ_0_The First Idol" data-flag="@X" onclick="openSidebar('GNJ_0_The First Idol',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Assassin's Shuriken.jpg" id="GNJ_0_Assassins Shuriken" data-flag="@X" onclick="openSidebar('GNJ_0_Assassins Shuriken',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Inspiring Effigy.jpg" id="GNJ_0_Inspiring Effigy" data-flag="@X" onclick="openSidebar('GNJ_0_Inspiring Effigy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Brass Dragon.jpg" id="GNJ_0_Brass Dragon" data-flag="@X" onclick="openSidebar('GNJ_0_Brass Dragon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Dancing Blades.jpg" id="GNJ_0_Dancing Blades" data-flag="@X" onclick="openSidebar('GNJ_0_Dancing Blades',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Draconic Bulwark.jpg" id="GNJ_0_Draconic Bulwark" data-flag="@X" onclick="openSidebar('GNJ_0_Draconic Bulwark',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Statuary Forge.jpg" id="GNJ_0_Statuary Forge" data-flag="@X" onclick="openSidebar('GNJ_0_Statuary Forge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Vial of Dragonfire.jpg" id="GNJ_0_Vial of Dragonfire" data-flag="@X" onclick="openSidebar('GNJ_0_Vial of Dragonfire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Sacred Sanctuary.jpg" id="GNJ_0_Sacred Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Sacred Sanctuary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Inundated Sanctuary.jpg" id="GNJ_0_Inundated Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Inundated Sanctuary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Wretched Sanctuary.jpg" id="GNJ_0_Wretched Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Wretched Sanctuary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Spire Sanctuary.jpg" id="GNJ_0_Spire Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Spire Sanctuary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Savage Sanctuary.jpg" id="GNJ_0_Savage Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Savage Sanctuary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Abandoned Sanctuary.jpg" id="GNJ_0_Abandoned Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Abandoned Sanctuary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Plains.jpg" id="GNJ_0_Plains" data-flag="@X" onclick="openSidebar('GNJ_0_Plains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Island.jpg" id="GNJ_0_Island" data-flag="@X" onclick="openSidebar('GNJ_0_Island',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Swamp.jpg" id="GNJ_0_Swamp" data-flag="@X" onclick="openSidebar('GNJ_0_Swamp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Mountain.jpg" id="GNJ_0_Mountain" data-flag="@X" onclick="openSidebar('GNJ_0_Mountain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/0_Forest.jpg" id="GNJ_0_Forest" data-flag="@X" onclick="openSidebar('GNJ_0_Forest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_The First Idol.jpg" id="GNJ_0_The First Idol" data-flag="@X" onclick="openSidebar('GNJ_0_The First Idol',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Assassin's Shuriken.jpg" id="GNJ_0_Assassins Shuriken" data-flag="@X" onclick="openSidebar('GNJ_0_Assassins Shuriken',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Inspiring Effigy.jpg" id="GNJ_0_Inspiring Effigy" data-flag="@X" onclick="openSidebar('GNJ_0_Inspiring Effigy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Brass Dragon.jpg" id="GNJ_0_Brass Dragon" data-flag="@X" onclick="openSidebar('GNJ_0_Brass Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Dancing Blades.jpg" id="GNJ_0_Dancing Blades" data-flag="@X" onclick="openSidebar('GNJ_0_Dancing Blades',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Draconic Bulwark.jpg" id="GNJ_0_Draconic Bulwark" data-flag="@X" onclick="openSidebar('GNJ_0_Draconic Bulwark',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Statuary Forge.jpg" id="GNJ_0_Statuary Forge" data-flag="@X" onclick="openSidebar('GNJ_0_Statuary Forge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Vial of Dragonfire.jpg" id="GNJ_0_Vial of Dragonfire" data-flag="@X" onclick="openSidebar('GNJ_0_Vial of Dragonfire',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Sacred Sanctuary.jpg" id="GNJ_0_Sacred Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Sacred Sanctuary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Inundated Sanctuary.jpg" id="GNJ_0_Inundated Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Inundated Sanctuary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Wretched Sanctuary.jpg" id="GNJ_0_Wretched Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Wretched Sanctuary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Spire Sanctuary.jpg" id="GNJ_0_Spire Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Spire Sanctuary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Savage Sanctuary.jpg" id="GNJ_0_Savage Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Savage Sanctuary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Abandoned Sanctuary.jpg" id="GNJ_0_Abandoned Sanctuary" data-flag="@X" onclick="openSidebar('GNJ_0_Abandoned Sanctuary',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Plains.jpg" id="GNJ_0_Plains" data-flag="@X" onclick="openSidebar('GNJ_0_Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Island.jpg" id="GNJ_0_Island" data-flag="@X" onclick="openSidebar('GNJ_0_Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Swamp.jpg" id="GNJ_0_Swamp" data-flag="@X" onclick="openSidebar('GNJ_0_Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Mountain.jpg" id="GNJ_0_Mountain" data-flag="@X" onclick="openSidebar('GNJ_0_Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/0_Forest.jpg" id="GNJ_0_Forest" data-flag="@X" onclick="openSidebar('GNJ_0_Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/1t_Submerge.jpg" id="GNJ_1t_Submerge" data-flag="@X" onclick="openSidebar('GNJ_1t_Submerge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/30t_Idol.jpg" id="GNJ_30t_Idol" data-flag="@X" onclick="openSidebar('GNJ_30t_Idol',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/31t_Wun Su's Staff.jpg" id="GNJ_31t_Wun Sus Staff" data-flag="@X" onclick="openSidebar('GNJ_31t_Wun Sus Staff',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/32t_Emblem.jpg" id="GNJ_32t_Emblem" data-flag="@X" onclick="openSidebar('GNJ_32t_Emblem',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/33t_Emblem.jpg" id="GNJ_33t_Emblem" data-flag="@X" onclick="openSidebar('GNJ_33t_Emblem',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/34t_Emblem.jpg" id="GNJ_34t_Emblem" data-flag="@X" onclick="openSidebar('GNJ_34t_Emblem',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/13t_Lizhao, Lord of the Yaogu.jpg" id="GNJ_13t_Lizhao, Lord of the Yaogu" data-flag="@X" onclick="openSidebar('GNJ_13t_Lizhao, Lord of the Yaogu',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/12t_Kai'Jun, the Annihilator.jpg" id="GNJ_12t_KaiJun, the Annihilator" data-flag="@X" onclick="openSidebar('GNJ_12t_KaiJun, the Annihilator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/21t_Crimson Hellmaw.jpg" id="GNJ_21t_Crimson Hellmaw" data-flag="@X" onclick="openSidebar('GNJ_21t_Crimson Hellmaw',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/7t_Undead Archivist.jpg" id="GNJ_7t_Undead Archivist" data-flag="@X" onclick="openSidebar('GNJ_7t_Undead Archivist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/10t_Emissary of the Wicked.jpg" id="GNJ_10t_Emissary of the Wicked" data-flag="@X" onclick="openSidebar('GNJ_10t_Emissary of the Wicked',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/11t_Fleshwrithe Ghoul.jpg" id="GNJ_11t_Fleshwrithe Ghoul" data-flag="@X" onclick="openSidebar('GNJ_11t_Fleshwrithe Ghoul',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/20t_Bone Pit Raptor.jpg" id="GNJ_20t_Bone Pit Raptor" data-flag="@X" onclick="openSidebar('GNJ_20t_Bone Pit Raptor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/2t_Bird.jpg" id="GNJ_2t_Bird" data-flag="@X" onclick="openSidebar('GNJ_2t_Bird',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/3t_Fox Spirit.jpg" id="GNJ_3t_Fox Spirit" data-flag="@X" onclick="openSidebar('GNJ_3t_Fox Spirit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/4t_Pacifism.jpg" id="GNJ_4t_Pacifism" data-flag="@X" onclick="openSidebar('GNJ_4t_Pacifism',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/5t_Blue Bird.jpg" id="GNJ_5t_Blue Bird" data-flag="@X" onclick="openSidebar('GNJ_5t_Blue Bird',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/6t_Shredskin Sky Horror.jpg" id="GNJ_6t_Shredskin Sky Horror" data-flag="@X" onclick="openSidebar('GNJ_6t_Shredskin Sky Horror',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/8t_Demon.jpg" id="GNJ_8t_Demon" data-flag="@X" onclick="openSidebar('GNJ_8t_Demon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/9t_Diseased Prophet.jpg" id="GNJ_9t_Diseased Prophet" data-flag="@X" onclick="openSidebar('GNJ_9t_Diseased Prophet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/14t_Puppet.jpg" id="GNJ_14t_Puppet" data-flag="@X" onclick="openSidebar('GNJ_14t_Puppet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/15t_Rat.jpg" id="GNJ_15t_Rat" data-flag="@X" onclick="openSidebar('GNJ_15t_Rat',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/16t_Ravaging Ghoul.jpg" id="GNJ_16t_Ravaging Ghoul" data-flag="@X" onclick="openSidebar('GNJ_16t_Ravaging Ghoul',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/17t_Sightless Blight.jpg" id="GNJ_17t_Sightless Blight" data-flag="@X" onclick="openSidebar('GNJ_17t_Sightless Blight',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/18t_Zombie.jpg" id="GNJ_18t_Zombie" data-flag="@X" onclick="openSidebar('GNJ_18t_Zombie',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/19t_Zombie.jpg" id="GNJ_19t_Zombie" data-flag="@X" onclick="openSidebar('GNJ_19t_Zombie',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/22t_Dragon.jpg" id="GNJ_22t_Dragon" data-flag="@X" onclick="openSidebar('GNJ_22t_Dragon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/23t_Skeletal Shredwing.jpg" id="GNJ_23t_Skeletal Shredwing" data-flag="@X" onclick="openSidebar('GNJ_23t_Skeletal Shredwing',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/24t_Plant.jpg" id="GNJ_24t_Plant" data-flag="@X" onclick="openSidebar('GNJ_24t_Plant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/25t_Shimaru, the White Wolf.jpg" id="GNJ_25t_Shimaru, the White Wolf" data-flag="@X" onclick="openSidebar('GNJ_25t_Shimaru, the White Wolf',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/26t_Snake.jpg" id="GNJ_26t_Snake" data-flag="@X" onclick="openSidebar('GNJ_26t_Snake',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/27t_Wolf.jpg" id="GNJ_27t_Wolf" data-flag="@X" onclick="openSidebar('GNJ_27t_Wolf',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/28t_Warrior.jpg" id="GNJ_28t_Warrior" data-flag="@X" onclick="openSidebar('GNJ_28t_Warrior',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GNJ-files/img/29t_Kai'Shi, Anguished One.jpg" id="GNJ_29t_KaiShi, Anguished One" data-flag="@X" onclick="openSidebar('GNJ_29t_KaiShi, Anguished One',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/1t_Submerge.jpg" id="GNJ_1t_Submerge" data-flag="@X" onclick="openSidebar('GNJ_1t_Submerge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/30t_Idol.jpg" id="GNJ_30t_Idol" data-flag="@X" onclick="openSidebar('GNJ_30t_Idol',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/31t_Wun Su's Staff.jpg" id="GNJ_31t_Wun Sus Staff" data-flag="@X" onclick="openSidebar('GNJ_31t_Wun Sus Staff',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/32t_Emblem.jpg" id="GNJ_32t_Emblem" data-flag="@X" onclick="openSidebar('GNJ_32t_Emblem',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/33t_Emblem.jpg" id="GNJ_33t_Emblem" data-flag="@X" onclick="openSidebar('GNJ_33t_Emblem',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/34t_Emblem.jpg" id="GNJ_34t_Emblem" data-flag="@X" onclick="openSidebar('GNJ_34t_Emblem',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/13t_Lizhao, Lord of the Yaogu.jpg" id="GNJ_13t_Lizhao, Lord of the Yaogu" data-flag="@X" onclick="openSidebar('GNJ_13t_Lizhao, Lord of the Yaogu',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/12t_Kai'Jun, the Annihilator.jpg" id="GNJ_12t_KaiJun, the Annihilator" data-flag="@X" onclick="openSidebar('GNJ_12t_KaiJun, the Annihilator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/21t_Crimson Hellmaw.jpg" id="GNJ_21t_Crimson Hellmaw" data-flag="@X" onclick="openSidebar('GNJ_21t_Crimson Hellmaw',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/7t_Undead Archivist.jpg" id="GNJ_7t_Undead Archivist" data-flag="@X" onclick="openSidebar('GNJ_7t_Undead Archivist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/10t_Emissary of the Wicked.jpg" id="GNJ_10t_Emissary of the Wicked" data-flag="@X" onclick="openSidebar('GNJ_10t_Emissary of the Wicked',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/11t_Fleshwrithe Ghoul.jpg" id="GNJ_11t_Fleshwrithe Ghoul" data-flag="@X" onclick="openSidebar('GNJ_11t_Fleshwrithe Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/20t_Bone Pit Raptor.jpg" id="GNJ_20t_Bone Pit Raptor" data-flag="@X" onclick="openSidebar('GNJ_20t_Bone Pit Raptor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/2t_Bird.jpg" id="GNJ_2t_Bird" data-flag="@X" onclick="openSidebar('GNJ_2t_Bird',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/3t_Fox Spirit.jpg" id="GNJ_3t_Fox Spirit" data-flag="@X" onclick="openSidebar('GNJ_3t_Fox Spirit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/4t_Pacifism.jpg" id="GNJ_4t_Pacifism" data-flag="@X" onclick="openSidebar('GNJ_4t_Pacifism',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/5t_Blue Bird.jpg" id="GNJ_5t_Blue Bird" data-flag="@X" onclick="openSidebar('GNJ_5t_Blue Bird',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/6t_Shredskin Sky Horror.jpg" id="GNJ_6t_Shredskin Sky Horror" data-flag="@X" onclick="openSidebar('GNJ_6t_Shredskin Sky Horror',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/8t_Demon.jpg" id="GNJ_8t_Demon" data-flag="@X" onclick="openSidebar('GNJ_8t_Demon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/9t_Diseased Prophet.jpg" id="GNJ_9t_Diseased Prophet" data-flag="@X" onclick="openSidebar('GNJ_9t_Diseased Prophet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/14t_Puppet.jpg" id="GNJ_14t_Puppet" data-flag="@X" onclick="openSidebar('GNJ_14t_Puppet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/15t_Rat.jpg" id="GNJ_15t_Rat" data-flag="@X" onclick="openSidebar('GNJ_15t_Rat',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/16t_Ravaging Ghoul.jpg" id="GNJ_16t_Ravaging Ghoul" data-flag="@X" onclick="openSidebar('GNJ_16t_Ravaging Ghoul',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/17t_Sightless Blight.jpg" id="GNJ_17t_Sightless Blight" data-flag="@X" onclick="openSidebar('GNJ_17t_Sightless Blight',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/18t_Zombie.jpg" id="GNJ_18t_Zombie" data-flag="@X" onclick="openSidebar('GNJ_18t_Zombie',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/19t_Zombie.jpg" id="GNJ_19t_Zombie" data-flag="@X" onclick="openSidebar('GNJ_19t_Zombie',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/22t_Dragon.jpg" id="GNJ_22t_Dragon" data-flag="@X" onclick="openSidebar('GNJ_22t_Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/23t_Skeletal Shredwing.jpg" id="GNJ_23t_Skeletal Shredwing" data-flag="@X" onclick="openSidebar('GNJ_23t_Skeletal Shredwing',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/24t_Plant.jpg" id="GNJ_24t_Plant" data-flag="@X" onclick="openSidebar('GNJ_24t_Plant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/25t_Shimaru, the White Wolf.jpg" id="GNJ_25t_Shimaru, the White Wolf" data-flag="@X" onclick="openSidebar('GNJ_25t_Shimaru, the White Wolf',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/26t_Snake.jpg" id="GNJ_26t_Snake" data-flag="@X" onclick="openSidebar('GNJ_26t_Snake',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/27t_Wolf.jpg" id="GNJ_27t_Wolf" data-flag="@X" onclick="openSidebar('GNJ_27t_Wolf',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/28t_Warrior.jpg" id="GNJ_28t_Warrior" data-flag="@X" onclick="openSidebar('GNJ_28t_Warrior',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GNJ-files/img/29t_Kai'Shi, Anguished One.jpg" id="GNJ_29t_KaiShi, Anguished One" data-flag="@X" onclick="openSidebar('GNJ_29t_KaiShi, Anguished One',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GNJ_e" data-flag="@E" onclick="openSidebar('GNJ_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GNJ_er" data-flag="@E" onclick="openSidebar('GNJ_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -651,13 +667,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -790,13 +806,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -950,16 +969,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -969,7 +988,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

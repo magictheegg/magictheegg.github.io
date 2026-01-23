@@ -9,13 +9,16 @@ def generateHTML():
 	html_content = '''<html>
 	<head>
 		<title>MSE Set Hub</title>
-		<link rel="icon" type="image/x-icon" href="/img/favicon.png">
+		<link rel="icon" type="image/x-icon" href="./img/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
+	<script title="root">
+		const rootPath = ".";
+	</script>
 	<style>
 	@font-face {
 	  font-family: 'Beleren Small Caps';
-	  src: url('/resources/beleren-caps.ttf');
+	  src: url('./resources/beleren-caps.ttf');
 	}
 	body {
 		background-image: linear-gradient(to top, #ffdde1, #ee9ca7);
@@ -265,7 +268,7 @@ def generateHTML():
 
 			document.addEventListener("DOMContentLoaded", async function () {
 				try {
-					const response = await fetch('./resources/gradients.json');
+					const response = await fetch(rootPath + '/resources/gradients.json');
 					raw_gradients = await response.json();
 				}
 				catch(error) {
@@ -311,7 +314,7 @@ def generateHTML():
 
 				const a = document.createElement("a");
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.origin);
 				const params = {
 					set: card_stats.set,
 					num: card_stats.number,
@@ -327,11 +330,11 @@ def generateHTML():
 
 				if ("position" in card_stats)
 				{
-					img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.position + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
+					img.src = rootPath + '/sets/' + card_stats.set + '-files/img/' + card_stats.position + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
 				}
 				else
 				{
-					img.src = '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
+					img.src = rootPath + '/sets/' + card_stats.set + '-files/img/' + card_stats.number + '_' + card_stats.card_name + (card_stats.shape.includes('double') ? '_front' : '') + '.' + card_stats.image_type;
 				}
 
 				a.append(img);
@@ -421,17 +424,17 @@ def generateHTML():
 			}
 
 			function goToSets() {
-				window.location = ("/all-sets");
+				window.location = (rootPath + "/all-sets");
 			}
 
 			function goToDeckbuilder() {
-				window.location = ("/deckbuilder");
+				window.location = (rootPath + "/deckbuilder");
 			}
 
 			function search() {
-				const url = new URL('search', window.location.origin);
+				const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				url.searchParams.append('search', document.getElementById("search").value);
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 
 			'''

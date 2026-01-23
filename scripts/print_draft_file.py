@@ -19,7 +19,8 @@ def generateFile(code):
 		for card in set_data['cards']:
 			card['rarity'] = 'cube'
 
-	structure_path = os.path.join('resources', set_data['draft_structure'].replace(' ','-') + '-structure.json')
+	structure = 'draft-booster' if 'draft_structure' not in set_data else set_data['draft_structure'].replace(' ','-')
+	structure_path = os.path.join('resources', structure + '-structure.json')
 	if os.path.isfile(os.path.join('sets', code + '-files', 'structure.json')):
 		structure_path = os.path.join('sets', code + '-files', 'structure.json')
 	with open(structure_path, encoding='utf-8-sig') as j:

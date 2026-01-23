@@ -9,18 +9,21 @@ def generateHTML():
 	html_content = '''<html>
 	<head>
 	  <title>All Sets</title>
-	  <link rel="icon" type="image/x-icon" href="/img/sets.png">
-	  <link rel="stylesheet" href="/resources/mana.css">
-	  <link rel="stylesheet" href="/resources/header.css">
+	  <link rel="icon" type="image/x-icon" href="./img/sets.png">
+	  <link rel="stylesheet" href="./resources/mana.css">
+	  <link rel="stylesheet" href="./resources/header.css">
 	</head>
+	<script title="root">
+		const rootPath = ".";
+	</script>
 	<style>
 		@font-face {
 			font-family: 'Beleren Small Caps';
-			src: url('/resources/beleren-caps.ttf');
+			src: url('./resources/beleren-caps.ttf');
 		}
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('./resources/beleren.ttf');
 		}
 		body {
 			font-family: 'Helvetica', 'Arial', sans-serif;
@@ -129,8 +132,8 @@ def generateHTML():
 						set_count += 1
 
 			html_content += '''
-			<a href="/sets/''' + code + '''" class="set-row"> 
-				<img src="/sets/''' + code + '''-files/icon.png">
+			<a href="sets/''' + code + '''" class="set-row"> 
+				<img src="sets/''' + code + '''-files/icon.png">
 				<div class="set-title">''' + set_name + '''</div>
 				<div>''' + code + '''</div>
 				<div>''' + str(set_count) + '''</div>
@@ -168,9 +171,9 @@ def generateHTML():
 		});
 
 		function search() {
-			const url = new URL('search', window.location.origin);
+			const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			url.searchParams.append('search', document.getElementById("search").value);
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		'''

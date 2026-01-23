@@ -22,19 +22,22 @@ def generateHTML(code):
 	html_content = '''<html>
 <head>
   <title>''' + set_name + '''</title>
-  <link rel="icon" type="image/x-icon" href="/sets/''' + code + '''-files/icon.png">
-  <link rel="stylesheet" href="/resources/mana.css">
-  <link rel="stylesheet" href="/resources/header.css">
-  <link rel="stylesheet" href="/resources/card-text.css">
+  <link rel="icon" type="image/x-icon" href="../sets/''' + code + '''-files/icon.png">
+  <link rel="stylesheet" href="../resources/mana.css">
+  <link rel="stylesheet" href="../resources/header.css">
+  <link rel="stylesheet" href="../resources/card-text.css">
 </head>
+<script title="root">
+	const rootPath = "..";
+</script>
 <style>
 	@font-face {
 		font-family: 'Beleren Small Caps';
-		src: url('/resources/beleren-caps.ttf');
+		src: url('../resources/beleren-caps.ttf');
 	}
 	@font-face {
 		font-family: Beleren;
-		src: url('/resources/beleren.ttf');
+		src: url('../resources/beleren.ttf');
 	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
@@ -206,7 +209,7 @@ def generateHTML(code):
 		border-radius: 3.733% / 2.677%;
 	}
 	.img-container .btn {
-		background: url('/img/flip.png') no-repeat;
+		background: url('../img/flip.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -220,7 +223,7 @@ def generateHTML(code):
 		opacity: 0.5;
 	}
 	.img-container .btn:hover {
-		background: url('/img/flip-hover.png') no-repeat;
+		background: url('../img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 	}
@@ -261,7 +264,7 @@ def generateHTML(code):
 		font-size: 34px;
 	}
 	.close-btn {
-		background: url('/img/close.png') no-repeat;
+		background: url('../img/close.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 50px;
@@ -270,7 +273,7 @@ def generateHTML(code):
 		cursor: pointer;
 	}
 	.copy-btn {
-		background: url('/img/copy.png') no-repeat;
+		background: url('../img/copy.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 50px;
@@ -333,20 +336,20 @@ def generateHTML(code):
 	<div class="banner">
 		<div class="banner-container">
 			<div class="set-banner" id="set-banner">
-				<img class="set-logo" src="/sets/''' + code + '''-files/icon.png">
+				<img class="set-logo" src="../sets/''' + code + '''-files/icon.png">
 				<div class="banner-text">
 					<div class="set-title">''' + set_name + '''</div>
 					<div class="extras-container">'''
 
 	#F: sets/SET-files/SET-draft.txt
 	if os.path.exists(os.path.join('sets', code + '-files', code + '-draft.txt')) and not previewing:
-		html_content += '''<a href="/sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft</a><div class="dot"> • </div>
+		html_content += '''<a href="../sets/''' + code + '''-files/''' + code + '''-draft.txt" download>Draft</a><div class="dot"> • </div>
 			<a onclick="packOnePickOne()">P1P1</a><div class="dot"> • </div>
 '''
 
 	#C: sets/SET-files/SET.xml
 		if os.path.exists(os.path.join('sets', code + '-files', code + '.xml')) and not previewing:
-			html_content += '''<a href="/sets/''' + code + '''-files/''' + code + '''.xml" download>Play</a><div class="dot"> • </div>
+			html_content += '''<a href="../sets/''' + code + '''-files/''' + code + '''.xml" download>Play</a><div class="dot"> • </div>
 '''
 
 	html_content += '''			<a onclick="randomSetCard()">I'm Feeling Lucky</a>
@@ -378,16 +381,16 @@ def generateHTML(code):
 		for img_name in re.findall(img_re, md_html):
 			img_name_re = r'%' + img_name + '%'
 			if img_name == 'logo' or img_name == 'icon' or img_name == 'bg':
-				img_path = '/'.join([ '/sets', code + '-files', img_name + '.png' ])
+				img_path = '/'.join([ '..', 'sets', code + '-files', img_name + '.png' ])
 			else:
 				with open(os.path.join('sets', code + '-files', code + '.json'), encoding='utf-8-sig') as f:
 					set_json = json.load(f)
 				for card in set_json['cards']:
 					if card['card_name'] == img_name:
 						if 'image_name' in set_json and set_json['image_name'] == 'position':
-							img_path = '/'.join([ '/sets', code + '-files', 'img', card['position'] + '.png' ])
+							img_path = '/'.join([ '..', 'sets', code + '-files', 'img', card['position'] + '.png' ])
 						else:
-							img_path = '/'.join([ '/sets', code + '-files', 'img', str(card['number']) + ('t' if 'token' in card['shape'] else '') + '_' + img_name + '.png' ])
+							img_path = '/'.join([ '..', 'sets', code + '-files', 'img', str(card['number']) + ('t' if 'token' in card['shape'] else '') + '_' + img_name + '.png' ])
 						break
 					img_path = 'missing'
 			md_html = re.sub(img_name_re, img_path, md_html)
@@ -430,7 +433,7 @@ def generateHTML(code):
 
 	html_content += '''
 
-			await fetch('/sets/''' + code + '''-files/''' + code + '''-draft.txt')
+			await fetch(rootPath + '/sets/''' + code + '''-files/''' + code + '''-draft.txt')
 				.then(response => response.text())
 				.then(text => {
 					draft_file = text.replace(/},\\n\\t]/g, '}\\n\\t]');
@@ -587,7 +590,7 @@ def generateHTML(code):
 					{
 						card_images.push({
 							name: card.name,
-							url: card.image_uris.en
+							url: rootPath + '/' + card.image_uris.en
 						});
 					}
 
@@ -750,9 +753,9 @@ def generateHTML(code):
 		});
 
 		function search() {
-			const url = new URL('search', window.location.origin);
+			const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			url.searchParams.append('search', document.getElementById("search").value);
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		function randomSetCard() {
@@ -767,7 +770,7 @@ def generateHTML(code):
 			let i = Math.floor(Math.random() * (set_card_list.length + 1));
 			let random_card = set_card_list[i];
 
-			const url = new URL('card', window.location.origin);
+			const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			const params = {
 				set: random_card.set,
 				num: random_card.number,
@@ -777,7 +780,7 @@ def generateHTML(code):
 				url.searchParams.append(key, params[key]);
 			}
 
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		'''

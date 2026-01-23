@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/KOD-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/KOD-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>KOD visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,482 +181,495 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/KOD-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/KOD-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/KOD-files/logo.png">
+		<img class="logo" src="../sets/KOD-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/8_End of Days.jpg" id="KOD_8_End of Days" data-flag="@X" onclick="openSidebar('KOD_8_End of Days',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/42_Prodigious Panya.jpg" id="KOD_42_Prodigious Panya" data-flag="@X" onclick="openSidebar('KOD_42_Prodigious Panya',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/79_Trouble Brewing.jpg" id="KOD_79_Trouble Brewing" data-flag="@X" onclick="openSidebar('KOD_79_Trouble Brewing',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/98_Rainbow Phoenix.jpg" id="KOD_98_Rainbow Phoenix" data-flag="@X" onclick="openSidebar('KOD_98_Rainbow Phoenix',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/133_A Wide World Awaits.jpg" id="KOD_133_A Wide World Awaits" data-flag="@X" onclick="openSidebar('KOD_133_A Wide World Awaits',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/9_Frontier Savior.jpg" id="KOD_9_Frontier Savior" data-flag="@X" onclick="openSidebar('KOD_9_Frontier Savior',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/41_Ophidian Augury.jpg" id="KOD_41_Ophidian Augury" data-flag="@X" onclick="openSidebar('KOD_41_Ophidian Augury',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/61_Butcher of Shallow Graves.jpg" id="KOD_61_Butcher of Shallow Graves" data-flag="@X" onclick="openSidebar('KOD_61_Butcher of Shallow Graves',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/85_Fateful Eruption.jpg" id="KOD_85_Fateful Eruption" data-flag="@X" onclick="openSidebar('KOD_85_Fateful Eruption',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/114_Crashing Mammoth.jpg" id="KOD_114_Crashing Mammoth" data-flag="@X" onclick="openSidebar('KOD_114_Crashing Mammoth',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/5_Batiga Escort.jpg" id="KOD_5_Batiga Escort" data-flag="@X" onclick="openSidebar('KOD_5_Batiga Escort',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/29_Aether Sculptor.jpg" id="KOD_29_Aether Sculptor" data-flag="@X" onclick="openSidebar('KOD_29_Aether Sculptor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/64_A Grave Sentence.jpg" id="KOD_64_A Grave Sentence" data-flag="@X" onclick="openSidebar('KOD_64_A Grave Sentence',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/82_Calamity of Yore.jpg" id="KOD_82_Calamity of Yore" data-flag="@X" onclick="openSidebar('KOD_82_Calamity of Yore',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/108_Babyscale Bruiser.jpg" id="KOD_108_Babyscale Bruiser" data-flag="@X" onclick="openSidebar('KOD_108_Babyscale Bruiser',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/6_Beyond the Boneyard.jpg" id="KOD_6_Beyond the Boneyard" data-flag="@X" onclick="openSidebar('KOD_6_Beyond the Boneyard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/30_Arcane Refusal.jpg" id="KOD_30_Arcane Refusal" data-flag="@X" onclick="openSidebar('KOD_30_Arcane Refusal',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/66_Hero Slayer.jpg" id="KOD_66_Hero Slayer" data-flag="@X" onclick="openSidebar('KOD_66_Hero Slayer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/83_Canine Acumen.jpg" id="KOD_83_Canine Acumen" data-flag="@X" onclick="openSidebar('KOD_83_Canine Acumen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/109_Battle for Msuji Highlands.jpg" id="KOD_109_Battle for Msuji Highlands" data-flag="@X" onclick="openSidebar('KOD_109_Battle for Msuji Highlands',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/7_Bourasan Street Watch.jpg" id="KOD_7_Bourasan Street Watch" data-flag="@X" onclick="openSidebar('KOD_7_Bourasan Street Watch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/34_Into Waridi Valley.jpg" id="KOD_34_Into Waridi Valley" data-flag="@X" onclick="openSidebar('KOD_34_Into Waridi Valley',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/71_Pact of Dark Power.jpg" id="KOD_71_Pact of Dark Power" data-flag="@X" onclick="openSidebar('KOD_71_Pact of Dark Power',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/86_Fierce Combatant.jpg" id="KOD_86_Fierce Combatant" data-flag="@X" onclick="openSidebar('KOD_86_Fierce Combatant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/112_Coldblood Bender.jpg" id="KOD_112_Coldblood Bender" data-flag="@X" onclick="openSidebar('KOD_112_Coldblood Bender',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/12_Greypelt Initiate.jpg" id="KOD_12_Greypelt Initiate" data-flag="@X" onclick="openSidebar('KOD_12_Greypelt Initiate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/39_Nectarkin.jpg" id="KOD_39_Nectarkin" data-flag="@X" onclick="openSidebar('KOD_39_Nectarkin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/72_Pakka, the Shadowcloak.jpg" id="KOD_72_Pakka, the Shadowcloak" data-flag="@X" onclick="openSidebar('KOD_72_Pakka, the Shadowcloak',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/89_The Harnessing of Fire.jpg" id="KOD_89_The Harnessing of Fire" data-flag="@X" onclick="openSidebar('KOD_89_The Harnessing of Fire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/115_Disciple of the All-Mother.jpg" id="KOD_115_Disciple of the All-Mother" data-flag="@X" onclick="openSidebar('KOD_115_Disciple of the All-Mother',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/14_Mythos Scribe.jpg" id="KOD_14_Mythos Scribe" data-flag="@X" onclick="openSidebar('KOD_14_Mythos Scribe',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/40_On Marvelous Wings.jpg" id="KOD_40_On Marvelous Wings" data-flag="@X" onclick="openSidebar('KOD_40_On Marvelous Wings',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/73_Pestilent Vermin.jpg" id="KOD_73_Pestilent Vermin" data-flag="@X" onclick="openSidebar('KOD_73_Pestilent Vermin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/94_Mwiti, Ever-Scarred.jpg" id="KOD_94_Mwiti, Ever-Scarred" data-flag="@X" onclick="openSidebar('KOD_94_Mwiti, Ever-Scarred',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/121_Grotto Scarab.jpg" id="KOD_121_Grotto Scarab" data-flag="@X" onclick="openSidebar('KOD_121_Grotto Scarab',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/20_Provincial Loyalty.jpg" id="KOD_20_Provincial Loyalty" data-flag="@X" onclick="openSidebar('KOD_20_Provincial Loyalty',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/44_Sage of Storms.jpg" id="KOD_44_Sage of Storms" data-flag="@X" onclick="openSidebar('KOD_44_Sage of Storms',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/75_Shrieking Gnoll.jpg" id="KOD_75_Shrieking Gnoll" data-flag="@X" onclick="openSidebar('KOD_75_Shrieking Gnoll',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/97_Quill Sniper.jpg" id="KOD_97_Quill Sniper" data-flag="@X" onclick="openSidebar('KOD_97_Quill Sniper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/124_Join the Colony.jpg" id="KOD_124_Join the Colony" data-flag="@X" onclick="openSidebar('KOD_124_Join the Colony',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/24_Shabil's Absolute Triumph.jpg" id="KOD_24_Shabils Absolute Triumph" data-flag="@X" onclick="openSidebar('KOD_24_Shabils Absolute Triumph',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/47_Serum Smoker.jpg" id="KOD_47_Serum Smoker" data-flag="@X" onclick="openSidebar('KOD_47_Serum Smoker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/77_Stygian Condor.jpg" id="KOD_77_Stygian Condor" data-flag="@X" onclick="openSidebar('KOD_77_Stygian Condor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/105_Thorny Bushwacker.jpg" id="KOD_105_Thorny Bushwacker" data-flag="@X" onclick="openSidebar('KOD_105_Thorny Bushwacker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/126_Lair Recluse.jpg" id="KOD_126_Lair Recluse" data-flag="@X" onclick="openSidebar('KOD_126_Lair Recluse',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/25_T'nege, Skyguard.jpg" id="KOD_25_Tnege, Skyguard" data-flag="@X" onclick="openSidebar('KOD_25_Tnege, Skyguard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/48_Sheltered Diviner.jpg" id="KOD_48_Sheltered Diviner" data-flag="@X" onclick="openSidebar('KOD_48_Sheltered Diviner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/80_Twilight Ambush.jpg" id="KOD_80_Twilight Ambush" data-flag="@X" onclick="openSidebar('KOD_80_Twilight Ambush',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/106_Vibrant Flames.jpg" id="KOD_106_Vibrant Flames" data-flag="@X" onclick="openSidebar('KOD_106_Vibrant Flames',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/128_Rains Bring New Life.jpg" id="KOD_128_Rains Bring New Life" data-flag="@X" onclick="openSidebar('KOD_128_Rains Bring New Life',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/2_Aerie Warden.jpg" id="KOD_2_Aerie Warden" data-flag="@X" onclick="openSidebar('KOD_2_Aerie Warden',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/51_Tanager Typhoon.jpg" id="KOD_51_Tanager Typhoon" data-flag="@X" onclick="openSidebar('KOD_51_Tanager Typhoon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/55_Barbed Cocoon.jpg" id="KOD_55_Barbed Cocoon" data-flag="@X" onclick="openSidebar('KOD_55_Barbed Cocoon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/107_Virtuorangutan.jpg" id="KOD_107_Virtuorangutan" data-flag="@X" onclick="openSidebar('KOD_107_Virtuorangutan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/110_Blisterbug.jpg" id="KOD_110_Blisterbug" data-flag="@X" onclick="openSidebar('KOD_110_Blisterbug',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/3_Ambitious Ostrich.jpg" id="KOD_3_Ambitious Ostrich" data-flag="@X" onclick="openSidebar('KOD_3_Ambitious Ostrich',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/28_Aether Runes.jpg" id="KOD_28_Aether Runes" data-flag="@X" onclick="openSidebar('KOD_28_Aether Runes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/56_Blackmoat Bully.jpg" id="KOD_56_Blackmoat Bully" data-flag="@X" onclick="openSidebar('KOD_56_Blackmoat Bully',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/81_Brushfire.jpg" id="KOD_81_Brushfire" data-flag="@X" onclick="openSidebar('KOD_81_Brushfire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/111_Chimperial Guard.jpg" id="KOD_111_Chimperial Guard" data-flag="@X" onclick="openSidebar('KOD_111_Chimperial Guard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/4_Aspirant of Legend.jpg" id="KOD_4_Aspirant of Legend" data-flag="@X" onclick="openSidebar('KOD_4_Aspirant of Legend',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/31_Croak Tales.jpg" id="KOD_31_Croak Tales" data-flag="@X" onclick="openSidebar('KOD_31_Croak Tales',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/57_Bloodied Wulfhound.jpg" id="KOD_57_Bloodied Wulfhound" data-flag="@X" onclick="openSidebar('KOD_57_Bloodied Wulfhound',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/84_Desert Storm.jpg" id="KOD_84_Desert Storm" data-flag="@X" onclick="openSidebar('KOD_84_Desert Storm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/113_Colony Soldier.jpg" id="KOD_113_Colony Soldier" data-flag="@X" onclick="openSidebar('KOD_113_Colony Soldier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/10_Glory in the Fray.jpg" id="KOD_10_Glory in the Fray" data-flag="@X" onclick="openSidebar('KOD_10_Glory in the Fray',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/32_Gharial Bandit.jpg" id="KOD_32_Gharial Bandit" data-flag="@X" onclick="openSidebar('KOD_32_Gharial Bandit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/58_Bogfume Pact.jpg" id="KOD_58_Bogfume Pact" data-flag="@X" onclick="openSidebar('KOD_58_Bogfume Pact',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/87_Gnarled Challenger.jpg" id="KOD_87_Gnarled Challenger" data-flag="@X" onclick="openSidebar('KOD_87_Gnarled Challenger',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/116_Elken Grovetender.jpg" id="KOD_116_Elken Grovetender" data-flag="@X" onclick="openSidebar('KOD_116_Elken Grovetender',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/11_Greypelt Clergy.jpg" id="KOD_11_Greypelt Clergy" data-flag="@X" onclick="openSidebar('KOD_11_Greypelt Clergy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/33_Icecap Tortoise.jpg" id="KOD_33_Icecap Tortoise" data-flag="@X" onclick="openSidebar('KOD_33_Icecap Tortoise',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/59_Bone Splinters.jpg" id="KOD_59_Bone Splinters" data-flag="@X" onclick="openSidebar('KOD_59_Bone Splinters',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/88_Greypelt Ruffian.jpg" id="KOD_88_Greypelt Ruffian" data-flag="@X" onclick="openSidebar('KOD_88_Greypelt Ruffian',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/117_Felling Vines.jpg" id="KOD_117_Felling Vines" data-flag="@X" onclick="openSidebar('KOD_117_Felling Vines',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/13_Jowly Recruit.jpg" id="KOD_13_Jowly Recruit" data-flag="@X" onclick="openSidebar('KOD_13_Jowly Recruit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/35_Island.jpg" id="KOD_35_Island" data-flag="@X" onclick="openSidebar('KOD_35_Island',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/60_Boneyard Mantis.jpg" id="KOD_60_Boneyard Mantis" data-flag="@X" onclick="openSidebar('KOD_60_Boneyard Mantis',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/90_Indomitable Rage.jpg" id="KOD_90_Indomitable Rage" data-flag="@X" onclick="openSidebar('KOD_90_Indomitable Rage',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/118_Forest.jpg" id="KOD_118_Forest" data-flag="@X" onclick="openSidebar('KOD_118_Forest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/15_Nest Matriarch.jpg" id="KOD_15_Nest Matriarch" data-flag="@X" onclick="openSidebar('KOD_15_Nest Matriarch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/36_Kafyabari Patrol.jpg" id="KOD_36_Kafyabari Patrol" data-flag="@X" onclick="openSidebar('KOD_36_Kafyabari Patrol',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/62_Foul Vulture.jpg" id="KOD_62_Foul Vulture" data-flag="@X" onclick="openSidebar('KOD_62_Foul Vulture',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/91_Kwende Peak Sentry.jpg" id="KOD_91_Kwende Peak Sentry" data-flag="@X" onclick="openSidebar('KOD_91_Kwende Peak Sentry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/119_Gentle Giraffe.jpg" id="KOD_119_Gentle Giraffe" data-flag="@X" onclick="openSidebar('KOD_119_Gentle Giraffe',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/16_Pacifism.jpg" id="KOD_16_Pacifism" data-flag="@X" onclick="openSidebar('KOD_16_Pacifism',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/37_Lustrous Shrike.jpg" id="KOD_37_Lustrous Shrike" data-flag="@X" onclick="openSidebar('KOD_37_Lustrous Shrike',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/63_Fuel the Arcflame.jpg" id="KOD_63_Fuel the Arcflame" data-flag="@X" onclick="openSidebar('KOD_63_Fuel the Arcflame',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/92_Maddening Thoughts.jpg" id="KOD_92_Maddening Thoughts" data-flag="@X" onclick="openSidebar('KOD_92_Maddening Thoughts',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/120_Grace of Timber.jpg" id="KOD_120_Grace of Timber" data-flag="@X" onclick="openSidebar('KOD_120_Grace of Timber',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/17_Paint Over.jpg" id="KOD_17_Paint Over" data-flag="@X" onclick="openSidebar('KOD_17_Paint Over',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/38_Murmuring Typhoon.jpg" id="KOD_38_Murmuring Typhoon" data-flag="@X" onclick="openSidebar('KOD_38_Murmuring Typhoon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/65_Hemophage Parasite.jpg" id="KOD_65_Hemophage Parasite" data-flag="@X" onclick="openSidebar('KOD_65_Hemophage Parasite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/93_Mountain.jpg" id="KOD_93_Mountain" data-flag="@X" onclick="openSidebar('KOD_93_Mountain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/122_Infestation.jpg" id="KOD_122_Infestation" data-flag="@X" onclick="openSidebar('KOD_122_Infestation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/18_Palace Vanguard.jpg" id="KOD_18_Palace Vanguard" data-flag="@X" onclick="openSidebar('KOD_18_Palace Vanguard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/43_Sable Hoopoe.jpg" id="KOD_43_Sable Hoopoe" data-flag="@X" onclick="openSidebar('KOD_43_Sable Hoopoe',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/67_Lupine Ferocity.jpg" id="KOD_67_Lupine Ferocity" data-flag="@X" onclick="openSidebar('KOD_67_Lupine Ferocity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/95_Nip at the Heel.jpg" id="KOD_95_Nip at the Heel" data-flag="@X" onclick="openSidebar('KOD_95_Nip at the Heel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/123_Iron Hide.jpg" id="KOD_123_Iron Hide" data-flag="@X" onclick="openSidebar('KOD_123_Iron Hide',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/19_Plains.jpg" id="KOD_19_Plains" data-flag="@X" onclick="openSidebar('KOD_19_Plains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/45_Samaki School.jpg" id="KOD_45_Samaki School" data-flag="@X" onclick="openSidebar('KOD_45_Samaki School',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/68_Malnourish.jpg" id="KOD_68_Malnourish" data-flag="@X" onclick="openSidebar('KOD_68_Malnourish',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/96_Ox of Blood Bend.jpg" id="KOD_96_Ox of Blood Bend" data-flag="@X" onclick="openSidebar('KOD_96_Ox of Blood Bend',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/125_Kwende Peak Huntsman.jpg" id="KOD_125_Kwende Peak Huntsman" data-flag="@X" onclick="openSidebar('KOD_125_Kwende Peak Huntsman',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/21_Resting Wildehound.jpg" id="KOD_21_Resting Wildehound" data-flag="@X" onclick="openSidebar('KOD_21_Resting Wildehound',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/46_Serenity of Youth.jpg" id="KOD_46_Serenity of Youth" data-flag="@X" onclick="openSidebar('KOD_46_Serenity of Youth',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/69_Manglehorn Hunter.jpg" id="KOD_69_Manglehorn Hunter" data-flag="@X" onclick="openSidebar('KOD_69_Manglehorn Hunter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/99_Rapacious Instinct.jpg" id="KOD_99_Rapacious Instinct" data-flag="@X" onclick="openSidebar('KOD_99_Rapacious Instinct',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/127_Panthera Magus.jpg" id="KOD_127_Panthera Magus" data-flag="@X" onclick="openSidebar('KOD_127_Panthera Magus',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/22_Royal Bloodhound.jpg" id="KOD_22_Royal Bloodhound" data-flag="@X" onclick="openSidebar('KOD_22_Royal Bloodhound',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/49_Spirit Transfusion.jpg" id="KOD_49_Spirit Transfusion" data-flag="@X" onclick="openSidebar('KOD_49_Spirit Transfusion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/70_Nightmare Chanter.jpg" id="KOD_70_Nightmare Chanter" data-flag="@X" onclick="openSidebar('KOD_70_Nightmare Chanter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/100_Ravenous Pack.jpg" id="KOD_100_Ravenous Pack" data-flag="@X" onclick="openSidebar('KOD_100_Ravenous Pack',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/129_Ring-Tailed Ascetic.jpg" id="KOD_129_Ring-Tailed Ascetic" data-flag="@X" onclick="openSidebar('KOD_129_Ring-Tailed Ascetic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/23_Sandblast.jpg" id="KOD_23_Sandblast" data-flag="@X" onclick="openSidebar('KOD_23_Sandblast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/50_Student of the Scroll.jpg" id="KOD_50_Student of the Scroll" data-flag="@X" onclick="openSidebar('KOD_50_Student of the Scroll',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/74_Rip to Shreds.jpg" id="KOD_74_Rip to Shreds" data-flag="@X" onclick="openSidebar('KOD_74_Rip to Shreds',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/101_Rugged Ferocity.jpg" id="KOD_101_Rugged Ferocity" data-flag="@X" onclick="openSidebar('KOD_101_Rugged Ferocity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/130_Silverhorn Tactician.jpg" id="KOD_130_Silverhorn Tactician" data-flag="@X" onclick="openSidebar('KOD_130_Silverhorn Tactician',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/26_Twinklewings.jpg" id="KOD_26_Twinklewings" data-flag="@X" onclick="openSidebar('KOD_26_Twinklewings',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/52_Unbracing Rain.jpg" id="KOD_52_Unbracing Rain" data-flag="@X" onclick="openSidebar('KOD_52_Unbracing Rain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/76_Stupefied Piper.jpg" id="KOD_76_Stupefied Piper" data-flag="@X" onclick="openSidebar('KOD_76_Stupefied Piper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/102_Ruthless Mastiff.jpg" id="KOD_102_Ruthless Mastiff" data-flag="@X" onclick="openSidebar('KOD_102_Ruthless Mastiff',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/131_Suncrown Mastodon.jpg" id="KOD_131_Suncrown Mastodon" data-flag="@X" onclick="openSidebar('KOD_131_Suncrown Mastodon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/27_Windwatch Eagle.jpg" id="KOD_27_Windwatch Eagle" data-flag="@X" onclick="openSidebar('KOD_27_Windwatch Eagle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/53_Welkin Tern.jpg" id="KOD_53_Welkin Tern" data-flag="@X" onclick="openSidebar('KOD_53_Welkin Tern',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/78_Swamp.jpg" id="KOD_78_Swamp" data-flag="@X" onclick="openSidebar('KOD_78_Swamp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/103_Scale-Crown Archer.jpg" id="KOD_103_Scale-Crown Archer" data-flag="@X" onclick="openSidebar('KOD_103_Scale-Crown Archer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/132_Turf War.jpg" id="KOD_132_Turf War" data-flag="@X" onclick="openSidebar('KOD_132_Turf War',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/54_Wind Ward.jpg" id="KOD_54_Wind Ward" data-flag="@X" onclick="openSidebar('KOD_54_Wind Ward',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/104_Siamang Minstrel.jpg" id="KOD_104_Siamang Minstrel" data-flag="@X" onclick="openSidebar('KOD_104_Siamang Minstrel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/KOD-files/img/8_End of Days.jpg" id="KOD_8_End of Days" data-flag="@X" onclick="openSidebar('KOD_8_End of Days',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/42_Prodigious Panya.jpg" id="KOD_42_Prodigious Panya" data-flag="@X" onclick="openSidebar('KOD_42_Prodigious Panya',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/79_Trouble Brewing.jpg" id="KOD_79_Trouble Brewing" data-flag="@X" onclick="openSidebar('KOD_79_Trouble Brewing',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/98_Rainbow Phoenix.jpg" id="KOD_98_Rainbow Phoenix" data-flag="@X" onclick="openSidebar('KOD_98_Rainbow Phoenix',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/133_A Wide World Awaits.jpg" id="KOD_133_A Wide World Awaits" data-flag="@X" onclick="openSidebar('KOD_133_A Wide World Awaits',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/9_Frontier Savior.jpg" id="KOD_9_Frontier Savior" data-flag="@X" onclick="openSidebar('KOD_9_Frontier Savior',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/41_Ophidian Augury.jpg" id="KOD_41_Ophidian Augury" data-flag="@X" onclick="openSidebar('KOD_41_Ophidian Augury',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/61_Butcher of Shallow Graves.jpg" id="KOD_61_Butcher of Shallow Graves" data-flag="@X" onclick="openSidebar('KOD_61_Butcher of Shallow Graves',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/85_Fateful Eruption.jpg" id="KOD_85_Fateful Eruption" data-flag="@X" onclick="openSidebar('KOD_85_Fateful Eruption',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/114_Crashing Mammoth.jpg" id="KOD_114_Crashing Mammoth" data-flag="@X" onclick="openSidebar('KOD_114_Crashing Mammoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/5_Batiga Escort.jpg" id="KOD_5_Batiga Escort" data-flag="@X" onclick="openSidebar('KOD_5_Batiga Escort',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/29_Aether Sculptor.jpg" id="KOD_29_Aether Sculptor" data-flag="@X" onclick="openSidebar('KOD_29_Aether Sculptor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/64_A Grave Sentence.jpg" id="KOD_64_A Grave Sentence" data-flag="@X" onclick="openSidebar('KOD_64_A Grave Sentence',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/82_Calamity of Yore.jpg" id="KOD_82_Calamity of Yore" data-flag="@X" onclick="openSidebar('KOD_82_Calamity of Yore',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/108_Babyscale Bruiser.jpg" id="KOD_108_Babyscale Bruiser" data-flag="@X" onclick="openSidebar('KOD_108_Babyscale Bruiser',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/6_Beyond the Boneyard.jpg" id="KOD_6_Beyond the Boneyard" data-flag="@X" onclick="openSidebar('KOD_6_Beyond the Boneyard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/30_Arcane Refusal.jpg" id="KOD_30_Arcane Refusal" data-flag="@X" onclick="openSidebar('KOD_30_Arcane Refusal',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/66_Hero Slayer.jpg" id="KOD_66_Hero Slayer" data-flag="@X" onclick="openSidebar('KOD_66_Hero Slayer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/83_Canine Acumen.jpg" id="KOD_83_Canine Acumen" data-flag="@X" onclick="openSidebar('KOD_83_Canine Acumen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/109_Battle for Msuji Highlands.jpg" id="KOD_109_Battle for Msuji Highlands" data-flag="@X" onclick="openSidebar('KOD_109_Battle for Msuji Highlands',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/7_Bourasan Street Watch.jpg" id="KOD_7_Bourasan Street Watch" data-flag="@X" onclick="openSidebar('KOD_7_Bourasan Street Watch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/34_Into Waridi Valley.jpg" id="KOD_34_Into Waridi Valley" data-flag="@X" onclick="openSidebar('KOD_34_Into Waridi Valley',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/71_Pact of Dark Power.jpg" id="KOD_71_Pact of Dark Power" data-flag="@X" onclick="openSidebar('KOD_71_Pact of Dark Power',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/86_Fierce Combatant.jpg" id="KOD_86_Fierce Combatant" data-flag="@X" onclick="openSidebar('KOD_86_Fierce Combatant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/112_Coldblood Bender.jpg" id="KOD_112_Coldblood Bender" data-flag="@X" onclick="openSidebar('KOD_112_Coldblood Bender',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/12_Greypelt Initiate.jpg" id="KOD_12_Greypelt Initiate" data-flag="@X" onclick="openSidebar('KOD_12_Greypelt Initiate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/39_Nectarkin.jpg" id="KOD_39_Nectarkin" data-flag="@X" onclick="openSidebar('KOD_39_Nectarkin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/72_Pakka, the Shadowcloak.jpg" id="KOD_72_Pakka, the Shadowcloak" data-flag="@X" onclick="openSidebar('KOD_72_Pakka, the Shadowcloak',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/89_The Harnessing of Fire.jpg" id="KOD_89_The Harnessing of Fire" data-flag="@X" onclick="openSidebar('KOD_89_The Harnessing of Fire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/115_Disciple of the All-Mother.jpg" id="KOD_115_Disciple of the All-Mother" data-flag="@X" onclick="openSidebar('KOD_115_Disciple of the All-Mother',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/14_Mythos Scribe.jpg" id="KOD_14_Mythos Scribe" data-flag="@X" onclick="openSidebar('KOD_14_Mythos Scribe',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/40_On Marvelous Wings.jpg" id="KOD_40_On Marvelous Wings" data-flag="@X" onclick="openSidebar('KOD_40_On Marvelous Wings',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/73_Pestilent Vermin.jpg" id="KOD_73_Pestilent Vermin" data-flag="@X" onclick="openSidebar('KOD_73_Pestilent Vermin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/94_Mwiti, Ever-Scarred.jpg" id="KOD_94_Mwiti, Ever-Scarred" data-flag="@X" onclick="openSidebar('KOD_94_Mwiti, Ever-Scarred',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/121_Grotto Scarab.jpg" id="KOD_121_Grotto Scarab" data-flag="@X" onclick="openSidebar('KOD_121_Grotto Scarab',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/20_Provincial Loyalty.jpg" id="KOD_20_Provincial Loyalty" data-flag="@X" onclick="openSidebar('KOD_20_Provincial Loyalty',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/44_Sage of Storms.jpg" id="KOD_44_Sage of Storms" data-flag="@X" onclick="openSidebar('KOD_44_Sage of Storms',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/75_Shrieking Gnoll.jpg" id="KOD_75_Shrieking Gnoll" data-flag="@X" onclick="openSidebar('KOD_75_Shrieking Gnoll',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/97_Quill Sniper.jpg" id="KOD_97_Quill Sniper" data-flag="@X" onclick="openSidebar('KOD_97_Quill Sniper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/124_Join the Colony.jpg" id="KOD_124_Join the Colony" data-flag="@X" onclick="openSidebar('KOD_124_Join the Colony',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/24_Shabil's Absolute Triumph.jpg" id="KOD_24_Shabils Absolute Triumph" data-flag="@X" onclick="openSidebar('KOD_24_Shabils Absolute Triumph',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/47_Serum Smoker.jpg" id="KOD_47_Serum Smoker" data-flag="@X" onclick="openSidebar('KOD_47_Serum Smoker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/77_Stygian Condor.jpg" id="KOD_77_Stygian Condor" data-flag="@X" onclick="openSidebar('KOD_77_Stygian Condor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/105_Thorny Bushwacker.jpg" id="KOD_105_Thorny Bushwacker" data-flag="@X" onclick="openSidebar('KOD_105_Thorny Bushwacker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/126_Lair Recluse.jpg" id="KOD_126_Lair Recluse" data-flag="@X" onclick="openSidebar('KOD_126_Lair Recluse',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/25_T'nege, Skyguard.jpg" id="KOD_25_Tnege, Skyguard" data-flag="@X" onclick="openSidebar('KOD_25_Tnege, Skyguard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/48_Sheltered Diviner.jpg" id="KOD_48_Sheltered Diviner" data-flag="@X" onclick="openSidebar('KOD_48_Sheltered Diviner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/80_Twilight Ambush.jpg" id="KOD_80_Twilight Ambush" data-flag="@X" onclick="openSidebar('KOD_80_Twilight Ambush',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/106_Vibrant Flames.jpg" id="KOD_106_Vibrant Flames" data-flag="@X" onclick="openSidebar('KOD_106_Vibrant Flames',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/128_Rains Bring New Life.jpg" id="KOD_128_Rains Bring New Life" data-flag="@X" onclick="openSidebar('KOD_128_Rains Bring New Life',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/2_Aerie Warden.jpg" id="KOD_2_Aerie Warden" data-flag="@X" onclick="openSidebar('KOD_2_Aerie Warden',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/51_Tanager Typhoon.jpg" id="KOD_51_Tanager Typhoon" data-flag="@X" onclick="openSidebar('KOD_51_Tanager Typhoon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/55_Barbed Cocoon.jpg" id="KOD_55_Barbed Cocoon" data-flag="@X" onclick="openSidebar('KOD_55_Barbed Cocoon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/107_Virtuorangutan.jpg" id="KOD_107_Virtuorangutan" data-flag="@X" onclick="openSidebar('KOD_107_Virtuorangutan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/110_Blisterbug.jpg" id="KOD_110_Blisterbug" data-flag="@X" onclick="openSidebar('KOD_110_Blisterbug',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/3_Ambitious Ostrich.jpg" id="KOD_3_Ambitious Ostrich" data-flag="@X" onclick="openSidebar('KOD_3_Ambitious Ostrich',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/28_Aether Runes.jpg" id="KOD_28_Aether Runes" data-flag="@X" onclick="openSidebar('KOD_28_Aether Runes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/56_Blackmoat Bully.jpg" id="KOD_56_Blackmoat Bully" data-flag="@X" onclick="openSidebar('KOD_56_Blackmoat Bully',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/81_Brushfire.jpg" id="KOD_81_Brushfire" data-flag="@X" onclick="openSidebar('KOD_81_Brushfire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/111_Chimperial Guard.jpg" id="KOD_111_Chimperial Guard" data-flag="@X" onclick="openSidebar('KOD_111_Chimperial Guard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/4_Aspirant of Legend.jpg" id="KOD_4_Aspirant of Legend" data-flag="@X" onclick="openSidebar('KOD_4_Aspirant of Legend',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/31_Croak Tales.jpg" id="KOD_31_Croak Tales" data-flag="@X" onclick="openSidebar('KOD_31_Croak Tales',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/57_Bloodied Wulfhound.jpg" id="KOD_57_Bloodied Wulfhound" data-flag="@X" onclick="openSidebar('KOD_57_Bloodied Wulfhound',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/84_Desert Storm.jpg" id="KOD_84_Desert Storm" data-flag="@X" onclick="openSidebar('KOD_84_Desert Storm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/113_Colony Soldier.jpg" id="KOD_113_Colony Soldier" data-flag="@X" onclick="openSidebar('KOD_113_Colony Soldier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/10_Glory in the Fray.jpg" id="KOD_10_Glory in the Fray" data-flag="@X" onclick="openSidebar('KOD_10_Glory in the Fray',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/32_Gharial Bandit.jpg" id="KOD_32_Gharial Bandit" data-flag="@X" onclick="openSidebar('KOD_32_Gharial Bandit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/58_Bogfume Pact.jpg" id="KOD_58_Bogfume Pact" data-flag="@X" onclick="openSidebar('KOD_58_Bogfume Pact',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/87_Gnarled Challenger.jpg" id="KOD_87_Gnarled Challenger" data-flag="@X" onclick="openSidebar('KOD_87_Gnarled Challenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/116_Elken Grovetender.jpg" id="KOD_116_Elken Grovetender" data-flag="@X" onclick="openSidebar('KOD_116_Elken Grovetender',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/11_Greypelt Clergy.jpg" id="KOD_11_Greypelt Clergy" data-flag="@X" onclick="openSidebar('KOD_11_Greypelt Clergy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/33_Icecap Tortoise.jpg" id="KOD_33_Icecap Tortoise" data-flag="@X" onclick="openSidebar('KOD_33_Icecap Tortoise',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/59_Bone Splinters.jpg" id="KOD_59_Bone Splinters" data-flag="@X" onclick="openSidebar('KOD_59_Bone Splinters',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/88_Greypelt Ruffian.jpg" id="KOD_88_Greypelt Ruffian" data-flag="@X" onclick="openSidebar('KOD_88_Greypelt Ruffian',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/117_Felling Vines.jpg" id="KOD_117_Felling Vines" data-flag="@X" onclick="openSidebar('KOD_117_Felling Vines',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/13_Jowly Recruit.jpg" id="KOD_13_Jowly Recruit" data-flag="@X" onclick="openSidebar('KOD_13_Jowly Recruit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/35_Island.jpg" id="KOD_35_Island" data-flag="@X" onclick="openSidebar('KOD_35_Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/60_Boneyard Mantis.jpg" id="KOD_60_Boneyard Mantis" data-flag="@X" onclick="openSidebar('KOD_60_Boneyard Mantis',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/90_Indomitable Rage.jpg" id="KOD_90_Indomitable Rage" data-flag="@X" onclick="openSidebar('KOD_90_Indomitable Rage',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/118_Forest.jpg" id="KOD_118_Forest" data-flag="@X" onclick="openSidebar('KOD_118_Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/15_Nest Matriarch.jpg" id="KOD_15_Nest Matriarch" data-flag="@X" onclick="openSidebar('KOD_15_Nest Matriarch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/36_Kafyabari Patrol.jpg" id="KOD_36_Kafyabari Patrol" data-flag="@X" onclick="openSidebar('KOD_36_Kafyabari Patrol',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/62_Foul Vulture.jpg" id="KOD_62_Foul Vulture" data-flag="@X" onclick="openSidebar('KOD_62_Foul Vulture',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/91_Kwende Peak Sentry.jpg" id="KOD_91_Kwende Peak Sentry" data-flag="@X" onclick="openSidebar('KOD_91_Kwende Peak Sentry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/119_Gentle Giraffe.jpg" id="KOD_119_Gentle Giraffe" data-flag="@X" onclick="openSidebar('KOD_119_Gentle Giraffe',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/16_Pacifism.jpg" id="KOD_16_Pacifism" data-flag="@X" onclick="openSidebar('KOD_16_Pacifism',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/37_Lustrous Shrike.jpg" id="KOD_37_Lustrous Shrike" data-flag="@X" onclick="openSidebar('KOD_37_Lustrous Shrike',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/63_Fuel the Arcflame.jpg" id="KOD_63_Fuel the Arcflame" data-flag="@X" onclick="openSidebar('KOD_63_Fuel the Arcflame',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/92_Maddening Thoughts.jpg" id="KOD_92_Maddening Thoughts" data-flag="@X" onclick="openSidebar('KOD_92_Maddening Thoughts',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/120_Grace of Timber.jpg" id="KOD_120_Grace of Timber" data-flag="@X" onclick="openSidebar('KOD_120_Grace of Timber',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/17_Paint Over.jpg" id="KOD_17_Paint Over" data-flag="@X" onclick="openSidebar('KOD_17_Paint Over',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/38_Murmuring Typhoon.jpg" id="KOD_38_Murmuring Typhoon" data-flag="@X" onclick="openSidebar('KOD_38_Murmuring Typhoon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/65_Hemophage Parasite.jpg" id="KOD_65_Hemophage Parasite" data-flag="@X" onclick="openSidebar('KOD_65_Hemophage Parasite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/93_Mountain.jpg" id="KOD_93_Mountain" data-flag="@X" onclick="openSidebar('KOD_93_Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/122_Infestation.jpg" id="KOD_122_Infestation" data-flag="@X" onclick="openSidebar('KOD_122_Infestation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/18_Palace Vanguard.jpg" id="KOD_18_Palace Vanguard" data-flag="@X" onclick="openSidebar('KOD_18_Palace Vanguard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/43_Sable Hoopoe.jpg" id="KOD_43_Sable Hoopoe" data-flag="@X" onclick="openSidebar('KOD_43_Sable Hoopoe',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/67_Lupine Ferocity.jpg" id="KOD_67_Lupine Ferocity" data-flag="@X" onclick="openSidebar('KOD_67_Lupine Ferocity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/95_Nip at the Heel.jpg" id="KOD_95_Nip at the Heel" data-flag="@X" onclick="openSidebar('KOD_95_Nip at the Heel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/123_Iron Hide.jpg" id="KOD_123_Iron Hide" data-flag="@X" onclick="openSidebar('KOD_123_Iron Hide',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/19_Plains.jpg" id="KOD_19_Plains" data-flag="@X" onclick="openSidebar('KOD_19_Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/45_Samaki School.jpg" id="KOD_45_Samaki School" data-flag="@X" onclick="openSidebar('KOD_45_Samaki School',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/68_Malnourish.jpg" id="KOD_68_Malnourish" data-flag="@X" onclick="openSidebar('KOD_68_Malnourish',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/96_Ox of Blood Bend.jpg" id="KOD_96_Ox of Blood Bend" data-flag="@X" onclick="openSidebar('KOD_96_Ox of Blood Bend',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/125_Kwende Peak Huntsman.jpg" id="KOD_125_Kwende Peak Huntsman" data-flag="@X" onclick="openSidebar('KOD_125_Kwende Peak Huntsman',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/21_Resting Wildehound.jpg" id="KOD_21_Resting Wildehound" data-flag="@X" onclick="openSidebar('KOD_21_Resting Wildehound',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/46_Serenity of Youth.jpg" id="KOD_46_Serenity of Youth" data-flag="@X" onclick="openSidebar('KOD_46_Serenity of Youth',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/69_Manglehorn Hunter.jpg" id="KOD_69_Manglehorn Hunter" data-flag="@X" onclick="openSidebar('KOD_69_Manglehorn Hunter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/99_Rapacious Instinct.jpg" id="KOD_99_Rapacious Instinct" data-flag="@X" onclick="openSidebar('KOD_99_Rapacious Instinct',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/127_Panthera Magus.jpg" id="KOD_127_Panthera Magus" data-flag="@X" onclick="openSidebar('KOD_127_Panthera Magus',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/22_Royal Bloodhound.jpg" id="KOD_22_Royal Bloodhound" data-flag="@X" onclick="openSidebar('KOD_22_Royal Bloodhound',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/49_Spirit Transfusion.jpg" id="KOD_49_Spirit Transfusion" data-flag="@X" onclick="openSidebar('KOD_49_Spirit Transfusion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/70_Nightmare Chanter.jpg" id="KOD_70_Nightmare Chanter" data-flag="@X" onclick="openSidebar('KOD_70_Nightmare Chanter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/100_Ravenous Pack.jpg" id="KOD_100_Ravenous Pack" data-flag="@X" onclick="openSidebar('KOD_100_Ravenous Pack',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/129_Ring-Tailed Ascetic.jpg" id="KOD_129_Ring-Tailed Ascetic" data-flag="@X" onclick="openSidebar('KOD_129_Ring-Tailed Ascetic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/23_Sandblast.jpg" id="KOD_23_Sandblast" data-flag="@X" onclick="openSidebar('KOD_23_Sandblast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/50_Student of the Scroll.jpg" id="KOD_50_Student of the Scroll" data-flag="@X" onclick="openSidebar('KOD_50_Student of the Scroll',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/74_Rip to Shreds.jpg" id="KOD_74_Rip to Shreds" data-flag="@X" onclick="openSidebar('KOD_74_Rip to Shreds',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/101_Rugged Ferocity.jpg" id="KOD_101_Rugged Ferocity" data-flag="@X" onclick="openSidebar('KOD_101_Rugged Ferocity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/130_Silverhorn Tactician.jpg" id="KOD_130_Silverhorn Tactician" data-flag="@X" onclick="openSidebar('KOD_130_Silverhorn Tactician',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/26_Twinklewings.jpg" id="KOD_26_Twinklewings" data-flag="@X" onclick="openSidebar('KOD_26_Twinklewings',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/52_Unbracing Rain.jpg" id="KOD_52_Unbracing Rain" data-flag="@X" onclick="openSidebar('KOD_52_Unbracing Rain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/76_Stupefied Piper.jpg" id="KOD_76_Stupefied Piper" data-flag="@X" onclick="openSidebar('KOD_76_Stupefied Piper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/102_Ruthless Mastiff.jpg" id="KOD_102_Ruthless Mastiff" data-flag="@X" onclick="openSidebar('KOD_102_Ruthless Mastiff',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/131_Suncrown Mastodon.jpg" id="KOD_131_Suncrown Mastodon" data-flag="@X" onclick="openSidebar('KOD_131_Suncrown Mastodon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/27_Windwatch Eagle.jpg" id="KOD_27_Windwatch Eagle" data-flag="@X" onclick="openSidebar('KOD_27_Windwatch Eagle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/53_Welkin Tern.jpg" id="KOD_53_Welkin Tern" data-flag="@X" onclick="openSidebar('KOD_53_Welkin Tern',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/78_Swamp.jpg" id="KOD_78_Swamp" data-flag="@X" onclick="openSidebar('KOD_78_Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/103_Scale-Crown Archer.jpg" id="KOD_103_Scale-Crown Archer" data-flag="@X" onclick="openSidebar('KOD_103_Scale-Crown Archer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/132_Turf War.jpg" id="KOD_132_Turf War" data-flag="@X" onclick="openSidebar('KOD_132_Turf War',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/54_Wind Ward.jpg" id="KOD_54_Wind Ward" data-flag="@X" onclick="openSidebar('KOD_54_Wind Ward',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/104_Siamang Minstrel.jpg" id="KOD_104_Siamang Minstrel" data-flag="@X" onclick="openSidebar('KOD_104_Siamang Minstrel',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/156_Lunar Emissary.jpg" id="KOD_156_Lunar Emissary" data-flag="@X" onclick="openSidebar('KOD_156_Lunar Emissary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/145_Fume Whisperer.jpg" id="KOD_145_Fume Whisperer" data-flag="@X" onclick="openSidebar('KOD_145_Fume Whisperer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/150_Howling Shieldbreaker.jpg" id="KOD_150_Howling Shieldbreaker" data-flag="@X" onclick="openSidebar('KOD_150_Howling Shieldbreaker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/164_Ruinous Naga.jpg" id="KOD_164_Ruinous Naga" data-flag="@X" onclick="openSidebar('KOD_164_Ruinous Naga',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/134_Anomalion.jpg" id="KOD_134_Anomalion" data-flag="@X" onclick="openSidebar('KOD_134_Anomalion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/234_Tal, Locus Sentry.jpg" id="KOD_234_Tal, Locus Sentry" data-flag="@X" onclick="openSidebar('KOD_234_Tal, Locus Sentry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/186_Blind Blackguard.jpg" id="KOD_186_Blind Blackguard" data-flag="@X" onclick="openSidebar('KOD_186_Blind Blackguard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/220_Rage of the Ravaged.jpg" id="KOD_220_Rage of the Ravaged" data-flag="@X" onclick="openSidebar('KOD_220_Rage of the Ravaged',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/208_Lumbering Ox.jpg" id="KOD_208_Lumbering Ox" data-flag="@X" onclick="openSidebar('KOD_208_Lumbering Ox',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/180_Art of Evasion.jpg" id="KOD_180_Art of Evasion" data-flag="@X" onclick="openSidebar('KOD_180_Art of Evasion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/241_Will of a Fickle Lord.jpg" id="KOD_241_Will of a Fickle Lord" data-flag="@X" onclick="openSidebar('KOD_241_Will of a Fickle Lord',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/213_Neural Contagion.jpg" id="KOD_213_Neural Contagion" data-flag="@X" onclick="openSidebar('KOD_213_Neural Contagion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/221_Raiding Gnoll-Band.jpg" id="KOD_221_Raiding Gnoll-Band" data-flag="@X" onclick="openSidebar('KOD_221_Raiding Gnoll-Band',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/224_Rumble in the Jungle.jpg" id="KOD_224_Rumble in the Jungle" data-flag="@X" onclick="openSidebar('KOD_224_Rumble in the Jungle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/239_Unlikeliest Heroes.jpg" id="KOD_239_Unlikeliest Heroes" data-flag="@X" onclick="openSidebar('KOD_239_Unlikeliest Heroes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/169_Tawny Prophet.jpg" id="KOD_169_Tawny Prophet" data-flag="@X" onclick="openSidebar('KOD_169_Tawny Prophet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/140_Darkwing Wretch.jpg" id="KOD_140_Darkwing Wretch" data-flag="@X" onclick="openSidebar('KOD_140_Darkwing Wretch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/136_Back-Alley Gnoll.jpg" id="KOD_136_Back-Alley Gnoll" data-flag="@X" onclick="openSidebar('KOD_136_Back-Alley Gnoll',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/165_Savannah Huntsman.jpg" id="KOD_165_Savannah Huntsman" data-flag="@X" onclick="openSidebar('KOD_165_Savannah Huntsman',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/153_Kutaan Incubation.jpg" id="KOD_153_Kutaan Incubation" data-flag="@X" onclick="openSidebar('KOD_153_Kutaan Incubation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/170_Theurgic Flock.jpg" id="KOD_170_Theurgic Flock" data-flag="@X" onclick="openSidebar('KOD_170_Theurgic Flock',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/163_Reticulate Chemist.jpg" id="KOD_163_Reticulate Chemist" data-flag="@X" onclick="openSidebar('KOD_163_Reticulate Chemist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/151_Kafyabari Enforcer.jpg" id="KOD_151_Kafyabari Enforcer" data-flag="@X" onclick="openSidebar('KOD_151_Kafyabari Enforcer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/171_Trials of Ndengo.jpg" id="KOD_171_Trials of Ndengo" data-flag="@X" onclick="openSidebar('KOD_171_Trials of Ndengo',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/162_Primation.jpg" id="KOD_162_Primation" data-flag="@X" onclick="openSidebar('KOD_162_Primation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/200_Guide to the Wayward.jpg" id="KOD_200_Guide to the Wayward" data-flag="@X" onclick="openSidebar('KOD_200_Guide to the Wayward',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/228_Shrewd Sikoyo.jpg" id="KOD_228_Shrewd Sikoyo" data-flag="@X" onclick="openSidebar('KOD_228_Shrewd Sikoyo',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/194_Feline Furor.jpg" id="KOD_194_Feline Furor" data-flag="@X" onclick="openSidebar('KOD_194_Feline Furor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/230_Sirif of the Lord's Legion.jpg" id="KOD_230_Sirif of the Lords Legion" data-flag="@X" onclick="openSidebar('KOD_230_Sirif of the Lords Legion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/202_Homestead.jpg" id="KOD_202_Homestead" data-flag="@X" onclick="openSidebar('KOD_202_Homestead',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/154_Lace-Barred Owl.jpg" id="KOD_154_Lace-Barred Owl" data-flag="@X" onclick="openSidebar('KOD_154_Lace-Barred Owl',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/138_Cave Eel.jpg" id="KOD_138_Cave Eel" data-flag="@X" onclick="openSidebar('KOD_138_Cave Eel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/168_Speckled Outcast.jpg" id="KOD_168_Speckled Outcast" data-flag="@X" onclick="openSidebar('KOD_168_Speckled Outcast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/167_Simian Sentinel.jpg" id="KOD_167_Simian Sentinel" data-flag="@X" onclick="openSidebar('KOD_167_Simian Sentinel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/149_Herd Matron.jpg" id="KOD_149_Herd Matron" data-flag="@X" onclick="openSidebar('KOD_149_Herd Matron',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/197_Golden Gust.jpg" id="KOD_197_Golden Gust" data-flag="@X" onclick="openSidebar('KOD_197_Golden Gust',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/227_Shadow Stalker.jpg" id="KOD_227_Shadow Stalker" data-flag="@X" onclick="openSidebar('KOD_227_Shadow Stalker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/203_Joyful Deviant.jpg" id="KOD_203_Joyful Deviant" data-flag="@X" onclick="openSidebar('KOD_203_Joyful Deviant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/207_Kwende Peak Partisan.jpg" id="KOD_207_Kwende Peak Partisan" data-flag="@X" onclick="openSidebar('KOD_207_Kwende Peak Partisan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/190_Elegant Agility.jpg" id="KOD_190_Elegant Agility" data-flag="@X" onclick="openSidebar('KOD_190_Elegant Agility',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/176_All-Enduring Mafua.jpg" id="KOD_176_All-Enduring Mafua" data-flag="@X" onclick="openSidebar('KOD_176_All-Enduring Mafua',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/218_Plaxolotl.jpg" id="KOD_218_Plaxolotl" data-flag="@X" onclick="openSidebar('KOD_218_Plaxolotl',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/236_Threshing Sundew.jpg" id="KOD_236_Threshing Sundew" data-flag="@X" onclick="openSidebar('KOD_236_Threshing Sundew',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/240_Warhound Shuja.jpg" id="KOD_240_Warhound Shuja" data-flag="@X" onclick="openSidebar('KOD_240_Warhound Shuja',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/216_Pangoling.jpg" id="KOD_216_Pangoling" data-flag="@X" onclick="openSidebar('KOD_216_Pangoling',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/142_Eternal Deliverance.jpg" id="KOD_142_Eternal Deliverance" data-flag="@X" onclick="openSidebar('KOD_142_Eternal Deliverance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/144_Fractured Illusion.jpg" id="KOD_144_Fractured Illusion" data-flag="@X" onclick="openSidebar('KOD_144_Fractured Illusion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/161_Petrify.jpg" id="KOD_161_Petrify" data-flag="@X" onclick="openSidebar('KOD_161_Petrify',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/166_Settle the Dust.jpg" id="KOD_166_Settle the Dust" data-flag="@X" onclick="openSidebar('KOD_166_Settle the Dust',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/152_Kalosi Invoker.jpg" id="KOD_152_Kalosi Invoker" data-flag="@X" onclick="openSidebar('KOD_152_Kalosi Invoker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/204_Kambiro, the Untrue King.jpg" id="KOD_204_Kambiro, the Untrue King" data-flag="@X" onclick="openSidebar('KOD_204_Kambiro, the Untrue King',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/178_Animorph.jpg" id="KOD_178_Animorph" data-flag="@X" onclick="openSidebar('KOD_178_Animorph',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/175_Agrestal Decay.jpg" id="KOD_175_Agrestal Decay" data-flag="@X" onclick="openSidebar('KOD_175_Agrestal Decay',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/199_Greypelt Emissary.jpg" id="KOD_199_Greypelt Emissary" data-flag="@X" onclick="openSidebar('KOD_199_Greypelt Emissary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/179_Anuran Encounters.jpg" id="KOD_179_Anuran Encounters" data-flag="@X" onclick="openSidebar('KOD_179_Anuran Encounters',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/233_Take the Bait.jpg" id="KOD_233_Take the Bait" data-flag="@X" onclick="openSidebar('KOD_233_Take the Bait',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/195_Flatboat Artisan.jpg" id="KOD_195_Flatboat Artisan" data-flag="@X" onclick="openSidebar('KOD_195_Flatboat Artisan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/188_Colony Queen.jpg" id="KOD_188_Colony Queen" data-flag="@X" onclick="openSidebar('KOD_188_Colony Queen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/238_Triumphant Tactics.jpg" id="KOD_238_Triumphant Tactics" data-flag="@X" onclick="openSidebar('KOD_238_Triumphant Tactics',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/210_Mercurial Chameleon.jpg" id="KOD_210_Mercurial Chameleon" data-flag="@X" onclick="openSidebar('KOD_210_Mercurial Chameleon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/157_Milunda, Prairie Prince.jpg" id="KOD_157_Milunda, Prairie Prince" data-flag="@X" onclick="openSidebar('KOD_157_Milunda, Prairie Prince',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/160_Parrot Pools.jpg" id="KOD_160_Parrot Pools" data-flag="@X" onclick="openSidebar('KOD_160_Parrot Pools',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/139_Chitterrax.jpg" id="KOD_139_Chitterrax" data-flag="@X" onclick="openSidebar('KOD_139_Chitterrax',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/137_Bourasan Highguard.jpg" id="KOD_137_Bourasan Highguard" data-flag="@X" onclick="openSidebar('KOD_137_Bourasan Highguard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/159_Ornery Bloom.jpg" id="KOD_159_Ornery Bloom" data-flag="@X" onclick="openSidebar('KOD_159_Ornery Bloom',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/158_Netherform.jpg" id="KOD_158_Netherform" data-flag="@X" onclick="openSidebar('KOD_158_Netherform',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/173_Wisdom Beyond Age.jpg" id="KOD_173_Wisdom Beyond Age" data-flag="@X" onclick="openSidebar('KOD_173_Wisdom Beyond Age',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/143_Fester Swarm.jpg" id="KOD_143_Fester Swarm" data-flag="@X" onclick="openSidebar('KOD_143_Fester Swarm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/172_Umala, the Reverent.jpg" id="KOD_172_Umala, the Reverent" data-flag="@X" onclick="openSidebar('KOD_172_Umala, the Reverent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/174_Wise Farseer Chini.jpg" id="KOD_174_Wise Farseer Chini" data-flag="@X" onclick="openSidebar('KOD_174_Wise Farseer Chini',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/184_The Banishment of Seh'a.jpg" id="KOD_184_The Banishment of Seha" data-flag="@X" onclick="openSidebar('KOD_184_The Banishment of Seha',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/189_Distorted Reflection.jpg" id="KOD_189_Distorted Reflection" data-flag="@X" onclick="openSidebar('KOD_189_Distorted Reflection',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/229_Silthway Scuttler.jpg" id="KOD_229_Silthway Scuttler" data-flag="@X" onclick="openSidebar('KOD_229_Silthway Scuttler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/198_Greypelt Brute.jpg" id="KOD_198_Greypelt Brute" data-flag="@X" onclick="openSidebar('KOD_198_Greypelt Brute',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/196_Glinthide Hero.jpg" id="KOD_196_Glinthide Hero" data-flag="@X" onclick="openSidebar('KOD_196_Glinthide Hero',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/141_Devious Paladin.jpg" id="KOD_141_Devious Paladin" data-flag="@X" onclick="openSidebar('KOD_141_Devious Paladin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/155_Lava Spill.jpg" id="KOD_155_Lava Spill" data-flag="@X" onclick="openSidebar('KOD_155_Lava Spill',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/148_Headhunter Mantis.jpg" id="KOD_148_Headhunter Mantis" data-flag="@X" onclick="openSidebar('KOD_148_Headhunter Mantis',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/147_Greypelt Trooper.jpg" id="KOD_147_Greypelt Trooper" data-flag="@X" onclick="openSidebar('KOD_147_Greypelt Trooper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/146_Great Migration.jpg" id="KOD_146_Great Migration" data-flag="@X" onclick="openSidebar('KOD_146_Great Migration',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/226_Scavenger's Feast.jpg" id="KOD_226_Scavengers Feast" data-flag="@X" onclick="openSidebar('KOD_226_Scavengers Feast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/231_Squall Serpent.jpg" id="KOD_231_Squall Serpent" data-flag="@X" onclick="openSidebar('KOD_231_Squall Serpent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/219_Pungent Beetle.jpg" id="KOD_219_Pungent Beetle" data-flag="@X" onclick="openSidebar('KOD_219_Pungent Beetle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/222_Rousing Battlehound.jpg" id="KOD_222_Rousing Battlehound" data-flag="@X" onclick="openSidebar('KOD_222_Rousing Battlehound',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/235_Tarrying Gharial.jpg" id="KOD_235_Tarrying Gharial" data-flag="@X" onclick="openSidebar('KOD_235_Tarrying Gharial',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/212_Msuji Sureshot.jpg" id="KOD_212_Msuji Sureshot" data-flag="@X" onclick="openSidebar('KOD_212_Msuji Sureshot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/209_Manic River-Fishers.jpg" id="KOD_209_Manic River-Fishers" data-flag="@X" onclick="openSidebar('KOD_209_Manic River-Fishers',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/242_Xiong Mao, Restless Waif.jpg" id="KOD_242_Xiong Mao, Restless Waif" data-flag="@X" onclick="openSidebar('KOD_242_Xiong Mao, Restless Waif',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/201_Hembwe, the All-Mother's Hand.jpg" id="KOD_201_Hembwe, the All-Mothers Hand" data-flag="@X" onclick="openSidebar('KOD_201_Hembwe, the All-Mothers Hand',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/223_Ruchi, the Effervescent.jpg" id="KOD_223_Ruchi, the Effervescent" data-flag="@X" onclick="openSidebar('KOD_223_Ruchi, the Effervescent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/211_Msuji Operative.jpg" id="KOD_211_Msuji Operative" data-flag="@X" onclick="openSidebar('KOD_211_Msuji Operative',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/215_Oozing Adder.jpg" id="KOD_215_Oozing Adder" data-flag="@X" onclick="openSidebar('KOD_215_Oozing Adder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/206_King Shabil's Tournament.jpg" id="KOD_206_King Shabils Tournament" data-flag="@X" onclick="openSidebar('KOD_206_King Shabils Tournament',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/225_Runescale Brawler.jpg" id="KOD_225_Runescale Brawler" data-flag="@X" onclick="openSidebar('KOD_225_Runescale Brawler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/187_Bwema, the Ruthless.jpg" id="KOD_187_Bwema, the Ruthless" data-flag="@X" onclick="openSidebar('KOD_187_Bwema, the Ruthless',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/182_Azure Caterwauler.jpg" id="KOD_182_Azure Caterwauler" data-flag="@X" onclick="openSidebar('KOD_182_Azure Caterwauler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/217_Pith Wilt.jpg" id="KOD_217_Pith Wilt" data-flag="@X" onclick="openSidebar('KOD_217_Pith Wilt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/191_Explore Forgotten Lands.jpg" id="KOD_191_Explore Forgotten Lands" data-flag="@X" onclick="openSidebar('KOD_191_Explore Forgotten Lands',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/177_Am'atambi, Fable Weaver.jpg" id="KOD_177_Amatambi, Fable Weaver" data-flag="@X" onclick="openSidebar('KOD_177_Amatambi, Fable Weaver',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/181_Artful Chari.jpg" id="KOD_181_Artful Chari" data-flag="@X" onclick="openSidebar('KOD_181_Artful Chari',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/183_Badru, the Skyshadow.jpg" id="KOD_183_Badru, the Skyshadow" data-flag="@X" onclick="openSidebar('KOD_183_Badru, the Skyshadow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/185_Berylscale Alaj.jpg" id="KOD_185_Berylscale Alaj" data-flag="@X" onclick="openSidebar('KOD_185_Berylscale Alaj',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/192_Fakadeh, Florid Queen.jpg" id="KOD_192_Fakadeh, Florid Queen" data-flag="@X" onclick="openSidebar('KOD_192_Fakadeh, Florid Queen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/193_Fearless King Shabil.jpg" id="KOD_193_Fearless King Shabil" data-flag="@X" onclick="openSidebar('KOD_193_Fearless King Shabil',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/205_Kiana, the Unyielding.jpg" id="KOD_205_Kiana, the Unyielding" data-flag="@X" onclick="openSidebar('KOD_205_Kiana, the Unyielding',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/214_Olde King Koswe.jpg" id="KOD_214_Olde King Koswe" data-flag="@X" onclick="openSidebar('KOD_214_Olde King Koswe',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/232_The Sungaru Gang.jpg" id="KOD_232_The Sungaru Gang" data-flag="@X" onclick="openSidebar('KOD_232_The Sungaru Gang',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/237_Thrice-Clawed Troika.jpg" id="KOD_237_Thrice-Clawed Troika" data-flag="@X" onclick="openSidebar('KOD_237_Thrice-Clawed Troika',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/135_An'yama, Elder Guardian.jpg" id="KOD_135_Anyama, Elder Guardian" data-flag="@X" onclick="openSidebar('KOD_135_Anyama, Elder Guardian',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/156_Lunar Emissary.jpg" id="KOD_156_Lunar Emissary" data-flag="@X" onclick="openSidebar('KOD_156_Lunar Emissary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/145_Fume Whisperer.jpg" id="KOD_145_Fume Whisperer" data-flag="@X" onclick="openSidebar('KOD_145_Fume Whisperer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/150_Howling Shieldbreaker.jpg" id="KOD_150_Howling Shieldbreaker" data-flag="@X" onclick="openSidebar('KOD_150_Howling Shieldbreaker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/164_Ruinous Naga.jpg" id="KOD_164_Ruinous Naga" data-flag="@X" onclick="openSidebar('KOD_164_Ruinous Naga',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/134_Anomalion.jpg" id="KOD_134_Anomalion" data-flag="@X" onclick="openSidebar('KOD_134_Anomalion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/234_Tal, Locus Sentry.jpg" id="KOD_234_Tal, Locus Sentry" data-flag="@X" onclick="openSidebar('KOD_234_Tal, Locus Sentry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/186_Blind Blackguard.jpg" id="KOD_186_Blind Blackguard" data-flag="@X" onclick="openSidebar('KOD_186_Blind Blackguard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/220_Rage of the Ravaged.jpg" id="KOD_220_Rage of the Ravaged" data-flag="@X" onclick="openSidebar('KOD_220_Rage of the Ravaged',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/208_Lumbering Ox.jpg" id="KOD_208_Lumbering Ox" data-flag="@X" onclick="openSidebar('KOD_208_Lumbering Ox',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/180_Art of Evasion.jpg" id="KOD_180_Art of Evasion" data-flag="@X" onclick="openSidebar('KOD_180_Art of Evasion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/241_Will of a Fickle Lord.jpg" id="KOD_241_Will of a Fickle Lord" data-flag="@X" onclick="openSidebar('KOD_241_Will of a Fickle Lord',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/213_Neural Contagion.jpg" id="KOD_213_Neural Contagion" data-flag="@X" onclick="openSidebar('KOD_213_Neural Contagion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/221_Raiding Gnoll-Band.jpg" id="KOD_221_Raiding Gnoll-Band" data-flag="@X" onclick="openSidebar('KOD_221_Raiding Gnoll-Band',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/224_Rumble in the Jungle.jpg" id="KOD_224_Rumble in the Jungle" data-flag="@X" onclick="openSidebar('KOD_224_Rumble in the Jungle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/239_Unlikeliest Heroes.jpg" id="KOD_239_Unlikeliest Heroes" data-flag="@X" onclick="openSidebar('KOD_239_Unlikeliest Heroes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/169_Tawny Prophet.jpg" id="KOD_169_Tawny Prophet" data-flag="@X" onclick="openSidebar('KOD_169_Tawny Prophet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/140_Darkwing Wretch.jpg" id="KOD_140_Darkwing Wretch" data-flag="@X" onclick="openSidebar('KOD_140_Darkwing Wretch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/136_Back-Alley Gnoll.jpg" id="KOD_136_Back-Alley Gnoll" data-flag="@X" onclick="openSidebar('KOD_136_Back-Alley Gnoll',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/165_Savannah Huntsman.jpg" id="KOD_165_Savannah Huntsman" data-flag="@X" onclick="openSidebar('KOD_165_Savannah Huntsman',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/153_Kutaan Incubation.jpg" id="KOD_153_Kutaan Incubation" data-flag="@X" onclick="openSidebar('KOD_153_Kutaan Incubation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/170_Theurgic Flock.jpg" id="KOD_170_Theurgic Flock" data-flag="@X" onclick="openSidebar('KOD_170_Theurgic Flock',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/163_Reticulate Chemist.jpg" id="KOD_163_Reticulate Chemist" data-flag="@X" onclick="openSidebar('KOD_163_Reticulate Chemist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/151_Kafyabari Enforcer.jpg" id="KOD_151_Kafyabari Enforcer" data-flag="@X" onclick="openSidebar('KOD_151_Kafyabari Enforcer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/171_Trials of Ndengo.jpg" id="KOD_171_Trials of Ndengo" data-flag="@X" onclick="openSidebar('KOD_171_Trials of Ndengo',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/162_Primation.jpg" id="KOD_162_Primation" data-flag="@X" onclick="openSidebar('KOD_162_Primation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/200_Guide to the Wayward.jpg" id="KOD_200_Guide to the Wayward" data-flag="@X" onclick="openSidebar('KOD_200_Guide to the Wayward',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/228_Shrewd Sikoyo.jpg" id="KOD_228_Shrewd Sikoyo" data-flag="@X" onclick="openSidebar('KOD_228_Shrewd Sikoyo',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/194_Feline Furor.jpg" id="KOD_194_Feline Furor" data-flag="@X" onclick="openSidebar('KOD_194_Feline Furor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/230_Sirif of the Lord's Legion.jpg" id="KOD_230_Sirif of the Lords Legion" data-flag="@X" onclick="openSidebar('KOD_230_Sirif of the Lords Legion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/202_Homestead.jpg" id="KOD_202_Homestead" data-flag="@X" onclick="openSidebar('KOD_202_Homestead',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/154_Lace-Barred Owl.jpg" id="KOD_154_Lace-Barred Owl" data-flag="@X" onclick="openSidebar('KOD_154_Lace-Barred Owl',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/138_Cave Eel.jpg" id="KOD_138_Cave Eel" data-flag="@X" onclick="openSidebar('KOD_138_Cave Eel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/168_Speckled Outcast.jpg" id="KOD_168_Speckled Outcast" data-flag="@X" onclick="openSidebar('KOD_168_Speckled Outcast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/167_Simian Sentinel.jpg" id="KOD_167_Simian Sentinel" data-flag="@X" onclick="openSidebar('KOD_167_Simian Sentinel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/149_Herd Matron.jpg" id="KOD_149_Herd Matron" data-flag="@X" onclick="openSidebar('KOD_149_Herd Matron',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/197_Golden Gust.jpg" id="KOD_197_Golden Gust" data-flag="@X" onclick="openSidebar('KOD_197_Golden Gust',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/227_Shadow Stalker.jpg" id="KOD_227_Shadow Stalker" data-flag="@X" onclick="openSidebar('KOD_227_Shadow Stalker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/203_Joyful Deviant.jpg" id="KOD_203_Joyful Deviant" data-flag="@X" onclick="openSidebar('KOD_203_Joyful Deviant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/207_Kwende Peak Partisan.jpg" id="KOD_207_Kwende Peak Partisan" data-flag="@X" onclick="openSidebar('KOD_207_Kwende Peak Partisan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/190_Elegant Agility.jpg" id="KOD_190_Elegant Agility" data-flag="@X" onclick="openSidebar('KOD_190_Elegant Agility',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/176_All-Enduring Mafua.jpg" id="KOD_176_All-Enduring Mafua" data-flag="@X" onclick="openSidebar('KOD_176_All-Enduring Mafua',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/218_Plaxolotl.jpg" id="KOD_218_Plaxolotl" data-flag="@X" onclick="openSidebar('KOD_218_Plaxolotl',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/236_Threshing Sundew.jpg" id="KOD_236_Threshing Sundew" data-flag="@X" onclick="openSidebar('KOD_236_Threshing Sundew',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/240_Warhound Shuja.jpg" id="KOD_240_Warhound Shuja" data-flag="@X" onclick="openSidebar('KOD_240_Warhound Shuja',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/216_Pangoling.jpg" id="KOD_216_Pangoling" data-flag="@X" onclick="openSidebar('KOD_216_Pangoling',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/142_Eternal Deliverance.jpg" id="KOD_142_Eternal Deliverance" data-flag="@X" onclick="openSidebar('KOD_142_Eternal Deliverance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/144_Fractured Illusion.jpg" id="KOD_144_Fractured Illusion" data-flag="@X" onclick="openSidebar('KOD_144_Fractured Illusion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/161_Petrify.jpg" id="KOD_161_Petrify" data-flag="@X" onclick="openSidebar('KOD_161_Petrify',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/166_Settle the Dust.jpg" id="KOD_166_Settle the Dust" data-flag="@X" onclick="openSidebar('KOD_166_Settle the Dust',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/152_Kalosi Invoker.jpg" id="KOD_152_Kalosi Invoker" data-flag="@X" onclick="openSidebar('KOD_152_Kalosi Invoker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/204_Kambiro, the Untrue King.jpg" id="KOD_204_Kambiro, the Untrue King" data-flag="@X" onclick="openSidebar('KOD_204_Kambiro, the Untrue King',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/178_Animorph.jpg" id="KOD_178_Animorph" data-flag="@X" onclick="openSidebar('KOD_178_Animorph',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/175_Agrestal Decay.jpg" id="KOD_175_Agrestal Decay" data-flag="@X" onclick="openSidebar('KOD_175_Agrestal Decay',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/199_Greypelt Emissary.jpg" id="KOD_199_Greypelt Emissary" data-flag="@X" onclick="openSidebar('KOD_199_Greypelt Emissary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/179_Anuran Encounters.jpg" id="KOD_179_Anuran Encounters" data-flag="@X" onclick="openSidebar('KOD_179_Anuran Encounters',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/233_Take the Bait.jpg" id="KOD_233_Take the Bait" data-flag="@X" onclick="openSidebar('KOD_233_Take the Bait',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/195_Flatboat Artisan.jpg" id="KOD_195_Flatboat Artisan" data-flag="@X" onclick="openSidebar('KOD_195_Flatboat Artisan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/188_Colony Queen.jpg" id="KOD_188_Colony Queen" data-flag="@X" onclick="openSidebar('KOD_188_Colony Queen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/238_Triumphant Tactics.jpg" id="KOD_238_Triumphant Tactics" data-flag="@X" onclick="openSidebar('KOD_238_Triumphant Tactics',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/210_Mercurial Chameleon.jpg" id="KOD_210_Mercurial Chameleon" data-flag="@X" onclick="openSidebar('KOD_210_Mercurial Chameleon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/157_Milunda, Prairie Prince.jpg" id="KOD_157_Milunda, Prairie Prince" data-flag="@X" onclick="openSidebar('KOD_157_Milunda, Prairie Prince',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/160_Parrot Pools.jpg" id="KOD_160_Parrot Pools" data-flag="@X" onclick="openSidebar('KOD_160_Parrot Pools',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/139_Chitterrax.jpg" id="KOD_139_Chitterrax" data-flag="@X" onclick="openSidebar('KOD_139_Chitterrax',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/137_Bourasan Highguard.jpg" id="KOD_137_Bourasan Highguard" data-flag="@X" onclick="openSidebar('KOD_137_Bourasan Highguard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/159_Ornery Bloom.jpg" id="KOD_159_Ornery Bloom" data-flag="@X" onclick="openSidebar('KOD_159_Ornery Bloom',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/158_Netherform.jpg" id="KOD_158_Netherform" data-flag="@X" onclick="openSidebar('KOD_158_Netherform',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/173_Wisdom Beyond Age.jpg" id="KOD_173_Wisdom Beyond Age" data-flag="@X" onclick="openSidebar('KOD_173_Wisdom Beyond Age',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/143_Fester Swarm.jpg" id="KOD_143_Fester Swarm" data-flag="@X" onclick="openSidebar('KOD_143_Fester Swarm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/172_Umala, the Reverent.jpg" id="KOD_172_Umala, the Reverent" data-flag="@X" onclick="openSidebar('KOD_172_Umala, the Reverent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/174_Wise Farseer Chini.jpg" id="KOD_174_Wise Farseer Chini" data-flag="@X" onclick="openSidebar('KOD_174_Wise Farseer Chini',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/184_The Banishment of Seh'a.jpg" id="KOD_184_The Banishment of Seha" data-flag="@X" onclick="openSidebar('KOD_184_The Banishment of Seha',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/189_Distorted Reflection.jpg" id="KOD_189_Distorted Reflection" data-flag="@X" onclick="openSidebar('KOD_189_Distorted Reflection',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/229_Silthway Scuttler.jpg" id="KOD_229_Silthway Scuttler" data-flag="@X" onclick="openSidebar('KOD_229_Silthway Scuttler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/198_Greypelt Brute.jpg" id="KOD_198_Greypelt Brute" data-flag="@X" onclick="openSidebar('KOD_198_Greypelt Brute',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/196_Glinthide Hero.jpg" id="KOD_196_Glinthide Hero" data-flag="@X" onclick="openSidebar('KOD_196_Glinthide Hero',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/141_Devious Paladin.jpg" id="KOD_141_Devious Paladin" data-flag="@X" onclick="openSidebar('KOD_141_Devious Paladin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/155_Lava Spill.jpg" id="KOD_155_Lava Spill" data-flag="@X" onclick="openSidebar('KOD_155_Lava Spill',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/148_Headhunter Mantis.jpg" id="KOD_148_Headhunter Mantis" data-flag="@X" onclick="openSidebar('KOD_148_Headhunter Mantis',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/147_Greypelt Trooper.jpg" id="KOD_147_Greypelt Trooper" data-flag="@X" onclick="openSidebar('KOD_147_Greypelt Trooper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/146_Great Migration.jpg" id="KOD_146_Great Migration" data-flag="@X" onclick="openSidebar('KOD_146_Great Migration',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/226_Scavenger's Feast.jpg" id="KOD_226_Scavengers Feast" data-flag="@X" onclick="openSidebar('KOD_226_Scavengers Feast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/231_Squall Serpent.jpg" id="KOD_231_Squall Serpent" data-flag="@X" onclick="openSidebar('KOD_231_Squall Serpent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/219_Pungent Beetle.jpg" id="KOD_219_Pungent Beetle" data-flag="@X" onclick="openSidebar('KOD_219_Pungent Beetle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/222_Rousing Battlehound.jpg" id="KOD_222_Rousing Battlehound" data-flag="@X" onclick="openSidebar('KOD_222_Rousing Battlehound',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/235_Tarrying Gharial.jpg" id="KOD_235_Tarrying Gharial" data-flag="@X" onclick="openSidebar('KOD_235_Tarrying Gharial',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/212_Msuji Sureshot.jpg" id="KOD_212_Msuji Sureshot" data-flag="@X" onclick="openSidebar('KOD_212_Msuji Sureshot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/209_Manic River-Fishers.jpg" id="KOD_209_Manic River-Fishers" data-flag="@X" onclick="openSidebar('KOD_209_Manic River-Fishers',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/242_Xiong Mao, Restless Waif.jpg" id="KOD_242_Xiong Mao, Restless Waif" data-flag="@X" onclick="openSidebar('KOD_242_Xiong Mao, Restless Waif',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/201_Hembwe, the All-Mother's Hand.jpg" id="KOD_201_Hembwe, the All-Mothers Hand" data-flag="@X" onclick="openSidebar('KOD_201_Hembwe, the All-Mothers Hand',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/223_Ruchi, the Effervescent.jpg" id="KOD_223_Ruchi, the Effervescent" data-flag="@X" onclick="openSidebar('KOD_223_Ruchi, the Effervescent',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/211_Msuji Operative.jpg" id="KOD_211_Msuji Operative" data-flag="@X" onclick="openSidebar('KOD_211_Msuji Operative',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/215_Oozing Adder.jpg" id="KOD_215_Oozing Adder" data-flag="@X" onclick="openSidebar('KOD_215_Oozing Adder',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/206_King Shabil's Tournament.jpg" id="KOD_206_King Shabils Tournament" data-flag="@X" onclick="openSidebar('KOD_206_King Shabils Tournament',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/225_Runescale Brawler.jpg" id="KOD_225_Runescale Brawler" data-flag="@X" onclick="openSidebar('KOD_225_Runescale Brawler',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/187_Bwema, the Ruthless.jpg" id="KOD_187_Bwema, the Ruthless" data-flag="@X" onclick="openSidebar('KOD_187_Bwema, the Ruthless',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/182_Azure Caterwauler.jpg" id="KOD_182_Azure Caterwauler" data-flag="@X" onclick="openSidebar('KOD_182_Azure Caterwauler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/217_Pith Wilt.jpg" id="KOD_217_Pith Wilt" data-flag="@X" onclick="openSidebar('KOD_217_Pith Wilt',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/191_Explore Forgotten Lands.jpg" id="KOD_191_Explore Forgotten Lands" data-flag="@X" onclick="openSidebar('KOD_191_Explore Forgotten Lands',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/177_Am'atambi, Fable Weaver.jpg" id="KOD_177_Amatambi, Fable Weaver" data-flag="@X" onclick="openSidebar('KOD_177_Amatambi, Fable Weaver',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/181_Artful Chari.jpg" id="KOD_181_Artful Chari" data-flag="@X" onclick="openSidebar('KOD_181_Artful Chari',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/183_Badru, the Skyshadow.jpg" id="KOD_183_Badru, the Skyshadow" data-flag="@X" onclick="openSidebar('KOD_183_Badru, the Skyshadow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/185_Berylscale Alaj.jpg" id="KOD_185_Berylscale Alaj" data-flag="@X" onclick="openSidebar('KOD_185_Berylscale Alaj',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/192_Fakadeh, Florid Queen.jpg" id="KOD_192_Fakadeh, Florid Queen" data-flag="@X" onclick="openSidebar('KOD_192_Fakadeh, Florid Queen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/193_Fearless King Shabil.jpg" id="KOD_193_Fearless King Shabil" data-flag="@X" onclick="openSidebar('KOD_193_Fearless King Shabil',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/205_Kiana, the Unyielding.jpg" id="KOD_205_Kiana, the Unyielding" data-flag="@X" onclick="openSidebar('KOD_205_Kiana, the Unyielding',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/214_Olde King Koswe.jpg" id="KOD_214_Olde King Koswe" data-flag="@X" onclick="openSidebar('KOD_214_Olde King Koswe',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/232_The Sungaru Gang.jpg" id="KOD_232_The Sungaru Gang" data-flag="@X" onclick="openSidebar('KOD_232_The Sungaru Gang',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/237_Thrice-Clawed Troika.jpg" id="KOD_237_Thrice-Clawed Troika" data-flag="@X" onclick="openSidebar('KOD_237_Thrice-Clawed Troika',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/135_An'yama, Elder Guardian.jpg" id="KOD_135_Anyama, Elder Guardian" data-flag="@X" onclick="openSidebar('KOD_135_Anyama, Elder Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/1_Aparodist.jpg" id="KOD_1_Aparodist" data-flag="@X" onclick="openSidebar('KOD_1_Aparodist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/244_Canid Simulacrum.jpg" id="KOD_244_Canid Simulacrum" data-flag="@X" onclick="openSidebar('KOD_244_Canid Simulacrum',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/243_Aetherspear.jpg" id="KOD_243_Aetherspear" data-flag="@X" onclick="openSidebar('KOD_243_Aetherspear',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/245_Esoteric Egg.jpg" id="KOD_245_Esoteric Egg" data-flag="@X" onclick="openSidebar('KOD_245_Esoteric Egg',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/246_Prophetic Prism.jpg" id="KOD_246_Prophetic Prism" data-flag="@X" onclick="openSidebar('KOD_246_Prophetic Prism',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/247_Punja Stick Trap.jpg" id="KOD_247_Punja Stick Trap" data-flag="@X" onclick="openSidebar('KOD_247_Punja Stick Trap',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/248_Wings of Liberty.jpg" id="KOD_248_Wings of Liberty" data-flag="@X" onclick="openSidebar('KOD_248_Wings of Liberty',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/1_Aparodist.jpg" id="KOD_1_Aparodist" data-flag="@X" onclick="openSidebar('KOD_1_Aparodist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/244_Canid Simulacrum.jpg" id="KOD_244_Canid Simulacrum" data-flag="@X" onclick="openSidebar('KOD_244_Canid Simulacrum',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/243_Aetherspear.jpg" id="KOD_243_Aetherspear" data-flag="@X" onclick="openSidebar('KOD_243_Aetherspear',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/245_Esoteric Egg.jpg" id="KOD_245_Esoteric Egg" data-flag="@X" onclick="openSidebar('KOD_245_Esoteric Egg',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/246_Prophetic Prism.jpg" id="KOD_246_Prophetic Prism" data-flag="@X" onclick="openSidebar('KOD_246_Prophetic Prism',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/247_Punja Stick Trap.jpg" id="KOD_247_Punja Stick Trap" data-flag="@X" onclick="openSidebar('KOD_247_Punja Stick Trap',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/248_Wings of Liberty.jpg" id="KOD_248_Wings of Liberty" data-flag="@X" onclick="openSidebar('KOD_248_Wings of Liberty',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
 				<div id="land" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/254_Vast Savannah.jpg" id="KOD_254_Vast Savannah" data-flag="@X" onclick="openSidebar('KOD_254_Vast Savannah',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/250_Gleaming River.jpg" id="KOD_250_Gleaming River" data-flag="@X" onclick="openSidebar('KOD_250_Gleaming River',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/251_Murky Peat.jpg" id="KOD_251_Murky Peat" data-flag="@X" onclick="openSidebar('KOD_251_Murky Peat',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/252_Sunwashed Spires.jpg" id="KOD_252_Sunwashed Spires" data-flag="@X" onclick="openSidebar('KOD_252_Sunwashed Spires',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/253_Tropical Grove.jpg" id="KOD_253_Tropical Grove" data-flag="@X" onclick="openSidebar('KOD_253_Tropical Grove',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Tranquil Cove.jpg" id="KOD_0_Tranquil Cove" data-flag="@X" onclick="openSidebar('KOD_0_Tranquil Cove',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Dismal Backwater.jpg" id="KOD_0_Dismal Backwater" data-flag="@X" onclick="openSidebar('KOD_0_Dismal Backwater',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Bloodfell Caves.jpg" id="KOD_0_Bloodfell Caves" data-flag="@X" onclick="openSidebar('KOD_0_Bloodfell Caves',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Rugged Highlands.jpg" id="KOD_0_Rugged Highlands" data-flag="@X" onclick="openSidebar('KOD_0_Rugged Highlands',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Blossoming Sands.jpg" id="KOD_0_Blossoming Sands" data-flag="@X" onclick="openSidebar('KOD_0_Blossoming Sands',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Scoured Barrens.jpg" id="KOD_0_Scoured Barrens" data-flag="@X" onclick="openSidebar('KOD_0_Scoured Barrens',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Swiftwater Cliffs.jpg" id="KOD_0_Swiftwater Cliffs" data-flag="@X" onclick="openSidebar('KOD_0_Swiftwater Cliffs',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Jungle Hollow.jpg" id="KOD_0_Jungle Hollow" data-flag="@X" onclick="openSidebar('KOD_0_Jungle Hollow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Wind-Scarred Crag.jpg" id="KOD_0_Wind-Scarred Crag" data-flag="@X" onclick="openSidebar('KOD_0_Wind-Scarred Crag',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Thornwood Falls.jpg" id="KOD_0_Thornwood Falls" data-flag="@X" onclick="openSidebar('KOD_0_Thornwood Falls',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Coastal Dominion.jpg" id="KOD_0_Coastal Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Coastal Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Bleak Dominion.jpg" id="KOD_0_Bleak Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Bleak Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Primal Dominion.jpg" id="KOD_0_Primal Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Primal Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Rugged Dominion.jpg" id="KOD_0_Rugged Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Rugged Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Stalwart Dominion.jpg" id="KOD_0_Stalwart Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Stalwart Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Majestic Dominion.jpg" id="KOD_0_Majestic Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Majestic Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Ancient Dominion.jpg" id="KOD_0_Ancient Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Ancient Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Verdant Dominion.jpg" id="KOD_0_Verdant Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Verdant Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Desolate Dominion.jpg" id="KOD_0_Desolate Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Desolate Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/0_Pristine Dominion.jpg" id="KOD_0_Pristine Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Pristine Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/249_Evolving Wilds.jpg" id="KOD_249_Evolving Wilds" data-flag="@X" onclick="openSidebar('KOD_249_Evolving Wilds',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/254_Vast Savannah.jpg" id="KOD_254_Vast Savannah" data-flag="@X" onclick="openSidebar('KOD_254_Vast Savannah',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/250_Gleaming River.jpg" id="KOD_250_Gleaming River" data-flag="@X" onclick="openSidebar('KOD_250_Gleaming River',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/251_Murky Peat.jpg" id="KOD_251_Murky Peat" data-flag="@X" onclick="openSidebar('KOD_251_Murky Peat',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/252_Sunwashed Spires.jpg" id="KOD_252_Sunwashed Spires" data-flag="@X" onclick="openSidebar('KOD_252_Sunwashed Spires',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/253_Tropical Grove.jpg" id="KOD_253_Tropical Grove" data-flag="@X" onclick="openSidebar('KOD_253_Tropical Grove',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Tranquil Cove.jpg" id="KOD_0_Tranquil Cove" data-flag="@X" onclick="openSidebar('KOD_0_Tranquil Cove',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Dismal Backwater.jpg" id="KOD_0_Dismal Backwater" data-flag="@X" onclick="openSidebar('KOD_0_Dismal Backwater',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Bloodfell Caves.jpg" id="KOD_0_Bloodfell Caves" data-flag="@X" onclick="openSidebar('KOD_0_Bloodfell Caves',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Rugged Highlands.jpg" id="KOD_0_Rugged Highlands" data-flag="@X" onclick="openSidebar('KOD_0_Rugged Highlands',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Blossoming Sands.jpg" id="KOD_0_Blossoming Sands" data-flag="@X" onclick="openSidebar('KOD_0_Blossoming Sands',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Scoured Barrens.jpg" id="KOD_0_Scoured Barrens" data-flag="@X" onclick="openSidebar('KOD_0_Scoured Barrens',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Swiftwater Cliffs.jpg" id="KOD_0_Swiftwater Cliffs" data-flag="@X" onclick="openSidebar('KOD_0_Swiftwater Cliffs',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Jungle Hollow.jpg" id="KOD_0_Jungle Hollow" data-flag="@X" onclick="openSidebar('KOD_0_Jungle Hollow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Wind-Scarred Crag.jpg" id="KOD_0_Wind-Scarred Crag" data-flag="@X" onclick="openSidebar('KOD_0_Wind-Scarred Crag',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Thornwood Falls.jpg" id="KOD_0_Thornwood Falls" data-flag="@X" onclick="openSidebar('KOD_0_Thornwood Falls',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Coastal Dominion.jpg" id="KOD_0_Coastal Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Coastal Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Bleak Dominion.jpg" id="KOD_0_Bleak Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Bleak Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Primal Dominion.jpg" id="KOD_0_Primal Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Primal Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Rugged Dominion.jpg" id="KOD_0_Rugged Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Rugged Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Stalwart Dominion.jpg" id="KOD_0_Stalwart Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Stalwart Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Majestic Dominion.jpg" id="KOD_0_Majestic Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Majestic Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Ancient Dominion.jpg" id="KOD_0_Ancient Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Ancient Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Verdant Dominion.jpg" id="KOD_0_Verdant Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Verdant Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Desolate Dominion.jpg" id="KOD_0_Desolate Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Desolate Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/0_Pristine Dominion.jpg" id="KOD_0_Pristine Dominion" data-flag="@X" onclick="openSidebar('KOD_0_Pristine Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/249_Evolving Wilds.jpg" id="KOD_249_Evolving Wilds" data-flag="@X" onclick="openSidebar('KOD_249_Evolving Wilds',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/7t_Lotus Petal.jpg" id="KOD_7t_Lotus Petal" data-flag="@X" onclick="openSidebar('KOD_7t_Lotus Petal',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/8t_Far-Off Lands.jpg" id="KOD_8t_Far-Off Lands" data-flag="@X" onclick="openSidebar('KOD_8t_Far-Off Lands',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/9t_Emblem.jpg" id="KOD_9t_Emblem" data-flag="@X" onclick="openSidebar('KOD_9t_Emblem',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/1t_Cat.jpg" id="KOD_1t_Cat" data-flag="@X" onclick="openSidebar('KOD_1t_Cat',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/2t_Bird.jpg" id="KOD_2t_Bird" data-flag="@X" onclick="openSidebar('KOD_2t_Bird',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/3t_Hound.jpg" id="KOD_3t_Hound" data-flag="@X" onclick="openSidebar('KOD_3t_Hound',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/4t_Ox.jpg" id="KOD_4t_Ox" data-flag="@X" onclick="openSidebar('KOD_4t_Ox',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/5t_Insect.jpg" id="KOD_5t_Insect" data-flag="@X" onclick="openSidebar('KOD_5t_Insect',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/KOD-files/img/6t_Rhino Warrior.jpg" id="KOD_6t_Rhino Warrior" data-flag="@X" onclick="openSidebar('KOD_6t_Rhino Warrior',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/7t_Lotus Petal.jpg" id="KOD_7t_Lotus Petal" data-flag="@X" onclick="openSidebar('KOD_7t_Lotus Petal',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/8t_Far-Off Lands.jpg" id="KOD_8t_Far-Off Lands" data-flag="@X" onclick="openSidebar('KOD_8t_Far-Off Lands',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/9t_Emblem.jpg" id="KOD_9t_Emblem" data-flag="@X" onclick="openSidebar('KOD_9t_Emblem',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/1t_Cat.jpg" id="KOD_1t_Cat" data-flag="@X" onclick="openSidebar('KOD_1t_Cat',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/2t_Bird.jpg" id="KOD_2t_Bird" data-flag="@X" onclick="openSidebar('KOD_2t_Bird',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/3t_Hound.jpg" id="KOD_3t_Hound" data-flag="@X" onclick="openSidebar('KOD_3t_Hound',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/4t_Ox.jpg" id="KOD_4t_Ox" data-flag="@X" onclick="openSidebar('KOD_4t_Ox',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/5t_Insect.jpg" id="KOD_5t_Insect" data-flag="@X" onclick="openSidebar('KOD_5t_Insect',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/KOD-files/img/6t_Rhino Warrior.jpg" id="KOD_6t_Rhino Warrior" data-flag="@X" onclick="openSidebar('KOD_6t_Rhino Warrior',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="KOD_e" data-flag="@E" onclick="openSidebar('KOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="KOD_er" data-flag="@E" onclick="openSidebar('KOD_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -666,13 +682,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -805,13 +821,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -965,16 +984,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -984,7 +1003,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

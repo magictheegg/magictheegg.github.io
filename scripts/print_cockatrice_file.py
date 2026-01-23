@@ -190,9 +190,13 @@ def render_card(set_data, card, /, *, back=False, flipped=False):
 	return card_string
 
 def generateFile(code):
+	xml_path = os.path.join('sets', code + '-files', code + '.xml')
+	
 	with open(os.path.join('sets', code + '-files', code + '.json'), encoding='utf-8-sig') as j:
 		set_data = json.load(j)
 
+	new_date = datetime.today().strftime('%Y-%m-%d')
+	
 	cockatrice_string = f'''<?xml version='1.0' encoding='UTF-8'?>
 <cockatrice_carddatabase version='4'>
 	<sets>
@@ -200,7 +204,7 @@ def generateFile(code):
 			<name>{xml_escape(code)}</name>
 			<longname>{xml_escape(set_data['name'])}</longname>
 			<settype>Custom</settype>
-			<releasedate>{datetime.today().strftime('%Y-%m-%d')}</releasedate>
+			<releasedate>{new_date}</releasedate>
 		</set>
 	</sets>
 	<cards>'''
@@ -211,6 +215,19 @@ def generateFile(code):
 	cockatrice_string += '''
 	</cards>
 </cockatrice_carddatabase>'''
+	
+	new_content = cockatrice_string.replace('\r\n', '\n')
 
-	with open(os.path.join('sets', code + '-files', code + '.xml'), 'w', encoding='utf-8') as f:
-		f.write(cockatrice_string)
+	if os.path.exists(xml_path):
+		with open(xml_path, 'r', encoding='utf-8') as f:
+			old_content = f.read().replace('\r\n', '\n')
+		
+		# Mask out the release date in both for comparison
+		old_norm = re.sub(r'<releasedate>.*?</releasedate>', '<releasedate>PLACEHOLDER</releasedate>', old_content)
+		new_norm = re.sub(r'<releasedate>.*?</releasedate>', '<releasedate>PLACEHOLDER</releasedate>', new_content)
+		
+		if old_norm == new_norm:
+			return # No data changed, skip overwrite
+
+	with open(xml_path, 'w', encoding='utf-8') as f:
+		f.write(new_content)

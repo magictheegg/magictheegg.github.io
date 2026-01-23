@@ -1,15 +1,18 @@
 ﻿<html>
 <head>
 	<title>Search</title>
-	<link rel="icon" type="image/x-icon" href="/img/search.png">
-	<link rel="stylesheet" href="resources/mana.css">
-	<link rel="stylesheet" href="/resources/header.css">
-	<link rel="stylesheet" href="/resources/card-text.css">
+	<link rel="icon" type="image/x-icon" href="./img/search.png">
+	<link rel="stylesheet" href="./resources/mana.css">
+	<link rel="stylesheet" href="./resources/header.css">
+	<link rel="stylesheet" href="./resources/card-text.css">
 </head>
+<script title="root">
+	const rootPath = ".";
+</script>
 <style>
 	@font-face {
 		font-family: Beleren;
-		src: url('/resources/beleren.ttf');
+		src: url('./resources/beleren.ttf');
 	}
 	body {
 		font-family: 'Helvetica', 'Arial', sans-serif;
@@ -58,7 +61,7 @@
 		box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
 		outline: 0;
 	}
-	button:disabled {
+	button:disabled, select:disabled {
 		cursor: auto;
 		background-color: #f7fafa;
 		font-style: italic;
@@ -148,7 +151,7 @@
 		height: auto;
 	}
 	.img-container .btn {
-		background: url('img/flip.png') no-repeat;
+		background: url('./img/flip.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 		width: 15%;
@@ -164,7 +167,7 @@
 		opacity: 0.5;
 	}
 	.img-container .btn:hover {
-		background: url('img/flip-hover.png') no-repeat;
+		background: url('./img/flip-hover.png') no-repeat;
 		background-size: contain;
 		background-position: center;
 	}
@@ -176,21 +179,58 @@
 		font-size: .97vw;
 		color: rgba(0, 0, 0, 0);
 	}
+	.no-results {
+		display: none;
+		text-align: center;
+		padding-top: 100px;
+		padding-bottom: 100px;
+		width: 100%;
+	}
+	.no-results img {
+		width: 150px;
+		margin-bottom: 20px;
+		opacity: 0.3;
+		filter: drop-shadow(0 0 4px #000);
+	}
+	.no-results h1 {
+		font-family: Beleren;
+		color: #494949;
+		margin: 0;
+		font-size: 40px;
+	}
+	.no-results p {
+		color: #797979;
+		font-size: 18px;
+		margin-top: 10px;
+	}
 </style>
 <body>
 	<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 	<div class="button-grid">
 		<div class="select-text"><div class="results-text" id="results-text">Loading ...</div>Cards displayed as<select name="display" id="display"><option value="cards-only">Cards Only</option><option value="cards-text">Cards + Text</option></select>sorted by<select name="sort-by" id="sort-by"><option value="name">Name</option><option value="set-code">Set / Number</option><option value="mv">Mana Value</option><option value="color">Color</option><option value="rarity">Rarity</option><option value="cube">Cube</option></select> : <select name="sort-order" id="sort-order"><option value="ascending">Asc</option><option value="descending">Desc</option></select></div>		
 		<div class="prev-next-btns">
@@ -203,6 +243,12 @@
 	</div>
 
 	<div class="image-grid-container" id="imagesOnlyGrid">
+	</div>
+
+	<div id="no-results" class="no-results">
+		<img src="./img/deck.png">
+		<h1>No cards found</h1>
+		<p>Your search didn't match any cards. Try adjusting your search terms.</p>
 	</div>
 
 	<div class="button-grid" id="footer">
@@ -222,13 +268,13 @@
 		let sets_json = {};
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('/lists/all-cards.json')
+			await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -329,7 +375,7 @@
 				}
 
 
-			await fetch('/lists/all-sets.json')
+			await fetch(rootPath + '/lists/all-sets.json')
 					.then(response => response.json())
 					.then(data => {
 						sets_json = data; 
@@ -615,6 +661,49 @@
 		}
 
 		function preSearch(setNewState) {
+			const searchTerms = document.getElementById("search").value.toLowerCase();
+			const tokens = tokenizeTerms(searchTerms) || [];
+			const sortBySelect = document.getElementById("sort-by");
+			const sortOrderSelect = document.getElementById("sort-order");
+
+			sortBySelect.disabled = false;
+			sortOrderSelect.disabled = false;
+
+			tokens.forEach(token => {
+				if (token.startsWith("sort:")) {
+					const val = token.substring(5);
+					const map = {
+						"name": "name",
+						"set": "set-code",
+						"mv": "mv",
+						"color": "color",
+						"rarity": "rarity",
+						"cube": "cube"
+					};
+					if (map[val]) {
+						const option = Array.from(sortBySelect.options).find(opt => opt.value === map[val]);
+						if (option) {
+							sortBySelect.value = map[val];
+							sortBySelect.disabled = true;
+						}
+					}
+				}
+				if (token.startsWith("direction:")) {
+					const val = token.substring(10);
+					const map = {
+						"asc": "ascending",
+						"desc": "descending"
+					};
+					if (map[val]) {
+						const option = Array.from(sortOrderSelect.options).find(opt => opt.value === map[val]);
+						if (option) {
+							sortOrderSelect.value = map[val];
+							sortOrderSelect.disabled = true;
+						}
+					}
+				}
+			});
+
 			card_list_arrayified.sort(compareFunction);
 			if (document.getElementById("sort-order").value == "descending")
 			{
@@ -693,6 +782,14 @@
 				document.getElementById("results-text").innerText = "";
 			}
 
+			if (search_results.length == 0) {
+				document.getElementById("no-results").style.display = "block";
+				document.getElementById("footer").style.display = "none";
+			} else {
+				document.getElementById("no-results").style.display = "none";
+				document.getElementById("footer").style.display = "grid";
+			}
+
 			if (page != 0)
 			{
 				document.getElementById("prevBtn").disabled = false;
@@ -765,6 +862,13 @@
 			{
 				return true;
 			}
+
+			tokens = tokens.filter(t => !t.startsWith("sort:") && !t.startsWith("direction:"));
+			if (tokens.length == 0)
+			{
+				return true;
+			}
+
 			for (let i = 0; i < tokens.length; i++)
 			{
 				if (tokens[i].charAt(0) == '+')
@@ -1516,7 +1620,7 @@
 			}
 			if ("v_mana" in card_stats)
 			{
-				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="/img/' + card_stats.v_mana + '">');
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
 			}
 			effect.innerHTML += prettifyEffects(card_effects);
 			text.appendChild(effect);
@@ -1569,7 +1673,7 @@
 				}
 				if ("v_mana" in card_stats)
 				{
-					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="/img/' + card_stats.v_mana + '">');
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
 				}
 				effect_2.innerHTML += prettifyEffects(card_effects_2);
 				text.appendChild(effect_2);
@@ -1606,15 +1710,15 @@
 			img.loading = "lazy";
 
 			if ("position" in card_stats) {
-				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			}
 			else {
-				img.src = "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
 			}
 			
 			const link = document.createElement("a");
 			
-			const url = new URL('card', window.location.origin);
+			const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			const params = {
 				set: card_stats.set,
 				num: card_stats.number,
@@ -1623,7 +1727,7 @@
 			for (const key in params) {
 				url.searchParams.append(key, params[key]);
 			}
-			link.href = url;
+			link.href = url.pathname + url.search;
 
 			link.appendChild(img);
 
@@ -1645,6 +1749,19 @@
 			{
 				const imgFlipBtn = document.createElement("button");
 				imgFlipBtn.className = "btn";
+				imgFlipBtn.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+				imgFlipBtn.style.backgroundSize = "contain";
+				imgFlipBtn.style.backgroundPosition = "center";
+				imgFlipBtn.onmouseover = function() {
+					this.style.background = "url('" + rootPath + "/img/flip-hover.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
+				imgFlipBtn.onmouseout = function() {
+					this.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
 				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
 				imgContainer.appendChild(imgFlipBtn);
 			}
@@ -1847,7 +1964,7 @@
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -1857,7 +1974,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

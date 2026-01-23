@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/GQC-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/GQC-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>GQC visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,452 +181,465 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/GQC-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/GQC-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/GQC-files/logo.png">
+		<img class="logo" src="../sets/GQC-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/16_Baptize in His Brilliance.jpg" id="GQC_16_Baptize in His Brilliance" data-flag="@X" onclick="openSidebar('GQC_16_Baptize in His Brilliance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/65_Ghirin, Cerulean Sibyl.jpg" id="GQC_65_Ghirin, Cerulean Sibyl" data-flag="@X" onclick="openSidebar('GQC_65_Ghirin, Cerulean Sibyl',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/132_Threzak, the Heinous.jpg" id="GQC_132_Threzak, the Heinous" data-flag="@X" onclick="openSidebar('GQC_132_Threzak, the Heinous',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/156_Kr'tah, Corporeal Sculptor.jpg" id="GQC_156_Krtah, Corporeal Sculptor" data-flag="@X" onclick="openSidebar('GQC_156_Krtah, Corporeal Sculptor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/204_Orovus, the Worldcarver.jpg" id="GQC_204_Orovus, the Worldcarver" data-flag="@X" onclick="openSidebar('GQC_204_Orovus, the Worldcarver',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/44_Rivha, Heiress of Pinions.jpg" id="GQC_44_Rivha, Heiress of Pinions" data-flag="@X" onclick="openSidebar('GQC_44_Rivha, Heiress of Pinions',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/57_Bringer of Antithesis.jpg" id="GQC_57_Bringer of Antithesis" data-flag="@X" onclick="openSidebar('GQC_57_Bringer of Antithesis',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/97_Bearer of Last Wishes.jpg" id="GQC_97_Bearer of Last Wishes" data-flag="@X" onclick="openSidebar('GQC_97_Bearer of Last Wishes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/161_Merciless Shieldbreaker.jpg" id="GQC_161_Merciless Shieldbreaker" data-flag="@X" onclick="openSidebar('GQC_161_Merciless Shieldbreaker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/193_Greenglade Advocate.jpg" id="GQC_193_Greenglade Advocate" data-flag="@X" onclick="openSidebar('GQC_193_Greenglade Advocate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/15_Archangel of Rekindling.jpg" id="GQC_15_Archangel of Rekindling" data-flag="@X" onclick="openSidebar('GQC_15_Archangel of Rekindling',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/74_Of Men and Monsters.jpg" id="GQC_74_Of Men and Monsters" data-flag="@X" onclick="openSidebar('GQC_74_Of Men and Monsters',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/99_Callous Tactician.jpg" id="GQC_99_Callous Tactician" data-flag="@X" onclick="openSidebar('GQC_99_Callous Tactician',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/137_Battering Savage.jpg" id="GQC_137_Battering Savage" data-flag="@X" onclick="openSidebar('GQC_137_Battering Savage',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/195_Grind Vacant Husks.jpg" id="GQC_195_Grind Vacant Husks" data-flag="@X" onclick="openSidebar('GQC_195_Grind Vacant Husks',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/18_Bestower of Haloes.jpg" id="GQC_18_Bestower of Haloes" data-flag="@X" onclick="openSidebar('GQC_18_Bestower of Haloes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/76_Persuasive Orator.jpg" id="GQC_76_Persuasive Orator" data-flag="@X" onclick="openSidebar('GQC_76_Persuasive Orator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/102_Dark Blood Seer.jpg" id="GQC_102_Dark Blood Seer" data-flag="@X" onclick="openSidebar('GQC_102_Dark Blood Seer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/141_Cataclysmic Witness.jpg" id="GQC_141_Cataclysmic Witness" data-flag="@X" onclick="openSidebar('GQC_141_Cataclysmic Witness',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/196_Harbinger of Dusk.jpg" id="GQC_196_Harbinger of Dusk" data-flag="@X" onclick="openSidebar('GQC_196_Harbinger of Dusk',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/20_Cybres-Clan Arbiter.jpg" id="GQC_20_Cybres-Clan Arbiter" data-flag="@X" onclick="openSidebar('GQC_20_Cybres-Clan Arbiter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/78_Play the Mortal Fool.jpg" id="GQC_78_Play the Mortal Fool" data-flag="@X" onclick="openSidebar('GQC_78_Play the Mortal Fool',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/103_Dark Rite Cleric.jpg" id="GQC_103_Dark Rite Cleric" data-flag="@X" onclick="openSidebar('GQC_103_Dark Rite Cleric',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/143_Consecrated Wrath.jpg" id="GQC_143_Consecrated Wrath" data-flag="@X" onclick="openSidebar('GQC_143_Consecrated Wrath',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/199_Jade Champion.jpg" id="GQC_199_Jade Champion" data-flag="@X" onclick="openSidebar('GQC_199_Jade Champion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/23_Empyrean Bastion.jpg" id="GQC_23_Empyrean Bastion" data-flag="@X" onclick="openSidebar('GQC_23_Empyrean Bastion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/83_Rusted Orrery.jpg" id="GQC_83_Rusted Orrery" data-flag="@X" onclick="openSidebar('GQC_83_Rusted Orrery',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/109_Hematic Contract.jpg" id="GQC_109_Hematic Contract" data-flag="@X" onclick="openSidebar('GQC_109_Hematic Contract',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/154_Haze Herald.jpg" id="GQC_154_Haze Herald" data-flag="@X" onclick="openSidebar('GQC_154_Haze Herald',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/207_Putrescent Carrier.jpg" id="GQC_207_Putrescent Carrier" data-flag="@X" onclick="openSidebar('GQC_207_Putrescent Carrier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/32_Mother of Hooves.jpg" id="GQC_32_Mother of Hooves" data-flag="@X" onclick="openSidebar('GQC_32_Mother of Hooves',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/88_Skyknight Champion.jpg" id="GQC_88_Skyknight Champion" data-flag="@X" onclick="openSidebar('GQC_88_Skyknight Champion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/133_Trade Lives.jpg" id="GQC_133_Trade Lives" data-flag="@X" onclick="openSidebar('GQC_133_Trade Lives',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/155_Into the Breach.jpg" id="GQC_155_Into the Breach" data-flag="@X" onclick="openSidebar('GQC_155_Into the Breach',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/210_Sinuous Atrocity.jpg" id="GQC_210_Sinuous Atrocity" data-flag="@X" onclick="openSidebar('GQC_210_Sinuous Atrocity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/34_Parish Tithe.jpg" id="GQC_34_Parish Tithe" data-flag="@X" onclick="openSidebar('GQC_34_Parish Tithe',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/90_Supernal Host.jpg" id="GQC_90_Supernal Host" data-flag="@X" onclick="openSidebar('GQC_90_Supernal Host',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/135_Vermin Skinner.jpg" id="GQC_135_Vermin Skinner" data-flag="@X" onclick="openSidebar('GQC_135_Vermin Skinner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/166_Orcish Bloodhunter.jpg" id="GQC_166_Orcish Bloodhunter" data-flag="@X" onclick="openSidebar('GQC_166_Orcish Bloodhunter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/211_Sound the Blauhorn.jpg" id="GQC_211_Sound the Blauhorn" data-flag="@X" onclick="openSidebar('GQC_211_Sound the Blauhorn',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/45_Rivha's Blessed Blade.jpg" id="GQC_45_Rivhas Blessed Blade" data-flag="@X" onclick="openSidebar('GQC_45_Rivhas Blessed Blade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/55_Arcane Strategist.jpg" id="GQC_55_Arcane Strategist" data-flag="@X" onclick="openSidebar('GQC_55_Arcane Strategist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/98_Bloodwoken Demon.jpg" id="GQC_98_Bloodwoken Demon" data-flag="@X" onclick="openSidebar('GQC_98_Bloodwoken Demon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/168_Primordial Migration.jpg" id="GQC_168_Primordial Migration" data-flag="@X" onclick="openSidebar('GQC_168_Primordial Migration',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/180_Ancient Stirrings.jpg" id="GQC_180_Ancient Stirrings" data-flag="@X" onclick="openSidebar('GQC_180_Ancient Stirrings',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/13_Angel of Remembrance.jpg" id="GQC_13_Angel of Remembrance" data-flag="@X" onclick="openSidebar('GQC_13_Angel of Remembrance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/56_Behold Bizarre Sublimity.jpg" id="GQC_56_Behold Bizarre Sublimity" data-flag="@X" onclick="openSidebar('GQC_56_Behold Bizarre Sublimity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/100_Crucify.jpg" id="GQC_100_Crucify" data-flag="@X" onclick="openSidebar('GQC_100_Crucify',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/139_Bloodied Champion.jpg" id="GQC_139_Bloodied Champion" data-flag="@X" onclick="openSidebar('GQC_139_Bloodied Champion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/183_Cybres-Clan Warband.jpg" id="GQC_183_Cybres-Clan Warband" data-flag="@X" onclick="openSidebar('GQC_183_Cybres-Clan Warband',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/17_Battlefront Lancer.jpg" id="GQC_17_Battlefront Lancer" data-flag="@X" onclick="openSidebar('GQC_17_Battlefront Lancer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/58_Cerebral Leech.jpg" id="GQC_58_Cerebral Leech" data-flag="@X" onclick="openSidebar('GQC_58_Cerebral Leech',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/101_Dark Blood Font.jpg" id="GQC_101_Dark Blood Font" data-flag="@X" onclick="openSidebar('GQC_101_Dark Blood Font',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/140_Burgeoning Thrall.jpg" id="GQC_140_Burgeoning Thrall" data-flag="@X" onclick="openSidebar('GQC_140_Burgeoning Thrall',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/184_Eerie Ambush.jpg" id="GQC_184_Eerie Ambush" data-flag="@X" onclick="openSidebar('GQC_184_Eerie Ambush',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/19_Chamber of Penance.jpg" id="GQC_19_Chamber of Penance" data-flag="@X" onclick="openSidebar('GQC_19_Chamber of Penance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/61_Dark Blood Zealots.jpg" id="GQC_61_Dark Blood Zealots" data-flag="@X" onclick="openSidebar('GQC_61_Dark Blood Zealots',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/104_Dreadful Deal.jpg" id="GQC_104_Dreadful Deal" data-flag="@X" onclick="openSidebar('GQC_104_Dreadful Deal',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/145_Eldrazi Fleshripper.jpg" id="GQC_145_Eldrazi Fleshripper" data-flag="@X" onclick="openSidebar('GQC_145_Eldrazi Fleshripper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/185_Emerald Lieutenant.jpg" id="GQC_185_Emerald Lieutenant" data-flag="@X" onclick="openSidebar('GQC_185_Emerald Lieutenant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/21_Cybres-Clan Squire.jpg" id="GQC_21_Cybres-Clan Squire" data-flag="@X" onclick="openSidebar('GQC_21_Cybres-Clan Squire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/68_Grotesque Skimmer.jpg" id="GQC_68_Grotesque Skimmer" data-flag="@X" onclick="openSidebar('GQC_68_Grotesque Skimmer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/108_Grave Conscription.jpg" id="GQC_108_Grave Conscription" data-flag="@X" onclick="openSidebar('GQC_108_Grave Conscription',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/146_Eldritch Aria.jpg" id="GQC_146_Eldritch Aria" data-flag="@X" onclick="openSidebar('GQC_146_Eldritch Aria',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/187_Flourish in Calamity.jpg" id="GQC_187_Flourish in Calamity" data-flag="@X" onclick="openSidebar('GQC_187_Flourish in Calamity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/35_Perimeter Warden.jpg" id="GQC_35_Perimeter Warden" data-flag="@X" onclick="openSidebar('GQC_35_Perimeter Warden',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/80_Quelling Goliath.jpg" id="GQC_80_Quelling Goliath" data-flag="@X" onclick="openSidebar('GQC_80_Quelling Goliath',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/114_Marrow Reaver.jpg" id="GQC_114_Marrow Reaver" data-flag="@X" onclick="openSidebar('GQC_114_Marrow Reaver',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/153_Gaping Pursuer.jpg" id="GQC_153_Gaping Pursuer" data-flag="@X" onclick="openSidebar('GQC_153_Gaping Pursuer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/194_Greenglade Purifier.jpg" id="GQC_194_Greenglade Purifier" data-flag="@X" onclick="openSidebar('GQC_194_Greenglade Purifier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/38_Preach His Hallowed Gospel.jpg" id="GQC_38_Preach His Hallowed Gospel" data-flag="@X" onclick="openSidebar('GQC_38_Preach His Hallowed Gospel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/81_Rejuvenating Drone.jpg" id="GQC_81_Rejuvenating Drone" data-flag="@X" onclick="openSidebar('GQC_81_Rejuvenating Drone',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/117_Portent of the Blighted.jpg" id="GQC_117_Portent of the Blighted" data-flag="@X" onclick="openSidebar('GQC_117_Portent of the Blighted',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/157_Lacerate.jpg" id="GQC_157_Lacerate" data-flag="@X" onclick="openSidebar('GQC_157_Lacerate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/197_Holtun-Clan Assailant.jpg" id="GQC_197_Holtun-Clan Assailant" data-flag="@X" onclick="openSidebar('GQC_197_Holtun-Clan Assailant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/39_Prevail.jpg" id="GQC_39_Prevail" data-flag="@X" onclick="openSidebar('GQC_39_Prevail',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/82_Rift Spelunking.jpg" id="GQC_82_Rift Spelunking" data-flag="@X" onclick="openSidebar('GQC_82_Rift Spelunking',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/118_Preordained Vessel.jpg" id="GQC_118_Preordained Vessel" data-flag="@X" onclick="openSidebar('GQC_118_Preordained Vessel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/158_Lust for War.jpg" id="GQC_158_Lust for War" data-flag="@X" onclick="openSidebar('GQC_158_Lust for War',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/200_Lay Waste to Civilization.jpg" id="GQC_200_Lay Waste to Civilization" data-flag="@X" onclick="openSidebar('GQC_200_Lay Waste to Civilization',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/40_Prison Architect.jpg" id="GQC_40_Prison Architect" data-flag="@X" onclick="openSidebar('GQC_40_Prison Architect',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/85_Shed the Human Rind.jpg" id="GQC_85_Shed the Human Rind" data-flag="@X" onclick="openSidebar('GQC_85_Shed the Human Rind',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/125_Sinful Pontifex.jpg" id="GQC_125_Sinful Pontifex" data-flag="@X" onclick="openSidebar('GQC_125_Sinful Pontifex',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/162_Mindless Incursion.jpg" id="GQC_162_Mindless Incursion" data-flag="@X" onclick="openSidebar('GQC_162_Mindless Incursion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/202_Malignant Wanderer.jpg" id="GQC_202_Malignant Wanderer" data-flag="@X" onclick="openSidebar('GQC_202_Malignant Wanderer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/41_Radiant Seraph.jpg" id="GQC_41_Radiant Seraph" data-flag="@X" onclick="openSidebar('GQC_41_Radiant Seraph',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/87_Siphon Memory.jpg" id="GQC_87_Siphon Memory" data-flag="@X" onclick="openSidebar('GQC_87_Siphon Memory',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/127_Stroke of Nescience.jpg" id="GQC_127_Stroke of Nescience" data-flag="@X" onclick="openSidebar('GQC_127_Stroke of Nescience',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/164_Nest Parasite.jpg" id="GQC_164_Nest Parasite" data-flag="@X" onclick="openSidebar('GQC_164_Nest Parasite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/205_Permeating Maggot.jpg" id="GQC_205_Permeating Maggot" data-flag="@X" onclick="openSidebar('GQC_205_Permeating Maggot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/47_Soul Healer.jpg" id="GQC_47_Soul Healer" data-flag="@X" onclick="openSidebar('GQC_47_Soul Healer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/92_Touch of the Beyond.jpg" id="GQC_92_Touch of the Beyond" data-flag="@X" onclick="openSidebar('GQC_92_Touch of the Beyond',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/128_Suffer Vile Retribution.jpg" id="GQC_128_Suffer Vile Retribution" data-flag="@X" onclick="openSidebar('GQC_128_Suffer Vile Retribution',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/167_Orcish Twin-Axes.jpg" id="GQC_167_Orcish Twin-Axes" data-flag="@X" onclick="openSidebar('GQC_167_Orcish Twin-Axes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/206_Province Demolisher.jpg" id="GQC_206_Province Demolisher" data-flag="@X" onclick="openSidebar('GQC_206_Province Demolisher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/48_Starlit Exeunt.jpg" id="GQC_48_Starlit Exeunt" data-flag="@X" onclick="openSidebar('GQC_48_Starlit Exeunt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/94_Warped Manifestation.jpg" id="GQC_94_Warped Manifestation" data-flag="@X" onclick="openSidebar('GQC_94_Warped Manifestation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/134_Umbral Fiend.jpg" id="GQC_134_Umbral Fiend" data-flag="@X" onclick="openSidebar('GQC_134_Umbral Fiend',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/172_Realize the Delicate Ideal.jpg" id="GQC_172_Realize the Delicate Ideal" data-flag="@X" onclick="openSidebar('GQC_172_Realize the Delicate Ideal',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/214_Twisting Tendrils.jpg" id="GQC_214_Twisting Tendrils" data-flag="@X" onclick="openSidebar('GQC_214_Twisting Tendrils',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/50_Vigorous Courser.jpg" id="GQC_50_Vigorous Courser" data-flag="@X" onclick="openSidebar('GQC_50_Vigorous Courser',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/95_Welkin Outrider.jpg" id="GQC_95_Welkin Outrider" data-flag="@X" onclick="openSidebar('GQC_95_Welkin Outrider',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/136_Worn Survivor.jpg" id="GQC_136_Worn Survivor" data-flag="@X" onclick="openSidebar('GQC_136_Worn Survivor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/174_Scowling Brawler.jpg" id="GQC_174_Scowling Brawler" data-flag="@X" onclick="openSidebar('GQC_174_Scowling Brawler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/219_Woodland Altar.jpg" id="GQC_219_Woodland Altar" data-flag="@X" onclick="openSidebar('GQC_219_Woodland Altar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/52_War Provisions.jpg" id="GQC_52_War Provisions" data-flag="@X" onclick="openSidebar('GQC_52_War Provisions',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/59_Cerebral Twinge.jpg" id="GQC_59_Cerebral Twinge" data-flag="@X" onclick="openSidebar('GQC_59_Cerebral Twinge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/96_Admire the Flawed Form.jpg" id="GQC_96_Admire the Flawed Form" data-flag="@X" onclick="openSidebar('GQC_96_Admire the Flawed Form',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/178_Warforged Citadel.jpg" id="GQC_178_Warforged Citadel" data-flag="@X" onclick="openSidebar('GQC_178_Warforged Citadel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/179_Aberrant Uproar.jpg" id="GQC_179_Aberrant Uproar" data-flag="@X" onclick="openSidebar('GQC_179_Aberrant Uproar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/14_Angelic Smite.jpg" id="GQC_14_Angelic Smite" data-flag="@X" onclick="openSidebar('GQC_14_Angelic Smite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/60_Cursory Glance.jpg" id="GQC_60_Cursory Glance" data-flag="@X" onclick="openSidebar('GQC_60_Cursory Glance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/105_Duel at Thorne Chapel.jpg" id="GQC_105_Duel at Thorne Chapel" data-flag="@X" onclick="openSidebar('GQC_105_Duel at Thorne Chapel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/138_Blood Churner.jpg" id="GQC_138_Blood Churner" data-flag="@X" onclick="openSidebar('GQC_138_Blood Churner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/181_Become the Behemoth.jpg" id="GQC_181_Become the Behemoth" data-flag="@X" onclick="openSidebar('GQC_181_Become the Behemoth',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/22_Dawning Angel.jpg" id="GQC_22_Dawning Angel" data-flag="@X" onclick="openSidebar('GQC_22_Dawning Angel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/62_Diving Skyknight.jpg" id="GQC_62_Diving Skyknight" data-flag="@X" onclick="openSidebar('GQC_62_Diving Skyknight',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/106_Fashion Temples from Flesh.jpg" id="GQC_106_Fashion Temples from Flesh" data-flag="@X" onclick="openSidebar('GQC_106_Fashion Temples from Flesh',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/142_Cathartic Reunion.jpg" id="GQC_142_Cathartic Reunion" data-flag="@X" onclick="openSidebar('GQC_142_Cathartic Reunion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/182_Brood Drudge.jpg" id="GQC_182_Brood Drudge" data-flag="@X" onclick="openSidebar('GQC_182_Brood Drudge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/24_Faith in Darkness.jpg" id="GQC_24_Faith in Darkness" data-flag="@X" onclick="openSidebar('GQC_24_Faith in Darkness',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/63_Drifting Drone.jpg" id="GQC_63_Drifting Drone" data-flag="@X" onclick="openSidebar('GQC_63_Drifting Drone',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/107_Feed the Nyrmouth.jpg" id="GQC_107_Feed the Nyrmouth" data-flag="@X" onclick="openSidebar('GQC_107_Feed the Nyrmouth',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/144_Crimson Finale.jpg" id="GQC_144_Crimson Finale" data-flag="@X" onclick="openSidebar('GQC_144_Crimson Finale',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/186_Exotic Game Hunter.jpg" id="GQC_186_Exotic Game Hunter" data-flag="@X" onclick="openSidebar('GQC_186_Exotic Game Hunter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/25_Forum Patrol.jpg" id="GQC_25_Forum Patrol" data-flag="@X" onclick="openSidebar('GQC_25_Forum Patrol',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/64_Embrace Unending Frost.jpg" id="GQC_64_Embrace Unending Frost" data-flag="@X" onclick="openSidebar('GQC_64_Embrace Unending Frost',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/110_Howling Butcher.jpg" id="GQC_110_Howling Butcher" data-flag="@X" onclick="openSidebar('GQC_110_Howling Butcher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/147_Embrace Hellfire.jpg" id="GQC_147_Embrace Hellfire" data-flag="@X" onclick="openSidebar('GQC_147_Embrace Hellfire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/189_Forum Arbalestier.jpg" id="GQC_189_Forum Arbalestier" data-flag="@X" onclick="openSidebar('GQC_189_Forum Arbalestier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/26_Frontline Cavalier.jpg" id="GQC_26_Frontline Cavalier" data-flag="@X" onclick="openSidebar('GQC_26_Frontline Cavalier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/66_Gossamer Tyrant.jpg" id="GQC_66_Gossamer Tyrant" data-flag="@X" onclick="openSidebar('GQC_66_Gossamer Tyrant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/111_Hunting Party.jpg" id="GQC_111_Hunting Party" data-flag="@X" onclick="openSidebar('GQC_111_Hunting Party',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/148_Esoteric Power.jpg" id="GQC_148_Esoteric Power" data-flag="@X" onclick="openSidebar('GQC_148_Esoteric Power',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/190_Frontier Markswomen.jpg" id="GQC_190_Frontier Markswomen" data-flag="@X" onclick="openSidebar('GQC_190_Frontier Markswomen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/27_Holtun-Clan Eldhand.jpg" id="GQC_27_Holtun-Clan Eldhand" data-flag="@X" onclick="openSidebar('GQC_27_Holtun-Clan Eldhand',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/67_Grasp at Frail Dreams.jpg" id="GQC_67_Grasp at Frail Dreams" data-flag="@X" onclick="openSidebar('GQC_67_Grasp at Frail Dreams',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/112_Lavish Fiend.jpg" id="GQC_112_Lavish Fiend" data-flag="@X" onclick="openSidebar('GQC_112_Lavish Fiend',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/149_Eyeless Encroacher.jpg" id="GQC_149_Eyeless Encroacher" data-flag="@X" onclick="openSidebar('GQC_149_Eyeless Encroacher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/191_Gallant Centaur.jpg" id="GQC_191_Gallant Centaur" data-flag="@X" onclick="openSidebar('GQC_191_Gallant Centaur',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/28_Incense Healer.jpg" id="GQC_28_Incense Healer" data-flag="@X" onclick="openSidebar('GQC_28_Incense Healer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/69_His High Council.jpg" id="GQC_69_His High Council" data-flag="@X" onclick="openSidebar('GQC_69_His High Council',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/113_Let the Truth In.jpg" id="GQC_113_Let the Truth In" data-flag="@X" onclick="openSidebar('GQC_113_Let the Truth In',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/150_Flexile Maw.jpg" id="GQC_150_Flexile Maw" data-flag="@X" onclick="openSidebar('GQC_150_Flexile Maw',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/192_Glade Missionary.jpg" id="GQC_192_Glade Missionary" data-flag="@X" onclick="openSidebar('GQC_192_Glade Missionary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/29_Invoke the Divine.jpg" id="GQC_29_Invoke the Divine" data-flag="@X" onclick="openSidebar('GQC_29_Invoke the Divine',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/70_Hivemind Thrall.jpg" id="GQC_70_Hivemind Thrall" data-flag="@X" onclick="openSidebar('GQC_70_Hivemind Thrall',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/115_Parapet Creep.jpg" id="GQC_115_Parapet Creep" data-flag="@X" onclick="openSidebar('GQC_115_Parapet Creep',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/151_Forlorn Templar.jpg" id="GQC_151_Forlorn Templar" data-flag="@X" onclick="openSidebar('GQC_151_Forlorn Templar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/198_Holtun-Clan Neophyte.jpg" id="GQC_198_Holtun-Clan Neophyte" data-flag="@X" onclick="openSidebar('GQC_198_Holtun-Clan Neophyte',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/30_Jorah's Apostle.jpg" id="GQC_30_Jorahs Apostle" data-flag="@X" onclick="openSidebar('GQC_30_Jorahs Apostle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/71_Ichthyic Vermin.jpg" id="GQC_71_Ichthyic Vermin" data-flag="@X" onclick="openSidebar('GQC_71_Ichthyic Vermin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/116_Plead for Asylum.jpg" id="GQC_116_Plead for Asylum" data-flag="@X" onclick="openSidebar('GQC_116_Plead for Asylum',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/152_Forsaken Devotee.jpg" id="GQC_152_Forsaken Devotee" data-flag="@X" onclick="openSidebar('GQC_152_Forsaken Devotee',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/201_Lush Cyclone.jpg" id="GQC_201_Lush Cyclone" data-flag="@X" onclick="openSidebar('GQC_201_Lush Cyclone',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/31_Last Confession.jpg" id="GQC_31_Last Confession" data-flag="@X" onclick="openSidebar('GQC_31_Last Confession',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/73_Obsidian Outcast.jpg" id="GQC_73_Obsidian Outcast" data-flag="@X" onclick="openSidebar('GQC_73_Obsidian Outcast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/119_Profane Exonerator.jpg" id="GQC_119_Profane Exonerator" data-flag="@X" onclick="openSidebar('GQC_119_Profane Exonerator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/159_Material Machinations.jpg" id="GQC_159_Material Machinations" data-flag="@X" onclick="openSidebar('GQC_159_Material Machinations',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/203_Meandering Titan.jpg" id="GQC_203_Meandering Titan" data-flag="@X" onclick="openSidebar('GQC_203_Meandering Titan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/33_Outskirts Chapel.jpg" id="GQC_33_Outskirts Chapel" data-flag="@X" onclick="openSidebar('GQC_33_Outskirts Chapel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/75_Opt.jpg" id="GQC_75_Opt" data-flag="@X" onclick="openSidebar('GQC_75_Opt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/120_Rapacious Demon.jpg" id="GQC_120_Rapacious Demon" data-flag="@X" onclick="openSidebar('GQC_120_Rapacious Demon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/160_Merciless Brute.jpg" id="GQC_160_Merciless Brute" data-flag="@X" onclick="openSidebar('GQC_160_Merciless Brute',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/208_Realm Ravager.jpg" id="GQC_208_Realm Ravager" data-flag="@X" onclick="openSidebar('GQC_208_Realm Ravager',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/36_Pious Nomad.jpg" id="GQC_36_Pious Nomad" data-flag="@X" onclick="openSidebar('GQC_36_Pious Nomad',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/77_Pilfered Memories.jpg" id="GQC_77_Pilfered Memories" data-flag="@X" onclick="openSidebar('GQC_77_Pilfered Memories',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/121_Rise Again.jpg" id="GQC_121_Rise Again" data-flag="@X" onclick="openSidebar('GQC_121_Rise Again',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/165_Orc Sentry.jpg" id="GQC_165_Orc Sentry" data-flag="@X" onclick="openSidebar('GQC_165_Orc Sentry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/209_Rekindle Orphic Memories.jpg" id="GQC_209_Rekindle Orphic Memories" data-flag="@X" onclick="openSidebar('GQC_209_Rekindle Orphic Memories',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/42_Resplendent Guardian.jpg" id="GQC_42_Resplendent Guardian" data-flag="@X" onclick="openSidebar('GQC_42_Resplendent Guardian',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/79_Pontiff's Page.jpg" id="GQC_79_Pontiffs Page" data-flag="@X" onclick="openSidebar('GQC_79_Pontiffs Page',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/122_Sacrosanct Rider.jpg" id="GQC_122_Sacrosanct Rider" data-flag="@X" onclick="openSidebar('GQC_122_Sacrosanct Rider',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/169_Pus Gorger.jpg" id="GQC_169_Pus Gorger" data-flag="@X" onclick="openSidebar('GQC_169_Pus Gorger',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/212_Tangle Glutton.jpg" id="GQC_212_Tangle Glutton" data-flag="@X" onclick="openSidebar('GQC_212_Tangle Glutton',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/43_Ride at Dawn.jpg" id="GQC_43_Ride at Dawn" data-flag="@X" onclick="openSidebar('GQC_43_Ride at Dawn',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/84_Sanctuary Scourge.jpg" id="GQC_84_Sanctuary Scourge" data-flag="@X" onclick="openSidebar('GQC_84_Sanctuary Scourge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/123_Sanguine Proselyte.jpg" id="GQC_123_Sanguine Proselyte" data-flag="@X" onclick="openSidebar('GQC_123_Sanguine Proselyte',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/170_Rampant Colossus.jpg" id="GQC_170_Rampant Colossus" data-flag="@X" onclick="openSidebar('GQC_170_Rampant Colossus',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/213_Thrive in Exotic Chaos.jpg" id="GQC_213_Thrive in Exotic Chaos" data-flag="@X" onclick="openSidebar('GQC_213_Thrive in Exotic Chaos',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/46_Seek His Blessed Light.jpg" id="GQC_46_Seek His Blessed Light" data-flag="@X" onclick="openSidebar('GQC_46_Seek His Blessed Light',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/86_Sights of Blind Eyes.jpg" id="GQC_86_Sights of Blind Eyes" data-flag="@X" onclick="openSidebar('GQC_86_Sights of Blind Eyes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/124_Shriveled Varlet.jpg" id="GQC_124_Shriveled Varlet" data-flag="@X" onclick="openSidebar('GQC_124_Shriveled Varlet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/171_Ranging Ruffian.jpg" id="GQC_171_Ranging Ruffian" data-flag="@X" onclick="openSidebar('GQC_171_Ranging Ruffian',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/215_Variegated Channeler.jpg" id="GQC_215_Variegated Channeler" data-flag="@X" onclick="openSidebar('GQC_215_Variegated Channeler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/49_Vassal of Violet Smoke.jpg" id="GQC_49_Vassal of Violet Smoke" data-flag="@X" onclick="openSidebar('GQC_49_Vassal of Violet Smoke',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/89_Squallsnatch.jpg" id="GQC_89_Squallsnatch" data-flag="@X" onclick="openSidebar('GQC_89_Squallsnatch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/126_Skeletal Prophet.jpg" id="GQC_126_Skeletal Prophet" data-flag="@X" onclick="openSidebar('GQC_126_Skeletal Prophet',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/173_Sacred Thunder.jpg" id="GQC_173_Sacred Thunder" data-flag="@X" onclick="openSidebar('GQC_173_Sacred Thunder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/216_Verdant Faith.jpg" id="GQC_216_Verdant Faith" data-flag="@X" onclick="openSidebar('GQC_216_Verdant Faith',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/51_Virtuous Mentor.jpg" id="GQC_51_Virtuous Mentor" data-flag="@X" onclick="openSidebar('GQC_51_Virtuous Mentor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/91_Tireless Scrivener.jpg" id="GQC_91_Tireless Scrivener" data-flag="@X" onclick="openSidebar('GQC_91_Tireless Scrivener',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/129_Surrender to Dread.jpg" id="GQC_129_Surrender to Dread" data-flag="@X" onclick="openSidebar('GQC_129_Surrender to Dread',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/175_Stitch Ephemeral Sinew.jpg" id="GQC_175_Stitch Ephemeral Sinew" data-flag="@X" onclick="openSidebar('GQC_175_Stitch Ephemeral Sinew',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/217_War-Clan Dowager.jpg" id="GQC_217_War-Clan Dowager" data-flag="@X" onclick="openSidebar('GQC_217_War-Clan Dowager',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/53_War-Clan Boon.jpg" id="GQC_53_War-Clan Boon" data-flag="@X" onclick="openSidebar('GQC_53_War-Clan Boon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/93_Utopian Delusions.jpg" id="GQC_93_Utopian Delusions" data-flag="@X" onclick="openSidebar('GQC_93_Utopian Delusions',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/131_Tender to His Dark Blood.jpg" id="GQC_131_Tender to His Dark Blood" data-flag="@X" onclick="openSidebar('GQC_131_Tender to His Dark Blood',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/176_Sure Strike.jpg" id="GQC_176_Sure Strike" data-flag="@X" onclick="openSidebar('GQC_176_Sure Strike',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/218_Warhorse's Grit.jpg" id="GQC_218_Warhorses Grit" data-flag="@X" onclick="openSidebar('GQC_218_Warhorses Grit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/54_Warded Battlements.jpg" id="GQC_54_Warded Battlements" data-flag="@X" onclick="openSidebar('GQC_54_Warded Battlements',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/177_Trench Ballista.jpg" id="GQC_177_Trench Ballista" data-flag="@X" onclick="openSidebar('GQC_177_Trench Ballista',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/GQC-files/img/16_Baptize in His Brilliance.jpg" id="GQC_16_Baptize in His Brilliance" data-flag="@X" onclick="openSidebar('GQC_16_Baptize in His Brilliance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/65_Ghirin, Cerulean Sibyl.jpg" id="GQC_65_Ghirin, Cerulean Sibyl" data-flag="@X" onclick="openSidebar('GQC_65_Ghirin, Cerulean Sibyl',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/132_Threzak, the Heinous.jpg" id="GQC_132_Threzak, the Heinous" data-flag="@X" onclick="openSidebar('GQC_132_Threzak, the Heinous',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/156_Kr'tah, Corporeal Sculptor.jpg" id="GQC_156_Krtah, Corporeal Sculptor" data-flag="@X" onclick="openSidebar('GQC_156_Krtah, Corporeal Sculptor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/204_Orovus, the Worldcarver.jpg" id="GQC_204_Orovus, the Worldcarver" data-flag="@X" onclick="openSidebar('GQC_204_Orovus, the Worldcarver',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/44_Rivha, Heiress of Pinions.jpg" id="GQC_44_Rivha, Heiress of Pinions" data-flag="@X" onclick="openSidebar('GQC_44_Rivha, Heiress of Pinions',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/57_Bringer of Antithesis.jpg" id="GQC_57_Bringer of Antithesis" data-flag="@X" onclick="openSidebar('GQC_57_Bringer of Antithesis',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/97_Bearer of Last Wishes.jpg" id="GQC_97_Bearer of Last Wishes" data-flag="@X" onclick="openSidebar('GQC_97_Bearer of Last Wishes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/161_Merciless Shieldbreaker.jpg" id="GQC_161_Merciless Shieldbreaker" data-flag="@X" onclick="openSidebar('GQC_161_Merciless Shieldbreaker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/193_Greenglade Advocate.jpg" id="GQC_193_Greenglade Advocate" data-flag="@X" onclick="openSidebar('GQC_193_Greenglade Advocate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/15_Archangel of Rekindling.jpg" id="GQC_15_Archangel of Rekindling" data-flag="@X" onclick="openSidebar('GQC_15_Archangel of Rekindling',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/74_Of Men and Monsters.jpg" id="GQC_74_Of Men and Monsters" data-flag="@X" onclick="openSidebar('GQC_74_Of Men and Monsters',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/99_Callous Tactician.jpg" id="GQC_99_Callous Tactician" data-flag="@X" onclick="openSidebar('GQC_99_Callous Tactician',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/137_Battering Savage.jpg" id="GQC_137_Battering Savage" data-flag="@X" onclick="openSidebar('GQC_137_Battering Savage',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/195_Grind Vacant Husks.jpg" id="GQC_195_Grind Vacant Husks" data-flag="@X" onclick="openSidebar('GQC_195_Grind Vacant Husks',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/18_Bestower of Haloes.jpg" id="GQC_18_Bestower of Haloes" data-flag="@X" onclick="openSidebar('GQC_18_Bestower of Haloes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/76_Persuasive Orator.jpg" id="GQC_76_Persuasive Orator" data-flag="@X" onclick="openSidebar('GQC_76_Persuasive Orator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/102_Dark Blood Seer.jpg" id="GQC_102_Dark Blood Seer" data-flag="@X" onclick="openSidebar('GQC_102_Dark Blood Seer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/141_Cataclysmic Witness.jpg" id="GQC_141_Cataclysmic Witness" data-flag="@X" onclick="openSidebar('GQC_141_Cataclysmic Witness',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/196_Harbinger of Dusk.jpg" id="GQC_196_Harbinger of Dusk" data-flag="@X" onclick="openSidebar('GQC_196_Harbinger of Dusk',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/20_Cybres-Clan Arbiter.jpg" id="GQC_20_Cybres-Clan Arbiter" data-flag="@X" onclick="openSidebar('GQC_20_Cybres-Clan Arbiter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/78_Play the Mortal Fool.jpg" id="GQC_78_Play the Mortal Fool" data-flag="@X" onclick="openSidebar('GQC_78_Play the Mortal Fool',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/103_Dark Rite Cleric.jpg" id="GQC_103_Dark Rite Cleric" data-flag="@X" onclick="openSidebar('GQC_103_Dark Rite Cleric',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/143_Consecrated Wrath.jpg" id="GQC_143_Consecrated Wrath" data-flag="@X" onclick="openSidebar('GQC_143_Consecrated Wrath',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/199_Jade Champion.jpg" id="GQC_199_Jade Champion" data-flag="@X" onclick="openSidebar('GQC_199_Jade Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/23_Empyrean Bastion.jpg" id="GQC_23_Empyrean Bastion" data-flag="@X" onclick="openSidebar('GQC_23_Empyrean Bastion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/83_Rusted Orrery.jpg" id="GQC_83_Rusted Orrery" data-flag="@X" onclick="openSidebar('GQC_83_Rusted Orrery',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/109_Hematic Contract.jpg" id="GQC_109_Hematic Contract" data-flag="@X" onclick="openSidebar('GQC_109_Hematic Contract',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/154_Haze Herald.jpg" id="GQC_154_Haze Herald" data-flag="@X" onclick="openSidebar('GQC_154_Haze Herald',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/207_Putrescent Carrier.jpg" id="GQC_207_Putrescent Carrier" data-flag="@X" onclick="openSidebar('GQC_207_Putrescent Carrier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/32_Mother of Hooves.jpg" id="GQC_32_Mother of Hooves" data-flag="@X" onclick="openSidebar('GQC_32_Mother of Hooves',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/88_Skyknight Champion.jpg" id="GQC_88_Skyknight Champion" data-flag="@X" onclick="openSidebar('GQC_88_Skyknight Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/133_Trade Lives.jpg" id="GQC_133_Trade Lives" data-flag="@X" onclick="openSidebar('GQC_133_Trade Lives',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/155_Into the Breach.jpg" id="GQC_155_Into the Breach" data-flag="@X" onclick="openSidebar('GQC_155_Into the Breach',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/210_Sinuous Atrocity.jpg" id="GQC_210_Sinuous Atrocity" data-flag="@X" onclick="openSidebar('GQC_210_Sinuous Atrocity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/34_Parish Tithe.jpg" id="GQC_34_Parish Tithe" data-flag="@X" onclick="openSidebar('GQC_34_Parish Tithe',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/90_Supernal Host.jpg" id="GQC_90_Supernal Host" data-flag="@X" onclick="openSidebar('GQC_90_Supernal Host',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/135_Vermin Skinner.jpg" id="GQC_135_Vermin Skinner" data-flag="@X" onclick="openSidebar('GQC_135_Vermin Skinner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/166_Orcish Bloodhunter.jpg" id="GQC_166_Orcish Bloodhunter" data-flag="@X" onclick="openSidebar('GQC_166_Orcish Bloodhunter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/211_Sound the Blauhorn.jpg" id="GQC_211_Sound the Blauhorn" data-flag="@X" onclick="openSidebar('GQC_211_Sound the Blauhorn',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/45_Rivha's Blessed Blade.jpg" id="GQC_45_Rivhas Blessed Blade" data-flag="@X" onclick="openSidebar('GQC_45_Rivhas Blessed Blade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/55_Arcane Strategist.jpg" id="GQC_55_Arcane Strategist" data-flag="@X" onclick="openSidebar('GQC_55_Arcane Strategist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/98_Bloodwoken Demon.jpg" id="GQC_98_Bloodwoken Demon" data-flag="@X" onclick="openSidebar('GQC_98_Bloodwoken Demon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/168_Primordial Migration.jpg" id="GQC_168_Primordial Migration" data-flag="@X" onclick="openSidebar('GQC_168_Primordial Migration',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/180_Ancient Stirrings.jpg" id="GQC_180_Ancient Stirrings" data-flag="@X" onclick="openSidebar('GQC_180_Ancient Stirrings',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/13_Angel of Remembrance.jpg" id="GQC_13_Angel of Remembrance" data-flag="@X" onclick="openSidebar('GQC_13_Angel of Remembrance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/56_Behold Bizarre Sublimity.jpg" id="GQC_56_Behold Bizarre Sublimity" data-flag="@X" onclick="openSidebar('GQC_56_Behold Bizarre Sublimity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/100_Crucify.jpg" id="GQC_100_Crucify" data-flag="@X" onclick="openSidebar('GQC_100_Crucify',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/139_Bloodied Champion.jpg" id="GQC_139_Bloodied Champion" data-flag="@X" onclick="openSidebar('GQC_139_Bloodied Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/183_Cybres-Clan Warband.jpg" id="GQC_183_Cybres-Clan Warband" data-flag="@X" onclick="openSidebar('GQC_183_Cybres-Clan Warband',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/17_Battlefront Lancer.jpg" id="GQC_17_Battlefront Lancer" data-flag="@X" onclick="openSidebar('GQC_17_Battlefront Lancer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/58_Cerebral Leech.jpg" id="GQC_58_Cerebral Leech" data-flag="@X" onclick="openSidebar('GQC_58_Cerebral Leech',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/101_Dark Blood Font.jpg" id="GQC_101_Dark Blood Font" data-flag="@X" onclick="openSidebar('GQC_101_Dark Blood Font',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/140_Burgeoning Thrall.jpg" id="GQC_140_Burgeoning Thrall" data-flag="@X" onclick="openSidebar('GQC_140_Burgeoning Thrall',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/184_Eerie Ambush.jpg" id="GQC_184_Eerie Ambush" data-flag="@X" onclick="openSidebar('GQC_184_Eerie Ambush',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/19_Chamber of Penance.jpg" id="GQC_19_Chamber of Penance" data-flag="@X" onclick="openSidebar('GQC_19_Chamber of Penance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/61_Dark Blood Zealots.jpg" id="GQC_61_Dark Blood Zealots" data-flag="@X" onclick="openSidebar('GQC_61_Dark Blood Zealots',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/104_Dreadful Deal.jpg" id="GQC_104_Dreadful Deal" data-flag="@X" onclick="openSidebar('GQC_104_Dreadful Deal',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/145_Eldrazi Fleshripper.jpg" id="GQC_145_Eldrazi Fleshripper" data-flag="@X" onclick="openSidebar('GQC_145_Eldrazi Fleshripper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/185_Emerald Lieutenant.jpg" id="GQC_185_Emerald Lieutenant" data-flag="@X" onclick="openSidebar('GQC_185_Emerald Lieutenant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/21_Cybres-Clan Squire.jpg" id="GQC_21_Cybres-Clan Squire" data-flag="@X" onclick="openSidebar('GQC_21_Cybres-Clan Squire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/68_Grotesque Skimmer.jpg" id="GQC_68_Grotesque Skimmer" data-flag="@X" onclick="openSidebar('GQC_68_Grotesque Skimmer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/108_Grave Conscription.jpg" id="GQC_108_Grave Conscription" data-flag="@X" onclick="openSidebar('GQC_108_Grave Conscription',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/146_Eldritch Aria.jpg" id="GQC_146_Eldritch Aria" data-flag="@X" onclick="openSidebar('GQC_146_Eldritch Aria',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/187_Flourish in Calamity.jpg" id="GQC_187_Flourish in Calamity" data-flag="@X" onclick="openSidebar('GQC_187_Flourish in Calamity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/35_Perimeter Warden.jpg" id="GQC_35_Perimeter Warden" data-flag="@X" onclick="openSidebar('GQC_35_Perimeter Warden',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/80_Quelling Goliath.jpg" id="GQC_80_Quelling Goliath" data-flag="@X" onclick="openSidebar('GQC_80_Quelling Goliath',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/114_Marrow Reaver.jpg" id="GQC_114_Marrow Reaver" data-flag="@X" onclick="openSidebar('GQC_114_Marrow Reaver',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/153_Gaping Pursuer.jpg" id="GQC_153_Gaping Pursuer" data-flag="@X" onclick="openSidebar('GQC_153_Gaping Pursuer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/194_Greenglade Purifier.jpg" id="GQC_194_Greenglade Purifier" data-flag="@X" onclick="openSidebar('GQC_194_Greenglade Purifier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/38_Preach His Hallowed Gospel.jpg" id="GQC_38_Preach His Hallowed Gospel" data-flag="@X" onclick="openSidebar('GQC_38_Preach His Hallowed Gospel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/81_Rejuvenating Drone.jpg" id="GQC_81_Rejuvenating Drone" data-flag="@X" onclick="openSidebar('GQC_81_Rejuvenating Drone',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/117_Portent of the Blighted.jpg" id="GQC_117_Portent of the Blighted" data-flag="@X" onclick="openSidebar('GQC_117_Portent of the Blighted',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/157_Lacerate.jpg" id="GQC_157_Lacerate" data-flag="@X" onclick="openSidebar('GQC_157_Lacerate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/197_Holtun-Clan Assailant.jpg" id="GQC_197_Holtun-Clan Assailant" data-flag="@X" onclick="openSidebar('GQC_197_Holtun-Clan Assailant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/39_Prevail.jpg" id="GQC_39_Prevail" data-flag="@X" onclick="openSidebar('GQC_39_Prevail',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/82_Rift Spelunking.jpg" id="GQC_82_Rift Spelunking" data-flag="@X" onclick="openSidebar('GQC_82_Rift Spelunking',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/118_Preordained Vessel.jpg" id="GQC_118_Preordained Vessel" data-flag="@X" onclick="openSidebar('GQC_118_Preordained Vessel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/158_Lust for War.jpg" id="GQC_158_Lust for War" data-flag="@X" onclick="openSidebar('GQC_158_Lust for War',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/200_Lay Waste to Civilization.jpg" id="GQC_200_Lay Waste to Civilization" data-flag="@X" onclick="openSidebar('GQC_200_Lay Waste to Civilization',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/40_Prison Architect.jpg" id="GQC_40_Prison Architect" data-flag="@X" onclick="openSidebar('GQC_40_Prison Architect',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/85_Shed the Human Rind.jpg" id="GQC_85_Shed the Human Rind" data-flag="@X" onclick="openSidebar('GQC_85_Shed the Human Rind',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/125_Sinful Pontifex.jpg" id="GQC_125_Sinful Pontifex" data-flag="@X" onclick="openSidebar('GQC_125_Sinful Pontifex',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/162_Mindless Incursion.jpg" id="GQC_162_Mindless Incursion" data-flag="@X" onclick="openSidebar('GQC_162_Mindless Incursion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/202_Malignant Wanderer.jpg" id="GQC_202_Malignant Wanderer" data-flag="@X" onclick="openSidebar('GQC_202_Malignant Wanderer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/41_Radiant Seraph.jpg" id="GQC_41_Radiant Seraph" data-flag="@X" onclick="openSidebar('GQC_41_Radiant Seraph',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/87_Siphon Memory.jpg" id="GQC_87_Siphon Memory" data-flag="@X" onclick="openSidebar('GQC_87_Siphon Memory',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/127_Stroke of Nescience.jpg" id="GQC_127_Stroke of Nescience" data-flag="@X" onclick="openSidebar('GQC_127_Stroke of Nescience',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/164_Nest Parasite.jpg" id="GQC_164_Nest Parasite" data-flag="@X" onclick="openSidebar('GQC_164_Nest Parasite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/205_Permeating Maggot.jpg" id="GQC_205_Permeating Maggot" data-flag="@X" onclick="openSidebar('GQC_205_Permeating Maggot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/47_Soul Healer.jpg" id="GQC_47_Soul Healer" data-flag="@X" onclick="openSidebar('GQC_47_Soul Healer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/92_Touch of the Beyond.jpg" id="GQC_92_Touch of the Beyond" data-flag="@X" onclick="openSidebar('GQC_92_Touch of the Beyond',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/128_Suffer Vile Retribution.jpg" id="GQC_128_Suffer Vile Retribution" data-flag="@X" onclick="openSidebar('GQC_128_Suffer Vile Retribution',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/167_Orcish Twin-Axes.jpg" id="GQC_167_Orcish Twin-Axes" data-flag="@X" onclick="openSidebar('GQC_167_Orcish Twin-Axes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/206_Province Demolisher.jpg" id="GQC_206_Province Demolisher" data-flag="@X" onclick="openSidebar('GQC_206_Province Demolisher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/48_Starlit Exeunt.jpg" id="GQC_48_Starlit Exeunt" data-flag="@X" onclick="openSidebar('GQC_48_Starlit Exeunt',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/94_Warped Manifestation.jpg" id="GQC_94_Warped Manifestation" data-flag="@X" onclick="openSidebar('GQC_94_Warped Manifestation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/134_Umbral Fiend.jpg" id="GQC_134_Umbral Fiend" data-flag="@X" onclick="openSidebar('GQC_134_Umbral Fiend',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/172_Realize the Delicate Ideal.jpg" id="GQC_172_Realize the Delicate Ideal" data-flag="@X" onclick="openSidebar('GQC_172_Realize the Delicate Ideal',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/214_Twisting Tendrils.jpg" id="GQC_214_Twisting Tendrils" data-flag="@X" onclick="openSidebar('GQC_214_Twisting Tendrils',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/50_Vigorous Courser.jpg" id="GQC_50_Vigorous Courser" data-flag="@X" onclick="openSidebar('GQC_50_Vigorous Courser',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/95_Welkin Outrider.jpg" id="GQC_95_Welkin Outrider" data-flag="@X" onclick="openSidebar('GQC_95_Welkin Outrider',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/136_Worn Survivor.jpg" id="GQC_136_Worn Survivor" data-flag="@X" onclick="openSidebar('GQC_136_Worn Survivor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/174_Scowling Brawler.jpg" id="GQC_174_Scowling Brawler" data-flag="@X" onclick="openSidebar('GQC_174_Scowling Brawler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/219_Woodland Altar.jpg" id="GQC_219_Woodland Altar" data-flag="@X" onclick="openSidebar('GQC_219_Woodland Altar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/52_War Provisions.jpg" id="GQC_52_War Provisions" data-flag="@X" onclick="openSidebar('GQC_52_War Provisions',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/59_Cerebral Twinge.jpg" id="GQC_59_Cerebral Twinge" data-flag="@X" onclick="openSidebar('GQC_59_Cerebral Twinge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/96_Admire the Flawed Form.jpg" id="GQC_96_Admire the Flawed Form" data-flag="@X" onclick="openSidebar('GQC_96_Admire the Flawed Form',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/178_Warforged Citadel.jpg" id="GQC_178_Warforged Citadel" data-flag="@X" onclick="openSidebar('GQC_178_Warforged Citadel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/179_Aberrant Uproar.jpg" id="GQC_179_Aberrant Uproar" data-flag="@X" onclick="openSidebar('GQC_179_Aberrant Uproar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/14_Angelic Smite.jpg" id="GQC_14_Angelic Smite" data-flag="@X" onclick="openSidebar('GQC_14_Angelic Smite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/60_Cursory Glance.jpg" id="GQC_60_Cursory Glance" data-flag="@X" onclick="openSidebar('GQC_60_Cursory Glance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/105_Duel at Thorne Chapel.jpg" id="GQC_105_Duel at Thorne Chapel" data-flag="@X" onclick="openSidebar('GQC_105_Duel at Thorne Chapel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/138_Blood Churner.jpg" id="GQC_138_Blood Churner" data-flag="@X" onclick="openSidebar('GQC_138_Blood Churner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/181_Become the Behemoth.jpg" id="GQC_181_Become the Behemoth" data-flag="@X" onclick="openSidebar('GQC_181_Become the Behemoth',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/22_Dawning Angel.jpg" id="GQC_22_Dawning Angel" data-flag="@X" onclick="openSidebar('GQC_22_Dawning Angel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/62_Diving Skyknight.jpg" id="GQC_62_Diving Skyknight" data-flag="@X" onclick="openSidebar('GQC_62_Diving Skyknight',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/106_Fashion Temples from Flesh.jpg" id="GQC_106_Fashion Temples from Flesh" data-flag="@X" onclick="openSidebar('GQC_106_Fashion Temples from Flesh',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/142_Cathartic Reunion.jpg" id="GQC_142_Cathartic Reunion" data-flag="@X" onclick="openSidebar('GQC_142_Cathartic Reunion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/182_Brood Drudge.jpg" id="GQC_182_Brood Drudge" data-flag="@X" onclick="openSidebar('GQC_182_Brood Drudge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/24_Faith in Darkness.jpg" id="GQC_24_Faith in Darkness" data-flag="@X" onclick="openSidebar('GQC_24_Faith in Darkness',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/63_Drifting Drone.jpg" id="GQC_63_Drifting Drone" data-flag="@X" onclick="openSidebar('GQC_63_Drifting Drone',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/107_Feed the Nyrmouth.jpg" id="GQC_107_Feed the Nyrmouth" data-flag="@X" onclick="openSidebar('GQC_107_Feed the Nyrmouth',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/144_Crimson Finale.jpg" id="GQC_144_Crimson Finale" data-flag="@X" onclick="openSidebar('GQC_144_Crimson Finale',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/186_Exotic Game Hunter.jpg" id="GQC_186_Exotic Game Hunter" data-flag="@X" onclick="openSidebar('GQC_186_Exotic Game Hunter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/25_Forum Patrol.jpg" id="GQC_25_Forum Patrol" data-flag="@X" onclick="openSidebar('GQC_25_Forum Patrol',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/64_Embrace Unending Frost.jpg" id="GQC_64_Embrace Unending Frost" data-flag="@X" onclick="openSidebar('GQC_64_Embrace Unending Frost',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/110_Howling Butcher.jpg" id="GQC_110_Howling Butcher" data-flag="@X" onclick="openSidebar('GQC_110_Howling Butcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/147_Embrace Hellfire.jpg" id="GQC_147_Embrace Hellfire" data-flag="@X" onclick="openSidebar('GQC_147_Embrace Hellfire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/189_Forum Arbalestier.jpg" id="GQC_189_Forum Arbalestier" data-flag="@X" onclick="openSidebar('GQC_189_Forum Arbalestier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/26_Frontline Cavalier.jpg" id="GQC_26_Frontline Cavalier" data-flag="@X" onclick="openSidebar('GQC_26_Frontline Cavalier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/66_Gossamer Tyrant.jpg" id="GQC_66_Gossamer Tyrant" data-flag="@X" onclick="openSidebar('GQC_66_Gossamer Tyrant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/111_Hunting Party.jpg" id="GQC_111_Hunting Party" data-flag="@X" onclick="openSidebar('GQC_111_Hunting Party',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/148_Esoteric Power.jpg" id="GQC_148_Esoteric Power" data-flag="@X" onclick="openSidebar('GQC_148_Esoteric Power',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/190_Frontier Markswomen.jpg" id="GQC_190_Frontier Markswomen" data-flag="@X" onclick="openSidebar('GQC_190_Frontier Markswomen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/27_Holtun-Clan Eldhand.jpg" id="GQC_27_Holtun-Clan Eldhand" data-flag="@X" onclick="openSidebar('GQC_27_Holtun-Clan Eldhand',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/67_Grasp at Frail Dreams.jpg" id="GQC_67_Grasp at Frail Dreams" data-flag="@X" onclick="openSidebar('GQC_67_Grasp at Frail Dreams',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/112_Lavish Fiend.jpg" id="GQC_112_Lavish Fiend" data-flag="@X" onclick="openSidebar('GQC_112_Lavish Fiend',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/149_Eyeless Encroacher.jpg" id="GQC_149_Eyeless Encroacher" data-flag="@X" onclick="openSidebar('GQC_149_Eyeless Encroacher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/191_Gallant Centaur.jpg" id="GQC_191_Gallant Centaur" data-flag="@X" onclick="openSidebar('GQC_191_Gallant Centaur',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/28_Incense Healer.jpg" id="GQC_28_Incense Healer" data-flag="@X" onclick="openSidebar('GQC_28_Incense Healer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/69_His High Council.jpg" id="GQC_69_His High Council" data-flag="@X" onclick="openSidebar('GQC_69_His High Council',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/113_Let the Truth In.jpg" id="GQC_113_Let the Truth In" data-flag="@X" onclick="openSidebar('GQC_113_Let the Truth In',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/150_Flexile Maw.jpg" id="GQC_150_Flexile Maw" data-flag="@X" onclick="openSidebar('GQC_150_Flexile Maw',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/192_Glade Missionary.jpg" id="GQC_192_Glade Missionary" data-flag="@X" onclick="openSidebar('GQC_192_Glade Missionary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/29_Invoke the Divine.jpg" id="GQC_29_Invoke the Divine" data-flag="@X" onclick="openSidebar('GQC_29_Invoke the Divine',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/70_Hivemind Thrall.jpg" id="GQC_70_Hivemind Thrall" data-flag="@X" onclick="openSidebar('GQC_70_Hivemind Thrall',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/115_Parapet Creep.jpg" id="GQC_115_Parapet Creep" data-flag="@X" onclick="openSidebar('GQC_115_Parapet Creep',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/151_Forlorn Templar.jpg" id="GQC_151_Forlorn Templar" data-flag="@X" onclick="openSidebar('GQC_151_Forlorn Templar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/198_Holtun-Clan Neophyte.jpg" id="GQC_198_Holtun-Clan Neophyte" data-flag="@X" onclick="openSidebar('GQC_198_Holtun-Clan Neophyte',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/30_Jorah's Apostle.jpg" id="GQC_30_Jorahs Apostle" data-flag="@X" onclick="openSidebar('GQC_30_Jorahs Apostle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/71_Ichthyic Vermin.jpg" id="GQC_71_Ichthyic Vermin" data-flag="@X" onclick="openSidebar('GQC_71_Ichthyic Vermin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/116_Plead for Asylum.jpg" id="GQC_116_Plead for Asylum" data-flag="@X" onclick="openSidebar('GQC_116_Plead for Asylum',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/152_Forsaken Devotee.jpg" id="GQC_152_Forsaken Devotee" data-flag="@X" onclick="openSidebar('GQC_152_Forsaken Devotee',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/201_Lush Cyclone.jpg" id="GQC_201_Lush Cyclone" data-flag="@X" onclick="openSidebar('GQC_201_Lush Cyclone',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/31_Last Confession.jpg" id="GQC_31_Last Confession" data-flag="@X" onclick="openSidebar('GQC_31_Last Confession',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/73_Obsidian Outcast.jpg" id="GQC_73_Obsidian Outcast" data-flag="@X" onclick="openSidebar('GQC_73_Obsidian Outcast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/119_Profane Exonerator.jpg" id="GQC_119_Profane Exonerator" data-flag="@X" onclick="openSidebar('GQC_119_Profane Exonerator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/159_Material Machinations.jpg" id="GQC_159_Material Machinations" data-flag="@X" onclick="openSidebar('GQC_159_Material Machinations',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/203_Meandering Titan.jpg" id="GQC_203_Meandering Titan" data-flag="@X" onclick="openSidebar('GQC_203_Meandering Titan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/33_Outskirts Chapel.jpg" id="GQC_33_Outskirts Chapel" data-flag="@X" onclick="openSidebar('GQC_33_Outskirts Chapel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/75_Opt.jpg" id="GQC_75_Opt" data-flag="@X" onclick="openSidebar('GQC_75_Opt',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/120_Rapacious Demon.jpg" id="GQC_120_Rapacious Demon" data-flag="@X" onclick="openSidebar('GQC_120_Rapacious Demon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/160_Merciless Brute.jpg" id="GQC_160_Merciless Brute" data-flag="@X" onclick="openSidebar('GQC_160_Merciless Brute',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/208_Realm Ravager.jpg" id="GQC_208_Realm Ravager" data-flag="@X" onclick="openSidebar('GQC_208_Realm Ravager',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/36_Pious Nomad.jpg" id="GQC_36_Pious Nomad" data-flag="@X" onclick="openSidebar('GQC_36_Pious Nomad',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/77_Pilfered Memories.jpg" id="GQC_77_Pilfered Memories" data-flag="@X" onclick="openSidebar('GQC_77_Pilfered Memories',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/121_Rise Again.jpg" id="GQC_121_Rise Again" data-flag="@X" onclick="openSidebar('GQC_121_Rise Again',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/165_Orc Sentry.jpg" id="GQC_165_Orc Sentry" data-flag="@X" onclick="openSidebar('GQC_165_Orc Sentry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/209_Rekindle Orphic Memories.jpg" id="GQC_209_Rekindle Orphic Memories" data-flag="@X" onclick="openSidebar('GQC_209_Rekindle Orphic Memories',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/42_Resplendent Guardian.jpg" id="GQC_42_Resplendent Guardian" data-flag="@X" onclick="openSidebar('GQC_42_Resplendent Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/79_Pontiff's Page.jpg" id="GQC_79_Pontiffs Page" data-flag="@X" onclick="openSidebar('GQC_79_Pontiffs Page',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/122_Sacrosanct Rider.jpg" id="GQC_122_Sacrosanct Rider" data-flag="@X" onclick="openSidebar('GQC_122_Sacrosanct Rider',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/169_Pus Gorger.jpg" id="GQC_169_Pus Gorger" data-flag="@X" onclick="openSidebar('GQC_169_Pus Gorger',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/212_Tangle Glutton.jpg" id="GQC_212_Tangle Glutton" data-flag="@X" onclick="openSidebar('GQC_212_Tangle Glutton',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/43_Ride at Dawn.jpg" id="GQC_43_Ride at Dawn" data-flag="@X" onclick="openSidebar('GQC_43_Ride at Dawn',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/84_Sanctuary Scourge.jpg" id="GQC_84_Sanctuary Scourge" data-flag="@X" onclick="openSidebar('GQC_84_Sanctuary Scourge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/123_Sanguine Proselyte.jpg" id="GQC_123_Sanguine Proselyte" data-flag="@X" onclick="openSidebar('GQC_123_Sanguine Proselyte',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/170_Rampant Colossus.jpg" id="GQC_170_Rampant Colossus" data-flag="@X" onclick="openSidebar('GQC_170_Rampant Colossus',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/213_Thrive in Exotic Chaos.jpg" id="GQC_213_Thrive in Exotic Chaos" data-flag="@X" onclick="openSidebar('GQC_213_Thrive in Exotic Chaos',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/46_Seek His Blessed Light.jpg" id="GQC_46_Seek His Blessed Light" data-flag="@X" onclick="openSidebar('GQC_46_Seek His Blessed Light',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/86_Sights of Blind Eyes.jpg" id="GQC_86_Sights of Blind Eyes" data-flag="@X" onclick="openSidebar('GQC_86_Sights of Blind Eyes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/124_Shriveled Varlet.jpg" id="GQC_124_Shriveled Varlet" data-flag="@X" onclick="openSidebar('GQC_124_Shriveled Varlet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/171_Ranging Ruffian.jpg" id="GQC_171_Ranging Ruffian" data-flag="@X" onclick="openSidebar('GQC_171_Ranging Ruffian',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/215_Variegated Channeler.jpg" id="GQC_215_Variegated Channeler" data-flag="@X" onclick="openSidebar('GQC_215_Variegated Channeler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/49_Vassal of Violet Smoke.jpg" id="GQC_49_Vassal of Violet Smoke" data-flag="@X" onclick="openSidebar('GQC_49_Vassal of Violet Smoke',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/89_Squallsnatch.jpg" id="GQC_89_Squallsnatch" data-flag="@X" onclick="openSidebar('GQC_89_Squallsnatch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/126_Skeletal Prophet.jpg" id="GQC_126_Skeletal Prophet" data-flag="@X" onclick="openSidebar('GQC_126_Skeletal Prophet',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/173_Sacred Thunder.jpg" id="GQC_173_Sacred Thunder" data-flag="@X" onclick="openSidebar('GQC_173_Sacred Thunder',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/216_Verdant Faith.jpg" id="GQC_216_Verdant Faith" data-flag="@X" onclick="openSidebar('GQC_216_Verdant Faith',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/51_Virtuous Mentor.jpg" id="GQC_51_Virtuous Mentor" data-flag="@X" onclick="openSidebar('GQC_51_Virtuous Mentor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/91_Tireless Scrivener.jpg" id="GQC_91_Tireless Scrivener" data-flag="@X" onclick="openSidebar('GQC_91_Tireless Scrivener',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/129_Surrender to Dread.jpg" id="GQC_129_Surrender to Dread" data-flag="@X" onclick="openSidebar('GQC_129_Surrender to Dread',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/175_Stitch Ephemeral Sinew.jpg" id="GQC_175_Stitch Ephemeral Sinew" data-flag="@X" onclick="openSidebar('GQC_175_Stitch Ephemeral Sinew',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/217_War-Clan Dowager.jpg" id="GQC_217_War-Clan Dowager" data-flag="@X" onclick="openSidebar('GQC_217_War-Clan Dowager',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/53_War-Clan Boon.jpg" id="GQC_53_War-Clan Boon" data-flag="@X" onclick="openSidebar('GQC_53_War-Clan Boon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/93_Utopian Delusions.jpg" id="GQC_93_Utopian Delusions" data-flag="@X" onclick="openSidebar('GQC_93_Utopian Delusions',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/131_Tender to His Dark Blood.jpg" id="GQC_131_Tender to His Dark Blood" data-flag="@X" onclick="openSidebar('GQC_131_Tender to His Dark Blood',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/176_Sure Strike.jpg" id="GQC_176_Sure Strike" data-flag="@X" onclick="openSidebar('GQC_176_Sure Strike',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/218_Warhorse's Grit.jpg" id="GQC_218_Warhorses Grit" data-flag="@X" onclick="openSidebar('GQC_218_Warhorses Grit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/54_Warded Battlements.jpg" id="GQC_54_Warded Battlements" data-flag="@X" onclick="openSidebar('GQC_54_Warded Battlements',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/177_Trench Ballista.jpg" id="GQC_177_Trench Ballista" data-flag="@X" onclick="openSidebar('GQC_177_Trench Ballista',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/240_Prognostic Angel.jpg" id="GQC_240_Prognostic Angel" data-flag="@X" onclick="openSidebar('GQC_240_Prognostic Angel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/236_Myra, Crypt Priestess.jpg" id="GQC_236_Myra, Crypt Priestess" data-flag="@X" onclick="openSidebar('GQC_236_Myra, Crypt Priestess',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/241_Sigrid, the Hollow Queen.jpg" id="GQC_241_Sigrid, the Hollow Queen" data-flag="@X" onclick="openSidebar('GQC_241_Sigrid, the Hollow Queen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/239_Ophidian Invader.jpg" id="GQC_239_Ophidian Invader" data-flag="@X" onclick="openSidebar('GQC_239_Ophidian Invader',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/234_Michal, the Anointed.jpg" id="GQC_234_Michal, the Anointed" data-flag="@X" onclick="openSidebar('GQC_234_Michal, the Anointed',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/242_Skyline Maven.jpg" id="GQC_242_Skyline Maven" data-flag="@X" onclick="openSidebar('GQC_242_Skyline Maven',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/237_Nightmare Feaster.jpg" id="GQC_237_Nightmare Feaster" data-flag="@X" onclick="openSidebar('GQC_237_Nightmare Feaster',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/235_Misfortunes of War.jpg" id="GQC_235_Misfortunes of War" data-flag="@X" onclick="openSidebar('GQC_235_Misfortunes of War',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/244_Vestry Ingester.jpg" id="GQC_244_Vestry Ingester" data-flag="@X" onclick="openSidebar('GQC_244_Vestry Ingester',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/229_Hero of a Lost War.jpg" id="GQC_229_Hero of a Lost War" data-flag="@X" onclick="openSidebar('GQC_229_Hero of a Lost War',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/224_Clutch of the Pale Moon.jpg" id="GQC_224_Clutch of the Pale Moon" data-flag="@X" onclick="openSidebar('GQC_224_Clutch of the Pale Moon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/222_Bloodshed Paramour.jpg" id="GQC_222_Bloodshed Paramour" data-flag="@X" onclick="openSidebar('GQC_222_Bloodshed Paramour',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/225_Cybres-Clan Chieftain.jpg" id="GQC_225_Cybres-Clan Chieftain" data-flag="@X" onclick="openSidebar('GQC_225_Cybres-Clan Chieftain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/232_His Holiness Jorah.jpg" id="GQC_232_His Holiness Jorah" data-flag="@X" onclick="openSidebar('GQC_232_His Holiness Jorah',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/226_Dross Incubator.jpg" id="GQC_226_Dross Incubator" data-flag="@X" onclick="openSidebar('GQC_226_Dross Incubator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/228_Harrowing Revivalist.jpg" id="GQC_228_Harrowing Revivalist" data-flag="@X" onclick="openSidebar('GQC_228_Harrowing Revivalist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/233_Lucent Peacekeeper.jpg" id="GQC_233_Lucent Peacekeeper" data-flag="@X" onclick="openSidebar('GQC_233_Lucent Peacekeeper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/238_Oko, Trickster of the Trade.jpg" id="GQC_238_Oko, Trickster of the Trade" data-flag="@X" onclick="openSidebar('GQC_238_Oko, Trickster of the Trade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/221_Beacon of the Lost.jpg" id="GQC_221_Beacon of the Lost" data-flag="@X" onclick="openSidebar('GQC_221_Beacon of the Lost',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/243_Splinter Luminary.jpg" id="GQC_243_Splinter Luminary" data-flag="@X" onclick="openSidebar('GQC_243_Splinter Luminary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/220_Anointer of Fresh Graves.jpg" id="GQC_220_Anointer of Fresh Graves" data-flag="@X" onclick="openSidebar('GQC_220_Anointer of Fresh Graves',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/227_Fortified Palisade.jpg" id="GQC_227_Fortified Palisade" data-flag="@X" onclick="openSidebar('GQC_227_Fortified Palisade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/245_Weave into the Fabric.jpg" id="GQC_245_Weave into the Fabric" data-flag="@X" onclick="openSidebar('GQC_245_Weave into the Fabric',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/230_High Holy Chaplain.jpg" id="GQC_230_High Holy Chaplain" data-flag="@X" onclick="openSidebar('GQC_230_High Holy Chaplain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/231_Hinterland Refiner.jpg" id="GQC_231_Hinterland Refiner" data-flag="@X" onclick="openSidebar('GQC_231_Hinterland Refiner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/223_Celestial Shepherd.jpg" id="GQC_223_Celestial Shepherd" data-flag="@X" onclick="openSidebar('GQC_223_Celestial Shepherd',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/240_Prognostic Angel.jpg" id="GQC_240_Prognostic Angel" data-flag="@X" onclick="openSidebar('GQC_240_Prognostic Angel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/236_Myra, Crypt Priestess.jpg" id="GQC_236_Myra, Crypt Priestess" data-flag="@X" onclick="openSidebar('GQC_236_Myra, Crypt Priestess',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/241_Sigrid, the Hollow Queen.jpg" id="GQC_241_Sigrid, the Hollow Queen" data-flag="@X" onclick="openSidebar('GQC_241_Sigrid, the Hollow Queen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/239_Ophidian Invader.jpg" id="GQC_239_Ophidian Invader" data-flag="@X" onclick="openSidebar('GQC_239_Ophidian Invader',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/234_Michal, the Anointed.jpg" id="GQC_234_Michal, the Anointed" data-flag="@X" onclick="openSidebar('GQC_234_Michal, the Anointed',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/242_Skyline Maven.jpg" id="GQC_242_Skyline Maven" data-flag="@X" onclick="openSidebar('GQC_242_Skyline Maven',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/237_Nightmare Feaster.jpg" id="GQC_237_Nightmare Feaster" data-flag="@X" onclick="openSidebar('GQC_237_Nightmare Feaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/235_Misfortunes of War.jpg" id="GQC_235_Misfortunes of War" data-flag="@X" onclick="openSidebar('GQC_235_Misfortunes of War',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/244_Vestry Ingester.jpg" id="GQC_244_Vestry Ingester" data-flag="@X" onclick="openSidebar('GQC_244_Vestry Ingester',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/229_Hero of a Lost War.jpg" id="GQC_229_Hero of a Lost War" data-flag="@X" onclick="openSidebar('GQC_229_Hero of a Lost War',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/224_Clutch of the Pale Moon.jpg" id="GQC_224_Clutch of the Pale Moon" data-flag="@X" onclick="openSidebar('GQC_224_Clutch of the Pale Moon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/222_Bloodshed Paramour.jpg" id="GQC_222_Bloodshed Paramour" data-flag="@X" onclick="openSidebar('GQC_222_Bloodshed Paramour',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/225_Cybres-Clan Chieftain.jpg" id="GQC_225_Cybres-Clan Chieftain" data-flag="@X" onclick="openSidebar('GQC_225_Cybres-Clan Chieftain',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/232_His Holiness Jorah.jpg" id="GQC_232_His Holiness Jorah" data-flag="@X" onclick="openSidebar('GQC_232_His Holiness Jorah',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/226_Dross Incubator.jpg" id="GQC_226_Dross Incubator" data-flag="@X" onclick="openSidebar('GQC_226_Dross Incubator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/228_Harrowing Revivalist.jpg" id="GQC_228_Harrowing Revivalist" data-flag="@X" onclick="openSidebar('GQC_228_Harrowing Revivalist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/233_Lucent Peacekeeper.jpg" id="GQC_233_Lucent Peacekeeper" data-flag="@X" onclick="openSidebar('GQC_233_Lucent Peacekeeper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/238_Oko, Trickster of the Trade.jpg" id="GQC_238_Oko, Trickster of the Trade" data-flag="@X" onclick="openSidebar('GQC_238_Oko, Trickster of the Trade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/221_Beacon of the Lost.jpg" id="GQC_221_Beacon of the Lost" data-flag="@X" onclick="openSidebar('GQC_221_Beacon of the Lost',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/243_Splinter Luminary.jpg" id="GQC_243_Splinter Luminary" data-flag="@X" onclick="openSidebar('GQC_243_Splinter Luminary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/220_Anointer of Fresh Graves.jpg" id="GQC_220_Anointer of Fresh Graves" data-flag="@X" onclick="openSidebar('GQC_220_Anointer of Fresh Graves',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/227_Fortified Palisade.jpg" id="GQC_227_Fortified Palisade" data-flag="@X" onclick="openSidebar('GQC_227_Fortified Palisade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/245_Weave into the Fabric.jpg" id="GQC_245_Weave into the Fabric" data-flag="@X" onclick="openSidebar('GQC_245_Weave into the Fabric',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/230_High Holy Chaplain.jpg" id="GQC_230_High Holy Chaplain" data-flag="@X" onclick="openSidebar('GQC_230_High Holy Chaplain',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/231_Hinterland Refiner.jpg" id="GQC_231_Hinterland Refiner" data-flag="@X" onclick="openSidebar('GQC_231_Hinterland Refiner',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/223_Celestial Shepherd.jpg" id="GQC_223_Celestial Shepherd" data-flag="@X" onclick="openSidebar('GQC_223_Celestial Shepherd',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/3_Azumoth, the Fated Ruin.jpg" id="GQC_3_Azumoth, the Fated Ruin" data-flag="@X" onclick="openSidebar('GQC_3_Azumoth, the Fated Ruin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/249_Ghariv, the Quaking City.jpg" id="GQC_249_Ghariv, the Quaking City" data-flag="@X" onclick="openSidebar('GQC_249_Ghariv, the Quaking City',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/1_All Is Dust.jpg" id="GQC_1_All Is Dust" data-flag="@X" onclick="openSidebar('GQC_1_All Is Dust',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/2_Ashen Progenitor.jpg" id="GQC_2_Ashen Progenitor" data-flag="@X" onclick="openSidebar('GQC_2_Ashen Progenitor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/5_Fractured Terror.jpg" id="GQC_5_Fractured Terror" data-flag="@X" onclick="openSidebar('GQC_5_Fractured Terror',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/7_Protoplasmera.jpg" id="GQC_7_Protoplasmera" data-flag="@X" onclick="openSidebar('GQC_7_Protoplasmera',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/9_Specular Grub.jpg" id="GQC_9_Specular Grub" data-flag="@X" onclick="openSidebar('GQC_9_Specular Grub',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/247_The Chasmal Rift.jpg" id="GQC_247_The Chasmal Rift" data-flag="@X" onclick="openSidebar('GQC_247_The Chasmal Rift',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/10_Sublime Envoy.jpg" id="GQC_10_Sublime Envoy" data-flag="@X" onclick="openSidebar('GQC_10_Sublime Envoy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/11_Timeworn Vapors.jpg" id="GQC_11_Timeworn Vapors" data-flag="@X" onclick="openSidebar('GQC_11_Timeworn Vapors',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/12_Wailing Stalker.jpg" id="GQC_12_Wailing Stalker" data-flag="@X" onclick="openSidebar('GQC_12_Wailing Stalker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/246_Anomalous Shrine.jpg" id="GQC_246_Anomalous Shrine" data-flag="@X" onclick="openSidebar('GQC_246_Anomalous Shrine',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/4_Eldrazi Depredator.jpg" id="GQC_4_Eldrazi Depredator" data-flag="@X" onclick="openSidebar('GQC_4_Eldrazi Depredator',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/6_Prognostic Enormity.jpg" id="GQC_6_Prognostic Enormity" data-flag="@X" onclick="openSidebar('GQC_6_Prognostic Enormity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/8_Scour from Existence.jpg" id="GQC_8_Scour from Existence" data-flag="@X" onclick="openSidebar('GQC_8_Scour from Existence',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/248_Courtyard Obelisk.jpg" id="GQC_248_Courtyard Obelisk" data-flag="@X" onclick="openSidebar('GQC_248_Courtyard Obelisk',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/250_Transcendent Effigy.jpg" id="GQC_250_Transcendent Effigy" data-flag="@X" onclick="openSidebar('GQC_250_Transcendent Effigy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/255_Deserted Steppe.jpg" id="GQC_255_Deserted Steppe" data-flag="@X" onclick="openSidebar('GQC_255_Deserted Steppe',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/259_Torrid Geysers.jpg" id="GQC_259_Torrid Geysers" data-flag="@X" onclick="openSidebar('GQC_259_Torrid Geysers',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/257_Mossy Shrine.jpg" id="GQC_257_Mossy Shrine" data-flag="@X" onclick="openSidebar('GQC_257_Mossy Shrine',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/256_Gnarled Henge.jpg" id="GQC_256_Gnarled Henge" data-flag="@X" onclick="openSidebar('GQC_256_Gnarled Henge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/258_Secluded Cascade.jpg" id="GQC_258_Secluded Cascade" data-flag="@X" onclick="openSidebar('GQC_258_Secluded Cascade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/251_Cobalt Basin.jpg" id="GQC_251_Cobalt Basin" data-flag="@X" onclick="openSidebar('GQC_251_Cobalt Basin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/254_The Severed Cradle.jpg" id="GQC_254_The Severed Cradle" data-flag="@X" onclick="openSidebar('GQC_254_The Severed Cradle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/252_Consumed Temple.jpg" id="GQC_252_Consumed Temple" data-flag="@X" onclick="openSidebar('GQC_252_Consumed Temple',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/253_Evolving Wilds.jpg" id="GQC_253_Evolving Wilds" data-flag="@X" onclick="openSidebar('GQC_253_Evolving Wilds',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/37_Plains.jpg" id="GQC_37_Plains" data-flag="@X" onclick="openSidebar('GQC_37_Plains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/72_Island.jpg" id="GQC_72_Island" data-flag="@X" onclick="openSidebar('GQC_72_Island',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/130_Swamp.jpg" id="GQC_130_Swamp" data-flag="@X" onclick="openSidebar('GQC_130_Swamp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/163_Mountain.jpg" id="GQC_163_Mountain" data-flag="@X" onclick="openSidebar('GQC_163_Mountain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/188_Forest.jpg" id="GQC_188_Forest" data-flag="@X" onclick="openSidebar('GQC_188_Forest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/3_Azumoth, the Fated Ruin.jpg" id="GQC_3_Azumoth, the Fated Ruin" data-flag="@X" onclick="openSidebar('GQC_3_Azumoth, the Fated Ruin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/249_Ghariv, the Quaking City.jpg" id="GQC_249_Ghariv, the Quaking City" data-flag="@X" onclick="openSidebar('GQC_249_Ghariv, the Quaking City',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/1_All Is Dust.jpg" id="GQC_1_All Is Dust" data-flag="@X" onclick="openSidebar('GQC_1_All Is Dust',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/2_Ashen Progenitor.jpg" id="GQC_2_Ashen Progenitor" data-flag="@X" onclick="openSidebar('GQC_2_Ashen Progenitor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/5_Fractured Terror.jpg" id="GQC_5_Fractured Terror" data-flag="@X" onclick="openSidebar('GQC_5_Fractured Terror',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/7_Protoplasmera.jpg" id="GQC_7_Protoplasmera" data-flag="@X" onclick="openSidebar('GQC_7_Protoplasmera',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/9_Specular Grub.jpg" id="GQC_9_Specular Grub" data-flag="@X" onclick="openSidebar('GQC_9_Specular Grub',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/247_The Chasmal Rift.jpg" id="GQC_247_The Chasmal Rift" data-flag="@X" onclick="openSidebar('GQC_247_The Chasmal Rift',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/10_Sublime Envoy.jpg" id="GQC_10_Sublime Envoy" data-flag="@X" onclick="openSidebar('GQC_10_Sublime Envoy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/11_Timeworn Vapors.jpg" id="GQC_11_Timeworn Vapors" data-flag="@X" onclick="openSidebar('GQC_11_Timeworn Vapors',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/12_Wailing Stalker.jpg" id="GQC_12_Wailing Stalker" data-flag="@X" onclick="openSidebar('GQC_12_Wailing Stalker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/246_Anomalous Shrine.jpg" id="GQC_246_Anomalous Shrine" data-flag="@X" onclick="openSidebar('GQC_246_Anomalous Shrine',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/4_Eldrazi Depredator.jpg" id="GQC_4_Eldrazi Depredator" data-flag="@X" onclick="openSidebar('GQC_4_Eldrazi Depredator',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/6_Prognostic Enormity.jpg" id="GQC_6_Prognostic Enormity" data-flag="@X" onclick="openSidebar('GQC_6_Prognostic Enormity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/8_Scour from Existence.jpg" id="GQC_8_Scour from Existence" data-flag="@X" onclick="openSidebar('GQC_8_Scour from Existence',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/248_Courtyard Obelisk.jpg" id="GQC_248_Courtyard Obelisk" data-flag="@X" onclick="openSidebar('GQC_248_Courtyard Obelisk',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/250_Transcendent Effigy.jpg" id="GQC_250_Transcendent Effigy" data-flag="@X" onclick="openSidebar('GQC_250_Transcendent Effigy',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/255_Deserted Steppe.jpg" id="GQC_255_Deserted Steppe" data-flag="@X" onclick="openSidebar('GQC_255_Deserted Steppe',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/259_Torrid Geysers.jpg" id="GQC_259_Torrid Geysers" data-flag="@X" onclick="openSidebar('GQC_259_Torrid Geysers',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/257_Mossy Shrine.jpg" id="GQC_257_Mossy Shrine" data-flag="@X" onclick="openSidebar('GQC_257_Mossy Shrine',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/256_Gnarled Henge.jpg" id="GQC_256_Gnarled Henge" data-flag="@X" onclick="openSidebar('GQC_256_Gnarled Henge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/258_Secluded Cascade.jpg" id="GQC_258_Secluded Cascade" data-flag="@X" onclick="openSidebar('GQC_258_Secluded Cascade',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/251_Cobalt Basin.jpg" id="GQC_251_Cobalt Basin" data-flag="@X" onclick="openSidebar('GQC_251_Cobalt Basin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/254_The Severed Cradle.jpg" id="GQC_254_The Severed Cradle" data-flag="@X" onclick="openSidebar('GQC_254_The Severed Cradle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/252_Consumed Temple.jpg" id="GQC_252_Consumed Temple" data-flag="@X" onclick="openSidebar('GQC_252_Consumed Temple',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/253_Evolving Wilds.jpg" id="GQC_253_Evolving Wilds" data-flag="@X" onclick="openSidebar('GQC_253_Evolving Wilds',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/37_Plains.jpg" id="GQC_37_Plains" data-flag="@X" onclick="openSidebar('GQC_37_Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/72_Island.jpg" id="GQC_72_Island" data-flag="@X" onclick="openSidebar('GQC_72_Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/130_Swamp.jpg" id="GQC_130_Swamp" data-flag="@X" onclick="openSidebar('GQC_130_Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/163_Mountain.jpg" id="GQC_163_Mountain" data-flag="@X" onclick="openSidebar('GQC_163_Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/188_Forest.jpg" id="GQC_188_Forest" data-flag="@X" onclick="openSidebar('GQC_188_Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/1t_Eldrazi.jpg" id="GQC_1t_Eldrazi" data-flag="@X" onclick="openSidebar('GQC_1t_Eldrazi',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/2t_Eldrazi Spawn.jpg" id="GQC_2t_Eldrazi Spawn" data-flag="@X" onclick="openSidebar('GQC_2t_Eldrazi Spawn',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/7t_Idol.jpg" id="GQC_7t_Idol" data-flag="@X" onclick="openSidebar('GQC_7t_Idol',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/8t_Wall.jpg" id="GQC_8t_Wall" data-flag="@X" onclick="openSidebar('GQC_8t_Wall',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/3t_Angel.jpg" id="GQC_3t_Angel" data-flag="@X" onclick="openSidebar('GQC_3t_Angel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/4t_Centaur.jpg" id="GQC_4t_Centaur" data-flag="@X" onclick="openSidebar('GQC_4t_Centaur',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/5t_Demon.jpg" id="GQC_5t_Demon" data-flag="@X" onclick="openSidebar('GQC_5t_Demon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GQC-files/img/6t_Horror.jpg" id="GQC_6t_Horror" data-flag="@X" onclick="openSidebar('GQC_6t_Horror',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/1t_Eldrazi.jpg" id="GQC_1t_Eldrazi" data-flag="@X" onclick="openSidebar('GQC_1t_Eldrazi',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/2t_Eldrazi Spawn.jpg" id="GQC_2t_Eldrazi Spawn" data-flag="@X" onclick="openSidebar('GQC_2t_Eldrazi Spawn',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/7t_Idol.jpg" id="GQC_7t_Idol" data-flag="@X" onclick="openSidebar('GQC_7t_Idol',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/8t_Wall.jpg" id="GQC_8t_Wall" data-flag="@X" onclick="openSidebar('GQC_8t_Wall',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/3t_Angel.jpg" id="GQC_3t_Angel" data-flag="@X" onclick="openSidebar('GQC_3t_Angel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/4t_Centaur.jpg" id="GQC_4t_Centaur" data-flag="@X" onclick="openSidebar('GQC_4t_Centaur',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/5t_Demon.jpg" id="GQC_5t_Demon" data-flag="@X" onclick="openSidebar('GQC_5t_Demon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GQC-files/img/6t_Horror.jpg" id="GQC_6t_Horror" data-flag="@X" onclick="openSidebar('GQC_6t_Horror',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GQC_e" data-flag="@E" onclick="openSidebar('GQC_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GQC_er" data-flag="@E" onclick="openSidebar('GQC_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -636,13 +652,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -775,13 +791,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -935,16 +954,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -954,7 +973,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

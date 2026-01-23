@@ -1,18 +1,21 @@
 ﻿<html>
 	<head>
 	  <title>All Sets</title>
-	  <link rel="icon" type="image/x-icon" href="/img/sets.png">
-	  <link rel="stylesheet" href="/resources/mana.css">
-	  <link rel="stylesheet" href="/resources/header.css">
+	  <link rel="icon" type="image/x-icon" href="./img/sets.png">
+	  <link rel="stylesheet" href="./resources/mana.css">
+	  <link rel="stylesheet" href="./resources/header.css">
 	</head>
+	<script title="root">
+		const rootPath = ".";
+	</script>
 	<style>
 		@font-face {
 			font-family: 'Beleren Small Caps';
-			src: url('/resources/beleren-caps.ttf');
+			src: url('./resources/beleren-caps.ttf');
 		}
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('./resources/beleren.ttf');
 		}
 		body {
 			font-family: 'Helvetica', 'Arial', sans-serif;
@@ -79,17 +82,30 @@
 	<body>
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
-	</div>			<div class="set-group">Egg Standard</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>			<div class="set-group">Egg Standard</div>
 		
 			<div class="set-table">
 			<div class="set-header-row">
@@ -99,50 +115,50 @@
 				<div>CARDS</div>
 			</div>
 		
-			<a href="/sets/ICO" class="set-row"> 
-				<img src="/sets/ICO-files/icon.png">
+			<a href="sets/ICO" class="set-row"> 
+				<img src="sets/ICO-files/icon.png">
 				<div class="set-title">Inner Coriansa</div>
 				<div>ICO</div>
 				<div>291</div>
 			</a>
 			
-			<a href="/sets/ATR" class="set-row"> 
-				<img src="/sets/ATR-files/icon.png">
+			<a href="sets/ATR" class="set-row"> 
+				<img src="sets/ATR-files/icon.png">
 				<div class="set-title">The Shattered Pantheon of Atros</div>
 				<div>ATR</div>
 				<div>261</div>
 			</a>
 			
-			<a href="/sets/SHF" class="set-row"> 
-				<img src="/sets/SHF-files/icon.png">
+			<a href="sets/SHF" class="set-row"> 
+				<img src="sets/SHF-files/icon.png">
 				<div class="set-title">The Starholme Frontier</div>
 				<div>SHF</div>
 				<div>272</div>
 			</a>
 			
-			<a href="/sets/GSS" class="set-row"> 
-				<img src="/sets/GSS-files/icon.png">
+			<a href="sets/GSS" class="set-row"> 
+				<img src="sets/GSS-files/icon.png">
 				<div class="set-title">Golden Shores of Shiryen</div>
 				<div>GSS</div>
 				<div>221</div>
 			</a>
 			
-			<a href="/sets/GSM" class="set-row"> 
-				<img src="/sets/GSM-files/icon.png">
+			<a href="sets/GSM" class="set-row"> 
+				<img src="sets/GSM-files/icon.png">
 				<div class="set-title">Golden Shores of Shiryen (Masterpiece)</div>
 				<div>GSM</div>
 				<div>38</div>
 			</a>
 			
-			<a href="/sets/KND" class="set-row"> 
-				<img src="/sets/KND-files/icon.png">
+			<a href="sets/KND" class="set-row"> 
+				<img src="sets/KND-files/icon.png">
 				<div class="set-title">Kahembo: New Dawn</div>
 				<div>KND</div>
 				<div>278</div>
 			</a>
 			
-			<a href="/sets/NJB" class="set-row"> 
-				<img src="/sets/NJB-files/icon.png">
+			<a href="sets/NJB" class="set-row"> 
+				<img src="sets/NJB-files/icon.png">
 				<div class="set-title">Nangjiao in Bloom</div>
 				<div>NJB</div>
 				<div>277</div>
@@ -158,92 +174,92 @@
 				<div>CARDS</div>
 			</div>
 		
-			<a href="/sets/AEX" class="set-row"> 
-				<img src="/sets/AEX-files/icon.png">
+			<a href="sets/AEX" class="set-row"> 
+				<img src="sets/AEX-files/icon.png">
 				<div class="set-title">Aldmore Explorations</div>
 				<div>AEX</div>
 				<div>279</div>
 			</a>
 			
-			<a href="/sets/WAS" class="set-row"> 
-				<img src="/sets/WAS-files/icon.png">
+			<a href="sets/WAS" class="set-row"> 
+				<img src="sets/WAS-files/icon.png">
 				<div class="set-title">Weir Astele</div>
 				<div>WAS</div>
 				<div>264</div>
 			</a>
 			
-			<a href="/sets/SGB" class="set-row"> 
-				<img src="/sets/SGB-files/icon.png">
+			<a href="sets/SGB" class="set-row"> 
+				<img src="sets/SGB-files/icon.png">
 				<div class="set-title">Strombo’s Grand Banquet</div>
 				<div>SGB</div>
 				<div>196</div>
 			</a>
 			
-			<a href="/sets/GQC" class="set-row"> 
-				<img src="/sets/GQC-files/icon.png">
+			<a href="sets/GQC" class="set-row"> 
+				<img src="sets/GQC-files/icon.png">
 				<div class="set-title">Ghariv, the Quaking City</div>
 				<div>GQC</div>
 				<div>254</div>
 			</a>
 			
-			<a href="/sets/DSS" class="set-row"> 
-				<img src="/sets/DSS-files/icon.png">
+			<a href="sets/DSS" class="set-row"> 
+				<img src="sets/DSS-files/icon.png">
 				<div class="set-title">Dark Seas of Shiryen</div>
 				<div>DSS</div>
 				<div>249</div>
 			</a>
 			
-			<a href="/sets/KOD" class="set-row"> 
-				<img src="/sets/KOD-files/icon.png">
+			<a href="sets/KOD" class="set-row"> 
+				<img src="sets/KOD-files/icon.png">
 				<div class="set-title">Kahembo: Olde Dawn</div>
 				<div>KOD</div>
 				<div>274</div>
 			</a>
 			
-			<a href="/sets/GHQ" class="set-row"> 
-				<img src="/sets/GHQ-files/icon.png">
+			<a href="sets/GHQ" class="set-row"> 
+				<img src="sets/GHQ-files/icon.png">
 				<div class="set-title">Glacia: Hail to the Queen</div>
 				<div>GHQ</div>
 				<div>249</div>
 			</a>
 			
-			<a href="/sets/TWB" class="set-row"> 
-				<img src="/sets/TWB-files/icon.png">
+			<a href="sets/TWB" class="set-row"> 
+				<img src="sets/TWB-files/icon.png">
 				<div class="set-title">The World Beneath</div>
 				<div>TWB</div>
 				<div>220</div>
 			</a>
 			
-			<a href="/sets/FAU" class="set-row"> 
-				<img src="/sets/FAU-files/icon.png">
+			<a href="sets/FAU" class="set-row"> 
+				<img src="sets/FAU-files/icon.png">
 				<div class="set-title">Fields of Gold</div>
 				<div>FAU</div>
 				<div>249</div>
 			</a>
 			
-			<a href="/sets/MVA" class="set-row"> 
-				<img src="/sets/MVA-files/icon.png">
+			<a href="sets/MVA" class="set-row"> 
+				<img src="sets/MVA-files/icon.png">
 				<div class="set-title">Multiverse Academy</div>
 				<div>MVA</div>
 				<div>204</div>
 			</a>
 			
-			<a href="/sets/ATB" class="set-row"> 
-				<img src="/sets/ATB-files/icon.png">
+			<a href="sets/ATB" class="set-row"> 
+				<img src="sets/ATB-files/icon.png">
 				<div class="set-title">Al Tabaq</div>
 				<div>ATB</div>
 				<div>249</div>
 			</a>
 			
-			<a href="/sets/SUR" class="set-row"> 
-				<img src="/sets/SUR-files/icon.png">
+			<a href="sets/SUR" class="set-row"> 
+				<img src="sets/SUR-files/icon.png">
 				<div class="set-title">Surging Tide</div>
 				<div>SUR</div>
 				<div>183</div>
 			</a>
 			
-			<a href="/sets/GNJ" class="set-row"> 
-				<img src="/sets/GNJ-files/icon.png">
+			<a href="sets/GNJ" class="set-row"> 
+				<img src="sets/GNJ-files/icon.png">
 				<div class="set-title">Goliaths of Nangjiao</div>
 				<div>GNJ</div>
 				<div>249</div>
@@ -259,50 +275,50 @@
 				<div>CARDS</div>
 			</div>
 		
-			<a href="/sets/GSC" class="set-row"> 
-				<img src="/sets/GSC-files/icon.png">
+			<a href="sets/GSC" class="set-row"> 
+				<img src="sets/GSC-files/icon.png">
 				<div class="set-title">Ghariv, the Sacred City</div>
 				<div>GSC</div>
 				<div>249</div>
 			</a>
 			
-			<a href="/sets/FAE" class="set-row"> 
-				<img src="/sets/FAE-files/icon.png">
+			<a href="sets/FAE" class="set-row"> 
+				<img src="sets/FAE-files/icon.png">
 				<div class="set-title">Faerie Tales</div>
 				<div>FAE</div>
 				<div>249</div>
 			</a>
 			
-			<a href="/sets/AOD" class="set-row"> 
-				<img src="/sets/AOD-files/icon.png">
+			<a href="sets/AOD" class="set-row"> 
+				<img src="sets/AOD-files/icon.png">
 				<div class="set-title">Ascent of Deities</div>
 				<div>AOD</div>
 				<div>160</div>
 			</a>
 			
-			<a href="/sets/ICH" class="set-row"> 
-				<img src="/sets/ICH-files/icon.png">
+			<a href="sets/ICH" class="set-row"> 
+				<img src="sets/ICH-files/icon.png">
 				<div class="set-title">Ichatca</div>
 				<div>ICH</div>
 				<div>240</div>
 			</a>
 			
-			<a href="/sets/AGH" class="set-row"> 
-				<img src="/sets/AGH-files/icon.png">
+			<a href="sets/AGH" class="set-row"> 
+				<img src="sets/AGH-files/icon.png">
 				<div class="set-title">Aghesh Unraveled</div>
 				<div>AGH</div>
 				<div>160</div>
 			</a>
 			
-			<a href="/sets/MSR" class="set-row"> 
-				<img src="/sets/MSR-files/icon.png">
+			<a href="sets/MSR" class="set-row"> 
+				<img src="sets/MSR-files/icon.png">
 				<div class="set-title">Realms of Mashara</div>
 				<div>MSR</div>
 				<div>240</div>
 			</a>
 			
-			<a href="/sets/GLC" class="set-row"> 
-				<img src="/sets/GLC-files/icon.png">
+			<a href="sets/GLC" class="set-row"> 
+				<img src="sets/GLC-files/icon.png">
 				<div class="set-title">Glacia</div>
 				<div>GLC</div>
 				<div>235</div>
@@ -318,15 +334,15 @@
 				<div>CARDS</div>
 			</div>
 		
-			<a href="/sets/GOD" class="set-row"> 
-				<img src="/sets/GOD-files/icon.png">
+			<a href="sets/GOD" class="set-row"> 
+				<img src="sets/GOD-files/icon.png">
 				<div class="set-title">Godspine</div>
 				<div>GOD</div>
 				<div>265</div>
 			</a>
 			
-			<a href="/sets/UND" class="set-row"> 
-				<img src="/sets/UND-files/icon.png">
+			<a href="sets/UND" class="set-row"> 
+				<img src="sets/UND-files/icon.png">
 				<div class="set-title">The Underhalls</div>
 				<div>UND</div>
 				<div>265</div>
@@ -342,8 +358,8 @@
 				<div>CARDS</div>
 			</div>
 		
-			<a href="/sets/ACE" class="set-row"> 
-				<img src="/sets/ACE-files/icon.png">
+			<a href="sets/ACE" class="set-row"> 
+				<img src="sets/ACE-files/icon.png">
 				<div class="set-title">Aldmore Cube</div>
 				<div>ACE</div>
 				<div>450</div>
@@ -356,13 +372,13 @@
 		let displayStyle = "";
 
 		document.addEventListener("DOMContentLoaded", async function () {
-			await fetch('/lists/all-cards.json')
+			await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -476,16 +492,16 @@
 		});
 
 		function search() {
-			const url = new URL('search', window.location.origin);
+			const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 			url.searchParams.append('search', document.getElementById("search").value);
-			window.location.href = url;
+			window.location.href = url.pathname + url.search;
 		}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -495,7 +511,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

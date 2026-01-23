@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/GOD-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/GOD-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>GOD visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,449 +181,462 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/GOD-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
-		<img class="preload-hidden" id="bg" src="/sets/GOD-files/bg.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/GOD-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
+		<img class="preload-hidden" id="bg" src="../sets/GOD-files/bg.png" />
 
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/GOD-files/logo.png">
+		<img class="logo" src="../sets/GOD-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/1.png" id="GOD_1" data-flag="@X" onclick="openSidebar('GOD_1',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/2.png" id="GOD_2" data-flag="@X" onclick="openSidebar('GOD_2',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/5.png" id="GOD_5" data-flag="@X" onclick="openSidebar('GOD_5',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/6.png" id="GOD_6" data-flag="@X" onclick="openSidebar('GOD_6',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/9.png" id="GOD_9" data-flag="@X" onclick="openSidebar('GOD_9',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/0.png" id="GOD_0" data-flag="@X" onclick="openSidebar('GOD_0',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/3.png" id="GOD_3" data-flag="@X" onclick="openSidebar('GOD_3',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/4.png" id="GOD_4" data-flag="@X" onclick="openSidebar('GOD_4',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/7.png" id="GOD_7" data-flag="@X" onclick="openSidebar('GOD_7',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/11.png" id="GOD_11" data-flag="@X" onclick="openSidebar('GOD_11',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/20.png" id="GOD_20" data-flag="@X" onclick="openSidebar('GOD_20',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/32.png" id="GOD_32" data-flag="@X" onclick="openSidebar('GOD_32',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/18.png" id="GOD_18" data-flag="@X" onclick="openSidebar('GOD_18',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/44.png" id="GOD_44" data-flag="@X" onclick="openSidebar('GOD_44',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/8.png" id="GOD_8" data-flag="@X" onclick="openSidebar('GOD_8',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/25.png" id="GOD_25" data-flag="@X" onclick="openSidebar('GOD_25',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/30.png" id="GOD_30" data-flag="@X" onclick="openSidebar('GOD_30',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/35.png" id="GOD_35" data-flag="@X" onclick="openSidebar('GOD_35',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/41.png" id="GOD_41" data-flag="@X" onclick="openSidebar('GOD_41',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/52.png" id="GOD_52" data-flag="@X" onclick="openSidebar('GOD_52',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/26.png" id="GOD_26" data-flag="@X" onclick="openSidebar('GOD_26',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/28.png" id="GOD_28" data-flag="@X" onclick="openSidebar('GOD_28',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/36.png" id="GOD_36" data-flag="@X" onclick="openSidebar('GOD_36',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/47.png" id="GOD_47" data-flag="@X" onclick="openSidebar('GOD_47',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/48.png" id="GOD_48" data-flag="@X" onclick="openSidebar('GOD_48',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/22.png" id="GOD_22" data-flag="@X" onclick="openSidebar('GOD_22',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/31.png" id="GOD_31" data-flag="@X" onclick="openSidebar('GOD_31',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/34.png" id="GOD_34" data-flag="@X" onclick="openSidebar('GOD_34',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/46.png" id="GOD_46" data-flag="@X" onclick="openSidebar('GOD_46',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/53.png" id="GOD_53" data-flag="@X" onclick="openSidebar('GOD_53',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/24.png" id="GOD_24" data-flag="@X" onclick="openSidebar('GOD_24',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/27.png" id="GOD_27" data-flag="@X" onclick="openSidebar('GOD_27',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/38.png" id="GOD_38" data-flag="@X" onclick="openSidebar('GOD_38',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/43.png" id="GOD_43" data-flag="@X" onclick="openSidebar('GOD_43',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/51.png" id="GOD_51" data-flag="@X" onclick="openSidebar('GOD_51',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/23.png" id="GOD_23" data-flag="@X" onclick="openSidebar('GOD_23',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/33.png" id="GOD_33" data-flag="@X" onclick="openSidebar('GOD_33',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/40.png" id="GOD_40" data-flag="@X" onclick="openSidebar('GOD_40',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/42.png" id="GOD_42" data-flag="@X" onclick="openSidebar('GOD_42',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/50.png" id="GOD_50" data-flag="@X" onclick="openSidebar('GOD_50',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/21.png" id="GOD_21" data-flag="@X" onclick="openSidebar('GOD_21',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/29.png" id="GOD_29" data-flag="@X" onclick="openSidebar('GOD_29',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/37.png" id="GOD_37" data-flag="@X" onclick="openSidebar('GOD_37',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/45.png" id="GOD_45" data-flag="@X" onclick="openSidebar('GOD_45',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/54.png" id="GOD_54" data-flag="@X" onclick="openSidebar('GOD_54',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/84.png" id="GOD_84" data-flag="@X" onclick="openSidebar('GOD_84',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/97.png" id="GOD_97" data-flag="@X" onclick="openSidebar('GOD_97',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/39.png" id="GOD_39" data-flag="@X" onclick="openSidebar('GOD_39',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/131.png" id="GOD_131" data-flag="@X" onclick="openSidebar('GOD_131',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/49.png" id="GOD_49" data-flag="@X" onclick="openSidebar('GOD_49',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/83.png" id="GOD_83" data-flag="@X" onclick="openSidebar('GOD_83',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/106.png" id="GOD_106" data-flag="@X" onclick="openSidebar('GOD_106',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/114.png" id="GOD_114" data-flag="@X" onclick="openSidebar('GOD_114',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/135.png" id="GOD_135" data-flag="@X" onclick="openSidebar('GOD_135',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/146.png" id="GOD_146" data-flag="@X" onclick="openSidebar('GOD_146',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/90.png" id="GOD_90" data-flag="@X" onclick="openSidebar('GOD_90',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/101.png" id="GOD_101" data-flag="@X" onclick="openSidebar('GOD_101',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/118.png" id="GOD_118" data-flag="@X" onclick="openSidebar('GOD_118',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/127.png" id="GOD_127" data-flag="@X" onclick="openSidebar('GOD_127',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/149.png" id="GOD_149" data-flag="@X" onclick="openSidebar('GOD_149',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/91.png" id="GOD_91" data-flag="@X" onclick="openSidebar('GOD_91',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/109.png" id="GOD_109" data-flag="@X" onclick="openSidebar('GOD_109',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/121.png" id="GOD_121" data-flag="@X" onclick="openSidebar('GOD_121',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/130.png" id="GOD_130" data-flag="@X" onclick="openSidebar('GOD_130',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/148.png" id="GOD_148" data-flag="@X" onclick="openSidebar('GOD_148',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/92.png" id="GOD_92" data-flag="@X" onclick="openSidebar('GOD_92',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/100.png" id="GOD_100" data-flag="@X" onclick="openSidebar('GOD_100',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/119.png" id="GOD_119" data-flag="@X" onclick="openSidebar('GOD_119',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/126.png" id="GOD_126" data-flag="@X" onclick="openSidebar('GOD_126',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/138.png" id="GOD_138" data-flag="@X" onclick="openSidebar('GOD_138',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/88.png" id="GOD_88" data-flag="@X" onclick="openSidebar('GOD_88',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/105.png" id="GOD_105" data-flag="@X" onclick="openSidebar('GOD_105',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/113.png" id="GOD_113" data-flag="@X" onclick="openSidebar('GOD_113',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/128.png" id="GOD_128" data-flag="@X" onclick="openSidebar('GOD_128',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/145.png" id="GOD_145" data-flag="@X" onclick="openSidebar('GOD_145',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/94.png" id="GOD_94" data-flag="@X" onclick="openSidebar('GOD_94',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/102.png" id="GOD_102" data-flag="@X" onclick="openSidebar('GOD_102',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/117.png" id="GOD_117" data-flag="@X" onclick="openSidebar('GOD_117',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/133.png" id="GOD_133" data-flag="@X" onclick="openSidebar('GOD_133',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/142.png" id="GOD_142" data-flag="@X" onclick="openSidebar('GOD_142',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/95.png" id="GOD_95" data-flag="@X" onclick="openSidebar('GOD_95',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/108.png" id="GOD_108" data-flag="@X" onclick="openSidebar('GOD_108',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/120.png" id="GOD_120" data-flag="@X" onclick="openSidebar('GOD_120',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/124.png" id="GOD_124" data-flag="@X" onclick="openSidebar('GOD_124',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/144.png" id="GOD_144" data-flag="@X" onclick="openSidebar('GOD_144',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/93.png" id="GOD_93" data-flag="@X" onclick="openSidebar('GOD_93',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/107.png" id="GOD_107" data-flag="@X" onclick="openSidebar('GOD_107',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/110.png" id="GOD_110" data-flag="@X" onclick="openSidebar('GOD_110',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/125.png" id="GOD_125" data-flag="@X" onclick="openSidebar('GOD_125',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/147.png" id="GOD_147" data-flag="@X" onclick="openSidebar('GOD_147',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/85.png" id="GOD_85" data-flag="@X" onclick="openSidebar('GOD_85',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/104.png" id="GOD_104" data-flag="@X" onclick="openSidebar('GOD_104',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/111.png" id="GOD_111" data-flag="@X" onclick="openSidebar('GOD_111',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/134.png" id="GOD_134" data-flag="@X" onclick="openSidebar('GOD_134',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/150.png" id="GOD_150" data-flag="@X" onclick="openSidebar('GOD_150',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/86.png" id="GOD_86" data-flag="@X" onclick="openSidebar('GOD_86',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/96.png" id="GOD_96" data-flag="@X" onclick="openSidebar('GOD_96',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/122.png" id="GOD_122" data-flag="@X" onclick="openSidebar('GOD_122',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/132.png" id="GOD_132" data-flag="@X" onclick="openSidebar('GOD_132',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/141.png" id="GOD_141" data-flag="@X" onclick="openSidebar('GOD_141',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/87.png" id="GOD_87" data-flag="@X" onclick="openSidebar('GOD_87',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/98.png" id="GOD_98" data-flag="@X" onclick="openSidebar('GOD_98',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/115.png" id="GOD_115" data-flag="@X" onclick="openSidebar('GOD_115',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/129.png" id="GOD_129" data-flag="@X" onclick="openSidebar('GOD_129',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/143.png" id="GOD_143" data-flag="@X" onclick="openSidebar('GOD_143',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/89.png" id="GOD_89" data-flag="@X" onclick="openSidebar('GOD_89',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/99.png" id="GOD_99" data-flag="@X" onclick="openSidebar('GOD_99',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/116.png" id="GOD_116" data-flag="@X" onclick="openSidebar('GOD_116',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/137.png" id="GOD_137" data-flag="@X" onclick="openSidebar('GOD_137',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/139.png" id="GOD_139" data-flag="@X" onclick="openSidebar('GOD_139',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/82.png" id="GOD_82" data-flag="@X" onclick="openSidebar('GOD_82',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/103.png" id="GOD_103" data-flag="@X" onclick="openSidebar('GOD_103',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/112.png" id="GOD_112" data-flag="@X" onclick="openSidebar('GOD_112',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/136.png" id="GOD_136" data-flag="@X" onclick="openSidebar('GOD_136',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/151.png" id="GOD_151" data-flag="@X" onclick="openSidebar('GOD_151',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/194.png" id="GOD_194" data-flag="@X" onclick="openSidebar('GOD_194',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/211.png" id="GOD_211" data-flag="@X" onclick="openSidebar('GOD_211',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/123.png" id="GOD_123" data-flag="@X" onclick="openSidebar('GOD_123',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/235.png" id="GOD_235" data-flag="@X" onclick="openSidebar('GOD_235',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/140.png" id="GOD_140" data-flag="@X" onclick="openSidebar('GOD_140',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/185.png" id="GOD_185" data-flag="@X" onclick="openSidebar('GOD_185',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/212.png" id="GOD_212" data-flag="@X" onclick="openSidebar('GOD_212',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/223.png" id="GOD_223" data-flag="@X" onclick="openSidebar('GOD_223',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/237.png" id="GOD_237" data-flag="@X" onclick="openSidebar('GOD_237',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/248.png" id="GOD_248" data-flag="@X" onclick="openSidebar('GOD_248',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/192.png" id="GOD_192" data-flag="@X" onclick="openSidebar('GOD_192',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/198.png" id="GOD_198" data-flag="@X" onclick="openSidebar('GOD_198',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/214.png" id="GOD_214" data-flag="@X" onclick="openSidebar('GOD_214',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/234.png" id="GOD_234" data-flag="@X" onclick="openSidebar('GOD_234',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/255.png" id="GOD_255" data-flag="@X" onclick="openSidebar('GOD_255',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/195.png" id="GOD_195" data-flag="@X" onclick="openSidebar('GOD_195',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/201.png" id="GOD_201" data-flag="@X" onclick="openSidebar('GOD_201',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/220.png" id="GOD_220" data-flag="@X" onclick="openSidebar('GOD_220',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/242.png" id="GOD_242" data-flag="@X" onclick="openSidebar('GOD_242',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/250.png" id="GOD_250" data-flag="@X" onclick="openSidebar('GOD_250',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/197.png" id="GOD_197" data-flag="@X" onclick="openSidebar('GOD_197',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/200.png" id="GOD_200" data-flag="@X" onclick="openSidebar('GOD_200',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/216.png" id="GOD_216" data-flag="@X" onclick="openSidebar('GOD_216',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/239.png" id="GOD_239" data-flag="@X" onclick="openSidebar('GOD_239',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/245.png" id="GOD_245" data-flag="@X" onclick="openSidebar('GOD_245',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/187.png" id="GOD_187" data-flag="@X" onclick="openSidebar('GOD_187',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/203.png" id="GOD_203" data-flag="@X" onclick="openSidebar('GOD_203',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/219.png" id="GOD_219" data-flag="@X" onclick="openSidebar('GOD_219',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/240.png" id="GOD_240" data-flag="@X" onclick="openSidebar('GOD_240',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/257.png" id="GOD_257" data-flag="@X" onclick="openSidebar('GOD_257',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/186.png" id="GOD_186" data-flag="@X" onclick="openSidebar('GOD_186',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/210.png" id="GOD_210" data-flag="@X" onclick="openSidebar('GOD_210',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/217.png" id="GOD_217" data-flag="@X" onclick="openSidebar('GOD_217',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/228.png" id="GOD_228" data-flag="@X" onclick="openSidebar('GOD_228',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/256.png" id="GOD_256" data-flag="@X" onclick="openSidebar('GOD_256',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/188.png" id="GOD_188" data-flag="@X" onclick="openSidebar('GOD_188',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/199.png" id="GOD_199" data-flag="@X" onclick="openSidebar('GOD_199',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/213.png" id="GOD_213" data-flag="@X" onclick="openSidebar('GOD_213',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/230.png" id="GOD_230" data-flag="@X" onclick="openSidebar('GOD_230',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/252.png" id="GOD_252" data-flag="@X" onclick="openSidebar('GOD_252',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/191.png" id="GOD_191" data-flag="@X" onclick="openSidebar('GOD_191',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/207.png" id="GOD_207" data-flag="@X" onclick="openSidebar('GOD_207',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/215.png" id="GOD_215" data-flag="@X" onclick="openSidebar('GOD_215',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/232.png" id="GOD_232" data-flag="@X" onclick="openSidebar('GOD_232',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/253.png" id="GOD_253" data-flag="@X" onclick="openSidebar('GOD_253',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/183.png" id="GOD_183" data-flag="@X" onclick="openSidebar('GOD_183',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/205.png" id="GOD_205" data-flag="@X" onclick="openSidebar('GOD_205',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/221.png" id="GOD_221" data-flag="@X" onclick="openSidebar('GOD_221',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/231.png" id="GOD_231" data-flag="@X" onclick="openSidebar('GOD_231',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/254.png" id="GOD_254" data-flag="@X" onclick="openSidebar('GOD_254',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/193.png" id="GOD_193" data-flag="@X" onclick="openSidebar('GOD_193',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/209.png" id="GOD_209" data-flag="@X" onclick="openSidebar('GOD_209',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/226.png" id="GOD_226" data-flag="@X" onclick="openSidebar('GOD_226',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/238.png" id="GOD_238" data-flag="@X" onclick="openSidebar('GOD_238',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/243.png" id="GOD_243" data-flag="@X" onclick="openSidebar('GOD_243',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/189.png" id="GOD_189" data-flag="@X" onclick="openSidebar('GOD_189',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/208.png" id="GOD_208" data-flag="@X" onclick="openSidebar('GOD_208',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/227.png" id="GOD_227" data-flag="@X" onclick="openSidebar('GOD_227',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/241.png" id="GOD_241" data-flag="@X" onclick="openSidebar('GOD_241',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/249.png" id="GOD_249" data-flag="@X" onclick="openSidebar('GOD_249',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/196.png" id="GOD_196" data-flag="@X" onclick="openSidebar('GOD_196',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/204.png" id="GOD_204" data-flag="@X" onclick="openSidebar('GOD_204',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/224.png" id="GOD_224" data-flag="@X" onclick="openSidebar('GOD_224',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/229.png" id="GOD_229" data-flag="@X" onclick="openSidebar('GOD_229',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/247.png" id="GOD_247" data-flag="@X" onclick="openSidebar('GOD_247',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/184.png" id="GOD_184" data-flag="@X" onclick="openSidebar('GOD_184',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/202.png" id="GOD_202" data-flag="@X" onclick="openSidebar('GOD_202',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/225.png" id="GOD_225" data-flag="@X" onclick="openSidebar('GOD_225',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/233.png" id="GOD_233" data-flag="@X" onclick="openSidebar('GOD_233',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/246.png" id="GOD_246" data-flag="@X" onclick="openSidebar('GOD_246',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/190.png" id="GOD_190" data-flag="@X" onclick="openSidebar('GOD_190',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/206.png" id="GOD_206" data-flag="@X" onclick="openSidebar('GOD_206',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/218.png" id="GOD_218" data-flag="@X" onclick="openSidebar('GOD_218',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/236.png" id="GOD_236" data-flag="@X" onclick="openSidebar('GOD_236',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/244.png" id="GOD_244" data-flag="@X" onclick="openSidebar('GOD_244',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/222.png" id="GOD_222" data-flag="@X" onclick="openSidebar('GOD_222',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/251.png" id="GOD_251" data-flag="@X" onclick="openSidebar('GOD_251',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/GOD-files/img/1.png" id="GOD_1" data-flag="@X" onclick="openSidebar('GOD_1',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/2.png" id="GOD_2" data-flag="@X" onclick="openSidebar('GOD_2',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/5.png" id="GOD_5" data-flag="@X" onclick="openSidebar('GOD_5',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/6.png" id="GOD_6" data-flag="@X" onclick="openSidebar('GOD_6',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/9.png" id="GOD_9" data-flag="@X" onclick="openSidebar('GOD_9',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/0.png" id="GOD_0" data-flag="@X" onclick="openSidebar('GOD_0',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/3.png" id="GOD_3" data-flag="@X" onclick="openSidebar('GOD_3',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/4.png" id="GOD_4" data-flag="@X" onclick="openSidebar('GOD_4',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/7.png" id="GOD_7" data-flag="@X" onclick="openSidebar('GOD_7',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/11.png" id="GOD_11" data-flag="@X" onclick="openSidebar('GOD_11',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/20.png" id="GOD_20" data-flag="@X" onclick="openSidebar('GOD_20',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/32.png" id="GOD_32" data-flag="@X" onclick="openSidebar('GOD_32',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/18.png" id="GOD_18" data-flag="@X" onclick="openSidebar('GOD_18',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/44.png" id="GOD_44" data-flag="@X" onclick="openSidebar('GOD_44',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/8.png" id="GOD_8" data-flag="@X" onclick="openSidebar('GOD_8',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/25.png" id="GOD_25" data-flag="@X" onclick="openSidebar('GOD_25',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/30.png" id="GOD_30" data-flag="@X" onclick="openSidebar('GOD_30',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/35.png" id="GOD_35" data-flag="@X" onclick="openSidebar('GOD_35',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/41.png" id="GOD_41" data-flag="@X" onclick="openSidebar('GOD_41',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/52.png" id="GOD_52" data-flag="@X" onclick="openSidebar('GOD_52',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/26.png" id="GOD_26" data-flag="@X" onclick="openSidebar('GOD_26',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/28.png" id="GOD_28" data-flag="@X" onclick="openSidebar('GOD_28',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/36.png" id="GOD_36" data-flag="@X" onclick="openSidebar('GOD_36',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/47.png" id="GOD_47" data-flag="@X" onclick="openSidebar('GOD_47',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/48.png" id="GOD_48" data-flag="@X" onclick="openSidebar('GOD_48',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/22.png" id="GOD_22" data-flag="@X" onclick="openSidebar('GOD_22',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/31.png" id="GOD_31" data-flag="@X" onclick="openSidebar('GOD_31',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/34.png" id="GOD_34" data-flag="@X" onclick="openSidebar('GOD_34',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/46.png" id="GOD_46" data-flag="@X" onclick="openSidebar('GOD_46',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/53.png" id="GOD_53" data-flag="@X" onclick="openSidebar('GOD_53',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/24.png" id="GOD_24" data-flag="@X" onclick="openSidebar('GOD_24',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/27.png" id="GOD_27" data-flag="@X" onclick="openSidebar('GOD_27',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/38.png" id="GOD_38" data-flag="@X" onclick="openSidebar('GOD_38',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/43.png" id="GOD_43" data-flag="@X" onclick="openSidebar('GOD_43',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/51.png" id="GOD_51" data-flag="@X" onclick="openSidebar('GOD_51',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/23.png" id="GOD_23" data-flag="@X" onclick="openSidebar('GOD_23',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/33.png" id="GOD_33" data-flag="@X" onclick="openSidebar('GOD_33',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/40.png" id="GOD_40" data-flag="@X" onclick="openSidebar('GOD_40',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/42.png" id="GOD_42" data-flag="@X" onclick="openSidebar('GOD_42',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/50.png" id="GOD_50" data-flag="@X" onclick="openSidebar('GOD_50',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/21.png" id="GOD_21" data-flag="@X" onclick="openSidebar('GOD_21',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/29.png" id="GOD_29" data-flag="@X" onclick="openSidebar('GOD_29',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/37.png" id="GOD_37" data-flag="@X" onclick="openSidebar('GOD_37',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/45.png" id="GOD_45" data-flag="@X" onclick="openSidebar('GOD_45',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/54.png" id="GOD_54" data-flag="@X" onclick="openSidebar('GOD_54',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/84.png" id="GOD_84" data-flag="@X" onclick="openSidebar('GOD_84',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/97.png" id="GOD_97" data-flag="@X" onclick="openSidebar('GOD_97',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/39.png" id="GOD_39" data-flag="@X" onclick="openSidebar('GOD_39',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/131.png" id="GOD_131" data-flag="@X" onclick="openSidebar('GOD_131',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/49.png" id="GOD_49" data-flag="@X" onclick="openSidebar('GOD_49',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/83.png" id="GOD_83" data-flag="@X" onclick="openSidebar('GOD_83',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/106.png" id="GOD_106" data-flag="@X" onclick="openSidebar('GOD_106',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/114.png" id="GOD_114" data-flag="@X" onclick="openSidebar('GOD_114',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/135.png" id="GOD_135" data-flag="@X" onclick="openSidebar('GOD_135',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/146.png" id="GOD_146" data-flag="@X" onclick="openSidebar('GOD_146',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/90.png" id="GOD_90" data-flag="@X" onclick="openSidebar('GOD_90',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/101.png" id="GOD_101" data-flag="@X" onclick="openSidebar('GOD_101',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/118.png" id="GOD_118" data-flag="@X" onclick="openSidebar('GOD_118',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/127.png" id="GOD_127" data-flag="@X" onclick="openSidebar('GOD_127',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/149.png" id="GOD_149" data-flag="@X" onclick="openSidebar('GOD_149',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/91.png" id="GOD_91" data-flag="@X" onclick="openSidebar('GOD_91',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/109.png" id="GOD_109" data-flag="@X" onclick="openSidebar('GOD_109',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/121.png" id="GOD_121" data-flag="@X" onclick="openSidebar('GOD_121',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/130.png" id="GOD_130" data-flag="@X" onclick="openSidebar('GOD_130',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/148.png" id="GOD_148" data-flag="@X" onclick="openSidebar('GOD_148',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/92.png" id="GOD_92" data-flag="@X" onclick="openSidebar('GOD_92',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/100.png" id="GOD_100" data-flag="@X" onclick="openSidebar('GOD_100',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/119.png" id="GOD_119" data-flag="@X" onclick="openSidebar('GOD_119',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/126.png" id="GOD_126" data-flag="@X" onclick="openSidebar('GOD_126',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/138.png" id="GOD_138" data-flag="@X" onclick="openSidebar('GOD_138',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/88.png" id="GOD_88" data-flag="@X" onclick="openSidebar('GOD_88',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/105.png" id="GOD_105" data-flag="@X" onclick="openSidebar('GOD_105',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/113.png" id="GOD_113" data-flag="@X" onclick="openSidebar('GOD_113',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/128.png" id="GOD_128" data-flag="@X" onclick="openSidebar('GOD_128',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/145.png" id="GOD_145" data-flag="@X" onclick="openSidebar('GOD_145',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/94.png" id="GOD_94" data-flag="@X" onclick="openSidebar('GOD_94',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/102.png" id="GOD_102" data-flag="@X" onclick="openSidebar('GOD_102',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/117.png" id="GOD_117" data-flag="@X" onclick="openSidebar('GOD_117',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/133.png" id="GOD_133" data-flag="@X" onclick="openSidebar('GOD_133',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/142.png" id="GOD_142" data-flag="@X" onclick="openSidebar('GOD_142',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/95.png" id="GOD_95" data-flag="@X" onclick="openSidebar('GOD_95',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/108.png" id="GOD_108" data-flag="@X" onclick="openSidebar('GOD_108',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/120.png" id="GOD_120" data-flag="@X" onclick="openSidebar('GOD_120',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/124.png" id="GOD_124" data-flag="@X" onclick="openSidebar('GOD_124',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/144.png" id="GOD_144" data-flag="@X" onclick="openSidebar('GOD_144',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/93.png" id="GOD_93" data-flag="@X" onclick="openSidebar('GOD_93',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/107.png" id="GOD_107" data-flag="@X" onclick="openSidebar('GOD_107',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/110.png" id="GOD_110" data-flag="@X" onclick="openSidebar('GOD_110',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/125.png" id="GOD_125" data-flag="@X" onclick="openSidebar('GOD_125',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/147.png" id="GOD_147" data-flag="@X" onclick="openSidebar('GOD_147',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/85.png" id="GOD_85" data-flag="@X" onclick="openSidebar('GOD_85',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/104.png" id="GOD_104" data-flag="@X" onclick="openSidebar('GOD_104',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/111.png" id="GOD_111" data-flag="@X" onclick="openSidebar('GOD_111',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/134.png" id="GOD_134" data-flag="@X" onclick="openSidebar('GOD_134',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/150.png" id="GOD_150" data-flag="@X" onclick="openSidebar('GOD_150',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/86.png" id="GOD_86" data-flag="@X" onclick="openSidebar('GOD_86',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/96.png" id="GOD_96" data-flag="@X" onclick="openSidebar('GOD_96',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/122.png" id="GOD_122" data-flag="@X" onclick="openSidebar('GOD_122',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/132.png" id="GOD_132" data-flag="@X" onclick="openSidebar('GOD_132',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/141.png" id="GOD_141" data-flag="@X" onclick="openSidebar('GOD_141',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/87.png" id="GOD_87" data-flag="@X" onclick="openSidebar('GOD_87',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/98.png" id="GOD_98" data-flag="@X" onclick="openSidebar('GOD_98',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/115.png" id="GOD_115" data-flag="@X" onclick="openSidebar('GOD_115',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/129.png" id="GOD_129" data-flag="@X" onclick="openSidebar('GOD_129',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/143.png" id="GOD_143" data-flag="@X" onclick="openSidebar('GOD_143',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/89.png" id="GOD_89" data-flag="@X" onclick="openSidebar('GOD_89',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/99.png" id="GOD_99" data-flag="@X" onclick="openSidebar('GOD_99',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/116.png" id="GOD_116" data-flag="@X" onclick="openSidebar('GOD_116',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/137.png" id="GOD_137" data-flag="@X" onclick="openSidebar('GOD_137',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/139.png" id="GOD_139" data-flag="@X" onclick="openSidebar('GOD_139',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/82.png" id="GOD_82" data-flag="@X" onclick="openSidebar('GOD_82',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/103.png" id="GOD_103" data-flag="@X" onclick="openSidebar('GOD_103',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/112.png" id="GOD_112" data-flag="@X" onclick="openSidebar('GOD_112',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/136.png" id="GOD_136" data-flag="@X" onclick="openSidebar('GOD_136',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/151.png" id="GOD_151" data-flag="@X" onclick="openSidebar('GOD_151',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/194.png" id="GOD_194" data-flag="@X" onclick="openSidebar('GOD_194',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/211.png" id="GOD_211" data-flag="@X" onclick="openSidebar('GOD_211',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/123.png" id="GOD_123" data-flag="@X" onclick="openSidebar('GOD_123',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/235.png" id="GOD_235" data-flag="@X" onclick="openSidebar('GOD_235',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/140.png" id="GOD_140" data-flag="@X" onclick="openSidebar('GOD_140',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/185.png" id="GOD_185" data-flag="@X" onclick="openSidebar('GOD_185',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/212.png" id="GOD_212" data-flag="@X" onclick="openSidebar('GOD_212',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/223.png" id="GOD_223" data-flag="@X" onclick="openSidebar('GOD_223',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/237.png" id="GOD_237" data-flag="@X" onclick="openSidebar('GOD_237',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/248.png" id="GOD_248" data-flag="@X" onclick="openSidebar('GOD_248',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/192.png" id="GOD_192" data-flag="@X" onclick="openSidebar('GOD_192',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/198.png" id="GOD_198" data-flag="@X" onclick="openSidebar('GOD_198',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/214.png" id="GOD_214" data-flag="@X" onclick="openSidebar('GOD_214',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/234.png" id="GOD_234" data-flag="@X" onclick="openSidebar('GOD_234',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/255.png" id="GOD_255" data-flag="@X" onclick="openSidebar('GOD_255',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/195.png" id="GOD_195" data-flag="@X" onclick="openSidebar('GOD_195',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/201.png" id="GOD_201" data-flag="@X" onclick="openSidebar('GOD_201',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/220.png" id="GOD_220" data-flag="@X" onclick="openSidebar('GOD_220',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/242.png" id="GOD_242" data-flag="@X" onclick="openSidebar('GOD_242',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/250.png" id="GOD_250" data-flag="@X" onclick="openSidebar('GOD_250',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/197.png" id="GOD_197" data-flag="@X" onclick="openSidebar('GOD_197',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/200.png" id="GOD_200" data-flag="@X" onclick="openSidebar('GOD_200',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/216.png" id="GOD_216" data-flag="@X" onclick="openSidebar('GOD_216',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/239.png" id="GOD_239" data-flag="@X" onclick="openSidebar('GOD_239',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/245.png" id="GOD_245" data-flag="@X" onclick="openSidebar('GOD_245',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/187.png" id="GOD_187" data-flag="@X" onclick="openSidebar('GOD_187',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/203.png" id="GOD_203" data-flag="@X" onclick="openSidebar('GOD_203',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/219.png" id="GOD_219" data-flag="@X" onclick="openSidebar('GOD_219',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/240.png" id="GOD_240" data-flag="@X" onclick="openSidebar('GOD_240',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/257.png" id="GOD_257" data-flag="@X" onclick="openSidebar('GOD_257',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/186.png" id="GOD_186" data-flag="@X" onclick="openSidebar('GOD_186',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/210.png" id="GOD_210" data-flag="@X" onclick="openSidebar('GOD_210',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/217.png" id="GOD_217" data-flag="@X" onclick="openSidebar('GOD_217',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/228.png" id="GOD_228" data-flag="@X" onclick="openSidebar('GOD_228',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/256.png" id="GOD_256" data-flag="@X" onclick="openSidebar('GOD_256',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/188.png" id="GOD_188" data-flag="@X" onclick="openSidebar('GOD_188',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/199.png" id="GOD_199" data-flag="@X" onclick="openSidebar('GOD_199',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/213.png" id="GOD_213" data-flag="@X" onclick="openSidebar('GOD_213',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/230.png" id="GOD_230" data-flag="@X" onclick="openSidebar('GOD_230',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/252.png" id="GOD_252" data-flag="@X" onclick="openSidebar('GOD_252',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/191.png" id="GOD_191" data-flag="@X" onclick="openSidebar('GOD_191',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/207.png" id="GOD_207" data-flag="@X" onclick="openSidebar('GOD_207',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/215.png" id="GOD_215" data-flag="@X" onclick="openSidebar('GOD_215',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/232.png" id="GOD_232" data-flag="@X" onclick="openSidebar('GOD_232',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/253.png" id="GOD_253" data-flag="@X" onclick="openSidebar('GOD_253',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/183.png" id="GOD_183" data-flag="@X" onclick="openSidebar('GOD_183',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/205.png" id="GOD_205" data-flag="@X" onclick="openSidebar('GOD_205',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/221.png" id="GOD_221" data-flag="@X" onclick="openSidebar('GOD_221',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/231.png" id="GOD_231" data-flag="@X" onclick="openSidebar('GOD_231',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/254.png" id="GOD_254" data-flag="@X" onclick="openSidebar('GOD_254',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/193.png" id="GOD_193" data-flag="@X" onclick="openSidebar('GOD_193',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/209.png" id="GOD_209" data-flag="@X" onclick="openSidebar('GOD_209',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/226.png" id="GOD_226" data-flag="@X" onclick="openSidebar('GOD_226',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/238.png" id="GOD_238" data-flag="@X" onclick="openSidebar('GOD_238',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/243.png" id="GOD_243" data-flag="@X" onclick="openSidebar('GOD_243',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/189.png" id="GOD_189" data-flag="@X" onclick="openSidebar('GOD_189',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/208.png" id="GOD_208" data-flag="@X" onclick="openSidebar('GOD_208',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/227.png" id="GOD_227" data-flag="@X" onclick="openSidebar('GOD_227',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/241.png" id="GOD_241" data-flag="@X" onclick="openSidebar('GOD_241',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/249.png" id="GOD_249" data-flag="@X" onclick="openSidebar('GOD_249',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/196.png" id="GOD_196" data-flag="@X" onclick="openSidebar('GOD_196',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/204.png" id="GOD_204" data-flag="@X" onclick="openSidebar('GOD_204',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/224.png" id="GOD_224" data-flag="@X" onclick="openSidebar('GOD_224',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/229.png" id="GOD_229" data-flag="@X" onclick="openSidebar('GOD_229',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/247.png" id="GOD_247" data-flag="@X" onclick="openSidebar('GOD_247',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/184.png" id="GOD_184" data-flag="@X" onclick="openSidebar('GOD_184',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/202.png" id="GOD_202" data-flag="@X" onclick="openSidebar('GOD_202',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/225.png" id="GOD_225" data-flag="@X" onclick="openSidebar('GOD_225',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/233.png" id="GOD_233" data-flag="@X" onclick="openSidebar('GOD_233',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/246.png" id="GOD_246" data-flag="@X" onclick="openSidebar('GOD_246',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/190.png" id="GOD_190" data-flag="@X" onclick="openSidebar('GOD_190',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/206.png" id="GOD_206" data-flag="@X" onclick="openSidebar('GOD_206',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/218.png" id="GOD_218" data-flag="@X" onclick="openSidebar('GOD_218',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/236.png" id="GOD_236" data-flag="@X" onclick="openSidebar('GOD_236',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/244.png" id="GOD_244" data-flag="@X" onclick="openSidebar('GOD_244',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/222.png" id="GOD_222" data-flag="@X" onclick="openSidebar('GOD_222',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/251.png" id="GOD_251" data-flag="@X" onclick="openSidebar('GOD_251',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/55.png" id="GOD_55" data-flag="@X" onclick="openSidebar('GOD_55',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/57.png" id="GOD_57" data-flag="@X" onclick="openSidebar('GOD_57',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/59.png" id="GOD_59" data-flag="@X" onclick="openSidebar('GOD_59',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/19.png" id="GOD_19" data-flag="@X" onclick="openSidebar('GOD_19',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/13.png" id="GOD_13" data-flag="@X" onclick="openSidebar('GOD_13',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/56.png" id="GOD_56" data-flag="@X" onclick="openSidebar('GOD_56',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/58.png" id="GOD_58" data-flag="@X" onclick="openSidebar('GOD_58',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/60.png" id="GOD_60" data-flag="@X" onclick="openSidebar('GOD_60',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/62.png" id="GOD_62" data-flag="@X" onclick="openSidebar('GOD_62',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/64.png" id="GOD_64" data-flag="@X" onclick="openSidebar('GOD_64',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/153.png" id="GOD_153" data-flag="@X" onclick="openSidebar('GOD_153',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/154.png" id="GOD_154" data-flag="@X" onclick="openSidebar('GOD_154',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/156.png" id="GOD_156" data-flag="@X" onclick="openSidebar('GOD_156',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/61.png" id="GOD_61" data-flag="@X" onclick="openSidebar('GOD_61',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/63.png" id="GOD_63" data-flag="@X" onclick="openSidebar('GOD_63',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/152.png" id="GOD_152" data-flag="@X" onclick="openSidebar('GOD_152',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/155.png" id="GOD_155" data-flag="@X" onclick="openSidebar('GOD_155',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/157.png" id="GOD_157" data-flag="@X" onclick="openSidebar('GOD_157',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/158.png" id="GOD_158" data-flag="@X" onclick="openSidebar('GOD_158',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/161.png" id="GOD_161" data-flag="@X" onclick="openSidebar('GOD_161',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/159.png" id="GOD_159" data-flag="@X" onclick="openSidebar('GOD_159',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/160.png" id="GOD_160" data-flag="@X" onclick="openSidebar('GOD_160',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/12.png" id="GOD_12" data-flag="@X" onclick="openSidebar('GOD_12',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/72.png" id="GOD_72" data-flag="@X" onclick="openSidebar('GOD_72',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/14.png" id="GOD_14" data-flag="@X" onclick="openSidebar('GOD_14',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/16.png" id="GOD_16" data-flag="@X" onclick="openSidebar('GOD_16',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/69.png" id="GOD_69" data-flag="@X" onclick="openSidebar('GOD_69',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/65.png" id="GOD_65" data-flag="@X" onclick="openSidebar('GOD_65',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/71.png" id="GOD_71" data-flag="@X" onclick="openSidebar('GOD_71',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/68.png" id="GOD_68" data-flag="@X" onclick="openSidebar('GOD_68',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/73.png" id="GOD_73" data-flag="@X" onclick="openSidebar('GOD_73',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/70.png" id="GOD_70" data-flag="@X" onclick="openSidebar('GOD_70',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/66.png" id="GOD_66" data-flag="@X" onclick="openSidebar('GOD_66',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/169.png" id="GOD_169" data-flag="@X" onclick="openSidebar('GOD_169',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/67.png" id="GOD_67" data-flag="@X" onclick="openSidebar('GOD_67',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/74.png" id="GOD_74" data-flag="@X" onclick="openSidebar('GOD_74',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/167.png" id="GOD_167" data-flag="@X" onclick="openSidebar('GOD_167',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/163.png" id="GOD_163" data-flag="@X" onclick="openSidebar('GOD_163',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/168.png" id="GOD_168" data-flag="@X" onclick="openSidebar('GOD_168',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/164.png" id="GOD_164" data-flag="@X" onclick="openSidebar('GOD_164',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/170.png" id="GOD_170" data-flag="@X" onclick="openSidebar('GOD_170',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/166.png" id="GOD_166" data-flag="@X" onclick="openSidebar('GOD_166',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/162.png" id="GOD_162" data-flag="@X" onclick="openSidebar('GOD_162',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/165.png" id="GOD_165" data-flag="@X" onclick="openSidebar('GOD_165',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/171.png" id="GOD_171" data-flag="@X" onclick="openSidebar('GOD_171',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/10.png" id="GOD_10" data-flag="@X" onclick="openSidebar('GOD_10',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/15.png" id="GOD_15" data-flag="@X" onclick="openSidebar('GOD_15',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/55.png" id="GOD_55" data-flag="@X" onclick="openSidebar('GOD_55',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/57.png" id="GOD_57" data-flag="@X" onclick="openSidebar('GOD_57',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/59.png" id="GOD_59" data-flag="@X" onclick="openSidebar('GOD_59',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/19.png" id="GOD_19" data-flag="@X" onclick="openSidebar('GOD_19',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/13.png" id="GOD_13" data-flag="@X" onclick="openSidebar('GOD_13',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/56.png" id="GOD_56" data-flag="@X" onclick="openSidebar('GOD_56',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/58.png" id="GOD_58" data-flag="@X" onclick="openSidebar('GOD_58',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/60.png" id="GOD_60" data-flag="@X" onclick="openSidebar('GOD_60',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/62.png" id="GOD_62" data-flag="@X" onclick="openSidebar('GOD_62',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/64.png" id="GOD_64" data-flag="@X" onclick="openSidebar('GOD_64',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/153.png" id="GOD_153" data-flag="@X" onclick="openSidebar('GOD_153',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/154.png" id="GOD_154" data-flag="@X" onclick="openSidebar('GOD_154',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/156.png" id="GOD_156" data-flag="@X" onclick="openSidebar('GOD_156',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/61.png" id="GOD_61" data-flag="@X" onclick="openSidebar('GOD_61',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/63.png" id="GOD_63" data-flag="@X" onclick="openSidebar('GOD_63',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/152.png" id="GOD_152" data-flag="@X" onclick="openSidebar('GOD_152',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/155.png" id="GOD_155" data-flag="@X" onclick="openSidebar('GOD_155',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/157.png" id="GOD_157" data-flag="@X" onclick="openSidebar('GOD_157',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/158.png" id="GOD_158" data-flag="@X" onclick="openSidebar('GOD_158',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/161.png" id="GOD_161" data-flag="@X" onclick="openSidebar('GOD_161',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/159.png" id="GOD_159" data-flag="@X" onclick="openSidebar('GOD_159',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/160.png" id="GOD_160" data-flag="@X" onclick="openSidebar('GOD_160',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/12.png" id="GOD_12" data-flag="@X" onclick="openSidebar('GOD_12',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/72.png" id="GOD_72" data-flag="@X" onclick="openSidebar('GOD_72',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/14.png" id="GOD_14" data-flag="@X" onclick="openSidebar('GOD_14',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/16.png" id="GOD_16" data-flag="@X" onclick="openSidebar('GOD_16',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/69.png" id="GOD_69" data-flag="@X" onclick="openSidebar('GOD_69',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/65.png" id="GOD_65" data-flag="@X" onclick="openSidebar('GOD_65',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/71.png" id="GOD_71" data-flag="@X" onclick="openSidebar('GOD_71',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/68.png" id="GOD_68" data-flag="@X" onclick="openSidebar('GOD_68',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/73.png" id="GOD_73" data-flag="@X" onclick="openSidebar('GOD_73',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/70.png" id="GOD_70" data-flag="@X" onclick="openSidebar('GOD_70',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/66.png" id="GOD_66" data-flag="@X" onclick="openSidebar('GOD_66',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/169.png" id="GOD_169" data-flag="@X" onclick="openSidebar('GOD_169',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/67.png" id="GOD_67" data-flag="@X" onclick="openSidebar('GOD_67',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/74.png" id="GOD_74" data-flag="@X" onclick="openSidebar('GOD_74',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/167.png" id="GOD_167" data-flag="@X" onclick="openSidebar('GOD_167',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/163.png" id="GOD_163" data-flag="@X" onclick="openSidebar('GOD_163',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/168.png" id="GOD_168" data-flag="@X" onclick="openSidebar('GOD_168',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/164.png" id="GOD_164" data-flag="@X" onclick="openSidebar('GOD_164',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/170.png" id="GOD_170" data-flag="@X" onclick="openSidebar('GOD_170',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/166.png" id="GOD_166" data-flag="@X" onclick="openSidebar('GOD_166',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/162.png" id="GOD_162" data-flag="@X" onclick="openSidebar('GOD_162',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/165.png" id="GOD_165" data-flag="@X" onclick="openSidebar('GOD_165',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/171.png" id="GOD_171" data-flag="@X" onclick="openSidebar('GOD_171',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/10.png" id="GOD_10" data-flag="@X" onclick="openSidebar('GOD_10',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/15.png" id="GOD_15" data-flag="@X" onclick="openSidebar('GOD_15',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/17.png" id="GOD_17" data-flag="@X" onclick="openSidebar('GOD_17',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/76.png" id="GOD_76" data-flag="@X" onclick="openSidebar('GOD_76',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/75.png" id="GOD_75" data-flag="@X" onclick="openSidebar('GOD_75',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/79.png" id="GOD_79" data-flag="@X" onclick="openSidebar('GOD_79',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/81.png" id="GOD_81" data-flag="@X" onclick="openSidebar('GOD_81',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/77.png" id="GOD_77" data-flag="@X" onclick="openSidebar('GOD_77',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/80.png" id="GOD_80" data-flag="@X" onclick="openSidebar('GOD_80',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/78.png" id="GOD_78" data-flag="@X" onclick="openSidebar('GOD_78',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/173.png" id="GOD_173" data-flag="@X" onclick="openSidebar('GOD_173',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/176.png" id="GOD_176" data-flag="@X" onclick="openSidebar('GOD_176',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/177.png" id="GOD_177" data-flag="@X" onclick="openSidebar('GOD_177',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/175.png" id="GOD_175" data-flag="@X" onclick="openSidebar('GOD_175',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/179.png" id="GOD_179" data-flag="@X" onclick="openSidebar('GOD_179',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/178.png" id="GOD_178" data-flag="@X" onclick="openSidebar('GOD_178',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/174.png" id="GOD_174" data-flag="@X" onclick="openSidebar('GOD_174',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/172.png" id="GOD_172" data-flag="@X" onclick="openSidebar('GOD_172',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/263.png" id="GOD_263" data-flag="@X" onclick="openSidebar('GOD_263',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/262.png" id="GOD_262" data-flag="@X" onclick="openSidebar('GOD_262',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/261.png" id="GOD_261" data-flag="@X" onclick="openSidebar('GOD_261',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/258.png" id="GOD_258" data-flag="@X" onclick="openSidebar('GOD_258',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/259.png" id="GOD_259" data-flag="@X" onclick="openSidebar('GOD_259',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/260.png" id="GOD_260" data-flag="@X" onclick="openSidebar('GOD_260',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/182.png" id="GOD_182" data-flag="@X" onclick="openSidebar('GOD_182',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/181.png" id="GOD_181" data-flag="@X" onclick="openSidebar('GOD_181',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/180.png" id="GOD_180" data-flag="@X" onclick="openSidebar('GOD_180',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/264.png" id="GOD_264" data-flag="@X" onclick="openSidebar('GOD_264',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/17.png" id="GOD_17" data-flag="@X" onclick="openSidebar('GOD_17',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/76.png" id="GOD_76" data-flag="@X" onclick="openSidebar('GOD_76',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/75.png" id="GOD_75" data-flag="@X" onclick="openSidebar('GOD_75',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/79.png" id="GOD_79" data-flag="@X" onclick="openSidebar('GOD_79',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/81.png" id="GOD_81" data-flag="@X" onclick="openSidebar('GOD_81',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/77.png" id="GOD_77" data-flag="@X" onclick="openSidebar('GOD_77',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/80.png" id="GOD_80" data-flag="@X" onclick="openSidebar('GOD_80',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/78.png" id="GOD_78" data-flag="@X" onclick="openSidebar('GOD_78',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/173.png" id="GOD_173" data-flag="@X" onclick="openSidebar('GOD_173',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/176.png" id="GOD_176" data-flag="@X" onclick="openSidebar('GOD_176',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/177.png" id="GOD_177" data-flag="@X" onclick="openSidebar('GOD_177',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/175.png" id="GOD_175" data-flag="@X" onclick="openSidebar('GOD_175',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/179.png" id="GOD_179" data-flag="@X" onclick="openSidebar('GOD_179',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/178.png" id="GOD_178" data-flag="@X" onclick="openSidebar('GOD_178',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/174.png" id="GOD_174" data-flag="@X" onclick="openSidebar('GOD_174',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/172.png" id="GOD_172" data-flag="@X" onclick="openSidebar('GOD_172',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/263.png" id="GOD_263" data-flag="@X" onclick="openSidebar('GOD_263',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/262.png" id="GOD_262" data-flag="@X" onclick="openSidebar('GOD_262',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/261.png" id="GOD_261" data-flag="@X" onclick="openSidebar('GOD_261',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/258.png" id="GOD_258" data-flag="@X" onclick="openSidebar('GOD_258',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/259.png" id="GOD_259" data-flag="@X" onclick="openSidebar('GOD_259',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/260.png" id="GOD_260" data-flag="@X" onclick="openSidebar('GOD_260',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/182.png" id="GOD_182" data-flag="@X" onclick="openSidebar('GOD_182',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/181.png" id="GOD_181" data-flag="@X" onclick="openSidebar('GOD_181',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/180.png" id="GOD_180" data-flag="@X" onclick="openSidebar('GOD_180',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/264.png" id="GOD_264" data-flag="@X" onclick="openSidebar('GOD_264',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/265.png" id="GOD_265" data-flag="@X" onclick="openSidebar('GOD_265',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/266.png" id="GOD_266" data-flag="@X" onclick="openSidebar('GOD_266',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/267.png" id="GOD_267" data-flag="@X" onclick="openSidebar('GOD_267',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/268.png" id="GOD_268" data-flag="@X" onclick="openSidebar('GOD_268',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/269.png" id="GOD_269" data-flag="@X" onclick="openSidebar('GOD_269',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/270.png" id="GOD_270" data-flag="@X" onclick="openSidebar('GOD_270',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/271.png" id="GOD_271" data-flag="@X" onclick="openSidebar('GOD_271',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/272.png" id="GOD_272" data-flag="@X" onclick="openSidebar('GOD_272',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/GOD-files/img/273.png" id="GOD_273" data-flag="@X" onclick="openSidebar('GOD_273',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/265.png" id="GOD_265" data-flag="@X" onclick="openSidebar('GOD_265',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/266.png" id="GOD_266" data-flag="@X" onclick="openSidebar('GOD_266',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/267.png" id="GOD_267" data-flag="@X" onclick="openSidebar('GOD_267',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/268.png" id="GOD_268" data-flag="@X" onclick="openSidebar('GOD_268',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/269.png" id="GOD_269" data-flag="@X" onclick="openSidebar('GOD_269',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/270.png" id="GOD_270" data-flag="@X" onclick="openSidebar('GOD_270',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/271.png" id="GOD_271" data-flag="@X" onclick="openSidebar('GOD_271',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/272.png" id="GOD_272" data-flag="@X" onclick="openSidebar('GOD_272',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/GOD-files/img/273.png" id="GOD_273" data-flag="@X" onclick="openSidebar('GOD_273',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="GOD_e" data-flag="@E" onclick="openSidebar('GOD_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="GOD_er" data-flag="@E" onclick="openSidebar('GOD_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -633,13 +649,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -772,13 +788,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -932,16 +951,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -951,7 +970,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

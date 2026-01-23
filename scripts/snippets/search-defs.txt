@@ -12,6 +12,13 @@ function tokenizeTerms(searchTerms)
 			{
 				return true;
 			}
+
+			tokens = tokens.filter(t => !t.startsWith("sort:") && !t.startsWith("direction:"));
+			if (tokens.length == 0)
+			{
+				return true;
+			}
+
 			for (let i = 0; i < tokens.length; i++)
 			{
 				if (tokens[i].charAt(0) == '+')

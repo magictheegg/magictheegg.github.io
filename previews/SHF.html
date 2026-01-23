@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/SHF-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/SHF-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>SHF visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,484 +181,497 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/SHF-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
-		<img class="preload-hidden" id="bg" src="/sets/SHF-files/bg.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/SHF-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
+		<img class="preload-hidden" id="bg" src="../sets/SHF-files/bg.png" />
 
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/SHF-files/logo.png">
+		<img class="logo" src="../sets/SHF-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/0.png" id="SHF_0" data-flag="@X" onclick="openSidebar('SHF_0',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/1.png" id="SHF_1" data-flag="@X" onclick="openSidebar('SHF_1',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/3.png" id="SHF_3" data-flag="@X" onclick="openSidebar('SHF_3',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/5.png" id="SHF_5" data-flag="@X" onclick="openSidebar('SHF_5',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/8.png" id="SHF_8" data-flag="@X" onclick="openSidebar('SHF_8',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/22.png" id="SHF_22" data-flag="@X" onclick="openSidebar('SHF_22',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/2.png" id="SHF_2" data-flag="@X" onclick="openSidebar('SHF_2',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/34.png" id="SHF_34" data-flag="@X" onclick="openSidebar('SHF_34',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/4.png" id="SHF_4" data-flag="@X" onclick="openSidebar('SHF_4',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/7.png" id="SHF_7" data-flag="@X" onclick="openSidebar('SHF_7',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/25.png" id="SHF_25" data-flag="@X" onclick="openSidebar('SHF_25',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/31.png" id="SHF_31" data-flag="@X" onclick="openSidebar('SHF_31',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/35.png" id="SHF_35" data-flag="@X" onclick="openSidebar('SHF_35',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/43.png" id="SHF_43" data-flag="@X" onclick="openSidebar('SHF_43',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/6.png" id="SHF_6" data-flag="@X" onclick="openSidebar('SHF_6',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/20.png" id="SHF_20" data-flag="@X" onclick="openSidebar('SHF_20',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/28.png" id="SHF_28" data-flag="@X" onclick="openSidebar('SHF_28',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/32.png" id="SHF_32" data-flag="@X" onclick="openSidebar('SHF_32',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/40.png" id="SHF_40" data-flag="@X" onclick="openSidebar('SHF_40',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/45.png" id="SHF_45" data-flag="@X" onclick="openSidebar('SHF_45',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/21.png" id="SHF_21" data-flag="@X" onclick="openSidebar('SHF_21',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/30.png" id="SHF_30" data-flag="@X" onclick="openSidebar('SHF_30',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/33.png" id="SHF_33" data-flag="@X" onclick="openSidebar('SHF_33',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/38.png" id="SHF_38" data-flag="@X" onclick="openSidebar('SHF_38',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/48.png" id="SHF_48" data-flag="@X" onclick="openSidebar('SHF_48',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/23.png" id="SHF_23" data-flag="@X" onclick="openSidebar('SHF_23',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/26.png" id="SHF_26" data-flag="@X" onclick="openSidebar('SHF_26',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/37.png" id="SHF_37" data-flag="@X" onclick="openSidebar('SHF_37',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/39.png" id="SHF_39" data-flag="@X" onclick="openSidebar('SHF_39',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/46.png" id="SHF_46" data-flag="@X" onclick="openSidebar('SHF_46',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/24.png" id="SHF_24" data-flag="@X" onclick="openSidebar('SHF_24',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/29.png" id="SHF_29" data-flag="@X" onclick="openSidebar('SHF_29',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/36.png" id="SHF_36" data-flag="@X" onclick="openSidebar('SHF_36',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/41.png" id="SHF_41" data-flag="@X" onclick="openSidebar('SHF_41',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/49.png" id="SHF_49" data-flag="@X" onclick="openSidebar('SHF_49',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/82.png" id="SHF_82" data-flag="@X" onclick="openSidebar('SHF_82',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/27.png" id="SHF_27" data-flag="@X" onclick="openSidebar('SHF_27',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/110.png" id="SHF_110" data-flag="@X" onclick="openSidebar('SHF_110',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/42.png" id="SHF_42" data-flag="@X" onclick="openSidebar('SHF_42',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/44.png" id="SHF_44" data-flag="@X" onclick="openSidebar('SHF_44',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/87.png" id="SHF_87" data-flag="@X" onclick="openSidebar('SHF_87',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/96.png" id="SHF_96" data-flag="@X" onclick="openSidebar('SHF_96',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/120.png" id="SHF_120" data-flag="@X" onclick="openSidebar('SHF_120',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/128.png" id="SHF_128" data-flag="@X" onclick="openSidebar('SHF_128',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/47.png" id="SHF_47" data-flag="@X" onclick="openSidebar('SHF_47',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/89.png" id="SHF_89" data-flag="@X" onclick="openSidebar('SHF_89',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/97.png" id="SHF_97" data-flag="@X" onclick="openSidebar('SHF_97',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/114.png" id="SHF_114" data-flag="@X" onclick="openSidebar('SHF_114',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/125.png" id="SHF_125" data-flag="@X" onclick="openSidebar('SHF_125',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/149.png" id="SHF_149" data-flag="@X" onclick="openSidebar('SHF_149',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/88.png" id="SHF_88" data-flag="@X" onclick="openSidebar('SHF_88',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/101.png" id="SHF_101" data-flag="@X" onclick="openSidebar('SHF_101',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/113.png" id="SHF_113" data-flag="@X" onclick="openSidebar('SHF_113',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/133.png" id="SHF_133" data-flag="@X" onclick="openSidebar('SHF_133',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/137.png" id="SHF_137" data-flag="@X" onclick="openSidebar('SHF_137',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/83.png" id="SHF_83" data-flag="@X" onclick="openSidebar('SHF_83',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/100.png" id="SHF_100" data-flag="@X" onclick="openSidebar('SHF_100',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/109.png" id="SHF_109" data-flag="@X" onclick="openSidebar('SHF_109',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/126.png" id="SHF_126" data-flag="@X" onclick="openSidebar('SHF_126',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/143.png" id="SHF_143" data-flag="@X" onclick="openSidebar('SHF_143',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/80.png" id="SHF_80" data-flag="@X" onclick="openSidebar('SHF_80',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/95.png" id="SHF_95" data-flag="@X" onclick="openSidebar('SHF_95',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/112.png" id="SHF_112" data-flag="@X" onclick="openSidebar('SHF_112',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/131.png" id="SHF_131" data-flag="@X" onclick="openSidebar('SHF_131',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/147.png" id="SHF_147" data-flag="@X" onclick="openSidebar('SHF_147',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/91.png" id="SHF_91" data-flag="@X" onclick="openSidebar('SHF_91',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/99.png" id="SHF_99" data-flag="@X" onclick="openSidebar('SHF_99',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/119.png" id="SHF_119" data-flag="@X" onclick="openSidebar('SHF_119',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/124.png" id="SHF_124" data-flag="@X" onclick="openSidebar('SHF_124',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/142.png" id="SHF_142" data-flag="@X" onclick="openSidebar('SHF_142',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/92.png" id="SHF_92" data-flag="@X" onclick="openSidebar('SHF_92',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/104.png" id="SHF_104" data-flag="@X" onclick="openSidebar('SHF_104',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/121.png" id="SHF_121" data-flag="@X" onclick="openSidebar('SHF_121',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/132.png" id="SHF_132" data-flag="@X" onclick="openSidebar('SHF_132',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/144.png" id="SHF_144" data-flag="@X" onclick="openSidebar('SHF_144',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/84.png" id="SHF_84" data-flag="@X" onclick="openSidebar('SHF_84',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/106.png" id="SHF_106" data-flag="@X" onclick="openSidebar('SHF_106',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/117.png" id="SHF_117" data-flag="@X" onclick="openSidebar('SHF_117',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/134.png" id="SHF_134" data-flag="@X" onclick="openSidebar('SHF_134',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/145.png" id="SHF_145" data-flag="@X" onclick="openSidebar('SHF_145',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/90.png" id="SHF_90" data-flag="@X" onclick="openSidebar('SHF_90',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/103.png" id="SHF_103" data-flag="@X" onclick="openSidebar('SHF_103',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/115.png" id="SHF_115" data-flag="@X" onclick="openSidebar('SHF_115',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/129.png" id="SHF_129" data-flag="@X" onclick="openSidebar('SHF_129',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/139.png" id="SHF_139" data-flag="@X" onclick="openSidebar('SHF_139',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/85.png" id="SHF_85" data-flag="@X" onclick="openSidebar('SHF_85',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/102.png" id="SHF_102" data-flag="@X" onclick="openSidebar('SHF_102',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/111.png" id="SHF_111" data-flag="@X" onclick="openSidebar('SHF_111',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/135.png" id="SHF_135" data-flag="@X" onclick="openSidebar('SHF_135',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/136.png" id="SHF_136" data-flag="@X" onclick="openSidebar('SHF_136',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/93.png" id="SHF_93" data-flag="@X" onclick="openSidebar('SHF_93',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/94.png" id="SHF_94" data-flag="@X" onclick="openSidebar('SHF_94',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/116.png" id="SHF_116" data-flag="@X" onclick="openSidebar('SHF_116',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/127.png" id="SHF_127" data-flag="@X" onclick="openSidebar('SHF_127',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/140.png" id="SHF_140" data-flag="@X" onclick="openSidebar('SHF_140',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/86.png" id="SHF_86" data-flag="@X" onclick="openSidebar('SHF_86',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/98.png" id="SHF_98" data-flag="@X" onclick="openSidebar('SHF_98',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/108.png" id="SHF_108" data-flag="@X" onclick="openSidebar('SHF_108',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/122.png" id="SHF_122" data-flag="@X" onclick="openSidebar('SHF_122',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/141.png" id="SHF_141" data-flag="@X" onclick="openSidebar('SHF_141',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/81.png" id="SHF_81" data-flag="@X" onclick="openSidebar('SHF_81',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/107.png" id="SHF_107" data-flag="@X" onclick="openSidebar('SHF_107',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/118.png" id="SHF_118" data-flag="@X" onclick="openSidebar('SHF_118',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/130.png" id="SHF_130" data-flag="@X" onclick="openSidebar('SHF_130',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/146.png" id="SHF_146" data-flag="@X" onclick="openSidebar('SHF_146',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/192.png" id="SHF_192" data-flag="@X" onclick="openSidebar('SHF_192',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/105.png" id="SHF_105" data-flag="@X" onclick="openSidebar('SHF_105',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/212.png" id="SHF_212" data-flag="@X" onclick="openSidebar('SHF_212',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/123.png" id="SHF_123" data-flag="@X" onclick="openSidebar('SHF_123',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/148.png" id="SHF_148" data-flag="@X" onclick="openSidebar('SHF_148',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/190.png" id="SHF_190" data-flag="@X" onclick="openSidebar('SHF_190',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/206.png" id="SHF_206" data-flag="@X" onclick="openSidebar('SHF_206',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/223.png" id="SHF_223" data-flag="@X" onclick="openSidebar('SHF_223',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/228.png" id="SHF_228" data-flag="@X" onclick="openSidebar('SHF_228',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/138.png" id="SHF_138" data-flag="@X" onclick="openSidebar('SHF_138',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/187.png" id="SHF_187" data-flag="@X" onclick="openSidebar('SHF_187',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/201.png" id="SHF_201" data-flag="@X" onclick="openSidebar('SHF_201',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/218.png" id="SHF_218" data-flag="@X" onclick="openSidebar('SHF_218',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/227.png" id="SHF_227" data-flag="@X" onclick="openSidebar('SHF_227',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/250.png" id="SHF_250" data-flag="@X" onclick="openSidebar('SHF_250',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/186.png" id="SHF_186" data-flag="@X" onclick="openSidebar('SHF_186',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/200.png" id="SHF_200" data-flag="@X" onclick="openSidebar('SHF_200',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/224.png" id="SHF_224" data-flag="@X" onclick="openSidebar('SHF_224',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/229.png" id="SHF_229" data-flag="@X" onclick="openSidebar('SHF_229',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/254.png" id="SHF_254" data-flag="@X" onclick="openSidebar('SHF_254',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/180.png" id="SHF_180" data-flag="@X" onclick="openSidebar('SHF_180',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/208.png" id="SHF_208" data-flag="@X" onclick="openSidebar('SHF_208',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/210.png" id="SHF_210" data-flag="@X" onclick="openSidebar('SHF_210',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/237.png" id="SHF_237" data-flag="@X" onclick="openSidebar('SHF_237',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/240.png" id="SHF_240" data-flag="@X" onclick="openSidebar('SHF_240',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/182.png" id="SHF_182" data-flag="@X" onclick="openSidebar('SHF_182',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/209.png" id="SHF_209" data-flag="@X" onclick="openSidebar('SHF_209',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/216.png" id="SHF_216" data-flag="@X" onclick="openSidebar('SHF_216',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/238.png" id="SHF_238" data-flag="@X" onclick="openSidebar('SHF_238',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/251.png" id="SHF_251" data-flag="@X" onclick="openSidebar('SHF_251',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/184.png" id="SHF_184" data-flag="@X" onclick="openSidebar('SHF_184',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/199.png" id="SHF_199" data-flag="@X" onclick="openSidebar('SHF_199',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/219.png" id="SHF_219" data-flag="@X" onclick="openSidebar('SHF_219',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/235.png" id="SHF_235" data-flag="@X" onclick="openSidebar('SHF_235',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/244.png" id="SHF_244" data-flag="@X" onclick="openSidebar('SHF_244',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/193.png" id="SHF_193" data-flag="@X" onclick="openSidebar('SHF_193',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/197.png" id="SHF_197" data-flag="@X" onclick="openSidebar('SHF_197',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/213.png" id="SHF_213" data-flag="@X" onclick="openSidebar('SHF_213',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/226.png" id="SHF_226" data-flag="@X" onclick="openSidebar('SHF_226',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/253.png" id="SHF_253" data-flag="@X" onclick="openSidebar('SHF_253',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/194.png" id="SHF_194" data-flag="@X" onclick="openSidebar('SHF_194',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/198.png" id="SHF_198" data-flag="@X" onclick="openSidebar('SHF_198',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/217.png" id="SHF_217" data-flag="@X" onclick="openSidebar('SHF_217',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/239.png" id="SHF_239" data-flag="@X" onclick="openSidebar('SHF_239',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/248.png" id="SHF_248" data-flag="@X" onclick="openSidebar('SHF_248',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/183.png" id="SHF_183" data-flag="@X" onclick="openSidebar('SHF_183',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/205.png" id="SHF_205" data-flag="@X" onclick="openSidebar('SHF_205',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/214.png" id="SHF_214" data-flag="@X" onclick="openSidebar('SHF_214',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/233.png" id="SHF_233" data-flag="@X" onclick="openSidebar('SHF_233',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/249.png" id="SHF_249" data-flag="@X" onclick="openSidebar('SHF_249',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/191.png" id="SHF_191" data-flag="@X" onclick="openSidebar('SHF_191',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/204.png" id="SHF_204" data-flag="@X" onclick="openSidebar('SHF_204',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/222.png" id="SHF_222" data-flag="@X" onclick="openSidebar('SHF_222',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/236.png" id="SHF_236" data-flag="@X" onclick="openSidebar('SHF_236',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/245.png" id="SHF_245" data-flag="@X" onclick="openSidebar('SHF_245',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/185.png" id="SHF_185" data-flag="@X" onclick="openSidebar('SHF_185',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/196.png" id="SHF_196" data-flag="@X" onclick="openSidebar('SHF_196',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/220.png" id="SHF_220" data-flag="@X" onclick="openSidebar('SHF_220',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/225.png" id="SHF_225" data-flag="@X" onclick="openSidebar('SHF_225',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/247.png" id="SHF_247" data-flag="@X" onclick="openSidebar('SHF_247',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/181.png" id="SHF_181" data-flag="@X" onclick="openSidebar('SHF_181',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/202.png" id="SHF_202" data-flag="@X" onclick="openSidebar('SHF_202',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/221.png" id="SHF_221" data-flag="@X" onclick="openSidebar('SHF_221',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/230.png" id="SHF_230" data-flag="@X" onclick="openSidebar('SHF_230',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/243.png" id="SHF_243" data-flag="@X" onclick="openSidebar('SHF_243',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/188.png" id="SHF_188" data-flag="@X" onclick="openSidebar('SHF_188',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/203.png" id="SHF_203" data-flag="@X" onclick="openSidebar('SHF_203',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/215.png" id="SHF_215" data-flag="@X" onclick="openSidebar('SHF_215',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/234.png" id="SHF_234" data-flag="@X" onclick="openSidebar('SHF_234',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/242.png" id="SHF_242" data-flag="@X" onclick="openSidebar('SHF_242',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/189.png" id="SHF_189" data-flag="@X" onclick="openSidebar('SHF_189',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/207.png" id="SHF_207" data-flag="@X" onclick="openSidebar('SHF_207',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/211.png" id="SHF_211" data-flag="@X" onclick="openSidebar('SHF_211',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/232.png" id="SHF_232" data-flag="@X" onclick="openSidebar('SHF_232',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/246.png" id="SHF_246" data-flag="@X" onclick="openSidebar('SHF_246',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/195.png" id="SHF_195" data-flag="@X" onclick="openSidebar('SHF_195',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/231.png" id="SHF_231" data-flag="@X" onclick="openSidebar('SHF_231',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/252.png" id="SHF_252" data-flag="@X" onclick="openSidebar('SHF_252',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/241.png" id="SHF_241" data-flag="@X" onclick="openSidebar('SHF_241',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/SHF-files/img/0.png" id="SHF_0" data-flag="@X" onclick="openSidebar('SHF_0',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/1.png" id="SHF_1" data-flag="@X" onclick="openSidebar('SHF_1',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/3.png" id="SHF_3" data-flag="@X" onclick="openSidebar('SHF_3',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/5.png" id="SHF_5" data-flag="@X" onclick="openSidebar('SHF_5',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/8.png" id="SHF_8" data-flag="@X" onclick="openSidebar('SHF_8',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/22.png" id="SHF_22" data-flag="@X" onclick="openSidebar('SHF_22',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/2.png" id="SHF_2" data-flag="@X" onclick="openSidebar('SHF_2',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/34.png" id="SHF_34" data-flag="@X" onclick="openSidebar('SHF_34',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/4.png" id="SHF_4" data-flag="@X" onclick="openSidebar('SHF_4',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/7.png" id="SHF_7" data-flag="@X" onclick="openSidebar('SHF_7',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/25.png" id="SHF_25" data-flag="@X" onclick="openSidebar('SHF_25',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/31.png" id="SHF_31" data-flag="@X" onclick="openSidebar('SHF_31',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/35.png" id="SHF_35" data-flag="@X" onclick="openSidebar('SHF_35',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/43.png" id="SHF_43" data-flag="@X" onclick="openSidebar('SHF_43',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/6.png" id="SHF_6" data-flag="@X" onclick="openSidebar('SHF_6',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/20.png" id="SHF_20" data-flag="@X" onclick="openSidebar('SHF_20',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/28.png" id="SHF_28" data-flag="@X" onclick="openSidebar('SHF_28',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/32.png" id="SHF_32" data-flag="@X" onclick="openSidebar('SHF_32',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/40.png" id="SHF_40" data-flag="@X" onclick="openSidebar('SHF_40',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/45.png" id="SHF_45" data-flag="@X" onclick="openSidebar('SHF_45',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/21.png" id="SHF_21" data-flag="@X" onclick="openSidebar('SHF_21',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/30.png" id="SHF_30" data-flag="@X" onclick="openSidebar('SHF_30',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/33.png" id="SHF_33" data-flag="@X" onclick="openSidebar('SHF_33',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/38.png" id="SHF_38" data-flag="@X" onclick="openSidebar('SHF_38',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/48.png" id="SHF_48" data-flag="@X" onclick="openSidebar('SHF_48',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/23.png" id="SHF_23" data-flag="@X" onclick="openSidebar('SHF_23',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/26.png" id="SHF_26" data-flag="@X" onclick="openSidebar('SHF_26',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/37.png" id="SHF_37" data-flag="@X" onclick="openSidebar('SHF_37',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/39.png" id="SHF_39" data-flag="@X" onclick="openSidebar('SHF_39',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/46.png" id="SHF_46" data-flag="@X" onclick="openSidebar('SHF_46',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/24.png" id="SHF_24" data-flag="@X" onclick="openSidebar('SHF_24',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/29.png" id="SHF_29" data-flag="@X" onclick="openSidebar('SHF_29',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/36.png" id="SHF_36" data-flag="@X" onclick="openSidebar('SHF_36',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/41.png" id="SHF_41" data-flag="@X" onclick="openSidebar('SHF_41',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/49.png" id="SHF_49" data-flag="@X" onclick="openSidebar('SHF_49',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/82.png" id="SHF_82" data-flag="@X" onclick="openSidebar('SHF_82',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/27.png" id="SHF_27" data-flag="@X" onclick="openSidebar('SHF_27',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/110.png" id="SHF_110" data-flag="@X" onclick="openSidebar('SHF_110',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/42.png" id="SHF_42" data-flag="@X" onclick="openSidebar('SHF_42',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/44.png" id="SHF_44" data-flag="@X" onclick="openSidebar('SHF_44',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/87.png" id="SHF_87" data-flag="@X" onclick="openSidebar('SHF_87',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/96.png" id="SHF_96" data-flag="@X" onclick="openSidebar('SHF_96',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/120.png" id="SHF_120" data-flag="@X" onclick="openSidebar('SHF_120',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/128.png" id="SHF_128" data-flag="@X" onclick="openSidebar('SHF_128',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/47.png" id="SHF_47" data-flag="@X" onclick="openSidebar('SHF_47',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/89.png" id="SHF_89" data-flag="@X" onclick="openSidebar('SHF_89',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/97.png" id="SHF_97" data-flag="@X" onclick="openSidebar('SHF_97',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/114.png" id="SHF_114" data-flag="@X" onclick="openSidebar('SHF_114',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/125.png" id="SHF_125" data-flag="@X" onclick="openSidebar('SHF_125',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/149.png" id="SHF_149" data-flag="@X" onclick="openSidebar('SHF_149',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/88.png" id="SHF_88" data-flag="@X" onclick="openSidebar('SHF_88',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/101.png" id="SHF_101" data-flag="@X" onclick="openSidebar('SHF_101',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/113.png" id="SHF_113" data-flag="@X" onclick="openSidebar('SHF_113',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/133.png" id="SHF_133" data-flag="@X" onclick="openSidebar('SHF_133',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/137.png" id="SHF_137" data-flag="@X" onclick="openSidebar('SHF_137',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/83.png" id="SHF_83" data-flag="@X" onclick="openSidebar('SHF_83',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/100.png" id="SHF_100" data-flag="@X" onclick="openSidebar('SHF_100',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/109.png" id="SHF_109" data-flag="@X" onclick="openSidebar('SHF_109',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/126.png" id="SHF_126" data-flag="@X" onclick="openSidebar('SHF_126',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/143.png" id="SHF_143" data-flag="@X" onclick="openSidebar('SHF_143',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/80.png" id="SHF_80" data-flag="@X" onclick="openSidebar('SHF_80',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/95.png" id="SHF_95" data-flag="@X" onclick="openSidebar('SHF_95',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/112.png" id="SHF_112" data-flag="@X" onclick="openSidebar('SHF_112',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/131.png" id="SHF_131" data-flag="@X" onclick="openSidebar('SHF_131',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/147.png" id="SHF_147" data-flag="@X" onclick="openSidebar('SHF_147',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/91.png" id="SHF_91" data-flag="@X" onclick="openSidebar('SHF_91',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/99.png" id="SHF_99" data-flag="@X" onclick="openSidebar('SHF_99',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/119.png" id="SHF_119" data-flag="@X" onclick="openSidebar('SHF_119',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/124.png" id="SHF_124" data-flag="@X" onclick="openSidebar('SHF_124',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/142.png" id="SHF_142" data-flag="@X" onclick="openSidebar('SHF_142',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/92.png" id="SHF_92" data-flag="@X" onclick="openSidebar('SHF_92',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/104.png" id="SHF_104" data-flag="@X" onclick="openSidebar('SHF_104',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/121.png" id="SHF_121" data-flag="@X" onclick="openSidebar('SHF_121',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/132.png" id="SHF_132" data-flag="@X" onclick="openSidebar('SHF_132',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/144.png" id="SHF_144" data-flag="@X" onclick="openSidebar('SHF_144',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/84.png" id="SHF_84" data-flag="@X" onclick="openSidebar('SHF_84',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/106.png" id="SHF_106" data-flag="@X" onclick="openSidebar('SHF_106',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/117.png" id="SHF_117" data-flag="@X" onclick="openSidebar('SHF_117',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/134.png" id="SHF_134" data-flag="@X" onclick="openSidebar('SHF_134',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/145.png" id="SHF_145" data-flag="@X" onclick="openSidebar('SHF_145',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/90.png" id="SHF_90" data-flag="@X" onclick="openSidebar('SHF_90',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/103.png" id="SHF_103" data-flag="@X" onclick="openSidebar('SHF_103',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/115.png" id="SHF_115" data-flag="@X" onclick="openSidebar('SHF_115',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/129.png" id="SHF_129" data-flag="@X" onclick="openSidebar('SHF_129',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/139.png" id="SHF_139" data-flag="@X" onclick="openSidebar('SHF_139',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/85.png" id="SHF_85" data-flag="@X" onclick="openSidebar('SHF_85',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/102.png" id="SHF_102" data-flag="@X" onclick="openSidebar('SHF_102',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/111.png" id="SHF_111" data-flag="@X" onclick="openSidebar('SHF_111',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/135.png" id="SHF_135" data-flag="@X" onclick="openSidebar('SHF_135',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/136.png" id="SHF_136" data-flag="@X" onclick="openSidebar('SHF_136',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/93.png" id="SHF_93" data-flag="@X" onclick="openSidebar('SHF_93',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/94.png" id="SHF_94" data-flag="@X" onclick="openSidebar('SHF_94',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/116.png" id="SHF_116" data-flag="@X" onclick="openSidebar('SHF_116',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/127.png" id="SHF_127" data-flag="@X" onclick="openSidebar('SHF_127',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/140.png" id="SHF_140" data-flag="@X" onclick="openSidebar('SHF_140',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/86.png" id="SHF_86" data-flag="@X" onclick="openSidebar('SHF_86',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/98.png" id="SHF_98" data-flag="@X" onclick="openSidebar('SHF_98',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/108.png" id="SHF_108" data-flag="@X" onclick="openSidebar('SHF_108',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/122.png" id="SHF_122" data-flag="@X" onclick="openSidebar('SHF_122',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/141.png" id="SHF_141" data-flag="@X" onclick="openSidebar('SHF_141',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/81.png" id="SHF_81" data-flag="@X" onclick="openSidebar('SHF_81',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/107.png" id="SHF_107" data-flag="@X" onclick="openSidebar('SHF_107',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/118.png" id="SHF_118" data-flag="@X" onclick="openSidebar('SHF_118',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/130.png" id="SHF_130" data-flag="@X" onclick="openSidebar('SHF_130',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/146.png" id="SHF_146" data-flag="@X" onclick="openSidebar('SHF_146',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/192.png" id="SHF_192" data-flag="@X" onclick="openSidebar('SHF_192',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/105.png" id="SHF_105" data-flag="@X" onclick="openSidebar('SHF_105',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/212.png" id="SHF_212" data-flag="@X" onclick="openSidebar('SHF_212',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/123.png" id="SHF_123" data-flag="@X" onclick="openSidebar('SHF_123',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/148.png" id="SHF_148" data-flag="@X" onclick="openSidebar('SHF_148',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/190.png" id="SHF_190" data-flag="@X" onclick="openSidebar('SHF_190',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/206.png" id="SHF_206" data-flag="@X" onclick="openSidebar('SHF_206',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/223.png" id="SHF_223" data-flag="@X" onclick="openSidebar('SHF_223',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/228.png" id="SHF_228" data-flag="@X" onclick="openSidebar('SHF_228',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/138.png" id="SHF_138" data-flag="@X" onclick="openSidebar('SHF_138',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/187.png" id="SHF_187" data-flag="@X" onclick="openSidebar('SHF_187',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/201.png" id="SHF_201" data-flag="@X" onclick="openSidebar('SHF_201',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/218.png" id="SHF_218" data-flag="@X" onclick="openSidebar('SHF_218',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/227.png" id="SHF_227" data-flag="@X" onclick="openSidebar('SHF_227',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/250.png" id="SHF_250" data-flag="@X" onclick="openSidebar('SHF_250',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/186.png" id="SHF_186" data-flag="@X" onclick="openSidebar('SHF_186',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/200.png" id="SHF_200" data-flag="@X" onclick="openSidebar('SHF_200',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/224.png" id="SHF_224" data-flag="@X" onclick="openSidebar('SHF_224',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/229.png" id="SHF_229" data-flag="@X" onclick="openSidebar('SHF_229',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/254.png" id="SHF_254" data-flag="@X" onclick="openSidebar('SHF_254',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/180.png" id="SHF_180" data-flag="@X" onclick="openSidebar('SHF_180',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/208.png" id="SHF_208" data-flag="@X" onclick="openSidebar('SHF_208',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/210.png" id="SHF_210" data-flag="@X" onclick="openSidebar('SHF_210',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/237.png" id="SHF_237" data-flag="@X" onclick="openSidebar('SHF_237',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/240.png" id="SHF_240" data-flag="@X" onclick="openSidebar('SHF_240',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/182.png" id="SHF_182" data-flag="@X" onclick="openSidebar('SHF_182',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/209.png" id="SHF_209" data-flag="@X" onclick="openSidebar('SHF_209',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/216.png" id="SHF_216" data-flag="@X" onclick="openSidebar('SHF_216',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/238.png" id="SHF_238" data-flag="@X" onclick="openSidebar('SHF_238',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/251.png" id="SHF_251" data-flag="@X" onclick="openSidebar('SHF_251',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/184.png" id="SHF_184" data-flag="@X" onclick="openSidebar('SHF_184',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/199.png" id="SHF_199" data-flag="@X" onclick="openSidebar('SHF_199',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/219.png" id="SHF_219" data-flag="@X" onclick="openSidebar('SHF_219',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/235.png" id="SHF_235" data-flag="@X" onclick="openSidebar('SHF_235',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/244.png" id="SHF_244" data-flag="@X" onclick="openSidebar('SHF_244',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/193.png" id="SHF_193" data-flag="@X" onclick="openSidebar('SHF_193',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/197.png" id="SHF_197" data-flag="@X" onclick="openSidebar('SHF_197',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/213.png" id="SHF_213" data-flag="@X" onclick="openSidebar('SHF_213',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/226.png" id="SHF_226" data-flag="@X" onclick="openSidebar('SHF_226',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/253.png" id="SHF_253" data-flag="@X" onclick="openSidebar('SHF_253',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/194.png" id="SHF_194" data-flag="@X" onclick="openSidebar('SHF_194',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/198.png" id="SHF_198" data-flag="@X" onclick="openSidebar('SHF_198',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/217.png" id="SHF_217" data-flag="@X" onclick="openSidebar('SHF_217',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/239.png" id="SHF_239" data-flag="@X" onclick="openSidebar('SHF_239',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/248.png" id="SHF_248" data-flag="@X" onclick="openSidebar('SHF_248',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/183.png" id="SHF_183" data-flag="@X" onclick="openSidebar('SHF_183',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/205.png" id="SHF_205" data-flag="@X" onclick="openSidebar('SHF_205',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/214.png" id="SHF_214" data-flag="@X" onclick="openSidebar('SHF_214',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/233.png" id="SHF_233" data-flag="@X" onclick="openSidebar('SHF_233',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/249.png" id="SHF_249" data-flag="@X" onclick="openSidebar('SHF_249',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/191.png" id="SHF_191" data-flag="@X" onclick="openSidebar('SHF_191',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/204.png" id="SHF_204" data-flag="@X" onclick="openSidebar('SHF_204',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/222.png" id="SHF_222" data-flag="@X" onclick="openSidebar('SHF_222',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/236.png" id="SHF_236" data-flag="@X" onclick="openSidebar('SHF_236',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/245.png" id="SHF_245" data-flag="@X" onclick="openSidebar('SHF_245',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/185.png" id="SHF_185" data-flag="@X" onclick="openSidebar('SHF_185',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/196.png" id="SHF_196" data-flag="@X" onclick="openSidebar('SHF_196',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/220.png" id="SHF_220" data-flag="@X" onclick="openSidebar('SHF_220',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/225.png" id="SHF_225" data-flag="@X" onclick="openSidebar('SHF_225',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/247.png" id="SHF_247" data-flag="@X" onclick="openSidebar('SHF_247',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/181.png" id="SHF_181" data-flag="@X" onclick="openSidebar('SHF_181',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/202.png" id="SHF_202" data-flag="@X" onclick="openSidebar('SHF_202',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/221.png" id="SHF_221" data-flag="@X" onclick="openSidebar('SHF_221',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/230.png" id="SHF_230" data-flag="@X" onclick="openSidebar('SHF_230',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/243.png" id="SHF_243" data-flag="@X" onclick="openSidebar('SHF_243',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/188.png" id="SHF_188" data-flag="@X" onclick="openSidebar('SHF_188',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/203.png" id="SHF_203" data-flag="@X" onclick="openSidebar('SHF_203',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/215.png" id="SHF_215" data-flag="@X" onclick="openSidebar('SHF_215',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/234.png" id="SHF_234" data-flag="@X" onclick="openSidebar('SHF_234',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/242.png" id="SHF_242" data-flag="@X" onclick="openSidebar('SHF_242',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/189.png" id="SHF_189" data-flag="@X" onclick="openSidebar('SHF_189',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/207.png" id="SHF_207" data-flag="@X" onclick="openSidebar('SHF_207',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/211.png" id="SHF_211" data-flag="@X" onclick="openSidebar('SHF_211',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/232.png" id="SHF_232" data-flag="@X" onclick="openSidebar('SHF_232',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/246.png" id="SHF_246" data-flag="@X" onclick="openSidebar('SHF_246',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/195.png" id="SHF_195" data-flag="@X" onclick="openSidebar('SHF_195',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/231.png" id="SHF_231" data-flag="@X" onclick="openSidebar('SHF_231',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/252.png" id="SHF_252" data-flag="@X" onclick="openSidebar('SHF_252',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/241.png" id="SHF_241" data-flag="@X" onclick="openSidebar('SHF_241',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/9.png" id="SHF_9" data-flag="@X" onclick="openSidebar('SHF_9',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/52.png" id="SHF_52" data-flag="@X" onclick="openSidebar('SHF_52',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/12.png" id="SHF_12" data-flag="@X" onclick="openSidebar('SHF_12',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/57.png" id="SHF_57" data-flag="@X" onclick="openSidebar('SHF_57',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/59.png" id="SHF_59" data-flag="@X" onclick="openSidebar('SHF_59',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/51.png" id="SHF_51" data-flag="@X" onclick="openSidebar('SHF_51',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/53.png" id="SHF_53" data-flag="@X" onclick="openSidebar('SHF_53',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/55.png" id="SHF_55" data-flag="@X" onclick="openSidebar('SHF_55',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/56.png" id="SHF_56" data-flag="@X" onclick="openSidebar('SHF_56',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/58.png" id="SHF_58" data-flag="@X" onclick="openSidebar('SHF_58',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/50.png" id="SHF_50" data-flag="@X" onclick="openSidebar('SHF_50',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/153.png" id="SHF_153" data-flag="@X" onclick="openSidebar('SHF_153',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/54.png" id="SHF_54" data-flag="@X" onclick="openSidebar('SHF_54',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/156.png" id="SHF_156" data-flag="@X" onclick="openSidebar('SHF_156',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/158.png" id="SHF_158" data-flag="@X" onclick="openSidebar('SHF_158',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/151.png" id="SHF_151" data-flag="@X" onclick="openSidebar('SHF_151',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/152.png" id="SHF_152" data-flag="@X" onclick="openSidebar('SHF_152',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/155.png" id="SHF_155" data-flag="@X" onclick="openSidebar('SHF_155',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/157.png" id="SHF_157" data-flag="@X" onclick="openSidebar('SHF_157',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/159.png" id="SHF_159" data-flag="@X" onclick="openSidebar('SHF_159',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/150.png" id="SHF_150" data-flag="@X" onclick="openSidebar('SHF_150',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/154.png" id="SHF_154" data-flag="@X" onclick="openSidebar('SHF_154',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/10.png" id="SHF_10" data-flag="@X" onclick="openSidebar('SHF_10',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/66.png" id="SHF_66" data-flag="@X" onclick="openSidebar('SHF_66',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/62.png" id="SHF_62" data-flag="@X" onclick="openSidebar('SHF_62',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/15.png" id="SHF_15" data-flag="@X" onclick="openSidebar('SHF_15',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/17.png" id="SHF_17" data-flag="@X" onclick="openSidebar('SHF_17',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/60.png" id="SHF_60" data-flag="@X" onclick="openSidebar('SHF_60',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/67.png" id="SHF_67" data-flag="@X" onclick="openSidebar('SHF_67',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/63.png" id="SHF_63" data-flag="@X" onclick="openSidebar('SHF_63',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/69.png" id="SHF_69" data-flag="@X" onclick="openSidebar('SHF_69',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/64.png" id="SHF_64" data-flag="@X" onclick="openSidebar('SHF_64',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/61.png" id="SHF_61" data-flag="@X" onclick="openSidebar('SHF_61',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/166.png" id="SHF_166" data-flag="@X" onclick="openSidebar('SHF_166',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/163.png" id="SHF_163" data-flag="@X" onclick="openSidebar('SHF_163',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/68.png" id="SHF_68" data-flag="@X" onclick="openSidebar('SHF_68',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/65.png" id="SHF_65" data-flag="@X" onclick="openSidebar('SHF_65',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/161.png" id="SHF_161" data-flag="@X" onclick="openSidebar('SHF_161',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/167.png" id="SHF_167" data-flag="@X" onclick="openSidebar('SHF_167',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/162.png" id="SHF_162" data-flag="@X" onclick="openSidebar('SHF_162',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/168.png" id="SHF_168" data-flag="@X" onclick="openSidebar('SHF_168',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/164.png" id="SHF_164" data-flag="@X" onclick="openSidebar('SHF_164',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/160.png" id="SHF_160" data-flag="@X" onclick="openSidebar('SHF_160',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/169.png" id="SHF_169" data-flag="@X" onclick="openSidebar('SHF_169',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/165.png" id="SHF_165" data-flag="@X" onclick="openSidebar('SHF_165',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/11.png" id="SHF_11" data-flag="@X" onclick="openSidebar('SHF_11',true)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/13.png" id="SHF_13" data-flag="@X" onclick="openSidebar('SHF_13',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/14.png" id="SHF_14" data-flag="@X" onclick="openSidebar('SHF_14',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/16.png" id="SHF_16" data-flag="@X" onclick="openSidebar('SHF_16',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/9.png" id="SHF_9" data-flag="@X" onclick="openSidebar('SHF_9',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/52.png" id="SHF_52" data-flag="@X" onclick="openSidebar('SHF_52',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/12.png" id="SHF_12" data-flag="@X" onclick="openSidebar('SHF_12',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/57.png" id="SHF_57" data-flag="@X" onclick="openSidebar('SHF_57',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/59.png" id="SHF_59" data-flag="@X" onclick="openSidebar('SHF_59',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/51.png" id="SHF_51" data-flag="@X" onclick="openSidebar('SHF_51',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/53.png" id="SHF_53" data-flag="@X" onclick="openSidebar('SHF_53',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/55.png" id="SHF_55" data-flag="@X" onclick="openSidebar('SHF_55',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/56.png" id="SHF_56" data-flag="@X" onclick="openSidebar('SHF_56',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/58.png" id="SHF_58" data-flag="@X" onclick="openSidebar('SHF_58',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/50.png" id="SHF_50" data-flag="@X" onclick="openSidebar('SHF_50',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/153.png" id="SHF_153" data-flag="@X" onclick="openSidebar('SHF_153',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/54.png" id="SHF_54" data-flag="@X" onclick="openSidebar('SHF_54',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/156.png" id="SHF_156" data-flag="@X" onclick="openSidebar('SHF_156',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/158.png" id="SHF_158" data-flag="@X" onclick="openSidebar('SHF_158',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/151.png" id="SHF_151" data-flag="@X" onclick="openSidebar('SHF_151',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/152.png" id="SHF_152" data-flag="@X" onclick="openSidebar('SHF_152',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/155.png" id="SHF_155" data-flag="@X" onclick="openSidebar('SHF_155',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/157.png" id="SHF_157" data-flag="@X" onclick="openSidebar('SHF_157',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/159.png" id="SHF_159" data-flag="@X" onclick="openSidebar('SHF_159',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/150.png" id="SHF_150" data-flag="@X" onclick="openSidebar('SHF_150',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/154.png" id="SHF_154" data-flag="@X" onclick="openSidebar('SHF_154',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/10.png" id="SHF_10" data-flag="@X" onclick="openSidebar('SHF_10',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/66.png" id="SHF_66" data-flag="@X" onclick="openSidebar('SHF_66',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/62.png" id="SHF_62" data-flag="@X" onclick="openSidebar('SHF_62',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/15.png" id="SHF_15" data-flag="@X" onclick="openSidebar('SHF_15',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/17.png" id="SHF_17" data-flag="@X" onclick="openSidebar('SHF_17',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/60.png" id="SHF_60" data-flag="@X" onclick="openSidebar('SHF_60',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/67.png" id="SHF_67" data-flag="@X" onclick="openSidebar('SHF_67',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/63.png" id="SHF_63" data-flag="@X" onclick="openSidebar('SHF_63',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/69.png" id="SHF_69" data-flag="@X" onclick="openSidebar('SHF_69',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/64.png" id="SHF_64" data-flag="@X" onclick="openSidebar('SHF_64',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/61.png" id="SHF_61" data-flag="@X" onclick="openSidebar('SHF_61',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/166.png" id="SHF_166" data-flag="@X" onclick="openSidebar('SHF_166',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/163.png" id="SHF_163" data-flag="@X" onclick="openSidebar('SHF_163',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/68.png" id="SHF_68" data-flag="@X" onclick="openSidebar('SHF_68',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/65.png" id="SHF_65" data-flag="@X" onclick="openSidebar('SHF_65',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/161.png" id="SHF_161" data-flag="@X" onclick="openSidebar('SHF_161',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/167.png" id="SHF_167" data-flag="@X" onclick="openSidebar('SHF_167',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/162.png" id="SHF_162" data-flag="@X" onclick="openSidebar('SHF_162',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/168.png" id="SHF_168" data-flag="@X" onclick="openSidebar('SHF_168',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/164.png" id="SHF_164" data-flag="@X" onclick="openSidebar('SHF_164',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/160.png" id="SHF_160" data-flag="@X" onclick="openSidebar('SHF_160',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/169.png" id="SHF_169" data-flag="@X" onclick="openSidebar('SHF_169',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/165.png" id="SHF_165" data-flag="@X" onclick="openSidebar('SHF_165',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/11.png" id="SHF_11" data-flag="@X" onclick="openSidebar('SHF_11',true)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/13.png" id="SHF_13" data-flag="@X" onclick="openSidebar('SHF_13',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/14.png" id="SHF_14" data-flag="@X" onclick="openSidebar('SHF_14',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/16.png" id="SHF_16" data-flag="@X" onclick="openSidebar('SHF_16',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/19.png" id="SHF_19" data-flag="@X" onclick="openSidebar('SHF_19',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/SHF-files/img/18_back.png" alt="/sets/SHF-files/img/18_front.png" id="SHF_18" data-flag="@XD" onclick="openSidebar('SHF_18',false)"><button class="flip-btn" onclick="imgFlip('SHF_18')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/74.png" id="SHF_74" data-flag="@X" onclick="openSidebar('SHF_74',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/71.png" id="SHF_71" data-flag="@X" onclick="openSidebar('SHF_71',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/70.png" id="SHF_70" data-flag="@X" onclick="openSidebar('SHF_70',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/72.png" id="SHF_72" data-flag="@X" onclick="openSidebar('SHF_72',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/73.png" id="SHF_73" data-flag="@X" onclick="openSidebar('SHF_73',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/175.png" id="SHF_175" data-flag="@X" onclick="openSidebar('SHF_175',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/170.png" id="SHF_170" data-flag="@X" onclick="openSidebar('SHF_170',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/171.png" id="SHF_171" data-flag="@X" onclick="openSidebar('SHF_171',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/173.png" id="SHF_173" data-flag="@X" onclick="openSidebar('SHF_173',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/174.png" id="SHF_174" data-flag="@X" onclick="openSidebar('SHF_174',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/172.png" id="SHF_172" data-flag="@X" onclick="openSidebar('SHF_172',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/255.png" id="SHF_255" data-flag="@X" onclick="openSidebar('SHF_255',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/258.png" id="SHF_258" data-flag="@X" onclick="openSidebar('SHF_258',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/259.png" id="SHF_259" data-flag="@X" onclick="openSidebar('SHF_259',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/256.png" id="SHF_256" data-flag="@X" onclick="openSidebar('SHF_256',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/257.png" id="SHF_257" data-flag="@X" onclick="openSidebar('SHF_257',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/261.png" id="SHF_261" data-flag="@X" onclick="openSidebar('SHF_261',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/262.png" id="SHF_262" data-flag="@X" onclick="openSidebar('SHF_262',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/263.png" id="SHF_263" data-flag="@X" onclick="openSidebar('SHF_263',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/264.png" id="SHF_264" data-flag="@X" onclick="openSidebar('SHF_264',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/265.png" id="SHF_265" data-flag="@X" onclick="openSidebar('SHF_265',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/266.png" id="SHF_266" data-flag="@X" onclick="openSidebar('SHF_266',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/269.png" id="SHF_269" data-flag="@X" onclick="openSidebar('SHF_269',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/267.png" id="SHF_267" data-flag="@X" onclick="openSidebar('SHF_267',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/270.png" id="SHF_270" data-flag="@X" onclick="openSidebar('SHF_270',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/268.png" id="SHF_268" data-flag="@X" onclick="openSidebar('SHF_268',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/76.png" id="SHF_76" data-flag="@X" onclick="openSidebar('SHF_76',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/79.png" id="SHF_79" data-flag="@X" onclick="openSidebar('SHF_79',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/78.png" id="SHF_78" data-flag="@X" onclick="openSidebar('SHF_78',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/77.png" id="SHF_77" data-flag="@X" onclick="openSidebar('SHF_77',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/75.png" id="SHF_75" data-flag="@X" onclick="openSidebar('SHF_75',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/176.png" id="SHF_176" data-flag="@X" onclick="openSidebar('SHF_176',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/178.png" id="SHF_178" data-flag="@X" onclick="openSidebar('SHF_178',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/179.png" id="SHF_179" data-flag="@X" onclick="openSidebar('SHF_179',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/177.png" id="SHF_177" data-flag="@X" onclick="openSidebar('SHF_177',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/260.png" id="SHF_260" data-flag="@X" onclick="openSidebar('SHF_260',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/271.png" id="SHF_271" data-flag="@X" onclick="openSidebar('SHF_271',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/272.png" id="SHF_272" data-flag="@X" onclick="openSidebar('SHF_272',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/273.png" id="SHF_273" data-flag="@X" onclick="openSidebar('SHF_273',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/274.png" id="SHF_274" data-flag="@X" onclick="openSidebar('SHF_274',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/275.png" id="SHF_275" data-flag="@X" onclick="openSidebar('SHF_275',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/276.png" id="SHF_276" data-flag="@X" onclick="openSidebar('SHF_276',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/19.png" id="SHF_19" data-flag="@X" onclick="openSidebar('SHF_19',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/SHF-files/img/18_back.png" alt="sets/SHF-files/img/18_front.png" id="SHF_18" data-flag="@XD" onclick="openSidebar('SHF_18',false)"><button class="flip-btn" onclick="imgFlip('SHF_18')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/74.png" id="SHF_74" data-flag="@X" onclick="openSidebar('SHF_74',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/71.png" id="SHF_71" data-flag="@X" onclick="openSidebar('SHF_71',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/70.png" id="SHF_70" data-flag="@X" onclick="openSidebar('SHF_70',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/72.png" id="SHF_72" data-flag="@X" onclick="openSidebar('SHF_72',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/73.png" id="SHF_73" data-flag="@X" onclick="openSidebar('SHF_73',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/175.png" id="SHF_175" data-flag="@X" onclick="openSidebar('SHF_175',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/170.png" id="SHF_170" data-flag="@X" onclick="openSidebar('SHF_170',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/171.png" id="SHF_171" data-flag="@X" onclick="openSidebar('SHF_171',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/173.png" id="SHF_173" data-flag="@X" onclick="openSidebar('SHF_173',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/174.png" id="SHF_174" data-flag="@X" onclick="openSidebar('SHF_174',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/172.png" id="SHF_172" data-flag="@X" onclick="openSidebar('SHF_172',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/255.png" id="SHF_255" data-flag="@X" onclick="openSidebar('SHF_255',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/258.png" id="SHF_258" data-flag="@X" onclick="openSidebar('SHF_258',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/259.png" id="SHF_259" data-flag="@X" onclick="openSidebar('SHF_259',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/256.png" id="SHF_256" data-flag="@X" onclick="openSidebar('SHF_256',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/257.png" id="SHF_257" data-flag="@X" onclick="openSidebar('SHF_257',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/261.png" id="SHF_261" data-flag="@X" onclick="openSidebar('SHF_261',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/262.png" id="SHF_262" data-flag="@X" onclick="openSidebar('SHF_262',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/263.png" id="SHF_263" data-flag="@X" onclick="openSidebar('SHF_263',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/264.png" id="SHF_264" data-flag="@X" onclick="openSidebar('SHF_264',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/265.png" id="SHF_265" data-flag="@X" onclick="openSidebar('SHF_265',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/266.png" id="SHF_266" data-flag="@X" onclick="openSidebar('SHF_266',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/269.png" id="SHF_269" data-flag="@X" onclick="openSidebar('SHF_269',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/267.png" id="SHF_267" data-flag="@X" onclick="openSidebar('SHF_267',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/270.png" id="SHF_270" data-flag="@X" onclick="openSidebar('SHF_270',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/268.png" id="SHF_268" data-flag="@X" onclick="openSidebar('SHF_268',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/76.png" id="SHF_76" data-flag="@X" onclick="openSidebar('SHF_76',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/79.png" id="SHF_79" data-flag="@X" onclick="openSidebar('SHF_79',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/78.png" id="SHF_78" data-flag="@X" onclick="openSidebar('SHF_78',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/77.png" id="SHF_77" data-flag="@X" onclick="openSidebar('SHF_77',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/75.png" id="SHF_75" data-flag="@X" onclick="openSidebar('SHF_75',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/176.png" id="SHF_176" data-flag="@X" onclick="openSidebar('SHF_176',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/178.png" id="SHF_178" data-flag="@X" onclick="openSidebar('SHF_178',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/179.png" id="SHF_179" data-flag="@X" onclick="openSidebar('SHF_179',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/177.png" id="SHF_177" data-flag="@X" onclick="openSidebar('SHF_177',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/260.png" id="SHF_260" data-flag="@X" onclick="openSidebar('SHF_260',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/271.png" id="SHF_271" data-flag="@X" onclick="openSidebar('SHF_271',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/272.png" id="SHF_272" data-flag="@X" onclick="openSidebar('SHF_272',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/273.png" id="SHF_273" data-flag="@X" onclick="openSidebar('SHF_273',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/274.png" id="SHF_274" data-flag="@X" onclick="openSidebar('SHF_274',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/275.png" id="SHF_275" data-flag="@X" onclick="openSidebar('SHF_275',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/276.png" id="SHF_276" data-flag="@X" onclick="openSidebar('SHF_276',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
 				<div id="token" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/279.png" id="SHF_279" data-flag="@X" onclick="openSidebar('SHF_279',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/278.png" id="SHF_278" data-flag="@X" onclick="openSidebar('SHF_278',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/277.png" id="SHF_277" data-flag="@X" onclick="openSidebar('SHF_277',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/280.png" id="SHF_280" data-flag="@X" onclick="openSidebar('SHF_280',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/282.png" id="SHF_282" data-flag="@X" onclick="openSidebar('SHF_282',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/287.png" id="SHF_287" data-flag="@X" onclick="openSidebar('SHF_287',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/288.png" id="SHF_288" data-flag="@X" onclick="openSidebar('SHF_288',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/281.png" id="SHF_281" data-flag="@X" onclick="openSidebar('SHF_281',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/283.png" id="SHF_283" data-flag="@X" onclick="openSidebar('SHF_283',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/289.png" id="SHF_289" data-flag="@X" onclick="openSidebar('SHF_289',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/284.png" id="SHF_284" data-flag="@X" onclick="openSidebar('SHF_284',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/290.png" id="SHF_290" data-flag="@X" onclick="openSidebar('SHF_290',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/286.png" id="SHF_286" data-flag="@X" onclick="openSidebar('SHF_286',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/SHF-files/img/285.png" id="SHF_285" data-flag="@X" onclick="openSidebar('SHF_285',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/279.png" id="SHF_279" data-flag="@X" onclick="openSidebar('SHF_279',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/278.png" id="SHF_278" data-flag="@X" onclick="openSidebar('SHF_278',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/277.png" id="SHF_277" data-flag="@X" onclick="openSidebar('SHF_277',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/280.png" id="SHF_280" data-flag="@X" onclick="openSidebar('SHF_280',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/282.png" id="SHF_282" data-flag="@X" onclick="openSidebar('SHF_282',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/287.png" id="SHF_287" data-flag="@X" onclick="openSidebar('SHF_287',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/288.png" id="SHF_288" data-flag="@X" onclick="openSidebar('SHF_288',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/281.png" id="SHF_281" data-flag="@X" onclick="openSidebar('SHF_281',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/283.png" id="SHF_283" data-flag="@X" onclick="openSidebar('SHF_283',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/289.png" id="SHF_289" data-flag="@X" onclick="openSidebar('SHF_289',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/284.png" id="SHF_284" data-flag="@X" onclick="openSidebar('SHF_284',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/290.png" id="SHF_290" data-flag="@X" onclick="openSidebar('SHF_290',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/286.png" id="SHF_286" data-flag="@X" onclick="openSidebar('SHF_286',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/SHF-files/img/285.png" id="SHF_285" data-flag="@X" onclick="openSidebar('SHF_285',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="SHF_e" data-flag="@E" onclick="openSidebar('SHF_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="SHF_er" data-flag="@E" onclick="openSidebar('SHF_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -668,13 +684,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -807,13 +823,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -967,16 +986,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -986,7 +1005,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

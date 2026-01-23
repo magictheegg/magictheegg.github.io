@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/FAU-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/FAU-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>FAU visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,407 +181,420 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/FAU-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/FAU-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/FAU-files/logo.png">
+		<img class="logo" src="../sets/FAU-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/24_Honorbound.jpg" id="FAU_24_Honorbound" data-flag="@X" onclick="openSidebar('FAU_24_Honorbound',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/54_Connect the Dots.jpg" id="FAU_54_Connect the Dots" data-flag="@X" onclick="openSidebar('FAU_54_Connect the Dots',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/86_Bitter Stitcher.jpg" id="FAU_86_Bitter Stitcher" data-flag="@X" onclick="openSidebar('FAU_86_Bitter Stitcher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/142_Gibliver Shiver-Givers.jpg" id="FAU_142_Gibliver Shiver-Givers" data-flag="@X" onclick="openSidebar('FAU_142_Gibliver Shiver-Givers',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/187_Herald of the Pack.jpg" id="FAU_187_Herald of the Pack" data-flag="@X" onclick="openSidebar('FAU_187_Herald of the Pack',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/39_Tiny Heroine Totti.jpg" id="FAU_39_Tiny Heroine Totti" data-flag="@X" onclick="openSidebar('FAU_39_Tiny Heroine Totti',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/61_Herrea, Celestial Queen.jpg" id="FAU_61_Herrea, Celestial Queen" data-flag="@X" onclick="openSidebar('FAU_61_Herrea, Celestial Queen',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/122_Syl-Tirif, Palace of Sorrow.jpg" id="FAU_122_Syl-Tirif, Palace of Sorrow" data-flag="@X" onclick="openSidebar('FAU_122_Syl-Tirif, Palace of Sorrow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/153_Mirrorscale Dragon.jpg" id="FAU_153_Mirrorscale Dragon" data-flag="@X" onclick="openSidebar('FAU_153_Mirrorscale Dragon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/191_Lorilyf, Home-Tree.jpg" id="FAU_191_Lorilyf, Home-Tree" data-flag="@X" onclick="openSidebar('FAU_191_Lorilyf, Home-Tree',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/1_Affable Hound_back.jpg" alt="/sets/FAU-files/img/1_Affable Hound_front.jpg" id="FAU_1_Affable Hound" data-flag="@XD" onclick="openSidebar('FAU_1_Affable Hound',false)"><button class="flip-btn" onclick="imgFlip('FAU_1_Affable Hound')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/43_Aeriform.jpg" id="FAU_43_Aeriform" data-flag="@X" onclick="openSidebar('FAU_43_Aeriform',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/88_Blood Gold Guardian.jpg" id="FAU_88_Blood Gold Guardian" data-flag="@X" onclick="openSidebar('FAU_88_Blood Gold Guardian',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/127_Anarch Antics.jpg" id="FAU_127_Anarch Antics" data-flag="@X" onclick="openSidebar('FAU_127_Anarch Antics',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/174_Call of the Anima.jpg" id="FAU_174_Call of the Anima" data-flag="@X" onclick="openSidebar('FAU_174_Call of the Anima',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/5_Call of Simplicity.jpg" id="FAU_5_Call of Simplicity" data-flag="@X" onclick="openSidebar('FAU_5_Call of Simplicity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/44_Aetherscale Serpent.jpg" id="FAU_44_Aetherscale Serpent" data-flag="@X" onclick="openSidebar('FAU_44_Aetherscale Serpent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/90_Call of Necrosis.jpg" id="FAU_90_Call of Necrosis" data-flag="@X" onclick="openSidebar('FAU_90_Call of Necrosis',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/132_Burning at Castle Jhalach.jpg" id="FAU_132_Burning at Castle Jhalach" data-flag="@X" onclick="openSidebar('FAU_132_Burning at Castle Jhalach',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/181_Epic Triumph.jpg" id="FAU_181_Epic Triumph" data-flag="@X" onclick="openSidebar('FAU_181_Epic Triumph',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/7_Collective Fate.jpg" id="FAU_7_Collective Fate" data-flag="@X" onclick="openSidebar('FAU_7_Collective Fate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/48_Breach the Clouds.jpg" id="FAU_48_Breach the Clouds" data-flag="@X" onclick="openSidebar('FAU_48_Breach the Clouds',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/94_Crypt Mantle.jpg" id="FAU_94_Crypt Mantle" data-flag="@X" onclick="openSidebar('FAU_94_Crypt Mantle',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/133_Call of the Storm.jpg" id="FAU_133_Call of the Storm" data-flag="@X" onclick="openSidebar('FAU_133_Call of the Storm',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/185_Glyris Greenhorn_back.jpg" alt="/sets/FAU-files/img/185_Glyris Greenhorn_front.jpg" id="FAU_185_Glyris Greenhorn" data-flag="@XD" onclick="openSidebar('FAU_185_Glyris Greenhorn',false)"><button class="flip-btn" onclick="imgFlip('FAU_185_Glyris Greenhorn')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/9_Conclave Healer.jpg" id="FAU_9_Conclave Healer" data-flag="@X" onclick="openSidebar('FAU_9_Conclave Healer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/50_Call of Subdual.jpg" id="FAU_50_Call of Subdual" data-flag="@X" onclick="openSidebar('FAU_50_Call of Subdual',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/100_Exterminate.jpg" id="FAU_100_Exterminate" data-flag="@X" onclick="openSidebar('FAU_100_Exterminate',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/136_Dormant Dragon_back.jpg" alt="/sets/FAU-files/img/136_Dormant Dragon_front.jpg" id="FAU_136_Dormant Dragon" data-flag="@XD" onclick="openSidebar('FAU_136_Dormant Dragon',false)"><button class="flip-btn" onclick="imgFlip('FAU_136_Dormant Dragon')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/188_Lady Rylla Thegwyn.jpg" id="FAU_188_Lady Rylla Thegwyn" data-flag="@X" onclick="openSidebar('FAU_188_Lady Rylla Thegwyn',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/13_Fae Court Councilor_back.jpg" alt="/sets/FAU-files/img/13_Fae Court Councilor_front.jpg" id="FAU_13_Fae Court Councilor" data-flag="@XD" onclick="openSidebar('FAU_13_Fae Court Councilor',false)"><button class="flip-btn" onclick="imgFlip('FAU_13_Fae Court Councilor')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/66_Lynani, the Mystic Veil.jpg" id="FAU_66_Lynani, the Mystic Veil" data-flag="@X" onclick="openSidebar('FAU_66_Lynani, the Mystic Veil',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/108_Jhalach Warlock.jpg" id="FAU_108_Jhalach Warlock" data-flag="@X" onclick="openSidebar('FAU_108_Jhalach Warlock',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/144_Griffback Goon Squad.jpg" id="FAU_144_Griffback Goon Squad" data-flag="@X" onclick="openSidebar('FAU_144_Griffback Goon Squad',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/189_Leyline Seeker.jpg" id="FAU_189_Leyline Seeker" data-flag="@X" onclick="openSidebar('FAU_189_Leyline Seeker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/17_Fearless Aerjana Bofflenose.jpg" id="FAU_17_Fearless Aerjana Bofflenose" data-flag="@X" onclick="openSidebar('FAU_17_Fearless Aerjana Bofflenose',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/68_Powder Scatterer.jpg" id="FAU_68_Powder Scatterer" data-flag="@X" onclick="openSidebar('FAU_68_Powder Scatterer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/109_Lord Jhalach the Vengeful.jpg" id="FAU_109_Lord Jhalach the Vengeful" data-flag="@X" onclick="openSidebar('FAU_109_Lord Jhalach the Vengeful',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/147_High Tower Gricz.jpg" id="FAU_147_High Tower Gricz" data-flag="@X" onclick="openSidebar('FAU_147_High Tower Gricz',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/197_Planewide Alliance.jpg" id="FAU_197_Planewide Alliance" data-flag="@X" onclick="openSidebar('FAU_197_Planewide Alliance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/20_Garos Blademaster.jpg" id="FAU_20_Garos Blademaster" data-flag="@X" onclick="openSidebar('FAU_20_Garos Blademaster',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/72_Runic Quarry.jpg" id="FAU_72_Runic Quarry" data-flag="@X" onclick="openSidebar('FAU_72_Runic Quarry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/110_Nefarious Bargain.jpg" id="FAU_110_Nefarious Bargain" data-flag="@X" onclick="openSidebar('FAU_110_Nefarious Bargain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/161_Seething Snapjaw.jpg" id="FAU_161_Seething Snapjaw" data-flag="@X" onclick="openSidebar('FAU_161_Seething Snapjaw',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/198_Regal Watchwolves.jpg" id="FAU_198_Regal Watchwolves" data-flag="@X" onclick="openSidebar('FAU_198_Regal Watchwolves',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/36_Tanpip Champion.jpg" id="FAU_36_Tanpip Champion" data-flag="@X" onclick="openSidebar('FAU_36_Tanpip Champion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/81_Twice-Seeing Crown.jpg" id="FAU_81_Twice-Seeing Crown" data-flag="@X" onclick="openSidebar('FAU_81_Twice-Seeing Crown',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/117_Shadow Harvester.jpg" id="FAU_117_Shadow Harvester" data-flag="@X" onclick="openSidebar('FAU_117_Shadow Harvester',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/165_Warhound Plunk.jpg" id="FAU_165_Warhound Plunk" data-flag="@X" onclick="openSidebar('FAU_165_Warhound Plunk',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/205_Thriving Mosshroom.jpg" id="FAU_205_Thriving Mosshroom" data-flag="@X" onclick="openSidebar('FAU_205_Thriving Mosshroom',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/41_Tramnop Village.jpg" id="FAU_41_Tramnop Village" data-flag="@X" onclick="openSidebar('FAU_41_Tramnop Village',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/82_Vivid Hatchling_back.jpg" alt="/sets/FAU-files/img/82_Vivid Hatchling_front.jpg" id="FAU_82_Vivid Hatchling" data-flag="@XD" onclick="openSidebar('FAU_82_Vivid Hatchling',false)"><button class="flip-btn" onclick="imgFlip('FAU_82_Vivid Hatchling')"></button></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/124_Tameless Fiend_back.jpg" alt="/sets/FAU-files/img/124_Tameless Fiend_front.jpg" id="FAU_124_Tameless Fiend" data-flag="@XD" onclick="openSidebar('FAU_124_Tameless Fiend',false)"><button class="flip-btn" onclick="imgFlip('FAU_124_Tameless Fiend')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/168_Wurtnook Valkyrie.jpg" id="FAU_168_Wurtnook Valkyrie" data-flag="@X" onclick="openSidebar('FAU_168_Wurtnook Valkyrie',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/210_Wriwth, Oaken Elder.jpg" id="FAU_210_Wriwth, Oaken Elder" data-flag="@X" onclick="openSidebar('FAU_210_Wriwth, Oaken Elder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/4_Blessing of Steel.jpg" id="FAU_4_Blessing of Steel" data-flag="@X" onclick="openSidebar('FAU_4_Blessing of Steel',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/45_Arcane Tempest_back.jpg" alt="/sets/FAU-files/img/45_Arcane Tempest_front.jpg" id="FAU_45_Arcane Tempest" data-flag="@XD" onclick="openSidebar('FAU_45_Arcane Tempest',false)"><button class="flip-btn" onclick="imgFlip('FAU_45_Arcane Tempest')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/89_Bounty Hunting.jpg" id="FAU_89_Bounty Hunting" data-flag="@X" onclick="openSidebar('FAU_89_Bounty Hunting',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/128_Bane of Basalt.jpg" id="FAU_128_Bane of Basalt" data-flag="@X" onclick="openSidebar('FAU_128_Bane of Basalt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/171_Band Together.jpg" id="FAU_171_Band Together" data-flag="@X" onclick="openSidebar('FAU_171_Band Together',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/6_Cloistered Keep_back.jpg" alt="/sets/FAU-files/img/6_Cloistered Keep_front.jpg" id="FAU_6_Cloistered Keep" data-flag="@XD" onclick="openSidebar('FAU_6_Cloistered Keep',false)"><button class="flip-btn" onclick="imgFlip('FAU_6_Cloistered Keep')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/46_Bitsy Beguiler.jpg" id="FAU_46_Bitsy Beguiler" data-flag="@X" onclick="openSidebar('FAU_46_Bitsy Beguiler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/92_Corpse Commerce.jpg" id="FAU_92_Corpse Commerce" data-flag="@X" onclick="openSidebar('FAU_92_Corpse Commerce',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/137_Empyrean Piper.jpg" id="FAU_137_Empyrean Piper" data-flag="@X" onclick="openSidebar('FAU_137_Empyrean Piper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/177_Druidic Nurturing.jpg" id="FAU_177_Druidic Nurturing" data-flag="@X" onclick="openSidebar('FAU_177_Druidic Nurturing',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/15_Fae Vitality.jpg" id="FAU_15_Fae Vitality" data-flag="@X" onclick="openSidebar('FAU_15_Fae Vitality',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/47_Bottle Up.jpg" id="FAU_47_Bottle Up" data-flag="@X" onclick="openSidebar('FAU_47_Bottle Up',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/93_Covert Cutthroat.jpg" id="FAU_93_Covert Cutthroat" data-flag="@X" onclick="openSidebar('FAU_93_Covert Cutthroat',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/138_Fiery Frenzy.jpg" id="FAU_138_Fiery Frenzy" data-flag="@X" onclick="openSidebar('FAU_138_Fiery Frenzy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/179_Elvish Dreamspinner.jpg" id="FAU_179_Elvish Dreamspinner" data-flag="@X" onclick="openSidebar('FAU_179_Elvish Dreamspinner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/18_Field Cleric.jpg" id="FAU_18_Field Cleric" data-flag="@X" onclick="openSidebar('FAU_18_Field Cleric',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/52_Cloudweaving.jpg" id="FAU_52_Cloudweaving" data-flag="@X" onclick="openSidebar('FAU_52_Cloudweaving',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/95_Cull.jpg" id="FAU_95_Cull" data-flag="@X" onclick="openSidebar('FAU_95_Cull',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/143_Goblin Sergeant.jpg" id="FAU_143_Goblin Sergeant" data-flag="@X" onclick="openSidebar('FAU_143_Goblin Sergeant',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/183_Forest Figment_back.jpg" alt="/sets/FAU-files/img/183_Forest Figment_front.jpg" id="FAU_183_Forest Figment" data-flag="@XD" onclick="openSidebar('FAU_183_Forest Figment',false)"><button class="flip-btn" onclick="imgFlip('FAU_183_Forest Figment')"></button></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/19_Fleeting Hummer_back.jpg" alt="/sets/FAU-files/img/19_Fleeting Hummer_front.jpg" id="FAU_19_Fleeting Hummer" data-flag="@XD" onclick="openSidebar('FAU_19_Fleeting Hummer',false)"><button class="flip-btn" onclick="imgFlip('FAU_19_Fleeting Hummer')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/53_Conclave Chronicler.jpg" id="FAU_53_Conclave Chronicler" data-flag="@X" onclick="openSidebar('FAU_53_Conclave Chronicler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/97_Disillusioned Cynic.jpg" id="FAU_97_Disillusioned Cynic" data-flag="@X" onclick="openSidebar('FAU_97_Disillusioned Cynic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/145_Guerrilla Chieftain.jpg" id="FAU_145_Guerrilla Chieftain" data-flag="@X" onclick="openSidebar('FAU_145_Guerrilla Chieftain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/186_Heartbound Twins.jpg" id="FAU_186_Heartbound Twins" data-flag="@X" onclick="openSidebar('FAU_186_Heartbound Twins',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/21_Glitterwing Witch.jpg" id="FAU_21_Glitterwing Witch" data-flag="@X" onclick="openSidebar('FAU_21_Glitterwing Witch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/57_Engross in Fables.jpg" id="FAU_57_Engross in Fables" data-flag="@X" onclick="openSidebar('FAU_57_Engross in Fables',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/98_Dragon Talons.jpg" id="FAU_98_Dragon Talons" data-flag="@X" onclick="openSidebar('FAU_98_Dragon Talons',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/148_Hordeling Outburst.jpg" id="FAU_148_Hordeling Outburst" data-flag="@X" onclick="openSidebar('FAU_148_Hordeling Outburst',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/194_Mother Deer_back.jpg" alt="/sets/FAU-files/img/194_Mother Deer_front.jpg" id="FAU_194_Mother Deer" data-flag="@XD" onclick="openSidebar('FAU_194_Mother Deer',false)"><button class="flip-btn" onclick="imgFlip('FAU_194_Mother Deer')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/23_Gnome Court.jpg" id="FAU_23_Gnome Court" data-flag="@X" onclick="openSidebar('FAU_23_Gnome Court',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/58_Erratic Analysis.jpg" id="FAU_58_Erratic Analysis" data-flag="@X" onclick="openSidebar('FAU_58_Erratic Analysis',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/101_Fester Dragon.jpg" id="FAU_101_Fester Dragon" data-flag="@X" onclick="openSidebar('FAU_101_Fester Dragon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/149_Infernal Embermaw.jpg" id="FAU_149_Infernal Embermaw" data-flag="@X" onclick="openSidebar('FAU_149_Infernal Embermaw',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/195_Nodorog Familiar.jpg" id="FAU_195_Nodorog Familiar" data-flag="@X" onclick="openSidebar('FAU_195_Nodorog Familiar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/31_Slate Primordial.jpg" id="FAU_31_Slate Primordial" data-flag="@X" onclick="openSidebar('FAU_31_Slate Primordial',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/62_Keen Clairvoyant.jpg" id="FAU_62_Keen Clairvoyant" data-flag="@X" onclick="openSidebar('FAU_62_Keen Clairvoyant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/106_Grizzled Usurper.jpg" id="FAU_106_Grizzled Usurper" data-flag="@X" onclick="openSidebar('FAU_106_Grizzled Usurper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/154_Rabid Taskmaster.jpg" id="FAU_154_Rabid Taskmaster" data-flag="@X" onclick="openSidebar('FAU_154_Rabid Taskmaster',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/201_Sibyl of Seasons.jpg" id="FAU_201_Sibyl of Seasons" data-flag="@X" onclick="openSidebar('FAU_201_Sibyl of Seasons',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/33_Sovereign Collapse.jpg" id="FAU_33_Sovereign Collapse" data-flag="@X" onclick="openSidebar('FAU_33_Sovereign Collapse',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/65_Luminous Augur.jpg" id="FAU_65_Luminous Augur" data-flag="@X" onclick="openSidebar('FAU_65_Luminous Augur',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/113_Pernicious Hunter.jpg" id="FAU_113_Pernicious Hunter" data-flag="@X" onclick="openSidebar('FAU_113_Pernicious Hunter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/155_Rampant Greed.jpg" id="FAU_155_Rampant Greed" data-flag="@X" onclick="openSidebar('FAU_155_Rampant Greed',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/204_Sylvan Matron.jpg" id="FAU_204_Sylvan Matron" data-flag="@X" onclick="openSidebar('FAU_204_Sylvan Matron',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/34_Sugarplum Sprite.jpg" id="FAU_34_Sugarplum Sprite" data-flag="@X" onclick="openSidebar('FAU_34_Sugarplum Sprite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/69_Rainbow Carp.jpg" id="FAU_69_Rainbow Carp" data-flag="@X" onclick="openSidebar('FAU_69_Rainbow Carp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/115_Rafter Dastard.jpg" id="FAU_115_Rafter Dastard" data-flag="@X" onclick="openSidebar('FAU_115_Rafter Dastard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/159_Rising Fires.jpg" id="FAU_159_Rising Fires" data-flag="@X" onclick="openSidebar('FAU_159_Rising Fires',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/206_Tractmapping.jpg" id="FAU_206_Tractmapping" data-flag="@X" onclick="openSidebar('FAU_206_Tractmapping',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/40_Touch of Cherubs.jpg" id="FAU_40_Touch of Cherubs" data-flag="@X" onclick="openSidebar('FAU_40_Touch of Cherubs',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/79_Tormented Apothecary.jpg" id="FAU_79_Tormented Apothecary" data-flag="@X" onclick="openSidebar('FAU_79_Tormented Apothecary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/119_Slavering Horde.jpg" id="FAU_119_Slavering Horde" data-flag="@X" onclick="openSidebar('FAU_119_Slavering Horde',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/162_Slobbering Legion.jpg" id="FAU_162_Slobbering Legion" data-flag="@X" onclick="openSidebar('FAU_162_Slobbering Legion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/207_Westwind Outrider.jpg" id="FAU_207_Westwind Outrider" data-flag="@X" onclick="openSidebar('FAU_207_Westwind Outrider',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/42_Unyielding Enforcer.jpg" id="FAU_42_Unyielding Enforcer" data-flag="@X" onclick="openSidebar('FAU_42_Unyielding Enforcer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/80_Tracing Drake.jpg" id="FAU_80_Tracing Drake" data-flag="@X" onclick="openSidebar('FAU_80_Tracing Drake',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/126_Twayblade Trader.jpg" id="FAU_126_Twayblade Trader" data-flag="@X" onclick="openSidebar('FAU_126_Twayblade Trader',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/166_Wurtnook Firebrewer.jpg" id="FAU_166_Wurtnook Firebrewer" data-flag="@X" onclick="openSidebar('FAU_166_Wurtnook Firebrewer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/208_Wriwth Champion.jpg" id="FAU_208_Wriwth Champion" data-flag="@X" onclick="openSidebar('FAU_208_Wriwth Champion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/2_Bauble Broker.jpg" id="FAU_2_Bauble Broker" data-flag="@X" onclick="openSidebar('FAU_2_Bauble Broker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/49_Bubbling Goldie.jpg" id="FAU_49_Bubbling Goldie" data-flag="@X" onclick="openSidebar('FAU_49_Bubbling Goldie',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/85_Alley Deviants.jpg" id="FAU_85_Alley Deviants" data-flag="@X" onclick="openSidebar('FAU_85_Alley Deviants',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/129_Brazen Pignapping.jpg" id="FAU_129_Brazen Pignapping" data-flag="@X" onclick="openSidebar('FAU_129_Brazen Pignapping',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/169_Arbor Sentinel.jpg" id="FAU_169_Arbor Sentinel" data-flag="@X" onclick="openSidebar('FAU_169_Arbor Sentinel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/3_Bewitching Flutist.jpg" id="FAU_3_Bewitching Flutist" data-flag="@X" onclick="openSidebar('FAU_3_Bewitching Flutist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/51_Cavern Magus.jpg" id="FAU_51_Cavern Magus" data-flag="@X" onclick="openSidebar('FAU_51_Cavern Magus',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/87_Bleak Moon Rising.jpg" id="FAU_87_Bleak Moon Rising" data-flag="@X" onclick="openSidebar('FAU_87_Bleak Moon Rising',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/130_Bullhog Jockey.jpg" id="FAU_130_Bullhog Jockey" data-flag="@X" onclick="openSidebar('FAU_130_Bullhog Jockey',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/170_Arboreal Mantle.jpg" id="FAU_170_Arboreal Mantle" data-flag="@X" onclick="openSidebar('FAU_170_Arboreal Mantle',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/8_Conclave Faithful_back.jpg" alt="/sets/FAU-files/img/8_Conclave Faithful_front.jpg" id="FAU_8_Conclave Faithful" data-flag="@XD" onclick="openSidebar('FAU_8_Conclave Faithful',false)"><button class="flip-btn" onclick="imgFlip('FAU_8_Conclave Faithful')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/55_Crimson Serpent.jpg" id="FAU_55_Crimson Serpent" data-flag="@X" onclick="openSidebar('FAU_55_Crimson Serpent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/91_Coat with Venom.jpg" id="FAU_91_Coat with Venom" data-flag="@X" onclick="openSidebar('FAU_91_Coat with Venom',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/131_Burn Bright.jpg" id="FAU_131_Burn Bright" data-flag="@X" onclick="openSidebar('FAU_131_Burn Bright',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/172_Bespoken Purity.jpg" id="FAU_172_Bespoken Purity" data-flag="@X" onclick="openSidebar('FAU_172_Bespoken Purity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/10_Divine Arrow.jpg" id="FAU_10_Divine Arrow" data-flag="@X" onclick="openSidebar('FAU_10_Divine Arrow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/56_Daring Escape.jpg" id="FAU_56_Daring Escape" data-flag="@X" onclick="openSidebar('FAU_56_Daring Escape',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/96_Darkwater Snapper.jpg" id="FAU_96_Darkwater Snapper" data-flag="@X" onclick="openSidebar('FAU_96_Darkwater Snapper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/134_Carnage Zealot.jpg" id="FAU_134_Carnage Zealot" data-flag="@X" onclick="openSidebar('FAU_134_Carnage Zealot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/173_Burgeoning Bramble.jpg" id="FAU_173_Burgeoning Bramble" data-flag="@X" onclick="openSidebar('FAU_173_Burgeoning Bramble',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/11_Draconic Acolyte.jpg" id="FAU_11_Draconic Acolyte" data-flag="@X" onclick="openSidebar('FAU_11_Draconic Acolyte',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/59_Flood Elemental.jpg" id="FAU_59_Flood Elemental" data-flag="@X" onclick="openSidebar('FAU_59_Flood Elemental',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/99_Dusk Mystic.jpg" id="FAU_99_Dusk Mystic" data-flag="@X" onclick="openSidebar('FAU_99_Dusk Mystic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/135_Demolish.jpg" id="FAU_135_Demolish" data-flag="@X" onclick="openSidebar('FAU_135_Demolish',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/175_Concordant Priestess.jpg" id="FAU_175_Concordant Priestess" data-flag="@X" onclick="openSidebar('FAU_175_Concordant Priestess',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/12_Duelist's Flair.jpg" id="FAU_12_Duelists Flair" data-flag="@X" onclick="openSidebar('FAU_12_Duelists Flair',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/60_Glint.jpg" id="FAU_60_Glint" data-flag="@X" onclick="openSidebar('FAU_60_Glint',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/102_Gibliver Larceny.jpg" id="FAU_102_Gibliver Larceny" data-flag="@X" onclick="openSidebar('FAU_102_Gibliver Larceny',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/139_Forging Hammer.jpg" id="FAU_139_Forging Hammer" data-flag="@X" onclick="openSidebar('FAU_139_Forging Hammer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/176_Deepwood Tracker.jpg" id="FAU_176_Deepwood Tracker" data-flag="@X" onclick="openSidebar('FAU_176_Deepwood Tracker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/14_Fae of First Frost.jpg" id="FAU_14_Fae of First Frost" data-flag="@X" onclick="openSidebar('FAU_14_Fae of First Frost',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/63_Kept Secrets.jpg" id="FAU_63_Kept Secrets" data-flag="@X" onclick="openSidebar('FAU_63_Kept Secrets',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/103_Gloom Druid.jpg" id="FAU_103_Gloom Druid" data-flag="@X" onclick="openSidebar('FAU_103_Gloom Druid',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/140_Fry Up.jpg" id="FAU_140_Fry Up" data-flag="@X" onclick="openSidebar('FAU_140_Fry Up',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/178_Elder Blessing.jpg" id="FAU_178_Elder Blessing" data-flag="@X" onclick="openSidebar('FAU_178_Elder Blessing',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/16_Fairglade Foxes.jpg" id="FAU_16_Fairglade Foxes" data-flag="@X" onclick="openSidebar('FAU_16_Fairglade Foxes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/64_Limnophobia.jpg" id="FAU_64_Limnophobia" data-flag="@X" onclick="openSidebar('FAU_64_Limnophobia',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/104_Gold Grubber.jpg" id="FAU_104_Gold Grubber" data-flag="@X" onclick="openSidebar('FAU_104_Gold Grubber',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/141_Gibliver Raid Leader.jpg" id="FAU_141_Gibliver Raid Leader" data-flag="@X" onclick="openSidebar('FAU_141_Gibliver Raid Leader',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/180_Elvish Trailblazer.jpg" id="FAU_180_Elvish Trailblazer" data-flag="@X" onclick="openSidebar('FAU_180_Elvish Trailblazer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/22_Glyris Faithful.jpg" id="FAU_22_Glyris Faithful" data-flag="@X" onclick="openSidebar('FAU_22_Glyris Faithful',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/67_Mercurial Vial.jpg" id="FAU_67_Mercurial Vial" data-flag="@X" onclick="openSidebar('FAU_67_Mercurial Vial',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/105_Grasping Shadow.jpg" id="FAU_105_Grasping Shadow" data-flag="@X" onclick="openSidebar('FAU_105_Grasping Shadow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/146_Heinous Needletooth.jpg" id="FAU_146_Heinous Needletooth" data-flag="@X" onclick="openSidebar('FAU_146_Heinous Needletooth',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/182_Fairglade Maiden_back.jpg" alt="/sets/FAU-files/img/182_Fairglade Maiden_front.jpg" id="FAU_182_Fairglade Maiden" data-flag="@XD" onclick="openSidebar('FAU_182_Fairglade Maiden',false)"><button class="flip-btn" onclick="imgFlip('FAU_182_Fairglade Maiden')"></button></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/25_Lustrous Eidolon_back.jpg" alt="/sets/FAU-files/img/25_Lustrous Eidolon_front.jpg" id="FAU_25_Lustrous Eidolon" data-flag="@XD" onclick="openSidebar('FAU_25_Lustrous Eidolon',false)"><button class="flip-btn" onclick="imgFlip('FAU_25_Lustrous Eidolon')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/70_Rapacious Sprite.jpg" id="FAU_70_Rapacious Sprite" data-flag="@X" onclick="openSidebar('FAU_70_Rapacious Sprite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/107_Jhalach Scourge.jpg" id="FAU_107_Jhalach Scourge" data-flag="@X" onclick="openSidebar('FAU_107_Jhalach Scourge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/150_Inner Flame.jpg" id="FAU_150_Inner Flame" data-flag="@X" onclick="openSidebar('FAU_150_Inner Flame',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/184_Frostwood Wolf_back.jpg" alt="/sets/FAU-files/img/184_Frostwood Wolf_front.jpg" id="FAU_184_Frostwood Wolf" data-flag="@XD" onclick="openSidebar('FAU_184_Frostwood Wolf',false)"><button class="flip-btn" onclick="imgFlip('FAU_184_Frostwood Wolf')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/26_Meadow Lyrist.jpg" id="FAU_26_Meadow Lyrist" data-flag="@X" onclick="openSidebar('FAU_26_Meadow Lyrist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/71_Rehabilitation.jpg" id="FAU_71_Rehabilitation" data-flag="@X" onclick="openSidebar('FAU_71_Rehabilitation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/111_Noxious Smuggler.jpg" id="FAU_111_Noxious Smuggler" data-flag="@X" onclick="openSidebar('FAU_111_Noxious Smuggler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/151_Madcap Shot.jpg" id="FAU_151_Madcap Shot" data-flag="@X" onclick="openSidebar('FAU_151_Madcap Shot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/190_Lock Antlers.jpg" id="FAU_190_Lock Antlers" data-flag="@X" onclick="openSidebar('FAU_190_Lock Antlers',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/27_Mystifying Melody.jpg" id="FAU_27_Mystifying Melody" data-flag="@X" onclick="openSidebar('FAU_27_Mystifying Melody',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/73_Schlepping Gnome_back.jpg" alt="/sets/FAU-files/img/73_Schlepping Gnome_front.jpg" id="FAU_73_Schlepping Gnome" data-flag="@XD" onclick="openSidebar('FAU_73_Schlepping Gnome',false)"><button class="flip-btn" onclick="imgFlip('FAU_73_Schlepping Gnome')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/112_Perilous Liturgy.jpg" id="FAU_112_Perilous Liturgy" data-flag="@X" onclick="openSidebar('FAU_112_Perilous Liturgy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/152_Masked Redcap.jpg" id="FAU_152_Masked Redcap" data-flag="@X" onclick="openSidebar('FAU_152_Masked Redcap',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/192_Midland Ranger.jpg" id="FAU_192_Midland Ranger" data-flag="@X" onclick="openSidebar('FAU_192_Midland Ranger',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/28_Pipeweed Peddler_back.jpg" alt="/sets/FAU-files/img/28_Pipeweed Peddler_front.jpg" id="FAU_28_Pipeweed Peddler" data-flag="@XD" onclick="openSidebar('FAU_28_Pipeweed Peddler',false)"><button class="flip-btn" onclick="imgFlip('FAU_28_Pipeweed Peddler')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/74_Scientific Inquiry.jpg" id="FAU_74_Scientific Inquiry" data-flag="@X" onclick="openSidebar('FAU_74_Scientific Inquiry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/114_Petty Malevolence.jpg" id="FAU_114_Petty Malevolence" data-flag="@X" onclick="openSidebar('FAU_114_Petty Malevolence',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/156_Raucous Merriment.jpg" id="FAU_156_Raucous Merriment" data-flag="@X" onclick="openSidebar('FAU_156_Raucous Merriment',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/193_Mosshide Nodorog.jpg" id="FAU_193_Mosshide Nodorog" data-flag="@X" onclick="openSidebar('FAU_193_Mosshide Nodorog',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/29_Recruitment Forum_back.jpg" alt="/sets/FAU-files/img/29_Recruitment Forum_front.jpg" id="FAU_29_Recruitment Forum" data-flag="@XD" onclick="openSidebar('FAU_29_Recruitment Forum',false)"><button class="flip-btn" onclick="imgFlip('FAU_29_Recruitment Forum')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/75_Shimmering Wyvern.jpg" id="FAU_75_Shimmering Wyvern" data-flag="@X" onclick="openSidebar('FAU_75_Shimmering Wyvern',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/116_Reave Soul.jpg" id="FAU_116_Reave Soul" data-flag="@X" onclick="openSidebar('FAU_116_Reave Soul',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/157_Ridge Racer.jpg" id="FAU_157_Ridge Racer" data-flag="@X" onclick="openSidebar('FAU_157_Ridge Racer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/196_Off the Beaten Path.jpg" id="FAU_196_Off the Beaten Path" data-flag="@X" onclick="openSidebar('FAU_196_Off the Beaten Path',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/30_Skywise Griffin.jpg" id="FAU_30_Skywise Griffin" data-flag="@X" onclick="openSidebar('FAU_30_Skywise Griffin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/76_Snatching Drake.jpg" id="FAU_76_Snatching Drake" data-flag="@X" onclick="openSidebar('FAU_76_Snatching Drake',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/118_Shadow Sniper.jpg" id="FAU_118_Shadow Sniper" data-flag="@X" onclick="openSidebar('FAU_118_Shadow Sniper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/158_Riotous Melee.jpg" id="FAU_158_Riotous Melee" data-flag="@X" onclick="openSidebar('FAU_158_Riotous Melee',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/199_Roving Roots.jpg" id="FAU_199_Roving Roots" data-flag="@X" onclick="openSidebar('FAU_199_Roving Roots',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/32_Soothsaid Slumber.jpg" id="FAU_32_Soothsaid Slumber" data-flag="@X" onclick="openSidebar('FAU_32_Soothsaid Slumber',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/77_Tanpip Merrymaker.jpg" id="FAU_77_Tanpip Merrymaker" data-flag="@X" onclick="openSidebar('FAU_77_Tanpip Merrymaker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/120_Smoke Weaver.jpg" id="FAU_120_Smoke Weaver" data-flag="@X" onclick="openSidebar('FAU_120_Smoke Weaver',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/160_Roosting Whelp.jpg" id="FAU_160_Roosting Whelp" data-flag="@X" onclick="openSidebar('FAU_160_Roosting Whelp',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/200_Runic Elk_back.jpg" alt="/sets/FAU-files/img/200_Runic Elk_front.jpg" id="FAU_200_Runic Elk" data-flag="@XD" onclick="openSidebar('FAU_200_Runic Elk',false)"><button class="flip-btn" onclick="imgFlip('FAU_200_Runic Elk')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/35_Take Heart.jpg" id="FAU_35_Take Heart" data-flag="@X" onclick="openSidebar('FAU_35_Take Heart',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/78_Thought Collapse.jpg" id="FAU_78_Thought Collapse" data-flag="@X" onclick="openSidebar('FAU_78_Thought Collapse',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/121_Sweep the Leg.jpg" id="FAU_121_Sweep the Leg" data-flag="@X" onclick="openSidebar('FAU_121_Sweep the Leg',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/163_Soaring Sundancer.jpg" id="FAU_163_Soaring Sundancer" data-flag="@X" onclick="openSidebar('FAU_163_Soaring Sundancer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/202_Skyfall.jpg" id="FAU_202_Skyfall" data-flag="@X" onclick="openSidebar('FAU_202_Skyfall',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/37_Tanpip Paladin.jpg" id="FAU_37_Tanpip Paladin" data-flag="@X" onclick="openSidebar('FAU_37_Tanpip Paladin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/83_Weaselback Cavalier.jpg" id="FAU_83_Weaselback Cavalier" data-flag="@X" onclick="openSidebar('FAU_83_Weaselback Cavalier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/123_Tainted Contract.jpg" id="FAU_123_Tainted Contract" data-flag="@X" onclick="openSidebar('FAU_123_Tainted Contract',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/164_Vehement Lunatic.jpg" id="FAU_164_Vehement Lunatic" data-flag="@X" onclick="openSidebar('FAU_164_Vehement Lunatic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/203_Springbloom Harvester.jpg" id="FAU_203_Springbloom Harvester" data-flag="@X" onclick="openSidebar('FAU_203_Springbloom Harvester',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/38_Tavern Gathering.jpg" id="FAU_38_Tavern Gathering" data-flag="@X" onclick="openSidebar('FAU_38_Tavern Gathering',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/84_Zephyr Drake.jpg" id="FAU_84_Zephyr Drake" data-flag="@X" onclick="openSidebar('FAU_84_Zephyr Drake',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/125_Trench Trawler.jpg" id="FAU_125_Trench Trawler" data-flag="@X" onclick="openSidebar('FAU_125_Trench Trawler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/167_Wurtnook Hackblade.jpg" id="FAU_167_Wurtnook Hackblade" data-flag="@X" onclick="openSidebar('FAU_167_Wurtnook Hackblade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/209_Wriwth Greatbow.jpg" id="FAU_209_Wriwth Greatbow" data-flag="@X" onclick="openSidebar('FAU_209_Wriwth Greatbow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/FAU-files/img/24_Honorbound.jpg" id="FAU_24_Honorbound" data-flag="@X" onclick="openSidebar('FAU_24_Honorbound',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/54_Connect the Dots.jpg" id="FAU_54_Connect the Dots" data-flag="@X" onclick="openSidebar('FAU_54_Connect the Dots',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/86_Bitter Stitcher.jpg" id="FAU_86_Bitter Stitcher" data-flag="@X" onclick="openSidebar('FAU_86_Bitter Stitcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/142_Gibliver Shiver-Givers.jpg" id="FAU_142_Gibliver Shiver-Givers" data-flag="@X" onclick="openSidebar('FAU_142_Gibliver Shiver-Givers',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/187_Herald of the Pack.jpg" id="FAU_187_Herald of the Pack" data-flag="@X" onclick="openSidebar('FAU_187_Herald of the Pack',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/39_Tiny Heroine Totti.jpg" id="FAU_39_Tiny Heroine Totti" data-flag="@X" onclick="openSidebar('FAU_39_Tiny Heroine Totti',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/61_Herrea, Celestial Queen.jpg" id="FAU_61_Herrea, Celestial Queen" data-flag="@X" onclick="openSidebar('FAU_61_Herrea, Celestial Queen',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/122_Syl-Tirif, Palace of Sorrow.jpg" id="FAU_122_Syl-Tirif, Palace of Sorrow" data-flag="@X" onclick="openSidebar('FAU_122_Syl-Tirif, Palace of Sorrow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/153_Mirrorscale Dragon.jpg" id="FAU_153_Mirrorscale Dragon" data-flag="@X" onclick="openSidebar('FAU_153_Mirrorscale Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/191_Lorilyf, Home-Tree.jpg" id="FAU_191_Lorilyf, Home-Tree" data-flag="@X" onclick="openSidebar('FAU_191_Lorilyf, Home-Tree',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/1_Affable Hound_back.jpg" alt="sets/FAU-files/img/1_Affable Hound_front.jpg" id="FAU_1_Affable Hound" data-flag="@XD" onclick="openSidebar('FAU_1_Affable Hound',false)"><button class="flip-btn" onclick="imgFlip('FAU_1_Affable Hound')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/43_Aeriform.jpg" id="FAU_43_Aeriform" data-flag="@X" onclick="openSidebar('FAU_43_Aeriform',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/88_Blood Gold Guardian.jpg" id="FAU_88_Blood Gold Guardian" data-flag="@X" onclick="openSidebar('FAU_88_Blood Gold Guardian',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/127_Anarch Antics.jpg" id="FAU_127_Anarch Antics" data-flag="@X" onclick="openSidebar('FAU_127_Anarch Antics',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/174_Call of the Anima.jpg" id="FAU_174_Call of the Anima" data-flag="@X" onclick="openSidebar('FAU_174_Call of the Anima',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/5_Call of Simplicity.jpg" id="FAU_5_Call of Simplicity" data-flag="@X" onclick="openSidebar('FAU_5_Call of Simplicity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/44_Aetherscale Serpent.jpg" id="FAU_44_Aetherscale Serpent" data-flag="@X" onclick="openSidebar('FAU_44_Aetherscale Serpent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/90_Call of Necrosis.jpg" id="FAU_90_Call of Necrosis" data-flag="@X" onclick="openSidebar('FAU_90_Call of Necrosis',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/132_Burning at Castle Jhalach.jpg" id="FAU_132_Burning at Castle Jhalach" data-flag="@X" onclick="openSidebar('FAU_132_Burning at Castle Jhalach',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/181_Epic Triumph.jpg" id="FAU_181_Epic Triumph" data-flag="@X" onclick="openSidebar('FAU_181_Epic Triumph',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/7_Collective Fate.jpg" id="FAU_7_Collective Fate" data-flag="@X" onclick="openSidebar('FAU_7_Collective Fate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/48_Breach the Clouds.jpg" id="FAU_48_Breach the Clouds" data-flag="@X" onclick="openSidebar('FAU_48_Breach the Clouds',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/94_Crypt Mantle.jpg" id="FAU_94_Crypt Mantle" data-flag="@X" onclick="openSidebar('FAU_94_Crypt Mantle',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/133_Call of the Storm.jpg" id="FAU_133_Call of the Storm" data-flag="@X" onclick="openSidebar('FAU_133_Call of the Storm',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/185_Glyris Greenhorn_back.jpg" alt="sets/FAU-files/img/185_Glyris Greenhorn_front.jpg" id="FAU_185_Glyris Greenhorn" data-flag="@XD" onclick="openSidebar('FAU_185_Glyris Greenhorn',false)"><button class="flip-btn" onclick="imgFlip('FAU_185_Glyris Greenhorn')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/9_Conclave Healer.jpg" id="FAU_9_Conclave Healer" data-flag="@X" onclick="openSidebar('FAU_9_Conclave Healer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/50_Call of Subdual.jpg" id="FAU_50_Call of Subdual" data-flag="@X" onclick="openSidebar('FAU_50_Call of Subdual',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/100_Exterminate.jpg" id="FAU_100_Exterminate" data-flag="@X" onclick="openSidebar('FAU_100_Exterminate',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/136_Dormant Dragon_back.jpg" alt="sets/FAU-files/img/136_Dormant Dragon_front.jpg" id="FAU_136_Dormant Dragon" data-flag="@XD" onclick="openSidebar('FAU_136_Dormant Dragon',false)"><button class="flip-btn" onclick="imgFlip('FAU_136_Dormant Dragon')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/188_Lady Rylla Thegwyn.jpg" id="FAU_188_Lady Rylla Thegwyn" data-flag="@X" onclick="openSidebar('FAU_188_Lady Rylla Thegwyn',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/13_Fae Court Councilor_back.jpg" alt="sets/FAU-files/img/13_Fae Court Councilor_front.jpg" id="FAU_13_Fae Court Councilor" data-flag="@XD" onclick="openSidebar('FAU_13_Fae Court Councilor',false)"><button class="flip-btn" onclick="imgFlip('FAU_13_Fae Court Councilor')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/66_Lynani, the Mystic Veil.jpg" id="FAU_66_Lynani, the Mystic Veil" data-flag="@X" onclick="openSidebar('FAU_66_Lynani, the Mystic Veil',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/108_Jhalach Warlock.jpg" id="FAU_108_Jhalach Warlock" data-flag="@X" onclick="openSidebar('FAU_108_Jhalach Warlock',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/144_Griffback Goon Squad.jpg" id="FAU_144_Griffback Goon Squad" data-flag="@X" onclick="openSidebar('FAU_144_Griffback Goon Squad',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/189_Leyline Seeker.jpg" id="FAU_189_Leyline Seeker" data-flag="@X" onclick="openSidebar('FAU_189_Leyline Seeker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/17_Fearless Aerjana Bofflenose.jpg" id="FAU_17_Fearless Aerjana Bofflenose" data-flag="@X" onclick="openSidebar('FAU_17_Fearless Aerjana Bofflenose',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/68_Powder Scatterer.jpg" id="FAU_68_Powder Scatterer" data-flag="@X" onclick="openSidebar('FAU_68_Powder Scatterer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/109_Lord Jhalach the Vengeful.jpg" id="FAU_109_Lord Jhalach the Vengeful" data-flag="@X" onclick="openSidebar('FAU_109_Lord Jhalach the Vengeful',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/147_High Tower Gricz.jpg" id="FAU_147_High Tower Gricz" data-flag="@X" onclick="openSidebar('FAU_147_High Tower Gricz',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/197_Planewide Alliance.jpg" id="FAU_197_Planewide Alliance" data-flag="@X" onclick="openSidebar('FAU_197_Planewide Alliance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/20_Garos Blademaster.jpg" id="FAU_20_Garos Blademaster" data-flag="@X" onclick="openSidebar('FAU_20_Garos Blademaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/72_Runic Quarry.jpg" id="FAU_72_Runic Quarry" data-flag="@X" onclick="openSidebar('FAU_72_Runic Quarry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/110_Nefarious Bargain.jpg" id="FAU_110_Nefarious Bargain" data-flag="@X" onclick="openSidebar('FAU_110_Nefarious Bargain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/161_Seething Snapjaw.jpg" id="FAU_161_Seething Snapjaw" data-flag="@X" onclick="openSidebar('FAU_161_Seething Snapjaw',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/198_Regal Watchwolves.jpg" id="FAU_198_Regal Watchwolves" data-flag="@X" onclick="openSidebar('FAU_198_Regal Watchwolves',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/36_Tanpip Champion.jpg" id="FAU_36_Tanpip Champion" data-flag="@X" onclick="openSidebar('FAU_36_Tanpip Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/81_Twice-Seeing Crown.jpg" id="FAU_81_Twice-Seeing Crown" data-flag="@X" onclick="openSidebar('FAU_81_Twice-Seeing Crown',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/117_Shadow Harvester.jpg" id="FAU_117_Shadow Harvester" data-flag="@X" onclick="openSidebar('FAU_117_Shadow Harvester',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/165_Warhound Plunk.jpg" id="FAU_165_Warhound Plunk" data-flag="@X" onclick="openSidebar('FAU_165_Warhound Plunk',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/205_Thriving Mosshroom.jpg" id="FAU_205_Thriving Mosshroom" data-flag="@X" onclick="openSidebar('FAU_205_Thriving Mosshroom',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/41_Tramnop Village.jpg" id="FAU_41_Tramnop Village" data-flag="@X" onclick="openSidebar('FAU_41_Tramnop Village',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/82_Vivid Hatchling_back.jpg" alt="sets/FAU-files/img/82_Vivid Hatchling_front.jpg" id="FAU_82_Vivid Hatchling" data-flag="@XD" onclick="openSidebar('FAU_82_Vivid Hatchling',false)"><button class="flip-btn" onclick="imgFlip('FAU_82_Vivid Hatchling')"></button></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/124_Tameless Fiend_back.jpg" alt="sets/FAU-files/img/124_Tameless Fiend_front.jpg" id="FAU_124_Tameless Fiend" data-flag="@XD" onclick="openSidebar('FAU_124_Tameless Fiend',false)"><button class="flip-btn" onclick="imgFlip('FAU_124_Tameless Fiend')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/168_Wurtnook Valkyrie.jpg" id="FAU_168_Wurtnook Valkyrie" data-flag="@X" onclick="openSidebar('FAU_168_Wurtnook Valkyrie',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/210_Wriwth, Oaken Elder.jpg" id="FAU_210_Wriwth, Oaken Elder" data-flag="@X" onclick="openSidebar('FAU_210_Wriwth, Oaken Elder',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/4_Blessing of Steel.jpg" id="FAU_4_Blessing of Steel" data-flag="@X" onclick="openSidebar('FAU_4_Blessing of Steel',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/45_Arcane Tempest_back.jpg" alt="sets/FAU-files/img/45_Arcane Tempest_front.jpg" id="FAU_45_Arcane Tempest" data-flag="@XD" onclick="openSidebar('FAU_45_Arcane Tempest',false)"><button class="flip-btn" onclick="imgFlip('FAU_45_Arcane Tempest')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/89_Bounty Hunting.jpg" id="FAU_89_Bounty Hunting" data-flag="@X" onclick="openSidebar('FAU_89_Bounty Hunting',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/128_Bane of Basalt.jpg" id="FAU_128_Bane of Basalt" data-flag="@X" onclick="openSidebar('FAU_128_Bane of Basalt',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/171_Band Together.jpg" id="FAU_171_Band Together" data-flag="@X" onclick="openSidebar('FAU_171_Band Together',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/6_Cloistered Keep_back.jpg" alt="sets/FAU-files/img/6_Cloistered Keep_front.jpg" id="FAU_6_Cloistered Keep" data-flag="@XD" onclick="openSidebar('FAU_6_Cloistered Keep',false)"><button class="flip-btn" onclick="imgFlip('FAU_6_Cloistered Keep')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/46_Bitsy Beguiler.jpg" id="FAU_46_Bitsy Beguiler" data-flag="@X" onclick="openSidebar('FAU_46_Bitsy Beguiler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/92_Corpse Commerce.jpg" id="FAU_92_Corpse Commerce" data-flag="@X" onclick="openSidebar('FAU_92_Corpse Commerce',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/137_Empyrean Piper.jpg" id="FAU_137_Empyrean Piper" data-flag="@X" onclick="openSidebar('FAU_137_Empyrean Piper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/177_Druidic Nurturing.jpg" id="FAU_177_Druidic Nurturing" data-flag="@X" onclick="openSidebar('FAU_177_Druidic Nurturing',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/15_Fae Vitality.jpg" id="FAU_15_Fae Vitality" data-flag="@X" onclick="openSidebar('FAU_15_Fae Vitality',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/47_Bottle Up.jpg" id="FAU_47_Bottle Up" data-flag="@X" onclick="openSidebar('FAU_47_Bottle Up',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/93_Covert Cutthroat.jpg" id="FAU_93_Covert Cutthroat" data-flag="@X" onclick="openSidebar('FAU_93_Covert Cutthroat',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/138_Fiery Frenzy.jpg" id="FAU_138_Fiery Frenzy" data-flag="@X" onclick="openSidebar('FAU_138_Fiery Frenzy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/179_Elvish Dreamspinner.jpg" id="FAU_179_Elvish Dreamspinner" data-flag="@X" onclick="openSidebar('FAU_179_Elvish Dreamspinner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/18_Field Cleric.jpg" id="FAU_18_Field Cleric" data-flag="@X" onclick="openSidebar('FAU_18_Field Cleric',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/52_Cloudweaving.jpg" id="FAU_52_Cloudweaving" data-flag="@X" onclick="openSidebar('FAU_52_Cloudweaving',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/95_Cull.jpg" id="FAU_95_Cull" data-flag="@X" onclick="openSidebar('FAU_95_Cull',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/143_Goblin Sergeant.jpg" id="FAU_143_Goblin Sergeant" data-flag="@X" onclick="openSidebar('FAU_143_Goblin Sergeant',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/183_Forest Figment_back.jpg" alt="sets/FAU-files/img/183_Forest Figment_front.jpg" id="FAU_183_Forest Figment" data-flag="@XD" onclick="openSidebar('FAU_183_Forest Figment',false)"><button class="flip-btn" onclick="imgFlip('FAU_183_Forest Figment')"></button></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/19_Fleeting Hummer_back.jpg" alt="sets/FAU-files/img/19_Fleeting Hummer_front.jpg" id="FAU_19_Fleeting Hummer" data-flag="@XD" onclick="openSidebar('FAU_19_Fleeting Hummer',false)"><button class="flip-btn" onclick="imgFlip('FAU_19_Fleeting Hummer')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/53_Conclave Chronicler.jpg" id="FAU_53_Conclave Chronicler" data-flag="@X" onclick="openSidebar('FAU_53_Conclave Chronicler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/97_Disillusioned Cynic.jpg" id="FAU_97_Disillusioned Cynic" data-flag="@X" onclick="openSidebar('FAU_97_Disillusioned Cynic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/145_Guerrilla Chieftain.jpg" id="FAU_145_Guerrilla Chieftain" data-flag="@X" onclick="openSidebar('FAU_145_Guerrilla Chieftain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/186_Heartbound Twins.jpg" id="FAU_186_Heartbound Twins" data-flag="@X" onclick="openSidebar('FAU_186_Heartbound Twins',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/21_Glitterwing Witch.jpg" id="FAU_21_Glitterwing Witch" data-flag="@X" onclick="openSidebar('FAU_21_Glitterwing Witch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/57_Engross in Fables.jpg" id="FAU_57_Engross in Fables" data-flag="@X" onclick="openSidebar('FAU_57_Engross in Fables',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/98_Dragon Talons.jpg" id="FAU_98_Dragon Talons" data-flag="@X" onclick="openSidebar('FAU_98_Dragon Talons',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/148_Hordeling Outburst.jpg" id="FAU_148_Hordeling Outburst" data-flag="@X" onclick="openSidebar('FAU_148_Hordeling Outburst',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/194_Mother Deer_back.jpg" alt="sets/FAU-files/img/194_Mother Deer_front.jpg" id="FAU_194_Mother Deer" data-flag="@XD" onclick="openSidebar('FAU_194_Mother Deer',false)"><button class="flip-btn" onclick="imgFlip('FAU_194_Mother Deer')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/23_Gnome Court.jpg" id="FAU_23_Gnome Court" data-flag="@X" onclick="openSidebar('FAU_23_Gnome Court',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/58_Erratic Analysis.jpg" id="FAU_58_Erratic Analysis" data-flag="@X" onclick="openSidebar('FAU_58_Erratic Analysis',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/101_Fester Dragon.jpg" id="FAU_101_Fester Dragon" data-flag="@X" onclick="openSidebar('FAU_101_Fester Dragon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/149_Infernal Embermaw.jpg" id="FAU_149_Infernal Embermaw" data-flag="@X" onclick="openSidebar('FAU_149_Infernal Embermaw',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/195_Nodorog Familiar.jpg" id="FAU_195_Nodorog Familiar" data-flag="@X" onclick="openSidebar('FAU_195_Nodorog Familiar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/31_Slate Primordial.jpg" id="FAU_31_Slate Primordial" data-flag="@X" onclick="openSidebar('FAU_31_Slate Primordial',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/62_Keen Clairvoyant.jpg" id="FAU_62_Keen Clairvoyant" data-flag="@X" onclick="openSidebar('FAU_62_Keen Clairvoyant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/106_Grizzled Usurper.jpg" id="FAU_106_Grizzled Usurper" data-flag="@X" onclick="openSidebar('FAU_106_Grizzled Usurper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/154_Rabid Taskmaster.jpg" id="FAU_154_Rabid Taskmaster" data-flag="@X" onclick="openSidebar('FAU_154_Rabid Taskmaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/201_Sibyl of Seasons.jpg" id="FAU_201_Sibyl of Seasons" data-flag="@X" onclick="openSidebar('FAU_201_Sibyl of Seasons',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/33_Sovereign Collapse.jpg" id="FAU_33_Sovereign Collapse" data-flag="@X" onclick="openSidebar('FAU_33_Sovereign Collapse',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/65_Luminous Augur.jpg" id="FAU_65_Luminous Augur" data-flag="@X" onclick="openSidebar('FAU_65_Luminous Augur',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/113_Pernicious Hunter.jpg" id="FAU_113_Pernicious Hunter" data-flag="@X" onclick="openSidebar('FAU_113_Pernicious Hunter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/155_Rampant Greed.jpg" id="FAU_155_Rampant Greed" data-flag="@X" onclick="openSidebar('FAU_155_Rampant Greed',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/204_Sylvan Matron.jpg" id="FAU_204_Sylvan Matron" data-flag="@X" onclick="openSidebar('FAU_204_Sylvan Matron',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/34_Sugarplum Sprite.jpg" id="FAU_34_Sugarplum Sprite" data-flag="@X" onclick="openSidebar('FAU_34_Sugarplum Sprite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/69_Rainbow Carp.jpg" id="FAU_69_Rainbow Carp" data-flag="@X" onclick="openSidebar('FAU_69_Rainbow Carp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/115_Rafter Dastard.jpg" id="FAU_115_Rafter Dastard" data-flag="@X" onclick="openSidebar('FAU_115_Rafter Dastard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/159_Rising Fires.jpg" id="FAU_159_Rising Fires" data-flag="@X" onclick="openSidebar('FAU_159_Rising Fires',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/206_Tractmapping.jpg" id="FAU_206_Tractmapping" data-flag="@X" onclick="openSidebar('FAU_206_Tractmapping',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/40_Touch of Cherubs.jpg" id="FAU_40_Touch of Cherubs" data-flag="@X" onclick="openSidebar('FAU_40_Touch of Cherubs',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/79_Tormented Apothecary.jpg" id="FAU_79_Tormented Apothecary" data-flag="@X" onclick="openSidebar('FAU_79_Tormented Apothecary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/119_Slavering Horde.jpg" id="FAU_119_Slavering Horde" data-flag="@X" onclick="openSidebar('FAU_119_Slavering Horde',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/162_Slobbering Legion.jpg" id="FAU_162_Slobbering Legion" data-flag="@X" onclick="openSidebar('FAU_162_Slobbering Legion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/207_Westwind Outrider.jpg" id="FAU_207_Westwind Outrider" data-flag="@X" onclick="openSidebar('FAU_207_Westwind Outrider',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/42_Unyielding Enforcer.jpg" id="FAU_42_Unyielding Enforcer" data-flag="@X" onclick="openSidebar('FAU_42_Unyielding Enforcer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/80_Tracing Drake.jpg" id="FAU_80_Tracing Drake" data-flag="@X" onclick="openSidebar('FAU_80_Tracing Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/126_Twayblade Trader.jpg" id="FAU_126_Twayblade Trader" data-flag="@X" onclick="openSidebar('FAU_126_Twayblade Trader',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/166_Wurtnook Firebrewer.jpg" id="FAU_166_Wurtnook Firebrewer" data-flag="@X" onclick="openSidebar('FAU_166_Wurtnook Firebrewer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/208_Wriwth Champion.jpg" id="FAU_208_Wriwth Champion" data-flag="@X" onclick="openSidebar('FAU_208_Wriwth Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/2_Bauble Broker.jpg" id="FAU_2_Bauble Broker" data-flag="@X" onclick="openSidebar('FAU_2_Bauble Broker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/49_Bubbling Goldie.jpg" id="FAU_49_Bubbling Goldie" data-flag="@X" onclick="openSidebar('FAU_49_Bubbling Goldie',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/85_Alley Deviants.jpg" id="FAU_85_Alley Deviants" data-flag="@X" onclick="openSidebar('FAU_85_Alley Deviants',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/129_Brazen Pignapping.jpg" id="FAU_129_Brazen Pignapping" data-flag="@X" onclick="openSidebar('FAU_129_Brazen Pignapping',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/169_Arbor Sentinel.jpg" id="FAU_169_Arbor Sentinel" data-flag="@X" onclick="openSidebar('FAU_169_Arbor Sentinel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/3_Bewitching Flutist.jpg" id="FAU_3_Bewitching Flutist" data-flag="@X" onclick="openSidebar('FAU_3_Bewitching Flutist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/51_Cavern Magus.jpg" id="FAU_51_Cavern Magus" data-flag="@X" onclick="openSidebar('FAU_51_Cavern Magus',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/87_Bleak Moon Rising.jpg" id="FAU_87_Bleak Moon Rising" data-flag="@X" onclick="openSidebar('FAU_87_Bleak Moon Rising',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/130_Bullhog Jockey.jpg" id="FAU_130_Bullhog Jockey" data-flag="@X" onclick="openSidebar('FAU_130_Bullhog Jockey',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/170_Arboreal Mantle.jpg" id="FAU_170_Arboreal Mantle" data-flag="@X" onclick="openSidebar('FAU_170_Arboreal Mantle',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/8_Conclave Faithful_back.jpg" alt="sets/FAU-files/img/8_Conclave Faithful_front.jpg" id="FAU_8_Conclave Faithful" data-flag="@XD" onclick="openSidebar('FAU_8_Conclave Faithful',false)"><button class="flip-btn" onclick="imgFlip('FAU_8_Conclave Faithful')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/55_Crimson Serpent.jpg" id="FAU_55_Crimson Serpent" data-flag="@X" onclick="openSidebar('FAU_55_Crimson Serpent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/91_Coat with Venom.jpg" id="FAU_91_Coat with Venom" data-flag="@X" onclick="openSidebar('FAU_91_Coat with Venom',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/131_Burn Bright.jpg" id="FAU_131_Burn Bright" data-flag="@X" onclick="openSidebar('FAU_131_Burn Bright',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/172_Bespoken Purity.jpg" id="FAU_172_Bespoken Purity" data-flag="@X" onclick="openSidebar('FAU_172_Bespoken Purity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/10_Divine Arrow.jpg" id="FAU_10_Divine Arrow" data-flag="@X" onclick="openSidebar('FAU_10_Divine Arrow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/56_Daring Escape.jpg" id="FAU_56_Daring Escape" data-flag="@X" onclick="openSidebar('FAU_56_Daring Escape',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/96_Darkwater Snapper.jpg" id="FAU_96_Darkwater Snapper" data-flag="@X" onclick="openSidebar('FAU_96_Darkwater Snapper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/134_Carnage Zealot.jpg" id="FAU_134_Carnage Zealot" data-flag="@X" onclick="openSidebar('FAU_134_Carnage Zealot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/173_Burgeoning Bramble.jpg" id="FAU_173_Burgeoning Bramble" data-flag="@X" onclick="openSidebar('FAU_173_Burgeoning Bramble',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/11_Draconic Acolyte.jpg" id="FAU_11_Draconic Acolyte" data-flag="@X" onclick="openSidebar('FAU_11_Draconic Acolyte',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/59_Flood Elemental.jpg" id="FAU_59_Flood Elemental" data-flag="@X" onclick="openSidebar('FAU_59_Flood Elemental',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/99_Dusk Mystic.jpg" id="FAU_99_Dusk Mystic" data-flag="@X" onclick="openSidebar('FAU_99_Dusk Mystic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/135_Demolish.jpg" id="FAU_135_Demolish" data-flag="@X" onclick="openSidebar('FAU_135_Demolish',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/175_Concordant Priestess.jpg" id="FAU_175_Concordant Priestess" data-flag="@X" onclick="openSidebar('FAU_175_Concordant Priestess',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/12_Duelist's Flair.jpg" id="FAU_12_Duelists Flair" data-flag="@X" onclick="openSidebar('FAU_12_Duelists Flair',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/60_Glint.jpg" id="FAU_60_Glint" data-flag="@X" onclick="openSidebar('FAU_60_Glint',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/102_Gibliver Larceny.jpg" id="FAU_102_Gibliver Larceny" data-flag="@X" onclick="openSidebar('FAU_102_Gibliver Larceny',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/139_Forging Hammer.jpg" id="FAU_139_Forging Hammer" data-flag="@X" onclick="openSidebar('FAU_139_Forging Hammer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/176_Deepwood Tracker.jpg" id="FAU_176_Deepwood Tracker" data-flag="@X" onclick="openSidebar('FAU_176_Deepwood Tracker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/14_Fae of First Frost.jpg" id="FAU_14_Fae of First Frost" data-flag="@X" onclick="openSidebar('FAU_14_Fae of First Frost',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/63_Kept Secrets.jpg" id="FAU_63_Kept Secrets" data-flag="@X" onclick="openSidebar('FAU_63_Kept Secrets',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/103_Gloom Druid.jpg" id="FAU_103_Gloom Druid" data-flag="@X" onclick="openSidebar('FAU_103_Gloom Druid',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/140_Fry Up.jpg" id="FAU_140_Fry Up" data-flag="@X" onclick="openSidebar('FAU_140_Fry Up',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/178_Elder Blessing.jpg" id="FAU_178_Elder Blessing" data-flag="@X" onclick="openSidebar('FAU_178_Elder Blessing',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/16_Fairglade Foxes.jpg" id="FAU_16_Fairglade Foxes" data-flag="@X" onclick="openSidebar('FAU_16_Fairglade Foxes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/64_Limnophobia.jpg" id="FAU_64_Limnophobia" data-flag="@X" onclick="openSidebar('FAU_64_Limnophobia',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/104_Gold Grubber.jpg" id="FAU_104_Gold Grubber" data-flag="@X" onclick="openSidebar('FAU_104_Gold Grubber',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/141_Gibliver Raid Leader.jpg" id="FAU_141_Gibliver Raid Leader" data-flag="@X" onclick="openSidebar('FAU_141_Gibliver Raid Leader',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/180_Elvish Trailblazer.jpg" id="FAU_180_Elvish Trailblazer" data-flag="@X" onclick="openSidebar('FAU_180_Elvish Trailblazer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/22_Glyris Faithful.jpg" id="FAU_22_Glyris Faithful" data-flag="@X" onclick="openSidebar('FAU_22_Glyris Faithful',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/67_Mercurial Vial.jpg" id="FAU_67_Mercurial Vial" data-flag="@X" onclick="openSidebar('FAU_67_Mercurial Vial',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/105_Grasping Shadow.jpg" id="FAU_105_Grasping Shadow" data-flag="@X" onclick="openSidebar('FAU_105_Grasping Shadow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/146_Heinous Needletooth.jpg" id="FAU_146_Heinous Needletooth" data-flag="@X" onclick="openSidebar('FAU_146_Heinous Needletooth',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/182_Fairglade Maiden_back.jpg" alt="sets/FAU-files/img/182_Fairglade Maiden_front.jpg" id="FAU_182_Fairglade Maiden" data-flag="@XD" onclick="openSidebar('FAU_182_Fairglade Maiden',false)"><button class="flip-btn" onclick="imgFlip('FAU_182_Fairglade Maiden')"></button></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/25_Lustrous Eidolon_back.jpg" alt="sets/FAU-files/img/25_Lustrous Eidolon_front.jpg" id="FAU_25_Lustrous Eidolon" data-flag="@XD" onclick="openSidebar('FAU_25_Lustrous Eidolon',false)"><button class="flip-btn" onclick="imgFlip('FAU_25_Lustrous Eidolon')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/70_Rapacious Sprite.jpg" id="FAU_70_Rapacious Sprite" data-flag="@X" onclick="openSidebar('FAU_70_Rapacious Sprite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/107_Jhalach Scourge.jpg" id="FAU_107_Jhalach Scourge" data-flag="@X" onclick="openSidebar('FAU_107_Jhalach Scourge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/150_Inner Flame.jpg" id="FAU_150_Inner Flame" data-flag="@X" onclick="openSidebar('FAU_150_Inner Flame',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/184_Frostwood Wolf_back.jpg" alt="sets/FAU-files/img/184_Frostwood Wolf_front.jpg" id="FAU_184_Frostwood Wolf" data-flag="@XD" onclick="openSidebar('FAU_184_Frostwood Wolf',false)"><button class="flip-btn" onclick="imgFlip('FAU_184_Frostwood Wolf')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/26_Meadow Lyrist.jpg" id="FAU_26_Meadow Lyrist" data-flag="@X" onclick="openSidebar('FAU_26_Meadow Lyrist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/71_Rehabilitation.jpg" id="FAU_71_Rehabilitation" data-flag="@X" onclick="openSidebar('FAU_71_Rehabilitation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/111_Noxious Smuggler.jpg" id="FAU_111_Noxious Smuggler" data-flag="@X" onclick="openSidebar('FAU_111_Noxious Smuggler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/151_Madcap Shot.jpg" id="FAU_151_Madcap Shot" data-flag="@X" onclick="openSidebar('FAU_151_Madcap Shot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/190_Lock Antlers.jpg" id="FAU_190_Lock Antlers" data-flag="@X" onclick="openSidebar('FAU_190_Lock Antlers',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/27_Mystifying Melody.jpg" id="FAU_27_Mystifying Melody" data-flag="@X" onclick="openSidebar('FAU_27_Mystifying Melody',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/73_Schlepping Gnome_back.jpg" alt="sets/FAU-files/img/73_Schlepping Gnome_front.jpg" id="FAU_73_Schlepping Gnome" data-flag="@XD" onclick="openSidebar('FAU_73_Schlepping Gnome',false)"><button class="flip-btn" onclick="imgFlip('FAU_73_Schlepping Gnome')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/112_Perilous Liturgy.jpg" id="FAU_112_Perilous Liturgy" data-flag="@X" onclick="openSidebar('FAU_112_Perilous Liturgy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/152_Masked Redcap.jpg" id="FAU_152_Masked Redcap" data-flag="@X" onclick="openSidebar('FAU_152_Masked Redcap',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/192_Midland Ranger.jpg" id="FAU_192_Midland Ranger" data-flag="@X" onclick="openSidebar('FAU_192_Midland Ranger',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/28_Pipeweed Peddler_back.jpg" alt="sets/FAU-files/img/28_Pipeweed Peddler_front.jpg" id="FAU_28_Pipeweed Peddler" data-flag="@XD" onclick="openSidebar('FAU_28_Pipeweed Peddler',false)"><button class="flip-btn" onclick="imgFlip('FAU_28_Pipeweed Peddler')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/74_Scientific Inquiry.jpg" id="FAU_74_Scientific Inquiry" data-flag="@X" onclick="openSidebar('FAU_74_Scientific Inquiry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/114_Petty Malevolence.jpg" id="FAU_114_Petty Malevolence" data-flag="@X" onclick="openSidebar('FAU_114_Petty Malevolence',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/156_Raucous Merriment.jpg" id="FAU_156_Raucous Merriment" data-flag="@X" onclick="openSidebar('FAU_156_Raucous Merriment',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/193_Mosshide Nodorog.jpg" id="FAU_193_Mosshide Nodorog" data-flag="@X" onclick="openSidebar('FAU_193_Mosshide Nodorog',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/29_Recruitment Forum_back.jpg" alt="sets/FAU-files/img/29_Recruitment Forum_front.jpg" id="FAU_29_Recruitment Forum" data-flag="@XD" onclick="openSidebar('FAU_29_Recruitment Forum',false)"><button class="flip-btn" onclick="imgFlip('FAU_29_Recruitment Forum')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/75_Shimmering Wyvern.jpg" id="FAU_75_Shimmering Wyvern" data-flag="@X" onclick="openSidebar('FAU_75_Shimmering Wyvern',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/116_Reave Soul.jpg" id="FAU_116_Reave Soul" data-flag="@X" onclick="openSidebar('FAU_116_Reave Soul',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/157_Ridge Racer.jpg" id="FAU_157_Ridge Racer" data-flag="@X" onclick="openSidebar('FAU_157_Ridge Racer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/196_Off the Beaten Path.jpg" id="FAU_196_Off the Beaten Path" data-flag="@X" onclick="openSidebar('FAU_196_Off the Beaten Path',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/30_Skywise Griffin.jpg" id="FAU_30_Skywise Griffin" data-flag="@X" onclick="openSidebar('FAU_30_Skywise Griffin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/76_Snatching Drake.jpg" id="FAU_76_Snatching Drake" data-flag="@X" onclick="openSidebar('FAU_76_Snatching Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/118_Shadow Sniper.jpg" id="FAU_118_Shadow Sniper" data-flag="@X" onclick="openSidebar('FAU_118_Shadow Sniper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/158_Riotous Melee.jpg" id="FAU_158_Riotous Melee" data-flag="@X" onclick="openSidebar('FAU_158_Riotous Melee',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/199_Roving Roots.jpg" id="FAU_199_Roving Roots" data-flag="@X" onclick="openSidebar('FAU_199_Roving Roots',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/32_Soothsaid Slumber.jpg" id="FAU_32_Soothsaid Slumber" data-flag="@X" onclick="openSidebar('FAU_32_Soothsaid Slumber',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/77_Tanpip Merrymaker.jpg" id="FAU_77_Tanpip Merrymaker" data-flag="@X" onclick="openSidebar('FAU_77_Tanpip Merrymaker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/120_Smoke Weaver.jpg" id="FAU_120_Smoke Weaver" data-flag="@X" onclick="openSidebar('FAU_120_Smoke Weaver',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/160_Roosting Whelp.jpg" id="FAU_160_Roosting Whelp" data-flag="@X" onclick="openSidebar('FAU_160_Roosting Whelp',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/200_Runic Elk_back.jpg" alt="sets/FAU-files/img/200_Runic Elk_front.jpg" id="FAU_200_Runic Elk" data-flag="@XD" onclick="openSidebar('FAU_200_Runic Elk',false)"><button class="flip-btn" onclick="imgFlip('FAU_200_Runic Elk')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/35_Take Heart.jpg" id="FAU_35_Take Heart" data-flag="@X" onclick="openSidebar('FAU_35_Take Heart',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/78_Thought Collapse.jpg" id="FAU_78_Thought Collapse" data-flag="@X" onclick="openSidebar('FAU_78_Thought Collapse',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/121_Sweep the Leg.jpg" id="FAU_121_Sweep the Leg" data-flag="@X" onclick="openSidebar('FAU_121_Sweep the Leg',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/163_Soaring Sundancer.jpg" id="FAU_163_Soaring Sundancer" data-flag="@X" onclick="openSidebar('FAU_163_Soaring Sundancer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/202_Skyfall.jpg" id="FAU_202_Skyfall" data-flag="@X" onclick="openSidebar('FAU_202_Skyfall',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/37_Tanpip Paladin.jpg" id="FAU_37_Tanpip Paladin" data-flag="@X" onclick="openSidebar('FAU_37_Tanpip Paladin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/83_Weaselback Cavalier.jpg" id="FAU_83_Weaselback Cavalier" data-flag="@X" onclick="openSidebar('FAU_83_Weaselback Cavalier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/123_Tainted Contract.jpg" id="FAU_123_Tainted Contract" data-flag="@X" onclick="openSidebar('FAU_123_Tainted Contract',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/164_Vehement Lunatic.jpg" id="FAU_164_Vehement Lunatic" data-flag="@X" onclick="openSidebar('FAU_164_Vehement Lunatic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/203_Springbloom Harvester.jpg" id="FAU_203_Springbloom Harvester" data-flag="@X" onclick="openSidebar('FAU_203_Springbloom Harvester',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/38_Tavern Gathering.jpg" id="FAU_38_Tavern Gathering" data-flag="@X" onclick="openSidebar('FAU_38_Tavern Gathering',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/84_Zephyr Drake.jpg" id="FAU_84_Zephyr Drake" data-flag="@X" onclick="openSidebar('FAU_84_Zephyr Drake',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/125_Trench Trawler.jpg" id="FAU_125_Trench Trawler" data-flag="@X" onclick="openSidebar('FAU_125_Trench Trawler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/167_Wurtnook Hackblade.jpg" id="FAU_167_Wurtnook Hackblade" data-flag="@X" onclick="openSidebar('FAU_167_Wurtnook Hackblade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/209_Wriwth Greatbow.jpg" id="FAU_209_Wriwth Greatbow" data-flag="@X" onclick="openSidebar('FAU_209_Wriwth Greatbow',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/230_Wudloon, City of Spores.jpg" id="FAU_230_Wudloon, City of Spores" data-flag="@X" onclick="openSidebar('FAU_230_Wudloon, City of Spores',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/225_Waspback Bandit.jpg" id="FAU_225_Waspback Bandit" data-flag="@X" onclick="openSidebar('FAU_225_Waspback Bandit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/211_Ashen Subjugator.jpg" id="FAU_211_Ashen Subjugator" data-flag="@X" onclick="openSidebar('FAU_211_Ashen Subjugator',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/222_Thorned Basilisk_back.jpg" alt="/sets/FAU-files/img/222_Thorned Basilisk_front.jpg" id="FAU_222_Thorned Basilisk" data-flag="@XD" onclick="openSidebar('FAU_222_Thorned Basilisk',false)"><button class="flip-btn" onclick="imgFlip('FAU_222_Thorned Basilisk')"></button></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/214_Fairglade Weaver_back.jpg" alt="/sets/FAU-files/img/214_Fairglade Weaver_front.jpg" id="FAU_214_Fairglade Weaver" data-flag="@XD" onclick="openSidebar('FAU_214_Fairglade Weaver',false)"><button class="flip-btn" onclick="imgFlip('FAU_214_Fairglade Weaver')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/226_Welkin Witch.jpg" id="FAU_226_Welkin Witch" data-flag="@X" onclick="openSidebar('FAU_226_Welkin Witch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/221_Thievish Gadfly.jpg" id="FAU_221_Thievish Gadfly" data-flag="@X" onclick="openSidebar('FAU_221_Thievish Gadfly',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/216_Gibliver Legionnaire.jpg" id="FAU_216_Gibliver Legionnaire" data-flag="@X" onclick="openSidebar('FAU_216_Gibliver Legionnaire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/223_Twaintail Panda.jpg" id="FAU_223_Twaintail Panda" data-flag="@X" onclick="openSidebar('FAU_223_Twaintail Panda',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/212_Autumnal Champion.jpg" id="FAU_212_Autumnal Champion" data-flag="@X" onclick="openSidebar('FAU_212_Autumnal Champion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/217_Lark, the Misanthrope.jpg" id="FAU_217_Lark, the Misanthrope" data-flag="@X" onclick="openSidebar('FAU_217_Lark, the Misanthrope',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/213_Delia, the Fanatic.jpg" id="FAU_213_Delia, the Fanatic" data-flag="@X" onclick="openSidebar('FAU_213_Delia, the Fanatic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/224_Wart Lord Domino.jpg" id="FAU_224_Wart Lord Domino" data-flag="@X" onclick="openSidebar('FAU_224_Wart Lord Domino',false)"></div>
-				<div class="container"><img loading="lazy" data-alt_src="/sets/FAU-files/img/215_Fervid Curator_back.jpg" alt="/sets/FAU-files/img/215_Fervid Curator_front.jpg" id="FAU_215_Fervid Curator" data-flag="@XD" onclick="openSidebar('FAU_215_Fervid Curator',false)"><button class="flip-btn" onclick="imgFlip('FAU_215_Fervid Curator')"></button></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/227_Wild World.jpg" id="FAU_227_Wild World" data-flag="@X" onclick="openSidebar('FAU_227_Wild World',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/229_Wingstitcher Outcast.jpg" id="FAU_229_Wingstitcher Outcast" data-flag="@X" onclick="openSidebar('FAU_229_Wingstitcher Outcast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/220_Shrieking Skykite.jpg" id="FAU_220_Shrieking Skykite" data-flag="@X" onclick="openSidebar('FAU_220_Shrieking Skykite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/218_Merciless Pursuer.jpg" id="FAU_218_Merciless Pursuer" data-flag="@X" onclick="openSidebar('FAU_218_Merciless Pursuer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/219_Rousing Twinblade.jpg" id="FAU_219_Rousing Twinblade" data-flag="@X" onclick="openSidebar('FAU_219_Rousing Twinblade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/228_Wildwing Fae.jpg" id="FAU_228_Wildwing Fae" data-flag="@X" onclick="openSidebar('FAU_228_Wildwing Fae',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/230_Wudloon, City of Spores.jpg" id="FAU_230_Wudloon, City of Spores" data-flag="@X" onclick="openSidebar('FAU_230_Wudloon, City of Spores',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/225_Waspback Bandit.jpg" id="FAU_225_Waspback Bandit" data-flag="@X" onclick="openSidebar('FAU_225_Waspback Bandit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/211_Ashen Subjugator.jpg" id="FAU_211_Ashen Subjugator" data-flag="@X" onclick="openSidebar('FAU_211_Ashen Subjugator',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/222_Thorned Basilisk_back.jpg" alt="sets/FAU-files/img/222_Thorned Basilisk_front.jpg" id="FAU_222_Thorned Basilisk" data-flag="@XD" onclick="openSidebar('FAU_222_Thorned Basilisk',false)"><button class="flip-btn" onclick="imgFlip('FAU_222_Thorned Basilisk')"></button></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/214_Fairglade Weaver_back.jpg" alt="sets/FAU-files/img/214_Fairglade Weaver_front.jpg" id="FAU_214_Fairglade Weaver" data-flag="@XD" onclick="openSidebar('FAU_214_Fairglade Weaver',false)"><button class="flip-btn" onclick="imgFlip('FAU_214_Fairglade Weaver')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/226_Welkin Witch.jpg" id="FAU_226_Welkin Witch" data-flag="@X" onclick="openSidebar('FAU_226_Welkin Witch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/221_Thievish Gadfly.jpg" id="FAU_221_Thievish Gadfly" data-flag="@X" onclick="openSidebar('FAU_221_Thievish Gadfly',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/216_Gibliver Legionnaire.jpg" id="FAU_216_Gibliver Legionnaire" data-flag="@X" onclick="openSidebar('FAU_216_Gibliver Legionnaire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/223_Twaintail Panda.jpg" id="FAU_223_Twaintail Panda" data-flag="@X" onclick="openSidebar('FAU_223_Twaintail Panda',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/212_Autumnal Champion.jpg" id="FAU_212_Autumnal Champion" data-flag="@X" onclick="openSidebar('FAU_212_Autumnal Champion',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/217_Lark, the Misanthrope.jpg" id="FAU_217_Lark, the Misanthrope" data-flag="@X" onclick="openSidebar('FAU_217_Lark, the Misanthrope',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/213_Delia, the Fanatic.jpg" id="FAU_213_Delia, the Fanatic" data-flag="@X" onclick="openSidebar('FAU_213_Delia, the Fanatic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/224_Wart Lord Domino.jpg" id="FAU_224_Wart Lord Domino" data-flag="@X" onclick="openSidebar('FAU_224_Wart Lord Domino',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/FAU-files/img/215_Fervid Curator_back.jpg" alt="sets/FAU-files/img/215_Fervid Curator_front.jpg" id="FAU_215_Fervid Curator" data-flag="@XD" onclick="openSidebar('FAU_215_Fervid Curator',false)"><button class="flip-btn" onclick="imgFlip('FAU_215_Fervid Curator')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/227_Wild World.jpg" id="FAU_227_Wild World" data-flag="@X" onclick="openSidebar('FAU_227_Wild World',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/229_Wingstitcher Outcast.jpg" id="FAU_229_Wingstitcher Outcast" data-flag="@X" onclick="openSidebar('FAU_229_Wingstitcher Outcast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/220_Shrieking Skykite.jpg" id="FAU_220_Shrieking Skykite" data-flag="@X" onclick="openSidebar('FAU_220_Shrieking Skykite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/218_Merciless Pursuer.jpg" id="FAU_218_Merciless Pursuer" data-flag="@X" onclick="openSidebar('FAU_218_Merciless Pursuer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/219_Rousing Twinblade.jpg" id="FAU_219_Rousing Twinblade" data-flag="@X" onclick="openSidebar('FAU_219_Rousing Twinblade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/228_Wildwing Fae.jpg" id="FAU_228_Wildwing Fae" data-flag="@X" onclick="openSidebar('FAU_228_Wildwing Fae',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/236_Sword of Fool's Destiny.jpg" id="FAU_236_Sword of Fools Destiny" data-flag="@X" onclick="openSidebar('FAU_236_Sword of Fools Destiny',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/240_Warding Simulacrum.jpg" id="FAU_240_Warding Simulacrum" data-flag="@X" onclick="openSidebar('FAU_240_Warding Simulacrum',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/233_Hero's Sledge.jpg" id="FAU_233_Heros Sledge" data-flag="@X" onclick="openSidebar('FAU_233_Heros Sledge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/235_Scythe of Plenty.jpg" id="FAU_235_Scythe of Plenty" data-flag="@X" onclick="openSidebar('FAU_235_Scythe of Plenty',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/237_Treasure Cache.jpg" id="FAU_237_Treasure Cache" data-flag="@X" onclick="openSidebar('FAU_237_Treasure Cache',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/239_Waltzing Marionette.jpg" id="FAU_239_Waltzing Marionette" data-flag="@X" onclick="openSidebar('FAU_239_Waltzing Marionette',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/231_Blood Red Wine.jpg" id="FAU_231_Blood Red Wine" data-flag="@X" onclick="openSidebar('FAU_231_Blood Red Wine',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/232_Bloodletting Blade.jpg" id="FAU_232_Bloodletting Blade" data-flag="@X" onclick="openSidebar('FAU_232_Bloodletting Blade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/234_Poison Dagger.jpg" id="FAU_234_Poison Dagger" data-flag="@X" onclick="openSidebar('FAU_234_Poison Dagger',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/238_Vine Wire.jpg" id="FAU_238_Vine Wire" data-flag="@X" onclick="openSidebar('FAU_238_Vine Wire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/241_Wayfarer's Chart.jpg" id="FAU_241_Wayfarers Chart" data-flag="@X" onclick="openSidebar('FAU_241_Wayfarers Chart',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/236_Sword of Fool's Destiny.jpg" id="FAU_236_Sword of Fools Destiny" data-flag="@X" onclick="openSidebar('FAU_236_Sword of Fools Destiny',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/240_Warding Simulacrum.jpg" id="FAU_240_Warding Simulacrum" data-flag="@X" onclick="openSidebar('FAU_240_Warding Simulacrum',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/233_Hero's Sledge.jpg" id="FAU_233_Heros Sledge" data-flag="@X" onclick="openSidebar('FAU_233_Heros Sledge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/235_Scythe of Plenty.jpg" id="FAU_235_Scythe of Plenty" data-flag="@X" onclick="openSidebar('FAU_235_Scythe of Plenty',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/237_Treasure Cache.jpg" id="FAU_237_Treasure Cache" data-flag="@X" onclick="openSidebar('FAU_237_Treasure Cache',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/239_Waltzing Marionette.jpg" id="FAU_239_Waltzing Marionette" data-flag="@X" onclick="openSidebar('FAU_239_Waltzing Marionette',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/231_Blood Red Wine.jpg" id="FAU_231_Blood Red Wine" data-flag="@X" onclick="openSidebar('FAU_231_Blood Red Wine',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/232_Bloodletting Blade.jpg" id="FAU_232_Bloodletting Blade" data-flag="@X" onclick="openSidebar('FAU_232_Bloodletting Blade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/234_Poison Dagger.jpg" id="FAU_234_Poison Dagger" data-flag="@X" onclick="openSidebar('FAU_234_Poison Dagger',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/238_Vine Wire.jpg" id="FAU_238_Vine Wire" data-flag="@X" onclick="openSidebar('FAU_238_Vine Wire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/241_Wayfarer's Chart.jpg" id="FAU_241_Wayfarers Chart" data-flag="@X" onclick="openSidebar('FAU_241_Wayfarers Chart',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
 				<div id="land" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/249_Sunwashed Hills.jpg" id="FAU_249_Sunwashed Hills" data-flag="@X" onclick="openSidebar('FAU_249_Sunwashed Hills',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/247_Secluded Moor.jpg" id="FAU_247_Secluded Moor" data-flag="@X" onclick="openSidebar('FAU_247_Secluded Moor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/245_Grim Dominion.jpg" id="FAU_245_Grim Dominion" data-flag="@X" onclick="openSidebar('FAU_245_Grim Dominion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/246_Molten Caverns.jpg" id="FAU_246_Molten Caverns" data-flag="@X" onclick="openSidebar('FAU_246_Molten Caverns',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/244_Gleaming Grove.jpg" id="FAU_244_Gleaming Grove" data-flag="@X" onclick="openSidebar('FAU_244_Gleaming Grove',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/248_Seeping Crater.jpg" id="FAU_248_Seeping Crater" data-flag="@X" onclick="openSidebar('FAU_248_Seeping Crater',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/243_Field of Ruin.jpg" id="FAU_243_Field of Ruin" data-flag="@X" onclick="openSidebar('FAU_243_Field of Ruin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAU-files/img/242_Evolving Wilds.jpg" id="FAU_242_Evolving Wilds" data-flag="@X" onclick="openSidebar('FAU_242_Evolving Wilds',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/249_Sunwashed Hills.jpg" id="FAU_249_Sunwashed Hills" data-flag="@X" onclick="openSidebar('FAU_249_Sunwashed Hills',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/247_Secluded Moor.jpg" id="FAU_247_Secluded Moor" data-flag="@X" onclick="openSidebar('FAU_247_Secluded Moor',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/245_Grim Dominion.jpg" id="FAU_245_Grim Dominion" data-flag="@X" onclick="openSidebar('FAU_245_Grim Dominion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/246_Molten Caverns.jpg" id="FAU_246_Molten Caverns" data-flag="@X" onclick="openSidebar('FAU_246_Molten Caverns',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/244_Gleaming Grove.jpg" id="FAU_244_Gleaming Grove" data-flag="@X" onclick="openSidebar('FAU_244_Gleaming Grove',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/248_Seeping Crater.jpg" id="FAU_248_Seeping Crater" data-flag="@X" onclick="openSidebar('FAU_248_Seeping Crater',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/243_Field of Ruin.jpg" id="FAU_243_Field of Ruin" data-flag="@X" onclick="openSidebar('FAU_243_Field of Ruin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAU-files/img/242_Evolving Wilds.jpg" id="FAU_242_Evolving Wilds" data-flag="@X" onclick="openSidebar('FAU_242_Evolving Wilds',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAU_e" data-flag="@E" onclick="openSidebar('FAU_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAU_er" data-flag="@E" onclick="openSidebar('FAU_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -591,13 +607,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -730,13 +746,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -890,16 +909,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -909,7 +928,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>

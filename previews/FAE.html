@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/png" href="/sets/FAE-files/icon.png"/>
-	<link rel="stylesheet" href="/resources/header.css">
+	<link rel="icon" type="image/png" href="../sets/FAE-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
 	<title>FAE visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
 	<style>
 		@font-face {
 			font-family: Beleren;
-			src: url('/resources/beleren.ttf');
+			src: url('../resources/beleren.ttf');
 		}
 		body {
 			font-family: Arial, sans-serif;
@@ -53,7 +56,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.close-btn {
-			background: url('/img/close.png') no-repeat;
+			background: url('../img/close.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 10%;
@@ -64,7 +67,7 @@
 			right: 4%;
 		}
 		.close-btn:hover {
-			background: url('/img/close-hover.png') no-repeat;
+			background: url('../img/close-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -108,7 +111,7 @@
 			border-radius: 3.733% / 2.677%;
 		}
 		.flip-btn {
-			background: url('/img/flip.png') no-repeat;
+			background: url('../img/flip.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 			width: 15%;
@@ -122,7 +125,7 @@
 			opacity: 0.5;
 		}
 		.flip-btn:hover {
-			background: url('/img/flip-hover.png') no-repeat;
+			background: url('../img/flip-hover.png') no-repeat;
 			background-size: contain;
 			background-position: center;
 		}
@@ -178,442 +181,455 @@
 	</style>
 </head>
 <body>
-	<img class="preload-hidden" src="/img/dot.png" />
-	<img class="preload-hidden" src="/sets/FAE-files/logo.png" />
-	<img class="preload-hidden" src="/sets/ICO-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SHF-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/NJB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AEX-files/icon.png" />
-		<img class="preload-hidden" src="/sets/WAS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SGB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GQC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/DSS-files/icon.png" />
-		<img class="preload-hidden" src="/sets/KOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GHQ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/TWB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAU-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MVA-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ATB-files/icon.png" />
-		<img class="preload-hidden" src="/sets/SUR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GNJ-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GSC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/FAE-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ICH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/AGH-files/icon.png" />
-		<img class="preload-hidden" src="/sets/MSR-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GLC-files/icon.png" />
-		<img class="preload-hidden" src="/sets/GOD-files/icon.png" />
-		<img class="preload-hidden" src="/sets/UND-files/icon.png" />
-		<img class="preload-hidden" src="/sets/ACE-files/icon.png" />
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/FAE-files/logo.png" />
+	<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
 		<div class="header">
 		<div class="search-grid">
-			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
-			<img class="sg-icon" src="/img/search.png">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<div style="position: relative; width: 100%;">
 				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
-			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
-			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
-			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
 
 	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
 	
-		<a class="set-bar" href="FAE"><img src="/sets/FAE-files/icon.png">Faerie Tales</a>
+		<a class="set-bar" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
 	
-		<a class="set-bar inactive" href="ICO"><img src="/sets/ICO-files/icon.png">Inner Coriansa</a>
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
 	
-		<a class="set-bar inactive" href="ATR"><img src="/sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
 	
-		<a class="set-bar inactive" href="SHF"><img src="/sets/SHF-files/icon.png">The Starholme Frontier</a>
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
 	
-		<a class="set-bar inactive" href="GSS"><img src="/sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KND"><img src="/sets/KND-files/icon.png">Kahembo: New Dawn</a>
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
 	
-		<a class="set-bar inactive" href="NJB"><img src="/sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
 	
-		<a class="set-bar inactive" href="AEX"><img src="/sets/AEX-files/icon.png">Aldmore Explorations</a>
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
 	
-		<a class="set-bar inactive" href="WAS"><img src="/sets/WAS-files/icon.png">Weir Astele</a>
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
 	
-		<a class="set-bar inactive" href="SGB"><img src="/sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
 	
-		<a class="set-bar inactive" href="GQC"><img src="/sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
 	
-		<a class="set-bar inactive" href="DSS"><img src="/sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
 	
-		<a class="set-bar inactive" href="KOD"><img src="/sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
 	
-		<a class="set-bar inactive" href="GHQ"><img src="/sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
 	
-		<a class="set-bar inactive" href="TWB"><img src="/sets/TWB-files/icon.png">The World Beneath</a>
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
 	
-		<a class="set-bar inactive" href="FAU"><img src="/sets/FAU-files/icon.png">Fields of Gold</a>
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
 	
-		<a class="set-bar inactive" href="MVA"><img src="/sets/MVA-files/icon.png">Multiverse Academy</a>
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
 	
-		<a class="set-bar inactive" href="ATB"><img src="/sets/ATB-files/icon.png">Al Tabaq</a>
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
 	
-		<a class="set-bar inactive" href="SUR"><img src="/sets/SUR-files/icon.png">Surging Tide</a>
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
 	
-		<a class="set-bar inactive" href="GNJ"><img src="/sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
 	
-		<a class="set-bar inactive" href="GSC"><img src="/sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
 	
-		<a class="set-bar inactive" href="AOD"><img src="/sets/AOD-files/icon.png">Ascent of Deities</a>
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
 	
-		<a class="set-bar inactive" href="ICH"><img src="/sets/ICH-files/icon.png">Ichatca</a>
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
 	
-		<a class="set-bar inactive" href="AGH"><img src="/sets/AGH-files/icon.png">Aghesh Unraveled</a>
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
 	
-		<a class="set-bar inactive" href="MSR"><img src="/sets/MSR-files/icon.png">Realms of Mashara</a>
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
 	
-		<a class="set-bar inactive" href="GLC"><img src="/sets/GLC-files/icon.png">Glacia</a>
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
 	
-		<a class="set-bar inactive" href="GOD"><img src="/sets/GOD-files/icon.png">Godspine</a>
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
 	
-		<a class="set-bar inactive" href="UND"><img src="/sets/UND-files/icon.png">The Underhalls</a>
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
 	
-		<a class="set-bar inactive" href="ACE"><img src="/sets/ACE-files/icon.png">Aldmore Cube</a>
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
 	
 		</div>
 		<div class="banner">
-		<img class="logo" src="/sets/FAE-files/logo.png">
+		<img class="logo" src="../sets/FAE-files/logo.png">
 		</div>
 		<div class="main-content" id="main-content">
 			<div class="grid-container">
-					<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/7_Elder of the Fae.jpg" id="FAE_7_Elder of the Fae" data-flag="@X" onclick="openSidebar('FAE_7_Elder of the Fae',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/60_Herrea of the Night Stars.jpg" id="FAE_60_Herrea of the Night Stars" data-flag="@X" onclick="openSidebar('FAE_60_Herrea of the Night Stars',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/94_Cauldron of Sin.jpg" id="FAE_94_Cauldron of Sin" data-flag="@X" onclick="openSidebar('FAE_94_Cauldron of Sin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/136_Cackling Rabblerouser.jpg" id="FAE_136_Cackling Rabblerouser" data-flag="@X" onclick="openSidebar('FAE_136_Cackling Rabblerouser',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/181_Burgeoning Blossoms.jpg" id="FAE_181_Burgeoning Blossoms" data-flag="@X" onclick="openSidebar('FAE_181_Burgeoning Blossoms',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/32_Sanguine Prayers.jpg" id="FAE_32_Sanguine Prayers" data-flag="@X" onclick="openSidebar('FAE_32_Sanguine Prayers',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/47_Conclave Atoner.jpg" id="FAE_47_Conclave Atoner" data-flag="@X" onclick="openSidebar('FAE_47_Conclave Atoner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/114_King Morund Jhalach IV.jpg" id="FAE_114_King Morund Jhalach IV" data-flag="@X" onclick="openSidebar('FAE_114_King Morund Jhalach IV',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/138_Daretti, the Iron Fist.jpg" id="FAE_138_Daretti, the Iron Fist" data-flag="@X" onclick="openSidebar('FAE_138_Daretti, the Iron Fist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/195_Lady Ilyrana Glyris.jpg" id="FAE_195_Lady Ilyrana Glyris" data-flag="@X" onclick="openSidebar('FAE_195_Lady Ilyrana Glyris',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/4_Curious Kitten.jpg" id="FAE_4_Curious Kitten" data-flag="@X" onclick="openSidebar('FAE_4_Curious Kitten',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/53_Essence of Temptation.jpg" id="FAE_53_Essence of Temptation" data-flag="@X" onclick="openSidebar('FAE_53_Essence of Temptation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/98_Contempt.jpg" id="FAE_98_Contempt" data-flag="@X" onclick="openSidebar('FAE_98_Contempt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/150_Last Hurrah.jpg" id="FAE_150_Last Hurrah" data-flag="@X" onclick="openSidebar('FAE_150_Last Hurrah',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/178_Beseech the Wilderness.jpg" id="FAE_178_Beseech the Wilderness" data-flag="@X" onclick="openSidebar('FAE_178_Beseech the Wilderness',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/12_Gang Up.jpg" id="FAE_12_Gang Up" data-flag="@X" onclick="openSidebar('FAE_12_Gang Up',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/65_Matron of the Moon.jpg" id="FAE_65_Matron of the Moon" data-flag="@X" onclick="openSidebar('FAE_65_Matron of the Moon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/109_Illicit Gains.jpg" id="FAE_109_Illicit Gains" data-flag="@X" onclick="openSidebar('FAE_109_Illicit Gains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/134_Boiling Point.jpg" id="FAE_134_Boiling Point" data-flag="@X" onclick="openSidebar('FAE_134_Boiling Point',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/183_Dazzling Dreamspinner.jpg" id="FAE_183_Dazzling Dreamspinner" data-flag="@X" onclick="openSidebar('FAE_183_Dazzling Dreamspinner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/21_Jubilant Collective.jpg" id="FAE_21_Jubilant Collective" data-flag="@X" onclick="openSidebar('FAE_21_Jubilant Collective',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/67_Moonlight Piper.jpg" id="FAE_67_Moonlight Piper" data-flag="@X" onclick="openSidebar('FAE_67_Moonlight Piper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/110_Jhalach Scoundrel.jpg" id="FAE_110_Jhalach Scoundrel" data-flag="@X" onclick="openSidebar('FAE_110_Jhalach Scoundrel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/137_Cauther Hellkite.jpg" id="FAE_137_Cauther Hellkite" data-flag="@X" onclick="openSidebar('FAE_137_Cauther Hellkite',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/187_Fungahydra.jpg" id="FAE_187_Fungahydra" data-flag="@X" onclick="openSidebar('FAE_187_Fungahydra',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/31_Rite of Purity.jpg" id="FAE_31_Rite of Purity" data-flag="@X" onclick="openSidebar('FAE_31_Rite of Purity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/78_Stoic Spellsnitch.jpg" id="FAE_78_Stoic Spellsnitch" data-flag="@X" onclick="openSidebar('FAE_78_Stoic Spellsnitch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/112_Juvenile Delinquent.jpg" id="FAE_112_Juvenile Delinquent" data-flag="@X" onclick="openSidebar('FAE_112_Juvenile Delinquent',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/140_Delia's Brew.jpg" id="FAE_140_Delias Brew" data-flag="@X" onclick="openSidebar('FAE_140_Delias Brew',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/192_Harmonious Gathering.jpg" id="FAE_192_Harmonious Gathering" data-flag="@X" onclick="openSidebar('FAE_192_Harmonious Gathering',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/33_Serene Prayers.jpg" id="FAE_33_Serene Prayers" data-flag="@X" onclick="openSidebar('FAE_33_Serene Prayers',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/79_Stumble Upon.jpg" id="FAE_79_Stumble Upon" data-flag="@X" onclick="openSidebar('FAE_79_Stumble Upon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/113_Kill on Sight.jpg" id="FAE_113_Kill on Sight" data-flag="@X" onclick="openSidebar('FAE_113_Kill on Sight',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/144_Firebrew Savant.jpg" id="FAE_144_Firebrew Savant" data-flag="@X" onclick="openSidebar('FAE_144_Firebrew Savant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/209_Shiv Specialist.jpg" id="FAE_209_Shiv Specialist" data-flag="@X" onclick="openSidebar('FAE_209_Shiv Specialist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/37_Spiritweaver Mystic.jpg" id="FAE_37_Spiritweaver Mystic" data-flag="@X" onclick="openSidebar('FAE_37_Spiritweaver Mystic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/84_To the Skies.jpg" id="FAE_84_To the Skies" data-flag="@X" onclick="openSidebar('FAE_84_To the Skies',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/118_Mark of Suffocation.jpg" id="FAE_118_Mark of Suffocation" data-flag="@X" onclick="openSidebar('FAE_118_Mark of Suffocation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/145_Frontal Assault.jpg" id="FAE_145_Frontal Assault" data-flag="@X" onclick="openSidebar('FAE_145_Frontal Assault',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/212_Thriving Thicket.jpg" id="FAE_212_Thriving Thicket" data-flag="@X" onclick="openSidebar('FAE_212_Thriving Thicket',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/38_Tanpip Paladin.jpg" id="FAE_38_Tanpip Paladin" data-flag="@X" onclick="openSidebar('FAE_38_Tanpip Paladin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/86_Wavering Visage.jpg" id="FAE_86_Wavering Visage" data-flag="@X" onclick="openSidebar('FAE_86_Wavering Visage',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/119_Rooftop Renegade.jpg" id="FAE_119_Rooftop Renegade" data-flag="@X" onclick="openSidebar('FAE_119_Rooftop Renegade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/154_Merk, the Matchmaker.jpg" id="FAE_154_Merk, the Matchmaker" data-flag="@X" onclick="openSidebar('FAE_154_Merk, the Matchmaker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/215_A Whole New World.jpg" id="FAE_215_A Whole New World" data-flag="@X" onclick="openSidebar('FAE_215_A Whole New World',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/40_Unassuming Troika.jpg" id="FAE_40_Unassuming Troika" data-flag="@X" onclick="openSidebar('FAE_40_Unassuming Troika',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/45_Archive Assistant.jpg" id="FAE_45_Archive Assistant" data-flag="@X" onclick="openSidebar('FAE_45_Archive Assistant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/121_Secondhand Shopkeep.jpg" id="FAE_121_Secondhand Shopkeep" data-flag="@X" onclick="openSidebar('FAE_121_Secondhand Shopkeep',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/171_Vicious Lindworm.jpg" id="FAE_171_Vicious Lindworm" data-flag="@X" onclick="openSidebar('FAE_171_Vicious Lindworm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/216_Wistari, Shepherd of Flora.jpg" id="FAE_216_Wistari, Shepherd of Flora" data-flag="@X" onclick="openSidebar('FAE_216_Wistari, Shepherd of Flora',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/3_Children of the Flock.jpg" id="FAE_3_Children of the Flock" data-flag="@X" onclick="openSidebar('FAE_3_Children of the Flock',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/48_Conclave Escort.jpg" id="FAE_48_Conclave Escort" data-flag="@X" onclick="openSidebar('FAE_48_Conclave Escort',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/90_Blighted Charlatan.jpg" id="FAE_90_Blighted Charlatan" data-flag="@X" onclick="openSidebar('FAE_90_Blighted Charlatan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/174_Wurtnook Firebrew.jpg" id="FAE_174_Wurtnook Firebrew" data-flag="@X" onclick="openSidebar('FAE_174_Wurtnook Firebrew',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/176_Arboreal Savant.jpg" id="FAE_176_Arboreal Savant" data-flag="@X" onclick="openSidebar('FAE_176_Arboreal Savant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/9_Fleeting Awareness.jpg" id="FAE_9_Fleeting Awareness" data-flag="@X" onclick="openSidebar('FAE_9_Fleeting Awareness',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/49_Consult the Wisps.jpg" id="FAE_49_Consult the Wisps" data-flag="@X" onclick="openSidebar('FAE_49_Consult the Wisps',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/91_Boiling Tar.jpg" id="FAE_91_Boiling Tar" data-flag="@X" onclick="openSidebar('FAE_91_Boiling Tar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/133_Boar Cavalry.jpg" id="FAE_133_Boar Cavalry" data-flag="@X" onclick="openSidebar('FAE_133_Boar Cavalry',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/179_Blueglass Centipede.jpg" id="FAE_179_Blueglass Centipede" data-flag="@X" onclick="openSidebar('FAE_179_Blueglass Centipede',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/10_Flittering Pixie.jpg" id="FAE_10_Flittering Pixie" data-flag="@X" onclick="openSidebar('FAE_10_Flittering Pixie',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/55_Fae of Frost.jpg" id="FAE_55_Fae of Frost" data-flag="@X" onclick="openSidebar('FAE_55_Fae of Frost',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/93_Bubbling Beyond.jpg" id="FAE_93_Bubbling Beyond" data-flag="@X" onclick="openSidebar('FAE_93_Bubbling Beyond',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/139_Daughter's Scorn.jpg" id="FAE_139_Daughters Scorn" data-flag="@X" onclick="openSidebar('FAE_139_Daughters Scorn',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/182_Canopy Ambusher.jpg" id="FAE_182_Canopy Ambusher" data-flag="@X" onclick="openSidebar('FAE_182_Canopy Ambusher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/13_Garos Aeronaut.jpg" id="FAE_13_Garos Aeronaut" data-flag="@X" onclick="openSidebar('FAE_13_Garos Aeronaut',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/57_Gnomish Meddling.jpg" id="FAE_57_Gnomish Meddling" data-flag="@X" onclick="openSidebar('FAE_57_Gnomish Meddling',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/96_Caustic Cynic.jpg" id="FAE_96_Caustic Cynic" data-flag="@X" onclick="openSidebar('FAE_96_Caustic Cynic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/141_Errant Sniper.jpg" id="FAE_141_Errant Sniper" data-flag="@X" onclick="openSidebar('FAE_141_Errant Sniper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/184_Enter the Ballroom.jpg" id="FAE_184_Enter the Ballroom" data-flag="@X" onclick="openSidebar('FAE_184_Enter the Ballroom',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/18_Granny's Reinforcements.jpg" id="FAE_18_Grannys Reinforcements" data-flag="@X" onclick="openSidebar('FAE_18_Grannys Reinforcements',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/59_Granny's Guise.jpg" id="FAE_59_Grannys Guise" data-flag="@X" onclick="openSidebar('FAE_59_Grannys Guise',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/99_Dark Dispatch.jpg" id="FAE_99_Dark Dispatch" data-flag="@X" onclick="openSidebar('FAE_99_Dark Dispatch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/143_Fire-Up Shot.jpg" id="FAE_143_Fire-Up Shot" data-flag="@X" onclick="openSidebar('FAE_143_Fire-Up Shot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/186_Frontier Guide.jpg" id="FAE_186_Frontier Guide" data-flag="@X" onclick="openSidebar('FAE_186_Frontier Guide',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/19_Guidance of the Fae.jpg" id="FAE_19_Guidance of the Fae" data-flag="@X" onclick="openSidebar('FAE_19_Guidance of the Fae',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/62_Jovial Communion.jpg" id="FAE_62_Jovial Communion" data-flag="@X" onclick="openSidebar('FAE_62_Jovial Communion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/101_Depraved Elder.jpg" id="FAE_101_Depraved Elder" data-flag="@X" onclick="openSidebar('FAE_101_Depraved Elder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/147_Heedless Shaman.jpg" id="FAE_147_Heedless Shaman" data-flag="@X" onclick="openSidebar('FAE_147_Heedless Shaman',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/189_Glyris Missionary.jpg" id="FAE_189_Glyris Missionary" data-flag="@X" onclick="openSidebar('FAE_189_Glyris Missionary',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/22_Judgment of the Wisps.jpg" id="FAE_22_Judgment of the Wisps" data-flag="@X" onclick="openSidebar('FAE_22_Judgment of the Wisps',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/63_Lament.jpg" id="FAE_63_Lament" data-flag="@X" onclick="openSidebar('FAE_63_Lament',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/104_Goliath Slimehusk.jpg" id="FAE_104_Goliath Slimehusk" data-flag="@X" onclick="openSidebar('FAE_104_Goliath Slimehusk',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/148_Jeering Cellguard.jpg" id="FAE_148_Jeering Cellguard" data-flag="@X" onclick="openSidebar('FAE_148_Jeering Cellguard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/191_Grizzled with Age.jpg" id="FAE_191_Grizzled with Age" data-flag="@X" onclick="openSidebar('FAE_191_Grizzled with Age',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/23_Lifeblood Salve.jpg" id="FAE_23_Lifeblood Salve" data-flag="@X" onclick="openSidebar('FAE_23_Lifeblood Salve',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/72_Rehearsal Elixir.jpg" id="FAE_72_Rehearsal Elixir" data-flag="@X" onclick="openSidebar('FAE_72_Rehearsal Elixir',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/106_Grisly Edict.jpg" id="FAE_106_Grisly Edict" data-flag="@X" onclick="openSidebar('FAE_106_Grisly Edict',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/153_Magmatic Whelp.jpg" id="FAE_153_Magmatic Whelp" data-flag="@X" onclick="openSidebar('FAE_153_Magmatic Whelp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/197_Maturation Ceremony.jpg" id="FAE_197_Maturation Ceremony" data-flag="@X" onclick="openSidebar('FAE_197_Maturation Ceremony',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/24_Marshal-for-Hire.jpg" id="FAE_24_Marshal-for-Hire" data-flag="@X" onclick="openSidebar('FAE_24_Marshal-for-Hire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/75_Spectacled Pilot.jpg" id="FAE_75_Spectacled Pilot" data-flag="@X" onclick="openSidebar('FAE_75_Spectacled Pilot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/111_Jhalach's Familiar.jpg" id="FAE_111_Jhalachs Familiar" data-flag="@X" onclick="openSidebar('FAE_111_Jhalachs Familiar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/155_Novice Pyromancy.jpg" id="FAE_155_Novice Pyromancy" data-flag="@X" onclick="openSidebar('FAE_155_Novice Pyromancy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/198_Mother's Plea.jpg" id="FAE_198_Mothers Plea" data-flag="@X" onclick="openSidebar('FAE_198_Mothers Plea',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/30_Quagmire Usher.jpg" id="FAE_30_Quagmire Usher" data-flag="@X" onclick="openSidebar('FAE_30_Quagmire Usher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/76_Splintering Squall.jpg" id="FAE_76_Splintering Squall" data-flag="@X" onclick="openSidebar('FAE_76_Splintering Squall',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/115_Knocking Nightmares.jpg" id="FAE_115_Knocking Nightmares" data-flag="@X" onclick="openSidebar('FAE_115_Knocking Nightmares',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/158_Raging Renegade.jpg" id="FAE_158_Raging Renegade" data-flag="@X" onclick="openSidebar('FAE_158_Raging Renegade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/200_Neurotic Fosterer.jpg" id="FAE_200_Neurotic Fosterer" data-flag="@X" onclick="openSidebar('FAE_200_Neurotic Fosterer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/35_Silent Sergeant.jpg" id="FAE_35_Silent Sergeant" data-flag="@X" onclick="openSidebar('FAE_35_Silent Sergeant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/80_Tanpip Foreman.jpg" id="FAE_80_Tanpip Foreman" data-flag="@X" onclick="openSidebar('FAE_80_Tanpip Foreman',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/120_Ruins Rummaging.jpg" id="FAE_120_Ruins Rummaging" data-flag="@X" onclick="openSidebar('FAE_120_Ruins Rummaging',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/160_Raucous Eruption.jpg" id="FAE_160_Raucous Eruption" data-flag="@X" onclick="openSidebar('FAE_160_Raucous Eruption',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/201_Oaken Elder.jpg" id="FAE_201_Oaken Elder" data-flag="@X" onclick="openSidebar('FAE_201_Oaken Elder',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/39_Tenacity.jpg" id="FAE_39_Tenacity" data-flag="@X" onclick="openSidebar('FAE_39_Tenacity',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/85_Transfigure.jpg" id="FAE_85_Transfigure" data-flag="@X" onclick="openSidebar('FAE_85_Transfigure',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/124_Shadow Alchemist.jpg" id="FAE_124_Shadow Alchemist" data-flag="@X" onclick="openSidebar('FAE_124_Shadow Alchemist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/166_Self Loathing.jpg" id="FAE_166_Self Loathing" data-flag="@X" onclick="openSidebar('FAE_166_Self Loathing',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/203_Rite of the Dominomicon.jpg" id="FAE_203_Rite of the Dominomicon" data-flag="@X" onclick="openSidebar('FAE_203_Rite of the Dominomicon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/42_Venerable Hunt.jpg" id="FAE_42_Venerable Hunt" data-flag="@X" onclick="openSidebar('FAE_42_Venerable Hunt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/87_Wriwth Fortune Teller.jpg" id="FAE_87_Wriwth Fortune Teller" data-flag="@X" onclick="openSidebar('FAE_87_Wriwth Fortune Teller',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/126_Toadstool Trafficker.jpg" id="FAE_126_Toadstool Trafficker" data-flag="@X" onclick="openSidebar('FAE_126_Toadstool Trafficker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/168_Tag Along.jpg" id="FAE_168_Tag Along" data-flag="@X" onclick="openSidebar('FAE_168_Tag Along',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/211_Thicket Researcher.jpg" id="FAE_211_Thicket Researcher" data-flag="@X" onclick="openSidebar('FAE_211_Thicket Researcher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/43_Wishful Thinker.jpg" id="FAE_43_Wishful Thinker" data-flag="@X" onclick="openSidebar('FAE_43_Wishful Thinker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/44_Alchemise.jpg" id="FAE_44_Alchemise" data-flag="@X" onclick="openSidebar('FAE_44_Alchemise',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/129_Trench Prowler.jpg" id="FAE_129_Trench Prowler" data-flag="@X" onclick="openSidebar('FAE_129_Trench Prowler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/170_Unquenched Sadism.jpg" id="FAE_170_Unquenched Sadism" data-flag="@X" onclick="openSidebar('FAE_170_Unquenched Sadism',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/217_Wriwth Ranger.jpg" id="FAE_217_Wriwth Ranger" data-flag="@X" onclick="openSidebar('FAE_217_Wriwth Ranger',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/1_Bridled Mule.jpg" id="FAE_1_Bridled Mule" data-flag="@X" onclick="openSidebar('FAE_1_Bridled Mule',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/46_Binding Fumes.jpg" id="FAE_46_Binding Fumes" data-flag="@X" onclick="openSidebar('FAE_46_Binding Fumes',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/88_Absorbent Leeches.jpg" id="FAE_88_Absorbent Leeches" data-flag="@X" onclick="openSidebar('FAE_88_Absorbent Leeches',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/173_Wurtnook Brawler.jpg" id="FAE_173_Wurtnook Brawler" data-flag="@X" onclick="openSidebar('FAE_173_Wurtnook Brawler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/175_Aim High.jpg" id="FAE_175_Aim High" data-flag="@X" onclick="openSidebar('FAE_175_Aim High',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/2_Catch Red-Handed.jpg" id="FAE_2_Catch Red-Handed" data-flag="@X" onclick="openSidebar('FAE_2_Catch Red-Handed',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/50_Dewdrop Spy.jpg" id="FAE_50_Dewdrop Spy" data-flag="@X" onclick="openSidebar('FAE_50_Dewdrop Spy',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/89_Bandit Raid.jpg" id="FAE_89_Bandit Raid" data-flag="@X" onclick="openSidebar('FAE_89_Bandit Raid',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/131_Abstruse Hellhorn.jpg" id="FAE_131_Abstruse Hellhorn" data-flag="@X" onclick="openSidebar('FAE_131_Abstruse Hellhorn',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/177_Aromatic Balm.jpg" id="FAE_177_Aromatic Balm" data-flag="@X" onclick="openSidebar('FAE_177_Aromatic Balm',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/5_Dream Teacher.jpg" id="FAE_5_Dream Teacher" data-flag="@X" onclick="openSidebar('FAE_5_Dream Teacher',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/51_Doubtful Dabbler.jpg" id="FAE_51_Doubtful Dabbler" data-flag="@X" onclick="openSidebar('FAE_51_Doubtful Dabbler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/92_Bone Picker.jpg" id="FAE_92_Bone Picker" data-flag="@X" onclick="openSidebar('FAE_92_Bone Picker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/132_Act on Adrenaline.jpg" id="FAE_132_Act on Adrenaline" data-flag="@X" onclick="openSidebar('FAE_132_Act on Adrenaline',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/180_Brandish Dominance.jpg" id="FAE_180_Brandish Dominance" data-flag="@X" onclick="openSidebar('FAE_180_Brandish Dominance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/6_Earnest Matron.jpg" id="FAE_6_Earnest Matron" data-flag="@X" onclick="openSidebar('FAE_6_Earnest Matron',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/52_Emergency Coolant.jpg" id="FAE_52_Emergency Coolant" data-flag="@X" onclick="openSidebar('FAE_52_Emergency Coolant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/95_Cauldron Steward.jpg" id="FAE_95_Cauldron Steward" data-flag="@X" onclick="openSidebar('FAE_95_Cauldron Steward',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/135_Brute Strength.jpg" id="FAE_135_Brute Strength" data-flag="@X" onclick="openSidebar('FAE_135_Brute Strength',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/185_Flaunt Dominance.jpg" id="FAE_185_Flaunt Dominance" data-flag="@X" onclick="openSidebar('FAE_185_Flaunt Dominance',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/8_Ephemeral Optimism.jpg" id="FAE_8_Ephemeral Optimism" data-flag="@X" onclick="openSidebar('FAE_8_Ephemeral Optimism',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/54_Extract of Yesteryear.jpg" id="FAE_54_Extract of Yesteryear" data-flag="@X" onclick="openSidebar('FAE_54_Extract of Yesteryear',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/97_Certain Death.jpg" id="FAE_97_Certain Death" data-flag="@X" onclick="openSidebar('FAE_97_Certain Death',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/142_Feral Sabretusk.jpg" id="FAE_142_Feral Sabretusk" data-flag="@X" onclick="openSidebar('FAE_142_Feral Sabretusk',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/188_Gladecover Scout.jpg" id="FAE_188_Gladecover Scout" data-flag="@X" onclick="openSidebar('FAE_188_Gladecover Scout',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/11_Fog of Paralysia.jpg" id="FAE_11_Fog of Paralysia" data-flag="@X" onclick="openSidebar('FAE_11_Fog of Paralysia',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/56_Forget at Home.jpg" id="FAE_56_Forget at Home" data-flag="@X" onclick="openSidebar('FAE_56_Forget at Home',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/100_Debilitating Serum.jpg" id="FAE_100_Debilitating Serum" data-flag="@X" onclick="openSidebar('FAE_100_Debilitating Serum',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/146_Gibliver Wanderer.jpg" id="FAE_146_Gibliver Wanderer" data-flag="@X" onclick="openSidebar('FAE_146_Gibliver Wanderer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/190_Glyris Pacifist.jpg" id="FAE_190_Glyris Pacifist" data-flag="@X" onclick="openSidebar('FAE_190_Glyris Pacifist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/14_Garos Cleanser.jpg" id="FAE_14_Garos Cleanser" data-flag="@X" onclick="openSidebar('FAE_14_Garos Cleanser',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/58_Granny's Escapist.jpg" id="FAE_58_Grannys Escapist" data-flag="@X" onclick="openSidebar('FAE_58_Grannys Escapist',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/102_Drow Fieldhand.jpg" id="FAE_102_Drow Fieldhand" data-flag="@X" onclick="openSidebar('FAE_102_Drow Fieldhand',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/149_Jhalach Warlock.jpg" id="FAE_149_Jhalach Warlock" data-flag="@X" onclick="openSidebar('FAE_149_Jhalach Warlock',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/193_Hasty Harvest.jpg" id="FAE_193_Hasty Harvest" data-flag="@X" onclick="openSidebar('FAE_193_Hasty Harvest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/15_Garos Merrymaker.jpg" id="FAE_15_Garos Merrymaker" data-flag="@X" onclick="openSidebar('FAE_15_Garos Merrymaker',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/61_Insidious Augur.jpg" id="FAE_61_Insidious Augur" data-flag="@X" onclick="openSidebar('FAE_61_Insidious Augur',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/103_Exultant Embalmer.jpg" id="FAE_103_Exultant Embalmer" data-flag="@X" onclick="openSidebar('FAE_103_Exultant Embalmer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/151_Light it Up.jpg" id="FAE_151_Light it Up" data-flag="@X" onclick="openSidebar('FAE_151_Light it Up',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/194_Hunter's Ritual.jpg" id="FAE_194_Hunters Ritual" data-flag="@X" onclick="openSidebar('FAE_194_Hunters Ritual',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/16_Glyris Partisan.jpg" id="FAE_16_Glyris Partisan" data-flag="@X" onclick="openSidebar('FAE_16_Glyris Partisan',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/64_Lucid Dreaming.jpg" id="FAE_64_Lucid Dreaming" data-flag="@X" onclick="openSidebar('FAE_64_Lucid Dreaming',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/105_Grim Discovery.jpg" id="FAE_105_Grim Discovery" data-flag="@X" onclick="openSidebar('FAE_105_Grim Discovery',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/152_Madcap Skills.jpg" id="FAE_152_Madcap Skills" data-flag="@X" onclick="openSidebar('FAE_152_Madcap Skills',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/196_Lifeheart Clairvoyant.jpg" id="FAE_196_Lifeheart Clairvoyant" data-flag="@X" onclick="openSidebar('FAE_196_Lifeheart Clairvoyant',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/17_Gnomish Youth.jpg" id="FAE_17_Gnomish Youth" data-flag="@X" onclick="openSidebar('FAE_17_Gnomish Youth',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/66_Melancholy Messenger.jpg" id="FAE_66_Melancholy Messenger" data-flag="@X" onclick="openSidebar('FAE_66_Melancholy Messenger',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/107_Hideous Skinner.jpg" id="FAE_107_Hideous Skinner" data-flag="@X" onclick="openSidebar('FAE_107_Hideous Skinner',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/156_Perilous Indulgence.jpg" id="FAE_156_Perilous Indulgence" data-flag="@X" onclick="openSidebar('FAE_156_Perilous Indulgence',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/199_Mystic Shepherd.jpg" id="FAE_199_Mystic Shepherd" data-flag="@X" onclick="openSidebar('FAE_199_Mystic Shepherd',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/20_Indentured Yak.jpg" id="FAE_20_Indentured Yak" data-flag="@X" onclick="openSidebar('FAE_20_Indentured Yak',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/68_Mystify.jpg" id="FAE_68_Mystify" data-flag="@X" onclick="openSidebar('FAE_68_Mystify',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/108_Hostage Smuggler.jpg" id="FAE_108_Hostage Smuggler" data-flag="@X" onclick="openSidebar('FAE_108_Hostage Smuggler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/157_Pouncing Cougar.jpg" id="FAE_157_Pouncing Cougar" data-flag="@X" onclick="openSidebar('FAE_157_Pouncing Cougar',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/202_Rainbow Weevil.jpg" id="FAE_202_Rainbow Weevil" data-flag="@X" onclick="openSidebar('FAE_202_Rainbow Weevil',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/25_Maternal Care.jpg" id="FAE_25_Maternal Care" data-flag="@X" onclick="openSidebar('FAE_25_Maternal Care',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/69_Negate.jpg" id="FAE_69_Negate" data-flag="@X" onclick="openSidebar('FAE_69_Negate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/116_Lace with Duskwort.jpg" id="FAE_116_Lace with Duskwort" data-flag="@X" onclick="openSidebar('FAE_116_Lace with Duskwort',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/159_Random Accusation.jpg" id="FAE_159_Random Accusation" data-flag="@X" onclick="openSidebar('FAE_159_Random Accusation',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/204_Rootsong Shaman.jpg" id="FAE_204_Rootsong Shaman" data-flag="@X" onclick="openSidebar('FAE_204_Rootsong Shaman',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/26_Northern Tawny.jpg" id="FAE_26_Northern Tawny" data-flag="@X" onclick="openSidebar('FAE_26_Northern Tawny',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/70_Pixie Post Courier.jpg" id="FAE_70_Pixie Post Courier" data-flag="@X" onclick="openSidebar('FAE_70_Pixie Post Courier',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/117_Malevolent Youth.jpg" id="FAE_117_Malevolent Youth" data-flag="@X" onclick="openSidebar('FAE_117_Malevolent Youth',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/161_Raving Rapscallion.jpg" id="FAE_161_Raving Rapscallion" data-flag="@X" onclick="openSidebar('FAE_161_Raving Rapscallion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/205_Savage Grizzly.jpg" id="FAE_205_Savage Grizzly" data-flag="@X" onclick="openSidebar('FAE_205_Savage Grizzly',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/27_Pass the Torch.jpg" id="FAE_27_Pass the Torch" data-flag="@X" onclick="openSidebar('FAE_27_Pass the Torch',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/73_Reticulate Telepath.jpg" id="FAE_73_Reticulate Telepath" data-flag="@X" onclick="openSidebar('FAE_73_Reticulate Telepath',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/122_Serum Splash.jpg" id="FAE_122_Serum Splash" data-flag="@X" onclick="openSidebar('FAE_122_Serum Splash',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/162_Reckless Blaze.jpg" id="FAE_162_Reckless Blaze" data-flag="@X" onclick="openSidebar('FAE_162_Reckless Blaze',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/206_Scrupulous Gardener.jpg" id="FAE_206_Scrupulous Gardener" data-flag="@X" onclick="openSidebar('FAE_206_Scrupulous Gardener',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/28_Pup of the Pasture.jpg" id="FAE_28_Pup of the Pasture" data-flag="@X" onclick="openSidebar('FAE_28_Pup of the Pasture',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/74_Soothsay.jpg" id="FAE_74_Soothsay" data-flag="@X" onclick="openSidebar('FAE_74_Soothsay',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/123_Set Afloat.jpg" id="FAE_123_Set Afloat" data-flag="@X" onclick="openSidebar('FAE_123_Set Afloat',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/163_Reverent Ancestory.jpg" id="FAE_163_Reverent Ancestory" data-flag="@X" onclick="openSidebar('FAE_163_Reverent Ancestory',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/207_Secrets of the Soil.jpg" id="FAE_207_Secrets of the Soil" data-flag="@X" onclick="openSidebar('FAE_207_Secrets of the Soil',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/29_Purge from Reality.jpg" id="FAE_29_Purge from Reality" data-flag="@X" onclick="openSidebar('FAE_29_Purge from Reality',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/77_Starsign Dowser.jpg" id="FAE_77_Starsign Dowser" data-flag="@X" onclick="openSidebar('FAE_77_Starsign Dowser',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/125_Tar Drooler.jpg" id="FAE_125_Tar Drooler" data-flag="@X" onclick="openSidebar('FAE_125_Tar Drooler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/164_Savage Stabber.jpg" id="FAE_164_Savage Stabber" data-flag="@X" onclick="openSidebar('FAE_164_Savage Stabber',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/208_Selfless Sage.jpg" id="FAE_208_Selfless Sage" data-flag="@X" onclick="openSidebar('FAE_208_Selfless Sage',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/34_Seven-Card Stud.jpg" id="FAE_34_Seven-Card Stud" data-flag="@X" onclick="openSidebar('FAE_34_Seven-Card Stud',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/81_Tanpip Prospector.jpg" id="FAE_81_Tanpip Prospector" data-flag="@X" onclick="openSidebar('FAE_81_Tanpip Prospector',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/127_Torpid Vulture.jpg" id="FAE_127_Torpid Vulture" data-flag="@X" onclick="openSidebar('FAE_127_Torpid Vulture',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/165_Scoundrel Slayer.jpg" id="FAE_165_Scoundrel Slayer" data-flag="@X" onclick="openSidebar('FAE_165_Scoundrel Slayer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/210_Territorial Direwolf.jpg" id="FAE_210_Territorial Direwolf" data-flag="@X" onclick="openSidebar('FAE_210_Territorial Direwolf',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/36_Soul Aegis.jpg" id="FAE_36_Soul Aegis" data-flag="@X" onclick="openSidebar('FAE_36_Soul Aegis',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/83_Thought Blot.jpg" id="FAE_83_Thought Blot" data-flag="@X" onclick="openSidebar('FAE_83_Thought Blot',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/128_Toxic Blade.jpg" id="FAE_128_Toxic Blade" data-flag="@X" onclick="openSidebar('FAE_128_Toxic Blade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/167_Surprise Attack.jpg" id="FAE_167_Surprise Attack" data-flag="@X" onclick="openSidebar('FAE_167_Surprise Attack',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/213_Vulture Hunt.jpg" id="FAE_213_Vulture Hunt" data-flag="@X" onclick="openSidebar('FAE_213_Vulture Hunt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/41_Vassal Cage.jpg" id="FAE_41_Vassal Cage" data-flag="@X" onclick="openSidebar('FAE_41_Vassal Cage',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/130_Wurtnook Initiate.jpg" id="FAE_130_Wurtnook Initiate" data-flag="@X" onclick="openSidebar('FAE_130_Wurtnook Initiate',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/169_Timber Splinter.jpg" id="FAE_169_Timber Splinter" data-flag="@X" onclick="openSidebar('FAE_169_Timber Splinter',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/214_Watchful Bowmaster.jpg" id="FAE_214_Watchful Bowmaster" data-flag="@X" onclick="openSidebar('FAE_214_Watchful Bowmaster',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/172_Volcanic Newt.jpg" id="FAE_172_Volcanic Newt" data-flag="@X" onclick="openSidebar('FAE_172_Volcanic Newt',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+					<div class="container"><img loading="lazy" alt="sets/FAE-files/img/7_Elder of the Fae.jpg" id="FAE_7_Elder of the Fae" data-flag="@X" onclick="openSidebar('FAE_7_Elder of the Fae',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/60_Herrea of the Night Stars.jpg" id="FAE_60_Herrea of the Night Stars" data-flag="@X" onclick="openSidebar('FAE_60_Herrea of the Night Stars',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/94_Cauldron of Sin.jpg" id="FAE_94_Cauldron of Sin" data-flag="@X" onclick="openSidebar('FAE_94_Cauldron of Sin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/136_Cackling Rabblerouser.jpg" id="FAE_136_Cackling Rabblerouser" data-flag="@X" onclick="openSidebar('FAE_136_Cackling Rabblerouser',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/181_Burgeoning Blossoms.jpg" id="FAE_181_Burgeoning Blossoms" data-flag="@X" onclick="openSidebar('FAE_181_Burgeoning Blossoms',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/32_Sanguine Prayers.jpg" id="FAE_32_Sanguine Prayers" data-flag="@X" onclick="openSidebar('FAE_32_Sanguine Prayers',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/47_Conclave Atoner.jpg" id="FAE_47_Conclave Atoner" data-flag="@X" onclick="openSidebar('FAE_47_Conclave Atoner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/114_King Morund Jhalach IV.jpg" id="FAE_114_King Morund Jhalach IV" data-flag="@X" onclick="openSidebar('FAE_114_King Morund Jhalach IV',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/138_Daretti, the Iron Fist.jpg" id="FAE_138_Daretti, the Iron Fist" data-flag="@X" onclick="openSidebar('FAE_138_Daretti, the Iron Fist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/195_Lady Ilyrana Glyris.jpg" id="FAE_195_Lady Ilyrana Glyris" data-flag="@X" onclick="openSidebar('FAE_195_Lady Ilyrana Glyris',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/4_Curious Kitten.jpg" id="FAE_4_Curious Kitten" data-flag="@X" onclick="openSidebar('FAE_4_Curious Kitten',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/53_Essence of Temptation.jpg" id="FAE_53_Essence of Temptation" data-flag="@X" onclick="openSidebar('FAE_53_Essence of Temptation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/98_Contempt.jpg" id="FAE_98_Contempt" data-flag="@X" onclick="openSidebar('FAE_98_Contempt',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/150_Last Hurrah.jpg" id="FAE_150_Last Hurrah" data-flag="@X" onclick="openSidebar('FAE_150_Last Hurrah',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/178_Beseech the Wilderness.jpg" id="FAE_178_Beseech the Wilderness" data-flag="@X" onclick="openSidebar('FAE_178_Beseech the Wilderness',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/12_Gang Up.jpg" id="FAE_12_Gang Up" data-flag="@X" onclick="openSidebar('FAE_12_Gang Up',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/65_Matron of the Moon.jpg" id="FAE_65_Matron of the Moon" data-flag="@X" onclick="openSidebar('FAE_65_Matron of the Moon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/109_Illicit Gains.jpg" id="FAE_109_Illicit Gains" data-flag="@X" onclick="openSidebar('FAE_109_Illicit Gains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/134_Boiling Point.jpg" id="FAE_134_Boiling Point" data-flag="@X" onclick="openSidebar('FAE_134_Boiling Point',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/183_Dazzling Dreamspinner.jpg" id="FAE_183_Dazzling Dreamspinner" data-flag="@X" onclick="openSidebar('FAE_183_Dazzling Dreamspinner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/21_Jubilant Collective.jpg" id="FAE_21_Jubilant Collective" data-flag="@X" onclick="openSidebar('FAE_21_Jubilant Collective',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/67_Moonlight Piper.jpg" id="FAE_67_Moonlight Piper" data-flag="@X" onclick="openSidebar('FAE_67_Moonlight Piper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/110_Jhalach Scoundrel.jpg" id="FAE_110_Jhalach Scoundrel" data-flag="@X" onclick="openSidebar('FAE_110_Jhalach Scoundrel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/137_Cauther Hellkite.jpg" id="FAE_137_Cauther Hellkite" data-flag="@X" onclick="openSidebar('FAE_137_Cauther Hellkite',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/187_Fungahydra.jpg" id="FAE_187_Fungahydra" data-flag="@X" onclick="openSidebar('FAE_187_Fungahydra',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/31_Rite of Purity.jpg" id="FAE_31_Rite of Purity" data-flag="@X" onclick="openSidebar('FAE_31_Rite of Purity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/78_Stoic Spellsnitch.jpg" id="FAE_78_Stoic Spellsnitch" data-flag="@X" onclick="openSidebar('FAE_78_Stoic Spellsnitch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/112_Juvenile Delinquent.jpg" id="FAE_112_Juvenile Delinquent" data-flag="@X" onclick="openSidebar('FAE_112_Juvenile Delinquent',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/140_Delia's Brew.jpg" id="FAE_140_Delias Brew" data-flag="@X" onclick="openSidebar('FAE_140_Delias Brew',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/192_Harmonious Gathering.jpg" id="FAE_192_Harmonious Gathering" data-flag="@X" onclick="openSidebar('FAE_192_Harmonious Gathering',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/33_Serene Prayers.jpg" id="FAE_33_Serene Prayers" data-flag="@X" onclick="openSidebar('FAE_33_Serene Prayers',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/79_Stumble Upon.jpg" id="FAE_79_Stumble Upon" data-flag="@X" onclick="openSidebar('FAE_79_Stumble Upon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/113_Kill on Sight.jpg" id="FAE_113_Kill on Sight" data-flag="@X" onclick="openSidebar('FAE_113_Kill on Sight',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/144_Firebrew Savant.jpg" id="FAE_144_Firebrew Savant" data-flag="@X" onclick="openSidebar('FAE_144_Firebrew Savant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/209_Shiv Specialist.jpg" id="FAE_209_Shiv Specialist" data-flag="@X" onclick="openSidebar('FAE_209_Shiv Specialist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/37_Spiritweaver Mystic.jpg" id="FAE_37_Spiritweaver Mystic" data-flag="@X" onclick="openSidebar('FAE_37_Spiritweaver Mystic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/84_To the Skies.jpg" id="FAE_84_To the Skies" data-flag="@X" onclick="openSidebar('FAE_84_To the Skies',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/118_Mark of Suffocation.jpg" id="FAE_118_Mark of Suffocation" data-flag="@X" onclick="openSidebar('FAE_118_Mark of Suffocation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/145_Frontal Assault.jpg" id="FAE_145_Frontal Assault" data-flag="@X" onclick="openSidebar('FAE_145_Frontal Assault',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/212_Thriving Thicket.jpg" id="FAE_212_Thriving Thicket" data-flag="@X" onclick="openSidebar('FAE_212_Thriving Thicket',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/38_Tanpip Paladin.jpg" id="FAE_38_Tanpip Paladin" data-flag="@X" onclick="openSidebar('FAE_38_Tanpip Paladin',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/86_Wavering Visage.jpg" id="FAE_86_Wavering Visage" data-flag="@X" onclick="openSidebar('FAE_86_Wavering Visage',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/119_Rooftop Renegade.jpg" id="FAE_119_Rooftop Renegade" data-flag="@X" onclick="openSidebar('FAE_119_Rooftop Renegade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/154_Merk, the Matchmaker.jpg" id="FAE_154_Merk, the Matchmaker" data-flag="@X" onclick="openSidebar('FAE_154_Merk, the Matchmaker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/215_A Whole New World.jpg" id="FAE_215_A Whole New World" data-flag="@X" onclick="openSidebar('FAE_215_A Whole New World',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/40_Unassuming Troika.jpg" id="FAE_40_Unassuming Troika" data-flag="@X" onclick="openSidebar('FAE_40_Unassuming Troika',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/45_Archive Assistant.jpg" id="FAE_45_Archive Assistant" data-flag="@X" onclick="openSidebar('FAE_45_Archive Assistant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/121_Secondhand Shopkeep.jpg" id="FAE_121_Secondhand Shopkeep" data-flag="@X" onclick="openSidebar('FAE_121_Secondhand Shopkeep',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/171_Vicious Lindworm.jpg" id="FAE_171_Vicious Lindworm" data-flag="@X" onclick="openSidebar('FAE_171_Vicious Lindworm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/216_Wistari, Shepherd of Flora.jpg" id="FAE_216_Wistari, Shepherd of Flora" data-flag="@X" onclick="openSidebar('FAE_216_Wistari, Shepherd of Flora',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/3_Children of the Flock.jpg" id="FAE_3_Children of the Flock" data-flag="@X" onclick="openSidebar('FAE_3_Children of the Flock',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/48_Conclave Escort.jpg" id="FAE_48_Conclave Escort" data-flag="@X" onclick="openSidebar('FAE_48_Conclave Escort',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/90_Blighted Charlatan.jpg" id="FAE_90_Blighted Charlatan" data-flag="@X" onclick="openSidebar('FAE_90_Blighted Charlatan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/174_Wurtnook Firebrew.jpg" id="FAE_174_Wurtnook Firebrew" data-flag="@X" onclick="openSidebar('FAE_174_Wurtnook Firebrew',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/176_Arboreal Savant.jpg" id="FAE_176_Arboreal Savant" data-flag="@X" onclick="openSidebar('FAE_176_Arboreal Savant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/9_Fleeting Awareness.jpg" id="FAE_9_Fleeting Awareness" data-flag="@X" onclick="openSidebar('FAE_9_Fleeting Awareness',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/49_Consult the Wisps.jpg" id="FAE_49_Consult the Wisps" data-flag="@X" onclick="openSidebar('FAE_49_Consult the Wisps',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/91_Boiling Tar.jpg" id="FAE_91_Boiling Tar" data-flag="@X" onclick="openSidebar('FAE_91_Boiling Tar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/133_Boar Cavalry.jpg" id="FAE_133_Boar Cavalry" data-flag="@X" onclick="openSidebar('FAE_133_Boar Cavalry',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/179_Blueglass Centipede.jpg" id="FAE_179_Blueglass Centipede" data-flag="@X" onclick="openSidebar('FAE_179_Blueglass Centipede',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/10_Flittering Pixie.jpg" id="FAE_10_Flittering Pixie" data-flag="@X" onclick="openSidebar('FAE_10_Flittering Pixie',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/55_Fae of Frost.jpg" id="FAE_55_Fae of Frost" data-flag="@X" onclick="openSidebar('FAE_55_Fae of Frost',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/93_Bubbling Beyond.jpg" id="FAE_93_Bubbling Beyond" data-flag="@X" onclick="openSidebar('FAE_93_Bubbling Beyond',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/139_Daughter's Scorn.jpg" id="FAE_139_Daughters Scorn" data-flag="@X" onclick="openSidebar('FAE_139_Daughters Scorn',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/182_Canopy Ambusher.jpg" id="FAE_182_Canopy Ambusher" data-flag="@X" onclick="openSidebar('FAE_182_Canopy Ambusher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/13_Garos Aeronaut.jpg" id="FAE_13_Garos Aeronaut" data-flag="@X" onclick="openSidebar('FAE_13_Garos Aeronaut',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/57_Gnomish Meddling.jpg" id="FAE_57_Gnomish Meddling" data-flag="@X" onclick="openSidebar('FAE_57_Gnomish Meddling',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/96_Caustic Cynic.jpg" id="FAE_96_Caustic Cynic" data-flag="@X" onclick="openSidebar('FAE_96_Caustic Cynic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/141_Errant Sniper.jpg" id="FAE_141_Errant Sniper" data-flag="@X" onclick="openSidebar('FAE_141_Errant Sniper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/184_Enter the Ballroom.jpg" id="FAE_184_Enter the Ballroom" data-flag="@X" onclick="openSidebar('FAE_184_Enter the Ballroom',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/18_Granny's Reinforcements.jpg" id="FAE_18_Grannys Reinforcements" data-flag="@X" onclick="openSidebar('FAE_18_Grannys Reinforcements',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/59_Granny's Guise.jpg" id="FAE_59_Grannys Guise" data-flag="@X" onclick="openSidebar('FAE_59_Grannys Guise',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/99_Dark Dispatch.jpg" id="FAE_99_Dark Dispatch" data-flag="@X" onclick="openSidebar('FAE_99_Dark Dispatch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/143_Fire-Up Shot.jpg" id="FAE_143_Fire-Up Shot" data-flag="@X" onclick="openSidebar('FAE_143_Fire-Up Shot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/186_Frontier Guide.jpg" id="FAE_186_Frontier Guide" data-flag="@X" onclick="openSidebar('FAE_186_Frontier Guide',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/19_Guidance of the Fae.jpg" id="FAE_19_Guidance of the Fae" data-flag="@X" onclick="openSidebar('FAE_19_Guidance of the Fae',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/62_Jovial Communion.jpg" id="FAE_62_Jovial Communion" data-flag="@X" onclick="openSidebar('FAE_62_Jovial Communion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/101_Depraved Elder.jpg" id="FAE_101_Depraved Elder" data-flag="@X" onclick="openSidebar('FAE_101_Depraved Elder',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/147_Heedless Shaman.jpg" id="FAE_147_Heedless Shaman" data-flag="@X" onclick="openSidebar('FAE_147_Heedless Shaman',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/189_Glyris Missionary.jpg" id="FAE_189_Glyris Missionary" data-flag="@X" onclick="openSidebar('FAE_189_Glyris Missionary',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/22_Judgment of the Wisps.jpg" id="FAE_22_Judgment of the Wisps" data-flag="@X" onclick="openSidebar('FAE_22_Judgment of the Wisps',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/63_Lament.jpg" id="FAE_63_Lament" data-flag="@X" onclick="openSidebar('FAE_63_Lament',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/104_Goliath Slimehusk.jpg" id="FAE_104_Goliath Slimehusk" data-flag="@X" onclick="openSidebar('FAE_104_Goliath Slimehusk',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/148_Jeering Cellguard.jpg" id="FAE_148_Jeering Cellguard" data-flag="@X" onclick="openSidebar('FAE_148_Jeering Cellguard',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/191_Grizzled with Age.jpg" id="FAE_191_Grizzled with Age" data-flag="@X" onclick="openSidebar('FAE_191_Grizzled with Age',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/23_Lifeblood Salve.jpg" id="FAE_23_Lifeblood Salve" data-flag="@X" onclick="openSidebar('FAE_23_Lifeblood Salve',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/72_Rehearsal Elixir.jpg" id="FAE_72_Rehearsal Elixir" data-flag="@X" onclick="openSidebar('FAE_72_Rehearsal Elixir',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/106_Grisly Edict.jpg" id="FAE_106_Grisly Edict" data-flag="@X" onclick="openSidebar('FAE_106_Grisly Edict',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/153_Magmatic Whelp.jpg" id="FAE_153_Magmatic Whelp" data-flag="@X" onclick="openSidebar('FAE_153_Magmatic Whelp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/197_Maturation Ceremony.jpg" id="FAE_197_Maturation Ceremony" data-flag="@X" onclick="openSidebar('FAE_197_Maturation Ceremony',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/24_Marshal-for-Hire.jpg" id="FAE_24_Marshal-for-Hire" data-flag="@X" onclick="openSidebar('FAE_24_Marshal-for-Hire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/75_Spectacled Pilot.jpg" id="FAE_75_Spectacled Pilot" data-flag="@X" onclick="openSidebar('FAE_75_Spectacled Pilot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/111_Jhalach's Familiar.jpg" id="FAE_111_Jhalachs Familiar" data-flag="@X" onclick="openSidebar('FAE_111_Jhalachs Familiar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/155_Novice Pyromancy.jpg" id="FAE_155_Novice Pyromancy" data-flag="@X" onclick="openSidebar('FAE_155_Novice Pyromancy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/198_Mother's Plea.jpg" id="FAE_198_Mothers Plea" data-flag="@X" onclick="openSidebar('FAE_198_Mothers Plea',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/30_Quagmire Usher.jpg" id="FAE_30_Quagmire Usher" data-flag="@X" onclick="openSidebar('FAE_30_Quagmire Usher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/76_Splintering Squall.jpg" id="FAE_76_Splintering Squall" data-flag="@X" onclick="openSidebar('FAE_76_Splintering Squall',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/115_Knocking Nightmares.jpg" id="FAE_115_Knocking Nightmares" data-flag="@X" onclick="openSidebar('FAE_115_Knocking Nightmares',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/158_Raging Renegade.jpg" id="FAE_158_Raging Renegade" data-flag="@X" onclick="openSidebar('FAE_158_Raging Renegade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/200_Neurotic Fosterer.jpg" id="FAE_200_Neurotic Fosterer" data-flag="@X" onclick="openSidebar('FAE_200_Neurotic Fosterer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/35_Silent Sergeant.jpg" id="FAE_35_Silent Sergeant" data-flag="@X" onclick="openSidebar('FAE_35_Silent Sergeant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/80_Tanpip Foreman.jpg" id="FAE_80_Tanpip Foreman" data-flag="@X" onclick="openSidebar('FAE_80_Tanpip Foreman',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/120_Ruins Rummaging.jpg" id="FAE_120_Ruins Rummaging" data-flag="@X" onclick="openSidebar('FAE_120_Ruins Rummaging',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/160_Raucous Eruption.jpg" id="FAE_160_Raucous Eruption" data-flag="@X" onclick="openSidebar('FAE_160_Raucous Eruption',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/201_Oaken Elder.jpg" id="FAE_201_Oaken Elder" data-flag="@X" onclick="openSidebar('FAE_201_Oaken Elder',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/39_Tenacity.jpg" id="FAE_39_Tenacity" data-flag="@X" onclick="openSidebar('FAE_39_Tenacity',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/85_Transfigure.jpg" id="FAE_85_Transfigure" data-flag="@X" onclick="openSidebar('FAE_85_Transfigure',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/124_Shadow Alchemist.jpg" id="FAE_124_Shadow Alchemist" data-flag="@X" onclick="openSidebar('FAE_124_Shadow Alchemist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/166_Self Loathing.jpg" id="FAE_166_Self Loathing" data-flag="@X" onclick="openSidebar('FAE_166_Self Loathing',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/203_Rite of the Dominomicon.jpg" id="FAE_203_Rite of the Dominomicon" data-flag="@X" onclick="openSidebar('FAE_203_Rite of the Dominomicon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/42_Venerable Hunt.jpg" id="FAE_42_Venerable Hunt" data-flag="@X" onclick="openSidebar('FAE_42_Venerable Hunt',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/87_Wriwth Fortune Teller.jpg" id="FAE_87_Wriwth Fortune Teller" data-flag="@X" onclick="openSidebar('FAE_87_Wriwth Fortune Teller',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/126_Toadstool Trafficker.jpg" id="FAE_126_Toadstool Trafficker" data-flag="@X" onclick="openSidebar('FAE_126_Toadstool Trafficker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/168_Tag Along.jpg" id="FAE_168_Tag Along" data-flag="@X" onclick="openSidebar('FAE_168_Tag Along',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/211_Thicket Researcher.jpg" id="FAE_211_Thicket Researcher" data-flag="@X" onclick="openSidebar('FAE_211_Thicket Researcher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/43_Wishful Thinker.jpg" id="FAE_43_Wishful Thinker" data-flag="@X" onclick="openSidebar('FAE_43_Wishful Thinker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/44_Alchemise.jpg" id="FAE_44_Alchemise" data-flag="@X" onclick="openSidebar('FAE_44_Alchemise',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/129_Trench Prowler.jpg" id="FAE_129_Trench Prowler" data-flag="@X" onclick="openSidebar('FAE_129_Trench Prowler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/170_Unquenched Sadism.jpg" id="FAE_170_Unquenched Sadism" data-flag="@X" onclick="openSidebar('FAE_170_Unquenched Sadism',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/217_Wriwth Ranger.jpg" id="FAE_217_Wriwth Ranger" data-flag="@X" onclick="openSidebar('FAE_217_Wriwth Ranger',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/1_Bridled Mule.jpg" id="FAE_1_Bridled Mule" data-flag="@X" onclick="openSidebar('FAE_1_Bridled Mule',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/46_Binding Fumes.jpg" id="FAE_46_Binding Fumes" data-flag="@X" onclick="openSidebar('FAE_46_Binding Fumes',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/88_Absorbent Leeches.jpg" id="FAE_88_Absorbent Leeches" data-flag="@X" onclick="openSidebar('FAE_88_Absorbent Leeches',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/173_Wurtnook Brawler.jpg" id="FAE_173_Wurtnook Brawler" data-flag="@X" onclick="openSidebar('FAE_173_Wurtnook Brawler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/175_Aim High.jpg" id="FAE_175_Aim High" data-flag="@X" onclick="openSidebar('FAE_175_Aim High',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/2_Catch Red-Handed.jpg" id="FAE_2_Catch Red-Handed" data-flag="@X" onclick="openSidebar('FAE_2_Catch Red-Handed',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/50_Dewdrop Spy.jpg" id="FAE_50_Dewdrop Spy" data-flag="@X" onclick="openSidebar('FAE_50_Dewdrop Spy',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/89_Bandit Raid.jpg" id="FAE_89_Bandit Raid" data-flag="@X" onclick="openSidebar('FAE_89_Bandit Raid',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/131_Abstruse Hellhorn.jpg" id="FAE_131_Abstruse Hellhorn" data-flag="@X" onclick="openSidebar('FAE_131_Abstruse Hellhorn',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/177_Aromatic Balm.jpg" id="FAE_177_Aromatic Balm" data-flag="@X" onclick="openSidebar('FAE_177_Aromatic Balm',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/5_Dream Teacher.jpg" id="FAE_5_Dream Teacher" data-flag="@X" onclick="openSidebar('FAE_5_Dream Teacher',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/51_Doubtful Dabbler.jpg" id="FAE_51_Doubtful Dabbler" data-flag="@X" onclick="openSidebar('FAE_51_Doubtful Dabbler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/92_Bone Picker.jpg" id="FAE_92_Bone Picker" data-flag="@X" onclick="openSidebar('FAE_92_Bone Picker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/132_Act on Adrenaline.jpg" id="FAE_132_Act on Adrenaline" data-flag="@X" onclick="openSidebar('FAE_132_Act on Adrenaline',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/180_Brandish Dominance.jpg" id="FAE_180_Brandish Dominance" data-flag="@X" onclick="openSidebar('FAE_180_Brandish Dominance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/6_Earnest Matron.jpg" id="FAE_6_Earnest Matron" data-flag="@X" onclick="openSidebar('FAE_6_Earnest Matron',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/52_Emergency Coolant.jpg" id="FAE_52_Emergency Coolant" data-flag="@X" onclick="openSidebar('FAE_52_Emergency Coolant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/95_Cauldron Steward.jpg" id="FAE_95_Cauldron Steward" data-flag="@X" onclick="openSidebar('FAE_95_Cauldron Steward',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/135_Brute Strength.jpg" id="FAE_135_Brute Strength" data-flag="@X" onclick="openSidebar('FAE_135_Brute Strength',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/185_Flaunt Dominance.jpg" id="FAE_185_Flaunt Dominance" data-flag="@X" onclick="openSidebar('FAE_185_Flaunt Dominance',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/8_Ephemeral Optimism.jpg" id="FAE_8_Ephemeral Optimism" data-flag="@X" onclick="openSidebar('FAE_8_Ephemeral Optimism',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/54_Extract of Yesteryear.jpg" id="FAE_54_Extract of Yesteryear" data-flag="@X" onclick="openSidebar('FAE_54_Extract of Yesteryear',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/97_Certain Death.jpg" id="FAE_97_Certain Death" data-flag="@X" onclick="openSidebar('FAE_97_Certain Death',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/142_Feral Sabretusk.jpg" id="FAE_142_Feral Sabretusk" data-flag="@X" onclick="openSidebar('FAE_142_Feral Sabretusk',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/188_Gladecover Scout.jpg" id="FAE_188_Gladecover Scout" data-flag="@X" onclick="openSidebar('FAE_188_Gladecover Scout',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/11_Fog of Paralysia.jpg" id="FAE_11_Fog of Paralysia" data-flag="@X" onclick="openSidebar('FAE_11_Fog of Paralysia',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/56_Forget at Home.jpg" id="FAE_56_Forget at Home" data-flag="@X" onclick="openSidebar('FAE_56_Forget at Home',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/100_Debilitating Serum.jpg" id="FAE_100_Debilitating Serum" data-flag="@X" onclick="openSidebar('FAE_100_Debilitating Serum',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/146_Gibliver Wanderer.jpg" id="FAE_146_Gibliver Wanderer" data-flag="@X" onclick="openSidebar('FAE_146_Gibliver Wanderer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/190_Glyris Pacifist.jpg" id="FAE_190_Glyris Pacifist" data-flag="@X" onclick="openSidebar('FAE_190_Glyris Pacifist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/14_Garos Cleanser.jpg" id="FAE_14_Garos Cleanser" data-flag="@X" onclick="openSidebar('FAE_14_Garos Cleanser',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/58_Granny's Escapist.jpg" id="FAE_58_Grannys Escapist" data-flag="@X" onclick="openSidebar('FAE_58_Grannys Escapist',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/102_Drow Fieldhand.jpg" id="FAE_102_Drow Fieldhand" data-flag="@X" onclick="openSidebar('FAE_102_Drow Fieldhand',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/149_Jhalach Warlock.jpg" id="FAE_149_Jhalach Warlock" data-flag="@X" onclick="openSidebar('FAE_149_Jhalach Warlock',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/193_Hasty Harvest.jpg" id="FAE_193_Hasty Harvest" data-flag="@X" onclick="openSidebar('FAE_193_Hasty Harvest',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/15_Garos Merrymaker.jpg" id="FAE_15_Garos Merrymaker" data-flag="@X" onclick="openSidebar('FAE_15_Garos Merrymaker',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/61_Insidious Augur.jpg" id="FAE_61_Insidious Augur" data-flag="@X" onclick="openSidebar('FAE_61_Insidious Augur',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/103_Exultant Embalmer.jpg" id="FAE_103_Exultant Embalmer" data-flag="@X" onclick="openSidebar('FAE_103_Exultant Embalmer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/151_Light it Up.jpg" id="FAE_151_Light it Up" data-flag="@X" onclick="openSidebar('FAE_151_Light it Up',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/194_Hunter's Ritual.jpg" id="FAE_194_Hunters Ritual" data-flag="@X" onclick="openSidebar('FAE_194_Hunters Ritual',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/16_Glyris Partisan.jpg" id="FAE_16_Glyris Partisan" data-flag="@X" onclick="openSidebar('FAE_16_Glyris Partisan',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/64_Lucid Dreaming.jpg" id="FAE_64_Lucid Dreaming" data-flag="@X" onclick="openSidebar('FAE_64_Lucid Dreaming',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/105_Grim Discovery.jpg" id="FAE_105_Grim Discovery" data-flag="@X" onclick="openSidebar('FAE_105_Grim Discovery',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/152_Madcap Skills.jpg" id="FAE_152_Madcap Skills" data-flag="@X" onclick="openSidebar('FAE_152_Madcap Skills',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/196_Lifeheart Clairvoyant.jpg" id="FAE_196_Lifeheart Clairvoyant" data-flag="@X" onclick="openSidebar('FAE_196_Lifeheart Clairvoyant',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/17_Gnomish Youth.jpg" id="FAE_17_Gnomish Youth" data-flag="@X" onclick="openSidebar('FAE_17_Gnomish Youth',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/66_Melancholy Messenger.jpg" id="FAE_66_Melancholy Messenger" data-flag="@X" onclick="openSidebar('FAE_66_Melancholy Messenger',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/107_Hideous Skinner.jpg" id="FAE_107_Hideous Skinner" data-flag="@X" onclick="openSidebar('FAE_107_Hideous Skinner',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/156_Perilous Indulgence.jpg" id="FAE_156_Perilous Indulgence" data-flag="@X" onclick="openSidebar('FAE_156_Perilous Indulgence',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/199_Mystic Shepherd.jpg" id="FAE_199_Mystic Shepherd" data-flag="@X" onclick="openSidebar('FAE_199_Mystic Shepherd',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/20_Indentured Yak.jpg" id="FAE_20_Indentured Yak" data-flag="@X" onclick="openSidebar('FAE_20_Indentured Yak',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/68_Mystify.jpg" id="FAE_68_Mystify" data-flag="@X" onclick="openSidebar('FAE_68_Mystify',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/108_Hostage Smuggler.jpg" id="FAE_108_Hostage Smuggler" data-flag="@X" onclick="openSidebar('FAE_108_Hostage Smuggler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/157_Pouncing Cougar.jpg" id="FAE_157_Pouncing Cougar" data-flag="@X" onclick="openSidebar('FAE_157_Pouncing Cougar',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/202_Rainbow Weevil.jpg" id="FAE_202_Rainbow Weevil" data-flag="@X" onclick="openSidebar('FAE_202_Rainbow Weevil',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/25_Maternal Care.jpg" id="FAE_25_Maternal Care" data-flag="@X" onclick="openSidebar('FAE_25_Maternal Care',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/69_Negate.jpg" id="FAE_69_Negate" data-flag="@X" onclick="openSidebar('FAE_69_Negate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/116_Lace with Duskwort.jpg" id="FAE_116_Lace with Duskwort" data-flag="@X" onclick="openSidebar('FAE_116_Lace with Duskwort',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/159_Random Accusation.jpg" id="FAE_159_Random Accusation" data-flag="@X" onclick="openSidebar('FAE_159_Random Accusation',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/204_Rootsong Shaman.jpg" id="FAE_204_Rootsong Shaman" data-flag="@X" onclick="openSidebar('FAE_204_Rootsong Shaman',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/26_Northern Tawny.jpg" id="FAE_26_Northern Tawny" data-flag="@X" onclick="openSidebar('FAE_26_Northern Tawny',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/70_Pixie Post Courier.jpg" id="FAE_70_Pixie Post Courier" data-flag="@X" onclick="openSidebar('FAE_70_Pixie Post Courier',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/117_Malevolent Youth.jpg" id="FAE_117_Malevolent Youth" data-flag="@X" onclick="openSidebar('FAE_117_Malevolent Youth',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/161_Raving Rapscallion.jpg" id="FAE_161_Raving Rapscallion" data-flag="@X" onclick="openSidebar('FAE_161_Raving Rapscallion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/205_Savage Grizzly.jpg" id="FAE_205_Savage Grizzly" data-flag="@X" onclick="openSidebar('FAE_205_Savage Grizzly',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/27_Pass the Torch.jpg" id="FAE_27_Pass the Torch" data-flag="@X" onclick="openSidebar('FAE_27_Pass the Torch',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/73_Reticulate Telepath.jpg" id="FAE_73_Reticulate Telepath" data-flag="@X" onclick="openSidebar('FAE_73_Reticulate Telepath',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/122_Serum Splash.jpg" id="FAE_122_Serum Splash" data-flag="@X" onclick="openSidebar('FAE_122_Serum Splash',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/162_Reckless Blaze.jpg" id="FAE_162_Reckless Blaze" data-flag="@X" onclick="openSidebar('FAE_162_Reckless Blaze',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/206_Scrupulous Gardener.jpg" id="FAE_206_Scrupulous Gardener" data-flag="@X" onclick="openSidebar('FAE_206_Scrupulous Gardener',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/28_Pup of the Pasture.jpg" id="FAE_28_Pup of the Pasture" data-flag="@X" onclick="openSidebar('FAE_28_Pup of the Pasture',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/74_Soothsay.jpg" id="FAE_74_Soothsay" data-flag="@X" onclick="openSidebar('FAE_74_Soothsay',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/123_Set Afloat.jpg" id="FAE_123_Set Afloat" data-flag="@X" onclick="openSidebar('FAE_123_Set Afloat',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/163_Reverent Ancestory.jpg" id="FAE_163_Reverent Ancestory" data-flag="@X" onclick="openSidebar('FAE_163_Reverent Ancestory',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/207_Secrets of the Soil.jpg" id="FAE_207_Secrets of the Soil" data-flag="@X" onclick="openSidebar('FAE_207_Secrets of the Soil',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/29_Purge from Reality.jpg" id="FAE_29_Purge from Reality" data-flag="@X" onclick="openSidebar('FAE_29_Purge from Reality',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/77_Starsign Dowser.jpg" id="FAE_77_Starsign Dowser" data-flag="@X" onclick="openSidebar('FAE_77_Starsign Dowser',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/125_Tar Drooler.jpg" id="FAE_125_Tar Drooler" data-flag="@X" onclick="openSidebar('FAE_125_Tar Drooler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/164_Savage Stabber.jpg" id="FAE_164_Savage Stabber" data-flag="@X" onclick="openSidebar('FAE_164_Savage Stabber',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/208_Selfless Sage.jpg" id="FAE_208_Selfless Sage" data-flag="@X" onclick="openSidebar('FAE_208_Selfless Sage',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/34_Seven-Card Stud.jpg" id="FAE_34_Seven-Card Stud" data-flag="@X" onclick="openSidebar('FAE_34_Seven-Card Stud',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/81_Tanpip Prospector.jpg" id="FAE_81_Tanpip Prospector" data-flag="@X" onclick="openSidebar('FAE_81_Tanpip Prospector',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/127_Torpid Vulture.jpg" id="FAE_127_Torpid Vulture" data-flag="@X" onclick="openSidebar('FAE_127_Torpid Vulture',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/165_Scoundrel Slayer.jpg" id="FAE_165_Scoundrel Slayer" data-flag="@X" onclick="openSidebar('FAE_165_Scoundrel Slayer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/210_Territorial Direwolf.jpg" id="FAE_210_Territorial Direwolf" data-flag="@X" onclick="openSidebar('FAE_210_Territorial Direwolf',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/36_Soul Aegis.jpg" id="FAE_36_Soul Aegis" data-flag="@X" onclick="openSidebar('FAE_36_Soul Aegis',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/83_Thought Blot.jpg" id="FAE_83_Thought Blot" data-flag="@X" onclick="openSidebar('FAE_83_Thought Blot',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/128_Toxic Blade.jpg" id="FAE_128_Toxic Blade" data-flag="@X" onclick="openSidebar('FAE_128_Toxic Blade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/167_Surprise Attack.jpg" id="FAE_167_Surprise Attack" data-flag="@X" onclick="openSidebar('FAE_167_Surprise Attack',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/213_Vulture Hunt.jpg" id="FAE_213_Vulture Hunt" data-flag="@X" onclick="openSidebar('FAE_213_Vulture Hunt',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/41_Vassal Cage.jpg" id="FAE_41_Vassal Cage" data-flag="@X" onclick="openSidebar('FAE_41_Vassal Cage',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/130_Wurtnook Initiate.jpg" id="FAE_130_Wurtnook Initiate" data-flag="@X" onclick="openSidebar('FAE_130_Wurtnook Initiate',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/169_Timber Splinter.jpg" id="FAE_169_Timber Splinter" data-flag="@X" onclick="openSidebar('FAE_169_Timber Splinter',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/214_Watchful Bowmaster.jpg" id="FAE_214_Watchful Bowmaster" data-flag="@X" onclick="openSidebar('FAE_214_Watchful Bowmaster',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/172_Volcanic Newt.jpg" id="FAE_172_Volcanic Newt" data-flag="@X" onclick="openSidebar('FAE_172_Volcanic Newt',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
 				<div id="gold" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/222_Granny Bofflenose.jpg" id="FAE_222_Granny Bofflenose" data-flag="@X" onclick="openSidebar('FAE_222_Granny Bofflenose',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/71_Potion of Depletion.jpg" id="FAE_71_Potion of Depletion" data-flag="@X" onclick="openSidebar('FAE_71_Potion of Depletion',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/221_Gibliver Ruffians.jpg" id="FAE_221_Gibliver Ruffians" data-flag="@X" onclick="openSidebar('FAE_221_Gibliver Ruffians',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/226_Wriwth Renegade.jpg" id="FAE_226_Wriwth Renegade" data-flag="@X" onclick="openSidebar('FAE_226_Wriwth Renegade',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/218_Braided Sentinel.jpg" id="FAE_218_Braided Sentinel" data-flag="@X" onclick="openSidebar('FAE_218_Braided Sentinel',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/223_Lark Lithenfeld.jpg" id="FAE_223_Lark Lithenfeld" data-flag="@X" onclick="openSidebar('FAE_223_Lark Lithenfeld',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/224_Reciprocal Torturer.jpg" id="FAE_224_Reciprocal Torturer" data-flag="@X" onclick="openSidebar('FAE_224_Reciprocal Torturer',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/82_Temporal Tonic.jpg" id="FAE_82_Temporal Tonic" data-flag="@X" onclick="openSidebar('FAE_82_Temporal Tonic',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/220_Domino, Toadstool King.jpg" id="FAE_220_Domino, Toadstool King" data-flag="@X" onclick="openSidebar('FAE_220_Domino, Toadstool King',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/225_Splinterscale Pangolin.jpg" id="FAE_225_Splinterscale Pangolin" data-flag="@X" onclick="openSidebar('FAE_225_Splinterscale Pangolin',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/219_Delia Lithenfeld.jpg" id="FAE_219_Delia Lithenfeld" data-flag="@X" onclick="openSidebar('FAE_219_Delia Lithenfeld',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/222_Granny Bofflenose.jpg" id="FAE_222_Granny Bofflenose" data-flag="@X" onclick="openSidebar('FAE_222_Granny Bofflenose',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/71_Potion of Depletion.jpg" id="FAE_71_Potion of Depletion" data-flag="@X" onclick="openSidebar('FAE_71_Potion of Depletion',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/221_Gibliver Ruffians.jpg" id="FAE_221_Gibliver Ruffians" data-flag="@X" onclick="openSidebar('FAE_221_Gibliver Ruffians',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/226_Wriwth Renegade.jpg" id="FAE_226_Wriwth Renegade" data-flag="@X" onclick="openSidebar('FAE_226_Wriwth Renegade',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/218_Braided Sentinel.jpg" id="FAE_218_Braided Sentinel" data-flag="@X" onclick="openSidebar('FAE_218_Braided Sentinel',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/223_Lark Lithenfeld.jpg" id="FAE_223_Lark Lithenfeld" data-flag="@X" onclick="openSidebar('FAE_223_Lark Lithenfeld',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/224_Reciprocal Torturer.jpg" id="FAE_224_Reciprocal Torturer" data-flag="@X" onclick="openSidebar('FAE_224_Reciprocal Torturer',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/82_Temporal Tonic.jpg" id="FAE_82_Temporal Tonic" data-flag="@X" onclick="openSidebar('FAE_82_Temporal Tonic',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/220_Domino, Toadstool King.jpg" id="FAE_220_Domino, Toadstool King" data-flag="@X" onclick="openSidebar('FAE_220_Domino, Toadstool King',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/225_Splinterscale Pangolin.jpg" id="FAE_225_Splinterscale Pangolin" data-flag="@X" onclick="openSidebar('FAE_225_Splinterscale Pangolin',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/219_Delia Lithenfeld.jpg" id="FAE_219_Delia Lithenfeld" data-flag="@X" onclick="openSidebar('FAE_219_Delia Lithenfeld',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
 				<div id="colorless" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/229_The Dominomicon.jpg" id="FAE_229_The Dominomicon" data-flag="@X" onclick="openSidebar('FAE_229_The Dominomicon',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/233_Mythic Dais.jpg" id="FAE_233_Mythic Dais" data-flag="@X" onclick="openSidebar('FAE_233_Mythic Dais',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/227_Bristled Scarecrow.jpg" id="FAE_227_Bristled Scarecrow" data-flag="@X" onclick="openSidebar('FAE_227_Bristled Scarecrow',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/228_Crushing Sledge.jpg" id="FAE_228_Crushing Sledge" data-flag="@X" onclick="openSidebar('FAE_228_Crushing Sledge',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/230_Festival Mask.jpg" id="FAE_230_Festival Mask" data-flag="@X" onclick="openSidebar('FAE_230_Festival Mask',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/237_Talisman of the Occult.jpg" id="FAE_237_Talisman of the Occult" data-flag="@X" onclick="openSidebar('FAE_237_Talisman of the Occult',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/238_Woven Warden.jpg" id="FAE_238_Woven Warden" data-flag="@X" onclick="openSidebar('FAE_238_Woven Warden',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/231_Field Creeper.jpg" id="FAE_231_Field Creeper" data-flag="@X" onclick="openSidebar('FAE_231_Field Creeper',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/232_Fiery Pike.jpg" id="FAE_232_Fiery Pike" data-flag="@X" onclick="openSidebar('FAE_232_Fiery Pike',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/234_Sanctum Compass.jpg" id="FAE_234_Sanctum Compass" data-flag="@X" onclick="openSidebar('FAE_234_Sanctum Compass',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/235_Skull Rattler.jpg" id="FAE_235_Skull Rattler" data-flag="@X" onclick="openSidebar('FAE_235_Skull Rattler',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/236_Soothsayer's Staff.jpg" id="FAE_236_Soothsayers Staff" data-flag="@X" onclick="openSidebar('FAE_236_Soothsayers Staff',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/229_The Dominomicon.jpg" id="FAE_229_The Dominomicon" data-flag="@X" onclick="openSidebar('FAE_229_The Dominomicon',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/233_Mythic Dais.jpg" id="FAE_233_Mythic Dais" data-flag="@X" onclick="openSidebar('FAE_233_Mythic Dais',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/227_Bristled Scarecrow.jpg" id="FAE_227_Bristled Scarecrow" data-flag="@X" onclick="openSidebar('FAE_227_Bristled Scarecrow',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/228_Crushing Sledge.jpg" id="FAE_228_Crushing Sledge" data-flag="@X" onclick="openSidebar('FAE_228_Crushing Sledge',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/230_Festival Mask.jpg" id="FAE_230_Festival Mask" data-flag="@X" onclick="openSidebar('FAE_230_Festival Mask',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/237_Talisman of the Occult.jpg" id="FAE_237_Talisman of the Occult" data-flag="@X" onclick="openSidebar('FAE_237_Talisman of the Occult',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/238_Woven Warden.jpg" id="FAE_238_Woven Warden" data-flag="@X" onclick="openSidebar('FAE_238_Woven Warden',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/231_Field Creeper.jpg" id="FAE_231_Field Creeper" data-flag="@X" onclick="openSidebar('FAE_231_Field Creeper',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/232_Fiery Pike.jpg" id="FAE_232_Fiery Pike" data-flag="@X" onclick="openSidebar('FAE_232_Fiery Pike',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/234_Sanctum Compass.jpg" id="FAE_234_Sanctum Compass" data-flag="@X" onclick="openSidebar('FAE_234_Sanctum Compass',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/235_Skull Rattler.jpg" id="FAE_235_Skull Rattler" data-flag="@X" onclick="openSidebar('FAE_235_Skull Rattler',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/236_Soothsayer's Staff.jpg" id="FAE_236_Soothsayers Staff" data-flag="@X" onclick="openSidebar('FAE_236_Soothsayers Staff',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
 				<div id="land" class="anchor"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/247_Toadstool Kingdom.jpg" id="FAE_247_Toadstool Kingdom" data-flag="@X" onclick="openSidebar('FAE_247_Toadstool Kingdom',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/249_Wondrous Falls.jpg" id="FAE_249_Wondrous Falls" data-flag="@X" onclick="openSidebar('FAE_249_Wondrous Falls',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/241_Desolate Mire.jpg" id="FAE_241_Desolate Mire" data-flag="@X" onclick="openSidebar('FAE_241_Desolate Mire',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/244_Simmering Lava Pit.jpg" id="FAE_244_Simmering Lava Pit" data-flag="@X" onclick="openSidebar('FAE_244_Simmering Lava Pit',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/245_Spectral Arbor.jpg" id="FAE_245_Spectral Arbor" data-flag="@X" onclick="openSidebar('FAE_245_Spectral Arbor',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/246_Streambank Hut.jpg" id="FAE_246_Streambank Hut" data-flag="@X" onclick="openSidebar('FAE_246_Streambank Hut',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/248_Wetland Ruins.jpg" id="FAE_248_Wetland Ruins" data-flag="@X" onclick="openSidebar('FAE_248_Wetland Ruins',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/240_Burning Bridges.jpg" id="FAE_240_Burning Bridges" data-flag="@X" onclick="openSidebar('FAE_240_Burning Bridges',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/242_Hall of the Feast.jpg" id="FAE_242_Hall of the Feast" data-flag="@X" onclick="openSidebar('FAE_242_Hall of the Feast',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/239_Blooming Orchard.jpg" id="FAE_239_Blooming Orchard" data-flag="@X" onclick="openSidebar('FAE_239_Blooming Orchard',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/243_Harvest Prairie.jpg" id="FAE_243_Harvest Prairie" data-flag="@X" onclick="openSidebar('FAE_243_Harvest Prairie',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/250_Plains.jpg" id="FAE_250_Plains" data-flag="@X" onclick="openSidebar('FAE_250_Plains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/251_Plains.jpg" id="FAE_251_Plains" data-flag="@X" onclick="openSidebar('FAE_251_Plains',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/252_Island.jpg" id="FAE_252_Island" data-flag="@X" onclick="openSidebar('FAE_252_Island',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/253_Island.jpg" id="FAE_253_Island" data-flag="@X" onclick="openSidebar('FAE_253_Island',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/254_Swamp.jpg" id="FAE_254_Swamp" data-flag="@X" onclick="openSidebar('FAE_254_Swamp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/255_Swamp.jpg" id="FAE_255_Swamp" data-flag="@X" onclick="openSidebar('FAE_255_Swamp',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/256_Mountain.jpg" id="FAE_256_Mountain" data-flag="@X" onclick="openSidebar('FAE_256_Mountain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/257_Mountain.jpg" id="FAE_257_Mountain" data-flag="@X" onclick="openSidebar('FAE_257_Mountain',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/258_Forest.jpg" id="FAE_258_Forest" data-flag="@X" onclick="openSidebar('FAE_258_Forest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/sets/FAE-files/img/259_Forest.jpg" id="FAE_259_Forest" data-flag="@X" onclick="openSidebar('FAE_259_Forest',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
-				<div class="container"><img loading="lazy" alt="/img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/247_Toadstool Kingdom.jpg" id="FAE_247_Toadstool Kingdom" data-flag="@X" onclick="openSidebar('FAE_247_Toadstool Kingdom',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/249_Wondrous Falls.jpg" id="FAE_249_Wondrous Falls" data-flag="@X" onclick="openSidebar('FAE_249_Wondrous Falls',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/241_Desolate Mire.jpg" id="FAE_241_Desolate Mire" data-flag="@X" onclick="openSidebar('FAE_241_Desolate Mire',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/244_Simmering Lava Pit.jpg" id="FAE_244_Simmering Lava Pit" data-flag="@X" onclick="openSidebar('FAE_244_Simmering Lava Pit',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/245_Spectral Arbor.jpg" id="FAE_245_Spectral Arbor" data-flag="@X" onclick="openSidebar('FAE_245_Spectral Arbor',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/246_Streambank Hut.jpg" id="FAE_246_Streambank Hut" data-flag="@X" onclick="openSidebar('FAE_246_Streambank Hut',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/248_Wetland Ruins.jpg" id="FAE_248_Wetland Ruins" data-flag="@X" onclick="openSidebar('FAE_248_Wetland Ruins',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/240_Burning Bridges.jpg" id="FAE_240_Burning Bridges" data-flag="@X" onclick="openSidebar('FAE_240_Burning Bridges',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/242_Hall of the Feast.jpg" id="FAE_242_Hall of the Feast" data-flag="@X" onclick="openSidebar('FAE_242_Hall of the Feast',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/239_Blooming Orchard.jpg" id="FAE_239_Blooming Orchard" data-flag="@X" onclick="openSidebar('FAE_239_Blooming Orchard',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/243_Harvest Prairie.jpg" id="FAE_243_Harvest Prairie" data-flag="@X" onclick="openSidebar('FAE_243_Harvest Prairie',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="FAE_e" data-flag="@E" onclick="openSidebar('FAE_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/250_Plains.jpg" id="FAE_250_Plains" data-flag="@X" onclick="openSidebar('FAE_250_Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/251_Plains.jpg" id="FAE_251_Plains" data-flag="@X" onclick="openSidebar('FAE_251_Plains',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/252_Island.jpg" id="FAE_252_Island" data-flag="@X" onclick="openSidebar('FAE_252_Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/253_Island.jpg" id="FAE_253_Island" data-flag="@X" onclick="openSidebar('FAE_253_Island',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/254_Swamp.jpg" id="FAE_254_Swamp" data-flag="@X" onclick="openSidebar('FAE_254_Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/255_Swamp.jpg" id="FAE_255_Swamp" data-flag="@X" onclick="openSidebar('FAE_255_Swamp',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/256_Mountain.jpg" id="FAE_256_Mountain" data-flag="@X" onclick="openSidebar('FAE_256_Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/257_Mountain.jpg" id="FAE_257_Mountain" data-flag="@X" onclick="openSidebar('FAE_257_Mountain',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/258_Forest.jpg" id="FAE_258_Forest" data-flag="@X" onclick="openSidebar('FAE_258_Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/FAE-files/img/259_Forest.jpg" id="FAE_259_Forest" data-flag="@X" onclick="openSidebar('FAE_259_Forest',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="FAE_er" data-flag="@E" onclick="openSidebar('FAE_er',false)"></div>
 	</div>
 	</div>
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-container">
-			<img id="sidebar_img" class="sidebar-img" src="/img/er.png">
+			<img id="sidebar_img" class="sidebar-img">
 			<img id="sidebar_h_img" class="sidebar-h-img">
 			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
 		</div>
@@ -626,13 +642,13 @@
 		let specialchars = "";
 
 	document.addEventListener('DOMContentLoaded', async function() {
-		await fetch('/lists/all-cards.json')
+		await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
 						card_list = json;
 				}).catch(error => console.error('Error:', error));
 
-				await fetch('/resources/replacechars.txt')
+				await fetch(rootPath + '/resources/replacechars.txt')
 					.then(response => response.text())
 					.then(text => {
 						specialchars = text; 
@@ -765,13 +781,16 @@
 			const flag = img.getAttribute('data-flag');
 
 			if (flag === '@N') {
-				img.src = '/img/card_back.png';
+				img.src = rootPath + '/img/card_back.png';
 				img.removeAttribute("onclick");
 				img.style.cursor = 'default';
 			}
 			else
 			{
-				img.src = img.alt;
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
 
 				if (flag === '@E') {
 					img.removeAttribute("onclick");
@@ -925,16 +944,16 @@
 	});
 
 	function search() {
-		const url = new URL('search', window.location.origin);
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 		url.searchParams.append('search', document.getElementById("search").value);
-		window.location.href = url;
+		window.location.href = url.pathname + url.search;
 	}
 
 		function randomCard() {
 				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
 				let random_card = card_list_arrayified[i];
 
-				const url = new URL('card', window.location.origin);
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
 				const params = {
 					set: random_card.set,
 					num: random_card.number,
@@ -944,7 +963,7 @@
 					url.searchParams.append(key, params[key]);
 				}
 
-				window.location.href = url;
+				window.location.href = url.pathname + url.search;
 			}
 	</script>
 </body>
