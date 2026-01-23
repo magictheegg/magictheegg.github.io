@@ -348,8 +348,8 @@ def generateHTML(code):
 '''
 
 	#C: sets/SET-files/SET.xml
-		if os.path.exists(os.path.join('sets', code + '-files', code + '.xml')) and not previewing:
-			html_content += '''<a href="../sets/''' + code + '''-files/''' + code + '''.xml" download>Play</a><div class="dot"> • </div>
+	if os.path.exists(os.path.join('sets', code + '-files', code + '.xml')) and not previewing:
+		html_content += '''<a href="../sets/''' + code + '''-files/''' + code + '''.xml" download>Play</a><div class="dot"> • </div>
 '''
 
 	html_content += '''			<a onclick="randomSetCard()">I'm Feeling Lucky</a>
