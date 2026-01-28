@@ -1299,8 +1299,10 @@ def generateHTML(codes):
 				let sb_map = new Map();
 				let sb_cards = false;
 
-				for (const line of deckText.split('\\n'))
+				for (let line of deckText.split('\\n'))
 				{
+					line = line.trim();
+
 					if (line == 'sideboard' || line == '') // '' for Draftmancer files
 					{
 						sb_cards = true;
