@@ -469,6 +469,7 @@ def generateHTML(codes):
 					<option value="default">Actions ...</option>
 					<option value="new">New deck</option>
 					<option value="import">Import deck</option>
+					<option value="import-clipboard">Load from clipboard</option>
 					<option value="clipboard">Copy to clipboard</option>
 					<option value="export-dek">Export .dek</option>
 					<option value="export-txt">Export .txt</option>
@@ -588,6 +589,10 @@ def generateHTML(codes):
 			else if (option == "import")
 			{
 				document.getElementById("import-file").click();
+			}
+			else if (option == "import-clipboard")
+			{
+				importFromClipboard();
 			}
 			else if (option == "clipboard" || option.startsWith("export"))
 			{
@@ -1283,6 +1288,75 @@ def generateHTML(codes):
 				navigator.clipboard.writeText(deck_text);
 			}
 
+			document.getElementById("file-menu").value = "default";
+		}
+
+		async function importFromClipboard() {
+			try {
+				const deckText = await navigator.clipboard.readText();
+
+				let deck_map = new Map();
+				let sb_map = new Map();
+				let sb_cards = false;
+
+				for (const line of deckText.split('\\n'))
+				{
+					if (line == 'sideboard' || line == '') // '' for Draftmancer files
+					{
+						sb_cards = true;
+					}
+					else if (!sb_cards)
+					{
+						count = parseInt(line.substring(0, line.indexOf(' ')));
+						card_name = line.substring(line.indexOf(' ') + 1);
+
+						if (deck_map.has(card_name))
+						{
+							deck_map.set(card_name, deck_map.get(card_name) + count);
+						}
+						else
+						{
+							deck_map.set(card_name, count);
+						}
+					}
+					else
+					{
+						count = parseInt(line.substring(0, line.indexOf(' ')));
+						card_name = line.substring(line.indexOf(' ') + 1);
+
+						if (sb_map.has(card_name))
+						{
+							sb_map.set(card_name, sb_map.get(card_name) + count);
+						}
+						else
+						{
+							sb_map.set(card_name, count);
+						}
+					}
+				}
+				for (const card of card_list_arrayified)
+				{
+					if (deck_map.has(card.card_name))
+					{
+						for (let i = 0; i < deck_map.get(card.card_name); i++)
+						{
+							addCardToDeck(JSON.stringify(card));
+						}
+						deck_map.delete(card.card_name);
+					}
+
+					if (sb_map.has(card.card_name))
+					{
+						for (let i = 0; i < sb_map.get(card.card_name); i++)
+						{
+							addCardToSideboard(JSON.stringify(card));
+						}
+						sb_map.delete(card.card_name);
+					}
+				}
+			} catch (err) {
+				console.error('Failed to read clipboard:', err);
+			}
 			document.getElementById("file-menu").value = "default";
 		}
 
