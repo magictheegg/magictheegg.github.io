@@ -1,4 +1,173 @@
-﻿VERSION 1 CHANGELOG
+﻿VERSION 2 CHANGELOG
+====================
+
+
+
+Elder Hydra Vidir
+
+Rose Court Justicar
+rules_text: Whenever a creature you control enters, create an Idol token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.”)[/i]
+Whenever Rose Court Justicar attacks, you may sacrifice an Idol. If you do, put a +1/+1 counter on target creature. => When Rose Court Justicar enters, create two Idol tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.”)[/i]
+Whenever you attack, you may sacrifice an Idol token. If you do, put a +1/+1 counter on target attacking creature.
+
+Elegant Waveshaper
+rules_text: Prowess [i](Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)[/i]
+When Elegant Waveshaper enters, create a number of 0/1 blue Merfolk creature tokens with prowess equal to your devotion to blue. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i] => When Elegant Waveshaper enters, create a number of 0/1 blue Merfolk creature tokens equal to your devotion to blue. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i]
+Whenever you cast an instant or sorcery spell, Merfolk you control get +1/+1 until end of turn.
+
+Vessel of Vile Truths
+cost: {B} => {2}{B}
+rules_text: When Vessel of Vile Truths enters, create two tapped 5/5 black Demon creature tokens with flying, then put ten stun counters on each of them.
+At the beginning of your end step, remove a stun counter from each Demon you control if a creature an opponent controlled died this turn. Do the same if opponent lost life this turn.and if an opponent discarded a card this turn. => When Vessel of Vile Truths enters, create two tapped 5/5 black Demon creature tokens with flying, then put seven stun counters on each of them.
+At the beginning of your end step, remove a stun counter from each Demon you control if a creature an opponent controlled died this turn. Do the same if opponent lost life this turn and if an opponent discarded a card this turn.
+pt: 1/2 => 3/2
+
+Kaelax Blood Pact
+rules_text: Activate each ability of Kaelax Blood Pact only as a sorcery and only once each turn.
+{B}: You draw a card and you lose 1 life.
+{1}{B}: Each opponent discards a card.
+{2}{B}: Each opponent sacrifices a creature.
+At the beginning of your precombat main phase, exile the top seven cards of your library. => Activate each ability of Kaelax Blood Pact only as a sorcery and only once each turn.
+{B}: You draw a card and you lose 1 life.
+{1}{B}: Each opponent loses 2 life.
+{2}{B}: Each opponent sacrifices a creature unless they discard a card.
+At the beginning of your precombat main phase, exile the top seven cards of your library.
+
+Vashai, the Pyretic Roar
+rules_text: Flying
+When Vashai enters, destroy all nonbasic, nontoken lands. For each land destroyed this way, Vashai deals 2 damage to its controller, then that player creates a tapped colorless Mountain land token. => Flying
+Whenever a player taps a basic land for mana, that player adds {R}.
+Whenever you cast an instant, sorcery, or Dragon spell, you may pay its mana cost. If you do, copy it, except the copy isn't legendary. [i](A copy of a permanent spell becomes a token.)[/i]
+
+Antiquities Hoarder
+rules_text: Flying
+Antiquities Hoarder can't attack or block unless it has five or more counters on it.
+Whenever one or more artifacts you control enter, put a +1/+1 counter on Antiquities Hoarder and Antiquities Hoarder deals 1 damage to each opponent. => Flying
+Antiquities Hoarder can't attack or block unless it has five or more counters on it.
+Whenever one or more artifacts you control enter, put a +1/+1 counter on Antiquities Hoarder. If one of those artifacts is a Treasure, Antiquities Hoarder deals 1 damage to each opponent.
+
+Iron Eye Captain
+pt: 2/3 => 2/1
+
+Earthshatter Prodigy
+rules_text: When Earthshatter Prodigy enters, you may discard a Mountain card. If you do, exile the top two cards of your library. You may play those cards until the end of your next turn.
+Whenever you cast a red spell, add {R}{R}. => When Earthshatter Prodigy enters, you may discard up to two Mountain cards. For each card you discarded this way, draw a card.
+Whenever you cast a red spell, add {R}{R}.
+
+Oyana, the Shattered One
+rules_text: Flying
+Oyana enters with four +1/+1 counters on it.
+Remove a +1/+1 counter from Oyana: Return target creature card with mana value 3 or less from your graveyard to the battlefield with a finality counter on it. Activate only as a sorcery.
+Whenever a creature you control with a finality counter on it is exiled from the battlefield, put a +1/+1 counter on Oyana. => Flying
+Oyana enters with three +1/+1 counters on it.
+Remove a +1/+1 counter from Oyana: Return target creature card with mana value 3 or less from your graveyard to the battlefield with a finality counter on it. Activate only as a sorcery.
+Whenever a creature you control with a finality counter on it is exiled from the battlefield, put a +1/+1 counter on Oyana.
+pt: 0/0 => 1/1
+
+Atsaeri, the Cindersoul
+rules_text: Flying, vigilance
+The first time each turn a source you control would deal noncombat damage, it deals 4 damage instead. => Flying, vigilance
+The first time each turn one or more sources you control would deal noncombat damage, they each deals 4 damage instead.
+
+Chitinous Escort
+rules_text: When Chitinous Escort enters, create a tapped Polyp Pools token. [i](It's a Shapeshifter kindred land with changeling and “{T}: Add {C}.”)[/i]
+When Chitinous Escort dies, draw a card. => When Chitinous Escort enters, create a tapped Polyp Pools token. [i](It's a Shapeshifter kindred land with changeling and “{T}: Add {C}.” A card with changeling is every creature type.)[/i]
+When Chitinous Escort dies, draw a card.
+
+Mons Miralis, Lustrous Apex
+rules_text: As Mons Miralis enters, choose a color.
+{T}: Add one mana of the chosen color.
+{2}, {T}: You may cast a spell of the chosen color with mana value less than or equal to your devotion to the chosen color from your hand without paying its mana cost. [i](Each colored mana symbol in the mana costs of permanents you control counts toward your devotion to that color.)[/i] => {T}: Add {C}.
+{1}, {T}: Add one mana of any color.
+{2}, {T}: Choose a color. You may cast a spell of the chosen color with mana value less than or equal to your devotion to that color from your hand without paying its mana cost. [i](Each colored mana symbol in the mana costs of permanents you control counts toward your devotion to that color.)[/i]
+
+Current Distortionist
+rules_text: Flash
+When Current Distortionist enters, exile up to one target instant or sorcery card with mana value less than or equal to your devotion to blue from your graveyard. Until end of turn, you may cast that card without paying its mana cost. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i] => Flash
+When Current Distortionist enters, exile up to one target instant or sorcery card with mana value less than or equal to your devotion to blue from your graveyard. Until end of turn, you may cast that card without paying its mana cost. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue. Timing rules still apply.)[/i]
+
+Veritanos Teaches Curiosity
+rules_text: 
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+II, III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+II, III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+special_text: 
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+II, III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+II, III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+
+Aternox Imparts Humility
+rules_text: 
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+III — Put target creature card with mana value 3 or less in a graveyard onto the battlefield under your control. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+special_text: 
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+III — Put target creature card with mana value 3 or less in a graveyard onto the battlefield under your control. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+
+Toshzi, the Thunder
+rules_text: Flying
+When Toshzi enters, choose up to one target planeswalker, artifact, and land. Toshzi deals 5 damage to a planeswalker chosen this way, then destroy the rest. => Flying
+When Toshzi enters, choose up to one target planeswalker, up to one target artifact, and up to one target land. Toshzi deals 5 damage to a planeswalker chosen this way, then destroy the rest.
+
+Yadil Exhibits Tenacity
+rules_text: 
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+special_text: 
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+
+Shriving Piper
+rules_text: Prestige [i](Once when this deals combat damage to a player, you may put a +1/+1 counter on it to activate one of its abilities without paying the cost.)[/i]
+Sacrifice Shriving Piper: Destroy target artifact or enchantment. => Prestige [i](Once when this deals combat damage to a player, you may put a +1/+1 counter on it to activate one of its abilities without paying the cost.)[/i]
+{1}, Sacrifice Shriving Piper: Destroy target artifact or enchantment.
+
+Verdant Tactics
+rules_text: Put a +1/+1 counter on each creature you control. Until end of turn, those creatures gain trample and can't be blocked by more than one creature. => Put a +1/+1 counter on each creature you control. Those creatures gain trample and challenge until end of turn. [i](A creature with challenge can't be blocked by more than one creature.)[/i]
+
+Vidir Manifests Unity
+rules_text: 
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+II — Create two 1/1 green Snake creature tokens.
+III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Snake creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+special_text: 
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+II — Create two 1/1 green Snake creature tokens.
+III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Snake creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+
+Notion Trafficker
+pt: 3/3 => 2/3
+
+
+VERSION 1 CHANGELOG
 ====================
 
 First version published.
