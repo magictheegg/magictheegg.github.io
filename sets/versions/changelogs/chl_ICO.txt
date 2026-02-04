@@ -1,4 +1,133 @@
-﻿VERSION 2 CHANGELOG
+﻿VERSION 3 CHANGELOG
+====================
+
+Toxin Zealot added.
+Cleric added.
+Avatar added.
+Angel added.
+Wizard added.
+Sphinx added.
+Elemental added.
+Warlock added.
+Demon added.
+Shaman added.
+Elemental added.
+Dragon added.
+Druid added.
+Hydra added.
+Intel added.
+Treasure added.
+
+Virulent Zealot removed.
+
+Liliana, Apocryphal Heretic
+loyalty: 5 => 4
+
+Elegant Waveshaper
+cost: {2}{U}{U} => {3}{U}{U}
+rules_text: When Elegant Waveshaper enters, create a number of 0/1 blue Merfolk creature tokens equal to your devotion to blue. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i]
+Whenever you cast an instant or sorcery spell, Merfolk you control get +1/+1 until end of turn. => When Elegant Waveshaper enters, create a number of 1/1 blue Wizard creature tokens equal to your devotion to blue. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i]
+Whenever you cast a noncreature spell, each Merfolk and Wizard you control gets +1/+1 until end of turn.
+pt: 1/2 => 1/3
+
+Keeper of the Godhold
+
+Ethella Spreads Faith
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+II — Exile up to one target nonland permanent until you control no Sagas or Angels.
+III — Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Exile up to one target nonland permanent until you control no Sagas or Angels.
+Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+II — Exile up to one target nonland permanent until you control no Sagas or Angels.
+III — Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Exile up to one target nonland permanent until you control no Sagas or Angels.
+Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn.
+
+Veritanos Teaches Curiosity
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+II, III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => 
+Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+II, III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => 
+Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+
+Aternox Imparts Humility
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control. => 
+Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control. => 
+Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+
+Yadil Exhibits Tenacity
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => 
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => 
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+
+Vidir Manifests Unity
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Snake creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+II — Create two 1/1 green Druid creature tokens.
+III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Snake creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+II — Create two 1/1 green Druid creature tokens.
+III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+
+Path of the Angel
+
+Path of the Sphinx
+
+Path of the Demon
+
+Path of the Dragon
+
+Path of the Hydra
+
+Idol
+
+Polyp Pools
+
+
+VERSION 2 CHANGELOG
 ====================
 
 
