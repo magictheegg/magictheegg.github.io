@@ -1295,6 +1295,9 @@ def generateHTML(codes):
 			try {
 				const deckText = await navigator.clipboard.readText();
 
+				deck = [];
+				sideboard = [];
+
 				let deck_map = new Map();
 				let sb_map = new Map();
 				let sb_cards = false;
