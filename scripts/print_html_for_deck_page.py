@@ -1,0 +1,603 @@
+import os
+import sys
+import json
+
+def generateHTML(codes):
+	output_html_file = "deck.html"
+
+	# Start creating the HTML file content
+	html_content = '''<html>
+<head>
+	<title>Deck</title>
+	<link rel="icon" type="image/x-icon" href="./img/deck.png">
+	<link rel="stylesheet" href="./resources/mana.css">
+	<link rel="stylesheet" href="./resources/header.css">
+	<link rel="stylesheet" href="./resources/card-text.css">
+</head>
+<script title="root">
+	const rootPath = ".";
+</script>
+<style>
+	@font-face {
+		font-family: Beleren;
+		src: url('./resources/beleren.ttf');
+	}
+	body {
+		font-family: 'Helvetica', 'Arial', sans-serif;
+		overscroll-behavior: none;
+		margin: 0px;
+		background-color: #bbbbbb;
+		display: block;
+	}
+	.page-container {
+		width: 100%;
+		height: 91vh;
+		padding: 20px;
+		display: block;
+		margin: auto;
+		box-sizing: border-box;
+	}
+	.deck-display-container {
+		height: 100%;
+		border: 1px solid #d5d9d9;
+		border-top: 4px solid #171717;
+		border-bottom: 4px solid #171717;
+		background-color: #f3f3f3;
+		border-radius: 6px;
+		display: grid;
+		grid-template-columns: 1fr 500px;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		position: relative;
+	}
+	.deck-main-area {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		overflow-y: hidden;
+		border-right: 1px solid #d5d9d9;
+	}
+	.deck-header {
+		width: 95%;
+		min-height: 50px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 5px 2.5%;
+		border-bottom: 1px solid #898989;
+	}
+	#deck-title {
+		font-family: Beleren;
+		font-size: 24px;
+	}
+	select {
+		background-color: #fafafa;
+		border: 1px solid #d5d9d9;
+		border-radius: 8px;
+		box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+		text-align: center;
+		color: #171717;
+		font-size: 13px;
+		height: 30px;
+	}
+	select:focus {
+		outline-color: #4f4f4f;
+	}
+	.deck-cards-scroll-container {
+		flex-grow: 1;
+		overflow-y: auto;
+		overflow-x: hidden;
+		scrollbar-width: none;
+		padding: 20px;
+	}
+	.deck-cards-scroll-container::-webkit-scrollbar {
+		display: none;
+	}
+	
+	.deck-columns-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 15px;
+	}
+	@media (max-width: 1200px) {
+		.deck-columns-container {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.deck-col {
+		padding: 0 15px;
+	}
+	.deck-section {
+		margin-bottom: 20px;
+	}
+	.deck-section-title {
+		font-size: 15px;
+		font-weight: bold;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 5px;
+		display: block;
+	}
+	.deck-line {
+		border-top: 1px solid #d5d9d9;
+		display: flex;
+		gap: 8px;
+		padding: 4px 5px;
+		cursor: pointer;
+		align-items: center;
+		font-size: 15px;
+	}
+	.deck-line:hover {
+		background-color: #e8e8e8;
+	}
+	.card-count-text {
+		font-weight: bold;
+		min-width: 20px;
+	}
+
+	.card-img-container {
+		height: 2.1vw;
+		max-height: 45px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 2fr 12fr;
+		gap: 2px;
+		font-weight: bold;
+		line-height: 1;
+	}
+	.card-img-container img {
+		width: 100%;
+		border-radius: 3.733% / 2.677%;
+	}
+	.card-fx {
+		display: grid;
+		align-items: center;
+		justify-items: center;
+		text-align: center;
+	}
+	.card-img-container .card-fx {
+		height: 2.7vw;
+		max-height: 63px;
+	}
+
+	/* Card Grid Container - EXACT CSS from Deckbuilder */
+	.card-grid-container {
+		border-left: 1px solid #d5d9d9;
+		width: 100%;
+		height: 100%;
+		overflow-y: hidden;
+	}
+	.card-grid-container .img-container {
+		width: 100%;
+		height: 55%;
+		padding: 10px 0;
+	}
+	.img-container {
+		position: relative;
+		align-self: center;
+		text-align: center;
+	}
+	.img-container img {
+		width: 100%;
+		height: auto;
+		border-radius: 3.733% / 2.677%;
+	}
+	.img-container a {
+		height: 100%;
+		max-width: 80%;
+		display: grid;
+		justify-self: center;
+	}
+	.img-container a > * {
+		grid-row: 1;
+		grid-column: 1;
+	}
+	.card-grid-container img {
+		width: auto;
+		min-width: 0;
+		max-width: 100%;
+		height: auto;
+		min-height: 0;
+		max-height: 100%;
+		display: block;
+		margin: auto;
+		border-radius: 3.733% / 2.677%;
+	}
+	.card-grid-container .btn {
+		left: 50%;
+		top: 48%;
+		transform: translate(-50%, -50%);
+		opacity: 0.5;
+	}
+	.img-container .btn {
+		background: url('./img/flip.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 15%;
+		height: 11%;
+		cursor: pointer;
+		border: none;
+		position: absolute;
+		border-radius: 0px;
+		box-shadow: none;
+	}
+	.img-container .btn:hover {
+		background: url('./img/flip-hover.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+	}
+	.img-container .h-img {
+		transform: rotateY(0deg) rotate(90deg);
+		width: 85%;
+		border-radius: 3.733% / 2.677%;
+	}
+	.image-grid {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+	.card-text {
+		border-top: 3px solid #171717;
+		overflow-y: scroll;
+		scrollbar-width: none;
+		height: 50%;
+		padding: 10px 0;
+	}
+	.card-text div { font-size: 13px; }
+	.card-text .name-cost { font-size: 16px; }
+	.card-text .type { font-size: 14px; }
+	.card-text br { content: ""; display: block; margin-bottom: 5px; }
+	
+	.hidden { display: none; }
+
+	/* images view grid */
+	.spoiler-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 20px;
+		margin-right: -70px;
+	}
+	.spoiler-section {
+		width: fit-content;
+		margin-bottom: 20px;
+	}
+	.spoiler-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 140px);
+		gap: 10px;
+	}
+	.spoiler-grid:last-child {
+		margin-right: 70px;
+	}
+	.spoiler-card {
+		position: relative;
+		cursor: pointer;
+	}
+	.spoiler-card img {
+		width: 100%;
+		border-radius: 4.75% / 3.5%;
+		display: block;
+	}
+	.spoiler-count {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		background: rgba(0,0,0,0.8);
+		color: white;
+		padding: 2px 6px;
+		border-radius: 4px;
+		font-size: 12px;
+		font-weight: bold;
+		z-index: 2;
+	}
+</style>
+<body>
+'''
+
+	with open(os.path.join('scripts', 'snippets', 'header.txt'), encoding='utf-8-sig') as f:
+		html_content += f.read()
+
+	html_content += '''
+	<input type="text" id="display" class="hidden" value="cards-and-text"> <!-- for snippet compat -->
+	<div class="page-container">
+		<div class="deck-display-container">
+			<div class="deck-main-area">
+				<div class="deck-header">
+					<div id="deck-title">Loading Deck...</div>
+					<select id="view-select" onchange="setView(this.value)">
+						<option value="text">Text</option>
+						<option value="stacks">Stacks</option>
+						<option value="images">Images</option>
+					</select>
+				</div>
+				<div class="deck-cards-scroll-container" id="deck-scroll-container">
+				</div>
+			</div>
+			<div class="card-grid-container" id="card-grid-container">
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let card_list_arrayified = [];
+		let currentDeck = { name: "", main: [], side: [] };
+		let currentView = 'text';
+		let specialchars = "";
+
+		document.addEventListener("DOMContentLoaded", async function () {
+'''
+
+	with open(os.path.join('scripts', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+		html_content += f.read()
+
+	html_content += '''
+			loadDeckFromHash();
+		});
+
+		function loadDeckFromHash() {
+			const hash = window.location.hash.substring(1);
+			if (!hash) return;
+			try {
+				const decoded = atob(hash);
+				if (decoded.startsWith('{')) {
+					// Old JSON format
+					currentDeck = JSON.parse(decoded);
+				} else {
+					// New compact format: Name|MainCards|SideCards
+					const parts = decoded.split('|');
+					const name = parts[0];
+					const mainStr = parts[1] || "";
+					const sideStr = parts[2] || "";
+
+					const parsePart = (str) => {
+						if (!str) return [];
+						return str.split(',').map(item => {
+							const bits = item.split('.');
+							return { set: bits[0], num: bits[1], count: parseInt(bits[2]) };
+						});
+					};
+
+					currentDeck = {
+						name: name,
+						main: parsePart(mainStr),
+						side: parsePart(sideStr)
+					};
+				}
+				document.getElementById("deck-title").innerText = currentDeck.name || "Untitled Deck";
+				document.title = (currentDeck.name || "Deck") + " - Magic the Egg";
+				render();
+				
+				// Autopopulate first card
+				const allCards = lookupCards(currentDeck.main.concat(currentDeck.side));
+				if (allCards.length > 0) {
+					showCardInGrid(allCards[0].stats);
+				}
+			} catch (e) {
+				console.error("Failed to decode deck hash", e);
+			}
+		}
+
+		function setView(view) {
+			currentView = view;
+			render();
+		}
+
+		function render() {
+			const container = document.getElementById("deck-scroll-container");
+			container.innerHTML = "";
+
+			const mainCards = lookupCards(currentDeck.main);
+			const sideCards = lookupCards(currentDeck.side);
+
+			const categoryOrder = ["creature", "planeswalker", "sorcery", "instant", "artifact", "enchantment", "battle", "land"];
+			const categoryNames = {
+				"creature": "Creatures", "planeswalker": "Planeswalkers", "sorcery": "Sorceries",
+				"instant": "Instants", "artifact": "Artifacts", "enchantment": "Enchantments",
+				"battle": "Battles", "land": "Lands"
+			};
+
+			const categorizedMain = categoryOrder.map(key => ({
+				key: key, name: categoryNames[key], cards: []
+			}));
+
+			mainCards.forEach(card => {
+				const type = card.stats.type.toLowerCase();
+				for (const key of categoryOrder) {
+					if (type.includes(key)) {
+						categorizedMain.find(cat => cat.key === key).cards.push(card);
+						return;
+					}
+				}
+			});
+
+			const activeCategories = categorizedMain.filter(cat => cat.cards.length > 0);
+			activeCategories.forEach(cat => cat.cards.sort((a,b) => a.stats.card_name.localeCompare(b.stats.card_name)));
+			const sideSection = { name: "Sideboard", cards: sideCards.sort((a,b) => a.stats.card_name.localeCompare(b.stats.card_name)), key: "sideboard" };
+
+			if (currentView === 'images') {
+				const spoilerCont = document.createElement("div");
+				spoilerCont.className = "spoiler-container";
+				activeCategories.forEach(cat => {
+					spoilerCont.appendChild(createSpoilerSection(cat));
+				});
+				if (sideSection.cards.length > 0) {
+					spoilerCont.appendChild(createSpoilerSection(sideSection));
+				}
+				container.appendChild(spoilerCont);
+			} else {
+				const colsCont = document.createElement("div");
+				colsCont.className = "deck-columns-container";
+				const colEles = [document.createElement("div"), document.createElement("div"), document.createElement("div")];
+				colEles.forEach(c => { c.className = "deck-col"; colsCont.appendChild(c); });
+
+				activeCategories.forEach(cat => {
+					let colIdx = 1; // Default Col 2
+					if (cat.key === "creature" || cat.key === "planeswalker") colIdx = 0;
+					if (cat.key === "land") colIdx = 2;
+					colEles[colIdx].appendChild(createSection(cat, currentView === 'stacks'));
+				});
+
+				if (sideSection.cards.length > 0) {
+					colEles[2].appendChild(createSection(sideSection, currentView === 'stacks'));
+				}
+				container.appendChild(colsCont);
+			}
+		}
+
+		function lookupCards(codes) {
+			if (!codes) return [];
+			return codes.map(item => {
+				const stats = card_list_arrayified.find(c => c.set === item.set && c.number == (item.num || item.number));
+				return stats ? { count: item.count, stats: stats } : null;
+			}).filter(c => c !== null);
+		}
+
+		function createSection(cat, isStacks) {
+			const section = document.createElement("div");
+			section.className = "deck-section";
+			const title = document.createElement("span");
+			title.className = "deck-section-title";
+			const total = cat.cards.reduce((acc, curr) => acc + curr.count, 0);
+			title.innerText = `${cat.name} (${total})`;
+			section.appendChild(title);
+
+			const cards_list = cat.cards;
+			for (let i = 0; i < cards_list.length; i++) {
+				const card = cards_list[i];
+				const card_stats = card.stats;
+				let card_row;
+
+				if (!isStacks) {
+					card_row = document.createElement("div");
+					card_row.className = "deck-line";
+					card_row.innerHTML = `<span class="card-count-text">${card.count}</span> <span>${card_stats.card_name}</span>`;
+				} else {
+					card_row = document.createElement("div");
+					card_row.className = "card-img-container";
+					if (i === cards_list.length - 1) {
+						card_row.style.height = "auto";
+						card_row.style.maxHeight = "100%";
+					}
+					const card_img = document.createElement("img");
+					card_img.src = getCardImgSrc(card_stats);
+					card_img.loading = "lazy";
+					
+					const fx1 = document.createElement("div"); fx1.className = "card-fx";
+					const fx2 = document.createElement("div"); fx2.className = "card-fx";
+					const card_count = document.createElement("div");
+					card_count.className = "card-fx";
+					card_count.innerText = card.count + "x";
+
+					card_row.appendChild(fx1);
+					card_row.appendChild(fx2);
+					card_row.appendChild(card_count);
+					card_row.appendChild(card_img);
+				}
+
+				card_row.onmouseover = function() {
+					showCardInGrid(card_stats);
+				};
+				card_row.onclick = () => window.open(getCardUrl(card_stats), '_blank');
+				section.appendChild(card_row);
+			}
+			return section;
+		}
+
+		function createSpoilerSection(cat) {
+			const section = document.createElement("div");
+			section.className = "spoiler-section";
+			const title = document.createElement("span");
+			title.className = "deck-section-title";
+			const total = cat.cards.reduce((acc, curr) => acc + curr.count, 0);
+			title.innerText = `${cat.name} (${total})`;
+			section.appendChild(title);
+
+			const grid = document.createElement("div");
+			grid.className = "spoiler-grid";
+			grid.style.display = "flex";
+			grid.style.flexWrap = "wrap";
+			grid.style.gap = "10px";
+
+			cat.cards.forEach(card => {
+				const div = document.createElement("div");
+				div.className = "spoiler-card";
+				div.style.width = "140px";
+				div.innerHTML = `<div class="spoiler-count">${card.count}</div><img loading="lazy" src="${getCardImgSrc(card.stats)}">`;
+				div.onmouseover = () => showCardInGrid(card.stats);
+				div.onclick = () => window.open(getCardUrl(card.stats), '_blank');
+				grid.appendChild(div);
+			});
+			section.appendChild(grid);
+			return section;
+		}
+
+		function showCardInGrid(card_stats) {
+			const cgc = document.getElementById("card-grid-container");
+			cgc.innerHTML = "";
+			const gridified_card = gridifyCard(card_stats, true);
+			gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
+			gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
+			if (card_stats.shape.includes("double")) {
+				gridified_card.getElementsByTagName("button")[0].onclick = function() {
+					imgFlip("image-grid-card", card_stats.rotated);
+				}
+			}
+			cgc.appendChild(gridified_card);
+		}
+
+		function getCardImgSrc(card_stats) {
+			if ("position" in card_stats) {
+				return rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			return rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+		}
+
+		function getCardUrl(card) {
+			const url = new URL(rootPath + '/card', window.location.origin);
+			url.searchParams.append('set', card.set);
+			url.searchParams.append('num', card.number);
+			url.searchParams.append('name', card.card_name);
+			return url.href;
+		}
+
+		function gridifyCard(card_stats, card_text = false, small = false, designer_notes = false) {
+			const card_name = card_stats.card_name;
+			rotate_card = !small && card_stats.rotated;
+
+			if (!card_text) {
+				return buildImgContainer(card_stats, true, rotate_card);			
+			}
+'''
+
+	with open(os.path.join('scripts', 'snippets', 'img-container-defs.txt'), encoding='utf-8-sig') as f:
+		html_content += f.read()
+
+	with open(os.path.join('scripts', 'snippets', 'tokenize-symbolize.txt'), encoding='utf-8-sig') as f:
+		html_content += f.read()
+
+	html_content += '''
+		function goToSearch() {
+			window.location = (rootPath + "/search?search=" + document.getElementById("search").value);
+		}
+
+		document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				goToSearch();
+			}
+		});
+'''
+
+	with open(os.path.join('scripts', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+		html_content += f.read()
+
+	html_content += '''
+	</script>
+</body>
+</html>'''
+
+	# Write the HTML content to the output HTML file
+	with open(output_html_file, 'w', encoding='utf-8-sig') as file:
+		file.write(html_content)
+
+	print(f"HTML file saved as {output_html_file}")

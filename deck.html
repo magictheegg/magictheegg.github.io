@@ -1,0 +1,1029 @@
+﻿<html>
+<head>
+	<title>Deck</title>
+	<link rel="icon" type="image/x-icon" href="./img/deck.png">
+	<link rel="stylesheet" href="./resources/mana.css">
+	<link rel="stylesheet" href="./resources/header.css">
+	<link rel="stylesheet" href="./resources/card-text.css">
+</head>
+<script title="root">
+	const rootPath = ".";
+</script>
+<style>
+	@font-face {
+		font-family: Beleren;
+		src: url('./resources/beleren.ttf');
+	}
+	body {
+		font-family: 'Helvetica', 'Arial', sans-serif;
+		overscroll-behavior: none;
+		margin: 0px;
+		background-color: #bbbbbb;
+		display: block;
+	}
+	.page-container {
+		width: 100%;
+		height: 91vh;
+		padding: 20px;
+		display: block;
+		margin: auto;
+		box-sizing: border-box;
+	}
+	.deck-display-container {
+		height: 100%;
+		border: 1px solid #d5d9d9;
+		border-top: 4px solid #171717;
+		border-bottom: 4px solid #171717;
+		background-color: #f3f3f3;
+		border-radius: 6px;
+		display: grid;
+		grid-template-columns: 1fr 500px;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		position: relative;
+	}
+	.deck-main-area {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		overflow-y: hidden;
+		border-right: 1px solid #d5d9d9;
+	}
+	.deck-header {
+		width: 95%;
+		min-height: 50px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 5px 2.5%;
+		border-bottom: 1px solid #898989;
+	}
+	#deck-title {
+		font-family: Beleren;
+		font-size: 24px;
+	}
+	select {
+		background-color: #fafafa;
+		border: 1px solid #d5d9d9;
+		border-radius: 8px;
+		box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+		text-align: center;
+		color: #171717;
+		font-size: 13px;
+		height: 30px;
+	}
+	select:focus {
+		outline-color: #4f4f4f;
+	}
+	.deck-cards-scroll-container {
+		flex-grow: 1;
+		overflow-y: auto;
+		overflow-x: hidden;
+		scrollbar-width: none;
+		padding: 20px;
+	}
+	.deck-cards-scroll-container::-webkit-scrollbar {
+		display: none;
+	}
+	
+	.deck-columns-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 15px;
+	}
+	@media (max-width: 1200px) {
+		.deck-columns-container {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.deck-col {
+		padding: 0 15px;
+	}
+	.deck-section {
+		margin-bottom: 20px;
+	}
+	.deck-section-title {
+		font-size: 15px;
+		font-weight: bold;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 5px;
+		display: block;
+	}
+	.deck-line {
+		border-top: 1px solid #d5d9d9;
+		display: flex;
+		gap: 8px;
+		padding: 4px 5px;
+		cursor: pointer;
+		align-items: center;
+		font-size: 15px;
+	}
+	.deck-line:hover {
+		background-color: #e8e8e8;
+	}
+	.card-count-text {
+		font-weight: bold;
+		min-width: 20px;
+	}
+
+	.card-img-container {
+		height: 2.1vw;
+		max-height: 45px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 2fr 12fr;
+		gap: 2px;
+		font-weight: bold;
+		line-height: 1;
+	}
+	.card-img-container img {
+		width: 100%;
+		border-radius: 3.733% / 2.677%;
+	}
+	.card-fx {
+		display: grid;
+		align-items: center;
+		justify-items: center;
+		text-align: center;
+	}
+	.card-img-container .card-fx {
+		height: 2.7vw;
+		max-height: 63px;
+	}
+
+	/* Card Grid Container - EXACT CSS from Deckbuilder */
+	.card-grid-container {
+		border-left: 1px solid #d5d9d9;
+		width: 100%;
+		height: 100%;
+		overflow-y: hidden;
+	}
+	.card-grid-container .img-container {
+		width: 100%;
+		height: 55%;
+		padding: 10px 0;
+	}
+	.img-container {
+		position: relative;
+		align-self: center;
+		text-align: center;
+	}
+	.img-container img {
+		width: 100%;
+		height: auto;
+		border-radius: 3.733% / 2.677%;
+	}
+	.img-container a {
+		height: 100%;
+		max-width: 80%;
+		display: grid;
+		justify-self: center;
+	}
+	.img-container a > * {
+		grid-row: 1;
+		grid-column: 1;
+	}
+	.card-grid-container img {
+		width: auto;
+		min-width: 0;
+		max-width: 100%;
+		height: auto;
+		min-height: 0;
+		max-height: 100%;
+		display: block;
+		margin: auto;
+		border-radius: 3.733% / 2.677%;
+	}
+	.card-grid-container .btn {
+		left: 50%;
+		top: 48%;
+		transform: translate(-50%, -50%);
+		opacity: 0.5;
+	}
+	.img-container .btn {
+		background: url('./img/flip.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 15%;
+		height: 11%;
+		cursor: pointer;
+		border: none;
+		position: absolute;
+		border-radius: 0px;
+		box-shadow: none;
+	}
+	.img-container .btn:hover {
+		background: url('./img/flip-hover.png') no-repeat;
+		background-size: contain;
+		background-position: center;
+	}
+	.img-container .h-img {
+		transform: rotateY(0deg) rotate(90deg);
+		width: 85%;
+		border-radius: 3.733% / 2.677%;
+	}
+	.image-grid {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+	.card-text {
+		border-top: 3px solid #171717;
+		overflow-y: scroll;
+		scrollbar-width: none;
+		height: 50%;
+		padding: 10px 0;
+	}
+	.card-text div { font-size: 13px; }
+	.card-text .name-cost { font-size: 16px; }
+	.card-text .type { font-size: 14px; }
+	.card-text br { content: ""; display: block; margin-bottom: 5px; }
+	
+	.hidden { display: none; }
+
+	/* images view grid */
+	.spoiler-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 20px;
+		margin-right: -70px;
+	}
+	.spoiler-section {
+		width: fit-content;
+		margin-bottom: 20px;
+	}
+	.spoiler-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 140px);
+		gap: 10px;
+	}
+	.spoiler-grid:last-child {
+		margin-right: 70px;
+	}
+	.spoiler-card {
+		position: relative;
+		cursor: pointer;
+	}
+	.spoiler-card img {
+		width: 100%;
+		border-radius: 4.75% / 3.5%;
+		display: block;
+	}
+	.spoiler-count {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		background: rgba(0,0,0,0.8);
+		color: white;
+		padding: 2px 6px;
+		border-radius: 4px;
+		font-size: 12px;
+		font-weight: bold;
+		z-index: 2;
+	}
+</style>
+<body>
+<div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+	<input type="text" id="display" class="hidden" value="cards-and-text"> <!-- for snippet compat -->
+	<div class="page-container">
+		<div class="deck-display-container">
+			<div class="deck-main-area">
+				<div class="deck-header">
+					<div id="deck-title">Loading Deck...</div>
+					<select id="view-select" onchange="setView(this.value)">
+						<option value="text">Text</option>
+						<option value="stacks">Stacks</option>
+						<option value="images">Images</option>
+					</select>
+				</div>
+				<div class="deck-cards-scroll-container" id="deck-scroll-container">
+				</div>
+			</div>
+			<div class="card-grid-container" id="card-grid-container">
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let card_list_arrayified = [];
+		let currentDeck = { name: "", main: [], side: [] };
+		let currentView = 'text';
+		let specialchars = "";
+
+		document.addEventListener("DOMContentLoaded", async function () {
+await fetch(rootPath + '/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch(rootPath + '/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+				let all_tags = new Set();
+				card_list_arrayified.forEach(card => {
+					if (card.notes) {
+						const tagMatches = card.notes.matchAll(/!tag(?:<\w+>)?\s+([^\s\n\b]+)/g);
+						for (const match of tagMatches) {
+							all_tags.add(match[1]);
+						}
+					}
+				});
+
+				const searchInput = document.getElementById("search");
+				const tagDropdown = document.getElementById("tag-dropdown");
+
+				// Create a mirror element for position calculation
+				const mirror = document.createElement("div");
+				Object.assign(mirror.style, {
+					position: "absolute",
+					visibility: "hidden",
+					whiteSpace: "pre",
+					font: getComputedStyle(searchInput).font,
+					padding: "0", // No padding for pure text measurement
+					border: "none",
+					boxSizing: "content-box"
+				});
+				document.body.appendChild(mirror);
+
+				if (searchInput && tagDropdown) {
+					tagDropdown.style.width = "auto";
+					tagDropdown.style.minWidth = "75px";
+					tagDropdown.style.maxWidth = "300px";
+					tagDropdown.style.maxHeight = "200px";
+					tagDropdown.style.overflowY = "auto";
+
+					const updateDropdown = function() {
+						const value = searchInput.value;
+						const cursorPosition = searchInput.selectionStart;
+						
+						// Find the tag: prefix immediately preceding the cursor
+						const lastTagIndex = value.substring(0, cursorPosition).lastIndexOf("tag:");
+						
+						if (lastTagIndex !== -1) {
+							const queryStart = lastTagIndex + 4;
+							const query = value.substring(queryStart, cursorPosition);
+							
+							if (!query.includes(" ")) {
+								const filteredTags = Array.from(all_tags).filter(tag => tag.toLowerCase().startsWith(query.toLowerCase())).sort();
+								if (filteredTags.length > 0) {
+									tagDropdown.innerHTML = "";
+									filteredTags.forEach(tag => {
+										const div = document.createElement("div");
+										div.innerText = tag;
+										div.style.padding = "5px 10px";
+										div.style.cursor = "pointer";
+										div.style.whiteSpace = "nowrap";
+										div.onmouseover = () => div.style.background = "#f0f0f0";
+										div.onmouseout = () => div.style.background = "white";
+										div.onclick = () => {
+											const newValue = value.substring(0, queryStart) + tag + " " + value.substring(cursorPosition);
+											searchInput.value = newValue;
+											tagDropdown.style.display = "none";
+											searchInput.focus();
+											const newCursorPos = queryStart + tag.length + 1;
+											searchInput.setSelectionRange(newCursorPos, newCursorPos);
+										};
+										tagDropdown.appendChild(div);
+									});
+
+									// Calculate position
+									mirror.textContent = value.substring(0, lastTagIndex + 4);
+									const textWidth = mirror.getBoundingClientRect().width;
+									const inputPaddingLeft = parseFloat(getComputedStyle(searchInput).paddingLeft) || 0;
+									
+									tagDropdown.style.left = Math.min(textWidth + inputPaddingLeft, searchInput.offsetWidth - tagDropdown.offsetWidth) + "px";
+									tagDropdown.style.display = "block";
+									return;
+								}
+							}
+						}
+						tagDropdown.style.display = "none";
+					};
+
+					searchInput.addEventListener("input", updateDropdown);
+					searchInput.addEventListener("click", updateDropdown);
+					searchInput.addEventListener("keyup", updateDropdown);
+
+					document.addEventListener("click", function(e) {
+						if (e.target !== searchInput && e.target !== tagDropdown) {
+							tagDropdown.style.display = "none";
+						}
+					});
+				}
+
+			loadDeckFromHash();
+		});
+
+		function loadDeckFromHash() {
+			const hash = window.location.hash.substring(1);
+			if (!hash) return;
+			try {
+				const decoded = atob(hash);
+				if (decoded.startsWith('{')) {
+					// Old JSON format
+					currentDeck = JSON.parse(decoded);
+				} else {
+					// New compact format: Name|MainCards|SideCards
+					const parts = decoded.split('|');
+					const name = parts[0];
+					const mainStr = parts[1] || "";
+					const sideStr = parts[2] || "";
+
+					const parsePart = (str) => {
+						if (!str) return [];
+						return str.split(',').map(item => {
+							const bits = item.split('.');
+							return { set: bits[0], num: bits[1], count: parseInt(bits[2]) };
+						});
+					};
+
+					currentDeck = {
+						name: name,
+						main: parsePart(mainStr),
+						side: parsePart(sideStr)
+					};
+				}
+				document.getElementById("deck-title").innerText = currentDeck.name || "Untitled Deck";
+				document.title = (currentDeck.name || "Deck") + " - Magic the Egg";
+				render();
+				
+				// Autopopulate first card
+				const allCards = lookupCards(currentDeck.main.concat(currentDeck.side));
+				if (allCards.length > 0) {
+					showCardInGrid(allCards[0].stats);
+				}
+			} catch (e) {
+				console.error("Failed to decode deck hash", e);
+			}
+		}
+
+		function setView(view) {
+			currentView = view;
+			render();
+		}
+
+		function render() {
+			const container = document.getElementById("deck-scroll-container");
+			container.innerHTML = "";
+
+			const mainCards = lookupCards(currentDeck.main);
+			const sideCards = lookupCards(currentDeck.side);
+
+			const categoryOrder = ["creature", "planeswalker", "sorcery", "instant", "artifact", "enchantment", "battle", "land"];
+			const categoryNames = {
+				"creature": "Creatures", "planeswalker": "Planeswalkers", "sorcery": "Sorceries",
+				"instant": "Instants", "artifact": "Artifacts", "enchantment": "Enchantments",
+				"battle": "Battles", "land": "Lands"
+			};
+
+			const categorizedMain = categoryOrder.map(key => ({
+				key: key, name: categoryNames[key], cards: []
+			}));
+
+			mainCards.forEach(card => {
+				const type = card.stats.type.toLowerCase();
+				for (const key of categoryOrder) {
+					if (type.includes(key)) {
+						categorizedMain.find(cat => cat.key === key).cards.push(card);
+						return;
+					}
+				}
+			});
+
+			const activeCategories = categorizedMain.filter(cat => cat.cards.length > 0);
+			activeCategories.forEach(cat => cat.cards.sort((a,b) => a.stats.card_name.localeCompare(b.stats.card_name)));
+			const sideSection = { name: "Sideboard", cards: sideCards.sort((a,b) => a.stats.card_name.localeCompare(b.stats.card_name)), key: "sideboard" };
+
+			if (currentView === 'images') {
+				const spoilerCont = document.createElement("div");
+				spoilerCont.className = "spoiler-container";
+				activeCategories.forEach(cat => {
+					spoilerCont.appendChild(createSpoilerSection(cat));
+				});
+				if (sideSection.cards.length > 0) {
+					spoilerCont.appendChild(createSpoilerSection(sideSection));
+				}
+				container.appendChild(spoilerCont);
+			} else {
+				const colsCont = document.createElement("div");
+				colsCont.className = "deck-columns-container";
+				const colEles = [document.createElement("div"), document.createElement("div"), document.createElement("div")];
+				colEles.forEach(c => { c.className = "deck-col"; colsCont.appendChild(c); });
+
+				activeCategories.forEach(cat => {
+					let colIdx = 1; // Default Col 2
+					if (cat.key === "creature" || cat.key === "planeswalker") colIdx = 0;
+					if (cat.key === "land") colIdx = 2;
+					colEles[colIdx].appendChild(createSection(cat, currentView === 'stacks'));
+				});
+
+				if (sideSection.cards.length > 0) {
+					colEles[2].appendChild(createSection(sideSection, currentView === 'stacks'));
+				}
+				container.appendChild(colsCont);
+			}
+		}
+
+		function lookupCards(codes) {
+			if (!codes) return [];
+			return codes.map(item => {
+				const stats = card_list_arrayified.find(c => c.set === item.set && c.number == (item.num || item.number));
+				return stats ? { count: item.count, stats: stats } : null;
+			}).filter(c => c !== null);
+		}
+
+		function createSection(cat, isStacks) {
+			const section = document.createElement("div");
+			section.className = "deck-section";
+			const title = document.createElement("span");
+			title.className = "deck-section-title";
+			const total = cat.cards.reduce((acc, curr) => acc + curr.count, 0);
+			title.innerText = `${cat.name} (${total})`;
+			section.appendChild(title);
+
+			const cards_list = cat.cards;
+			for (let i = 0; i < cards_list.length; i++) {
+				const card = cards_list[i];
+				const card_stats = card.stats;
+				let card_row;
+
+				if (!isStacks) {
+					card_row = document.createElement("div");
+					card_row.className = "deck-line";
+					card_row.innerHTML = `<span class="card-count-text">${card.count}</span> <span>${card_stats.card_name}</span>`;
+				} else {
+					card_row = document.createElement("div");
+					card_row.className = "card-img-container";
+					if (i === cards_list.length - 1) {
+						card_row.style.height = "auto";
+						card_row.style.maxHeight = "100%";
+					}
+					const card_img = document.createElement("img");
+					card_img.src = getCardImgSrc(card_stats);
+					card_img.loading = "lazy";
+					
+					const fx1 = document.createElement("div"); fx1.className = "card-fx";
+					const fx2 = document.createElement("div"); fx2.className = "card-fx";
+					const card_count = document.createElement("div");
+					card_count.className = "card-fx";
+					card_count.innerText = card.count + "x";
+
+					card_row.appendChild(fx1);
+					card_row.appendChild(fx2);
+					card_row.appendChild(card_count);
+					card_row.appendChild(card_img);
+				}
+
+				card_row.onmouseover = function() {
+					showCardInGrid(card_stats);
+				};
+				card_row.onclick = () => window.open(getCardUrl(card_stats), '_blank');
+				section.appendChild(card_row);
+			}
+			return section;
+		}
+
+		function createSpoilerSection(cat) {
+			const section = document.createElement("div");
+			section.className = "spoiler-section";
+			const title = document.createElement("span");
+			title.className = "deck-section-title";
+			const total = cat.cards.reduce((acc, curr) => acc + curr.count, 0);
+			title.innerText = `${cat.name} (${total})`;
+			section.appendChild(title);
+
+			const grid = document.createElement("div");
+			grid.className = "spoiler-grid";
+			grid.style.display = "flex";
+			grid.style.flexWrap = "wrap";
+			grid.style.gap = "10px";
+
+			cat.cards.forEach(card => {
+				const div = document.createElement("div");
+				div.className = "spoiler-card";
+				div.style.width = "140px";
+				div.innerHTML = `<div class="spoiler-count">${card.count}</div><img loading="lazy" src="${getCardImgSrc(card.stats)}">`;
+				div.onmouseover = () => showCardInGrid(card.stats);
+				div.onclick = () => window.open(getCardUrl(card.stats), '_blank');
+				grid.appendChild(div);
+			});
+			section.appendChild(grid);
+			return section;
+		}
+
+		function showCardInGrid(card_stats) {
+			const cgc = document.getElementById("card-grid-container");
+			cgc.innerHTML = "";
+			const gridified_card = gridifyCard(card_stats, true);
+			gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
+			gridified_card.getElementsByTagName("a")[0].removeAttribute("href");
+			if (card_stats.shape.includes("double")) {
+				gridified_card.getElementsByTagName("button")[0].onclick = function() {
+					imgFlip("image-grid-card", card_stats.rotated);
+				}
+			}
+			cgc.appendChild(gridified_card);
+		}
+
+		function getCardImgSrc(card_stats) {
+			if ("position" in card_stats) {
+				return rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			return rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+		}
+
+		function getCardUrl(card) {
+			const url = new URL(rootPath + '/card', window.location.origin);
+			url.searchParams.append('set', card.set);
+			url.searchParams.append('num', card.number);
+			url.searchParams.append('name', card.card_name);
+			return url.href;
+		}
+
+		function gridifyCard(card_stats, card_text = false, small = false, designer_notes = false) {
+			const card_name = card_stats.card_name;
+			rotate_card = !small && card_stats.rotated;
+
+			if (!card_text) {
+				return buildImgContainer(card_stats, true, rotate_card);			
+			}
+	const grid = document.createElement("div");
+			grid.className = "image-grid";
+
+			grid.appendChild(buildImgContainer(card_stats, false, rotate_card));
+			
+			const text = document.createElement("div");
+			text.className = "card-text";
+			text.id = "card-text";
+
+			const name_cost = document.createElement("div");
+			name_cost.className = "name-cost";
+			name_cost.innerHTML = card_stats.card_name + (card_stats.cost != "" ? '     ' + symbolize(card_stats.cost) : "");
+			text.appendChild(name_cost);
+
+			const type = document.createElement("div");
+			type.className = "type";
+			type.textContent = card_stats.type;
+			text.appendChild(type);
+
+			const effect = document.createElement("div");
+			effect.className = "effect";
+			let card_effects = "";
+			if (card_stats.rules_text != "")
+			{
+				card_effects = card_stats.rules_text + (card_stats.flavor_text != "[i][/i]" ? "\n" + "<hr class=\"ft-divider text-bg\">" + "\n" + card_stats.flavor_text.replace('\n','<br>') : ""); // this expression looks cursed but what it does is check if the ft is empty, and if it isn't, insert a divider + the ft
+			} else {
+				card_effects = "";
+			}
+			if ("v_mana" in card_stats)
+			{
+				card_effects = card_effects.replaceAll('{V}', '<img style="vertical-align: middle; padding: 0px 2px; display: inline; width: 15px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
+			}
+			effect.innerHTML += prettifyEffects(card_effects);
+			text.appendChild(effect);
+
+			if(card_stats.pt != "")
+			{
+				const pt = document.createElement("div");
+				pt.className = "pt";
+				pt.textContent = card_stats.pt;
+				text.appendChild(pt);
+			}
+			else if (card_stats.loyalty != "")
+			{
+				const loyalty = document.createElement("div");
+				loyalty.className = "pt";
+				loyalty.textContent = "[" + card_stats.loyalty + "]";
+				text.appendChild(loyalty);
+			}
+
+			if(designer_notes && card_stats.designer_notes != null)
+			{
+				const dnotes = document.createElement("div");
+				dnotes.className = "designer-notes";
+				dnotes.innerHTML = "<u><b>Designer Notes</b></u>";
+				dnotes.innerHTML = dnotes.innerHTML + card_stats.designer_notes;
+				text.appendChild(dnotes);
+			}
+
+			// 13-name	14-color	15-type	16-ci	17-cost	18-ability	19-pt	20-special-text	21-loyalty
+			if(card_stats.shape.includes("adventure") || card_stats.shape.includes("double") || card_stats.shape.includes("spli"))
+			{
+				const name_cost_2 = document.createElement("div");
+				name_cost_2.className = "name-cost";
+				name_cost_2.innerHTML = card_stats.card_name2 + (card_stats.cost2 != "" ? '     ' + symbolize(card_stats.cost2) : "");
+				text.appendChild(name_cost_2);
+
+				const type_2 = document.createElement("div");
+				type_2.className = "type";
+				type_2.textContent = card_stats.type2;
+				text.appendChild(type_2);
+
+				const effect_2 = document.createElement("div");
+				effect_2.className = "effect";
+				let card_effects_2 = "";
+				if (card_stats.rules_text2 != "")
+				{
+					card_effects_2 = card_stats.rules_text2 + (card_stats.flavor_text2 != "[i][/i]" ? "\n" + "<hr class=\"ft-divider text-bg\">" + "\n" + card_stats.flavor_text2.replace('\n','<br>') : "");
+				} else {
+					card_effects_2 = "";
+				}
+				if ("v_mana" in card_stats)
+				{
+					card_effects_2 = card_effects_2.replaceAll('{V}', '<img width="15px;" style="vertical-align: middle; padding: 0px 2px;" src="' + rootPath + '/img/' + card_stats.v_mana + '">');
+				}
+				effect_2.innerHTML += prettifyEffects(card_effects_2);
+				text.appendChild(effect_2);
+
+				if(card_stats.pt2 != "")
+				{
+					const pt_2 = document.createElement("div");
+					pt_2.className = "pt";
+					pt_2.textContent = card_stats.pt2;
+					text.appendChild(pt_2);
+				}
+				else if (card_stats.loyalty2 != "")
+				{
+					const loyalty = document.createElement("div");
+					loyalty.className = "pt";
+					loyalty.textContent = "[" + card_stats.loyalty2 + "]";
+					text.appendChild(loyalty);
+				}
+			}
+			
+			grid.appendChild(text);
+
+			return grid;
+		}
+
+		function buildImgContainer(card_stats, hidden_title = false, rotate_card = false) {
+			const imgContainer = document.createElement("div");
+			imgContainer.className = "img-container";
+			const id = card_stats.set + "-" + card_stats.number + "-" + document.getElementById("display").value;
+
+			const img = document.createElement("img");
+			img.className = "card-image";
+			img.id = id;
+			img.loading = "lazy";
+
+			if ("position" in card_stats) {
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.position + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			else {
+				img.src = rootPath + "/sets/" + card_stats.set + "-files/img/" + card_stats.number + (card_stats.shape.includes("token") ? "t_" : "_") + card_stats.card_name + ((card_stats.shape.includes("double")) ? "_front" : "") + "." + card_stats.image_type;
+			}
+			
+			const link = document.createElement("a");
+			
+			const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+			const params = {
+				set: card_stats.set,
+				num: card_stats.number,
+				name: card_stats.card_name
+			}
+			for (const key in params) {
+				url.searchParams.append(key, params[key]);
+			}
+			link.href = url.pathname + url.search;
+
+			link.appendChild(img);
+
+			if (rotate_card)
+			{
+				const rotated_img = document.createElement("img");
+				rotated_img.className = "h-img";
+				rotated_img.id = "h-img";
+				rotated_img.src = img.src;
+				rotated_img.style.display = "block";
+				img.style.filter = "blur(2px) brightness(0.7)";
+
+				link.appendChild(rotated_img);
+			}
+
+			imgContainer.appendChild(link);
+
+			if (card_stats.shape.includes("double"))
+			{
+				const imgFlipBtn = document.createElement("button");
+				imgFlipBtn.className = "btn";
+				imgFlipBtn.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+				imgFlipBtn.style.backgroundSize = "contain";
+				imgFlipBtn.style.backgroundPosition = "center";
+				imgFlipBtn.onmouseover = function() {
+					this.style.background = "url('" + rootPath + "/img/flip-hover.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
+				imgFlipBtn.onmouseout = function() {
+					this.style.background = "url('" + rootPath + "/img/flip.png') no-repeat";
+					this.style.backgroundSize = "contain";
+					this.style.backgroundPosition = "center";
+				};
+				imgFlipBtn.onclick = function() { imgFlip(id, rotate_card); };
+				imgContainer.appendChild(imgFlipBtn);
+			}
+
+			if (hidden_title)
+			{
+				const title = document.createElement("div");
+				title.innerText = card_stats.card_name;
+				title.className = "hidden-text";
+				imgContainer.appendChild(title);
+			}
+
+			return imgContainer;
+		}
+
+		function imgFlip(id, rotate_card = false) { // comments in here by aanginer
+            const img = document.getElementById(id);
+            const seconds = 0.2;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(90deg)"; // rotate 90 degrees
+
+            const rotated_img = document.getElementById("h-img");
+            if (rotated_img)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotate_card && rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
+
+            setTimeout(function() { // wait for the rotation, then set the image's src correctly
+                const rotated_img = document.getElementById("h-img");
+
+                const cardName = img.src;
+                
+                if (cardName.includes("_front"))
+                {
+                    img.src = cardName.replace("_front", "_back");
+
+                    if (rotate_card)
+                    {
+                        rotated_img.style.opacity = "0";
+                        img.style.filter = "";
+                    }
+                }
+                else if (cardName.includes("_back"))
+                {
+                    img.src = cardName.replace("_back", "_front");
+
+                    if (rotate_card)
+                    {
+                        rotated_img.style.opacity = "1";
+                        img.style.filter = "blur(2px) brightness(0.7)";
+                    }
+                }
+
+                img.style.transition = seconds.toString() + "s";
+                img.style.transform = "rotateY(0deg)";
+
+                if (rotated_img)
+	            {
+	            	rotated_img.style.transition = seconds.toString() + "s";
+	           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+	            }
+            }, seconds * 1000);
+        }
+
+		function prettifyEffects(card_effect) {
+			let HTML = "";
+
+			let styled_effect = card_effect.replace(/(\[i\])+(.+?)(\[\/i\])+/gs, function(matched, _1, _2) {
+				return '<i>' + _2 + '</i>'
+			}).replaceAll(/(\[b\])+(.+?)(\[\/b\])+/gs, function(matched, _1, _2) {
+				return '<b>' + _2 + '</b>'
+			});
+
+			let card_effects = styled_effect.split("\n");
+
+			for (let i = 0; i < card_effects.length; i++)
+			{
+				HTML += "<p>" + card_effects[i] + "</p>";
+			}
+			
+			let regexHTML = symbolize(HTML);
+
+			return regexHTML;
+		}function isDecimal(char) {
+			return char >= '0' && char <= '9';
+		}
+
+		function tokenize(text) {
+			let tokens = [];
+
+			for (let i = 0; i < text.length; i++)
+			{
+				if (i < text.length - 1)
+				{
+					if (text[i + 1] == '/')
+					{
+						tokens.push(text.substring(i, i + 3));
+						i = i + 2;
+					}
+					else if (isDecimal(text[i]) && isDecimal(text[i + 1]))
+					{
+						tokens.push(text.substring(i, i + 2));
+						i = i + 1;
+					}
+					else
+					{
+						tokens.push(text[i]);
+					}
+				}
+				else
+				{
+					tokens.push(text[i]);
+				}
+			}
+
+			return tokens;
+		}
+
+		function symbolize(text) {
+			//This isn't needed now that the { & } are put into the cost & text by the exporter
+			//let tokens = tokenize(text);
+			//let symText = "";
+			//for (const token of tokens)
+			//{
+			//	symText = symText + "{" + token + "}";
+			//}
+
+			return formatTextHTML(text);
+		}
+
+		function formatTextHTML(str) {
+			if(!str)
+				return "";
+			str = str.replace(/[{]([^}]+)[}]/g, function(matched, _1) {
+				let letters = _1.toLowerCase()
+				return '<span class="mana mana-cost mana-' + letters + '"></span>';
+			})
+			return str;
+		}
+		function goToSearch() {
+			window.location = (rootPath + "/search?search=" + document.getElementById("search").value);
+		}
+
+		document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				goToSearch();
+			}
+		});
+function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
+
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
+
+				window.location.href = url.pathname + url.search;
+			}
+	</script>
+</body>
+</html>
