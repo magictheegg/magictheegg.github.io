@@ -290,6 +290,15 @@ def generateHTML(codes):
 		font-weight: bold;
 		z-index: 2;
 	}
+	.dropdown-container {
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		font-size: 14px;
+	}
+	#view-select {
+		margin-right: 20px;
+	}
 </style>
 <body>
 '''
@@ -304,11 +313,20 @@ def generateHTML(codes):
 			<div class="deck-main-area">
 				<div class="deck-header">
 					<div id="deck-title">Loading Deck...</div>
-					<select id="view-select" onchange="setView(this.value)">
-						<option value="text">Text</option>
-						<option value="stacks">Stacks</option>
-						<option value="images">Images</option>
-					</select>
+					<div class="dropdown-container">
+						View cards as<select id="view-select" onchange="setView(this.value)">
+							<option value="text">Text</option>
+							<option value="stacks">Stacks</option>
+							<option value="images">Images</option>
+						</select>
+						<select id="export-menu" onchange="if(this.value != 'default') exportFile(this.value)">
+							<option value="default">Export ...</option>
+							<option value="clipboard">Copy text</option>
+							<option value="export-dek">Export .dek</option>
+							<option value="export-txt">Export .txt</option>
+							<option value="export-cod">Export .cod</option>
+						</select>
+					</div>
 				</div>
 				<div class="deck-cards-scroll-container" id="deck-scroll-container">
 				</div>
@@ -450,6 +468,58 @@ def generateHTML(codes):
 				const stats = card_list_arrayified.find(c => c.set === item.set && c.number == (item.num || item.number));
 				return stats ? { count: item.count, stats: stats } : null;
 			}).filter(c => c !== null);
+		}
+
+		async function exportFile(export_as) {
+			let deck_text = "";
+			let deck_name = currentDeck.name || "Untitled Deck";
+			let export_cod = (export_as == "export-cod");
+
+			if (export_cod) {
+				deck_text += `<?xml version="1.0" encoding="UTF-8"?>\\n<cockatrice_deck version="1">\\n\\t<deckname>${deck_name}</deckname>\\n\\t<zone name="main">\\n`;
+			}
+
+			const mainCards = lookupCards(currentDeck.main);
+			for (const card of mainCards) {
+				if (export_cod) {
+					deck_text += `\\t\\t<card number="${card.count}" name="${card.stats.card_name}"/>\\n`;
+				} else {
+					deck_text += `${card.count} ${export_as == "export-dek" ? JSON.stringify(card.stats) : card.stats.card_name}\\n`;
+				}
+			}
+
+			const sideCards = lookupCards(currentDeck.side);
+			if (sideCards.length > 0) {
+				if (export_cod) {
+					deck_text += `\\t</zone>\\n\\t<zone name="side">\\n`;
+				} else {
+					deck_text += "sideboard\\n";
+				}
+				for (const card of sideCards) {
+					if (export_cod) {
+						deck_text += `\\t\\t<card number="${card.count}" name="${card.stats.card_name}"/>\\n`;
+					} else {
+						deck_text += `${card.count} ${export_as == "export-dek" ? JSON.stringify(card.stats) : card.stats.card_name}\\n`;
+					}
+				}
+			}
+
+			if (export_cod) {
+				deck_text += "\\t</zone>\\n</cockatrice_deck>";
+			}
+
+			if (export_as != "clipboard") {
+				let downloadableLink = document.createElement('a');
+				downloadableLink.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(deck_text));
+				downloadableLink.download = deck_name + ("." + export_as.split("-")[1]);
+				document.body.appendChild(downloadableLink);
+				downloadableLink.click();
+				document.body.removeChild(downloadableLink);
+			} else {
+				navigator.clipboard.writeText(deck_text);
+			}
+
+			document.getElementById("export-menu").value = "default";
 		}
 
 		function createSection(cat, isStacks) {
