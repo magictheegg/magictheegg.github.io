@@ -1,4 +1,260 @@
-﻿VERSION 3 CHANGELOG
+﻿VERSION 4 CHANGELOG
+====================
+
+Clenching Jaws added.
+Walking Corpse added.
+
+Thrash of Fangs removed.
+
+Herald of Damnation
+rules_text: Flying
+Whenever you attack, return target creature card with mana value X or less from your graveyard to the battlefield tapped and attacking with a finality counter on it, where X is your devotion to black. [i](Each {B} in the mana costs of permanents you control counts toward your devotion to black.)[/i] => Flying
+Whenever Herald of Damnation attacks, return target creature card with mana value X or less from your graveyard to the battlefield tapped and attacking with a finality counter on it, where X is your devotion to black. [i](Each {B} in the mana costs of permanents you control counts toward your devotion to black.)[/i]
+
+Liliana, Apocryphal Heretic
+
+Torrent of Fangs
+rules_text: Ward {5} [i](Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {5}.)[/i]
+Each other creature you control enters with X additional +1/+1 counters on it, where X is your devotion to green. [i](Each {G} in the mana costs of permanents you control counts toward your devotion to green.)[/i] => Ward {3} [i](Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {3}.)[/i]
+{4}{G}: Create a 0/0 green Hydra creature token with X +1/+1 counters on it, where X is your devotion to green. [i](Each {G} in the mana costs of permanents you control counts toward your devotion to green.)[/i]
+
+Prophet of Dawn
+rules_text: Flying, lifelink
+Whenever you gain life, put a +1/+1 counter on each of up to X target creatures, where X is the amount of life gained. => Flying
+Whenever you gain life, put a +1/+1 counter on target creature you control. If your life total is greater than your starting life total, put a +1/+1 counter on each creature you control instead.
+pt: 1/2 => 2/2
+
+Elegant Waveshaper
+rules_text: When Elegant Waveshaper enters, create a number of 1/1 blue Wizard creature tokens equal to your devotion to blue. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i]
+Whenever you cast a noncreature spell, each Merfolk and Wizard you control gets +1/+1 until end of turn. => When Elegant Waveshaper enters, create a number of 1/1 blue Wizard creature tokens equal to your devotion to blue. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i]
+Whenever you cast a noncreature spell, each Merfolk and Wizards you control gets +1/+1 until end of turn.
+
+Curio Antiquary
+cost: {6}{U} => {6}{U}{U}
+pt: 3/3 => 3/4
+
+Baron of Calamity
+cost: {2}{B} => {3}{B}{B}
+rules_text: Menace
+Whenever an opponent loses life, put a +1/+1 counter on target creature you control. => Flying
+Whenever an opponent loses life, put a +1/+1 counter on each Demon you control.
+pt: 3/3 => 5/5
+
+Kaelax Blood Pact
+rules_text: Activate each ability of Kaelax Blood Pact only as a sorcery and only once each turn.
+{B}: You draw a card and you lose 1 life.
+{1}{B}: Each opponent loses 2 life.
+{2}{B}: Each opponent sacrifices a creature unless they discard a card.
+At the beginning of your precombat main phase, exile the top seven cards of your library. => Activate each ability of Kaelax Blood Pact only as a sorcery and only once each turn.
+{1}{B}: You draw a card and you lose 1 life.
+{1}{B}: Each opponent loses 2 life.
+{1}{B}: Each opponent sacrifices a creature unless they discard a card.
+At the beginning of your precombat main phase, exile the top seven cards of your library.
+
+Multirus, Symbiotic Sage
+rules_text: [i]Landfall[/i] — Whenever a land you control enters, surveil 1.
+At the beginning of your end step, you may put a land card from your graveyard onto the battlefield tapped.
+{8}{G}{U}: Put five +1/+1 counters on Multirus. Draw five cards. => [i]Landfall[/i] — Whenever a land you control enters, surveil 1.
+At the beginning of your end step, you may put a land card from your graveyard onto the battlefield tapped.
+{6}{G}{U}: Put four +1/+1 counters on Multirus. Draw four cards.
+pt: 5/5 => 4/4
+
+Disciple of the Tiranos
+rules_text: Angel spells you cast cost {1} less to cast.
+Whenever an Angel you control enters, you gain 1 life. => The first Angel spell you cast each turn costs {1} less to cast.
+Whenever an Angel you control enters, you gain 1 life.
+
+Ethella Spreads Faith
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Exile up to one target nonland permanent until you control no Sagas or Angels.
+Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+II — Exile up to one target nonland permanent until you control no Sagas or Angels.
+III — Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Exile up to one target nonland permanent until you control no Sagas or Angels.
+Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+II — Exile up to one target nonland permanent until you control no Sagas or Angels.
+III — Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn.
+
+Disciple of the Aequitius
+rules_text: Sphinx spells you cast cost {1} less to cast.
+Whenever a Sphinx you control enters, surveil 1. => The first Sphinx spell you cast each turn costs {1} less to cast.
+Whenever a Sphinx you control enters, surveil 1.
+
+Veritanos Teaches Curiosity
+rules_text: 
+Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => 
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+II — Until your next turn, you can cast spells as though they had flash.
+III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+special_text: 
+Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => 
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+II — Until your next turn, you can cast spells as though they had flash.
+III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+
+Disciple of the Il-Ergal
+rules_text: Demon spells you cast cost {1} less to cast.
+Whenever a Demon you control enters, each opponent loses 1 life. => The first Demon spell you cast each turn costs {1} less to cast.
+Whenever a Demon you control enters, each opponent loses 1 life.
+
+Aternox Imparts Humility
+rules_text: 
+Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent loses 3 life unless they discard a card or sacrifice a creature. Repeat this process once.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+special_text: 
+Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+Each opponent sacrifices a nonland permanent, discards a card, and loses 3 life.
+Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent loses 3 life unless they discard a card or sacrifice a creature. Repeat this process once.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+
+Disciple of the Adishii
+rules_text: Dragon spells you cast cost {1} less to cast.
+Whenever a Dragon you control enters, target creature you control gets +1/+0 until end of turn. => The first Dragon spell you cast each turn costs {1} less to cast.
+Whenever a Dragon you control enters, target creature you control gets +1/+0 until end of turn.
+
+High Keep Plunderer
+pt: 2/2 => 2/3
+
+Smolder
+rules_text: Exile the top four cards of your library. You may play cards exiled this way until the end of your next turn. The first spell with mana value 4 or less you cast this way may be cast without paying its mana cost.
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i] => Exile the top three cards of your library. You may play cards exiled this way until the end of your next turn. The first spell with mana value 3 or less you cast this way may be cast without paying its mana cost.
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+
+Yadil Exhibits Tenacity
+rules_text: 
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => 
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+special_text: 
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => 
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+
+Disciple of the Oridian
+rules_text: Hydra spells you cast cost {1} less to cast.
+Whenever a Hydra you control enters, put a +1/+1 counter on Disciple of the Oridian. => The first Hydra spell you cast each turn costs {1} less to cast.
+Whenever a Hydra you control enters, put a +1/+1 counter on Disciple of the Oridian.
+
+Vidir Manifests Unity
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+II — Create two 1/1 green Druid creature tokens.
+III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Druid creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+II — Create two 1/1 green Druid creature tokens.
+III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Druid creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+
+Notion Trafficker
+rules_text: When Notion Trafficker enters, target opponent reveals their hand. You may choose a nonland card from it or a creature that player controls and exile it. For as long that card remains exiled, its owner may play it. A spell cast this way costs {2} more to cast. => When Notion Trafficker enters, target opponent reveals their hand. You choose a nonland card from it and exile it. For as long that card remains exiled, its owner may play it. A spell cast this way costs {2} more to cast.
+pt: 2/3 => 3/3
+
+Radiant Glade
+rules_text: Radiant Glade enters tapped unless you control a Plains.
+{T}: Add {W}. => Radiant Glade enters tapped unless you control a basic Plains.
+{T}: Add {W}.
+
+Illustrious Falls
+rules_text: Illustrious Falls enters tapped unless you control an Island.
+{T}: Add {U}. => Illustrious Falls enters tapped unless you control a basic Island.
+{T}: Add {U}.
+
+Liturgic Grotto
+rules_text: Liturgic Grotto enters tapped unless you control a Swamp.
+{T}: Add {B}. => Liturgic Grotto enters tapped unless you control a basic Swamp.
+{T}: Add {B}.
+
+Eclipsed Highland
+rules_text: Eclipsed Highland enters tapped unless you control a Mountain.
+{T}: Add {R}. => Eclipsed Highland enters tapped unless you control a basic Mountain.
+{T}: Add {R}.
+
+Untrodden Tangle
+rules_text: Untrodden Tangle enters tapped unless you control a Forest.
+{T}: Add {G}. => Untrodden Tangle enters tapped unless you control a basic Forest.
+{T}: Add {G}.
+
+Acolyte of Enlightenment
+
+Acolyte of Brilliance
+pt: 1/4 => 2/3
+
+Acolyte of Agony
+rules_text: Deathtouch
+When Acolyte of Agony enters, invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i] => When Acolyte of Agony enters, invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+pt: 1/1 => 2/3
+
+Infernum Scraper
+cost: {4}{B} => {2}{B}
+pt: 5/3 => 3/2
+
+Essence Lasher
+cost: {2}{B} => {3}{B}
+pt: 2/1 => 3/1
+
+Ebon Tomb Rattler
+cost: {3}{B} => {4}{B}
+rules_text: At the beginning of your end step, if a creature died outside of combat this turn, invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i] => Deathtouch
+At the beginning of your end step, if a creature died outside of combat this turn, invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+pt: 3/4 => 4/5
+
+Violate the Pact
+rules_text: Target creature gets -4/-4 until end of turn. If you control a Demon, that creature gets -13/-13 until end of turn instead. => Target creature gets -3/-3 until end of turn. If you control a Demon, that creature gets -13/-13 until end of turn instead.
+
+Acolyte of Scales
+pt: 3/2 => 2/3
+
+Acolyte of Progress
+
+Demon
+
+Shaman
+
+Elemental
+
+Dragon
+
+Druid
+
+Hydra
+
+Intel
+
+Treasure
+
+Idol
+
+Polyp Pools
+
+
+VERSION 3 CHANGELOG
 ====================
 
 Toxin Zealot added.
