@@ -13,6 +13,7 @@ def generateHTML(codes):
 	<link rel="stylesheet" href="./resources/mana.css">
 	<link rel="stylesheet" href="./resources/header.css">
 	<link rel="stylesheet" href="./resources/card-text.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <script title="root">
 	const rootPath = ".";
@@ -322,6 +323,7 @@ def generateHTML(codes):
 						<select id="export-menu" onchange="if(this.value != 'default') exportFile(this.value)">
 							<option value="default">Export ...</option>
 							<option value="clipboard">Copy text</option>
+							<option value="deck-image">Deck Image</option>
 							<option value="export-dek">Export .dek</option>
 							<option value="export-txt">Export .txt</option>
 							<option value="export-cod">Export .cod</option>
@@ -473,6 +475,55 @@ def generateHTML(codes):
 		async function exportFile(export_as) {
 			let deck_text = "";
 			let deck_name = currentDeck.name || "Untitled Deck";
+
+			if (export_as == "deck-image") {
+				const container = document.getElementById("deck-scroll-container");
+				const oldView = currentView;
+				
+				// Force images view if not already there
+				if (currentView !== 'images') {
+					setView('images');
+					document.getElementById("view-select").value = "images";
+				}
+
+				// Wait for images to potentially load
+				await new Promise(resolve => setTimeout(resolve, 500));
+
+				const spoilerCont = container.querySelector(".spoiler-container");
+				if (spoilerCont) {
+					// Temporary style changes for better capture
+					const originalBackground = spoilerCont.style.background;
+					const originalPadding = spoilerCont.style.padding;
+					const originalWidth = spoilerCont.style.width;
+					
+					spoilerCont.style.background = "#f3f3f3";
+					spoilerCont.style.padding = "20px";
+					spoilerCont.style.width = "fit-content";
+					spoilerCont.style.marginRight = "0"; // remove the negative margin trick for capture
+
+					html2canvas(spoilerCont, {
+						useCORS: true,
+						allowTaint: true,
+						backgroundColor: "#f3f3f3",
+						scale: 2 // Higher quality
+					}).then(canvas => {
+						const link = document.createElement('a');
+						link.download = deck_name + ".png";
+						link.href = canvas.toDataURL("image/png");
+						link.click();
+
+						// Restore styles
+						spoilerCont.style.background = originalBackground;
+						spoilerCont.style.padding = originalPadding;
+						spoilerCont.style.width = originalWidth;
+						spoilerCont.style.marginRight = "-70px";
+					});
+				}
+
+				document.getElementById("export-menu").value = "default";
+				return;
+			}
+
 			let export_cod = (export_as == "export-cod");
 
 			if (export_cod) {

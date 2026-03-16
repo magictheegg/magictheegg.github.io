@@ -1,9 +1,100 @@
 function tokenizeTerms(searchTerms)
 		{
-			let tokenRegex = /-?\w*[!:<>=]?(([^ "\(\)\/“”]+)|(\".+?\")|(\(.+?\))|(\/.+?\/)|(\“.+?\”))/g;
-			let searchTokens = searchTerms.match(tokenRegex);
+			let tokens = [];
+			let i = 0;
+			while (i < searchTerms.length)
+			{
+				if (searchTerms[i] == ' ' || searchTerms[i] == '\t' || searchTerms[i] == '\n' || searchTerms[i] == '\r')
+				{
+					i++;
+					continue;
+				}
 
-			return searchTokens;
+				let start = i;
+				if (searchTerms[i] == '-')
+				{
+					i++;
+				}
+				while (i < searchTerms.length && /[a-zA-Z0-9_]/.test(searchTerms[i]))
+				{
+					i++;
+				}
+				if (i < searchTerms.length && /[!:<>=]/.test(searchTerms[i]))
+				{
+					i++;
+					if (i < searchTerms.length && searchTerms[i] == '=')
+					{
+						i++;
+					}
+				}
+
+				if (i < searchTerms.length)
+				{
+					if (searchTerms[i] == '"' || searchTerms[i] == '“')
+					{
+						let quoteChar = searchTerms[i];
+						let endChar = quoteChar == '“' ? '”' : '"';
+						i++;
+						while (i < searchTerms.length && searchTerms[i] != endChar)
+						{
+							i++;
+						}
+						if (i < searchTerms.length)
+						{
+							i++;
+						}
+						tokens.push(searchTerms.substring(start, i));
+					}
+					else if (searchTerms[i] == '(')
+					{
+						let parenCount = 0;
+						while (i < searchTerms.length)
+						{
+							if (searchTerms[i] == '(')
+							{
+								parenCount++;
+							}
+							else if (searchTerms[i] == ')')
+							{
+								parenCount--;
+							}
+							i++;
+							if (parenCount == 0)
+							{
+								break;
+							}
+						}
+						tokens.push(searchTerms.substring(start, i));
+					}
+					else if (searchTerms[i] == '/')
+					{
+						i++;
+						while (i < searchTerms.length && searchTerms[i] != '/')
+						{
+							i++;
+						}
+						if (i < searchTerms.length)
+						{
+							i++;
+						}
+						tokens.push(searchTerms.substring(start, i));
+					}
+					else
+					{
+						while (i < searchTerms.length && !/[ "\(\)\/“”]/.test(searchTerms[i]))
+						{
+							i++;
+						}
+						tokens.push(searchTerms.substring(start, i));
+					}
+				}
+				else if (start < i)
+				{
+					tokens.push(searchTerms.substring(start, i));
+				}
+			}
+
+			return tokens;
 		}
 
 		function searchAllTokens(card, tokens)
