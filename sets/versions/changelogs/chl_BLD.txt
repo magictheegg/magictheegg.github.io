@@ -1,4 +1,129 @@
-﻿VERSION 3 CHANGELOG
+﻿VERSION 4 CHANGELOG
+====================
+
+The Hunt Begins Anew added.
+Revelation of Old Blood added.
+Great Rebirth added.
+1/1 Spirit added.
+4/1 Nightmare added.
+2/1 Dog added.
+1/1 Human Warrior added.
+1/1 Alien Horror added.
+3/3 Alien Horror added.
+2/2 Beast added.
+3/3 Beast added.
+1/2 Spider added.
+The Hunt added.
+Transcended Hunt added.
+
+The Hunt Begins Again removed.
+Discovery of the Old Blood removed.
+Rebirth of the Moon removed.
+Spirit removed.
+Nightmare removed.
+Dog removed.
+Human Warrior removed.
+Alien Horror removed.
+Alien Horror removed.
+Beast removed.
+Beast removed.
+Spider removed.
+
+Rise of the Pale Moon
+rules_text: If an effect would create one or more creature tokens under your control, it created twice that many of those tokens instead.
+At the beginning of your end step, if Beasts you control have total power 30 or greater, target player loses the game. => If an effect would create one or more creature tokens under your control, it creates twice that many of those tokens instead.
+At the beginning of your upkeep, if Beasts you control have total power 40 or greater, target player loses the game.
+
+Keeper of the Old Lords
+rules_text: When Keeper of the Old Lords enters, create two 2/1 red Dog creature tokens with haste and agile.
+[i]Insight[/i] — Whenever you draw your second card each turn, creatures you control get +2/+0 until end of turn. => When Keeper of the Old Lords enters, create two 2/1 red Dog creature tokens with agile.
+[i]Insight[/i] — Whenever you draw your second card each turn, creatures you control get +2/+0 until end of turn.
+pt: 1/3 => 1/2
+
+Bloodlicker
+rules_text: At the beginning of your upkeep, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Whenever a permanent you control is put into a graveyard from the battlefield, if Bloodlicker hasn't dealt combat damage this turn, it gets +1/+1 until end of turn. Otherwise, it deals 1 damage to each opponent. => At the beginning of your upkeep, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Sacrifice a permanent: Bloodlicker gets +1/+0 until end of turn.
+
+The Discovery of Vermin
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I, II — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest on the bottom of your library in any order.
+You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i] => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I, II — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i]
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I, II — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest on the bottom of your library in any order.
+You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i] => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I, II — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i]
+
+Adella the Nun
+pt: 1/2 => 1/1
+
+Mensis Cage
+rules_text: Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+{1}, {T}: Each opponent loses 1 life.
+{2}{B}, {T}, Sacrifice Mensis Cage: Each opponent loses life equal to your hunt's intensity and you gain that much life. => Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+{1}, {T}: Each opponent loses 1 life.
+{4}{B}, {T}, Sacrifice Mensis Cage: Each opponent loses life equal to your hunt's intensity and you gain that much life.
+
+Blood Minister
+rules_text: When Blood Minister enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial token, Blood Minister deals 2 damage to each opponent. => When Blood Minister enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial token, Blood Minister deals 1 damage to each opponent.
+
+Old Hunter Henriett
+rules_text: Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+{2}{G}: Reveal the top three cards of your library. Choose a land card from among them. If you've transcended the hunt, choose a permanent card instead. Put the chosen card into your hand and the rest on the bottom of your library in any order. => Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+{2}{G}: Reveal the top three cards of your library. Choose a land card from among them. If you've transcended the hunt, choose a permanent card instead. Put the chosen card into your hand and the rest into your graveyard.
+
+Celestial Emissary
+pt: 5/5 => 3/3
+
+Isz Gargoyle
+cost: {6} => {3}
+
+Gatekeeper Messengers
+cost: {1}{B} => {2}{B}
+rules_text: When Gatekeeper Messengers enters, draw a card and you lose 1 life. => When Gatekeeper Messengers enters, arm target creature you control. [i](Create a colorless Equipment artifact token with “Equipped creature gets +1/+0” and equip {2} attached to it.)[/i]
+Whenever one or more tokens you control enter, each opponent loses 1 life.
+pt: 1/1 => 1/2
+
+Shrewd Old Hunter
+rules_text: Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+Whenever a creature you control dies, if you've transcended the hunt, target player loses 1 life and you gain 1 life. => Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+{2}, Sacrifice a creature: Put a +1/+1 counter on Shrewd Old Hunter. This ability costs {2} less to activate if you've transcended the hunt.
+
+Beast Patient
+cost: {2}{B} => {1}{B}
+pt: 3/2 => 3/1
+
+Grant Us Eyes
+rules_text: Exile target creature or planeswalker. => Destroy target creature. Its controller loses 2 life.
+
+The Lady's Flames
+type: Instant => Sorcery
+rules_text: The Lady's Flames deals 2 damage to target creature or planeswalker. You may put a card from your hand on the bottom of your library. If you do, draw a card. => The Lady's Flames deals 3 damage to target creature. You may put a card from your hand on the bottom of your library. If you do, draw a card.
+
+Snake Ball
+
+Hunter's Dream
+rules_text: Hunter's Dream enters tapped. When it does, scry 1. [i](Look at the top card of your library. You may put that card on the bottom of your library.)[/i]
+{T}, Sacrifice Hunter's Dream: Search your library for a basic land card, put it onto the battlefield, then shuffle. => Hunter's Dream enters tapped. When it does, surveil 1. [i](Look at the top card of your library. You may put it into your graveyard.)[/i]
+{T}, Sacrifice Hunter's Dream: Search your library for a basic land card, put it onto the battlefield, then shuffle.
+
+Equipment
+
+Blood Vial
+
+Kos's Placenta
+
+
+VERSION 3 CHANGELOG
 ====================
 
 
