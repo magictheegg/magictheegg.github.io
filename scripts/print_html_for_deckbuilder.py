@@ -146,7 +146,6 @@ def generateHTML(codes):
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		width: 98%;
-		overflow-y: scroll;
 		gap: 3px;
 		justify-items: center;
 		padding: 1%;
