@@ -1,4 +1,199 @@
-﻿VERSION 4 CHANGELOG
+﻿VERSION 5 CHANGELOG
+====================
+
+
+
+Brain of Mensis
+rules_text: Whenever a player casts a spell, you draw X cards, where X is that spell's mana value. Then if you have 14 or more cards in your hand, sacrifice Brain of Mensis.
+When Brain of Mensis is put into a graveyard from the battlefield, your maximum hand size is zero for the rest of the game. => Whenever a player casts a spell, you draw X cards, where X is that spell's mana value. Then if you have 14 or more cards in your hand, sacrifice Brain of Mensis.
+When Brain of Mensis is put into a graveyard from the battlefield, exile it. Your maximum hand size is zero for the rest of the game.
+
+Laurence, the First Vicar
+type: Legendary Creature — Beast Cleric => Legendary Creature — Cleric Beast
+
+The One Reborn
+rules_text: Whenever The One Reborn attacks, you may exile a creature card from your graveyard. If you do, The One Reborn deals damage equal to that card's power to target creature defending player controls.
+The One Reborn has all abilities of creature cards exiled with it. => Whenever The One Reborn attacks, you may exile a creature card from your graveyard. If you do, The One Reborn deals damage equal to that card's power to target creature defending player controls.
+The One Reborn has all activated and triggered abilities of creature cards exiled with it.
+
+Lady Maria
+
+Wandering Nightmare
+rules_text: Wandering Nightmare must be blocked if able.
+{1}{W}, Exile Wandering Nightmare from your graveyard: Target Equipment you control gains “Equipped creature gets +1/+1 for each artifact you control” for as long as this card remains exiled. Activate only as a sorcery. => Lure [i](This creature must be blocked if able.)[/i]
+{1}{W}, Exile Wandering Nightmare from your graveyard: Target Equipment you control gains “Equipped creature gets +1/+1 for each artifact you control” for as long as this card remains exiled. Activate only as a sorcery.
+
+Annalise, Vileblood Queen
+
+Nightmare Host Micolash
+rules_text: Whenever your opponent casts their first noncreature spell each turn, if it targets you or a permanent you control, counter it.
+[i]Insight[/i] — Whenever you draw your second card each turn, exile up to one target blue instant or sorcery card from your graveyard with mana value 4 or less, then cast a copy of it. => Whenever an opponent casts their first noncreature spell each turn, if that spell targets you or a permanent you control, counter it.
+Each instant and each sorcery card you own has madness. The madness cost is equal to its mana cost. [i](If you discard a card with madness, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)[/i]
+
+Yurie, the Last Scholar
+rules_text: Whenever you cast a noncreature spell, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+{2}, Sacrifice four Blood Vials: Look at the top four cards of your library. Put two of them into your hand and the rest into your graveyard. => Whenever you cast a noncreature spell, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+{2}, Sacrifice four Blood Vials: Look at the top four cards of your library. Put two of them into your hand and the rest into your graveyard.
+
+Bloodlicker
+rules_text: At the beginning of your upkeep, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Sacrifice a permanent: Bloodlicker gets +1/+0 until end of turn. => At the beginning of your upkeep, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+Sacrifice a permanent: Bloodlicker gets +1/+0 until end of turn.
+pt: 3/2 => 3/3
+
+Revelation of Old Blood
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Scry 2.
+I, II — Create two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+III — You may sacrifice another permanent. When you do, Revelation of Old Blood deals 2 damage to any target. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Scry 2.
+II — Create two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+III — You may sacrifice another permanent. When you do, Revelation of Old Blood deals 2 damage to any target.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Scry 2.
+I, II — Create two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+III — You may sacrifice another permanent. When you do, Revelation of Old Blood deals 2 damage to any target. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Scry 2.
+II — Create two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+III — You may sacrifice another permanent. When you do, Revelation of Old Blood deals 2 damage to any target.
+
+The Discovery of Vermin
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I, II — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i] => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+II — You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i]
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I, II — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i] => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+II — You may play up to two additional lands this turn.
+III — Spread the Scourge. [i](Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that's a copy of it, except it's a Beast.)[/i]
+
+Winter Lantern
+
+Powder Keg Aficionado
+rules_text: When Powder Keg Aficionado enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial, exile the top card of your library. You may play that card until the end of your next turn. => When Powder Keg Aficionado enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial, exile the top card of your library. You may play that card until the end of your next turn.
+
+Valtr, Master of the League
+rules_text: Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+Whenever Valtr, Master of the League attacks, create a 1/1 red and white Human Warrior creature token that's tapped and attacking. Then if you've transcended the hunt, creatures you control get +1/+0 and gain agile until end of turn. => Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+Whenever Valtr attacks, create a 1/1 red and white Human Warrior creature token that's tapped and attacking. Then if you've transcended the hunt, creatures you control get +1/+0 and gain agile until end of turn.
+
+Beckoning Bell
+
+Astral Clocktower
+rules_text: {T}: Add {C}.
+{U}{R}, {T}, Discard a card or sacrifice another permanent: Draw a card. => {T}: Add {C}.
+{U}{R}, {T}, Discard a card or sacrifice another untargeted permanent: Draw a card.
+
+Hunter's Mercy
+rules_text: Destroy target creature or planeswalker. Its controller creates two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Destroy target creature or planeswalker. Its controller creates two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Choir Minister
+rules_text: Whenever Choir Minister attacks, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Whenever Choir Minister attacks, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Silencing Blank
+rules_text: Counter target spell. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Counter target spell. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Old Hunter Henryk
+
+Blood Minister
+rules_text: When Blood Minister enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial token, Blood Minister deals 1 damage to each opponent. => When Blood Minister enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial token, Blood Minister deals 1 damage to each opponent.
+
+Burning of Old Yharnam
+
+Beast Claw
+
+Cleric Beast
+type: Legendary Creature — Beast Cleric => Legendary Creature — Cleric Beast
+rules_text: Trample
+Whenever a Beast you control enters, you gain 3 life.
+Whenever a Beast you control dies, draw a card. => Trample
+Whenever Cleric Beast or another Beast you control enters, you gain 3 life.
+Whenever Cleric Beast or another Beast you control dies, draw a card.
+
+Brador, Church Assassin
+
+Arcane Transfusion
+rules_text: Draw two cards, then discard a card. Create two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Draw two cards, then discard a card. Create two Blood Vial tokens. [i](They're artifacts with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Whirligig Saw
+rules_text: When Whirligig Saw enters, it deals 4 damage to target creature you don't control, then attach it to target creature you control.
+Equipped creature gets +4/+0.
+Equip {4} => When Whirligig Saw enters, it deals 4 damage to up to one target creature you don't control, then attach it to up to one target creature you control.
+Equipped creature gets +4/+0.
+Equip {4}
+
+Powder Keg Initiate
+
+Church Servant
+pt: 1/2 => 1/3
+
+Communion
+rules_text: Target creature gets +2/+2 until end of turn. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Target creature gets +2/+2 until end of turn. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Garden of Eyes
+
+Choir Neophyte
+rules_text: When Choir Neophyte enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial token, scry 1. => When Choir Neophyte enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+Whenever you sacrifice a Blood Vial token, scry 1.
+
+Hunter's Farewell
+
+Call Beyond
+rules_text: Target creature's owner puts it on the top or bottom of their library. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Target creature's owner puts it on the top or bottom of their library. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Wisdom of the Great Ones
+rules_text: Draw three cards. Exile up to one target creature you control, then return it to the battlefield under its owner's control. => Draw three cards. Exile up to one target creature you control, then return that card to the battlefield under its owner's control.
+
+Charnel Crow
+rules_text: Flying
+When Charnel Crow dies, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Flying
+When Charnel Crow dies, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Iosefka's Remedy
+rules_text: Draw two cards. You lose 2 life.
+Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => Draw two cards. You lose 2 life.
+Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Vileblood Prince
+rules_text: When Vileblood Prince enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => When Vileblood Prince enters, create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Mad One
+
+The Lady's Flames
+
+Into the Blood Fog
+rules_text: As an additional cost to cast this spell, discard a card.
+Draw two cards. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card.”)[/i] => As an additional cost to cast this spell, discard a card.
+Draw two cards. Create a Blood Vial token. [i](It's an artifact with “{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.”)[/i]
+
+Pthumerian Delver
+rules_text: Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+Pthumerian Delver gets +2/+2 and can't be blocked by more than one creature as long as you've transcended the hunt. => Paleblood hunter [i](If the hunt has not begun, it starts at 1. It intensifies once on each of your turns when a creature dies. At 4, transcend the hunt.)[/i]
+Pthumerian Delver gets +2/+2 and has challenge as long as you've transcended the hunt. [i](A creature with challenge can't be blocked by more than one creature.)[/i]
+
+Iosefka's Blood Vial
+rules_text: {1}, {T}, Sacrifice Iosefka's Blood Vial, Discard a card or sacrifice another permanent: Draw a card.
+{7}, {T}, Sacrifice Iosefka's Blood Vial: Exile target nonland permanent. => {1}, {T}, Sacrifice Iosefka's Blood Vial, Discard a card or sacrifice another untargeted permanent: Draw a card.
+{7}, {T}, Sacrifice Iosefka's Blood Vial: Exile target nonland permanent.
+
+Blood Vial
+rules_text: {1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another permanent: Draw a card. => {1}, {T}, Sacrifice this artifact, Discard a card or sacrifice another untargeted permanent: Draw a card.
+
+Transcended Hunt
+
+
+VERSION 4 CHANGELOG
 ====================
 
 The Hunt Begins Anew added.
