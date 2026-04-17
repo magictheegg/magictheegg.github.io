@@ -348,6 +348,25 @@
         .ui-label.tier { display: none; } /* Replaced by btn + stars */
 
         .tier-label { right: 100%; top: 20px; margin-right: 15px; }
+        #freeze-btn {
+            position: absolute; bottom: 65px; left: 50%; transform: translateX(-50%);
+            width: 50px; height: 50px; border-radius: 40%;
+            background: linear-gradient(to bottom, #ddd, #999); /* Silver */
+            border: 2px solid #fff; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+
+        .lock-img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        #freeze-btn:hover { filter: brightness(1.2); }
+
         #reroll-container {
             position: absolute; left: 100%; bottom: 3px; margin-left: 15px; 
             width: 50px; height: 50px;
@@ -537,10 +556,74 @@
 
         .modal-btn.approve { background: linear-gradient(to bottom, #2e7d32, #1b5e20); }
         .modal-btn.deny { background: linear-gradient(to bottom, #c62828, #b71c1c); }
+        #roster-sidebar {
+            width: 130px;
+            height: 100%;
+            background: #252525;
+            border-right: 3px solid #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .roster-frame {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #555;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, margin 0.2s;
+            cursor: default;
+            background: #000;
+        }
+
+        .roster-frame.active {
+            border-color: #ffd700;
+            transform: scale(1.15) translateX(10px);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            z-index: 20;
+            margin: 8px 0; /* Add space ONLY when active/scaled */
+        }
+
+        .roster-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.6);
+            object-position: center -10%;
+        }
+
+        .roster-frame.dead {
+            filter: grayscale(1) opacity(0.4);
+        }
+        .card.foil {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            animation: foil-shimmer 2s infinite linear;
+        }
+
+        .morphing {
+            transform: scale(0) rotate(360deg);
+            opacity: 0;
+            transition: transform 0.6s ease-in, opacity 0.6s ease-in !important;
+        }
+
+        @keyframes foil-shimmer {
+            0% { filter: brightness(1) contrast(1); }
+            50% { filter: brightness(1.2) contrast(1.1) saturate(1.2); }
+            100% { filter: brightness(1) contrast(1); }
+        }
     </style>
 </head>
 <body>
     <div id="game-cabinet">
+        <aside id="roster-sidebar">
+            <!-- AI Avatars go here -->
+        </aside>
         <div id="interaction-overlay"></div>
         <main id="game-board">
             <button id="end-turn-btn">End Turn</button>
@@ -554,6 +637,9 @@
                         </div>
                     </div>
                     <div id="reroll-container">
+                        <button id="freeze-btn" title="Freeze Shop">
+                            <img class="lock-img" id="freeze-img" src="img/unlocked.png" alt="Unlocked">
+                        </button>
                         <button id="reroll-btn"></button>
                     </div>
                     <div class="avatar-img-container">
@@ -564,7 +650,7 @@
             </section>
 
             <section id="opponent-zone" class="board-zone" style="display: none; opacity: 0;">
-                <div class="avatar-box">
+                <div id="opponent-battle-avatar" class="avatar-box">
                     <div class="ui-label hp hp-label"><span id="opponent-hp">20</span></div>
                     <div class="ui-label fight-hp fight-hp-label"><span id="opponent-fight-hp">10</span></div>
                     <div class="avatar-img-container">
