@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Battler Cabinet</title>
+    <style>
+        body {
+            font-family: 'Beleren Small Caps', sans-serif;
+            background-color: #0a0a0a;
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #game-cabinet {
+            width: 1600px;
+            height: 900px;
+            background-color: #1e1e1e;
+            border: 8px double #555;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 0 100px rgba(0,0,0,0.9);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center center;
+            flex-shrink: 0;
+        }
+
+        #game-board {
+            flex: 1;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            background-color: #111;
+            position: relative;
+        }
+
+        .board-zone {
+            grid-column: 1;
+            width: 100%;
+            height: 60%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+        }
+
+        #shop-zone, #opponent-zone {
+            grid-row: 1;
+            justify-content: flex-end;
+            align-self: end;
+            padding-bottom: 5px;
+        }
+
+        #player-zone { 
+            grid-row: 2;
+            justify-content: flex-start;
+            align-self: start;
+            padding-top: 5px;
+            border-top: 2px dashed #333; 
+        }
+
+        .card-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #hand-zone {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .fanned-hand {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            pointer-events: auto;
+            width: 100%;
+        }
+
+        .fanned-hand .card {
+            margin-left: -50px;
+            width: 180px;
+            transform-origin: bottom center;
+            transition: transform 0.15s ease-out, margin 0.15s ease-out;
+        }
+
+        .fanned-hand .card:first-child { margin-left: 0; }
+
+        .fanned-hand .card:hover {
+            transform: scale(1.3) translateY(-50px) rotate(0deg) !important;
+            z-index: 2000 !important;
+            margin-right: 60px;
+            box-shadow: 0 15px 45px rgba(0,0,0,1);
+        }
+
+        /* CARD STYLING */
+        .card {
+            width: 180px;
+            background: #000;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+            cursor: pointer;
+            overflow: visible !important;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.55s ease;
+            z-index: 1;
+        }
+
+        .card:hover:not(.attacking):not(.targetable) {
+            transform: scale(1.15) translateY(-10px);
+            z-index: 100 !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+        }
+
+        .card-name { display: none; }
+
+        .card-art {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #333;
+            box-sizing: border-box;
+        }
+
+        .card-cost {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 48px;
+            height: 48px;
+            background: #ffd700;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            border: 3px solid #fff;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .card-pt {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #fff;
+            color: #000;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.4em;
+            border: 2px solid #000;
+            display: flex;
+            gap: 2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .card-t.damaged { color: #e53935; }
+
+        .card-counters {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            width: 34px;
+            height: 34px;
+            background: #ff4500;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            border: 3px solid #fff;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .card-counters:empty { display: none; }
+
+        /* AVATAR BOXES AND LABELS */
+        .avatar-box {
+            position: absolute;
+            width: 210px;
+            height: 140px;
+            background: #000;
+            border: 3px solid #555;
+            border-radius: 12px;
+            overflow: visible;
+            z-index: 5;
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
+        }
+
+        .avatar-img-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.2); 
+            object-position: center 20%; /* Shift view down to show more of the top */
+        }
+
+        .ui-label {
+            position: absolute;
+            padding: 5px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 2em;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            border: 2px solid #fff;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .ui-label.gold { 
+            background: #ffd700; color: #000; border-color: #b8860b; 
+            width: 45px; height: 45px; border-radius: 10px;
+        }
+        .ui-label.hp { 
+            background: #c62828; border-color: #8b0000; 
+            width: 45px; height: 45px; border-radius: 10px;
+        }
+        .ui-label.fight-hp { 
+            background: #e91e63; border: none; min-width: 0;
+            width: 30px; height: 30px; transform: translateX(-50%) rotate(45deg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            padding: 5px;
+            display: none; /* Hidden by default to prevent flicker */
+        }
+        .ui-label.fight-hp::before, .ui-label.fight-hp::after {
+            content: ""; width: 40px; height: 40px; background: #e91e63;
+            border-radius: 50%; position: absolute;
+        }
+        .ui-label.fight-hp::before { left: -20px; }
+        .ui-label.fight-hp::after { top: -20px; }
+        .ui-label.fight-hp span {
+            transform: rotate(-45deg);
+            position: relative;
+            z-index: 20;
+            color: white;
+            top: -5px;
+            left: -5px;
+        }
+
+        #tier-container {
+            position: absolute; right: 100%; bottom: 3px; margin-right: 15px;
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        #tier-container::after {
+            content: attr(data-cost);
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: #ffd700;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            border: 2px solid #fff;
+            z-index: 20;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            pointer-events: none;
+            font-family: 'Beleren Small Caps', sans-serif;
+        }
+
+        /* Hide coin when no data-cost (max tier) */
+        #tier-container[data-cost=""]::after { display: none; }
+
+        #tier-up-btn {
+            width: 50px; height: 45px; border-radius: 8px 8px 0 0;
+            background: #ff5722; /* Orange-red */
+            color: #fff; border: 2px solid #fff; border-bottom: none;
+            cursor: pointer; font-size: 1.8em; display: flex;
+            align-items: center; justify-content: center;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+
+        #tier-up-btn::before { content: "\219F"; }
+        /* Removed hover filter to prevent child cost bubble glow */
+
+        .tier-star-container {
+            width: 50px; height: 40px;background: #bf360c; /* Deep orange-red */
+            border: 2px solid #fff;
+            border-radius: 0 0 8px 8px; display: flex; flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 0; gap: 1px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.8);
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+        }
+
+        .star {
+            width: 100%;
+            color: #ffd700;
+            font-size: 0.9em;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .ui-label.tier { display: none; } /* Replaced by btn + stars */
+
+        .tier-label { right: 100%; top: 20px; margin-right: 15px; }
+        #reroll-container {
+            position: absolute; left: 100%; bottom: 3px; margin-left: 15px; 
+            width: 50px; height: 50px;
+        }
+
+        #reroll-btn { 
+            background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+            color: white; border: 2px solid #fff; 
+            width: 100%; height: 100%;
+            border-radius: 40%; cursor: pointer; font-family: inherit;
+            font-weight: bold; font-size: 1.5em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #reroll-btn::before {
+            content: "\21BB";
+            display: inline-block;
+            position: absolute;
+            font-size: 30px;
+            top: 3px; /* don't ask; magic number */
+        }
+
+        #reroll-btn:hover:not(:disabled) {
+            filter: brightness(1.3);
+        }
+
+        #reroll-container::after {
+            content: "1";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: #ffd700;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            border: 2px solid #fff;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            pointer-events: none;
+            font-family: 'Beleren Small Caps', sans-serif;
+        }
+
+        #shop-zone .avatar-box, #opponent-zone .avatar-box {
+            top: -160px;
+        }
+
+        #player-zone .avatar-box {
+            bottom: -160px;
+        }
+        
+        .gold-label { right: 100%; bottom: 3px; margin-right: 10px; }
+        .hp-label { left: 100%; bottom: 3px; margin-left: 10px; }
+        .fight-hp-label { left: 50%; }
+
+        #end-turn-btn {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 150px;
+            height: 60px;
+            background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+            color: white;
+            border: 3px solid #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        #end-turn-btn:hover:not(:disabled) { filter: brightness(1.2); }
+        #end-turn-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        #interaction-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75); z-index: 500; display: none;
+            backdrop-filter: blur(3px);
+        }
+        
+        body.overlay-active #interaction-overlay { display: block; }
+
+        .targetable {
+            z-index: 600 !important;
+            outline: 6px solid #ffd700;
+            box-shadow: 0 0 40px #ffd700;
+        }
+
+        .damage-bubble {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #8b0000;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.8em;
+            z-index: 9999 !important;
+            pointer-events: none;
+            box-shadow: 0 0 20px #ff0000;
+            text-shadow: 0 2px 4px rgba(0,0,0,1);
+            animation: pop-fade 0.8s forwards;
+        }
+
+        @keyframes pop-fade {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            20% { transform: translate(-50%, -100%) scale(1.2); opacity: 1; }
+            80% { transform: translate(-50%, -120%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(0.8); opacity: 0; }
+        }
+
+        .attacking { z-index: 2000 !important; }
+        .dying { animation: vanish 0.6s forwards; }
+        .shake { animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
+
+        @keyframes vanish { 100% { opacity: 0; transform: scale(0.4) rotate(15deg); } }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #252525;
+            padding: 40px;
+            border-radius: 20px;
+            border: 4px solid #ffd700;
+            box-shadow: 0 0 100px rgba(0,0,0,1);
+            text-align: center;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .modal-content h2 { margin: 0; color: #ffd700; letter-spacing: 4px; }
+        .modal-content p { margin: 0; font-size: 1.1em; opacity: 0.8; }
+
+        #scry-card-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .modal-content .card {
+            width: 200px; 
+            scale: 1.2;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+        }
+
+        .modal-btn.approve { background: linear-gradient(to bottom, #2e7d32, #1b5e20); }
+        .modal-btn.deny { background: linear-gradient(to bottom, #c62828, #b71c1c); }
+    </style>
+</head>
+<body>
+    <div id="game-cabinet">
+        <div id="interaction-overlay"></div>
+        <main id="game-board">
+            <button id="end-turn-btn">End Turn</button>
+
+            <section id="shop-zone" class="board-zone">
+                <div id="opponent-avatar" class="avatar-box">
+                    <div id="tier-container" data-cost="5">
+                        <button id="tier-up-btn" title="Upgrade Tier"></button>
+                        <div class="tier-star-container" id="tier-stars">
+                            <!-- Stars injected here -->
+                        </div>
+                    </div>
+                    <div id="reroll-container">
+                        <button id="reroll-btn"></button>
+                    </div>
+                    <div class="avatar-img-container">
+                        <img class="avatar-img" src="sets/SHF-files/img/60.png" alt="Shop">
+                    </div>
+                </div>
+                <div id="shop" class="card-row"></div>
+            </section>
+
+            <section id="opponent-zone" class="board-zone" style="display: none; opacity: 0;">
+                <div class="avatar-box">
+                    <div class="ui-label hp hp-label"><span id="opponent-hp">20</span></div>
+                    <div class="ui-label fight-hp fight-hp-label"><span id="opponent-fight-hp">10</span></div>
+                    <div class="avatar-img-container">
+                        <img class="avatar-img" src="sets/ICH-files/img/62_Huitzil Skywatch.jpg" alt="Foe">
+                    </div>
+                </div>
+                <div id="opponent-board" class="card-row"></div>
+            </section>
+
+            <section id="player-zone" class="board-zone">
+                <div id="player-board" class="card-row"></div>
+                <div id="player-avatar" class="avatar-box">
+                    <div class="ui-label gold gold-label"><span id="player-gold">3</span></div>
+                    <div class="ui-label hp hp-label"><span id="player-hp">20</span></div>
+                    <div class="ui-label fight-hp fight-hp-label"><span id="player-fight-hp">10</span></div>
+                    <div class="avatar-img-container">
+                        <img class="avatar-img" src="sets/TWB-files/img/19_Glumvale Raven.jpg" alt="Hero">
+                    </div>
+                </div>
+            </section>
+
+            <footer id="hand-zone">
+                <div id="player-hand" class="fanned-hand"></div>
+            </footer>
+        </main>
+    </div>
+
+    <div id="scry-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>SCRY</h2>
+            <p>Keep this card for the next shop?</p>
+            <div id="scry-card-container"></div>
+            <div class="modal-actions">
+                <button id="scry-approve-btn" class="modal-btn approve">APPROVE</button>
+                <button id="scry-deny-btn" class="modal-btn deny">DENY</button>
+            </div>
+        </div>
+    </div>
+
+    <template id="card-template">
+        <div class="card">
+            <div class="card-name"></div>
+            <img class="card-art" src="" alt="">
+            <div class="card-counters"></div>
+            <div class="card-cost"></div>
+            <div class="card-pt"><span class="card-p"></span>/<span class="card-t"></span></div>
+        </div>
+    </template>
+
+    <script>
+        function scaleGame() {
+            const cabinet = document.getElementById('game-cabinet');
+            const targetWidth = 1600;
+            const targetHeight = 900;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = (windowWidth * 0.95) / targetWidth;
+            const scaleY = (windowHeight * 0.95) / targetHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            cabinet.style.transform = `scale(${scale})`;
+        }
+        
+        window.addEventListener('resize', scaleGame);
+        window.addEventListener('load', scaleGame);
+        scaleGame();
+    </script>
+    <script src="scripts/autobattler.js"></script>
+</body>
+</html>

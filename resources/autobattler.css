@@ -1,0 +1,302 @@
+body {
+    font-family: 'Beleren Small Caps', sans-serif;
+    background-color: #0a0a0a;
+    background-image: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Prevent body scroll */
+}
+
+#game-cabinet {
+    width: 96vw;
+    height: 92vh;
+    max-width: 1600px;
+    max-height: 1000px;
+    background-color: #1e1e1e;
+    border: 8px double #555;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row; /* Horizontal: Board | Sidebar */
+    box-shadow: 0 0 100px rgba(0,0,0,0.9);
+    position: relative;
+    overflow: hidden; /* Contain everything */
+}
+
+/* Game Board - Takes most of the space */
+#game-board {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Vertical: Top (Shop/Opp) | Bottom (Player) */
+    position: relative;
+    background-color: #111;
+    min-width: 0; /* Allow flex shrinking */
+}
+
+.board-zone {
+    height: 50%; /* Each zone takes half */
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: opacity 0.4s ease;
+}
+
+#shop-zone { background-color: rgba(30, 60, 30, 0.05); }
+#opponent-zone { 
+    background-color: rgba(60, 30, 30, 0.05); 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: 10;
+}
+#player-zone { 
+    background-color: rgba(30, 30, 60, 0.05); 
+    border-top: 2px dashed #333; 
+}
+
+.zone-label {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 2px;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row; /* FORCE HORIZONTAL */
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hand Zone - Floating at the bottom */
+#hand-zone {
+    position: absolute;
+    bottom: -50px; /* Slightly obscured */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.fanned-hand {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: auto;
+}
+
+.fanned-hand .card {
+    margin-left: -60px;
+    scale: 0.8;
+    transform-origin: bottom center;
+    transition: all 0.2s ease-out;
+}
+
+.fanned-hand .card:first-child { margin-left: 0; }
+
+.fanned-hand .card:hover {
+    transform: scale(1.4) translateY(-120px) rotate(0deg) !important;
+    z-index: 1000 !important;
+    margin-right: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+}
+
+/* Sidebar - On the right */
+#sidebar {
+    width: 280px;
+    background-color: #222;
+    border-left: 3px solid #333;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    z-index: 50;
+    box-sizing: border-box;
+}
+
+.sidebar-header {
+    font-size: 1.1em;
+    color: #666;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#stats-row, #opp-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.stat-box {
+    background: #151515;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 6px;
+    flex: 1;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box.gold { border-color: #b8860b; color: #ffd700; }
+.stat-label { font-size: 0.7em; opacity: 0.6; text-transform: uppercase; }
+.stat-value { font-size: 1.3em; font-weight: bold; }
+
+#actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    background: linear-gradient(to bottom, #444, #222);
+    color: #ccc;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background: linear-gradient(to bottom, #555, #333);
+    color: #fff;
+    border-color: #777;
+}
+
+button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#end-turn-btn {
+    background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+    color: white;
+    border-color: #388e3c;
+    margin-top: 10px;
+}
+
+/* Card Styling */
+.card {
+    width: 140px;
+    aspect-ratio: 2.5/3.5;
+    background: #000;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    cursor: pointer;
+    overflow: visible;
+}
+
+.card-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #333;
+    box-sizing: border-box;
+}
+
+.card-name {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 0.6em;
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+}
+
+.card-cost {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background: #ffd700;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #fff;
+    z-index: 10;
+}
+
+.card-pt {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #fff;
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8em;
+    border: 1px solid #000;
+}
+
+.card-counters {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 28px;
+    height: 28px;
+    background: #ff4500;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    border: 2px solid #fff;
+    z-index: 10;
+}
+
+/* Transitions */
+.overlay-active #interaction-overlay { display: block; }
+#interaction-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 500; display: none;
+}
