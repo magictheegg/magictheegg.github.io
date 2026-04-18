@@ -3,11 +3,18 @@ import os
 
 def create_autobattler_card_list():
     card_names_to_include = [
-        "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Leech-Ridden Corpse",
-        "Impressible Cub", "Gore Swine", "Apprentice Lancer", "War-Clan Dowager",
-        "Clairvoyant Koi", "Blistering Lunatic", "Dutiful Camel", "Lava-Moat Parapet",
-        "Sparring Campaigner", "Soulsmoke Adept", "Lake Cave Lurker", "Faith in Darkness",
-        "Scientific Inquiry", "To Battle", "By Blood and Venom", "Divination"
+        "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Intli Assaulter",
+        "Impressible Cub", "Gore Swine", "Sanctuary Centaur", "War-Clan Dowager",
+        "Clairvoyant Koi", "Blistering Lunatic", "Dutiful Camel", "Frontline Cavalier",
+        "Sparring Campaigner", "Soulsmoke Adept", "Lake Cave Lurker", "Rakkiri Archer",
+        "Faith in Darkness", "Scientific Inquiry", "To Battle", "By Blood and Venom", "Divination",
+        "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
+        "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
+        "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
+        "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
+        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
+        "Haggard Bandit", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -22,14 +29,39 @@ def create_autobattler_card_list():
 
     cards = all_cards_data.get('cards', [])
     
-    # 1. Get the 20 requested cards
+    # 2. Get the 21 requested cards
     final_cards = []
+    tier_2_names = [
+        "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
+        "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
+        "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
+        "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
+        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
+        "Haggard Bandit", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats"
+    ]
     for name in card_names_to_include:
         match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token'), None)
         if match:
+            # Add tier information
+            match['tier'] = 2 if name in tier_2_names else 1
             final_cards.append(match)
         else:
             print(f"Warning: Could not find base card {name}")
+
+    # Add required tokens
+    token_names = [("Bird", "AEX"), ("Construct", "ACE")]
+    for t_name, t_set in token_names:
+        # For ACE Construct, we want specifically #58
+        if t_name == "Construct" and t_set == "ACE":
+            token = next((c for c in cards if c.get('card_name') == t_name and c.get('shape') == 'token' and c.get('set') == t_set and str(c.get('number')) == "58"), None)
+        else:
+            token = next((c for c in cards if c.get('card_name') == t_name and c.get('shape') == 'token' and c.get('set') == t_set), None)
+        
+        if token:
+            final_cards.append(token)
+
+    # 3. Write to output
 
     # 2. Get exactly one 1/1 Construct token
     construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token' and c.get('pt') == '1/1'), None)
