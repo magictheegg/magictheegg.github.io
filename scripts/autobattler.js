@@ -98,6 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hook for death effects (returns an array of tokens/cards to spawn)
         onDeath(board, owner) { return []; }
 
+        // Hook for when another creature on the same board dies
+        onOtherCreatureDeath(board) { }
+
         // Hook for when a spell is cast (for non-targeted spells like Divination)
         onCast(board) { }
 
@@ -122,13 +125,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes(kw))) return true;
 
             // PRECISE RULES TEXT CHECK
-            // We want to avoid words like "becomes", "gain", "grant" in front of the keyword if it's not active.
-            // For now, a simple check if the card is NOT Mieng, or if it is Mieng and transformed.
             if (this.card_name === 'Mieng, Who Dances With Dragons') {
                 return this.enchantments?.some(e => e.card_name === 'Mieng Transformation' && e.rules_text?.toLowerCase().includes(kw));
             }
 
             return (this.rules_text?.toLowerCase().includes(kw));
+        }
+
+        // Helper for Intimidate / Menace targeting
+        canBeBlockedBy(defender) {
+            if (this.hasKeyword('Intimidate')) {
+                const isBlack = defender.color?.includes('B');
+                const isArtifact = defender.type?.toLowerCase().includes('artifact');
+                if (!isBlack && !isArtifact) return false;
+            }
+            return true;
         }
 
         clone() {
@@ -268,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     class Divination extends BaseCard {
         onCast(board) {
             const times = this.isFoil ? 2 : 1;
-            for (let i = 0; i < times; i++) populateShop();
+            addCardsToShop(2 * times, 'creature');
         }
     }
 
@@ -366,10 +377,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     class ConsultTheDewdrops extends BaseCard {
         onCast(board) {
-            const noncreatures = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && c.shape !== 'token');
+            const noncreatures = availableCards.filter(c => 
+                c.type && !c.type.toLowerCase().includes('creature') && 
+                c.shape !== 'token' && 
+                c.card_name !== 'Consult the Dewdrops' &&
+                (c.tier || 1) <= state.player.tier
+            );
             const selection = [];
-            const count = this.isFoil ? 8 : 4; // Maybe 8 is too many, but doubling is standard
-            for (let i = 0; i < 4; i++) {
+            const count = this.isFoil ? 8 : 4;
+            for (let i = 0; i < count; i++) {
                 selection.push(CardFactory.create(noncreatures[Math.floor(Math.random() * noncreatures.length)]));
             }
             state.discovery = {
@@ -601,6 +617,123 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    class PungentBeetle extends BaseCard {
+        onETB(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            this.counters += (state.shopDeathsCount * multiplier);
+        }
+    }
+
+    class DevilsChild extends BaseCard {
+        onOtherCreatureDeath(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            this.counters += multiplier;
+        }
+    }
+
+    class RazorbackTrenchrunner extends BaseCard {
+        onDeath(board, owner) {
+            const token = createToken('Ox', 'KOD', owner);
+            if (token) {
+                token.id = `ox-${Math.random()}`;
+                // CUSTOM: Trigger immediate attack logic for the spawn ONLY in battle
+                if (state.phase === 'BATTLE') {
+                    token.isTrenchrunnerSpawn = true; 
+                }
+                return [token];
+            }
+            return [];
+        }
+    }
+
+    class SporegraftSlime extends BaseCard {
+        onDeath(board, owner) {
+            // Both shop and combat: Target random friendly creature
+            const friends = board.filter(c => c.id !== this.id);
+            if (friends.length > 0) {
+                const target = friends[Math.floor(Math.random() * friends.length)];
+                const multiplier = this.isFoil ? 2 : 1;
+                target.counters += (2 * multiplier);
+                
+                // Pulsing feedback if in combat
+                if (state.phase === 'BATTLE') {
+                    const el = document.getElementById(`card-${target.id}`);
+                    if (el) {
+                        const ptBox = el.querySelector('.card-pt');
+                        if (ptBox) {
+                            ptBox.classList.add('pulse-stats');
+                            setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                        }
+                    }
+                }
+            }
+            return [];
+        }
+    }
+
+    class CovetousWechuge extends BaseCard {
+        onAction() {
+            state.targetingEffect = { 
+                sourceId: this.id, 
+                effect: 'wechuge_sacrifice'
+            };
+        }
+    }
+
+    class FinwingDrake extends BaseCard {
+        onNoncreatureCast(isFoilCast, board) {
+            const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
+            this.tempPower += multiplier;
+            this.tempToughness += multiplier;
+        }
+    }
+
+    class ShrewdParliament extends BaseCard {
+        onETB(board) {
+            // Must have a graveyard and at least ONE OTHER card in hand (Parliament is still in hand during ETB)
+            if (state.player.spellGraveyard.length > 0 && state.player.hand.length > 1) {
+                state.targetingEffect = {
+                    sourceId: this.id,
+                    effect: 'parliament_discard',
+                    wasCast: true,
+                    isFoil: this.isFoil
+                };
+            }
+        }
+    }
+
+    class CoralhideWurm extends BaseCard {
+        onNoncreatureCast(isFoilCast, board) {
+            const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
+            this.counters += multiplier;
+        }
+    }
+
+    class AetherGuzzler extends BaseCard {
+        onNoncreatureCast(isFoilCast, board) {
+            const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
+            board.forEach(c => {
+                c.tempPower += multiplier;
+            });
+        }
+    }
+
+    class DewdropOracle extends BaseCard {
+        onETB(board) {
+            const noncreatures = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+            const selection = [];
+            const multiplier = this.isFoil ? 2 : 1;
+            for (let i = 0; i < 4 * multiplier; i++) {
+                selection.push(CardFactory.create(noncreatures[Math.floor(Math.random() * noncreatures.length)]));
+            }
+            state.discovery = {
+                cards: selection,
+                title: 'DISCOVER',
+                text: 'Choose a noncreature card to add to your hand.'
+            };
+        }
+    }
+
     const CardFactory = {
         create(data) {
             const name = data.card_name;
@@ -635,6 +768,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'Foresee': card = new Foresee(data); break;
                 case 'Fight Song': card = new FightSong(data); break;
                 case 'Edge of Their Seats': card = new EdgeOfTheSeats(data); break;
+                case 'Finwing Drake': card = new FinwingDrake(data); break;
+                case 'Shrewd Parliament': card = new ShrewdParliament(data); break;
+                case 'Coralhide Wurm': card = new CoralhideWurm(data); break;
+                case 'Aether Guzzler': card = new AetherGuzzler(data); break;
+                case 'Dewdrop Oracle': card = new DewdropOracle(data); break;
+                case 'Devil\'s Child': card = new DevilsChild(data); break;
+                case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
+                case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
+                case 'Pungent Beetle': card = new PungentBeetle(data); break;
+                case 'Covetous Wechuge': card = new CovetousWechuge(data); break;
                 case 'Intli Assaulter': card = new IntliAssaulter(data); break;
                 case 'Exotic Game Hunter': card = new ExoticGameHunter(data); break;
                 case 'Cankerous Hog': card = new CankerousHog(data); break;
@@ -665,7 +808,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tierCostReduction: 0,
             hand: [],
             board: [],
-            treasures: 0
+            treasures: 0,
+            spellGraveyard: []
         },
         opponents: [
             { id: 0, name: "Marketto", avatar: "sets/SHF-files/img/60.png", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
@@ -685,6 +829,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextShopBonusCards: [],
         battleBoards: null,
         creaturesDiedThisShopPhase: false,
+        shopDeathsCount: 0,
         plane: null
     };
 
@@ -714,6 +859,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function resolveDiscovery(card) {
         if (!state.discovery) return;
+        
+        if (state.discovery.graveyard) {
+            const idx = state.player.spellGraveyard.findIndex(s => s.id === card.id);
+            if (idx !== -1) state.player.spellGraveyard.splice(idx, 1);
+        }
+
         state.player.hand.push(card);
         state.discovery = null;
         render();
@@ -1223,6 +1374,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const idx = board.indexOf(deadCard);
                 if (idx === -1) continue;
 
+                // 1. Trigger "Other Creature Dies" for survivors
+                board.forEach(c => {
+                    if (c.id !== deadCard.id) {
+                        c.onOtherCreatureDeath(board);
+                    }
+                });
+
                 let spawns = deadCard.onDeath(board, owner);
                 
                 // Check for resurrection enchantment
@@ -1246,6 +1404,23 @@ document.addEventListener('DOMContentLoaded', () => {
         await processDeaths(state.battleBoards.opponent, 'opponent');
 
         render();
+
+        // 2. CHECK FOR SPAWNED CREATURES (Trenchrunner Fight)
+        if (state.phase === 'BATTLE') {
+            const allBoardCards = state.battleBoards.player.concat(state.battleBoards.opponent);
+            for (const spawn of allBoardCards) {
+                if (spawn.isTrenchrunnerSpawn) {
+                    delete spawn.isTrenchrunnerSpawn; // Clear flag first
+                    const defenderBoard = (spawn.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+                    const target = findTarget(spawn, defenderBoard);
+                    // Trigger immediate fight (no first strike)
+                    await performAttack(spawn, target, false);
+                    await resolveDeaths(); 
+                    break; // Prevent multiple attacks in one death loop
+                }
+            }
+        }
+
         await new Promise(r => setTimeout(r, 200)); 
     };
 
@@ -1255,12 +1430,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (attacker.hasKeyword('Flying')) {
                 // Flying attackers priority 1: Vigilance with Flying or Reach (Ignored if Menace)
                 if (!hasMenace) {
-                    const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && (c.hasKeyword('Flying') || c.hasKeyword('Reach')));
+                    const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && (c.hasKeyword('Flying') || c.hasKeyword('Reach')) && attacker.canBeBlockedBy(c));
                     if (airVigilance.length > 0) return airVigilance[Math.floor(Math.random() * airVigilance.length)];
                 }
                 
                 // Flying attackers priority 2: ANY creature with Flying or Reach
-                const airCreatures = defendingBoard.filter(c => c.hasKeyword('Flying') || c.hasKeyword('Reach'));
+                const airCreatures = defendingBoard.filter(c => (c.hasKeyword('Flying') || c.hasKeyword('Reach')) && attacker.canBeBlockedBy(c));
                 if (airCreatures.length > 0) return airCreatures[Math.floor(Math.random() * airCreatures.length)];
 
                 // Otherwise, they bypass ground creatures and attack FACE directly
@@ -1268,22 +1443,23 @@ document.addEventListener('DOMContentLoaded', () => {
             } else { 
                 // Ground attackers priority 1: Ground Vigilance (Taunt) first (Ignored if Menace)
                 if (!hasMenace) {
-                    const groundVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && !c.hasKeyword('Flying'));
+                    const groundVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && !c.hasKeyword('Flying') && attacker.canBeBlockedBy(c));
                     if (groundVigilance.length > 0) return groundVigilance[Math.floor(Math.random() * groundVigilance.length)];
                 }
                 
                 // Ground attackers priority 2: Ground creatures without Vigilance
-                const groundCreatures = defendingBoard.filter(c => !c.hasKeyword('Flying'));
+                const groundCreatures = defendingBoard.filter(c => !c.hasKeyword('Flying') && attacker.canBeBlockedBy(c));
                 if (groundCreatures.length > 0) return groundCreatures[Math.floor(Math.random() * groundCreatures.length)];
                 
                 // Ground attackers priority 3: Flying creatures (if ONLY option left)
                 if (defendingBoard.length > 0) {
                     // Even if hitting air, hit the one with Vigilance first if available
                     if (!hasMenace) {
-                        const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance'));
+                        const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && attacker.canBeBlockedBy(c));
                         if (airVigilance.length > 0) return airVigilance[Math.floor(Math.random() * airVigilance.length)];
                     }
-                    return defendingBoard[Math.floor(Math.random() * defendingBoard.length)];
+                    const validBlockers = defendingBoard.filter(c => attacker.canBeBlockedBy(c));
+                    if (validBlockers.length > 0) return validBlockers[Math.floor(Math.random() * validBlockers.length)];
                 }
                 
                 return null; // Face
@@ -1417,75 +1593,48 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (s2 > s1) opp1.overallHp -= opp2.tier;
     }
 
-    function populateShop() {
-        const creaturesTarget = state.player.tier + 2;
-        const spellsTarget = 1;
+    function fillShopSlots(creatureBonus = 0, spellBonus = 0) {
+        const creaturesTarget = state.player.tier + 2 + creatureBonus;
+        const spellsTarget = 1 + spellBonus;
 
-        if (state.shop.frozen) {
-            state.shop.frozen = false;
-            if (freezeBtn) freezeBtn.classList.remove('frozen');
-            const img = document.getElementById('freeze-img');
-            if (img) img.src = 'img/unlocked.png';
-            
-            // BACKFILL logic: Use scryed cards to fill empty slots first, then randoms
-            const backfillFromScry = () => {
-                const currentCreatures = state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length;
-                const currentSpells = state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length;
-                
-                let i = 0;
-                while (i < state.nextShopBonusCards.length) {
-                    const card = state.nextShopBonusCards[i];
-                    const isCreature = card.type?.toLowerCase().includes('creature');
-                    if (isCreature && state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
-                        state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(i, 1)[0]));
-                    } else if (!isCreature && state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length < spellsTarget) {
-                        state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(i, 1)[0]));
-                    } else {
-                        i++;
-                    }
-                }
-            };
-
-            backfillFromScry();
-
-            const creaturePool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
-            const spellPool = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
-
-            while (state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
-                state.shop.cards.push(CardFactory.create(creaturePool[Math.floor(Math.random() * creaturePool.length)]));
-            }
-            while (state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length < spellsTarget) {
-                state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
-            }
-            return;
-        }
-
-        state.shop.cards = [];
-        
-        // Fill from scry queue first
-        let j = 0;
-        while (j < state.nextShopBonusCards.length) {
-            const card = state.nextShopBonusCards[j];
+        // 1. Fill from scry queue first
+        let i = 0;
+        while (i < state.nextShopBonusCards.length) {
+            const card = state.nextShopBonusCards[i];
             const isCreature = card.type?.toLowerCase().includes('creature');
             if (isCreature && state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
-                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(j, 1)[0]));
+                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(i, 1)[0]));
             } else if (!isCreature && state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length < spellsTarget) {
-                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(j, 1)[0]));
+                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(i, 1)[0]));
             } else {
-                j++;
+                i++;
             }
         }
 
         const creaturePool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
         const spellPool = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
 
-        // Fill remaining slots
+        // 2. Fill remaining slots
         while (state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
             state.shop.cards.push(CardFactory.create(creaturePool[Math.floor(Math.random() * creaturePool.length)]));
         }
         while (state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length < spellsTarget) {
             state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
         }
+    }
+
+    function populateShop() {
+        if (state.shop.frozen) {
+            state.shop.frozen = false;
+            if (freezeBtn) freezeBtn.classList.remove('frozen');
+            const img = document.getElementById('freeze-img');
+            if (img) img.src = 'img/unlocked.png';
+            fillShopSlots();
+            return;
+        }
+
+        state.shop.cards = [];
+        fillShopSlots();
     }
 
     function triggerMiengFerocious(power, board) {
@@ -1524,16 +1673,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function addCardsToShop(count, typeFilter = null) {
-        // This function adds cards to the EXISTING shop cards
-        // It pulls from the scry queue first!
+    function addCardsToShop(count, typeFilter = 'creature') {
         for (let i = 0; i < count; i++) {
-            if (state.nextShopBonusCards.length > 0) {
-                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.shift()));
+            if (state.shop.cards.length >= 7) break; 
+
+            // If scry queue has a creature, pull it.
+            let scryIdx = state.nextShopBonusCards.findIndex(c => c.type?.toLowerCase().includes('creature'));
+            if (scryIdx !== -1) {
+                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(scryIdx, 1)[0]));
             } else {
+                // Otherwise pull random creature from pool
                 const pool = availableCards.filter(c => {
                     const matchesTier = (c.tier || 1) <= state.player.tier;
-                    const matchesType = typeFilter ? c.type?.toLowerCase().includes(typeFilter) : true;
+                    const matchesType = c.type?.toLowerCase().includes('creature');
                     return matchesTier && matchesType && c.shape !== 'token';
                 });
                 if (pool.length > 0) {
@@ -1541,6 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        render();
     }
 
     function buyCard(cardId) {
@@ -1677,6 +1830,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 instance.onCast(state.player.board);
                 state.player.hand.splice(cardIndex, 1);
+                state.player.spellGraveyard.push(instance);
                 state.player.board.forEach(c => c.onNoncreatureCast(instance.isFoil, state.player.board));
             }
         }
@@ -1685,7 +1839,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function applyTargetedEffect(targetId) {
         if (!state.targetingEffect) return;
-        const target = state.player.board.find(c => c.id === targetId);
+        // Search BOTH board and hand for the target
+        const target = state.player.board.find(c => c.id === targetId) || state.player.hand.find(c => c.id === targetId);
         if (target) {
             if (state.targetingEffect.effect === 'dutiful_camel_counter') {
                 target.counters++;
@@ -1700,10 +1855,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (source && target.id !== source.id) {
                     const idx = state.player.board.indexOf(target);
                     if (idx !== -1) {
-                        state.player.board.splice(idx, 1);
-                        state.creaturesDiedThisShopPhase = true;
-                        const spawns = target.onDeath(state.player.board, 'player');
-                        if (spawns.length > 0) state.player.board.splice(idx, 0, ...spawns);
+                        resolveShopDeaths(idx, target);
+
                         const multiplier = source.isFoil ? 2 : 1;
                         source.tempPower += (2 * multiplier);
                         source.tempToughness += (2 * multiplier);
@@ -1713,10 +1866,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (state.targetingEffect.effect === 'pusbag_sacrifice') {
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
-                    state.player.board.splice(idx, 1);
-                    state.creaturesDiedThisShopPhase = true;
-                    const spawns = target.onDeath(state.player.board, 'player');
-                    if (spawns.length > 0) state.player.board.splice(idx, 0, ...spawns);
+                    resolveShopDeaths(idx, target);
                     state.targetingEffect = null;
                 }
             } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
@@ -1724,6 +1874,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (idx !== -1) {
                     state.player.board.splice(idx, 1);
                     state.creaturesDiedThisShopPhase = true;
+                    state.shopDeathsCount++;
 
                     // Move to Step 2: Buff Selection
                     // We do NOT process death triggers yet
@@ -1835,6 +1986,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 state.targetingEffect = null;
+                } else if (state.targetingEffect.effect === 'sporegraft_slime_counters') {
+                const multiplier = state.targetingEffect.isDouble ? 2 : 1;
+                target.counters += (2 * multiplier);
+                state.targetingEffect = null;
+                } else if (state.targetingEffect.effect === 'wechuge_sacrifice') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+                if (source && target.id !== source.id) {
+                    const idx = state.player.board.indexOf(target);
+                    if (idx !== -1) {
+                        resolveShopDeaths(idx, target);
+
+                        const multiplier = source.isFoil ? 2 : 1;
+                        source.counters += multiplier;
+                        state.targetingEffect = null;
+                    }
+                }
+            } else if (state.targetingEffect.effect === 'parliament_discard') {
+                console.log("Discarding card with ID:", targetId);
+                const cardIdx = state.player.hand.findIndex(c => c.id === targetId);
+                if (cardIdx !== -1) {
+                    state.player.hand.splice(cardIdx, 1);
+                    // Trigger Discovery from Graveyard
+                    state.discovery = {
+                        cards: state.player.spellGraveyard.map(s => CardFactory.create(s)),
+                        graveyard: true
+                    };
+                    state.targetingEffect = null;
+                }
             }
  else if (state.targetingEffect.effect === 'up_in_arms_step1') {
                 state.targetingEffect.target1Id = target.id;
@@ -1865,6 +2044,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         render();
+    }
+
+    function resolveShopDeaths(idx, target) {
+        state.player.board.splice(idx, 1);
+        state.creaturesDiedThisShopPhase = true;
+        state.shopDeathsCount++;
+
+        // 1. Trigger survivor deaths
+        state.player.board.forEach(c => c.onOtherCreatureDeath(state.player.board));
+        // 2. Trigger onDeath
+        const spawns = target.onDeath(state.player.board, 'player');
+        if (spawns.length > 0) state.player.board.splice(idx, 0, ...spawns);
     }
 
     function reorderBoard(fromIndex, toIndex) {
@@ -1905,6 +2096,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         state.player.hand.splice(state.player.hand.findIndex(c => c.id === state.castingSpell.id), 1);
         const isFoil = state.castingSpell.isFoil;
+        state.player.spellGraveyard.push(state.castingSpell);
         state.castingSpell = null;
         state.player.board.forEach(c => c.onNoncreatureCast(isFoil, state.player.board));
         render();
@@ -2048,7 +2240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addScry(count, callback = null) {
-        const creatures = availableCards.filter(c => c.type.toLowerCase().includes('creature') && c.shape !== 'token');
+        const creatures = availableCards.filter(c => c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
         const newCards = [];
         for (let i = 0; i < count; i++) {
             newCards.push(creatures[Math.floor(Math.random() * creatures.length)]);
@@ -2212,14 +2404,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (discoveryModal) {
             if (state.discovery) {
                 discoveryModal.style.display = 'flex';
-                document.getElementById('discovery-title').textContent = state.discovery.title;
-                document.getElementById('discovery-text').textContent = state.discovery.text;
-                
+
                 const cancelBtn = document.getElementById('discovery-cancel-btn');
-                if (cancelBtn) cancelBtn.style.display = 'none'; // Cannot cancel information gain
+
+                const actionsContainer = document.getElementById('discovery-actions');
+                if (cancelBtn) cancelBtn.style.display = 'none'; 
+                if (actionsContainer) actionsContainer.style.display = 'none'; // Discovery cannot be cancelled
 
                 const container = document.getElementById('discovery-card-container');
                 container.innerHTML = '';
+                if (state.discovery.graveyard) {
+                    container.classList.add('graveyard-mode');
+                } else {
+                    container.classList.remove('graveyard-mode');
+                }
                 state.discovery.cards.forEach(card => {
                     const cardEl = createCardElement(card, false, -1, []);
                     cardEl.addEventListener('click', () => resolveDiscovery(card));
@@ -2285,7 +2483,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state.player.board.splice(boardIndex, 1);
         state.player.gold += 1;
-        state.creaturesDiedThisShopPhase = true;
         render();
     }
 
@@ -2350,57 +2547,72 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Events
         if (isShop) cardEl.addEventListener('click', () => buyCard(instance.id));
-        else if (index !== -1) { // On player board
-            // Actionable check for Intli Assaulter (Only on board, during SHOP)
-            if (state.phase === 'SHOP' && instance.card_name === 'Intli Assaulter' && !state.castingSpell && !state.targetingEffect) {
-                cardEl.classList.add('actionable-outline');
-                cardEl.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    instance.onAction();
-                    render();
-                });
-            }
 
-            if (state.phase === 'SHOP' && !state.castingSpell && !state.targetingEffect) {
-                cardEl.draggable = true;
-                cardEl.addEventListener('dragstart', (e) => {
-                    e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'board', index: index, cardId: instance.id }));
-                });
-                cardEl.addEventListener('dragover', (e) => e.preventDefault());
-                cardEl.addEventListener('drop', (e) => { 
-                    e.preventDefault(); 
-                    e.stopPropagation();
-                    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-                    if (data.type === 'board') {
-                        const [m] = state.player.board.splice(data.index, 1);
-                        state.player.board.splice(index, 0, m);
-                        render();
-                    } else if (data.type === 'hand') {
-                        useCardFromHand(data.cardId, index);
-                    }
-                });
-            }
+        // Actionable check for Intli Assaulter, Covetous Wechuge (Only on board, during SHOP)
+        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge'];
+        if (state.phase === 'SHOP' && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect) {
+            cardEl.classList.add('actionable-outline');
+            cardEl.addEventListener('click', (e) => {
+                e.stopPropagation();
+                instance.onAction();
+                render();
+            });
+        }
+
+        if (state.phase === 'SHOP' && index !== -1 && !state.castingSpell && !state.targetingEffect) {
+            cardEl.draggable = true;
+            cardEl.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'board', index: index, cardId: instance.id }));
+            });
+            cardEl.addEventListener('dragover', (e) => e.preventDefault());
+            cardEl.addEventListener('drop', (e) => { 
+                e.preventDefault(); 
+                e.stopPropagation();
+                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                if (data.type === 'board') {
+                    const [m] = state.player.board.splice(data.index, 1);
+                    state.player.board.splice(index, 0, m);
+                    render();
+                } else if (data.type === 'hand') {
+                    useCardFromHand(data.cardId, index);
+                }
+            });
+        }
+        
+        if (index !== -1) {
             if (state.castingSpell) { 
                 cardEl.classList.add('targetable'); 
                 cardEl.addEventListener('click', () => applySpell(instance.id)); 
             }
             if (state.targetingEffect) { 
-                // Special case: Intli Assaulter can't sacrifice itself
-                if (state.targetingEffect.effect === 'intli_sacrifice' && instance.id === state.targetingEffect.sourceId) {
-                    // Not targetable
-                } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.type?.includes('Centaur')) {
-                    // Not targetable if not a Centaur
+                // Special case: Parliament discard targeting is HAND ONLY
+                if (state.targetingEffect.effect === 'parliament_discard') {
+                    // Not targetable on board
                 } else {
-                    cardEl.classList.add('targetable'); 
-                    cardEl.addEventListener('click', () => applyTargetedEffect(instance.id)); 
+                    // Special case: Intli Assaulter, Wechuge can't sacrifice themselves
+                    const selfSacrificers = ['intli_sacrifice', 'wechuge_sacrifice'];
+                    if (selfSacrificers.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
+                        // Not targetable
+                    } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.type?.includes('Centaur')) {
+                        // Not targetable if not a Centaur
+                    } else {
+                        cardEl.classList.add('targetable'); 
+                        cardEl.addEventListener('click', () => applyTargetedEffect(instance.id)); 
+                    }
                 }
             }
         } else if (state.player.hand.some(c => c.id === instance.id)) { // In hand
-             cardEl.addEventListener('click', () => useCardFromHand(instance.id));
-             cardEl.draggable = true;
-             cardEl.addEventListener('dragstart', (e) => {
-                 e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'hand', cardId: instance.id }));
-             });
+             // DISCARD TARGETING
+             if (state.targetingEffect && state.targetingEffect.effect === 'parliament_discard') {
+                 cardEl.classList.add('discard-outline');
+                 cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
+             } else {
+                 cardEl.addEventListener('click', () => useCardFromHand(instance.id));
+                 cardEl.draggable = true;
+                 cardEl.addEventListener('dragstart', (e) => {
+                     e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'hand', cardId: instance.id }));
+                 });
+             }
         }
         return cardEl;
     }
@@ -2430,7 +2642,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // End Shop Phase triggers
             state.player.board.forEach(c => c.onShopEndStep(state.player.board));
-            state.creaturesDiedThisShopPhase = false; // Reset for next shop turn
+            state.creaturesDiedThisShopPhase = false; 
+            state.shopDeathsCount = 0; // Reset for next shop turn
 
             // End Turn Logic
             startBattleTurn();

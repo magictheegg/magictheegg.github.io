@@ -134,7 +134,6 @@
         .card:hover:not(.attacking):not(.targetable) {
             transform: scale(1.15) translateY(-10px);
             z-index: 100 !important;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
         }
 
         .card-name { display: none; }
@@ -519,6 +518,11 @@
             box-shadow: 0 0 15px #add8e6;
         }
 
+        .discard-outline {
+            outline: 4px solid #f44336; /* Bright Red */
+            box-shadow: 0 0 15px #f44336;
+        }
+
         .damage-bubble {
             position: absolute;
             top: 50%;
@@ -571,8 +575,8 @@
         }
 
         .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85);
             display: flex;
             justify-content: center;
@@ -582,7 +586,7 @@
 
         .modal-content {
             background: #252525;
-            padding: 40px;
+            padding: 60px 40px;
             border-radius: 20px;
             border: 4px solid #555;
             box-shadow: 0 0 100px rgba(0,0,0,1);
@@ -601,7 +605,33 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+        }
+
+        #scry-card-container .card, #discovery-card-container .card {
+            flex-shrink: 0;
+        }
+
+        #discovery-card-container .card {
+            padding: 0 15px;
+        }
+
+        #discovery-card-container {
+            overflow-x: auto;
+            justify-content: center;
+            padding: 70px 40px;
+            scroll-behavior: smooth;
+        }
+
+        #discovery-card-container.graveyard-mode {
+            justify-content: flex-start;
+        }
+
+        #discovery-card-container::-webkit-scrollbar {
+            height: 10px;
+        }
+        #discovery-card-container::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 5px;
         }
 
         #scry-card-container .card-pt { display: none; }
@@ -610,10 +640,14 @@
         .modal-content .card {
             width: 200px; 
             scale: 1.2;
+            padding: 0 5px;
+            background: none;
+            box-shadow: none;
         }
 
         .modal-actions {
-            margin-top: 20px;
+            margin-top: 30px;
+            margin-bottom: -20px;
             display: flex;
             gap: 20px;
         }
@@ -756,27 +790,23 @@
                 <div id="player-hand" class="fanned-hand"></div>
             </footer>
         </main>
-    </div>
 
-    <div id="scry-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <h2>SCRY</h2>
-            <p>Keep this card for the next shop?</p>
-            <div id="scry-card-container"></div>
-            <div class="modal-actions">
-                <button id="scry-approve-btn" class="modal-btn approve">TOP</button>
-                <button id="scry-deny-btn" class="modal-btn deny">BOTTOM</button>
+        <div id="scry-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <div id="scry-card-container"></div>
+                <div class="modal-actions">
+                    <button id="scry-approve-btn" class="modal-btn approve">TOP</button>
+                    <button id="scry-deny-btn" class="modal-btn deny">BOTTOM</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="discovery-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content" style="max-width: 1000px; width: 95%;">
-            <h2 id="discovery-title">DISCOVER</h2>
-            <p id="discovery-text">Choose a card to add to your hand.</p>
-            <div id="discovery-card-container" class="card-row" style="margin: 30px 0; gap: 40px;"></div>
-            <div class="modal-actions">
-                <button id="discovery-cancel-btn" class="modal-btn deny">CANCEL</button>
+        <div id="discovery-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content" style="max-width: 1000px; width: 95%;">
+                <div id="discovery-card-container" class="card-row"></div>
+                <div id="discovery-actions" class="modal-actions">
+                    <button id="discovery-cancel-btn" class="modal-btn deny">CANCEL</button>
+                </div>
             </div>
         </div>
     </div>

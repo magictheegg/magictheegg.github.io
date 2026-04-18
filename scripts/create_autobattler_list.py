@@ -14,7 +14,9 @@ def create_autobattler_card_list():
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
         "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
         "Haggard Bandit", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats"
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
+        "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
+        "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -29,7 +31,6 @@ def create_autobattler_card_list():
 
     cards = all_cards_data.get('cards', [])
     
-    # 2. Get the 21 requested cards
     final_cards = []
     tier_2_names = [
         "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
@@ -40,17 +41,29 @@ def create_autobattler_card_list():
         "Haggard Bandit", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
         "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats"
     ]
+    tier_3_names = [
+        "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
+        "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle"
+    ]
+
     for name in card_names_to_include:
         match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token'), None)
         if match:
+            # Create a copy so we don't modify the source data multiple times if names repeat
+            card_copy = dict(match)
             # Add tier information
-            match['tier'] = 2 if name in tier_2_names else 1
-            final_cards.append(match)
+            if name in tier_3_names:
+                card_copy['tier'] = 3
+            elif name in tier_2_names:
+                card_copy['tier'] = 2
+            else:
+                card_copy['tier'] = 1
+            final_cards.append(card_copy)
         else:
             print(f"Warning: Could not find base card {name}")
 
     # Add required tokens
-    token_names = [("Bird", "AEX"), ("Construct", "ACE")]
+    token_names = [("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD")]
     for t_name, t_set in token_names:
         # For ACE Construct, we want specifically #58
         if t_name == "Construct" and t_set == "ACE":
@@ -59,33 +72,34 @@ def create_autobattler_card_list():
             token = next((c for c in cards if c.get('card_name') == t_name and c.get('shape') == 'token' and c.get('set') == t_set), None)
         
         if token:
-            final_cards.append(token)
+            final_cards.append(dict(token))
 
-    # 3. Write to output
-
-    # 2. Get exactly one 1/1 Construct token
-    construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token' and c.get('pt') == '1/1'), None)
+    # 2. Get exactly one 1/1 Construct token (ACE #58 for art)
+    construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token' and str(c.get('number')) == "58" and c.get('set') == 'ACE'), None)
     if not construct:
-        # Fallback to any construct token if 1/1 not found
+        construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token' and c.get('pt') == '1/1'), None)
+    if not construct:
         construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token'), None)
     
     if construct:
-        final_cards.append(construct)
+        final_cards.append(dict(construct))
     else:
         print("Warning: Could not find a Construct token!")
 
-    # 3. Add set-level image_type for consistency
-    # (Just using a simple map for speed)
+    # Add set-level image_type for consistency
     set_img_types = {}
     for card in final_cards:
         s = card.get('set')
         if s not in set_img_types:
             set_file = os.path.join('sets', f'{s}-files', f'{s}.json')
-            try:
-                with open(set_file, 'r', encoding='utf-8-sig') as sf:
-                    data = json.load(sf)
-                    set_img_types[s] = data.get('image_type', 'jpg')
-            except:
+            if os.path.exists(set_file):
+                try:
+                    with open(set_file, 'r', encoding='utf-8-sig') as sf:
+                        data = json.load(sf)
+                        set_img_types[s] = data.get('image_type', 'jpg')
+                except:
+                    set_img_types[s] = 'jpg'
+            else:
                 set_img_types[s] = 'jpg'
         card['set_image_type'] = set_img_types[s]
 
