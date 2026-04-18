@@ -1,7 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- OO CARD SYSTEM ---
+// --- OO CARD SYSTEM ---
 
-    class BaseCard {
+class BaseCard {
         constructor(data) {
             Object.assign(this, data);
             this.id = this.id || `card-${Math.random().toString(36).substr(2, 9)}`;
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.enchantments) {
                 this.enchantments.forEach(e => {
                     if (e.card_name === "Faith in Darkness") { p += 2; t += 2; maxT += 2; }
-                    if (e.card_name === "To Battle") { p += 2; }
                 });
             }
 
@@ -52,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const stable = this.getStableStats();
             const dynamic = this.getDynamicBuffs(board);
             return {
-                p: stable.p + dynamic.p,
+                p: Math.max(0, stable.p + dynamic.p),
                 t: stable.t + dynamic.t,
                 maxT: stable.maxT + dynamic.t
             };
@@ -84,7 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
         onCombatStart(board) { }
 
         // Hook for Attack triggers
-        onAttack(board) { return []; }
+        onAttack(board) { 
+            // Draconic Cinderlance Logic
+            const hasCinderlance = board?.some(c => c.card_name === 'Draconic Cinderlance');
+            if (hasCinderlance) {
+                const stats = this.getDisplayStats(board);
+                if (stats.p >= 4) {
+                    if (!this.enchantments) this.enchantments = [];
+                    if (!this.enchantments.some(e => e.card_name === 'Cinderlance Menace')) {
+                        this.enchantments.push({ card_name: 'Cinderlance Menace', rules_text: 'Menace' });
+                    }
+                }
+            }
+            return []; 
+        }
 
         // Hook for Life Gain triggers
         onLifeGain(board) { }
@@ -116,30 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
                           (this.owner === 'player' ? state.battleBoards.player : state.battleBoards.opponent) : 
                           state.player.board;
 
-            if (kw === 'menace' && board) {
-                const stats = this.getDisplayStats(board);
-                if (stats.p >= 4 && board.some(c => c.card_name === 'Draconic Cinderlance')) return true;
-            }
-
             // CHECK ENCHANTMENTS FIRST
             if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes(kw))) return true;
 
             // PRECISE RULES TEXT CHECK
             if (this.card_name === 'Mieng, Who Dances With Dragons') {
-                return this.enchantments?.some(e => e.card_name === 'Mieng Transformation' && e.rules_text?.toLowerCase().includes(kw));
+                return !!this.enchantments?.some(e => e.card_name === 'Mieng Transformation' && e.rules_text?.toLowerCase().includes(kw));
             }
 
-            return (this.rules_text?.toLowerCase().includes(kw));
-        }
-
-        // Helper for Intimidate / Menace targeting
-        canBeBlockedBy(defender) {
-            if (this.hasKeyword('Intimidate')) {
-                const isBlack = defender.color?.includes('B');
-                const isArtifact = defender.type?.toLowerCase().includes('artifact');
-                if (!isBlack && !isArtifact) return false;
-            }
-            return true;
+            return !!(this.rules_text?.toLowerCase().includes(kw));
         }
 
         clone() {
@@ -295,6 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
         onApply(target, board) {
             const multiplier = this.isFoil ? 2 : 1;
             target.counters += multiplier;
+            if (!target.enchantments) target.enchantments = [];
+            target.enchantments.push({ card_name: 'To Battle', rules_text: 'Haste' });
         }
     }
 
@@ -482,14 +480,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = opponentBoard[Math.floor(Math.random() * opponentBoard.length)];
                 const multiplier = this.isFoil ? 2 : 1;
                 target.tempPower -= (2 * multiplier);
-                
+
                 // For the animation sequence, return the target
                 return [target];
             }
             return [];
         }
     }
-
     class RapaciousSprite extends BaseCard {
         onETB(board) {
             const multiplier = this.isFoil ? 2 : 1;
@@ -842,15 +839,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const boardLimit = 7;
 
     // DOM Elements
-    const playerBoardEl = document.getElementById('player-board');
-    const playerHandEl = document.getElementById('player-hand');
-    const shopEl = document.getElementById('shop');
-    const rerollBtn = document.getElementById('reroll-btn');
-    const freezeBtn = document.getElementById('freeze-btn');
-    const tierUpBtn = document.getElementById('tier-up-btn');
-    const tierStarsEl = document.getElementById('tier-stars');
-    const endTurnBtn = document.getElementById('end-turn-btn');
-    const cardTemplate = document.getElementById('card-template');
+    let playerBoardEl = (typeof document !== 'undefined') ? document.getElementById('player-board') : null;
+    let playerHandEl = (typeof document !== 'undefined') ? document.getElementById('player-hand') : null;
+    let shopEl = (typeof document !== 'undefined') ? document.getElementById('shop') : null;
+    let rerollBtn = (typeof document !== 'undefined') ? document.getElementById('reroll-btn') : null;
+    let freezeBtn = (typeof document !== 'undefined') ? document.getElementById('freeze-btn') : null;
+    let tierUpBtn = (typeof document !== 'undefined') ? document.getElementById('tier-up-btn') : null;
+    let tierStarsEl = (typeof document !== 'undefined') ? document.getElementById('tier-stars') : null;
+    let endTurnBtn = (typeof document !== 'undefined') ? document.getElementById('end-turn-btn') : null;
+    let cardTemplate = (typeof document !== 'undefined') ? document.getElementById('card-template') : null;
 
     // Stats and labels
     const playerHpEl = () => document.getElementById('player-hp');
@@ -873,6 +870,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialization
     async function init() {
         if (tierUpBtn) tierUpBtn.addEventListener('click', tierUp);
+        if (rerollBtn) rerollBtn.addEventListener('click', rerollShop);
+        if (endTurnBtn) endTurnBtn.addEventListener('click', () => {
+            if (state.castingSpell || state.targetingEffect) {
+                // Cancel Action Logic
+                if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast) {
+                    // 1. If it's a creature already on the board (like Pusbag or Camel), return it to hand
+                    const boardIndex = state.player.board.findIndex(c => c.id === state.targetingEffect.sourceId);
+                    if (boardIndex !== -1) {
+                        const card = state.player.board.splice(boardIndex, 1)[0];
+                        state.player.hand.push(card);
+                    }
+
+                    // 2. RESTORE FOR EXECUTIONER'S MADNESS (If Step 1 happened)
+                    if (state.targetingEffect.effect === 'executioner_buff_step2') {
+                        if (state.targetingEffect.sacrificedCard) {
+                            state.player.board.splice(state.targetingEffect.sacrificedIndex, 0, state.targetingEffect.sacrificedCard);
+                        }
+                    }
+                }
+                state.castingSpell = null;
+                state.targetingEffect = null;
+                render();
+            } else {
+                // End Shop Phase triggers
+                state.player.board.forEach(c => c.onShopEndStep(state.player.board));
+                state.creaturesDiedThisShopPhase = false; 
+                state.shopDeathsCount = 0; // Reset for next shop turn
+
+                // End Turn Logic
+                startBattleTurn();
+            }
+        });
+
         if (freezeBtn) {
             freezeBtn.addEventListener('click', () => {
                 state.shop.frozen = !state.shop.frozen;
@@ -1421,52 +1451,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        await new Promise(r => setTimeout(r, 200)); 
-    };
-
-        const findTarget = (attacker, defendingBoard) => {
-            const hasMenace = attacker.hasKeyword('Menace');
-
-            if (attacker.hasKeyword('Flying')) {
-                // Flying attackers priority 1: Vigilance with Flying or Reach (Ignored if Menace)
-                if (!hasMenace) {
-                    const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && (c.hasKeyword('Flying') || c.hasKeyword('Reach')) && attacker.canBeBlockedBy(c));
-                    if (airVigilance.length > 0) return airVigilance[Math.floor(Math.random() * airVigilance.length)];
-                }
-                
-                // Flying attackers priority 2: ANY creature with Flying or Reach
-                const airCreatures = defendingBoard.filter(c => (c.hasKeyword('Flying') || c.hasKeyword('Reach')) && attacker.canBeBlockedBy(c));
-                if (airCreatures.length > 0) return airCreatures[Math.floor(Math.random() * airCreatures.length)];
-
-                // Otherwise, they bypass ground creatures and attack FACE directly
-                return null;
-            } else { 
-                // Ground attackers priority 1: Ground Vigilance (Taunt) first (Ignored if Menace)
-                if (!hasMenace) {
-                    const groundVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && !c.hasKeyword('Flying') && attacker.canBeBlockedBy(c));
-                    if (groundVigilance.length > 0) return groundVigilance[Math.floor(Math.random() * groundVigilance.length)];
-                }
-                
-                // Ground attackers priority 2: Ground creatures without Vigilance
-                const groundCreatures = defendingBoard.filter(c => !c.hasKeyword('Flying') && attacker.canBeBlockedBy(c));
-                if (groundCreatures.length > 0) return groundCreatures[Math.floor(Math.random() * groundCreatures.length)];
-                
-                // Ground attackers priority 3: Flying creatures (if ONLY option left)
-                if (defendingBoard.length > 0) {
-                    // Even if hitting air, hit the one with Vigilance first if available
-                    if (!hasMenace) {
-                        const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && attacker.canBeBlockedBy(c));
-                        if (airVigilance.length > 0) return airVigilance[Math.floor(Math.random() * airVigilance.length)];
-                    }
-                    const validBlockers = defendingBoard.filter(c => attacker.canBeBlockedBy(c));
-                    if (validBlockers.length > 0) return validBlockers[Math.floor(Math.random() * validBlockers.length)];
-                }
-                
-                return null; // Face
-            }
+        await new Promise(r => setTimeout(r, 200));
         };
 
         const executeCombatPhase = async (isFirstStrike) => {
+
             const currentOppCombat = getOpponent();
             if (!currentOppCombat) return;
 
@@ -2065,6 +2054,48 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
     }
 
+    function findTarget(attacker, defendingBoard) {
+        const hasMenace = attacker.hasKeyword('Menace');
+
+        if (attacker.hasKeyword('Flying')) {
+            // Flying attackers priority 1: Vigilance with Flying or Reach (Ignored if Menace)
+            if (!hasMenace) {
+                const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && (c.hasKeyword('Flying') || c.hasKeyword('Reach')));
+                if (airVigilance.length > 0) return airVigilance[Math.floor(Math.random() * airVigilance.length)];
+            }
+            
+            // Flying attackers priority 2: ANY creature with Flying or Reach (Excluding Vigilance if Menace)
+            const airCreatures = defendingBoard.filter(c => (c.hasKeyword('Flying') || c.hasKeyword('Reach')) && (!hasMenace || !c.hasKeyword('Vigilance')));
+            if (airCreatures.length > 0) return airCreatures[Math.floor(Math.random() * airCreatures.length)];
+
+            // Otherwise, they bypass ground creatures and attack FACE directly
+            return null;
+        } else { 
+            // Ground attackers priority 1: Ground Vigilance (Taunt) first (Ignored if Menace)
+            if (!hasMenace) {
+                const groundVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance') && !c.hasKeyword('Flying'));
+                if (groundVigilance.length > 0) return groundVigilance[Math.floor(Math.random() * groundVigilance.length)];
+            }
+            
+            // Ground attackers priority 2: Ground creatures without Vigilance
+            const groundCreatures = defendingBoard.filter(c => !c.hasKeyword('Flying') && (!hasMenace || !c.hasKeyword('Vigilance')));
+            if (groundCreatures.length > 0) return groundCreatures[Math.floor(Math.random() * groundCreatures.length)];
+            
+            // Ground attackers priority 3: Flying creatures (if ONLY option left)
+            if (defendingBoard.length > 0) {
+                // Even if hitting air, hit the one with Vigilance first if available
+                if (!hasMenace) {
+                    const airVigilance = defendingBoard.filter(c => c.hasKeyword('Vigilance'));
+                    if (airVigilance.length > 0) return airVigilance[Math.floor(Math.random() * airVigilance.length)];
+                }
+                const validBlockers = defendingBoard.filter(c => !hasMenace || !c.hasKeyword('Vigilance'));
+                if (validBlockers.length > 0) return validBlockers[Math.floor(Math.random() * validBlockers.length)];
+            }
+            
+            return null; // Face
+        }
+    }
+
     function createToken(name, set, owner) {
         const raw = availableCards.find(c => c.card_name === name && c.shape === 'token' && (set ? c.set === set : true));
         if (raw) {
@@ -2617,37 +2648,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return cardEl;
     }
 
-    rerollBtn.addEventListener('click', rerollShop);
-    endTurnBtn.addEventListener('click', () => {
-        if (state.castingSpell || state.targetingEffect) {
-            // Cancel Action Logic
-            if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast) {
-                // 1. If it's a creature already on the board (like Pusbag or Camel), return it to hand
-                const boardIndex = state.player.board.findIndex(c => c.id === state.targetingEffect.sourceId);
-                if (boardIndex !== -1) {
-                    const card = state.player.board.splice(boardIndex, 1)[0];
-                    state.player.hand.push(card);
-                }
+    if (typeof document !== 'undefined' && typeof module === 'undefined') {
+        init();
+    }
 
-                // 2. RESTORE FOR EXECUTIONER'S MADNESS (If Step 1 happened)
-                if (state.targetingEffect.effect === 'executioner_buff_step2') {
-                    if (state.targetingEffect.sacrificedCard) {
-                        state.player.board.splice(state.targetingEffect.sacrificedIndex, 0, state.targetingEffect.sacrificedCard);
-                    }
-                }
-            }
-            state.castingSpell = null;
-            state.targetingEffect = null;
-            render();
-        } else {
-            // End Shop Phase triggers
-            state.player.board.forEach(c => c.onShopEndStep(state.player.board));
-            state.creaturesDiedThisShopPhase = false; 
-            state.shopDeathsCount = 0; // Reset for next shop turn
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { 
+        state, CardFactory, BaseCard, init, availableCards,
+        playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
+        resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget
+    };
+}
 
-            // End Turn Logic
-            startBattleTurn();
-        }
-    });
-    init();
-});
+if (typeof document !== 'undefined' && typeof module === 'undefined') {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // All top-level code has run, but we might need a specific entry point if needed
+        });
+    }
+}
