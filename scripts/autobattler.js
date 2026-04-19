@@ -325,8 +325,10 @@ class BaseCard {
         onDeath(board, owner) {
             if (!state.battleBoards) return []; // Fizzle if not in combat
             const opponentBoard = (owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-            if (opponentBoard.length > 0) {
-                const target = opponentBoard[Math.floor(Math.random() * opponentBoard.length)];
+            const validTargets = opponentBoard.filter(c => c.getDisplayStats(opponentBoard).t > 0);
+            
+            if (validTargets.length > 0) {
+                const target = validTargets[Math.floor(Math.random() * validTargets.length)];
                 const multiplier = this.isFoil ? 2 : 1;
                 target.tempPower -= (2 * multiplier);
                 target.tempToughness -= (2 * multiplier);
@@ -336,7 +338,7 @@ class BaseCard {
                     if (el) {
                         el.classList.add('shake');
                         setTimeout(() => el.classList.remove('shake'), 300);
-                        showDamageBubble(el, 2 * multiplier);
+                        showDamageBubble(target.id, 2 * multiplier, 'debuff-bubble');
                     }
                 }, 100);
             }
@@ -645,8 +647,8 @@ class BaseCard {
 
     class SporegraftSlime extends BaseCard {
         onDeath(board, owner) {
-            // Both shop and combat: Target random friendly creature
-            const friends = board.filter(c => c.id !== this.id);
+            // Both shop and combat: Target random friendly creature (not dying)
+            const friends = board.filter(c => c.id !== this.id && c.getDisplayStats(board).t > 0);
             if (friends.length > 0) {
                 const target = friends[Math.floor(Math.random() * friends.length)];
                 const multiplier = this.isFoil ? 2 : 1;
@@ -865,6 +867,58 @@ class BaseCard {
         state.player.hand.push(card);
         state.discovery = null;
         render();
+    }
+
+    function showDamageBubble(targetOrId, amount, className = 'damage-bubble') {
+        if (!targetOrId || amount <= 0) return;
+        const cabinet = document.getElementById('game-cabinet');
+        if (!cabinet) return;
+
+        // If targetOrId is a string, it's an ID (without the card- prefix)
+        let targetEl = (typeof targetOrId === 'string') ? document.getElementById(`card-${targetOrId}`) : targetOrId;
+        if (!targetEl) return;
+
+        const bubble = document.createElement('div');
+        bubble.className = className;
+        bubble.textContent = `-${amount}`;
+        cabinet.appendChild(bubble);
+
+        const startTime = Date.now();
+        const duration = 1200;
+
+        function updateBubblePosition() {
+            const elapsed = Date.now() - startTime;
+            if (elapsed >= duration) {
+                bubble.remove();
+                return;
+            }
+
+            // Re-fetch element by ID if we started with an ID to survive re-renders
+            if (typeof targetOrId === 'string') {
+                targetEl = document.getElementById(`card-${targetOrId}`);
+            }
+            if (!targetEl) {
+                bubble.remove();
+                return;
+            }
+
+            const rect = targetEl.getBoundingClientRect();
+            const cabRect = cabinet.getBoundingClientRect();
+
+            const style = window.getComputedStyle(cabinet);
+            const matrix = new WebKitCSSMatrix(style.transform);
+            const currentScale = matrix.a || 1;
+
+            const x = ((rect.left + rect.width / 2) - cabRect.left) / currentScale;
+            const y = ((rect.top + rect.height / 2) - cabRect.top) / currentScale;
+
+            bubble.style.left = `${x}px`;
+            bubble.style.top = `${y}px`;
+
+            requestAnimationFrame(updateBubblePosition);
+        }
+
+        requestAnimationFrame(updateBubblePosition);
     }
 
     // Initialization
@@ -1176,95 +1230,10 @@ class BaseCard {
             await new Promise(r => setTimeout(r, 180));
 
             // Phase 3: Impact calculations
-            let defenderDamageTaken = damageDealt;
-            let attackerDamageTaken = 0;
-            const currentOppAttack = getOpponent();
-
-            if (defender) {
-                const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-                const defenderStats = defender.getDisplayStats(defenderBoard);
-                
-                // INDESTRUCTIBLE PROTECTION (Defender)
-                if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
-                    if (defenderDamageTaken >= defenderStats.t) {
-                        defenderDamageTaken = Math.max(0, defenderStats.t - 1);
-                        defender.indestructibleUsed = true;
-                        const defenderEl = document.getElementById(`card-${defender.id}`);
-                        if (defenderEl) {
-                            defenderEl.style.boxShadow = "0 0 30px #fff";
-                            setTimeout(() => defenderEl.style.boxShadow = "", 500);
-                        }
-                    }
-                }
-
-                const overflow = Math.max(0, damageDealt - defenderStats.t);
-                defender.damageTaken += defenderDamageTaken;
-                
-                if (attacker.hasKeyword('Lifelink')) {
-                    if (attacker.owner === 'player') {
-                        state.player.fightHp += defenderDamageTaken;
-                        triggerLifeGain('player');
-                    } else if (currentOppAttack) {
-                        currentOppAttack.fightHp += defenderDamageTaken;
-                        triggerLifeGain('opponent');
-                    }
-                }
-
-                // ... Trample Logic (Remains same, uses damageDealt/overflow) ...
-                if (overflow > 0 && attacker.hasKeyword('Trample')) {
-                    const idx = defenderBoard.indexOf(defender);
-                    const adjacents = [];
-                    if (idx > 0) adjacents.push(defenderBoard[idx - 1]);
-                    if (idx < defenderBoard.length - 1) adjacents.push(defenderBoard[idx + 1]);
-
-                    if (adjacents.length > 0) {
-                        const trampleTarget = adjacents[Math.floor(Math.random() * adjacents.length)];
-                        trampleTarget.damageTaken += overflow;
-                        setTimeout(() => {
-                            const trampleEl = document.getElementById(`card-${trampleTarget.id}`);
-                            if (trampleEl) {
-                                trampleEl.classList.add('shake');
-                                setTimeout(() => trampleEl.classList.remove('shake'), 300);
-                                showDamageBubble(trampleEl, overflow);
-                            }
-                        }, 100);
-                    } else {
-                        if (attacker.owner === 'player') {
-                            if (currentOppAttack) currentOppAttack.fightHp -= overflow;
-                        } else state.player.fightHp -= overflow;
-                        
-                        setTimeout(() => {
-                            const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
-                            showDamageBubble(document.getElementById(avatarId), overflow);
-                        }, 100);
-                    }
-                }
-
-                if (!isFirstStrike) {
-                    attackerDamageTaken = defenderStats.p;
-                    
-                    // INDESTRUCTIBLE PROTECTION (Attacker)
-                    const attackerStats = attacker.getDisplayStats(attackerBoard);
-                    if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
-                        if (attackerDamageTaken >= attackerStats.t) {
-                            attackerDamageTaken = Math.max(0, attackerStats.t - 1);
-                            attacker.indestructibleUsed = true;
-                            if (attackerEl) {
-                                attackerEl.style.boxShadow = "0 0 30px #fff";
-                                setTimeout(() => attackerEl.style.boxShadow = "", 500);
-                            }
-                        }
-                    }
-                    attacker.damageTaken += attackerDamageTaken;
-                }
-            } else {
-                 if (attacker.owner === 'player') {
-                    if (currentOppAttack) currentOppAttack.fightHp -= damageDealt;
-                 } else state.player.fightHp -= damageDealt;
-            }
+            const { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
 
             render(); 
-            
+
             // SHOW BUBBLES AND SHAKE AFTER RENDER
             if (defender) {
                 const newDefenderEl = document.getElementById(`card-${defender.id}`);
@@ -1272,6 +1241,28 @@ class BaseCard {
                     newDefenderEl.classList.add('shake');
                     setTimeout(() => newDefenderEl.classList.remove('shake'), 300);
                     showDamageBubble(newDefenderEl, defenderDamageTaken);
+                }
+
+                // TRAMPLE ANIMATIONS
+                if (trampleOverflow > 0) {
+                    if (trampleTarget) {
+                        // Splash to neighbor
+                        setTimeout(() => {
+                            const trampleEl = document.getElementById(`card-${trampleTarget.id}`);
+                            if (trampleEl) {
+                                trampleEl.classList.add('shake');
+                                setTimeout(() => trampleEl.classList.remove('shake'), 300);
+                                showDamageBubble(trampleEl, trampleOverflow);
+                            }
+                        }, 100);
+                    } else {
+                        // Go to face
+                        setTimeout(() => {
+                            const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
+                            const avatarEl = document.getElementById(avatarId);
+                            showDamageBubble(avatarEl, trampleOverflow);
+                        }, 100);
+                    }
                 }
             } else {
                 const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
@@ -1306,50 +1297,8 @@ class BaseCard {
             }
         };
 
-        function showDamageBubble(targetEl, amount) {
-            if (!targetEl || amount <= 0) return;
-            const cabinet = document.getElementById('game-cabinet');
-            if (!cabinet) return;
-
-            const bubble = document.createElement('div');
-            bubble.className = 'damage-bubble';
-            bubble.textContent = `-${amount}`;
-            cabinet.appendChild(bubble);
-
-            // Internal 1600x900 coordinates
-            // We use getBoundingClientRect relative to cabinet rect to get the internal placement
-            const startTime = Date.now();
-            const duration = 1200;
-
-            function updateBubblePosition() {
-                const elapsed = Date.now() - startTime;
-                if (elapsed >= duration) {
-                    bubble.remove();
-                    return;
-                }
-
-                const rect = targetEl.getBoundingClientRect();
-                const cabRect = cabinet.getBoundingClientRect();
-                
-                // Extract the scale factor from the cabinet's transform matrix
-                const style = window.getComputedStyle(cabinet);
-                const matrix = new WebKitCSSMatrix(style.transform);
-                const currentScale = matrix.a || 1;
-
-                // Viewport distance / scale = internal 1600x900 coordinate
-                const x = ((rect.left + rect.width / 2) - cabRect.left) / currentScale;
-                const y = ((rect.top + rect.height / 2) - cabRect.top) / currentScale;
-
-                bubble.style.left = `${x}px`;
-                bubble.style.top = `${y}px`;
-
-                requestAnimationFrame(updateBubblePosition);
-            }
-
-            requestAnimationFrame(updateBubblePosition);
-        }
-
         const createToken = (tokenName, owner) => {
+
             const tokenData = availableCards.find(c => c.card_name === tokenName && c.shape === 'token');
             if (tokenData) {
                 const token = CardFactory.create(tokenData);
@@ -1361,98 +1310,7 @@ class BaseCard {
             return null;
         };
 
-        const resolveDeaths = async () => {
-            const isProtected = (c, board) => c.hasKeyword('Indestructible') && !c.indestructibleUsed;
-
-            const deadPlayerCards = state.battleBoards.player.filter(c => 
-                c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)
-            );
-            const deadOpponentCards = state.battleBoards.opponent.filter(c => 
-                c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)
-            );
-
-            // Special check: do we have anyone who IS protected and at <= 0? 
-            // We need to trigger their protection now so they don't look dead.
-            const protectedPlayer = state.battleBoards.player.filter(c => c.getDisplayStats(state.battleBoards.player).t <= 0 && isProtected(c, state.battleBoards.player));
-            const protectedOpponent = state.battleBoards.opponent.filter(c => c.getDisplayStats(state.battleBoards.opponent).t <= 0 && isProtected(c, state.battleBoards.opponent));
-            
-            [...protectedPlayer, ...protectedOpponent].forEach(c => {
-                c.indestructibleUsed = true;
-                const board = protectedPlayer.includes(c) ? state.battleBoards.player : state.battleBoards.opponent;
-                const stats = c.getDisplayStats(board);
-                const currentT = stats.t + c.damageTaken;
-                c.damageTaken = currentT - 1;
-                const el = document.getElementById(`card-${c.id}`);
-                if (el) {
-                    el.style.boxShadow = "0 0 30px #fff";
-                    setTimeout(() => el.style.boxShadow = "", 500);
-                }
-            });
-
-            if (deadPlayerCards.length === 0 && deadOpponentCards.length === 0) {
-                if (protectedPlayer.length > 0 || protectedOpponent.length > 0) render();
-                return;
-            }
-
-            deadPlayerCards.concat(deadOpponentCards).forEach(c => document.getElementById(`card-${c.id}`)?.classList.add('dying'));
-        await new Promise(r => setTimeout(r, 500)); 
-
-        const processDeaths = async (board, owner) => {
-            // Re-filter because previous deaths in the same loop might have changed the board
-            const deadCards = board.filter(c => c.getDisplayStats(board).t <= 0);
-            for (const deadCard of deadCards) {
-                const idx = board.indexOf(deadCard);
-                if (idx === -1) continue;
-
-                // 1. Trigger "Other Creature Dies" for survivors
-                board.forEach(c => {
-                    if (c.id !== deadCard.id) {
-                        c.onOtherCreatureDeath(board);
-                    }
-                });
-
-                let spawns = deadCard.onDeath(board, owner);
-                
-                // Check for resurrection enchantment
-                const hasResurrection = deadCard.enchantments && deadCard.enchantments.some(e => e.card_name === 'By Blood and Venom');
-                if (hasResurrection) {
-                    const rawData = availableCards.find(c => c.card_name === deadCard.card_name && c.set === deadCard.set);
-                    if (rawData) {
-                        const spawned = CardFactory.create(rawData);
-                        spawned.id = `returned-${Math.random()}`;
-                        spawned.owner = owner;
-                        spawns.push(spawned);
-                    }
-                }
-                
-                if (spawns.length > 0) board.splice(idx, 1, ...spawns.filter(Boolean));
-                else board.splice(idx, 1);
-            }
-        };
-
-        await processDeaths(state.battleBoards.player, 'player');
-        await processDeaths(state.battleBoards.opponent, 'opponent');
-
-        render();
-
-        // 2. CHECK FOR SPAWNED CREATURES (Trenchrunner Fight)
-        if (state.phase === 'BATTLE') {
-            const allBoardCards = state.battleBoards.player.concat(state.battleBoards.opponent);
-            for (const spawn of allBoardCards) {
-                if (spawn.isTrenchrunnerSpawn) {
-                    delete spawn.isTrenchrunnerSpawn; // Clear flag first
-                    const defenderBoard = (spawn.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-                    const target = findTarget(spawn, defenderBoard);
-                    // Trigger immediate fight (no first strike)
-                    await performAttack(spawn, target, false);
-                    await resolveDeaths(); 
-                    break; // Prevent multiple attacks in one death loop
-                }
-            }
-        }
-
         await new Promise(r => setTimeout(r, 200));
-        };
 
         const executeCombatPhase = async (isFirstStrike) => {
 
@@ -1637,7 +1495,6 @@ class BaseCard {
     }
 
     function triggerLifeGain(owner) {
-        console.log(`Triggering life gain for ${owner}`);
         const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
                       (owner === 'player' ? state.battleBoards.player : state.battleBoards.opponent) : 
                       state.player.board;
@@ -2096,6 +1953,187 @@ class BaseCard {
         }
     }
 
+    function resolveCombatImpact(attacker, defender, isFirstStrike = false) {
+        const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
+        const attackerStats = attacker.getDisplayStats(attackerBoard);
+        const damageDealt = attackerStats.p;
+
+        let defenderDamageTaken = damageDealt;
+        let attackerDamageTaken = 0;
+        let trampleOverflow = 0;
+        let trampleTarget = null;
+        const currentOppAttack = getOpponent();
+
+        if (defender) {
+            const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+            const defenderStats = defender.getDisplayStats(defenderBoard);
+
+            // INDESTRUCTIBLE PROTECTION (Defender)
+            if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
+                if (defenderDamageTaken >= defenderStats.t) {
+                    defenderDamageTaken = Math.max(0, defenderStats.t - 1);
+                    defender.indestructibleUsed = true;
+                }
+            }
+
+            const overflow = Math.max(0, damageDealt - defenderStats.t);
+            defender.damageTaken += defenderDamageTaken;
+
+            if (attacker.hasKeyword('Lifelink')) {
+                if (attacker.owner === 'player') {
+                    state.player.fightHp += defenderDamageTaken;
+                    triggerLifeGain('player');
+                } else if (currentOppAttack) {
+                    currentOppAttack.fightHp += defenderDamageTaken;
+                    triggerLifeGain('opponent');
+                }
+            }
+
+            // Trample Logic (Adjacent Splash)
+            if (overflow > 0 && attacker.hasKeyword('Trample')) {
+                trampleOverflow = overflow;
+                const idx = defenderBoard.indexOf(defender);
+                const adjacents = [];
+                if (idx > 0) adjacents.push(defenderBoard[idx - 1]);
+                if (idx < defenderBoard.length - 1) adjacents.push(defenderBoard[idx + 1]);
+
+                if (adjacents.length > 0) {
+                    trampleTarget = adjacents[Math.floor(Math.random() * adjacents.length)];
+                    trampleTarget.damageTaken += overflow;
+                } else {
+                    if (attacker.owner === 'player') {
+                        if (currentOppAttack) currentOppAttack.fightHp -= overflow;
+                    } else state.player.fightHp -= overflow;
+                }
+            }
+
+            if (!isFirstStrike) {
+                attackerDamageTaken = defenderStats.p;
+
+                // INDESTRUCTIBLE PROTECTION (Attacker)
+                const attackerStats = attacker.getDisplayStats(attackerBoard);
+                if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
+                    if (attackerDamageTaken >= attackerStats.t) {
+                        attackerDamageTaken = Math.max(0, attackerStats.t - 1);
+                        attacker.indestructibleUsed = true;
+                    }
+                }
+                attacker.damageTaken += attackerDamageTaken;
+            }
+        } else {
+             const amount = damageDealt;
+             if (attacker.owner === 'player') {
+                if (currentOppAttack) currentOppAttack.fightHp -= amount;
+             } else state.player.fightHp -= amount;
+             defenderDamageTaken = amount;
+        }
+
+        return { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget };
+    }
+
+    async function resolveDeaths() {
+        const isProtected = (c, board) => c.hasKeyword('Indestructible') && !c.indestructibleUsed;
+
+        // 1. Identify everyone who is dead right now
+        const deadPlayerCards = state.battleBoards.player.filter(c => 
+            c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)
+        );
+        const deadOpponentCards = state.battleBoards.opponent.filter(c => 
+            c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)
+        );
+
+        // 2. Handle Indestructible saves
+        const protectedPlayer = state.battleBoards.player.filter(c => c.getDisplayStats(state.battleBoards.player).t <= 0 && isProtected(c, state.battleBoards.player));
+        const protectedOpponent = state.battleBoards.opponent.filter(c => c.getDisplayStats(state.battleBoards.opponent).t <= 0 && isProtected(c, state.battleBoards.opponent));
+        
+        [...protectedPlayer, ...protectedOpponent].forEach(c => {
+            c.indestructibleUsed = true;
+            const board = protectedPlayer.includes(c) ? state.battleBoards.player : state.battleBoards.opponent;
+            const stats = c.getDisplayStats(board);
+            const currentT = stats.t + c.damageTaken;
+            c.damageTaken = currentT - 1;
+        });
+
+        if (deadPlayerCards.length === 0 && deadOpponentCards.length === 0) {
+            if (protectedPlayer.length > 0 || protectedOpponent.length > 0) render();
+            return;
+        }
+
+        // 3. Mark for death and play animation
+        const allDead = deadPlayerCards.concat(deadOpponentCards);
+        allDead.forEach(c => {
+            c.isDying = true;
+            document.getElementById(`card-${c.id}`)?.classList.add('dying');
+        });
+        
+        await new Promise(r => setTimeout(r, 500)); 
+
+        // 4. Actually remove them and trigger death effects
+        await processDeaths(state.battleBoards.player, 'player');
+        await processDeaths(state.battleBoards.opponent, 'opponent');
+        render();
+
+        // 5. Special Case: Trenchrunner spawns need to attack immediately
+        if (state.phase === 'BATTLE') {
+            const allBoardCards = state.battleBoards.player.concat(state.battleBoards.opponent);
+            for (const spawn of allBoardCards) {
+                if (spawn.isTrenchrunnerSpawn) {
+                    delete spawn.isTrenchrunnerSpawn;
+                    const defenderBoard = (spawn.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+                    const target = findTarget(spawn, defenderBoard);
+                    await performAttack(spawn, target, false);
+                    await resolveDeaths(); 
+                    break;
+                }
+            }
+        }
+        await new Promise(r => setTimeout(r, 200));
+
+        // 6. Recurse if processDeaths created NEW dead creatures (e.g. Hog debuff)
+        const anyDeadStill = state.battleBoards.player.some(c => c.getDisplayStats(state.battleBoards.player).t <= 0) ||
+                           state.battleBoards.opponent.some(c => c.getDisplayStats(state.battleBoards.opponent).t <= 0);
+        
+        if (anyDeadStill) {
+            await resolveDeaths();
+        }
+    }
+
+    async function processDeaths(board, owner) {
+        // Only process creatures that were marked as dying in the previous step
+        const dyingCards = board.filter(c => c.isDying);
+        
+        // Broadcast to everyone in battle, or just this board if in shop
+        const notifyPool = (state.phase === 'BATTLE' && state.battleBoards) ? 
+                           state.battleBoards.player.concat(state.battleBoards.opponent) : 
+                           board;
+
+        for (const deadCard of dyingCards) {
+            const idx = board.indexOf(deadCard);
+            if (idx === -1) continue;
+
+            notifyPool.forEach(c => {
+                if (c.id !== deadCard.id) c.onOtherCreatureDeath(board);
+            });
+
+            let spawns = deadCard.onDeath(board, owner);
+            const hasResurrection = deadCard.enchantments && deadCard.enchantments.some(e => e.card_name === 'By Blood and Venom');
+            if (hasResurrection) {
+                const rawData = availableCards.find(c => c.card_name === deadCard.card_name && c.set === deadCard.set);
+                if (rawData) {
+                    const spawned = CardFactory.create(rawData);
+                    spawned.id = `returned-${Math.random()}`;
+                    spawned.owner = owner;
+                    spawns.push(spawned);
+                }
+            }
+            if (spawns.length > 0) board.splice(idx, 1, ...spawns.filter(Boolean));
+            else board.splice(idx, 1);
+            
+            // Cleanup property
+            delete deadCard.isDying;
+        }
+    }
+
     function createToken(name, set, owner) {
         const raw = availableCards.find(c => c.card_name === name && c.shape === 'token' && (set ? c.set === set : true));
         if (raw) {
@@ -2521,6 +2559,7 @@ class BaseCard {
         const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
         const cardEl = cardTemplate.content.cloneNode(true).firstElementChild;
         cardEl.id = `card-${instance.id}`;
+        if (instance.isDying) cardEl.classList.add('dying');
         cardEl.querySelector('.card-name').textContent = instance.card_name;
         
         const tokenSuffix = (instance.shape?.includes('token')) ? "t" : "";
@@ -2656,7 +2695,8 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { 
         state, CardFactory, BaseCard, init, availableCards,
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
-        resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget
+        resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
+        resolveCombatImpact, resolveDeaths, processDeaths
     };
 }
 

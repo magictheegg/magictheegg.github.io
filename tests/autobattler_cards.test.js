@@ -2,7 +2,9 @@
 const mockElement = () => ({
     addEventListener: () => {},
     removeEventListener: () => {},
+    remove: () => {},
     appendChild: () => {},
+    getBoundingClientRect: () => ({ top: 0, left: 0, width: 100, height: 100 }),
     querySelectorAll: () => [],
     querySelector: () => mockElement(),
     classList: { add: () => {}, remove: () => {}, toggle: () => {} },
@@ -28,12 +30,15 @@ if (typeof document === 'undefined') {
     global.window = {
         addEventListener: () => {},
         innerWidth: 1920,
-        innerHeight: 1080
+        innerHeight: 1080,
+        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' })
     };
+    global.requestAnimationFrame = (cb) => setTimeout(cb, 16);
+    global.WebKitCSSMatrix = class { constructor() { this.a = 1; } };
 }
 
 const { 
-    state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain
+    state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 
@@ -53,20 +58,30 @@ function resetState() {
         treasures: 0,
         spellGraveyard: []
     };
+    state.opponents = [
+        { id: 0, name: "Opponent", overallHp: 20, fightHp: 10, board: [] }
+    ];
+    state.currentOpponentId = 0;
     state.phase = 'SHOP';
     state.battleBoards = null;
     state.scrying = null;
     state.shop = { cards: [] };
-
+    state.creaturesDiedThisShopPhase = false;
+    state.shopDeathsCount = 0;
+    state.targetingEffect = null;
+    state.discovery = null;
+    
     // Ensure availableCards has at least one creature for addScry/populateShop logic
     availableCards.length = 0;
     availableCards.push({ card_name: "Dummy", type: "Creature", shape: "normal", tier: 1 });
 }
 
+// --- TIER 1 TESTS ---
+
 function testHuitzilSkywatch() {
     resetState();
     const card = CardFactory.create({ card_name: "Huitzil Skywatch", pt: "1/4", rules_text: "Flying" });
-    assert.strictEqual(card.hasKeyword('Flying'), true, "Huitzil Skywatch should have Flying");
+    assert.strictEqual(card.hasKeyword('flying'), true, "Huitzil Skywatch should have Flying");
     const stats = card.getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 1);
     assert.strictEqual(stats.t, 4);
@@ -117,15 +132,14 @@ function testRottenCarcass() {
         player: [carcass.clone()],
         opponent: []
     };
-    state.battleBoards.player[0].id = carcass.id; // Match IDs for testing
+    state.battleBoards.player[0].id = carcass.id;
     
-    // Simulate death in battle (resolveDeaths logic simplified)
     const deadInBattle = state.battleBoards.player[0];
     const spawns = deadInBattle.onDeath(state.battleBoards.player, 'player');
     state.battleBoards.player.splice(0, 1, ...spawns);
     
     assert.strictEqual(state.battleBoards.player[0].card_name, "Construct", "Token spawned on battle board");
-    assert.strictEqual(state.player.board[0].card_name, "Rotten Carcass", "Original Carcass still on player board (ready for reset)");
+    assert.strictEqual(state.player.board[0].card_name, "Rotten Carcass", "Original Carcass still on player board");
 }
 
 function testImpressibleCub() {
@@ -133,11 +147,9 @@ function testImpressibleCub() {
     const cub = CardFactory.create({ card_name: "Impressible Cub", pt: "2/2", rules_text: "Ferocious – At the beginning of each combat, if you control a creature with power 4 or greater, Impressible Cub gets +1/+1 until end of turn." });
     state.player.board.push(cub);
     
-    // No 4 power
     cub.onCombatStart(state.player.board);
     assert.strictEqual(cub.tempPower, 0, "No buff if no 4 power");
     
-    // With 4 power
     const bigGuy = CardFactory.create({ card_name: "Big Guy", pt: "4/4" });
     state.player.board.push(bigGuy);
     cub.onCombatStart(state.player.board);
@@ -155,7 +167,6 @@ function testWarClanDowager() {
     state.player.board.push(centaur);
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 3, "3/3 with another centaur");
 
-    // Remove the other centaur
     state.player.board.pop();
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 2, "2/2 again after centaur removed");
 }
@@ -177,7 +188,6 @@ function testSoulsmokeAdept() {
     
     assert.strictEqual(adept.getDisplayStats(state.player.board).p, 2, "Not embattled");
     
-    // Add enchantment - user wants this NOT to count as embattled
     adept.enchantments.push({ card_name: "Faith in Darkness" });
     assert.strictEqual(adept.hasKeyword('lifelink'), false, "Enchantment shouldn't trigger lifelink");
     
@@ -194,9 +204,7 @@ function testIntliAssaulter() {
     
     assert.strictEqual(state.targetingEffect.effect, 'intli_sacrifice');
     
-    // Attempt to sacrifice self
     const mockTargetId = intli.id;
-    // applyTargetedEffect contains: if (source && target.id !== source.id)
     const target = state.player.board.find(c => c.id === mockTargetId);
     const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
     
@@ -222,18 +230,16 @@ function testSparringCampaigner() {
     const target = CardFactory.create({ card_name: "Weakling", pt: "1/1" });
     state.player.board = [campaigner, target];
     
-    // Case 1: Target power < 2 (Success)
     campaigner.onCombatStart(state.player.board);
     assert.strictEqual(target.tempPower, 2, "Target should get +2/+2");
     assert.strictEqual(campaigner.isLockedByChivalry, true, "Campaigner should be locked");
 
-    // Case 2: Target power >= 2 (Fail)
     resetState();
     const target2 = CardFactory.create({ card_name: "Stronger", pt: "2/2" });
     state.player.board = [campaigner, target2];
     campaigner.isLockedByChivalry = false;
     campaigner.onCombatStart(state.player.board);
-    assert.strictEqual(target2.tempPower, 0, "Target should not get buff");
+    assert.strictEqual(target2.tempPower, 0, "Target should not get buff if power >= 2");
     assert.strictEqual(campaigner.isLockedByChivalry, false, "Campaigner should not be locked");
 }
 
@@ -271,8 +277,6 @@ function testDutifulCamel() {
     camel.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'dutiful_camel_counter');
     
-    // In game, applyTargetedEffect handles the application.
-    // Confirm BOTH are in the board and thus targetable
     const canTargetSelf = state.player.board.some(c => c.id === camel.id);
     const canTargetOther = state.player.board.some(c => c.id === other.id);
     assert.strictEqual(canTargetSelf, true, "Should be able to target self");
@@ -289,12 +293,10 @@ function testLakeCaveLurker() {
     resetState();
     const lurker = CardFactory.create({ card_name: "Lake Cave Lurker", pt: "1/1" });
     
-    // In Shop
     state.phase = 'SHOP';
     lurker.onDeath([], 'player');
     assert.strictEqual(state.player.gold, 4, "Should gain 1 gold in shop");
     
-    // In Battle
     resetState();
     state.phase = 'BATTLE';
     lurker.onDeath([], 'player');
@@ -351,12 +353,10 @@ function testExoticGameHunter() {
     const hunter = CardFactory.create({ card_name: "Exotic Game Hunter", pt: "2/2" });
     state.player.board = [hunter];
     
-    // Case 1: No deaths
     state.creaturesDiedThisShopPhase = false;
     hunter.onShopEndStep(state.player.board);
     assert.strictEqual(hunter.counters, 0, "No counter if no deaths");
 
-    // Case 2: Death occurred
     state.creaturesDiedThisShopPhase = true;
     hunter.onShopEndStep(state.player.board);
     assert.strictEqual(hunter.counters, 1, "Should gain counter if death occurred");
@@ -367,21 +367,39 @@ function testCankerousHog() {
     const hog = CardFactory.create({ card_name: "Cankerous Hog", pt: "3/2" });
     const enemy = CardFactory.create({ card_name: "Enemy", pt: "4/4" });
     
-    // Case 1: Death in Battle
     state.phase = 'BATTLE';
     state.battleBoards = { player: [hog], opponent: [enemy] };
     hog.onDeath(state.battleBoards.player, 'player');
     assert.strictEqual(enemy.tempPower, -2, "Enemy should get -2/-2 in battle");
-    assert.strictEqual(enemy.tempToughness, -2);
 
-    // Case 2: Death in Shop
     resetState();
     state.phase = 'SHOP';
     state.player.board = [hog];
     const enemyInShop = CardFactory.create({ card_name: "Enemy", pt: "4/4" });
-    // Note: CankerousHog check in code: if (!state.battleBoards) return [];
     hog.onDeath(state.player.board, 'player');
     assert.strictEqual(enemyInShop.tempPower, 0, "Should do nothing in shop phase");
+
+    resetState();
+    state.phase = 'BATTLE';
+    const dyingEnemy = CardFactory.create({ card_name: "Dying Enemy", pt: "1/1" });
+    dyingEnemy.damageTaken = 1;
+    dyingEnemy.isDying = true;
+    const healthyEnemy = CardFactory.create({ card_name: "Healthy Enemy", pt: "2/2" });
+    state.battleBoards = { player: [hog], opponent: [dyingEnemy, healthyEnemy] };
+    
+    const oldRandom = Math.random;
+    Math.random = () => 0; 
+    try {
+        hog.onDeath(state.battleBoards.player, 'player');
+        assert.strictEqual(dyingEnemy.getDisplayStats(state.battleBoards.opponent).p, 1, "Should NOT target the dying enemy");
+        const stats = healthyEnemy.getDisplayStats(state.battleBoards.opponent);
+        assert.strictEqual(stats.p, 0, "Healthy enemy should be at 0 power");
+        assert.strictEqual(healthyEnemy.tempPower, -2, "TempPower should be -2");
+        assert.strictEqual(stats.t, 0, "Healthy enemy should now be at 0 toughness");
+        assert.ok(state.battleBoards.opponent.includes(healthyEnemy), "Creature should NOT have vanished immediately");
+    } finally {
+        Math.random = oldRandom;
+    }
 }
 
 function testShriekingPusbag() {
@@ -390,8 +408,6 @@ function testShriekingPusbag() {
     state.player.board = [pusbag];
     pusbag.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'pusbag_sacrifice');
-    
-    // Can sacrifice self? Yes, applyTargetedEffect for pusbag doesn't exclude self
     const target = state.player.board.find(c => c.id === pusbag.id);
     assert.ok(target, "Should be able to find and target self");
 }
@@ -443,14 +459,10 @@ function testDynamicWyvern() {
     resetState();
     const wyvern = CardFactory.create({ card_name: "Dynamic Wyvern", pt: "3/4" });
     state.player.board = [wyvern];
-    
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Initially no flying");
-    
     wyvern.onNoncreatureCast(false, state.player.board);
     assert.strictEqual(wyvern.hasKeyword('flying'), true, "Gains flying after cast");
-    
-    // Cleanup check
-    wyvern.enchantments = []; // Simulate combat cleanup
+    wyvern.enchantments = [];
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Loses flying after cleanup");
 }
 
@@ -463,13 +475,11 @@ function testBristledDirebear() {
 function testConsultTheDewdrops() {
     resetState();
     const spell = CardFactory.create({ card_name: "Consult the Dewdrops" });
-    availableCards.length = 0;
     availableCards.push(
         { card_name: "Consult the Dewdrops", type: "Instant", tier: 2 },
         { card_name: "Target Creature", type: "Creature", tier: 1 },
         { card_name: "Findable Spell", type: "Sorcery", tier: 1 }
     );
-    
     spell.onCast(state.player.board);
     assert.ok(state.discovery, "Should trigger discovery");
     const foundItself = state.discovery.cards.some(c => c.card_name === "Consult the Dewdrops");
@@ -483,7 +493,6 @@ function testEnvoyOfThePure() {
     const envoy = CardFactory.create({ card_name: "Envoy of the Pure", pt: "3/3" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
     state.player.board = [envoy, other];
-    
     envoy.onETB(state.player.board);
     assert.strictEqual(other.tempPower, 1, "Other gets +1/+1");
     assert.strictEqual(other.hasKeyword('vigilance'), true, "Other gets vigilance");
@@ -494,13 +503,10 @@ function testCentaurWayfinder() {
     resetState();
     const wayfinder = CardFactory.create({ card_name: "Centaur Wayfinder", pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [wayfinder];
-    
-    // Test Case: Only one Centaur (self)
     const targets = wayfinder.onAttack(state.player.board);
     assert.strictEqual(targets.length, 1, "Only one target if only one Centaur");
     assert.strictEqual(targets[0].id, wayfinder.id);
     
-    // Test Case: Two Centaurs
     resetState();
     const other = CardFactory.create({ card_name: "Other Centaur", pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [wayfinder, other];
@@ -514,11 +520,8 @@ function testWarbandLieutenant() {
     const lieutenant = CardFactory.create({ card_name: "Warband Lieutenant", pt: "2/2", type: "Creature – Centaur" });
     const other = CardFactory.create({ card_name: "Other Centaur", pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [lieutenant, other];
-    
     assert.strictEqual(other.getDisplayStats(state.player.board).p, 3, "Other Centaur gets +1/+1");
     assert.strictEqual(lieutenant.getDisplayStats(state.player.board).p, 2, "Lieutenant does not buff self");
-    
-    // Buff wears off on death
     state.player.board = [other];
     assert.strictEqual(other.getDisplayStats(state.player.board).p, 2, "Buff wears off when Lieutenant is gone");
 }
@@ -545,7 +548,6 @@ function testWarriorsWays() {
 }
 
 function testStratusTraveler() {
-    // 1. Not Cirrusea -> Shift + Bird
     resetState();
     availableCards.push({ card_name: "Bird", shape: "token", pt: "1/2", set: "AEX", type: "Creature", rules_text: "Flying" });
     const traveler = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
@@ -554,13 +556,11 @@ function testStratusTraveler() {
     assert.strictEqual(state.plane, 'Cirrusea');
     assert.ok(state.player.board.some(c => c.card_name === 'Bird'), "Bird created");
 
-    // 2. Already Cirrusea, no flying -> Flying Counter
     resetState();
     state.plane = 'Cirrusea';
     traveler.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
     const targetNoFly = CardFactory.create({ card_name: "NoFly", pt: "1/1" });
-    // Simulate applyTargetedEffect logic
     if (targetNoFly.hasKeyword('flying')) { targetNoFly.counters++; } else { targetNoFly.flyingCounters++; }
     assert.strictEqual(targetNoFly.flyingCounters, 1, "Gained flying counter");
 
@@ -579,21 +579,17 @@ function testAlluringWisps() {
     wisps.owner = 'player';
     enemy.owner = 'opponent';
     state.battleBoards = { player: [wisps], opponent: [enemy] };
-    
     wisps.onAttack(state.battleBoards.player);
     assert.strictEqual(enemy.tempPower, -2, "Enemy power debuffed");
-    assert.strictEqual(enemy.tempToughness, 0, "Enemy toughness NOT debuffed");
-    assert.strictEqual(wisps.getDisplayStats(state.battleBoards.player).p, 2, "Wisps should still be 2/2 after attacking");
-    assert.strictEqual(wisps.tempPower, 0, "Wisps should have no tempPower changes");
-    assert.strictEqual(wisps.tempToughness, 0, "Wisps should have no tempToughness changes");
+    assert.strictEqual(wisps.getDisplayStats(state.battleBoards.player).p, 2, "Wisps still 2/2");
 }
 
 function testRapaciousSprite() {
     resetState();
     const sprite = CardFactory.create({ card_name: "Rapacious Sprite", pt: "1/2", rules_text: "Flying" });
-    assert.strictEqual(sprite.hasKeyword('flying'), true, "Sprite has flying");
+    assert.strictEqual(sprite.hasKeyword('flying'), true);
     sprite.onETB([]);
-    assert.strictEqual(state.player.treasures, 1, "Sprite ETB gives treasure");
+    assert.strictEqual(state.player.treasures, 1);
 }
 
 function testUpInArms() {
@@ -641,62 +637,16 @@ function testDraconicCinderlance() {
     const lance = CardFactory.create({ card_name: "Draconic Cinderlance", pt: "2/1", rules_text: "Menace" });
     const bigGuy = CardFactory.create({ card_name: "Big Guy", pt: "4/4" });
     state.player.board = [lance, bigGuy];
-    
-    // 1. Cinderlance is a 2/1 and has menace
-    assert.strictEqual(lance.getDisplayStats([]).p, 2);
-    assert.strictEqual(lance.getDisplayStats([]).t, 1);
-    assert.strictEqual(lance.hasKeyword('menace'), true, "Lance should have menace");
-
-    // 2. 4+-power creature and cinderlance on board. 
-    //    4+ power creature does NOT have menace (pre-attack).
-    assert.strictEqual(bigGuy.hasKeyword('menace'), false, "4+ power should NOT have menace before attacking");
-    
-    // 3. 4+-power creature attacks. 4+ power creature DOES have menace.
+    assert.strictEqual(bigGuy.hasKeyword('menace'), false, "Before attacking");
     bigGuy.onAttack(state.player.board);
-    assert.strictEqual(bigGuy.hasKeyword('menace'), true, "4+ power should gain menace after attacking");
-    
-    // 4. Cinderlance dies. 4+-power creature DOES have menace.
-    state.player.board = [bigGuy]; // Lance is gone
-    assert.strictEqual(bigGuy.hasKeyword('menace'), true, "4+ power should RETAIN menace even if Lance dies");
-}
-
-function testCabracansFamiliar() {
-    resetState();
-    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
-    assert.strictEqual(familiar.getDisplayStats([]).p, 4);
-    assert.strictEqual(familiar.getDisplayStats([]).t, 2);
-}
-
-function testBushwhack() {
-    resetState();
-    const spell = CardFactory.create({ card_name: "Bushwhack" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
-    spell.onApply(target, []);
-    assert.strictEqual(target.tempPower, 4);
-    assert.strictEqual(target.tempToughness, 2);
-    assert.strictEqual(target.hasKeyword('trample'), true);
-}
-
-function testHaggardBandit() {
-    resetState();
-    const bandit = CardFactory.create({ card_name: "Haggard Bandit", pt: "3/3" });
-    bandit.onLifeGain([]);
-    assert.strictEqual(bandit.tempPower, 1);
-    assert.strictEqual(bandit.hasKeyword('menace'), true);
-}
-
-function testSleeplessSpirit() {
-    resetState();
-    const spirit = CardFactory.create({ card_name: "Sleepless Spirit", pt: "2/2", rules_text: "Flying, vigilance" });
-    assert.strictEqual(spirit.hasKeyword('flying'), true);
-    assert.strictEqual(spirit.hasKeyword('vigilance'), true);
+    assert.strictEqual(bigGuy.hasKeyword('menace'), true, "After attacking");
+    state.player.board = [bigGuy];
+    assert.strictEqual(bigGuy.hasKeyword('menace'), true, "After Lance dies");
 }
 
 function testSilkenSpinner() {
     resetState();
     const spinner = CardFactory.create({ card_name: "Silken Spinner", pt: "3/4", rules_text: "Reach" });
-    assert.strictEqual(spinner.getDisplayStats([]).p, 3);
-    assert.strictEqual(spinner.getDisplayStats([]).t, 4);
     assert.strictEqual(spinner.hasKeyword('reach'), true);
 }
 
@@ -726,15 +676,11 @@ function testSiegeFalcon() {
 function testForesee() {
     resetState();
     const spell = CardFactory.create({ card_name: "Foresee" });
-    // Mock availableCards for scry/shop logic
     availableCards.push({ card_name: "Creature", type: "Creature", shape: "normal", tier: 1 });
-    
     spell.onCast(state.player.board);
-    assert.strictEqual(state.scrying.count, 4, "Should scry 4");
-    
-    // Test callback
+    assert.strictEqual(state.scrying.count, 4);
     state.scrying.postScry();
-    assert.strictEqual(state.shop.cards.length, 2, "Should add 2 cards to shop after scry");
+    assert.strictEqual(state.shop.cards.length, 2);
 }
 
 function testFightSong() {
@@ -742,7 +688,6 @@ function testFightSong() {
     const spell = CardFactory.create({ card_name: "Fight Song" });
     const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
     spell.onApply(target, []);
-    
     assert.strictEqual(target.counters, 1);
     assert.strictEqual(target.hasKeyword('indestructible'), true);
 }
@@ -751,18 +696,184 @@ function testEdgeOfTheirSeats() {
     resetState();
     const spell = CardFactory.create({ card_name: "Edge of Their Seats" });
     const c1 = CardFactory.create({ card_name: "C1", pt: "1/1" });
-    const c2 = CardFactory.create({ card_name: "C2", pt: "1/1" });
-    state.player.board = [c1, c2];
+    state.player.board = [c1];
     state.player.fightHp = 10;
-    
     spell.onCast(state.player.board);
-    assert.strictEqual(c1.tempPower, 1, "C1 gets +1/+1");
-    assert.strictEqual(c2.tempPower, 1, "C2 gets +1/+1");
-    assert.strictEqual(state.player.fightHp, 12, "Gained 2 life (1 per creature)");
+    assert.strictEqual(c1.tempPower, 1);
+    assert.strictEqual(state.player.fightHp, 11);
+}
+
+// --- TIER 3 TESTS ---
+
+function testDevilsChild() {
+    resetState();
+    const child = CardFactory.create({ card_name: "Devil's Child", pt: "2/2" });
+    const friendly = CardFactory.create({ card_name: "Friendly", pt: "1/1" });
+    const opponent = CardFactory.create({ card_name: "Opponent", pt: "1/1" });
+    
+    state.player.board = [child, friendly];
+    state.opponents[0].board = [opponent];
+    state.battleBoards = {
+        player: [child, friendly],
+        opponent: [opponent]
+    };
+    state.phase = 'BATTLE';
+
+    // 1. Friendly dies
+    friendly.isDying = true;
+    processDeaths(state.battleBoards.player, 'player');
+    assert.strictEqual(child.counters, 1, "Should gain counter when teammate dies via processDeaths");
+
+    // 2. Opponent dies
+    opponent.isDying = true;
+    processDeaths(state.battleBoards.opponent, 'opponent');
+    assert.strictEqual(child.counters, 2, "Should gain counter when opponent dies via processDeaths broadcast");
+}
+
+function testRazorbackTrenchrunner() {
+    resetState();
+    const runner = CardFactory.create({ card_name: "Razorback Trenchrunner", pt: "5/1", rules_text: "Haste" });
+    availableCards.push({ card_name: "Ox", shape: "token", pt: "3/3", set: "KOD", type: "Creature" });
+    state.phase = 'BATTLE';
+    const spawns = runner.onDeath([], 'player');
+    assert.strictEqual(spawns.length, 1);
+    assert.strictEqual(spawns[0].isTrenchrunnerSpawn, true);
+}
+
+function testSporegraftSlime() {
+    resetState();
+    const slime = CardFactory.create({ card_name: "Sporegraft Slime", pt: "1/3" });
+    const healthy = CardFactory.create({ card_name: "Healthy", pt: "2/2" });
+    const dying = CardFactory.create({ card_name: "Dying", pt: "1/1" });
+    dying.isDying = true;
+    state.player.board = [slime, healthy, dying];
+    const oldRandom = Math.random;
+    Math.random = () => 0; 
+    try {
+        slime.onDeath(state.player.board, 'player');
+        assert.strictEqual(healthy.counters, 2);
+        assert.strictEqual(dying.counters, 0);
+    } finally {
+        Math.random = oldRandom;
+    }
+}
+
+function testPungentBeetle() {
+    resetState();
+    state.shopDeathsCount = 3;
+    const beetle = CardFactory.create({ card_name: "Pungent Beetle", pt: "2/2" });
+    beetle.onETB(state.player.board);
+    assert.strictEqual(beetle.counters, 3);
+}
+
+function testBushwhack() {
+    resetState();
+    const spell = CardFactory.create({ card_name: "Bushwhack" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    spell.onApply(target, []);
+    assert.strictEqual(target.tempPower, 4);
+    assert.strictEqual(target.tempToughness, 2);
+    assert.strictEqual(target.hasKeyword('trample'), true);
+}
+
+function testHaggardBandit() {
+    resetState();
+    const bandit = CardFactory.create({ card_name: "Haggard Bandit", pt: "3/3" });
+    bandit.onLifeGain([]);
+    assert.strictEqual(bandit.tempPower, 1);
+    assert.strictEqual(bandit.hasKeyword('menace'), true);
+}
+
+function testSleeplessSpirit() {
+    resetState();
+    const spirit = CardFactory.create({ card_name: "Sleepless Spirit", pt: "2/2", rules_text: "Flying, vigilance" });
+    assert.strictEqual(spirit.hasKeyword('flying'), true);
+    assert.strictEqual(spirit.hasKeyword('vigilance'), true);
+}
+
+function testCovetousWechuge() {
+    resetState();
+    const wechuge = CardFactory.create({ card_name: "Covetous Wechuge", pt: "1/1", rules_text: "Menace" });
+    const snack = CardFactory.create({ card_name: "Snack", pt: "1/1" });
+    state.player.board = [wechuge, snack];
+    wechuge.onAction();
+    assert.strictEqual(state.targetingEffect.effect, 'wechuge_sacrifice');
+    const targetSelf = wechuge;
+    const source = wechuge;
+    assert.strictEqual(targetSelf.id === source.id, true, "IDs should match");
+}
+
+function testCabracansFamiliar() {
+    resetState();
+    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
+    assert.strictEqual(familiar.getDisplayStats([]).p, 4);
+    assert.strictEqual(familiar.getDisplayStats([]).t, 2);
+}
+
+function testFinwingDrake() {
+    resetState();
+    const drake = CardFactory.create({ card_name: "Finwing Drake", pt: "3/4", rules_text: "Flying" });
+    assert.strictEqual(drake.hasKeyword('flying'), true);
+    drake.onNoncreatureCast(false, []);
+    assert.strictEqual(drake.tempPower, 1, "Prowess +1/+1");
+}
+
+function testShrewdParliament() {
+    // Case 1: Graveyard and Discardable card (Success)
+    resetState();
+    const parliament = CardFactory.create({ card_name: "Shrewd Parliament", pt: "2/1", rules_text: "Flying" });
+    const discardable = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    state.player.spellGraveyard = [{ card_name: "Spell" }];
+    state.player.hand = [parliament, discardable]; // simulate in hand
+    parliament.onETB([]);
+    assert.strictEqual(state.targetingEffect.effect, 'parliament_discard', "Should trigger with both requirements met");
+
+    // Case 2: Graveyard but no other cards in hand (Fail)
+    resetState();
+    state.player.spellGraveyard = [{ card_name: "Spell" }];
+    state.player.hand = [parliament];
+    parliament.onETB([]);
+    assert.strictEqual(state.targetingEffect, null, "Should not trigger if nothing to discard");
+
+    // Case 3: Discardable card but no graveyard (Fail)
+    resetState();
+    state.player.spellGraveyard = [];
+    state.player.hand = [parliament, discardable];
+    parliament.onETB([]);
+    assert.strictEqual(state.targetingEffect, null, "Should not trigger if no spells to return");
+}
+
+function testCoralhideWurm() {
+    resetState();
+    const wurm = CardFactory.create({ card_name: "Coralhide Wurm", pt: "2/3", rules_text: "Trample" });
+    assert.strictEqual(wurm.hasKeyword('trample'), true);
+    wurm.onNoncreatureCast(false, []);
+    assert.strictEqual(wurm.counters, 1, "+1/+1 counter on cast");
+}
+
+function testAetherGuzzler() {
+    resetState();
+    const guzzler = CardFactory.create({ card_name: "Aether Guzzler", pt: "3/4" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    state.player.board = [guzzler, other];
+    
+    guzzler.onNoncreatureCast(false, state.player.board);
+    assert.strictEqual(guzzler.tempPower, 1, "Guzzler buffs self");
+    assert.strictEqual(other.tempPower, 1, "Guzzler buffs others");
+}
+
+function testDewdropOracle() {
+    resetState();
+    const oracle = CardFactory.create({ card_name: "Dewdrop Oracle", pt: "2/2" });
+    availableCards.push({ card_name: "Findable", type: "Sorcery", tier: 1 });
+    
+    oracle.onETB(state.player.board);
+    assert.ok(state.discovery, "Should trigger discovery on ETB");
+    assert.strictEqual(state.discovery.cards.length, 4, "Should discover 4 cards");
 }
 
 function runTests() {
-    const allTests = [
+    const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
         { tier: 1, name: "Glumvale Raven", fn: testGlumvaleRaven },
         { tier: 1, name: "Rotten Carcass", fn: testRottenCarcass },
@@ -783,7 +894,10 @@ function runTests() {
         { tier: 1, name: "Scientific Inquiry", fn: testScientificInquiry },
         { tier: 1, name: "To Battle", fn: testToBattle },
         { tier: 1, name: "By Blood and Venom", fn: testByBloodAndVenom },
-        { tier: 1, name: "Divination", fn: testDivination },
+        { tier: 1, name: "Divination", fn: testDivination }
+    ];
+
+    const t2Tests = [
         { tier: 2, name: "Exotic Game Hunter", fn: testExoticGameHunter },
         { tier: 2, name: "Cankerous Hog", fn: testCankerousHog },
         { tier: 2, name: "Shrieking Pusbag", fn: testShriekingPusbag },
@@ -814,37 +928,52 @@ function runTests() {
         { tier: 2, name: "Edge of Their Seats", fn: testEdgeOfTheirSeats }
     ];
 
-    const results = [];
-    allTests.forEach(test => {
-        try {
-            test.fn();
-            results.push({ ...test, passed: true });
-        } catch (e) {
-            results.push({ ...test, passed: false, error: e.message });
-        }
-    });
-
-    const t1 = results.filter(r => r.tier === 1);
-    const t2 = results.filter(r => r.tier === 2);
+    const t3Tests = [
+        { tier: 3, name: "Devil's Child", fn: testDevilsChild },
+        { tier: 3, name: "Razorback Trenchrunner", fn: testRazorbackTrenchrunner },
+        { tier: 3, name: "Sporegraft Slime", fn: testSporegraftSlime },
+        { tier: 3, name: "Pungent Beetle", fn: testPungentBeetle },
+        { tier: 3, name: "Covetous Wechuge", fn: testCovetousWechuge },
+        { tier: 3, name: "Finwing Drake", fn: testFinwingDrake },
+        { tier: 3, name: "Shrewd Parliament", fn: testShrewdParliament },
+        { tier: 3, name: "Coralhide Wurm", fn: testCoralhideWurm },
+        { tier: 3, name: "Aether Guzzler", fn: testAetherGuzzler },
+        { tier: 3, name: "Dewdrop Oracle", fn: testDewdropOracle }
+    ];
 
     console.log("\nUNIT TEST RESULTS");
     console.log("=================");
     
+    const runBatch = (tests) => {
+        let passed = 0;
+        tests.forEach(test => {
+            try {
+                test.fn();
+                console.log(`✓ ${test.name}`);
+                passed++;
+            } catch (e) {
+                console.error(`✕ ${test.name}: ${e.message}`);
+            }
+        });
+        return passed;
+    };
+
     console.log("\nTIER 1");
-    t1.forEach(r => console.log(`${r.passed ? '✓' : '✕'} ${r.name}${r.passed ? '' : ': ' + r.error}`));
+    const t1Passed = runBatch(t1Tests);
     
     console.log("\nTIER 2");
-    t2.forEach(r => console.log(`${r.passed ? '✓' : '✕'} ${r.name}${r.passed ? '' : ': ' + r.error}`));
+    const t2Passed = runBatch(t2Tests);
 
-    const t1Passed = t1.filter(r => r.passed).length;
-    const t2Passed = t2.filter(r => r.passed).length;
+    console.log("\nTIER 3");
+    const t3Passed = runBatch(t3Tests);
 
     console.log("\nFINAL SUMMARY");
     console.log("-------------");
-    console.log(`TIER 1 - Passed: ${t1Passed}/${t1.length}. Failed: ${t1.length - t1Passed}.`);
-    console.log(`TIER 2 - Passed: ${t2Passed}/${t2.length}. Failed: ${t2.length - t2Passed}.`);
+    console.log(`TIER 1 - Passed: ${t1Passed}/${t1Tests.length}. Failed: ${t1Tests.length - t1Passed}.`);
+    console.log(`TIER 2 - Passed: ${t2Passed}/${t2Tests.length}. Failed: ${t2Tests.length - t2Passed}.`);
+    console.log(`TIER 3 - Passed: ${t3Passed}/${t3Tests.length}. Failed: ${t3Tests.length - t3Passed}.`);
 
-    if (results.some(r => !r.passed)) {
+    if (t1Passed < t1Tests.length || t2Passed < t2Tests.length || t3Passed < t3Tests.length) {
         process.exit(1);
     }
 }

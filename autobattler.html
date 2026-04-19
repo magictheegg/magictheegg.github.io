@@ -541,6 +541,24 @@
             animation: pop-fade 0.8s forwards;
         }
 
+        .debuff-bubble {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #4b0082; /* Dark Purple */
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.8em;
+            z-index: 9999 !important;
+            pointer-events: none;
+            box-shadow: 0 0 20px #9400d3;
+            text-shadow: 0 2px 4px rgba(0,0,0,1);
+            animation: pop-fade 0.8s forwards;
+        }
+
         @keyframes pop-fade {
             0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
             20% { transform: translate(-50%, -100%) scale(1.2); opacity: 1; }
