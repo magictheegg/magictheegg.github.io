@@ -6,6 +6,10 @@ class BaseCard {
             this.id = this.id || `card-${Math.random().toString(36).substr(2, 9)}`;
             this.counters = Number(this.counters) || 0;
             this.flyingCounters = Number(this.flyingCounters) || 0;
+            this.menaceCounters = Number(this.menaceCounters) || 0;
+            this.firstStrikeCounters = Number(this.firstStrikeCounters) || 0;
+            this.vigilanceCounters = Number(this.vigilanceCounters) || 0;
+            this.lifelinkCounters = Number(this.lifelinkCounters) || 0;
             this.damageTaken = Number(this.damageTaken) || 0;
             this.enchantments = this.enchantments || [];
             this.tempPower = Number(this.tempPower) || 0;
@@ -15,7 +19,9 @@ class BaseCard {
         }
 
         get isEmbattled() {
-            return (this.counters > 0) || (this.flyingCounters > 0);
+            return (this.counters > 0) || (this.flyingCounters > 0) || 
+                   (this.menaceCounters > 0) || (this.firstStrikeCounters > 0) ||
+                   (this.vigilanceCounters > 0) || (this.lifelinkCounters > 0);
         }
 
         // Returns base power/toughness from the 'pt' string
@@ -134,7 +140,12 @@ class BaseCard {
 
         hasKeyword(keyword) {
             const kw = keyword.toLowerCase();
+            if (kw === 'first strike' && this.rules_text?.toLowerCase().includes('agile')) return true;
             if (kw === 'flying' && this.flyingCounters > 0) return true;
+            if (kw === 'menace' && this.menaceCounters > 0) return true;
+            if (kw === 'first strike' && this.firstStrikeCounters > 0) return true;
+            if (kw === 'vigilance' && this.vigilanceCounters > 0) return true;
+            if (kw === 'lifelink' && this.lifelinkCounters > 0) return true;
             
             // STATIC BOARD EFFECTS
             const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
@@ -157,11 +168,28 @@ class BaseCard {
             const newCard = CardFactory.create(this);
             newCard.counters = this.counters;
             newCard.flyingCounters = this.flyingCounters;
+            newCard.menaceCounters = this.menaceCounters;
+            newCard.firstStrikeCounters = this.firstStrikeCounters;
+            newCard.vigilanceCounters = this.vigilanceCounters;
+            newCard.lifelinkCounters = this.lifelinkCounters;
             newCard.isFoil = this.isFoil;
             newCard.indestructibleUsed = this.indestructibleUsed;
             newCard.enchantments = this.enchantments.map(e => (e instanceof BaseCard ? e.clone() : CardFactory.create(e)));
             return newCard;
         }
+    }
+
+    function proliferate(board, owner, multiplier) {
+        board.forEach(c => {
+            if (c.owner === owner) {
+                if (c.counters > 0) c.counters += multiplier;
+                if (c.flyingCounters > 0) c.flyingCounters += multiplier;
+                if (c.menaceCounters > 0) c.menaceCounters += multiplier;
+                if (c.firstStrikeCounters > 0) c.firstStrikeCounters += multiplier;
+                if (c.vigilanceCounters > 0) c.vigilanceCounters += multiplier;
+                if (c.lifelinkCounters > 0) c.lifelinkCounters += multiplier;
+            }
+        });
     }
 
     function traverseCirrusea(source, board) {
@@ -493,6 +521,70 @@ class BaseCard {
         }
     }
 
+    class WilderkinZealot extends BaseCard {
+        onCombatStart(board) {
+            const stats = this.getDisplayStats(board);
+            const hasFerocious = board?.some(c => c.getDisplayStats(board).p >= 4);
+            if (hasFerocious) {
+                const multiplier = this.isFoil ? 2 : 1;
+                this.counters += multiplier;
+            }
+        }
+        onAction() {
+            if (state.player.gold >= 2) {
+                state.targetingEffect = {
+                    sourceId: this.id,
+                    effect: 'wilderkin_zealot_trample',
+                    cost: 2,
+                    isFoil: this.isFoil
+                };
+            }
+        }
+    }
+
+    class BellowingGiant extends BaseCard { }
+
+    class BwemaTheRuthless extends BaseCard {
+        onETB(board) {
+            // Choice of two different counters
+            const multiplier = this.isFoil ? 2 : 1;
+            const options = [
+                { card_name: 'Menace Counter', rules_text: 'Menace', type: 'Counter' },
+                { card_name: 'First Strike Counter', rules_text: 'First strike', type: 'Counter' },
+                { card_name: 'Vigilance Counter', rules_text: 'Vigilance', type: 'Counter' },
+                { card_name: 'Lifelink Counter', rules_text: 'Lifelink', type: 'Counter' }
+            ];
+
+            state.discovery = {
+                cards: options.map(o => CardFactory.create(o)),
+                isBwema: true,
+                count: 1,
+                remaining: multiplier * 2,
+                sourceId: this.id,
+                chosen: []
+            };
+        }
+    }
+
+    class SilverhornTactician extends BaseCard {
+        onETB(board) {
+            const hasAnyCounter = board?.some(c => (c.counters > 0 || c.flyingCounters > 0 || 
+                                                 c.menaceCounters > 0 || c.firstStrikeCounters > 0 || 
+                                                 c.vigilanceCounters > 0 || c.lifelinkCounters > 0) &&
+                                                 c.owner === this.owner);
+            if (hasAnyCounter) {
+                state.targetingEffect = {
+                    sourceId: this.id,
+                    effect: 'permutate_step1',
+                    wasCast: true,
+                    isFoil: this.isFoil
+                };
+            }
+        }
+    }
+
+    class ScarhornCleaver extends BaseCard { }
+
     class WindsongApprentice extends BaseCard {
         onETB(board) {
             traverseCirrusea(this, board);
@@ -543,14 +635,10 @@ class BaseCard {
         }
     }
 
-    class SageOfStorms extends BaseCard {
+    class LingeringLunatic extends BaseCard {
         onETB(board) {
-            state.targetingEffect = {
-                sourceId: this.id,
-                effect: 'sage_of_storms_buff',
-                wasCast: true,
-                isFoil: this.isFoil
-            };
+            const multiplier = this.isFoil ? 2 : 1;
+            proliferate(board, this.owner, multiplier);
         }
     }
 
@@ -941,7 +1029,12 @@ class BaseCard {
                 case 'Cauther Hellkite': card = new CautherHellkite(data); break;
                 case 'Vivid Griffin': card = new VividGriffin(data); break;
                 case 'Nest Matriarch': card = new NestMatriarch(data); break;
-                case 'Sage of Storms': card = new SageOfStorms(data); break;
+                case 'Lingering Lunatic': card = new LingeringLunatic(data); break;
+                case 'Wilderkin Zealot': card = new WilderkinZealot(data); break;
+                case 'Bellowing Giant': card = new BellowingGiant(data); break;
+                case 'Bwema, the Ruthless': card = new BwemaTheRuthless(data); break;
+                case 'Silverhorn Tactician': card = new SilverhornTactician(data); break;
+                case 'Scarhorn Cleaver': card = new ScarhornCleaver(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1028,7 +1121,30 @@ class BaseCard {
 
     function resolveDiscovery(card) {
         if (!state.discovery) return;
-        
+
+        if (state.discovery.isBwema) {
+            const source = state.player.board.find(c => c.id === state.discovery.sourceId);
+            if (source) {
+                // Apply the counter
+                const kw = card.rules_text.toLowerCase();
+                if (kw === 'menace') source.menaceCounters++;
+                if (kw === 'first strike') source.firstStrikeCounters++;
+                if (kw === 'vigilance') source.vigilanceCounters++;
+                if (kw === 'lifelink') source.lifelinkCounters++;
+
+                state.discovery.remaining--;
+                if (state.discovery.remaining > 0) {
+                    // Filter out chosen card and continue
+                    state.discovery.cards = state.discovery.cards.filter(c => c.card_name !== card.card_name);
+                    render();
+                    return;
+                }
+            }
+            state.discovery = null;
+            render();
+            return;
+        }
+
         if (state.discovery.graveyard) {
             const idx = state.player.spellGraveyard.findIndex(s => s.id === card.id);
             if (idx !== -1) state.player.spellGraveyard.splice(idx, 1);
@@ -1038,7 +1154,6 @@ class BaseCard {
         state.discovery = null;
         render();
     }
-
     function showDamageBubble(targetOrId, amount, className = 'damage-bubble') {
         if (!targetOrId || amount <= 0) return;
         const cabinet = document.getElementById('game-cabinet');
@@ -1110,6 +1225,20 @@ class BaseCard {
                     if (state.targetingEffect.effect === 'executioner_buff_step2') {
                         if (state.targetingEffect.sacrificedCard) {
                             state.player.board.splice(state.targetingEffect.sacrificedIndex, 0, state.targetingEffect.sacrificedCard);
+                        }
+                    }
+
+                    // 3. RESTORE FOR PERMUTATE (If Step 1 happened)
+                    if (state.targetingEffect.effect === 'permutate_step2') {
+                        const source = state.player.board.find(c => c.id === state.targetingEffect.sourceCreatureId);
+                        if (source) {
+                            const ct = state.targetingEffect.removedCounterType;
+                            if (ct === 'plus-one') source.counters++;
+                            else if (ct === 'flying') source.flyingCounters++;
+                            else if (ct === 'menace') source.menaceCounters++;
+                            else if (ct === 'first-strike') source.firstStrikeCounters++;
+                            else if (ct === 'vigilance') source.vigilanceCounters++;
+                            else if (ct === 'lifelink') source.lifelinkCounters++;
                         }
                     }
                 }
@@ -1260,8 +1389,16 @@ class BaseCard {
         const currentOpp = getOpponent();
 
         // 1. Ensure all cards are instances and run combat start hooks
-        state.player.board = state.player.board.map(c => (c instanceof BaseCard ? c : CardFactory.create(c)));
-        currentOpp.board = currentOpp.board.map(c => (c instanceof BaseCard ? c : CardFactory.create(c)));
+        state.player.board = state.player.board.map(c => {
+            const inst = (c instanceof BaseCard ? c : CardFactory.create(c));
+            inst.owner = 'player';
+            return inst;
+        });
+        currentOpp.board = currentOpp.board.map(c => {
+            const inst = (c instanceof BaseCard ? c : CardFactory.create(c));
+            inst.owner = 'opponent';
+            return inst;
+        });
 
         state.player.board.forEach(c => {
             c.onCombatStart(state.player.board);
@@ -1879,7 +2016,7 @@ class BaseCard {
         state.targetingEffect = null;
     }
 
-    function applyTargetedEffect(targetId) {
+    function applyTargetedEffect(targetId, counterType = null) {
         if (!state.targetingEffect) return;
         // Search BOTH board and hand for the target
         const target = state.player.board.find(c => c.id === targetId) || state.player.hand.find(c => c.id === targetId);
@@ -1917,7 +2054,38 @@ class BaseCard {
                     target.counters += (2 * multiplier);
                     clearTargetingEffect();
                 }
-                } else if (state.targetingEffect.effect === 'nest_matriarch_buff') {
+            } else if (state.targetingEffect.effect === 'wilderkin_zealot_trample') {
+                if (state.player.gold >= 2) {
+                    state.player.gold -= 2;
+                    if (!target.enchantments) target.enchantments = [];
+                    target.enchantments.push({ card_name: 'Zealot Trample', rules_text: 'Trample' });
+                    clearTargetingEffect();
+                }
+            } else if (state.targetingEffect.effect === 'permutate_step1') {
+                if (counterType) {
+                    // Remove the specific counter
+                    if (counterType === 'plus-one') target.counters--;
+                    else if (counterType === 'flying') target.flyingCounters--;
+                    else if (counterType === 'menace') target.menaceCounters--;
+                    else if (counterType === 'first-strike') target.firstStrikeCounters--;
+                    else if (counterType === 'vigilance') target.vigilanceCounters--;
+                    else if (counterType === 'lifelink') target.lifelinkCounters--;
+
+                    state.targetingEffect.sourceCreatureId = target.id;
+                    state.targetingEffect.removedCounterType = counterType;
+                    state.targetingEffect.effect = 'permutate_step2';
+                    render();
+                }
+            } else if (state.targetingEffect.effect === 'permutate_step2') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceCreatureId);
+                if (source && target.id !== source.id) {
+                    // Add two +1/+1 counters to destination
+                    const multiplier = state.targetingEffect.isFoil ? 2 : 1;
+                    target.counters += (2 * multiplier);
+                    clearTargetingEffect();
+                }
+            } else if (state.targetingEffect.effect === 'nest_matriarch_buff') {
+
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
                 if (source && target.id !== source.id) {
                     const multiplier = source.isFoil ? 2 : 1;
@@ -1925,15 +2093,9 @@ class BaseCard {
                     if (!target.enchantments) target.enchantments = [];
                     target.enchantments.push({ card_name: 'Nest Matriarch Grant', rules_text: 'Lifelink' });
                     clearTargetingEffect();
-                }
-                } else if (state.targetingEffect.effect === 'sage_of_storms_buff') {
-                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
-                if (source && target.id !== source.id && target.hasKeyword('Flying')) {
-                    const multiplier = source.isFoil ? 2 : 1;
-                    target.counters += multiplier;
-                    clearTargetingEffect();
-                }
-            } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
+                    }
+                    } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
+
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
                     state.player.board.splice(idx, 1);
@@ -2749,9 +2911,40 @@ class BaseCard {
                     container.classList.remove('graveyard-mode');
                 }
                 state.discovery.cards.forEach(card => {
-                    const cardEl = createCardElement(card, false, -1, []);
-                    cardEl.addEventListener('click', () => resolveDiscovery(card));
-                    container.appendChild(cardEl);
+                    if (state.discovery.isBwema) {
+                        // Special Bwema UI: Circular icons with labels
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'discovery-item-wrapper';
+                        wrapper.style.display = 'flex';
+                        wrapper.style.flexDirection = 'column';
+                        wrapper.style.alignItems = 'center';
+                        wrapper.style.cursor = 'pointer';
+
+                        const kw = card.rules_text.toLowerCase();
+                        const icon = document.createElement('div');
+                        icon.className = `counter-bubble ${kw.replace(' ', '-')}`;
+                        icon.style.width = '60px';
+                        icon.style.height = '60px';
+                        icon.style.fontSize = '1.5em';
+                        
+                        const img = document.createElement('img');
+                        img.src = `img/${kw.replace(' ', '-')}.png`;
+                        img.alt = kw;
+                        icon.appendChild(img);
+
+                        const label = document.createElement('div');
+                        label.className = 'discovery-item-label';
+                        label.textContent = card.rules_text;
+
+                        wrapper.appendChild(icon);
+                        wrapper.appendChild(label);
+                        wrapper.addEventListener('click', () => resolveDiscovery(card));
+                        container.appendChild(wrapper);
+                    } else {
+                        const cardEl = createCardElement(card, false, -1, []);
+                        cardEl.addEventListener('click', () => resolveDiscovery(card));
+                        container.appendChild(cardEl);
+                    }
                 });
             } else {
                 discoveryModal.style.display = 'none';
@@ -2847,24 +3040,54 @@ class BaseCard {
         const counterStackEl = cardEl.querySelector('.card-counter-stack');
         counterStackEl.innerHTML = '';
         
+        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1';
+
+        const addCounterBubble = (type, value, imgPath, rulesText) => {
+            const bubble = document.createElement('div');
+            bubble.className = `counter-bubble ${type}`;
+            
+            if (type === 'plus-one') {
+                bubble.textContent = `+${value}`;
+            } else {
+                if (imgPath) {
+                    const img = document.createElement('img');
+                    img.src = imgPath;
+                    img.alt = type;
+                    bubble.appendChild(img);
+                }
+                // Overlay count if > 1
+                if (value > 1) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'counter-count-overlay';
+                    overlay.textContent = value;
+                    bubble.appendChild(overlay);
+                }
+            }
+            
+            if (isPermutate1 && instance.owner === 'player') {
+                bubble.classList.add('counter-clickable');
+                bubble.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // Permutate specific resolution logic: we tell the engine which counter we picked
+                    applyTargetedEffect(instance.id, type); 
+                });
+            }
+
+            counterStackEl.appendChild(bubble);
+        };
+
         // 1. +1/+1 Counters
-        if (instance.counters > 0) {
-            const bubble = document.createElement('div');
-            bubble.className = 'counter-bubble plus-one';
-            bubble.textContent = `+${instance.counters}`;
-            counterStackEl.appendChild(bubble);
-        }
-        
-        // 2. Flying Counters
-        if (instance.flyingCounters > 0) {
-            const bubble = document.createElement('div');
-            bubble.className = 'counter-bubble flying';
-            const img = document.createElement('img');
-            img.src = 'img/flying.png';
-            img.alt = 'Flying';
-            bubble.appendChild(img);
-            counterStackEl.appendChild(bubble);
-        }
+        if (instance.counters > 0) addCounterBubble('plus-one', instance.counters);
+        // 2. Flying
+        if (instance.flyingCounters > 0) addCounterBubble('flying', instance.flyingCounters, 'img/flying.png');
+        // 3. Menace
+        if (instance.menaceCounters > 0) addCounterBubble('menace', instance.menaceCounters, 'img/menace.png');
+        // 4. First Strike
+        if (instance.firstStrikeCounters > 0) addCounterBubble('first-strike', instance.firstStrikeCounters, 'img/first-strike.png');
+        // 5. Vigilance
+        if (instance.vigilanceCounters > 0) addCounterBubble('vigilance', instance.vigilanceCounters, 'img/vigilance.png');
+        // 6. Lifelink
+        if (instance.lifelinkCounters > 0) addCounterBubble('lifelink', instance.lifelinkCounters, 'img/lifelink.png');
         
         if (instance.pt) {
             const stats = instance.getDisplayStats(boardContext);
@@ -2876,11 +3099,13 @@ class BaseCard {
         
         if (instance.isFoil) cardEl.classList.add('foil');
         
+        if (isPermutate1) cardEl.classList.add('grayed-out');
+
         // Events
         if (isShop) cardEl.addEventListener('click', () => buyCard(instance.id));
 
-        // Actionable check for Intli Assaulter, Covetous Wechuge (Only on board, during SHOP)
-        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge'];
+        // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot (Only on board, during SHOP)
+        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot'];
         if (state.phase === 'SHOP' && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect) {
             cardEl.classList.add('actionable-outline');
             cardEl.addEventListener('click', (e) => {
@@ -2919,23 +3144,25 @@ class BaseCard {
                 // Special case: Parliament discard targeting is HAND ONLY
                 if (state.targetingEffect.effect === 'parliament_discard') {
                     // Not targetable on board
+                } else if (state.targetingEffect.effect === 'permutate_step1') {
+                    // Not targetable as a card, only counters are clickable
                 } else {
-                    // Special case: Intli Assaulter, Wechuge, Matriarch, Sage can't target themselves
-                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff', 'sage_of_storms_buff'];
+                    // Special case: Intli Assaulter, Wechuge, Matriarch can't target themselves
+                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff'];
                     if (cannotTargetSelf.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
                         // Not targetable
+                    } else if (state.targetingEffect.effect === 'permutate_step2' && instance.id === state.targetingEffect.sourceCreatureId) {
+                        // Not targetable (must be different creature)
                     } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.type?.includes('Centaur')) {
                         // Not targetable if not a Centaur
                     } else if (state.targetingEffect.effect === 'warband_rallier_counters' && !instance.type?.includes('Centaur')) {
                         // Not targetable if not a Centaur
-                    } else if (state.targetingEffect.effect === 'sage_of_storms_buff' && !instance.hasKeyword('Flying')) {
-                        // Not targetable if no Flying
                     } else {
                         cardEl.classList.add('targetable');
                         cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
                     }
-                    }
-                    }
+                }
+            }
 
         } else if (state.player.hand.some(c => c.id === instance.id)) { // In hand
              // DISCARD TARGETING
@@ -2963,7 +3190,8 @@ if (typeof module !== 'undefined' && module.exports) {
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
         resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
         resolveCombatImpact, resolveDeaths, processDeaths,
-        applyTargetedEffect, applySpell, useCardFromHand
+        applyTargetedEffect, applySpell, useCardFromHand,
+        resolveDiscovery
     };
 }
 

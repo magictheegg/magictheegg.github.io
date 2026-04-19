@@ -39,7 +39,7 @@ if (typeof document === 'undefined') {
 
 const { 
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
-    applyTargetedEffect, applySpell, useCardFromHand
+    applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -1109,32 +1109,137 @@ function testNestMatriarch() {
     assert.strictEqual(target.hasKeyword('lifelink'), true, "Target gains Lifelink");
 }
 
-function testSageOfStorms() {
+function testLingeringLunatic() {
     resetState();
-    const sage = CardFactory.create({ card_name: "Sage of Storms", pt: "4/4", rules_text: "Flying", type: "Creature - Bird Wizard" });
-    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying", type: "Creature" });
-    const ground = CardFactory.create({ card_name: "Ground", pt: "1/1", type: "Creature" });
-    state.player.board = [sage, flyer, ground];
-    state.player.hand = [sage];
-    sage.owner = 'player';
-    
-    useCardFromHand(sage.id);
-    assert.strictEqual(state.targetingEffect.effect, 'sage_of_storms_buff');
-    
-    // Target self (fail)
-    applyTargetedEffect(sage.id);
-    assert.strictEqual(sage.counters, 0, "Should not target self");
-    assert.ok(state.targetingEffect);
+    const lunatic = CardFactory.create({ card_name: "Lingering Lunatic", pt: "4/5", rules_text: "Vigilance", type: "Creature - Mutant Warlock" });
+    const target1 = CardFactory.create({ card_name: "T1", pt: "1/1", type: "Creature" });
+    const target2 = CardFactory.create({ card_name: "T2", pt: "1/1", type: "Creature" });
+    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", type: "Creature" });
 
-    // Try target ground (fail)
-    applyTargetedEffect(ground.id);
-    assert.strictEqual(ground.counters, 0, "Ground creature should not get counter");
-    assert.ok(state.targetingEffect, "Targeting should remain active");
+    target1.counters = 1;
+    target2.counters = 0;
+    flyer.flyingCounters = 1;
+    
+    state.player.board = [lunatic, target1, target2, flyer];
+    state.player.hand = [lunatic];
+    lunatic.owner = target1.owner = target2.owner = flyer.owner = 'player';
+    
+    useCardFromHand(lunatic.id);
+    
+    assert.strictEqual(target1.counters, 2, "Target 1 (already had counter) should proliferate to 2");
+    assert.strictEqual(target2.counters, 0, "Target 2 (had no counters) should remain at 0");
+    assert.strictEqual(flyer.flyingCounters, 2, "Flyer should now have 2 flying counters (Proliferate hits keyword counters too)");
+    assert.strictEqual(lunatic.hasKeyword('vigilance'), true, "Lingering Lunatic has Vigilance");
+}
 
-    // Target flyer (success)
-    applyTargetedEffect(flyer.id);
-    assert.strictEqual(flyer.counters, 1, "Flyer gets +1/+1 counter");
+function testWilderkinZealot() {
+    // 1. Ferocious Success
+    resetState();
+    const zealot = CardFactory.create({ card_name: "Wilderkin Zealot", pt: "2/2", type: "Creature - Human Druid" });
+    const big = CardFactory.create({ card_name: "Big", pt: "4/4" });
+    state.player.board = [zealot, big];
+    zealot.onCombatStart(state.player.board);
+    assert.strictEqual(zealot.counters, 1, "Should gain counter if power 4+ present");
+
+    // 2. Ferocious Fail
+    resetState();
+    const zealot2 = CardFactory.create({ card_name: "Wilderkin Zealot", pt: "2/2", type: "Creature - Human Druid" });
+    state.player.board = [zealot2];
+    zealot2.onCombatStart(state.player.board);
+    assert.strictEqual(zealot2.counters, 0, "Should NOT gain counter if no power 4+");
+
+    // 3. Activated Ability
+    resetState();
+    const zealot3 = CardFactory.create({ card_name: "Wilderkin Zealot", pt: "2/2", type: "Creature - Human Druid" });
+    state.player.board = [zealot3];
+    state.player.gold = 5;
+    zealot3.onAction();
+    assert.strictEqual(state.targetingEffect.effect, 'wilderkin_zealot_trample');
+    applyTargetedEffect(zealot3.id);
+    assert.strictEqual(state.player.gold, 3, "Cost 2 gold");
+    assert.strictEqual(zealot3.hasKeyword('trample'), true);
+}
+
+function testBellowingGiant() {
+    resetState();
+    const giant = CardFactory.create({ card_name: "Bellowing Giant", pt: "6/4", rules_text: "Trample" });
+    assert.strictEqual(giant.getBasePT().p, 6);
+    assert.strictEqual(giant.hasKeyword('trample'), true);
+}
+
+function testBwemaTheRuthless() {
+    const combos = [
+        ['Menace Counter', 'First Strike Counter', 'menaceCounters', 'firstStrikeCounters'],
+        ['Menace Counter', 'Vigilance Counter', 'menaceCounters', 'vigilanceCounters'],
+        ['Menace Counter', 'Lifelink Counter', 'menaceCounters', 'lifelinkCounters'],
+        ['First Strike Counter', 'Vigilance Counter', 'firstStrikeCounters', 'vigilanceCounters'],
+        ['First Strike Counter', 'Lifelink Counter', 'firstStrikeCounters', 'lifelinkCounters'],
+        ['Vigilance Counter', 'Lifelink Counter', 'vigilanceCounters', 'lifelinkCounters']
+    ];
+
+    combos.forEach(([c1Name, c2Name, prop1, prop2]) => {
+        resetState();
+        const bwema = CardFactory.create({ card_name: "Bwema, the Ruthless", pt: "4/4", type: "Legendary Creature - Hound Warrior" });
+        state.player.board = [bwema];
+        bwema.owner = 'player';
+        bwema.onETB(state.player.board);
+
+        const c1 = state.discovery.cards.find(c => c.card_name === c1Name);
+        resolveDiscovery(c1);
+        const c2 = state.discovery.cards.find(c => c.card_name === c2Name);
+        resolveDiscovery(c2);
+
+        assert.strictEqual(bwema[prop1], 1, `Should have ${prop1}`);
+        assert.strictEqual(bwema[prop2], 1, `Should have ${prop2}`);
+        assert.strictEqual(state.discovery, null);
+    });
+}
+
+function testSilverhornTactician() {
+    resetState();
+    const ox = CardFactory.create({ card_name: "Silverhorn Tactician", pt: "4/4" });
+    const source = CardFactory.create({ card_name: "Source", pt: "1/1" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    
+    source.counters = 1;
+    source.flyingCounters = 1; // Two different counters
+    state.player.board = [ox, source, other];
+    ox.owner = source.owner = other.owner = 'player';
+
+    ox.onETB(state.player.board);
+    
+    // 1. Remove Flying (Must specify counter type now), verify +1/+1 stays
+    applyTargetedEffect(source.id, 'flying');
+    assert.strictEqual(state.targetingEffect.effect, 'permutate_step2');
+    
+    // Source should have lost Flying (flyingCounters was 1, should be 0)
+    assert.strictEqual(source.flyingCounters, 0, "Flying counter should be removed");
+    assert.strictEqual(source.counters, 1, "+1/+1 counter stays");
+
+    // 2. Pick same creature (Fail)
+    applyTargetedEffect(source.id);
+    assert.ok(state.targetingEffect, "Should not accept same creature as target 2");
+
+    // 3. Pick different creature (Success)
+    applyTargetedEffect(other.id);
+    assert.strictEqual(other.counters, 2, "Destination gets two +1/+1 counters");
     assert.strictEqual(state.targetingEffect, null);
+}
+
+function testScarhornCleaver() {
+    resetState();
+    const bull = CardFactory.create({ card_name: "Scarhorn Cleaver", pt: "4/3", rules_text: "Agile" });
+    const defender = CardFactory.create({ card_name: "Def", pt: "1/1" });
+    bull.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [bull], opponent: [defender] };
+
+    // Agile should act like First Strike
+    assert.strictEqual(bull.hasKeyword('first strike'), true, "Agile should map to first strike");
+    
+    resolveCombatImpact(bull, defender, true); // true = hasFirstStrike
+    assert.strictEqual(defender.damageTaken, 4);
+    assert.strictEqual(bull.damageTaken, 0, "Should take no retaliation from dead defender");
 }
 
 function runTests() {
@@ -1213,7 +1318,12 @@ function runTests() {
         { tier: 3, name: "Cauther Hellkite", fn: testCautherHellkite },
         { tier: 3, name: "Vivid Griffin", fn: testVividGriffin },
         { tier: 3, name: "Nest Matriarch", fn: testNestMatriarch },
-        { tier: 3, name: "Sage of Storms", fn: testSageOfStorms }
+        { tier: 3, name: "Lingering Lunatic", fn: testLingeringLunatic },
+        { tier: 3, name: "Wilderkin Zealot", fn: testWilderkinZealot },
+        { tier: 3, name: "Bellowing Giant", fn: testBellowingGiant },
+        { tier: 3, name: "Bwema, the Ruthless", fn: testBwemaTheRuthless },
+        { tier: 3, name: "Silverhorn Tactician", fn: testSilverhornTactician },
+        { tier: 3, name: "Scarhorn Cleaver", fn: testScarhornCleaver }
     ];
 
     console.log("\nUNIT TEST RESULTS");

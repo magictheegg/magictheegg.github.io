@@ -18,7 +18,8 @@ def create_autobattler_card_list():
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
-        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Sage of Storms"
+        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
+        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -47,7 +48,8 @@ def create_autobattler_card_list():
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
-        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Sage of Storms"
+        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
+        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver"
     ]
 
     for name in card_names_to_include:

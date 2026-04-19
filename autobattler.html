@@ -131,7 +131,7 @@
             z-index: 1;
         }
 
-        .card:hover:not(.attacking):not(.targetable) {
+        .card:hover:not(.attacking):not(.targetable):not(.grayed-out) {
             transform: scale(1.15) translateY(-10px);
             z-index: 100 !important;
         }
@@ -215,7 +215,7 @@
             flex-direction: column-reverse; /* +1/+1 on bottom */
             gap: 4px;
             z-index: 10;
-            pointer-events: none;
+            pointer-events: auto; /* Changed to allow clicking counters */
         }
 
         .counter-bubble {
@@ -230,19 +230,70 @@
             border: 3px solid #fff;
             box-shadow: 0 2px 6px rgba(0,0,0,0.5);
             font-weight: bold;
+            position: relative;
         }
 
         .counter-bubble.plus-one { background: #ff4500; }
-        .counter-bubble.flying { 
-            background: #87ceeb; /* Sky Blue */
-            padding: 0;
-            overflow: hidden;
-        }
+        .counter-bubble.flying { background: #87ceeb; }
+        .counter-bubble.menace { background-color: #5d4037; }
+        .counter-bubble.first-strike { background-color: #d32f2f; }
+        .counter-bubble.vigilance { background-color: #fbc02d; }
+        .counter-bubble.lifelink { background-color: #7b1fa2; }
 
-        .counter-bubble.flying img {
+        .counter-bubble img {
             width: 65%;
             height: 65%;
             object-fit: contain;
+        }
+
+        .counter-count-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            opacity: 0.5;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .counter-bubble.counter-clickable {
+            cursor: pointer;
+            box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.8);
+            transform: scale(1.2);
+            z-index: 2000;
+            pointer-events: auto;
+        }
+
+        .counter-bubble.counter-clickable:hover {
+            transform: scale(1.4);
+        }
+
+        .card.grayed-out .card-art, 
+        .card.grayed-out .card-pt, 
+        .card.grayed-out .card-cost {
+            filter: grayscale(1) opacity(0.3);
+            pointer-events: none;
+        }
+
+        .card.grayed-out {
+            pointer-events: auto; /* Container allows events to reach counters */
+            z-index: 600; /* Sit above the interaction overlay (z-index 500) */
+        }
+
+        .card.grayed-out .card-counter-stack {
+            z-index: 2000;
+            pointer-events: auto;
+        }
+
+        .discovery-item-label {
+            font-family: 'Beleren Small Caps', sans-serif;
+            font-size: 0.8em;
+            color: #fff;
+            margin-top: 5px;
+            text-align: center;
         }
 
         /* AVATAR BOXES AND LABELS */
