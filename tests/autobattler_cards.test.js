@@ -1021,6 +1021,122 @@ function testCybresBandLancer() {
     assert.strictEqual(lancer.tempPower, 0, "Lancer does not buff self");
 }
 
+function testWindsongApprentice() {
+    resetState();
+    const winds = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
+    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying", type: "Creature" });
+    state.player.board = [winds, flyer];
+    state.player.hand = [winds];
+    winds.owner = 'player';
+    flyer.owner = 'player';
+
+    // 1. Lord Effect
+    assert.strictEqual(flyer.getDisplayStats(state.player.board).p, 2, "Flyer should get +1/+1 from Windsong");
+    assert.strictEqual(winds.getDisplayStats(state.player.board).p, 2, "Windsong should not buff self (no flying)");
+
+    // 2. Self-buff if gains flying
+    winds.flyingCounters = 1;
+    assert.strictEqual(winds.getDisplayStats(state.player.board).p, 3, "Windsong should buff self if it has flying (2 base + 1 Windsong buff)");
+
+    // 3. ETB Traverse (already Cirrusea -> select Flying/Counter)
+    resetState();
+    state.plane = 'Cirrusea';
+    const winds2 = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
+    state.player.hand = [winds2];
+    useCardFromHand(winds2.id);
+    assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
+}
+
+function testCautherHellkite() {
+    resetState();
+    const hellkite = CardFactory.create({ card_name: "Cauther Hellkite", pt: "4/4", rules_text: "Flying, haste", type: "Creature - Dragon" });
+    const e1 = CardFactory.create({ card_name: "E1", pt: "1/1", type: "Creature" });
+    const e2 = CardFactory.create({ card_name: "E2", pt: "1/1", type: "Creature" });
+    
+    state.battleBoards = {
+        player: [hellkite],
+        opponent: [e1, e2]
+    };
+    hellkite.owner = 'player';
+    e1.owner = 'opponent';
+    e2.owner = 'opponent';
+
+    assert.strictEqual(hellkite.hasKeyword('flying'), true);
+    assert.strictEqual(hellkite.hasKeyword('haste'), true);
+    
+    hellkite.onAttack(state.battleBoards.player);
+    assert.strictEqual(e1.damageTaken, 1, "Enemy 1 should take 1 damage");
+    assert.strictEqual(e2.damageTaken, 1, "Enemy 2 should take 1 damage");
+}
+
+function testVividGriffin() {
+    resetState();
+    const griffin = CardFactory.create({ card_name: "Vivid Griffin", pt: "4/4", rules_text: "Flying", type: "Creature - Griffin" });
+    state.player.board = [griffin];
+    
+    // Power not greater than base
+    griffin.onCombatStart(state.player.board);
+    assert.strictEqual(griffin.hasKeyword('lifelink'), false, "Should not gain lifelink if not buffed");
+
+    // Power greater than base
+    resetState();
+    const griffin2 = CardFactory.create({ card_name: "Vivid Griffin", pt: "4/4", rules_text: "Flying", type: "Creature - Griffin" });
+    griffin2.counters = 1;
+    state.player.board = [griffin2];
+    griffin2.onCombatStart(state.player.board);
+    assert.strictEqual(griffin2.hasKeyword('lifelink'), true, "Should gain lifelink if power > base");
+}
+
+function testNestMatriarch() {
+    resetState();
+    const nest = CardFactory.create({ card_name: "Nest Matriarch", pt: "3/3", rules_text: "Flying", type: "Creature - Bird" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1", type: "Creature" });
+    state.player.board = [nest, target];
+    state.player.hand = [nest];
+    nest.owner = 'player';
+    
+    useCardFromHand(nest.id);
+    assert.strictEqual(state.targetingEffect.effect, 'nest_matriarch_buff');
+    
+    // Target self (fail)
+    applyTargetedEffect(nest.id);
+    assert.strictEqual(nest.counters, 0, "Should not target self");
+    assert.ok(state.targetingEffect);
+
+    // Target other (success)
+    applyTargetedEffect(target.id);
+    assert.strictEqual(target.counters, 1, "Target gets +1/+1 counter");
+    assert.strictEqual(target.hasKeyword('lifelink'), true, "Target gains Lifelink");
+}
+
+function testSageOfStorms() {
+    resetState();
+    const sage = CardFactory.create({ card_name: "Sage of Storms", pt: "4/4", rules_text: "Flying", type: "Creature - Bird Wizard" });
+    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying", type: "Creature" });
+    const ground = CardFactory.create({ card_name: "Ground", pt: "1/1", type: "Creature" });
+    state.player.board = [sage, flyer, ground];
+    state.player.hand = [sage];
+    sage.owner = 'player';
+    
+    useCardFromHand(sage.id);
+    assert.strictEqual(state.targetingEffect.effect, 'sage_of_storms_buff');
+    
+    // Target self (fail)
+    applyTargetedEffect(sage.id);
+    assert.strictEqual(sage.counters, 0, "Should not target self");
+    assert.ok(state.targetingEffect);
+
+    // Try target ground (fail)
+    applyTargetedEffect(ground.id);
+    assert.strictEqual(ground.counters, 0, "Ground creature should not get counter");
+    assert.ok(state.targetingEffect, "Targeting should remain active");
+
+    // Target flyer (success)
+    applyTargetedEffect(flyer.id);
+    assert.strictEqual(flyer.counters, 1, "Flyer gets +1/+1 counter");
+    assert.strictEqual(state.targetingEffect, null);
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -1092,7 +1208,12 @@ function runTests() {
         { tier: 3, name: "Warband Rallier", fn: testWarbandRallier },
         { tier: 3, name: "Cybres-Band Recruiter", fn: testCybresBandRecruiter },
         { tier: 3, name: "Cybres-Clan Squire", fn: testCybresClanSquire },
-        { tier: 3, name: "Cybres-Band Lancer", fn: testCybresBandLancer }
+        { tier: 3, name: "Cybres-Band Lancer", fn: testCybresBandLancer },
+        { tier: 3, name: "Windsong Apprentice", fn: testWindsongApprentice },
+        { tier: 3, name: "Cauther Hellkite", fn: testCautherHellkite },
+        { tier: 3, name: "Vivid Griffin", fn: testVividGriffin },
+        { tier: 3, name: "Nest Matriarch", fn: testNestMatriarch },
+        { tier: 3, name: "Sage of Storms", fn: testSageOfStorms }
     ];
 
     console.log("\nUNIT TEST RESULTS");

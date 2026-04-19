@@ -71,6 +71,17 @@ class BaseCard {
                     }
                 });
             }
+
+            // FLYING LORD CHECK (Windsong Apprentice)
+            if (this.hasKeyword('Flying')) {
+                board?.forEach(c => {
+                    if (c.card_name === 'Windsong Apprentice') {
+                        const multiplier = c.isFoil ? 2 : 1;
+                        p += multiplier;
+                        t += multiplier;
+                    }
+                });
+            }
             
             return { p, t };
         }
@@ -150,6 +161,28 @@ class BaseCard {
             newCard.indestructibleUsed = this.indestructibleUsed;
             newCard.enchantments = this.enchantments.map(e => (e instanceof BaseCard ? e.clone() : CardFactory.create(e)));
             return newCard;
+        }
+    }
+
+    function traverseCirrusea(source, board) {
+        const multiplier = source.isFoil ? 2 : 1;
+        for (let i = 0; i < multiplier; i++) {
+            if (state.plane !== 'Cirrusea') {
+                state.plane = 'Cirrusea';
+                // Create 1/2 Bird Token with Flying
+                if (board.length < boardLimit) {
+                    const bird = createToken('Bird', 'AEX', 'player');
+                    if (bird) board.push(bird);
+                }
+            } else {
+                // Already in Cirrusea: Trigger targeting for Flying or +1/+1
+                state.targetingEffect = {
+                    sourceId: source.id,
+                    effect: 'traverse_cirrusea_grant',
+                    wasCast: true,
+                    isFoil: source.isFoil
+                };
+            }
         }
     }
 
@@ -456,25 +489,68 @@ class BaseCard {
 
     class StratusTraveler extends BaseCard {
         onETB(board) {
+            traverseCirrusea(this, board);
+        }
+    }
+
+    class WindsongApprentice extends BaseCard {
+        onETB(board) {
+            traverseCirrusea(this, board);
+        }
+    }
+
+    class CautherHellkite extends BaseCard {
+        onAttack(board) {
+            if (!state.battleBoards) return [];
+            const opponentBoard = (this.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
             const multiplier = this.isFoil ? 2 : 1;
-            for (let i = 0; i < multiplier; i++) {
-                if (state.plane !== 'Cirrusea') {
-                    state.plane = 'Cirrusea';
-                    // Create 1/2 Bird Token with Flying
-                    if (board.length < boardLimit) {
-                        const bird = createToken('Bird', 'AEX', 'player');
-                        if (bird) board.push(bird);
+            
+            opponentBoard.forEach(c => {
+                c.damageTaken += multiplier;
+                // Animation
+                setTimeout(() => {
+                    const el = document.getElementById(`card-${c.id}`);
+                    if (el) {
+                        el.classList.add('shake');
+                        setTimeout(() => el.classList.remove('shake'), 300);
+                        showDamageBubble(c.id, multiplier);
                     }
-                } else {
-                    // Already in Cirrusea: Trigger targeting for Flying or +1/+1
-                    state.targetingEffect = {
-                        sourceId: this.id,
-                        effect: 'traverse_cirrusea_grant',
-                        wasCast: true,
-                        isFoil: this.isFoil
-                    };
-                }
+                }, 100);
+            });
+            return [];
+        }
+    }
+
+    class VividGriffin extends BaseCard {
+        onCombatStart(board) {
+            const stats = this.getDisplayStats(board);
+            const base = this.getBasePT();
+            if (stats.p > base.p) {
+                if (!this.enchantments) this.enchantments = [];
+                this.enchantments.push({ card_name: 'Resolute Lifelink', rules_text: 'Lifelink' });
             }
+        }
+    }
+
+    class NestMatriarch extends BaseCard {
+        onETB(board) {
+            state.targetingEffect = {
+                sourceId: this.id,
+                effect: 'nest_matriarch_buff',
+                wasCast: true,
+                isFoil: this.isFoil
+            };
+        }
+    }
+
+    class SageOfStorms extends BaseCard {
+        onETB(board) {
+            state.targetingEffect = {
+                sourceId: this.id,
+                effect: 'sage_of_storms_buff',
+                wasCast: true,
+                isFoil: this.isFoil
+            };
         }
     }
 
@@ -861,6 +937,11 @@ class BaseCard {
                 case 'Cybres-Band Recruiter': card = new CybresBandRecruiter(data); break;
                 case 'Cybres-Clan Squire': card = new CybresClanSquire(data); break;
                 case 'Cybres-Band Lancer': card = new CybresBandLancer(data); break;
+                case 'Windsong Apprentice': card = new WindsongApprentice(data); break;
+                case 'Cauther Hellkite': card = new CautherHellkite(data); break;
+                case 'Vivid Griffin': card = new VividGriffin(data); break;
+                case 'Nest Matriarch': card = new NestMatriarch(data); break;
+                case 'Sage of Storms': card = new SageOfStorms(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1834,6 +1915,22 @@ class BaseCard {
                 if (target.type?.includes('Centaur')) {
                     const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     target.counters += (2 * multiplier);
+                    clearTargetingEffect();
+                }
+                } else if (state.targetingEffect.effect === 'nest_matriarch_buff') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+                if (source && target.id !== source.id) {
+                    const multiplier = source.isFoil ? 2 : 1;
+                    target.counters += multiplier;
+                    if (!target.enchantments) target.enchantments = [];
+                    target.enchantments.push({ card_name: 'Nest Matriarch Grant', rules_text: 'Lifelink' });
+                    clearTargetingEffect();
+                }
+                } else if (state.targetingEffect.effect === 'sage_of_storms_buff') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+                if (source && target.id !== source.id && target.hasKeyword('Flying')) {
+                    const multiplier = source.isFoil ? 2 : 1;
+                    target.counters += multiplier;
                     clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
@@ -2823,18 +2920,23 @@ class BaseCard {
                 if (state.targetingEffect.effect === 'parliament_discard') {
                     // Not targetable on board
                 } else {
-                    // Special case: Intli Assaulter, Wechuge can't sacrifice themselves
-                    const selfSacrificers = ['intli_sacrifice', 'wechuge_sacrifice'];
-                    if (selfSacrificers.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
+                    // Special case: Intli Assaulter, Wechuge, Matriarch, Sage can't target themselves
+                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff', 'sage_of_storms_buff'];
+                    if (cannotTargetSelf.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
                         // Not targetable
                     } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.type?.includes('Centaur')) {
                         // Not targetable if not a Centaur
+                    } else if (state.targetingEffect.effect === 'warband_rallier_counters' && !instance.type?.includes('Centaur')) {
+                        // Not targetable if not a Centaur
+                    } else if (state.targetingEffect.effect === 'sage_of_storms_buff' && !instance.hasKeyword('Flying')) {
+                        // Not targetable if no Flying
                     } else {
-                        cardEl.classList.add('targetable'); 
-                        cardEl.addEventListener('click', () => applyTargetedEffect(instance.id)); 
+                        cardEl.classList.add('targetable');
+                        cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
                     }
-                }
-            }
+                    }
+                    }
+
         } else if (state.player.hand.some(c => c.id === instance.id)) { // In hand
              // DISCARD TARGETING
              if (state.targetingEffect && state.targetingEffect.effect === 'parliament_discard') {

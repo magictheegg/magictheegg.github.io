@@ -17,7 +17,8 @@ def create_autobattler_card_list():
         "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
-        "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer"
+        "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
+        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Sage of Storms"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -45,7 +46,8 @@ def create_autobattler_card_list():
     tier_3_names = [
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
-        "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer"
+        "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
+        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Sage of Storms"
     ]
 
     for name in card_names_to_include:
