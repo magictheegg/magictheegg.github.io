@@ -19,7 +19,8 @@ def create_autobattler_card_list():
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
-        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver"
+        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
+        "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -49,7 +50,8 @@ def create_autobattler_card_list():
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
-        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver"
+        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
+        "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants"
     ]
 
     for name in card_names_to_include:

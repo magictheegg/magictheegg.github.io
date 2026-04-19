@@ -39,7 +39,7 @@ if (typeof document === 'undefined') {
 
 const { 
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
-    applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact
+    applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -1257,6 +1257,105 @@ function testScarhornCleaver() {
     assert.strictEqual(bull.damageTaken, 0, "Should take no retaliation from dead defender");
 }
 
+function testQinhanaCavalry() {
+    // 1. Success (Target on right)
+    resetState();
+    const cavalry = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
+    const recruit = CardFactory.create({ card_name: "Recruit", pt: "1/1" });
+    state.player.board = [cavalry, recruit];
+    cavalry.onCombatStart(state.player.board);
+    assert.strictEqual(recruit.tempPower, 3, "Target to the right should be buffed");
+    assert.strictEqual(cavalry.isLockedByChivalry, true, "Cavalry should be locked");
+
+    // 2. Fail (Target has too much power)
+    resetState();
+    const cavalry2 = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
+    const big = CardFactory.create({ card_name: "Big", pt: "4/4" });
+    state.player.board = [cavalry2, big];
+    cavalry2.onCombatStart(state.player.board);
+    assert.strictEqual(big.tempPower, 0);
+    assert.strictEqual(cavalry2.isLockedByChivalry, false);
+
+    // 3. Fail (Target to the left)
+    resetState();
+    const cavalry3 = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
+    const leftie = CardFactory.create({ card_name: "Leftie", pt: "1/1" });
+    state.player.board = [leftie, cavalry3];
+    cavalry3.onCombatStart(state.player.board);
+    assert.strictEqual(leftie.tempPower, 0);
+}
+
+function testMekiniEremite() {
+    resetState();
+    const monk = CardFactory.create({ card_name: "Mekini Eremite", pt: "3/1" });
+    const attacker = CardFactory.create({ card_name: "Atk", pt: "5/5" });
+    const defender = CardFactory.create({ card_name: "Def", pt: "2/2" });
+    
+    monk.owner = 'player';
+    attacker.owner = 'opponent';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [monk], opponent: [attacker, defender] };
+    
+    monk.onETB(state.player.board);
+    assert.strictEqual(monk.shieldCounters, 1, "Should enter with shield counter");
+
+    // 1. Shield as Defender (Attacker hits Monk)
+    resolveCombatImpact(attacker, monk, false);
+    assert.strictEqual(monk.damageTaken, 0, "Shield should prevent all damage");
+    assert.strictEqual(monk.shieldCounters, 0, "Shield should be consumed");
+
+    // 2. Shield as Attacker (Monk hits Defender)
+    monk.shieldCounters = 1;
+    resolveCombatImpact(monk, defender, false);
+    assert.strictEqual(monk.damageTaken, 0, "Shield should prevent retaliation damage");
+    assert.strictEqual(monk.shieldCounters, 0, "Shield consumed");
+
+    // 3. Unblockable
+    monk.counters = 1;
+    monk.shieldCounters = 1; // 2 different types: Plus-One and Shield
+    const oBoard = [CardFactory.create({ card_name: "Blocker", pt: "1/1" })];
+    const target = findTarget(monk, oBoard);
+    assert.strictEqual(target, null, "Should be unblockable with 2 different counter types");
+}
+
+function testFrontierMarkswomen() {
+    resetState();
+    const card = CardFactory.create({ card_name: "Frontier Markswomen", pt: "2/5", rules_text: "Vigilance, reach" });
+    assert.strictEqual(card.hasKeyword('vigilance'), true);
+    assert.strictEqual(card.hasKeyword('reach'), true);
+}
+
+function testDragonfistAxeman() {
+    resetState();
+    const axeman = CardFactory.create({ card_name: "Dragonfist Axeman", pt: "2/5", rules_text: "Reach" });
+    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying" });
+    axeman.owner = 'player';
+    flyer.owner = 'opponent';
+    state.battleBoards = { player: [axeman], opponent: [flyer] };
+
+    assert.strictEqual(axeman.hasKeyword('reach'), true);
+
+    // 1. Gains buff when blocking flyer
+    resolveCombatImpact(flyer, axeman, false);
+    assert.strictEqual(axeman.tempPower, 3, "Should gain +3/+0 when defending against flyer");
+
+    // 2. Stays buffed for its own attack
+    const stats = axeman.getDisplayStats(state.battleBoards.player);
+    assert.strictEqual(stats.p, 5, "Power should still be 5 (2 base + 3 buff) for subsequent attack");
+}
+
+function testFestivalCelebrants() {
+    resetState();
+    const cel = CardFactory.create({ card_name: "Festival Celebrants", pt: "2/2" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    state.player.board = [cel, other];
+    cel.owner = other.owner = 'player';
+
+    cel.onETB(state.player.board);
+    assert.strictEqual(other.counters, 1, "Other creature should get a counter");
+    assert.strictEqual(cel.counters, 1, "Festival Celebrants should get a counter itself");
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -1338,7 +1437,12 @@ function runTests() {
         { tier: 3, name: "Bellowing Giant", fn: testBellowingGiant },
         { tier: 3, name: "Bwema, the Ruthless", fn: testBwemaTheRuthless },
         { tier: 3, name: "Silverhorn Tactician", fn: testSilverhornTactician },
-        { tier: 3, name: "Scarhorn Cleaver", fn: testScarhornCleaver }
+        { tier: 3, name: "Scarhorn Cleaver", fn: testScarhornCleaver },
+        { tier: 3, name: "Qinhana Cavalry", fn: testQinhanaCavalry },
+        { tier: 3, name: "Mekini Eremite", fn: testMekiniEremite },
+        { tier: 3, name: "Frontier Markswomen", fn: testFrontierMarkswomen },
+        { tier: 3, name: "Dragonfist Axeman", fn: testDragonfistAxeman },
+        { tier: 3, name: "Festival Celebrants", fn: testFestivalCelebrants }
     ];
 
     console.log("\nUNIT TEST RESULTS");

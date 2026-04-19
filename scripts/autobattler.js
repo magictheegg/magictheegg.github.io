@@ -10,6 +10,7 @@ class BaseCard {
             this.firstStrikeCounters = Number(this.firstStrikeCounters) || 0;
             this.vigilanceCounters = Number(this.vigilanceCounters) || 0;
             this.lifelinkCounters = Number(this.lifelinkCounters) || 0;
+            this.shieldCounters = Number(this.shieldCounters) || 0;
             this.damageTaken = Number(this.damageTaken) || 0;
             this.enchantments = this.enchantments || [];
             this.tempPower = Number(this.tempPower) || 0;
@@ -21,7 +22,8 @@ class BaseCard {
         get isEmbattled() {
             return (this.counters > 0) || (this.flyingCounters > 0) || 
                    (this.menaceCounters > 0) || (this.firstStrikeCounters > 0) ||
-                   (this.vigilanceCounters > 0) || (this.lifelinkCounters > 0);
+                   (this.vigilanceCounters > 0) || (this.lifelinkCounters > 0) ||
+                   (this.shieldCounters > 0);
         }
 
         // Returns base power/toughness from the 'pt' string
@@ -172,6 +174,7 @@ class BaseCard {
             newCard.firstStrikeCounters = this.firstStrikeCounters;
             newCard.vigilanceCounters = this.vigilanceCounters;
             newCard.lifelinkCounters = this.lifelinkCounters;
+            newCard.shieldCounters = this.shieldCounters;
             newCard.isFoil = this.isFoil;
             newCard.indestructibleUsed = this.indestructibleUsed;
             newCard.enchantments = this.enchantments.map(e => (e instanceof BaseCard ? e.clone() : CardFactory.create(e)));
@@ -188,6 +191,7 @@ class BaseCard {
                 if (c.firstStrikeCounters > 0) c.firstStrikeCounters += multiplier;
                 if (c.vigilanceCounters > 0) c.vigilanceCounters += multiplier;
                 if (c.lifelinkCounters > 0) c.lifelinkCounters += multiplier;
+                if (c.shieldCounters > 0) c.shieldCounters += multiplier;
             }
         });
     }
@@ -613,6 +617,48 @@ class BaseCard {
         }
     }
 
+    class QinhanaCavalry extends BaseCard {
+        onCombatStart(board) {
+            const idx = board.indexOf(this);
+            if (idx !== -1 && idx < board.length - 1) {
+                const target = board[idx + 1];
+                if (target.getBasePT().p < this.getBasePT().p) {
+                    const bonus = this.isFoil ? 6 : 3;
+                    target.tempPower += bonus;
+                    target.tempToughness += bonus;
+                    this.isLockedByChivalry = true;
+                }
+            }
+        }
+    }
+
+    class MekiniEremite extends BaseCard {
+        onETB(board) {
+            this.shieldCounters = this.isFoil ? 2 : 1;
+        }
+    }
+
+    class FrontierMarkswomen extends BaseCard { }
+
+    class DragonfistAxeman extends BaseCard {
+        // Triggered via resolveCombatImpact logic if needed, 
+        // or we can handle it in the class if we add a hook for defending.
+        onCombatStart(board) {
+            // Placeholder for reach if needed (Reach is a keyword check)
+        }
+    }
+
+    class FestivalCelebrants extends BaseCard {
+        onETB(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            board.forEach(c => {
+                if (c.owner === this.owner) {
+                    c.counters += multiplier;
+                }
+            });
+        }
+    }
+
     class VividGriffin extends BaseCard {
         onCombatStart(board) {
             const stats = this.getDisplayStats(board);
@@ -1032,6 +1078,11 @@ class BaseCard {
                 case 'Bwema, the Ruthless': card = new BwemaTheRuthless(data); break;
                 case 'Silverhorn Tactician': card = new SilverhornTactician(data); break;
                 case 'Scarhorn Cleaver': card = new ScarhornCleaver(data); break;
+                case 'Qinhana Cavalry': card = new QinhanaCavalry(data); break;
+                case 'Mekini Eremite': card = new MekiniEremite(data); break;
+                case 'Frontier Markswomen': card = new FrontierMarkswomen(data); break;
+                case 'Dragonfist Axeman': card = new DragonfistAxeman(data); break;
+                case 'Festival Celebrants': card = new FestivalCelebrants(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1089,7 +1140,8 @@ class BaseCard {
         battleBoards: null,
         creaturesDiedThisShopPhase: false,
         shopDeathsCount: 0,
-        plane: null
+        plane: null,
+        overallHpReducedThisFight: false
     };
 
     function getOpponent() {
@@ -1372,6 +1424,7 @@ class BaseCard {
 
     async function startBattleTurn() {
         state.phase = 'BATTLE';
+        state.overallHpReducedThisFight = false;
         endTurnBtn.disabled = true;
         rerollBtn.disabled = true;
         
@@ -1535,6 +1588,27 @@ class BaseCard {
 
             // Phase 3: Impact calculations
             const hasFirstStrike = attacker.hasKeyword('First strike');
+
+            // SPECIAL VISUAL: Dragonfist Axeman (Defensive buff animation)
+            if (defender && defender.card_name === 'Dragonfist Axeman' && attacker.hasKeyword('Flying')) {
+                const defenderEl = document.getElementById(`card-${defender.id}`);
+                if (defenderEl) {
+                    const ptBox = defenderEl.querySelector('.card-pt');
+                    if (ptBox) {
+                        ptBox.classList.add('pulse-stats');
+                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                    }
+                    // The logic happens inside resolveCombatImpact, but we can pre-emptively update UI for the pause
+                    const multiplier = defender.isFoil ? 2 : 1;
+                    const pEl = defenderEl.querySelector('.card-p');
+                    if (pEl) {
+                        const currentP = parseInt(pEl.textContent);
+                        pEl.textContent = currentP + (3 * multiplier);
+                    }
+                }
+                await new Promise(r => setTimeout(r, 600)); // The "Battle Cry" style pause
+            }
+
             let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, hasFirstStrike);
 
             // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
@@ -1550,6 +1624,39 @@ class BaseCard {
             }
 
             render(); 
+
+            const triggerOverallHpLoss = (side) => {
+                if (state.overallHpReducedThisFight) return;
+                const currentOppCombat = getOpponent();
+                let losingAvatarId = "";
+                let amount = 0;
+
+                if (side === 'opponent' && currentOppCombat.fightHp <= 0) {
+                    currentOppCombat.overallHp -= state.player.tier;
+                    losingAvatarId = 'opponent-battle-avatar';
+                    amount = state.player.tier;
+                    state.overallHpReducedThisFight = true;
+                } else if (side === 'player' && state.player.fightHp <= 0) {
+                    state.player.overallHp -= currentOppCombat.tier;
+                    losingAvatarId = 'player-avatar';
+                    amount = currentOppCombat.tier;
+                    state.overallHpReducedThisFight = true;
+                }
+
+                if (losingAvatarId) {
+                    const avatarEl = document.getElementById(losingAvatarId);
+                    if (avatarEl) {
+                        avatarEl.classList.add('shake');
+                        setTimeout(() => avatarEl.classList.remove('shake'), 500);
+                        
+                        // Manually update health text to sync with shake
+                        const hpSpan = (losingAvatarId === 'player-avatar') ? document.getElementById('player-hp') : document.getElementById('opponent-hp');
+                        if (hpSpan) {
+                            hpSpan.textContent = (losingAvatarId === 'player-avatar') ? state.player.overallHp : currentOppCombat.overallHp;
+                        }
+                    }
+                }
+            };
 
             // SHOW BUBBLES AND SHAKE AFTER RENDER
             if (defender) {
@@ -1578,6 +1685,7 @@ class BaseCard {
                             const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
                             const avatarEl = document.getElementById(avatarId);
                             showDamageBubble(avatarEl, trampleOverflow);
+                            triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
                         }, 100);
                     }
                 }
@@ -1585,6 +1693,7 @@ class BaseCard {
                 const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
                 const avatarEl = document.getElementById(avatarId);
                 showDamageBubble(avatarEl, defenderDamageTaken);
+                triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
             }
 
             // AFTER RENDER: Re-fetch the attacker and restore its position
@@ -1671,19 +1780,10 @@ class BaseCard {
 
             // Flip side
             state.attackerSide = state.attackerSide === 'player' ? 'opponent' : 'player';
-            await new Promise(r => setTimeout(r, 100));
         }
 
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        let fightWinner = (currentOpp.fightHp <= 0 && state.player.fightHp > 0) ? 'player' : (state.player.fightHp <= 0 && currentOpp.fightHp > 0) ? 'opponent' : null;
-        if (fightWinner === 'player') {
-            currentOpp.overallHp -= state.player.tier;
-            alert(`You won the fight! Opponent loses ${state.player.tier} HP.`);
-        } else if (fightWinner === 'opponent') {
-            state.player.overallHp -= currentOpp.tier;
-            alert(`You lost the fight! You lose ${currentOpp.tier} HP.`);
-        } else alert("The fight was a draw!");
+        // Linger long enough to see the result, but not too long.
+        await new Promise(resolve => setTimeout(resolve, 800));
 
         if (state.player.overallHp <= 0) {
             alert("Game Over! You lost.");
@@ -2295,6 +2395,19 @@ class BaseCard {
     }
 
     function findTarget(attacker, defendingBoard) {
+        // UNBLOCKABLE CHECK
+        let counterTypes = 0;
+        if (attacker.counters > 0) counterTypes++;
+        if (attacker.flyingCounters > 0) counterTypes++;
+        if (attacker.menaceCounters > 0) counterTypes++;
+        if (attacker.firstStrikeCounters > 0) counterTypes++;
+        if (attacker.vigilanceCounters > 0) counterTypes++;
+        if (attacker.lifelinkCounters > 0) counterTypes++;
+        if (attacker.shieldCounters > 0) counterTypes++;
+
+        const isUnblockable = (attacker.card_name === 'Mekini Eremite' && counterTypes >= 2);
+        if (isUnblockable) return null; // Goes straight to face
+
         const hasMenace = attacker.hasKeyword('Menace');
 
         if (attacker.hasKeyword('Flying')) {
@@ -2348,6 +2461,12 @@ class BaseCard {
         const currentOppAttack = getOpponent();
 
         if (defender) {
+            // DRAGONFIST AXEMAN TRIGGER
+            if (defender.card_name === 'Dragonfist Axeman' && attacker.hasKeyword('Flying')) {
+                const multiplier = defender.isFoil ? 2 : 1;
+                defender.tempPower += (3 * multiplier);
+            }
+
             const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
             const defenderStats = defender.getDisplayStats(defenderBoard);
 
@@ -2359,8 +2478,13 @@ class BaseCard {
                 defenderDamageTaken = defenderStats.t;
             }
 
-            // INDESTRUCTIBLE PROTECTION (Defender)
-            if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
+            // SHIELD COUNTER PROTECTION (Defender)
+            if (defender.shieldCounters > 0 && defenderDamageTaken > 0) {
+                defenderDamageTaken = 0;
+                defender.shieldCounters--;
+                // Note: trample overflow still happens based on original toughness
+            } else if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
+                // INDESTRUCTIBLE PROTECTION (Defender)
                 if (defenderDamageTaken >= defenderStats.t) {
                     defenderDamageTaken = Math.max(0, defenderStats.t - 1);
                     defender.indestructibleUsed = true;
@@ -2400,9 +2524,13 @@ class BaseCard {
             if (!isFirstStrike) {
                 attackerDamageTaken = defenderStats.p;
 
-                // INDESTRUCTIBLE PROTECTION (Attacker)
-                const attackerStats = attacker.getDisplayStats(attackerBoard);
-                if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
+                // SHIELD COUNTER PROTECTION (Attacker)
+                if (attacker.shieldCounters > 0 && attackerDamageTaken > 0) {
+                    attackerDamageTaken = 0;
+                    attacker.shieldCounters--;
+                } else if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
+                    // INDESTRUCTIBLE PROTECTION (Attacker)
+                    const attackerStats = attacker.getDisplayStats(attackerBoard);
                     if (attackerDamageTaken >= attackerStats.t) {
                         attackerDamageTaken = Math.max(0, attackerStats.t - 1);
                         attacker.indestructibleUsed = true;
@@ -3085,6 +3213,8 @@ class BaseCard {
         if (instance.vigilanceCounters > 0) addCounterBubble('vigilance', instance.vigilanceCounters, 'img/vigilance.png');
         // 6. Lifelink
         if (instance.lifelinkCounters > 0) addCounterBubble('lifelink', instance.lifelinkCounters, 'img/lifelink.png');
+        // 7. Shield
+        if (instance.shieldCounters > 0) addCounterBubble('shield', instance.shieldCounters, 'img/shield.png');
         
         if (instance.pt) {
             const stats = instance.getDisplayStats(boardContext);
