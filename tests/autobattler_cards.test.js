@@ -38,7 +38,8 @@ if (typeof document === 'undefined') {
 }
 
 const { 
-    state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths
+    state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
+    applyTargetedEffect, applySpell, useCardFromHand
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 
@@ -273,17 +274,26 @@ function testDutifulCamel() {
     const camel = CardFactory.create({ card_name: "Dutiful Camel", pt: "1/1" });
     const other = CardFactory.create({ card_name: "Other", pt: "2/2" });
     state.player.board = [camel, other];
-    
+
+    // Trigger ETB
     camel.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'dutiful_camel_counter');
-    
-    const canTargetSelf = state.player.board.some(c => c.id === camel.id);
-    const canTargetOther = state.player.board.some(c => c.id === other.id);
-    assert.strictEqual(canTargetSelf, true, "Should be able to target self");
-    assert.strictEqual(canTargetOther, true, "Should be able to target other");
+
+    // 1. Target Other (Honest call)
+    applyTargetedEffect(other.id);
+    assert.strictEqual(other.counters, 1, "Other should gain counter");
+    assert.strictEqual(state.targetingEffect, null, "Effect should clear");
+
+    // 2. Target Self (Honest call)
+    resetState();
+    state.player.board = [camel];
+    camel.onETB(state.player.board);
+    applyTargetedEffect(camel.id);
+    assert.strictEqual(camel.counters, 1, "Self should gain counter");
 }
 
 function testFrontlineCavalier() {
+
     resetState();
     const cavalier = CardFactory.create({ card_name: "Frontline Cavalier", pt: "2/2", rules_text: "Vigilance" });
     assert.strictEqual(cavalier.hasKeyword('vigilance'), true);
@@ -414,36 +424,35 @@ function testShriekingPusbag() {
 
 function testExecutionersMadness() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Executioner's Madness" });
-    const sacTarget = CardFactory.create({ card_name: "Sacrifice Me", pt: "1/1" });
-    const buffTarget = CardFactory.create({ card_name: "Buff Me", pt: "2/2" });
-    const adaptiveTarget = CardFactory.create({ card_name: "Adaptive Guy", pt: "2/2", rules_text: "Adaptive" });
+    const spell = CardFactory.create({ card_name: "Executioner's Madness", set: "und", type: "Sorcery" });
+    const sacTarget = CardFactory.create({ card_name: "Sacrifice Me", pt: "1/1", type: "Creature" });
+    const buffTarget = CardFactory.create({ card_name: "Buff Me", pt: "2/2", type: "Creature" });
+    const adaptiveTarget = CardFactory.create({ card_name: "Adaptive Guy", pt: "2/2", rules_text: "Adaptive", type: "Creature" });
     
     state.player.board = [sacTarget, buffTarget];
     state.player.hand = [spell];
 
-    // Manual implementation check of the multi-step logic in autobattler.js
-    // Step 1: Sacrifice
-    state.targetingEffect = { sourceId: spell.id, effect: 'executioner_sacrifice_step1', wasCast: true, spellInstance: spell };
-    // Simulated click on sacTarget
-    const idx = state.player.board.indexOf(sacTarget);
-    state.player.board.splice(idx, 1);
-    state.targetingEffect.effect = 'executioner_buff_step2';
-    state.targetingEffect.sacrificedCard = sacTarget;
+    // Use from hand correctly sets up the targeting state
+    useCardFromHand(spell.id);
+    assert.strictEqual(state.targetingEffect.effect, 'executioner_sacrifice_step1');
 
-    // Step 2: Buff
-    const applyMadnessBuff = (t) => {
-        t.tempPower += 5;
-        t.tempToughness += 3;
-    };
-    applyMadnessBuff(buffTarget);
+    // 1. Target Sacrifice (Honest call)
+    applyTargetedEffect(sacTarget.id);
+    assert.strictEqual(state.player.board.includes(sacTarget), false, "Target should be sacrificed");
+    assert.strictEqual(state.targetingEffect.effect, 'executioner_buff_step2');
+
+    // 2. Target Buff (Honest call)
+    applyTargetedEffect(buffTarget.id);
     assert.strictEqual(buffTarget.tempPower, 5, "Standard buff gives +5/+3");
+    assert.strictEqual(buffTarget.hasKeyword('trample'), true, "Gains trample");
 
     // Case 2: Adaptive
     resetState();
     state.player.board = [sacTarget, adaptiveTarget];
-    applyMadnessBuff(adaptiveTarget);
-    if (adaptiveTarget.hasKeyword('adaptive')) { applyMadnessBuff(adaptiveTarget); }
+    state.player.hand = [spell];
+    useCardFromHand(spell.id);
+    applyTargetedEffect(sacTarget.id);
+    applyTargetedEffect(adaptiveTarget.id);
     assert.strictEqual(adaptiveTarget.tempPower, 10, "Adaptive buff gives double (+10/+6)");
 }
 
@@ -528,26 +537,25 @@ function testWarbandLieutenant() {
 
 function testWarriorsWays() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Warrior's Ways" });
+    const spell = CardFactory.create({ card_name: "Warrior's Ways", set: "sur", type: "Instant" });
     const centaur = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [centaur];
     state.player.hand = [spell];
     
-    // Step 1: Target Centaur for +2/+2
-    spell.onApply(centaur, state.player.board);
+    // Step 1: Target Centaur for +2/+2 (Honest call)
+    useCardFromHand(spell.id);
+    applyTargetedEffect(centaur.id);
     assert.strictEqual(state.targetingEffect.effect, 'warrior_ways_step2');
     
-    // Step 2: Target same Centaur for counter
-    // Manually trigger applyTargetedEffect logic
-    const buffTarget = state.player.board.find(c => c.id === state.targetingEffect.buffTargetId);
-    buffTarget.tempPower += 2;
-    centaur.counters += 1; // apply counter to 'target' (which is also centaur)
+    // Step 2: Target same Centaur for counter (Honest call)
+    applyTargetedEffect(centaur.id);
     
     assert.strictEqual(centaur.tempPower, 2, "Centaur got temp buff");
     assert.strictEqual(centaur.counters, 1, "Centaur also got counter");
 }
 
 function testStratusTraveler() {
+    // 1. Not Cirrusea -> Shift + Bird
     resetState();
     availableCards.push({ card_name: "Bird", shape: "token", pt: "1/2", set: "AEX", type: "Creature", rules_text: "Flying" });
     const traveler = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
@@ -556,19 +564,27 @@ function testStratusTraveler() {
     assert.strictEqual(state.plane, 'Cirrusea');
     assert.ok(state.player.board.some(c => c.card_name === 'Bird'), "Bird created");
 
+    // 2. Already Cirrusea, no flying -> Flying Counter (Honest call)
     resetState();
     state.plane = 'Cirrusea';
-    traveler.onETB(state.player.board);
-    assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
+    const traveler2 = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
     const targetNoFly = CardFactory.create({ card_name: "NoFly", pt: "1/1" });
-    if (targetNoFly.hasKeyword('flying')) { targetNoFly.counters++; } else { targetNoFly.flyingCounters++; }
+    state.player.board = [traveler2, targetNoFly];
+    traveler2.onETB(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
+    
+    applyTargetedEffect(targetNoFly.id);
     assert.strictEqual(targetNoFly.flyingCounters, 1, "Gained flying counter");
 
-    // 3. Already Cirrusea, HAS flying -> +1/+1 Counter
+    // 3. Already Cirrusea, HAS flying -> +1/+1 Counter (Honest call)
     resetState();
     state.plane = 'Cirrusea';
+    const traveler3 = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
     const targetFly = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying" });
-    if (targetFly.hasKeyword('flying')) { targetFly.counters++; } else { targetFly.flyingCounters++; }
+    state.player.board = [traveler3, targetFly];
+    traveler3.onETB(state.player.board);
+    
+    applyTargetedEffect(targetFly.id);
     assert.strictEqual(targetFly.counters, 1, "Gained +1/+1 counter");
 }
 
@@ -593,28 +609,31 @@ function testRapaciousSprite() {
 }
 
 function testUpInArms() {
+    // Case 1: Two targets (Honest call)
     resetState();
-    const spell = CardFactory.create({ card_name: "Up in Arms" });
-    const c1 = CardFactory.create({ card_name: "C1", pt: "1/1" });
-    const c2 = CardFactory.create({ card_name: "C2", pt: "1/1" });
-    state.player.board = [c1, c2];
+    const spell1 = CardFactory.create({ card_name: "Up in Arms", set: "und", type: "Sorcery" });
+    const t1 = CardFactory.create({ card_name: "T1", pt: "1/1", type: "Creature" });
+    const t2 = CardFactory.create({ card_name: "T2", pt: "1/1", type: "Creature" });
+    state.player.board = [t1, t2];
+    state.player.hand = [spell1];
     
-    // Case 1: Two targets
-    spell.onApply(c1, state.player.board); // Target 1
-    // Step 2: Target 2
-    c1.counters += 1;
-    c2.counters += 1;
-    assert.strictEqual(c1.counters, 1);
-    assert.strictEqual(c2.counters, 1);
+    useCardFromHand(spell1.id);
+    applyTargetedEffect(t1.id); // Target 1
+    applyTargetedEffect(t2.id); // Target 2
+    assert.strictEqual(t1.counters, 1, "Target 1 should have 1 counter");
+    assert.strictEqual(t2.counters, 1, "Target 2 should have 1 counter");
     
-    // Case 2: One target (same thing twice)
+    // Case 2: One target (same thing twice) (Honest call)
     resetState();
-    state.player.board = [c1];
-    c1.counters = 0;
-    spell.onApply(c1, state.player.board);
-    c1.counters += 1; // Click 1
-    c1.counters += 1; // Click 2
-    assert.strictEqual(c1.counters, 2, "One target gets both counters");
+    const spell2 = CardFactory.create({ card_name: "Up in Arms", set: "und", type: "Sorcery" });
+    const t3 = CardFactory.create({ card_name: "T3", pt: "1/1", type: "Creature" });
+    state.player.board = [t3];
+    state.player.hand = [spell2];
+    
+    useCardFromHand(spell2.id);
+    applyTargetedEffect(t3.id); // Click 1
+    applyTargetedEffect(t3.id); // Click 2
+    assert.strictEqual(t3.counters, 2, "One target gets both counters");
 }
 
 function testMiengWhoDancesWithDragons() {

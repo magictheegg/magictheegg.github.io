@@ -499,7 +499,18 @@ class BaseCard {
     class UpInArms extends BaseCard {
         onApply(target, board) {
             // Step 1: Pick creature for +1/+1 counter
-            // Step 2: Pick creature for +1/+1 counter
+            // If target is null, we are initializing the first step
+            if (!target) {
+                state.targetingEffect = {
+                    sourceId: this.id,
+                    effect: 'up_in_arms_step1',
+                    wasCast: true,
+                    spellInstance: this
+                };
+                return;
+            }
+            
+            // Step 2 initialization (this was the old onApply body)
             state.targetingEffect = {
                 sourceId: this.id,
                 target1Id: target.id,
@@ -1664,14 +1675,17 @@ class BaseCard {
                     wasCast: true,
                     isFoil: instance.isFoil
                 };
-            } else if (instance.card_name === 'Up in Arms') {
+            } else if (instance.card_name === 'Warrior\'s Ways') {
                 state.targetingEffect = {
                     sourceId: instance.id,
-                    effect: 'up_in_arms_step1',
+                    effect: 'warrior_ways_step1',
                     wasCast: true,
-                    isFoil: instance.isFoil
+                    spellInstance: instance
                 };
+            } else if (instance.card_name === 'Up in Arms') {
+                instance.onApply(null, state.player.board); // onApply handles the state initialization
             } else if (targetedNames.includes(instance.card_name)) {
+
                 state.castingSpell = instance;
             } else {
                 instance.onCast(state.player.board);
@@ -1815,14 +1829,11 @@ class BaseCard {
 
                 // Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
-                const isFoilCast = state.targetingEffect.isFoil;
                 if (handIdx !== -1) state.player.hand.splice(handIdx, 1);
-                
-                // TRIGGER NONCREATURE CAST
-                state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
                 state.targetingEffect = null;
-            } else if (state.targetingEffect.effect === 'traverse_cirrusea_grant') {
+                } else if (state.targetingEffect.effect === 'traverse_cirrusea_grant') {
+
                 const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                 for (let i = 0; i < multiplier; i++) {
                     if (target.hasKeyword('Flying')) {
@@ -1868,27 +1879,29 @@ class BaseCard {
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
                 const t2 = target;
                 const multiplier = state.targetingEffect.isFoil ? 2 : 1;
+                const isFoilCast = state.targetingEffect.isFoil;
 
-                if (t1.id === t2.id && t1.hasKeyword('Adaptive')) {
-                    // One target, Adaptive: Double the WHOLE spell (4 counters)
-                    t1.counters += (4 * multiplier);
-                } else {
-                    // Two different targets (or one non-adaptive target): 1 counter each
-                    t1.counters += (1 * multiplier);
-                    t2.counters += (1 * multiplier);
+                if (t1 && t2) {
+                    if (t1.id === t2.id && t1.hasKeyword('Adaptive')) {
+                        t1.counters += (4 * multiplier);
+                    } else {
+                        t1.counters += (1 * multiplier);
+                        t2.counters += (1 * multiplier);
+                    }
                 }
 
                 // Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
-                const isFoilCast = state.targetingEffect.isFoil;
                 if (handIdx !== -1) state.player.hand.splice(handIdx, 1);
-                
-                // TRIGGER NONCREATURE CAST
+
+                // TRIGGER NONCREATURE CAST ONLY ONCE AT END
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
                 state.targetingEffect = null;
             }
-        }
+
+                }
+
         render();
     }
 
@@ -1968,6 +1981,14 @@ class BaseCard {
             const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
             const defenderStats = defender.getDisplayStats(defenderBoard);
 
+            const hasTrample = attacker.hasKeyword('Trample');
+            const overflow = Math.max(0, damageDealt - defenderStats.t);
+
+            // Cap defender damage for bubbles/assignments if Trample is present
+            if (hasTrample && overflow > 0) {
+                defenderDamageTaken = defenderStats.t;
+            }
+
             // INDESTRUCTIBLE PROTECTION (Defender)
             if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
                 if (defenderDamageTaken >= defenderStats.t) {
@@ -1976,7 +1997,6 @@ class BaseCard {
                 }
             }
 
-            const overflow = Math.max(0, damageDealt - defenderStats.t);
             defender.damageTaken += defenderDamageTaken;
 
             if (attacker.hasKeyword('Lifelink')) {
@@ -1990,7 +2010,7 @@ class BaseCard {
             }
 
             // Trample Logic (Adjacent Splash)
-            if (overflow > 0 && attacker.hasKeyword('Trample')) {
+            if (overflow > 0 && hasTrample) {
                 trampleOverflow = overflow;
                 const idx = defenderBoard.indexOf(defender);
                 const adjacents = [];
@@ -2696,7 +2716,8 @@ if (typeof module !== 'undefined' && module.exports) {
         state, CardFactory, BaseCard, init, availableCards,
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
         resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
-        resolveCombatImpact, resolveDeaths, processDeaths
+        resolveCombatImpact, resolveDeaths, processDeaths,
+        applyTargetedEffect, applySpell, useCardFromHand
     };
 }
 
