@@ -42,6 +42,11 @@ const {
     applyTargetedEffect, applySpell, useCardFromHand
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+
+// Load full card list once for all tests
+const fullCardPool = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/autobattler-cards.json'), 'utf8')).cards;
 
 // Mock fetch for init if needed
 global.fetch = () => Promise.resolve({ json: () => Promise.resolve({ cards: [] }) });
@@ -72,9 +77,9 @@ function resetState() {
     state.targetingEffect = null;
     state.discovery = null;
     
-    // Ensure availableCards has at least one creature for addScry/populateShop logic
+    // Repopulate availableCards with the full pool
     availableCards.length = 0;
-    availableCards.push({ card_name: "Dummy", type: "Creature", shape: "normal", tier: 1 });
+    fullCardPool.forEach(c => availableCards.push(c));
 }
 
 // --- TIER 1 TESTS ---
@@ -891,6 +896,120 @@ function testDewdropOracle() {
     assert.strictEqual(state.discovery.cards.length, 4, "Should discover 4 cards");
 }
 
+function testArroydPassShepherd() {
+    resetState();
+    const shepherd = CardFactory.create({ card_name: "Arroyd Pass Shepherd", pt: "1/5", rules_text: "Lifelink", type: "Creature - Centaur Knight" });
+    assert.strictEqual(shepherd.getDisplayStats([]).p, 1);
+    assert.strictEqual(shepherd.getDisplayStats([]).t, 5);
+    assert.strictEqual(shepherd.hasKeyword('lifelink'), true);
+}
+
+function testWarbandRallier() {
+    // 1. Target Another Centaur
+    resetState();
+    const rallier = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
+    const target = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature - Centaur" });
+    state.player.board = [rallier, target];
+    state.player.hand = [rallier];
+    rallier.owner = 'player';
+    target.owner = 'player';
+
+    useCardFromHand(rallier.id);
+    assert.strictEqual(state.targetingEffect.effect, 'warband_rallier_counters');
+    
+    applyTargetedEffect(target.id);
+    assert.strictEqual(target.counters, 2, "Centaur should get 2 counters");
+    assert.strictEqual(state.targetingEffect, null, "Mode should clear");
+
+    // 2. Target Self
+    resetState();
+    const rallier2 = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
+    state.player.board = [rallier2];
+    state.player.hand = [rallier2];
+    rallier2.owner = 'player';
+
+    useCardFromHand(rallier2.id);
+    applyTargetedEffect(rallier2.id);
+    assert.strictEqual(rallier2.counters, 2, "Should be able to target itself");
+
+    // 3. Target Non-Centaur (Fail)
+    resetState();
+    const rallier3 = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
+    const human = CardFactory.create({ card_name: "Human", pt: "1/1", type: "Creature" });
+    state.player.board = [rallier3, human];
+    state.player.hand = [rallier3];
+    rallier3.owner = 'player';
+
+    useCardFromHand(rallier3.id);
+    applyTargetedEffect(human.id);
+    assert.strictEqual(human.counters, 0, "Non-Centaur should not get counters");
+    assert.ok(state.targetingEffect, "Targeting should remain active on failure");
+}
+
+function testCybresBandRecruiter() {
+    resetState();
+    availableCards.push({ card_name: "Centaur Knight", shape: "token", pt: "2/2", set: "GSC", type: "Token Creature - Centaur Knight", rules_text: "Vigilance" });
+    const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", type: "Creature - Centaur Knight" });
+    state.player.board = [];
+    state.player.hand = [recruiter];
+    recruiter.owner = 'player';
+    
+    useCardFromHand(recruiter.id);
+    assert.strictEqual(state.player.board.length, 2, "Recruiter and token should be on board");
+    const token = state.player.board.find(c => c.card_name === 'Centaur Knight');
+    assert.ok(token, "Token exists");
+    assert.strictEqual(token.hasKeyword('vigilance'), true, "Token has Vigilance");
+}
+
+function testCybresClanSquire() {
+    resetState();
+    const squire = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
+    state.player.board = [squire];
+    squire.owner = 'player';
+    
+    // 1. Centaur enters friendly board
+    const centaur = CardFactory.create({ card_name: "Friend", pt: "1/1", type: "Creature - Centaur" });
+    centaur.owner = 'player';
+    state.player.hand = [centaur];
+    useCardFromHand(centaur.id);
+    assert.strictEqual(squire.counters, 1, "Should gain counter on friendly centaur ETB");
+
+    // 2. Centaur enters opponent board (Fail)
+    const foe = CardFactory.create({ card_name: "Foe", pt: "1/1", type: "Creature - Centaur" });
+    foe.owner = 'opponent';
+    foe.isDying = true; // processDeaths needs this to "spawn" it if we were doing that
+    // simulate battle spawn
+    state.phase = 'BATTLE';
+    state.battleBoards = { player: [squire], opponent: [] };
+    const spawns = [foe];
+    // processDeaths broadcast logic
+    spawns.forEach(s => {
+        [...state.battleBoards.player, ...state.battleBoards.opponent].forEach(c => {
+            if (c.id !== s.id) c.onOtherCreatureETB(s, state.battleBoards.player);
+        });
+    });
+    assert.strictEqual(squire.counters, 1, "Should NOT gain counter from enemy centaur");
+}
+
+function testCybresBandLancer() {
+    resetState();
+    const lancer = CardFactory.create({ card_name: "Cybres-Band Lancer", pt: "2/2", rules_text: "First strike", type: "Creature - Centaur Knight" });
+    const other = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature - Centaur" });
+    state.battleBoards = {
+        player: [lancer, other],
+        opponent: []
+    };
+    lancer.owner = 'player';
+    other.owner = 'player';
+
+    assert.strictEqual(lancer.hasKeyword('first strike'), true);
+    
+    lancer.onAttack(state.battleBoards.player);
+    assert.strictEqual(other.tempPower, 1, "Other gets +1/+1");
+    assert.strictEqual(other.hasKeyword('first strike'), true, "Other gains First Strike");
+    assert.strictEqual(lancer.tempPower, 0, "Lancer does not buff self");
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -957,7 +1076,12 @@ function runTests() {
         { tier: 3, name: "Shrewd Parliament", fn: testShrewdParliament },
         { tier: 3, name: "Coralhide Wurm", fn: testCoralhideWurm },
         { tier: 3, name: "Aether Guzzler", fn: testAetherGuzzler },
-        { tier: 3, name: "Dewdrop Oracle", fn: testDewdropOracle }
+        { tier: 3, name: "Dewdrop Oracle", fn: testDewdropOracle },
+        { tier: 3, name: "Arroyd Pass Shepherd", fn: testArroydPassShepherd },
+        { tier: 3, name: "Warband Rallier", fn: testWarbandRallier },
+        { tier: 3, name: "Cybres-Band Recruiter", fn: testCybresBandRecruiter },
+        { tier: 3, name: "Cybres-Clan Squire", fn: testCybresClanSquire },
+        { tier: 3, name: "Cybres-Band Lancer", fn: testCybresBandLancer }
     ];
 
     console.log("\nUNIT TEST RESULTS");

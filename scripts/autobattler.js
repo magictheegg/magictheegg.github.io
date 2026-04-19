@@ -78,6 +78,9 @@ class BaseCard {
         // Hook for ETB effects
         onETB(board) { }
 
+        // Hook for other creatures entering the battlefield
+        onOtherCreatureETB(newCard, board) { }
+
         // Hook for Combat Start triggers (Ferocious, Chivalry)
         onCombatStart(board) { }
 
@@ -690,6 +693,74 @@ class BaseCard {
         }
     }
 
+    class ArroydPassShepherd extends BaseCard { }
+
+    class WarbandRallier extends BaseCard {
+        onETB(board) {
+            state.targetingEffect = {
+                sourceId: this.id,
+                effect: 'warband_rallier_counters',
+                isFoil: this.isFoil
+            };
+        }
+    }
+
+    class CybresBandRecruiter extends BaseCard {
+        onETB(board) {
+            const token = createToken('Centaur Knight', 'GSC', 'player');
+            if (token) {
+                const idx = board.indexOf(this);
+                if (idx !== -1) {
+                    board.splice(idx + 1, 0, token);
+                    // Broadcast ETB
+                    board.forEach(c => {
+                        if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                    });
+                }
+            }
+            if (this.isFoil) {
+                const token2 = createToken('Centaur Knight', 'GSC', 'player');
+                if (token2) {
+                    const idx = board.indexOf(this);
+                    if (idx !== -1) {
+                        board.splice(idx + 1, 0, token2);
+                        // Broadcast ETB
+                        board.forEach(c => {
+                            if (c.id !== token2.id) c.onOtherCreatureETB(token2, board);
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+    class CybresClanSquire extends BaseCard {
+        onOtherCreatureETB(newCard, board) {
+            if (newCard.type?.includes('Centaur') && newCard.owner === this.owner) {
+                const multiplier = this.isFoil ? 2 : 1;
+                this.counters += multiplier;
+            }
+        }
+    }
+
+    class CybresBandLancer extends BaseCard {
+        onAttack(board) {
+            const otherCentaurs = board.filter(c => c.id !== this.id && c.type?.includes('Centaur'));
+            if (otherCentaurs.length > 0) {
+                const target = otherCentaurs[Math.floor(Math.random() * otherCentaurs.length)];
+                const multiplier = this.isFoil ? 2 : 1;
+                target.tempPower += multiplier;
+                target.tempToughness += multiplier;
+                if (!target.enchantments) target.enchantments = [];
+                if (!target.enchantments.some(e => e.card_name === 'Lancer First Strike')) {
+                    target.enchantments.push({ card_name: 'Lancer First Strike', rules_text: 'First strike' });
+                }
+                return [target];
+            }
+            return [];
+        }
+    }
+
     class FinwingDrake extends BaseCard {
         onNoncreatureCast(isFoilCast, board) {
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
@@ -783,6 +854,11 @@ class BaseCard {
                 case 'Coralhide Wurm': card = new CoralhideWurm(data); break;
                 case 'Aether Guzzler': card = new AetherGuzzler(data); break;
                 case 'Dewdrop Oracle': card = new DewdropOracle(data); break;
+                case 'Arroyd Pass Shepherd': card = new ArroydPassShepherd(data); break;
+                case 'Warband Rallier': card = new WarbandRallier(data); break;
+                case 'Cybres-Band Recruiter': card = new CybresBandRecruiter(data); break;
+                case 'Cybres-Clan Squire': card = new CybresClanSquire(data); break;
+                case 'Cybres-Band Lancer': card = new CybresBandLancer(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1641,23 +1717,29 @@ class BaseCard {
         if (card.type.toLowerCase().includes('creature')) {
             if (state.player.board.length >= boardLimit) return;
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
-            
-            // Trigger 1 (Standard or First trigger of Foil)
-            instance.onETB(state.player.board);
-            // Trigger 2 if Foil
-            if (instance.isFoil) instance.onETB(state.player.board);
 
             if (targetIndex !== -1) {
                 state.player.board.splice(targetIndex, 0, instance);
             } else {
                 state.player.board.push(instance);
             }
-            
+
+            // Trigger 1 (Standard or First trigger of Foil)
+            instance.onETB(state.player.board);
+            // Trigger 2 if Foil
+            if (instance.isFoil) instance.onETB(state.player.board);
+
+            // Broadcast ETB to OTHERS
+            state.player.board.forEach(c => {
+                if (c.id !== instance.id) c.onOtherCreatureETB(instance, state.player.board);
+            });
+
             // Mieng Trigger
             triggerMiengFerocious(instance.getDisplayStats(state.player.board).p, state.player.board);
 
             state.player.hand.splice(cardIndex, 1);
-        } else {
+        }
+ else {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
             const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song'];
             
@@ -1729,6 +1811,12 @@ class BaseCard {
                     resolveShopDeaths(idx, target);
                     state.targetingEffect = null;
                 }
+                } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
+                if (target.type?.includes('Centaur')) {
+                    const multiplier = state.targetingEffect.isFoil ? 2 : 1;
+                    target.counters += (2 * multiplier);
+                    state.targetingEffect = null;
+                }
             } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
@@ -1737,7 +1825,6 @@ class BaseCard {
                     state.shopDeathsCount++;
 
                     // Move to Step 2: Buff Selection
-                    // We do NOT process death triggers yet
                     state.targetingEffect.effect = 'executioner_buff_step2';
                     state.targetingEffect.sacrificedCard = target;
                     state.targetingEffect.sacrificedIndex = idx;
@@ -1914,7 +2001,15 @@ class BaseCard {
         state.player.board.forEach(c => c.onOtherCreatureDeath(state.player.board));
         // 2. Trigger onDeath
         const spawns = target.onDeath(state.player.board, 'player');
-        if (spawns.length > 0) state.player.board.splice(idx, 0, ...spawns);
+        if (spawns.length > 0) {
+            state.player.board.splice(idx, 0, ...spawns);
+            // Broadcast ETB for all spawns
+            spawns.forEach(s => {
+                state.player.board.forEach(c => {
+                    if (c.id !== s.id) c.onOtherCreatureETB(s, state.player.board);
+                });
+            });
+        }
     }
 
     function reorderBoard(fromIndex, toIndex) {
@@ -2146,8 +2241,16 @@ class BaseCard {
                     spawns.push(spawned);
                 }
             }
-            if (spawns.length > 0) board.splice(idx, 1, ...spawns.filter(Boolean));
-            else board.splice(idx, 1);
+            if (spawns.length > 0) {
+                const validSpawns = spawns.filter(Boolean);
+                board.splice(idx, 1, ...validSpawns);
+                // Broadcast ETB for all spawns
+                validSpawns.forEach(s => {
+                    notifyPool.forEach(c => {
+                        if (c.id !== s.id) c.onOtherCreatureETB(s, board);
+                    });
+                });
+            } else board.splice(idx, 1);
             
             // Cleanup property
             delete deadCard.isDying;
