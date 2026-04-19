@@ -3040,16 +3040,12 @@ class BaseCard {
                         // Special Bwema UI: Circular icons with labels
                         const wrapper = document.createElement('div');
                         wrapper.className = 'discovery-item-wrapper';
-                        wrapper.style.display = 'flex';
-                        wrapper.style.flexDirection = 'column';
-                        wrapper.style.alignItems = 'center';
-                        wrapper.style.cursor = 'pointer';
 
                         const kw = card.rules_text.toLowerCase();
                         const icon = document.createElement('div');
                         icon.className = `counter-bubble ${kw.replace(' ', '-')}`;
-                        icon.style.width = '60px';
-                        icon.style.height = '60px';
+                        icon.style.width = '160px';
+                        icon.style.height = '160px';
                         icon.style.fontSize = '1.5em';
                         
                         const img = document.createElement('img');
