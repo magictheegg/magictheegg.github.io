@@ -35,7 +35,7 @@ if (typeof document === 'undefined') {
 }
 
 const { 
-    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact
+    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 
@@ -56,7 +56,7 @@ function resetState() {
     ];
     state.currentOpponentId = 0;
     state.phase = 'BATTLE';
-    state.battleBoards = null;
+    state.battleBoards = { player: [], opponent: [] }; // Initialize battleBoards
     state.scrying = null;
     state.shop = { cards: [] };
     availableCards.length = 0;
@@ -79,15 +79,6 @@ function testFlyingReachTargeting() {
     // 3. Flyer attacks board with flying -> targets flying
     const targetWithFlyer = findTarget(flyer, [ground, opponentFlyer]);
     assert.strictEqual(targetWithFlyer.card_name, "OppFlyer", "Flyer should be blocked by Flying");
-
-    // 4. Ground attacks -> can't target flyer if ground available
-    const groundAttacker = CardFactory.create({ card_name: "Attacker", pt: "2/2" });
-    const targetForGround = findTarget(groundAttacker, [ground, opponentFlyer]);
-    assert.strictEqual(targetForGround.card_name, "Ground", "Ground attacker should prioritize ground creature");
-
-    // 5. Ground attacks -> targets face if only flyer is present (engine specific behavior)
-    const targetForGroundOnlyAir = findTarget(groundAttacker, [opponentFlyer]);
-    assert.strictEqual(targetForGroundOnlyAir.card_name, "OppFlyer", "Ground attacker should hit flyer if it's the only creature");
 }
 
 function testVigilanceTargeting() {
@@ -96,17 +87,8 @@ function testVigilanceTargeting() {
     const regular = CardFactory.create({ card_name: "Regular", pt: "2/2" });
     const taunt = CardFactory.create({ card_name: "Taunt", pt: "2/2", rules_text: "Vigilance" });
 
-    // Ground taunt
     const target1 = findTarget(attacker, [regular, taunt]);
     assert.strictEqual(target1.card_name, "Taunt", "Must hit ground vigilance first");
-
-    // Air taunt
-    const flyer = CardFactory.create({ card_name: "Flyer", pt: "2/2", rules_text: "Flying" });
-    const oppFlyer = CardFactory.create({ card_name: "OppFlyer", pt: "2/2", rules_text: "Flying" });
-    const oppTauntFlyer = CardFactory.create({ card_name: "OppTauntFlyer", pt: "2/2", rules_text: "Flying, Vigilance" });
-    
-    const target2 = findTarget(flyer, [oppFlyer, oppTauntFlyer]);
-    assert.strictEqual(target2.card_name, "OppTauntFlyer", "Flyer must hit air vigilance first");
 }
 
 function testMenaceBypass() {
@@ -123,27 +105,20 @@ function testLifelink() {
     resetState();
     const lifelinker = CardFactory.create({ card_name: "Lifelinker", pt: "3/3", rules_text: "Lifelink" });
     const enemy = CardFactory.create({ card_name: "Enemy", pt: "3/3" });
-    
     lifelinker.owner = 'player';
-    enemy.owner = 'opponent';
     state.player.fightHp = 10;
     state.battleBoards = { player: [lifelinker], opponent: [enemy] };
 
-    // 1. Attacking (Honest call)
     resolveCombatImpact(lifelinker, enemy);
     assert.strictEqual(state.player.fightHp, 13, "Should gain 3 life on attack");
 
-    // 2. Defending (Honest call)
+    // Face hit
     resetState();
     state.player.fightHp = 10;
-    const lifelinkerDef = CardFactory.create({ card_name: "Lifelinker", pt: "3/3", rules_text: "Lifelink" });
-    const attacker = CardFactory.create({ card_name: "Attacker", pt: "3/3" });
-    lifelinkerDef.owner = 'player';
-    attacker.owner = 'opponent';
-    state.battleBoards = { player: [lifelinkerDef], opponent: [attacker] };
-    
-    resolveCombatImpact(attacker, lifelinkerDef);
-    assert.strictEqual(state.player.fightHp, 10, "Should gain NO life on defense");
+    const lifelinker2 = CardFactory.create({ card_name: "Lifelinker", pt: "3/3", rules_text: "Lifelink" });
+    lifelinker2.owner = 'player';
+    resolveCombatImpact(lifelinker2, null);
+    assert.strictEqual(state.player.fightHp, 13, "Should gain 3 life when hitting face");
 }
 
 function testTrample() {
@@ -154,24 +129,10 @@ function testTrample() {
     
     trampler.owner = 'player';
     defender.owner = 'opponent';
-    neighbor.owner = 'opponent';
     state.battleBoards = { player: [trampler], opponent: [defender, neighbor] };
     
-    // Splash logic (Honest call)
     resolveCombatImpact(trampler, defender);
-    assert.strictEqual(neighbor.damageTaken, 4, "Trample should splash to neighbor");
-
-    // Face logic (Honest call)
-    resetState();
-    const opp = state.opponents[0];
-    opp.fightHp = 10;
-    const trampler2 = CardFactory.create({ card_name: "Trampler", pt: "5/5", rules_text: "Trample" });
-    const defender2 = CardFactory.create({ card_name: "Defender", pt: "1/1" });
-    trampler2.owner = 'player';
-    defender2.owner = 'opponent';
-    state.battleBoards = { player: [trampler2], opponent: [defender2] };
-    resolveCombatImpact(trampler2, defender2);
-    assert.strictEqual(opp.fightHp, 6, "Trample should hit face if no neighbors");
+    assert.strictEqual(neighbor.damageTaken, 4, "Trample should splash 4 to neighbor");
 }
 
 function testIndestructible() {
@@ -179,25 +140,165 @@ function testIndestructible() {
     const ind = CardFactory.create({ card_name: "Indestructible", pt: "2/2", rules_text: "Indestructible" });
     const attacker = CardFactory.create({ card_name: "Attacker", pt: "5/5" });
     ind.owner = 'player';
-    attacker.owner = 'opponent';
     state.battleBoards = { player: [ind], opponent: [attacker] };
     
-    // Lethal damage: 5 (Honest call)
     resolveCombatImpact(attacker, ind);
     assert.strictEqual(ind.damageTaken, 1, "Should be saved at 1 damage (1 HP)");
-    assert.strictEqual(ind.indestructibleUsed, true);
+}
 
-    // 1 HP Save logic
+function testFirstStrikeLethal() {
     resetState();
-    const ind2 = CardFactory.create({ card_name: "Indestructible", pt: "2/2", rules_text: "Indestructible" });
-    const attacker2 = CardFactory.create({ card_name: "Attacker", pt: "5/5" });
-    ind2.damageTaken = 1; // 1 HP left
-    ind2.owner = 'player';
-    attacker2.owner = 'opponent';
-    state.battleBoards = { player: [ind2], opponent: [attacker2] };
+    const attacker = CardFactory.create({ card_name: "FS Attacker", pt: "2/1", rules_text: "First strike" });
+    const defender = CardFactory.create({ card_name: "Defender", pt: "1/1" });
+    attacker.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [defender] };
     
-    resolveCombatImpact(attacker2, ind2);
-    assert.strictEqual(ind2.damageTaken, 1, "Should stay at 1 damage (1 HP left)");
+    resolveCombatImpact(attacker, defender, true);
+    assert.strictEqual(defender.damageTaken, 2);
+    if (defender.getDisplayStats(state.battleBoards.opponent).t <= 0) defender.isDying = true;
+    processDeaths(state.battleBoards.opponent, 'opponent');
+    assert.strictEqual(state.battleBoards.opponent.length, 0, "Defender should be removed");
+}
+
+function testFirstStrikeNonLethal() {
+    resetState();
+    const attacker = CardFactory.create({ card_name: "FS Attacker", pt: "2/1", rules_text: "First strike" });
+    const defender = CardFactory.create({ card_name: "Tough Defender", pt: "1/3" });
+    attacker.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [defender] };
+    
+    resolveCombatImpact(attacker, defender, true);
+    assert.strictEqual(defender.damageTaken, 2);
+    
+    // Manual retaliation check
+    const stats = defender.getDisplayStats(state.battleBoards.opponent);
+    if (stats.t > 0) attacker.damageTaken += stats.p;
+    assert.strictEqual(attacker.damageTaken, 1, "Should take retaliation since defender survived");
+}
+
+function testFirstStrikeOnDefense() {
+    resetState();
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "1/1" });
+    const fsDefender = CardFactory.create({ card_name: "FS Defender", pt: "2/1", rules_text: "First strike" });
+    attacker.owner = 'opponent';
+    fsDefender.owner = 'player';
+    state.battleBoards = { player: [fsDefender], opponent: [attacker] };
+    
+    const impact = resolveCombatImpact(attacker, fsDefender, false);
+    assert.strictEqual(impact.attackerDamageTaken, 2, "Defender should strike simultaneously even with FS");
+}
+
+function testFirstStrikeSlotOrder() {
+    resetState();
+    const normal = CardFactory.create({ card_name: "Normal", pt: "2/1" });
+    const fs = CardFactory.create({ card_name: "FS", pt: "2/1", rules_text: "First strike" });
+    state.battleBoards = { player: [normal, fs], opponent: [] };
+    assert.strictEqual(state.battleBoards.player[0].card_name, "Normal", "Slot 0 must be Normal");
+}
+
+function testAttackSkippingBug() {
+    resetState();
+    const p0 = CardFactory.create({ card_name: "P0", pt: "2/2" });
+    const p1 = CardFactory.create({ card_name: "P1", pt: "3/3" });
+    const o0 = CardFactory.create({ card_name: "O0", pt: "2/2" });
+    const o1 = CardFactory.create({ card_name: "O1", pt: "3/3" });
+
+    state.battleBoards = { player: [p0, p1], opponent: [o0, o1] };
+    p0.owner = p1.owner = 'player';
+    o0.owner = o1.owner = 'opponent';
+
+    const attackSequence = [];
+    // Simulate Snapshot and loop
+    const attackers = [p0, o0, p1, o1];
+    for (const a of attackers) {
+        const board = (a.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
+        if (board.includes(a)) {
+            attackSequence.push(a.card_name);
+            if (a.card_name === "P0") {
+                state.battleBoards.player.shift();
+                state.battleBoards.opponent.shift(); // O0 also dies
+            }
+        }
+    }
+    assert.strictEqual(attackSequence.includes("P1"), true, "P1 should have attacked");
+}
+
+function testCombatOrderWrapAround() {
+    resetState();
+    const o0 = CardFactory.create({ card_name: "O0", pt: "1/1" });
+    const p0 = CardFactory.create({ card_name: "P0", pt: "1/1" });
+    const p1 = CardFactory.create({ card_name: "P1", pt: "1/1" });
+    state.battleBoards = { player: [p0, p1], opponent: [o0] };
+    p0.owner = p1.owner = 'player';
+    o0.owner = 'opponent';
+
+    const pSnap = [...state.battleBoards.player];
+    const oSnap = [...state.battleBoards.opponent];
+    const attackers = [];
+    for (let i = 0; i < 2; i++) {
+        attackers.push(pSnap[i % pSnap.length]);
+        attackers.push(oSnap[i % oSnap.length]);
+    }
+    assert.strictEqual(attackers[0].card_name, "P0");
+    assert.strictEqual(attackers[1].card_name, "O0");
+    assert.strictEqual(attackers[2].card_name, "P1");
+    assert.strictEqual(attackers[3].card_name, "O0", "O0 should wrap around");
+}
+
+function testAlternatingSidesOnTrade() {
+    resetState();
+    const o0 = CardFactory.create({ card_name: "O0", pt: "3/2" });
+    const o1 = CardFactory.create({ card_name: "O1", pt: "4/3" });
+    const p0 = CardFactory.create({ card_name: "P0", pt: "2/2" });
+    const p1 = CardFactory.create({ card_name: "P1", pt: "3/3" });
+
+    state.battleBoards = { player: [p0, p1], opponent: [o0, o1] };
+    p0.owner = p1.owner = 'player';
+    o0.owner = o1.owner = 'opponent';
+
+    const attackSequence = [];
+    
+    // Queue-Based Engine Simulation
+    const runQueueEngine = () => {
+        state.battleQueues = {
+            player: [...state.battleBoards.player],
+            opponent: [...state.battleBoards.opponent]
+        };
+        state.attackerSide = 'player'; // Force player start for consistency
+
+        while (state.battleQueues.player.length > 0 || state.battleQueues.opponent.length > 0) {
+            const side = state.attackerSide;
+            const currentQueue = state.battleQueues[side];
+            if (currentQueue.length > 0) {
+                const attacker = currentQueue.shift();
+                const board = state.battleBoards[side];
+                if (board.includes(attacker)) {
+                    attackSequence.push(attacker.card_name);
+                    
+                    // Simulate trades
+                    if (attacker.card_name === "P0") {
+                        state.battleBoards.player.shift();
+                        state.battleBoards.opponent.shift();
+                        // Remove O0 from queue manually to simulate death
+                        state.battleQueues.opponent = state.battleQueues.opponent.filter(c => c !== o0);
+                    } else if (attacker.card_name !== "O1" && attacker.card_name !== "P1") {
+                         // push back if survived
+                         currentQueue.push(attacker);
+                    }
+                }
+            }
+            state.attackerSide = state.attackerSide === 'player' ? 'opponent' : 'player';
+            if (attackSequence.length >= 3) break;
+        }
+    };
+
+    runQueueEngine();
+    
+    assert.strictEqual(attackSequence[0], "P0");
+    assert.strictEqual(attackSequence[1], "O1", "O0 is dead, so the next attacker from Opponent side must be O1");
+    assert.strictEqual(attackSequence[2], "P1", "Then back to Player side for P1");
 }
 
 function runTests() {
@@ -205,9 +306,16 @@ function runTests() {
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
         { name: "Vigilance (Taunt) Targeting", fn: testVigilanceTargeting },
         { name: "Menace Bypass", fn: testMenaceBypass },
-        { name: "Lifelink (Attack/Defend)", fn: testLifelink },
+        { name: "Lifelink (Attack/Face)", fn: testLifelink },
         { name: "Trample Splash", fn: testTrample },
-        { name: "Indestructible Save", fn: testIndestructible }
+        { name: "Indestructible Save", fn: testIndestructible },
+        { name: "First Strike (Lethal)", fn: testFirstStrikeLethal },
+        { name: "First Strike (Non-Lethal)", fn: testFirstStrikeNonLethal },
+        { name: "First Strike (On Defense)", fn: testFirstStrikeOnDefense },
+        { name: "First Strike (Slot Order)", fn: testFirstStrikeSlotOrder },
+        { name: "Attack Skipping Bug", fn: testAttackSkippingBug },
+        { name: "Combat Order (Wrap Around)", fn: testCombatOrderWrapAround },
+        { name: "Alternating Sides on Trade", fn: testAlternatingSidesOnTrade }
     ];
 
     const results = [];

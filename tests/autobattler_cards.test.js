@@ -471,9 +471,10 @@ function testEarthrattleXali() {
 
 function testDynamicWyvern() {
     resetState();
-    const wyvern = CardFactory.create({ card_name: "Dynamic Wyvern", pt: "3/4" });
+    const wyvernData = availableCards.find(c => c.card_name === "Dynamic Wyvern");
+    const wyvern = CardFactory.create(wyvernData);
     state.player.board = [wyvern];
-    assert.strictEqual(wyvern.hasKeyword('flying'), false, "Initially no flying");
+    assert.strictEqual(wyvern.hasKeyword('flying'), false, "Initially no flying (Should fail right now)");
     wyvern.onNoncreatureCast(false, state.player.board);
     assert.strictEqual(wyvern.hasKeyword('flying'), true, "Gains flying after cast");
     wyvern.enchantments = [];
@@ -974,21 +975,31 @@ function testCybresClanSquire() {
     useCardFromHand(centaur.id);
     assert.strictEqual(squire.counters, 1, "Should gain counter on friendly centaur ETB");
 
-    // 2. Centaur enters opponent board (Fail)
-    const foe = CardFactory.create({ card_name: "Foe", pt: "1/1", type: "Creature - Centaur" });
-    foe.owner = 'opponent';
-    foe.isDying = true; // processDeaths needs this to "spawn" it if we were doing that
-    // simulate battle spawn
-    state.phase = 'BATTLE';
-    state.battleBoards = { player: [squire], opponent: [] };
-    const spawns = [foe];
-    // processDeaths broadcast logic
-    spawns.forEach(s => {
-        [...state.battleBoards.player, ...state.battleBoards.opponent].forEach(c => {
-            if (c.id !== s.id) c.onOtherCreatureETB(s, state.battleBoards.player);
-        });
-    });
-    assert.strictEqual(squire.counters, 1, "Should NOT gain counter from enemy centaur");
+    // 2. Interaction: Recruiter (should give 2 counters)
+    resetState();
+    availableCards.push({ card_name: "Centaur Knight", shape: "token", pt: "2/2", set: "GSC", type: "Token Creature - Centaur Knight", rules_text: "Vigilance" });
+    const squire2 = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
+    const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", type: "Creature - Centaur Knight" });
+    state.player.board = [squire2];
+    state.player.hand = [recruiter];
+    squire2.owner = 'player';
+    
+    useCardFromHand(recruiter.id);
+    assert.strictEqual(squire2.counters, 2, "Should get 2 counters from Recruiter + Token");
+
+    // 3. Timing: Rallier (Deferred Broadcast)
+    resetState();
+    const squire3 = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
+    const rallier = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
+    state.player.board = [squire3];
+    state.player.hand = [rallier];
+    squire3.owner = 'player';
+    
+    useCardFromHand(rallier.id);
+    assert.strictEqual(squire3.counters, 0, "Squire should NOT have ETB counter yet (rallier still targeting)");
+    
+    applyTargetedEffect(squire3.id); // Picking squire for the +1/+1 counters
+    assert.strictEqual(squire3.counters, 3, "Squire should have 2 from Rallier effect + 1 from deferred ETB broadcast");
 }
 
 function testCybresBandLancer() {

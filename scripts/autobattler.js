@@ -130,15 +130,16 @@ class BaseCard {
                           (this.owner === 'player' ? state.battleBoards.player : state.battleBoards.opponent) : 
                           state.player.board;
 
-            // CHECK ENCHANTMENTS FIRST
-            if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes(kw))) return true;
+            // CHECK ENCHANTMENTS FIRST (Precise check)
+            if (this.enchantments?.some(e => {
+                const text = e.rules_text?.toLowerCase() || "";
+                const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
+                return regex.test(text);
+            })) return true;
 
-            // PRECISE RULES TEXT CHECK
-            if (this.card_name === 'Mieng, Who Dances With Dragons') {
-                return !!this.enchantments?.some(e => e.card_name === 'Mieng Transformation' && e.rules_text?.toLowerCase().includes(kw));
-            }
-
-            return !!(this.rules_text?.toLowerCase().includes(kw));
+            if (!this.rules_text) return false;
+            const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
+            return regex.test(this.rules_text);
         }
 
         clone() {
@@ -700,6 +701,7 @@ class BaseCard {
             state.targetingEffect = {
                 sourceId: this.id,
                 effect: 'warband_rallier_counters',
+                wasCast: true,
                 isFoil: this.isFoil
             };
         }
@@ -1031,7 +1033,7 @@ class BaseCard {
                     }
                 }
                 state.castingSpell = null;
-                state.targetingEffect = null;
+                clearTargetingEffect();
                 render();
             } else {
                 // End Shop Phase triggers
@@ -1317,7 +1319,20 @@ class BaseCard {
             await new Promise(r => setTimeout(r, 180));
 
             // Phase 3: Impact calculations
-            const { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
+            const hasFirstStrike = attacker.hasKeyword('First strike');
+            let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, hasFirstStrike);
+
+            // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
+            // If Attacker DOES NOT have FS, damage was already handled simultaneously in resolveCombatImpact.
+            if (hasFirstStrike && defender && !trampleTarget) {
+                const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+                const currentDefStats = defender.getDisplayStats(defenderBoard);
+                if (currentDefStats.t > 0) {
+                    // Defender survived FS, hits back
+                    attackerDamageTaken = currentDefStats.p;
+                    attacker.damageTaken += attackerDamageTaken;
+                }
+            }
 
             render(); 
 
@@ -1384,14 +1399,23 @@ class BaseCard {
             }
         };
 
-        const createToken = (tokenName, owner) => {
-
-            const tokenData = availableCards.find(c => c.card_name === tokenName && c.shape === 'token');
+        const createToken = (tokenName, set, owner) => {
+            const tokenData = availableCards.find(c => c.card_name === tokenName && c.shape === 'token' && (set ? c.set === set : true));
             if (tokenData) {
                 const token = CardFactory.create(tokenData);
                 token.id = `token-${Math.random()}`;
                 token.owner = owner;
-                if (tokenName === 'Construct') token.pt = "2/2";
+                
+                // Add to combat queue if in battle
+                if (state.phase === 'BATTLE' && state.battleQueues) {
+                    state.battleQueues[owner].push(token);
+                }
+
+                // Trigger Mieng if it's player board
+                if (owner === 'player') {
+                    triggerMiengFerocious(token.getDisplayStats(state.player.board).p, state.player.board);
+                }
+
                 return token;
             }
             return null;
@@ -1399,64 +1423,42 @@ class BaseCard {
 
         await new Promise(r => setTimeout(r, 200));
 
-        const executeCombatPhase = async (isFirstStrike) => {
-
-            const currentOppCombat = getOpponent();
-            if (!currentOppCombat) return;
-
-            let pIdx = 0;
-            let oIdx = 0;
-            let playerTurn = true; 
-
-            // COMBAT PERSISTENCE: Loop until someone is dead
-            while (state.player.fightHp > 0 && currentOppCombat.fightHp > 0) {
-                const getValidForPhase = (board) => board.filter(c => {
-                    const isValidPhase = isFirstStrike ? c.hasKeyword('First strike') : !c.hasKeyword('First strike');
-                    return isValidPhase && !c.isLockedByChivalry;
-                });
-
-                let pValid = getValidForPhase(state.battleBoards.player);
-                let oValid = getValidForPhase(state.battleBoards.opponent);
-
-                // If BOTH sides have literally NO attackers for this phase, battle is over
-                if (pValid.length === 0 && oValid.length === 0) break;
-
-                // Find next candidates using independent pointers
-                let pNext = (pValid.length > 0) ? pValid[pIdx % pValid.length] : null;
-                let oNext = (oValid.length > 0) ? oValid[oIdx % oValid.length] : null;
-
-                if (!pNext && !oNext) break;
-
-                let attacker = null;
-                // HASTE LOGIC: Check both next candidates. If only one has haste, it attacks first.
-                if (pNext && oNext) {
-                    if (pNext.hasKeyword('Haste') && !oNext.hasKeyword('Haste')) attacker = pNext;
-                    else if (oNext.hasKeyword('Haste') && !pNext.hasKeyword('Haste')) attacker = oNext;
-                    else attacker = playerTurn ? pNext : oNext;
-                } else attacker = pNext || oNext;
-
-                const isPlayerAction = (attacker.owner === 'player');
-                const defenderBoard = isPlayerAction ? state.battleBoards.opponent : state.battleBoards.player;
-                const defender = findTarget(attacker, defenderBoard);
-                
-                await performAttack(attacker, defender, isFirstStrike);
-                await resolveDeaths();
-
-                // Increment the specific pointer for whoever just acted
-                if (isPlayerAction) {
-                    const newValid = getValidForPhase(state.battleBoards.player);
-                    pIdx = newValid.length > 0 ? (newValid.indexOf(attacker) + 1) % newValid.length : 0;
-                } else {
-                    const newValid = getValidForPhase(state.battleBoards.opponent);
-                    oIdx = newValid.length > 0 ? (newValid.indexOf(attacker) + 1) % newValid.length : 0;
-                }
-
-                if (attacker === (playerTurn ? pNext : oNext)) playerTurn = !playerTurn;
-            }
+        // INITIALIZE QUEUES
+        state.battleQueues = {
+            player: state.battleBoards.player.filter(c => !c.isLockedByChivalry),
+            opponent: state.battleBoards.opponent.filter(c => !c.isLockedByChivalry)
         };
+        state.attackerSide = Math.random() < 0.5 ? 'player' : 'opponent';
 
-        await executeCombatPhase(true);
-        await executeCombatPhase(false);
+        // MAIN COMBAT LOOP
+        while (state.player.fightHp > 0 && currentOpp.fightHp > 0 && 
+              (state.battleQueues.player.length > 0 || state.battleQueues.opponent.length > 0)) {
+            
+            const currentQueue = state.battleQueues[state.attackerSide];
+            if (currentQueue.length > 0) {
+                const attacker = currentQueue.shift();
+                
+                // Verify attacker is still alive and on the board snapshot
+                const attackerBoard = (state.attackerSide === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
+                if (attackerBoard.includes(attacker) && !attacker.isDying) {
+                    const defenderBoard = (state.attackerSide === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+                    const defender = findTarget(attacker, defenderBoard);
+                    
+                    await performAttack(attacker, defender);
+                    await resolveDeaths();
+
+                    // If attacker survived, return to back of queue
+                    if (attackerBoard.includes(attacker) && !attacker.isDying) {
+                        currentQueue.push(attacker);
+                    }
+                }
+            }
+
+            // Flip side
+            state.attackerSide = state.attackerSide === 'player' ? 'opponent' : 'player';
+            await new Promise(r => setTimeout(r, 100));
+        }
+
         await new Promise(resolve => setTimeout(resolve, 500));
 
         let fightWinner = (currentOpp.fightHp <= 0 && state.player.fightHp > 0) ? 'player' : (state.player.fightHp <= 0 && currentOpp.fightHp > 0) ? 'opponent' : null;
@@ -1717,6 +1719,7 @@ class BaseCard {
         if (card.type.toLowerCase().includes('creature')) {
             if (state.player.board.length >= boardLimit) return;
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
+            instance.owner = 'player';
 
             if (targetIndex !== -1) {
                 state.player.board.splice(targetIndex, 0, instance);
@@ -1729,11 +1732,15 @@ class BaseCard {
             // Trigger 2 if Foil
             if (instance.isFoil) instance.onETB(state.player.board);
 
-            // Broadcast ETB to OTHERS
-            state.player.board.forEach(c => {
-                if (c.id !== instance.id) c.onOtherCreatureETB(instance, state.player.board);
-            });
-
+            // Defer broadcast if we just entered targeting mode
+            if (state.targetingEffect && state.targetingEffect.sourceId === instance.id) {
+                state.targetingEffect.needsETBBroadcast = true;
+            } else {
+                // Broadcast ETB to OTHERS
+                state.player.board.forEach(c => {
+                    if (c.id !== instance.id) c.onOtherCreatureETB(instance, state.player.board);
+                });
+            }
             // Mieng Trigger
             triggerMiengFerocious(instance.getDisplayStats(state.player.board).p, state.player.board);
 
@@ -1779,6 +1786,18 @@ class BaseCard {
         render();
     }
 
+    function clearTargetingEffect() {
+        if (state.targetingEffect && state.targetingEffect.needsETBBroadcast) {
+            const instance = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+            if (instance) {
+                state.player.board.forEach(c => {
+                    if (c.id !== instance.id) c.onOtherCreatureETB(instance, state.player.board);
+                });
+            }
+        }
+        state.targetingEffect = null;
+    }
+
     function applyTargetedEffect(targetId) {
         if (!state.targetingEffect) return;
         // Search BOTH board and hand for the target
@@ -1790,7 +1809,7 @@ class BaseCard {
                     state.targetingEffect.isDouble = false;
                     // Stay in targeting mode
                 } else {
-                    state.targetingEffect = null;
+                    clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'intli_sacrifice') {
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
@@ -1802,20 +1821,20 @@ class BaseCard {
                         const multiplier = source.isFoil ? 2 : 1;
                         source.tempPower += (2 * multiplier);
                         source.tempToughness += (2 * multiplier);
-                        state.targetingEffect = null;
+                        clearTargetingEffect();
                     }
                 }
             } else if (state.targetingEffect.effect === 'pusbag_sacrifice') {
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
                     resolveShopDeaths(idx, target);
-                    state.targetingEffect = null;
+                    clearTargetingEffect();
                 }
                 } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
                 if (target.type?.includes('Centaur')) {
                     const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     target.counters += (2 * multiplier);
-                    state.targetingEffect = null;
+                    clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
                 const idx = state.player.board.indexOf(target);
@@ -1863,7 +1882,7 @@ class BaseCard {
                 // TRIGGER NONCREATURE CAST
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                state.targetingEffect = null;
+                clearTargetingEffect();
             } else if (state.targetingEffect.effect === 'warrior_ways_step1') {
                 state.targetingEffect.buffTargetId = target.id;
                 
@@ -1888,7 +1907,7 @@ class BaseCard {
                     // TRIGGER NONCREATURE CAST
                     state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                    state.targetingEffect = null;
+                    clearTargetingEffect();
                 } else {
                     state.targetingEffect.effect = 'warrior_ways_step2';
                 }
@@ -1918,7 +1937,7 @@ class BaseCard {
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                 if (handIdx !== -1) state.player.hand.splice(handIdx, 1);
 
-                state.targetingEffect = null;
+                clearTargetingEffect();
                 } else if (state.targetingEffect.effect === 'traverse_cirrusea_grant') {
 
                 const multiplier = state.targetingEffect.isFoil ? 2 : 1;
@@ -1929,11 +1948,11 @@ class BaseCard {
                         target.flyingCounters++;
                     }
                 }
-                state.targetingEffect = null;
+                clearTargetingEffect();
                 } else if (state.targetingEffect.effect === 'sporegraft_slime_counters') {
                 const multiplier = state.targetingEffect.isDouble ? 2 : 1;
                 target.counters += (2 * multiplier);
-                state.targetingEffect = null;
+                clearTargetingEffect();
                 } else if (state.targetingEffect.effect === 'wechuge_sacrifice') {
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
                 if (source && target.id !== source.id) {
@@ -1943,7 +1962,7 @@ class BaseCard {
 
                         const multiplier = source.isFoil ? 2 : 1;
                         source.counters += multiplier;
-                        state.targetingEffect = null;
+                        clearTargetingEffect();
                     }
                 }
             } else if (state.targetingEffect.effect === 'parliament_discard') {
@@ -1956,7 +1975,7 @@ class BaseCard {
                         cards: state.player.spellGraveyard.map(s => CardFactory.create(s)),
                         graveyard: true
                     };
-                    state.targetingEffect = null;
+                    clearTargetingEffect();
                 }
             }
  else if (state.targetingEffect.effect === 'up_in_arms_step1') {
@@ -1984,7 +2003,7 @@ class BaseCard {
                 // TRIGGER NONCREATURE CAST ONLY ONCE AT END
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                state.targetingEffect = null;
+                clearTargetingEffect();
             }
 
                 }
@@ -2140,6 +2159,17 @@ class BaseCard {
              if (attacker.owner === 'player') {
                 if (currentOppAttack) currentOppAttack.fightHp -= amount;
              } else state.player.fightHp -= amount;
+             
+             if (attacker.hasKeyword('Lifelink')) {
+                if (attacker.owner === 'player') {
+                    state.player.fightHp += amount;
+                    triggerLifeGain('player');
+                } else if (currentOppAttack) {
+                    currentOppAttack.fightHp += amount;
+                    triggerLifeGain('opponent');
+                }
+             }
+             
              defenderDamageTaken = amount;
         }
 
@@ -2244,6 +2274,12 @@ class BaseCard {
             if (spawns.length > 0) {
                 const validSpawns = spawns.filter(Boolean);
                 board.splice(idx, 1, ...validSpawns);
+
+                // Add to combat queue if in battle
+                if (state.phase === 'BATTLE' && state.battleQueues) {
+                    validSpawns.forEach(s => state.battleQueues[owner].push(s));
+                }
+
                 // Broadcast ETB for all spawns
                 validSpawns.forEach(s => {
                     notifyPool.forEach(c => {
@@ -2252,6 +2288,11 @@ class BaseCard {
                 });
             } else board.splice(idx, 1);
             
+            // Remove from combat queue if in battle
+            if (state.phase === 'BATTLE' && state.battleQueues) {
+                state.battleQueues[owner] = state.battleQueues[owner].filter(c => c.id !== deadCard.id);
+            }
+
             // Cleanup property
             delete deadCard.isDying;
         }
