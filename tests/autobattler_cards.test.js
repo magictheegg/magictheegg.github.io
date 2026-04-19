@@ -801,12 +801,27 @@ function testBushwhack() {
     assert.strictEqual(target.hasKeyword('trample'), true);
 }
 
-function testHaggardBandit() {
+function testMoonlightStag() {
     resetState();
-    const bandit = CardFactory.create({ card_name: "Haggard Bandit", pt: "3/3" });
-    bandit.onLifeGain([]);
-    assert.strictEqual(bandit.tempPower, 1);
-    assert.strictEqual(bandit.hasKeyword('menace'), true);
+    const stag = CardFactory.create({ card_name: "Moonlight Stag", pt: "2/5", type: "Creature - Elk Spirit" });
+    state.player.board = [stag];
+    
+    assert.strictEqual(stag.hasKeyword('vigilance'), false, "Should not have vigilance initially");
+    
+    // 1. +1/+1 Counter -> Vigilance
+    stag.counters = 1;
+    assert.strictEqual(stag.hasKeyword('vigilance'), true, "Should gain vigilance from +1/+1 counter");
+
+    // 2. Vigilance Counter -> Vigilance
+    stag.counters = 0;
+    stag.vigilanceCounters = 1;
+    assert.strictEqual(stag.hasKeyword('vigilance'), true, "Should have vigilance from keyword counter");
+
+    // 3. Flying Counter -> Flying but NOT Vigilance
+    stag.vigilanceCounters = 0;
+    stag.flyingCounters = 1;
+    assert.strictEqual(stag.hasKeyword('flying'), true, "Should have flying from counter");
+    assert.strictEqual(stag.hasKeyword('vigilance'), false, "Should NOT have vigilance from flying counter");
 }
 
 function testSleeplessSpirit() {
@@ -1288,7 +1303,7 @@ function runTests() {
         { tier: 2, name: "Draconic Cinderlance", fn: testDraconicCinderlance },
         { tier: 2, name: "Cabracan's Familiar", fn: testCabracansFamiliar },
         { tier: 2, name: "Bushwhack", fn: testBushwhack },
-        { tier: 2, name: "Haggard Bandit", fn: testHaggardBandit },
+        { tier: 2, name: "Moonlight Stag", fn: testMoonlightStag },
         { tier: 2, name: "Sleepless Spirit", fn: testSleeplessSpirit },
         { tier: 2, name: "Silken Spinner", fn: testSilkenSpinner },
         { tier: 2, name: "Gnomish Skirmisher", fn: testGnomishSkirmisher },

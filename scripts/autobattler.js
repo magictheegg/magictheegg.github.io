@@ -713,15 +713,12 @@ class BaseCard {
         }
     }
 
-    class HaggardBandit extends BaseCard {
-        onLifeGain(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            this.tempPower += multiplier;
-            if (!this.enchantments) this.enchantments = [];
-            // Temporary menace
-            if (!this.enchantments.some(e => e.card_name === 'Bandit Menace')) {
-                this.enchantments.push({ card_name: 'Bandit Menace', rules_text: 'Menace' });
+    class MoonlightStag extends BaseCard {
+        hasKeyword(keyword) {
+            if (keyword.toLowerCase() === 'vigilance') {
+                return this.counters > 0 || this.vigilanceCounters > 0;
             }
+            return super.hasKeyword(keyword);
         }
     }
 
@@ -1009,7 +1006,7 @@ class BaseCard {
                 case 'Draconic Cinderlance': card = new DraconicCinderlance(data); break;
                 case 'Cabracan\'s Familiar': card = new CabracansFamiliar(data); break;
                 case 'Bushwhack': card = new Bushwhack(data); break;
-                case 'Haggard Bandit': card = new HaggardBandit(data); break;
+                case 'Moonlight Stag': card = new MoonlightStag(data); break;
                 case 'Gnomish Skirmisher': card = new GnomishSkirmisher(data); break;
                 case 'Siege Falcon': card = new SiegeFalcon(data); break;
                 case 'Foresee': card = new Foresee(data); break;

@@ -13,7 +13,7 @@ def create_autobattler_card_list():
         "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
         "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
-        "Haggard Bandit", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
+        "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
         "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
@@ -41,7 +41,7 @@ def create_autobattler_card_list():
         "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
         "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
-        "Haggard Bandit", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
+        "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
         "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats"
     ]
     tier_3_names = [
