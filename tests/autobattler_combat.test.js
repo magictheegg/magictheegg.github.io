@@ -390,6 +390,56 @@ function testAlternatingSidesOnTrade() {
     assert.strictEqual(attackSequence[2], "P1", "Then back to Player side for P1");
 }
 
+function testHastePriority() {
+    resetState();
+    const pNormal = CardFactory.create({ card_name: "P Normal", pt: "2/2" });
+    const oHaste = CardFactory.create({ card_name: "O Haste", pt: "2/2", rules_text: "Haste" });
+    
+    state.battleBoards = {
+        player: [pNormal],
+        opponent: [oHaste]
+    };
+    pNormal.owner = 'player';
+    oHaste.owner = 'opponent';
+
+    const attackSequence = [];
+    const runHasteEngine = () => {
+        state.battleQueues = {
+            player: [pNormal],
+            opponent: [oHaste]
+        };
+        state.attackerSide = 'player'; // Force player start normally
+        let turnsInCurrentRound = 0;
+
+        for (let i = 0; i < 4; i++) {
+            if (turnsInCurrentRound === 0 || turnsInCurrentRound >= 2) {
+                const pHasHaste = state.battleQueues.player.length > 0 && state.battleQueues.player[0].hasKeyword('Haste');
+                const oHasHaste = state.battleQueues.opponent.length > 0 && state.battleQueues.opponent[0].hasKeyword('Haste');
+                if (pHasHaste && !oHasHaste) state.attackerSide = 'player';
+                else if (oHasHaste && !pHasHaste) state.attackerSide = 'opponent';
+                turnsInCurrentRound = 0;
+            }
+
+            const side = state.attackerSide;
+            const currentQueue = state.battleQueues[side];
+            if (currentQueue.length > 0) {
+                const attacker = currentQueue.shift();
+                attackSequence.push(attacker.card_name);
+                currentQueue.push(attacker); // Survive and loop back
+            }
+            turnsInCurrentRound++;
+            state.attackerSide = state.attackerSide === 'player' ? 'opponent' : 'player';
+        }
+    };
+
+    runHasteEngine();
+    
+    // Normally, if side was forced to 'player', P Normal would go first.
+    // But O Haste has priority, so O Haste should go first in the first round.
+    assert.strictEqual(attackSequence[0], "O Haste", "Haste creature should steal priority at round start");
+    assert.strictEqual(attackSequence[1], "P Normal", "Normal creature goes second in round");
+}
+
 function runTests() {
     const allTests = [
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
@@ -409,7 +459,8 @@ function runTests() {
         { name: "First Strike (Slot Order)", fn: testFirstStrikeSlotOrder },
         { name: "Attack Skipping Bug", fn: testAttackSkippingBug },
         { name: "Combat Order (Wrap Around)", fn: testCombatOrderWrapAround },
-        { name: "Alternating Sides on Trade", fn: testAlternatingSidesOnTrade }
+        { name: "Alternating Sides on Trade", fn: testAlternatingSidesOnTrade },
+        { name: "Haste Priority", fn: testHastePriority }
     ];
 
     const results = [];

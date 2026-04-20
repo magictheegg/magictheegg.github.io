@@ -2042,11 +2042,25 @@ class BaseCard {
             opponent: state.battleBoards.opponent.filter(c => !c.isLockedByChivalry)
         };
         state.attackerSide = Math.random() < 0.5 ? 'player' : 'opponent';
+        let turnsInCurrentRound = 0;
 
         // MAIN COMBAT LOOP
         while (state.player.fightHp > 0 && currentOpp.fightHp > 0 && 
               (state.battleQueues.player.length > 0 || state.battleQueues.opponent.length > 0)) {
             
+            // Check for Haste priority at the start of each ROUND (every 2 loop cycles)
+            if (turnsInCurrentRound === 0 || turnsInCurrentRound >= 2) {
+                const pHasHaste = state.battleQueues.player.length > 0 && state.battleQueues.player[0].hasKeyword('Haste');
+                const oHasHaste = state.battleQueues.opponent.length > 0 && state.battleQueues.opponent[0].hasKeyword('Haste');
+
+                if (pHasHaste && !oHasHaste) {
+                    state.attackerSide = 'player';
+                } else if (oHasHaste && !pHasHaste) {
+                    state.attackerSide = 'opponent';
+                }
+                turnsInCurrentRound = 0;
+            }
+
             // Check for 0-power stall state
             const totalPower = [...state.battleBoards.player, ...state.battleBoards.opponent].reduce((sum, c) => {
                 if (c.isDying || c.isDestroyed) return sum;
@@ -2120,6 +2134,7 @@ class BaseCard {
                 }
             }
 
+            turnsInCurrentRound++;
             // Flip side
             state.attackerSide = state.attackerSide === 'player' ? 'opponent' : 'player';
         }
