@@ -6,7 +6,7 @@ def create_autobattler_card_list():
         "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Intli Assaulter",
         "Impressible Cub", "Gore Swine", "Sanctuary Centaur", "War-Clan Dowager",
         "Clairvoyant Koi", "Blistering Lunatic", "Dutiful Camel", "Frontline Cavalier",
-        "Sparring Campaigner", "Soulsmoke Adept", "Lake Cave Lurker", "Rakkiri Archer",
+        "Sparring Campaigner", "Soulsmoke Adept", "Rakkiri Archer", "Lake Cave Lurker",
         "Faith in Darkness", "Scientific Inquiry", "To Battle", "By Blood and Venom", "Divination",
         "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
         "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
@@ -16,11 +16,14 @@ def create_autobattler_card_list():
         "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
         "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
-        "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
+        "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
         "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
-        "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants"
+        "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
+        "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
+        "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
+        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -43,15 +46,20 @@ def create_autobattler_card_list():
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
         "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
         "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats"
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker"
     ]
     tier_3_names = [
         "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
-        "Finwing Drake", "Shrewd Parliament", "Coralhide Wurm", "Aether Guzzler", "Dewdrop Oracle",
+        "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
         "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
         "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants"
+    ]
+    tier_4_names = [
+        "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
+        "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
+        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories"
     ]
 
     for name in card_names_to_include:
@@ -60,7 +68,9 @@ def create_autobattler_card_list():
             # Create a copy so we don't modify the source data multiple times if names repeat
             card_copy = dict(match)
             # Add tier information
-            if name in tier_3_names:
+            if name in tier_4_names:
+                card_copy['tier'] = 4
+            elif name in tier_3_names:
                 card_copy['tier'] = 3
             elif name in tier_2_names:
                 card_copy['tier'] = 2

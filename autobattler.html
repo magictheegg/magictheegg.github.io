@@ -240,6 +240,9 @@
         .counter-bubble.vigilance { background-color: #90ee90; } /* Light Green */
         .counter-bubble.lifelink { background-color: #fffdd0; } /* Cream */
         .counter-bubble.shield { background-color: #b0b0b0; } /* Less blue grey */
+        .counter-bubble.hexproof { background-color: #e0b0ff; } /* Pastel Mauve */
+        .counter-bubble.reach { background-color: #dfff00; } /* Pastel Chartreuse */
+        .counter-bubble.trample { background-color: #77dd77; } /* Pastel Forest Green */
 
         .counter-bubble img {
             width: 65%;
@@ -621,6 +624,37 @@
             animation: pop-fade 0.8s forwards;
         }
 
+        .destroy-bubble {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(230, 200, 255, 0.9); /* Pale purple cloud */
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000 !important;
+            pointer-events: none;
+            box-shadow: 0 0 30px #d8b4fe;
+            animation: cloud-pop 0.7s forwards;
+        }
+
+        .destroy-bubble img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+        }
+
+        @keyframes cloud-pop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            20% { transform: translate(-50%, -80%) scale(1.2); opacity: 1; }
+            80% { transform: translate(-50%, -100%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -130%) scale(1.5); opacity: 0; }
+        }
+
         @keyframes pop-fade {
             0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
             20% { transform: translate(-50%, -100%) scale(1.2); opacity: 1; }
@@ -882,7 +916,7 @@
         </div>
 
         <div id="discovery-modal" class="modal-overlay" style="display: none;">
-            <div class="modal-content" style="max-width: 1000px; width: 95%;">
+            <div class="modal-content" style="max-width: 1200px; width: fit-content; min-width: 400px;">
                 <div id="discovery-card-container" class="card-row"></div>
                 <div id="discovery-actions" class="modal-actions">
                     <button id="discovery-cancel-btn" class="modal-btn deny">CANCEL</button>

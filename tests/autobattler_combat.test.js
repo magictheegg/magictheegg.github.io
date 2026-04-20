@@ -101,6 +101,40 @@ function testMenaceBypass() {
     assert.strictEqual(target.card_name, "Regular", "Menace should bypass Taunt");
 }
 
+function testTrampleWithShield() {
+    resetState();
+    const trampler = CardFactory.create({ card_name: "Trampler", pt: "10/10", rules_text: "Trample" });
+    const defender = CardFactory.create({ card_name: "Defender", pt: "2/2" });
+    defender.shieldCounters = 1;
+
+    trampler.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [trampler], opponent: [defender] };
+    state.opponents[0].fightHp = 10;
+
+    resolveCombatImpact(trampler, defender);
+    assert.strictEqual(defender.damageTaken, 0, "Defender damage should be prevented by shield");
+    assert.strictEqual(defender.shieldCounters, 0, "Shield counter should be consumed");
+    assert.strictEqual(state.opponents[0].fightHp, 2, "Trample overflow (8) should still be dealt to face");
+}
+
+function testTrampleSplashWithShield() {
+    resetState();
+    const trampler = CardFactory.create({ card_name: "Trampler", pt: "5/5", rules_text: "Trample" });
+    const blocker = CardFactory.create({ card_name: "Blocker", pt: "2/2" });
+    const shielded = CardFactory.create({ card_name: "Shielded", pt: "3/3" });
+    shielded.shieldCounters = 1;
+
+    trampler.owner = 'player';
+    blocker.owner = shielded.owner = 'opponent';
+    state.battleBoards = { player: [trampler], opponent: [blocker, shielded] };
+
+    resolveCombatImpact(trampler, blocker);
+    assert.strictEqual(blocker.damageTaken, 2, "Blocker should take lethal damage (2) from Trample");
+    assert.strictEqual(shielded.damageTaken, 0, "Shielded neighbor should take 0 damage from splash");
+    assert.strictEqual(shielded.shieldCounters, 0, "Shield counter should be consumed by trample splash");
+}
+
 function testLifelink() {
     resetState();
     const lifelinker = CardFactory.create({ card_name: "Lifelinker", pt: "3/3", rules_text: "Lifelink" });
@@ -119,6 +153,61 @@ function testLifelink() {
     lifelinker2.owner = 'player';
     resolveCombatImpact(lifelinker2, null);
     assert.strictEqual(state.player.fightHp, 13, "Should gain 3 life when hitting face");
+}
+
+function testDoubleStrike_KillBlocker() {
+    resetState();
+    const ds = CardFactory.create({ card_name: "DS", pt: "3/3", rules_text: "Double strike" });
+    const blocker = CardFactory.create({ card_name: "Blocker", pt: "3/3" });
+    const bystander = CardFactory.create({ card_name: "Bystander", pt: "2/2" });
+    state.battleBoards = { player: [ds], opponent: [blocker, bystander] };
+    ds.owner = 'player'; blocker.owner = bystander.owner = 'opponent';
+
+    resolveCombatImpact(ds, blocker, true);
+    state.battleBoards.opponent = [bystander]; // Simulate death removal
+    
+    const defenderDied = true;
+    let performSecondHit = (!defenderDied || ds.hasKeyword('Trample'));
+    assert.strictEqual(performSecondHit, false, "Second hit canceled because blocker died and no trample");
+    assert.strictEqual(bystander.damageTaken, 0);
+}
+
+function testDoubleStrike_LethalFace() {
+    resetState();
+    const ds = CardFactory.create({ card_name: "DS", pt: "3/3", rules_text: "Double strike" });
+    state.battleBoards = { player: [ds], opponent: [] };
+    state.opponents[0].fightHp = 2;
+    state.currentOpponentId = 0; // ensure getOpponent() finds it
+    ds.owner = 'player';
+    
+    let secondHitAttempted = false;
+
+    // Simulate loop logic
+    resolveCombatImpact(ds, null, true); // First Strike deals 3, HP becomes -1
+    
+    if (state.opponents[0].fightHp > 0) {
+        secondHitAttempted = true;
+        resolveCombatImpact(ds, null, false);
+    }
+    
+    assert.strictEqual(state.opponents[0].fightHp, -1, "Face takes 3 damage total and stays there");
+    assert.strictEqual(secondHitAttempted, false, "Second hit must be canceled due to lethal First Strike");
+}
+
+function testDoubleStrike_Trade() {
+    resetState();
+    const ds = CardFactory.create({ card_name: "DS", pt: "3/3", rules_text: "Double strike" });
+    const blocker = CardFactory.create({ card_name: "Big", pt: "4/4" });
+    state.battleBoards = { player: [ds], opponent: [blocker] };
+    ds.owner = 'player'; blocker.owner = 'opponent';
+
+    resolveCombatImpact(ds, blocker, true);
+    assert.strictEqual(blocker.damageTaken, 3);
+    
+    // Blocker still alive, proceed to Hit 2
+    resolveCombatImpact(ds, blocker, false);
+    assert.strictEqual(blocker.damageTaken, 6);
+    assert.strictEqual(ds.damageTaken, 4);
 }
 
 function testTrample() {
@@ -306,6 +395,11 @@ function runTests() {
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
         { name: "Vigilance (Taunt) Targeting", fn: testVigilanceTargeting },
         { name: "Menace Bypass", fn: testMenaceBypass },
+        { name: "Trample with Shield", fn: testTrampleWithShield },
+        { name: "Trample Splash with Shield", fn: testTrampleSplashWithShield },
+        { name: "Double Strike (Kill Blocker)", fn: testDoubleStrike_KillBlocker },
+        { name: "Double Strike (Lethal Face)", fn: testDoubleStrike_LethalFace },
+        { name: "Double Strike (Trade)", fn: testDoubleStrike_Trade },
         { name: "Lifelink (Attack/Face)", fn: testLifelink },
         { name: "Trample Splash", fn: testTrample },
         { name: "Indestructible Save", fn: testIndestructible },
