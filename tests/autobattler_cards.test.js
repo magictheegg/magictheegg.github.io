@@ -90,6 +90,8 @@ function resetState() {
     state.deadServantsCount = 0;
     state.spellsCastThisTurn = 0;
     state.triumphantTacticsActive = false;
+    state.panharmoniconActive = false;
+    state.shop = { cards: [], frozen: false };
 
     // SYNC POOL
     setAvailableCards(fullCardPool);
@@ -2120,6 +2122,99 @@ function testFeralExemplar() {
     assert.strictEqual(exemplar.getDisplayStats(state.battleBoards.player).t, 8);
 }
 
+function testPyrewrightTrainee() {
+    resetState();
+    const trainee = CardFactory.create({ card_name: "Pyrewright Trainee", pt: "3/3", rules_text: "Flying, haste" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    state.player.board = [trainee, other];
+    trainee.owner = other.owner = 'player';
+    
+    // 1. Keywords
+    assert.strictEqual(trainee.hasKeyword('flying'), true);
+    assert.strictEqual(trainee.hasKeyword('haste'), true);
+    
+    // 2. Battle Cry
+    trainee.onAttack(state.player.board);
+    assert.strictEqual(other.tempPower, 1, "Other creature should get +1/+0 from Battle Cry");
+    assert.strictEqual(trainee.tempPower, 0, "Attacker should not buff itself");
+}
+
+function testLagoonLogistics() {
+    resetState();
+    const ll = CardFactory.create({ card_name: "Lagoon Logistics" });
+    // Use a creature with an ETB to verify double trigger
+    // Dewdrop Oracle ETB: adds to discoveryQueue
+    const oracle = CardFactory.create({ card_name: "Dewdrop Oracle", pt: "1/1" });
+    state.player.board = [oracle];
+    oracle.owner = 'player';
+    
+    // Need this for the blink recreation
+    availableCards.push({ card_name: "Dewdrop Oracle", pt: "1/1", set: "SHF" });
+    
+    ll.onApply(oracle, state.player.board);
+    
+    assert.strictEqual(state.panharmoniconActive, true, "Panharmonicon flag should be set");
+    
+    // Doubled trigger means 2 entries in discoveryQueue
+    assert.strictEqual(state.discoveryQueue.length, 2, "Blinked creature should trigger ETB twice");
+    
+    const newOracle = state.player.board[0];
+    assert.notStrictEqual(newOracle.id, oracle.id, "Creature should be a new instance after blink");
+}
+
+function testFlauntLuxury() {
+    resetState();
+    const flaunt = CardFactory.create({ card_name: "Flaunt Luxury" });
+    state.player.gold = 0;
+    state.player.tier = 1;
+    
+    // availableCards needs to have something to draw
+    availableCards.push({ card_name: "Test Creature", type: "Creature", shape: "normal", tier: 1 });
+    
+    flaunt.onCast(state.player.board);
+    assert.strictEqual(state.player.gold, 3, "Should get 3 gold (Treasures)");
+    assert.strictEqual(state.shop.cards.length, 3, "Should add 3 cards to the SHOP");
+}
+
+function testArtfulCoercion() {
+    resetState();
+    const artful = CardFactory.create({ card_name: "Artful Coercion", type: "Sorcery" });
+    const myWeak = CardFactory.create({ card_name: "MyWeak", pt: "2/2" });
+    const shopWeak = CardFactory.create({ card_name: "ShopWeak", pt: "1/1", type: "Creature" });
+    const shopStrong = CardFactory.create({ card_name: "ShopStrong", pt: "5/5", type: "Creature" });
+    
+    state.player.hand = [artful];
+    state.player.board = [myWeak];
+    myWeak.owner = 'player';
+    state.shop.cards = [shopWeak, shopStrong];
+    
+    // Case 1: Board full failure
+    state.player.board = Array(7).fill(myWeak);
+    useCardFromHand(artful.id);
+    assert.strictEqual(state.castingSpell, null, "Should not be castable if board is full");
+
+    // Case 2: Normal resolution
+    resetState();
+    state.player.hand = [artful];
+    state.player.board = [myWeak];
+    myWeak.owner = 'player';
+    state.shop.cards = [shopWeak, shopStrong];
+    
+    useCardFromHand(artful.id);
+    assert.strictEqual(state.castingSpell.card_name, 'Artful Coercion');
+    
+    // Apply to ShopWeak
+    applySpell(shopWeak.id);
+    
+    assert.strictEqual(state.player.board.length, 2, "Should have gained control of ShopWeak");
+    assert.strictEqual(state.player.board.includes(shopWeak), true);
+    assert.strictEqual(shopWeak.owner, 'player');
+    
+    // Invigorate 2: Puts 2 counters on player's weakest creature.
+    // ShopWeak (1/1) was gained, it is now the weakest.
+    assert.strictEqual(shopWeak.counters, 2, "Weakest creature (ShopWeak) should receive 2 counters");
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -2238,7 +2333,11 @@ function runTests() {
         { tier: 4, name: "Earthcore Elemental", fn: testEarthcoreElemental },
         { tier: 4, name: "Savage Congregation", fn: testSavageCongregation },
         { tier: 4, name: "Ndengo Brutalizer", fn: testNdengoBrutalizer },
-        { tier: 4, name: "Feral Exemplar", fn: testFeralExemplar }
+        { tier: 4, name: "Feral Exemplar", fn: testFeralExemplar },
+        { tier: 4, name: "Pyrewright Trainee", fn: testPyrewrightTrainee },
+        { tier: 4, name: "Lagoon Logistics", fn: testLagoonLogistics },
+        { tier: 4, name: "Flaunt Luxury", fn: testFlauntLuxury },
+        { tier: 4, name: "Artful Coercion", fn: testArtfulCoercion }
     ];
 
     console.log("\nUNIT TEST RESULTS");

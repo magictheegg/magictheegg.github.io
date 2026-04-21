@@ -25,7 +25,8 @@ def create_autobattler_card_list():
         "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
-        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation"
+        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
+        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -63,7 +64,8 @@ def create_autobattler_card_list():
         "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
-        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation"
+        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
+        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion"
     ]
 
     for name in card_names_to_include:

@@ -917,6 +917,92 @@ class BaseCard {
 
     class HoltunClanEldhand extends BaseCard { }
 
+    class PyrewrightTrainee extends BaseCard {
+        onAttack(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            const others = board.filter(c => c.id !== this.id && c.owner === this.owner);
+            others.forEach(c => {
+                c.tempPower += multiplier;
+            });
+            return others;
+        }
+    }
+
+    class LagoonLogistics extends BaseCard {
+        onApply(target, board) {
+            const raw = availableCards.find(c => c.card_name === target.card_name && (target.set ? c.set === target.set : true));
+            if (!raw) return; // Safety: Don't blink if we can't recreate
+
+            state.panharmoniconActive = true;
+            
+            // Remove from wherever it is (board or hand)
+            const boardIdx = board.indexOf(target);
+            const handIdx = state.player.hand.indexOf(target);
+            
+            if (boardIdx !== -1) board.splice(boardIdx, 1);
+            if (handIdx !== -1) state.player.hand.splice(handIdx, 1);
+
+            const fresh = CardFactory.create(raw);
+            fresh.owner = 'player';
+            fresh.isFoil = target.isFoil; // Keep foil status
+
+            // Return to battlefield (at same index if was on board, else end)
+            if (boardIdx !== -1) {
+                board.splice(boardIdx, 0, fresh);
+            } else {
+                board.push(fresh);
+            }
+            
+            // Trigger ETB (Doubled because we just set state.panharmoniconActive = true)
+            triggerETB(fresh, board);
+            
+            // Broadcast to others
+            board.forEach(c => {
+                if (c.id !== fresh.id) c.onOtherCreatureETB(fresh, board);
+            });
+        }
+    }
+
+    class FlauntLuxury extends BaseCard {
+        onCast(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            state.player.gold += (3 * multiplier);
+            
+            // Draw 3 creatures to the shop
+            for (let i = 0; i < (3 * multiplier); i++) {
+                if (state.shop.cards.length < 7) {
+                    addCardsToShop(1, 'creature'); 
+                }
+            }
+        }
+    }
+
+    class ArtfulCoercion extends BaseCard {
+        onApply(target, board) {
+            // Target is from the shop
+            const shopIdx = state.shop.cards.indexOf(target);
+            if (shopIdx !== -1) {
+                state.shop.cards.splice(shopIdx, 1);
+                target.owner = 'player';
+                board.push(target);
+                
+                // Artful Coercion does NOT trigger ETB
+                // But we still broadcast the arrival to others
+                board.forEach(c => {
+                    if (c.id !== target.id) c.onOtherCreatureETB(target, board);
+                });
+
+                // INVIGORATE 2: random choice among your least power
+                const minPower = Math.min(...board.map(c => c.getDisplayStats(board).p));
+                const leastPowerCreatures = board.filter(c => c.getDisplayStats(board).p === minPower);
+                if (leastPowerCreatures.length > 0) {
+                    const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
+                    randomTarget.counters += 2;
+                }
+            }
+        }
+    }
+
     class HeroOfHedria extends BaseCard { }
 
     class HeroOfALostWar extends BaseCard {
@@ -1420,6 +1506,10 @@ class BaseCard {
                 case 'Cloudline Sovereign': card = new CloudlineSovereign(data); break;
                 case 'Nightfall Raptor': card = new NightfallRaptor(data); break;
                 case 'Triumphant Tactics': card = new TriumphantTactics(data); break;
+                case 'Pyrewright Trainee': card = new PyrewrightTrainee(data); break;
+                case 'Lagoon Logistics': card = new LagoonLogistics(data); break;
+                case 'Flaunt Luxury': card = new FlauntLuxury(data); break;
+                case 'Artful Coercion': card = new ArtfulCoercion(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1483,7 +1573,8 @@ class BaseCard {
         overallHpReducedThisFight: false,
         deadServantsCount: 0,
         spellsCastThisTurn: 0,
-        triumphantTacticsActive: false
+        triumphantTacticsActive: false,
+        panharmoniconActive: false
     };
 
     function getOpponent() {
@@ -1537,7 +1628,7 @@ class BaseCard {
 
             // Trigger ETBs for ALL new arrivals (including spawns)
             newArrivals.forEach(card => {
-                card.onETB(state.player.board);
+                triggerETB(card, state.player.board);
                 state.player.board.forEach(c => {
                     if (c.id !== card.id) c.onOtherCreatureETB(card, state.player.board);
                 });
@@ -1941,10 +2032,19 @@ class BaseCard {
         }
     }
 
+    function triggerETB(instance, board) {
+        if (!instance) return;
+        instance.onETB(board);
+        if (state.panharmoniconActive && instance.owner === 'player') {
+            instance.onETB(board);
+        }
+    }
+
     // Game Loop
     function startShopTurn() {
         state.phase = 'SHOP';
         state.spellsCastThisTurn = 0;
+        state.panharmoniconActive = false;
 
         // Tier cost reduction: goes down by 1 each turn (EXCEPT turn 1)
         if (state.player.tier < 5 && state.turn > 1) {
@@ -2459,6 +2559,7 @@ class BaseCard {
 
         state.player.fightHp = 5 + (5 * state.player.tier);
         state.triumphantTacticsActive = false;
+        state.panharmoniconActive = false;
         state.currentOpponentId = (state.currentOpponentId + 1) % state.opponents.length;
         state.battleBoards = null;
         state.turn++;
@@ -2567,16 +2668,23 @@ class BaseCard {
         for (let i = 0; i < count; i++) {
             if (state.shop.cards.length >= 7) break; 
 
-            // If scry queue has a creature, pull it.
-            let scryIdx = state.nextShopBonusCards.findIndex(c => c.type?.toLowerCase().includes('creature'));
+            // If scry queue has a valid card, pull it.
+            let scryIdx = state.nextShopBonusCards.findIndex(c => {
+                if (typeFilter === 'all') return true;
+                const isCreature = c.type?.toLowerCase().includes('creature');
+                return typeFilter === 'creature' ? isCreature : !isCreature;
+            });
+
             if (scryIdx !== -1) {
                 state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(scryIdx, 1)[0]));
             } else {
-                // Otherwise pull random creature from pool
+                // Otherwise pull random from pool
                 const pool = availableCards.filter(c => {
                     const matchesTier = (c.tier || 1) <= state.player.tier;
+                    if (typeFilter === 'all') return matchesTier && c.shape !== 'token';
                     const matchesType = c.type?.toLowerCase().includes('creature');
-                    return matchesTier && matchesType && c.shape !== 'token';
+                    const desiredType = typeFilter === 'creature' ? matchesType : !matchesType;
+                    return matchesTier && desiredType && c.shape !== 'token';
                 });
                 if (pool.length > 0) {
                     state.shop.cards.push(CardFactory.create(pool[Math.floor(Math.random() * pool.length)]));
@@ -2683,9 +2791,9 @@ class BaseCard {
             }
 
             // Trigger 1 (Standard or First trigger of Foil)
-            instance.onETB(state.player.board);
+            triggerETB(instance, state.player.board);
             // Trigger 2 if Foil
-            if (instance.isFoil) instance.onETB(state.player.board);
+            if (instance.isFoil) triggerETB(instance, state.player.board);
 
             // Defer broadcast if we just entered targeting mode
             if (state.targetingEffect && state.targetingEffect.sourceId === instance.id) {
@@ -2702,7 +2810,7 @@ class BaseCard {
             state.player.hand.splice(cardIndex, 1);
         } else {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
-            const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song'];
+            const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion'];
             
             if (instance.card_name === 'Executioner\'s Madness') {
                 state.spellsCastThisTurn++;
@@ -2741,6 +2849,9 @@ class BaseCard {
                 state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board); // onApply handles the state initialization
             } else if (targetedNames.includes(instance.card_name)) {
+                if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
+                    return; 
+                }
                 state.spellsCastThisTurn++;
                 state.castingSpell = instance;
             } else {
@@ -2779,6 +2890,26 @@ class BaseCard {
                 hasTargets = state.player.board.some(c => !c.type?.includes('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
                 hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
+            } else if (effect.effect === 'artful_coercion_gain_control') {
+                // Find min power on battlefield (yours + opponent + SHOP)
+                const currentOpp = getOpponent();
+                const battlefield = [...state.player.board, ...currentOpp.board];
+                const shopCreatures = state.shop.cards.filter(c => {
+                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
+                    return inst.type?.toLowerCase().includes('creature');
+                }).map(c => (c instanceof BaseCard) ? c : CardFactory.create(c));
+                
+                const allMinPool = [...battlefield, ...shopCreatures];
+                const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
+                    const board = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
+                    return c.getDisplayStats(board).p;
+                })) : Infinity;
+                
+                // Targets are in the SHOP, and board must have space
+                hasTargets = (state.player.board.length < boardLimit) && state.shop.cards.some(c => {
+                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
+                    return inst.type?.toLowerCase().includes('creature') && inst.getBasePT().p <= minPower;
+                });
             } else if (effect.effect === 'parliament_discard') {
                 const validHandCards = state.player.hand.filter(c => c.id !== effect.sourceId);
                 hasTargets = state.player.spellGraveyard.length > 0 && validHandCards.length > 0;
@@ -2810,8 +2941,11 @@ class BaseCard {
 
     function applyTargetedEffect(targetId, counterType = null) {
         if (!state.targetingEffect) return;
-        // Search BOTH board and hand for the target
-        const target = state.player.board.find(c => c.id === targetId) || state.player.hand.find(c => c.id === targetId);
+        // Search board, hand, and SHOP for the target
+        const target = state.player.board.find(c => c.id === targetId) || 
+                       state.player.hand.find(c => c.id === targetId) ||
+                       state.shop.cards.find(c => c.id === targetId);
+        
         if (target) {
             if (state.targetingEffect.effect === 'dutiful_camel_counter') {
                 target.counters++;
@@ -2819,6 +2953,33 @@ class BaseCard {
                     state.targetingEffect.isDouble = false;
                     // Stay in targeting mode
                 } else {
+                    clearTargetingEffect();
+                }
+            } else if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
+                const shopIdx = state.shop.cards.indexOf(target);
+                if (shopIdx !== -1) {
+                    // Gain control from shop
+                    state.shop.cards.splice(shopIdx, 1);
+                    target.owner = 'player';
+                    if (state.player.board.length < boardLimit) {
+                        state.player.board.push(target);
+                        // Artful Coercion does NOT trigger ETB
+                        state.player.board.forEach(c => {
+                            if (c.id !== target.id) c.onOtherCreatureETB(target, state.player.board);
+                        });
+                    } else {
+                        // Normally not castable if full, but as safety:
+                        state.player.hand.push(target);
+                    }
+
+                    // INVIGORATE 2: random choice among your least power
+                    const minPower = Math.min(...state.player.board.map(c => c.getDisplayStats(state.player.board).p));
+                    const leastPowerCreatures = state.player.board.filter(c => c.getDisplayStats(state.player.board).p === minPower);
+                    if (leastPowerCreatures.length > 0) {
+                        const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
+                        randomTarget.counters += 2;
+                    }
+
                     clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'intli_sacrifice') {
@@ -3113,7 +3274,7 @@ class BaseCard {
 
                 // Batch ETBs after ALL tokens are on the board
                 createdTokens.forEach(token => {
-                    token.onETB(state.player.board);
+                    triggerETB(token, state.player.board);
                     state.player.board.forEach(c => {
                         if (c.id !== token.id) c.onOtherCreatureETB(token, state.player.board);
                     });
@@ -3573,8 +3734,22 @@ class BaseCard {
 
     function applySpell(targetId) {
         if (!state.castingSpell) return;
-        const target = state.player.board.find(c => c.id === targetId);
+        const target = state.player.board.find(c => c.id === targetId) || 
+                       state.player.hand.find(c => c.id === targetId) ||
+                       state.shop.cards.find(c => c.id === targetId);
         if (!target) return;
+
+        // Safety check for Lagoon Logistics
+        if (state.castingSpell.card_name === 'Lagoon Logistics') {
+            if (!target.type?.toLowerCase().includes('creature') || target.id === state.castingSpell.id) {
+                return;
+            }
+        }
+        
+        // Artful Coercion safety: Board must have space
+        if (state.castingSpell.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
+            return; 
+        }
 
         state.castingSpell.onApply(target, state.player.board);
         
@@ -4216,7 +4391,54 @@ class BaseCard {
         if (isPermutate1) cardEl.classList.add('grayed-out');
 
         // Events
-        if (isShop) cardEl.addEventListener('click', () => buyCard(instance.id));
+        if (isShop) {
+            cardEl.addEventListener('click', () => {
+                if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
+                    const isCreature = instance.type?.toLowerCase().includes('creature');
+                    if (!isCreature) return; // Cannot target spells with Coercion
+
+                    // Check if valid power
+                    const currentOpp = getOpponent();
+                    const battlefield = [...state.player.board, ...currentOpp.board];
+                    const shopCreatures = state.shop.cards
+                        .map(c => (c instanceof BaseCard) ? c : CardFactory.create(c))
+                        .filter(c => c.type?.toLowerCase().includes('creature'));
+                    
+                    const allMinPool = [...battlefield, ...shopCreatures];
+                    const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
+                        const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
+                        return c.getDisplayStats(b).p;
+                    })) : Infinity;
+
+                    if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
+                        applySpell(instance.id);
+                    }
+                } else {
+                    buyCard(instance.id);
+                }
+            });
+
+            if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
+                const isCreature = instance.type?.toLowerCase().includes('creature');
+                if (isCreature) {
+                    const currentOpp = getOpponent();
+                    const battlefield = [...state.player.board, ...currentOpp.board];
+                    const shopCreatures = state.shop.cards
+                        .map(c => (c instanceof BaseCard) ? c : CardFactory.create(c))
+                        .filter(c => c.type?.toLowerCase().includes('creature'));
+                    
+                    const allMinPool = [...battlefield, ...shopCreatures];
+                    const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
+                        const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
+                        return c.getDisplayStats(b).p;
+                    })) : Infinity;
+
+                    if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
+                        cardEl.classList.add('targetable');
+                    }
+                }
+            }
+        }
 
         // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot, Feral Exemplar (Only on board, during SHOP)
         const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot', 'Feral Exemplar'];
@@ -4251,15 +4473,26 @@ class BaseCard {
         
         if (index !== -1) {
             if (state.castingSpell) { 
-                cardEl.classList.add('targetable'); 
-                cardEl.addEventListener('click', () => applySpell(instance.id)); 
-            }
-            if (state.targetingEffect) { 
+                const isCreature = instance.type?.toLowerCase().includes('creature');
+                const isLagoon = state.castingSpell.card_name === 'Lagoon Logistics';
+                const isCoercion = state.castingSpell.card_name === 'Artful Coercion';
+
+                if (isLagoon && !isCreature) {
+                    // Cannot target non-creatures with Lagoon
+                } else if (isCoercion) {
+                    // Artful Coercion targets the SHOP, not the board
+                } else {
+                    cardEl.classList.add('targetable'); 
+                    cardEl.addEventListener('click', () => applySpell(instance.id)); 
+                }
+            } if (state.targetingEffect) { 
                 // Special case: Parliament discard targeting is HAND ONLY
                 if (state.targetingEffect.effect === 'parliament_discard') {
                     // Not targetable on board
                 } else if (state.targetingEffect.effect === 'permutate_step1' || state.targetingEffect.effect === 'cloudline_sovereign_step1') {
                     // Not targetable as a card, only counters are clickable
+                } else if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
+                    // Not targetable on board (targets shop)
                 } else {
                     // Special case: Intli Assaulter, Wechuge, Matriarch, Brutalizer can't target themselves
                     const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff', 'ndengo_target'];
@@ -4283,8 +4516,21 @@ class BaseCard {
             }
 
         } else if (state.player.hand.some(c => c.id === instance.id)) { // In hand
+             // SPELL TARGETING HAND
+             if (state.castingSpell && ['Lagoon Logistics'].includes(state.castingSpell.card_name)) {
+                 const isCreature = instance.type?.toLowerCase().includes('creature');
+                 const isNotSelf = instance.id !== state.castingSpell.id;
+
+                 if (isCreature && isNotSelf) {
+                     cardEl.classList.add('targetable');
+                     cardEl.addEventListener('click', (e) => {
+                         e.stopPropagation();
+                         applySpell(instance.id);
+                     });
+                 }
+             }
              // DISCARD TARGETING
-             if (state.targetingEffect && state.targetingEffect.effect === 'parliament_discard') {
+             else if (state.targetingEffect && state.targetingEffect.effect === 'parliament_discard') {
                  cardEl.classList.add('discard-outline');
                  cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
              } else {
