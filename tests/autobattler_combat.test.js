@@ -440,6 +440,49 @@ function testHastePriority() {
     assert.strictEqual(attackSequence[1], "P Normal", "Normal creature goes second in round");
 }
 
+function testTriumphantTactics() {
+    resetState();
+    const tt = CardFactory.create({ card_name: "Triumphant Tactics" });
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "2/2" });
+    const defender = CardFactory.create({ card_name: "Defender", pt: "2/2" });
+
+    attacker.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [defender] };
+    
+    // Cast TT
+    tt.onCast(state.battleBoards.player);
+    assert.strictEqual(state.triumphantTacticsActive, true, "Flag should be active");
+    assert.strictEqual(attacker.hasKeyword('Double strike'), true, "Attacker should have Double Strike from flag");
+
+    // Hit 1: First Strike
+    resolveCombatImpact(attacker, defender, true);
+    assert.strictEqual(defender.damageTaken, 2);
+    assert.strictEqual(attacker.counters, 1, "Attacker gains 1 counter after dealing damage");
+    
+    // Simulate cleanup
+    state.triumphantTacticsActive = false;
+    assert.strictEqual(attacker.hasKeyword('Double strike'), false, "Attacker should lose Double Strike after combat");
+}
+
+function testTriumphantTactics_FaceDamage() {
+    resetState();
+    const tt = CardFactory.create({ card_name: "Triumphant Tactics" });
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "2/2" });
+    
+    attacker.owner = 'player';
+    state.battleBoards = { player: [attacker], opponent: [] };
+    state.opponents[0].fightHp = 10;
+    state.currentOpponentId = 0;
+
+    // Cast TT
+    tt.onCast(state.battleBoards.player);
+    
+    // Attack face
+    resolveCombatImpact(attacker, null);
+    assert.strictEqual(attacker.counters, 1, "Attacker should gain a counter when dealing damage to face");
+}
+
 function runTests() {
     const allTests = [
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
@@ -460,7 +503,9 @@ function runTests() {
         { name: "Attack Skipping Bug", fn: testAttackSkippingBug },
         { name: "Combat Order (Wrap Around)", fn: testCombatOrderWrapAround },
         { name: "Alternating Sides on Trade", fn: testAlternatingSidesOnTrade },
-        { name: "Haste Priority", fn: testHastePriority }
+        { name: "Haste Priority", fn: testHastePriority },
+        { name: "Triumphant Tactics", fn: testTriumphantTactics },
+        { name: "Triumphant Tactics (Face)", fn: testTriumphantTactics_FaceDamage }
     ];
 
     const results = [];

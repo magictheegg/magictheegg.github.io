@@ -10,6 +10,8 @@ class BaseCard {
             this.firstStrikeCounters = Number(this.firstStrikeCounters) || 0;
             this.vigilanceCounters = Number(this.vigilanceCounters) || 0;
             this.lifelinkCounters = Number(this.lifelinkCounters) || 0;
+            this.trampleCounters = Number(this.trampleCounters) || 0;
+            this.hexproofCounters = Number(this.hexproofCounters) || 0;
             this.shieldCounters = Number(this.shieldCounters) || 0;
             this.damageTaken = Number(this.damageTaken) || 0;
             this.enchantments = this.enchantments || [];
@@ -23,6 +25,7 @@ class BaseCard {
             return (this.counters > 0) || (this.flyingCounters > 0) || 
                    (this.menaceCounters > 0) || (this.firstStrikeCounters > 0) ||
                    (this.vigilanceCounters > 0) || (this.lifelinkCounters > 0) ||
+                   (this.trampleCounters > 0) || (this.hexproofCounters > 0) ||
                    (this.shieldCounters > 0);
         }
 
@@ -90,10 +93,20 @@ class BaseCard {
                     }
                 });
             }
-            
+
+            // BIRD LORD CHECK (Thunder Raptor)
+            if (this.type?.includes('Bird')) {
+                board?.forEach(c => {
+                    if (c.card_name === 'Thunder Raptor' && c.id !== this.id) {
+                        const multiplier = c.isFoil ? 2 : 1;
+                        p += (2 * multiplier);
+                        t += (1 * multiplier);
+                    }
+                });
+            }
+
             return { p, t };
         }
-
         // Hook for ETB effects
         onETB(board) { }
 
@@ -125,6 +138,9 @@ class BaseCard {
         // Hook for noncreature spells being cast
         onNoncreatureCast(isFoilCast, board) { }
 
+        // Hook for the start of the Shop Phase (Upkeep)
+        onShopStart(board) { }
+
         // Hook for the "End of Shop Phase" (End Step)
         onShopEndStep(board) { }
 
@@ -148,6 +164,9 @@ class BaseCard {
             if (kw === 'first strike' && this.firstStrikeCounters > 0) return true;
             if (kw === 'vigilance' && this.vigilanceCounters > 0) return true;
             if (kw === 'lifelink' && this.lifelinkCounters > 0) return true;
+            if (kw === 'trample' && this.trampleCounters > 0) return true;
+            if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
+            if (kw === 'double strike' && state.triumphantTacticsActive && this.owner === 'player') return true;
             
             // STATIC BOARD EFFECTS
             const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
@@ -191,6 +210,8 @@ class BaseCard {
                 if (c.firstStrikeCounters > 0) c.firstStrikeCounters += multiplier;
                 if (c.vigilanceCounters > 0) c.vigilanceCounters += multiplier;
                 if (c.lifelinkCounters > 0) c.lifelinkCounters += multiplier;
+                if (c.trampleCounters > 0) c.trampleCounters += multiplier;
+                if (c.hexproofCounters > 0) c.hexproofCounters += multiplier;
                 if (c.shieldCounters > 0) c.shieldCounters += multiplier;
             }
         });
@@ -456,11 +477,11 @@ class BaseCard {
             for (let i = 0; i < count; i++) {
                 selection.push(CardFactory.create(noncreatures[Math.floor(Math.random() * noncreatures.length)]));
             }
-            state.discovery = {
+            queueDiscovery({
                 cards: selection,
                 title: 'DISCOVER',
                 text: 'Choose a noncreature card to add to your hand.'
-            };
+            });
         }
     }
 
@@ -558,7 +579,7 @@ class BaseCard {
                 { card_name: 'Lifelink Counter', rules_text: 'Lifelink', type: 'Counter' }
             ];
 
-            state.discovery = {
+            queueDiscovery({
                 cards: options.map(o => CardFactory.create(o)),
                 isKeywordChoice: true,
                 count: 1,
@@ -566,7 +587,7 @@ class BaseCard {
                 sourceId: this.id,
                 effect: 'bwema_counters',
                 chosen: []
-            };
+            });
         }
     }
 
@@ -762,6 +783,138 @@ class BaseCard {
         }
     }
 
+    class ThunderRaptor extends BaseCard {
+        onETB(board) {
+            traverseCirrusea(this, board);
+        }
+    }
+
+    class CloudlineSovereign extends BaseCard {
+        onETB(board) {
+            this.counters += (this.isFoil ? 2 : 1);
+        }
+        onShopStart(board) {
+            queueTargetingEffect({
+                sourceId: this.id,
+                effect: 'cloudline_sovereign_step1',
+                isFoil: this.isFoil,
+                isMandatory: false
+            });
+        }
+    }
+
+    class NightfallRaptor extends BaseCard {
+        onETB(board) {
+            queueTargetingEffect({
+                sourceId: this.id,
+                effect: 'nightfall_raptor_bounce',
+                isFoil: this.isFoil,
+                isMandatory: false
+            });
+        }
+    }
+
+    class TriumphantTactics extends BaseCard {
+        onCast(board) {
+            state.triumphantTacticsActive = true;
+        }
+    }
+
+    class EarthcoreElemental extends BaseCard {
+        onOtherCreatureETB(newCard, board) {
+            if (newCard.owner === this.owner) {
+                const stats = newCard.getDisplayStats(board);
+                this.tempPower += stats.p;
+                this.tempToughness += stats.p;
+            }
+        }
+    }
+
+    class SavageCongregation extends BaseCard {
+        onCast(board) {
+            const pool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && (c.tier || 1) <= 4 && c.shape !== 'token');
+            
+            const t1Pool = pool.filter(c => (c.tier || 1) === 1);
+            const t4Pool = pool.filter(c => (c.tier || 1) === 4);
+            
+            const creatures = [];
+            if (t1Pool.length > 0 && t4Pool.length > 0) {
+                // Pick one T1
+                const t1 = t1Pool[Math.floor(Math.random() * t1Pool.length)];
+                creatures.push(t1);
+                
+                // Pick one T4
+                const t4 = t4Pool[Math.floor(Math.random() * t4Pool.length)];
+                creatures.push(t4);
+                
+                // Pick 4 more distinct from remaining
+                const remaining = pool.filter(c => c.card_name !== t1.card_name && c.card_name !== t4.card_name);
+                const shuffledRemaining = [...remaining].sort(() => 0.5 - Math.random());
+                for (let i = 0; i < 4 && i < shuffledRemaining.length; i++) {
+                    creatures.push(shuffledRemaining[i]);
+                }
+                
+                // Final shuffle so T1/T4 aren't predictably in slots 1 and 2
+                creatures.sort(() => 0.5 - Math.random());
+            } else {
+                // Fallback to old logic
+                const shuffled = [...pool].sort(() => 0.5 - Math.random());
+                for (let i = 0; i < Math.min(6, shuffled.length); i++) {
+                    creatures.push(shuffled[i]);
+                }
+            }
+
+            queueDiscovery({
+                cards: creatures.map(c => CardFactory.create(c)),
+                title: 'SAVAGE CONGREGATION',
+                text: 'Select up to 2 creatures (Total Tier <= 4)',
+                effect: 'savage_congregation',
+                multiSelect: true,
+                maxTier: 4,
+                maxCount: 2,
+                selected: [],
+                sourceId: this.id
+            });
+        }
+    }
+
+    class NdengoBrutalizer extends BaseCard {
+        onETB(board) {
+            const others = board.filter(c => c.id !== this.id && c.owner === this.owner);
+            if (others.length === 0) {
+                // Solo choice
+                const options = [
+                    { card_name: 'First Strike', rules_text: 'First strike', type: 'Counter' },
+                    { card_name: 'Trample', rules_text: 'Trample', type: 'Counter' }
+                ];
+                queueDiscovery({
+                    cards: options.map(o => CardFactory.create(o)),
+                    isKeywordChoice: true,
+                    title: 'NDENGO BRUTALIZER',
+                    text: 'Teach Ndengo Brutalizer a keyword.',
+                    effect: 'ndengo_solo',
+                    sourceId: this.id
+                });
+            } else {
+                queueTargetingEffect({
+                    sourceId: this.id,
+                    effect: 'ndengo_target'
+                });
+            }
+        }
+    }
+
+    class FeralExemplar extends BaseCard {
+        onAction() {
+            if (state.player.gold >= 3 && !this.actionUsed) {
+                state.player.gold -= 3;
+                this.tempPower += 2;
+                this.tempToughness += 2;
+                this.actionUsed = true;
+            }
+        }
+    }
+
     class HoltunClanEldhand extends BaseCard { }
 
     class HeroOfHedria extends BaseCard { }
@@ -812,7 +965,7 @@ class BaseCard {
                 { card_name: 'Trample', rules_text: 'Trample', type: 'Counter' }
             ];
 
-            state.discovery = {
+            queueDiscovery({
                 cards: options.map(o => CardFactory.create(o)),
                 isKeywordChoice: true,
                 title: 'GHESSIAN MEMORIES',
@@ -821,7 +974,7 @@ class BaseCard {
                 sourceId: this.id,
                 remaining: 1,
                 isFoil: this.isFoil
-            };
+            });
         }
     }
 
@@ -1180,11 +1333,11 @@ class BaseCard {
             for (let i = 0; i < 4 * multiplier; i++) {
                 selection.push(CardFactory.create(noncreatures[Math.floor(Math.random() * noncreatures.length)]));
             }
-            state.discovery = {
+            queueDiscovery({
                 cards: selection,
                 title: 'DISCOVER',
                 text: 'Choose a noncreature card to add to your hand.'
-            };
+            });
         }
     }
 
@@ -1258,7 +1411,15 @@ class BaseCard {
                 case 'Hero of a Lost War': card = new HeroOfALostWar(data); break;
                 case 'Hero of Hedria': card = new HeroOfHedria(data); break;
                 case 'Holtun-Clan Eldhand': card = new HoltunClanEldhand(data); break;
+                case 'Earthcore Elemental': card = new EarthcoreElemental(data); break;
+                case 'Savage Congregation': card = new SavageCongregation(data); break;
+                case 'Ndengo Brutalizer': card = new NdengoBrutalizer(data); break;
+                case 'Feral Exemplar': card = new FeralExemplar(data); break;
                 case 'Ghessian Memories': card = new GhessianMemories(data); break;
+                case 'Thunder Raptor': card = new ThunderRaptor(data); break;
+                case 'Cloudline Sovereign': card = new CloudlineSovereign(data); break;
+                case 'Nightfall Raptor': card = new NightfallRaptor(data); break;
+                case 'Triumphant Tactics': card = new TriumphantTactics(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1313,6 +1474,7 @@ class BaseCard {
         targetingQueue: [],
         scrying: null,
         discovery: null,
+        discoveryQueue: [],
         nextShopBonusCards: [],
         battleBoards: null,
         creaturesDiedThisShopPhase: false,
@@ -1320,7 +1482,8 @@ class BaseCard {
         plane: null,
         overallHpReducedThisFight: false,
         deadServantsCount: 0,
-        spellsCastThisTurn: 0
+        spellsCastThisTurn: 0,
+        triumphantTacticsActive: false
     };
 
     function getOpponent() {
@@ -1347,29 +1510,138 @@ class BaseCard {
     const playerFightHpEl = () => document.getElementById('player-fight-hp');
     const playerGoldEl = () => document.getElementById('player-gold');
 
-    function resolveDiscovery(card) {
+    function toggleDiscoverySelection(card) {
         if (!state.discovery) return;
+        const idx = state.discovery.selected.findIndex(c => c.id === card.id);
+        if (idx !== -1) {
+            state.discovery.selected.splice(idx, 1);
+        } else {
+            state.discovery.selected.push(card);
+        }
+        render();
+    }
+
+    function confirmDiscovery() {
+        if (!state.discovery) return;
+        
+        if (state.discovery.effect === 'savage_congregation') {
+            const selected = state.discovery.selected;
+            const newArrivals = [];
+            selected.forEach(c => {
+                if (state.player.board.length < boardLimit) {
+                    c.owner = 'player';
+                    state.player.board.push(c);
+                    newArrivals.push(c);
+                }
+            });
+
+            // Trigger ETBs for ALL new arrivals (including spawns)
+            newArrivals.forEach(card => {
+                card.onETB(state.player.board);
+                state.player.board.forEach(c => {
+                    if (c.id !== card.id) c.onOtherCreatureETB(card, state.player.board);
+                });
+            });
+
+            // Ferocious: Check board for 4+ power AFTER all creatures and spawns are on board
+            const hasFerocious = state.player.board.some(c => c.getDisplayStats(state.player.board).p >= 4);
+            if (hasFerocious) {
+                state.player.board.forEach(c => c.counters++);
+            }
+
+            // Cleanup
+            const handIdx = state.player.hand.findIndex(c => c.id === state.discovery.sourceId);
+            if (handIdx !== -1) {
+                const [spell] = state.player.hand.splice(handIdx, 1);
+                state.player.spellGraveyard.push(spell);
+                state.player.board.forEach(c => c.onNoncreatureCast(spell.isFoil, state.player.board));
+            }
+            processDiscoveryQueue();
+        }
+    }
+
+    function queueDiscovery(discoveryObj) {
+        state.discoveryQueue.push(discoveryObj);
+        if (!state.discovery) {
+            state.discovery = state.discoveryQueue[0];
+            render();
+        }
+    }
+
+    function processDiscoveryQueue() {
+        if (state.discoveryQueue.length > 0) {
+            state.discoveryQueue.shift();
+        }
+        state.discovery = state.discoveryQueue.length > 0 ? state.discoveryQueue[0] : null;
+        render();
+    }
+
+    function resolveDiscovery(card) {
+        if (!state.discovery || !card) return;
+
+        if (state.discovery.effect === 'ndengo_choice') {
+            const source = state.player.board.find(c => c.id === state.discovery.sourceId);
+            const target = state.player.board.find(c => c.id === state.discovery.targetId);
+            if (source && target) {
+                const teach = (c, kw) => {
+                    if (c.hasKeyword(kw)) c.counters++;
+                    else {
+                        const kwLower = kw.toLowerCase();
+                        if (kwLower === 'first strike') c.firstStrikeCounters++;
+                        else if (kwLower === 'trample') c.trampleCounters++;
+                        else if (kwLower === 'menace') c.menaceCounters++;
+                        else if (kwLower === 'vigilance') c.vigilanceCounters++;
+                        else if (kwLower === 'lifelink') c.lifelinkCounters++;
+                        else if (kwLower === 'flying') c.flyingCounters++;
+                    }
+                };
+                if (card.card_name === 'Choice A') {
+                    teach(target, 'First strike');
+                    teach(source, 'Trample');
+                } else {
+                    teach(target, 'Trample');
+                    teach(source, 'First strike');
+                }
+            }
+            processDiscoveryQueue();
+            return;
+        }
+
+        if (state.discovery.effect === 'ndengo_solo') {
+            const source = state.player.board.find(c => c.id === state.discovery.sourceId);
+            if (source) {
+                const kw = card.rules_text;
+                if (source.hasKeyword(kw)) source.counters++;
+                else {
+                    const kwLower = kw.toLowerCase();
+                    if (kwLower === 'first strike') source.firstStrikeCounters++;
+                    else if (kwLower === 'trample') source.trampleCounters++;
+                    else if (kwLower === 'menace') source.menaceCounters++;
+                    else if (kwLower === 'vigilance') source.vigilanceCounters++;
+                    else if (kwLower === 'lifelink') source.lifelinkCounters++;
+                    else if (kwLower === 'flying') source.flyingCounters++;
+                }
+            }
+            processDiscoveryQueue();
+            return;
+        }
 
         if (state.discovery.effect === 'bwema_counters') {
             const source = state.player.board.find(c => c.id === state.discovery.sourceId);
             if (source) {
-                // Apply the counter
                 const kw = card.rules_text.toLowerCase();
                 if (kw === 'menace') source.menaceCounters++;
                 if (kw === 'first strike') source.firstStrikeCounters++;
                 if (kw === 'vigilance') source.vigilanceCounters++;
                 if (kw === 'lifelink') source.lifelinkCounters++;
-
                 state.discovery.remaining--;
                 if (state.discovery.remaining > 0) {
-                    // Filter out chosen card and continue
                     state.discovery.cards = state.discovery.cards.filter(c => c.card_name !== card.card_name);
                     render();
                     return;
                 }
             }
-            state.discovery = null;
-            render();
+            processDiscoveryQueue();
             return;
         }
 
@@ -1381,19 +1653,14 @@ class BaseCard {
                 render();
                 return;
             } else {
-                // The last card goes to GY
                 const last = state.discovery.cards.find(c => c.id !== card.id);
-                if (last && last.card_name === 'Servants of Dydren') {
-                    state.deadServantsCount++;
-                }
-                // Cleanup spell from hand
+                if (last && last.card_name === 'Servants of Dydren') state.deadServantsCount++;
                 const handIdx = state.player.hand.findIndex(c => c.id === state.discovery.sourceId);
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
                 }
-                state.discovery = null;
-                render();
+                processDiscoveryQueue();
                 return;
             }
         }
@@ -1401,7 +1668,6 @@ class BaseCard {
         if (state.discovery.effect === 'ghessian_buff') {
             const kw = card.card_name;
             const multiplier = state.discovery.isFoil ? 2 : 1;
-            
             for (let i = 0; i < multiplier; i++) {
                 state.player.board.forEach(c => {
                     if (!c.enchantments) c.enchantments = [];
@@ -1410,18 +1676,13 @@ class BaseCard {
                     }
                 });
             }
-            
-            // Cleanup spell
             const handIdx = state.player.hand.findIndex(c => c.id === state.discovery.sourceId);
             if (handIdx !== -1) {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
-                // Trigger global noncreature cast
                 state.player.board.forEach(c => c.onNoncreatureCast(state.discovery.isFoil, state.player.board));
             }
-            
-            state.discovery = null;
-            render();
+            processDiscoveryQueue();
             return;
         }
 
@@ -1429,10 +1690,8 @@ class BaseCard {
             const idx = state.player.spellGraveyard.findIndex(s => s.id === card.id);
             if (idx !== -1) state.player.spellGraveyard.splice(idx, 1);
         }
-
         state.player.hand.push(card);
-        state.discovery = null;
-        render();
+        processDiscoveryQueue();
     }
     function showDamageBubble(targetOrId, amount, className = 'damage-bubble') {
         if (!targetOrId || amount <= 0) return;
@@ -1608,8 +1867,7 @@ class BaseCard {
 
         const discoveryCancelBtn = document.getElementById('discovery-cancel-btn');
         if (discoveryCancelBtn) discoveryCancelBtn.addEventListener('click', () => {
-            state.discovery = null;
-            render();
+            processDiscoveryQueue();
         });
 
         updateTierButton();
@@ -1706,11 +1964,297 @@ class BaseCard {
         }
 
         populateShop();
+        state.player.board.forEach(c => {
+            c.onShopStart(state.player.board);
+            c.actionUsed = false;
+        });
         render();
     }
     
     // Legacy functions removed in favor of OO methods
 
+    async function performAttack(attacker, defender, isFirstStrike = false) {
+        const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
+        const attackerEl = document.getElementById(`card-${attacker.id}`);
+        if (!attackerEl) return;
+
+        let deltaX = 0, deltaY = 0;
+
+        if (defender) {
+            const defenderEl = document.getElementById(`card-${defender.id}`);
+            const rectA = attackerEl.getBoundingClientRect();
+            const rectB = defenderEl.getBoundingClientRect();
+            deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
+            deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
+        } else {
+            const oppArea = document.getElementById(attacker.owner === 'player' ? 'opponent-zone' : 'player-zone');
+            const rectA = attackerEl.getBoundingClientRect();
+            const rectB = oppArea.getBoundingClientRect();
+            deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
+            deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
+        }
+
+        attackerEl.classList.add('attacking');
+        
+        // Phase 1: Wind up (Lift and scale)
+        attackerEl.style.transition = "transform 0.45s ease-out";
+        attackerEl.style.zIndex = "2000";
+        attackerEl.style.transform = "scale(1.2) translateY(-15px)";
+        await new Promise(r => setTimeout(r, 450));
+
+        // Phase 1.5: Attack Triggers
+        const attackTargets = attacker.onAttack(attackerBoard);
+
+        // FERAL EXEMPLAR FEROCIOUS
+        const hasExemplar = attackerBoard.some(c => c.card_name === 'Feral Exemplar');
+        if (hasExemplar) {
+            const stats = attacker.getDisplayStats(attackerBoard);
+            if (stats.p >= 4) {
+                const ptBox = attackerEl.querySelector('.card-pt');
+                if (ptBox) {
+                    ptBox.classList.add('pulse-stats');
+                    setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                }
+                const pEl = attackerEl.querySelector('.card-p');
+                const tEl = attackerEl.querySelector('.card-t');
+                if (pEl) pEl.textContent = stats.p * 2;
+                if (tEl) tEl.textContent = stats.t + stats.p;
+
+                attacker.tempPower += stats.p;
+                attacker.tempToughness += stats.p;
+
+                await new Promise(r => setTimeout(r, 600)); // The "Battle Cry" style pause
+            }
+        }
+
+        // SPECIAL TRIGGER: Cabracan's Familiar (Pre-fight damage)
+        if (attacker.card_name === 'Cabracan\'s Familiar' && defender && !defender.hasKeyword('Hexproof')) {
+            const multiplier = attacker.isFoil ? 2 : 1;
+            const familiarDamage = 2 * multiplier;
+            defender.damageTaken += familiarDamage;
+            // Animation for pre-fight damage
+            const defenderEl = document.getElementById(`card-${defender.id}`);
+            if (defenderEl) {
+                const ptBox = defenderEl.querySelector('.card-pt');
+                if (ptBox) {
+                    ptBox.classList.add('pulse-stats');
+                    setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                    showDamageBubble(defenderEl, familiarDamage);
+                }
+                
+                // UPDATE UI TO SHOW TOUGHNESS DROP
+                const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+                const stats = defender.getDisplayStats(defenderBoard);
+                const tEl = defenderEl.querySelector('.card-t');
+                if (tEl) {
+                    tEl.textContent = stats.t;
+                    if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                }
+            }
+            
+            // Pause to let player see the damage result
+            await new Promise(r => setTimeout(r, 600));
+
+            // If lethal, the Familiar attack is canceled (no fight)
+            const currentDefStats = defender.getDisplayStats(attackerBoard === state.battleBoards.player ? state.battleBoards.opponent : state.battleBoards.player);
+            if (currentDefStats.t <= 0) {
+                attackerEl.style.transform = "";
+                attackerEl.classList.remove('attacking');
+                return; 
+            }
+        }
+
+        if (attackTargets && attackTargets.length > 0) {
+            // Instead of calling render() (which resets the attacker's position),
+            // we manually update the P/T text of the targets.
+            attackTargets.forEach(target => {
+                const targetEl = document.getElementById(`card-${target.id}`);
+                if (targetEl) {
+                    const stats = target.getDisplayStats(attackerBoard);
+                    const pEl = targetEl.querySelector('.card-p');
+                    const tEl = targetEl.querySelector('.card-t');
+                    if (pEl) pEl.textContent = stats.p;
+                    if (tEl) {
+                        tEl.textContent = stats.t;
+                        if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                        else tEl.classList.remove('damaged');
+                    }
+
+                    const ptBox = targetEl.querySelector('.card-pt');
+                    if (ptBox) {
+                        ptBox.classList.add('pulse-stats');
+                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                    }
+                }
+            });
+            await new Promise(r => setTimeout(r, 600)); // Pause for animation
+        }
+
+        const attackerStats = attacker.getDisplayStats(attackerBoard);
+        const damageDealt = attackerStats.p;
+
+        // Phase 2: Attack Strike (FASTER movement)
+        attackerEl.style.transition = "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)";
+        attackerEl.style.transform = `translate(${deltaX * 0.6}px, ${deltaY * 0.6}px) scale(1.3)`;
+        await new Promise(r => setTimeout(r, 180));
+
+        // Phase 3: Impact calculations
+        // SPECIAL VISUAL: Dragonfist Axeman (Defensive buff animation)
+        if (defender && defender.card_name === 'Dragonfist Axeman' && attacker.hasKeyword('Flying')) {
+            const defenderEl = document.getElementById(`card-${defender.id}`);
+            if (defenderEl) {
+                const ptBox = defenderEl.querySelector('.card-pt');
+                if (ptBox) {
+                    ptBox.classList.add('pulse-stats');
+                    setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                }
+                const multiplier = defender.isFoil ? 2 : 1;
+                const pEl = defenderEl.querySelector('.card-p');
+                if (pEl) {
+                    const currentP = parseInt(pEl.textContent);
+                    pEl.textContent = currentP + (3 * multiplier);
+                }
+            }
+            await new Promise(r => setTimeout(r, 600)); // The "Battle Cry" style pause
+        }
+
+        let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
+
+        // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
+        // If Attacker DOES NOT have FS, damage was already handled simultaneously in resolveCombatImpact.
+        if (isFirstStrike && defender && !trampleTarget) {
+            const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+            const currentDefStats = defender.getDisplayStats(defenderBoard);
+            if (currentDefStats.t > 0) {
+                // Defender survived FS hit, does it have FS itself to hit back now?
+                if (defender.hasKeyword('First strike') || defender.hasKeyword('Double strike')) {
+                    attackerDamageTaken = currentDefStats.p;
+                    attacker.damageTaken += attackerDamageTaken;
+                }
+            }
+        }
+
+        render(); 
+
+        const triggerOverallHpLoss = (side) => {
+            if (state.overallHpReducedThisFight) return;
+            const currentOppCombat = getOpponent();
+            let losingAvatarId = "";
+            let amount = 0;
+
+            if (side === 'opponent' && currentOppCombat.fightHp <= 0) {
+                currentOppCombat.overallHp -= state.player.tier;
+                losingAvatarId = 'opponent-battle-avatar';
+                amount = state.player.tier;
+                state.overallHpReducedThisFight = true;
+            } else if (side === 'player' && state.player.fightHp <= 0) {
+                state.player.overallHp -= currentOppCombat.tier;
+                losingAvatarId = 'player-avatar';
+                amount = currentOppCombat.tier;
+                state.overallHpReducedThisFight = true;
+            }
+
+            if (losingAvatarId) {
+                const avatarEl = document.getElementById(losingAvatarId);
+                if (avatarEl) {
+                    avatarEl.classList.add('shake');
+                    setTimeout(() => avatarEl.classList.remove('shake'), 500);
+                    
+                    // Manually update health text to sync with shake
+                    const hpSpan = (losingAvatarId === 'player-avatar') ? document.getElementById('player-hp') : document.getElementById('opponent-hp');
+                    if (hpSpan) {
+                        hpSpan.textContent = (losingAvatarId === 'player-avatar') ? state.player.overallHp : currentOppCombat.overallHp;
+                    }
+                }
+            }
+        };
+
+        // SHOW BUBBLES AND SHAKE AFTER RENDER
+        if (defender) {
+            const newDefenderEl = document.getElementById(`card-${defender.id}`);
+            if (newDefenderEl) {
+                newDefenderEl.classList.add('shake');
+                setTimeout(() => newDefenderEl.classList.remove('shake'), 300);
+                showDamageBubble(newDefenderEl, defenderDamageTaken);
+            }
+
+            // TRAMPLE ANIMATIONS
+            if (trampleOverflow > 0) {
+                if (trampleTarget) {
+                    // Splash to neighbor
+                    setTimeout(() => {
+                        const trampleEl = document.getElementById(`card-${trampleTarget.id}`);
+                        if (trampleEl) {
+                            trampleEl.classList.add('shake');
+                            setTimeout(() => trampleEl.classList.remove('shake'), 300);
+                            showDamageBubble(trampleEl, trampleOverflow);
+                        }
+                    }, 100);
+                } else {
+                    // Go to face
+                    setTimeout(() => {
+                        const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
+                        const avatarEl = document.getElementById(avatarId);
+                        showDamageBubble(avatarEl, trampleOverflow);
+                        triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
+                    }, 100);
+                }
+            }
+        } else {
+            const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
+            const avatarEl = document.getElementById(avatarId);
+            showDamageBubble(avatarEl, defenderDamageTaken);
+            triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
+        }
+
+        // AFTER RENDER: Re-fetch the attacker and restore its position
+        const currentAttackerEl = document.getElementById(`card-${attacker.id}`);
+        if (currentAttackerEl) {
+            currentAttackerEl.style.transition = "none";
+            currentAttackerEl.style.zIndex = "2000";
+            currentAttackerEl.style.transform = `translate(${deltaX * 0.6}px, ${deltaY * 0.6}px) scale(1.3)`;
+            currentAttackerEl.classList.add('attacking');
+            
+            if (attackerDamageTaken > 0) {
+                showDamageBubble(currentAttackerEl, attackerDamageTaken);
+            }
+
+            currentAttackerEl.offsetHeight; // Force reflow
+
+            // Phase 4: Combined Speed Return & Shrink Settle (FASTER movement)
+            currentAttackerEl.style.transition = "transform 0.22s ease-in-out";
+            currentAttackerEl.style.transform = "translate(0, 0) scale(1)";
+            
+            await new Promise(r => setTimeout(r, 220));
+            
+            // Cleanup
+            currentAttackerEl.style.transition = "";
+            currentAttackerEl.style.zIndex = "";
+            currentAttackerEl.classList.remove('attacking');
+        }
+    }
+
+    function createToken(tokenName, set, owner) {
+        const tokenData = availableCards.find(c => c.card_name === tokenName && c.shape === 'token' && (set ? c.set === set : true));
+        if (tokenData) {
+            const token = CardFactory.create(tokenData);
+            token.id = `token-${Math.random()}`;
+            token.owner = owner;
+            
+            // Add to combat queue if in battle
+            if (state.phase === 'BATTLE' && state.battleQueues) {
+                state.battleQueues[owner].push(token);
+            }
+
+            // Trigger Mieng if it's player board
+            if (owner === 'player') {
+                triggerMiengFerocious(token.getDisplayStats(state.player.board).p, state.player.board);
+            }
+
+            return token;
+        }
+        return null;
+    }
 
     async function startBattleTurn() {
         state.phase = 'BATTLE';
@@ -1771,268 +2315,6 @@ class BaseCard {
         render(); 
         console.log("Battle Begins!");
         await new Promise(resolve => setTimeout(resolve, 1000)); 
-
-        const performAttack = async (attacker, defender, isFirstStrike = false) => {
-            const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
-            const attackerEl = document.getElementById(`card-${attacker.id}`);
-            if (!attackerEl) return;
-
-            let deltaX = 0, deltaY = 0;
-
-            if (defender) {
-                const defenderEl = document.getElementById(`card-${defender.id}`);
-                const rectA = attackerEl.getBoundingClientRect();
-                const rectB = defenderEl.getBoundingClientRect();
-                deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
-                deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
-            } else {
-                const oppArea = document.getElementById(attacker.owner === 'player' ? 'opponent-zone' : 'player-zone');
-                const rectA = attackerEl.getBoundingClientRect();
-                const rectB = oppArea.getBoundingClientRect();
-                deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
-                deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
-            }
-
-            attackerEl.classList.add('attacking');
-            
-            // Phase 1: Wind up (Lift and scale)
-            attackerEl.style.transition = "transform 0.45s ease-out";
-            attackerEl.style.zIndex = "2000";
-            attackerEl.style.transform = "scale(1.2) translateY(-15px)";
-            await new Promise(r => setTimeout(r, 450));
-
-            // Phase 1.5: Attack Triggers
-            const attackTargets = attacker.onAttack(attackerBoard);
-
-            // SPECIAL TRIGGER: Cabracan's Familiar (Pre-fight damage)
-            if (attacker.card_name === 'Cabracan\'s Familiar' && defender && !defender.hasKeyword('Hexproof')) {
-                const multiplier = attacker.isFoil ? 2 : 1;
-                const familiarDamage = 2 * multiplier;
-                defender.damageTaken += familiarDamage;
-                // Animation for pre-fight damage
-                const defenderEl = document.getElementById(`card-${defender.id}`);
-                if (defenderEl) {
-                    const ptBox = defenderEl.querySelector('.card-pt');
-                    if (ptBox) {
-                        ptBox.classList.add('pulse-stats');
-                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                        showDamageBubble(defenderEl, familiarDamage);
-                    }
-                    
-                    // UPDATE UI TO SHOW TOUGHNESS DROP
-                    const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-                    const stats = defender.getDisplayStats(defenderBoard);
-                    const tEl = defenderEl.querySelector('.card-t');
-                    if (tEl) {
-                        tEl.textContent = stats.t;
-                        if (stats.t < stats.maxT) tEl.classList.add('damaged');
-                    }
-                }
-                
-                // Pause to let player see the damage result
-                await new Promise(r => setTimeout(r, 600));
-
-                // If lethal, the Familiar attack is canceled (no fight)
-                const currentDefStats = defender.getDisplayStats(attackerBoard === state.battleBoards.player ? state.battleBoards.opponent : state.battleBoards.player);
-                if (currentDefStats.t <= 0) {
-                    attackerEl.style.transform = "";
-                    attackerEl.classList.remove('attacking');
-                    return; 
-                }
-            }
-
-            if (attackTargets && attackTargets.length > 0) {
-                // Instead of calling render() (which resets the attacker's position),
-                // we manually update the P/T text of the targets.
-                attackTargets.forEach(target => {
-                    const targetEl = document.getElementById(`card-${target.id}`);
-                    if (targetEl) {
-                        const stats = target.getDisplayStats(attackerBoard);
-                        const pEl = targetEl.querySelector('.card-p');
-                        const tEl = targetEl.querySelector('.card-t');
-                        if (pEl) pEl.textContent = stats.p;
-                        if (tEl) {
-                            tEl.textContent = stats.t;
-                            if (stats.t < stats.maxT) tEl.classList.add('damaged');
-                            else tEl.classList.remove('damaged');
-                        }
-
-                        const ptBox = targetEl.querySelector('.card-pt');
-                        if (ptBox) {
-                            ptBox.classList.add('pulse-stats');
-                            setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                        }
-                    }
-                });
-                await new Promise(r => setTimeout(r, 600)); // Pause for animation
-            }
-
-            const attackerStats = attacker.getDisplayStats(attackerBoard);
-            const damageDealt = attackerStats.p;
-
-            // Phase 2: Attack Strike (FASTER movement)
-            attackerEl.style.transition = "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)";
-            attackerEl.style.transform = `translate(${deltaX * 0.6}px, ${deltaY * 0.6}px) scale(1.3)`;
-            await new Promise(r => setTimeout(r, 180));
-
-            // Phase 3: Impact calculations
-            // SPECIAL VISUAL: Dragonfist Axeman (Defensive buff animation)
-            if (defender && defender.card_name === 'Dragonfist Axeman' && attacker.hasKeyword('Flying')) {
-                const defenderEl = document.getElementById(`card-${defender.id}`);
-                if (defenderEl) {
-                    const ptBox = defenderEl.querySelector('.card-pt');
-                    if (ptBox) {
-                        ptBox.classList.add('pulse-stats');
-                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                    }
-                    const multiplier = defender.isFoil ? 2 : 1;
-                    const pEl = defenderEl.querySelector('.card-p');
-                    if (pEl) {
-                        const currentP = parseInt(pEl.textContent);
-                        pEl.textContent = currentP + (3 * multiplier);
-                    }
-                }
-                await new Promise(r => setTimeout(r, 600)); // The "Battle Cry" style pause
-            }
-
-            let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
-
-            // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
-            // If Attacker DOES NOT have FS, damage was already handled simultaneously in resolveCombatImpact.
-            if (isFirstStrike && defender && !trampleTarget) {
-                const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-                const currentDefStats = defender.getDisplayStats(defenderBoard);
-                if (currentDefStats.t > 0) {
-                    // Defender survived FS hit, does it have FS itself to hit back now?
-                    if (defender.hasKeyword('First strike') || defender.hasKeyword('Double strike')) {
-                        attackerDamageTaken = currentDefStats.p;
-                        attacker.damageTaken += attackerDamageTaken;
-                    }
-                }
-            }
-
-            render(); 
-
-            const triggerOverallHpLoss = (side) => {
-                if (state.overallHpReducedThisFight) return;
-                const currentOppCombat = getOpponent();
-                let losingAvatarId = "";
-                let amount = 0;
-
-                if (side === 'opponent' && currentOppCombat.fightHp <= 0) {
-                    currentOppCombat.overallHp -= state.player.tier;
-                    losingAvatarId = 'opponent-battle-avatar';
-                    amount = state.player.tier;
-                    state.overallHpReducedThisFight = true;
-                } else if (side === 'player' && state.player.fightHp <= 0) {
-                    state.player.overallHp -= currentOppCombat.tier;
-                    losingAvatarId = 'player-avatar';
-                    amount = currentOppCombat.tier;
-                    state.overallHpReducedThisFight = true;
-                }
-
-                if (losingAvatarId) {
-                    const avatarEl = document.getElementById(losingAvatarId);
-                    if (avatarEl) {
-                        avatarEl.classList.add('shake');
-                        setTimeout(() => avatarEl.classList.remove('shake'), 500);
-                        
-                        // Manually update health text to sync with shake
-                        const hpSpan = (losingAvatarId === 'player-avatar') ? document.getElementById('player-hp') : document.getElementById('opponent-hp');
-                        if (hpSpan) {
-                            hpSpan.textContent = (losingAvatarId === 'player-avatar') ? state.player.overallHp : currentOppCombat.overallHp;
-                        }
-                    }
-                }
-            };
-
-            // SHOW BUBBLES AND SHAKE AFTER RENDER
-            if (defender) {
-                const newDefenderEl = document.getElementById(`card-${defender.id}`);
-                if (newDefenderEl) {
-                    newDefenderEl.classList.add('shake');
-                    setTimeout(() => newDefenderEl.classList.remove('shake'), 300);
-                    showDamageBubble(newDefenderEl, defenderDamageTaken);
-                }
-
-                // TRAMPLE ANIMATIONS
-                if (trampleOverflow > 0) {
-                    if (trampleTarget) {
-                        // Splash to neighbor
-                        setTimeout(() => {
-                            const trampleEl = document.getElementById(`card-${trampleTarget.id}`);
-                            if (trampleEl) {
-                                trampleEl.classList.add('shake');
-                                setTimeout(() => trampleEl.classList.remove('shake'), 300);
-                                showDamageBubble(trampleEl, trampleOverflow);
-                            }
-                        }, 100);
-                    } else {
-                        // Go to face
-                        setTimeout(() => {
-                            const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
-                            const avatarEl = document.getElementById(avatarId);
-                            showDamageBubble(avatarEl, trampleOverflow);
-                            triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
-                        }, 100);
-                    }
-                }
-            } else {
-                const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
-                const avatarEl = document.getElementById(avatarId);
-                showDamageBubble(avatarEl, defenderDamageTaken);
-                triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
-            }
-
-            // AFTER RENDER: Re-fetch the attacker and restore its position
-            const currentAttackerEl = document.getElementById(`card-${attacker.id}`);
-            if (currentAttackerEl) {
-                currentAttackerEl.style.transition = "none";
-                currentAttackerEl.style.zIndex = "2000";
-                currentAttackerEl.style.transform = `translate(${deltaX * 0.6}px, ${deltaY * 0.6}px) scale(1.3)`;
-                currentAttackerEl.classList.add('attacking');
-                
-                if (attackerDamageTaken > 0) {
-                    showDamageBubble(currentAttackerEl, attackerDamageTaken);
-                }
-
-                currentAttackerEl.offsetHeight; // Force reflow
-
-                // Phase 4: Combined Speed Return & Shrink Settle (FASTER movement)
-                currentAttackerEl.style.transition = "transform 0.22s ease-in-out";
-                currentAttackerEl.style.transform = "translate(0, 0) scale(1)";
-                
-                await new Promise(r => setTimeout(r, 220));
-                
-                // Cleanup
-                currentAttackerEl.style.transition = "";
-                currentAttackerEl.style.zIndex = "";
-                currentAttackerEl.classList.remove('attacking');
-            }
-
-        };
-
-        const createToken = (tokenName, set, owner) => {
-            const tokenData = availableCards.find(c => c.card_name === tokenName && c.shape === 'token' && (set ? c.set === set : true));
-            if (tokenData) {
-                const token = CardFactory.create(tokenData);
-                token.id = `token-${Math.random()}`;
-                token.owner = owner;
-                
-                // Add to combat queue if in battle
-                if (state.phase === 'BATTLE' && state.battleQueues) {
-                    state.battleQueues[owner].push(token);
-                }
-
-                // Trigger Mieng if it's player board
-                if (owner === 'player') {
-                    triggerMiengFerocious(token.getDisplayStats(state.player.board).p, state.player.board);
-                }
-
-                return token;
-            }
-            return null;
-        };
 
         await new Promise(r => setTimeout(r, 200));
 
@@ -2176,6 +2458,7 @@ class BaseCard {
         });
 
         state.player.fightHp = 5 + (5 * state.player.tier);
+        state.triumphantTacticsActive = false;
         state.currentOpponentId = (state.currentOpponentId + 1) % state.opponents.length;
         state.battleBoards = null;
         state.turn++;
@@ -2417,8 +2700,7 @@ class BaseCard {
             triggerMiengFerocious(instance.getDisplayStats(state.player.board).p, state.player.board);
 
             state.player.hand.splice(cardIndex, 1);
-        }
- else {
+        } else {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
             const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song'];
             
@@ -2473,7 +2755,7 @@ class BaseCard {
     }
 
     function queueTargetingEffect(effect) {
-        effect.isMandatory = true; 
+        if (effect.isMandatory === undefined) effect.isMandatory = true; 
         state.targetingQueue.push(effect);
         if (!state.targetingEffect) {
             processTargetingQueue();
@@ -2493,12 +2775,17 @@ class BaseCard {
                 hasTargets = state.player.board.some(c => c.type?.includes('Centaur'));
             } else if (effect.effect === 'permutate_step1') {
                 hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
+            } else if (effect.effect === 'nightfall_raptor_bounce') {
+                hasTargets = state.player.board.some(c => !c.type?.includes('Enchantment'));
+            } else if (effect.effect === 'cloudline_sovereign_step1') {
+                hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
             } else if (effect.effect === 'parliament_discard') {
                 const validHandCards = state.player.hand.filter(c => c.id !== effect.sourceId);
                 hasTargets = state.player.spellGraveyard.length > 0 && validHandCards.length > 0;
             }
 
             if (hasTargets) {
+                effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1'].includes(effect.effect);
                 state.targetingEffect = effect;
                 render();
                 return;
@@ -2583,12 +2870,12 @@ class BaseCard {
                         creatures.push(pool[Math.floor(Math.random() * pool.length)]);
                     }
 
-                    state.discovery = {
+                    queueDiscovery({
                         cards: creatures.map(c => CardFactory.create(c)),
                         effect: 'whispers_pick1',
                         remaining: 2,
                         sourceId: state.targetingEffect.sourceId
-                    };
+                    });
                     
                     const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                     if (handIdx !== -1) {
@@ -2597,6 +2884,42 @@ class BaseCard {
                         state.player.board.forEach(c => c.onNoncreatureCast(state.targetingEffect.spellInstance.isFoil, state.player.board));
                     }
 
+                    clearTargetingEffect();
+                }
+            } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce') {
+                if (!target.type?.toLowerCase().includes('enchantment')) {
+                    const idx = state.player.board.indexOf(target);
+                    if (idx !== -1) {
+                        state.player.board.splice(idx, 1);
+                        // RESET CARD
+                        target.counters = 0;
+                        target.flyingCounters = 0;
+                        target.menaceCounters = 0;
+                        target.firstStrikeCounters = 0;
+                        target.vigilanceCounters = 0;
+                        target.lifelinkCounters = 0;
+                        target.shieldCounters = 0;
+                        target.tempPower = 0;
+                        target.tempToughness = 0;
+                        target.damageTaken = 0;
+                        target.enchantments = [];
+                        
+                        state.player.hand.push(target);
+                        clearTargetingEffect();
+                    }
+                }
+            } else if (state.targetingEffect.effect === 'cloudline_sovereign_step1') {
+                if (counterType) {
+                    // Remove the specific counter
+                    if (counterType === 'plus-one') target.counters--;
+                    else if (counterType === 'flying') target.flyingCounters--;
+                    else if (counterType === 'menace') target.menaceCounters--;
+                    else if (counterType === 'first-strike') target.firstStrikeCounters--;
+                    else if (counterType === 'vigilance') target.vigilanceCounters--;
+                    else if (counterType === 'lifelink') target.lifelinkCounters--;
+                    else if (counterType === 'shield') target.shieldCounters--;
+
+                    target.shieldCounters++;
                     clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'permutate_step1') {
@@ -2824,20 +3147,37 @@ class BaseCard {
                         clearTargetingEffect();
                     }
                 }
+            } else if (state.targetingEffect.effect === 'ndengo_target') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+                if (source && target.id !== source.id) {
+                    const options = [
+                        { card_name: 'Choice A', rules_text: 'FS on Ndengo, TR on Target', type: 'Counter' },
+                        { card_name: 'Choice B', rules_text: 'TR on Ndengo, FS on Target', type: 'Counter' }
+                    ];
+                    queueDiscovery({
+                        cards: options.map(o => CardFactory.create(o)),
+                        isKeywordChoice: true,
+                        title: 'NDENGO BRUTALIZER',
+                        text: 'Choose keyword distribution.',
+                        effect: 'ndengo_choice',
+                        sourceId: source.id,
+                        targetId: target.id
+                    });
+                    clearTargetingEffect();
+                }
             } else if (state.targetingEffect.effect === 'parliament_discard') {
                 console.log("Discarding card with ID:", targetId);
                 const cardIdx = state.player.hand.findIndex(c => c.id === targetId);
                 if (cardIdx !== -1) {
                     state.player.hand.splice(cardIdx, 1);
                     // Trigger Discovery from Graveyard
-                    state.discovery = {
+                    queueDiscovery({
                         cards: state.player.spellGraveyard.map(s => CardFactory.create(s)),
                         graveyard: true
-                    };
+                    });
                     clearTargetingEffect();
                 }
-            }
- else if (state.targetingEffect.effect === 'up_in_arms_step1') {
+            } else if (state.targetingEffect.effect === 'up_in_arms_step1') {
                 state.targetingEffect.target1Id = target.id;
                 state.targetingEffect.effect = 'up_in_arms_step2';
             } else if (state.targetingEffect.effect === 'up_in_arms_step2') {
@@ -2867,8 +3207,7 @@ class BaseCard {
 
                 clearTargetingEffect();
             }
-
-                }
+        }
 
         render();
     }
@@ -3004,6 +3343,11 @@ class BaseCard {
 
             defender.damageTaken += defenderDamageTaken;
 
+            // TRIUMPHANT TACTICS TRIGGER (Temporary +1/+1 on damage)
+            if (state.triumphantTacticsActive && attacker.owner === 'player' && defenderDamageTaken > 0) {
+                attacker.counters++;
+            }
+
             if (attacker.hasKeyword('Lifelink')) {
                 if (attacker.owner === 'player') {
                     state.player.fightHp += defenderDamageTaken;
@@ -3034,6 +3378,10 @@ class BaseCard {
                 } else {
                     if (attacker.owner === 'player') {
                         if (currentOppAttack) currentOppAttack.fightHp -= overflow;
+                        // TRIUMPHANT TACTICS TRIGGER
+                        if (state.triumphantTacticsActive && overflow > 0) {
+                            attacker.counters++;
+                        }
                     } else state.player.fightHp -= overflow;
                 }
             }
@@ -3059,6 +3407,10 @@ class BaseCard {
              const amount = damageDealt;
              if (attacker.owner === 'player') {
                 if (currentOppAttack) currentOppAttack.fightHp -= amount;
+                // TRIUMPHANT TACTICS TRIGGER
+                if (state.triumphantTacticsActive && amount > 0) {
+                    attacker.counters++;
+                }
              } else state.player.fightHp -= amount;
              
              if (attacker.hasKeyword('Lifelink')) {
@@ -3217,23 +3569,6 @@ class BaseCard {
             // Cleanup property
             delete deadCard.isDying;
         }
-    }
-
-    function createToken(name, set, owner) {
-        const raw = availableCards.find(c => c.card_name === name && c.shape === 'token' && (set ? c.set === set : true));
-        if (raw) {
-            const token = CardFactory.create(raw);
-            token.id = `token-${Math.random()}`;
-            token.owner = owner;
-
-            // Trigger Mieng if it's player board
-            if (owner === 'player') {
-                triggerMiengFerocious(token.getDisplayStats(state.player.board).p, state.player.board);
-            }
-
-            return token;
-        }
-        return null;
     }
 
     function applySpell(targetId) {
@@ -3560,53 +3895,155 @@ class BaseCard {
                 discoveryModal.style.display = 'flex';
 
                 const cancelBtn = document.getElementById('discovery-cancel-btn');
-
                 const actionsContainer = document.getElementById('discovery-actions');
+
+                // Savage Congregation is not mandatory (can pick up to two)
                 if (cancelBtn) cancelBtn.style.display = 'none'; 
-                if (actionsContainer) actionsContainer.style.display = 'none'; // Discovery cannot be cancelled
+
+                if (actionsContainer) {
+                    actionsContainer.innerHTML = '';
+                    actionsContainer.style.display = state.discovery.multiSelect ? 'flex' : 'none';
+                    if (state.discovery.multiSelect) {
+                        const confirmBtn = document.createElement('button');
+                        confirmBtn.id = 'discovery-confirm-btn';
+                        confirmBtn.className = 'game-button';
+                        confirmBtn.textContent = 'CONFIRM';
+
+                        // Exact styling from #end-turn-btn
+                        confirmBtn.style.width = '150px';
+                        confirmBtn.style.height = '60px';
+                        confirmBtn.style.background = 'linear-gradient(to bottom, #2e7d32, #1b5e20)';
+                        confirmBtn.style.color = 'white';
+                        confirmBtn.style.border = '3px solid #fff';
+                        confirmBtn.style.borderRadius = '12px';
+                        confirmBtn.style.cursor = 'pointer';
+                        confirmBtn.style.fontWeight = 'bold';
+                        confirmBtn.style.fontSize = '1.2em';
+                        confirmBtn.style.textTransform = 'uppercase';
+                        confirmBtn.style.boxShadow = '0 5px 20px rgba(0,0,0,0.8)';
+
+                        confirmBtn.addEventListener('click', () => confirmDiscovery());
+                        actionsContainer.appendChild(confirmBtn);
+                    }
+                }
 
                 const container = document.getElementById('discovery-card-container');
                 container.innerHTML = '';
-                if (state.discovery.graveyard && state.discovery.cards.length >= 5) {
+
+                // Un-center if 5+ cards OR Savage Congregation
+                const useSideAlign = (state.discovery.graveyard && state.discovery.cards.length >= 5) || state.discovery.effect === 'savage_congregation';
+                if (useSideAlign) {
                     container.classList.add('graveyard-mode');
                 } else {
                     container.classList.remove('graveyard-mode');
                 }
-                state.discovery.cards.forEach(card => {
+
+                state.discovery.cards.forEach((card, i) => {
                     if (state.discovery.isKeywordChoice) {
-                        // Special Bwema UI: Circular icons with labels
                         const wrapper = document.createElement('div');
                         wrapper.className = 'discovery-item-wrapper';
 
-                        const kw = card.rules_text.toLowerCase();
-                        const icon = document.createElement('div');
-                        icon.className = `counter-bubble ${kw.replace(' ', '-')}`;
-                        icon.style.width = '160px';
-                        icon.style.height = '160px';
-                        icon.style.fontSize = '1.5em';
-                        
-                        const img = document.createElement('img');
-                        img.src = `img/${kw.replace(' ', '-')}.png`;
-                        img.alt = kw;
-                        icon.appendChild(img);
+                        if (state.discovery.effect === 'ndengo_choice') {
+                            const isChoiceA = card.card_name === 'Choice A';
+                            const backKw = isChoiceA ? 'first-strike' : 'trample';
+                            const frontKw = isChoiceA ? 'trample' : 'first-strike';
 
-                        const label = document.createElement('div');
-                        label.className = 'discovery-item-label';
-                        label.textContent = card.rules_text;
+                            const containerDiv = document.createElement('div');
+                            containerDiv.className = 'double-bubble-container';
 
-                        wrapper.appendChild(icon);
-                        wrapper.appendChild(label);
+                            const backIcon = document.createElement('div');
+                            backIcon.className = `counter-bubble ${backKw} bubble-back`;
+                            const backImg = document.createElement('img');
+                            backImg.src = `img/${backKw}.png`;
+                            backIcon.appendChild(backImg);
+
+                            const frontIcon = document.createElement('div');
+                            frontIcon.className = `counter-bubble ${frontKw} bubble-front`;
+                            const frontImg = document.createElement('img');
+                            frontImg.src = `img/${frontKw}.png`;
+                            frontIcon.appendChild(frontImg);
+
+                            containerDiv.appendChild(backIcon);
+                            containerDiv.appendChild(frontIcon);
+                            wrapper.appendChild(containerDiv);
+
+                            const label = document.createElement('div');
+                            label.className = 'discovery-item-label';
+                            label.style.fontSize = '2em';
+                            label.style.whiteSpace = 'pre-line';
+                            if (isChoiceA) {
+                                label.textContent = "First strike: Target\nTrample: Ndengo Brutalizer";
+                            } else {
+                                label.textContent = "Trample: Target\nFirst strike: Ndengo Brutalizer";
+                            }
+                            wrapper.appendChild(label);
+                        } else {
+                            const kw = card.rules_text.toLowerCase();
+                            const icon = document.createElement('div');
+                            icon.className = `counter-bubble ${kw.replace(' ', '-')}`;
+                            icon.style.width = '160px';
+                            icon.style.height = '160px';
+                            icon.style.fontSize = '1.5em';
+                            const img = document.createElement('img');
+                            img.src = `img/${kw.replace(' ', '-')}.png`;
+                            img.alt = kw;
+                            icon.appendChild(img);
+                            const label = document.createElement('div');
+                            label.className = 'discovery-item-label';
+                            label.textContent = card.rules_text;
+                            wrapper.appendChild(icon);
+                            wrapper.appendChild(label);
+                        }
+
                         wrapper.addEventListener('click', () => resolveDiscovery(card));
                         container.appendChild(wrapper);
                     } else {
                         const cardEl = createCardElement(card, false, -1, []);
-                        cardEl.addEventListener('click', () => resolveDiscovery(card));
+                        cardEl.style.padding = "20px";
+
+                        // SPECIAL: Show Stars for Savage Congregation
+                        if (state.discovery.effect === 'savage_congregation') {
+                            const costEl = cardEl.querySelector('.card-cost');
+                            if (costEl) {
+                                costEl.style.display = 'flex';
+                                costEl.classList.remove('spell-cost');
+                                costEl.style.top = '10px';
+                                costEl.style.right = '10px';
+                                
+                                let tier = card.tier || 1;
+                                let starsStr = '★'.repeat(tier);
+                                if (tier === 4) starsStr = '★★<br>★★';
+                                costEl.innerHTML = `<div class="star">${starsStr}</div>`;
+                            }
+                        }
+
+                        if (state.discovery.multiSelect) {
+                            const isSelected = state.discovery.selected.some(c => c.id === card.id);
+                            if (isSelected) cardEl.classList.add('selected-blue');
+
+                            const currentTierSum = state.discovery.selected.reduce((sum, c) => sum + (c.tier || 1), 0);
+                            const currentCount = state.discovery.selected.length;
+
+                            const wouldExceedTier = (currentTierSum + (card.tier || 1)) > (state.discovery.maxTier || 100);
+                            const wouldExceedCount = (currentCount + 1) > (state.discovery.maxCount || 100);
+
+                            if (!isSelected && (wouldExceedTier || wouldExceedCount)) {
+                                cardEl.classList.add('grayed-out');
+                                cardEl.style.pointerEvents = 'none';
+                            } else {
+                                cardEl.addEventListener('click', () => toggleDiscoverySelection(card));
+                            }
+                        } else {
+                            cardEl.addEventListener('click', () => resolveDiscovery(card));
+                        }
                         container.appendChild(cardEl);
                     }
                 });
+
             } else {
                 discoveryModal.style.display = 'none';
             }
+
         }
 
         if (state.castingSpell || (state.targetingEffect && !state.targetingEffect.isMandatory)) {
@@ -3711,7 +4148,7 @@ class BaseCard {
         const counterStackEl = cardEl.querySelector('.card-counter-stack');
         counterStackEl.innerHTML = '';
         
-        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1';
+        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || state.targetingEffect?.effect === 'cloudline_sovereign_step1';
 
         const addCounterBubble = (type, value, imgPath, rulesText) => {
             const bubble = document.createElement('div');
@@ -3759,7 +4196,11 @@ class BaseCard {
         if (instance.vigilanceCounters > 0) addCounterBubble('vigilance', instance.vigilanceCounters, 'img/vigilance.png');
         // 6. Lifelink
         if (instance.lifelinkCounters > 0) addCounterBubble('lifelink', instance.lifelinkCounters, 'img/lifelink.png');
-        // 7. Shield
+        // 7. Trample
+        if (instance.trampleCounters > 0) addCounterBubble('trample', instance.trampleCounters, 'img/trample.png');
+        // 8. Hexproof
+        if (instance.hexproofCounters > 0) addCounterBubble('hexproof', instance.hexproofCounters, 'img/hexproof.png');
+        // 9. Shield
         if (instance.shieldCounters > 0) addCounterBubble('shield', instance.shieldCounters, 'img/shield.png');
         
         if (instance.pt) {
@@ -3777,9 +4218,9 @@ class BaseCard {
         // Events
         if (isShop) cardEl.addEventListener('click', () => buyCard(instance.id));
 
-        // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot (Only on board, during SHOP)
-        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot'];
-        if (state.phase === 'SHOP' && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect) {
+        // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot, Feral Exemplar (Only on board, during SHOP)
+        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot', 'Feral Exemplar'];
+        if (state.phase === 'SHOP' && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed) {
             cardEl.classList.add('actionable-outline');
             cardEl.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -3817,11 +4258,11 @@ class BaseCard {
                 // Special case: Parliament discard targeting is HAND ONLY
                 if (state.targetingEffect.effect === 'parliament_discard') {
                     // Not targetable on board
-                } else if (state.targetingEffect.effect === 'permutate_step1') {
+                } else if (state.targetingEffect.effect === 'permutate_step1' || state.targetingEffect.effect === 'cloudline_sovereign_step1') {
                     // Not targetable as a card, only counters are clickable
                 } else {
-                    // Special case: Intli Assaulter, Wechuge, Matriarch can't target themselves
-                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff'];
+                    // Special case: Intli Assaulter, Wechuge, Matriarch, Brutalizer can't target themselves
+                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff', 'ndengo_target'];
                     if (cannotTargetSelf.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
                         // Not targetable
                     } else if (state.targetingEffect.effect === 'permutate_step2' && instance.id === state.targetingEffect.sourceCreatureId) {
@@ -3832,6 +4273,8 @@ class BaseCard {
                         // Not targetable if not a Centaur
                     } else if (state.targetingEffect.effect === 'ceremony_step2' && instance.id === state.targetingEffect.target1Id) {
                         // Not targetable (cannot select same creature twice)
+                    } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce' && instance.type?.toLowerCase().includes('enchantment')) {
+                        // Not targetable if it's an enchantment creature
                     } else {
                         cardEl.classList.add('targetable');
                         cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
@@ -3855,6 +4298,10 @@ class BaseCard {
         return cardEl;
     }
 
+    function setAvailableCards(cards) {
+        availableCards = cards;
+    }
+
     if (typeof document !== 'undefined' && typeof module === 'undefined') {
         init();
     }
@@ -3866,7 +4313,8 @@ if (typeof module !== 'undefined' && module.exports) {
         resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
         resolveCombatImpact, resolveDeaths, processDeaths,
         applyTargetedEffect, applySpell, useCardFromHand,
-        resolveDiscovery
+        resolveDiscovery, toggleDiscoverySelection, confirmDiscovery,
+        startShopTurn, setAvailableCards
     };
 }
 

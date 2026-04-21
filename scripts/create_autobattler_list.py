@@ -23,7 +23,9 @@ def create_autobattler_card_list():
         "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
         "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
-        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories"
+        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
+        "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
+        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -59,7 +61,9 @@ def create_autobattler_card_list():
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
         "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
-        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories"
+        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
+        "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
+        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation"
     ]
 
     for name in card_names_to_include:

@@ -260,7 +260,7 @@
             font-size: 1.2em;
             font-weight: bold;
             color: white;
-            opacity: 0.5;
+            opacity: 0.9;
             pointer-events: none;
             text-shadow: 1px 1px 2px black;
         }
@@ -308,6 +308,34 @@
             color: #fff;
             margin-top: 5px;
             text-align: center;
+        }
+
+        .double-bubble-container {
+            position: relative;
+            width: 220px;
+            height: 180px;
+            margin-bottom: 30px;
+        }
+
+        .double-bubble-container .counter-bubble {
+            position: absolute !important;
+            width: 130px !important;
+            height: 130px !important;
+            border-width: 6px !important;
+            font-size: 1.5em !important;
+        }
+
+        .double-bubble-container .bubble-back {
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .double-bubble-container .bubble-front {
+            bottom: 0;
+            right: 0;
+            z-index: 2;
+            box-shadow: -5px -5px 15px rgba(0,0,0,0.5) !important;
         }
 
         /* AVATAR BOXES AND LABELS */
@@ -578,7 +606,13 @@
             box-shadow: 0 0 40px #ffd700;
         }
 
+        .card.selected-blue .card-art {
+            outline: 6px solid #60a5fa;
+            box-shadow: 0 0 40px #60a5fa;
+        }
+
         .actionable-outline {
+
             outline: 4px solid #add8e6; /* Powder Blue */
             box-shadow: 0 0 15px #add8e6;
         }
@@ -754,7 +788,7 @@
         .modal-content .card {
             width: 200px; 
             scale: 1.2;
-            padding: 0 5px;
+            padding: 0 40px;
             background: none;
             box-shadow: none;
         }

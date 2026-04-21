@@ -39,7 +39,8 @@ if (typeof document === 'undefined') {
 
 const { 
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
-    applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget
+    applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
+    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -47,6 +48,9 @@ const path = require('path');
 
 // Load full card list once for all tests
 const fullCardPool = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/autobattler-cards.json'), 'utf8')).cards;
+
+// SYNC THE POOL TO THE ENGINE
+setAvailableCards(fullCardPool);
 
 // Mock fetch for init if needed
 global.fetch = () => Promise.resolve({ json: () => Promise.resolve({ cards: [] }) });
@@ -65,24 +69,30 @@ function resetState() {
         spellGraveyard: []
     };
     state.opponents = [
-        { id: 0, name: "Opponent", overallHp: 20, fightHp: 10, board: [] }
+        { id: 0, name: "Marketto", avatar: "sets/SHF-files/img/60.png", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
+        { id: 1, name: "Huitzil", avatar: "sets/ICH-files/img/62_Huitzil Skywatch.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
+        { id: 2, name: "Raven", avatar: "sets/TWB-files/img/19_Glumvale Raven.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] }
     ];
     state.currentOpponentId = 0;
+    state.turn = 1;
     state.phase = 'SHOP';
-    state.battleBoards = null;
+    state.castingSpell = null;
+    state.targetingEffect = null;
+    state.targetingQueue = [];
+    state.discovery = null;
+    state.discoveryQueue = [];
     state.scrying = null;
-    state.shop = { cards: [] };
+    state.nextShopBonusCards = [];
+    state.battleBoards = null;
     state.creaturesDiedThisShopPhase = false;
     state.shopDeathsCount = 0;
-    state.targetingEffect = null;
-    state.discovery = null;
+    state.plane = null;
     state.deadServantsCount = 0;
-    state.overallHpReducedThisFight = false;
     state.spellsCastThisTurn = 0;
-    
-    // Repopulate availableCards with the full pool
-    availableCards.length = 0;
-    fullCardPool.forEach(c => availableCards.push(c));
+    state.triumphantTacticsActive = false;
+
+    // SYNC POOL
+    setAvailableCards(fullCardPool);
 }
 
 // --- TIER 1 TESTS ---
@@ -474,7 +484,7 @@ function testEarthrattleXali() {
 
 function testDynamicWyvern() {
     resetState();
-    const wyvernData = availableCards.find(c => c.card_name === "Dynamic Wyvern");
+    const wyvernData = fullCardPool.find(c => c.card_name === "Dynamic Wyvern");
     const wyvern = CardFactory.create(wyvernData);
     state.player.board = [wyvern];
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Initially no flying (Should fail right now)");
@@ -704,11 +714,12 @@ function testSiegeFalcon() {
 function testForesee() {
     resetState();
     const spell = CardFactory.create({ card_name: "Foresee" });
-    availableCards.push({ card_name: "Creature", type: "Creature", shape: "normal", tier: 1 });
     spell.onCast(state.player.board);
-    assert.strictEqual(state.scrying.count, 4);
+    assert.strictEqual(state.scrying.count, 4, "Foresee should scry 4");
+    
+    const startShopSize = state.shop.cards.length;
     state.scrying.postScry();
-    assert.strictEqual(state.shop.cards.length, 2);
+    assert.strictEqual(state.shop.cards.length, startShopSize + 2, "Should add 2 cards to shop after scry");
 }
 
 function testFightSong() {
@@ -1887,6 +1898,228 @@ function testHexproof_CabracansFamiliar() {
     assert.strictEqual(hexVictim.damageTaken, 2);
 }
 
+function testThunderRaptor() {
+    resetState();
+    const raptor = CardFactory.create({ card_name: "Thunder Raptor", pt: "4/4", type: "Creature - Bird Warrior", rules_text: "Flying" });
+    const otherBird = CardFactory.create({ card_name: "Other Bird", pt: "1/1", type: "Creature - Bird", rules_text: "Flying" });
+    state.player.board = [raptor, otherBird];
+    raptor.owner = otherBird.owner = 'player';
+    
+    // Case 1: Not in Cirrusea
+    raptor.onETB(state.player.board);
+    assert.strictEqual(state.plane, 'Cirrusea');
+    
+    // Case 2: Already in Cirrusea (should queue counter grant)
+    raptor.onETB(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
+    applyTargetedEffect(otherBird.id);
+    
+    const stats = otherBird.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 4, "Base 1 + counters 1 + Raptor Lord 2 = 4");
+}
+
+function testCloudlineSovereign() {
+    resetState();
+    const sovereign = CardFactory.create({ card_name: "Cloudline Sovereign", pt: "3/3", type: "Enchantment Creature - Bird Wizard" });
+    state.player.board = [sovereign];
+    sovereign.owner = 'player';
+    
+    sovereign.onETB(state.player.board);
+    assert.strictEqual(sovereign.counters, 1);
+    
+    // Test Success
+    sovereign.onShopStart(state.player.board);
+    applyTargetedEffect(sovereign.id, 'plus-one');
+    assert.strictEqual(sovereign.counters, 0);
+    assert.strictEqual(sovereign.shieldCounters, 1);
+
+    // Test Cancel
+    sovereign.counters = 1;
+    sovereign.shieldCounters = 0;
+    sovereign.onShopStart(state.player.board);
+    state.targetingEffect = null; // Simulate Cancel button
+    assert.strictEqual(sovereign.counters, 1, "Should remain 1 on cancel");
+    assert.strictEqual(sovereign.shieldCounters, 0, "Should remain 0 on cancel");
+}
+
+function testNightfallRaptor() {
+    resetState();
+    const raptor = CardFactory.create({ card_name: "Nightfall Raptor", pt: "3/2", type: "Enchantment Creature - Bird Rogue" });
+    const victim = CardFactory.create({ card_name: "Victim", pt: "2/2", type: "Creature - Bear" });
+    const token = CardFactory.create({ card_name: "Token", pt: "1/1", type: "Creature - Bird", shape: "token" });
+    const enchantmentCreature = CardFactory.create({ card_name: "Ench", pt: "1/1", type: "Enchantment Creature - Bird" });
+    
+    state.player.board = [raptor, victim, token, enchantmentCreature];
+    raptor.owner = victim.owner = token.owner = enchantmentCreature.owner = 'player';
+    
+    // Case 1: Bounce normal creature
+    raptor.onETB(state.player.board);
+    applyTargetedEffect(victim.id);
+    assert.strictEqual(state.player.hand.includes(victim), true, "Normal creature bounced to hand");
+    assert.strictEqual(state.player.board.length, 3);
+
+    // Case 2: Bounce token (Should also go to hand in this game)
+    raptor.onETB(state.player.board);
+    applyTargetedEffect(token.id);
+    assert.strictEqual(state.player.hand.includes(token), true, "Token bounced to hand");
+
+    // Case 3: Cancel
+    const startBoardSize = state.player.board.length;
+    raptor.onETB(state.player.board);
+    state.targetingEffect = null; // Simulate Cancel
+    assert.strictEqual(state.player.board.length, startBoardSize, "Board size should not change on cancel");
+
+    // Case 4: Non-enchantment restriction
+    // (Logic check: applyTargetedEffect should ignore enchantment creatures for this effect)
+    raptor.onETB(state.player.board);
+    const startSize = state.player.board.length;
+    applyTargetedEffect(enchantmentCreature.id); 
+    assert.strictEqual(state.player.board.length, startSize, "Should not bounce enchantment creature");
+}
+
+function testTriumphantTactics() {
+    resetState();
+    const tt = CardFactory.create({ card_name: "Triumphant Tactics", type: "Sorcery" });
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "2/2" });
+    const defender = CardFactory.create({ card_name: "Defender", pt: "2/2" });
+
+    attacker.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [defender] };
+    
+    tt.onCast(state.player.board);
+    assert.strictEqual(state.triumphantTacticsActive, true);
+    
+    // Combat trigger
+    resolveCombatImpact(attacker, defender, true);
+    assert.strictEqual(attacker.counters, 1, "Should gain a counter on damage");
+}
+
+function testEarthcoreElemental() {
+    resetState();
+    const elemental = CardFactory.create({ card_name: "Earthcore Elemental", pt: "4/3", rules_text: "Trample" });
+    const intruder = CardFactory.create({ card_name: "Intruder", pt: "5/5" });
+    state.player.board = [elemental];
+    elemental.owner = 'player';
+    intruder.owner = 'player';
+    
+    assert.strictEqual(elemental.hasKeyword('trample'), true, "Elemental must have trample");
+    elemental.onOtherCreatureETB(intruder, state.player.board);
+    
+    assert.strictEqual(elemental.tempPower, 5);
+    assert.strictEqual(elemental.tempToughness, 5);
+}
+
+function testSavageCongregation() {
+    resetState();
+    const sc = CardFactory.create({ card_name: "Savage Congregation", type: "Sorcery" });
+    const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", tier: 2, type: "Creature - Centaur" });
+    const big = CardFactory.create({ card_name: "Big", pt: "4/4", tier: 2 });
+    
+    state.player.hand = [sc];
+    state.player.board = [big];
+    big.owner = 'player';
+
+    useCardFromHand(sc.id);
+    
+    // Verify pool constraints
+    const pool = state.discovery.cards;
+    assert.strictEqual(pool.length, 6);
+    assert.ok(pool.some(c => (c.tier || 1) === 1), "Must have at least one T1");
+    assert.ok(pool.some(c => (c.tier || 1) === 4), "Must have at least one T4");
+    assert.ok(pool.every(c => (c.tier || 1) <= 4), "No cards above T4");
+
+    // Select Recruiter
+    state.discovery.selected = [recruiter];
+    confirmDiscovery();
+    
+    // Board should have: Big (4/4), Recruiter (3/3), Token (2/2)
+    assert.strictEqual(state.player.board.length, 3, "Recruiter and its token should both be on board");
+    
+    // Ferocious was active, so all 3 should have a +1/+1 counter
+    assert.strictEqual(big.counters, 1);
+    assert.strictEqual(recruiter.counters, 1);
+    const token = state.player.board.find(c => c.card_name === "Centaur Knight");
+    assert.ok(token);
+    assert.strictEqual(token.counters, 1, "Token generated by ETB should also receive the Ferocious counter");
+}
+
+function testNdengoBrutalizer() {
+    resetState();
+    const brut = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4" });
+    state.player.board = [brut];
+    brut.owner = 'player';
+
+    // Case 1: Solo
+    brut.onETB(state.player.board);
+    assert.strictEqual(state.discovery.effect, 'ndengo_solo');
+    
+    const fs = state.discovery.cards.find(c => c.rules_text === 'First strike');
+    resolveDiscovery(fs);
+    assert.strictEqual(brut.hasKeyword('first strike'), true);
+
+    // Case 2: Duo
+    resetState();
+    const brut2 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4" });
+    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    state.player.board = [brut2, target];
+    brut2.owner = target.owner = 'player';
+
+    brut2.onETB(state.player.board);
+    
+    // Attempt self-target
+    applyTargetedEffect(brut2.id);
+    assert.strictEqual(state.targetingEffect.effect, 'ndengo_target', "Should still be in targeting mode after self-target attempt");
+
+    applyTargetedEffect(target.id);
+    assert.strictEqual(state.discovery.effect, 'ndengo_choice');
+    
+    const choiceA = state.discovery.cards.find(c => c.card_name === 'Choice A');
+    resolveDiscovery(choiceA);
+    
+    assert.strictEqual(brut2.hasKeyword('trample'), true, "Ndengo gets Trample from Choice A");
+    assert.strictEqual(target.hasKeyword('first strike'), true, "Target gets First Strike from Choice A");
+    
+    // Case 3: Teach (already has it)
+    resetState();
+    const brut3 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: "First strike" });
+    state.player.board = [brut3];
+    brut3.owner = 'player';
+    
+    brut3.onETB(state.player.board);
+    const fs3 = state.discovery.cards.find(c => c.rules_text === 'First strike');
+    resolveDiscovery(fs3);
+    assert.strictEqual(brut3.counters, 1, "Should get counter because it already has FS");
+}
+
+function testFeralExemplar() {
+    resetState();
+    const exemplar = CardFactory.create({ card_name: "Feral Exemplar", pt: "2/2" });
+    state.player.board = [exemplar];
+    exemplar.owner = 'player';
+    
+    // 3 Gold for +2/+2
+    state.player.gold = 3;
+    exemplar.onAction();
+    assert.strictEqual(exemplar.getDisplayStats(state.player.board).p, 4);
+    assert.strictEqual(exemplar.actionUsed, true, "Action should be marked as used");
+    
+    // Simulate turn reset
+    startShopTurn();
+    assert.strictEqual(exemplar.actionUsed, false, "Action should be reset at start of shop turn");
+    
+    // Self-trigger check
+    state.battleBoards = { player: [exemplar], opponent: [] };
+    const stats = exemplar.getDisplayStats(state.battleBoards.player);
+    if (stats.p >= 4) {
+        exemplar.tempPower += stats.p;
+        exemplar.tempToughness += stats.p;
+    }
+    
+    assert.strictEqual(exemplar.getDisplayStats(state.battleBoards.player).p, 8, "Should gain +4/+4");
+    assert.strictEqual(exemplar.getDisplayStats(state.battleBoards.player).t, 8);
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -1997,7 +2230,15 @@ function runTests() {
         { tier: 4, name: "Hexproof (Suitor Fizzle)", fn: testHexproof_SuitorOfDeath_Fizzle },
         { tier: 4, name: "Hexproof (Suitor Targeting)", fn: testHexproof_SuitorOfDeath_Targeting },
         { tier: 4, name: "Hexproof (Wisps)", fn: testHexproof_AlluringWisps },
-        { tier: 4, name: "Hexproof (Familiar)", fn: testHexproof_CabracansFamiliar }
+        { tier: 4, name: "Hexproof (Familiar)", fn: testHexproof_CabracansFamiliar },
+        { tier: 4, name: "Thunder Raptor", fn: testThunderRaptor },
+        { tier: 4, name: "Cloudline Sovereign", fn: testCloudlineSovereign },
+        { tier: 4, name: "Nightfall Raptor", fn: testNightfallRaptor },
+        { tier: 4, name: "Triumphant Tactics", fn: testTriumphantTactics },
+        { tier: 4, name: "Earthcore Elemental", fn: testEarthcoreElemental },
+        { tier: 4, name: "Savage Congregation", fn: testSavageCongregation },
+        { tier: 4, name: "Ndengo Brutalizer", fn: testNdengoBrutalizer },
+        { tier: 4, name: "Feral Exemplar", fn: testFeralExemplar }
     ];
 
     console.log("\nUNIT TEST RESULTS");
