@@ -339,7 +339,7 @@ function testFaithInDarkness() {
     resetState();
     const spell = CardFactory.create({ card_name: "Faith in Darkness" });
     const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
-    spell.onApply(target, []);
+    spell.onApply(target, state.player.board);
     assert.strictEqual(state.scrying.count, 1, "Should scry 1");
     assert.strictEqual(target.enchantments.length, 1);
     assert.strictEqual(target.getDisplayStats([]).p, 4, "Faith in Darkness gives +2/+2");
@@ -348,7 +348,7 @@ function testFaithInDarkness() {
 function testScientificInquiry() {
     resetState();
     const spell = CardFactory.create({ card_name: "Scientific Inquiry" });
-    spell.onCast([]);
+    spell.onCast(state.player.board);
     assert.strictEqual(state.player.treasures, 1);
     assert.strictEqual(state.scrying.count, 2);
 }
@@ -374,7 +374,7 @@ function testByBloodAndVenom() {
 function testDivination() {
     resetState();
     const spell = CardFactory.create({ card_name: "Divination" });
-    spell.onCast([]);
+    spell.onCast(state.player.board);
     assert.strictEqual(state.shop.cards.length, 2);
 }
 
@@ -2372,6 +2372,68 @@ function testTunnelWebSpider() {
     assert.strictEqual(spider.hasKeyword('deathtouch'), true);
 }
 
+function testWarhammerKreg() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const kreg = CardFactory.create({ card_name: "Warhammer Kreg", type: "Equipment", rules_text: "Equipped creature gets +1/+1 and has double strike." });
+    host.equipment = kreg;
+    state.player.board = [host];
+
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 3, "Host gets +1 Power");
+    assert.strictEqual(host.getDisplayStats(state.player.board).t, 3, "Host gets +1 Toughness");
+    assert.strictEqual(host.hasKeyword('Double strike'), true, "Host gets Double Strike");
+}
+
+function testDancingMirrorblade() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const mirrorblade = CardFactory.create({ card_name: "Dancing Mirrorblade", type: "Equipment" });
+    
+    host.equipment = mirrorblade;
+    host.counters = 2; // +2/+2
+    host.tempPower = 2; // Faith in Darkness
+    host.tempToughness = 2;
+    host.enchantments.push({ card_name: "Faith in Darkness", rules_text: "+2/+2", isTemporary: true });
+    
+    host.owner = 'player';
+    state.player.board = [host];
+    state.phase = 'BATTLE';
+    state.battleQueues = { player: [host], opponent: [] };
+
+    // Simulate attack
+    host.equipment.onEquippedAttack(host, state.player.board);
+
+    assert.strictEqual(state.player.board.length, 2, "Token should be spawned on the board");
+    const token = state.player.board[1];
+    
+    assert.strictEqual(token.counters, 2, "Token should inherit +1/+1 counters");
+    assert.strictEqual(token.tempPower, 2, "Token should inherit tempPower");
+    assert.strictEqual(token.tempToughness, 2, "Token should inherit tempToughness");
+    assert.strictEqual(token.enchantments.some(e => e.card_name === 'Faith in Darkness'), true, "Token should inherit enchantments");
+    assert.strictEqual(token.enchantments.some(e => e.card_name === 'Mirrorblade Exile'), true, "Token should be marked for exile");
+    assert.strictEqual(token.equipment, null, "Token should NOT copy the equipment itself");
+    
+    assert.strictEqual(state.battleQueues.player[0].id, token.id, "Token should be at the front of the battle queue");
+}
+
+function testTheExileQueensCrown() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const crown = CardFactory.create({ card_name: "The Exile Queen's Crown", type: "Equipment" });
+    
+    host.equipment = crown;
+    state.player.board = [host, other];
+
+    host.equipment.onEquippedAttack(host, state.player.board);
+
+    assert.strictEqual(host.tempPower, 0, "Host should not buff itself");
+    assert.strictEqual(other.tempPower, 1, "Other creature gets +1 Power");
+    assert.strictEqual(other.tempToughness, 1, "Other creature gets +1 Toughness");
+    assert.strictEqual(other.hasKeyword('Indestructible'), true, "Other creature gets Indestructible");
+    assert.strictEqual(host.hasKeyword('Indestructible'), false, "Host should not get Indestructible from the Crown");
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -2502,6 +2564,12 @@ function runTests() {
         { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider }
     ];
 
+    const t5Tests = [
+        { tier: 5, name: "Warhammer Kreg", fn: testWarhammerKreg },
+        { tier: 5, name: "Dancing Mirrorblade", fn: testDancingMirrorblade },
+        { tier: 5, name: "The Exile Queen's Crown", fn: testTheExileQueensCrown }
+    ];
+
     console.log("\nUNIT TEST RESULTS");
     console.log("=================");
     
@@ -2531,14 +2599,18 @@ function runTests() {
     console.log("\nTIER 4");
     const t4Passed = runBatch(t4Tests);
 
+    console.log("\nTIER 5");
+    const t5Passed = runBatch(t5Tests);
+
     console.log("\nFINAL SUMMARY");
     console.log("-------------");
     console.log(`TIER 1 - Passed: ${t1Passed}/${t1Tests.length}. Failed: ${t1Tests.length - t1Passed}.`);
     console.log(`TIER 2 - Passed: ${t2Passed}/${t2Tests.length}. Failed: ${t2Tests.length - t2Passed}.`);
     console.log(`TIER 3 - Passed: ${t3Passed}/${t3Tests.length}. Failed: ${t3Tests.length - t3Passed}.`);
     console.log(`TIER 4 - Passed: ${t4Passed}/${t4Tests.length}. Failed: ${t4Tests.length - t4Passed}.`);
+    console.log(`TIER 5 - Passed: ${t5Passed}/${t5Tests.length}. Failed: ${t5Tests.length - t5Passed}.`);
 
-    if (t1Passed < t1Tests.length || t2Passed < t2Tests.length || t3Passed < t3Tests.length || t4Passed < t4Tests.length) {
+    if (t1Passed < t1Tests.length || t2Passed < t2Tests.length || t3Passed < t3Tests.length || t4Passed < t4Tests.length || t5Passed < t5Tests.length) {
         process.exit(1);
     }
 }

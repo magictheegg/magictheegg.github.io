@@ -22,6 +22,7 @@ class BaseCard {
             this.isLockedByChivalry = this.isLockedByChivalry || false;
             this.isFoil = this.isFoil || false;
             this.isDestroyed = false;
+            this.equipment = this.equipment || null;
         }
 
         get isEmbattled() {
@@ -29,7 +30,8 @@ class BaseCard {
                    (this.menaceCounters > 0) || (this.firstStrikeCounters > 0) ||
                    (this.vigilanceCounters > 0) || (this.lifelinkCounters > 0) ||
                    (this.trampleCounters > 0) || (this.reachCounters > 0) ||
-                   (this.hexproofCounters > 0) || (this.shieldCounters > 0);
+                   (this.hexproofCounters > 0) || (this.shieldCounters > 0) ||
+                   (this.equipment !== null);
         }
 
         // Returns base power/toughness from the 'pt' string
@@ -38,6 +40,10 @@ class BaseCard {
             const parts = this.pt.split('/');
             return { p: parseInt(parts[0]) || 0, t: parseInt(parts[1]) || 0 };
         }
+        
+        getEquipmentStats(target) {
+            return { p: 0, t: 0 };
+        }
 
         // The "Stable" stats: Base + Counters + Enchantments + Temp (Start of Combat)
         getStableStats() {
@@ -45,6 +51,13 @@ class BaseCard {
             let p = (base.p || 0) + (this.counters || 0);
             let t = (base.t || 0) + (this.counters || 0);
             let maxT = t;
+
+            if (this.equipment) {
+                const eqStats = this.equipment.getEquipmentStats(this);
+                p += eqStats.p;
+                t += eqStats.t;
+                maxT += eqStats.t;
+            }
 
             p += (this.tempPower || 0);
             t += (this.tempToughness || 0);
@@ -177,6 +190,24 @@ class BaseCard {
                 const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
                 return regex.test(text);
             })) return true;
+
+            // CHECK EQUIPMENT
+            if (this.equipment) {
+                const eqText = this.equipment.rules_text?.toLowerCase() || "";
+                // Specifically look for "has [keyword]" or "gains [keyword]" or basic keyword lists to avoid false positives like "other creatures gain indestructible"
+                const eqRegex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
+                const hasRegex = new RegExp(`has ${kw}`, 'i');
+                const gainsRegex = new RegExp(`gains ${kw}`, 'i');
+                
+                if (eqRegex.test(eqText) || hasRegex.test(eqText) || gainsRegex.test(eqText)) {
+                    // Safety check for The Exile Queen's Crown
+                    if (this.equipment.card_name === "The Exile Queen's Crown" && kw === 'indestructible') {
+                        return false; 
+                    }
+                    return true;
+                }
+                if (this.equipment.hasKeyword && this.equipment.hasKeyword(kw)) return true;
+            }
 
             if (!this.rules_text || ['Magnific Wilderkin', 'Bwema, the Ruthless'].includes(this.card_name)) return false;
             const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
@@ -364,16 +395,20 @@ class BaseCard {
 
     class Divination extends BaseCard {
         onCast(board) {
-            const times = this.isFoil ? 2 : 1;
-            addCardsToShop(2 * times, 'creature');
+            if (board === state.player.board) {
+                const times = this.isFoil ? 2 : 1;
+                addCardsToShop(2 * times, 'creature');
+            }
         }
     }
 
     class ScientificInquiry extends BaseCard {
         onCast(board) {
             const multiplier = this.isFoil ? 2 : 1;
-            state.player.treasures += multiplier;
-            addScry(2 * multiplier);
+            if (board === state.player.board) {
+                state.player.treasures += multiplier;
+                addScry(2 * multiplier);
+            }
         }
     }
 
@@ -387,7 +422,9 @@ class BaseCard {
 
     class FaithInDarkness extends BaseCard {
         onApply(target, board) {
-            addScry(1);
+            if (board === state.player.board) {
+                addScry(1);
+            }
             target.tempPower += 2;
             target.tempToughness += 2;
             if (!target.enchantments) target.enchantments = [];
@@ -932,6 +969,129 @@ class BaseCard {
         }
     }
 
+    class DancingMirrorblade extends BaseCard {
+        async onEquippedAttack(host, board) {
+            if (board.length >= boardLimit) return;
+            
+            // Create copy
+            const token = CardFactory.create(host);
+            token.id = `mirror-token-${Math.random()}`;
+            token.owner = host.owner;
+            // DO NOT set shape='token' because that forces a "t" suffix in the image path
+            // causing 404s for cards that don't have dedicated token artwork (like Trainee).
+            token.shape = host.shape; 
+            
+            // Mirror rules: Copy counters/enchantments but NOT the mirrorblade itself
+            token.counters = host.counters;
+            token.flyingCounters = host.flyingCounters;
+            token.menaceCounters = host.menaceCounters;
+            token.firstStrikeCounters = host.firstStrikeCounters;
+            token.doubleStrikeCounters = host.doubleStrikeCounters;
+            token.vigilanceCounters = host.vigilanceCounters;
+            token.lifelinkCounters = host.lifelinkCounters;
+            token.trampleCounters = host.trampleCounters;
+            token.reachCounters = host.reachCounters;
+            token.hexproofCounters = host.hexproofCounters;
+            token.shieldCounters = host.shieldCounters;
+            token.tempPower = host.tempPower;
+            token.tempToughness = host.tempToughness;
+            token.enchantments = [...host.enchantments];
+            token.equipment = null; 
+            
+            // Marked for exile
+            token.enchantments.push({ card_name: 'Mirrorblade Exile', rules_text: 'Exile at end of combat', isTemporary: true });
+
+            // Spawn to the right of the attacker
+            const idx = board.indexOf(host);
+            if (idx !== -1) {
+                board.splice(idx + 1, 0, token);
+            } else {
+                board.push(token);
+            }
+
+            // Add to the middle of the battle queue (the very next turn for this owner)
+            if (state.phase === 'BATTLE' && state.battleQueues) {
+                state.battleQueues[host.owner].unshift(token);
+            }
+            
+            // Broadast entry for other effects (not ETB triggers for the token itself)
+            board.forEach(c => {
+                if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+            });
+
+            if (typeof document !== 'undefined') {
+                token.isSpawning = true;
+                // Wait for the wind-up animation to finish first so the token spawns right as the hit happens
+                await new Promise(r => setTimeout(r, 100)); 
+                render();
+                
+                await new Promise(r => setTimeout(r, 600));
+                delete token.isSpawning;
+                render(); // Final cleanup render
+            }
+        }
+    }
+
+    class WarhammerKreg extends BaseCard {
+        getEquipmentStats(target) {
+            return { p: 1, t: 1 };
+        }
+    }
+
+    class TheExileQueensCrown extends BaseCard {
+        async onEquippedAttack(host, board) {
+            let triggered = false;
+            board.forEach(c => {
+                if (c.id !== host.id) {
+                    c.tempPower += 1;
+                    c.tempToughness += 1;
+                    if (!c.enchantments) c.enchantments = [];
+                    c.enchantments.push({ card_name: 'Crown Protection', rules_text: 'Indestructible', isTemporary: true });
+                    
+                    if (typeof document !== 'undefined') {
+                        const cardEl = document.getElementById(`card-${c.id}`);
+                        if (cardEl) {
+                            const ptBox = cardEl.querySelector('.card-pt');
+                            if (ptBox) {
+                                ptBox.classList.add('pulse-stats');
+                                setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                            }
+                            
+                            const stats = c.getDisplayStats(board);
+                            const pEl = cardEl.querySelector('.card-p');
+                            const tEl = cardEl.querySelector('.card-t');
+                            if (pEl) pEl.textContent = stats.p;
+                            if (tEl) tEl.textContent = stats.t;
+
+                            let ghostContainer = cardEl.querySelector('.ghost-indicator-container');
+                            if (!ghostContainer) {
+                                ghostContainer = document.createElement('div');
+                                ghostContainer.className = 'ghost-indicator-container';
+                                cardEl.appendChild(ghostContainer);
+                            }
+                            
+                            const hasIndestructibleGhost = ghostContainer.querySelector('.ghost-indicator.indestructible');
+                            if (!hasIndestructibleGhost) {
+                                const indicator = document.createElement('div');
+                                indicator.className = 'ghost-indicator indestructible pulse-stats';
+                                const img = document.createElement('img');
+                                img.src = 'img/shield.png';
+                                img.alt = 'Indestructible';
+                                indicator.appendChild(img);
+                                ghostContainer.appendChild(indicator);
+                                setTimeout(() => indicator.classList.remove('pulse-stats'), 500);
+                            }
+                        }
+                    }
+                    triggered = true;
+                }
+            });
+            if (triggered && typeof document !== 'undefined') {
+                await new Promise(r => setTimeout(r, 600));
+            }
+        }
+    }
+
     class LagoonLogistics extends BaseCard {
         onApply(target, board) {
             const raw = availableCards.find(c => c.card_name === target.card_name && (target.set ? c.set === target.set : true));
@@ -1287,11 +1447,13 @@ class BaseCard {
     class Foresee extends BaseCard {
         onCast(board) {
             const multiplier = this.isFoil ? 2 : 1;
-            addScry(4 * multiplier, () => {
-                // Add two creatures to shop divination-style (adds to current, uses scry queue)
-                addCardsToShop(2 * multiplier, 'creature');
-                render();
-            });
+            if (board === state.player.board) {
+                addScry(4 * multiplier, () => {
+                    // Add two creatures to shop divination-style (adds to current, uses scry queue)
+                    addCardsToShop(2 * multiplier, 'creature');
+                    render();
+                });
+            }
         }
     }
 
@@ -1598,6 +1760,9 @@ class BaseCard {
                 case 'Lagoon Logistics': card = new LagoonLogistics(data); break;
                 case 'Flaunt Luxury': card = new FlauntLuxury(data); break;
                 case 'Artful Coercion': card = new ArtfulCoercion(data); break;
+                case 'Dancing Mirrorblade': card = new DancingMirrorblade(data); break;
+                case 'Warhammer Kreg': card = new WarhammerKreg(data); break;
+                case 'The Exile Queen\'s Crown': card = new TheExileQueensCrown(data); break;
                 case 'Magnific Wilderkin': card = new MagnificWilderkin(data); break;
                 case 'Dwarven Phalanx': card = new DwarvenPhalanx(data); break;
                 case 'Lair Recluse': card = new LairRecluse(data); break;
@@ -1665,7 +1830,8 @@ class BaseCard {
         overallHpReducedThisFight: false,
         deadServantsCount: 0,
         spellsCastThisTurn: 0,
-        panharmoniconActive: false
+        panharmoniconActive: false,
+        activeAttackerId: null
     };
 
     function getOpponent() {
@@ -2166,6 +2332,7 @@ class BaseCard {
     // Legacy functions removed in favor of OO methods
 
     async function performAttack(attacker, defender, isFirstStrike = false) {
+        state.activeAttackerId = attacker.id;
         const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
         const attackerEl = document.getElementById(`card-${attacker.id}`);
         if (!attackerEl) return;
@@ -2196,6 +2363,36 @@ class BaseCard {
 
         // Phase 1.5: Attack Triggers
         const attackTargets = attacker.onAttack(attackerBoard);
+        
+        if (attackTargets && attackTargets.length > 0) {
+            // Instead of calling render() (which resets the attacker's position),
+            // we manually update the P/T text of the targets.
+            attackTargets.forEach(target => {
+                const targetEl = document.getElementById(`card-${target.id}`);
+                if (targetEl) {
+                    const stats = target.getDisplayStats(attackerBoard);
+                    const pEl = targetEl.querySelector('.card-p');
+                    const tEl = targetEl.querySelector('.card-t');
+                    if (pEl) pEl.textContent = stats.p;
+                    if (tEl) {
+                        tEl.textContent = stats.t;
+                        if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                        else tEl.classList.remove('damaged');
+                    }
+
+                    const ptBox = targetEl.querySelector('.card-pt');
+                    if (ptBox) {
+                        ptBox.classList.add('pulse-stats');
+                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                    }
+                }
+            });
+            await new Promise(r => setTimeout(r, 600)); // Pause for animation
+        }
+
+        if (attacker.equipment && attacker.equipment.onEquippedAttack) {
+            await attacker.equipment.onEquippedAttack(attacker, attackerBoard);
+        }
 
         // FERAL EXEMPLAR FEROCIOUS
         const hasExemplar = attackerBoard.some(c => c.card_name === 'Feral Exemplar');
@@ -2254,32 +2451,6 @@ class BaseCard {
                 attackerEl.classList.remove('attacking');
                 return; 
             }
-        }
-
-        if (attackTargets && attackTargets.length > 0) {
-            // Instead of calling render() (which resets the attacker's position),
-            // we manually update the P/T text of the targets.
-            attackTargets.forEach(target => {
-                const targetEl = document.getElementById(`card-${target.id}`);
-                if (targetEl) {
-                    const stats = target.getDisplayStats(attackerBoard);
-                    const pEl = targetEl.querySelector('.card-p');
-                    const tEl = targetEl.querySelector('.card-t');
-                    if (pEl) pEl.textContent = stats.p;
-                    if (tEl) {
-                        tEl.textContent = stats.t;
-                        if (stats.t < stats.maxT) tEl.classList.add('damaged');
-                        else tEl.classList.remove('damaged');
-                    }
-
-                    const ptBox = targetEl.querySelector('.card-pt');
-                    if (ptBox) {
-                        ptBox.classList.add('pulse-stats');
-                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                    }
-                }
-            });
-            await new Promise(r => setTimeout(r, 600)); // Pause for animation
         }
 
         const attackerStats = attacker.getDisplayStats(attackerBoard);
@@ -2430,6 +2601,9 @@ class BaseCard {
             currentAttackerEl.style.transition = "";
             currentAttackerEl.style.zIndex = "";
             currentAttackerEl.classList.remove('attacking');
+            state.activeAttackerId = null;
+        } else {
+            state.activeAttackerId = null;
         }
     }
 
@@ -2700,24 +2874,24 @@ class BaseCard {
         let i = 0;
         while (i < state.nextShopBonusCards.length) {
             const card = state.nextShopBonusCards[i];
-            const isCreature = card.type?.toLowerCase().includes('creature');
-            if (isCreature && state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
+            const isMainSlot = card.type?.toLowerCase().includes('creature') || card.type?.toLowerCase().includes('equipment');
+            if (isMainSlot && state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature') || c.type?.toLowerCase().includes('equipment')).length < creaturesTarget) {
                 state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(i, 1)[0]));
-            } else if (!isCreature && state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length < spellsTarget) {
+            } else if (!isMainSlot && state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment')).length < spellsTarget) {
                 state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(i, 1)[0]));
             } else {
                 i++;
             }
         }
 
-        const creaturePool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
-        const spellPool = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+        const creaturePool = availableCards.filter(c => (c.type?.toLowerCase().includes('creature') || c.type?.toLowerCase().includes('equipment')) && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+        const spellPool = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
 
         // 2. Fill remaining slots
-        while (state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
+        while (state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature') || c.type?.toLowerCase().includes('equipment')).length < creaturesTarget) {
             state.shop.cards.push(CardFactory.create(creaturePool[Math.floor(Math.random() * creaturePool.length)]));
         }
-        while (state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature')).length < spellsTarget) {
+        while (state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment')).length < spellsTarget) {
             state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
         }
     }
@@ -2808,7 +2982,9 @@ class BaseCard {
         const card = state.shop.cards[cardIndex];
         
         let cost = 3; // Default for creatures
-        if (!card.type.toLowerCase().includes('creature')) {
+        if (card.type.toLowerCase().includes('equipment')) {
+            cost = 5;
+        } else if (!card.type.toLowerCase().includes('creature')) {
             cost = card.tier || 1;
         }
 
@@ -2955,6 +3131,15 @@ class BaseCard {
             } else if (instance.card_name === 'Up in Arms') {
                 state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board); // onApply handles the state initialization
+            } else if (instance.type?.toLowerCase().includes('equipment')) {
+                if (state.player.board.length === 0) return;
+                state.spellsCastThisTurn++;
+                state.targetingEffect = {
+                    sourceId: instance.id,
+                    effect: 'equip_creature',
+                    wasCast: true,
+                    spellInstance: instance
+                };
             } else if (targetedNames.includes(instance.card_name)) {
                 if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
                     return; 
@@ -3404,6 +3589,19 @@ class BaseCard {
                 });
 
                 clearTargetingEffect();
+            } else if (state.targetingEffect.effect === 'equip_creature') {
+                const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
+                if (handIdx !== -1) {
+                    const [equipment] = state.player.hand.splice(handIdx, 1);
+                    
+                    // If target already has equipment, pop old one back to hand
+                    if (target.equipment) {
+                        state.player.hand.push(target.equipment);
+                    }
+                    
+                    target.equipment = equipment;
+                }
+                clearTargetingEffect();
             } else if (state.targetingEffect.effect === 'traverse_cirrusea_grant') {
 
                 const multiplier = state.targetingEffect.isFoil ? 2 : 1;
@@ -3505,6 +3703,9 @@ class BaseCard {
         }
 
         state.player.board.splice(idx, 1);
+        if (target.equipment && state.player.hand.length < handLimit) {
+            state.player.hand.push(target.equipment);
+        }
 
         // 1. Trigger survivor deaths
         state.player.board.forEach(c => c.onOtherCreatureDeath(state.player.board));
@@ -3797,12 +3998,20 @@ class BaseCard {
             document.getElementById(`card-${c.id}`)?.classList.add('dying');
         });
         
-        await new Promise(r => setTimeout(r, 500)); 
+        await new Promise(r => setTimeout(r, 600)); 
 
         // 4. Actually remove them and trigger death effects
-        await processDeaths(state.battleBoards.player, 'player');
-        await processDeaths(state.battleBoards.opponent, 'opponent');
+        const pSpawns = await processDeaths(state.battleBoards.player, 'player');
+        const oSpawns = await processDeaths(state.battleBoards.opponent, 'opponent');
+        const allNewSpawns = [...pSpawns, ...oSpawns];
+
         render();
+
+        if (allNewSpawns.length > 0 && typeof document !== 'undefined') {
+            await new Promise(r => setTimeout(r, 600)); // Wait for spawn animations
+            allNewSpawns.forEach(s => delete s.isSpawning);
+            render(); // Final cleanup render
+        }
 
         // 5. Special Case: Trenchrunner spawns need to attack immediately
         if (state.phase === 'BATTLE') {
@@ -3837,6 +4046,7 @@ class BaseCard {
     async function processDeaths(board, owner) {
         // Only process creatures that were marked as dying in the previous step
         const dyingCards = board.filter(c => c.isDying);
+        const newSpawns = [];
         
         // Broadcast to everyone in battle, or just this board if in shop
         const notifyPool = (state.phase === 'BATTLE' && state.battleBoards) ? 
@@ -3877,6 +4087,11 @@ class BaseCard {
                         if (c.id !== s.id) c.onOtherCreatureETB(s, board);
                     });
                 });
+                
+                if (state.phase === 'BATTLE') {
+                    validSpawns.forEach(s => s.isSpawning = true);
+                    newSpawns.push(...validSpawns);
+                }
             } else board.splice(idx, 1);
             
             // Remove from combat queue if in battle
@@ -3887,6 +4102,7 @@ class BaseCard {
             // Cleanup property
             delete deadCard.isDying;
         }
+        return newSpawns;
     }
 
     function applySpell(targetId) {
@@ -3981,7 +4197,12 @@ class BaseCard {
             if (!best || best.score <= 0) break; // Nothing worth buying
 
             const cardToBuy = best.card;
-            const cost = cardToBuy.type.toLowerCase().includes('creature') ? 3 : 1;
+            let cost = 3;
+            if (cardToBuy.type?.toLowerCase().includes('equipment')) {
+                cost = 5;
+            } else if (!cardToBuy.type?.toLowerCase().includes('creature')) {
+                cost = cardToBuy.tier || 1;
+            }
             
             if (opp.gold >= cost) {
                 if (cardToBuy.type.toLowerCase().includes('creature')) {
@@ -4000,6 +4221,13 @@ class BaseCard {
                             opp.gold -= cost;
                         } else break; // Best shop card isn't better than our weakest
                     }
+                } else if (cardToBuy.type?.toLowerCase().includes('equipment')) {
+                    const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
+                    if (target) {
+                        if (target.equipment) virtualShop.push(target.equipment); // AI tosses old equipment back
+                        target.equipment = cardToBuy;
+                        opp.gold -= cost;
+                    } else break;
                 } else {
                     // Spell logic for AI: apply to best target
                     const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
@@ -4058,7 +4286,7 @@ class BaseCard {
     }
 
     function addScry(count, callback = null) {
-        const creatures = availableCards.filter(c => c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+        const creatures = availableCards.filter(c => (c.type.toLowerCase().includes('creature') || c.type.toLowerCase().includes('equipment')) && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
         const newCards = [];
         for (let i = 0; i < count; i++) {
             newCards.push(creatures[Math.floor(Math.random() * creatures.length)]);
@@ -4091,6 +4319,99 @@ class BaseCard {
             if (callback) callback();
         }
         render();
+    }
+
+    function renderBoard(container, cards, isShop = false, boardContext = []) {
+        if (!container) return;
+
+        // 1. Capture "First" positions
+        const firstPositions = new Map();
+        Array.from(container.children).forEach(child => {
+            firstPositions.set(child.id, child.getBoundingClientRect());
+        });
+
+        // 2. Reconciliation
+        const existingMap = new Map();
+        Array.from(container.children).forEach(child => existingMap.set(child.id, child));
+
+        cards.forEach((card, index) => {
+            const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
+            const id = `card-${instance.id}`;
+            let oldEl = existingMap.get(id);
+            let newEl;
+
+            if (oldEl && state.activeAttackerId === instance.id) {
+                // Manually update attacker to preserve its dash/lift
+                const stats = instance.getDisplayStats(boardContext);
+                const pEl = oldEl.querySelector('.card-p');
+                const tEl = oldEl.querySelector('.card-t');
+                if (pEl) pEl.textContent = stats.p;
+                if (tEl) {
+                    tEl.textContent = stats.t;
+                    if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                    else tEl.classList.remove('damaged');
+                }
+                newEl = oldEl;
+            } else {
+                // For everyone else, replace the node so we get fresh targeting listeners
+                newEl = createCardElement(card, isShop, index, boardContext);
+                if (instance.isSpawning) newEl.classList.add('spawning');
+                if (oldEl) oldEl.replaceWith(newEl);
+            }
+
+            if (container.children[index] !== newEl) {
+                container.insertBefore(newEl, container.children[index]);
+            }
+        });
+
+        // Remove old nodes
+        const cardIds = cards.map(c => `card-${c.id}`);
+        Array.from(container.children).forEach(child => {
+            if (!cardIds.includes(child.id)) child.remove();
+        });
+
+        // 3. FLIP "Invert" (Synchronous to avoid snap)
+        if (state.phase === 'BATTLE') {
+            const invertedElements = [];
+            cards.forEach(card => {
+                const id = `card-${card.id}`;
+                const el = document.getElementById(id);
+                const firstRect = firstPositions.get(id);
+                if (!el || !firstRect) return;
+
+                const lastRect = el.getBoundingClientRect();
+                const deltaX = firstRect.left - lastRect.left;
+                const deltaY = firstRect.top - lastRect.top;
+
+                if (deltaX !== 0 || deltaY !== 0) {
+                    const isAttacking = el.classList.contains('attacking');
+                    const currentTransform = el.style.transform;
+                    
+                    el.style.transition = 'none';
+                    if (isAttacking) {
+                        const style = window.getComputedStyle(el);
+                        const matrix = style.transform === 'none' ? '' : style.transform;
+                        el.style.transform = `translate(${deltaX}px, ${deltaY}px) ${matrix}`;
+                    } else {
+                        el.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+                    }
+                    invertedElements.push({ el, originalTransform: isAttacking ? currentTransform : '' });
+                }
+            });
+
+            // 4. FLIP "Play" (Next frame)
+            if (invertedElements.length > 0) {
+                // Force a reflow to apply 'transition: none' and starting transforms
+                container.offsetHeight; 
+                
+                requestAnimationFrame(() => {
+                    invertedElements.forEach(({ el, originalTransform }) => {
+                        el.style.transition = ''; // Restore CSS transition
+                        el.style.transform = originalTransform;
+                    });
+                });
+            }
+        }
     }
 
     function render() {
@@ -4129,8 +4450,7 @@ class BaseCard {
             opponentZone.style.pointerEvents = 'none';
 
             const shopEl = document.getElementById('shop');
-            shopEl.innerHTML = '';
-            state.shop.cards.forEach(card => shopEl.appendChild(createCardElement(card, true, -1, [])));
+            renderBoard(shopEl, state.shop.cards, true, []);
         } else {
             const shopZone = document.getElementById('shop-zone');
             const opponentZone = document.getElementById('opponent-zone');
@@ -4141,9 +4461,8 @@ class BaseCard {
             opponentZone.style.opacity = '1';
             opponentZone.style.pointerEvents = 'auto';
             const oppBoardEl = document.getElementById('opponent-board');
-            oppBoardEl.innerHTML = "";
             const oppBoardToRender = state.battleBoards ? state.battleBoards.opponent : (currentOpp?.board || []);
-            oppBoardToRender.forEach(card => oppBoardEl.appendChild(createCardElement(card, false, -1, oppBoardToRender)));
+            renderBoard(oppBoardEl, oppBoardToRender, false, oppBoardToRender);
         }
 
         const playerHandEl = document.getElementById('player-hand');
@@ -4160,12 +4479,8 @@ class BaseCard {
         });
 
         const playerBoardEl = document.getElementById('player-board');
-        playerBoardEl.innerHTML = '';
         const boardToRender = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
-        boardToRender.forEach((card, index) => {
-            const cardEl = createCardElement(card, false, index, boardToRender);
-            playerBoardEl.appendChild(cardEl);
-        });
+        renderBoard(playerBoardEl, boardToRender, false, boardToRender);
 
         if (playerHpEl()) playerHpEl().textContent = state.player.overallHp;
         if (playerFightHpEl()) playerFightHpEl().textContent = state.player.fightHp;
@@ -4440,7 +4755,10 @@ class BaseCard {
         const boardIndex = state.player.board.findIndex(c => c.id === cardId);
         if (boardIndex === -1) return;
 
-        state.player.board.splice(boardIndex, 1);
+        const [sold] = state.player.board.splice(boardIndex, 1);
+        if (sold.equipment && state.player.hand.length < handLimit) {
+            state.player.hand.push(sold.equipment);
+        }
         state.player.gold += 1;
         render();
     }
@@ -4450,6 +4768,12 @@ class BaseCard {
         const cardEl = cardTemplate.content.cloneNode(true).firstElementChild;
         cardEl.id = `card-${instance.id}`;
         if (instance.isDying) cardEl.classList.add('dying');
+        if (instance.isSpawning) cardEl.classList.add('spawning');
+        if (state.activeAttackerId === instance.id) {
+            cardEl.classList.add('attacking');
+            cardEl.style.zIndex = "2000";
+            cardEl.style.transform = "scale(1.2) translateY(-15px)";
+        }
         cardEl.querySelector('.card-name').textContent = instance.card_name;
         
         const tokenSuffix = (instance.shape?.includes('token')) ? "t" : "";
@@ -4473,7 +4797,9 @@ class BaseCard {
         } else if (!isCreature && isShop) {
             costEl.style.display = 'flex';
             costEl.classList.add('spell-cost');
-            costEl.innerHTML = instance.tier || 1;
+            let cost = instance.tier || 1;
+            if (instance.type?.toLowerCase().includes('equipment')) cost = 5;
+            costEl.innerHTML = cost;
         } else {
             costEl.style.display = 'none';
         }
@@ -4615,6 +4941,22 @@ class BaseCard {
         
         if (instance.isFoil) cardEl.classList.add('foil');
         
+        // Render Equipment Indicator
+        if (instance.equipment) {
+            const eqContainer = document.createElement('div');
+            eqContainer.className = 'equipment-indicator';
+            
+            const img = document.createElement('img');
+            const eqTokenSuffix = (instance.equipment.shape?.includes('token')) ? "t" : "";
+            const eqImageName = instance.equipment.position ? instance.equipment.position : `${instance.equipment.number}${eqTokenSuffix}_${instance.equipment.card_name}`;
+            const eqDoubleSuffix = (instance.equipment.shape?.includes('double')) ? "_front" : "";
+            const eqExt = instance.equipment.image_type || instance.equipment.set_image_type || "jpg";
+            img.src = `sets/${instance.equipment.set}-files/img/${eqImageName}${eqDoubleSuffix}.${eqExt}`;
+            
+            eqContainer.appendChild(img);
+            cardEl.appendChild(eqContainer);
+        }
+        
         if (isPermutate1) cardEl.classList.add('grayed-out');
 
         // Events
@@ -4669,7 +5011,7 @@ class BaseCard {
 
         // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot, Feral Exemplar (Only on board, during SHOP)
         const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot', 'Feral Exemplar'];
-        if (state.phase === 'SHOP' && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed) {
+        if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed) {
             cardEl.classList.add('actionable-outline');
             cardEl.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -4678,7 +5020,7 @@ class BaseCard {
             });
         }
 
-        if (state.phase === 'SHOP' && index !== -1 && !state.castingSpell && !state.targetingEffect) {
+        if (state.phase === 'SHOP' && !isShop && index !== -1 && !state.castingSpell && !state.targetingEffect) {
             cardEl.draggable = true;
             cardEl.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'board', index: index, cardId: instance.id }));
@@ -4698,7 +5040,7 @@ class BaseCard {
             });
         }
         
-        if (index !== -1) {
+        if (index !== -1 && !isShop) {
             if (state.castingSpell) { 
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 const isLagoon = state.castingSpell.card_name === 'Lagoon Logistics';

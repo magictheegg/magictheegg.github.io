@@ -27,7 +27,8 @@ def create_autobattler_card_list():
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
         "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
-        "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider"
+        "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
+        "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -69,6 +70,9 @@ def create_autobattler_card_list():
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider"
     ]
+    tier_5_names = [
+        "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown"
+    ]
 
     for name in card_names_to_include:
         match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token'), None)
@@ -76,7 +80,9 @@ def create_autobattler_card_list():
             # Create a copy so we don't modify the source data multiple times if names repeat
             card_copy = dict(match)
             # Add tier information
-            if name in tier_4_names:
+            if name in tier_5_names:
+                card_copy['tier'] = 5
+            elif name in tier_4_names:
                 card_copy['tier'] = 4
             elif name in tier_3_names:
                 card_copy['tier'] = 3
