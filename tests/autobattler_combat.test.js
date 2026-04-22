@@ -455,8 +455,8 @@ function testTriumphantTactics() {
     
     // Cast TT
     tt.onCast(state.battleBoards.player);
-    assert.strictEqual(state.triumphantTacticsActive, true, "Flag should be active");
-    assert.strictEqual(attacker.hasKeyword('Double strike'), true, "Attacker should have Double Strike from flag");
+    assert.strictEqual(attacker.enchantments.some(e => e.card_name === 'Triumphant Tactics'), true, "Attacker should have Triumphant Tactics enchantment");
+    assert.strictEqual(attacker.hasKeyword('Double strike'), true, "Attacker should have Double Strike");
 
     // Hit 1: First Strike
     resolveCombatImpact(attacker, defender, true);
@@ -464,7 +464,7 @@ function testTriumphantTactics() {
     assert.strictEqual(attacker.counters, 1, "Attacker gains 1 counter after dealing damage");
     
     // Simulate cleanup
-    state.triumphantTacticsActive = false;
+    attacker.enchantments = attacker.enchantments.filter(e => !e.isTemporary);
     assert.strictEqual(attacker.hasKeyword('Double strike'), false, "Attacker should lose Double Strike after combat");
 }
 
