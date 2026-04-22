@@ -2686,7 +2686,14 @@ class BaseCard {
     }
 
     function fillShopSlots(creatureBonus = 0, spellBonus = 0) {
-        const creaturesTarget = state.player.tier + 2 + creatureBonus;
+        // Progression: T1=3, T2=4, T3=4, T4=5, T5=6
+        let creaturesTarget = 3;
+        if (state.player.tier === 2) creaturesTarget = 4;
+        else if (state.player.tier === 3) creaturesTarget = 4;
+        else if (state.player.tier === 4) creaturesTarget = 5;
+        else if (state.player.tier === 5) creaturesTarget = 6;
+        
+        creaturesTarget += creatureBonus;
         const spellsTarget = 1 + spellBonus;
 
         // 1. Fill from scry queue first
@@ -4511,10 +4518,16 @@ class BaseCard {
         Object.keys(keywordMap).forEach(kw => {
             // If it HAS the keyword but NOT via inherent rules_text, 
             // it's likely dynamic (embattled, or a lord buff)
-            const hasInherent = instance.rules_text?.toLowerCase().includes(kw.toLowerCase());
+            let hasInherent = instance.rules_text?.toLowerCase().includes(kw.toLowerCase());
+            if (kw === 'First strike' && instance.rules_text?.toLowerCase().includes('agile')) {
+                hasInherent = true;
+            }
             
             // Check if it's granted by its SPECIFIC counter type (flyingCounters for Flying, etc.)
-            const counterProp = kw.toLowerCase().replace(' ', '') + 'Counters';
+            let counterProp = kw.toLowerCase().replace(' ', '') + 'Counters';
+            if (kw === 'First strike') counterProp = 'firstStrikeCounters';
+            if (kw === 'Double strike') counterProp = 'doubleStrikeCounters';
+            
             const hasSpecificCounter = instance[counterProp] > 0;
             
             if (instance.hasKeyword(kw) && !hasInherent && !hasSpecificCounter) {

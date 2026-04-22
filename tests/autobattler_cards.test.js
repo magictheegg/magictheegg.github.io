@@ -209,11 +209,13 @@ function testSoulsmokeAdept() {
     
     assert.strictEqual(adept.getDisplayStats(state.player.board).p, 2, "Not embattled");
     
-    adept.enchantments.push({ card_name: "Faith in Darkness" });
+    adept.enchantments.push({ card_name: "Faith in Darkness", rules_text: "+2/+2", isTemporary: true });
+    adept.tempPower += 2;
+    adept.tempToughness += 2;
     assert.strictEqual(adept.hasKeyword('lifelink'), false, "Enchantment shouldn't trigger lifelink");
     
     adept.counters = 1;
-    assert.strictEqual(adept.getDisplayStats(state.player.board).p, 6, "Embattled (2 base + 1 counter + 1 buff + 2 enchantment)");
+    assert.strictEqual(adept.getDisplayStats(state.player.board).p, 6, "Embattled (2 base + 1 counter + 1 buff + 2 tempPower)");
     assert.strictEqual(adept.hasKeyword('lifelink'), true, "Counter should trigger lifelink");
 }
 
@@ -2037,10 +2039,12 @@ function testTriumphantTactics() {
 
     attacker.owner = 'player';
     defender.owner = 'opponent';
+    state.player.board = [attacker]; // Triumphant Tactics casts on state.player.board
     state.battleBoards = { player: [attacker], opponent: [defender] };
     
     tt.onCast(state.player.board);
-    assert.strictEqual(state.triumphantTacticsActive, true);
+    assert.strictEqual(attacker.enchantments.some(e => e.card_name === 'Triumphant Tactics'), true, "Attacker should have Tactics enchantment");
+    assert.strictEqual(attacker.hasKeyword('double strike'), true, "Attacker should have double strike");
     
     // Combat trigger
     resolveCombatImpact(attacker, defender, true);
@@ -2060,6 +2064,23 @@ function testEarthcoreElemental() {
     
     assert.strictEqual(elemental.tempPower, 5);
     assert.strictEqual(elemental.tempToughness, 5);
+
+    // Combat summon check
+    resetState();
+    state.phase = 'BATTLE';
+    const combatElemental = CardFactory.create({ card_name: "Earthcore Elemental", pt: "4/3", rules_text: "Trample" });
+    combatElemental.owner = 'player';
+    
+    const carcassToken = CardFactory.create({ card_name: "Construct", pt: "2/2", shape: "token" });
+    carcassToken.owner = 'player';
+    
+    state.player.board = [combatElemental];
+    
+    // Simulate summon during combat
+    combatElemental.onOtherCreatureETB(carcassToken, state.player.board);
+    
+    assert.strictEqual(combatElemental.tempPower, 2, "Earthcore Elemental should gain temp power from combat summon (2/2)");
+    assert.strictEqual(combatElemental.tempToughness, 2, "Earthcore Elemental should gain temp toughness from combat summon (2/2)");
 }
 
 function testSavageCongregation() {

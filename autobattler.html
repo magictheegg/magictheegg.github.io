@@ -106,7 +106,8 @@
             margin-left: -50px;
             width: 180px;
             transform-origin: bottom center;
-            transition: transform 0.15s ease-out, margin 0.15s ease-out;
+            transition: transform 0.15s ease-out, margin 0.15s ease-out, opacity 0.15s ease-out;
+            opacity: 0.5;
         }
 
         .fanned-hand .card:first-child { margin-left: 0; }
@@ -114,13 +115,20 @@
         .fanned-hand .card:hover {
             transform: scale(1.3) translateY(-50px) rotate(0deg) !important;
             z-index: 2000 !important;
-            margin-right: 60px;
+            margin-left: 10px;  /* -50px baseline + 60px push */
+            margin-right: 60px; /* 60px push */
             box-shadow: 0 15px 45px rgba(0,0,0,1);
+            opacity: 1;
+        }
+
+        .fanned-hand .card:first-child:hover {
+            margin-left: 60px; /* 0 baseline + 60px push */
         }
 
         /* CARD STYLING */
         .card {
             width: 180px;
+            aspect-ratio: 63 / 88; /* Standard card aspect ratio to prevent layout shifting before image loads */
             background: #000;
             border-radius: 12px;
             position: relative;
