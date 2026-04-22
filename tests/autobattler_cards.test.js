@@ -1641,7 +1641,27 @@ function testCeremonyOfTribes() {
 function testCeremonyOfTribes_NoDoubleTarget() {
     resetState();
     const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
-    const rec = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "2/2" });
+    const rec1 = CardFactory.create({ card_name: "Recruiter 1", pt: "2/2" });
+    const rec2 = CardFactory.create({ card_name: "Recruiter 2", pt: "2/2" });
+    
+    state.player.board = [rec1, rec2];
+    state.player.hand = [cer];
+    rec1.owner = rec2.owner = 'player';
+
+    useCardFromHand(cer.id);
+    applyTargetedEffect(rec1.id);
+    
+    // Step 2: Attempt to target the exact same creature again
+    applyTargetedEffect(rec1.id);
+    
+    assert.strictEqual(state.targetingEffect && state.targetingEffect.effect, 'ceremony_step2', "Should remain in step 2 because double targeting is invalid");
+    assert.strictEqual(state.player.board.length, 2, "Should not create a copy yet");
+}
+
+function testCeremonyOfTribes_SingleTarget() {
+    resetState();
+    const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
+    const rec = CardFactory.create({ card_name: "Lone Recruiter", pt: "2/2" });
     
     state.player.board = [rec];
     state.player.hand = [cer];
@@ -1650,11 +1670,8 @@ function testCeremonyOfTribes_NoDoubleTarget() {
     useCardFromHand(cer.id);
     applyTargetedEffect(rec.id);
     
-    // Step 2: Attempt to target the exact same creature again
-    applyTargetedEffect(rec.id);
-    
-    assert.strictEqual(state.targetingEffect && state.targetingEffect.effect, 'ceremony_step2', "Should remain in step 2 because double targeting is invalid");
-    assert.strictEqual(state.player.board.length, 1, "Should not create a copy yet");
+    assert.strictEqual(state.targetingEffect, null, "Should finish immediately with only one target");
+    assert.strictEqual(state.player.board.length, 2, "Should have created a copy of the lone creature");
 }
 
 function testCeremonyOfTribes_NoCastBuffForCopies() {
@@ -2434,6 +2451,7 @@ function runTests() {
         { tier: 4, name: "Hissing Sunspitter", fn: testHissingSunspitter },
         { tier: 4, name: "Ceremony of Tribes", fn: testCeremonyOfTribes },
         { tier: 4, name: "Ceremony of Tribes (No Double Target)", fn: testCeremonyOfTribes_NoDoubleTarget },
+        { tier: 4, name: "Ceremony of Tribes (Single Target)", fn: testCeremonyOfTribes_SingleTarget },
         { tier: 4, name: "Ceremony of Tribes (No Copy Buff)", fn: testCeremonyOfTribes_NoCastBuffForCopies },
         { tier: 4, name: "Ceremony of Tribes (ETB Order)", fn: testCeremonyOfTribes_ETBOrder },
         { tier: 4, name: "Ghessian Memories", fn: testGhessianMemories },

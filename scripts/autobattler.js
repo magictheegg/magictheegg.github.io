@@ -2082,8 +2082,8 @@ class BaseCard {
         tierStarsEl.innerHTML = '';
         const starsDiv = document.createElement('div');
         starsDiv.className = 'star';
-        if (state.player.tier === 4) {
-            starsDiv.innerHTML = '★★<br>★★';
+        if (state.player.tier === 3 || state.player.tier === 4) {
+            starsDiv.innerHTML = '★★<br>' + '★'.repeat(state.player.tier - 2);
         } else {
             starsDiv.textContent = '★'.repeat(state.player.tier);
         }
@@ -3341,24 +3341,32 @@ class BaseCard {
                 }
 
                 clearTargetingEffect();
-            } else if (state.targetingEffect.effect === 'ceremony_step1') {
-                state.targetingEffect.target1Id = target.id;
-                state.targetingEffect.effect = 'ceremony_step2';
-            } else if (state.targetingEffect.effect === 'ceremony_step2') {
-                if (target.id === state.targetingEffect.target1Id) {
-                    // Invalid target (cannot select the same creature twice)
-                    return; 
+            } else if (state.targetingEffect.effect === 'ceremony_step1' || state.targetingEffect.effect === 'ceremony_step2') {
+                const isStep1 = state.targetingEffect.effect === 'ceremony_step1';
+                
+                if (!isStep1 && target.id === state.targetingEffect.target1Id) {
+                    return; // Invalid second target
                 }
 
+                if (isStep1) {
+                    state.targetingEffect.target1Id = target.id;
+                    if (state.player.board.length > 1) {
+                        state.targetingEffect.effect = 'ceremony_step2';
+                        render();
+                        return;
+                    }
+                }
+
+                // Resolution (Either Step 2, OR Step 1 if only 1 creature)
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
-                const t2 = target;
+                const t2 = isStep1 ? null : target;
                 const multiplier = state.targetingEffect.spellInstance.isFoil ? 2 : 1;
                 const isFoilCast = state.targetingEffect.spellInstance.isFoil;
 
-                // Resolve the "spell cast" triggers on the EXISTING board before adding tokens
+                // Resolve "spell cast" triggers
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
                 
-                // Cleanup spell from hand
+                // Cleanup spell
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
@@ -3385,7 +3393,6 @@ class BaseCard {
                     if (t2) createCopy(t2);
                 }
 
-                // Batch ETBs after ALL tokens are on the board
                 createdTokens.forEach(token => {
                     triggerETB(token, state.player.board);
                     state.player.board.forEach(c => {
@@ -4334,7 +4341,9 @@ class BaseCard {
                                 
                                 let tier = card.tier || 1;
                                 let starsStr = '★'.repeat(tier);
-                                if (tier === 4) starsStr = '★★<br>★★';
+                                if (tier === 3 || tier === 4) {
+                                    starsStr = '★★<br>' + '★'.repeat(tier - 2);
+                                }
                                 costEl.innerHTML = `<div class="star">${starsStr}</div>`;
                             }
                         }
@@ -4457,7 +4466,9 @@ class BaseCard {
             costEl.classList.remove('spell-cost');
             const tier = instance.tier || 1;
             let starsStr = '★'.repeat(tier);
-            if (tier === 4) starsStr = '★★<br>★★';
+            if (tier === 3 || tier === 4) {
+                starsStr = '★★<br>' + '★'.repeat(tier - 2);
+            }
             costEl.innerHTML = `<div class="star">${starsStr}</div>`;
         } else if (!isCreature && isShop) {
             costEl.style.display = 'flex';
