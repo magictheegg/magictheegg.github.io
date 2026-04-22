@@ -8,6 +8,7 @@ class BaseCard {
             this.flyingCounters = Number(this.flyingCounters) || 0;
             this.menaceCounters = Number(this.menaceCounters) || 0;
             this.firstStrikeCounters = Number(this.firstStrikeCounters) || 0;
+            this.doubleStrikeCounters = Number(this.doubleStrikeCounters) || 0;
             this.vigilanceCounters = Number(this.vigilanceCounters) || 0;
             this.lifelinkCounters = Number(this.lifelinkCounters) || 0;
             this.trampleCounters = Number(this.trampleCounters) || 0;
@@ -44,12 +45,6 @@ class BaseCard {
             let p = (base.p || 0) + (this.counters || 0);
             let t = (base.t || 0) + (this.counters || 0);
             let maxT = t;
-
-            if (this.enchantments) {
-                this.enchantments.forEach(e => {
-                    if (e.card_name === "Faith in Darkness") { p += 2; t += 2; maxT += 2; }
-                });
-            }
 
             p += (this.tempPower || 0);
             t += (this.tempToughness || 0);
@@ -169,7 +164,7 @@ class BaseCard {
             if (kw === 'trample' && this.trampleCounters > 0) return true;
             if (kw === 'reach' && this.reachCounters > 0) return true;
             if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
-            if (kw === 'double strike' && state.triumphantTacticsActive && this.owner === 'player') return true;
+            if (kw === 'double strike' && this.doubleStrikeCounters > 0) return true;
             
             // STATIC BOARD EFFECTS
             const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
@@ -384,8 +379,7 @@ class BaseCard {
 
     class ToBattle extends BaseCard {
         onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            target.counters += multiplier;
+            target.counters += 1;
             if (!target.enchantments) target.enchantments = [];
             target.enchantments.push({ card_name: 'To Battle', rules_text: 'Haste', isTemporary: true });
         }
@@ -393,17 +387,18 @@ class BaseCard {
 
     class FaithInDarkness extends BaseCard {
         onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            addScry(1 * multiplier);
+            addScry(1);
+            target.tempPower += 2;
+            target.tempToughness += 2;
             if (!target.enchantments) target.enchantments = [];
-            target.enchantments.push(this);
+            target.enchantments.push({ card_name: 'Faith in Darkness', rules_text: '+2/+2', isTemporary: true });
         }
     }
 
     class ByBloodAndVenom extends BaseCard {
         onApply(target, board) {
             if (!target.enchantments) target.enchantments = [];
-            target.enchantments.push(this);
+            target.enchantments.push({ card_name: 'By Blood and Venom', rules_text: 'Resurrection', isTemporary: true });
         }
     }
 
@@ -822,7 +817,10 @@ class BaseCard {
 
     class TriumphantTactics extends BaseCard {
         onCast(board) {
-            state.triumphantTacticsActive = true;
+            board.forEach(c => {
+                if (!c.enchantments) c.enchantments = [];
+                c.enchantments.push({ card_name: 'Triumphant Tactics', rules_text: 'Double strike', isTemporary: true });
+            });
         }
     }
 
@@ -1021,7 +1019,7 @@ class BaseCard {
             if (kw === 'trample' && this.trampleCounters > 0) return true;
             if (kw === 'reach' && this.reachCounters > 0) return true;
             if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
-            if (kw === 'double strike' && state.triumphantTacticsActive && this.owner === 'player') return true;
+            if (kw === 'double strike' && this.doubleStrikeCounters > 0) return true;
 
             // Check enchantments (including temporary ones granted by this ability)
             if (this.enchantments?.some(e => {
@@ -1667,7 +1665,6 @@ class BaseCard {
         overallHpReducedThisFight: false,
         deadServantsCount: 0,
         spellsCastThisTurn: 0,
-        triumphantTacticsActive: false,
         panharmoniconActive: false
     };
 
@@ -2662,7 +2659,6 @@ class BaseCard {
         });
 
         state.player.fightHp = 5 + (5 * state.player.tier);
-        state.triumphantTacticsActive = false;
         state.panharmoniconActive = false;
         state.currentOpponentId = (state.currentOpponentId + 1) % state.opponents.length;
         state.battleBoards = null;
@@ -3633,8 +3629,8 @@ class BaseCard {
                 }
             }
 
-            // TRIUMPHANT TACTICS TRIGGER (Temporary +1/+1 on damage)
-            if (state.triumphantTacticsActive && attacker.owner === 'player' && defenderDamageTaken > 0) {
+            // TRIUMPHANT TACTICS TRIGGER (Permanent +1/+1 on damage)
+            if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && defenderDamageTaken > 0) {
                 attacker.counters++;
             }
 
@@ -3685,7 +3681,7 @@ class BaseCard {
                     if (attacker.owner === 'player') {
                         if (currentOppAttack) currentOppAttack.fightHp -= overflow;
                         // TRIUMPHANT TACTICS TRIGGER
-                        if (state.triumphantTacticsActive && overflow > 0) {
+                        if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && overflow > 0) {
                             attacker.counters++;
                         }
                     } else state.player.fightHp -= overflow;
@@ -3723,7 +3719,7 @@ class BaseCard {
              if (attacker.owner === 'player') {
                 if (currentOppAttack) currentOppAttack.fightHp -= amount;
                 // TRIUMPHANT TACTICS TRIGGER
-                if (state.triumphantTacticsActive && amount > 0) {
+                if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && amount > 0) {
                     attacker.counters++;
                 }
              } else state.player.fightHp -= amount;
@@ -4001,10 +3997,7 @@ class BaseCard {
                     // Spell logic for AI: apply to best target
                     const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
                     if (target || ['Divination', 'Scientific Inquiry'].includes(cardToBuy.card_name)) {
-                        if (cardToBuy.card_name === 'To Battle' && target) target.counters++;
-                        else if (target) {
-                            target.enchantments.push(cardToBuy);
-                        }
+                        cardToBuy.onApply(target, opp.board);
                         
                         // AI-specific noncreature cast effects using OO hook
                         opp.board.forEach(c => c.onNoncreatureCast(false, opp.board));
@@ -4480,6 +4473,67 @@ class BaseCard {
         
         const counterStackEl = cardEl.querySelector('.card-counter-stack');
         counterStackEl.innerHTML = '';
+
+        // Ghost Indicators for temporary keywords
+        const ghostContainer = document.createElement('div');
+        ghostContainer.className = 'ghost-indicator-container';
+        cardEl.appendChild(ghostContainer);
+
+        const keywordMap = {
+            'Flying': 'img/flying.png',
+            'Menace': 'img/menace.png',
+            'First strike': 'img/first-strike.png',
+            'Double strike': 'img/double-strike.png',
+            'Vigilance': 'img/vigilance.png',
+            'Lifelink': 'img/lifelink.png',
+            'Trample': 'img/trample.png',
+            'Reach': 'img/reach.png',
+            'Hexproof': 'img/hexproof.png',
+            'Indestructible': 'img/indestructible.png',
+            'Haste': 'img/haste.png',
+            'Shield': 'img/shield.png'
+        };
+
+        const tempKeywords = new Set();
+        if (instance.enchantments) {
+            instance.enchantments.forEach(e => {
+                if (e.isTemporary && e.rules_text) {
+                    Object.keys(keywordMap).forEach(kw => {
+                        if (e.rules_text.toLowerCase().includes(kw.toLowerCase())) {
+                            tempKeywords.add(kw);
+                        }
+                    });
+                }
+            });
+        }
+
+        // Add Embattled/Dynamic keywords
+        Object.keys(keywordMap).forEach(kw => {
+            // If it HAS the keyword but NOT via inherent rules_text, 
+            // it's likely dynamic (embattled, or a lord buff)
+            const hasInherent = instance.rules_text?.toLowerCase().includes(kw.toLowerCase());
+            
+            // Check if it's granted by its SPECIFIC counter type (flyingCounters for Flying, etc.)
+            const counterProp = kw.toLowerCase().replace(' ', '') + 'Counters';
+            const hasSpecificCounter = instance[counterProp] > 0;
+            
+            if (instance.hasKeyword(kw) && !hasInherent && !hasSpecificCounter) {
+                tempKeywords.add(kw);
+            }
+        });
+
+        tempKeywords.forEach(kw => {
+            const indicator = document.createElement('div');
+            // Add both base class and keyword-specific class (e.g., 'ghost-indicator flying')
+            const keywordClass = kw.toLowerCase().replace(' ', '-');
+            indicator.className = `ghost-indicator ${keywordClass}`;
+            
+            const img = document.createElement('img');
+            img.src = keywordMap[kw];
+            img.alt = kw;
+            indicator.appendChild(img);
+            ghostContainer.appendChild(indicator);
+        });
         
         const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || state.targetingEffect?.effect === 'cloudline_sovereign_step1';
 

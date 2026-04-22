@@ -874,6 +874,58 @@
             transition: transform 0.6s ease-in, opacity 0.6s ease-in !important;
         }
 
+        /* GHOST INDICATORS */
+        .ghost-indicator-container {
+            position: absolute;
+            bottom: 48px;
+            right: 8px;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 2px;
+            width: auto;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .ghost-indicator {
+            width: 36px;
+            height: 36px;
+            opacity: 0.8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.1);
+            mask-image: radial-gradient(circle, black 50%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
+        }
+
+        /* GHOST COLORS */
+        .ghost-indicator.flying { background-color: #87ceeb; }
+        .ghost-indicator.menace { background-color: #ffcccb; }
+        .ghost-indicator.first-strike { background-color: #ffff99; }
+        .ghost-indicator.double-strike { background-color: #ffff99; }
+        .ghost-indicator.vigilance { background-color: #90ee90; }
+        .ghost-indicator.lifelink { background-color: #fffdd0; }
+        .ghost-indicator.shield, .ghost-indicator.indestructible { background-color: #b0b0b0; }
+        .ghost-indicator.hexproof { background-color: #e0b0ff; }
+        .ghost-indicator.reach { background-color: #dfff00; }
+        .ghost-indicator.trample { background-color: #77dd77; }
+        .ghost-indicator.haste { background-color: #ff4500; }
+
+        .ghost-indicator img {
+            width: 65%;
+            height: 65%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 2px black);
+        }
+
+        .ghost-indicator-container > :nth-child(3n+1):nth-last-child(-n+3),
+        .ghost-indicator-container > :nth-child(3n+1):nth-last-child(-n+3) ~ * {
+            /* This targets rows to ensure they cascade correctly if we ever want specific row logic */
+        }
+
         @keyframes foil-shimmer {
             0% { filter: brightness(1) contrast(1); }
             50% { filter: brightness(1.2) contrast(1.1) saturate(1.2); }
