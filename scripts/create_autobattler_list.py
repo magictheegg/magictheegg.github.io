@@ -26,7 +26,8 @@ def create_autobattler_card_list():
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
         "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
-        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion"
+        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
+        "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -65,7 +66,8 @@ def create_autobattler_card_list():
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
         "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
-        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion"
+        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
+        "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider"
     ]
 
     for name in card_names_to_include:

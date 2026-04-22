@@ -731,6 +731,18 @@ function testFightSong() {
     spell.onApply(target, []);
     assert.strictEqual(target.counters, 1);
     assert.strictEqual(target.hasKeyword('indestructible'), true);
+
+    // End combat simulation
+    [target].forEach(c => { 
+        c.tempPower = 0; 
+        c.tempToughness = 0; 
+        c.isLockedByChivalry = false;
+        c.damageTaken = 0;
+        c.isDestroyed = false;
+        c.enchantments = c.enchantments.filter(e => !e.isTemporary); 
+    });
+
+    assert.strictEqual(target.hasKeyword('indestructible'), false, "Indestructible should wear off after cleanup");
 }
 
 function testEdgeOfTheirSeats() {
@@ -1198,6 +1210,7 @@ function testBellowingGiant() {
 }
 
 function testBwemaTheRuthless() {
+    const allProps = ['menaceCounters', 'firstStrikeCounters', 'vigilanceCounters', 'lifelinkCounters'];
     const combos = [
         ['Menace Counter', 'First Strike Counter', 'menaceCounters', 'firstStrikeCounters'],
         ['Menace Counter', 'Vigilance Counter', 'menaceCounters', 'vigilanceCounters'],
@@ -1221,6 +1234,26 @@ function testBwemaTheRuthless() {
 
         assert.strictEqual(bwema[prop1], 1, `Should have ${prop1}`);
         assert.strictEqual(bwema[prop2], 1, `Should have ${prop2}`);
+        
+        // Negative assertions (Counters)
+        allProps.filter(p => p !== prop1 && p !== prop2).forEach(p => {
+            assert.strictEqual(bwema[p], 0, `Should NOT have ${p}`);
+        });
+
+        // "Honest" assertions (Keywords)
+        const kwMap = {
+            'menaceCounters': 'menace',
+            'firstStrikeCounters': 'first strike',
+            'vigilanceCounters': 'vigilance',
+            'lifelinkCounters': 'lifelink'
+        };
+
+        Object.keys(kwMap).forEach(prop => {
+            const kw = kwMap[prop];
+            const expected = (prop === prop1 || prop === prop2);
+            assert.strictEqual(bwema.hasKeyword(kw), expected, `Bwema hasKeyword(${kw}) should be ${expected}`);
+        });
+
         assert.strictEqual(state.discovery, null);
     });
 }
@@ -1392,7 +1425,7 @@ function testSuitorOfDeath() {
     processDeaths(state.battleBoards.player, 'player');
     
     assert.strictEqual(healthyVictim.isDestroyed, true, "Healthy opponent creature should be sacrificed");
-    assert.strictEqual(dyingVictim.isDestroyed, undefined, "Already dying creature should not be picked");
+    assert.strictEqual(dyingVictim.isDestroyed, false, "Already dying creature should not be picked");
 
     // Shop death (sale) does nothing
     resetState();
@@ -1757,7 +1790,7 @@ function testHexproof_SuitorOfDeath_Fizzle() {
 
     processDeaths(state.battleBoards.player, 'player');
     
-    assert.strictEqual(hexVictim.isDestroyed, undefined, "Hexproof creature should NOT be destroyed (Fizzled)");
+    assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed (Fizzled)");
 }
 
 function testHexproof_SuitorOfDeath_Targeting() {
@@ -1777,7 +1810,7 @@ function testHexproof_SuitorOfDeath_Targeting() {
 
     processDeaths(state.battleBoards.player, 'player');
     
-    assert.strictEqual(hexVictim.isDestroyed, undefined, "Hexproof creature should NOT be destroyed");
+    assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
     assert.strictEqual(normalVictim.isDestroyed, true, "Normal creature MUST be the one destroyed");
 }
 
@@ -1859,7 +1892,7 @@ function testHexproof_SuitorOfDeath_Fizzle() {
     suitor.owner = 'player'; hexVictim.owner = 'opponent';
     suitor.isDying = true; state.phase = 'BATTLE';
     processDeaths(state.battleBoards.player, 'player');
-    assert.strictEqual(hexVictim.isDestroyed, undefined, "Hexproof creature should NOT be destroyed");
+    assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
 }
 
 function testHexproof_SuitorOfDeath_Targeting() {
@@ -1871,7 +1904,7 @@ function testHexproof_SuitorOfDeath_Targeting() {
     suitor.owner = 'player'; hexVictim.owner = normalVictim.owner = 'opponent';
     suitor.isDying = true; state.phase = 'BATTLE';
     processDeaths(state.battleBoards.player, 'player');
-    assert.strictEqual(hexVictim.isDestroyed, undefined);
+    assert.strictEqual(hexVictim.isDestroyed, false);
     assert.strictEqual(normalVictim.isDestroyed, true, "Normal creature MUST be destroyed instead");
 }
 
@@ -2215,6 +2248,92 @@ function testArtfulCoercion() {
     assert.strictEqual(shopWeak.counters, 2, "Weakest creature (ShopWeak) should receive 2 counters");
 }
 
+function testMagnificWilderkin() {
+    resetState();
+    const wilderkin = CardFactory.create({ card_name: "Magnific Wilderkin", pt: "3/3" });
+    const flyer1 = CardFactory.create({ card_name: "Flyer1", pt: "1/1", rules_text: "Flying" });
+    const flyer2 = CardFactory.create({ card_name: "Flyer2", pt: "1/1", rules_text: "Flying" });
+    const trampler = CardFactory.create({ card_name: "Trampler", pt: "2/2", rules_text: "Trample" });
+    
+    state.player.board = [wilderkin, flyer1, flyer2, trampler];
+    wilderkin.owner = flyer1.owner = flyer2.owner = trampler.owner = 'player';
+    
+    wilderkin.onCombatStart(state.player.board);
+    
+    // Keywords found: Flying (from 2 sources), Trample (from 1 source)
+    // Should get +2/+2 and 2 keywords
+    assert.strictEqual(wilderkin.tempPower, 2, "Should only gain +1/+1 per UNIQUE keyword found across the board");
+    assert.strictEqual(wilderkin.hasKeyword('flying'), true);
+    assert.strictEqual(wilderkin.hasKeyword('trample'), true);
+}
+
+function testDwarvenPhalanx() {
+    resetState();
+    const phalanx = CardFactory.create({ card_name: "Dwarven Phalanx", pt: "4/5" });
+    state.player.board = [phalanx];
+    phalanx.owner = 'player';
+    
+    // Case 1: Alone (No targets)
+    phalanx.onCombatStart(state.player.board);
+    assert.strictEqual(phalanx.counters, 0, "Phalanx should not be able to target itself");
+    assert.strictEqual(phalanx.hasKeyword('indestructible'), false);
+
+    // Case 2: Another target
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    state.player.board.push(target);
+    target.owner = 'player';
+    phalanx.onCombatStart(state.player.board);
+    assert.strictEqual(target.counters, 1);
+    assert.strictEqual(target.hasKeyword('indestructible'), true);
+}
+
+function testLairRecluse() {
+    resetState();
+    const recluse = CardFactory.create({ card_name: "Lair Recluse", pt: "4/5" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    state.player.board = [recluse];
+    recluse.owner = other.owner = 'player';
+    
+    recluse.onETB(state.player.board);
+    assert.strictEqual(recluse.vigilanceCounters, 1);
+    assert.strictEqual(recluse.reachCounters, 1);
+    
+    // 1. Solitary Check: Should NOT trigger if alone
+    recluse.onShopStart(state.player.board);
+    assert.strictEqual(state.targetingEffect, null, "Should not trigger permutate if solitary");
+    
+    // 2. Pair Check: Should trigger
+    state.player.board.push(other);
+    recluse.onShopStart(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'permutate_step1');
+    assert.strictEqual(state.targetingEffect.isMandatory, false, "Step 1 should be optional");
+    
+    // 3. Counter Removal (Reach)
+    applyTargetedEffect(recluse.id, 'reach');
+    assert.strictEqual(recluse.reachCounters, 0, "Reach counter should be removed");
+    assert.strictEqual(state.targetingEffect.effect, 'permutate_step2');
+    assert.strictEqual(state.targetingEffect.isMandatory, true, "Step 2 should be mandatory once counter removed");
+
+    // 4. Hand Targeting Check: Should NOT be able to target card in hand
+    const handCard = CardFactory.create({ card_name: "Hand Card", pt: "2/2" });
+    state.player.hand = [handCard];
+    applyTargetedEffect(handCard.id); // Should fail to find target and do nothing
+    assert.strictEqual(state.targetingEffect.effect, 'permutate_step2', "Targeting should still be active");
+    assert.strictEqual(handCard.counters, 0, "Hand card should not have received counters");
+
+    // 5. Board targeting (Valid)
+    applyTargetedEffect(other.id);
+    assert.strictEqual(other.counters, 2, "Other board creature should have received counters");
+    assert.strictEqual(state.targetingEffect, null, "Targeting should be finished");
+}
+
+function testTunnelWebSpider() {
+    resetState();
+    const spider = CardFactory.create({ card_name: "Tunnel Web Spider", rules_text: "Reach, deathtouch" });
+    assert.strictEqual(spider.hasKeyword('reach'), true);
+    assert.strictEqual(spider.hasKeyword('deathtouch'), true);
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -2337,7 +2456,11 @@ function runTests() {
         { tier: 4, name: "Pyrewright Trainee", fn: testPyrewrightTrainee },
         { tier: 4, name: "Lagoon Logistics", fn: testLagoonLogistics },
         { tier: 4, name: "Flaunt Luxury", fn: testFlauntLuxury },
-        { tier: 4, name: "Artful Coercion", fn: testArtfulCoercion }
+        { tier: 4, name: "Artful Coercion", fn: testArtfulCoercion },
+        { tier: 4, name: "Magnific Wilderkin", fn: testMagnificWilderkin },
+        { tier: 4, name: "Dwarven Phalanx", fn: testDwarvenPhalanx },
+        { tier: 4, name: "Lair Recluse", fn: testLairRecluse },
+        { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider }
     ];
 
     console.log("\nUNIT TEST RESULTS");

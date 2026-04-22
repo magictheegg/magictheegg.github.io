@@ -2,9 +2,11 @@
 const mockElement = () => ({
     addEventListener: () => {},
     removeEventListener: () => {},
+    remove: () => {},
     appendChild: () => {},
     querySelectorAll: () => [],
     querySelector: () => mockElement(),
+    getBoundingClientRect: () => ({ top: 0, left: 0, width: 100, height: 100 }),
     classList: { add: () => {}, remove: () => {}, toggle: () => {} },
     style: {},
     innerHTML: '',
@@ -31,6 +33,7 @@ if (typeof document === 'undefined') {
         innerHeight: 1080,
         getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' })
     };
+    global.requestAnimationFrame = (cb) => setTimeout(cb, 16);
     global.WebKitCSSMatrix = class { constructor() { this.a = 1; } };
 }
 
@@ -483,6 +486,83 @@ function testTriumphantTactics_FaceDamage() {
     assert.strictEqual(attacker.counters, 1, "Attacker should gain a counter when dealing damage to face");
 }
 
+function testDeathtouch() {
+    resetState();
+    const attacker = CardFactory.create({ card_name: "Deathtouch Attacker", pt: "1/1", rules_text: "Deathtouch" });
+    const defender = CardFactory.create({ card_name: "Big Defender", pt: "1/5" });
+    
+    attacker.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [defender] };
+
+    // Case 1: Attacker with Deathtouch kills big blocker
+    resolveCombatImpact(attacker, defender);
+    assert.strictEqual(defender.isDestroyed, true, "Big defender should be marked as isDestroyed by Deathtouch");
+
+    // Case 2: Defender with Deathtouch kills big attacker (retaliation)
+    resetState();
+    const bigAttacker = CardFactory.create({ card_name: "Big Attacker", pt: "5/5" });
+    const dtDefender = CardFactory.create({ card_name: "Deathtouch Defender", pt: "1/1", rules_text: "Deathtouch" });
+    bigAttacker.owner = 'player';
+    dtDefender.owner = 'opponent';
+    state.battleBoards = { player: [bigAttacker], opponent: [dtDefender] };
+    
+    resolveCombatImpact(bigAttacker, dtDefender);
+    assert.strictEqual(bigAttacker.isDestroyed, true, "Big attacker should be marked as isDestroyed by Deathtouch retaliation");
+
+    // Case 3: First Strike + Deathtouch kills before retaliation
+    resetState();
+    const fsDtAttacker = CardFactory.create({ card_name: "FS DT Attacker", pt: "1/1", rules_text: "First strike, Deathtouch" });
+    const bigDefender2 = CardFactory.create({ card_name: "Big Defender 2", pt: "5/5" });
+    fsDtAttacker.owner = 'player';
+    bigDefender2.owner = 'opponent';
+    state.battleBoards = { player: [fsDtAttacker], opponent: [bigDefender2] };
+    
+    // Impact 1: FS hits
+    resolveCombatImpact(fsDtAttacker, bigDefender2, true);
+    assert.strictEqual(bigDefender2.isDestroyed, true, "Big defender should be marked isDestroyed by FS DT hit");
+
+    // Case 4: Deathtouch vs Shield Counter
+    resetState();
+    const dtAttacker = CardFactory.create({ card_name: "DT Attacker", pt: "1/1", rules_text: "Deathtouch" });
+    const shieldDefender = CardFactory.create({ card_name: "Shield Defender", pt: "1/1", shieldCounters: 1 });
+    dtAttacker.owner = 'player';
+    shieldDefender.owner = 'opponent';
+    state.battleBoards = { player: [dtAttacker], opponent: [shieldDefender] };
+    
+    resolveCombatImpact(dtAttacker, shieldDefender);
+    assert.strictEqual(shieldDefender.shieldCounters, 0, "Shield should be removed");
+    assert.strictEqual(shieldDefender.isDestroyed, false, "Should NOT be marked isDestroyed after shield save");
+
+    // Case 5: Deathtouch vs Indestructible
+    resetState();
+    const dtAttacker2 = CardFactory.create({ card_name: "DT Attacker 2", pt: "1/1", rules_text: "Deathtouch" });
+    const indestructibleDefender = CardFactory.create({ card_name: "Indestructible Defender", pt: "5/5", rules_text: "Indestructible" });
+    dtAttacker2.owner = 'player';
+    indestructibleDefender.owner = 'opponent';
+    state.battleBoards = { player: [dtAttacker2], opponent: [indestructibleDefender] };
+    
+    resolveCombatImpact(dtAttacker2, indestructibleDefender);
+    assert.strictEqual(indestructibleDefender.isDestroyed, false, "Indestructible should save from DT");
+    assert.strictEqual(indestructibleDefender.indestructibleUsed, true, "Indestructible should be marked as used");
+    assert.strictEqual(indestructibleDefender.getDisplayStats(state.battleBoards.opponent).t, 1, "Toughness should be reduced to 1 by the save");
+
+    // Case 6: Deathtouch + Trample Splash
+    resetState();
+    const dtTrampler = CardFactory.create({ card_name: "DT Trampler", pt: "4/4", rules_text: "Deathtouch, Trample" });
+    const blocker = CardFactory.create({ card_name: "Blocker", pt: "3/3" });
+    const neighbor = CardFactory.create({ card_name: "Neighbor", pt: "1/5" });
+    
+    dtTrampler.owner = 'player';
+    blocker.owner = neighbor.owner = 'opponent';
+    state.battleBoards = { player: [dtTrampler], opponent: [blocker, neighbor] };
+    
+    // Blocker has 3 toughness, 4 power trampler deals 3 to blocker, 1 to neighbor
+    resolveCombatImpact(dtTrampler, blocker);
+    assert.strictEqual(blocker.isDestroyed, true, "Blocker killed by DT");
+    assert.strictEqual(neighbor.isDestroyed, true, "Neighbor killed by DT splash damage (1 damage)");
+}
+
 function runTests() {
     const allTests = [
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
@@ -505,7 +585,8 @@ function runTests() {
         { name: "Alternating Sides on Trade", fn: testAlternatingSidesOnTrade },
         { name: "Haste Priority", fn: testHastePriority },
         { name: "Triumphant Tactics", fn: testTriumphantTactics },
-        { name: "Triumphant Tactics (Face)", fn: testTriumphantTactics_FaceDamage }
+        { name: "Triumphant Tactics (Face)", fn: testTriumphantTactics_FaceDamage },
+        { name: "Deathtouch", fn: testDeathtouch }
     ];
 
     const results = [];

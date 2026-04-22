@@ -11,6 +11,7 @@ class BaseCard {
             this.vigilanceCounters = Number(this.vigilanceCounters) || 0;
             this.lifelinkCounters = Number(this.lifelinkCounters) || 0;
             this.trampleCounters = Number(this.trampleCounters) || 0;
+            this.reachCounters = Number(this.reachCounters) || 0;
             this.hexproofCounters = Number(this.hexproofCounters) || 0;
             this.shieldCounters = Number(this.shieldCounters) || 0;
             this.damageTaken = Number(this.damageTaken) || 0;
@@ -19,14 +20,15 @@ class BaseCard {
             this.tempToughness = Number(this.tempToughness) || 0;
             this.isLockedByChivalry = this.isLockedByChivalry || false;
             this.isFoil = this.isFoil || false;
+            this.isDestroyed = false;
         }
 
         get isEmbattled() {
             return (this.counters > 0) || (this.flyingCounters > 0) || 
                    (this.menaceCounters > 0) || (this.firstStrikeCounters > 0) ||
                    (this.vigilanceCounters > 0) || (this.lifelinkCounters > 0) ||
-                   (this.trampleCounters > 0) || (this.hexproofCounters > 0) ||
-                   (this.shieldCounters > 0);
+                   (this.trampleCounters > 0) || (this.reachCounters > 0) ||
+                   (this.hexproofCounters > 0) || (this.shieldCounters > 0);
         }
 
         // Returns base power/toughness from the 'pt' string
@@ -165,6 +167,7 @@ class BaseCard {
             if (kw === 'vigilance' && this.vigilanceCounters > 0) return true;
             if (kw === 'lifelink' && this.lifelinkCounters > 0) return true;
             if (kw === 'trample' && this.trampleCounters > 0) return true;
+            if (kw === 'reach' && this.reachCounters > 0) return true;
             if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
             if (kw === 'double strike' && state.triumphantTacticsActive && this.owner === 'player') return true;
             
@@ -180,7 +183,7 @@ class BaseCard {
                 return regex.test(text);
             })) return true;
 
-            if (!this.rules_text) return false;
+            if (!this.rules_text || ['Magnific Wilderkin', 'Bwema, the Ruthless'].includes(this.card_name)) return false;
             const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
             return regex.test(this.rules_text);
         }
@@ -193,6 +196,8 @@ class BaseCard {
             newCard.firstStrikeCounters = this.firstStrikeCounters;
             newCard.vigilanceCounters = this.vigilanceCounters;
             newCard.lifelinkCounters = this.lifelinkCounters;
+            newCard.trampleCounters = this.trampleCounters;
+            newCard.reachCounters = this.reachCounters;
             newCard.shieldCounters = this.shieldCounters;
             newCard.isFoil = this.isFoil;
             newCard.indestructibleUsed = this.indestructibleUsed;
@@ -211,6 +216,7 @@ class BaseCard {
                 if (c.vigilanceCounters > 0) c.vigilanceCounters += multiplier;
                 if (c.lifelinkCounters > 0) c.lifelinkCounters += multiplier;
                 if (c.trampleCounters > 0) c.trampleCounters += multiplier;
+                if (c.reachCounters > 0) c.reachCounters += multiplier;
                 if (c.hexproofCounters > 0) c.hexproofCounters += multiplier;
                 if (c.shieldCounters > 0) c.shieldCounters += multiplier;
             }
@@ -381,7 +387,7 @@ class BaseCard {
             const multiplier = this.isFoil ? 2 : 1;
             target.counters += multiplier;
             if (!target.enchantments) target.enchantments = [];
-            target.enchantments.push({ card_name: 'To Battle', rules_text: 'Haste' });
+            target.enchantments.push({ card_name: 'To Battle', rules_text: 'Haste', isTemporary: true });
         }
     }
 
@@ -458,7 +464,7 @@ class BaseCard {
     class DynamicWyvern extends BaseCard {
         onNoncreatureCast(isFoilCast, board) {
             if (!this.enchantments) this.enchantments = [];
-            this.enchantments.push({ card_name: 'Dynamic Wyvern Grant', rules_text: 'Flying' });
+            this.enchantments.push({ card_name: 'Dynamic Wyvern Grant', rules_text: 'Flying', isTemporary: true });
         }
     }
 
@@ -493,7 +499,7 @@ class BaseCard {
                     c.tempPower += multiplier;
                     c.tempToughness += multiplier;
                     if (!c.enchantments) c.enchantments = [];
-                    c.enchantments.push({ card_name: 'Envoy Grant', rules_text: 'Vigilance' });
+                    c.enchantments.push({ card_name: 'Envoy Grant', rules_text: 'Vigilance', isTemporary: true });
                 }
             });
         }
@@ -769,7 +775,7 @@ class BaseCard {
                     if (c.owner === 'player') {
                         if (!c.enchantments) c.enchantments = [];
                         if (!c.enchantments.some(e => e.card_name === 'Sunspitter FS')) {
-                            c.enchantments.push({ card_name: 'Sunspitter FS', rules_text: 'First strike' });
+                            c.enchantments.push({ card_name: 'Sunspitter FS', rules_text: 'First strike', isTemporary: true });
                         }
                     }
                 });
@@ -1003,6 +1009,90 @@ class BaseCard {
         }
     }
 
+    class MagnificWilderkin extends BaseCard {
+        hasKeyword(keyword) {
+            const kw = keyword.toLowerCase();
+            // Check counters (Agile logic not needed here as Wilderkin doesn't have it natively)
+            if (kw === 'flying' && this.flyingCounters > 0) return true;
+            if (kw === 'menace' && this.menaceCounters > 0) return true;
+            if (kw === 'first strike' && this.firstStrikeCounters > 0) return true;
+            if (kw === 'vigilance' && this.vigilanceCounters > 0) return true;
+            if (kw === 'lifelink' && this.lifelinkCounters > 0) return true;
+            if (kw === 'trample' && this.trampleCounters > 0) return true;
+            if (kw === 'reach' && this.reachCounters > 0) return true;
+            if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
+            if (kw === 'double strike' && state.triumphantTacticsActive && this.owner === 'player') return true;
+
+            // Check enchantments (including temporary ones granted by this ability)
+            if (this.enchantments?.some(e => {
+                const text = e.rules_text?.toLowerCase() || "";
+                const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
+                return regex.test(text);
+            })) return true;
+
+            return false; // Skip rules_text check
+        }
+
+        onCombatStart(board, host = this) {
+            const keywords = [
+                'Flying', 'First strike', 'Double strike', 'Deathtouch', 'Haste',
+                'Hexproof', 'Indestructible', 'Lifelink', 'Menace', 'Reach',
+                'Trample', 'Vigilance'
+            ];
+            const others = board.filter(c => c.id !== host.id && c.owner === host.owner);
+            
+            keywords.forEach(kw => {
+                if (others.some(c => c.hasKeyword(kw))) {
+                    host.tempPower++;
+                    host.tempToughness++;
+                    
+                    // Grant temporary keyword via enchantment
+                    if (!host.enchantments) host.enchantments = [];
+                    host.enchantments.push({ 
+                        card_name: 'Wilderkin Grant', 
+                        rules_text: kw,
+                        isTemporary: true 
+                    });
+                }
+            });
+        }
+    }
+
+    class DwarvenPhalanx extends BaseCard {
+        onCombatStart(board, host = this) {
+            const others = board.filter(c => c.id !== host.id && c.owner === host.owner);
+            if (others.length > 0) {
+                const target = others[Math.floor(Math.random() * others.length)];
+                const multiplier = host.isFoil ? 2 : 1;
+                target.counters += multiplier;
+                if (!target.enchantments) target.enchantments = [];
+                for (let i = 0; i < multiplier; i++) {
+                    target.enchantments.push({ card_name: 'Phalanx Grant', rules_text: 'Indestructible', isTemporary: true });
+                }
+            }
+        }
+    }
+
+    class LairRecluse extends BaseCard {
+        onETB(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            this.vigilanceCounters += multiplier;
+            this.reachCounters += multiplier; // Note: Need to verify if reachCounters exists in BaseCard
+        }
+        onShopStart(board) {
+            // Only trigger if we have another creature to receive the counters
+            if (board.length > 1) {
+                queueTargetingEffect({
+                    sourceId: this.id,
+                    effect: 'permutate_step1',
+                    isFoil: this.isFoil
+                });
+            }
+        }
+    }
+
+    class TunnelWebSpider extends BaseCard { }
+
     class HeroOfHedria extends BaseCard { }
 
     class HeroOfALostWar extends BaseCard {
@@ -1020,7 +1110,7 @@ class BaseCard {
 
                 if (!target.enchantments) target.enchantments = [];
                 for (let i = 0; i < multiplier; i++) {
-                    target.enchantments.push({ card_name: 'Lost War Grant', rules_text: 'Indestructible' });
+                    target.enchantments.push({ card_name: 'Lost War Grant', rules_text: 'Indestructible', isTemporary: true });
                 }
             }
         }
@@ -1070,7 +1160,7 @@ class BaseCard {
             const base = this.getBasePT();
             if (stats.p > base.p) {
                 if (!this.enchantments) this.enchantments = [];
-                this.enchantments.push({ card_name: 'Resolute Lifelink', rules_text: 'Lifelink' });
+                this.enchantments.push({ card_name: 'Resolute Lifelink', rules_text: 'Lifelink', isTemporary: true });
             }
         }
     }
@@ -1147,7 +1237,7 @@ class BaseCard {
             this.tempPower += (4 - base.p);
             this.tempToughness += (4 - base.t);
             if (!this.enchantments) this.enchantments = [];
-            this.enchantments.push({ card_name: 'Mieng Transformation', rules_text: 'Flying' });
+            this.enchantments.push({ card_name: 'Mieng Transformation', rules_text: 'Flying', isTemporary: true });
         }
     }
 
@@ -1161,7 +1251,7 @@ class BaseCard {
             target.tempPower += (4 * multiplier);
             target.tempToughness += (2 * multiplier);
             if (!target.enchantments) target.enchantments = [];
-            target.enchantments.push({ card_name: 'Bushwhack Grant', rules_text: 'Trample' });
+            target.enchantments.push({ card_name: 'Bushwhack Grant', rules_text: 'Trample', isTemporary: true });
         }
     }
 
@@ -1212,7 +1302,7 @@ class BaseCard {
             const multiplier = this.isFoil ? 2 : 1;
             target.counters += multiplier;
             if (!target.enchantments) target.enchantments = [];
-            target.enchantments.push({ card_name: 'Fight Song Grant', rules_text: 'Indestructible' });
+            target.enchantments.push({ card_name: 'Fight Song Grant', rules_text: 'Indestructible', isTemporary: true });
         }
     }
 
@@ -1368,7 +1458,7 @@ class BaseCard {
                 target.tempToughness += multiplier;
                 if (!target.enchantments) target.enchantments = [];
                 if (!target.enchantments.some(e => e.card_name === 'Lancer First Strike')) {
-                    target.enchantments.push({ card_name: 'Lancer First Strike', rules_text: 'First strike' });
+                    target.enchantments.push({ card_name: 'Lancer First Strike', rules_text: 'First strike', isTemporary: true });
                 }
                 return [target];
             }
@@ -1510,6 +1600,10 @@ class BaseCard {
                 case 'Lagoon Logistics': card = new LagoonLogistics(data); break;
                 case 'Flaunt Luxury': card = new FlauntLuxury(data); break;
                 case 'Artful Coercion': card = new ArtfulCoercion(data); break;
+                case 'Magnific Wilderkin': card = new MagnificWilderkin(data); break;
+                case 'Dwarven Phalanx': card = new DwarvenPhalanx(data); break;
+                case 'Lair Recluse': card = new LairRecluse(data); break;
+                case 'Tunnel Web Spider': card = new TunnelWebSpider(data); break;
                 case 'Devil\'s Child': card = new DevilsChild(data); break;
                 case 'Razorback Trenchrunner': card = new RazorbackTrenchrunner(data); break;
                 case 'Sporegraft Slime': card = new SporegraftSlime(data); break;
@@ -1763,7 +1857,7 @@ class BaseCard {
                 state.player.board.forEach(c => {
                     if (!c.enchantments) c.enchantments = [];
                     if (!c.enchantments.some(e => e.rules_text === kw)) {
-                        c.enchantments.push({ card_name: `Ghessian ${kw}`, rules_text: kw });
+                        c.enchantments.push({ card_name: `Ghessian ${kw}`, rules_text: kw, isTemporary: true });
                     }
                 });
             }
@@ -1923,6 +2017,7 @@ class BaseCard {
                             else if (ct === 'first-strike') source.firstStrikeCounters++;
                             else if (ct === 'vigilance') source.vigilanceCounters++;
                             else if (ct === 'lifelink') source.lifelinkCounters++;
+                            else if (ct === 'reach') source.reachCounters++;
                         }
                     }
                 }
@@ -2230,6 +2325,13 @@ class BaseCard {
                 if (defender.hasKeyword('First strike') || defender.hasKeyword('Double strike')) {
                     attackerDamageTaken = currentDefStats.p;
                     attacker.damageTaken += attackerDamageTaken;
+
+                    if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
+                        if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
+                            attacker.isDestroyed = true;
+                            showDestroyBubble(attacker.id);
+                        }
+                    }
                 }
             }
         }
@@ -2544,7 +2646,8 @@ class BaseCard {
             c.tempToughness = 0; 
             c.isLockedByChivalry = false;
             c.damageTaken = 0;
-            c.enchantments = []; 
+            c.isDestroyed = false;
+            c.enchantments = c.enchantments.filter(e => !e.isTemporary); 
         });
         state.opponents.forEach(opp => {
             opp.board.forEach(c => { 
@@ -2552,7 +2655,8 @@ class BaseCard {
                 c.tempToughness = 0; 
                 c.isLockedByChivalry = false;
                 c.damageTaken = 0;
-                c.enchantments = []; 
+                c.isDestroyed = false;
+                c.enchantments = c.enchantments.filter(e => !e.isTemporary); 
             });
             opp.fightHp = 5 + (5 * opp.tier);
         });
@@ -2774,7 +2878,7 @@ class BaseCard {
     }
 
     function useCardFromHand(cardId, targetIndex = -1) {
-        if (state.phase !== 'SHOP') return;
+        if (state.phase !== 'SHOP' || state.castingSpell || state.targetingEffect) return;
         const cardIndex = state.player.hand.findIndex(c => c.id === cardId);
         if (cardIndex === -1) return;
         const card = state.player.hand[cardIndex];
@@ -2885,7 +2989,7 @@ class BaseCard {
             } else if (effect.effect === 'warband_rallier_counters') {
                 hasTargets = state.player.board.some(c => c.type?.includes('Centaur'));
             } else if (effect.effect === 'permutate_step1') {
-                hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
+                hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
             } else if (effect.effect === 'nightfall_raptor_bounce') {
                 hasTargets = state.player.board.some(c => !c.type?.includes('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
@@ -2916,7 +3020,7 @@ class BaseCard {
             }
 
             if (hasTargets) {
-                effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1'].includes(effect.effect);
+                effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1'].includes(effect.effect);
                 state.targetingEffect = effect;
                 render();
                 return;
@@ -2941,10 +3045,17 @@ class BaseCard {
 
     function applyTargetedEffect(targetId, counterType = null) {
         if (!state.targetingEffect) return;
-        // Search board, hand, and SHOP for the target
-        const target = state.player.board.find(c => c.id === targetId) || 
-                       state.player.hand.find(c => c.id === targetId) ||
-                       state.shop.cards.find(c => c.id === targetId);
+        
+        // Find target in specific pools based on effect
+        let target = null;
+        if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
+            target = state.shop.cards.find(c => c.id === targetId);
+        } else if (state.targetingEffect.effect === 'parliament_discard') {
+            target = state.player.hand.find(c => c.id === targetId);
+        } else {
+            // Default: Most effects target the player's board
+            target = state.player.board.find(c => c.id === targetId);
+        }
         
         if (target) {
             if (state.targetingEffect.effect === 'dutiful_camel_counter') {
@@ -3011,7 +3122,7 @@ class BaseCard {
                 if (state.player.gold >= 2) {
                     state.player.gold -= 2;
                     if (!target.enchantments) target.enchantments = [];
-                    target.enchantments.push({ card_name: 'Zealot Trample', rules_text: 'Trample' });
+                    target.enchantments.push({ card_name: 'Zealot Trample', rules_text: 'Trample', isTemporary: true });
                     clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'whispers_sacrifice') {
@@ -3092,10 +3203,12 @@ class BaseCard {
                     else if (counterType === 'first-strike') target.firstStrikeCounters--;
                     else if (counterType === 'vigilance') target.vigilanceCounters--;
                     else if (counterType === 'lifelink') target.lifelinkCounters--;
+                    else if (counterType === 'reach') target.reachCounters--;
 
                     state.targetingEffect.sourceCreatureId = target.id;
                     state.targetingEffect.removedCounterType = counterType;
                     state.targetingEffect.effect = 'permutate_step2';
+                    state.targetingEffect.isMandatory = true;
                     render();
                 }
             } else if (state.targetingEffect.effect === 'permutate_step2') {
@@ -3113,7 +3226,7 @@ class BaseCard {
                     const multiplier = source.isFoil ? 2 : 1;
                     target.counters += multiplier;
                     if (!target.enchantments) target.enchantments = [];
-                    target.enchantments.push({ card_name: 'Nest Matriarch Grant', rules_text: 'Lifelink' });
+                    target.enchantments.push({ card_name: 'Nest Matriarch Grant', rules_text: 'Lifelink', isTemporary: true });
                     clearTargetingEffect();
                     }
                     } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
@@ -3137,7 +3250,7 @@ class BaseCard {
                     t.tempPower += (5 * multiplier);
                     t.tempToughness += (3 * multiplier);
                     if (!t.enchantments) t.enchantments = [];
-                    t.enchantments.push({ card_name: 'Executioner\'s Madness', rules_text: 'Trample' });
+                    t.enchantments.push({ card_name: 'Executioner\'s Madness', rules_text: 'Trample', isTemporary: true });
                 };
 
                 applyMadnessBuff(target);
@@ -3496,13 +3609,22 @@ class BaseCard {
                 // Note: trample overflow still happens based on original toughness
             } else if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
                 // INDESTRUCTIBLE PROTECTION (Defender)
-                if (defenderDamageTaken >= defenderStats.t) {
+                // Trigger if damage is lethal OR if attacker has Deathtouch and deals any damage
+                if (defenderDamageTaken >= defenderStats.t || (attacker.hasKeyword('Deathtouch') && defenderDamageTaken > 0)) {
                     defenderDamageTaken = Math.max(0, defenderStats.t - 1);
                     defender.indestructibleUsed = true;
                 }
             }
 
             defender.damageTaken += defenderDamageTaken;
+
+            // DEATHTOUCH (Attacker)
+            if (attacker.hasKeyword('Deathtouch') && defenderDamageTaken > 0) {
+                if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
+                    defender.isDestroyed = true;
+                    showDestroyBubble(defender.id);
+                }
+            }
 
             // TRIUMPHANT TACTICS TRIGGER (Temporary +1/+1 on damage)
             if (state.triumphantTacticsActive && attacker.owner === 'player' && defenderDamageTaken > 0) {
@@ -3533,8 +3655,24 @@ class BaseCard {
                     if (trampleTarget.shieldCounters > 0) {
                         trampleTarget.shieldCounters--;
                         trampleOverflow = 0; // Shield absorbs all splash
+                    } else if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
+                        // INDESTRUCTIBLE PROTECTION (Splash Target)
+                        const targetStats = trampleTarget.getDisplayStats(defenderBoard);
+                        if (overflow >= targetStats.t || (attacker.hasKeyword('Deathtouch') && overflow > 0)) {
+                            trampleTarget.damageTaken += Math.max(0, targetStats.t - 1);
+                            trampleTarget.indestructibleUsed = true;
+                        } else {
+                            trampleTarget.damageTaken += overflow;
+                        }
                     } else {
                         trampleTarget.damageTaken += overflow;
+                        // DEATHTOUCH (Splash Target)
+                        if (attacker.hasKeyword('Deathtouch') && overflow > 0) {
+                            if (!trampleTarget.isDestroyed) {
+                                trampleTarget.isDestroyed = true;
+                                showDestroyBubble(trampleTarget.id);
+                            }
+                        }
                     }
                 } else {
                     if (attacker.owner === 'player') {
@@ -3550,6 +3688,14 @@ class BaseCard {
             if (!isFirstStrike) {
                 attackerDamageTaken = defenderStats.p;
 
+                // DEATHTOUCH (Defender Retaliation)
+                if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
+                    if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
+                        attacker.isDestroyed = true;
+                        showDestroyBubble(attacker.id);
+                    }
+                }
+
                 // SHIELD COUNTER PROTECTION (Attacker)
                 if (attacker.shieldCounters > 0 && attackerDamageTaken > 0) {
                     attackerDamageTaken = 0;
@@ -3557,7 +3703,8 @@ class BaseCard {
                 } else if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
                     // INDESTRUCTIBLE PROTECTION (Attacker)
                     const attackerStats = attacker.getDisplayStats(attackerBoard);
-                    if (attackerDamageTaken >= attackerStats.t) {
+                    // Trigger if damage is lethal OR if defender has Deathtouch and deals any damage
+                    if (attackerDamageTaken >= attackerStats.t || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
                         attackerDamageTaken = Math.max(0, attackerStats.t - 1);
                         attacker.indestructibleUsed = true;
                     }
@@ -4373,9 +4520,11 @@ class BaseCard {
         if (instance.lifelinkCounters > 0) addCounterBubble('lifelink', instance.lifelinkCounters, 'img/lifelink.png');
         // 7. Trample
         if (instance.trampleCounters > 0) addCounterBubble('trample', instance.trampleCounters, 'img/trample.png');
-        // 8. Hexproof
+        // 8. Reach
+        if (instance.reachCounters > 0) addCounterBubble('reach', instance.reachCounters, 'img/reach.png');
+        // 9. Hexproof
         if (instance.hexproofCounters > 0) addCounterBubble('hexproof', instance.hexproofCounters, 'img/hexproof.png');
-        // 9. Shield
+        // 10. Shield
         if (instance.shieldCounters > 0) addCounterBubble('shield', instance.shieldCounters, 'img/shield.png');
         
         if (instance.pt) {
