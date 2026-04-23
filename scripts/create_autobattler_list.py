@@ -29,7 +29,8 @@ def create_autobattler_card_list():
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
-        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak"
+        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
+        "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -73,7 +74,8 @@ def create_autobattler_card_list():
     ]
     tier_5_names = [
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
-        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak"
+        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
+        "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout"
     ]
 
     for name in card_names_to_include:

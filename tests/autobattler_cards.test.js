@@ -43,7 +43,7 @@ if (typeof document === 'undefined') {
 const { 
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
     applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
-    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards
+    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -2500,7 +2500,135 @@ function testAshWitheredCloak() {
     assert.strictEqual(state.scrying.count, 2, "Scry 1 should be copied to Scry 2");
 }
 
-function runTests() {
+async function testSteelBarding() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const barding = CardFactory.create({ card_name: "Steel Barding", type: "Equipment" });
+    host.equipment = barding;
+    host.owner = 'player';
+    state.player.board = [host];
+
+    const stats = host.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 5, "Host gets +3/+3");
+
+    const enemy = CardFactory.create({ card_name: "Enemy", pt: "10/10" });
+    enemy.owner = 'opponent';
+    state.battleBoards = { player: [host], opponent: [enemy] };
+    state.phase = 'BATTLE';
+
+    // 1. Attacking: Should prevent damage
+    await performAttack(host, enemy, false);
+    assert.strictEqual(host.damageTaken, 0, "Steel Barding should prevent all damage to attacker");
+
+    // 2. Defending: Should NOT prevent damage
+    host.damageTaken = 0;
+    await performAttack(enemy, host, false);
+    assert.ok(host.damageTaken > 0, "Steel Barding should NOT prevent damage while defending");
+}
+
+async function testRivhasBlessedBlade() {
+    resetState();
+    // Camel has ETB: put a counter on target creature you control
+    const host = CardFactory.create({ card_name: "Dutiful Camel", pt: "2/2" });
+    const blade = CardFactory.create({ card_name: "Rivha's Blessed Blade", type: "Equipment" });
+    host.equipment = blade;
+    host.owner = 'player';
+    state.player.board = [host];
+    state.player.fightHp = 10;
+    
+    const opponent = { id: 0, fightHp: 10, board: [] };
+    state.opponents = [opponent];
+    state.currentOpponentId = 0;
+    state.phase = 'BATTLE'; // Set to BATTLE so ETB auto-resolves
+
+    // Trigger initial ETB manually
+    host.onETB(state.player.board); 
+    assert.strictEqual(host.counters, 1, "Should have 1 counter from initial ETB");
+
+    state.battleBoards = { player: [host], opponent: [] };
+
+    // Hit face. Rivha triggers ETB. Camel targets a creature (the only one is itself).
+    await performAttack(host, null, false);
+    
+    // Initial 1 counter from setup + 1 counter from Rivha's triggered ETB = 2 counters
+    assert.strictEqual(host.counters, 2, "Rivha's Blade should trigger host's ETB on player hit (auto-resolved at random)");
+    assert.strictEqual(host.hasKeyword('flying'), true, "Rivha's Blade grants Flying");
+}
+
+async function testRivhasBlessedBladeWithCirrusea() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/3" });
+    const blade = CardFactory.create({ card_name: "Rivha's Blessed Blade", type: "Equipment" });
+    host.equipment = blade;
+    host.owner = 'player';
+    state.player.board = [host];
+    state.player.fightHp = 10;
+    state.plane = null; // Reset plane
+    
+    const opponent = { id: 0, fightHp: 10, board: [] };
+    state.opponents = [opponent];
+    state.currentOpponentId = 0;
+    state.battleBoards = { player: [host], opponent: [] };
+    state.phase = 'BATTLE';
+
+    // 1. Initial hit: Should set plane to Cirrusea and spawn a Bird
+    await performAttack(host, null, false);
+    
+    assert.strictEqual(state.plane, 'Cirrusea', "Plane should be set to Cirrusea");
+    assert.strictEqual(state.battleBoards.player.length, 2, "Should have spawned a Bird");
+    assert.strictEqual(state.battleBoards.player[1].card_name, "Bird");
+
+    // 2. Second hit: Plane is already Cirrusea, should trigger traverse_cirrusea_grant
+    // Since only host and bird are on board, and Bird has flying, it should grant a counter to Bird or grant Flying (redundant) to host.
+    // If it picks host (no flying), it grants flying. If it picks bird (flying), it grants +1/+1.
+    // Let's just verify it resolves without error.
+    await performAttack(host, null, false);
+}
+
+async function testRivhasBlessedBladeWithDiscovery() {
+    resetState();
+    // Brutalizer (Solo) has ETB: Discover a keyword (First Strike or Trample)
+    const host = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "4/4" });
+    const blade = CardFactory.create({ card_name: "Rivha's Blessed Blade", type: "Equipment" });
+    host.equipment = blade;
+    host.owner = 'player';
+    state.player.board = [host];
+    state.player.fightHp = 10;
+    
+    const opponent = { id: 0, fightHp: 10, board: [] };
+    state.opponents = [opponent];
+    state.currentOpponentId = 0;
+    state.battleBoards = { player: [host], opponent: [] };
+    state.phase = 'BATTLE';
+
+    // Hit face. Rivha triggers ETB. Ndengo triggers solo Discovery.
+    await performAttack(host, null, false);
+    
+    // Check if it got a keyword or a counter (if it already had the keyword)
+    const hasKeyword = host.firstStrikeCounters > 0 || host.trampleCounters > 0;
+    assert.ok(hasKeyword, "Rivha's Blade should trigger host's Discovery and auto-resolve it randomly");
+}
+
+function testBlacksteelLoadout() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "" });
+    const loadout = CardFactory.create({ 
+        card_name: "Blacksteel Loadout", 
+        type: "Equipment", 
+        rules_text: "Equipped creature gets +4/+2 and has first strike, vigilance, and trample." 
+    });
+    host.equipment = loadout;
+    state.player.board = [host];
+
+    const stats = host.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 6, "+4 Power");
+    assert.strictEqual(stats.t, 4, "+2 Toughness");
+    assert.strictEqual(host.hasKeyword('first strike'), true, "Has First Strike");
+    assert.strictEqual(host.hasKeyword('vigilance'), true, "Has Vigilance");
+    assert.strictEqual(host.hasKeyword('trample'), true, "Has Trample");
+}
+
+async function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
         { tier: 1, name: "Glumvale Raven", fn: testGlumvaleRaven },
@@ -2636,40 +2764,45 @@ function runTests() {
         { tier: 5, name: "The Exile Queen's Crown", fn: testTheExileQueensCrown },
         { tier: 5, name: "Dragonlord's Carapace", fn: testDragonlordsCarapace },
         { tier: 5, name: "Djitu's Lithified Mantle", fn: testDjitusLithifiedMantle },
-        { tier: 5, name: "Ash-Withered Cloak", fn: testAshWitheredCloak }
+        { tier: 5, name: "Ash-Withered Cloak", fn: testAshWitheredCloak },
+        { tier: 5, name: "Steel Barding", fn: testSteelBarding },
+        { tier: 5, name: "Rivha's Blessed Blade", fn: testRivhasBlessedBlade },
+        { tier: 5, name: "Rivha's Blessed Blade (Cirrusea)", fn: testRivhasBlessedBladeWithCirrusea },
+        { tier: 5, name: "Rivha's Blessed Blade (Discovery)", fn: testRivhasBlessedBladeWithDiscovery },
+        { tier: 5, name: "Blacksteel Loadout", fn: testBlacksteelLoadout }
     ];
 
     console.log("\nUNIT TEST RESULTS");
     console.log("=================");
     
-    const runBatch = (tests) => {
+    const runBatch = async (tests) => {
         let passed = 0;
-        tests.forEach(test => {
+        for (const test of tests) {
             try {
-                test.fn();
+                await test.fn();
                 console.log(`✓ ${test.name}`);
                 passed++;
             } catch (e) {
                 console.error(`✕ ${test.name}: ${e.message}`);
             }
-        });
+        }
         return passed;
     };
 
     console.log("\nTIER 1");
-    const t1Passed = runBatch(t1Tests);
+    const t1Passed = await runBatch(t1Tests);
     
     console.log("\nTIER 2");
-    const t2Passed = runBatch(t2Tests);
+    const t2Passed = await runBatch(t2Tests);
 
     console.log("\nTIER 3");
-    const t3Passed = runBatch(t3Tests);
+    const t3Passed = await runBatch(t3Tests);
 
     console.log("\nTIER 4");
-    const t4Passed = runBatch(t4Tests);
+    const t4Passed = await runBatch(t4Tests);
 
     console.log("\nTIER 5");
-    const t5Passed = runBatch(t5Tests);
+    const t5Passed = await runBatch(t5Tests);
 
     console.log("\nFINAL SUMMARY");
     console.log("-------------");

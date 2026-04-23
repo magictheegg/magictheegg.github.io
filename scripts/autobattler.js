@@ -251,12 +251,13 @@ class BaseCard {
 
     function traverseCirrusea(source, board) {
         const multiplier = source.isFoil ? 2 : 1;
+        const owner = source.owner || 'player';
         for (let i = 0; i < multiplier; i++) {
             if (state.plane !== 'Cirrusea') {
                 state.plane = 'Cirrusea';
                 // Create 1/2 Bird Token with Flying
                 if (board.length < boardLimit) {
-                    const bird = createToken('Bird', 'AEX', 'player');
+                    const bird = createToken('Bird', 'AEX', owner);
                     if (bird) board.push(bird);
                 }
             } else {
@@ -265,6 +266,7 @@ class BaseCard {
                     sourceId: source.id,
                     effect: 'traverse_cirrusea_grant',
                     wasCast: true,
+                    owner: owner,
                     isFoil: source.isFoil
                 });
             }
@@ -1147,6 +1149,33 @@ class BaseCard {
         }
     }
 
+    class SteelBarding extends BaseCard {
+        getEquipmentStats(target) {
+            return { p: 3, t: 3 };
+        }
+    }
+
+    class RivhasBlessedBlade extends BaseCard {
+        getEquipmentStats(target) {
+            return { p: 1, t: 1 };
+        }
+        hasKeyword(kw) {
+            if (kw.toLowerCase() === 'flying') return true;
+            return super.hasKeyword(kw);
+        }
+    }
+
+    class BlacksteelLoadout extends BaseCard {
+        getEquipmentStats(target) {
+            return { p: 4, t: 2 };
+        }
+        hasKeyword(kw) {
+            const list = ['first strike', 'vigilance', 'trample'];
+            if (list.includes(kw.toLowerCase())) return true;
+            return super.hasKeyword(kw);
+        }
+    }
+
     class LagoonLogistics extends BaseCard {
         onApply(target, board) {
             const raw = availableCards.find(c => c.card_name === target.card_name && (target.set ? c.set === target.set : true));
@@ -1825,6 +1854,9 @@ class BaseCard {
                 case 'Dragonlord\'s Carapace': card = new DragonlordsCarapace(data); break;
                 case 'Djitu\'s Lithified Mantle': card = new DjitusLithifiedMantle(data); break;
                 case 'Ash-Withered Cloak': card = new AshWitheredCloak(data); break;
+                case 'Steel Barding': card = new SteelBarding(data); break;
+                case 'Rivha\'s Blessed Blade': card = new RivhasBlessedBlade(data); break;
+                case 'Blacksteel Loadout': card = new BlacksteelLoadout(data); break;
                 case 'Magnific Wilderkin': card = new MagnificWilderkin(data); break;
                 case 'Dwarven Phalanx': card = new DwarvenPhalanx(data); break;
                 case 'Lair Recluse': card = new LairRecluse(data); break;
@@ -1974,6 +2006,18 @@ class BaseCard {
         state.discoveryQueue.push(discoveryObj);
         if (!state.discovery) {
             state.discovery = state.discoveryQueue[0];
+            
+            // AUTO-RESOLVE IN BATTLE (No interactive choices allowed)
+            while (state.phase === 'BATTLE' && state.discovery) {
+                const cards = state.discovery.cards;
+                if (cards && cards.length > 0) {
+                    const random = cards[Math.floor(Math.random() * cards.length)];
+                    resolveDiscovery(random);
+                } else {
+                    processDiscoveryQueue();
+                }
+            }
+
             render();
         }
     }
@@ -1989,9 +2033,11 @@ class BaseCard {
     function resolveDiscovery(card) {
         if (!state.discovery || !card) return;
 
+        const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+
         if (state.discovery.effect === 'ndengo_choice') {
-            const source = state.player.board.find(c => c.id === state.discovery.sourceId);
-            const target = state.player.board.find(c => c.id === state.discovery.targetId);
+            const source = board.find(c => c.id === state.discovery.sourceId);
+            const target = board.find(c => c.id === state.discovery.targetId);
             if (source && target) {
                 const teach = (c, kw) => {
                     if (c.hasKeyword(kw)) c.counters++;
@@ -2018,7 +2064,7 @@ class BaseCard {
         }
 
         if (state.discovery.effect === 'ndengo_solo') {
-            const source = state.player.board.find(c => c.id === state.discovery.sourceId);
+            const source = board.find(c => c.id === state.discovery.sourceId);
             if (source) {
                 const kw = card.rules_text;
                 if (source.hasKeyword(kw)) source.counters++;
@@ -2037,7 +2083,7 @@ class BaseCard {
         }
 
         if (state.discovery.effect === 'bwema_counters') {
-            const source = state.player.board.find(c => c.id === state.discovery.sourceId);
+            const source = board.find(c => c.id === state.discovery.sourceId);
             if (source) {
                 const kw = card.rules_text.toLowerCase();
                 if (kw === 'menace') source.menaceCounters++;
@@ -2079,7 +2125,7 @@ class BaseCard {
             const kw = card.card_name;
             const multiplier = state.discovery.isFoil ? 2 : 1;
             for (let i = 0; i < multiplier; i++) {
-                state.player.board.forEach(c => {
+                board.forEach(c => {
                     if (!c.enchantments) c.enchantments = [];
                     if (!c.enchantments.some(e => e.rules_text === kw)) {
                         c.enchantments.push({ card_name: `Ghessian ${kw}`, rules_text: kw, isTemporary: true });
@@ -2090,7 +2136,7 @@ class BaseCard {
             if (handIdx !== -1) {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
-                state.player.board.forEach(c => c.onNoncreatureCast(state.discovery.isFoil, state.player.board));
+                board.forEach(c => c.onNoncreatureCast(state.discovery.isFoil, board));
             }
             processDiscoveryQueue();
             return;
@@ -2545,6 +2591,11 @@ class BaseCard {
 
         let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
 
+        const hitPlayer = (!defender && defenderDamageTaken > 0) || (!trampleTarget && trampleOverflow > 0);
+        if (hitPlayer && attacker.equipment && attacker.equipment.card_name === "Rivha's Blessed Blade") {
+            triggerETB(attacker, attackerBoard);
+        }
+
         // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
         // If Attacker DOES NOT have FS, damage was already handled simultaneously in resolveCombatImpact.
         if (isFirstStrike && defender && !trampleTarget) {
@@ -2554,6 +2605,12 @@ class BaseCard {
                 // Defender survived FS hit, does it have FS itself to hit back now?
                 if (defender.hasKeyword('First strike') || defender.hasKeyword('Double strike')) {
                     attackerDamageTaken = currentDefStats.p;
+                    
+                    // STEEL BARDING
+                    if (attacker.equipment && attacker.equipment.card_name === 'Steel Barding') {
+                        attackerDamageTaken = 0;
+                    }
+
                     attacker.damageTaken += attackerDamageTaken;
 
                     if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
@@ -3237,19 +3294,22 @@ class BaseCard {
         while (state.targetingQueue.length > 0) {
             const effect = state.targetingQueue.shift();
             let hasTargets = true;
+            const currentBoard = (state.phase === 'BATTLE' && state.battleBoards) ? 
+                                 (effect.owner === 'opponent' ? state.battleBoards.opponent : state.battleBoards.player) : 
+                                 state.player.board;
 
             if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant') {
-                hasTargets = state.player.board.length > 0;
+                hasTargets = currentBoard.length > 0;
             } else if (effect.effect === 'nest_matriarch_buff') {
-                hasTargets = state.player.board.length > 1; 
+                hasTargets = currentBoard.length > 1; 
             } else if (effect.effect === 'warband_rallier_counters') {
-                hasTargets = state.player.board.some(c => c.type?.includes('Centaur'));
+                hasTargets = currentBoard.some(c => c.type?.includes('Centaur'));
             } else if (effect.effect === 'permutate_step1') {
-                hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
+                hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
             } else if (effect.effect === 'nightfall_raptor_bounce') {
-                hasTargets = state.player.board.some(c => !c.type?.includes('Enchantment'));
+                hasTargets = currentBoard.some(c => !c.type?.includes('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
-                hasTargets = state.player.board.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
+                hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
             } else if (effect.effect === 'artful_coercion_gain_control') {
                 // Find min power on battlefield (yours + opponent + SHOP)
                 const currentOpp = getOpponent();
@@ -3276,6 +3336,41 @@ class BaseCard {
             }
 
             if (hasTargets) {
+                // AUTO-RESOLVE IN BATTLE (No interactive targeting allowed)
+                if (state.phase === 'BATTLE') {
+                    let validTargets = [];
+                    if (effect.effect === 'artful_coercion_gain_control') {
+                        // Artful Coercion targets the shop
+                        const currentOpp = getOpponent();
+                        const battlefield = [...state.player.board, ...currentOpp.board];
+                        const shopCreatures = state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature'));
+                        const allMinPool = [...battlefield, ...shopCreatures];
+                        const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
+                            const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
+                            return c.getDisplayStats(b).p;
+                        })) : Infinity;
+                        validTargets = shopCreatures.filter(c => c.getBasePT().p <= minPower);
+                    } else if (effect.effect === 'parliament_discard') {
+                        validTargets = state.player.hand.filter(c => c.id !== effect.sourceId);
+                    } else if (effect.effect === 'warband_rallier_counters') {
+                        const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+                        validTargets = board.filter(c => c.type?.includes('Centaur'));
+                    } else if (effect.effect === 'nightfall_raptor_bounce') {
+                        const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+                        validTargets = board.filter(c => !c.type?.includes('Enchantment'));
+                    } else {
+                        // Default: friendly board
+                        validTargets = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+                    }
+
+                    if (validTargets.length > 0) {
+                        const randomTarget = validTargets[Math.floor(Math.random() * validTargets.length)];
+                        state.targetingEffect = effect;
+                        applyTargetedEffect(randomTarget.id);
+                        continue; // Process next in queue
+                    }
+                }
+
                 effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1'].includes(effect.effect);
                 state.targetingEffect = effect;
                 render();
@@ -3310,7 +3405,8 @@ class BaseCard {
             target = state.player.hand.find(c => c.id === targetId);
         } else {
             // Default: Most effects target the player's board
-            target = state.player.board.find(c => c.id === targetId);
+            const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+            target = board.find(c => c.id === targetId);
         }
         
         if (target) {
@@ -3997,6 +4093,12 @@ class BaseCard {
                         attacker.indestructibleUsed = true;
                     }
                 }
+
+                // STEEL BARDING: Prevent all damage to attacker
+                if (attacker.equipment && attacker.equipment.card_name === 'Steel Barding') {
+                    attackerDamageTaken = 0;
+                }
+
                 attacker.damageTaken += attackerDamageTaken;
             }
         } else {
@@ -4448,6 +4550,27 @@ class BaseCard {
                     else tEl.classList.remove('damaged');
                 }
                 
+                // NEW: Sync counter bubbles and equipment even when busy
+                const counterStackEl = oldEl.querySelector('.card-counter-stack');
+                if (counterStackEl) {
+                    // Quick way to refresh counters: create a dummy element and steal its stack
+                    const dummy = createCardElement(instance, isShop, index, boardContext);
+                    const freshStack = dummy.querySelector('.card-counter-stack');
+                    counterStackEl.innerHTML = freshStack.innerHTML;
+
+                    // Also sync equipment indicator
+                    const oldEq = oldEl.querySelector('.equipment-indicator');
+                    const newEq = dummy.querySelector('.equipment-indicator');
+                    if (oldEq) oldEq.remove();
+                    if (newEq) oldEl.appendChild(newEq);
+
+                    // Sync ghost indicators
+                    const oldGhost = oldEl.querySelector('.ghost-indicator-container');
+                    const newGhost = dummy.querySelector('.ghost-indicator-container');
+                    if (oldGhost) oldGhost.remove();
+                    if (newGhost) oldEl.appendChild(newGhost);
+                }
+
                 // Sync classes even when busy
                 if (instance.isSpawning) oldEl.classList.add('spawning');
                 else oldEl.classList.remove('spawning');
@@ -5232,7 +5355,7 @@ if (typeof module !== 'undefined' && module.exports) {
         state, CardFactory, BaseCard, init, availableCards,
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
         resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
-        resolveCombatImpact, resolveDeaths, processDeaths,
+        resolveCombatImpact, resolveDeaths, processDeaths, performAttack, triggerETB,
         applyTargetedEffect, applySpell, useCardFromHand,
         resolveDiscovery, toggleDiscoverySelection, confirmDiscovery,
         startShopTurn, setAvailableCards
