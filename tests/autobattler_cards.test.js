@@ -4,12 +4,15 @@ const mockElement = () => ({
     removeEventListener: () => {},
     remove: () => {},
     appendChild: () => {},
+    insertBefore: () => {},
+    replaceWith: () => {},
     getBoundingClientRect: () => ({ top: 0, left: 0, width: 100, height: 100 }),
     querySelectorAll: () => [],
     querySelector: () => mockElement(),
     classList: { add: () => {}, remove: () => {}, toggle: () => {} },
     style: {},
     innerHTML: '',
+    children: [],
     setAttribute: () => {},
     content: {
         cloneNode: () => ({
@@ -2434,6 +2437,69 @@ function testTheExileQueensCrown() {
     assert.strictEqual(host.hasKeyword('Indestructible'), false, "Host should not get Indestructible from the Crown");
 }
 
+function testDragonlordsCarapace() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const carapace = CardFactory.create({ card_name: "Dragonlord's Carapace", type: "Equipment", rules_text: "Equipped creature gets +8/+8 and has trample." });
+    host.equipment = carapace;
+    state.player.board = [host];
+
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 10, "Host gets +8 Power");
+    assert.strictEqual(host.getDisplayStats(state.player.board).t, 10, "Host gets +8 Toughness");
+    assert.strictEqual(host.hasKeyword('trample'), true, "Host gets Trample");
+}
+
+function testDjitusLithifiedMantle() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const mantle = CardFactory.create({ card_name: "Djitu's Lithified Mantle", type: "Equipment" });
+    host.equipment = mantle;
+    host.owner = 'player';
+    state.player.board = [host];
+    state.phase = 'BATTLE';
+    state.battleQueues = { player: [host], opponent: [] };
+
+    // 1. Initial spawn
+    host.equipment.onEquippedAttack(host, state.player.board);
+    assert.strictEqual(state.player.board.length, 2, "Jwanga should spawn");
+    assert.strictEqual(state.player.board[1].card_name, "Jwanga Djitu");
+    assert.strictEqual(state.player.board[1].getDisplayStats(state.player.board).p, 10);
+
+    // 2. Legendary rule (Jwanga alive)
+    host.equipment.onEquippedAttack(host, state.player.board);
+    assert.strictEqual(state.player.board.length, 2, "No second Jwanga should spawn");
+
+    // 3. Jwanga dies
+    state.player.board = [host];
+    
+    // 4. Respawn check
+    host.equipment.onEquippedAttack(host, state.player.board);
+    assert.strictEqual(state.player.board.length, 2, "Fresh Jwanga should spawn after first dies");
+    assert.strictEqual(state.player.board[1].card_name, "Jwanga Djitu");
+}
+
+function testAshWitheredCloak() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const cloak = CardFactory.create({ card_name: "Ash-Withered Cloak", type: "Equipment", rules_text: "Equipped creature gets +2/+2." });
+    host.equipment = cloak;
+    host.owner = 'player';
+    state.player.board = [host];
+
+    // Stats check
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 4, "Host gets +2/+2");
+
+    // Spell copying (Faith in Darkness)
+    const faith = CardFactory.create({ card_name: "Faith in Darkness" });
+    state.castingSpell = faith;
+    state.player.hand.push(faith); // Required for applySpell cleanup
+    applySpell(host.id);
+
+    // Host 2/2 + Cloak 2/2 + Faith 2/2 + Faith Copy 2/2 = 8/8
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 8, "Faith in Darkness should be copied");
+    assert.strictEqual(state.scrying.count, 2, "Scry 1 should be copied to Scry 2");
+}
+
 function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -2567,7 +2633,10 @@ function runTests() {
     const t5Tests = [
         { tier: 5, name: "Warhammer Kreg", fn: testWarhammerKreg },
         { tier: 5, name: "Dancing Mirrorblade", fn: testDancingMirrorblade },
-        { tier: 5, name: "The Exile Queen's Crown", fn: testTheExileQueensCrown }
+        { tier: 5, name: "The Exile Queen's Crown", fn: testTheExileQueensCrown },
+        { tier: 5, name: "Dragonlord's Carapace", fn: testDragonlordsCarapace },
+        { tier: 5, name: "Djitu's Lithified Mantle", fn: testDjitusLithifiedMantle },
+        { tier: 5, name: "Ash-Withered Cloak", fn: testAshWitheredCloak }
     ];
 
     console.log("\nUNIT TEST RESULTS");

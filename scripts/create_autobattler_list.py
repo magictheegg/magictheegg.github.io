@@ -28,7 +28,8 @@ def create_autobattler_card_list():
         "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
-        "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown"
+        "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
+        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -71,7 +72,8 @@ def create_autobattler_card_list():
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider"
     ]
     tier_5_names = [
-        "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown"
+        "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
+        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak"
     ]
 
     for name in card_names_to_include:
@@ -95,7 +97,7 @@ def create_autobattler_card_list():
             print(f"Warning: Could not find base card {name}")
 
     # Add required tokens
-    token_names = [("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC")]
+    token_names = [("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), ("Jwanga Djitu", "ACE")]
     for t_name, t_set in token_names:
         # For ACE Construct, we want specifically #58
         if t_name == "Construct" and t_set == "ACE":

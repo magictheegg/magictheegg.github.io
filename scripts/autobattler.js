@@ -791,7 +791,7 @@ class BaseCard {
 
     class HissingSunspitter extends BaseCard {
         onNoncreatureCast(isFoilCast, board, host = this) {
-            if (host.owner !== 'player') return;
+            if (host.owner !== 'player' || !board) return;
             const multiplier = host.isFoil ? 2 : 1;
             
             // "if it's the second spell you cast this turn" (state.spellsCastThisTurn is incremented BEFORE triggers)
@@ -1092,6 +1092,61 @@ class BaseCard {
         }
     }
 
+    class DragonlordsCarapace extends BaseCard {
+        getEquipmentStats(target) {
+            return { p: 8, t: 8 };
+        }
+    }
+
+    class DjitusLithifiedMantle extends BaseCard {
+        async onEquippedAttack(host, board) {
+            const hasDjitu = board.some(c => c.card_name === 'Jwanga Djitu');
+            if (hasDjitu || board.length >= boardLimit) return;
+
+            const token = createToken('Jwanga Djitu', 'ACE', host.owner);
+            if (!token) return;
+
+            // Add to board to the right of host
+            const hostIdx = board.indexOf(host);
+            if (hostIdx !== -1) {
+                board.splice(hostIdx + 1, 0, token);
+            } else {
+                board.push(token);
+            }
+
+            // Move to front of combat queue so it attacks next (after opponent)
+            if (state.phase === 'BATTLE' && state.battleQueues) {
+                const q = state.battleQueues[host.owner];
+                const qIdx = q.indexOf(token);
+                if (qIdx !== -1) {
+                    q.splice(qIdx, 1);
+                    q.unshift(token);
+                }
+            }
+
+            // Animation
+            if (typeof document !== 'undefined') {
+                token.isSpawning = true;
+                await new Promise(r => setTimeout(r, 100));
+                render();
+                await new Promise(r => setTimeout(r, 600));
+                delete token.isSpawning;
+                render();
+            }
+
+            // Broadast ETB
+            board.forEach(c => {
+                if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+            });
+        }
+    }
+
+    class AshWitheredCloak extends BaseCard {
+        getEquipmentStats(target) {
+            return { p: 2, t: 2 };
+        }
+    }
+
     class LagoonLogistics extends BaseCard {
         onApply(target, board) {
             const raw = availableCards.find(c => c.card_name === target.card_name && (target.set ? c.set === target.set : true));
@@ -1105,6 +1160,10 @@ class BaseCard {
             
             if (boardIdx !== -1) board.splice(boardIdx, 1);
             if (handIdx !== -1) state.player.hand.splice(handIdx, 1);
+
+            if (target.equipment && state.player.hand.length < handLimit) {
+                state.player.hand.push(target.equipment);
+            }
 
             const fresh = CardFactory.create(raw);
             fresh.owner = 'player';
@@ -1763,6 +1822,9 @@ class BaseCard {
                 case 'Dancing Mirrorblade': card = new DancingMirrorblade(data); break;
                 case 'Warhammer Kreg': card = new WarhammerKreg(data); break;
                 case 'The Exile Queen\'s Crown': card = new TheExileQueensCrown(data); break;
+                case 'Dragonlord\'s Carapace': card = new DragonlordsCarapace(data); break;
+                case 'Djitu\'s Lithified Mantle': card = new DjitusLithifiedMantle(data); break;
+                case 'Ash-Withered Cloak': card = new AshWitheredCloak(data); break;
                 case 'Magnific Wilderkin': card = new MagnificWilderkin(data); break;
                 case 'Dwarven Phalanx': card = new DwarvenPhalanx(data); break;
                 case 'Lair Recluse': card = new LairRecluse(data); break;
@@ -2332,7 +2394,6 @@ class BaseCard {
     // Legacy functions removed in favor of OO methods
 
     async function performAttack(attacker, defender, isFirstStrike = false) {
-        state.activeAttackerId = attacker.id;
         const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
         const attackerEl = document.getElementById(`card-${attacker.id}`);
         if (!attackerEl) return;
@@ -2353,6 +2414,7 @@ class BaseCard {
             deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
         }
 
+        state.activeAttackerId = attacker.id;
         attackerEl.classList.add('attacking');
         
         // Phase 1: Wind up (Lift and scale)
@@ -2889,7 +2951,13 @@ class BaseCard {
 
         // 2. Fill remaining slots
         while (state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature') || c.type?.toLowerCase().includes('equipment')).length < creaturesTarget) {
-            state.shop.cards.push(CardFactory.create(creaturePool[Math.floor(Math.random() * creaturePool.length)]));
+            const hasEquipment = state.shop.cards.some(c => c.type?.toLowerCase().includes('equipment'));
+            let subPool = creaturePool;
+            if (hasEquipment) {
+                subPool = creaturePool.filter(c => !c.type?.toLowerCase().includes('equipment'));
+            }
+            if (subPool.length === 0) break;
+            state.shop.cards.push(CardFactory.create(subPool[Math.floor(Math.random() * subPool.length)]));
         }
         while (state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment')).length < spellsTarget) {
             state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
@@ -3364,6 +3432,11 @@ class BaseCard {
                         target.damageTaken = 0;
                         target.enchantments = [];
                         
+                        if (target.equipment && state.player.hand.length < handLimit) {
+                            state.player.hand.push(target.equipment);
+                            target.equipment = null;
+                        }
+
                         state.player.hand.push(target);
                         clearTargetingEffect();
                     }
@@ -3443,8 +3516,9 @@ class BaseCard {
 
                 applyMadnessBuff(target);
                 
-                // ADAPTIVE: Copy the spell effect
-                if (target.hasKeyword('Adaptive')) {
+                // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect
+                const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
+                if (target.hasKeyword('Adaptive') || hasCloak) {
                     applyMadnessBuff(target);
                 }
 
@@ -3480,7 +3554,8 @@ class BaseCard {
                         const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                         buffTarget.tempPower += (2 * multiplier);
                         buffTarget.tempToughness += (2 * multiplier);
-                        if (buffTarget.hasKeyword('Adaptive')) {
+                        const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
+                        if (buffTarget.hasKeyword('Adaptive') || hasCloak) {
                             buffTarget.tempPower += (2 * multiplier);
                             buffTarget.tempToughness += (2 * multiplier);
                         }
@@ -3508,8 +3583,9 @@ class BaseCard {
                     buffTarget.tempPower += (2 * multiplier);
                     buffTarget.tempToughness += (2 * multiplier);
                     
-                    // ADAPTIVE
-                    if (buffTarget.hasKeyword('Adaptive')) {
+                    // ADAPTIVE or Ash-Withered Cloak
+                    const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
+                    if (buffTarget.hasKeyword('Adaptive') || hasCloak) {
                         buffTarget.tempPower += (2 * multiplier);
                         buffTarget.tempToughness += (2 * multiplier);
                     }
@@ -3669,7 +3745,8 @@ class BaseCard {
                 const isFoilCast = state.targetingEffect.isFoil;
 
                 if (t1 && t2) {
-                    if (t1.id === t2.id && t1.hasKeyword('Adaptive')) {
+                    const hasCloak = t1.equipment && t1.equipment.card_name === 'Ash-Withered Cloak';
+                    if (t1.id === t2.id && (t1.hasKeyword('Adaptive') || hasCloak)) {
                         t1.counters += (4 * multiplier);
                     } else {
                         t1.counters += (1 * multiplier);
@@ -4009,6 +4086,13 @@ class BaseCard {
 
         if (allNewSpawns.length > 0 && typeof document !== 'undefined') {
             await new Promise(r => setTimeout(r, 600)); // Wait for spawn animations
+            
+            // Protect upcoming spawn attackers from FLIP disruption
+            const nextSpawnAttacker = allNewSpawns.find(s => s.isTrenchrunnerSpawn);
+            if (nextSpawnAttacker) {
+                state.activeAttackerId = nextSpawnAttacker.id;
+            }
+
             allNewSpawns.forEach(s => delete s.isSpawning);
             render(); // Final cleanup render
         }
@@ -4021,6 +4105,12 @@ class BaseCard {
                     delete spawn.isTrenchrunnerSpawn;
                     const defenderBoard = (spawn.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
                     const target = findTarget(spawn, defenderBoard);
+                    
+                    // Settle time for browser layout before the dash starts
+                    if (typeof document !== 'undefined') {
+                        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+                    }
+
                     await performAttack(spawn, target, false);
                     await resolveDeaths(); 
                     break;
@@ -4126,8 +4216,10 @@ class BaseCard {
 
         state.castingSpell.onApply(target, state.player.board);
         
-        // ADAPTIVE: Copy the spell effect
-        if (target.hasKeyword('Adaptive')) {
+        // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect (Exclude certain utility spells)
+        const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
+        const isDoubleable = !['Lagoon Logistics', 'Artful Coercion'].includes(state.castingSpell.card_name);
+        if (isDoubleable && (target.hasKeyword('Adaptive') || hasCloak)) {
             state.castingSpell.onApply(target, state.player.board);
         }
         
@@ -4334,14 +4426,18 @@ class BaseCard {
         const existingMap = new Map();
         Array.from(container.children).forEach(child => existingMap.set(child.id, child));
 
+        const instanceList = [];
         cards.forEach((card, index) => {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
+            instanceList.push(instance);
             const id = `card-${instance.id}`;
             let oldEl = existingMap.get(id);
             let newEl;
 
-            if (oldEl && state.activeAttackerId === instance.id) {
-                // Manually update attacker to preserve its dash/lift
+            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning));
+
+            if (isBusy) {
+                // Manually update busy cards to preserve their active animations
                 const stats = instance.getDisplayStats(boardContext);
                 const pEl = oldEl.querySelector('.card-p');
                 const tEl = oldEl.querySelector('.card-t');
@@ -4351,10 +4447,17 @@ class BaseCard {
                     if (stats.t < stats.maxT) tEl.classList.add('damaged');
                     else tEl.classList.remove('damaged');
                 }
+                
+                // Sync classes even when busy
+                if (instance.isSpawning) oldEl.classList.add('spawning');
+                else oldEl.classList.remove('spawning');
+                if (instance.isDying) oldEl.classList.add('dying');
+                else oldEl.classList.remove('dying');
+
                 newEl = oldEl;
             } else {
                 // For everyone else, replace the node so we get fresh targeting listeners
-                newEl = createCardElement(card, isShop, index, boardContext);
+                newEl = createCardElement(instance, isShop, index, boardContext);
                 if (instance.isSpawning) newEl.classList.add('spawning');
                 if (oldEl) oldEl.replaceWith(newEl);
             }
@@ -4365,7 +4468,7 @@ class BaseCard {
         });
 
         // Remove old nodes
-        const cardIds = cards.map(c => `card-${c.id}`);
+        const cardIds = instanceList.map(c => `card-${c.id}`);
         Array.from(container.children).forEach(child => {
             if (!cardIds.includes(child.id)) child.remove();
         });
@@ -4373,8 +4476,8 @@ class BaseCard {
         // 3. FLIP "Invert" (Synchronous to avoid snap)
         if (state.phase === 'BATTLE') {
             const invertedElements = [];
-            cards.forEach(card => {
-                const id = `card-${card.id}`;
+            instanceList.forEach(instance => {
+                const id = `card-${instance.id}`;
                 const el = document.getElementById(id);
                 const firstRect = firstPositions.get(id);
                 if (!el || !firstRect) return;
@@ -4384,29 +4487,37 @@ class BaseCard {
                 const deltaY = firstRect.top - lastRect.top;
 
                 if (deltaX !== 0 || deltaY !== 0) {
-                    const isAttacking = el.classList.contains('attacking');
-                    const currentTransform = el.style.transform;
+                    const isAttacker = (state.activeAttackerId === instance.id);
+                    const originalTransform = el.style.transform;
+                    const originalTransition = el.style.transition;
                     
                     el.style.transition = 'none';
-                    if (isAttacking) {
+                    if (isAttacker) {
+                        // For the attacker, combine layout shift with its current visual state (lift/scale)
                         const style = window.getComputedStyle(el);
                         const matrix = style.transform === 'none' ? '' : style.transform;
                         el.style.transform = `translate(${deltaX}px, ${deltaY}px) ${matrix}`;
                     } else {
                         el.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                     }
-                    invertedElements.push({ el, originalTransform: isAttacking ? currentTransform : '' });
+                    invertedElements.push({ el, originalTransform, originalTransition, instance, deltaX, deltaY });
                 }
             });
 
             // 4. FLIP "Play" (Next frame)
             if (invertedElements.length > 0) {
-                // Force a reflow to apply 'transition: none' and starting transforms
+                // Force a reflow
                 container.offsetHeight; 
                 
                 requestAnimationFrame(() => {
-                    invertedElements.forEach(({ el, originalTransform }) => {
-                        el.style.transition = ''; // Restore CSS transition
+                    invertedElements.forEach(({ el, originalTransform, originalTransition, instance }) => {
+                        // If someone else (like performAttack) has already started a new transition 
+                        // on the attacker, do NOT clobber it with the old layout state.
+                        if (state.activeAttackerId === instance.id && el.style.transition !== 'none' && el.style.transition !== '') {
+                            return;
+                        }
+
+                        el.style.transition = originalTransition; 
                         el.style.transform = originalTransform;
                     });
                 });
@@ -4769,11 +4880,6 @@ class BaseCard {
         cardEl.id = `card-${instance.id}`;
         if (instance.isDying) cardEl.classList.add('dying');
         if (instance.isSpawning) cardEl.classList.add('spawning');
-        if (state.activeAttackerId === instance.id) {
-            cardEl.classList.add('attacking');
-            cardEl.style.zIndex = "2000";
-            cardEl.style.transform = "scale(1.2) translateY(-15px)";
-        }
         cardEl.querySelector('.card-name').textContent = instance.card_name;
         
         const tokenSuffix = (instance.shape?.includes('token')) ? "t" : "";
