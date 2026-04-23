@@ -1,5 +1,8 @@
 // --- OO CARD SYSTEM ---
 
+const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion'];
+const complexTargetedNames = ['Executioner\'s Madness', 'Warrior\'s Ways', 'Whispers of the Dead', 'Ceremony of Tribes', 'Up in Arms'];
+
 class BaseCard {
         constructor(data) {
             Object.assign(this, data);
@@ -158,7 +161,7 @@ class BaseCard {
         onDeath(board, owner) { return []; }
 
         // Hook for when another creature on the same board dies
-        onOtherCreatureDeath(board) { }
+        onOtherCreatureDeath(deadCard, board) { }
 
         // Hook for when a spell is cast (for non-targeted spells like Divination)
         onCast(board) { }
@@ -264,6 +267,8 @@ class BaseCard {
                 // Already in Cirrusea: Trigger targeting for Flying or +1/+1
                 queueTargetingEffect({
                     sourceId: source.id,
+                    title: source.card_name,
+                    text: "Choose a creature to teach flying.",
                     effect: 'traverse_cirrusea_grant',
                     wasCast: true,
                     owner: owner,
@@ -345,6 +350,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({ 
                 sourceId: this.id, 
+                title: this.card_name,
+                text: "Choose a creature to get a +1/+1 counter.",
                 effect: 'dutiful_camel_counter', 
                 isDouble: this.isFoil,
                 wasCast: true
@@ -364,6 +371,8 @@ class BaseCard {
         onAction() {
             state.targetingEffect = { 
                 sourceId: this.id, 
+                title: this.card_name,
+                text: "Choose a creature to sacrifice.",
                 effect: 'intli_sacrifice'
             };
         }
@@ -409,12 +418,13 @@ class BaseCard {
             const multiplier = this.isFoil ? 2 : 1;
             if (board === state.player.board) {
                 state.player.treasures += multiplier;
-                addScry(2 * multiplier);
+                addScry(2 * multiplier, null, this.card_name);
             }
         }
     }
 
     class ToBattle extends BaseCard {
+        effect_text = 'Choose a creature to get a +1/+1 counter and gain haste until end of turn.';
         onApply(target, board) {
             target.counters += 1;
             if (!target.enchantments) target.enchantments = [];
@@ -423,9 +433,10 @@ class BaseCard {
     }
 
     class FaithInDarkness extends BaseCard {
+        effect_text = 'Choose a creature to get +2/+2 until end of turn.';
         onApply(target, board) {
             if (board === state.player.board) {
-                addScry(1);
+                addScry(1, null, this.card_name);
             }
             target.tempPower += 2;
             target.tempToughness += 2;
@@ -435,6 +446,7 @@ class BaseCard {
     }
 
     class ByBloodAndVenom extends BaseCard {
+        effect_text = 'Choose a creature to gain lifelink and return to the battlefield upon death until end of turn.';
         onApply(target, board) {
             if (!target.enchantments) target.enchantments = [];
             target.enchantments.push({ card_name: 'By Blood and Venom', rules_text: 'Resurrection', isTemporary: true });
@@ -479,6 +491,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to sacrifice.",
                 effect: 'pusbag_sacrifice',
                 wasCast: true
             });
@@ -508,6 +522,7 @@ class BaseCard {
         onCast(board) {
             const noncreatures = availableCards.filter(c => 
                 c.type && !c.type.toLowerCase().includes('creature') && 
+                !c.type.toLowerCase().includes('equipment') &&
                 c.shape !== 'token' && 
                 c.card_name !== 'Consult the Dewdrops' &&
                 (c.tier || 1) <= state.player.tier
@@ -519,8 +534,8 @@ class BaseCard {
             }
             queueDiscovery({
                 cards: selection,
-                title: 'DISCOVER',
-                text: 'Choose a noncreature card to add to your hand.'
+                title: this.card_name,
+                text: 'Choose a noncreature card.'
             });
         }
     }
@@ -572,6 +587,8 @@ class BaseCard {
             // Step 2: Pick Centaur for counter
             state.targetingEffect = {
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a Centaur to get a +1/+1 counter.",
                 buffTargetId: target.id,
                 effect: 'warrior_ways_step2',
                 isFoil: this.isFoil
@@ -598,6 +615,8 @@ class BaseCard {
             if (state.player.gold >= 2) {
                 state.targetingEffect = {
                     sourceId: this.id,
+                    title: this.card_name,
+                    text: "Choose a creature to gain trample until end of turn.",
                     effect: 'wilderkin_zealot_trample',
                     cost: 2,
                     isFoil: this.isFoil
@@ -622,6 +641,8 @@ class BaseCard {
             queueDiscovery({
                 cards: options.map(o => CardFactory.create(o)),
                 isKeywordChoice: true,
+                title: this.card_name,
+                text: 'Choose two keyword counters to place on Bwema.',
                 count: 1,
                 remaining: multiplier * 2,
                 sourceId: this.id,
@@ -635,6 +656,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a counter to remove.",
                 effect: 'permutate_step1',
                 wasCast: true,
                 isFoil: this.isFoil
@@ -732,6 +755,162 @@ class BaseCard {
                 }
             }
             return [];
+        }
+    }
+
+    class KaiLongDarkImmolator extends BaseCard {
+        onOtherCreatureDeath(deadCard, board) {
+            if (state.phase !== 'BATTLE') return;
+            if (this.owner !== deadCard.owner) return;
+            const stats = deadCard.getDisplayStats(board);
+            const power = stats.p;
+            if (power <= 0) return;
+            
+            const targetSide = (this.owner === 'player') ? 'opponent' : 'player';
+            const currentOpp = getOpponent();
+
+            if (this.owner === 'player') {
+                if (currentOpp) currentOpp.fightHp -= power;
+            } else {
+                state.player.fightHp -= power;
+            }
+
+            // Animation (Matching Cankerous Hog style)
+            const avatarId = (targetSide === 'opponent') ? 'opponent-battle-avatar' : 'player-avatar';
+            setTimeout(() => {
+                const avatarEl = document.getElementById(avatarId);
+                if (avatarEl) {
+                    avatarEl.classList.add('shake');
+                    setTimeout(() => avatarEl.classList.remove('shake'), 300);
+                    showDamageBubble(avatarEl, power, 'debuff-bubble');
+                }
+                const hpEl = document.getElementById(targetSide === 'opponent' ? 'opponent-fight-hp' : 'player-fight-hp');
+                if (hpEl) {
+                    hpEl.textContent = (targetSide === 'opponent' ? currentOpp.fightHp : state.player.fightHp);
+                }
+            }, 100);
+        }
+        onDeath(board, owner) {
+            if (state.phase !== 'BATTLE') return [];
+            // "Whenever a creature you control dies" - includes self
+            const stats = this.getDisplayStats(board);
+            const power = stats.p;
+            const targetSide = (owner === 'player') ? 'opponent' : 'player';
+            const currentOpp = getOpponent();
+
+            if (owner === 'player') {
+                if (currentOpp) currentOpp.fightHp -= power;
+            } else {
+                state.player.fightHp -= power;
+            }
+
+            // Animation (Matching Cankerous Hog style)
+            const avatarId = (targetSide === 'opponent') ? 'opponent-battle-avatar' : 'player-avatar';
+            setTimeout(() => {
+                const avatarEl = document.getElementById(avatarId);
+                if (avatarEl) {
+                    avatarEl.classList.add('shake');
+                    setTimeout(() => avatarEl.classList.remove('shake'), 300);
+                    showDamageBubble(avatarEl, power, 'debuff-bubble');
+                }
+                const hpEl = document.getElementById(targetSide === 'opponent' ? 'opponent-fight-hp' : 'player-fight-hp');
+                if (hpEl) {
+                    hpEl.textContent = (targetSide === 'opponent' ? currentOpp.fightHp : state.player.fightHp);
+                }
+            }, 100);
+
+            return [];
+        }
+    }
+
+    class LumberingAncient extends BaseCard {
+        onDeath(board, owner) {
+            // Target random friendly creature (not dying) - matching Sporegraft Slime
+            const friends = board.filter(c => c.id !== this.id && c.getDisplayStats(board).t > 0);
+            if (friends.length > 0) {
+                const target = friends[Math.floor(Math.random() * friends.length)];
+                const multiplier = this.isFoil ? 2 : 1;
+                target.counters += (8 * multiplier);
+                
+                // Pulsing feedback if in combat
+                if (state.phase === 'BATTLE') {
+                    const el = document.getElementById(`card-${target.id}`);
+                    if (el) {
+                        const ptBox = el.querySelector('.card-pt');
+                        if (ptBox) {
+                            ptBox.classList.add('pulse-stats');
+                            setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                        }
+                    }
+                }
+            }
+            return [];
+        }
+    }
+
+    class ZaraxSupermajor extends BaseCard {
+        onETB(board) {
+            const token = createToken('Beast', 'SHF', this.owner);
+            if (token) board.push(token);
+        }
+        onNoncreatureCast(isFoil, board) {
+            if (state.spellsCastThisTurn === 2) {
+                this.counters++;
+                board.forEach(c => {
+                    if (!c.enchantments) c.enchantments = [];
+                    c.enchantments.push({ card_name: 'Galaxian Flight', rules_text: 'Flying', isTemporary: true });
+                });
+            }
+        }
+    }
+
+    class InfuseTheApparatus extends BaseCard {
+        onCast(board) {
+            const uniqueSpells = [];
+            const names = new Set();
+            state.player.spellGraveyard.forEach(s => {
+                if (!names.has(s.card_name)) {
+                    names.add(s.card_name);
+                    uniqueSpells.push(s);
+                }
+            });
+            state.player.spellGraveyard = []; // Exile all
+            
+            uniqueSpells.forEach(spell => {
+                const name = spell.card_name;
+                const isEquipment = spell.type?.toLowerCase().includes('equipment');
+                
+                if (name === 'Executioner\'s Madness') {
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, spellInstance: spell });
+                } else if (name === 'Warrior\'s Ways') {
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: spell.isFoil, spellInstance: spell });
+                } else if (name === 'Whispers of the Dead') {
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, spellInstance: spell });
+                } else if (name === 'Ceremony of Tribes') {
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, spellInstance: spell });
+                } else if (name === 'Up in Arms') {
+                    spell.onApply(null, board);
+                } else if (isEquipment) {
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, spellInstance: spell });
+                } else if (targetedNames.includes(name)) {
+                    queueTargetingEffect({
+                        sourceId: this.id,
+                        spellInstance: spell,
+                        title: name,
+                        text: spell.effect_text || spell.rules_text,
+                        effect: 'infuse_spell_resolution',
+                        owner: 'player',
+                        wasCast: true,
+                        isFoil: spell.isFoil
+                    });
+                } else {
+                    // Fallback for untargeted spells
+                    spell.onCast(board);
+                }
+                
+                // Trigger triggers
+                board.forEach(c => c.onNoncreatureCast(spell.isFoil, board));
+            });
         }
     }
 
@@ -836,6 +1015,8 @@ class BaseCard {
         onShopStart(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a counter to remove.",
                 effect: 'cloudline_sovereign_step1',
                 isFoil: this.isFoil,
                 isMandatory: false
@@ -847,6 +1028,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to return to your hand.",
                 effect: 'nightfall_raptor_bounce',
                 isFoil: this.isFoil,
                 isMandatory: false
@@ -910,7 +1093,7 @@ class BaseCard {
             queueDiscovery({
                 cards: creatures.map(c => CardFactory.create(c)),
                 title: 'SAVAGE CONGREGATION',
-                text: 'Select up to 2 creatures (Total Tier <= 4)',
+                text: 'Choose any number of creatures with total Tier 4 or less.',
                 effect: 'savage_congregation',
                 multiSelect: true,
                 maxTier: 4,
@@ -934,13 +1117,15 @@ class BaseCard {
                     cards: options.map(o => CardFactory.create(o)),
                     isKeywordChoice: true,
                     title: 'NDENGO BRUTALIZER',
-                    text: 'Teach Ndengo Brutalizer a keyword.',
+                    text: 'Choose a keyword to teach to Ndengo Brutalizer.',
                     effect: 'ndengo_solo',
                     sourceId: this.id
                 });
             } else {
                 queueTargetingEffect({
                     sourceId: this.id,
+                    title: this.card_name,
+                    text: "Choose a creature to teach.",
                     effect: 'ndengo_target'
                 });
             }
@@ -1177,6 +1362,7 @@ class BaseCard {
     }
 
     class LagoonLogistics extends BaseCard {
+        effect_text = 'Choose a creature to exile, then return to the battlefield.';
         onApply(target, board) {
             const raw = availableCards.find(c => c.card_name === target.card_name && (target.set ? c.set === target.set : true));
             if (!raw) return; // Safety: Don't blink if we can't recreate
@@ -1230,6 +1416,7 @@ class BaseCard {
     }
 
     class ArtfulCoercion extends BaseCard {
+        effect_text = 'Choose a creature of which to gain control.';
         onApply(target, board) {
             // Target is from the shop
             const shopIdx = state.shop.cards.indexOf(target);
@@ -1330,6 +1517,8 @@ class BaseCard {
             if (board.length > 1) {
                 queueTargetingEffect({
                     sourceId: this.id,
+                    title: this.card_name,
+                    text: "Choose a counter to remove.",
                     effect: 'permutate_step1',
                     isFoil: this.isFoil
                 });
@@ -1391,7 +1580,7 @@ class BaseCard {
                 cards: options.map(o => CardFactory.create(o)),
                 isKeywordChoice: true,
                 title: 'GHESSIAN MEMORIES',
-                text: 'Choose a keyword to grant to all your creatures.',
+                text: 'Choose a keyword to grant each creature you control until end of turn.',
                 effect: 'ghessian_buff',
                 sourceId: this.id,
                 remaining: 1,
@@ -1415,6 +1604,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to get a +1/+1 counter and lifelink until end of turn.",
                 effect: 'nest_matriarch_buff',
                 wasCast: true,
                 isFoil: this.isFoil
@@ -1459,6 +1650,8 @@ class BaseCard {
             if (!target) {
                 state.targetingEffect = {
                     sourceId: this.id,
+                    title: this.card_name,
+                    text: "Choose a creature to get the first +1/+1 counter.",
                     effect: 'up_in_arms_step1',
                     wasCast: true,
                     spellInstance: this
@@ -1469,6 +1662,8 @@ class BaseCard {
             // Step 2 initialization (this was the old onApply body)
             state.targetingEffect = {
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to get the second +1/+1 counter.",
                 target1Id: target.id,
                 effect: 'up_in_arms_step2',
                 isFoil: this.isFoil
@@ -1492,6 +1687,7 @@ class BaseCard {
     class CabracansFamiliar extends BaseCard { }
 
     class Bushwhack extends BaseCard {
+        effect_text = 'Choose a creature to get +4/=2 and gain trample until end of turn.';
         onApply(target, board) {
             const multiplier = this.isFoil ? 2 : 1;
             target.tempPower += (4 * multiplier);
@@ -1540,12 +1736,13 @@ class BaseCard {
                     // Add two creatures to shop divination-style (adds to current, uses scry queue)
                     addCardsToShop(2 * multiplier, 'creature');
                     render();
-                });
+                }, this.card_name);
             }
         }
     }
 
     class FightSong extends BaseCard {
+        effect_text = 'Choose a creature to get a +1/+1 counter and gain indestructible until end of turn.';
         onApply(target, board) {
             const multiplier = this.isFoil ? 2 : 1;
             target.counters += multiplier;
@@ -1590,7 +1787,7 @@ class BaseCard {
     }
 
     class DevilsChild extends BaseCard {
-        onOtherCreatureDeath(board) {
+        onOtherCreatureDeath(deadCard, board) {
             const multiplier = this.isFoil ? 2 : 1;
             this.counters += multiplier;
         }
@@ -1640,6 +1837,8 @@ class BaseCard {
         onAction() {
             state.targetingEffect = { 
                 sourceId: this.id, 
+                title: this.card_name,
+                text: "Choose a creature to sacrifice.",
                 effect: 'wechuge_sacrifice'
             };
         }
@@ -1651,6 +1850,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a Centaur to get two +1/+1 counters.",
                 effect: 'warband_rallier_counters',
                 wasCast: true,
                 isFoil: this.isFoil
@@ -1726,6 +1927,8 @@ class BaseCard {
         onETB(board) {
             queueTargetingEffect({
                 sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a card to discard.",
                 effect: 'parliament_discard',
                 wasCast: true,
                 isFoil: this.isFoil
@@ -1751,7 +1954,12 @@ class BaseCard {
 
     class DewdropOracle extends BaseCard {
         onETB(board) {
-            const noncreatures = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+            const noncreatures = availableCards.filter(c => 
+                c.type && !c.type.toLowerCase().includes('creature') && 
+                !c.type.toLowerCase().includes('equipment') &&
+                c.shape !== 'token' && 
+                (c.tier || 1) <= state.player.tier
+            );
             const selection = [];
             const multiplier = this.isFoil ? 2 : 1;
             for (let i = 0; i < 4 * multiplier; i++) {
@@ -1759,8 +1967,8 @@ class BaseCard {
             }
             queueDiscovery({
                 cards: selection,
-                title: 'DISCOVER',
-                text: 'Choose a noncreature card to add to your hand.'
+                title: this.card_name,
+                text: 'Choose a noncreature card.'
             });
         }
     }
@@ -1825,6 +2033,10 @@ class BaseCard {
                 case 'Dragonfist Axeman': card = new DragonfistAxeman(data); break;
                 case 'Festival Celebrants': card = new FestivalCelebrants(data); break;
                 case 'Suitor of Death': card = new SuitorOfDeath(data); break;
+                case 'Kai\'Long, Dark Immolator': card = new KaiLongDarkImmolator(data); break;
+                case 'Lumbering Ancient': card = new LumberingAncient(data); break;
+                case 'Zarax Supermajor': card = new ZaraxSupermajor(data); break;
+                case 'Infuse the Apparatus': card = new InfuseTheApparatus(data); break;
                 case 'Servants of Dydren': card = new ServantsOfDydren(data); break;
                 case 'Holtun-Band Elder': card = new HoltunBandElder(data); break;
                 case 'Whispers of the Dead': card = new WhispersOfTheDead(data); break;
@@ -3218,53 +3430,26 @@ class BaseCard {
             state.player.hand.splice(cardIndex, 1);
         } else {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
-            const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion'];
             
             if (instance.card_name === 'Executioner\'s Madness') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = {
-                    sourceId: instance.id,
-                    effect: 'executioner_sacrifice_step1',
-                    wasCast: true,
-                    spellInstance: instance
-                };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, spellInstance: instance };
             } else if (instance.card_name === 'Warrior\'s Ways') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = {
-                    sourceId: instance.id,
-                    effect: 'warrior_ways_step1',
-                    wasCast: true,
-                    isFoil: instance.isFoil,
-                    spellInstance: instance
-                };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: instance.isFoil, spellInstance: instance };
             } else if (instance.card_name === 'Whispers of the Dead') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = {
-                    sourceId: instance.id,
-                    effect: 'whispers_sacrifice',
-                    wasCast: true,
-                    spellInstance: instance
-                };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, spellInstance: instance };
             } else if (instance.card_name === 'Ceremony of Tribes') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = {
-                    sourceId: instance.id,
-                    effect: 'ceremony_step1',
-                    wasCast: true,
-                    spellInstance: instance
-                };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, spellInstance: instance };
             } else if (instance.card_name === 'Up in Arms') {
                 state.spellsCastThisTurn++;
-                instance.onApply(null, state.player.board); // onApply handles the state initialization
+                instance.onApply(null, state.player.board);
             } else if (instance.type?.toLowerCase().includes('equipment')) {
                 if (state.player.board.length === 0) return;
                 state.spellsCastThisTurn++;
-                state.targetingEffect = {
-                    sourceId: instance.id,
-                    effect: 'equip_creature',
-                    wasCast: true,
-                    spellInstance: instance
-                };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, spellInstance: instance };
             } else if (targetedNames.includes(instance.card_name)) {
                 if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
                     return; 
@@ -3283,7 +3468,7 @@ class BaseCard {
     }
 
     function queueTargetingEffect(effect) {
-        if (effect.isMandatory === undefined) effect.isMandatory = true; 
+        if (effect.isMandatory === undefined) effect.isMandatory = true;
         state.targetingQueue.push(effect);
         if (!state.targetingEffect) {
             processTargetingQueue();
@@ -3298,9 +3483,10 @@ class BaseCard {
                                  (effect.owner === 'opponent' ? state.battleBoards.opponent : state.battleBoards.player) : 
                                  state.player.board;
 
-            if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant') {
+            if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant' || effect.effect === 'infuse_spell_resolution') {
                 hasTargets = currentBoard.length > 0;
             } else if (effect.effect === 'nest_matriarch_buff') {
+
                 hasTargets = currentBoard.length > 1; 
             } else if (effect.effect === 'warband_rallier_counters') {
                 hasTargets = currentBoard.some(c => c.type?.includes('Centaur'));
@@ -3371,7 +3557,7 @@ class BaseCard {
                     }
                 }
 
-                effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1'].includes(effect.effect);
+                effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard'].includes(effect.effect);
                 state.targetingEffect = effect;
                 render();
                 return;
@@ -3496,6 +3682,8 @@ class BaseCard {
 
                     queueDiscovery({
                         cards: creatures.map(c => CardFactory.create(c)),
+                        title: 'WHISPERS OF THE DEAD',
+                        text: 'Choose two creatures to add to your hand.',
                         effect: 'whispers_pick1',
                         remaining: 2,
                         sourceId: state.targetingEffect.sourceId
@@ -3565,6 +3753,7 @@ class BaseCard {
                     state.targetingEffect.sourceCreatureId = target.id;
                     state.targetingEffect.removedCounterType = counterType;
                     state.targetingEffect.effect = 'permutate_step2';
+                    state.targetingEffect.text = "Choose another creature to get two +1/+1 counters.";
                     state.targetingEffect.isMandatory = true;
                     render();
                 }
@@ -3596,6 +3785,7 @@ class BaseCard {
 
                     // Move to Step 2: Buff Selection
                     state.targetingEffect.effect = 'executioner_buff_step2';
+                    state.targetingEffect.text = "Choose a creature to get +5/+3 and gain trample until end of turn.";
                     state.targetingEffect.sacrificedCard = target;
                     state.targetingEffect.sacrificedIndex = idx;
                 }
@@ -3644,10 +3834,12 @@ class BaseCard {
                 // If there are NO Centaurs to target for Step 2, skip it!
                 const centaurs = state.player.board.filter(c => c.type?.includes('Centaur'));
                 if (centaurs.length === 0) {
+                    const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.spellInstance && state.targetingEffect.spellInstance.isFoil);
+                    const multiplier = isFoilCast ? 2 : 1;
+
                     // Manually trigger Step 1 buff application here and end
                     const buffTarget = state.player.board.find(c => c.id === state.targetingEffect.buffTargetId);
                     if (buffTarget) {
-                        const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                         buffTarget.tempPower += (2 * multiplier);
                         buffTarget.tempToughness += (2 * multiplier);
                         const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
@@ -3657,7 +3849,6 @@ class BaseCard {
                         }
                     }
                     const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
-                    const isFoilCast = state.targetingEffect.isFoil;
                     if (handIdx !== -1) {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
@@ -3669,13 +3860,15 @@ class BaseCard {
                     clearTargetingEffect();
                 } else {
                     state.targetingEffect.effect = 'warrior_ways_step2';
+                    state.targetingEffect.text = "Choose a Centaur to get a +1/+1 counter.";
                 }
             } else if (state.targetingEffect.effect === 'warrior_ways_step2') {
-                // ... Existing warrior_ways_step2 logic ...
+                const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.spellInstance && state.targetingEffect.spellInstance.isFoil);
+                const multiplier = isFoilCast ? 2 : 1;
+                
                 // Step 1: Apply initial buff to the click 1 target
                 const buffTarget = state.player.board.find(c => c.id === state.targetingEffect.buffTargetId);
                 if (buffTarget) {
-                    const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     buffTarget.tempPower += (2 * multiplier);
                     buffTarget.tempToughness += (2 * multiplier);
                     
@@ -3689,7 +3882,6 @@ class BaseCard {
 
                 // Step 2: Apply counter to the click 2 target (Centaur)
                 if (target.type?.includes('Centaur')) {
-                    const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     target.counters += multiplier;
                 }
 
@@ -3699,6 +3891,9 @@ class BaseCard {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
                 }
+
+                // TRIGGER NONCREATURE CAST
+                state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
                 clearTargetingEffect();
             } else if (state.targetingEffect.effect === 'ceremony_step1' || state.targetingEffect.effect === 'ceremony_step2') {
@@ -3712,6 +3907,7 @@ class BaseCard {
                     state.targetingEffect.target1Id = target.id;
                     if (state.player.board.length > 1) {
                         state.targetingEffect.effect = 'ceremony_step2';
+                        state.targetingEffect.text = "Choose the second creature to copy.";
                         render();
                         return;
                     }
@@ -3789,7 +3985,20 @@ class BaseCard {
                 const multiplier = state.targetingEffect.isDouble ? 2 : 1;
                 target.counters += (2 * multiplier);
                 clearTargetingEffect();
-                } else if (state.targetingEffect.effect === 'wechuge_sacrifice') {
+                } else if (state.targetingEffect.effect === 'infuse_spell_resolution') {
+                const spell = state.targetingEffect.spellInstance;
+                const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+                
+                spell.onApply(target, board);
+
+                // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect
+                const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
+                const isDoubleable = !['Lagoon Logistics', 'Artful Coercion'].includes(spell.card_name);
+                if (isDoubleable && (target.hasKeyword('Adaptive') || hasCloak)) {
+                    spell.onApply(target, board);
+                }
+                clearTargetingEffect();
+            } else if (state.targetingEffect.effect === 'wechuge_sacrifice') {
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
                 if (source && target.id !== source.id) {
                     const idx = state.player.board.indexOf(target);
@@ -3812,7 +4021,7 @@ class BaseCard {
                         cards: options.map(o => CardFactory.create(o)),
                         isKeywordChoice: true,
                         title: 'NDENGO BRUTALIZER',
-                        text: 'Choose keyword distribution.',
+                        text: 'Choose which keyword to teach to each creature.',
                         effect: 'ndengo_choice',
                         sourceId: source.id,
                         targetId: target.id
@@ -3827,6 +4036,8 @@ class BaseCard {
                     // Trigger Discovery from Graveyard
                     queueDiscovery({
                         cards: state.player.spellGraveyard.map(s => CardFactory.create(s)),
+                        title: 'SHREWD PARLIAMENT',
+                        text: 'Choose a noncreature card in your graveyard.',
                         graveyard: true
                     });
                     clearTargetingEffect();
@@ -3834,6 +4045,7 @@ class BaseCard {
             } else if (state.targetingEffect.effect === 'up_in_arms_step1') {
                 state.targetingEffect.target1Id = target.id;
                 state.targetingEffect.effect = 'up_in_arms_step2';
+                state.targetingEffect.text = "Choose a creature to get the second +1/+1 counter.";
             } else if (state.targetingEffect.effect === 'up_in_arms_step2') {
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
                 const t2 = target;
@@ -3881,7 +4093,7 @@ class BaseCard {
         }
 
         // 1. Trigger survivor deaths
-        state.player.board.forEach(c => c.onOtherCreatureDeath(state.player.board));
+        state.player.board.forEach(c => c.onOtherCreatureDeath(target, state.player.board));
         // 2. Trigger onDeath
         const spawns = target.onDeath(state.player.board, 'player');
         if (spawns.length > 0) {
@@ -4250,7 +4462,7 @@ class BaseCard {
             if (idx === -1) continue;
 
             notifyPool.forEach(c => {
-                if (c.id !== deadCard.id) c.onOtherCreatureDeath(board);
+                if (c.id !== deadCard.id) c.onOtherCreatureDeath(deadCard, board);
             });
 
             let spawns = deadCard.onDeath(board, owner);
@@ -4479,7 +4691,7 @@ class BaseCard {
         return card.rules_text?.toLowerCase().includes(keyword.toLowerCase());
     }
 
-    function addScry(count, callback = null) {
+    function addScry(count, callback = null, title = null, text = null) {
         const creatures = availableCards.filter(c => (c.type.toLowerCase().includes('creature') || c.type.toLowerCase().includes('equipment')) && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
         const newCards = [];
         for (let i = 0; i < count; i++) {
@@ -4489,6 +4701,8 @@ class BaseCard {
         if (state.scrying) {
             state.scrying.count += count;
             state.scrying.cards.push(...newCards);
+            if (title) state.scrying.title = title;
+            if (text) state.scrying.text = text;
             // Chain callbacks if needed, though Foresee is the primary user
             const oldCallback = state.scrying.postScry;
             state.scrying.postScry = () => { if (oldCallback) oldCallback(); if (callback) callback(); };
@@ -4497,7 +4711,9 @@ class BaseCard {
                 count: count,
                 cards: newCards,
                 choices: [],
-                postScry: callback
+                postScry: callback,
+                title: title,
+                text: text
             };
         }
     }
@@ -4755,6 +4971,11 @@ class BaseCard {
         if (scryModal) {
             if (state.scrying) {
                 scryModal.style.display = 'flex';
+                const scryTitleEl = document.getElementById('scry-title');
+                const scrySubtitleEl = document.getElementById('scry-subtitle');
+                if (scryTitleEl) scryTitleEl.textContent = state.scrying.title || "SCRY";
+                if (scrySubtitleEl) scrySubtitleEl.textContent = state.scrying.text || "Scry this card to the top or bottom.";
+
                 const container = document.getElementById('scry-card-container');
                 container.innerHTML = '';
                 const currentScryCard = state.scrying.cards[state.scrying.choices.length];
@@ -4771,6 +4992,11 @@ class BaseCard {
         if (discoveryModal) {
             if (state.discovery) {
                 discoveryModal.style.display = 'flex';
+
+                const discoveryTitleEl = document.getElementById('discovery-title');
+                const discoverySubtitleEl = document.getElementById('discovery-subtitle');
+                if (discoveryTitleEl) discoveryTitleEl.textContent = state.discovery.title || "DISCOVER";
+                if (discoverySubtitleEl) discoverySubtitleEl.textContent = state.discovery.text || "Choose a card.";
 
                 const cancelBtn = document.getElementById('discovery-cancel-btn');
                 const actionsContainer = document.getElementById('discovery-actions');
@@ -4926,17 +5152,36 @@ class BaseCard {
 
         }
 
-        if (state.castingSpell || (state.targetingEffect && !state.targetingEffect.isMandatory)) {
-            endTurnBtn.textContent = 'CANCEL';
-            endTurnBtn.style.background = 'linear-gradient(to bottom, #c62828, #b71c1c)';
-            document.body.classList.add('overlay-active');
-            endTurnBtn.disabled = false;
-        } else if (state.targetingEffect && state.targetingEffect.isMandatory) {
-            endTurnBtn.textContent = 'MUST TARGET';
-            endTurnBtn.style.background = '#555';
-            document.body.classList.add('overlay-active');
-            endTurnBtn.disabled = true;
+        const targetingTitleEl = document.getElementById('targeting-title');
+        const targetingSubtitleEl = document.getElementById('targeting-subtitle');
+
+        if (state.castingSpell || state.targetingEffect) {
+            let title = "";
+            let text = "";
+            if (state.castingSpell) {
+                title = state.castingSpell.card_name;
+                text = state.castingSpell.effect_text || "Broken";
+            } else if (state.targetingEffect) {
+                title = state.targetingEffect.title || "Targeting";
+                text = state.targetingEffect.text || "Choose a target.";
+            }
+            if (targetingTitleEl) targetingTitleEl.textContent = title;
+            if (targetingSubtitleEl) targetingSubtitleEl.textContent = text;
+
+            if (state.castingSpell || (state.targetingEffect && !state.targetingEffect.isMandatory)) {
+                endTurnBtn.textContent = 'CANCEL';
+                endTurnBtn.style.background = 'linear-gradient(to bottom, #c62828, #b71c1c)';
+                document.body.classList.add('overlay-active');
+                endTurnBtn.disabled = false;
+            } else if (state.targetingEffect && state.targetingEffect.isMandatory) {
+                endTurnBtn.textContent = 'MUST TARGET';
+                endTurnBtn.style.background = '#555';
+                document.body.classList.add('overlay-active');
+                endTurnBtn.disabled = true;
+            }
         } else {
+            if (targetingTitleEl) targetingTitleEl.textContent = '';
+            if (targetingSubtitleEl) targetingSubtitleEl.textContent = '';
             endTurnBtn.textContent = 'End Turn';
             endTurnBtn.style.background = '';
             document.body.classList.remove('overlay-active');

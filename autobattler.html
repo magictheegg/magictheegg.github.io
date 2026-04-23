@@ -637,6 +637,36 @@
         }
         
         body.overlay-active #interaction-overlay { display: block; }
+        body.overlay-active #targeting-labels { display: block; }
+
+        #targeting-labels {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            pointer-events: none;
+            display: none;
+        }
+
+        #targeting-title {
+            color: #ffd700;
+            font-size: 3.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.9), 0 0 20px rgba(255,215,0,0.4);
+            font-family: 'Beleren Small Caps', sans-serif;
+        }
+
+        #targeting-subtitle {
+            color: white;
+            font-size: 1.8em;
+            font-weight: 500;
+            text-shadow: 0 2px 8px rgba(0,0,0,1);
+            font-style: italic;
+            font-family: 'Beleren', sans-serif;
+        }
 
         .targetable {
             z-index: 600 !important;
@@ -979,6 +1009,10 @@
             <!-- AI Avatars go here -->
         </aside>
         <div id="interaction-overlay"></div>
+        <div id="targeting-labels">
+            <div id="targeting-title"></div>
+            <div id="targeting-subtitle"></div>
+        </div>
         <main id="game-board">
             <button id="end-turn-btn">End Turn</button>
 
@@ -1032,6 +1066,10 @@
         </main>
 
         <div id="scry-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-labels" style="position: absolute; top: 40px; width: 100%; text-align: center; pointer-events: none;">
+                <div id="scry-title" style="color: #ffd700; font-size: 3.5em; font-weight: bold; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.9), 0 0 20px rgba(255,215,0,0.4); font-family: 'Beleren Small Caps', sans-serif;"></div>
+                <div id="scry-subtitle" style="color: white; font-size: 1.8em; font-weight: 500; text-shadow: 0 2px 8px rgba(0,0,0,1); font-style: italic; font-family: 'Beleren', sans-serif;"></div>
+            </div>
             <div class="modal-content">
                 <div id="scry-card-container"></div>
                 <div class="modal-actions">
@@ -1042,6 +1080,10 @@
         </div>
 
         <div id="discovery-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-labels" style="position: absolute; top: 40px; width: 100%; text-align: center; pointer-events: none;">
+                <div id="discovery-title" style="color: #ffd700; font-size: 3.5em; font-weight: bold; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.9), 0 0 20px rgba(255,215,0,0.4); font-family: 'Beleren Small Caps', sans-serif;"></div>
+                <div id="discovery-subtitle" style="color: white; font-size: 1.8em; font-weight: 500; text-shadow: 0 2px 8px rgba(0,0,0,1); font-style: italic; font-family: 'Beleren', sans-serif;"></div>
+            </div>
             <div class="modal-content" style="max-width: 1200px; width: fit-content; min-width: 400px;">
                 <div id="discovery-card-container" class="card-row"></div>
                 <div id="discovery-actions" class="modal-actions">

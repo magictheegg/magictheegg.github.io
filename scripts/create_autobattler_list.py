@@ -30,7 +30,8 @@ def create_autobattler_card_list():
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
-        "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout"
+        "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
+        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -75,7 +76,8 @@ def create_autobattler_card_list():
     tier_5_names = [
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
-        "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout"
+        "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
+        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus"
     ]
 
     for name in card_names_to_include:
@@ -99,7 +101,7 @@ def create_autobattler_card_list():
             print(f"Warning: Could not find base card {name}")
 
     # Add required tokens
-    token_names = [("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), ("Jwanga Djitu", "ACE")]
+    token_names = [("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), ("Jwanga Djitu", "ACE"), ("Beast", "SHF")]
     for t_name, t_set in token_names:
         # For ACE Construct, we want specifically #58
         if t_name == "Construct" and t_set == "ACE":

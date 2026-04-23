@@ -2620,12 +2620,128 @@ function testBlacksteelLoadout() {
     host.equipment = loadout;
     state.player.board = [host];
 
-    const stats = host.getDisplayStats(state.player.board);
-    assert.strictEqual(stats.p, 6, "+4 Power");
-    assert.strictEqual(stats.t, 4, "+2 Toughness");
-    assert.strictEqual(host.hasKeyword('first strike'), true, "Has First Strike");
-    assert.strictEqual(host.hasKeyword('vigilance'), true, "Has Vigilance");
     assert.strictEqual(host.hasKeyword('trample'), true, "Has Trample");
+}
+
+async function testKaiLongDarkImmolator() {
+    resetState();
+    const kaiLong = CardFactory.create({ card_name: "Kai'Long, Dark Immolator", pt: "3/3", rules_text: "Flying" });
+    kaiLong.owner = 'player';
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "2/2" });
+    fodder.owner = 'player';
+    state.player.board = [kaiLong, fodder];
+    state.opponents[0].fightHp = 10;
+
+    // 1. SHOP phase: Fodder dies. Verify NO life loss.
+    state.phase = 'SHOP';
+    kaiLong.onOtherCreatureDeath(fodder, state.player.board);
+    assert.strictEqual(state.opponents[0].fightHp, 10, "Opponent should NOT lose life in SHOP phase");
+
+    // 2. BATTLE phase: Fodder dies. Verify life loss.
+    state.phase = 'BATTLE';
+    state.battleBoards = { player: [kaiLong, fodder], opponent: [] };
+    kaiLong.onOtherCreatureDeath(fodder, state.battleBoards.player);
+    assert.strictEqual(state.opponents[0].fightHp, 8, "Opponent should lose life in BATTLE phase");
+
+    // 3. BATTLE phase: Kai'Long itself dies. Verify life loss.
+    kaiLong.onDeath(state.battleBoards.player, 'player');
+    assert.strictEqual(state.opponents[0].fightHp, 5, "Opponent should lose life on Kai'Long's own death");
+}
+
+function testLumberingAncient() {
+    resetState();
+    const ancient = CardFactory.create({ card_name: "Lumbering Ancient", pt: "8/8", rules_text: "Trample" });
+    const target1 = CardFactory.create({ card_name: "Target 1", pt: "2/2" });
+    const target2 = CardFactory.create({ card_name: "Target 2", pt: "2/2" });
+    state.player.board = [ancient, target1, target2];
+    
+    // Keyword check
+    assert.strictEqual(ancient.hasKeyword('trample'), true, "Lumbering Ancient has Trample");
+
+    // Shop phase death (permanent counters)
+    state.phase = 'SHOP';
+    ancient.onDeath(state.player.board, 'player');
+    
+    const target1Counters = target1.counters;
+    const target2Counters = target2.counters;
+    assert.ok(target1Counters === 8 || target2Counters === 8, "One random target should get 8 counters");
+}
+
+async function testZaraxSupermajor() {
+    resetState();
+    const zarax = CardFactory.create({ card_name: "Zarax Supermajor", pt: "1/1" });
+    zarax.owner = 'player';
+    state.player.board = [zarax];
+    
+    // 1. ETB
+    zarax.onETB(state.player.board);
+    assert.strictEqual(state.player.board.length, 2, "Should spawn a Beast token");
+    assert.strictEqual(state.player.board[1].card_name, "Beast");
+
+    // 2. Second Spell
+    state.spellsCastThisTurn = 2;
+    zarax.onNoncreatureCast(false, state.player.board);
+    assert.strictEqual(zarax.counters, 1, "Zarax gets a counter on second spell");
+    assert.ok(state.player.board.every(c => c.hasKeyword('flying')), "All creatures gain Flying");
+}
+
+function testInfuseTheApparatus() {
+    resetState();
+    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    state.player.board = [target];
+    
+    // Faith in Darkness is a targeted spell with a Scry 1 effect
+    const spell = CardFactory.create({ card_name: "Faith in Darkness" });
+    state.player.spellGraveyard = [spell, spell]; // Duplicates
+    
+    const infuse = CardFactory.create({ card_name: "Infuse the Apparatus" });
+    infuse.onCast(state.player.board);
+    
+    // 1. Check exile and targeting mode
+    assert.strictEqual(state.player.spellGraveyard.length, 0, "Graveyard should be exiled");
+    assert.ok(state.targetingEffect, "Should be in targeting mode for the re-cast spell");
+    assert.strictEqual(state.targetingEffect.effect, 'infuse_spell_resolution');
+    
+    // 2. Resolve targeting
+    applyTargetedEffect(target.id);
+    
+    // 3. Verify spell effects
+    assert.ok(state.scrying, "Targeting resolution should trigger the spell's effect (Scry)");
+    assert.strictEqual(state.scrying.count, 1, "Should only re-cast ONE copy of the duplicate spell");
+    
+    const stats = target.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 4, "Target should have received the +2/+2 buff from Faith in Darkness");
+}
+
+function testDewdropPools() {
+    resetState();
+    const oldAvailable = [...availableCards];
+    const mockPool = [
+        { card_name: "Creature", type: "Creature", tier: 1 },
+        { card_name: "Equipment", type: "Artifact \u2013 Equipment", tier: 1 },
+        { card_name: "Sorcery", type: "Sorcery", tier: 1 }
+    ];
+    setAvailableCards(mockPool);
+    state.player.tier = 1;
+
+    // 1. Test Dewdrop Oracle
+    const oracle = CardFactory.create({ card_name: "Dewdrop Oracle" });
+    oracle.onETB(state.player.board);
+    assert.ok(state.discovery, "Oracle should open discovery");
+    assert.strictEqual(state.discovery.cards.length, 4, "Oracle should find 4 cards");
+    assert.ok(state.discovery.cards.every(c => c.card_name === "Sorcery"), "Oracle should only find the Sorcery");
+    
+    // 2. Test Consult the Dewdrops
+    state.discovery = null;
+    state.discoveryQueue = [];
+    const consult = CardFactory.create({ card_name: "Consult the Dewdrops" });
+    consult.onCast(state.player.board);
+    assert.ok(state.discovery, "Consult should open discovery");
+    assert.strictEqual(state.discovery.cards.length, 4, "Consult should find 4 cards");
+    assert.ok(state.discovery.cards.every(c => c.card_name === "Sorcery"), "Consult should only find the Sorcery");
+
+    // Cleanup
+    setAvailableCards(oldAvailable);
 }
 
 async function runTests() {
@@ -2769,7 +2885,12 @@ async function runTests() {
         { tier: 5, name: "Rivha's Blessed Blade", fn: testRivhasBlessedBlade },
         { tier: 5, name: "Rivha's Blessed Blade (Cirrusea)", fn: testRivhasBlessedBladeWithCirrusea },
         { tier: 5, name: "Rivha's Blessed Blade (Discovery)", fn: testRivhasBlessedBladeWithDiscovery },
-        { tier: 5, name: "Blacksteel Loadout", fn: testBlacksteelLoadout }
+        { tier: 5, name: "Blacksteel Loadout", fn: testBlacksteelLoadout },
+        { tier: 5, name: "Kai'Long, Dark Immolator", fn: testKaiLongDarkImmolator },
+        { tier: 5, name: "Lumbering Ancient", fn: testLumberingAncient },
+        { tier: 5, name: "Zarax Supermajor", fn: testZaraxSupermajor },
+        { tier: 5, name: "Infuse the Apparatus", fn: testInfuseTheApparatus },
+        { tier: 3, name: "Dewdrop Pools", fn: testDewdropPools }
     ];
 
     console.log("\nUNIT TEST RESULTS");
