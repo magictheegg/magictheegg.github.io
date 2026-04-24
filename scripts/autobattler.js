@@ -2281,7 +2281,7 @@ class BaseCard {
     // Stats and labels
     const playerHpEl = () => document.getElementById('player-hp');
     const playerFightHpEl = () => document.getElementById('player-fight-hp');
-    const playerGoldEl = () => document.getElementById('player-gold');
+    const playerTreasureEl = () => document.getElementById('player-treasure');
 
     function toggleDiscoverySelection(card) {
         if (!state.discovery) return;
@@ -5119,7 +5119,24 @@ class BaseCard {
 
         if (playerHpEl()) playerHpEl().textContent = state.player.overallHp;
         if (playerFightHpEl()) playerFightHpEl().textContent = state.player.fightHp;
-        if (playerGoldEl()) playerGoldEl().textContent = state.player.gold;
+        
+        // TREASURE UI UPDATE
+        if (playerTreasureEl()) playerTreasureEl().textContent = state.player.gold;
+        const gemsContainer = document.getElementById('treasure-gems');
+        if (gemsContainer) {
+            gemsContainer.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+                const gem = document.createElement('div');
+                gem.className = 'treasure-gem';
+                // Active gems are filled from the LEFT
+                // So if we have 6 gold, indices 0-5 are active, 6-9 are inactive
+                if (i >= state.player.gold) {
+                    gem.classList.add('inactive');
+                }
+                gemsContainer.appendChild(gem);
+            }
+        }
+
         if (document.getElementById('opponent-hp')) document.getElementById('opponent-hp').textContent = currentOpp.overallHp;
         if (document.getElementById('opponent-fight-hp')) document.getElementById('opponent-fight-hp').textContent = currentOpp.fightHp;
 
