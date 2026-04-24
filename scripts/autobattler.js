@@ -5507,6 +5507,24 @@ class BaseCard {
             shopZone.removeEventListener('drop', handleShopDrop);
             shopZone.addEventListener('drop', handleShopDrop);
         }
+
+        // Player Avatar drop zone (for buying)
+        const playerAvatar = document.getElementById('player-avatar');
+        if (playerAvatar) {
+            playerAvatar.removeEventListener('dragover', handleDragOver);
+            playerAvatar.addEventListener('dragover', handleDragOver);
+            playerAvatar.removeEventListener('drop', handlePlayerAvatarDrop);
+            playerAvatar.addEventListener('drop', handlePlayerAvatarDrop);
+        }
+
+        // Hand drop zone (also for buying, since it overlaps avatar)
+        const playerHand = document.getElementById('player-hand');
+        if (playerHand) {
+            playerHand.removeEventListener('dragover', handleDragOver);
+            playerHand.addEventListener('dragover', handleDragOver);
+            playerHand.removeEventListener('drop', handlePlayerAvatarDrop);
+            playerHand.addEventListener('drop', handlePlayerAvatarDrop);
+        }
     }
 
     function handleDragOver(e) {
@@ -5514,11 +5532,43 @@ class BaseCard {
         e.dataTransfer.dropEffect = 'move';
     }
 
+    function getDropIndex(clientX) {
+        const boardCards = Array.from(playerBoardEl.children);
+        if (boardCards.length === 0) return 0;
+        
+        let targetIndex = boardCards.length;
+        for (let i = 0; i < boardCards.length; i++) {
+            const rect = boardCards[i].getBoundingClientRect();
+            const center = rect.left + rect.width / 2;
+            if (clientX < center) {
+                targetIndex = i;
+                break;
+            }
+        }
+        return targetIndex;
+    }
+
     function handleBoardDrop(e) {
         e.preventDefault();
-        const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-        if (data.type === 'hand') {
-            useCardFromHand(data.cardId);
+        try {
+            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+            const targetIndex = getDropIndex(e.clientX);
+            
+            if (data.type === 'hand') {
+                useCardFromHand(data.cardId, targetIndex);
+            } else if (data.type === 'board') {
+                const boardIndex = state.player.board.findIndex(c => c.id === data.cardId);
+                if (boardIndex !== -1) {
+                    const [m] = state.player.board.splice(boardIndex, 1);
+                    // Adjust targetIndex if we removed a card from BEFORE it
+                    let finalIndex = targetIndex;
+                    if (boardIndex < targetIndex) finalIndex--;
+                    state.player.board.splice(finalIndex, 0, m);
+                    render();
+                }
+            }
+        } catch (error) {
+            // Swallow errors from non-card drops
         }
     }
 
@@ -5530,7 +5580,19 @@ class BaseCard {
                 sellCard(data.cardId);
             }
         } catch (error) {
-            console.warn("Failed to parse drag data. Likely a non-card element was dropped.", error);
+            // Swallow errors from non-card drops
+        }
+    }
+
+    function handlePlayerAvatarDrop(e) {
+        e.preventDefault();
+        try {
+            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+            if (data.type === 'shop') {
+                buyCard(data.cardId);
+            }
+        } catch (error) {
+            // Swallow errors from non-card drops
         }
     }
 
@@ -5751,6 +5813,10 @@ class BaseCard {
 
         // Events
         if (isShop) {
+            cardEl.draggable = true;
+            cardEl.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'shop', cardId: instance.id }));
+            });
             cardEl.addEventListener('click', () => {
                 if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
@@ -5830,13 +5896,24 @@ class BaseCard {
             cardEl.addEventListener('drop', (e) => { 
                 e.preventDefault(); 
                 e.stopPropagation();
-                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-                if (data.type === 'board') {
-                    const [m] = state.player.board.splice(data.index, 1);
-                    state.player.board.splice(index, 0, m);
-                    render();
-                } else if (data.type === 'hand') {
-                    useCardFromHand(data.cardId, index);
+                try {
+                    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                    const targetIndex = getDropIndex(e.clientX);
+                    
+                    if (data.type === 'board') {
+                        const boardIndex = state.player.board.findIndex(c => c.id === data.cardId);
+                        if (boardIndex !== -1) {
+                            const [m] = state.player.board.splice(boardIndex, 1);
+                            let finalIndex = targetIndex;
+                            if (boardIndex < targetIndex) finalIndex--;
+                            state.player.board.splice(finalIndex, 0, m);
+                            render();
+                        }
+                    } else if (data.type === 'hand') {
+                        useCardFromHand(data.cardId, targetIndex);
+                    }
+                } catch (err) {
+                    // Swallow errors from non-card drops
                 }
             });
         }
@@ -5908,6 +5985,17 @@ class BaseCard {
                  cardEl.draggable = true;
                  cardEl.addEventListener('dragstart', (e) => {
                      e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'hand', cardId: instance.id }));
+                 });
+                 // Allow buying from shop by dropping on hand cards
+                 cardEl.addEventListener('dragover', (e) => e.preventDefault());
+                 cardEl.addEventListener('drop', (e) => {
+                    try {
+                        const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                        if (data.type === 'shop') {
+                            buyCard(data.cardId);
+                            e.stopPropagation();
+                        }
+                    } catch(err) {}
                  });
              }
         }
