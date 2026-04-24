@@ -2863,6 +2863,80 @@ function testArchitectOfWisdom() {
     assert.strictEqual(centaurStats.p, 3, "Stolen Lieutenant should still buff other Centaurs");
 }
 
+function testMercilessXunHuang() {
+    resetState();
+    const xun = CardFactory.create({ card_name: "Merciless Xun Huang", pt: "4/4", rules_text: "Menace" });
+    const victim = CardFactory.create({ card_name: "Victim", pt: "2/2" });
+    xun.owner = 'player';
+    victim.owner = 'opponent';
+    
+    state.phase = 'BATTLE';
+    state.battleBoards = {
+        player: [xun],
+        opponent: [victim]
+    };
+
+    // 1. Ferocious Trigger (xun is 4/4)
+    const targets = xun.onAttack(state.battleBoards.player);
+    assert.strictEqual(targets.length, 1, "Should return victim for animation");
+    assert.strictEqual(targets[0].isDestroyed, true, "Opponent creature should be destroyed by Ferocious attack");
+
+    // 2. Ferocious Fail (power < 4)
+    resetState();
+    const xunWeak = CardFactory.create({ card_name: "Merciless Xun Huang", pt: "4/4", rules_text: "Menace" });
+    const victim2 = CardFactory.create({ card_name: "Victim", pt: "2/2" });
+    xunWeak.owner = 'player';
+    victim2.owner = 'opponent';
+    xunWeak.tempPower = -1; // Now a 3/3
+    state.phase = 'BATTLE';
+    state.battleBoards = {
+        player: [xunWeak],
+        opponent: [victim2]
+    };
+    
+    const targetsWeak = xunWeak.onAttack(state.battleBoards.player);
+    assert.strictEqual(targetsWeak.length, 0, "Should NOT return any targets ifocious fails");
+    assert.strictEqual(victim2.isDestroyed || false, false, "Should NOT destroy if no creature has power 4+");
+
+    // 3. Michal Protection
+    resetState();
+    const xun2 = CardFactory.create({ card_name: "Merciless Xun Huang", pt: "4/4", rules_text: "Menace" });
+    const victim3 = CardFactory.create({ card_name: "Victim", pt: "2/2" });
+    const michal = CardFactory.create({ card_name: "Michal, the Anointed", pt: "5/5" });
+    xun2.owner = 'player';
+    victim3.owner = 'opponent';
+    michal.owner = 'opponent';
+    state.phase = 'BATTLE';
+    state.battleBoards = {
+        player: [xun2],
+        opponent: [victim3, michal]
+    };
+
+    const targetsProtected = xun2.onAttack(state.battleBoards.player);
+    assert.strictEqual(targetsProtected.length, 0, "Should NOT return targets if Michal protects");
+    assert.strictEqual(victim3.isDestroyed || false, false, "Michal should protect victim from Xun Huang");
+    assert.strictEqual(michal.isDestroyed || false, false, "Michal should protect herself from Xun Huang");
+}
+
+function testCitadelColossus() {
+    resetState();
+    const colossus = CardFactory.create({ card_name: "Citadel Colossus", pt: "11/12", rules_text: "Indestructible" });
+    assert.strictEqual(colossus.hasKeyword('indestructible'), true, "Colossus should have Indestructible");
+    const stats = colossus.getDisplayStats([]);
+    assert.strictEqual(stats.p, 11);
+    assert.strictEqual(stats.t, 12);
+}
+
+function testVirulentCactaipan() {
+    resetState();
+    const cactus = CardFactory.create({ card_name: "Virulent Cactaipan", pt: "2/4", rules_text: "Vigilance, deathtouch" });
+    assert.strictEqual(cactus.hasKeyword('vigilance'), true, "Cactus has Vigilance");
+    assert.strictEqual(cactus.hasKeyword('deathtouch'), true, "Cactus has Deathtouch");
+    const stats = cactus.getDisplayStats([]);
+    assert.strictEqual(stats.p, 2);
+    assert.strictEqual(stats.t, 4);
+}
+
 function testDewdropPools() {
     resetState();
     const oldAvailable = [...availableCards];
@@ -3044,7 +3118,10 @@ async function runTests() {
         { tier: 5, name: "Michal, the Anointed", fn: testMichalTheAnointed },
         { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
         { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
-        { tier: 5, name: "Architect of Wisdom", fn: testArchitectOfWisdom }
+        { tier: 5, name: "Architect of Wisdom", fn: testArchitectOfWisdom },
+        { tier: 5, name: "Merciless Xun Huang", fn: testMercilessXunHuang },
+        { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
+        { tier: 5, name: "Virulent Cactaipan", fn: testVirulentCactaipan }
     ];
 
     console.log("\nUNIT TEST RESULTS");

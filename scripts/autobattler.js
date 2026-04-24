@@ -767,7 +767,6 @@ class BaseCard {
                 if (validVictims.length > 0) {
                     const victim = validVictims[Math.floor(Math.random() * validVictims.length)];
                     victim.isDestroyed = true;
-                    showDestroyBubble(victim.id);
                 }
             }
             return [];
@@ -987,6 +986,36 @@ class BaseCard {
             }
         }
     }
+
+    class MercilessXunHuang extends BaseCard {
+        onAttack(board) {
+            const hasFerocious = board?.some(c => c.getDisplayStats(board).p >= 4);
+            if (hasFerocious && state.phase === 'BATTLE' && state.battleBoards) {
+                const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
+                const opponentBoard = state.battleBoards[opponentOwner];
+
+                // Michal check
+                const hasMichal = opponentBoard.some(c => c.card_name === 'Michal, the Anointed' && !c.isDying && !c.isDestroyed);
+                if (hasMichal) return [];
+
+                // Only target "Healthy" creatures without Hexproof
+                const validVictims = opponentBoard.filter(c =>
+                    !c.isDying && !c.isDestroyed && c.getDisplayStats(opponentBoard).t > 0 && !c.hasKeyword('Hexproof')
+                );
+
+                if (validVictims.length > 0) {
+                    const victim = validVictims[Math.floor(Math.random() * validVictims.length)];
+                    victim.isDestroyed = true;
+                    return [victim];
+                }
+            }
+            return [];
+        }
+    }
+
+    class CitadelColossus extends BaseCard { }
+
+    class VirulentCactaipan extends BaseCard { }
 
     class ServantsOfDydren extends BaseCard {
         onETB(board) {
@@ -2119,6 +2148,9 @@ class BaseCard {
                 case 'Ladria, Windwatcher': card = new LadriaWindwatcher(data); break;
                 case 'Erin, Beacon of Humility': card = new ErinBeaconOfHumility(data); break;
                 case 'Architect of Wisdom': card = new ArchitectOfWisdom(data); break;
+                case 'Merciless Xun Huang': card = new MercilessXunHuang(data); break;
+                case 'Citadel Colossus': card = new CitadelColossus(data); break;
+                case 'Virulent Cactaipan': card = new VirulentCactaipan(data); break;
                 case 'Servants of Dydren': card = new ServantsOfDydren(data); break;
                 case 'Holtun-Band Elder': card = new HoltunBandElder(data); break;
                 case 'Whispers of the Dead': card = new WhispersOfTheDead(data); break;
@@ -2501,8 +2533,9 @@ class BaseCard {
         if (!cabinet) return;
 
         let targetEl = (typeof targetOrId === 'string') ? document.getElementById(`card-${targetOrId}`) : targetOrId;
-        if (!targetEl) return;
+        if (!targetEl || targetEl.classList.contains('has-destroy-bubble')) return;
 
+        targetEl.classList.add('has-destroy-bubble');
         const bubble = document.createElement('div');
         bubble.className = 'destroy-bubble';
         
@@ -2520,6 +2553,7 @@ class BaseCard {
             const elapsed = Date.now() - startTime;
             if (elapsed >= duration) {
                 bubble.remove();
+                if (targetEl) targetEl.classList.remove('has-destroy-bubble');
                 return;
             }
 
@@ -2807,7 +2841,18 @@ class BaseCard {
                     }
                 }
             });
-            await new Promise(r => setTimeout(r, 600)); // Pause for animation
+
+            // Now resolve any deaths (this plays the death animations and pauses)
+            // This handles Xun Huang triggered kills correctly
+            await resolveDeaths();
+
+            // If the defender died to an ability (Xun Huang), stop the attack
+            const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+            if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
+                attackerEl.style.transform = "";
+                attackerEl.classList.remove('attacking');
+                return;
+            }
         }
 
         if (attacker.equipment && attacker.equipment.onEquippedAttack) {
@@ -4470,12 +4515,13 @@ class BaseCard {
         const isProtected = (c, board) => c.hasKeyword('Indestructible') && !c.indestructibleUsed;
 
         // 1. Identify everyone who would die (Lethal damage OR Marked as Destroyed)
-        // We filter OUT those who are saved by shields from destruction
         const deadPlayerCards = state.battleBoards.player.filter(c => {
+            if (c.isDying) return false;
             if (c.isDestroyed && c.shieldCounters > 0) return false; 
             return (c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)) || c.isDestroyed;
         });
         const deadOpponentCards = state.battleBoards.opponent.filter(c => {
+            if (c.isDying) return false;
             if (c.isDestroyed && c.shieldCounters > 0) return false;
             return (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)) || c.isDestroyed;
         });
@@ -4511,9 +4557,12 @@ class BaseCard {
         // 3. Mark for death and play animation
         const allDead = deadPlayerCards.concat(deadOpponentCards);
         allDead.forEach(c => {
+            const el = document.getElementById(`card-${c.id}`);
             c.isDying = true;
-            if (c.isDestroyed) showDestroyBubble(c.id);
-            document.getElementById(`card-${c.id}`)?.classList.add('dying');
+            if (el && !el.classList.contains('dying')) {
+                if (c.isDestroyed) showDestroyBubble(c.id);
+                el.classList.add('dying');
+            }
         });
         
         await new Promise(r => setTimeout(r, 600)); 
