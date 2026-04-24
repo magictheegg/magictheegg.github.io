@@ -31,7 +31,8 @@ def create_autobattler_card_list():
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
-        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus"
+        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
+        "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -77,7 +78,8 @@ def create_autobattler_card_list():
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
-        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus"
+        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
+        "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom"
     ]
 
     for name in card_names_to_include:

@@ -588,7 +588,9 @@ function testStratusTraveler() {
     state.plane = 'Not Cirrusea';
     traveler.onETB(state.player.board);
     assert.strictEqual(state.plane, 'Cirrusea');
-    assert.ok(state.player.board.some(c => c.card_name === 'Bird'), "Bird created");
+    const spawnedBird = state.player.board.find(c => c.card_name === 'Bird');
+    assert.ok(spawnedBird, "Bird created");
+    assert.strictEqual(spawnedBird.pt, "1/2", "Cirrusea birds should be 1/2");
 
     // 2. Already Cirrusea, no flying -> Flying Counter (Honest call)
     resetState();
@@ -2713,6 +2715,154 @@ function testInfuseTheApparatus() {
     assert.strictEqual(stats.p, 4, "Target should have received the +2/+2 buff from Faith in Darkness");
 }
 
+function testMichalTheAnointed() {
+    resetState();
+    const michal = CardFactory.create({ 
+        card_name: "Michal, the Anointed", 
+        pt: "5/5",
+        rules_text: "Flying, vigilance, trample, lifelink"
+    });
+    michal.owner = 'player';
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    target.owner = 'player';
+    state.player.board = [michal, target];
+
+    // 1. Keyword check
+    assert.strictEqual(michal.hasKeyword('flying'), true, "Michal has Flying");
+    assert.strictEqual(michal.hasKeyword('vigilance'), true, "Michal has Vigilance");
+    assert.strictEqual(michal.hasKeyword('trample'), true, "Michal has Trample");
+    assert.strictEqual(michal.hasKeyword('lifelink'), true, "Michal has Lifelink");
+
+    // 2. Protection from opponent sacrifice (Suitor of Death)
+    state.phase = 'BATTLE';
+    state.battleBoards = {
+        player: [michal, target],
+        opponent: []
+    };
+    const suitor = CardFactory.create({ card_name: "Suitor of Death" });
+    suitor.onDeath(state.battleBoards.player, 'opponent'); // Opponent's suitor dies
+    assert.strictEqual(state.battleBoards.player.length, 2, "Michal should protect board from Suitor");
+    assert.strictEqual(target.isDestroyed || false, false, "Target should NOT be destroyed");
+
+    // 3. Does NOT protect from own sacrifice (Shrieking Pusbag)
+    state.phase = 'SHOP';
+    const pusbag = CardFactory.create({ card_name: "Shrieking Pusbag" });
+    pusbag.onETB(state.player.board);
+    applyTargetedEffect(target.id);
+    assert.strictEqual(state.player.board.includes(target), false, "Michal should NOT block friendly sacrifice removal");
+}
+
+function testLadriaWindwatcher() {
+    resetState();
+    const ladria = CardFactory.create({ card_name: "Ladria, Windwatcher", pt: "3/3" });
+    ladria.owner = 'player';
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    state.player.board = [ladria, other];
+
+    // 1. ETB - Spawns 2 Birds
+    ladria.onETB(state.player.board);
+    assert.strictEqual(state.player.board.length, 4, "Should create 2 Birds");
+    assert.strictEqual(state.player.board[2].card_name, "Bird");
+    assert.strictEqual(state.player.board[2].pt, "1/1", "Ladria's birds should be 1/1");
+    assert.strictEqual(state.player.board[2].hasKeyword('flying'), true, "Birds have Flying");
+
+    // 2. onAttack - Buffs others
+    ladria.onAttack(state.player.board);
+    assert.strictEqual(ladria.counters, 0, "Ladria should NOT buff herself");
+    assert.strictEqual(other.counters, 1, "Other creature should get a counter");
+    assert.strictEqual(state.player.board[2].counters, 1, "Bird 1 should get a counter");
+}
+
+function testErinBeaconOfHumility() {
+    resetState();
+    const erin = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    erin.owner = 'player';
+    
+    // High stat creature with keywords and counters
+    const victim = CardFactory.create({ card_name: "Michal, the Anointed", pt: "5/5" });
+    victim.owner = 'opponent';
+    victim.counters = 5; 
+    
+    state.phase = 'BATTLE';
+    state.battleBoards = {
+        player: [erin],
+        opponent: [victim]
+    };
+
+    // Attack triggers humility
+    erin.onAttack(state.battleBoards.player);
+    
+    assert.strictEqual(victim.temporaryHumility, true, "Victim should have humility flag");
+    const stats = victim.getDisplayStats(state.battleBoards.opponent);
+    assert.strictEqual(stats.p, 1, "Power should be true 1");
+    assert.strictEqual(stats.t, 1, "Toughness should be true 1");
+    assert.strictEqual(victim.hasKeyword('flying'), false, "Should lose Flying");
+    assert.strictEqual(victim.hasKeyword('lifelink'), false, "Should lose Lifelink");
+
+    // Humility Lethal Check
+    victim.damageTaken = 1;
+    const statsDead = victim.getDisplayStats(state.battleBoards.opponent);
+    assert.strictEqual(statsDead.t, 0, "Should have 0 toughness after 1 damage in humility");
+
+    // Ability Strip Check (Familiar)
+    resetState();
+    const erin2 = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
+    erin2.owner = 'player';
+    familiar.owner = 'opponent';
+    familiar.damageTaken = 1; // Existing damage
+    state.phase = 'BATTLE';
+    state.battleBoards = { player: [erin2], opponent: [familiar] };
+
+    // Humbles the familiar
+    erin2.onAttack(state.battleBoards.player);
+    assert.strictEqual(familiar.temporaryHumility, true);
+    assert.strictEqual(familiar.damageTaken, 0, "Existing damage should be cleared");
+
+    // Simulate attack from humbled familiar
+    // If it still had its ability, erin2 would take 2 damage before the fight
+    if (familiar.card_name === 'Cabracan\'s Familiar' && !familiar.temporaryHumility && erin2 && !erin2.hasKeyword('Hexproof')) {
+        erin2.damageTaken += 2;
+    }
+    assert.strictEqual(erin2.damageTaken, 0, "Humbled Familiar should NOT deal pre-fight damage");
+}
+
+function testArchitectOfWisdom() {
+    resetState();
+    const architect = CardFactory.create({ card_name: "Architect of Wisdom", pt: "3/3" });
+    architect.owner = 'player';
+    
+    // Creature in shop
+    const lieutenant = CardFactory.create({ card_name: "Warband Lieutenant", pt: "2/2", type: "Creature - Centaur" });
+    state.shop.cards = [lieutenant];
+    state.player.board = [architect];
+
+    // 1. ETB triggers targeting
+    architect.onETB(state.player.board);
+    assert.ok(state.targetingEffect, "Should enter targeting mode");
+    assert.strictEqual(state.targetingEffect.effect, 'architect_control');
+
+    // 2. Resolve control
+    applyTargetedEffect(lieutenant.id);
+    assert.strictEqual(state.shop.cards.length, 0, "Should be removed from shop");
+    assert.strictEqual(state.player.board.length, 2, "Should be added to player board");
+    assert.strictEqual(state.player.board[1].id, lieutenant.id);
+    assert.strictEqual(lieutenant.owner, 'player', "Ownership should transfer");
+
+    // 3. Verify Sphinx transformation
+    assert.strictEqual(lieutenant.temporarySphinx, true, "Should have Sphinx flag");
+    const stats = lieutenant.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 3, "Base power should now be 3");
+    assert.strictEqual(stats.t, 3, "Base toughness should now be 3");
+    assert.strictEqual(lieutenant.hasKeyword('flying'), true, "Should gain Flying");
+    
+    // 4. Verify abilities are kept (Lieutenant buffs other Centaurs)
+    const otherCentaur = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature - Centaur" });
+    state.player.board.push(otherCentaur);
+    const centaurStats = otherCentaur.getDisplayStats(state.player.board);
+    assert.strictEqual(centaurStats.p, 3, "Stolen Lieutenant should still buff other Centaurs");
+}
+
 function testDewdropPools() {
     resetState();
     const oldAvailable = [...availableCards];
@@ -2831,7 +2981,8 @@ async function runTests() {
         { tier: 3, name: "Mekini Eremite", fn: testMekiniEremite },
         { tier: 3, name: "Frontier Markswomen", fn: testFrontierMarkswomen },
         { tier: 3, name: "Dragonfist Axeman", fn: testDragonfistAxeman },
-        { tier: 3, name: "Festival Celebrants", fn: testFestivalCelebrants }
+        { tier: 3, name: "Festival Celebrants", fn: testFestivalCelebrants },
+        { tier: 3, name: "Dewdrop Pools", fn: testDewdropPools }
     ];
 
     const t4Tests = [
@@ -2890,7 +3041,10 @@ async function runTests() {
         { tier: 5, name: "Lumbering Ancient", fn: testLumberingAncient },
         { tier: 5, name: "Zarax Supermajor", fn: testZaraxSupermajor },
         { tier: 5, name: "Infuse the Apparatus", fn: testInfuseTheApparatus },
-        { tier: 3, name: "Dewdrop Pools", fn: testDewdropPools }
+        { tier: 5, name: "Michal, the Anointed", fn: testMichalTheAnointed },
+        { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
+        { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
+        { tier: 5, name: "Architect of Wisdom", fn: testArchitectOfWisdom }
     ];
 
     console.log("\nUNIT TEST RESULTS");

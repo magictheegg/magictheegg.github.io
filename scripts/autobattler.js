@@ -39,11 +39,12 @@ class BaseCard {
 
         // Returns base power/toughness from the 'pt' string
         getBasePT() {
+            if (this.temporarySphinx) return { p: 3, t: 3 };
             if (!this.pt) return { p: 0, t: 0 };
             const parts = this.pt.split('/');
             return { p: parseInt(parts[0]) || 0, t: parseInt(parts[1]) || 0 };
         }
-        
+
         getEquipmentStats(target) {
             return { p: 0, t: 0 };
         }
@@ -71,6 +72,10 @@ class BaseCard {
 
         // The "Final" stats: Stable + Dynamic Passives (Raven, Dowager, etc.)
         getDisplayStats(board) {
+            if (this.temporaryHumility) {
+                const t = 1 - (this.damageTaken || 0);
+                return { p: 1, t: t, maxT: 1 };
+            }
             const stable = this.getStableStats();
             const dynamic = this.getDynamicBuffs(board);
             return {
@@ -79,7 +84,6 @@ class BaseCard {
                 maxT: stable.maxT + dynamic.t
             };
         }
-
         // Hook for dynamic board-state-based buffs (Raven, Dowager)
         getDynamicBuffs(board) {
             let p = 0;
@@ -88,7 +92,7 @@ class BaseCard {
             // TRIBAL LORD CHECK (Warband Lieutenant)
             if (this.type?.includes('Centaur')) {
                 board?.forEach(c => {
-                    if (c.card_name === 'Warband Lieutenant' && c.id !== this.id) {
+                    if (c.card_name === 'Warband Lieutenant' && !c.temporaryHumility && c.id !== this.id) {
                         const multiplier = c.isFoil ? 2 : 1;
                         p += multiplier;
                         t += multiplier;
@@ -99,7 +103,7 @@ class BaseCard {
             // FLYING LORD CHECK (Windsong Apprentice)
             if (this.hasKeyword('Flying')) {
                 board?.forEach(c => {
-                    if (c.card_name === 'Windsong Apprentice') {
+                    if (c.card_name === 'Windsong Apprentice' && !c.temporaryHumility) {
                         const multiplier = c.isFoil ? 2 : 1;
                         p += multiplier;
                         t += multiplier;
@@ -110,7 +114,7 @@ class BaseCard {
             // BIRD LORD CHECK (Thunder Raptor)
             if (this.type?.includes('Bird')) {
                 board?.forEach(c => {
-                    if (c.card_name === 'Thunder Raptor' && c.id !== this.id) {
+                    if (c.card_name === 'Thunder Raptor' && !c.temporaryHumility && c.id !== this.id) {
                         const multiplier = c.isFoil ? 2 : 1;
                         p += (2 * multiplier);
                         t += (1 * multiplier);
@@ -170,7 +174,9 @@ class BaseCard {
         onApply(target, board) { }
 
         hasKeyword(keyword) {
+            if (this.temporaryHumility) return false;
             const kw = keyword.toLowerCase();
+            if (kw === 'flying' && this.temporarySphinx) return true;
             if (kw === 'first strike' && this.rules_text?.toLowerCase().includes('agile')) return true;
             if (kw === 'flying' && this.flyingCounters > 0) return true;
             if (kw === 'menace' && this.menaceCounters > 0) return true;
@@ -261,7 +267,10 @@ class BaseCard {
                 // Create 1/2 Bird Token with Flying
                 if (board.length < boardLimit) {
                     const bird = createToken('Bird', 'AEX', owner);
-                    if (bird) board.push(bird);
+                    if (bird) {
+                        bird.pt = "1/2";
+                        board.push(bird);
+                    }
                 }
             } else {
                 // Already in Cirrusea: Trigger targeting for Flying or +1/+1
@@ -354,7 +363,8 @@ class BaseCard {
                 text: "Choose a creature to get a +1/+1 counter.",
                 effect: 'dutiful_camel_counter', 
                 isDouble: this.isFoil,
-                wasCast: true
+                wasCast: true,
+                isMandatory: false
             });
         }
     }
@@ -660,7 +670,8 @@ class BaseCard {
                 text: "Choose a counter to remove.",
                 effect: 'permutate_step1',
                 wasCast: true,
-                isFoil: this.isFoil
+                isFoil: this.isFoil,
+                isMandatory: false
             });
         }
     }
@@ -739,12 +750,17 @@ class BaseCard {
 
     class SuitorOfDeath extends BaseCard {
         onDeath(board, owner) {
+            if (this.temporaryHumility) return [];
             if (state.phase === 'BATTLE' && state.battleBoards) {
                 const opponentOwner = (owner === 'player') ? 'opponent' : 'player';
                 const opponentBoard = state.battleBoards[opponentOwner];
-                
+
+                // Michal check
+                const hasMichal = opponentBoard.some(c => c.card_name === 'Michal, the Anointed' && !c.isDying && !c.isDestroyed);
+                if (hasMichal) return [];
+
                 // Only target "Healthy" creatures without Hexproof
-                const validVictims = opponentBoard.filter(c => 
+                const validVictims = opponentBoard.filter(c =>
                     !c.isDying && !c.isDestroyed && c.getDisplayStats(opponentBoard).t > 0 && !c.hasKeyword('Hexproof')
                 );
 
@@ -757,7 +773,6 @@ class BaseCard {
             return [];
         }
     }
-
     class KaiLongDarkImmolator extends BaseCard {
         onOtherCreatureDeath(deadCard, board) {
             if (state.phase !== 'BATTLE') return;
@@ -914,6 +929,65 @@ class BaseCard {
         }
     }
 
+    class MichalTheAnointed extends BaseCard { }
+
+    class LadriaWindwatcher extends BaseCard {
+        onETB(board) {
+            const count = this.isFoil ? 4 : 2;
+            for (let i = 0; i < count; i++) {
+                const bird = createToken('Bird', 'AEX', this.owner);
+                if (bird && board.length < boardLimit) {
+                    bird.pt = "1/1";
+                    board.push(bird);
+                    // Trigger ETB for others
+                    board.forEach(c => {
+                        if (c.id !== bird.id) c.onOtherCreatureETB(bird, board);
+                    });
+                }
+            }
+        }
+        onAttack(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            const targets = board.filter(c => c.id !== this.id && !c.isDying && !c.isDestroyed);
+            targets.forEach(c => {
+                c.counters += multiplier;
+            });
+            return targets;
+        }
+    }
+
+    class ErinBeaconOfHumility extends BaseCard {
+        onAttack(board) {
+            if (state.phase !== 'BATTLE' || !state.battleBoards) return [];
+            const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
+            const opponentBoard = state.battleBoards[opponentOwner];
+            const validTargets = opponentBoard.filter(c => !c.isDying && !c.isDestroyed);
+            
+            if (validTargets.length > 0) {
+                const victim = validTargets[Math.floor(Math.random() * validTargets.length)];
+                victim.temporaryHumility = true;
+                victim.damageTaken = 0;
+                return [victim];
+            }
+            return [];
+        }
+    }
+
+    class ArchitectOfWisdom extends BaseCard {
+        onETB(board) {
+            if (this.owner === 'player') {
+                queueTargetingEffect({
+                    sourceId: this.id,
+                    title: this.card_name,
+                    text: "Gain control of target creature from the shop.",
+                    effect: 'architect_control',
+                    isMandatory: false,
+                    wasCast: true
+                });
+            }
+        }
+    }
+
     class ServantsOfDydren extends BaseCard {
         onETB(board) {
             if (this.owner === 'player' && state.deadServantsCount > 0) {
@@ -1032,6 +1106,7 @@ class BaseCard {
                 text: "Choose a creature to return to your hand.",
                 effect: 'nightfall_raptor_bounce',
                 isFoil: this.isFoil,
+                wasCast: true,
                 isMandatory: false
             });
         }
@@ -1608,7 +1683,8 @@ class BaseCard {
                 text: "Choose a creature to get a +1/+1 counter and lifelink until end of turn.",
                 effect: 'nest_matriarch_buff',
                 wasCast: true,
-                isFoil: this.isFoil
+                isFoil: this.isFoil,
+                isMandatory: false
             });
         }
     }
@@ -1854,7 +1930,8 @@ class BaseCard {
                 text: "Choose a Centaur to get two +1/+1 counters.",
                 effect: 'warband_rallier_counters',
                 wasCast: true,
-                isFoil: this.isFoil
+                isFoil: this.isFoil,
+                isMandatory: false
             });
         }
     }
@@ -1931,7 +2008,8 @@ class BaseCard {
                 text: "Choose a card to discard.",
                 effect: 'parliament_discard',
                 wasCast: true,
-                isFoil: this.isFoil
+                isFoil: this.isFoil,
+                isMandatory: false
             });
         }
     }
@@ -2037,6 +2115,10 @@ class BaseCard {
                 case 'Lumbering Ancient': card = new LumberingAncient(data); break;
                 case 'Zarax Supermajor': card = new ZaraxSupermajor(data); break;
                 case 'Infuse the Apparatus': card = new InfuseTheApparatus(data); break;
+                case 'Michal, the Anointed': card = new MichalTheAnointed(data); break;
+                case 'Ladria, Windwatcher': card = new LadriaWindwatcher(data); break;
+                case 'Erin, Beacon of Humility': card = new ErinBeaconOfHumility(data); break;
+                case 'Architect of Wisdom': card = new ArchitectOfWisdom(data); break;
                 case 'Servants of Dydren': card = new ServantsOfDydren(data); break;
                 case 'Holtun-Band Elder': card = new HoltunBandElder(data); break;
                 case 'Whispers of the Dead': card = new WhispersOfTheDead(data); break;
@@ -2705,6 +2787,24 @@ class BaseCard {
                         ptBox.classList.add('pulse-stats');
                         setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
                     }
+
+                    // Ladria specific: Pulse the +1/+1 counter bubble too
+                    if (attacker.card_name === 'Ladria, Windwatcher') {
+                        const counterStackEl = targetEl.querySelector('.card-counter-stack');
+                        if (counterStackEl) {
+                            // Sync counters visually
+                            const dummy = createCardElement(target, false, -1, attackerBoard);
+                            const freshStack = dummy.querySelector('.card-counter-stack');
+                            counterStackEl.innerHTML = freshStack.innerHTML;
+
+                            // Pulse the +1/+1 bubble
+                            const plusOneBubble = counterStackEl.querySelector('.counter-bubble.plus-one');
+                            if (plusOneBubble) {
+                                plusOneBubble.classList.add('pulse-stats');
+                                setTimeout(() => plusOneBubble.classList.remove('pulse-stats'), 500);
+                            }
+                        }
+                    }
                 }
             });
             await new Promise(r => setTimeout(r, 600)); // Pause for animation
@@ -2715,7 +2815,7 @@ class BaseCard {
         }
 
         // FERAL EXEMPLAR FEROCIOUS
-        const hasExemplar = attackerBoard.some(c => c.card_name === 'Feral Exemplar');
+        const hasExemplar = attackerBoard.some(c => c.card_name === 'Feral Exemplar' && !c.temporaryHumility);
         if (hasExemplar) {
             const stats = attacker.getDisplayStats(attackerBoard);
             if (stats.p >= 4) {
@@ -2737,7 +2837,7 @@ class BaseCard {
         }
 
         // SPECIAL TRIGGER: Cabracan's Familiar (Pre-fight damage)
-        if (attacker.card_name === 'Cabracan\'s Familiar' && defender && !defender.hasKeyword('Hexproof')) {
+        if (attacker.card_name === 'Cabracan\'s Familiar' && !attacker.temporaryHumility && defender && !defender.hasKeyword('Hexproof')) {
             const multiplier = attacker.isFoil ? 2 : 1;
             const familiarDamage = 2 * multiplier;
             defender.damageTaken += familiarDamage;
@@ -2783,7 +2883,7 @@ class BaseCard {
 
         // Phase 3: Impact calculations
         // SPECIAL VISUAL: Dragonfist Axeman (Defensive buff animation)
-        if (defender && defender.card_name === 'Dragonfist Axeman' && attacker.hasKeyword('Flying')) {
+        if (defender && defender.card_name === 'Dragonfist Axeman' && !defender.temporaryHumility && attacker.hasKeyword('Flying')) {
             const defenderEl = document.getElementById(`card-${defender.id}`);
             if (defenderEl) {
                 const ptBox = defenderEl.querySelector('.card-pt');
@@ -3485,6 +3585,11 @@ class BaseCard {
 
             if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant' || effect.effect === 'infuse_spell_resolution') {
                 hasTargets = currentBoard.length > 0;
+            } else if (effect.effect === 'architect_control') {
+                hasTargets = state.shop.cards.some(c => {
+                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
+                    return inst.type?.toLowerCase().includes('creature');
+                });
             } else if (effect.effect === 'nest_matriarch_buff') {
 
                 hasTargets = currentBoard.length > 1; 
@@ -3557,7 +3662,9 @@ class BaseCard {
                     }
                 }
 
-                effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard'].includes(effect.effect);
+                if (effect.isMandatory === true || effect.isMandatory === undefined) {
+                    effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard'].includes(effect.effect);
+                }
                 state.targetingEffect = effect;
                 render();
                 return;
@@ -3585,7 +3692,7 @@ class BaseCard {
         
         // Find target in specific pools based on effect
         let target = null;
-        if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
+        if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control') {
             target = state.shop.cards.find(c => c.id === targetId);
         } else if (state.targetingEffect.effect === 'parliament_discard') {
             target = state.player.hand.find(c => c.id === targetId);
@@ -3613,9 +3720,6 @@ class BaseCard {
                     if (state.player.board.length < boardLimit) {
                         state.player.board.push(target);
                         // Artful Coercion does NOT trigger ETB
-                        state.player.board.forEach(c => {
-                            if (c.id !== target.id) c.onOtherCreatureETB(target, state.player.board);
-                        });
                     } else {
                         // Normally not castable if full, but as safety:
                         state.player.hand.push(target);
@@ -3644,13 +3748,28 @@ class BaseCard {
                         clearTargetingEffect();
                     }
                 }
+            } else if (state.targetingEffect.effect === 'architect_control') {
+                const shopIdx = state.shop.cards.findIndex(c => c.id === target.id);
+                if (shopIdx !== -1) {
+                    state.shop.cards.splice(shopIdx, 1);
+                    target.owner = 'player';
+                    target.temporarySphinx = true;
+                    if (state.player.board.length < boardLimit) {
+                        state.player.board.push(target);
+                    }
+                    clearTargetingEffect();
+                }
+            } else if (state.targetingEffect.effect === 'erin_humility') {
+                target.temporaryHumility = true;
+                clearTargetingEffect();
             } else if (state.targetingEffect.effect === 'pusbag_sacrifice') {
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
                     resolveShopDeaths(idx, target);
                     clearTargetingEffect();
                 }
-                } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
+            } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
+
                 if (target.type?.includes('Centaur')) {
                     const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     target.counters += (2 * multiplier);
@@ -4133,7 +4252,7 @@ class BaseCard {
         if (attacker.lifelinkCounters > 0) counterTypes++;
         if (attacker.shieldCounters > 0) counterTypes++;
 
-        const isUnblockable = (attacker.card_name === 'Mekini Eremite' && counterTypes >= 2);
+        const isUnblockable = (attacker.card_name === 'Mekini Eremite' && !attacker.temporaryHumility && counterTypes >= 2);
         if (isUnblockable) return null; // Goes straight to face
 
         const hasMenace = attacker.hasKeyword('Menace');
@@ -4190,7 +4309,7 @@ class BaseCard {
 
         if (defender) {
             // DRAGONFIST AXEMAN TRIGGER
-            if (defender.card_name === 'Dragonfist Axeman' && attacker.hasKeyword('Flying')) {
+            if (defender.card_name === 'Dragonfist Axeman' && !defender.temporaryHumility && attacker.hasKeyword('Flying')) {
                 const multiplier = defender.isFoil ? 2 : 1;
                 defender.tempPower += (3 * multiplier);
             }
@@ -5464,6 +5583,11 @@ class BaseCard {
                     if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
                         applySpell(instance.id);
                     }
+                } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
+                    const isCreature = instance.type?.toLowerCase().includes('creature');
+                    if (isCreature) {
+                        applyTargetedEffect(instance.id);
+                    }
                 } else {
                     buyCard(instance.id);
                 }
@@ -5487,6 +5611,11 @@ class BaseCard {
                     if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
                         cardEl.classList.add('targetable');
                     }
+                }
+            } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
+                const isCreature = instance.type?.toLowerCase().includes('creature');
+                if (isCreature) {
+                    cardEl.classList.add('targetable');
                 }
             }
         }
@@ -5542,7 +5671,7 @@ class BaseCard {
                     // Not targetable on board
                 } else if (state.targetingEffect.effect === 'permutate_step1' || state.targetingEffect.effect === 'cloudline_sovereign_step1') {
                     // Not targetable as a card, only counters are clickable
-                } else if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
+                } else if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control') {
                     // Not targetable on board (targets shop)
                 } else {
                     // Special case: Intli Assaulter, Wechuge, Matriarch, Brutalizer can't target themselves
