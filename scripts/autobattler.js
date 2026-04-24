@@ -14,6 +14,7 @@ class BaseCard {
             this.doubleStrikeCounters = Number(this.doubleStrikeCounters) || 0;
             this.vigilanceCounters = Number(this.vigilanceCounters) || 0;
             this.lifelinkCounters = Number(this.lifelinkCounters) || 0;
+            this.deathtouchCounters = Number(this.deathtouchCounters) || 0;
             this.trampleCounters = Number(this.trampleCounters) || 0;
             this.reachCounters = Number(this.reachCounters) || 0;
             this.hexproofCounters = Number(this.hexproofCounters) || 0;
@@ -187,6 +188,7 @@ class BaseCard {
             if (kw === 'reach' && this.reachCounters > 0) return true;
             if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
             if (kw === 'double strike' && this.doubleStrikeCounters > 0) return true;
+            if (kw === 'deathtouch' && this.deathtouchCounters > 0) return true;
             
             // STATIC BOARD EFFECTS
             const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
@@ -1137,7 +1139,8 @@ class BaseCard {
                 effect: 'nightfall_raptor_bounce',
                 isFoil: this.isFoil,
                 wasCast: true,
-                isMandatory: false
+                isMandatory: false,
+                needsETBBroadcast: true
             });
         }
     }
@@ -2593,11 +2596,16 @@ class BaseCard {
             if (state.castingSpell || state.targetingEffect) {
                 // Cancel Action Logic
                 if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast) {
-                    // 1. If it's a creature already on the board (like Pusbag or Camel), return it to hand
-                    const boardIndex = state.player.board.findIndex(c => c.id === state.targetingEffect.sourceId);
-                    if (boardIndex !== -1) {
-                        const card = state.player.board.splice(boardIndex, 1)[0];
-                        state.player.hand.push(card);
+                    // Exception: Nightfall Raptor stays on board even if cancelled
+                    const isRaptor = (state.targetingEffect.effect === 'nightfall_raptor_bounce');
+                    
+                    if (!isRaptor) {
+                        // 1. If it's a creature already on the board (like Pusbag or Camel), return it to hand
+                        const boardIndex = state.player.board.findIndex(c => c.id === state.targetingEffect.sourceId);
+                        if (boardIndex !== -1) {
+                            const card = state.player.board.splice(boardIndex, 1)[0];
+                            state.player.hand.push(card);
+                        }
                     }
 
                     // 2. RESTORE FOR EXECUTIONER'S MADNESS (If Step 1 happened)
@@ -3236,26 +3244,12 @@ class BaseCard {
                         
                         // HIT 2: Regular Strike (if attacker survived)
                         if (attackerBoard.includes(attacker) && !attacker.isDying) {
-                            const hasTrample = attacker.hasKeyword('Trample');
-                            
-                            // Check if the original defender died
+                            // Check if the original defender died or was removed
                             const defenderDied = defender && (!defenderBoard.includes(defender) || defender.isDying || defender.isDestroyed);
                             
-                            let secondHitDefender = defender;
-                            let performSecondHit = true;
-
-                            if (defenderDied) {
-                                if (hasTrample) {
-                                    // Trample allows finding a new target (or hitting face)
-                                    secondHitDefender = findTarget(attacker, defenderBoard);
-                                } else {
-                                    // Blocked and killed defender, no trample -> second strike fizzles
-                                    performSecondHit = false;
-                                }
-                            }
-
-                            if (performSecondHit) {
-                                await performAttack(attacker, secondHitDefender, false);
+                            // Double Strike only hits a SECOND time if the target is still there
+                            if (!defenderDied) {
+                                await performAttack(attacker, defender, false);
                                 await resolveDeaths();
                             }
                         }
@@ -5483,7 +5477,8 @@ class BaseCard {
             'Hexproof': 'img/hexproof.png',
             'Indestructible': 'img/indestructible.png',
             'Haste': 'img/haste.png',
-            'Shield': 'img/shield.png'
+            'Shield': 'img/shield.png',
+            'Deathtouch': 'img/skull.png'
         };
 
         const tempKeywords = new Set();
@@ -5503,7 +5498,9 @@ class BaseCard {
         Object.keys(keywordMap).forEach(kw => {
             // If it HAS the keyword but NOT via inherent rules_text, 
             // it's likely dynamic (embattled, or a lord buff)
-            let hasInherent = instance.rules_text?.toLowerCase().includes(kw.toLowerCase());
+            const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
+            let hasInherent = regex.test(instance.rules_text || "");
+            
             if (kw === 'First strike' && instance.rules_text?.toLowerCase().includes('agile')) {
                 hasInherent = true;
             }

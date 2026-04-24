@@ -951,9 +951,12 @@
             right: 8px;
             display: flex;
             flex-direction: column-reverse;
+            flex-wrap: wrap-reverse;
             align-items: center;
+            align-content: center;
             gap: 2px;
             width: auto;
+            max-height: 188px; /* 5 indicators * 36px + 4 gaps * 2px */
             pointer-events: none;
             z-index: 5;
         }
@@ -983,6 +986,7 @@
         .ghost-indicator.reach { background-color: #dfff00; }
         .ghost-indicator.trample { background-color: #77dd77; }
         .ghost-indicator.haste { background-color: #ff4500; }
+        .ghost-indicator.deathtouch { background-color: #d4a5ff; }
 
         .ghost-indicator img {
             width: 65%;
