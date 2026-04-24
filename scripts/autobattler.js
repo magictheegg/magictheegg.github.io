@@ -326,8 +326,10 @@ class BaseCard {
                     right.tempPower += (2 * multiplier);
                     right.tempToughness += (2 * multiplier);
                     this.isLockedByChivalry = true;
+                    return [right];
                 }
             }
+            return [];
         }
     }
 
@@ -338,7 +340,9 @@ class BaseCard {
                 const multiplier = this.isFoil ? 2 : 1;
                 this.tempPower += (1 * multiplier);
                 this.tempToughness += (1 * multiplier);
+                return [this];
             }
+            return [];
         }
     }
 
@@ -622,7 +626,9 @@ class BaseCard {
             if (hasFerocious) {
                 const multiplier = this.isFoil ? 2 : 1;
                 this.counters += multiplier;
+                return [this];
             }
+            return [];
         }
         onAction() {
             if (state.player.gold >= 2) {
@@ -719,8 +725,10 @@ class BaseCard {
                     target.tempPower += bonus;
                     target.tempToughness += bonus;
                     this.isLockedByChivalry = true;
+                    return [target];
                 }
             }
+            return [];
         }
     }
 
@@ -1582,6 +1590,7 @@ class BaseCard {
                 'Trample', 'Vigilance'
             ];
             const others = board.filter(c => c.id !== host.id && c.owner === host.owner);
+            let gained = false;
             
             keywords.forEach(kw => {
                 if (others.some(c => c.hasKeyword(kw))) {
@@ -1595,8 +1604,10 @@ class BaseCard {
                         rules_text: kw,
                         isTemporary: true 
                     });
+                    gained = true;
                 }
             });
+            return gained ? [host] : [];
         }
     }
 
@@ -1611,7 +1622,9 @@ class BaseCard {
                 for (let i = 0; i < multiplier; i++) {
                     target.enchantments.push({ card_name: 'Phalanx Grant', rules_text: 'Indestructible', isTemporary: true });
                 }
+                return [target];
             }
+            return [];
         }
     }
 
@@ -1656,7 +1669,9 @@ class BaseCard {
                 for (let i = 0; i < multiplier; i++) {
                     target.enchantments.push({ card_name: 'Lost War Grant', rules_text: 'Indestructible', isTemporary: true });
                 }
+                return [target];
             }
+            return [];
         }
     }
 
@@ -1705,7 +1720,9 @@ class BaseCard {
             if (stats.p > base.p) {
                 if (!this.enchantments) this.enchantments = [];
                 this.enchantments.push({ card_name: 'Resolute Lifelink', rules_text: 'Lifelink', isTemporary: true });
+                return [this];
             }
+            return [];
         }
     }
 
@@ -3121,6 +3138,79 @@ class BaseCard {
         return null;
     }
 
+    async function resolveStartOfCombatTriggers(currentOpp) {
+        // Initial delay before animations start
+        await new Promise(r => setTimeout(r, 800));
+
+        let anyTriggers = false;
+
+        // Run player triggers
+        for (const card of state.player.board) {
+            const targets = card.onCombatStart(state.player.board);
+            if (targets && targets.length > 0) {
+                anyTriggers = true;
+                await animateStartOfCombatTrigger(card, targets, state.player.board);
+            }
+        }
+        // Run opponent triggers
+        for (const card of currentOpp.board) {
+            const targets = card.onCombatStart(currentOpp.board);
+            if (targets && targets.length > 0) {
+                anyTriggers = true;
+                await animateStartOfCombatTrigger(card, targets, currentOpp.board);
+            }
+        }
+
+        return anyTriggers;
+    }
+
+    async function animateStartOfCombatTrigger(source, targets, board) {
+        targets.forEach(target => {
+            const targetEl = document.getElementById(`card-${target.id}`);
+            if (targetEl) {
+                // 1. Pulse the P/T
+                const ptBox = targetEl.querySelector('.card-pt');
+                if (ptBox) {
+                    ptBox.classList.add('pulse-stats');
+                    setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+                }
+
+                // 2. Sync P/T Text
+                const stats = target.getDisplayStats(board);
+                const pEl = targetEl.querySelector('.card-p');
+                const tEl = targetEl.querySelector('.card-t');
+                if (pEl) pEl.textContent = stats.p;
+                if (tEl) tEl.textContent = stats.t;
+
+                // 3. Sync and Pulse Counter/Ghost Indicators
+                const counterStackEl = targetEl.querySelector('.card-counter-stack');
+                const ghostContainer = targetEl.querySelector('.ghost-indicator-container');
+                
+                // Create a fresh dummy element to steal updated UI from
+                const dummy = createCardElement(target, false, -1, board);
+                
+                if (counterStackEl) {
+                    counterStackEl.innerHTML = dummy.querySelector('.card-counter-stack').innerHTML;
+                    // Pulse all counters
+                    Array.from(counterStackEl.children).forEach(c => {
+                        c.classList.add('pulse-stats');
+                        setTimeout(() => c.classList.remove('pulse-stats'), 500);
+                    });
+                }
+                if (ghostContainer) {
+                    ghostContainer.innerHTML = dummy.querySelector('.ghost-indicator-container').innerHTML;
+                    // Pulse all ghost indicators
+                    Array.from(ghostContainer.children).forEach(g => {
+                        g.classList.add('pulse-stats');
+                        setTimeout(() => g.classList.remove('pulse-stats'), 500);
+                    });
+                }
+            }
+        });
+
+        await new Promise(r => setTimeout(r, 800));
+    }
+
     async function startBattleTurn() {
         state.phase = 'BATTLE';
         state.overallHpReducedThisFight = false;
@@ -3149,21 +3239,18 @@ class BaseCard {
             return inst;
         });
 
-        state.player.board.forEach(c => {
-            c.onCombatStart(state.player.board);
-            c.indestructibleUsed = false;
-        });
-        currentOpp.board.forEach(c => {
-            c.onCombatStart(currentOpp.board);
-            c.indestructibleUsed = false;
-        });
+        // Update UI for the current opponent (Do this first so they are visible during triggers)
+        const oppAvatarImgs = document.querySelectorAll('#opponent-zone .avatar-img, #shop-zone .avatar-img');
+        oppAvatarImgs.forEach(img => img.src = currentOpp.avatar);
+
+        render();
+        // Wait a frame for elements to exist
+        await new Promise(r => requestAnimationFrame(r));
+
+        const triggersOccurred = await resolveStartOfCombatTriggers(currentOpp);
 
         state.player.fightHp = 5 + (5 * state.player.tier);
         currentOpp.fightHp = 5 + (5 * currentOpp.tier);
-        
-        // Update UI for the current opponent
-        const oppAvatarImgs = document.querySelectorAll('#opponent-zone .avatar-img, #shop-zone .avatar-img');
-        oppAvatarImgs.forEach(img => img.src = currentOpp.avatar);
 
         // 2. Create Combat Snapshots
         const createBattleInstance = (card, owner) => {
@@ -3179,9 +3266,12 @@ class BaseCard {
         
         render(); 
         console.log("Battle Begins!");
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
 
-        await new Promise(r => setTimeout(r, 200));
+        // If no triggers occurred, we still need a small pause for the transition
+        // If triggers DID occur, they already took 800ms + (N * 800ms), so we can start immediately.
+        if (!triggersOccurred) {
+            await new Promise(resolve => setTimeout(resolve, 800)); 
+        }
 
         // INITIALIZE QUEUES
         state.battleQueues = {
