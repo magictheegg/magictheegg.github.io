@@ -613,6 +613,7 @@ class BaseCard {
     }
 
     class WilderkinZealot extends BaseCard {
+        actionCost = 2;
         onCombatStart(board) {
             const stats = this.getDisplayStats(board);
             const hasFerocious = board?.some(c => c.getDisplayStats(board).p >= 4);
@@ -1237,6 +1238,7 @@ class BaseCard {
     }
 
     class FeralExemplar extends BaseCard {
+        actionCost = 3;
         onAction() {
             if (state.player.gold >= 3 && !this.actionUsed) {
                 state.player.gold -= 3;
@@ -2844,7 +2846,13 @@ class BaseCard {
 
             // Now resolve any deaths (this plays the death animations and pauses)
             // This handles Xun Huang triggered kills correctly
-            await resolveDeaths();
+            const deathsResolved = await resolveDeaths();
+
+            // If we have targets but nobody died (like Ladria), we still need to pause 
+            // for the trigger animations (Battle Cry style)
+            if (attackTargets.length > 0 && !deathsResolved) {
+                await new Promise(r => setTimeout(r, 600));
+            }
 
             // If the defender died to an ability (Xun Huang), stop the attack
             const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
@@ -4551,7 +4559,7 @@ class BaseCard {
 
         if (deadPlayerCards.length === 0 && deadOpponentCards.length === 0) {
             if (savedPlayer.length > 0 || savedOpponent.length > 0) render();
-            return;
+            return false;
         }
 
         // 3. Mark for death and play animation
@@ -4621,6 +4629,7 @@ class BaseCard {
         if (anyDeadStill) {
             await resolveDeaths();
         }
+        return true;
     }
 
     async function processDeaths(board, owner) {
@@ -4928,7 +4937,7 @@ class BaseCard {
             let oldEl = existingMap.get(id);
             let newEl;
 
-            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning));
+            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning || instance.isDying));
 
             if (isBusy) {
                 // Manually update busy cards to preserve their active animations
@@ -5671,7 +5680,8 @@ class BaseCard {
 
         // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot, Feral Exemplar (Only on board, during SHOP)
         const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot', 'Feral Exemplar'];
-        if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed) {
+        const hasEnoughGold = (instance.actionCost === undefined || state.player.gold >= instance.actionCost);
+        if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold) {
             cardEl.classList.add('actionable-outline');
             cardEl.addEventListener('click', (e) => {
                 e.stopPropagation();
