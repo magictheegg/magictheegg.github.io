@@ -4661,11 +4661,17 @@ class BaseCard {
 
                 // Add to combat queue if in battle
                 if (state.phase === 'BATTLE' && state.battleQueues) {
-                    validSpawns.forEach(s => state.battleQueues[owner].push(s));
+                    validSpawns.forEach(s => {
+                        // Prevent double-queueing if already added (e.g. by createToken)
+                        if (!state.battleQueues[owner].includes(s)) {
+                            state.battleQueues[owner].push(s);
+                        }
+                    });
                 }
 
-                // Broadcast ETB for all spawns
+                // Trigger ETB for new spawns and broadcast to others
                 validSpawns.forEach(s => {
+                    triggerETB(s, board);
                     notifyPool.forEach(c => {
                         if (c.id !== s.id) c.onOtherCreatureETB(s, board);
                     });
