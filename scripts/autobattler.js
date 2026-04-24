@@ -424,7 +424,7 @@ class BaseCard {
         onCast(board) {
             if (board === state.player.board) {
                 const times = this.isFoil ? 2 : 1;
-                addCardsToShop(2 * times, 'creature');
+                addCardsToShop(2 * times, 'creature', 1);
             }
         }
     }
@@ -1526,9 +1526,10 @@ class BaseCard {
             // Draw 3 creatures to the shop
             for (let i = 0; i < (3 * multiplier); i++) {
                 if (state.shop.cards.length < 7) {
-                    addCardsToShop(1, 'creature'); 
+                    addCardsToShop(1, 'creature', 1);
                 }
             }
+
         }
     }
 
@@ -1861,7 +1862,7 @@ class BaseCard {
             if (board === state.player.board) {
                 addScry(4 * multiplier, () => {
                     // Add two creatures to shop divination-style (adds to current, uses scry queue)
-                    addCardsToShop(2 * multiplier, 'creature');
+                    addCardsToShop(2 * multiplier, 'creature', 1);
                     render();
                 }, this.card_name);
             }
@@ -3519,10 +3520,11 @@ class BaseCard {
         }
     }
 
-    function addCardsToShop(count, typeFilter = 'creature') {
+    function addCardsToShop(count, typeFilter = 'creature', costReduction = 0) {
         for (let i = 0; i < count; i++) {
-            if (state.shop.cards.length >= 7) break; 
+            if (state.shop.cards.length >= 7) break;
 
+            let instance;
             // If scry queue has a valid card, pull it.
             let scryIdx = state.nextShopBonusCards.findIndex(c => {
                 if (typeFilter === 'all') return true;
@@ -3531,7 +3533,7 @@ class BaseCard {
             });
 
             if (scryIdx !== -1) {
-                state.shop.cards.push(CardFactory.create(state.nextShopBonusCards.splice(scryIdx, 1)[0]));
+                instance = CardFactory.create(state.nextShopBonusCards.splice(scryIdx, 1)[0]);
             } else {
                 // Otherwise pull random from pool
                 const pool = availableCards.filter(c => {
@@ -3542,13 +3544,19 @@ class BaseCard {
                     return matchesTier && desiredType && c.shape !== 'token';
                 });
                 if (pool.length > 0) {
-                    state.shop.cards.push(CardFactory.create(pool[Math.floor(Math.random() * pool.length)]));
+                    instance = CardFactory.create(pool[Math.floor(Math.random() * pool.length)]);
                 }
+            }
+
+            if (instance) {
+                if (costReduction > 0) {
+                    instance.costReduction = (instance.costReduction || 0) + costReduction;
+                }
+                state.shop.cards.push(instance);
             }
         }
         render();
     }
-
     function buyCard(cardId) {
         if (state.phase !== 'SHOP') return;
         const cardIndex = state.shop.cards.findIndex(c => c.id === cardId);
@@ -3560,6 +3568,11 @@ class BaseCard {
             cost = 5;
         } else if (!card.type.toLowerCase().includes('creature')) {
             cost = card.tier || 1;
+        }
+
+        // Apply cost reduction
+        if (card.costReduction) {
+            cost = Math.max(0, cost - card.costReduction);
         }
 
         if (state.player.gold < cost || state.player.hand.length >= handLimit) return;
@@ -5568,6 +5581,14 @@ class BaseCard {
             costEl.innerHTML = cost;
         } else {
             costEl.style.display = 'none';
+        }
+
+        // ADD DISCOUNT INDICATOR (Small coin under tier)
+        if (isShop && instance.costReduction > 0) {
+            const discountEl = document.createElement('div');
+            discountEl.className = 'discount-coin';
+            discountEl.innerHTML = `-${instance.costReduction}`;
+            costEl.parentElement.appendChild(discountEl);
         }
         
         const counterStackEl = cardEl.querySelector('.card-counter-stack');
