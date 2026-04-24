@@ -3866,6 +3866,8 @@ class BaseCard {
                 const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.spellInstance && state.targetingEffect.spellInstance.isFoil);
                 const multiplier = isFoilCast ? 2 : 1;
                 
+                const isOnlyTarget = (state.targetingEffect.buffTargetId === target.id);
+
                 // Step 1: Apply initial buff to the click 1 target
                 const buffTarget = state.player.board.find(c => c.id === state.targetingEffect.buffTargetId);
                 if (buffTarget) {
@@ -3874,7 +3876,7 @@ class BaseCard {
                     
                     // ADAPTIVE or Ash-Withered Cloak
                     const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
-                    if (buffTarget.hasKeyword('Adaptive') || hasCloak) {
+                    if (isOnlyTarget && (buffTarget.hasKeyword('Adaptive') || hasCloak)) {
                         buffTarget.tempPower += (2 * multiplier);
                         buffTarget.tempToughness += (2 * multiplier);
                     }
@@ -3883,6 +3885,12 @@ class BaseCard {
                 // Step 2: Apply counter to the click 2 target (Centaur)
                 if (target.type?.includes('Centaur')) {
                     target.counters += multiplier;
+
+                    // ADAPTIVE or Ash-Withered Cloak
+                    const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
+                    if (isOnlyTarget && (target.hasKeyword('Adaptive') || hasCloak)) {
+                        target.counters += multiplier;
+                    }
                 }
 
                 // Remove spell from hand
