@@ -2688,11 +2688,27 @@ class BaseCard {
 
         if (freezeBtn) {
             freezeBtn.addEventListener('click', () => {
+                const wasFrozen = !!state.shop.frozen;
                 state.shop.frozen = !state.shop.frozen;
+                
                 freezeBtn.classList.toggle('frozen', state.shop.frozen);
                 const img = document.getElementById('freeze-img');
                 if (img) {
                     img.src = state.shop.frozen ? 'img/locked.png' : 'img/unlocked.png';
+                }
+
+                if (wasFrozen && !state.shop.frozen) {
+                    // Start unfreezing animation
+                    state.shop.cards.forEach(c => c.isUnlocking = true);
+                    render();
+                    setTimeout(() => {
+                        state.shop.cards.forEach(c => delete c.isUnlocking);
+                        render();
+                    }, 400);
+                } else {
+                    // Just a regular lock or re-render
+                    state.shop.cards.forEach(c => delete c.isUnlocking);
+                    render();
                 }
             });
         }
@@ -2809,7 +2825,12 @@ class BaseCard {
             state.player.treasures = 0;
         }
 
-        populateShop();
+        if (state.shop.frozen) {
+            unfreezeShop();
+            fillShopSlots();
+        } else {
+            populateShop();
+        }
         state.player.board.forEach(c => {
             c.onShopStart(state.player.board);
             c.actionUsed = false;
@@ -3506,16 +3527,15 @@ class BaseCard {
         }
     }
 
-    function populateShop() {
-        if (state.shop.frozen) {
-            state.shop.frozen = false;
-            if (freezeBtn) freezeBtn.classList.remove('frozen');
-            const img = document.getElementById('freeze-img');
-            if (img) img.src = 'img/unlocked.png';
-            fillShopSlots();
-            return;
-        }
+    function unfreezeShop() {
+        state.shop.frozen = false;
+        if (freezeBtn) freezeBtn.classList.remove('frozen');
+        const img = document.getElementById('freeze-img');
+        if (img) img.src = 'img/unlocked.png';
+    }
 
+    function populateShop() {
+        unfreezeShop();
         state.shop.cards = [];
         fillShopSlots();
     }
@@ -5718,12 +5738,38 @@ class BaseCard {
                 starsStr = '★★<br>' + '★'.repeat(tier - 2);
             }
             costEl.innerHTML = `<div class="star">${starsStr}</div>`;
+
+            // Locked Shop visual
+            if (state.shop.frozen || instance.isUnlocking) {
+                if (state.shop.frozen) cardEl.classList.add('locked-shop-card');
+                else cardEl.classList.add('unfreezing-shop-card');
+
+                const lockIndicator = document.createElement('div');
+                lockIndicator.className = 'card-lock-indicator';
+                const lockImg = document.createElement('img');
+                lockImg.src = 'img/locked.png';
+                lockIndicator.appendChild(lockImg);
+                cardEl.appendChild(lockIndicator);
+            }
         } else if (!isCreature && isShop) {
             costEl.style.display = 'flex';
             costEl.classList.add('spell-cost');
             let cost = instance.tier || 1;
             if (instance.type?.toLowerCase().includes('equipment')) cost = 5;
             costEl.innerHTML = cost;
+
+            // Locked Shop visual for non-creatures
+            if (state.shop.frozen || instance.isUnlocking) {
+                if (state.shop.frozen) cardEl.classList.add('locked-shop-card');
+                else cardEl.classList.add('unfreezing-shop-card');
+
+                const lockIndicator = document.createElement('div');
+                lockIndicator.className = 'card-lock-indicator';
+                const lockImg = document.createElement('img');
+                lockImg.src = 'img/locked.png';
+                lockIndicator.appendChild(lockImg);
+                cardEl.appendChild(lockIndicator);
+            }
         } else {
             costEl.style.display = 'none';
         }
