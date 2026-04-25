@@ -182,11 +182,19 @@ class BaseCard {
         // Hook for when a spell is applied to a target (for enchantments/targeted spells)
         onApply(target, board) { }
 
+        hasInherentKeyword(keyword) {
+            if (!this.rules_text) return false;
+            if (['Magnific Wilderkin', 'Bwema, the Ruthless'].includes(this.card_name)) return false;
+            const kw = keyword.toLowerCase();
+            if (kw === 'first strike' && this.rules_text.toLowerCase().includes('agile')) return true;
+            const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
+            return regex.test(this.rules_text);
+        }
+
         hasKeyword(keyword) {
             if (this.temporaryHumility) return false;
             const kw = keyword.toLowerCase();
             if (kw === 'flying' && this.temporarySphinx) return true;
-            if (kw === 'first strike' && this.rules_text?.toLowerCase().includes('agile')) return true;
             if (kw === 'flying' && this.flyingCounters > 0) return true;
             if (kw === 'menace' && this.menaceCounters > 0) return true;
             if (kw === 'first strike' && this.firstStrikeCounters > 0) return true;
@@ -228,9 +236,7 @@ class BaseCard {
                 if (this.equipment.hasKeyword && this.equipment.hasKeyword(kw)) return true;
             }
 
-            if (!this.rules_text || ['Magnific Wilderkin', 'Bwema, the Ruthless'].includes(this.card_name)) return false;
-            const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
-            return regex.test(this.rules_text);
+            return this.hasInherentKeyword(kw);
         }
 
         clone() {
@@ -1591,29 +1597,6 @@ class BaseCard {
     }
 
     class MagnificWilderkin extends BaseCard {
-        hasKeyword(keyword) {
-            const kw = keyword.toLowerCase();
-            // Check counters (Agile logic not needed here as Wilderkin doesn't have it natively)
-            if (kw === 'flying' && this.flyingCounters > 0) return true;
-            if (kw === 'menace' && this.menaceCounters > 0) return true;
-            if (kw === 'first strike' && this.firstStrikeCounters > 0) return true;
-            if (kw === 'vigilance' && this.vigilanceCounters > 0) return true;
-            if (kw === 'lifelink' && this.lifelinkCounters > 0) return true;
-            if (kw === 'trample' && this.trampleCounters > 0) return true;
-            if (kw === 'reach' && this.reachCounters > 0) return true;
-            if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
-            if (kw === 'double strike' && this.doubleStrikeCounters > 0) return true;
-
-            // Check enchantments (including temporary ones granted by this ability)
-            if (this.enchantments?.some(e => {
-                const text = e.rules_text?.toLowerCase() || "";
-                const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
-                return regex.test(text);
-            })) return true;
-
-            return false; // Skip rules_text check
-        }
-
         onCombatStart(board, host = this) {
             const keywords = [
                 'Flying', 'First strike', 'Double strike', 'Deathtouch', 'Haste',
@@ -2290,6 +2273,29 @@ class BaseCard {
             }
         },
         {
+            name: "Xiong Mao",
+            avatar: "sets/GNJ-files/img/0_Xiong Mao, Survivalist.jpg",
+            heroPower: {
+                name: "Panda's Resourcefulness",
+                icon: "sets/SHF-files/img/36.png",
+                cost: 2,
+                text: "Sacrifice a creature. Get a random creature of a star level one higher.",
+                isPassive: false,
+                effect: (owner, board) => {
+                    queueTargetingEffect({
+                        sourceId: 'hero-power',
+                        title: "Panda's Resourcefulness",
+                        text: "Sacrifice a creature to get a random creature of a star level one higher.",
+                        effect: 'hero_power_xiong_mao',
+                        owner: owner,
+                        isHeroPower: true,
+                        heroPowerCost: 2,
+                        isMandatory: false
+                    });
+                }
+            }
+        },
+        {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
             heroPower: null // Shopkeepers don't have hero powers right now
@@ -2310,13 +2316,13 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HERO_POOL[0], // Default to Xylo
+            hero: HERO_POOL[1], // default to Xiong Mao for testing
             usedHeroPower: false
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[1], usedHeroPower: false },
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[2], usedHeroPower: false },
             { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false }
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[1], usedHeroPower: false }
         ],
         currentOpponentId: 0,
         shop: {
@@ -4074,6 +4080,44 @@ class BaseCard {
                     }
                 }
                 clearTargetingEffect();
+            } else if (state.targetingEffect.effect === 'hero_power_xiong_mao') {
+                const board = (state.targetingEffect.owner === 'player') ? state.player.board : getOpponent().board;
+                const idx = board.indexOf(target);
+                if (idx !== -1) {
+                    const targetTier = target.tier || 1;
+                    const nextTier = Math.min(5, targetTier + 1);
+                    
+                    // Sacrifice
+                    resolveShopDeaths(idx, target);
+                    
+                    // Get random creature of tier one higher
+                    const pool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && (c.tier || 1) === nextTier && c.shape !== 'token');
+                    if (pool.length > 0) {
+                        const rewardData = pool[Math.floor(Math.random() * pool.length)];
+                        const reward = CardFactory.create(rewardData);
+                        if (state.targetingEffect.owner === 'player') {
+                            if (state.player.hand.length < handLimit) {
+                                state.player.hand.push(reward);
+                            }
+                            // Charge gold (Hero Power confirmation)
+                            if (state.targetingEffect.heroPowerCost > 0) {
+                                state.player.gold -= state.targetingEffect.heroPowerCost;
+                                state.player.usedHeroPower = true;
+                            }
+                        } else {
+                            // Opponent logic (simplified)
+                            const currentOpp = getOpponent();
+                            if (currentOpp.hand && currentOpp.hand.length < handLimit) {
+                                currentOpp.hand.push(reward);
+                            } else {
+                                if (currentOpp.board.length < boardLimit) {
+                                    currentOpp.board.push(reward);
+                                }
+                            }
+                        }
+                    }
+                    clearTargetingEffect();
+                }
             } else if (state.targetingEffect.effect === 'wilderkin_zealot_trample') {
                 if (state.player.gold >= 2) {
                     state.player.gold -= 2;
@@ -5938,70 +5982,53 @@ class BaseCard {
         ghostContainer.className = 'ghost-indicator-container';
         cardEl.appendChild(ghostContainer);
 
-        const keywordMap = {
-            'Flying': 'img/flying.png',
-            'Menace': 'img/menace.png',
-            'First strike': 'img/first-strike.png',
-            'Double strike': 'img/double-strike.png',
-            'Vigilance': 'img/vigilance.png',
-            'Lifelink': 'img/lifelink.png',
-            'Trample': 'img/trample.png',
-            'Reach': 'img/reach.png',
-            'Hexproof': 'img/hexproof.png',
-            'Indestructible': 'img/indestructible.png',
-            'Haste': 'img/haste.png',
-            'Shield': 'img/shield.png',
-            'Deathtouch': 'img/skull.png'
-        };
-
         const tempKeywords = new Set();
-        if (instance.enchantments) {
-            instance.enchantments.forEach(e => {
-                if (e.isTemporary && e.rules_text) {
-                    Object.keys(keywordMap).forEach(kw => {
-                        if (e.rules_text.toLowerCase().includes(kw.toLowerCase())) {
-                            tempKeywords.add(kw);
-                        }
-                    });
+        if (isCreature) {
+            const keywordMap = {
+                'Flying': 'img/flying.png',
+                'Menace': 'img/menace.png',
+                'First strike': 'img/first-strike.png',
+                'Double strike': 'img/double-strike.png',
+                'Vigilance': 'img/vigilance.png',
+                'Lifelink': 'img/lifelink.png',
+                'Trample': 'img/trample.png',
+                'Reach': 'img/reach.png',
+                'Hexproof': 'img/hexproof.png',
+                'Indestructible': 'img/indestructible.png',
+                'Haste': 'img/haste.png',
+                'Shield': 'img/shield.png',
+                'Deathtouch': 'img/skull.png'
+            };
+
+            Object.keys(keywordMap).forEach(kw => {
+                // 1. Check if it's inherent (printed on the card)
+                if (instance.hasInherentKeyword(kw)) return; // Skip if they have it naturally
+
+                // 2. Check if it's from a counter (already shown via bubble)
+                let counterProp = kw.toLowerCase().replace(' ', '') + 'Counters';
+                if (kw === 'First strike') counterProp = 'firstStrikeCounters';
+                if (kw === 'Double strike') counterProp = 'doubleStrikeCounters';
+                const hasSpecificCounter = instance[counterProp] > 0;
+                if (hasSpecificCounter) return; // Skip if shown via counter bubble
+
+                // 3. If they HAVE the keyword now, it must be temporary/dynamic
+                if (instance.hasKeyword(kw)) {
+                    tempKeywords.add(kw);
                 }
             });
+
+            tempKeywords.forEach(kw => {
+                const indicator = document.createElement('div');
+                const keywordClass = kw.toLowerCase().replace(' ', '-');
+                indicator.className = `ghost-indicator ${keywordClass}`;
+                
+                const img = document.createElement('img');
+                img.src = keywordMap[kw];
+                img.alt = kw;
+                indicator.appendChild(img);
+                ghostContainer.appendChild(indicator);
+            });
         }
-
-        // Add Embattled/Dynamic keywords
-        Object.keys(keywordMap).forEach(kw => {
-            // If it HAS the keyword but NOT via inherent rules_text, 
-            // it's likely dynamic (embattled, or a lord buff)
-            const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
-            let hasInherent = regex.test(instance.rules_text || "");
-            
-            if (kw === 'First strike' && instance.rules_text?.toLowerCase().includes('agile')) {
-                hasInherent = true;
-            }
-            
-            // Check if it's granted by its SPECIFIC counter type (flyingCounters for Flying, etc.)
-            let counterProp = kw.toLowerCase().replace(' ', '') + 'Counters';
-            if (kw === 'First strike') counterProp = 'firstStrikeCounters';
-            if (kw === 'Double strike') counterProp = 'doubleStrikeCounters';
-            
-            const hasSpecificCounter = instance[counterProp] > 0;
-            
-            if (instance.hasKeyword(kw) && !hasInherent && !hasSpecificCounter) {
-                tempKeywords.add(kw);
-            }
-        });
-
-        tempKeywords.forEach(kw => {
-            const indicator = document.createElement('div');
-            // Add both base class and keyword-specific class (e.g., 'ghost-indicator flying')
-            const keywordClass = kw.toLowerCase().replace(' ', '-');
-            indicator.className = `ghost-indicator ${keywordClass}`;
-            
-            const img = document.createElement('img');
-            img.src = keywordMap[kw];
-            img.alt = kw;
-            indicator.appendChild(img);
-            ghostContainer.appendChild(indicator);
-        });
         
         const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || (state.targetingEffect?.effect === 'cloudline_sovereign_step1' && instance.shieldCounters === 0);
 
