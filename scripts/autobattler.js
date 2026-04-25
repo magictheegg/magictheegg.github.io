@@ -2255,8 +2255,8 @@ class BaseCard {
         }
     };
 
-    const HERO_POOL = [
-        {
+    const HEROES = {
+        XYLO: {
             name: "Xylo, the Starfallen",
             avatar: "sets/SHF-files/img/9.png",
             heroPower: {
@@ -2279,7 +2279,7 @@ class BaseCard {
                 }
             }
         },
-        {
+        XIONG_MAO: {
             name: "Xiong Mao",
             avatar: "sets/GNJ-files/img/0_Xiong Mao, Survivalist.jpg",
             heroPower: {
@@ -2302,7 +2302,7 @@ class BaseCard {
                 }
             }
         },
-        {
+        SETO_SAN: {
             name: "Seto San",
             avatar: "sets/NJB-files/img/17.png",
             heroPower: {
@@ -2331,7 +2331,7 @@ class BaseCard {
                 }
             }
         },
-        {
+        CRAIN: {
             name: "Lord Ellison Crain",
             avatar: "sets/AEX-files/img/196_Crain, Black-Blooded.png",
             heroPower: {
@@ -2354,12 +2354,24 @@ class BaseCard {
                 }
             }
         },
-        {
+        ARIETTA: {
+            name: "Arietta",
+            avatar: "sets/SGB-files/img/3_Arietta, the Blade Foretold.jpg",
+            heroPower: {
+                name: "Study the Blade",
+                icon: "sets/WAS-files/img/201_Patience, Forsworn Student.jpg",
+                text: "When you level up to tier 4, seek an Equipment.",
+                isPassive: true
+            }
+        },
+        MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
             heroPower: null // Shopkeepers don't have hero powers right now
         }
-    ];
+    };
+
+    const HERO_POOL = Object.values(HEROES);
 
     // --- GAME STATE ---
     let state = {
@@ -2375,15 +2387,15 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HERO_POOL[3], // Default to Lord Ellison Crain for testing
+            hero: HEROES.ARIETTA, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[4], usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[3], usedHeroPower: false, heroPowerActivations: 0, crainActive: false }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false }
         ],
         currentOpponentId: 0,
         shop: {
@@ -2599,6 +2611,19 @@ class BaseCard {
                 processDiscoveryQueue();
                 return;
             }
+        }
+
+        if (state.discovery.effect === 'arietta_seek') {
+            if (state.player.hand.length < handLimit) {
+                state.player.hand.push(card);
+            } else if (state.player.board.length < boardLimit) {
+                card.owner = 'player';
+                state.player.board.push(card);
+                triggerETB(card, state.player.board);
+            }
+            state.player.usedHeroPower = true;
+            processDiscoveryQueue();
+            return;
         }
 
         if (state.discovery.effect === 'ghessian_buff') {
@@ -2897,6 +2922,28 @@ class BaseCard {
             state.player.tier = nextTier;
             state.player.tierCostReduction = 0; // Reset on upgrade
             updateTierButton();
+
+            // HERO POWER: Arietta (Tier 4 Seek Equipment)
+            if (state.player.hero.name === "Arietta" && state.player.tier === 4) {
+                const equipPool = availableCards.filter(c => c.type?.toLowerCase().includes('equipment') && c.shape !== 'token');
+                if (equipPool.length > 0) {
+                    const selected = [];
+                    const poolCopy = [...equipPool];
+                    for (let i = 0; i < 3; i++) {
+                        if (poolCopy.length === 0) break;
+                        const randIdx = Math.floor(Math.random() * poolCopy.length);
+                        selected.push(CardFactory.create(poolCopy.splice(randIdx, 1)[0]));
+                    }
+
+                    queueDiscovery({
+                        cards: selected,
+                        title: "STUDY THE BLADE",
+                        text: "Choose an Equipment to add to your hand.",
+                        effect: 'arietta_seek'
+                    });
+                }
+            }
+
             render();
         }
     }
@@ -2915,9 +2962,15 @@ class BaseCard {
         state.spellsCastThisTurn = 0;
         state.panharmoniconActive = false;
 
-        // Reset Hero Powers
-        state.player.usedHeroPower = false;
-        state.opponents.forEach(opp => opp.usedHeroPower = false);
+        // Reset Hero Powers (Except for Arietta's one-time tier 4 effect)
+        if (state.player.hero.name !== "Arietta" || state.player.tier < 4) {
+            state.player.usedHeroPower = false;
+        }
+        state.opponents.forEach(opp => {
+            if (!opp.hero || opp.hero.name !== "Arietta" || opp.tier < 4) {
+                opp.usedHeroPower = false;
+            }
+        });
 
         // Tier cost reduction: goes down by 1 each turn (EXCEPT turn 1)
         if (state.player.tier < 5 && state.turn > 1) {
@@ -3465,6 +3518,9 @@ class BaseCard {
 
         const currentOpp = getOpponent();
 
+        state.player.fightHp = 5 + (5 * state.player.tier);
+        currentOpp.fightHp = 5 + (5 * currentOpp.tier);
+
         // 1. Ensure all cards are instances and run combat start hooks
         state.player.board = state.player.board.map(c => {
             const inst = (c instanceof BaseCard ? c : CardFactory.create(c));
@@ -3482,9 +3538,6 @@ class BaseCard {
         await new Promise(r => requestAnimationFrame(r));
 
         const triggersOccurred = await resolveStartOfCombatTriggers(currentOpp);
-
-        state.player.fightHp = 5 + (5 * state.player.tier);
-        currentOpp.fightHp = 5 + (5 * currentOpp.tier);
 
         // 2. Create Combat Snapshots
         const createBattleInstance = (card, owner) => {
@@ -5358,7 +5411,10 @@ class BaseCard {
         clipper.appendChild(icon);
         circle.appendChild(clipper);
 
-        if (hp.isPassive) {
+        // Show gem if passive, OR if Arietta hasn't leveled up yet (locked indicator)
+        const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
+        
+        if ((hp.isPassive || isAriettaLocked) && !entity.usedHeroPower) {
             const gem = document.createElement('div');
             gem.className = 'hero-power-passive-gem';
             circle.appendChild(gem);

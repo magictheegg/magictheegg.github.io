@@ -570,18 +570,21 @@
 
         .hero-power-circle:hover:not(.used):not(.passive) {
             transform: scale(1.1);
-            border-color: #ffd700;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
         }
 
         .hero-power-circle.used {
-            filter: grayscale(1) brightness(0.4);
             cursor: default;
+            background: radial-gradient(circle at center, #222 0%, #050505 100%);
+        }
+
+        .hero-power-circle.used .hero-power-icon-clipper,
+        .hero-power-circle.used .hero-power-cost {
+            filter: grayscale(1) brightness(0.4);
         }
 
         .hero-power-circle.passive {
             cursor: default;
-            border-color: #00d2ff;
         }
 
         .hero-power-icon {
@@ -617,16 +620,24 @@
 
         .hero-power-passive-gem {
             position: absolute;
-            top: -8px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 24px;
-            height: 24px;
-            background: radial-gradient(circle at center, #00d2ff 0%, #0072ff 100%);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Diamond shape */
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
-            border: 1px solid #fff;
+            width: 26px;
+            height: 30px;
+            background: linear-gradient(135deg, #add8e6 0%, #7fb3d5 50%, #5d9cbd 100%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Hexagon shape */
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.9), inset 0 -2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(0, 210, 255, 0.4);
             z-index: 10;
+            pointer-events: none;
+        }
+
+        .hero-power-passive-gem::after {
+            content: "";
+            position: absolute;
+            top: 15%; left: 15%; width: 70%; height: 70%;
+            background: rgba(255,255,255,0.4);
+            clip-path: inherit;
             pointer-events: none;
         }
 
