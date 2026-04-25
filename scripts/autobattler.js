@@ -263,7 +263,9 @@ class BaseCard {
                 if (c.trampleCounters > 0) c.trampleCounters += multiplier;
                 if (c.reachCounters > 0) c.reachCounters += multiplier;
                 if (c.hexproofCounters > 0) c.hexproofCounters += multiplier;
-                if (c.shieldCounters > 0) c.shieldCounters += multiplier;
+                if (c.shieldCounters > 0) {
+                    // Shield counters are restricted to one per creature and NOT impacted by proliferate
+                }
             }
         });
     }
@@ -762,7 +764,7 @@ class BaseCard {
 
     class MekiniEremite extends BaseCard {
         onETB(board) {
-            this.shieldCounters = this.isFoil ? 2 : 1;
+            this.shieldCounters = 1;
         }
     }
 
@@ -3869,9 +3871,9 @@ class BaseCard {
             } else if (effect.effect === 'permutate_step1') {
                 hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
             } else if (effect.effect === 'nightfall_raptor_bounce') {
-                hasTargets = currentBoard.some(c => !c.type?.includes('Enchantment'));
+                hasTargets = currentBoard.some(c => !c.isType('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
-                hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0);
+                hasTargets = currentBoard.some(c => (c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0) && c.shieldCounters === 0);
             } else if (effect.effect === 'artful_coercion_gain_control') {
                 // Find min power on battlefield (yours + opponent + SHOP)
                 const currentOpp = getOpponent();
@@ -4152,7 +4154,7 @@ class BaseCard {
                     else if (counterType === 'lifelink') target.lifelinkCounters--;
                     else if (counterType === 'shield') target.shieldCounters--;
 
-                    target.shieldCounters++;
+                    target.shieldCounters = 1;
                     clearTargetingEffect();
                 }
             } else if (state.targetingEffect.effect === 'permutate_step1') {
@@ -6001,7 +6003,7 @@ class BaseCard {
             ghostContainer.appendChild(indicator);
         });
         
-        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || state.targetingEffect?.effect === 'cloudline_sovereign_step1';
+        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || (state.targetingEffect?.effect === 'cloudline_sovereign_step1' && instance.shieldCounters === 0);
 
         const addCounterBubble = (type, value, imgPath, rulesText) => {
             const bubble = document.createElement('div');
