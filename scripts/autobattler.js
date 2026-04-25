@@ -2364,6 +2364,16 @@ class BaseCard {
                 isPassive: true
             }
         },
+        ADELAIDE: {
+            name: "Adelaide",
+            avatar: "sets/SGB-files/img/36_Adelaide, the Soloist.jpg",
+            heroPower: {
+                name: "Traveling Symphony",
+                icon: "sets/SGB-files/img/41_Cajoling Chorus.jpg",
+                text: "When you buy your fourth spell this game, get a Pale Dillettante.",
+                isPassive: true
+            }
+        },
         MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
@@ -2387,15 +2397,16 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.ARIETTA, // Default for testing
+            hero: HEROES.ADELAIDE, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
-            crainActive: false
+            crainActive: false,
+            spellsBoughtThisGame: 0
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0 },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0 },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0 }
         ],
         currentOpponentId: 0,
         shop: {
@@ -2963,11 +2974,15 @@ class BaseCard {
         state.panharmoniconActive = false;
 
         // Reset Hero Powers (Except for Arietta's one-time tier 4 effect)
-        if (state.player.hero.name !== "Arietta" || state.player.tier < 4) {
+        const isArietta = state.player.hero.name === "Arietta";
+        const isAdelaide = state.player.hero.name === "Adelaide";
+        if ((!isArietta || state.player.tier < 4) && (!isAdelaide || state.player.spellsBoughtThisGame < 4)) {
             state.player.usedHeroPower = false;
         }
         state.opponents.forEach(opp => {
-            if (!opp.hero || opp.hero.name !== "Arietta" || opp.tier < 4) {
+            const oppArietta = opp.hero && opp.hero.name === "Arietta";
+            const oppAdelaide = opp.hero && opp.hero.name === "Adelaide";
+            if ((!oppArietta || opp.tier < 4) && (!oppAdelaide || opp.spellsBoughtThisGame < 4)) {
                 opp.usedHeroPower = false;
             }
         });
@@ -3869,6 +3884,26 @@ class BaseCard {
         state.player.hand.push(card);
         state.shop.cards.splice(cardIndex, 1);
         
+        // HERO POWER: Adelaide (4th Spell Reward)
+        if (state.player.hero.name === "Adelaide" && !state.player.usedHeroPower) {
+            const isCreature = card.type?.toLowerCase().includes('creature');
+            if (!isCreature) {
+                state.player.spellsBoughtThisGame++;
+                if (state.player.spellsBoughtThisGame >= 4) {
+                    const dillettanteData = availableCards.find(c => c.card_name === 'Pale Dillettante');
+                    if (dillettanteData) {
+                        const reward = CardFactory.create(dillettanteData);
+                        reward.owner = 'player';
+                        // If hand is full, it just fizzles!
+                        if (state.player.hand.length < handLimit) {
+                            state.player.hand.push(reward);
+                        }
+                        state.player.usedHeroPower = true;
+                    }
+                }
+            }
+        }
+
         checkForTriples();
         render();
     }
@@ -5413,8 +5448,9 @@ class BaseCard {
 
         // Show gem if passive, OR if Arietta hasn't leveled up yet (locked indicator)
         const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
+        const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
         
-        if ((hp.isPassive || isAriettaLocked) && !entity.usedHeroPower) {
+        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked) && !entity.usedHeroPower) {
             const gem = document.createElement('div');
             gem.className = 'hero-power-passive-gem';
             circle.appendChild(gem);
