@@ -91,7 +91,10 @@ class BaseCard {
             let t = 0;
             
             // TRIBAL LORD CHECK (Warband Lieutenant)
-            if (this.type?.includes('Centaur')) {
+            // Normalize dashes for better type checking
+            const normalizedType = this.type?.replace(/[\u2013\u2014]/g, "-") || "";
+            
+            if (normalizedType.includes('Centaur')) {
                 board?.forEach(c => {
                     if (c.card_name === 'Warband Lieutenant' && !c.temporaryHumility && c.id !== this.id) {
                         const multiplier = c.isFoil ? 2 : 1;
@@ -113,7 +116,7 @@ class BaseCard {
             }
 
             // BIRD LORD CHECK (Thunder Raptor)
-            if (this.type?.includes('Bird')) {
+            if (normalizedType.includes('Bird')) {
                 board?.forEach(c => {
                     if (c.card_name === 'Thunder Raptor' && !c.temporaryHumility && c.id !== this.id) {
                         const multiplier = c.isFoil ? 2 : 1;
@@ -263,9 +266,17 @@ class BaseCard {
     function traverseCirrusea(source, board) {
         const multiplier = source.isFoil ? 2 : 1;
         const owner = source.owner || 'player';
+        
+        // Find the specific entity (player or opponent) to set the plane for
+        let targetEntity = state.player;
+        if (owner === 'opponent') {
+            // Find which opponent owns this board
+            targetEntity = state.opponents.find(opp => opp.board === board) || getOpponent();
+        }
+
         for (let i = 0; i < multiplier; i++) {
-            if (state.plane !== 'Cirrusea') {
-                state.plane = 'Cirrusea';
+            if (targetEntity.plane !== 'Cirrusea') {
+                targetEntity.plane = 'Cirrusea';
                 // Create 1/2 Bird Token with Flying
                 if (board.length < boardLimit) {
                     const bird = createToken('Bird', 'AEX', owner);
@@ -293,7 +304,11 @@ class BaseCard {
 
     class SoulsmokeAdept extends BaseCard {
         getDynamicBuffs(board) {
-            return (this.isEmbattled) ? { p: 1, t: 0 } : { p: 0, t: 0 };
+            const base = super.getDynamicBuffs(board);
+            if (this.isEmbattled) {
+                base.p += 1;
+            }
+            return base;
         }
         hasKeyword(keyword) {
             if (keyword.toLowerCase() === 'lifelink') return this.isEmbattled;
@@ -303,15 +318,24 @@ class BaseCard {
 
     class GlumvaleRaven extends BaseCard {
         getDynamicBuffs(board) {
+            const base = super.getDynamicBuffs(board);
             const hasOtherFlyer = board?.some(c => c.id !== this.id && c.hasKeyword('Flying'));
-            return hasOtherFlyer ? { p: 1, t: 0 } : { p: 0, t: 0 };
+            if (hasOtherFlyer) {
+                base.p += 1;
+            }
+            return base;
         }
     }
 
     class WarClanDowager extends BaseCard {
         getDynamicBuffs(board) {
+            const base = super.getDynamicBuffs(board);
             const hasOtherCentaur = board?.some(c => c.id !== this.id && c.type?.includes('Centaur'));
-            return hasOtherCentaur ? { p: 1, t: 1 } : { p: 0, t: 0 };
+            if (hasOtherCentaur) {
+                base.p += 1;
+                base.t += 1;
+            }
+            return base;
         }
     }
 
@@ -590,8 +614,7 @@ class BaseCard {
 
     class WarbandLieutenant extends BaseCard {
         getDynamicBuffs(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            return { p: 0, t: 0 }; // Buff is GIVEN to others, not received by self usually in these lords
+            return super.getDynamicBuffs(board);
         }
         // Lord logic needs a way to buff OTHERS. 
         // We can check board for other Lords.
@@ -2246,12 +2269,14 @@ class BaseCard {
             hand: [],
             board: [],
             treasures: 0,
-            spellGraveyard: []
+            spellGraveyard: [],
+            playmat: 'img/playmats/majestic.jpg',
+            plane: null
         },
         opponents: [
-            { id: 0, name: "Marketto", avatar: "sets/SHF-files/img/60.png", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
-            { id: 1, name: "Huitzil", avatar: "sets/ICH-files/img/62_Huitzil Skywatch.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
-            { id: 2, name: "Raven", avatar: "sets/TWB-files/img/19_Glumvale Raven.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] }
+            { id: 0, name: "Marketto", avatar: "sets/SHF-files/img/60.png", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/stalwart.jpg', plane: null },
+            { id: 1, name: "Huitzil", avatar: "sets/ICH-files/img/62_Huitzil Skywatch.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null },
+            { id: 2, name: "Raven", avatar: "sets/TWB-files/img/19_Glumvale Raven.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null }
         ],
         currentOpponentId: 0,
         shop: {
@@ -2269,7 +2294,6 @@ class BaseCard {
         battleBoards: null,
         creaturesDiedThisShopPhase: false,
         shopDeathsCount: 0,
-        plane: null,
         overallHpReducedThisFight: false,
         deadServantsCount: 0,
         spellsCastThisTurn: 0,
@@ -2800,6 +2824,9 @@ class BaseCard {
         const attackerEl = document.getElementById(`card-${attacker.id}`);
         if (!attackerEl) return;
 
+        const attackerZone = (attacker.owner === 'player') ? document.getElementById('player-zone') : document.getElementById('opponent-zone');
+        if (attackerZone) attackerZone.style.zIndex = "1000";
+
         let deltaX = 0, deltaY = 0;
 
         if (defender) {
@@ -2819,6 +2846,11 @@ class BaseCard {
         state.activeAttackerId = attacker.id;
         attackerEl.classList.add('attacking');
         
+        // Wait if still shaking from being hit
+        if (attackerEl.classList.contains('shake')) {
+            await new Promise(r => setTimeout(r, 100));
+        }
+
         // Phase 1: Wind up (Lift and scale)
         attackerEl.style.transition = "transform 0.45s ease-out";
         attackerEl.style.zIndex = "2000";
@@ -2885,6 +2917,8 @@ class BaseCard {
             if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
                 attackerEl.style.transform = "";
                 attackerEl.classList.remove('attacking');
+                if (attackerZone) attackerZone.style.zIndex = "";
+                state.activeAttackerId = null;
                 return;
             }
         }
@@ -2948,6 +2982,8 @@ class BaseCard {
             if (currentDefStats.t <= 0) {
                 attackerEl.style.transform = "";
                 attackerEl.classList.remove('attacking');
+                if (attackerZone) attackerZone.style.zIndex = "";
+                state.activeAttackerId = null;
                 return; 
             }
         }
@@ -3111,8 +3147,11 @@ class BaseCard {
             currentAttackerEl.style.transition = "";
             currentAttackerEl.style.zIndex = "";
             currentAttackerEl.classList.remove('attacking');
+            if (attackerZone) attackerZone.style.zIndex = "";
             state.activeAttackerId = null;
         } else {
+            const attackerZone = (attacker.owner === 'player') ? document.getElementById('player-zone') : document.getElementById('opponent-zone');
+            if (attackerZone) attackerZone.style.zIndex = "";
             state.activeAttackerId = null;
         }
     }
@@ -3239,10 +3278,6 @@ class BaseCard {
             inst.owner = 'opponent';
             return inst;
         });
-
-        // Update UI for the current opponent (Do this first so they are visible during triggers)
-        const oppAvatarImgs = document.querySelectorAll('#opponent-zone .avatar-img, #shop-zone .avatar-img');
-        oppAvatarImgs.forEach(img => img.src = currentOpp.avatar);
 
         render();
         // Wait a frame for elements to exist
@@ -5161,7 +5196,10 @@ class BaseCard {
                 const frame = document.createElement('div');
                 frame.className = 'roster-frame';
                 if (opp.overallHp <= 0) frame.classList.add('dead');
-                if (state.currentOpponentId === state.opponents.indexOf(opp)) frame.classList.add('active');
+                
+                // SHOP phase always highlights Marketto (index 0), BATTLE phase highlights current target
+                const isActive = (state.phase === 'SHOP') ? (state.opponents.indexOf(opp) === 0) : (state.currentOpponentId === state.opponents.indexOf(opp));
+                if (isActive) frame.classList.add('active');
 
                 const img = document.createElement('img');
                 img.src = opp.avatar;
@@ -5171,6 +5209,20 @@ class BaseCard {
         }
 
         const currentOpp = getOpponent();
+
+        const playerBg = document.getElementById('player-bg');
+        const playerPlaneBg = document.getElementById('player-plane-bg');
+        if (playerBg && state.player.playmat) {
+            playerBg.style.backgroundImage = `url(${state.player.playmat})`;
+        }
+        if (playerPlaneBg) {
+            if (state.player.plane === 'Cirrusea') {
+                playerPlaneBg.style.backgroundImage = 'url(img/playmats/cirrusea.jpg)';
+                playerPlaneBg.style.opacity = '1';
+            } else {
+                playerPlaneBg.style.opacity = '0';
+            }
+        }
 
         if (state.phase === 'SHOP') {
             state.player.board = state.player.board.map(c => {
@@ -5183,6 +5235,19 @@ class BaseCard {
             shopZone.style.display = 'flex';
             shopZone.style.opacity = '1';
             shopZone.style.pointerEvents = 'auto';
+
+            // Ensure shop avatar is always Marketto
+            const shopAvatarImg = document.querySelector('#shop-zone .avatar-img');
+            if (shopAvatarImg) shopAvatarImg.src = state.opponents[0].avatar;
+
+            const oppBg = document.getElementById('opponent-bg');
+            const oppPlaneBg = document.getElementById('opponent-plane-bg');
+            if (oppBg) {
+                oppBg.style.backgroundImage = 'url(img/playmats/shop.jpg)';
+            }
+            if (oppPlaneBg) {
+                oppPlaneBg.style.opacity = '0'; // Shop always shows shop
+            }
             opponentZone.style.display = 'none';
             opponentZone.style.opacity = '0';
             opponentZone.style.pointerEvents = 'none';
@@ -5198,6 +5263,24 @@ class BaseCard {
             opponentZone.style.display = 'flex';
             opponentZone.style.opacity = '1';
             opponentZone.style.pointerEvents = 'auto';
+
+            // Ensure battle avatar matches current opponent
+            const opponentAvatarImg = document.querySelector('#opponent-zone .avatar-img');
+            if (opponentAvatarImg) opponentAvatarImg.src = currentOpp.avatar;
+
+            const oppBg = document.getElementById('opponent-bg');
+            const oppPlaneBg = document.getElementById('opponent-plane-bg');
+            if (oppBg) {
+                oppBg.style.backgroundImage = `url(${currentOpp.playmat})`;
+            }
+            if (oppPlaneBg) {
+                if (currentOpp.plane === 'Cirrusea') {
+                    oppPlaneBg.style.backgroundImage = 'url(img/playmats/cirrusea.jpg)';
+                    oppPlaneBg.style.opacity = '1';
+                } else {
+                    oppPlaneBg.style.opacity = '0';
+                }
+            }
             const oppBoardEl = document.getElementById('opponent-board');
             const oppBoardToRender = state.battleBoards ? state.battleBoards.opponent : (currentOpp?.board || []);
             renderBoard(oppBoardEl, oppBoardToRender, false, oppBoardToRender);
