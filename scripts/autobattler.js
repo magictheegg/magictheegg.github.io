@@ -25,6 +25,8 @@ class BaseCard {
             this.tempToughness = Number(this.tempToughness) || 0;
             this.isLockedByChivalry = this.isLockedByChivalry || false;
             this.isFoil = this.isFoil || false;
+            this.isDecayed = this.isDecayed || false;
+            this.isToken = this.isToken || false;
             this.isDestroyed = false;
             this.equipment = this.equipment || null;
         }
@@ -240,17 +242,22 @@ class BaseCard {
         }
 
         clone() {
-            const newCard = CardFactory.create(this);
+            const newCard = new this.constructor(this);
+            newCard.id = `card-${Math.random().toString(36).substr(2, 9)}`;
             newCard.counters = this.counters;
             newCard.flyingCounters = this.flyingCounters;
             newCard.menaceCounters = this.menaceCounters;
             newCard.firstStrikeCounters = this.firstStrikeCounters;
+            newCard.doubleStrikeCounters = this.doubleStrikeCounters;
             newCard.vigilanceCounters = this.vigilanceCounters;
             newCard.lifelinkCounters = this.lifelinkCounters;
+            newCard.deathtouchCounters = this.deathtouchCounters;
             newCard.trampleCounters = this.trampleCounters;
             newCard.reachCounters = this.reachCounters;
             newCard.shieldCounters = this.shieldCounters;
             newCard.isFoil = this.isFoil;
+            newCard.isDecayed = this.isDecayed;
+            newCard.isToken = this.isToken;
             newCard.indestructibleUsed = this.indestructibleUsed;
             newCard.enchantments = this.enchantments.map(e => (e instanceof BaseCard ? e.clone() : CardFactory.create(e)));
             return newCard;
@@ -2325,6 +2332,29 @@ class BaseCard {
             }
         },
         {
+            name: "Lord Ellison Crain",
+            avatar: "sets/AEX-files/img/196_Crain, Black-Blooded.png",
+            heroPower: {
+                name: "Crain's Crony",
+                icon: "sets/DSS-files/img/89_Crain's Crony.jpg",
+                cost: 2,
+                text: "At the beginning of combat, create a token copy of your left-most creature with decayed.",
+                isPassive: false,
+                effect: (owner, board) => {
+                    const entity = (owner === 'player') ? state.player : getOpponent();
+                    if (owner === 'player') {
+                        state.player.gold -= 2;
+                        state.player.usedHeroPower = true;
+                        state.player.crainActive = true;
+                        render();
+                    } else {
+                        entity.usedHeroPower = true;
+                        entity.crainActive = true;
+                    }
+                }
+            }
+        },
+        {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
             heroPower: null // Shopkeepers don't have hero powers right now
@@ -2345,14 +2375,15 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HERO_POOL[2], // Default to Seto San for testing
+            hero: HERO_POOL[3], // Default to Lord Ellison Crain for testing
             usedHeroPower: false,
-            heroPowerActivations: 0
+            heroPowerActivations: 0,
+            crainActive: false
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[3], usedHeroPower: false, heroPowerActivations: 0 },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false, heroPowerActivations: 0 },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[1], usedHeroPower: false, heroPowerActivations: 0 }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[4], usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false, heroPowerActivations: 0, crainActive: false },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[3], usedHeroPower: false, heroPowerActivations: 0, crainActive: false }
         ],
         currentOpponentId: 0,
         shop: {
@@ -3249,6 +3280,11 @@ class BaseCard {
             currentAttackerEl.style.zIndex = "";
             currentAttackerEl.classList.remove('attacking');
             if (attackerZone) attackerZone.style.zIndex = "";
+
+            if (attacker.isDecayed) {
+                attacker.isDestroyed = true;
+            }
+
             state.activeAttackerId = null;
         } else {
             const attackerZone = (attacker.owner === 'player') ? document.getElementById('player-zone') : document.getElementById('opponent-zone');
@@ -3284,6 +3320,53 @@ class BaseCard {
         await new Promise(r => setTimeout(r, 800));
 
         let anyTriggers = false;
+
+        // Hero Power: Lord Ellison Crain
+        const processCrain = async (entity, board, owner) => {
+            if (entity.crainActive && board.length > 0 && board.length < boardLimit) {
+                const leftMost = board[0];
+                const clone = leftMost.clone();
+                
+                // Only bake in stats that aren't automatically cloned.
+                // counters and dynamic buffs are already handled by clone() and getDisplayStats().
+                // equipment stats are NOT cloned, so we must add them to tempPower/Toughness.
+                const eqStats = leftMost.equipment ? leftMost.equipment.getEquipmentStats(leftMost) : { p: 0, t: 0 };
+                
+                clone.tempPower = (leftMost.tempPower || 0) + eqStats.p;
+                clone.tempToughness = (leftMost.tempToughness || 0) + eqStats.t;
+                
+                // Copy temporary keywords from equipment or enchantments into permanent-on-clone enchantments
+                const keywordsToCheck = [
+                    'Flying', 'First strike', 'Double strike', 'Deathtouch', 'Haste',
+                    'Hexproof', 'Indestructible', 'Lifelink', 'Menace', 'Reach',
+                    'Trample', 'Vigilance'
+                ];
+                
+                keywordsToCheck.forEach(kw => {
+                    if (leftMost.hasKeyword(kw) && !clone.hasKeyword(kw)) {
+                        clone.enchantments.push({ card_name: 'Crain Phantom Grant', rules_text: kw, isTemporary: false });
+                    }
+                });
+
+                clone.isDecayed = true;
+                clone.isToken = true;
+                clone.isCrainToken = true; // For post-combat cleanup
+                clone.isSpawning = true;
+                clone.owner = owner;
+                clone.equipment = null; // Decayed clones do NOT copy equipment
+                
+                board.unshift(clone);
+                entity.crainActive = false;
+                anyTriggers = true;
+                render();
+                await new Promise(r => setTimeout(r, 600));
+                delete clone.isSpawning;
+                render();
+            }
+        };
+
+        await processCrain(state.player, state.player.board, 'player');
+        await processCrain(currentOpp, currentOpp.board, 'opponent');
 
         // Run player triggers
         for (const card of state.player.board) {
@@ -3419,9 +3502,11 @@ class BaseCard {
         console.log("Battle Begins!");
 
         // If no triggers occurred, we still need a small pause for the transition
-        // If triggers DID occur, they already took 800ms + (N * 800ms), so we can start immediately.
+        // If triggers DID occur, we want a 300ms breath before the first attack.
         if (!triggersOccurred) {
             await new Promise(resolve => setTimeout(resolve, 800)); 
+        } else {
+            await new Promise(resolve => setTimeout(resolve, 300));
         }
 
         // INITIALIZE QUEUES
@@ -3531,6 +3616,7 @@ class BaseCard {
         }
 
         // --- End of Combat Cleanup ---
+        state.player.board = state.player.board.filter(c => !c.isCrainToken);
         state.player.board.forEach(c => { 
             c.tempPower = 0; 
             c.tempToughness = 0; 
@@ -3540,6 +3626,7 @@ class BaseCard {
             c.enchantments = c.enchantments.filter(e => !e.isTemporary); 
         });
         state.opponents.forEach(opp => {
+            opp.board = opp.board.filter(c => !c.isCrainToken);
             opp.board.forEach(c => { 
                 c.tempPower = 0; 
                 c.tempToughness = 0; 
@@ -6033,10 +6120,17 @@ class BaseCard {
                 'Indestructible': 'img/indestructible.png',
                 'Haste': 'img/haste.png',
                 'Shield': 'img/shield.png',
-                'Deathtouch': 'img/skull.png'
+                'Deathtouch': 'img/skull.png',
+                'Decayed': 'img/decayed.png'
             };
 
             Object.keys(keywordMap).forEach(kw => {
+                // Special case for Decayed which isn't a "real" keyword checkable by hasKeyword the same way
+                if (kw === 'Decayed') {
+                    if (instance.isDecayed) tempKeywords.add(kw);
+                    return;
+                }
+
                 // 1. Check if it's inherent (printed on the card)
                 if (instance.hasInherentKeyword(kw)) return; // Skip if they have it naturally
 
