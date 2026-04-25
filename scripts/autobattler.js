@@ -168,6 +168,11 @@ class BaseCard {
         // Hook for death effects (returns an array of tokens/cards to spawn)
         onDeath(board, owner) { return []; }
 
+        hasETB() {
+            // Check if the current instance's onETB is different from the base prototype
+            return this.onETB !== BaseCard.prototype.onETB;
+        }
+
         // Hook for when another creature on the same board dies
         onOtherCreatureDeath(deadCard, board) { }
 
@@ -2258,6 +2263,37 @@ class BaseCard {
         }
     };
 
+    const HERO_POOL = [
+        {
+            name: "Xylo, the Starfallen",
+            avatar: "sets/SHF-files/img/9.png",
+            heroPower: {
+                name: "Celestial Disturbance",
+                icon: "sets/SHF-files/img/89.png",
+                cost: 2,
+                text: "Trigger abilities of target creature you control as though it entered the battlefield.",
+                isPassive: false,
+                effect: (owner, board) => {
+                    queueTargetingEffect({
+                        sourceId: 'hero-power',
+                        title: "Celestial Disturbance",
+                        text: "Trigger the 'enters' ability of target creature you control.",
+                        effect: 'hero_power_xylo',
+                        owner: owner,
+                        isHeroPower: true,
+                        heroPowerCost: 2,
+                        isMandatory: false
+                    });
+                }
+            }
+        },
+        {
+            name: "Marketto",
+            avatar: "sets/SHF-files/img/60.png",
+            heroPower: null // Shopkeepers don't have hero powers right now
+        }
+    ];
+
     // --- GAME STATE ---
     let state = {
         player: {
@@ -2271,12 +2307,14 @@ class BaseCard {
             treasures: 0,
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
-            plane: null
+            plane: null,
+            hero: HERO_POOL[0], // Default to Xylo
+            usedHeroPower: false
         },
         opponents: [
-            { id: 0, name: "Marketto", avatar: "sets/SHF-files/img/60.png", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/stalwart.jpg', plane: null },
-            { id: 1, name: "Huitzil", avatar: "sets/ICH-files/img/62_Huitzil Skywatch.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null },
-            { id: 2, name: "Raven", avatar: "sets/TWB-files/img/19_Glumvale Raven.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[1], usedHeroPower: false },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false }
         ],
         currentOpponentId: 0,
         shop: {
@@ -2637,7 +2675,7 @@ class BaseCard {
         if (endTurnBtn) endTurnBtn.addEventListener('click', () => {
             if (state.castingSpell || state.targetingEffect) {
                 // Cancel Action Logic
-                if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast) {
+                if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast && !state.targetingEffect.isHeroPower) {
                     // Exception: Nightfall Raptor stays on board even if cancelled
                     const isRaptor = (state.targetingEffect.effect === 'nightfall_raptor_bounce');
                     
@@ -2807,6 +2845,10 @@ class BaseCard {
         state.phase = 'SHOP';
         state.spellsCastThisTurn = 0;
         state.panharmoniconActive = false;
+
+        // Reset Hero Powers
+        state.player.usedHeroPower = false;
+        state.opponents.forEach(opp => opp.usedHeroPower = false);
 
         // Tier cost reduction: goes down by 1 each turn (EXCEPT turn 1)
         if (state.player.tier < 5 && state.turn > 1) {
@@ -3251,20 +3293,28 @@ class BaseCard {
                 const dummy = createCardElement(target, false, -1, board);
                 
                 if (counterStackEl) {
-                    counterStackEl.innerHTML = dummy.querySelector('.card-counter-stack').innerHTML;
-                    // Pulse all counters
-                    Array.from(counterStackEl.children).forEach(c => {
-                        c.classList.add('pulse-stats');
-                        setTimeout(() => c.classList.remove('pulse-stats'), 500);
-                    });
+                    const newHTML = dummy.querySelector('.card-counter-stack').innerHTML;
+                    const changed = counterStackEl.innerHTML !== newHTML;
+                    counterStackEl.innerHTML = newHTML;
+                    if (changed) {
+                        // Pulse all counters
+                        Array.from(counterStackEl.children).forEach(c => {
+                            c.classList.add('pulse-stats');
+                            setTimeout(() => c.classList.remove('pulse-stats'), 500);
+                        });
+                    }
                 }
                 if (ghostContainer) {
-                    ghostContainer.innerHTML = dummy.querySelector('.ghost-indicator-container').innerHTML;
-                    // Pulse all ghost indicators
-                    Array.from(ghostContainer.children).forEach(g => {
-                        g.classList.add('pulse-stats');
-                        setTimeout(() => g.classList.remove('pulse-stats'), 500);
-                    });
+                    const newHTML = dummy.querySelector('.ghost-indicator-container').innerHTML;
+                    const changed = ghostContainer.innerHTML !== newHTML;
+                    ghostContainer.innerHTML = newHTML;
+                    if (changed) {
+                        // Pulse all ghost indicators
+                        Array.from(ghostContainer.children).forEach(g => {
+                            g.classList.add('pulse-stats');
+                            setTimeout(() => g.classList.remove('pulse-stats'), 500);
+                        });
+                    }
                 }
             }
         });
@@ -3698,6 +3748,14 @@ class BaseCard {
         render();
     }
 
+    function activateHeroPower() {
+        const hp = state.player.hero.heroPower;
+        if (state.player.gold >= hp.cost && !state.player.usedHeroPower) {
+            hp.effect('player', state.player.board);
+            render();
+        }
+    }
+
     function useCardFromHand(cardId, targetIndex = -1) {
         if (state.phase !== 'SHOP' || state.castingSpell || state.targetingEffect) return;
         const cardIndex = state.player.hand.findIndex(c => c.id === cardId);
@@ -3774,6 +3832,14 @@ class BaseCard {
 
     function queueTargetingEffect(effect) {
         if (effect.isMandatory === undefined) effect.isMandatory = true;
+        
+        // If we are currently resolving a hero power, propagate the flag and cost
+        if (state.targetingEffect && state.targetingEffect.isHeroPower) {
+            effect.isHeroPower = true;
+            effect.heroPowerCost = state.targetingEffect.heroPowerCost;
+            effect.owner = effect.owner || state.targetingEffect.owner;
+        }
+
         state.targetingQueue.push(effect);
         if (!state.targetingEffect) {
             processTargetingQueue();
@@ -3868,7 +3934,8 @@ class BaseCard {
                 }
 
                 if (effect.isMandatory === true || effect.isMandatory === undefined) {
-                    effect.isMandatory = !['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard'].includes(effect.effect);
+                    const nonMandatoryEffects = ['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard'];
+                    effect.isMandatory = !nonMandatoryEffects.includes(effect.effect) && !effect.isHeroPower;
                 }
                 state.targetingEffect = effect;
                 render();
@@ -3908,6 +3975,15 @@ class BaseCard {
         }
         
         if (target) {
+            // Finalize Hero Power if applicable (Generic case)
+            // Note: hero_power_xylo handles its own cost because it might defer to a nested effect
+            if (state.targetingEffect.isHeroPower && state.targetingEffect.owner === 'player' && state.targetingEffect.heroPowerCost > 0 && state.targetingEffect.effect !== 'hero_power_xylo') {
+                state.player.gold -= state.targetingEffect.heroPowerCost;
+                state.player.usedHeroPower = true;
+                // Important: clear the cost so subsequent steps (like Dutiful Camel's second counter) don't charge again
+                state.targetingEffect.heroPowerCost = 0;
+            }
+
             if (state.targetingEffect.effect === 'dutiful_camel_counter') {
                 target.counters++;
                 if (state.targetingEffect.isDouble) {
@@ -3980,6 +4056,22 @@ class BaseCard {
                     target.counters += (2 * multiplier);
                     clearTargetingEffect();
                 }
+            } else if (state.targetingEffect.effect === 'hero_power_xylo') {
+                const board = (state.targetingEffect.owner === 'player') ? state.player.board : getOpponent().board;
+                const oldQueueLen = state.targetingQueue.length;
+                
+                target.onETB(board);
+                
+                const queuedSomething = state.targetingQueue.length > oldQueueLen;
+
+                if (!queuedSomething) {
+                    // It didn't trigger more targeting, so spend the gold now
+                    if (state.targetingEffect.owner === 'player' && state.targetingEffect.heroPowerCost > 0) {
+                        state.player.gold -= state.targetingEffect.heroPowerCost;
+                        state.player.usedHeroPower = true;
+                    }
+                }
+                clearTargetingEffect();
             } else if (state.targetingEffect.effect === 'wilderkin_zealot_trample') {
                 if (state.player.gold >= 2) {
                     state.player.gold -= 2;
@@ -5074,6 +5166,47 @@ class BaseCard {
         render();
     }
 
+    function renderHeroPower(container, entity, isPlayer) {
+        if (!container) return;
+        container.innerHTML = '';
+        if (!entity.hero || !entity.hero.heroPower) return;
+
+        const hp = entity.hero.heroPower;
+        const circle = document.createElement('div');
+        circle.className = 'hero-power-circle';
+        
+        if (entity.usedHeroPower) circle.classList.add('used');
+        if (hp.isPassive) circle.classList.add('passive');
+
+        const clipper = document.createElement('div');
+        clipper.className = 'hero-power-icon-clipper';
+
+        const icon = document.createElement('img');
+        icon.className = 'hero-power-icon';
+        icon.src = hp.icon;
+        icon.title = `${hp.name}: ${hp.text}`;
+        
+        clipper.appendChild(icon);
+        circle.appendChild(clipper);
+
+        if (hp.isPassive) {
+            const gem = document.createElement('div');
+            gem.className = 'hero-power-passive-gem';
+            circle.appendChild(gem);
+        } else if (!entity.usedHeroPower) {
+            const cost = document.createElement('div');
+            cost.className = 'hero-power-cost';
+            cost.textContent = hp.cost;
+            circle.appendChild(cost);
+        }
+
+        if (isPlayer && !entity.usedHeroPower && !hp.isPassive && state.phase === 'SHOP' && entity.gold >= hp.cost && !state.castingSpell && !state.targetingEffect) {
+            circle.addEventListener('click', () => activateHeroPower());
+        }
+
+        container.appendChild(circle);
+    }
+
     function renderBoard(container, cards, isShop = false, boardContext = []) {
         if (!container) return;
 
@@ -5222,13 +5355,20 @@ class BaseCard {
                 if (isActive) frame.classList.add('active');
 
                 const img = document.createElement('img');
-                img.src = opp.avatar;
+                img.src = opp.hero.avatar;
                 frame.appendChild(img);
                 rosterSidebar.appendChild(frame);
             });
         }
 
         const currentOpp = getOpponent();
+
+        // Render Hero Powers
+        const playerHPEl = document.getElementById('player-hero-power');
+        if (playerHPEl) renderHeroPower(playerHPEl, state.player, true);
+
+        const oppHPEl = document.getElementById('opponent-hero-power');
+        if (oppHPEl) renderHeroPower(oppHPEl, currentOpp, false);
 
         const playerBg = document.getElementById('player-bg');
         const playerPlaneBg = document.getElementById('player-plane-bg');
@@ -5256,9 +5396,9 @@ class BaseCard {
             shopZone.style.opacity = '1';
             shopZone.style.pointerEvents = 'auto';
 
-            // Ensure shop avatar is always Marketto
+            // Ensure shop avatar is always Marketto (or the first opponent's hero)
             const shopAvatarImg = document.querySelector('#shop-zone .avatar-img');
-            if (shopAvatarImg) shopAvatarImg.src = state.opponents[0].avatar;
+            if (shopAvatarImg && state.opponents[0].hero) shopAvatarImg.src = state.opponents[0].hero.avatar;
 
             const oppBg = document.getElementById('opponent-bg');
             const oppPlaneBg = document.getElementById('opponent-plane-bg');
@@ -5284,9 +5424,9 @@ class BaseCard {
             opponentZone.style.opacity = '1';
             opponentZone.style.pointerEvents = 'auto';
 
-            // Ensure battle avatar matches current opponent
+            // Ensure battle avatar matches current opponent's hero
             const opponentAvatarImg = document.querySelector('#opponent-zone .avatar-img');
-            if (opponentAvatarImg) opponentAvatarImg.src = currentOpp.avatar;
+            if (opponentAvatarImg && currentOpp.hero) opponentAvatarImg.src = currentOpp.hero.avatar;
 
             const oppBg = document.getElementById('opponent-bg');
             const oppPlaneBg = document.getElementById('opponent-plane-bg');
@@ -5368,6 +5508,12 @@ class BaseCard {
         if (playerAvatarEl) {
             const fHP = playerAvatarEl.querySelector('.fight-hp');
             if (fHP) fHP.classList.add('player-fight-hp');
+
+            // Set Player Hero Avatar
+            const playerAvatarImg = playerAvatarEl.querySelector('.avatar-img');
+            if (playerAvatarImg && state.player.hero) {
+                playerAvatarImg.src = state.player.hero.avatar;
+            }
         }
 
         updateTierButton();
@@ -6084,6 +6230,8 @@ class BaseCard {
                         // Not targetable (cannot select same creature twice)
                     } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce' && instance.type?.toLowerCase().includes('enchantment')) {
                         // Not targetable if it's an enchantment creature
+                    } else if (state.targetingEffect.effect === 'hero_power_xylo' && !instance.hasETB()) {
+                        // Not targetable if it doesn't have an ETB
                     } else {
                         cardEl.classList.add('targetable');
                         cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
