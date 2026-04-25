@@ -2374,6 +2374,29 @@ class BaseCard {
                 isPassive: true
             }
         },
+        HEPING: {
+            name: "Heping",
+            avatar: "sets/NJB-files/img/1.png",
+            heroPower: {
+                name: "Armistice Chains",
+                icon: "sets/SUR-files/img/4_Cai Lan, the Chained.jpg",
+                cost: 1,
+                text: "Lock a creature in the shop and put a +1/+1 counter on it. It costs 1 less next turn.",
+                isPassive: false,
+                effect: (owner, board) => {
+                    queueTargetingEffect({
+                        sourceId: 'hero-power',
+                        title: "Armistice Chains",
+                        text: "Choose a creature to chain. It gets a +1/+1 counter and costs 1 less next turn.",
+                        effect: 'hero_power_heping',
+                        owner: owner,
+                        isHeroPower: true,
+                        heroPowerCost: 1,
+                        isMandatory: false
+                    });
+                }
+            }
+        },
         MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
@@ -2397,7 +2420,7 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.ADELAIDE, // Default for testing
+            hero: HEROES.HEPING, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -2842,7 +2865,9 @@ class BaseCard {
 
                 if (wasFrozen && !state.shop.frozen) {
                     // Start unfreezing animation
-                    state.shop.cards.forEach(c => c.isUnlocking = true);
+                    state.shop.cards.forEach(c => {
+                        if (!c.isChained) c.isUnlocking = true;
+                    });
                     render();
                     setTimeout(() => {
                         state.shop.cards.forEach(c => delete c.isUnlocking);
@@ -2850,7 +2875,9 @@ class BaseCard {
                     }, 400);
                 } else {
                     // Just a regular lock or re-render
-                    state.shop.cards.forEach(c => delete c.isUnlocking);
+                    state.shop.cards.forEach(c => {
+                        if (!c.isChained) delete c.isUnlocking;
+                    });
                     render();
                 }
             });
@@ -3010,6 +3037,19 @@ class BaseCard {
         } else {
             populateShop();
         }
+
+        // Apply Heping's unchaining and discounts AFTER shop population
+        state.shop.cards.forEach(c => {
+            if (c.isChained) {
+                c.isChained = false;
+                let baseCost = 3;
+                if (c.type?.toLowerCase().includes('equipment')) baseCost = 5;
+                else if (c.type && !c.type.toLowerCase().includes('creature')) baseCost = c.tier || 1;
+                
+                const currentReduction = c.costReduction || 0;
+                c.costReduction = Math.min(baseCost, currentReduction + 1);
+            }
+        });
         state.player.board.forEach(c => {
             c.onShopStart(state.player.board);
             c.actionUsed = false;
@@ -3785,7 +3825,7 @@ class BaseCard {
 
     function populateShop() {
         unfreezeShop();
-        state.shop.cards = [];
+        state.shop.cards = state.shop.cards.filter(c => c.isChained);
         fillShopSlots();
     }
 
@@ -3866,6 +3906,8 @@ class BaseCard {
         const cardIndex = state.shop.cards.findIndex(c => c.id === cardId);
         if (cardIndex === -1) return;
         const card = state.shop.cards[cardIndex];
+
+        if (card.isChained) return; // Cannot buy chained cards
         
         let cost = 3; // Default for creatures
         if (card.type.toLowerCase().includes('equipment')) {
@@ -4183,7 +4225,7 @@ class BaseCard {
         
         // Find target in specific pools based on effect
         let target = null;
-        if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control') {
+        if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control' || state.targetingEffect.effect === 'hero_power_heping') {
             target = state.shop.cards.find(c => c.id === targetId);
         } else if (state.targetingEffect.effect === 'parliament_discard') {
             target = state.player.hand.find(c => c.id === targetId);
@@ -4262,6 +4304,19 @@ class BaseCard {
             } else if (state.targetingEffect.effect === 'erin_humility') {
                 target.temporaryHumility = true;
                 clearTargetingEffect();
+            } else if (state.targetingEffect.effect === 'hero_power_heping') {
+                const isShopCard = state.shop.cards.includes(target);
+                if (isShopCard) {
+                    target.counters++;
+                    target.isChained = true;
+                    target.isJustChained = true;
+                    clearTargetingEffect();
+                    // Clear the animation flag after it plays
+                    setTimeout(() => {
+                        delete target.isJustChained;
+                        render();
+                    }, 400);
+                }
             } else if (state.targetingEffect.effect === 'pusbag_sacrifice') {
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
@@ -5522,6 +5577,12 @@ class BaseCard {
                     const newGhost = dummy.querySelector('.ghost-indicator-container');
                     if (oldGhost) oldGhost.remove();
                     if (newGhost) oldEl.appendChild(newGhost);
+
+                    // Sync chain indicator
+                    const oldChain = oldEl.querySelector('.chain-indicator');
+                    const newChain = dummy.querySelector('.chain-indicator');
+                    if (oldChain) oldChain.remove();
+                    if (newChain) oldEl.appendChild(newChain);
                 }
 
                 // Sync classes even when busy
@@ -5529,6 +5590,13 @@ class BaseCard {
                 else oldEl.classList.remove('spawning');
                 if (instance.isDying) oldEl.classList.add('dying');
                 else oldEl.classList.remove('dying');
+                if (instance.isChained) oldEl.classList.add('chained-card');
+                else oldEl.classList.remove('chained-card');
+
+                // ALWAYS update targetable class based on current creation logic
+                const dummyCheck = createCardElement(instance, isShop, index, boardContext);
+                if (dummyCheck.classList.contains('targetable')) oldEl.classList.add('targetable');
+                else oldEl.classList.remove('targetable');
 
                 newEl = oldEl;
             } else {
@@ -6147,7 +6215,7 @@ class BaseCard {
             costEl.innerHTML = `<div class="star">${starsStr}</div>`;
 
             // Locked Shop visual
-            if (state.shop.frozen || instance.isUnlocking) {
+            if ((state.shop.frozen || instance.isUnlocking) && !instance.isChained) {
                 if (state.shop.frozen) cardEl.classList.add('locked-shop-card');
                 else cardEl.classList.add('unfreezing-shop-card');
 
@@ -6166,7 +6234,7 @@ class BaseCard {
             costEl.innerHTML = cost;
 
             // Locked Shop visual for non-creatures
-            if (state.shop.frozen || instance.isUnlocking) {
+            if ((state.shop.frozen || instance.isUnlocking) && !instance.isChained) {
                 if (state.shop.frozen) cardEl.classList.add('locked-shop-card');
                 else cardEl.classList.add('unfreezing-shop-card');
 
@@ -6343,7 +6411,24 @@ class BaseCard {
             cardEl.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'shop', cardId: instance.id }));
             });
-            cardEl.addEventListener('click', () => {
+
+            if (instance.isChained) {
+                cardEl.classList.add('chained-card');
+                const chainIndicator = document.createElement('div');
+                chainIndicator.className = 'chain-indicator';
+                if (!instance.isJustChained) {
+                    chainIndicator.classList.add('no-animation');
+                }
+                const chainImg = document.createElement('img');
+                chainImg.src = 'img/chained.png';
+                chainIndicator.appendChild(chainImg);
+                cardEl.appendChild(chainIndicator);
+            }
+
+            cardEl.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (instance.isChained) return; // Uninteractable when chained
+
                 if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
                     if (!isCreature) return; // Cannot target spells with Coercion
@@ -6367,6 +6452,11 @@ class BaseCard {
                 } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
                     if (isCreature) {
+                        applyTargetedEffect(instance.id);
+                    }
+                } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_heping') {
+                    const isCreature = instance.type?.toLowerCase().includes('creature');
+                    if (isCreature && !instance.isChained) {
                         applyTargetedEffect(instance.id);
                     }
                 } else {
@@ -6396,6 +6486,11 @@ class BaseCard {
             } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 if (isCreature) {
+                    cardEl.classList.add('targetable');
+                }
+            } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_heping') {
+                const isCreature = instance.type?.toLowerCase().includes('creature');
+                if (isCreature && !instance.isChained) {
                     cardEl.classList.add('targetable');
                 }
             }

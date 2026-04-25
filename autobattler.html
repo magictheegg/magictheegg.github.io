@@ -269,9 +269,51 @@
             z-index: 10;
         }
 
-        .card:hover:not(.attacking):not(.targetable):not(.grayed-out) {
+        .card:hover:not(.attacking):not(.targetable):not(.grayed-out):not(.chained-card) {
             transform: scale(1.15) translateY(-10px);
             z-index: 100 !important;
+        }
+
+        .chained-card {
+            cursor: default !important;
+            pointer-events: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+        }
+
+        .chained-card .card-art,
+        .chained-card .card-cost,
+        .chained-card .card-pt,
+        .chained-card .card-counter-stack,
+        .chained-card .ghost-indicator-container {
+            filter: grayscale(1) brightness(0.6) !important;
+        }
+
+        .chain-indicator {
+            position: absolute;
+            top: -9px;
+            left: -9px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            pointer-events: none;
+            animation: lock-icon-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .chain-indicator.no-animation {
+            animation: none !important;
+        }
+
+        .chain-indicator img {
+            width: 100%;
+            height: 100%;
+            /* Metallic silver/gunmetal filter with a subtle blue tint */
+            filter: invert(0.8) sepia(0.3) saturate(1.2) hue-rotate(185deg) brightness(1.1) drop-shadow(0 3px 6px rgba(0,0,0,0.9));
+            object-fit: contain;
         }
 
         .card-name { display: none; }
