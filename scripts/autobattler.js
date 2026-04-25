@@ -2296,6 +2296,35 @@ class BaseCard {
             }
         },
         {
+            name: "Seto San",
+            avatar: "sets/NJB-files/img/17.png",
+            heroPower: {
+                name: "Armament Exhibition",
+                icon: "sets/NJB-files/img/180.png",
+                cost: 2,
+                text: "Put a +1/+1 counter on a random creature you control. (Increases each time you activate this ability.)",
+                isPassive: false,
+                effect: async (owner, board) => {
+                    const entity = (owner === 'player') ? state.player : getOpponent();
+                    entity.heroPowerActivations = (entity.heroPowerActivations || 0) + 1;
+                    
+                    if (owner === 'player') {
+                        state.player.gold -= 2;
+                        state.player.usedHeroPower = true;
+                        render();
+                    } else {
+                        entity.usedHeroPower = true;
+                    }
+
+                    if (board.length > 0) {
+                        const randomTarget = board[Math.floor(Math.random() * board.length)];
+                        randomTarget.counters += entity.heroPowerActivations;
+                        await pulseCardElement(randomTarget, board);
+                    }
+                }
+            }
+        },
+        {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
             heroPower: null // Shopkeepers don't have hero powers right now
@@ -2316,13 +2345,14 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HERO_POOL[1], // default to Xiong Mao for testing
-            usedHeroPower: false
+            hero: HERO_POOL[2], // Default to Seto San for testing
+            usedHeroPower: false,
+            heroPowerActivations: 0
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[2], usedHeroPower: false },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[1], usedHeroPower: false }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HERO_POOL[3], usedHeroPower: false, heroPowerActivations: 0 },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HERO_POOL[0], usedHeroPower: false, heroPowerActivations: 0 },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HERO_POOL[1], usedHeroPower: false, heroPowerActivations: 0 }
         ],
         currentOpponentId: 0,
         shop: {
@@ -3275,59 +3305,65 @@ class BaseCard {
         return anyTriggers;
     }
 
-    async function animateStartOfCombatTrigger(source, targets, board) {
-        targets.forEach(target => {
-            const targetEl = document.getElementById(`card-${target.id}`);
-            if (targetEl) {
-                // 1. Pulse the P/T
-                const ptBox = targetEl.querySelector('.card-pt');
-                if (ptBox) {
-                    ptBox.classList.add('pulse-stats');
-                    setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                }
+    async function pulseCardElement(target, board) {
+        const targetEl = document.getElementById(`card-${target.id}`);
+        if (targetEl) {
+            target.isPulsing = true;
+            // 1. Pulse the P/T
+            const ptBox = targetEl.querySelector('.card-pt');
+            if (ptBox) {
+                ptBox.classList.add('pulse-stats');
+                setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
+            }
 
-                // 2. Sync P/T Text
-                const stats = target.getDisplayStats(board);
-                const pEl = targetEl.querySelector('.card-p');
-                const tEl = targetEl.querySelector('.card-t');
-                if (pEl) pEl.textContent = stats.p;
-                if (tEl) tEl.textContent = stats.t;
+            // 2. Sync P/T Text
+            const stats = target.getDisplayStats(board);
+            const pEl = targetEl.querySelector('.card-p');
+            const tEl = targetEl.querySelector('.card-t');
+            if (pEl) pEl.textContent = stats.p;
+            if (tEl) tEl.textContent = stats.t;
 
-                // 3. Sync and Pulse Counter/Ghost Indicators
-                const counterStackEl = targetEl.querySelector('.card-counter-stack');
-                const ghostContainer = targetEl.querySelector('.ghost-indicator-container');
-                
-                // Create a fresh dummy element to steal updated UI from
-                const dummy = createCardElement(target, false, -1, board);
-                
-                if (counterStackEl) {
-                    const newHTML = dummy.querySelector('.card-counter-stack').innerHTML;
-                    const changed = counterStackEl.innerHTML !== newHTML;
-                    counterStackEl.innerHTML = newHTML;
-                    if (changed) {
-                        // Pulse all counters
-                        Array.from(counterStackEl.children).forEach(c => {
-                            c.classList.add('pulse-stats');
-                            setTimeout(() => c.classList.remove('pulse-stats'), 500);
-                        });
-                    }
-                }
-                if (ghostContainer) {
-                    const newHTML = dummy.querySelector('.ghost-indicator-container').innerHTML;
-                    const changed = ghostContainer.innerHTML !== newHTML;
-                    ghostContainer.innerHTML = newHTML;
-                    if (changed) {
-                        // Pulse all ghost indicators
-                        Array.from(ghostContainer.children).forEach(g => {
-                            g.classList.add('pulse-stats');
-                            setTimeout(() => g.classList.remove('pulse-stats'), 500);
-                        });
-                    }
+            // 3. Sync and Pulse Counter/Ghost Indicators
+            const counterStackEl = targetEl.querySelector('.card-counter-stack');
+            const ghostContainer = targetEl.querySelector('.ghost-indicator-container');
+            
+            // Create a fresh dummy element to steal updated UI from
+            const dummy = createCardElement(target, false, -1, board);
+            
+            if (counterStackEl) {
+                const newHTML = dummy.querySelector('.card-counter-stack').innerHTML;
+                const changed = counterStackEl.innerHTML !== newHTML;
+                counterStackEl.innerHTML = newHTML;
+                if (changed) {
+                    // Pulse all counters
+                    Array.from(counterStackEl.children).forEach(c => {
+                        c.classList.add('pulse-stats');
+                        setTimeout(() => c.classList.remove('pulse-stats'), 500);
+                    });
                 }
             }
-        });
+            if (ghostContainer) {
+                const newHTML = dummy.querySelector('.ghost-indicator-container').innerHTML;
+                const changed = ghostContainer.innerHTML !== newHTML;
+                ghostContainer.innerHTML = newHTML;
+                if (changed) {
+                    // Pulse all ghost indicators
+                    Array.from(ghostContainer.children).forEach(g => {
+                        g.classList.add('pulse-stats');
+                        setTimeout(() => g.classList.remove('pulse-stats'), 500);
+                    });
+                }
+            }
 
-        await new Promise(r => setTimeout(r, 800));
+            await new Promise(r => setTimeout(r, 600));
+            delete target.isPulsing;
+        }
+    }
+
+    async function animateStartOfCombatTrigger(source, targets, board) {
+        for (const target of targets) {
+            await pulseCardElement(target, board);
+        }
     }
 
     async function startBattleTurn() {
@@ -3756,10 +3792,10 @@ class BaseCard {
         render();
     }
 
-    function activateHeroPower() {
+    async function activateHeroPower() {
         const hp = state.player.hero.heroPower;
         if (state.player.gold >= hp.cost && !state.player.usedHeroPower) {
-            hp.effect('player', state.player.board);
+            await hp.effect('player', state.player.board);
             render();
         }
     }
@@ -5247,7 +5283,7 @@ class BaseCard {
         }
 
         if (isPlayer && !entity.usedHeroPower && !hp.isPassive && state.phase === 'SHOP' && entity.gold >= hp.cost && !state.castingSpell && !state.targetingEffect) {
-            circle.addEventListener('click', () => activateHeroPower());
+            circle.addEventListener('click', async () => await activateHeroPower());
         }
 
         container.appendChild(circle);
@@ -5274,7 +5310,7 @@ class BaseCard {
             let oldEl = existingMap.get(id);
             let newEl;
 
-            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning || instance.isDying));
+            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning || instance.isDying || instance.isPulsing || oldEl.matches(':hover')));
 
             if (isBusy) {
                 // Manually update busy cards to preserve their active animations
