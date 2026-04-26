@@ -123,11 +123,22 @@
             z-index: 10;
         }
 
-        .card.locked-shop-card .card-art,
-        .card.locked-shop-card .card-cost,
-        .card.locked-shop-card .card-pt,
-        .card.locked-shop-card .ghost-indicator-container {
+        .card.locked-shop-card:not(.already-locked) .card-art,
+        .card.locked-shop-card:not(.already-locked) .card-cost,
+        .card.locked-shop-card:not(.already-locked) .card-pt,
+        .card.locked-shop-card:not(.already-locked) .ghost-indicator-container {
             animation: card-lock-fade 0.4s forwards;
+        }
+
+        .card.locked-shop-card.already-locked .card-art,
+        .card.locked-shop-card.already-locked .card-cost,
+        .card.locked-shop-card.already-locked .card-pt,
+        .card.locked-shop-card.already-locked .ghost-indicator-container {
+            filter: grayscale(1) brightness(0.6);
+        }
+
+        .card.already-locked .card-lock-indicator {
+            animation: none !important;
         }
 
         .card.unfreezing-shop-card .card-art,
@@ -140,13 +151,6 @@
         @keyframes card-lock-fade {
             from { filter: grayscale(0) brightness(1); }
             to { filter: grayscale(1) brightness(0.6); }
-        }
-
-        .card.locked-shop-card:hover .card-art,
-        .card.locked-shop-card:hover .card-cost,
-        .card.locked-shop-card:hover .card-pt {
-            filter: grayscale(0) brightness(1);
-            transition: filter 0.3s ease;
         }
 
         .ghost-indicator.decayed {
@@ -265,7 +269,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.7);
             cursor: pointer;
             overflow: visible !important;
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, opacity 0.55s ease, filter 1s ease;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, opacity 0.55s ease;
             z-index: 10;
         }
 
@@ -990,6 +994,26 @@
 
         #reroll-btn:hover:not(:disabled) {
             filter: brightness(1.3);
+        }
+
+        #reroll-btn.special-reroll {
+            background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
+            box-shadow: 0 0 15px rgba(171, 71, 188, 0.8), 0 2px 8px rgba(0,0,0,0.8);
+            animation: reroll-pulse-glow 2s infinite ease-in-out;
+        }
+
+        #reroll-btn.special-reroll::before {
+            animation: reroll-spin-gentle 4s infinite linear;
+        }
+
+        @keyframes reroll-pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(171, 71, 188, 0.8), 0 2px 8px rgba(0,0,0,0.8); }
+            50% { box-shadow: 0 0 25px rgba(171, 71, 188, 1), 0 2px 12px rgba(171, 71, 188, 0.4); }
+        }
+
+        @keyframes reroll-spin-gentle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         #reroll-container::after {

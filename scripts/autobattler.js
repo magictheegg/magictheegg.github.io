@@ -2464,6 +2464,16 @@ class BaseCard {
                 }
             }
         },
+        ENOCH: {
+            name: "Enoch",
+            avatar: "sets/WAS-files/img/189_Enoch, Elder Chronurgist.jpg",
+            heroPower: {
+                name: "Timestreaming",
+                icon: "sets/ACE-files/img/108_Turn Back the Clock.jpg",
+                text: "Every fourth reroll, get a special shop.",
+                isPassive: true
+            }
+        },
         MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
@@ -2487,22 +2497,25 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.KISM, // Default for testing
+            hero: HEROES.ENOCH, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
             spellsBoughtThisGame: 0,
             blueCardsPlayed: 0,
-            herreaRewardCard: null
+            herreaRewardCard: null,
+            rerollCount: 0
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0 },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0 },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0 }
         ],
         currentOpponentId: 0,
         shop: {
-            cards: []
+            cards: [],
+            frozen: false,
+            justFroze: false
         },
         turn: 1,
         phase: 'SHOP', // SHOP | BATTLE
@@ -2937,6 +2950,10 @@ class BaseCard {
             freezeBtn.addEventListener('click', () => {
                 const wasFrozen = !!state.shop.frozen;
                 state.shop.frozen = !state.shop.frozen;
+                
+                if (state.shop.frozen && !wasFrozen) {
+                    state.shop.justFroze = true;
+                }
                 
                 freezeBtn.classList.toggle('frozen', state.shop.frozen);
                 const img = document.getElementById('freeze-img');
@@ -3942,6 +3959,80 @@ class BaseCard {
         unfreezeShop();
         state.shop.cards = state.shop.cards.filter(c => c.isChained);
         fillShopSlots();
+    }
+
+    function populateSpecialShop() {
+        unfreezeShop();
+        state.shop.cards = state.shop.cards.filter(c => c.isChained);
+
+        const shopTypes = ['triples', 'board_copy', 'discounted', 'high_tier'];
+        let chosenType = shopTypes[Math.floor(Math.random() * shopTypes.length)];
+        
+        // Refinement: board_copy only if board is 5+ creatures
+        if (chosenType === 'board_copy' && state.player.board.length < 5) {
+            const others = shopTypes.filter(t => t !== 'board_copy');
+            chosenType = others[Math.floor(Math.random() * others.length)];
+        }
+
+        console.log("Enoch triggered special shop:", chosenType);
+
+        if (chosenType === 'triples') {
+            const creaturePool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+            if (creaturePool.length >= 2) {
+                const c1 = creaturePool[Math.floor(Math.random() * creaturePool.length)];
+                let c2 = creaturePool[Math.floor(Math.random() * creaturePool.length)];
+                while (c2.card_name === c1.card_name) {
+                    c2 = creaturePool[Math.floor(Math.random() * creaturePool.length)];
+                }
+                for (let i = 0; i < 3; i++) state.shop.cards.push(CardFactory.create(c1));
+                for (let i = 0; i < 3; i++) state.shop.cards.push(CardFactory.create(c2));
+            }
+            // Add a spell
+            const spellPool = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+            if (spellPool.length > 0) state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
+
+        } else if (chosenType === 'board_copy') {
+            // "EXACT COPY" means we clear everything else first
+            state.shop.cards = [];
+            state.player.board.forEach(c => {
+                const clone = c.clone();
+                // Reset dynamic stats
+                clone.counters = 0;
+                clone.tempPower = 0;
+                clone.tempToughness = 0;
+                clone.damageTaken = 0;
+                clone.isDestroyed = false;
+                clone.actionUsed = false;
+                state.shop.cards.push(clone);
+            });
+
+        } else if (chosenType === 'discounted') {
+            fillShopSlots();
+            state.shop.cards.forEach(c => {
+                const isCreature = c.type?.toLowerCase().includes('creature');
+                if (isCreature) {
+                    c.costReduction = (c.costReduction || 0) + 2;
+                }
+            });
+
+        } else if (chosenType === 'high_tier') {
+            // Specifically creatures, no equipment
+            const highTierPool = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier === state.player.tier || c.tier === state.player.tier + 1));
+            const spellPool = availableCards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+            
+            // Progression logic for slot count
+            let creaturesTarget = 3;
+            if (state.player.tier === 2) creaturesTarget = 4;
+            else if (state.player.tier === 3) creaturesTarget = 4;
+            else if (state.player.tier === 4) creaturesTarget = 5;
+            else if (state.player.tier === 5) creaturesTarget = 6;
+
+            while (state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature')).length < creaturesTarget) {
+                if (highTierPool.length === 0) break;
+                state.shop.cards.push(CardFactory.create(highTierPool[Math.floor(Math.random() * highTierPool.length)]));
+            }
+            state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
+        }
     }
 
     function triggerMiengFerocious(power, board) {
@@ -5468,7 +5559,17 @@ class BaseCard {
     function rerollShop() {
         if (state.player.gold < 1) return;
         state.player.gold--;
-        populateShop();
+
+        if (state.player.hero.name === "Enoch") {
+            state.player.rerollCount++;
+            if (state.player.rerollCount % 4 === 0) {
+                populateSpecialShop();
+            } else {
+                populateShop();
+            }
+        } else {
+            populateShop();
+        }
         render();
     }
 
@@ -5678,10 +5779,11 @@ class BaseCard {
         const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
         const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
         const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
+        const isEnochLocked = entity.hero.name === "Enoch" && (entity.rerollCount % 4 !== 3);
         
         const isKismFinished = entity.hero.name === "Kism" && (entity.heroPowerActivations || 0) >= 3;
         
-        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked || isHerreaLocked) && !entity.usedHeroPower) {
+        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked || isHerreaLocked || isEnochLocked) && !entity.usedHeroPower) {
             const gem = document.createElement('div');
             gem.className = 'hero-power-passive-gem';
             
@@ -5689,6 +5791,15 @@ class BaseCard {
                 const count = document.createElement('div');
                 count.className = 'hero-power-passive-gem-count';
                 count.textContent = Math.max(0, 7 - entity.blueCardsPlayed);
+                gem.appendChild(count);
+            }
+
+            if (entity.hero.name === "Enoch") {
+                const count = document.createElement('div');
+                count.className = 'hero-power-passive-gem-count';
+                // Show 4, 3, 2, 1 rerolls remaining (using % 4 logic)
+                const remaining = 4 - (entity.rerollCount % 4);
+                count.textContent = remaining;
                 gem.appendChild(count);
             }
             
@@ -5787,10 +5898,19 @@ class BaseCard {
                 if (instance.isChained) oldEl.classList.add('chained-card');
                 else oldEl.classList.remove('chained-card');
 
-                // ALWAYS update targetable class based on current creation logic
+                // ALWAYS update targeting and lock classes based on current creation logic
                 const dummyCheck = createCardElement(instance, isShop, index, boardContext);
-                if (dummyCheck.classList.contains('targetable')) oldEl.classList.add('targetable');
-                else oldEl.classList.remove('targetable');
+                const classesToSync = ['targetable', 'locked-shop-card', 'already-locked', 'unfreezing-shop-card'];
+                classesToSync.forEach(cls => {
+                    if (dummyCheck.classList.contains(cls)) oldEl.classList.add(cls);
+                    else oldEl.classList.remove(cls);
+                });
+
+                // Also sync the lock indicator element itself if it changed
+                const oldLock = oldEl.querySelector('.card-lock-indicator');
+                const newLock = dummyCheck.querySelector('.card-lock-indicator');
+                if (oldLock && !newLock) oldLock.remove();
+                if (!oldLock && newLock) oldEl.appendChild(newLock);
 
                 newEl = oldEl;
             } else {
@@ -6010,11 +6130,18 @@ class BaseCard {
         if (document.getElementById('opponent-fight-hp')) document.getElementById('opponent-fight-hp').textContent = currentOpp.fightHp;
 
         // Toggle Reroll button styling
+        const isEnochSpecial = state.player.hero.name === "Enoch" && (state.player.rerollCount % 4 === 3);
+        rerollBtn.classList.toggle('special-reroll', isEnochSpecial);
+
         if (state.player.gold < 1) {
             rerollBtn.style.background = "#555";
             rerollBtn.style.cursor = "not-allowed";
-        } else {
+        } else if (!isEnochSpecial) {
             rerollBtn.style.background = "linear-gradient(to bottom, #2e7d32, #1b5e20)";
+            rerollBtn.style.cursor = "pointer";
+        } else {
+            // Background is handled by .special-reroll CSS
+            rerollBtn.style.background = "";
             rerollBtn.style.cursor = "pointer";
         }
 
@@ -6297,6 +6424,9 @@ class BaseCard {
             playerHand.removeEventListener('drop', handlePlayerAvatarDrop);
             playerHand.addEventListener('drop', handlePlayerAvatarDrop);
         }
+
+        // Reset animation flags after render
+        state.shop.justFroze = false;
     }
 
     function handleDragOver(e) {
@@ -6410,7 +6540,10 @@ class BaseCard {
 
             // Locked Shop visual
             if ((state.shop.frozen || instance.isUnlocking) && !instance.isChained) {
-                if (state.shop.frozen) cardEl.classList.add('locked-shop-card');
+                if (state.shop.frozen) {
+                    cardEl.classList.add('locked-shop-card');
+                    if (!state.shop.justFroze) cardEl.classList.add('already-locked');
+                }
                 else cardEl.classList.add('unfreezing-shop-card');
 
                 const lockIndicator = document.createElement('div');
@@ -6429,7 +6562,10 @@ class BaseCard {
 
             // Locked Shop visual for non-creatures
             if ((state.shop.frozen || instance.isUnlocking) && !instance.isChained) {
-                if (state.shop.frozen) cardEl.classList.add('locked-shop-card');
+                if (state.shop.frozen) {
+                    cardEl.classList.add('locked-shop-card');
+                    if (!state.shop.justFroze) cardEl.classList.add('already-locked');
+                }
                 else cardEl.classList.add('unfreezing-shop-card');
 
                 const lockIndicator = document.createElement('div');
