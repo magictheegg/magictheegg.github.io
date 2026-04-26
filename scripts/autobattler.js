@@ -437,12 +437,13 @@ class BaseCard {
 
     class IntliAssaulter extends BaseCard {
         onAction() {
-            state.targetingEffect = { 
+            queueTargetingEffect({ 
                 sourceId: this.id, 
                 title: this.card_name,
                 text: "Choose a creature to sacrifice.",
-                effect: 'intli_sacrifice'
-            };
+                effect: 'intli_sacrifice',
+                isMandatory: false
+            });
         }
     }
 
@@ -652,14 +653,15 @@ class BaseCard {
         onApply(target, board) {
             // Step 1: Pick creature for +2/+2
             // Step 2: Pick Centaur for counter
-            state.targetingEffect = {
+            queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a Centaur to get a +1/+1 counter.",
                 buffTargetId: target.id,
                 effect: 'warrior_ways_step2',
-                isFoil: this.isFoil
-            };
+                isFoil: this.isFoil,
+                owner: this.owner || 'player'
+            });
         }
     }
 
@@ -683,14 +685,15 @@ class BaseCard {
         }
         onAction() {
             if (state.player.gold >= 2) {
-                state.targetingEffect = {
+                queueTargetingEffect({
                     sourceId: this.id,
                     title: this.card_name,
                     text: "Choose a creature to gain trample until end of turn.",
                     effect: 'wilderkin_zealot_trample',
                     cost: 2,
-                    isFoil: this.isFoil
-                };
+                    isFoil: this.isFoil,
+                    isMandatory: false
+                });
             }
         }
     }
@@ -1680,7 +1683,8 @@ class BaseCard {
                     title: this.card_name,
                     text: "Choose a counter to remove.",
                     effect: 'permutate_step1',
-                    isFoil: this.isFoil
+                    isFoil: this.isFoil,
+                    isMandatory: false
                 });
             }
         }
@@ -1813,26 +1817,28 @@ class BaseCard {
             // Step 1: Pick creature for +1/+1 counter
             // If target is null, we are initializing the first step
             if (!target) {
-                state.targetingEffect = {
+                queueTargetingEffect({
                     sourceId: this.id,
                     title: this.card_name,
                     text: "Choose a creature to get the first +1/+1 counter.",
                     effect: 'up_in_arms_step1',
                     wasCast: true,
-                    cardInstance: this
-                };
+                    cardInstance: this,
+                    owner: this.owner || 'player'
+                });
                 return;
             }
             
             // Step 2 initialization (this was the old onApply body)
-            state.targetingEffect = {
+            queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a creature to get the second +1/+1 counter.",
                 target1Id: target.id,
                 effect: 'up_in_arms_step2',
-                isFoil: this.isFoil
-            };
+                isFoil: this.isFoil,
+                owner: this.owner || 'player'
+            });
         }
     }
 
@@ -2000,12 +2006,13 @@ class BaseCard {
 
     class CovetousWechuge extends BaseCard {
         onAction() {
-            state.targetingEffect = { 
+            queueTargetingEffect({ 
                 sourceId: this.id, 
                 title: this.card_name,
                 text: "Choose a creature to sacrifice.",
-                effect: 'wechuge_sacrifice'
-            };
+                effect: 'wechuge_sacrifice',
+                isMandatory: false
+            });
         }
     }
 
@@ -2526,7 +2533,7 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.XIONG_MAO, // Default for testing
+            hero: HEROES.HEPING, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -4345,25 +4352,24 @@ class BaseCard {
             
             if (instance.card_name === 'Executioner\'s Madness') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: instance };
+                queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Warrior\'s Ways') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: instance.isFoil, cardInstance: instance };
+                queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: instance.isFoil, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Whispers of the Dead') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: instance };
+                queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Ceremony of Tribes') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, cardInstance: instance };
+                queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Up in Arms') {
                 state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board);
-                checkHerreaReward(instance);
                 // Up in Arms step 1 will be handled in applyTargetedEffect
             } else if (instance.type?.toLowerCase().includes('equipment')) {
                 if (state.player.board.length === 0) return;
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: instance };
+                queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (targetedNames.includes(instance.card_name)) {
                 if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
                     return; 
@@ -4491,7 +4497,15 @@ class BaseCard {
                 }
 
                 if (effect.isMandatory === true || effect.isMandatory === undefined) {
-                    const nonMandatoryEffects = ['nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard'];
+                    const nonMandatoryEffects = [
+                        'nightfall_raptor_bounce', 'cloudline_sovereign_step1', 'permutate_step1', 'parliament_discard',
+                        'intli_sacrifice', 'wechuge_sacrifice', 'wilderkin_zealot_trample',
+                        'up_in_arms_step1', 'up_in_arms_step2',
+                        'executioner_sacrifice_step1', 'executioner_sacrifice_step2',
+                        'warrior_ways_step1', 'warrior_ways_step2',
+                        'whispers_sacrifice', 'ceremony_step1', 'ceremony_step2',
+                        'equip_creature'
+                    ];
                     effect.isMandatory = !nonMandatoryEffects.includes(effect.effect) && !effect.isHeroPower;
                 }
                 state.targetingEffect = effect;
@@ -5935,7 +5949,7 @@ class BaseCard {
             let oldEl = existingMap.get(id);
             let newEl;
 
-            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning || instance.isDying || instance.isPulsing || oldEl.matches(':hover')));
+            const isBusy = (oldEl && (state.activeAttackerId === instance.id || instance.isSpawning || instance.isDying || instance.isPulsing));
 
             if (isBusy) {
                 // Manually update busy cards to preserve their active animations
@@ -5986,7 +6000,7 @@ class BaseCard {
 
                 // ALWAYS update targeting and lock classes based on current creation logic
                 const dummyCheck = createCardElement(instance, isShop, index, boardContext);
-                const classesToSync = ['targetable', 'locked-shop-card', 'already-locked', 'unfreezing-shop-card'];
+                const classesToSync = ['targetable', 'locked-shop-card', 'already-locked', 'unfreezing-shop-card', 'grayed-out'];
                 classesToSync.forEach(cls => {
                     if (dummyCheck.classList.contains(cls)) oldEl.classList.add(cls);
                     else oldEl.classList.remove(cls);
@@ -6927,7 +6941,9 @@ class BaseCard {
         // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot, Feral Exemplar (Only on board, during SHOP)
         const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot', 'Feral Exemplar'];
         const hasEnoughGold = (instance.actionCost === undefined || state.player.gold >= instance.actionCost);
-        if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold) {
+        const isCurrentlySource = (state.targetingEffect && state.targetingEffect.sourceId === instance.id);
+
+        if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold && !isCurrentlySource) {
             cardEl.classList.add('actionable-outline');
             cardEl.addEventListener('click', (e) => {
                 e.stopPropagation();
