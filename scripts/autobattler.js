@@ -241,6 +241,13 @@ class BaseCard {
             return this.hasInherentKeyword(kw);
         }
 
+        isType(type) {
+            if (!this.type) return false;
+            // Normalize dashes
+            const normalizedType = this.type.replace(/[\u2013\u2014]/g, "-");
+            return normalizedType.toLowerCase().includes(type.toLowerCase());
+        }
+
         clone() {
             const newCard = new this.constructor(this);
             newCard.id = `card-${Math.random().toString(36).substr(2, 9)}`;
@@ -919,8 +926,10 @@ class BaseCard {
 
     class ZaraxSupermajor extends BaseCard {
         onETB(board) {
-            const token = createToken('Beast', 'SHF', this.owner);
-            if (token) board.push(token);
+            if (board.length < boardLimit) {
+                const token = createToken('Beast', 'SHF', this.owner);
+                if (token) board.push(token);
+            }
         }
         onNoncreatureCast(isFoil, board) {
             if (state.spellsCastThisTurn === 2) {
@@ -1351,21 +1360,23 @@ class BaseCard {
 
             // Spawn to the right of the attacker
             const idx = board.indexOf(host);
-            if (idx !== -1) {
-                board.splice(idx + 1, 0, token);
-            } else {
-                board.push(token);
-            }
+            if (board.length < boardLimit) {
+                if (idx !== -1) {
+                    board.splice(idx + 1, 0, token);
+                } else {
+                    board.push(token);
+                }
 
-            // Add to the middle of the battle queue (the very next turn for this owner)
-            if (state.phase === 'BATTLE' && state.battleQueues) {
-                state.battleQueues[host.owner].unshift(token);
+                // Add to the middle of the battle queue (the very next turn for this owner)
+                if (state.phase === 'BATTLE' && state.battleQueues) {
+                    state.battleQueues[host.owner].unshift(token);
+                }
+                
+                // Broadast entry for other effects (not ETB triggers for the token itself)
+                board.forEach(c => {
+                    if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                });
             }
-            
-            // Broadast entry for other effects (not ETB triggers for the token itself)
-            board.forEach(c => {
-                if (c.id !== token.id) c.onOtherCreatureETB(token, board);
-            });
 
             if (typeof document !== 'undefined') {
                 token.isSpawning = true;
@@ -1534,6 +1545,9 @@ class BaseCard {
             const boardIdx = board.indexOf(target);
             const handIdx = state.player.hand.indexOf(target);
             
+            // If it's not on the board (it's in hand) and the board is full, do nothing.
+            if (boardIdx === -1 && board.length >= boardLimit) return;
+
             if (boardIdx !== -1) board.splice(boardIdx, 1);
             if (handIdx !== -1) state.player.hand.splice(handIdx, 1);
 
@@ -1583,22 +1597,24 @@ class BaseCard {
             // Target is from the shop
             const shopIdx = state.shop.cards.indexOf(target);
             if (shopIdx !== -1) {
-                state.shop.cards.splice(shopIdx, 1);
-                target.owner = 'player';
-                board.push(target);
-                
-                // Artful Coercion does NOT trigger ETB
-                // But we still broadcast the arrival to others
-                board.forEach(c => {
-                    if (c.id !== target.id) c.onOtherCreatureETB(target, board);
-                });
+                if (board.length < boardLimit) {
+                    state.shop.cards.splice(shopIdx, 1);
+                    target.owner = 'player';
+                    board.push(target);
+                    
+                    // Artful Coercion does NOT trigger ETB
+                    // But we still broadcast the arrival to others
+                    board.forEach(c => {
+                        if (c.id !== target.id) c.onOtherCreatureETB(target, board);
+                    });
 
-                // INVIGORATE 2: random choice among your least power
-                const minPower = Math.min(...board.map(c => c.getDisplayStats(board).p));
-                const leastPowerCreatures = board.filter(c => c.getDisplayStats(board).p === minPower);
-                if (leastPowerCreatures.length > 0) {
-                    const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
-                    randomTarget.counters += 2;
+                    // INVIGORATE 2: random choice among your least power
+                    const minPower = Math.min(...board.map(c => c.getDisplayStats(board).p));
+                    const leastPowerCreatures = board.filter(c => c.getDisplayStats(board).p === minPower);
+                    if (leastPowerCreatures.length > 0) {
+                        const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
+                        randomTarget.counters += 2;
+                    }
                 }
             }
         }
@@ -2011,18 +2027,20 @@ class BaseCard {
 
     class CybresBandRecruiter extends BaseCard {
         onETB(board) {
-            const token = createToken('Centaur Knight', 'GSC', 'player');
-            if (token) {
-                const idx = board.indexOf(this);
-                if (idx !== -1) {
-                    board.splice(idx + 1, 0, token);
-                    // Broadcast ETB
-                    board.forEach(c => {
-                        if (c.id !== token.id) c.onOtherCreatureETB(token, board);
-                    });
+            if (board.length < boardLimit) {
+                const token = createToken('Centaur Knight', 'GSC', 'player');
+                if (token) {
+                    const idx = board.indexOf(this);
+                    if (idx !== -1) {
+                        board.splice(idx + 1, 0, token);
+                        // Broadcast ETB
+                        board.forEach(c => {
+                            if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                        });
+                    }
                 }
             }
-            if (this.isFoil) {
+            if (this.isFoil && board.length < boardLimit) {
                 const token2 = createToken('Centaur Knight', 'GSC', 'player');
                 if (token2) {
                     const idx = board.indexOf(this);
@@ -2474,6 +2492,16 @@ class BaseCard {
                 isPassive: true
             }
         },
+        AUTUMN: {
+            name: "Autumn",
+            avatar: "sets/ACE-files/img/286_Autumn, Wildwood Queen.jpg",
+            heroPower: {
+                name: "Sound the Blauhorn",
+                icon: "sets/GQC-files/img/211_Sound the Blauhorn.jpg",
+                text: "Every third spell you cast that targets a Centaur, get a random Centaur of your tier or lower.",
+                isPassive: true
+            }
+        },
         MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
@@ -2497,19 +2525,20 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.ENOCH, // Default for testing
+            hero: HEROES.HEPING, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
             spellsBoughtThisGame: 0,
             blueCardsPlayed: 0,
             herreaRewardCard: null,
-            rerollCount: 0
+            rerollCount: 0,
+            autumnSpellCount: 0
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0 },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0 },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0 }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 }
         ],
         currentOpponentId: 0,
         shop: {
@@ -3124,11 +3153,13 @@ class BaseCard {
         const isAdelaide = state.player.hero.name === "Adelaide";
         const isHerrea = state.player.hero.name === "Herrea";
         const isKism = state.player.hero.name === "Kism";
+        const isAutumn = state.player.hero.name === "Autumn";
 
         if ((!isArietta || state.player.tier < 4) && 
             (!isAdelaide || state.player.spellsBoughtThisGame < 4) && 
             (!isHerrea || state.player.blueCardsPlayed < 7) &&
-            (!isKism || (state.player.heroPowerActivations || 0) < 3)) {
+            (!isKism || (state.player.heroPowerActivations || 0) < 3) &&
+            (!isAutumn)) {
             state.player.usedHeroPower = false;
         }
 
@@ -3137,11 +3168,13 @@ class BaseCard {
             const oppAdelaide = opp.hero && opp.hero.name === "Adelaide";
             const oppHerrea = opp.hero && opp.hero.name === "Herrea";
             const oppKism = opp.hero && opp.hero.name === "Kism";
+            const oppAutumn = opp.hero && opp.hero.name === "Autumn";
 
             if ((!oppArietta || opp.tier < 4) && 
                 (!oppAdelaide || opp.spellsBoughtThisGame < 4) && 
                 (!oppHerrea || opp.blueCardsPlayed < 7) &&
-                (!oppKism || (opp.heroPowerActivations || 0) < 3)) {
+                (!oppKism || (opp.heroPowerActivations || 0) < 3) &&
+                (!oppAutumn)) {
                 opp.usedHeroPower = false;
             }
         });
@@ -4236,6 +4269,33 @@ class BaseCard {
         }
     }
 
+    function checkAutumnReward(target, source) {
+        if (!target || !source || state.player.hero.name !== "Autumn") return;
+        // If this source already counted for Autumn, don't count it again (multi-phase spells)
+        if (source.autumnTriggered) return;
+
+        if (target.type?.includes('Centaur')) {
+            state.player.autumnSpellCount++;
+            source.autumnTriggered = true; // Mark this specific play as already counted
+
+            if (state.player.autumnSpellCount >= 3) {
+                const centaurPool = availableCards.filter(c => c.type?.includes('Centaur') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+                if (centaurPool.length > 0) {
+                    const rand = centaurPool[Math.floor(Math.random() * centaurPool.length)];
+                    const reward = CardFactory.create(rand);
+                    reward.owner = 'player';
+                    if (state.player.hand.length < handLimit) {
+                        state.player.hand.push(reward);
+                    } else if (state.player.board.length < boardLimit) {
+                        state.player.board.push(reward);
+                        triggerETB(reward, state.player.board);
+                    }
+                }
+                state.player.autumnSpellCount = 0;
+            }
+        }
+    }
+
     function useCardFromHand(cardId, targetIndex = -1) {
         if (state.phase !== 'SHOP' || state.castingSpell || state.targetingEffect) return;
         const cardIndex = state.player.hand.findIndex(c => c.id === cardId);
@@ -4295,6 +4355,7 @@ class BaseCard {
                 state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board);
                 checkHerreaReward(instance);
+                // Up in Arms step 1 will be handled in applyTargetedEffect
             } else if (instance.type?.toLowerCase().includes('equipment')) {
                 if (state.player.board.length === 0) return;
                 state.spellsCastThisTurn++;
@@ -4361,7 +4422,7 @@ class BaseCard {
             } else if (effect.effect === 'permutate_step1') {
                 hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
             } else if (effect.effect === 'nightfall_raptor_bounce') {
-                hasTargets = currentBoard.some(c => !c.isType('Enchantment'));
+                hasTargets = currentBoard.some(c => !c.type?.toLowerCase().includes('enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
                 hasTargets = currentBoard.some(c => (c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0) && c.shieldCounters === 0);
             } else if (effect.effect === 'artful_coercion_gain_control') {
@@ -4787,6 +4848,7 @@ class BaseCard {
                 };
 
                 applyMadnessBuff(target);
+                checkAutumnReward(target, state.targetingEffect.cardInstance);
                 
                 // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect
                 const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
@@ -4816,6 +4878,7 @@ class BaseCard {
                 clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'warrior_ways_step1') {
                 state.targetingEffect.buffTargetId = target.id;
+                checkAutumnReward(target, state.targetingEffect.cardInstance);
                 
                 // If there are NO Centaurs to target for Step 2, skip it!
                 const centaurs = state.player.board.filter(c => c.type?.includes('Centaur'));
@@ -4871,6 +4934,7 @@ class BaseCard {
                 // Step 2: Apply counter to the click 2 target (Centaur)
                 if (target.type?.includes('Centaur')) {
                     target.counters += multiplier;
+                    checkAutumnReward(target, state.targetingEffect.cardInstance);
 
                     // ADAPTIVE or Ash-Withered Cloak
                     const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
@@ -4899,6 +4963,7 @@ class BaseCard {
 
                 if (isStep1) {
                     state.targetingEffect.target1Id = target.id;
+                    checkAutumnReward(target, state.targetingEffect.cardInstance);
                     if (state.player.board.length > 1) {
                         state.targetingEffect.effect = 'ceremony_step2';
                         state.targetingEffect.text = "Choose the second creature to copy.";
@@ -4910,6 +4975,7 @@ class BaseCard {
                 // Resolution (Either Step 2, OR Step 1 if only 1 creature)
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
                 const t2 = isStep1 ? null : target;
+                if (t2) checkAutumnReward(t2, state.targetingEffect.cardInstance);
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
                 const isFoilCast = state.targetingEffect.cardInstance.isFoil;
 
@@ -5042,6 +5108,7 @@ class BaseCard {
                 state.targetingEffect.target1Id = target.id;
                 state.targetingEffect.effect = 'up_in_arms_step2';
                 state.targetingEffect.text = "Choose a creature to get the second +1/+1 counter.";
+                checkAutumnReward(target, state.targetingEffect.cardInstance);
             } else if (state.targetingEffect.effect === 'up_in_arms_step2') {
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
                 const t2 = target;
@@ -5057,6 +5124,8 @@ class BaseCard {
                         t2.counters += (1 * multiplier);
                     }
                 }
+
+                checkAutumnReward(t2, state.targetingEffect.cardInstance);
 
                 // Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
@@ -5478,7 +5547,9 @@ class BaseCard {
                 }
             }
             if (spawns.length > 0) {
-                const validSpawns = spawns.filter(Boolean);
+                // Limit spawns based on boardLimit
+                const availableSpace = boardLimit - (board.length - 1);
+                const validSpawns = spawns.filter(Boolean).slice(0, Math.max(0, availableSpace));
                 board.splice(idx, 1, ...validSpawns);
 
                 // Add to combat queue if in battle
@@ -5536,6 +5607,7 @@ class BaseCard {
         }
 
         state.castingSpell.onApply(target, state.player.board);
+        checkAutumnReward(target, state.castingSpell);
         
         // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect (Exclude certain utility spells)
         const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
@@ -5780,10 +5852,11 @@ class BaseCard {
         const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
         const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
         const isEnochLocked = entity.hero.name === "Enoch" && (entity.rerollCount % 4 !== 3);
+        const isAutumnLocked = entity.hero.name === "Autumn"; // Always show gem/count for Autumn as it repeats
         
         const isKismFinished = entity.hero.name === "Kism" && (entity.heroPowerActivations || 0) >= 3;
         
-        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked || isHerreaLocked || isEnochLocked) && !entity.usedHeroPower) {
+        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked || isHerreaLocked || isEnochLocked || isAutumnLocked) && !entity.usedHeroPower) {
             const gem = document.createElement('div');
             gem.className = 'hero-power-passive-gem';
             
@@ -5799,6 +5872,14 @@ class BaseCard {
                 count.className = 'hero-power-passive-gem-count';
                 // Show 4, 3, 2, 1 rerolls remaining (using % 4 logic)
                 const remaining = 4 - (entity.rerollCount % 4);
+                count.textContent = remaining;
+                gem.appendChild(count);
+            }
+
+            if (entity.hero.name === "Autumn") {
+                const count = document.createElement('div');
+                count.className = 'hero-power-passive-gem-count';
+                const remaining = 3 - (entity.autumnSpellCount % 3);
                 count.textContent = remaining;
                 gem.appendChild(count);
             }
@@ -6584,7 +6665,9 @@ class BaseCard {
             const discountEl = document.createElement('div');
             discountEl.className = 'discount-coin';
             discountEl.innerHTML = `-${instance.costReduction}`;
-            costEl.parentElement.appendChild(discountEl);
+            if (costEl && costEl.parentElement) {
+                costEl.parentElement.appendChild(discountEl);
+            }
         }
         
         const counterStackEl = cardEl.querySelector('.card-counter-stack');
@@ -6893,7 +6976,8 @@ class BaseCard {
                     cardEl.classList.add('targetable'); 
                     cardEl.addEventListener('click', () => applySpell(instance.id)); 
                 }
-            } if (state.targetingEffect) { 
+            }
+            if (state.targetingEffect) { 
                 // Special case: Parliament discard targeting is HAND ONLY
                 if (state.targetingEffect.effect === 'parliament_discard') {
                     // Not targetable on board
@@ -6975,7 +7059,7 @@ class BaseCard {
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { 
-        state, CardFactory, BaseCard, init, availableCards,
+        state, CardFactory, BaseCard, init, availableCards, HEROES,
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
         resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
         resolveCombatImpact, resolveDeaths, processDeaths, performAttack, triggerETB,

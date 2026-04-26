@@ -1,26 +1,35 @@
 // Mock DOM before requiring autobattler.js
-const mockElement = () => ({
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    remove: () => {},
-    appendChild: () => {},
-    insertBefore: () => {},
-    replaceWith: () => {},
-    getBoundingClientRect: () => ({ top: 0, left: 0, width: 100, height: 100 }),
-    querySelectorAll: () => [],
-    querySelector: () => mockElement(),
-    classList: { add: () => {}, remove: () => {}, toggle: () => {} },
-    style: {},
-    innerHTML: '',
-    children: [],
-    setAttribute: () => {},
-    content: {
-        cloneNode: () => ({
-            firstElementChild: mockElement()
-        })
-    },
-    firstElementChild: null // will be set if needed
-});
+const mockElement = (parent = null) => {
+    const el = {
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        remove: () => {},
+        appendChild: () => {},
+        insertBefore: () => {},
+        replaceWith: () => {},
+        getBoundingClientRect: () => ({ top: 0, left: 0, width: 100, height: 100 }),
+        querySelectorAll: () => [],
+        querySelector: () => mockElement(el),
+        classList: { 
+            add: () => {}, 
+            remove: () => {}, 
+            toggle: () => {},
+            contains: () => false
+        },
+        style: {},
+        innerHTML: '',
+        children: [],
+        setAttribute: () => {},
+        content: {
+            cloneNode: () => ({
+                firstElementChild: mockElement(el)
+            })
+        },
+        firstElementChild: null,
+        parentElement: parent
+    };
+    return el;
+};
 
 if (typeof document === 'undefined') {
     global.document = {
@@ -43,7 +52,7 @@ if (typeof document === 'undefined') {
 const { 
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
     applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
-    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB
+    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB, HEROES
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -69,12 +78,16 @@ function resetState() {
         hand: [],
         board: [],
         treasures: 0,
-        spellGraveyard: []
+        spellGraveyard: [],
+        hero: HEROES.HEPING,
+        usedHeroPower: false,
+        heroPowerActivations: 0,
+        plane: null
     };
     state.opponents = [
-        { id: 0, name: "Marketto", avatar: "sets/SHF-files/img/60.png", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
-        { id: 1, name: "Huitzil", avatar: "sets/ICH-files/img/62_Huitzil Skywatch.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] },
-        { id: 2, name: "Raven", avatar: "sets/TWB-files/img/19_Glumvale Raven.jpg", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [] }
+        { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hero: { ...HEROES.MARKETTO, avatar: "sets/SHF-files/img/60.png" }, usedHeroPower: false, heroPowerActivations: 0 },
+        { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hero: { ...HEROES.XYLO, avatar: "sets/ICH-files/img/62_Huitzil Skywatch.jpg" }, usedHeroPower: false, heroPowerActivations: 0 },
+        { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hero: { ...HEROES.CRAIN, avatar: "sets/TWB-files/img/19_Glumvale Raven.jpg" }, usedHeroPower: false, heroPowerActivations: 0 }
     ];
     state.currentOpponentId = 0;
     state.turn = 1;
@@ -89,12 +102,15 @@ function resetState() {
     state.battleBoards = null;
     state.creaturesDiedThisShopPhase = false;
     state.shopDeathsCount = 0;
-    state.plane = null;
     state.deadServantsCount = 0;
     state.spellsCastThisTurn = 0;
     state.triumphantTacticsActive = false;
     state.panharmoniconActive = false;
     state.shop = { cards: [], frozen: false };
+    state.rerollCount = 0;
+    state.autumnSpellCount = 0;
+    state.blueCardsPlayed = 0;
+    state.spellsBoughtThisGame = 0;
 
     // SYNC POOL
     setAvailableCards(fullCardPool);
@@ -585,16 +601,16 @@ function testStratusTraveler() {
     resetState();
     availableCards.push({ card_name: "Bird", shape: "token", pt: "1/2", set: "AEX", type: "Creature", rules_text: "Flying" });
     const traveler = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
-    state.plane = 'Not Cirrusea';
+    state.player.plane = 'Not Cirrusea';
     traveler.onETB(state.player.board);
-    assert.strictEqual(state.plane, 'Cirrusea');
+    assert.strictEqual(state.player.plane, 'Cirrusea');
     const spawnedBird = state.player.board.find(c => c.card_name === 'Bird');
     assert.ok(spawnedBird, "Bird created");
     assert.strictEqual(spawnedBird.pt, "1/2", "Cirrusea birds should be 1/2");
 
     // 2. Already Cirrusea, no flying -> Flying Counter (Honest call)
     resetState();
-    state.plane = 'Cirrusea';
+    state.player.plane = 'Cirrusea';
     const traveler2 = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
     const targetNoFly = CardFactory.create({ card_name: "NoFly", pt: "1/1" });
     state.player.board = [traveler2, targetNoFly];
@@ -606,7 +622,7 @@ function testStratusTraveler() {
 
     // 3. Already Cirrusea, HAS flying -> +1/+1 Counter (Honest call)
     resetState();
-    state.plane = 'Cirrusea';
+    state.player.plane = 'Cirrusea';
     const traveler3 = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
     const targetFly = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying" });
     state.player.board = [traveler3, targetFly];
@@ -1089,7 +1105,7 @@ function testWindsongApprentice() {
 
     // 3. ETB Traverse (already Cirrusea -> select Flying/Counter)
     resetState();
-    state.plane = 'Cirrusea';
+    state.player.plane = 'Cirrusea';
     const winds2 = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
     state.player.hand = [winds2];
     useCardFromHand(winds2.id);
@@ -1966,7 +1982,7 @@ function testThunderRaptor() {
     
     // Case 1: Not in Cirrusea
     raptor.onETB(state.player.board);
-    assert.strictEqual(state.plane, 'Cirrusea');
+    assert.strictEqual(state.player.plane, 'Cirrusea');
     
     // Case 2: Already in Cirrusea (should queue counter grant)
     raptor.onETB(state.player.board);
@@ -2538,7 +2554,7 @@ async function testRivhasBlessedBlade() {
     state.player.board = [host];
     state.player.fightHp = 10;
     
-    const opponent = { id: 0, fightHp: 10, board: [] };
+    const opponent = { id: 0, fightHp: 10, board: [], hero: { ...HEROES.MARKETTO, avatar: "sets/SHF-files/img/60.png" } };
     state.opponents = [opponent];
     state.currentOpponentId = 0;
     state.phase = 'BATTLE'; // Set to BATTLE so ETB auto-resolves
@@ -2565,9 +2581,9 @@ async function testRivhasBlessedBladeWithCirrusea() {
     host.owner = 'player';
     state.player.board = [host];
     state.player.fightHp = 10;
-    state.plane = null; // Reset plane
+    state.player.plane = null; // Reset plane
     
-    const opponent = { id: 0, fightHp: 10, board: [] };
+    const opponent = { id: 0, fightHp: 10, board: [], hero: { ...HEROES.MARKETTO, avatar: "sets/SHF-files/img/60.png" } };
     state.opponents = [opponent];
     state.currentOpponentId = 0;
     state.battleBoards = { player: [host], opponent: [] };
@@ -2576,7 +2592,7 @@ async function testRivhasBlessedBladeWithCirrusea() {
     // 1. Initial hit: Should set plane to Cirrusea and spawn a Bird
     await performAttack(host, null, false);
     
-    assert.strictEqual(state.plane, 'Cirrusea', "Plane should be set to Cirrusea");
+    assert.strictEqual(state.player.plane, 'Cirrusea', "Plane should be set to Cirrusea");
     assert.strictEqual(state.battleBoards.player.length, 2, "Should have spawned a Bird");
     assert.strictEqual(state.battleBoards.player[1].card_name, "Bird");
 
@@ -2597,7 +2613,7 @@ async function testRivhasBlessedBladeWithDiscovery() {
     state.player.board = [host];
     state.player.fightHp = 10;
     
-    const opponent = { id: 0, fightHp: 10, board: [] };
+    const opponent = { id: 0, fightHp: 10, board: [], hero: { ...HEROES.MARKETTO, avatar: "sets/SHF-files/img/60.png" } };
     state.opponents = [opponent];
     state.currentOpponentId = 0;
     state.battleBoards = { player: [host], opponent: [] };

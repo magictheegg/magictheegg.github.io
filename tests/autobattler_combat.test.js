@@ -7,7 +7,12 @@ const mockElement = () => ({
     querySelectorAll: () => [],
     querySelector: () => mockElement(),
     getBoundingClientRect: () => ({ top: 0, left: 0, width: 100, height: 100 }),
-    classList: { add: () => {}, remove: () => {}, toggle: () => {} },
+    classList: { 
+        add: () => {}, 
+        remove: () => {}, 
+        toggle: () => {},
+        contains: () => false
+    },
     style: {},
     innerHTML: '',
     setAttribute: () => {},
@@ -38,7 +43,7 @@ if (typeof document === 'undefined') {
 }
 
 const { 
-    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths
+    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES
 } = require('../scripts/autobattler.js');
 const assert = require('assert');
 
@@ -52,10 +57,13 @@ function resetState() {
         hand: [],
         board: [],
         treasures: 0,
-        spellGraveyard: []
+        spellGraveyard: [],
+        hero: HEROES.HEPING,
+        usedHeroPower: false,
+        heroPowerActivations: 0
     };
     state.opponents = [
-        { id: 0, name: "Opponent", overallHp: 20, fightHp: 10, board: [] }
+        { id: 0, name: "Opponent", overallHp: 20, fightHp: 10, board: [], hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0 }
     ];
     state.currentOpponentId = 0;
     state.phase = 'BATTLE';
