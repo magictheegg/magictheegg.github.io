@@ -2409,6 +2409,38 @@ class BaseCard {
                 }
             }
         },
+        JAKE: {
+            name: "Jake and the Gang",
+            avatar: "sets/ACE-files/img/252_Jake and the Gang.jpg",
+            heroPower: {
+                name: "Worldbraiding",
+                icon: "sets/ATR-files/img/78.png",
+                cost: 2,
+                text: "For each color, put a +1/+1 counter on a random creature you control of that color.",
+                isPassive: false,
+                effect: async (owner, board) => {
+                    const entity = (owner === 'player') ? state.player : getOpponent();
+                    if (owner === 'player') {
+                        state.player.gold -= 2;
+                        state.player.usedHeroPower = true;
+                        render();
+                    } else {
+                        entity.usedHeroPower = true;
+                    }
+
+                    const colors = ['W', 'U', 'B', 'R', 'G'];
+                    for (const color of colors) {
+                        const candidates = board.filter(c => c.color && c.color.includes(color));
+                        if (candidates.length > 0) {
+                            const target = candidates[Math.floor(Math.random() * candidates.length)];
+                            target.counters++;
+                            await pulseCardElement(target, board);
+                        }
+                    }
+                    render();
+                }
+            }
+        },
         MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
@@ -2432,7 +2464,7 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.HERREA, // Default for testing
+            hero: HEROES.JAKE, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
