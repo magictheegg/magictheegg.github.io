@@ -5578,10 +5578,15 @@ class BaseCard {
                         });
                         queue.splice(qIdx, 1, ...validSpawns);
                     } else {
-                        // Parent already attacked, push to back
+                        // Parent already attacked (shifted out), put spawns at the front 
+                        // so they are the next creatures to attack for this side.
+                        const toUnshift = [];
                         validSpawns.forEach(s => {
-                            if (!queue.includes(s)) queue.push(s);
+                            const backIdx = queue.indexOf(s);
+                            if (backIdx !== -1) queue.splice(backIdx, 1);
+                            toUnshift.push(s);
                         });
+                        queue.unshift(...toUnshift);
                     }
                 }
 
