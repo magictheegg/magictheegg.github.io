@@ -673,13 +673,46 @@
             z-index: 10;
             pointer-events: none;
         }
+.hero-power-passive-gem::after {
+    content: "";
+    position: absolute;
+    top: 15%; left: 15%; width: 70%; height: 70%;
+    background: rgba(255,255,255,0.4);
+    clip-path: inherit;
+    pointer-events: none;
+}
 
-        .hero-power-passive-gem::after {
-            content: "";
+        .hero-power-passive-gem-count {
             position: absolute;
-            top: 15%; left: 15%; width: 70%; height: 70%;
-            background: rgba(255,255,255,0.4);
-            clip-path: inherit;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,1);
+            font-family: 'Beleren Small Caps', sans-serif;
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        #player-zone { 
+            grid-row: 2;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 20px;
+            padding-top: 5px;
+            position: relative;
+        }
+
+        .avatar-container {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            width: 160px;
+            height: 160px;
+            z-index: 10;
             pointer-events: none;
         }
 

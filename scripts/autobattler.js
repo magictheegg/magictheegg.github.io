@@ -414,6 +414,7 @@ class BaseCard {
                 effect: 'dutiful_camel_counter', 
                 isDouble: this.isFoil,
                 wasCast: true,
+                cardInstance: this,
                 isMandatory: false
             });
         }
@@ -949,21 +950,21 @@ class BaseCard {
                 const isEquipment = spell.type?.toLowerCase().includes('equipment');
                 
                 if (name === 'Executioner\'s Madness') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, spellInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: spell });
                 } else if (name === 'Warrior\'s Ways') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: spell.isFoil, spellInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: spell.isFoil, cardInstance: spell });
                 } else if (name === 'Whispers of the Dead') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, spellInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: spell });
                 } else if (name === 'Ceremony of Tribes') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, spellInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, cardInstance: spell });
                 } else if (name === 'Up in Arms') {
                     spell.onApply(null, board);
                 } else if (isEquipment) {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, spellInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: spell });
                 } else if (targetedNames.includes(name)) {
                     queueTargetingEffect({
                         sourceId: this.id,
-                        spellInstance: spell,
+                        cardInstance: spell,
                         title: name,
                         text: spell.effect_text || spell.rules_text,
                         effect: 'infuse_spell_resolution',
@@ -1802,7 +1803,7 @@ class BaseCard {
                     text: "Choose a creature to get the first +1/+1 counter.",
                     effect: 'up_in_arms_step1',
                     wasCast: true,
-                    spellInstance: this
+                    cardInstance: this
                 };
                 return;
             }
@@ -2080,6 +2081,7 @@ class BaseCard {
                 text: "Choose a card to discard.",
                 effect: 'parliament_discard',
                 wasCast: true,
+                cardInstance: this,
                 isFoil: this.isFoil,
                 isMandatory: false
             });
@@ -2364,6 +2366,16 @@ class BaseCard {
                 isPassive: true
             }
         },
+        HERREA: {
+            name: "Herrea",
+            avatar: "sets/FAU-files/img/61_Herrea, Celestial Queen.jpg",
+            heroPower: {
+                name: "Connect the Dots",
+                icon: "sets/FAU-files/img/54_Connect the Dots.jpg",
+                text: "At the start of the game, seek a 5-star creature. Draw it after you play your seventh blue card.",
+                isPassive: true
+            }
+        },
         ADELAIDE: {
             name: "Adelaide",
             avatar: "sets/SGB-files/img/36_Adelaide, the Soloist.jpg",
@@ -2420,16 +2432,18 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.HEPING, // Default for testing
+            hero: HEROES.HERREA, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
-            spellsBoughtThisGame: 0
+            spellsBoughtThisGame: 0,
+            blueCardsPlayed: 0,
+            herreaRewardCard: null
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0 },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0 },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0 }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null }
         ],
         currentOpponentId: 0,
         shop: {
@@ -2647,6 +2661,12 @@ class BaseCard {
             }
         }
 
+        if (state.discovery.effect === 'herrea_seek') {
+            state.player.herreaRewardCard = card;
+            processDiscoveryQueue();
+            return;
+        }
+
         if (state.discovery.effect === 'arietta_seek') {
             if (state.player.hand.length < handLimit) {
                 state.player.hand.push(card);
@@ -2686,6 +2706,12 @@ class BaseCard {
             if (idx !== -1) state.player.spellGraveyard.splice(idx, 1);
         }
         state.player.hand.push(card);
+
+        // HERO POWER: Herrea (Blue card tracking & Reward) - AFTER resolution
+        if (state.discovery.wasCast) {
+            checkHerreaReward(state.discovery.cardInstance);
+        }
+
         processDiscoveryQueue();
     }
     function showDamageBubble(targetOrId, amount, className = 'damage-bubble') {
@@ -2839,7 +2865,7 @@ class BaseCard {
                     }
                 }
                 state.castingSpell = null;
-                clearTargetingEffect();
+                clearTargetingEffect(false);
                 render();
             } else {
                 // End Shop Phase triggers
@@ -2904,6 +2930,27 @@ class BaseCard {
             console.error("Error loading auto-battler card data:", error);
             shopEl.innerHTML = '<p style="color: red;">Error: Could not load card data. Is `lists/autobattler-cards.json` generated?</p>';
             return;
+        }
+
+        // HERO POWER: Herrea (Start of Game Seek 5-Star)
+        if (state.player.hero.name === "Herrea") {
+            const fiveStarPool = availableCards.filter(c => (c.tier === 5) && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
+            if (fiveStarPool.length > 0) {
+                const selected = [];
+                const poolCopy = [...fiveStarPool];
+                for (let i = 0; i < 3; i++) {
+                    if (poolCopy.length === 0) break;
+                    const randIdx = Math.floor(Math.random() * poolCopy.length);
+                    selected.push(CardFactory.create(poolCopy.splice(randIdx, 1)[0]));
+                }
+
+                queueDiscovery({
+                    cards: selected,
+                    title: "CONNECT THE DOTS",
+                    text: "Choose a 5-star creature to receive after playing 10 blue cards.",
+                    effect: 'herrea_seek'
+                });
+            }
         }
         
         startShopTurn();
@@ -3003,13 +3050,15 @@ class BaseCard {
         // Reset Hero Powers (Except for Arietta's one-time tier 4 effect)
         const isArietta = state.player.hero.name === "Arietta";
         const isAdelaide = state.player.hero.name === "Adelaide";
-        if ((!isArietta || state.player.tier < 4) && (!isAdelaide || state.player.spellsBoughtThisGame < 4)) {
+        const isHerrea = state.player.hero.name === "Herrea";
+        if ((!isArietta || state.player.tier < 4) && (!isAdelaide || state.player.spellsBoughtThisGame < 4) && (!isHerrea || state.player.blueCardsPlayed < 7)) {
             state.player.usedHeroPower = false;
         }
         state.opponents.forEach(opp => {
             const oppArietta = opp.hero && opp.hero.name === "Arietta";
             const oppAdelaide = opp.hero && opp.hero.name === "Adelaide";
-            if ((!oppArietta || opp.tier < 4) && (!oppAdelaide || opp.spellsBoughtThisGame < 4)) {
+            const oppHerrea = opp.hero && opp.hero.name === "Herrea";
+            if ((!oppArietta || opp.tier < 4) && (!oppAdelaide || opp.spellsBoughtThisGame < 4) && (!oppHerrea || opp.blueCardsPlayed < 7)) {
                 opp.usedHeroPower = false;
             }
         });
@@ -4017,6 +4066,19 @@ class BaseCard {
         }
     }
 
+    function checkHerreaReward(card) {
+        if (!card || state.player.hero.name !== "Herrea" || state.player.usedHeroPower) return;
+        if (card.color && card.color.includes('U')) {
+            state.player.blueCardsPlayed++;
+            if (state.player.blueCardsPlayed >= 7 && state.player.herreaRewardCard) {
+                if (state.player.hand.length < handLimit) {
+                    state.player.hand.push(state.player.herreaRewardCard);
+                    state.player.usedHeroPower = true;
+                }
+            }
+        }
+    }
+
     function useCardFromHand(cardId, targetIndex = -1) {
         if (state.phase !== 'SHOP' || state.castingSpell || state.targetingEffect) return;
         const cardIndex = state.player.hand.findIndex(c => c.id === cardId);
@@ -4052,28 +4114,34 @@ class BaseCard {
             triggerMiengFerocious(instance.getDisplayStats(state.player.board).p, state.player.board);
 
             state.player.hand.splice(cardIndex, 1);
+
+            // HERO POWER: Herrea (Blue card tracking & Reward) - ONLY if no targeting Modal was opened
+            if (!state.targetingEffect && !state.discovery) {
+                checkHerreaReward(instance);
+            }
         } else {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
             
             if (instance.card_name === 'Executioner\'s Madness') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, spellInstance: instance };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: instance };
             } else if (instance.card_name === 'Warrior\'s Ways') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: instance.isFoil, spellInstance: instance };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: instance.isFoil, cardInstance: instance };
             } else if (instance.card_name === 'Whispers of the Dead') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, spellInstance: instance };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: instance };
             } else if (instance.card_name === 'Ceremony of Tribes') {
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, spellInstance: instance };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, cardInstance: instance };
             } else if (instance.card_name === 'Up in Arms') {
                 state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board);
+                checkHerreaReward(instance);
             } else if (instance.type?.toLowerCase().includes('equipment')) {
                 if (state.player.board.length === 0) return;
                 state.spellsCastThisTurn++;
-                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, spellInstance: instance };
+                state.targetingEffect = { sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: instance };
             } else if (targetedNames.includes(instance.card_name)) {
                 if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
                     return; 
@@ -4086,8 +4154,14 @@ class BaseCard {
                 state.player.hand.splice(cardIndex, 1);
                 state.player.spellGraveyard.push(instance);
                 state.player.board.forEach(c => c.onNoncreatureCast(instance.isFoil, state.player.board));
+                
+                // HERO POWER: Herrea (Blue card tracking & Reward) - NO TARGETING
+                if (!state.targetingEffect && !state.discovery) {
+                    checkHerreaReward(instance);
+                }
             }
         }
+        
         render();
     }
 
@@ -4207,7 +4281,7 @@ class BaseCard {
         render();
     }
 
-    function clearTargetingEffect() {
+    function clearTargetingEffect(isSuccess = false) {
         if (state.targetingEffect && state.targetingEffect.needsETBBroadcast) {
             const instance = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
             if (instance) {
@@ -4216,6 +4290,16 @@ class BaseCard {
                 });
             }
         }
+
+        // HERO POWER: Herrea (Blue card tracking & Reward) - AFTER resolution
+        if (isSuccess && state.targetingEffect && state.targetingEffect.wasCast) {
+            // ONLY check Herrea reward if we are NOT about to open another Modal (like discovery)
+            // Cards that open a Discovery after targeting will set wasCast on the discovery object instead.
+            if (!state.discoveryQueue.length) {
+                checkHerreaReward(state.targetingEffect.cardInstance);
+            }
+        }
+
         state.targetingEffect = null;
         processTargetingQueue();
     }
@@ -4251,7 +4335,7 @@ class BaseCard {
                     state.targetingEffect.isDouble = false;
                     // Stay in targeting mode
                 } else {
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
                 const shopIdx = state.shop.cards.indexOf(target);
@@ -4275,7 +4359,7 @@ class BaseCard {
                         randomTarget.counters += 2;
                     }
 
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'intli_sacrifice') {
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
@@ -4287,7 +4371,7 @@ class BaseCard {
                         const multiplier = source.isFoil ? 2 : 1;
                         source.tempPower += (2 * multiplier);
                         source.tempToughness += (2 * multiplier);
-                        clearTargetingEffect();
+                        clearTargetingEffect(true);
                     }
                 }
             } else if (state.targetingEffect.effect === 'architect_control') {
@@ -4299,18 +4383,18 @@ class BaseCard {
                     if (state.player.board.length < boardLimit) {
                         state.player.board.push(target);
                     }
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'erin_humility') {
                 target.temporaryHumility = true;
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'hero_power_heping') {
                 const isShopCard = state.shop.cards.includes(target);
                 if (isShopCard) {
                     target.counters++;
                     target.isChained = true;
                     target.isJustChained = true;
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                     // Clear the animation flag after it plays
                     setTimeout(() => {
                         delete target.isJustChained;
@@ -4321,14 +4405,14 @@ class BaseCard {
                 const idx = state.player.board.indexOf(target);
                 if (idx !== -1) {
                     resolveShopDeaths(idx, target);
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
 
                 if (target.type?.includes('Centaur')) {
                     const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     target.counters += (2 * multiplier);
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'hero_power_xylo') {
                 const board = (state.targetingEffect.owner === 'player') ? state.player.board : getOpponent().board;
@@ -4345,7 +4429,7 @@ class BaseCard {
                         state.player.usedHeroPower = true;
                     }
                 }
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'hero_power_xiong_mao') {
                 const board = (state.targetingEffect.owner === 'player') ? state.player.board : getOpponent().board;
                 const idx = board.indexOf(target);
@@ -4382,14 +4466,14 @@ class BaseCard {
                             }
                         }
                     }
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'wilderkin_zealot_trample') {
                 if (state.player.gold >= 2) {
                     state.player.gold -= 2;
                     if (!target.enchantments) target.enchantments = [];
                     target.enchantments.push({ card_name: 'Zealot Trample', rules_text: 'Trample', isTemporary: true });
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'whispers_sacrifice') {
                 const idx = state.player.board.indexOf(target);
@@ -4421,10 +4505,10 @@ class BaseCard {
                     if (handIdx !== -1) {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
-                        state.player.board.forEach(c => c.onNoncreatureCast(state.targetingEffect.spellInstance.isFoil, state.player.board));
+                        state.player.board.forEach(c => c.onNoncreatureCast(state.targetingEffect.cardInstance.isFoil, state.player.board));
                     }
 
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce') {
                 if (!target.type?.toLowerCase().includes('enchantment')) {
@@ -4450,7 +4534,7 @@ class BaseCard {
                         }
 
                         state.player.hand.push(target);
-                        clearTargetingEffect();
+                        clearTargetingEffect(true);
                     }
                 }
             } else if (state.targetingEffect.effect === 'cloudline_sovereign_step1') {
@@ -4465,7 +4549,7 @@ class BaseCard {
                     else if (counterType === 'shield') target.shieldCounters--;
 
                     target.shieldCounters = 1;
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'permutate_step1') {
                 if (counterType) {
@@ -4491,7 +4575,7 @@ class BaseCard {
                     // Add two +1/+1 counters to destination
                     const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     target.counters += (2 * multiplier);
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'nest_matriarch_buff') {
 
@@ -4501,7 +4585,7 @@ class BaseCard {
                     target.counters += multiplier;
                     if (!target.enchantments) target.enchantments = [];
                     target.enchantments.push({ card_name: 'Nest Matriarch Grant', rules_text: 'Lifelink', isTemporary: true });
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                     }
                     } else if (state.targetingEffect.effect === 'executioner_sacrifice_step1') {
 
@@ -4519,7 +4603,7 @@ class BaseCard {
                 }
             } else if (state.targetingEffect.effect === 'executioner_buff_step2') {
                 // 1. Apply the buff to the target of click 2
-                const multiplier = state.targetingEffect.spellInstance.isFoil ? 2 : 1;
+                const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
                 
                 const applyMadnessBuff = (t) => {
                     t.tempPower += (5 * multiplier);
@@ -4546,7 +4630,7 @@ class BaseCard {
 
                 // 3. Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
-                const isFoilCast = state.targetingEffect.spellInstance.isFoil;
+                const isFoilCast = state.targetingEffect.cardInstance.isFoil;
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
@@ -4555,14 +4639,14 @@ class BaseCard {
                 // TRIGGER NONCREATURE CAST
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'warrior_ways_step1') {
                 state.targetingEffect.buffTargetId = target.id;
                 
                 // If there are NO Centaurs to target for Step 2, skip it!
                 const centaurs = state.player.board.filter(c => c.type?.includes('Centaur'));
                 if (centaurs.length === 0) {
-                    const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.spellInstance && state.targetingEffect.spellInstance.isFoil);
+                    const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.cardInstance && state.targetingEffect.cardInstance.isFoil);
                     const multiplier = isFoilCast ? 2 : 1;
 
                     // Manually trigger Step 1 buff application here and end
@@ -4585,13 +4669,13 @@ class BaseCard {
                     // TRIGGER NONCREATURE CAST
                     state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 } else {
                     state.targetingEffect.effect = 'warrior_ways_step2';
                     state.targetingEffect.text = "Choose a Centaur to get a +1/+1 counter.";
                 }
             } else if (state.targetingEffect.effect === 'warrior_ways_step2') {
-                const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.spellInstance && state.targetingEffect.spellInstance.isFoil);
+                const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.cardInstance && state.targetingEffect.cardInstance.isFoil);
                 const multiplier = isFoilCast ? 2 : 1;
                 
                 const isOnlyTarget = (state.targetingEffect.buffTargetId === target.id);
@@ -4631,7 +4715,7 @@ class BaseCard {
                 // TRIGGER NONCREATURE CAST
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'ceremony_step1' || state.targetingEffect.effect === 'ceremony_step2') {
                 const isStep1 = state.targetingEffect.effect === 'ceremony_step1';
                 
@@ -4652,8 +4736,8 @@ class BaseCard {
                 // Resolution (Either Step 2, OR Step 1 if only 1 creature)
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
                 const t2 = isStep1 ? null : target;
-                const multiplier = state.targetingEffect.spellInstance.isFoil ? 2 : 1;
-                const isFoilCast = state.targetingEffect.spellInstance.isFoil;
+                const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
+                const isFoilCast = state.targetingEffect.cardInstance.isFoil;
 
                 // Resolve "spell cast" triggers
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
@@ -4692,7 +4776,7 @@ class BaseCard {
                     });
                 });
 
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'equip_creature') {
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                 if (handIdx !== -1) {
@@ -4705,7 +4789,7 @@ class BaseCard {
                     
                     target.equipment = equipment;
                 }
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'traverse_cirrusea_grant') {
 
                 const multiplier = state.targetingEffect.isFoil ? 2 : 1;
@@ -4716,13 +4800,13 @@ class BaseCard {
                         target.flyingCounters++;
                     }
                 }
-                clearTargetingEffect();
+                clearTargetingEffect(true);
                 } else if (state.targetingEffect.effect === 'sporegraft_slime_counters') {
                 const multiplier = state.targetingEffect.isDouble ? 2 : 1;
                 target.counters += (2 * multiplier);
-                clearTargetingEffect();
+                clearTargetingEffect(true);
                 } else if (state.targetingEffect.effect === 'infuse_spell_resolution') {
-                const spell = state.targetingEffect.spellInstance;
+                const spell = state.targetingEffect.cardInstance;
                 const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
                 
                 spell.onApply(target, board);
@@ -4733,7 +4817,7 @@ class BaseCard {
                 if (isDoubleable && (target.hasKeyword('Adaptive') || hasCloak)) {
                     spell.onApply(target, board);
                 }
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'wechuge_sacrifice') {
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
                 if (source && target.id !== source.id) {
@@ -4743,7 +4827,7 @@ class BaseCard {
 
                         const multiplier = source.isFoil ? 2 : 1;
                         source.counters += multiplier;
-                        clearTargetingEffect();
+                        clearTargetingEffect(true);
                     }
                 }
             } else if (state.targetingEffect.effect === 'ndengo_target') {
@@ -4762,7 +4846,7 @@ class BaseCard {
                         sourceId: source.id,
                         targetId: target.id
                     });
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'parliament_discard') {
                 console.log("Discarding card with ID:", targetId);
@@ -4774,9 +4858,11 @@ class BaseCard {
                         cards: state.player.spellGraveyard.map(s => CardFactory.create(s)),
                         title: 'SHREWD PARLIAMENT',
                         text: 'Choose a noncreature card in your graveyard.',
-                        graveyard: true
+                        graveyard: true,
+                        wasCast: true,
+                        cardInstance: state.targetingEffect.cardInstance
                     });
-                    clearTargetingEffect();
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'up_in_arms_step1') {
                 state.targetingEffect.target1Id = target.id;
@@ -4808,7 +4894,7 @@ class BaseCard {
                 // TRIGGER NONCREATURE CAST ONLY ONCE AT END
                 state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
-                clearTargetingEffect();
+                clearTargetingEffect(true);
             }
         }
 
@@ -5287,6 +5373,10 @@ class BaseCard {
         state.player.hand.splice(state.player.hand.findIndex(c => c.id === state.castingSpell.id), 1);
         const isFoil = state.castingSpell.isFoil;
         state.player.spellGraveyard.push(state.castingSpell);
+
+        // HERO POWER: Herrea (Blue card tracking & Reward)
+        checkHerreaReward(state.castingSpell);
+
         state.castingSpell = null;
         state.player.board.forEach(c => c.onNoncreatureCast(isFoil, state.player.board));
         render();
@@ -5504,10 +5594,19 @@ class BaseCard {
         // Show gem if passive, OR if Arietta hasn't leveled up yet (locked indicator)
         const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
         const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
+        const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
         
-        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked) && !entity.usedHeroPower) {
+        if ((hp.isPassive || isAriettaLocked || isAdelaideLocked || isHerreaLocked) && !entity.usedHeroPower) {
             const gem = document.createElement('div');
             gem.className = 'hero-power-passive-gem';
+            
+            if (entity.hero.name === "Herrea") {
+                const count = document.createElement('div');
+                count.className = 'hero-power-passive-gem-count';
+                count.textContent = Math.max(0, 7 - entity.blueCardsPlayed);
+                gem.appendChild(count);
+            }
+            
             circle.appendChild(gem);
         } else if (!entity.usedHeroPower) {
             const cost = document.createElement('div');
