@@ -419,7 +419,7 @@ class BaseCard {
                 title: this.card_name,
                 text: "Choose a creature to get a +1/+1 counter.",
                 effect: 'dutiful_camel_counter', 
-                isDouble: this.isFoil,
+                isDouble: false,
                 wasCast: true,
                 cardInstance: this,
                 isMandatory: false
@@ -611,11 +611,10 @@ class BaseCard {
 
     class EnvoyOfThePure extends BaseCard {
         onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
             board.forEach(c => {
                 if (c.id !== this.id) {
-                    c.tempPower += multiplier;
-                    c.tempToughness += multiplier;
+                    c.tempPower += 1;
+                    c.tempToughness += 1;
                     if (!c.enchantments) c.enchantments = [];
                     c.enchantments.push({ card_name: 'Envoy Grant', rules_text: 'Vigilance', isTemporary: true });
                 }
@@ -717,7 +716,7 @@ class BaseCard {
                 title: this.card_name,
                 text: 'Choose two keyword counters to place on Bwema.',
                 count: 1,
-                remaining: multiplier * 2,
+                remaining: 2,
                 sourceId: this.id,
                 effect: 'bwema_counters',
                 chosen: []
@@ -804,10 +803,9 @@ class BaseCard {
 
     class FestivalCelebrants extends BaseCard {
         onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
             board.forEach(c => {
                 if (c.owner === this.owner) {
-                    c.counters += multiplier;
+                    c.counters += 1;
                 }
             });
         }
@@ -1180,7 +1178,7 @@ class BaseCard {
 
     class CloudlineSovereign extends BaseCard {
         onETB(board) {
-            this.counters += (this.isFoil ? 2 : 1);
+            this.counters += 1;
         }
         onShopStart(board) {
             queueTargetingEffect({
@@ -1671,9 +1669,8 @@ class BaseCard {
 
     class LairRecluse extends BaseCard {
         onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            this.vigilanceCounters += multiplier;
-            this.reachCounters += multiplier; // Note: Need to verify if reachCounters exists in BaseCard
+            this.vigilanceCounters += 1;
+            this.reachCounters += 1; // Note: Need to verify if reachCounters exists in BaseCard
         }
         onShopStart(board) {
             // Only trigger if we have another creature to receive the counters
@@ -1784,8 +1781,7 @@ class BaseCard {
 
     class LingeringLunatic extends BaseCard {
         onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            proliferate(board, this.owner, multiplier);
+            proliferate(board, this.owner, 1);
         }
     }
 
@@ -1807,8 +1803,7 @@ class BaseCard {
     }
     class RapaciousSprite extends BaseCard {
         onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            state.player.treasures += multiplier;
+            state.player.treasures += 1;
         }
     }
 
@@ -1952,8 +1947,7 @@ class BaseCard {
 
     class PungentBeetle extends BaseCard {
         onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            this.counters += (state.shopDeathsCount * multiplier);
+            this.counters += state.shopDeathsCount;
         }
     }
 
@@ -2138,7 +2132,7 @@ class BaseCard {
                 (c.tier || 1) <= state.player.tier
             );
             const selection = [];
-            const multiplier = this.isFoil ? 2 : 1;
+            const multiplier = 1;
             for (let i = 0; i < 4 * multiplier; i++) {
                 selection.push(CardFactory.create(noncreatures[Math.floor(Math.random() * noncreatures.length)]));
             }
@@ -2533,7 +2527,7 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.HEPING, // Default for testing
+            hero: HEROES.JAKE, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -5572,12 +5566,23 @@ class BaseCard {
 
                 // Add to combat queue if in battle
                 if (state.phase === 'BATTLE' && state.battleQueues) {
-                    validSpawns.forEach(s => {
-                        // Prevent double-queueing if already added (e.g. by createToken)
-                        if (!state.battleQueues[owner].includes(s)) {
-                            state.battleQueues[owner].push(s);
-                        }
-                    });
+                    const queue = state.battleQueues[owner];
+                    const qIdx = queue.indexOf(deadCard);
+                    
+                    if (qIdx !== -1) {
+                        // Replace the dead card exactly at its position
+                        // First remove them from the back if createToken auto-pushed them
+                        validSpawns.forEach(s => {
+                            const backIdx = queue.indexOf(s);
+                            if (backIdx !== -1 && backIdx !== qIdx) queue.splice(backIdx, 1);
+                        });
+                        queue.splice(qIdx, 1, ...validSpawns);
+                    } else {
+                        // Parent already attacked, push to back
+                        validSpawns.forEach(s => {
+                            if (!queue.includes(s)) queue.push(s);
+                        });
+                    }
                 }
 
                 // Trigger ETB for new spawns and broadcast to others
