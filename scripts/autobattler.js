@@ -2441,6 +2441,29 @@ class BaseCard {
                 }
             }
         },
+        KISM: {
+            name: "Kism",
+            avatar: "sets/SGB-files/img/154_Kism, Daughter of Fates.jpg",
+            heroPower: {
+                name: "Untangle the Weald",
+                icon: "sets/SGB-files/img/169_Weald Trappers.jpg",
+                cost: 3,
+                text: "Create a copy of target creature in the shop. (Three times per game)",
+                isPassive: false,
+                effect: (owner, board) => {
+                    queueTargetingEffect({
+                        sourceId: 'hero-power',
+                        title: "Untangle the Weald",
+                        text: "Choose a creature in the shop to copy.",
+                        effect: 'hero_power_kism',
+                        owner: owner,
+                        isHeroPower: true,
+                        heroPowerCost: 3,
+                        isMandatory: false
+                    });
+                }
+            }
+        },
         MARKETTO: {
             name: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
@@ -2464,7 +2487,7 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.JAKE, // Default for testing
+            hero: HEROES.KISM, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -3079,18 +3102,29 @@ class BaseCard {
         state.spellsCastThisTurn = 0;
         state.panharmoniconActive = false;
 
-        // Reset Hero Powers (Except for Arietta's one-time tier 4 effect)
+        // Reset Hero Powers (Except for one-time or limited effects)
         const isArietta = state.player.hero.name === "Arietta";
         const isAdelaide = state.player.hero.name === "Adelaide";
         const isHerrea = state.player.hero.name === "Herrea";
-        if ((!isArietta || state.player.tier < 4) && (!isAdelaide || state.player.spellsBoughtThisGame < 4) && (!isHerrea || state.player.blueCardsPlayed < 7)) {
+        const isKism = state.player.hero.name === "Kism";
+
+        if ((!isArietta || state.player.tier < 4) && 
+            (!isAdelaide || state.player.spellsBoughtThisGame < 4) && 
+            (!isHerrea || state.player.blueCardsPlayed < 7) &&
+            (!isKism || (state.player.heroPowerActivations || 0) < 3)) {
             state.player.usedHeroPower = false;
         }
+
         state.opponents.forEach(opp => {
             const oppArietta = opp.hero && opp.hero.name === "Arietta";
             const oppAdelaide = opp.hero && opp.hero.name === "Adelaide";
             const oppHerrea = opp.hero && opp.hero.name === "Herrea";
-            if ((!oppArietta || opp.tier < 4) && (!oppAdelaide || opp.spellsBoughtThisGame < 4) && (!oppHerrea || opp.blueCardsPlayed < 7)) {
+            const oppKism = opp.hero && opp.hero.name === "Kism";
+
+            if ((!oppArietta || opp.tier < 4) && 
+                (!oppAdelaide || opp.spellsBoughtThisGame < 4) && 
+                (!oppHerrea || opp.blueCardsPlayed < 7) &&
+                (!oppKism || (opp.heroPowerActivations || 0) < 3)) {
                 opp.usedHeroPower = false;
             }
         });
@@ -4341,7 +4375,7 @@ class BaseCard {
         
         // Find target in specific pools based on effect
         let target = null;
-        if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control' || state.targetingEffect.effect === 'hero_power_heping') {
+        if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control' || state.targetingEffect.effect === 'hero_power_heping' || state.targetingEffect.effect === 'hero_power_kism') {
             target = state.shop.cards.find(c => c.id === targetId);
         } else if (state.targetingEffect.effect === 'parliament_discard') {
             target = state.player.hand.find(c => c.id === targetId);
@@ -4432,6 +4466,23 @@ class BaseCard {
                         delete target.isJustChained;
                         render();
                     }, 400);
+                }
+            } else if (state.targetingEffect.effect === 'hero_power_kism') {
+                const isShopCard = state.shop.cards.includes(target);
+                if (isShopCard) {
+                    if (state.player.board.length < boardLimit) {
+                        const clone = target.clone();
+                        clone.owner = 'player';
+                        state.player.board.push(clone);
+                        
+                        if (state.targetingEffect.owner === 'player') {
+                            state.player.heroPowerActivations++;
+                        } else {
+                            getOpponent().heroPowerActivations++;
+                        }
+                    }
+
+                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'pusbag_sacrifice') {
                 const idx = state.player.board.indexOf(target);
@@ -5628,6 +5679,8 @@ class BaseCard {
         const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
         const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
         
+        const isKismFinished = entity.hero.name === "Kism" && (entity.heroPowerActivations || 0) >= 3;
+        
         if ((hp.isPassive || isAriettaLocked || isAdelaideLocked || isHerreaLocked) && !entity.usedHeroPower) {
             const gem = document.createElement('div');
             gem.className = 'hero-power-passive-gem';
@@ -5640,11 +5693,21 @@ class BaseCard {
             }
             
             circle.appendChild(gem);
-        } else if (!entity.usedHeroPower) {
+        } else if (!entity.usedHeroPower && !isKismFinished) {
             const cost = document.createElement('div');
             cost.className = 'hero-power-cost';
             cost.textContent = hp.cost;
             circle.appendChild(cost);
+
+            if (entity.hero.name === "Kism") {
+                const gem = document.createElement('div');
+                gem.className = 'hero-power-passive-gem';
+                const count = document.createElement('div');
+                count.className = 'hero-power-passive-gem-count';
+                count.textContent = 3 - (entity.heroPowerActivations || 0);
+                gem.appendChild(count);
+                circle.appendChild(gem);
+            }
         }
 
         if (isPlayer && !entity.usedHeroPower && !hp.isPassive && state.phase === 'SHOP' && entity.gold >= hp.cost && !state.castingSpell && !state.targetingEffect) {
@@ -6590,6 +6653,11 @@ class BaseCard {
                     if (isCreature && !instance.isChained) {
                         applyTargetedEffect(instance.id);
                     }
+                } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_kism') {
+                    const isCreature = instance.type?.toLowerCase().includes('creature');
+                    if (isCreature && state.player.board.length < boardLimit) {
+                        applyTargetedEffect(instance.id);
+                    }
                 } else {
                     buyCard(instance.id);
                 }
@@ -6622,6 +6690,11 @@ class BaseCard {
             } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_heping') {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 if (isCreature && !instance.isChained) {
+                    cardEl.classList.add('targetable');
+                }
+            } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_kism') {
+                const isCreature = instance.type?.toLowerCase().includes('creature');
+                if (isCreature && state.player.board.length < boardLimit) {
                     cardEl.classList.add('targetable');
                 }
             }
@@ -6690,7 +6763,7 @@ class BaseCard {
                     // Not targetable on board
                 } else if (state.targetingEffect.effect === 'permutate_step1' || state.targetingEffect.effect === 'cloudline_sovereign_step1') {
                     // Not targetable as a card, only counters are clickable
-                } else if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control') {
+                } else if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control' || state.targetingEffect.effect === 'hero_power_heping' || state.targetingEffect.effect === 'hero_power_kism') {
                     // Not targetable on board (targets shop)
                 } else {
                     // Special case: Intli Assaulter, Wechuge, Matriarch, Brutalizer can't target themselves
