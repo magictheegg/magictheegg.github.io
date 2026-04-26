@@ -2145,6 +2145,7 @@ class BaseCard {
 
     const CardFactory = {
         create(data) {
+            if (!data) return null;
             const name = data.card_name;
             let card;
             switch(name) {
@@ -2269,7 +2270,7 @@ class BaseCard {
                 case 'To Battle': card = new ToBattle(data); break;
                 case 'Faith in Darkness': card = new FaithInDarkness(data); break;
                 case 'By Blood and Venom': card = new ByBloodAndVenom(data); break;
-                default: card = new BaseCard(data);
+                default: card = new BaseCard(data); break;
             }
             return card;
         }
@@ -2525,7 +2526,7 @@ class BaseCard {
             spellGraveyard: [],
             playmat: 'img/playmats/majestic.jpg',
             plane: null,
-            hero: HEROES.HEPING, // Default for testing
+            hero: HEROES.XIONG_MAO, // Default for testing
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -3974,10 +3975,13 @@ class BaseCard {
                 subPool = creaturePool.filter(c => !c.type?.toLowerCase().includes('equipment'));
             }
             if (subPool.length === 0) break;
-            state.shop.cards.push(CardFactory.create(subPool[Math.floor(Math.random() * subPool.length)]));
+            const instance = CardFactory.create(subPool[Math.floor(Math.random() * subPool.length)]);
+            if (instance) state.shop.cards.push(instance);
         }
         while (state.shop.cards.filter(c => c.type && !c.type.toLowerCase().includes('creature') && !c.type.toLowerCase().includes('equipment')).length < spellsTarget) {
-            state.shop.cards.push(CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]));
+            if (spellPool.length === 0) break;
+            const instance = CardFactory.create(spellPool[Math.floor(Math.random() * spellPool.length)]);
+            if (instance) state.shop.cards.push(instance);
         }
     }
 
@@ -5925,6 +5929,7 @@ class BaseCard {
         const instanceList = [];
         cards.forEach((card, index) => {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
+            if (!instance) return;
             instanceList.push(instance);
             const id = `card-${instance.id}`;
             let oldEl = existingMap.get(id);
@@ -7063,9 +7068,10 @@ if (typeof module !== 'undefined' && module.exports) {
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
         resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, findTarget,
         resolveCombatImpact, resolveDeaths, processDeaths, performAttack, triggerETB,
-        applyTargetedEffect, applySpell, useCardFromHand,
-        resolveDiscovery, toggleDiscoverySelection, confirmDiscovery,
-        startShopTurn, setAvailableCards
+        applyTargetedEffect, applySpell, useCardFromHand, activateHeroPower, clearTargetingEffect, queueTargetingEffect,
+        resolveDiscovery, toggleDiscoverySelection, confirmDiscovery, queueDiscovery,
+        startShopTurn, tierUp, setAvailableCards, buyCard, pulseCardElement, rerollShop,
+        checkHerreaReward, checkAutumnReward
     };
 }
 
