@@ -37,7 +37,7 @@ def create_autobattler_card_list():
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
-    output_path = os.path.join('lists', 'autobattler-cards.json')
+    output_path = os.path.join('custom', 'lists', 'autobattler-cards.json')
 
     try:
         with open(all_cards_path, 'r', encoding='utf-8-sig') as f:
