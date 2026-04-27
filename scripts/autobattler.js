@@ -17,7 +17,7 @@
         },
         'Trample': {
             icon: 'img/trample.png',
-            description: 'When attacking a creature, any damage dealt beyond the defender\'s toughness is dealt to that creature\s neighbor.'
+            description: 'When attacking a creature, any damage dealt beyond the defender\'s toughness is dealt to that creature\'s neighbor.'
         },
         'First strike': {
             icon: 'img/first-strike.png',
@@ -2326,7 +2326,7 @@ class BaseCard {
 
     const HEROES = {
         XYLO: {
-            name: "Xylo, the Starfallen",
+            name: "Xylo",
             avatar: "sets/SHF-files/img/9.png",
             heroPower: {
                 name: "Celestial Disturbance",
@@ -2378,7 +2378,7 @@ class BaseCard {
                 name: "Armament Exhibition",
                 icon: "sets/NJB-files/img/180.png",
                 cost: 2,
-                text: "Put a +1/+1 counter on a random creature you control. (Increases each time you activate this ability.)",
+                text: "Put a +1/+1 counter on a random creature you control. (Then upgrade this ability.)",
                 isPassive: false,
                 effect: async (owner, board) => {
                     const entity = (owner === 'player') ? state.player : getOpponent();
@@ -2407,7 +2407,7 @@ class BaseCard {
                 name: "Crain's Crony",
                 icon: "sets/DSS-files/img/89_Crain's Crony.jpg",
                 cost: 2,
-                text: "At the beginning of combat, create a token copy of your left-most creature with decayed.",
+                text: "At start of combat, create a token copy of your left-most creature with decayed.",
                 isPassive: false,
                 effect: (owner, board) => {
                     const entity = (owner === 'player') ? state.player : getOpponent();
@@ -2439,7 +2439,7 @@ class BaseCard {
             heroPower: {
                 name: "Connect the Dots",
                 icon: "sets/FAU-files/img/54_Connect the Dots.jpg",
-                text: "At the start of the game, seek a 5-star creature. Draw it after you play your seventh blue card.",
+                text: "At start of game, seek a 5-star creature to get after you play your seventh blue card.",
                 isPassive: true
             }
         },
@@ -2537,7 +2537,7 @@ class BaseCard {
             heroPower: {
                 name: "Timestreaming",
                 icon: "sets/ACE-files/img/108_Turn Back the Clock.jpg",
-                text: "Every fourth reroll, get a special shop.",
+                text: "Every fourth reroll, Enoch augments the shop.",
                 isPassive: true
             }
         },
@@ -2547,7 +2547,7 @@ class BaseCard {
             heroPower: {
                 name: "Sound the Blauhorn",
                 icon: "sets/GQC-files/img/211_Sound the Blauhorn.jpg",
-                text: "Every third spell you cast that targets a Centaur, get a random Centaur of your tier or lower.",
+                text: "Every third spell you cast that targets a Centaur, get a random Centaur.",
                 isPassive: true
             }
         },
@@ -3201,6 +3201,180 @@ class BaseCard {
             if (f) f.addEventListener('change', populateGlossary);
         });
 
+        // HERO SELECT FUNCTIONALITY
+        const heroSelectPage = document.getElementById('hero-select-page');
+        const heroSelectPreviewTrigger = document.getElementById('hero-select-preview');
+        const heroSelectCloseBtn = document.getElementById('hero-select-close-btn');
+        const heroGrid = document.getElementById('hero-grid');
+        const heroPreviewLargeImg = document.getElementById('hero-preview-large-img');
+        const heroPreviewName = document.getElementById('hero-preview-name');
+        const heroPowerBox = document.getElementById('hero-power-preview-box');
+        const heroConfirmBtn = document.getElementById('hero-confirm-btn');
+
+        let pendingHero = null;
+        let isRandomSelected = false;
+
+        function updateHeroPreview(hero, isRandom = false) {
+            isRandomSelected = isRandom;
+            const randomPlaceholder = document.getElementById('hero-preview-random-placeholder');
+            
+            if (isRandom) {
+                pendingHero = null;
+                if (heroPreviewLargeImg) heroPreviewLargeImg.style.display = 'none';
+                if (randomPlaceholder) randomPlaceholder.style.display = 'flex';
+                if (heroPreviewName) heroPreviewName.textContent = 'Random Hero';
+                if (heroPowerBox) heroPowerBox.style.display = 'none';
+                if (heroConfirmBtn) {
+                    heroConfirmBtn.style.display = 'block';
+                    heroConfirmBtn.textContent = 'EMBRACE CHAOS';
+                }
+                return;
+            }
+
+            if (!hero) {
+                if (heroPreviewLargeImg) heroPreviewLargeImg.style.display = 'none';
+                if (randomPlaceholder) randomPlaceholder.style.display = 'none';
+                if (heroPreviewName) heroPreviewName.textContent = 'Select a Hero';
+                if (heroPowerBox) heroPowerBox.style.display = 'none';
+                if (heroConfirmBtn) heroConfirmBtn.style.display = 'none';
+                return;
+            }
+
+            pendingHero = hero;
+            if (heroPreviewLargeImg) {
+                heroPreviewLargeImg.src = hero.avatar;
+                heroPreviewLargeImg.style.display = 'block';
+            }
+            if (randomPlaceholder) randomPlaceholder.style.display = 'none';
+            if (heroPreviewName) heroPreviewName.textContent = hero.name;
+            
+            if (hero.heroPower) {
+                if (heroPowerBox) heroPowerBox.style.display = 'flex';
+                const icon = document.getElementById('hero-power-preview-icon');
+                const name = document.getElementById('hero-power-preview-name');
+                const desc = document.getElementById('hero-power-preview-desc');
+                if (icon) icon.src = hero.heroPower.icon;
+                if (name) name.textContent = hero.heroPower.name;
+                if (desc) desc.textContent = hero.heroPower.text;
+            } else {
+                if (heroPowerBox) heroPowerBox.style.display = 'none';
+            }
+
+            if (heroConfirmBtn) {
+                heroConfirmBtn.style.display = 'block';
+                heroConfirmBtn.textContent = 'CHOOSE CHAMPION';
+            }
+        }
+
+        function populateHeroSelect() {
+            if (!heroGrid) return;
+            heroGrid.innerHTML = '';
+
+            // Filter out Marketto (shopkeeper) and sort alphabetically
+            const selectableHeroes = Object.values(HEROES)
+                .filter(h => h.name !== 'Marketto')
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            selectableHeroes.forEach(hero => {
+                const item = document.createElement('div');
+                item.className = 'hero-grid-item';
+                item.dataset.heroName = hero.name;
+                
+                // Use state.player.hero to determine initial selection
+                if (!isRandomSelected && state.player.hero.name === hero.name) {
+                    item.classList.add('selected');
+                }
+                
+                item.innerHTML = `<img src="${hero.avatar}" alt="${hero.name}">`;
+                item.addEventListener('mouseenter', () => updateHeroPreview(hero));
+                item.addEventListener('click', () => {
+                    isRandomSelected = false;
+                    pendingHero = hero;
+                    // Update grid selection UI immediately
+                    document.querySelectorAll('.hero-grid-item').forEach(el => el.classList.remove('selected'));
+                    item.classList.add('selected');
+                    confirmHeroSelection();
+                });
+                heroGrid.appendChild(item);
+            });
+
+            // Add RANDOM option at the end
+            const randomItem = document.createElement('div');
+            randomItem.className = 'hero-grid-item';
+            randomItem.dataset.isRandom = 'true';
+            if (isRandomSelected) randomItem.classList.add('selected');
+            randomItem.innerHTML = `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:130px; color:#e3e3e3; background:#111; font-family:'Beleren Small Caps'">?</div>`;
+            randomItem.addEventListener('mouseenter', () => updateHeroPreview(null, true));
+            randomItem.addEventListener('click', () => {
+                isRandomSelected = true;
+                pendingHero = null;
+                // Update grid selection UI immediately
+                document.querySelectorAll('.hero-grid-item').forEach(el => el.classList.remove('selected'));
+                randomItem.classList.add('selected');
+                confirmHeroSelection();
+            });
+            heroGrid.appendChild(randomItem);
+
+            // Initialize preview with current state
+            if (isRandomSelected) updateHeroPreview(null, true);
+            else updateHeroPreview(state.player.hero);
+        }
+
+        function confirmHeroSelection() {
+            const frontHeroImg = document.getElementById('current-hero-img');
+            const frontHeroPreview = document.getElementById('hero-select-preview');
+
+            if (isRandomSelected) {
+                if (frontHeroImg) frontHeroImg.style.display = 'none';
+                // Add "?" to front page preview if it's not there
+                let qMark = frontHeroPreview.querySelector('.random-q');
+                if (!qMark) {
+                    qMark = document.createElement('div');
+                    qMark.className = 'random-q';
+                    qMark.style.width = '100%';
+                    qMark.style.height = '100%';
+                    qMark.style.display = 'flex';
+                    qMark.style.alignItems = 'center';
+                    qMark.style.justifyContent = 'center';
+                    qMark.style.fontSize = '100px';
+                    qMark.style.color = '#e3e3e3';
+                    qMark.style.background = '#111';
+                    qMark.style.fontFamily = "'Beleren Small Caps'";
+                    qMark.textContent = '?';
+                    frontHeroPreview.appendChild(qMark);
+                } else {
+                    qMark.style.display = 'flex';
+                }
+                heroSelectPage.style.display = 'none';
+            } else if (pendingHero) {
+                state.player.hero = pendingHero;
+                if (frontHeroImg) {
+                    frontHeroImg.src = pendingHero.avatar;
+                    frontHeroImg.style.display = 'block';
+                }
+                const qMark = frontHeroPreview.querySelector('.random-q');
+                if (qMark) qMark.style.display = 'none';
+                heroSelectPage.style.display = 'none';
+            }
+        }
+
+        if (heroSelectPreviewTrigger) {
+            heroSelectPreviewTrigger.addEventListener('click', () => {
+                heroSelectPage.style.display = 'flex';
+                populateHeroSelect();
+            });
+        }
+
+        if (heroSelectCloseBtn) {
+            heroSelectCloseBtn.addEventListener('click', () => {
+                heroSelectPage.style.display = 'none';
+            });
+        }
+
+        if (heroConfirmBtn) {
+            heroConfirmBtn.addEventListener('click', confirmHeroSelection);
+        }
+
         // FRONT PAGE SETUP
         const frontPage = document.getElementById('front-page');
         const playBtn = document.getElementById('play-button');
@@ -3221,6 +3395,12 @@ class BaseCard {
 
         if (playBtn && frontPage) {
             playBtn.addEventListener('click', () => {
+                // If RANDOM was selected, pick one now
+                if (isRandomSelected) {
+                    const selectableHeroes = Object.values(HEROES).filter(h => h.name !== 'Marketto');
+                    state.player.hero = selectableHeroes[Math.floor(Math.random() * selectableHeroes.length)];
+                }
+
                 const cabinet = document.getElementById('game-cabinet');
                 // Fade out menu
                 frontPage.style.opacity = '0';
@@ -3250,7 +3430,7 @@ class BaseCard {
                         queueDiscovery({
                             cards: selected,
                             title: "CONNECT THE DOTS",
-                            text: "Choose a 5-star creature to receive after playing 10 blue cards.",
+                            text: "Choose a 5-star creature to get after playing seven blue cards.",
                             effect: 'herrea_seek'
                         });
                     }

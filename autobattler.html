@@ -1124,7 +1124,6 @@
         }
 
         .actionable-outline {
-
             outline: 4px solid #add8e6; /* Powder Blue */
             box-shadow: 0 0 15px #add8e6;
         }
@@ -1481,7 +1480,7 @@
 
         #mc-logo {
             max-width: 800px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             /* Stack multiple shadows to create a dense but naturally shaped dark glow behind the letters */
             filter: drop-shadow(0 0 15px rgba(0,0,0,0.8)) 
                     drop-shadow(0 0 30px rgba(0,0,0,0.8))
@@ -1504,13 +1503,14 @@
 
         .top-row {
             gap: 40px;
+            padding-bottom: 15px;
         }
 
         #hero-select-preview {
             width: 140px;
             height: 140px;
             background: #000;
-            border: 4px solid #ffd700;
+            border: 4px solid #87ceeb;
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
@@ -1590,12 +1590,15 @@
             display: flex;
             padding: 50px;
             box-sizing: border-box;
-            gap: 40px;
+            gap: 30px;
             position: relative;
             background-color: #1a1a1a;
+            background-image: url('img/glossary-bg.jpg');
+            background-size: cover;
+            background-position: center;
             border: 8px double #555;
             border-radius: 12px;
-            box-shadow: 0 0 100px rgba(0,0,0,0.9);
+            box-shadow: 0 0 100px rgba(0,0,0,0.9), inset 0 0 0 1000px rgba(0,0,0,0.4);
             transform-origin: center center;
         }
 
@@ -1624,7 +1627,7 @@
         }
 
         #glossary-left {
-            width: 1000px;
+            width: 1080px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -1663,8 +1666,12 @@
 
         #glossary-grid {
             flex: 1;
+            width: 1000px;
             overflow-y: scroll;
-            padding-right: 15px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         #glossary-grid::-webkit-scrollbar {
@@ -1680,9 +1687,13 @@
             margin-bottom: 50px;
         }
 
+        .glossary-tier-section:last-child {
+            margin-bottom: 10px;
+        }
+
         .glossary-tier-header {
             font-size: 3em;
-            color: #ffd700;
+            color: #f3f3f3;
             border-bottom: 3px solid #666; /* Soft grey underline */
             margin-bottom: 25px;
             padding-bottom: 10px;
@@ -1768,7 +1779,7 @@
         }
 
         #glossary-description h2 {
-            color: #ffd700;
+            color: #f3f3f3;
             font-size: 2.2em;
             margin-bottom: 20px;
             margin-top: 20px;
@@ -1782,6 +1793,263 @@
             padding: 15px;
             margin-bottom: 15px;
             border-left: 5px solid #ffd700;
+        }
+
+        .keyword-info:last-child {
+            margin-bottom: 0;
+        }
+
+        /* HERO SELECT PAGE */
+        #hero-select-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 7000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #hero-select-content {
+            width: 1600px;
+            height: 900px;
+            display: flex;
+            padding: 60px;
+            box-sizing: border-box;
+            gap: 50px;
+            position: relative;
+            background-image: url('img/pw-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 10px double #444855;
+            border-radius: 12px;
+            box-shadow: 0 0 120px rgba(0,0,0,1), inset 0 0 0 1000px rgba(0,0,0,0.4);
+            transform-origin: center center;
+        }
+
+        #hero-select-close-btn {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            width: 60px;
+            height: 60px;
+            background: #c62828;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: transform 0.2s;
+            z-index: 100;
+        }
+
+        #hero-select-close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #hero-select-left {
+            width: 900px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #hero-select-header {
+            font-size: 4em;
+            color: #fff;
+            font-family: 'Beleren Small Caps', sans-serif;
+            letter-spacing: 5px;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            text-align: left;
+            text-shadow: 0 4px 10px rgba(0,0,0,1), 0 0 25px rgba(0,0,0,0.8);
+            border-bottom: 4px solid #333644;
+        }
+
+        #hero-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 180px);
+            gap: 30px;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+
+        .hero-grid-item {
+            width: 180px;
+            height: 180px;
+            background: #16161e;
+            border: 4px solid #333;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-grid-item:hover {
+            border-color: #ffd700;
+            box-shadow: 0 0px 35px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero-grid-item.selected {
+            border-color: #87ceeb;
+            outline: 5px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .hero-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.9);
+            object-position: center -23%;
+            filter: grayscale(0.4);
+            transition: filter 0.3s ease;
+        }
+
+        .hero-grid-item:hover img, .hero-grid-item.selected img {
+            filter: grayscale(0);
+        }
+
+        #hero-select-right {
+            width: 530px;
+            background: linear-gradient(180deg, #1a1a24 0%, #0d0d12 100%);
+            border-radius: 24px;
+            border: 3px solid #333644;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        #hero-preview-banner {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #ffd700;
+        }
+
+        #hero-preview-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 16%;
+        }
+
+        #hero-preview-banner::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(13,13,18,1) 0%, rgba(13,13,18,0) 100%);
+        }
+
+        #hero-info-content {
+            height: 390px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #hero-preview-name {
+            font-size: 3em;
+            color: #fff;
+            font-family: 'Beleren Small Caps', sans-serif;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero-power-preview-box {
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid #444;
+            border-radius: 16px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .hero-power-preview-icon-frame {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid #a0a0a0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+        }
+
+        .hero-power-preview-icon-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: none;
+            scale: 0.5;
+            object-position: center 29%;
+            overflow: visible;
+        }
+
+        .hero-power-preview-name {
+            font-size: 1.8em;
+            color: #fff;
+            font-weight: bold;
+            font-family: 'Beleren Small Caps', sans-serif;
+        }
+
+        .hero-power-preview-desc {
+            font-size: 1.3em;
+            color: #ccc;
+            font-family: 'Beleren', sans-serif;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        #hero-confirm-btn {
+            margin-top: auto;
+            margin-bottom: 30px;
+            width: 80%;
+            height: 70px;
+            font-size: 2.2em;
+            background: linear-gradient(to bottom, #ffd700, #b8860b);
+            color: #000;
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            font-family: 'Beleren Small Caps', sans-serif;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+            transition: all 0.2s ease;
+        }
+
+        #hero-confirm-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.2);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        #hero-confirm-btn:active {
+            transform: translateY(1px);
         }
 
         .keyword-info:last-child {
@@ -1834,7 +2102,7 @@
         }
 
         .keyword-text {
-            font-size: 1.2em;
+            font-size: 1.1em;
             line-height: 1.4;
             font-family: 'Beleren', sans-serif;
         }
@@ -1857,6 +2125,34 @@
                 </div>
                 <div class="menu-row">
                     <button id="cosmetics-button" class="menu-btn secondary-btn">COSMETICS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hero-select-page">
+        <div id="hero-select-content">
+            <button id="hero-select-close-btn">&times;</button>
+            <div id="hero-select-left">
+                <div id="hero-select-header">Planeswalker Gallery</div>
+                <div id="hero-grid">
+                    <!-- Heroes injected here -->
+                </div>
+            </div>
+            <div id="hero-select-right">
+                <div id="hero-preview-banner">
+                    <img id="hero-preview-large-img" src="" alt="Hero Banner">
+                    <div id="hero-preview-random-placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:220px; color:#e3e3e3; background:#111; font-family:'Beleren Small Caps'">?</div>
+                </div>
+                <div id="hero-info-content">
+                    <div id="hero-preview-name">Select a Hero</div>
+                    <div id="hero-power-preview-box" class="hero-power-preview-box" style="display: none;">
+                        <div class="hero-power-preview-icon-frame">
+                            <img id="hero-power-preview-icon" src="" alt="Hero Power">
+                        </div>
+                        <div id="hero-power-preview-name" class="hero-power-preview-name">Power Name</div>
+                        <div id="hero-power-preview-desc" class="hero-power-preview-desc">Power Description</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2001,6 +2297,7 @@
             const cabinet = document.getElementById('game-cabinet');
             const frontPageContent = document.getElementById('front-page-content');
             const glossaryContent = document.getElementById('glossary-content');
+            const heroSelectContent = document.getElementById('hero-select-content');
             const targetWidth = 1600;
             const targetHeight = 900;
             const windowWidth = window.innerWidth;
@@ -2013,6 +2310,7 @@
             if (cabinet) cabinet.style.transform = `scale(${scale})`;
             if (frontPageContent) frontPageContent.style.transform = `scale(${scale})`;
             if (glossaryContent) glossaryContent.style.transform = `scale(${scale})`;
+            if (heroSelectContent) heroSelectContent.style.transform = `scale(${scale})`;
         }
         
         window.addEventListener('resize', scaleGame);
