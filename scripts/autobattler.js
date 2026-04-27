@@ -351,6 +351,12 @@ class BaseCard {
         for (let i = 0; i < multiplier; i++) {
             if (targetEntity.plane !== 'Cirrusea') {
                 targetEntity.plane = 'Cirrusea';
+                // Trigger visual update if dynamic traverse is enabled (or it's an opponent)
+                const isPlayer = (targetEntity === state.player);
+                if (!isPlayer || state.settings.dynamicTraverse) {
+                    render();
+                }
+                
                 // Create 1/2 Bird Token with Flying
                 if (board.length < boardLimit) {
                     const bird = createToken('Bird', 'AEX', owner);
@@ -800,14 +806,22 @@ class BaseCard {
             const multiplier = host.isFoil ? 2 : 1;
             
             opponentBoard.filter(c => !c.hasKeyword('Hexproof')).forEach(c => {
-                c.damageTaken += multiplier;
+                let damage = multiplier;
+                if (c.shieldCounters > 0) {
+                    c.shieldCounters--;
+                    damage = 0;
+                } else {
+                    c.damageTaken += multiplier;
+                }
+
                 // Animation
                 setTimeout(() => {
                     const el = document.getElementById(`card-${c.id}`);
                     if (el) {
                         el.classList.add('shake');
                         setTimeout(() => el.classList.remove('shake'), 300);
-                        showDamageBubble(c.id, multiplier);
+                        if (damage > 0) showDamageBubble(c.id, damage);
+                        else render(); // Re-render to clear shield visual
                     }
                 }, 100);
             });
@@ -2327,7 +2341,11 @@ class BaseCard {
     const HEROES = {
         XYLO: {
             name: "Xylo",
+            fullName: "Xylo, the Starfallen",
             avatar: "sets/SHF-files/img/9.png",
+            skins: [
+                { name: "Star Sentinel", avatar: "https://provocativemtg.github.io/sets/VYI-files/img/282.png" }
+            ],
             heroPower: {
                 name: "Celestial Disturbance",
                 icon: "sets/SHF-files/img/89.png",
@@ -2350,7 +2368,13 @@ class BaseCard {
         },
         XIONG_MAO: {
             name: "Xiong Mao",
+            fullName: "Xiong Mao, Survivalist",
             avatar: "sets/GNJ-files/img/0_Xiong Mao, Survivalist.jpg",
+            skins: [
+                { name: "Xiong Mao, Restless Waif", avatar: "sets/KOD-files/img/242_Xiong Mao, Restless Waif.jpg" },
+                { name: "Xiong Mao, the Intrepid", avatar: "sets/GHQ-files/img/225_Xiong Mao, the Intrepid.jpg" },
+                { name: "Xiong Mao, the Survivor", avatar: "sets/TWB-files/img/187_Xiong Mao, the Survivor.jpg" }
+            ],
             heroPower: {
                 name: "Panda's Resourcefulness",
                 icon: "sets/SHF-files/img/36.png",
@@ -2373,7 +2397,15 @@ class BaseCard {
         },
         SETO_SAN: {
             name: "Seto San",
+            fullName: "Seto San, Divine Heroine",
             avatar: "sets/NJB-files/img/17.png",
+            skins: [
+                { name: "Seto San, Dragonblade", avatar: "sets/DSS-files/img/32_Seto San, the Dragonblade.jpg" },
+                { name: "Seto San, Forlorn Savior", avatar: "sets/GHQ-files/img/31_Seto San, Forlorn Savior.jpg" },
+                { name: "Seto San, Glorious General", avatar: "sets/AEX-files/img/33_Seto San, Glorious General.png" },
+                { name: "Seto San, Summer Blossom", avatar: "sets/ATB-files/img/31_Seto San, Summer Blossom.jpg" },
+                { name: "Seto San, the Sacred Hand", avatar: "sets/SUR-files/img/25_Seto San, the Sacred Hand.jpg" }
+            ],
             heroPower: {
                 name: "Armament Exhibition",
                 icon: "sets/NJB-files/img/180.png",
@@ -2401,8 +2433,13 @@ class BaseCard {
             }
         },
         CRAIN: {
-            name: "Lord Ellison Crain",
+            name: "Crain",
+            fullName: "Crain, Black-Blooded",
             avatar: "sets/AEX-files/img/196_Crain, Black-Blooded.png",
+            skins: [
+                { name: "Captain Crain", avatar: "sets/GSS-files/img/14.png" },
+                { name: "Lord Ellison Crain", avatar: "sets/DSS-files/img/219_Lord Ellison Crain.jpg" }
+            ],
             heroPower: {
                 name: "Crain's Crony",
                 icon: "sets/DSS-files/img/89_Crain's Crony.jpg",
@@ -2425,7 +2462,11 @@ class BaseCard {
         },
         ARIETTA: {
             name: "Arietta",
+            fullName: "Arietta, the Blade Foretold",
             avatar: "sets/SGB-files/img/3_Arietta, the Blade Foretold.jpg",
+            skins: [
+                { name: "Arietta, Forsworn", avatar: "sets/WAS-files/img/185_Arietta, Forsworn_front.jpg" }
+            ],
             heroPower: {
                 name: "Study the Blade",
                 icon: "sets/WAS-files/img/201_Patience, Forsworn Student.jpg",
@@ -2435,7 +2476,12 @@ class BaseCard {
         },
         HERREA: {
             name: "Herrea",
+            fullName: "Herrea, Celestial Queen",
             avatar: "sets/FAU-files/img/61_Herrea, Celestial Queen.jpg",
+            skins: [
+                { name: "Herrea of the Night Stars", avatar: "sets/FAE-files/img/60_Herrea of the Night Stars.jpg" },
+                { name: "Herrea, the Star's Muse", avatar: "sets/AEX-files/img/57_Herrea, the Star's Muse.png" }
+            ],
             heroPower: {
                 name: "Connect the Dots",
                 icon: "sets/FAU-files/img/54_Connect the Dots.jpg",
@@ -2445,7 +2491,11 @@ class BaseCard {
         },
         ADELAIDE: {
             name: "Adelaide",
+            fullName: "Adelaide, the Soloist",
             avatar: "sets/SGB-files/img/36_Adelaide, the Soloist.jpg",
+            skins: [
+                { name: "Mama Kamili", avatar: "sets/WAS-files/img/198_Mama Kamili.jpg" }
+            ],
             heroPower: {
                 name: "Traveling Symphony",
                 icon: "sets/SGB-files/img/41_Cajoling Chorus.jpg",
@@ -2455,7 +2505,12 @@ class BaseCard {
         },
         HEPING: {
             name: "Heping",
+            fullName: "Heping, Grand Pacifist",
             avatar: "sets/NJB-files/img/1.png",
+            skins: [
+                { name: "Heping, Master Arbitrator", avatar: "sets/GNJ-files/img/22_Heping, Master Arbitrator.jpg" },
+                { name: "Heping, at War's End", avatar: "sets/ATR-files/img/0.png" }
+            ],
             heroPower: {
                 name: "Armistice Chains",
                 icon: "sets/SUR-files/img/4_Cai Lan, the Chained.jpg",
@@ -2477,8 +2532,10 @@ class BaseCard {
             }
         },
         JAKE: {
-            name: "Jake and the Gang",
+            name: "Jake",
+            fullName: "Jake and the Gang",
             avatar: "sets/ACE-files/img/252_Jake and the Gang.jpg",
+            skins: [],
             heroPower: {
                 name: "Worldbraiding",
                 icon: "sets/ATR-files/img/78.png",
@@ -2510,7 +2567,12 @@ class BaseCard {
         },
         KISM: {
             name: "Kism",
+            fullName: "Kism, Daughter of Fates",
             avatar: "sets/SGB-files/img/154_Kism, Daughter of Fates.jpg",
+            skins: [
+                { name: "Kism, Threads of Destiny", avatar: "sets/ICO-files/img/19.png" },
+                { name: "Kism, Wild Wunderkind", avatar: "sets/WAS-files/img/162_Kism, Wild Wunderkind.jpg" }
+            ],
             heroPower: {
                 name: "Untangle the Weald",
                 icon: "sets/SGB-files/img/169_Weald Trappers.jpg",
@@ -2533,7 +2595,9 @@ class BaseCard {
         },
         ENOCH: {
             name: "Enoch",
+            fullName: "Enoch, Elder Chronurgist",
             avatar: "sets/WAS-files/img/189_Enoch, Elder Chronurgist.jpg",
+            skins: [],
             heroPower: {
                 name: "Timestreaming",
                 icon: "sets/ACE-files/img/108_Turn Back the Clock.jpg",
@@ -2543,7 +2607,9 @@ class BaseCard {
         },
         AUTUMN: {
             name: "Autumn",
+            fullName: "Autumn, Wildwood Queen",
             avatar: "sets/ACE-files/img/286_Autumn, Wildwood Queen.jpg",
+            skins: [],
             heroPower: {
                 name: "Sound the Blauhorn",
                 icon: "sets/GQC-files/img/211_Sound the Blauhorn.jpg",
@@ -2553,12 +2619,19 @@ class BaseCard {
         },
         MARKETTO: {
             name: "Marketto",
+            fullName: "Marketto",
             avatar: "sets/SHF-files/img/60.png",
-            heroPower: null // Shopkeepers don't have hero powers right now
+            skins: [],
+            heroPower: null
         }
     };
 
     const HERO_POOL = Object.values(HEROES);
+    const selectableHeroes = HERO_POOL.filter(h => h.name !== 'Marketto');
+    const randomHero = selectableHeroes[Math.floor(Math.random() * selectableHeroes.length)];
+    
+    const availablePlaymats = ['ancient', 'bleak', 'coastal', 'desolate', 'majestic', 'primal', 'pristine', 'rugged', 'stalwart', 'verdant'];
+    const randomPlaymat = `img/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
 
     // --- GAME STATE ---
     let state = {
@@ -2572,9 +2645,9 @@ class BaseCard {
             board: [],
             treasures: 0,
             spellGraveyard: [],
-            playmat: 'img/playmats/majestic.jpg',
+            playmat: randomPlaymat,
             plane: null,
-            hero: HEROES.JAKE, // Default for testing
+            hero: randomHero,
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -2611,7 +2684,11 @@ class BaseCard {
         deadServantsCount: 0,
         spellsCastThisTurn: 0,
         panharmoniconActive: false,
-        activeAttackerId: null
+        activeAttackerId: null,
+        settings: {
+            dynamicTraverse: true,
+            heroSkins: {} // heroName: skinData
+        }
     };
 
     function getOpponent() {
@@ -3242,7 +3319,8 @@ class BaseCard {
 
             pendingHero = hero;
             if (heroPreviewLargeImg) {
-                heroPreviewLargeImg.src = hero.avatar;
+                const skin = state.settings.heroSkins[hero.name]?.avatar;
+                heroPreviewLargeImg.src = skin || hero.avatar;
                 heroPreviewLargeImg.style.display = 'block';
             }
             if (randomPlaceholder) randomPlaceholder.style.display = 'none';
@@ -3285,7 +3363,9 @@ class BaseCard {
                     item.classList.add('selected');
                 }
                 
-                item.innerHTML = `<img src="${hero.avatar}" alt="${hero.name}">`;
+                const currentSkin = state.settings.heroSkins[hero.name]?.avatar || hero.avatar;
+                item.innerHTML = `<img src="${currentSkin}" alt="${hero.name}">`;
+                
                 item.addEventListener('mouseenter', () => updateHeroPreview(hero));
                 item.addEventListener('click', () => {
                     isRandomSelected = false;
@@ -3323,9 +3403,11 @@ class BaseCard {
         function confirmHeroSelection() {
             const frontHeroImg = document.getElementById('current-hero-img');
             const frontHeroPreview = document.getElementById('hero-select-preview');
+            const frontHeroName = document.getElementById('current-hero-name');
 
             if (isRandomSelected) {
                 if (frontHeroImg) frontHeroImg.style.display = 'none';
+                if (frontHeroName) frontHeroName.textContent = 'Random';
                 // Add "?" to front page preview if it's not there
                 let qMark = frontHeroPreview.querySelector('.random-q');
                 if (!qMark) {
@@ -3349,15 +3431,113 @@ class BaseCard {
             } else if (pendingHero) {
                 state.player.hero = pendingHero;
                 if (frontHeroImg) {
-                    frontHeroImg.src = pendingHero.avatar;
+                    const skin = state.settings.heroSkins[pendingHero.name]?.avatar;
+                    frontHeroImg.src = skin || pendingHero.avatar;
                     frontHeroImg.style.display = 'block';
                 }
+                if (frontHeroName) frontHeroName.textContent = pendingHero.name;
                 const qMark = frontHeroPreview.querySelector('.random-q');
                 if (qMark) qMark.style.display = 'none';
                 heroSelectPage.style.display = 'none';
             }
         }
 
+        // COSMETICS FUNCTIONALITY
+        const cosmeticsPage = document.getElementById('cosmetics-page');
+        const cosmeticsBtn = document.getElementById('cosmetics-button');
+        const cosmeticsCloseBtn = document.getElementById('cosmetics-close-btn');
+        const heroSkinsContainer = document.getElementById('hero-skins-container');
+        const playmatGrid = document.getElementById('playmat-grid');
+        const dynamicTraverseCheckbox = document.getElementById('setting-dynamic-traverse');
+
+        let activeCosmeticsBg = 1;
+        function updateCosmeticsBackground(url, immediate = false) {
+            const nextBg = activeCosmeticsBg === 1 ? 2 : 1;
+            const elActive = document.getElementById(`cosmetics-bg-${activeCosmeticsBg}`);
+            const elNext = document.getElementById(`cosmetics-bg-${nextBg}`);
+            if (!elActive || !elNext) return;
+
+            elNext.style.backgroundImage = `url(${url})`;
+            
+            if (immediate) {
+                elNext.style.transition = 'none';
+                elActive.style.transition = 'none';
+                elNext.style.opacity = '1';
+                elActive.style.opacity = '0';
+                elNext.offsetHeight; // Force reflow
+                elNext.style.transition = '';
+                elActive.style.transition = '';
+            } else {
+                elNext.style.opacity = '1';
+                elActive.style.opacity = '0';
+            }
+            activeCosmeticsBg = nextBg;
+        }
+
+        const EPITHET_OVERRIDES = {
+            "Jake and the Gang": "The Gang",
+            "Herrea of the Night Stars": "the Night Star"
+        };
+
+        function getEpithet(fullName) {
+            if (EPITHET_OVERRIDES[fullName]) return EPITHET_OVERRIDES[fullName];
+            if (fullName.includes(',')) {
+                return fullName.split(',')[1].trim();
+            }
+            return fullName; // Fallback to name if no comma
+        }
+
+        function createSkinItem(hero, skinData, heroName) {
+            const item = document.createElement('div');
+            item.className = 'skin-item';
+            const currentSkin = state.settings.heroSkins[heroName]?.avatar || hero.avatar;
+            if (currentSkin === skinData.avatar) item.classList.add('selected');
+            
+            const epithet = getEpithet(skinData.name);
+
+            item.innerHTML = `
+                <div class="avatar-img-container">
+                    <img class="avatar-img" src="${skinData.avatar}" alt="${skinData.name}" title="${skinData.name}">
+                </div>
+                <div class="skin-epithet">${epithet}</div>
+            `;
+            item.addEventListener('click', () => {
+                state.settings.heroSkins[heroName] = skinData;
+                // Update grid in this row
+                item.parentElement.querySelectorAll('.skin-item').forEach(el => el.classList.remove('selected'));
+                item.classList.add('selected');
+                
+                // If this is the active player hero, update the home screen and in-game UI
+                if (state.player.hero.name === heroName) {
+                    const frontHeroImg = document.getElementById('current-hero-img');
+                    if (frontHeroImg) frontHeroImg.src = skinData.avatar;
+                }
+                render();
+            });
+            return item;
+        }
+
+        if (cosmeticsBtn) {
+            cosmeticsBtn.addEventListener('click', () => {
+                cosmeticsPage.style.display = 'flex';
+                populateCosmetics();
+            });
+        }
+
+        if (cosmeticsCloseBtn) {
+            cosmeticsCloseBtn.addEventListener('click', () => {
+                cosmeticsPage.style.display = 'none';
+            });
+        }
+
+        if (dynamicTraverseCheckbox) {
+            dynamicTraverseCheckbox.checked = state.settings.dynamicTraverse;
+            dynamicTraverseCheckbox.addEventListener('change', (e) => {
+                state.settings.dynamicTraverse = e.target.checked;
+            });
+        }
+
+        // --- RESTORED HERO SELECT LISTENERS ---
         if (heroSelectPreviewTrigger) {
             heroSelectPreviewTrigger.addEventListener('click', () => {
                 heroSelectPage.style.display = 'flex';
@@ -3374,13 +3554,93 @@ class BaseCard {
         if (heroConfirmBtn) {
             heroConfirmBtn.addEventListener('click', confirmHeroSelection);
         }
+        // --------------------------------------
+
+        function populateCosmetics() {
+            // Update page background to current playmat (immediate)
+            updateCosmeticsBackground(state.player.playmat, true);
+
+            // 1. POPULATE PLAYMATS
+            if (playmatGrid) {
+                playmatGrid.innerHTML = '';
+                const playmats = ['ancient', 'bleak', 'coastal', 'desolate', 'majestic', 'primal', 'pristine', 'rugged', 'stalwart', 'verdant'];
+                playmats.forEach(mat => {
+                    const item = document.createElement('div');
+                    item.className = 'playmat-item';
+                    const fullPath = `img/playmats/${mat}.jpg`;
+                    if (state.player.playmat === fullPath) item.classList.add('selected');
+                    
+                    item.innerHTML = `
+                        <img src="${fullPath}" alt="${mat}">
+                        <div class="playmat-label">${mat}</div>
+                    `;
+                    item.addEventListener('click', () => {
+                        state.player.playmat = fullPath;
+                        document.querySelectorAll('.playmat-item').forEach(el => el.classList.remove('selected'));
+                        item.classList.add('selected');
+                        // Update page background with fade
+                        updateCosmeticsBackground(fullPath);
+                        render();
+                    });
+                    playmatGrid.appendChild(item);
+                });
+            }
+
+            // 2. POPULATE HERO SKINS
+            if (heroSkinsContainer) {
+                heroSkinsContainer.innerHTML = '';
+                const heroes = Object.values(HEROES).filter(h => h.name !== 'Marketto').sort((a, b) => a.name.localeCompare(b.name));
+                
+                heroes.forEach(hero => {
+                    const row = document.createElement('div');
+                    row.className = 'hero-skin-row';
+                    row.innerHTML = `<div class="hero-skin-row-header">${hero.name}</div>`;
+                    
+                    const grid = document.createElement('div');
+                    grid.className = 'skin-grid';
+                    
+                    // Default skin (Original)
+                    const defaultItem = createSkinItem(hero, { avatar: hero.avatar, name: hero.fullName || hero.name }, hero.name);
+                    grid.appendChild(defaultItem);
+                    
+                    const skins = hero.skins || [];
+                    skins.forEach(skin => {
+                        let skinData = null;
+                        if (typeof skin === 'string') {
+                            const card = availableCards.find(c => c.card_name === skin || `${c.set}-${c.number}` === skin);
+                            if (card) {
+                                const imgPath = `sets/${card.set}-files/img/${card.position || card.number + (card.shape?.includes('token') ? 't' : '') + '_' + card.card_name}.${card.image_type || 'jpg'}`;
+                                skinData = { avatar: imgPath, name: card.card_name };
+                            }
+                        } else {
+                            skinData = skin;
+                        }
+
+                        if (skinData) {
+                            const item = createSkinItem(hero, skinData, hero.name);
+                            grid.appendChild(item);
+                        }
+                    });
+
+                    row.appendChild(grid);
+                    heroSkinsContainer.appendChild(row);
+                });
+            }
+        }
 
         // FRONT PAGE SETUP
         const frontPage = document.getElementById('front-page');
         const playBtn = document.getElementById('play-button');
         const heroPreviewImg = document.getElementById('current-hero-img');
+        const frontHeroName = document.getElementById('current-hero-name');
         
-        if (heroPreviewImg) heroPreviewImg.src = state.player.hero.avatar;
+        if (heroPreviewImg) {
+            const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
+            heroPreviewImg.src = skin || state.player.hero.avatar;
+        }
+        if (frontHeroName) {
+            frontHeroName.textContent = state.player.hero.name;
+        }
 
         try {
             const response = await fetch('lists/autobattler-cards.json');
@@ -3741,8 +4001,15 @@ class BaseCard {
         // SPECIAL TRIGGER: Cabracan's Familiar (Pre-fight damage)
         if (attacker.card_name === 'Cabracan\'s Familiar' && !attacker.temporaryHumility && defender && !defender.hasKeyword('Hexproof')) {
             const multiplier = attacker.isFoil ? 2 : 1;
-            const familiarDamage = 2 * multiplier;
-            defender.damageTaken += familiarDamage;
+            let familiarDamage = 2 * multiplier;
+            
+            if (defender.shieldCounters > 0) {
+                defender.shieldCounters--;
+                familiarDamage = 0;
+            } else {
+                defender.damageTaken += familiarDamage;
+            }
+
             // Animation for pre-fight damage
             const defenderEl = document.getElementById(`card-${defender.id}`);
             if (defenderEl) {
@@ -3750,7 +4017,8 @@ class BaseCard {
                 if (ptBox) {
                     ptBox.classList.add('pulse-stats');
                     setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                    showDamageBubble(defenderEl, familiarDamage);
+                    if (familiarDamage > 0) showDamageBubble(defenderEl, familiarDamage);
+                    else render(); // Re-render to clear shield visual
                 }
                 
                 // UPDATE UI TO SHOW TOUGHNESS DROP
@@ -4416,13 +4684,26 @@ class BaseCard {
             state.shop.cards = [];
             state.player.board.forEach(c => {
                 const clone = c.clone();
-                // Reset dynamic stats
+                // Reset ALL dynamic stats and keywords to make it "vanilla"
                 clone.counters = 0;
+                clone.flyingCounters = 0;
+                clone.menaceCounters = 0;
+                clone.firstStrikeCounters = 0;
+                clone.doubleStrikeCounters = 0;
+                clone.vigilanceCounters = 0;
+                clone.lifelinkCounters = 0;
+                clone.deathtouchCounters = 0;
+                clone.trampleCounters = 0;
+                clone.reachCounters = 0;
+                clone.shieldCounters = 0;
                 clone.tempPower = 0;
                 clone.tempToughness = 0;
                 clone.damageTaken = 0;
                 clone.isDestroyed = false;
                 clone.actionUsed = false;
+                clone.equipment = null;
+                clone.enchantments = [];
+                clone.costReduction = 0;
                 state.shop.cards.push(clone);
             });
 
@@ -6511,7 +6792,7 @@ class BaseCard {
             playerBg.style.backgroundImage = `url(${state.player.playmat})`;
         }
         if (playerPlaneBg) {
-            if (state.player.plane === 'Cirrusea') {
+            if (state.player.plane === 'Cirrusea' && state.settings.dynamicTraverse) {
                 playerPlaneBg.style.backgroundImage = 'url(img/playmats/cirrusea.jpg)';
                 playerPlaneBg.style.opacity = '1';
             } else {
@@ -6654,7 +6935,8 @@ class BaseCard {
             // Set Player Hero Avatar
             const playerAvatarImg = playerAvatarEl.querySelector('.avatar-img');
             if (playerAvatarImg && state.player.hero) {
-                playerAvatarImg.src = state.player.hero.avatar;
+                const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
+                playerAvatarImg.src = skin || state.player.hero.avatar;
             }
         }
 

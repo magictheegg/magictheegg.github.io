@@ -901,6 +901,30 @@ function testCabracansFamiliar() {
     assert.strictEqual(familiar.getDisplayStats([]).t, 2);
 }
 
+async function testCabracansFamiliar_Shield() {
+    resetState();
+    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
+    const defender = CardFactory.create({ card_name: "Defender", pt: "2/5" });
+    defender.shieldCounters = 1;
+    
+    state.battleBoards = {
+        player: [familiar],
+        opponent: [defender]
+    };
+    familiar.owner = 'player';
+    defender.owner = 'opponent';
+    state.phase = 'BATTLE';
+    
+    await performAttack(familiar, defender, false);
+    
+    assert.strictEqual(defender.shieldCounters, 0, "Shield should be popped by pre-fight damage");
+    // Pre-fight was familiar (4) vs shield. 
+    // Shield gone. Regular combat happens.
+    // Attacker (4) deals 4 to Defender (5).
+    // Defender (2) deals 2 to Attacker (2).
+    assert.strictEqual(defender.damageTaken, 4, "Regular combat damage should happen after shield pop");
+}
+
 function testFinwingDrake() {
     resetState();
     const drake = CardFactory.create({ card_name: "Finwing Drake", pt: "3/4", rules_text: "Flying" });
@@ -1117,14 +1141,17 @@ function testCautherHellkite() {
     const hellkite = CardFactory.create({ card_name: "Cauther Hellkite", pt: "4/4", rules_text: "Flying, haste", type: "Creature - Dragon" });
     const e1 = CardFactory.create({ card_name: "E1", pt: "1/1", type: "Creature" });
     const e2 = CardFactory.create({ card_name: "E2", pt: "1/1", type: "Creature" });
+    const e3 = CardFactory.create({ card_name: "E3", pt: "1/1", type: "Creature" });
+    e3.shieldCounters = 1;
     
     state.battleBoards = {
         player: [hellkite],
-        opponent: [e1, e2]
+        opponent: [e1, e2, e3]
     };
     hellkite.owner = 'player';
     e1.owner = 'opponent';
     e2.owner = 'opponent';
+    e3.owner = 'opponent';
 
     assert.strictEqual(hellkite.hasKeyword('flying'), true);
     assert.strictEqual(hellkite.hasKeyword('haste'), true);
@@ -1132,6 +1159,8 @@ function testCautherHellkite() {
     hellkite.onAttack(state.battleBoards.player);
     assert.strictEqual(e1.damageTaken, 1, "Enemy 1 should take 1 damage");
     assert.strictEqual(e2.damageTaken, 1, "Enemy 2 should take 1 damage");
+    assert.strictEqual(e3.damageTaken, 0, "Enemy 3 (shielded) should take 0 damage from trigger");
+    assert.strictEqual(e3.shieldCounters, 0, "Enemy 3 shield should be popped");
 }
 
 function testVividGriffin() {
@@ -3029,6 +3058,7 @@ async function runTests() {
         { tier: 2, name: "Mieng, Who Dances With Dragons", fn: testMiengWhoDancesWithDragons },
         { tier: 2, name: "Draconic Cinderlance", fn: testDraconicCinderlance },
         { tier: 2, name: "Cabracan's Familiar", fn: testCabracansFamiliar },
+        { tier: 2, name: "Cabracan's Familiar (Shield)", fn: testCabracansFamiliar_Shield },
         { tier: 2, name: "Bushwhack", fn: testBushwhack },
         { tier: 2, name: "Moonlight Stag", fn: testMoonlightStag },
         { tier: 2, name: "Sleepless Spirit", fn: testSleeplessSpirit },
