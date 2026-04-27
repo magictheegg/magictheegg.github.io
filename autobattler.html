@@ -27,13 +27,15 @@
             background-color: #1e1e1e;
             border: 8px double #555;
             border-radius: 12px;
-            display: flex;
+            display: none; /* Hidden until PLAY is clicked */
             flex-direction: row;
             box-shadow: 0 0 100px rgba(0,0,0,0.9);
             position: relative;
             overflow: hidden;
             transform-origin: center center;
             flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
         #game-board {
@@ -1447,9 +1449,443 @@
             50% { filter: brightness(1.2) contrast(1.1) saturate(1.2); }
             100% { filter: brightness(1) contrast(1); }
         }
+
+        /* FRONT PAGE MENU */
+        #front-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('img/mc-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 5000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+        }
+
+        #front-page-content {
+            width: 1600px;
+            height: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-origin: center center;
+            flex-shrink: 0;
+        }
+
+        #mc-logo {
+            max-width: 800px;
+            margin-bottom: 40px;
+            /* Stack multiple shadows to create a dense but naturally shaped dark glow behind the letters */
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.8)) 
+                    drop-shadow(0 0 30px rgba(0,0,0,0.8))
+                    drop-shadow(0 0 45px rgba(0,0,0,0.7));
+        }
+
+        #main-menu-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .top-row {
+            gap: 40px;
+        }
+
+        #hero-select-preview {
+            width: 140px;
+            height: 140px;
+            background: #000;
+            border: 4px solid #ffd700;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: all 0.2s ease;
+            /* Fixes for GPU-rendering brightness/snapping shifts during scale */
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        #hero-select-preview:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        #current-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.85);
+            object-position: center -23%;
+        }
+
+        .menu-btn {
+            font-family: 'Beleren Small Caps', sans-serif;
+            font-weight: bold;
+            color: white;
+            border: 3px solid #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+            transition: filter 0.2s, transform 0.1s;
+        }
+
+        .menu-btn:hover {
+            filter: brightness(1.2);
+        }
+
+        .menu-btn:active {
+            transform: translateY(2px);
+        }
+
+        .main-btn {
+            width: 300px;
+            height: 140px;
+            font-size: 4em;
+            background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+        }
+
+        .secondary-btn {
+            width: 480px;
+            height: 80px;
+            font-size: 2.5em;
+            background: linear-gradient(to bottom, #444, #222);
+        }
+
+        /* GLOSSARY PAGE */
+        #glossary-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 6000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #glossary-content {
+            width: 1600px;
+            height: 900px;
+            display: flex;
+            padding: 50px;
+            box-sizing: border-box;
+            gap: 40px;
+            position: relative;
+            background-color: #1a1a1a;
+            border: 8px double #555;
+            border-radius: 12px;
+            box-shadow: 0 0 100px rgba(0,0,0,0.9);
+            transform-origin: center center;
+        }
+
+        #glossary-close-btn {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            width: 60px;
+            height: 60px;
+            background: #c62828;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: transform 0.2s;
+            z-index: 100;
+        }
+
+        #glossary-close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #glossary-left {
+            width: 1000px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #glossary-filters {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            padding: 15px 25px;
+            background: #252525;
+            border-radius: 12px;
+            border: 2px solid #444;
+            flex-shrink: 0;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #ccc;
+            user-select: none;
+        }
+
+        .filter-group:hover {
+            color: #fff;
+        }
+
+        .filter-group input {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+        }
+
+        #glossary-grid {
+            flex: 1;
+            overflow-y: scroll;
+            padding-right: 15px;
+        }
+
+        #glossary-grid::-webkit-scrollbar {
+            width: 12px;
+        }
+        #glossary-grid::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 6px;
+            border: 3px solid #1a1a1a;
+        }
+
+        .glossary-tier-section {
+            margin-bottom: 50px;
+        }
+
+        .glossary-tier-header {
+            font-size: 3em;
+            color: #ffd700;
+            border-bottom: 3px solid #666; /* Soft grey underline */
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-family: 'Beleren Small Caps', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .glossary-card-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 145px);
+            gap: 20px;
+        }
+
+        .glossary-card-item {
+            width: 145px;
+            aspect-ratio: 63 / 88;
+            background: #000;
+            border-radius: 10px;
+            border: 3px solid #333;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .glossary-card-item:hover {
+            transform: scale(1.1) translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            z-index: 10;
+        }
+
+        .glossary-card-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #glossary-right {
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #252525;
+            border-radius: 20px;
+            border: 3px solid #444;
+            padding: 40px 30px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            scrollbar-width: none;
+        }
+
+        #glossary-right::-webkit-scrollbar {
+            width: 8px;
+        }
+        #glossary-right::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        #glossary-preview-container {
+            width: 320px;
+            aspect-ratio: 63 / 88;
+            background: #000;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+            overflow: hidden;
+            border: 5px solid #555;
+            flex-shrink: 0;
+        }
+
+        #glossary-preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #glossary-description {
+            width: 100%;
+            color: #e0e0e0;
+        }
+
+        #glossary-description h2 {
+            color: #ffd700;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-family: 'Beleren Small Caps', sans-serif;
+            text-align: center;
+        }
+
+        .keyword-info {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ffd700;
+        }
+
+        .keyword-info:last-child {
+            margin-bottom: 0;
+        }
+
+        .keyword-name {
+            font-size: 1.6em;
+            color: #f0f0f0; /* Very light grey */
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .keyword-icon-bubble {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+            background: #444; /* Fallback */
+        }
+
+        /* Keyword-specific background colors matching the counters */
+        .keyword-icon-bubble.flying { background-color: #87ceeb; }
+        .keyword-icon-bubble.menace { background-color: #ffcccb; }
+        .keyword-icon-bubble.first-strike { background-color: #ffff99; }
+        .keyword-icon-bubble.double-strike { background-color: #ffff99; }
+        .keyword-icon-bubble.vigilance { background-color: #90ee90; }
+        .keyword-icon-bubble.lifelink { background-color: #fffdd0; }
+        .keyword-icon-bubble.shield { background-color: #b0b0b0; }
+        .keyword-icon-bubble.indestructible { background-color: #b0b0b0; }
+        .keyword-icon-bubble.hexproof { background-color: #e0b0ff; }
+        .keyword-icon-bubble.reach { background-color: #dfff00; }
+        .keyword-icon-bubble.trample { background-color: #77dd77; }
+        .keyword-icon-bubble.deathtouch { background-color: #d4a5ff; }
+        .keyword-icon-bubble.adaptive { background-color: #ff4500; }
+
+        .keyword-icon-bubble img {
+            width: 65%;
+            height: 65%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 1px black);
+        }
+
+        .keyword-text {
+            font-size: 1.2em;
+            line-height: 1.4;
+            font-family: 'Beleren', sans-serif;
+        }
     </style>
 </head>
 <body>
+    <div id="front-page">
+        <div id="front-page-content">
+            <img id="mc-logo" src="img/mc-logo.png" alt="Magic Cabinet Logo">
+            
+            <div id="main-menu-controls">
+                <div class="menu-row top-row">
+                    <div id="hero-select-preview">
+                        <img id="current-hero-img" src="" alt="Current Hero">
+                    </div>
+                    <button id="play-button" class="menu-btn main-btn">PLAY</button>
+                </div>
+                <div class="menu-row">
+                    <button id="glossary-button" class="menu-btn secondary-btn">GLOSSARY</button>
+                </div>
+                <div class="menu-row">
+                    <button id="cosmetics-button" class="menu-btn secondary-btn">COSMETICS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="glossary-page">
+        <div id="glossary-content">
+            <button id="glossary-close-btn">&times;</button>
+            <div id="glossary-left">
+                <div id="glossary-filters">
+                    <label class="filter-group"><input type="checkbox" id="filter-creature" checked> Creature</label>
+                    <label class="filter-group"><input type="checkbox" id="filter-equipment" checked> Equipment</label>
+                    <label class="filter-group"><input type="checkbox" id="filter-spell" checked> Spell</label>
+                </div>
+                <div id="glossary-grid">
+                    <!-- Tiers and cards injected here -->
+                </div>
+            </div>
+            <div id="glossary-right">
+                <div id="glossary-preview-container">
+                    <img id="glossary-preview-img" src="img/card_back.png" alt="Preview">
+                </div>
+                <div id="glossary-description">
+                    <p style="text-align: center; font-style: italic; opacity: 0.7; font-size: 1.4em;">Hover over a card to see details</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="game-cabinet">
         <aside id="roster-sidebar">
             <!-- AI Avatars go here -->
@@ -1563,6 +1999,8 @@
     <script>
         function scaleGame() {
             const cabinet = document.getElementById('game-cabinet');
+            const frontPageContent = document.getElementById('front-page-content');
+            const glossaryContent = document.getElementById('glossary-content');
             const targetWidth = 1600;
             const targetHeight = 900;
             const windowWidth = window.innerWidth;
@@ -1572,7 +2010,9 @@
             const scaleY = (windowHeight * 0.95) / targetHeight;
             const scale = Math.min(scaleX, scaleY);
             
-            cabinet.style.transform = `scale(${scale})`;
+            if (cabinet) cabinet.style.transform = `scale(${scale})`;
+            if (frontPageContent) frontPageContent.style.transform = `scale(${scale})`;
+            if (glossaryContent) glossaryContent.style.transform = `scale(${scale})`;
         }
         
         window.addEventListener('resize', scaleGame);

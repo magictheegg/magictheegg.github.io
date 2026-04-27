@@ -1,4 +1,51 @@
-// --- OO CARD SYSTEM ---
+    const KEYWORD_DATA = {
+        'Flying': {
+            icon: 'img/flying.png',
+            description: 'Can only be blocked by creatures with flying or reach. Can only be attacked if you only control creatures with flying.'
+        },
+        'Reach': {
+            icon: 'img/reach.png',
+            description: 'Can block creatures with flying.'
+        },
+        'Vigilance': {
+            icon: 'img/vigilance.png',
+            description: 'If a creature attacks, it must target a creature with vigilance if possible.'
+        },
+        'Menace': {
+            icon: 'img/menace.png',
+            description: 'Can attack as if defending creatures don\'t have vigilance.'
+        },
+        'Trample': {
+            icon: 'img/trample.png',
+            description: 'When attacking a creature, any damage dealt beyond the defender\'s toughness is dealt to that creature\s neighbor.'
+        },
+        'First strike': {
+            icon: 'img/first-strike.png',
+            description: 'When attacking, deals combat damage before creatures without first strike and double strike.'
+        },
+        'Double strike': {
+            icon: 'img/double-strike.png',
+            description: 'When attacking, deals both first strike and regular combat damage.'
+        },
+        'Deathtouch': {
+            icon: 'img/skull.png',
+            description: 'Any amount of damage this deals to a creature is enough to destroy it.'
+        },
+        'Lifelink': {
+            icon: 'img/lifelink.png',
+            description: 'Damage dealt by this creature also causes you to gain that much life.'
+        },
+        'Indestructible': {
+            icon: 'img/indestructible.png',
+            description: 'The first time this creature would be destroyed each combat, it survives at 1 toughness.'
+        },
+        'Hexproof': {
+            icon: 'img/hexproof.png',
+            description: 'Cannot be targeted by abilities of your opponent\'s attacking creatures.'
+        }
+    };
+
+    // --- OO CARD SYSTEM ---
 
 const targetedNames = ['To Battle', 'Faith in Darkness', 'By Blood and Venom', 'Bushwhack', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion'];
 const complexTargetedNames = ['Executioner\'s Madness', 'Warrior\'s Ways', 'Whispers of the Dead', 'Ceremony of Tribes', 'Up in Arms'];
@@ -3024,6 +3071,143 @@ class BaseCard {
 
         updateTierButton();
 
+        // GLOSSARY FUNCTIONALITY
+        const glossaryPage = document.getElementById('glossary-page');
+        const glossaryBtn = document.getElementById('glossary-button');
+        const glossaryCloseBtn = document.getElementById('glossary-close-btn');
+        const glossaryGrid = document.getElementById('glossary-grid');
+        const glossaryPreviewImg = document.getElementById('glossary-preview-img');
+        const glossaryDescription = document.getElementById('glossary-description');
+        const glossaryFilters = {
+            creature: document.getElementById('filter-creature'),
+            equipment: document.getElementById('filter-equipment'),
+            spell: document.getElementById('filter-spell')
+        };
+
+        function updateGlossaryPreview(card) {
+            if (!card) {
+                glossaryPreviewImg.src = 'img/card_back.png';
+                glossaryDescription.innerHTML = '<p style="text-align: center; font-style: italic; opacity: 0.7; font-size: 1.4em;">Hover over a card to see details</p>';
+                return;
+            }
+
+            const tokenSuffix = (card.shape?.includes('token')) ? "t" : "";
+            const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
+            const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
+            const extension = card.image_type || card.set_image_type || "jpg";
+            const imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+            glossaryPreviewImg.src = imgPath;
+
+            let html = `<h2>${card.card_name}</h2>`;
+            
+            // Find keywords in rules text
+            const keywordsFound = Object.keys(KEYWORD_DATA).filter(kw => {
+                const regex = new RegExp(`\\b${kw}\\b`, 'i');
+                return card.rules_text && regex.test(card.rules_text);
+            });
+
+            if (keywordsFound.length > 0) {
+                keywordsFound.forEach(kw => {
+                    const data = KEYWORD_DATA[kw];
+                    const kwClass = kw.toLowerCase().replace(' ', '-');
+                    html += `
+                        <div class="keyword-info">
+                            <div class="keyword-name">
+                                <div class="keyword-icon-bubble ${kwClass}">
+                                    <img src="${data.icon}" alt="${kw}">
+                                </div>
+                                <span>${kw}</span>
+                            </div>
+                            <div class="keyword-text">${data.description}</div>
+                        </div>
+                    `;
+                });
+            }
+            // there is no 'else' block, no rendering for keyword-less cards
+
+            glossaryDescription.innerHTML = html;
+        }
+
+        function populateGlossary() {
+            if (!glossaryGrid) return;
+            glossaryGrid.innerHTML = '';
+
+            const showCreatures = glossaryFilters.creature.checked;
+            const showEquipment = glossaryFilters.equipment.checked;
+            const showSpells = glossaryFilters.spell.checked;
+
+            const filtered = availableCards.filter(c => {
+                if (c.shape === 'token') return false;
+                const type = c.type?.toLowerCase() || '';
+                if (type.includes('creature')) return showCreatures;
+                if (type.includes('equipment')) return showEquipment;
+                return showSpells; // Instant/Sorcery
+            });
+
+            // Group by Tier
+            const tiers = [1, 2, 3, 4, 5];
+            tiers.forEach(tier => {
+                const tierCards = filtered.filter(c => c.tier === tier);
+                if (tierCards.length === 0) return;
+
+                // Sort by type then name
+                tierCards.sort((a, b) => {
+                    const typeA = a.type?.toLowerCase().includes('creature') ? 0 : (a.type?.toLowerCase().includes('equipment') ? 1 : 2);
+                    const typeB = b.type?.toLowerCase().includes('creature') ? 0 : (b.type?.toLowerCase().includes('equipment') ? 1 : 2);
+                    if (typeA !== typeB) return typeA - typeB;
+                    return a.card_name.localeCompare(b.card_name);
+                });
+
+                const tierSection = document.createElement('div');
+                tierSection.className = 'glossary-tier-section';
+                tierSection.innerHTML = `<div class="glossary-tier-header">Tier ${tier}</div>`;
+
+                const grid = document.createElement('div');
+                grid.className = 'glossary-card-grid';
+
+                tierCards.forEach(card => {
+                    const item = document.createElement('div');
+                    item.className = 'glossary-card-item';
+                    const tokenSuffix = (card.shape?.includes('token')) ? "t" : "";
+                    const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
+                    const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
+                    const extension = card.image_type || card.set_image_type || "jpg";
+                    const imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+                    item.innerHTML = `<img src="${imgPath}" alt="${card.card_name}">`;
+                    item.addEventListener('mouseenter', () => updateGlossaryPreview(card));
+                    grid.appendChild(item);
+                });
+
+                tierSection.appendChild(grid);
+                glossaryGrid.appendChild(tierSection);
+            });
+        }
+
+        if (glossaryBtn) {
+            glossaryBtn.addEventListener('click', () => {
+                glossaryPage.style.display = 'flex';
+                populateGlossary();
+            });
+        }
+
+        if (glossaryCloseBtn) {
+            glossaryCloseBtn.addEventListener('click', () => {
+                glossaryPage.style.display = 'none';
+                updateGlossaryPreview(null);
+            });
+        }
+
+        Object.values(glossaryFilters).forEach(f => {
+            if (f) f.addEventListener('change', populateGlossary);
+        });
+
+        // FRONT PAGE SETUP
+        const frontPage = document.getElementById('front-page');
+        const playBtn = document.getElementById('play-button');
+        const heroPreviewImg = document.getElementById('current-hero-img');
+        
+        if (heroPreviewImg) heroPreviewImg.src = state.player.hero.avatar;
+
         try {
             const response = await fetch('lists/autobattler-cards.json');
             const cardData = await response.json();
@@ -3031,32 +3215,50 @@ class BaseCard {
             console.log("Auto-battler card data loaded successfully.", availableCards.length);
         } catch (error) {
             console.error("Error loading auto-battler card data:", error);
-            shopEl.innerHTML = '<p style="color: red;">Error: Could not load card data. Is `lists/autobattler-cards.json` generated?</p>';
+            if (shopEl) shopEl.innerHTML = '<p style="color: red;">Error: Could not load card data. Is `lists/autobattler-cards.json` generated?</p>';
             return;
         }
 
-        // HERO POWER: Herrea (Start of Game Seek 5-Star)
-        if (state.player.hero.name === "Herrea") {
-            const fiveStarPool = availableCards.filter(c => (c.tier === 5) && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
-            if (fiveStarPool.length > 0) {
-                const selected = [];
-                const poolCopy = [...fiveStarPool];
-                for (let i = 0; i < 3; i++) {
-                    if (poolCopy.length === 0) break;
-                    const randIdx = Math.floor(Math.random() * poolCopy.length);
-                    selected.push(CardFactory.create(poolCopy.splice(randIdx, 1)[0]));
+        if (playBtn && frontPage) {
+            playBtn.addEventListener('click', () => {
+                const cabinet = document.getElementById('game-cabinet');
+                // Fade out menu
+                frontPage.style.opacity = '0';
+                if (cabinet) {
+                    cabinet.style.display = 'flex';
+                    // Trigger reflow for transition
+                    cabinet.offsetHeight;
+                    cabinet.style.opacity = '1';
                 }
+                
+                setTimeout(() => {
+                    frontPage.style.visibility = 'hidden';
+                }, 500);
 
-                queueDiscovery({
-                    cards: selected,
-                    title: "CONNECT THE DOTS",
-                    text: "Choose a 5-star creature to receive after playing 10 blue cards.",
-                    effect: 'herrea_seek'
-                });
-            }
+                // HERO POWER: Herrea (Start of Game Seek 5-Star)
+                if (state.player.hero.name === "Herrea") {
+                    const fiveStarPool = availableCards.filter(c => (c.tier === 5) && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
+                    if (fiveStarPool.length > 0) {
+                        const selected = [];
+                        const poolCopy = [...fiveStarPool];
+                        for (let i = 0; i < 3; i++) {
+                            if (poolCopy.length === 0) break;
+                            const randIdx = Math.floor(Math.random() * poolCopy.length);
+                            selected.push(CardFactory.create(poolCopy.splice(randIdx, 1)[0]));
+                        }
+
+                        queueDiscovery({
+                            cards: selected,
+                            title: "CONNECT THE DOTS",
+                            text: "Choose a 5-star creature to receive after playing 10 blue cards.",
+                            effect: 'herrea_seek'
+                        });
+                    }
+                }
+                
+                startShopTurn();
+            });
         }
-        
-        startShopTurn();
     }
 
     const tierCosts = [0, 5, 7, 9, 11]; // Base costs for 2, 3, 4, 5
