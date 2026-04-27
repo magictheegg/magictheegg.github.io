@@ -3809,13 +3809,13 @@ class BaseCard {
         }
 
         try {
-            const response = await fetch('lists/autobattler-cards.json');
+            const response = await fetch('lists/coliseum-cards.json');
             const cardData = await response.json();
             availableCards = cardData.cards; 
-            console.log("Auto-battler card data loaded successfully.", availableCards.length);
+            console.log("Coliseum card data loaded successfully.", availableCards.length);
         } catch (error) {
-            console.error("Error loading auto-battler card data:", error);
-            if (shopEl) shopEl.innerHTML = '<p style="color: red;">Error: Could not load card data. Is `lists/autobattler-cards.json` generated?</p>';
+            console.error("Error loading coliseum card data:", error);
+            if (shopEl) shopEl.innerHTML = '<p style="color: red;">Error: Could not load card data. Is `lists/coliseum-cards.json` generated?</p>';
             return;
         }
 

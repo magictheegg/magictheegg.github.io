@@ -1,7 +1,7 @@
 import json
 import os
 
-def create_autobattler_card_list():
+def create_coliseum_card_list():
     card_names_to_include = [
         "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Intli Assaulter",
         "Impressible Cub", "Gore Swine", "Sanctuary Centaur", "War-Clan Dowager",
@@ -39,7 +39,7 @@ def create_autobattler_card_list():
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
-    output_path = os.path.join('custom', 'lists', 'autobattler-cards.json')
+    output_path = os.path.join('custom', 'lists', 'coliseum-cards.json')
 
     try:
         with open(all_cards_path, 'r', encoding='utf-8-sig') as f:
@@ -156,11 +156,11 @@ def create_autobattler_card_list():
         json.dump({"cards": final_cards}, f, indent=4)
 
     # Also copy to root lists/ folder for immediate use by the game
-    root_output_path = os.path.join('lists', 'autobattler-cards.json')
+    root_output_path = os.path.join('lists', 'coliseum-cards.json')
     with open(root_output_path, 'w', encoding='utf-8') as f:
         json.dump({"cards": final_cards}, f, indent=4)
 
     print(f"Successfully created {output_path} and {root_output_path} with {len(final_cards)} cards.")
 
 if __name__ == '__main__':
-    create_autobattler_card_list()
+    create_coliseum_card_list()
