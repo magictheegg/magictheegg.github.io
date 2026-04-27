@@ -7,33 +7,35 @@ def create_autobattler_card_list():
         "Impressible Cub", "Gore Swine", "Sanctuary Centaur", "War-Clan Dowager",
         "Clairvoyant Koi", "Blistering Lunatic", "Dutiful Camel", "Frontline Cavalier",
         "Sparring Campaigner", "Soulsmoke Adept", "Rakkiri Archer", "Lake Cave Lurker",
-        "Faith in Darkness", "Scientific Inquiry", "To Battle", "By Blood and Venom", "Divination",
+        "Faith in Darkness", "Scientific Inquiry", "To Battle", "Might and Mane", "Divination",
         "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
         "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
         "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
-        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
+        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
-        "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Ruin Skink",
+        "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
         "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
-        "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
+        "Qinhana Cavalry", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
+        "Restless Oppressor", "Moss Viper", "Striding Cascade",
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
-        "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
+        "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
-        "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
-        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
+        "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Mekini Eremite",
+        "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
+        "Song of Wind and Fire", "Decorated Warrior",
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
         "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom",
-        "Merciless Xun Huang", "Citadel Colossus", "Virulent Cactaipan"
+        "Merciless Xun Huang", "Citadel Colossus", "Triumphant Tactics", "Wild Bearmaster"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -54,26 +56,28 @@ def create_autobattler_card_list():
         "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
         "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
-        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Bushwhack",
+        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker"
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker", "Ruin Skink"
     ]
     tier_3_names = [
-        "Devil's Child", "Razorback Trenchrunner", "Sporegraft Slime", "Pungent Beetle", "Covetous Wechuge",
+        "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
         "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
-        "Qinhana Cavalry", "Mekini Eremite", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants"
+        "Qinhana Cavalry", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
+        "Restless Oppressor", "Moss Viper", "Striding Cascade"
     ]
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
-        "Ruin Skink", "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
+        "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
-        "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Triumphant Tactics",
-        "Feral Exemplar", "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
+        "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Mekini Eremite",
+        "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
-        "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider"
+        "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
+        "Song of Wind and Fire", "Decorated Warrior"
     ]
     tier_5_names = [
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
@@ -81,7 +85,7 @@ def create_autobattler_card_list():
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
         "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom",
-        "Merciless Xun Huang", "Citadel Colossus", "Virulent Cactaipan"
+        "Merciless Xun Huang", "Citadel Colossus", "Triumphant Tactics", "Wild Bearmaster"
     ]
 
     for name in card_names_to_include:
@@ -105,7 +109,10 @@ def create_autobattler_card_list():
             print(f"Warning: Could not find base card {name}")
 
     # Add required tokens
-    token_names = [("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), ("Jwanga Djitu", "ACE"), ("Beast", "SHF")]
+    token_names = [
+        ("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), 
+        ("Jwanga Djitu", "ACE"), ("Beast", "SHF"), ("Dragon", "NJB"), ("Bard", "NJB")
+    ]
     for t_name, t_set in token_names:
         # For ACE Construct, we want specifically #58
         if t_name == "Construct" and t_set == "ACE":
@@ -148,7 +155,12 @@ def create_autobattler_card_list():
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump({"cards": final_cards}, f, indent=4)
 
-    print(f"Successfully created {output_path} with {len(final_cards)} cards.")
+    # Also copy to root lists/ folder for immediate use by the game
+    root_output_path = os.path.join('lists', 'autobattler-cards.json')
+    with open(root_output_path, 'w', encoding='utf-8') as f:
+        json.dump({"cards": final_cards}, f, indent=4)
+
+    print(f"Successfully created {output_path} and {root_output_path} with {len(final_cards)} cards.")
 
 if __name__ == '__main__':
     create_autobattler_card_list()
