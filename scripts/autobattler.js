@@ -2836,6 +2836,7 @@ class BaseCard {
         spellsCastThisTurn: 0,
         panharmoniconActive: false,
         activeAttackerId: null,
+        combatParticipants: [],
         settings: {
             dynamicTraverse: true,
             heroSkins: {} // heroName: skinData
@@ -4411,6 +4412,11 @@ class BaseCard {
             token.id = `token-${Math.random()}`;
             token.owner = owner;
             
+            // Add to combat participant list for trigger/sync tracking
+            if (state.phase === 'BATTLE' && state.combatParticipants) {
+                state.combatParticipants.push(token);
+            }
+
             // Add to combat queue if in battle
             if (state.phase === 'BATTLE' && state.battleQueues) {
                 state.battleQueues[owner].push(token);
@@ -4597,10 +4603,14 @@ class BaseCard {
 
         const triggersOccurred = await resolveStartOfCombatTriggers(currentOpp);
 
+        state.combatParticipants = [];
+
         // 2. Create Combat Snapshots
         const createBattleInstance = (card, owner) => {
             const instance = (card instanceof BaseCard ? card : CardFactory.create(card)).clone();
             instance.owner = owner;
+            instance.sourceId = card.id; // Track source for permanent counter syncing
+            state.combatParticipants.push(instance);
             return instance;
         };
 
@@ -4724,6 +4734,27 @@ class BaseCard {
             alert("Congratulations! You won the game!");
             document.location.reload();
             return;
+        }
+
+        // Sync combat counters back to original cards
+        if (state.combatParticipants) {
+            state.combatParticipants.forEach(battleCard => {
+                const ownerBoard = battleCard.owner === 'player' ? state.player.board : (state.opponents.find(o => o.board.some(c => c.id === battleCard.sourceId))?.board || []);
+                const original = ownerBoard.find(c => c.id === battleCard.sourceId);
+                if (original) {
+                    original.counters = battleCard.counters;
+                    original.flyingCounters = battleCard.flyingCounters;
+                    original.menaceCounters = battleCard.menaceCounters;
+                    original.firstStrikeCounters = battleCard.firstStrikeCounters;
+                    original.doubleStrikeCounters = battleCard.doubleStrikeCounters;
+                    original.vigilanceCounters = battleCard.vigilanceCounters;
+                    original.lifelinkCounters = battleCard.lifelinkCounters;
+                    original.deathtouchCounters = battleCard.deathtouchCounters;
+                    original.trampleCounters = battleCard.trampleCounters;
+                    original.reachCounters = battleCard.reachCounters;
+                    original.hexproofCounters = battleCard.hexproofCounters;
+                }
+            });
         }
 
         // --- End of Combat Cleanup ---
