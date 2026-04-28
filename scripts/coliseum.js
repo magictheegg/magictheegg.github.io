@@ -66,6 +66,21 @@ class BaseCard {
             this.reachCounters = Number(this.reachCounters) || 0;
             this.hexproofCounters = Number(this.hexproofCounters) || 0;
             this.shieldCounters = Number(this.shieldCounters) || 0;
+
+            // Visual state tracking for staggered animations
+            this.displayedCounters = this.counters;
+            this.displayedFlyingCounters = this.flyingCounters;
+            this.displayedMenaceCounters = this.menaceCounters;
+            this.displayedFirstStrikeCounters = this.firstStrikeCounters;
+            this.displayedDoubleStrikeCounters = this.doubleStrikeCounters;
+            this.displayedVigilanceCounters = this.vigilanceCounters;
+            this.displayedLifelinkCounters = this.lifelinkCounters;
+            this.displayedDeathtouchCounters = this.deathtouchCounters;
+            this.displayedTrampleCounters = this.trampleCounters;
+            this.displayedReachCounters = this.reachCounters;
+            this.displayedHexproofCounters = this.hexproofCounters;
+            this.displayedShieldCounters = this.shieldCounters;
+
             this.damageTaken = Number(this.damageTaken) || 0;
             this.enchantments = this.enchantments || [];
             this.tempPower = Number(this.tempPower) || 0;
@@ -110,10 +125,12 @@ class BaseCard {
         }
 
         // The "Stable" stats: Base + Counters + Enchantments + Temp (Start of Combat)
-        getStableStats() {
+        getStableStats(visualOnly = false) {
             const base = this.getBasePT();
-            let p = (base.p || 0) + (this.counters || 0);
-            let t = (base.t || 0) + (this.counters || 0);
+            const countToUse = visualOnly ? (this.displayedCounters || 0) : (this.counters || 0);
+
+            let p = (base.p || 0) + countToUse;
+            let t = (base.t || 0) + countToUse;
             let maxT = t;
 
             if (this.equipment) {
@@ -130,13 +147,28 @@ class BaseCard {
             return { p, t: t - (this.damageTaken || 0), maxT };
         }
 
+        syncVisualState() {
+            this.displayedCounters = this.counters;
+            this.displayedFlyingCounters = this.flyingCounters;
+            this.displayedMenaceCounters = this.menaceCounters;
+            this.displayedFirstStrikeCounters = this.firstStrikeCounters;
+            this.displayedDoubleStrikeCounters = this.doubleStrikeCounters;
+            this.displayedVigilanceCounters = this.vigilanceCounters;
+            this.displayedLifelinkCounters = this.lifelinkCounters;
+            this.displayedDeathtouchCounters = this.deathtouchCounters;
+            this.displayedTrampleCounters = this.trampleCounters;
+            this.displayedReachCounters = this.reachCounters;
+            this.displayedHexproofCounters = this.hexproofCounters;
+            this.displayedShieldCounters = this.shieldCounters;
+        }
+
         // The "Final" stats: Stable + Dynamic Passives (Raven, Dowager, etc.)
-        getDisplayStats(board) {
+        getDisplayStats(board, visualOnly = false) {
             if (this.temporaryHumility) {
                 const t = 1 - (this.damageTaken || 0);
                 return { p: 1, t: t, maxT: 1 };
             }
-            const stable = this.getStableStats();
+            const stable = this.getStableStats(visualOnly);
             const dynamic = this.getDynamicBuffs(board);
             return {
                 p: Math.max(0, stable.p + dynamic.p),
@@ -205,7 +237,7 @@ class BaseCard {
                 if (stats.p >= 4) {
                     if (!this.enchantments) this.enchantments = [];
                     if (!this.enchantments.some(e => e.card_name === 'Cinderlance Menace')) {
-                        this.enchantments.push({ card_name: 'Cinderlance Menace', rules_text: 'Menace' });
+                        this.enchantments.push({ card_name: 'Cinderlance Menace', rules_text: 'Menace', isTemporary: true });
                     }
                 }
             }
@@ -325,6 +357,21 @@ class BaseCard {
             newCard.trampleCounters = this.trampleCounters;
             newCard.reachCounters = this.reachCounters;
             newCard.shieldCounters = this.shieldCounters;
+            
+            // Sync visual state to the clone
+            newCard.displayedCounters = this.displayedCounters;
+            newCard.displayedFlyingCounters = this.displayedFlyingCounters;
+            newCard.displayedMenaceCounters = this.displayedMenaceCounters;
+            newCard.displayedFirstStrikeCounters = this.displayedFirstStrikeCounters;
+            newCard.displayedDoubleStrikeCounters = this.displayedDoubleStrikeCounters;
+            newCard.displayedVigilanceCounters = this.displayedVigilanceCounters;
+            newCard.displayedLifelinkCounters = this.displayedLifelinkCounters;
+            newCard.displayedDeathtouchCounters = this.displayedDeathtouchCounters;
+            newCard.displayedTrampleCounters = this.displayedTrampleCounters;
+            newCard.displayedReachCounters = this.displayedReachCounters;
+            newCard.displayedHexproofCounters = this.displayedHexproofCounters;
+            newCard.displayedShieldCounters = this.displayedShieldCounters;
+
             newCard.isFoil = this.isFoil;
             newCard.isDecayed = this.isDecayed;
             newCard.isToken = this.isToken;
@@ -603,7 +650,8 @@ class BaseCard {
     class MightAndMane extends BaseCard {
         effect_text = 'Choose a creature to gain menace until end of turn.';
         onApply(target, board) {
-            target.enchantments.push({ card_name: 'Might and Mane', rules_text: 'Menace' });
+            if (!target.enchantments) target.enchantments = [];
+            target.enchantments.push({ card_name: 'Might and Mane', rules_text: 'Menace', isTemporary: true });
             if (board === state.player.board) {
                 addCardsToShop(1, 'creature', 1);
             }
@@ -617,7 +665,8 @@ class BaseCard {
                 addScry(1, null, this.card_name);
             }
             target.tempPower += 3;
-            target.enchantments.push({ card_name: 'Way of the Bygone', rules_text: 'First strike' });
+            if (!target.enchantments) target.enchantments = [];
+            target.enchantments.push({ card_name: 'Way of the Bygone', rules_text: 'First strike', isTemporary: true });
         }
     }
 
@@ -912,6 +961,13 @@ class BaseCard {
 
     class FestivalCelebrants extends BaseCard {
         onETB(board) {
+            if (state.phase === 'BATTLE') {
+                queueAnimation(async () => {
+                    const pulses = board.map(c => pulseCardElement(c, board, 1));
+                    await Promise.all(pulses);
+                });
+            }
+
             board.forEach(c => {
                 if (c.owner === this.owner) {
                     addCounters(c, 1, board);
@@ -1125,10 +1181,21 @@ class BaseCard {
         onAttack(board) {
             const multiplier = this.isFoil ? 2 : 1;
             const targets = board.filter(c => c.id !== this.id && !c.isDying && !c.isDestroyed);
+            
+            if (state.phase === 'BATTLE') {
+                queueAnimation(async () => {
+                    const pulses = targets.map(c => pulseCardElement(c, board, multiplier));
+                    await Promise.all(pulses);
+                });
+            }
+
             targets.forEach(c => {
                 addCounters(c, multiplier, board);
             });
-            return targets;
+            
+            const result = [...targets];
+            result.animationsHandled = true;
+            return result;
         }
     }
 
@@ -1306,6 +1373,14 @@ class BaseCard {
                 this.cascadeTriggeredThisTurn = true;
                 const multiplier = this.isFoil ? 2 : 1;
                 addCounters(this, multiplier, board);
+
+                // Pulsing feedback if in combat
+                if (state.phase === 'BATTLE') {
+                    const amt = multiplier;
+                    queueAnimation(async () => {
+                        await pulseCardElement(this, board, amt);
+                    });
+                }
             }
         }
         onShopStart() { this.cascadeTriggeredThisTurn = false; }
@@ -2823,6 +2898,7 @@ class BaseCard {
         deadServantsCount: 0,
         spellsCastThisTurn: 0,
         panharmoniconActive: false,
+        animationQueue: [],
         activeAttackerId: null,
         combatParticipants: [],
         settings: {
@@ -4064,49 +4140,14 @@ class BaseCard {
         const attackTargets = await attacker.onAttack(attackerBoard);
         
         if (attackTargets && attackTargets.length > 0) {
-            // Instead of calling render() (which resets the attacker's position),
-            // we manually update the P/T text of the targets.
-            attackTargets.forEach(target => {
-                const targetEl = document.getElementById(`card-${target.id}`);
-                if (targetEl) {
-                    const stats = target.getDisplayStats(attackerBoard);
-                    const pEl = targetEl.querySelector('.card-p');
-                    const tEl = targetEl.querySelector('.card-t');
-                    if (pEl) pEl.textContent = stats.p;
-                    if (tEl) {
-                        tEl.textContent = stats.t;
-                        if (stats.t < stats.maxT) tEl.classList.add('damaged');
-                        else tEl.classList.remove('damaged');
-                    }
-
-                    const ptBox = targetEl.querySelector('.card-pt');
-                    const counterStackEl = targetEl.querySelector('.card-counter-stack');
-
-                    // Sync and Pulse Counter Bubbles
-                    if (counterStackEl) {
-                        // Sync counters visually
-                        const dummy = createCardElement(target, false, -1, attackerBoard);
-                        const freshStack = dummy.querySelector('.card-counter-stack');
-                        const changed = counterStackEl.innerHTML !== freshStack.innerHTML;
-                        counterStackEl.innerHTML = freshStack.innerHTML;
-
-                        // Pulse all bubbles in the stack ONLY if something changed
-                        if (changed) {
-                            const bubbles = counterStackEl.querySelectorAll('.counter-bubble');
-                            bubbles.forEach(bubble => {
-                                bubble.classList.add('pulse-stats');
-                                setTimeout(() => bubble.classList.remove('pulse-stats'), 500);
-                            });
-                        }
-                    }
-
-                    // Pulse P/T box
-                    if (ptBox) {
-                        ptBox.classList.add('pulse-stats');
-                        setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                    }
-                }
-            });
+            // Only queue automatic pulse if the card didn't handle its own animations
+            // (Used for sequencing: Ladria wants to pulse BEFORE side effects like Cascade)
+            if (!attackTargets.animationsHandled) {
+                queueAnimation(async () => {
+                    const pulses = attackTargets.map(target => pulseCardElement(target, attackerBoard));
+                    await Promise.all(pulses);
+                });
+            }
 
             // Now resolve any deaths (this plays the death animations and pauses)
             // This handles Xun Huang triggered kills correctly
@@ -4115,7 +4156,9 @@ class BaseCard {
             // If we have targets but nobody died (like Ladria), we still need to pause 
             // for the trigger animations (Battle Cry style)
             if (attackTargets.length > 0 && !deathsResolved) {
-                await new Promise(r => setTimeout(r, 600));
+                await resolveAnimations(); // Staggered pulses for Cascade, etc.
+                // We no longer need the hardcoded setTimeout(600) because resolveAnimations() 
+                // already waits for the pulses to finish.
             }
 
             // If the defender died to an ability (Xun Huang), stop the attack
@@ -4251,11 +4294,6 @@ class BaseCard {
 
         let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
 
-        const hitPlayer = (!defender && defenderDamageTaken > 0) || (!trampleTarget && trampleOverflow > 0);
-        if (hitPlayer && attacker.equipment && attacker.equipment.card_name === "Rivha's Blessed Blade") {
-            triggerETB(attacker, attackerBoard);
-        }
-
         // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
         // If Attacker DOES NOT have FS, damage was already handled simultaneously in resolveCombatImpact.
         if (isFirstStrike && defender && !trampleTarget) {
@@ -4386,6 +4424,13 @@ class BaseCard {
                 attacker.isDestroyed = true;
             }
 
+            const hitPlayer = (!defender && defenderDamageTaken > 0) || (!trampleTarget && trampleOverflow > 0);
+            if (hitPlayer && attacker.equipment && attacker.equipment.card_name === "Rivha's Blessed Blade") {
+                triggerETB(attacker, attackerBoard);
+                render(); 
+                await resolveAnimations();
+            }
+
             state.activeAttackerId = null;
         } else {
             const attackerZone = (attacker.owner === 'player') ? document.getElementById('player-zone') : document.getElementById('opponent-zone');
@@ -4492,26 +4537,42 @@ class BaseCard {
             }
         }
 
+        if (anyTriggers) {
+            await resolveAnimations();
+        }
+
         return anyTriggers;
     }
 
-    async function pulseCardElement(target, board) {
+    async function pulseCardElement(target, board, countersDelta = 0) {
         const targetEl = document.getElementById(`card-${target.id}`);
         if (targetEl) {
             target.isPulsing = true;
-            // 1. Pulse the P/T
+            
+            // Increment visual state or snap to logical state
+            if (countersDelta !== 0) {
+                target.displayedCounters += countersDelta;
+            } else {
+                target.syncVisualState();
+            }
+
+            // 1. Sync P/T Text immediately
+            const stats = target.getDisplayStats(board, true); // Use visual state
+            const pEl = targetEl.querySelector('.card-p');
+            const tEl = targetEl.querySelector('.card-t');
+            if (pEl) pEl.textContent = stats.p;
+            if (tEl) {
+                tEl.textContent = stats.t;
+                if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                else tEl.classList.remove('damaged');
+            }
+
+            // 2. Pulse the P/T box
             const ptBox = targetEl.querySelector('.card-pt');
             if (ptBox) {
                 ptBox.classList.add('pulse-stats');
                 setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
             }
-
-            // 2. Sync P/T Text
-            const stats = target.getDisplayStats(board);
-            const pEl = targetEl.querySelector('.card-p');
-            const tEl = targetEl.querySelector('.card-t');
-            if (pEl) pEl.textContent = stats.p;
-            if (tEl) tEl.textContent = stats.t;
 
             // 3. Sync and Pulse Counter/Ghost Indicators
             const counterStackEl = targetEl.querySelector('.card-counter-stack');
@@ -4524,8 +4585,8 @@ class BaseCard {
                 const newHTML = dummy.querySelector('.card-counter-stack').innerHTML;
                 const changed = counterStackEl.innerHTML !== newHTML;
                 counterStackEl.innerHTML = newHTML;
+                
                 if (changed) {
-                    // Pulse all counters
                     Array.from(counterStackEl.children).forEach(c => {
                         c.classList.add('pulse-stats');
                         setTimeout(() => c.classList.remove('pulse-stats'), 500);
@@ -4536,8 +4597,8 @@ class BaseCard {
                 const newHTML = dummy.querySelector('.ghost-indicator-container').innerHTML;
                 const changed = ghostContainer.innerHTML !== newHTML;
                 ghostContainer.innerHTML = newHTML;
+
                 if (changed) {
-                    // Pulse all ghost indicators
                     Array.from(ghostContainer.children).forEach(g => {
                         g.classList.add('pulse-stats');
                         setTimeout(() => g.classList.remove('pulse-stats'), 500);
@@ -4553,6 +4614,20 @@ class BaseCard {
     async function animateStartOfCombatTrigger(source, targets, board) {
         for (const target of targets) {
             await pulseCardElement(target, board);
+        }
+    }
+
+    function queueAnimation(animationFn) {
+        state.animationQueue.push(animationFn);
+    }
+
+    async function resolveAnimations() {
+        while (state.animationQueue.length > 0) {
+            const anim = state.animationQueue.shift();
+            await anim();
+            if (state.animationQueue.length > 0) {
+                await new Promise(r => setTimeout(r, 100)); // Stagger delay
+            }
         }
     }
 
@@ -6962,6 +7037,21 @@ class BaseCard {
     }
 
     function render() {
+        // SYNC VISUAL STATE FOR ALL CARDS NOT PULSING
+        const allCards = [
+            ...state.player.hand,
+            ...state.player.board,
+            ...(state.battleBoards ? [...state.battleBoards.player, ...state.battleBoards.opponent] : []),
+            ...state.shop.cards,
+            ...state.targetingQueue,
+            ...state.discoveryQueue
+        ];
+        allCards.forEach(c => {
+            if (c instanceof BaseCard && !c.isPulsing && state.phase !== 'BATTLE') {
+                c.syncVisualState();
+            }
+        });
+
         const rosterSidebar = document.getElementById('roster-sidebar');
         if (rosterSidebar) {
             rosterSidebar.innerHTML = '';
@@ -7642,7 +7732,7 @@ class BaseCard {
             bubble.className = `counter-bubble ${type}`;
             
             if (type === 'plus-one') {
-                bubble.textContent = `+${value}`;
+                bubble.textContent = `+${instance.displayedCounters}`;
             } else {
                 if (imgPath) {
                     const img = document.createElement('img');
@@ -7672,28 +7762,28 @@ class BaseCard {
         };
 
         // 1. +1/+1 Counters
-        if (instance.counters > 0) addCounterBubble('plus-one', instance.counters);
+        if (instance.displayedCounters > 0) addCounterBubble('plus-one', instance.displayedCounters);
         // 2. Flying
-        if (instance.flyingCounters > 0) addCounterBubble('flying', instance.flyingCounters, 'img/flying.png');
+        if (instance.displayedFlyingCounters > 0) addCounterBubble('flying', instance.displayedFlyingCounters, 'img/flying.png');
         // 3. Menace
-        if (instance.menaceCounters > 0) addCounterBubble('menace', instance.menaceCounters, 'img/menace.png');
+        if (instance.displayedMenaceCounters > 0) addCounterBubble('menace', instance.displayedMenaceCounters, 'img/menace.png');
         // 4. First Strike
-        if (instance.firstStrikeCounters > 0) addCounterBubble('first-strike', instance.firstStrikeCounters, 'img/first-strike.png');
+        if (instance.displayedFirstStrikeCounters > 0) addCounterBubble('first-strike', instance.displayedFirstStrikeCounters, 'img/first-strike.png');
         // 5. Vigilance
-        if (instance.vigilanceCounters > 0) addCounterBubble('vigilance', instance.vigilanceCounters, 'img/vigilance.png');
+        if (instance.displayedVigilanceCounters > 0) addCounterBubble('vigilance', instance.displayedVigilanceCounters, 'img/vigilance.png');
         // 6. Lifelink
-        if (instance.lifelinkCounters > 0) addCounterBubble('lifelink', instance.lifelinkCounters, 'img/lifelink.png');
+        if (instance.displayedLifelinkCounters > 0) addCounterBubble('lifelink', instance.displayedLifelinkCounters, 'img/lifelink.png');
         // 7. Trample
-        if (instance.trampleCounters > 0) addCounterBubble('trample', instance.trampleCounters, 'img/trample.png');
+        if (instance.displayedTrampleCounters > 0) addCounterBubble('trample', instance.displayedTrampleCounters, 'img/trample.png');
         // 8. Reach
-        if (instance.reachCounters > 0) addCounterBubble('reach', instance.reachCounters, 'img/reach.png');
+        if (instance.displayedReachCounters > 0) addCounterBubble('reach', instance.displayedReachCounters, 'img/reach.png');
         // 9. Hexproof
-        if (instance.hexproofCounters > 0) addCounterBubble('hexproof', instance.hexproofCounters, 'img/hexproof.png');
+        if (instance.displayedHexproofCounters > 0) addCounterBubble('hexproof', instance.displayedHexproofCounters, 'img/hexproof.png');
         // 10. Shield
-        if (instance.shieldCounters > 0) addCounterBubble('shield', instance.shieldCounters, 'img/shield.png');
+        if (instance.displayedShieldCounters > 0) addCounterBubble('shield', instance.displayedShieldCounters, 'img/shield.png');
         
         if (instance.pt) {
-            const stats = instance.getDisplayStats(boardContext);
+            const stats = instance.getDisplayStats(boardContext, true); // true = use visual state
             cardEl.querySelector('.card-p').textContent = stats.p;
             cardEl.querySelector('.card-t').textContent = stats.t;
             if (stats.t < stats.maxT) cardEl.querySelector('.card-t').classList.add('damaged');
