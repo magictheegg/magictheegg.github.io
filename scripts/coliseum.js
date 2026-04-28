@@ -89,10 +89,20 @@ class BaseCard {
 
         // Returns base power/toughness from the 'pt' string
         getBasePT() {
-            if (this.temporarySphinx) return { p: 3, t: 3 };
-            if (!this.pt) return { p: 0, t: 0 };
-            const parts = this.pt.split('/');
-            return { p: parseInt(parts[0]) || 0, t: parseInt(parts[1]) || 0 };
+            let p = 0, t = 0;
+            if (this.temporarySphinx) {
+                p = 3; t = 3;
+            } else if (this.pt) {
+                const parts = this.pt.split('/');
+                p = parseInt(parts[0]) || 0;
+                t = parseInt(parts[1]) || 0;
+            }
+            
+            if (this.isFoil) {
+                p *= 2;
+                t *= 2;
+            }
+            return { p, t };
         }
 
         getEquipmentStats(target) {
@@ -426,8 +436,9 @@ class BaseCard {
             const base = super.getDynamicBuffs(board);
             const hasOtherCentaur = board?.some(c => c.id !== this.id && c.type?.includes('Centaur'));
             if (hasOtherCentaur) {
-                base.p += 1;
-                base.t += 1;
+                const multiplier = this.isFoil ? 2 : 1;
+                base.p += multiplier;
+                base.t += multiplier;
             }
             return base;
         }
@@ -438,8 +449,7 @@ class BaseCard {
             const idx = board.indexOf(this);
             const right = (idx !== -1 && idx < board.length - 1) ? board[idx + 1] : null;
             if (right) {
-                const baseP = right.getBasePT().p;
-                if (baseP < 2) {
+                if (right.getBasePT().p < this.getBasePT().p) {
                     const multiplier = this.isFoil ? 2 : 1;
                     right.tempPower += (2 * multiplier);
                     right.tempToughness += (2 * multiplier);
@@ -2823,6 +2833,7 @@ class BaseCard {
         phase: 'SHOP', // SHOP | BATTLE
         castingSpell: null,
         targetingEffect: null,
+        isTripling: false,
         targetingQueue: [],
         scrying: null,
         discovery: null,
@@ -4411,6 +4422,7 @@ class BaseCard {
             const token = CardFactory.create(tokenData);
             token.id = `token-${Math.random()}`;
             token.owner = owner;
+            token.isToken = true;
             
             // Add to combat participant list for trigger/sync tracking
             if (state.phase === 'BATTLE' && state.combatParticipants) {
@@ -5189,6 +5201,10 @@ class BaseCard {
 
         if (card.type.toLowerCase().includes('creature')) {
             if (state.player.board.length >= boardLimit) return;
+            
+            // Remove from hand FIRST to prevent double-counting during tripling checks triggered by ETB
+            state.player.hand.splice(cardIndex, 1);
+
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
             instance.owner = 'player';
 
@@ -5214,8 +5230,6 @@ class BaseCard {
             }
             // Mieng Trigger
             triggerMiengFerocious(instance.getDisplayStats(state.player.board).p, state.player.board);
-
-            state.player.hand.splice(cardIndex, 1);
 
             // HERO POWER: Herrea (Blue card tracking & Reward) - ONLY if no targeting Modal was opened
             if (!state.targetingEffect && !state.discovery) {
@@ -7424,6 +7438,10 @@ class BaseCard {
 
         // Reset animation flags after render
         state.shop.justFroze = false;
+
+        if (state.phase === 'SHOP' && !state.isTripling) {
+            checkTriples();
+        }
     }
 
     function handleDragOver(e) {
@@ -7988,6 +8006,158 @@ class BaseCard {
 
     function setAvailableCards(cards) {
         availableCards = cards;
+    }
+
+    async function checkTriples() {
+        if (state.phase !== 'SHOP' || state.isTripling) return;
+
+        // Map current hand and board to source objects
+        const eligibleCards = [
+            ...state.player.hand.map((c, i) => ({ card: c, source: 'hand', index: i })),
+            ...state.player.board.map((c, i) => ({ card: c, source: 'board', index: i }))
+        ].filter(item => !item.card.isToken && !item.card.isFoil && item.card.type?.toLowerCase().includes('creature'));
+
+        const groups = {};
+        eligibleCards.forEach(item => {
+            const name = item.card.card_name;
+            if (!groups[name]) groups[name] = [];
+            groups[name].push(item);
+        });
+
+        for (const name in groups) {
+            if (groups[name].length >= 3) {
+                state.isTripling = true;
+                const triple = groups[name].slice(0, 3);
+                await performTriplingAnimation(triple);
+                state.isTripling = false;
+                // Re-check for chain tripling
+                setTimeout(checkTriples, 100);
+                return;
+            }
+        }
+    }
+
+    async function performTriplingAnimation(tripleItems) {
+        const cardName = tripleItems[0].card.card_name;
+        
+        // 1. Snapshot physical positions and clone elements BEFORE state change
+        const ghosts = [];
+        const container = document.body;
+        
+        tripleItems.forEach(item => {
+            const el = document.getElementById(`card-${item.card.id}`);
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                const ghost = el.cloneNode(true);
+                ghost.id = `ghost-${item.card.id}`;
+                ghost.className += ' triple-ghost';
+                ghost.style.top = `${rect.top}px`;
+                ghost.style.left = `${rect.left}px`;
+                ghost.style.width = `${rect.width}px`;
+                ghost.style.height = `${rect.height}px`;
+                ghost.style.margin = '0';
+                ghost.style.transform = 'none'; // Clear relative transforms
+                
+                container.appendChild(ghost);
+                ghosts.push(ghost);
+                
+                // Hide the real one
+                el.style.opacity = '0';
+                el.style.pointerEvents = 'none';
+            }
+        });
+
+        if (ghosts.length < 3) {
+            ghosts.forEach(g => g.remove());
+            return;
+        }
+
+        // 2. Update state: Remove originals, add foil
+        const baseData = availableCards.find(c => c.card_name === cardName && c.shape !== 'token');
+        if (!baseData) {
+            ghosts.forEach(g => g.remove());
+            return;
+        }
+
+        // Remove from hand/board
+        tripleItems.forEach(item => {
+            if (item.source === 'hand') {
+                state.player.hand = state.player.hand.filter(c => c.id !== item.card.id);
+            } else {
+                state.player.board = state.player.board.filter(c => c.id !== item.card.id);
+            }
+        });
+
+        const foil = CardFactory.create(baseData);
+        foil.isFoil = true;
+        
+        // Sum counters and other persistent stats
+        foil.counters = tripleItems.reduce((sum, item) => sum + (item.card.counters || 0), 0);
+        foil.flyingCounters = tripleItems.reduce((sum, item) => sum + (item.card.flyingCounters || 0), 0);
+        foil.menaceCounters = tripleItems.reduce((sum, item) => sum + (item.card.menaceCounters || 0), 0);
+        foil.firstStrikeCounters = tripleItems.reduce((sum, item) => sum + (item.card.firstStrikeCounters || 0), 0);
+        foil.doubleStrikeCounters = tripleItems.reduce((sum, item) => sum + (item.card.doubleStrikeCounters || 0), 0);
+        foil.vigilanceCounters = tripleItems.reduce((sum, item) => sum + (item.card.vigilanceCounters || 0), 0);
+        foil.lifelinkCounters = tripleItems.reduce((sum, item) => sum + (item.card.lifelinkCounters || 0), 0);
+        foil.deathtouchCounters = tripleItems.reduce((sum, item) => sum + (item.card.deathtouchCounters || 0), 0);
+        foil.trampleCounters = tripleItems.reduce((sum, item) => sum + (item.card.trampleCounters || 0), 0);
+        foil.reachCounters = tripleItems.reduce((sum, item) => sum + (item.card.reachCounters || 0), 0);
+        foil.hexproofCounters = tripleItems.reduce((sum, item) => sum + (item.card.hexproofCounters || 0), 0);
+        foil.shieldCounters = tripleItems.reduce((sum, item) => sum + (item.card.shieldCounters || 0), 0);
+
+        state.player.hand.push(foil);
+
+        // 3. Render to position the new foil card in hand
+        render();
+
+        // 4. Find the target position (Center of the new card in hand)
+        const targetEl = document.getElementById(`card-${foil.id}`);
+        if (!targetEl) {
+            ghosts.forEach(g => g.remove());
+            return;
+        }
+        
+        const targetRect = targetEl.getBoundingClientRect();
+        const targetCenterX = targetRect.left + targetRect.width / 2;
+        const targetCenterY = targetRect.top + targetRect.height / 2;
+        
+        targetEl.style.opacity = '0'; // Keep it hidden during flight
+
+        // 5. Trigger the flight!
+        await new Promise(r => setTimeout(r, 50)); // Tiny breath for browser to settle
+        
+        ghosts.forEach(ghost => {
+            const ghostRect = ghost.getBoundingClientRect();
+            const targetLeft = targetCenterX - ghostRect.width / 2;
+            const targetTop = targetCenterY - ghostRect.height / 2;
+            
+            ghost.style.left = `${targetLeft}px`;
+            ghost.style.top = `${targetTop}px`;
+            ghost.style.transform = 'scale(0.3)';
+            ghost.style.opacity = '0.2';
+        });
+
+        // 6. Wait for ghosts to almost reach target, then trigger foil pop
+        await new Promise(r => setTimeout(r, 400));
+
+        // 7. Cleanup and Smooth Show
+        ghosts.forEach(g => g.remove());
+        
+        // Determine natural opacity (0.5 for hand cards, 1.0 for board)
+        const isInHand = state.player.hand.some(c => c.id === foil.id);
+        const targetOpacity = isInHand ? '0.5' : '1';
+
+        // Animate from 0 to natural opacity
+        targetEl.style.transition = 'opacity 0.4s ease-out';
+        targetEl.style.opacity = targetOpacity;
+
+        // 8. Final fresh render to clear temporary animation states
+        await new Promise(r => setTimeout(r, 450));
+        if (targetEl) {
+            targetEl.style.transition = '';
+            targetEl.style.opacity = '';
+        }
+        render();
     }
 
     if (typeof document !== 'undefined' && typeof module === 'undefined') {

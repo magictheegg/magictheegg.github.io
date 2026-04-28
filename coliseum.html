@@ -1230,6 +1230,14 @@
         .pulse-stats { animation: pulse-stats 0.5s ease-in-out; }
         .lifegain-pulse { animation: lifegain-pulse 0.8s ease-out; }
 
+        .triple-ghost {
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center center;
+        }
+
         @keyframes lifegain-pulse {
             0% { transform: translateX(-50%) rotate(45deg) scale(1); box-shadow: 0 0 0 rgba(0,255,0,0); }
             50% { transform: translateX(-50%) rotate(45deg) scale(1.5); box-shadow: 0 0 40px rgba(0,255,0,0.8); }
@@ -1392,9 +1400,16 @@
         .roster-frame.dead {
             filter: grayscale(1) opacity(0.4);
         }
-        .card.foil {
+        .card.foil .card-art {
             border-color: #ffd700;
+        }
+
+        .card.foil {
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .fanned-hand .card.foil:hover {
+            box-shadow: 0 15px 45px rgba(255, 215, 0, 0.8);
         }
 
         .morphing {
