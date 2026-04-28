@@ -1308,15 +1308,13 @@ class BaseCard {
         }
     }
 
-    class RuinSkink extends BaseCard {
-        getDynamicBuffs(board) {
-            let { p, t } = super.getDynamicBuffs(board);
-            // Power = spell graveyard size
-            const multiplier = this.isFoil ? 2 : 1;
+    class WaspbackBandit extends BaseCard {
+        onNoncreatureCast(isFoilCast, board) {
             const entity = getEntity(this.owner);
-            const gySize = entity ? (entity.spellGraveyard?.length || 0) : 0;
-            p += (gySize * multiplier);
-            return { p, t };
+            if (entity) {
+                const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
+                entity.treasures = (entity.treasures || 0) + multiplier;
+            }
         }
     }
 
@@ -2497,7 +2495,7 @@ class BaseCard {
                 case 'Servants of Dydren': card = new ServantsOfDydren(data); break;
                 case 'Holtun-Band Elder': card = new HoltunBandElder(data); break;
                 case 'Whispers of the Dead': card = new WhispersOfTheDead(data); break;
-                case 'Ruin Skink': card = new RuinSkink(data); break;
+                case 'Waspback Bandit': card = new WaspbackBandit(data); break;
                 case 'Murkborn Mammoth': card = new MurkbornMammoth(data); break;
                 case 'Hissing Sunspitter': card = new HissingSunspitter(data); break;
                 case 'Ceremony of Tribes': card = new CeremonyOfTribes(data); break;

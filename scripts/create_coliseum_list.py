@@ -14,14 +14,14 @@ def create_coliseum_card_list():
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
         "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Ruin Skink",
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
         "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
         "Qinhana Cavalry", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
-        "Restless Oppressor", "Moss Viper", "Striding Cascade",
+        "Restless Oppressor", "Moss Viper", "Striding Cascade", "Waspback Bandit",
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
         "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
         "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
@@ -58,16 +58,16 @@ def create_coliseum_card_list():
         "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
         "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker", "Ruin Skink"
+        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker"
     ]
     tier_3_names = [
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
-        "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
+        "Finwing Drake", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
         "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
         "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
         "Qinhana Cavalry", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
-        "Restless Oppressor", "Moss Viper", "Striding Cascade"
+        "Restless Oppressor", "Moss Viper", "Striding Cascade", "Waspback Bandit"
     ]
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
@@ -77,7 +77,7 @@ def create_coliseum_card_list():
         "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
-        "Song of Wind and Fire", "Decorated Warrior"
+        "Song of Wind and Fire", "Shrewd Parliament"
     ]
     tier_5_names = [
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
@@ -85,7 +85,7 @@ def create_coliseum_card_list():
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
         "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom",
-        "Merciless Xun Huang", "Citadel Colossus", "Triumphant Tactics", "Wild Bearmaster"
+        "Merciless Xun Huang", "Citadel Colossus", "Triumphant Tactics", "Wild Bearmaster", "Decorated Warrior"
     ]
 
     for name in card_names_to_include:
