@@ -410,7 +410,8 @@ class BaseCard {
         getDynamicBuffs(board) {
             const base = super.getDynamicBuffs(board);
             if (this.isEmbattled) {
-                base.p += 1;
+                const multiplier = this.isFoil ? 2 : 1;
+                base.p += multiplier;
             }
             return base;
         }
@@ -425,7 +426,8 @@ class BaseCard {
             const base = super.getDynamicBuffs(board);
             const hasOtherFlyer = board?.some(c => c.id !== this.id && c.hasKeyword('Flying'));
             if (hasOtherFlyer) {
-                base.p += 1;
+                const multiplier = this.isFoil ? 2 : 1;
+                base.p += multiplier;
             }
             return base;
         }
@@ -506,9 +508,16 @@ class BaseCard {
 
     class RottenCarcass extends BaseCard {
         onDeath(board, owner) {
-            const token = createToken('Construct', 'ACE', owner);
-            if (token) token.pt = "2/2"; // Override the 1/1 to be 2/2
-            return token ? [token] : [];
+            const count = this.isFoil ? 2 : 1;
+            const tokens = [];
+            for (let i = 0; i < count; i++) {
+                const token = createToken('Construct', 'ACE', owner);
+                if (token) {
+                    token.pt = "2/2"; // Override the 1/1 to be 2/2
+                    tokens.push(token);
+                }
+            }
+            return tokens;
         }
     }
 
@@ -527,7 +536,8 @@ class BaseCard {
     class RakkiriArcher extends BaseCard {
         getDynamicBuffs(board) {
             const base = super.getDynamicBuffs(board);
-            return (this.isEmbattled) ? { p: base.p, t: base.t + 1 } : base;
+            const multiplier = this.isFoil ? 2 : 1;
+            return (this.isEmbattled) ? { p: base.p, t: base.t + multiplier } : base;
         }
         hasKeyword(keyword) {
             if (keyword.toLowerCase() === 'reach') {
@@ -540,10 +550,11 @@ class BaseCard {
     class LakeCaveLurker extends BaseCard {
         onDeath(board, owner) {
             if (owner === 'player') {
+                const multiplier = this.isFoil ? 2 : 1;
                 if (state.phase === 'SHOP') {
-                    state.player.gold += 1;
+                    state.player.gold += multiplier;
                 } else {
-                    state.player.treasures += 1;
+                    state.player.treasures += multiplier;
                 }
             }
             return [];
@@ -553,18 +564,16 @@ class BaseCard {
     class Divination extends BaseCard {
         onCast(board) {
             if (board === state.player.board) {
-                const times = this.isFoil ? 2 : 1;
-                addCardsToShop(2 * times, 'creature', 1);
+                addCardsToShop(2, 'creature', 1);
             }
         }
     }
 
     class ScientificInquiry extends BaseCard {
         onCast(board) {
-            const multiplier = this.isFoil ? 2 : 1;
             if (board === state.player.board) {
-                state.player.treasures += multiplier;
-                addScry(2 * multiplier, null, this.card_name);
+                state.player.treasures += 1;
+                addScry(2, null, this.card_name);
             }
         }
     }
@@ -572,8 +581,7 @@ class BaseCard {
     class ToBattle extends BaseCard {
         effect_text = 'Choose a creature to get a +1/+1 counter and gain haste until end of turn.';
         onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            addCounters(target, multiplier, board);
+            addCounters(target, 1, board);
             if (!target.enchantments) target.enchantments = [];
             target.enchantments.push({ card_name: 'To Battle', rules_text: 'Haste', isTemporary: true });
         }
@@ -595,10 +603,9 @@ class BaseCard {
     class MightAndMane extends BaseCard {
         effect_text = 'Choose a creature to gain menace until end of turn.';
         onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
             target.enchantments.push({ card_name: 'Might and Mane', rules_text: 'Menace' });
             if (board === state.player.board) {
-                addCardsToShop(multiplier, 'creature', 1);
+                addCardsToShop(1, 'creature', 1);
             }
         }
     }
@@ -606,11 +613,10 @@ class BaseCard {
     class WayOfTheBygone extends BaseCard {
         effect_text = 'Choose a creature to get +3/+0 and gain first strike until end of turn.';
         onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
             if (board === state.player.board) {
-                addScry(1 * multiplier, null, this.card_name);
+                addScry(1, null, this.card_name);
             }
-            target.tempPower += (3 * multiplier);
+            target.tempPower += 3;
             target.enchantments.push({ card_name: 'Way of the Bygone', rules_text: 'First strike' });
         }
     }
@@ -691,7 +697,7 @@ class BaseCard {
                 (c.tier || 1) <= state.player.tier
             );
             const selection = [];
-            const count = this.isFoil ? 8 : 4;
+            const count = 4;
             for (let i = 0; i < count; i++) {
                 selection.push(CardFactory.create(noncreatures[Math.floor(Math.random() * noncreatures.length)]));
             }
@@ -707,8 +713,9 @@ class BaseCard {
         onETB(board) {
             board.forEach(c => {
                 if (c.id !== this.id) {
-                    c.tempPower += 1;
-                    c.tempToughness += 1;
+                    const multiplier = this.isFoil ? 2 : 1;
+                    c.tempPower += multiplier;
+                    c.tempToughness += multiplier;
                     if (!c.enchantments) c.enchantments = [];
                     c.enchantments.push({ card_name: 'Envoy Grant', rules_text: 'Vigilance', isTemporary: true });
                 }
@@ -752,7 +759,7 @@ class BaseCard {
                 text: "Choose a Centaur to get a +1/+1 counter.",
                 buffTargetId: target.id,
                 effect: 'warrior_ways_step2',
-                isFoil: this.isFoil,
+                isFoil: false,
                 owner: this.owner || 'player'
             });
         }
@@ -942,7 +949,8 @@ class BaseCard {
             if (state.phase !== 'BATTLE') return;
             if (this.owner !== deadCard.owner) return;
             const stats = deadCard.getDisplayStats(board);
-            const power = stats.p;
+            const multiplier = this.isFoil ? 2 : 1;
+            const power = stats.p * multiplier;
             if (power <= 0) return;
             
             const targetSide = (this.owner === 'player') ? 'opponent' : 'player';
@@ -973,7 +981,8 @@ class BaseCard {
             if (state.phase !== 'BATTLE') return [];
             // "Whenever a creature you control dies" - includes self
             const stats = this.getDisplayStats(board);
-            const power = stats.p;
+            const multiplier = this.isFoil ? 2 : 1;
+            const power = stats.p * multiplier;
             const targetSide = (owner === 'player') ? 'opponent' : 'player';
             const currentOpp = getOpponent();
 
@@ -1036,7 +1045,8 @@ class BaseCard {
         }
         onNoncreatureCast(isFoil, board) {
             if (state.spellsCastThisTurn === 2) {
-                addCounters(this, 1, board);
+                const multiplier = this.isFoil ? 2 : 1;
+                addCounters(this, multiplier, board);
                 board.forEach(c => {
                     if (!c.enchantments) c.enchantments = [];
                     c.enchantments.push({ card_name: 'Galaxian Flight', rules_text: 'Flying', isTemporary: true });
@@ -1064,7 +1074,7 @@ class BaseCard {
                 if (name === 'Executioner\'s Madness') {
                     queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: spell });
                 } else if (name === 'Warrior\'s Ways') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: spell.isFoil, cardInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: false, cardInstance: spell });
                 } else if (name === 'Whispers of the Dead') {
                     queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: spell });
                 } else if (name === 'Ceremony of Tribes') {
@@ -1082,7 +1092,7 @@ class BaseCard {
                         effect: 'infuse_spell_resolution',
                         owner: 'player',
                         wasCast: true,
-                        isFoil: spell.isFoil
+                        isFoil: false
                     });
                 } else {
                     // Fallback for untargeted spells
@@ -1090,7 +1100,7 @@ class BaseCard {
                 }
                 
                 // Trigger triggers
-                board.forEach(c => c.onNoncreatureCast(spell.isFoil, board));
+                board.forEach(c => c.onNoncreatureCast(false, board));
             });
         }
     }
@@ -1099,8 +1109,8 @@ class BaseCard {
 
     class LadriaWindwatcher extends BaseCard {
         onETB(board) {
-            const count = this.isFoil ? 4 : 2;
-            for (let i = 0; i < count; i++) {
+            // Standard trigger: 2 birds. Foil trigger 2: 2 birds. Total 4.
+            for (let i = 0; i < 2; i++) {
                 const bird = createToken('Bird', 'AEX', this.owner);
                 if (bird && board.length < boardLimit) {
                     bird.pt = "1/1";
@@ -1233,7 +1243,8 @@ class BaseCard {
         getDynamicBuffs(board) {
             let { p, t } = super.getDynamicBuffs(board);
             // Power = spell graveyard size
-            p += (state.player.spellGraveyard.length || 0);
+            const multiplier = this.isFoil ? 2 : 1;
+            p += ((state.player.spellGraveyard.length || 0) * multiplier);
             return { p, t };
         }
     }
@@ -1281,7 +1292,8 @@ class BaseCard {
     class RestlessOppressor extends BaseCard {
         onOtherCreatureDeath(deadCard, board) {
             if (state.phase === 'SHOP' && this.owner === deadCard.owner) {
-                addCounters(this, 1, board);
+                const multiplier = this.isFoil ? 2 : 1;
+                addCounters(this, multiplier, board);
             }
         }
     }
@@ -1292,7 +1304,8 @@ class BaseCard {
         onCounterPlaced(count, type, target, board) {
             if (type === 'plus-one' && !this.cascadeTriggeredThisTurn && this.owner === target.owner) {
                 this.cascadeTriggeredThisTurn = true;
-                addCounters(this, 1, board);
+                const multiplier = this.isFoil ? 2 : 1;
+                addCounters(this, multiplier, board);
             }
         }
         onShopStart() { this.cascadeTriggeredThisTurn = false; }
@@ -1301,20 +1314,17 @@ class BaseCard {
     class SongOfWindAndFire extends BaseCard {
         onCast(board) {
             if (board !== state.player.board) return;
-            const multiplier = this.isFoil ? 2 : 1;
-            for (let i = 0; i < multiplier; i++) {
-                const dragon = createToken('Dragon', 'NJB', 'player');
-                if (dragon && board.length < boardLimit) {
-                    board.push(dragon);
-                    triggerETB(dragon, board);
-                    board.forEach(c => { if (c.id !== dragon.id) c.onOtherCreatureETB(dragon, board); });
-                }
-                const bard = createToken('Bard', 'NJB', 'player');
-                if (bard && board.length < boardLimit) {
-                    board.push(bard);
-                    triggerETB(bard, board);
-                    board.forEach(c => { if (c.id !== bard.id) c.onOtherCreatureETB(bard, board); });
-                }
+            const dragon = createToken('Dragon', 'NJB', 'player');
+            if (dragon && board.length < boardLimit) {
+                board.push(dragon);
+                triggerETB(dragon, board);
+                board.forEach(c => { if (c.id !== dragon.id) c.onOtherCreatureETB(dragon, board); });
+            }
+            const bard = createToken('Bard', 'NJB', 'player');
+            if (bard && board.length < boardLimit) {
+                board.push(bard);
+                triggerETB(bard, board);
+                board.forEach(c => { if (c.id !== bard.id) c.onOtherCreatureETB(bard, board); });
             }
         }
     }
@@ -1390,7 +1400,8 @@ class BaseCard {
 
     class DecoratedWarrior extends BaseCard {
         async onAttack(board) {
-            addCounters(this, 1, board);
+            const multiplier = this.isFoil ? 2 : 1;
+            addCounters(this, multiplier, board);
             return [this];
         }
     }
@@ -1398,10 +1409,11 @@ class BaseCard {
     class WildBearmaster extends BaseCard {
         async onAttack(board) {
             const stats = this.getDisplayStats(board);
+            const multiplier = this.isFoil ? 2 : 1;
             board.forEach(c => {
                 if (c.id !== this.id) {
-                    c.tempPower += stats.p;
-                    c.tempToughness += stats.p;
+                    c.tempPower += (stats.p * multiplier);
+                    c.tempToughness += (stats.p * multiplier);
                 }
             });
             return board.filter(c => c.id !== this.id);
@@ -1452,8 +1464,9 @@ class BaseCard {
         onOtherCreatureETB(newCard, board) {
             if (newCard.owner === this.owner) {
                 const stats = newCard.getDisplayStats(board);
-                this.tempPower += stats.p;
-                this.tempToughness += stats.p;
+                const multiplier = this.isFoil ? 2 : 1;
+                this.tempPower += (stats.p * multiplier);
+                this.tempToughness += (stats.p * multiplier);
             }
         }
     }
@@ -1530,18 +1543,6 @@ class BaseCard {
                     text: "Choose a creature to teach.",
                     effect: 'ndengo_target'
                 });
-            }
-        }
-    }
-
-    class FeralExemplar extends BaseCard {
-        actionCost = 3;
-        onAction() {
-            if (state.player.gold >= 3 && !this.actionUsed) {
-                state.player.gold -= 3;
-                this.tempPower += 2;
-                this.tempToughness += 2;
-                this.actionUsed = true;
             }
         }
     }
@@ -1811,11 +1812,10 @@ class BaseCard {
 
     class FlauntLuxury extends BaseCard {
         onCast(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            state.player.gold += (3 * multiplier);
+            state.player.gold += 3;
             
             // Draw 3 creatures to the shop
-            for (let i = 0; i < (3 * multiplier); i++) {
+            for (let i = 0; i < 3; i++) {
                 if (state.shop.cards.length < 7) {
                     addCardsToShop(1, 'creature', 1);
                 }
@@ -1863,10 +1863,12 @@ class BaseCard {
             const others = board.filter(c => c.id !== host.id && c.owner === host.owner);
             let gained = false;
             
+            const multiplier = host.isFoil ? 2 : 1;
+            
             keywords.forEach(kw => {
                 if (others.some(c => c.hasKeyword(kw))) {
-                    host.tempPower++;
-                    host.tempToughness++;
+                    host.tempPower += multiplier;
+                    host.tempToughness += multiplier;
                     
                     // Grant temporary keyword via enchantment
                     if (!host.enchantments) host.enchantments = [];
@@ -1948,20 +1950,16 @@ class BaseCard {
 
     class GhessianMemories extends BaseCard {
         onCast(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            
-            for (let i = 0; i < multiplier; i++) {
-                if (board.length < boardLimit) {
-                    const token = createToken('Centaur Knight', 'GSC', 'player');
-                    if (token) {
-                        token.pt = "3/3"; // Override 2/2
-                        token.rules_text = ""; // Remove Vigilance
-                        board.push(token);
-                        // Broadcast ETB
-                        board.forEach(c => {
-                            if (c.id !== token.id) c.onOtherCreatureETB(token, board);
-                        });
-                    }
+            if (board.length < boardLimit) {
+                const token = createToken('Centaur Knight', 'GSC', 'player');
+                if (token) {
+                    token.pt = "3/3"; // Override 2/2
+                    token.rules_text = ""; // Remove Vigilance
+                    board.push(token);
+                    // Broadcast ETB
+                    board.forEach(c => {
+                        if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                    });
                 }
             }
             
@@ -1979,7 +1977,7 @@ class BaseCard {
                 effect: 'ghessian_buff',
                 sourceId: this.id,
                 remaining: 1,
-                isFoil: this.isFoil
+                isFoil: false
             });
         }
     }
@@ -2035,7 +2033,8 @@ class BaseCard {
     }
     class RapaciousSprite extends BaseCard {
         onETB(board) {
-            state.player.treasures += 1;
+            const multiplier = this.isFoil ? 2 : 1;
+            state.player.treasures += multiplier;
         }
     }
 
@@ -2063,7 +2062,7 @@ class BaseCard {
                 text: "Choose a creature to get the second +1/+1 counter.",
                 target1Id: target.id,
                 effect: 'up_in_arms_step2',
-                isFoil: this.isFoil,
+                isFoil: false,
                 owner: this.owner || 'player'
             });
         }
@@ -2073,8 +2072,9 @@ class BaseCard {
         transform() {
             // Becomes 4/4 Dragon with Flying
             const base = this.getBasePT();
-            this.tempPower += (4 - base.p);
-            this.tempToughness += (4 - base.t);
+            const targetStat = this.isFoil ? 8 : 4;
+            this.tempPower += (targetStat - base.p);
+            this.tempToughness += (targetStat - base.t);
             if (!this.enchantments) this.enchantments = [];
             this.enchantments.push({ card_name: 'Mieng Transformation', rules_text: 'Flying', isTemporary: true });
         }
@@ -2083,17 +2083,6 @@ class BaseCard {
     class DraconicCinderlance extends BaseCard { }
 
     class CabracansFamiliar extends BaseCard { }
-
-    class Bushwhack extends BaseCard {
-        effect_text = 'Choose a creature to get +4/=2 and gain trample until end of turn.';
-        onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            target.tempPower += (4 * multiplier);
-            target.tempToughness += (2 * multiplier);
-            if (!target.enchantments) target.enchantments = [];
-            target.enchantments.push({ card_name: 'Bushwhack Grant', rules_text: 'Trample', isTemporary: true });
-        }
-    }
 
     class MoonlightStag extends BaseCard {
         hasKeyword(keyword) {
@@ -2128,11 +2117,10 @@ class BaseCard {
 
     class Foresee extends BaseCard {
         onCast(board) {
-            const multiplier = this.isFoil ? 2 : 1;
             if (board === state.player.board) {
-                addScry(4 * multiplier, () => {
+                addScry(4, () => {
                     // Add two creatures to shop divination-style (adds to current, uses scry queue)
-                    addCardsToShop(2 * multiplier, 'creature', 1);
+                    addCardsToShop(2, 'creature', 1);
                     render();
                 }, this.card_name);
             }
@@ -2142,8 +2130,7 @@ class BaseCard {
     class FightSong extends BaseCard {
         effect_text = 'Choose a creature to get a +1/+1 counter and gain indestructible until end of turn.';
         onApply(target, board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            addCounters(target, multiplier, board);
+            addCounters(target, 1, board);
             if (!target.enchantments) target.enchantments = [];
             target.enchantments.push({ card_name: 'Fight Song Grant', rules_text: 'Indestructible', isTemporary: true });
         }
@@ -2151,12 +2138,11 @@ class BaseCard {
 
     class EdgeOfTheSeats extends BaseCard {
         async onCast(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            const lifeGain = board.length * multiplier;
+            const lifeGain = board.length;
             
             board.forEach(c => {
-                c.tempPower += multiplier;
-                c.tempToughness += multiplier;
+                c.tempPower += 1;
+                c.tempToughness += 1;
             });
 
             if (lifeGain > 0) {
@@ -2179,16 +2165,20 @@ class BaseCard {
 
     class RazorbackTrenchrunner extends BaseCard {
         onDeath(board, owner) {
-            const token = createToken('Ox', 'KOD', owner);
-            if (token) {
-                token.id = `ox-${Math.random()}`;
-                // CUSTOM: Trigger immediate attack logic for the spawn ONLY in battle
-                if (state.phase === 'BATTLE') {
-                    token.isTrenchrunnerSpawn = true; 
+            const tokens = [];
+            const count = this.isFoil ? 2 : 1;
+            for (let i = 0; i < count; i++) {
+                const token = createToken('Ox', 'KOD', owner);
+                if (token) {
+                    token.id = `ox-${Math.random()}`;
+                    // CUSTOM: Trigger immediate attack logic for the spawn ONLY in battle
+                    if (state.phase === 'BATTLE') {
+                        token.isTrenchrunnerSpawn = true; 
+                    }
+                    tokens.push(token);
                 }
-                return [token];
             }
-            return [];
+            return tokens;
         }
     }
 
@@ -2256,19 +2246,6 @@ class BaseCard {
                         // Broadcast ETB
                         board.forEach(c => {
                             if (c.id !== token.id) c.onOtherCreatureETB(token, board);
-                        });
-                    }
-                }
-            }
-            if (this.isFoil && board.length < boardLimit) {
-                const token2 = createToken('Centaur Knight', 'GSC', 'player');
-                if (token2) {
-                    const idx = board.indexOf(this);
-                    if (idx !== -1) {
-                        board.splice(idx + 1, 0, token2);
-                        // Broadcast ETB
-                        board.forEach(c => {
-                            if (c.id !== token2.id) c.onOtherCreatureETB(token2, board);
                         });
                     }
                 }
@@ -4159,7 +4136,8 @@ class BaseCard {
         // DECORATED WARRIOR BLOCKING
         if (defender && defender.card_name === 'Decorated Warrior' && !defender.temporaryHumility) {
             const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-            addCounters(defender, 1, defenderBoard);
+            const multiplier = defender.isFoil ? 2 : 1;
+            addCounters(defender, multiplier, defenderBoard);
             
             const defenderEl = document.getElementById(`card-${defender.id}`);
             if (defenderEl) {
@@ -6448,16 +6426,6 @@ class BaseCard {
             });
 
             let spawns = deadCard.onDeath(board, owner);
-            const hasResurrection = deadCard.enchantments && deadCard.enchantments.some(e => e.card_name === 'By Blood and Venom');
-            if (hasResurrection) {
-                const rawData = availableCards.find(c => c.card_name === deadCard.card_name && c.set === deadCard.set);
-                if (rawData) {
-                    const spawned = CardFactory.create(rawData);
-                    spawned.id = `returned-${Math.random()}`;
-                    spawned.owner = owner;
-                    spawns.push(spawned);
-                }
-            }
             if (spawns.length > 0) {
                 // Limit spawns based on boardLimit
                 const availableSpace = boardLimit - (board.length - 1);
@@ -7872,8 +7840,8 @@ class BaseCard {
             }
         }
 
-        // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot, Feral Exemplar (Only on board, during SHOP)
-        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot', 'Feral Exemplar'];
+        // Actionable check for Intli Assaulter, Covetous Wechuge, Wilderkin Zealot
+        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Wilderkin Zealot'];
         const hasEnoughGold = (instance.actionCost === undefined || state.player.gold >= instance.actionCost);
         const isCurrentlySource = (state.targetingEffect && state.targetingEffect.sourceId === instance.id);
 
