@@ -539,16 +539,16 @@ class BaseCard {
     }
 
     class DutifulCamel extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({ 
                 sourceId: this.id, 
                 title: this.card_name,
                 text: "Choose a creature to get a +1/+1 counter.",
                 effect: 'dutiful_camel_counter', 
                 isDouble: false,
-                wasCast: true,
+                wasCast: !isDouble, // Only "counts" as casting for bounce purposes on first trigger
                 cardInstance: this,
-                isMandatory: false
+                isMandatory: isDouble
             });
         }
     }
@@ -705,14 +705,14 @@ class BaseCard {
     }
 
     class ShriekingPusbag extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a creature to sacrifice.",
                 effect: 'pusbag_sacrifice',
-                wasCast: true,
-                isMandatory: false
+                wasCast: !isDouble,
+                isMandatory: isDouble
             });
         }
     }
@@ -850,7 +850,7 @@ class BaseCard {
     class BellowingGiant extends BaseCard { }
 
     class BwemaTheRuthless extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             // Choice of two different counters
             const multiplier = this.isFoil ? 2 : 1;
             const options = [
@@ -869,21 +869,22 @@ class BaseCard {
                 remaining: 2,
                 sourceId: this.id,
                 effect: 'bwema_counters',
-                chosen: []
+                chosen: [],
+                isMandatory: isDouble
             });
         }
     }
 
     class SilverhornTactician extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a counter to remove.",
                 effect: 'permutate_step1',
-                wasCast: true,
+                wasCast: !isDouble,
                 isFoil: this.isFoil,
-                isMandatory: false
+                isMandatory: isDouble
             });
         }
     }
@@ -1217,15 +1218,15 @@ class BaseCard {
     }
 
     class ArchitectOfWisdom extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             if (this.owner === 'player') {
                 queueTargetingEffect({
                     sourceId: this.id,
                     title: this.card_name,
                     text: "Gain control of target creature from the shop.",
                     effect: 'architect_control',
-                    isMandatory: false,
-                    wasCast: true
+                    isMandatory: isDouble,
+                    wasCast: !isDouble
                 });
             }
         }
@@ -1262,14 +1263,15 @@ class BaseCard {
     class VirulentCactaipan extends BaseCard { }
 
     class ServantsOfDydren extends BaseCard {
-        onETB(board) {
-            if (this.owner === 'player' && state.deadServantsCount > 0) {
+        onETB(board, isDouble = false) {
+            const entity = getEntity(this.owner);
+            if (entity && entity.deadServantsCount > 0) {
                 const servantsData = availableCards.find(c => c.card_name === 'Servants of Dydren');
-                while (state.deadServantsCount > 0 && board.length < boardLimit) {
+                while (entity.deadServantsCount > 0 && board.length < boardLimit) {
                     const s = CardFactory.create(servantsData);
-                    s.owner = 'player';
+                    s.owner = this.owner;
                     board.push(s);
-                    state.deadServantsCount--;
+                    entity.deadServantsCount--;
                 }
             }
         }
@@ -1311,7 +1313,9 @@ class BaseCard {
             let { p, t } = super.getDynamicBuffs(board);
             // Power = spell graveyard size
             const multiplier = this.isFoil ? 2 : 1;
-            p += ((state.player.spellGraveyard.length || 0) * multiplier);
+            const entity = getEntity(this.owner);
+            const gySize = entity ? (entity.spellGraveyard?.length || 0) : 0;
+            p += (gySize * multiplier);
             return { p, t };
         }
     }
@@ -1512,15 +1516,15 @@ class BaseCard {
     }
 
     class NightfallRaptor extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a creature to return to your hand.",
                 effect: 'nightfall_raptor_bounce',
                 isFoil: this.isFoil,
-                wasCast: true,
-                isMandatory: false,
+                wasCast: !isDouble,
+                isMandatory: isDouble,
                 needsETBBroadcast: true
             });
         }
@@ -2071,15 +2075,15 @@ class BaseCard {
     }
 
     class NestMatriarch extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a creature to get a +1/+1 counter and lifelink until end of turn.",
                 effect: 'nest_matriarch_buff',
-                wasCast: true,
+                wasCast: !isDouble,
                 isFoil: this.isFoil,
-                isMandatory: false
+                isMandatory: isDouble
             });
         }
     }
@@ -2297,15 +2301,15 @@ class BaseCard {
     class ArroydPassShepherd extends BaseCard { }
 
     class WarbandRallier extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a Centaur to get two +1/+1 counters.",
                 effect: 'warband_rallier_counters',
-                wasCast: true,
+                wasCast: !isDouble,
                 isFoil: this.isFoil,
-                isMandatory: false
+                isMandatory: isDouble
             });
         }
     }
@@ -2364,16 +2368,17 @@ class BaseCard {
     }
 
     class ShrewdParliament extends BaseCard {
-        onETB(board) {
+        onETB(board, isDouble = false) {
             queueTargetingEffect({
                 sourceId: this.id,
                 title: this.card_name,
                 text: "Choose a card to discard.",
                 effect: 'parliament_discard',
-                wasCast: true,
+                wasCast: !isDouble,
                 cardInstance: this,
                 isFoil: this.isFoil,
-                isMandatory: false
+                isMandatory: isDouble,
+                owner: this.owner
             });
         }
     }
@@ -2868,12 +2873,13 @@ class BaseCard {
             blueCardsPlayed: 0,
             herreaRewardCard: null,
             rerollCount: 0,
-            autumnSpellCount: 0
+            autumnSpellCount: 0,
+            deadServantsCount: 0
         },
         opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 }
+            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hand: [], spellGraveyard: [], deadServantsCount: 0, playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
+            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hand: [], spellGraveyard: [], deadServantsCount: 0, playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
+            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hand: [], spellGraveyard: [], deadServantsCount: 0, playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 }
         ],
         currentOpponentId: 0,
         shop: {
@@ -2895,7 +2901,6 @@ class BaseCard {
         creaturesDiedThisShopPhase: false,
         shopDeathsCount: 0,
         overallHpReducedThisFight: false,
-        deadServantsCount: 0,
         spellsCastThisTurn: 0,
         panharmoniconActive: false,
         animationQueue: [],
@@ -2909,6 +2914,12 @@ class BaseCard {
 
     function getOpponent() {
         return state.opponents[state.currentOpponentId];
+    }
+
+    function getEntity(owner) {
+        if (owner === 'player') return state.player;
+        if (owner === 'opponent') return getOpponent();
+        return null;
     }
 
     function addCounters(target, amount, board) {
@@ -3103,7 +3114,11 @@ class BaseCard {
                 return;
             } else {
                 const last = state.discovery.cards.find(c => c.id !== card.id);
-                if (last && last.card_name === 'Servants of Dydren') state.deadServantsCount++;
+                if (last && last.card_name === 'Servants of Dydren') {
+                    const owner = state.discovery.owner || 'player';
+                    const entity = getEntity(owner);
+                    if (entity) entity.deadServantsCount++;
+                }
                 const handIdx = state.player.hand.findIndex(c => c.id === state.discovery.sourceId);
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
@@ -3155,10 +3170,19 @@ class BaseCard {
         }
 
         if (state.discovery.graveyard) {
-            const idx = state.player.spellGraveyard.findIndex(s => s.id === card.id);
-            if (idx !== -1) state.player.spellGraveyard.splice(idx, 1);
+            const owner = state.discovery.owner || 'player';
+            const entity = getEntity(owner);
+            if (entity) {
+                const idx = entity.spellGraveyard.findIndex(s => s.id === card.id);
+                if (idx !== -1) entity.spellGraveyard.splice(idx, 1);
+            }
         }
-        state.player.hand.push(card);
+
+        const owner = state.discovery.owner || 'player';
+        const entity = getEntity(owner);
+        if (entity) {
+            entity.hand.push(card);
+        }
 
         // HERO POWER: Herrea (Blue card tracking & Reward) - AFTER resolution
         if (state.discovery.wasCast) {
@@ -3292,6 +3316,9 @@ class BaseCard {
                         if (boardIndex !== -1) {
                             const card = state.player.board.splice(boardIndex, 1)[0];
                             state.player.hand.push(card);
+
+                            // Clear any other doubled triggers from this same creature
+                            state.targetingQueue = state.targetingQueue.filter(q => q.sourceId !== state.targetingEffect.sourceId);
                         }
                     }
 
@@ -4010,9 +4037,20 @@ class BaseCard {
 
     function triggerETB(instance, board) {
         if (!instance) return;
-        instance.onETB(board);
+        
+        // FOIL + PANHARMONICON COORDINATION
+        // Only the very first trigger of a sequence can be cancelled (bounced).
+        instance.onETB(board, false); 
+
+        if (instance.isFoil) {
+            instance.onETB(board, true); 
+        }
+
         if (state.panharmoniconActive && instance.owner === 'player') {
-            instance.onETB(board);
+            instance.onETB(board, true); 
+            if (instance.isFoil) {
+                instance.onETB(board, true); 
+            }
         }
     }
 
@@ -4136,6 +4174,11 @@ class BaseCard {
         attackerEl.style.transform = "scale(1.2) translateY(-15px)";
         await new Promise(r => setTimeout(r, 450));
 
+        // Phase 1.1: Equipment Attack Triggers (e.g., Dancing Mirrorblade)
+        if (attacker.equipment && attacker.equipment.onEquippedAttack) {
+            await attacker.equipment.onEquippedAttack(attacker, attackerBoard);
+        }
+
         // Phase 1.5: Attack Triggers
         const attackTargets = await attacker.onAttack(attackerBoard);
         
@@ -4157,8 +4200,6 @@ class BaseCard {
             // for the trigger animations (Battle Cry style)
             if (attackTargets.length > 0 && !deathsResolved) {
                 await resolveAnimations(); // Staggered pulses for Cascade, etc.
-                // We no longer need the hardcoded setTimeout(600) because resolveAnimations() 
-                // already waits for the pulses to finish.
             }
 
             // If the defender died to an ability (Xun Huang), stop the attack
@@ -4172,10 +4213,7 @@ class BaseCard {
             }
         }
 
-        if (attacker.equipment && attacker.equipment.onEquippedAttack) {
-            await attacker.equipment.onEquippedAttack(attacker, attackerBoard);
-        }
-
+        // Phase 1.6: Special Card Triggers (Decorated Warrior, Cabracan's Familiar)
         // DECORATED WARRIOR BLOCKING
         if (defender && defender.card_name === 'Decorated Warrior' && !defender.temporaryHumility) {
             const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
@@ -4253,9 +4291,12 @@ class BaseCard {
             // Pause to let player see the damage result
             await new Promise(r => setTimeout(r, 600));
 
+            // Now resolve any deaths (this handles Familiar kills correctly)
+            const familiarKillResolved = await resolveDeaths();
+
             // If lethal, the Familiar attack is canceled (no fight)
-            const currentDefStats = defender.getDisplayStats(attackerBoard === state.battleBoards.player ? state.battleBoards.opponent : state.battleBoards.player);
-            if (currentDefStats.t <= 0) {
+            const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+            if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
                 attackerEl.style.transform = "";
                 attackerEl.classList.remove('attacking');
                 if (attackerZone) attackerZone.style.zIndex = "";
@@ -4938,8 +4979,9 @@ class BaseCard {
         const shopTypes = ['triples', 'board_copy', 'discounted', 'high_tier'];
         let chosenType = shopTypes[Math.floor(Math.random() * shopTypes.length)];
         
-        // Refinement: board_copy only if board is 5+ creatures
-        if (chosenType === 'board_copy' && state.player.board.length < 5) {
+        // Refinement: board_copy only if board is 5+ NONTOKEN creatures
+        const nontokenCount = state.player.board.filter(c => !c.isToken).length;
+        if (chosenType === 'board_copy' && nontokenCount < 5) {
             const others = shopTypes.filter(t => t !== 'board_copy');
             chosenType = others[Math.floor(Math.random() * others.length)];
         }
@@ -4965,6 +5007,8 @@ class BaseCard {
             // "EXACT COPY" means we clear everything else first
             state.shop.cards = [];
             state.player.board.forEach(c => {
+                if (c.isToken) return; // EXCLUDE TOKENS
+
                 const clone = c.clone();
                 // Reset ALL dynamic stats and keywords to make it "vanilla"
                 clone.counters = 0;
@@ -5267,10 +5311,8 @@ class BaseCard {
                 state.player.board.push(instance);
             }
 
-            // Trigger 1 (Standard or First trigger of Foil)
+            // Trigger ETB (Now handles foils internally to coordinate with Panharmonicon)
             triggerETB(instance, state.player.board);
-            // Trigger 2 if Foil
-            if (instance.isFoil) triggerETB(instance, state.player.board);
 
             // Defer broadcast if we just entered targeting mode
             if (state.targetingEffect && state.targetingEffect.sourceId === instance.id) {
@@ -6050,18 +6092,22 @@ class BaseCard {
                     clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'parliament_discard') {
-                console.log("Discarding card with ID:", targetId);
-                const cardIdx = state.player.hand.findIndex(c => c.id === targetId);
+                const owner = state.targetingEffect.owner || 'player';
+                const entity = getEntity(owner);
+                if (!entity) return;
+
+                const cardIdx = entity.hand.findIndex(c => c.id === targetId);
                 if (cardIdx !== -1) {
-                    state.player.hand.splice(cardIdx, 1);
+                    entity.hand.splice(cardIdx, 1);
                     // Trigger Discovery from Graveyard
                     queueDiscovery({
-                        cards: state.player.spellGraveyard.map(s => CardFactory.create(s)),
+                        cards: entity.spellGraveyard.map(s => CardFactory.create(s)),
                         title: 'SHREWD PARLIAMENT',
                         text: 'Choose a noncreature card in your graveyard.',
                         graveyard: true,
                         wasCast: true,
-                        cardInstance: state.targetingEffect.cardInstance
+                        cardInstance: state.targetingEffect.cardInstance,
+                        owner: owner
                     });
                     clearTargetingEffect(true);
                 }
@@ -6110,7 +6156,8 @@ class BaseCard {
         state.shopDeathsCount++;
 
         if (target.card_name === 'Servants of Dydren') {
-            state.deadServantsCount++;
+            const entity = getEntity('player');
+            if (entity) entity.deadServantsCount++;
         }
 
         state.player.board.splice(idx, 1);
@@ -6495,6 +6542,11 @@ class BaseCard {
         for (const deadCard of dyingCards) {
             const idx = board.indexOf(deadCard);
             if (idx === -1) continue;
+
+            if (deadCard.card_name === 'Servants of Dydren') {
+                const entity = getEntity(owner);
+                if (entity) entity.deadServantsCount++;
+            }
 
             notifyPool.forEach(c => {
                 if (c.id !== deadCard.id) c.onOtherCreatureDeath(deadCard, board);
@@ -7498,7 +7550,7 @@ class BaseCard {
         state.shop.justFroze = false;
 
         if (state.phase === 'SHOP' && !state.isTripling) {
-            checkTriples();
+            setTimeout(checkTriples, 50);
         }
     }
 
@@ -8024,7 +8076,7 @@ class BaseCard {
 
         } else if (state.player.hand.some(c => c.id === instance.id)) { // In hand
              // SPELL TARGETING HAND
-             if (state.castingSpell && ['Lagoon Logistics'].includes(state.castingSpell.card_name)) {
+             if (state.castingSpell && [].includes(state.castingSpell.card_name)) {
                  const isCreature = instance.type?.toLowerCase().includes('creature');
                  const isNotSelf = instance.id !== state.castingSpell.id;
 
@@ -8164,6 +8216,17 @@ class BaseCard {
         foil.shieldCounters = tripleItems.reduce((sum, item) => sum + (item.card.shieldCounters || 0), 0);
 
         state.player.hand.push(foil);
+
+        // 2.5 Collect Equipment to return to hand
+        const equipmentToReturn = tripleItems
+            .map(item => item.card.equipment)
+            .filter(eq => eq && eq instanceof BaseCard);
+        
+        equipmentToReturn.forEach(eq => {
+            if (state.player.hand.length < handLimit) {
+                state.player.hand.push(eq);
+            }
+        });
 
         // 3. Render to position the new foil card in hand
         render();
