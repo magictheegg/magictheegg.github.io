@@ -500,13 +500,13 @@
         .counter-bubble.counter-clickable {
             cursor: pointer;
             box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.8);
-            transform: scale(1.2);
             z-index: 2000;
             pointer-events: auto;
         }
 
         .counter-bubble.counter-clickable:hover {
             transform: scale(1.4);
+            z-index: 5000;
         }
 
         .card.grayed-out .card-art, 
@@ -1517,7 +1517,6 @@
             transition: transform 0.6s ease-in, opacity 0.6s ease-in !important;
         }
 
-        /* GHOST INDICATORS */
         .ghost-indicator-container {
             position: absolute;
             bottom: 48px;
@@ -1529,9 +1528,9 @@
             align-content: center;
             gap: 2px;
             width: auto;
-            max-height: 188px; /* 5 indicators * 36px + 4 gaps * 2px */
+            max-height: 188px;
             pointer-events: auto;
-            z-index: 5;
+            z-index: 25;
         }
 
         .ghost-indicator {
@@ -1544,6 +1543,11 @@
             box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.1);
             pointer-events: auto;
             position: relative;
+        }
+
+        .ghost-indicator.grayscale {
+            filter: grayscale(100%);
+            opacity: 0.4;
         }
 
         /* GHOST COLORS using rgba for translucent background but opaque children */

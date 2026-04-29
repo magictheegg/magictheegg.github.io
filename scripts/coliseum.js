@@ -120,7 +120,7 @@ class BaseCard {
             this.isLockedByChivalry = this.isLockedByChivalry || false;
             this.isFoil = this.isFoil || false;
             this.isDecayed = this.isDecayed || false;
-            this.isToken = this.isToken || false;
+            this.isToken = this.isToken || (this.shape?.toLowerCase().includes('token')) || false;
             this.isDestroyed = false;
             this.equipment = this.equipment || null;
         }
@@ -5239,67 +5239,8 @@ class BaseCard {
             }
         }
 
-        checkForTriples();
         render();
-    }
-
-    async function checkForTriples() {
-        const counts = {};
-        const allCreatures = [...state.player.hand, ...state.player.board].filter(c => c.type?.toLowerCase().includes('creature') && !c.isFoil);
-        
-        allCreatures.forEach(c => {
-            counts[c.card_name] = (counts[c.card_name] || 0) + 1;
-        });
-
-        for (const name in counts) {
-            if (counts[name] >= 3) {
-                // 1. Identify copies
-                const copies = [];
-                [...state.player.hand, ...state.player.board].forEach(c => {
-                    if (c.card_name === name && !c.isFoil && copies.length < 3) copies.push(c);
-                });
-
-                // 2. Visual Morph Effect
-                copies.forEach(c => {
-                    const el = document.getElementById(`card-${c.id}`);
-                    if (el) el.classList.add('morphing');
-                });
-
-                await new Promise(r => setTimeout(r, 600));
-
-                // 3. Consolidation Logic
-                const finalCopies = [];
-                for (let i = state.player.hand.length - 1; i >= 0; i--) {
-                    if (state.player.hand[i].card_name === name && !state.player.hand[i].isFoil) {
-                        finalCopies.push(state.player.hand.splice(i, 1)[0]);
-                        if (finalCopies.length === 3) break;
-                    }
-                }
-                if (finalCopies.length < 3) {
-                    for (let i = state.player.board.length - 1; i >= 0; i--) {
-                        if (state.player.board[i].card_name === name && !state.player.board[i].isFoil) {
-                            finalCopies.push(state.player.board.splice(i, 1)[0]);
-                            if (finalCopies.length === 3) break;
-                        }
-                    }
-                }
-
-                // 4. Create Foil Copy
-                const foil = CardFactory.create(finalCopies[0]);
-                foil.id = `foil-${Date.now()}-${Math.random()}`;
-                foil.isFoil = true;
-                const base = foil.getBasePT();
-                foil.pt = `${(base.p || 0) * 2}/${(base.t || 0) * 2}`;
-                foil.counters = finalCopies.reduce((sum, c) => sum + (Number(c.counters) || 0), 0);
-                
-                state.player.hand.push(foil);
-                
-                // Recurse
-                checkForTriples();
-                break;
-            }
-        }
-        render();
+        setTimeout(checkTriples, 100);
     }
 
     async function activateHeroPower() {
@@ -6084,12 +6025,6 @@ class BaseCard {
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                 if (handIdx !== -1) {
                     const [equipment] = state.player.hand.splice(handIdx, 1);
-                    
-                    // If target already has equipment, pop old one back to hand
-                    if (target.equipment) {
-                        state.player.hand.push(target.equipment);
-                    }
-                    
                     target.equipment = equipment;
                 }
                 clearTargetingEffect(true);
@@ -7380,7 +7315,7 @@ class BaseCard {
                 container.innerHTML = '';
                 const currentScryCard = state.scrying.cards[state.scrying.choices.length];
                 if (currentScryCard) {
-                    container.appendChild(createCardElement(currentScryCard, false, -1, []));
+                    container.appendChild(createCardElement(currentScryCard, false, -1, [], true));
                 }
             } else {
                 scryModal.style.display = 'none';
@@ -7502,7 +7437,7 @@ class BaseCard {
                         wrapper.addEventListener('click', () => resolveDiscovery(card));
                         container.appendChild(wrapper);
                     } else {
-                        const cardEl = createCardElement(card, false, -1, []);
+                        const cardEl = createCardElement(card, false, -1, [], true);
                         cardEl.style.padding = "20px";
 
                         // SPECIAL: Show Stars for Savage Congregation
@@ -7711,7 +7646,7 @@ class BaseCard {
         render();
     }
 
-    function createCardElement(card, isShop = false, index = -1, boardContext = []) {
+    function createCardElement(card, isShop = false, index = -1, boardContext = [], skipIndicators = false) {
         const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
         const cardEl = cardTemplate.content.cloneNode(true).firstElementChild;
         cardEl.id = `card-${instance.id}`;
@@ -7817,8 +7752,10 @@ class BaseCard {
             element.appendChild(tooltip);
         };
 
+        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || (state.targetingEffect?.effect === 'cloudline_sovereign_step1' && instance.shieldCounters === 0);
+
         const tempKeywords = new Set();
-        if (isCreature) {
+        if (isCreature && !skipIndicators) {
             const keywordMap = {
                 'Flying': 'img/flying.png',
                 'Menace': 'img/menace.png',
@@ -7864,6 +7801,12 @@ class BaseCard {
                 const keywordClass = kw.toLowerCase().replace(' ', '-');
                 indicator.className = `ghost-indicator ${keywordClass}`;
                 
+                // PERMUTATE GREYSCALE/DISABLE
+                if (isPermutate1) {
+                    indicator.classList.add('grayscale');
+                    indicator.style.pointerEvents = 'none';
+                }
+
                 const img = document.createElement('img');
                 img.src = keywordMap[kw];
                 img.alt = kw;
@@ -7874,8 +7817,6 @@ class BaseCard {
             });
         }
         
-        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || (state.targetingEffect?.effect === 'cloudline_sovereign_step1' && instance.shieldCounters === 0);
-
         const addCounterBubble = (type, value, imgPath, rulesText) => {
             const bubble = document.createElement('div');
             bubble.className = `counter-bubble ${type}`;
@@ -8049,7 +7990,10 @@ class BaseCard {
                         applyTargetedEffect(instance.id);
                     }
                 } else {
-                    buyCard(instance.id);
+                    // Standard shop click logic: only buy if NO targeting is active
+                    if (!state.castingSpell && !state.targetingEffect) {
+                        buyCard(instance.id);
+                    }
                 }
             });
 
@@ -8175,6 +8119,8 @@ class BaseCard {
                         // Not targetable if it's an enchantment creature
                     } else if (state.targetingEffect.effect === 'hero_power_xylo' && !instance.hasETB()) {
                         // Not targetable if it doesn't have an ETB
+                    } else if (state.targetingEffect.effect === 'equip_creature' && instance.equipment) {
+                        // Not targetable if already equipped
                     } else {
                         cardEl.classList.add('targetable');
                         cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
@@ -8291,7 +8237,7 @@ class BaseCard {
         }
 
         // 2. Update state: Remove originals, add foil
-        const baseData = availableCards.find(c => c.card_name === cardName && c.shape !== 'token');
+        const baseData = availableCards.find(c => c.card_name === cardName && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
         if (!baseData) {
             ghosts.forEach(g => g.remove());
             return;
@@ -8308,6 +8254,7 @@ class BaseCard {
 
         const foil = CardFactory.create(baseData);
         foil.isFoil = true;
+        foil.isToken = false; // Foils are never tokens
         
         // Sum counters and other persistent stats
         foil.counters = tripleItems.reduce((sum, item) => sum + (item.card.counters || 0), 0);
