@@ -1,51 +1,83 @@
-    const KEYWORD_DATA = {
-        'Flying': {
-            icon: 'img/flying.png',
-            description: 'Can only be blocked by creatures with flying or reach. Can only be attacked if you only control creatures with flying.'
-        },
-        'Reach': {
-            icon: 'img/reach.png',
-            description: 'Can block creatures with flying.'
-        },
-        'Vigilance': {
-            icon: 'img/vigilance.png',
-            description: 'If a creature attacks, it must target a creature with vigilance if possible.'
-        },
-        'Menace': {
-            icon: 'img/menace.png',
-            description: 'Can attack as if defending creatures don\'t have vigilance.'
-        },
-        'Trample': {
-            icon: 'img/trample.png',
-            description: 'When attacking a creature, any damage dealt beyond the defender\'s toughness is dealt to that creature\'s neighbor.'
-        },
-        'First strike': {
-            icon: 'img/first-strike.png',
-            description: 'When attacking, deals combat damage before creatures without first strike and double strike.'
-        },
-        'Double strike': {
-            icon: 'img/double-strike.png',
-            description: 'When attacking, deals both first strike and regular combat damage.'
-        },
-        'Deathtouch': {
-            icon: 'img/skull.png',
-            description: 'Any amount of damage this deals to a creature is enough to destroy it.'
-        },
-        'Lifelink': {
-            icon: 'img/lifelink.png',
-            description: 'Damage dealt by this creature also causes you to gain that much life.'
-        },
-        'Indestructible': {
-            icon: 'img/indestructible.png',
-            description: 'The first time this creature would be destroyed each combat, it survives at 1 toughness.'
-        },
-        'Hexproof': {
-            icon: 'img/hexproof.png',
-            description: 'Cannot be targeted by abilities of your opponent\'s attacking creatures.'
-        }
-    };
+const KEYWORD_DATA = {
+    'Flying': {
+        icon: 'img/flying.png',
+        description: 'Can only be blocked by creatures with flying or reach. Can only be attacked if you only control creatures with flying.'
+    },
+    'Reach': {
+        icon: 'img/reach.png',
+        description: 'Can block creatures with flying.'
+    },
+    'Vigilance': {
+        icon: 'img/vigilance.png',
+        description: 'If a creature attacks, it must target a creature with vigilance if possible.'
+    },
+    'Menace': {
+        icon: 'img/menace.png',
+        description: 'Can attack as though defending creatures don\'t have vigilance.'
+    },
+    'Trample': {
+        icon: 'img/trample.png',
+        description: 'When attacking a creature, any damage dealt beyond the defender\'s toughness is dealt to that creature\'s neighbor.'
+    },
+    'First strike': {
+        icon: 'img/first-strike.png',
+        description: 'When attacking, deals combat damage before creatures without first strike and double strike.'
+    },
+    'Double strike': {
+        icon: 'img/double-strike.png',
+        description: 'When attacking, deals both first strike and regular combat damage.'
+    },
+    'Deathtouch': {
+        icon: 'img/skull.png',
+        description: 'Any amount of damage this deals to a creature is enough to destroy it.'
+    },
+    'Lifelink': {
+        icon: 'img/lifelink.png',
+        description: 'Damage dealt by this creature also causes you to gain that much life.'
+    },
+    'Indestructible': {
+        icon: 'img/indestructible.png',
+        description: 'The first time this creature would be destroyed each combat, it survives at 1 toughness.'
+    },
+    'Hexproof': {
+        icon: 'img/hexproof.png',
+        description: 'Cannot be targeted by abilities of your opponent\'s attacking creatures.'
+    },
+    'Haste': {
+        icon: 'img/haste.png',
+        description: 'This creature always attacks first during its combat turn.'
+    },
+    'Shield': {
+        icon: 'img/shield.png',
+        description: 'If this creature would be dealt damage, remove a shield counter instead.'
+    },
+    'Decayed': {
+        icon: 'img/decayed.png',
+        description: 'This creature can\'t block. When it attacks, sacrifice it at end of combat.'
+    },
+    'plus-one': {
+        icon: null,
+        description: 'Increases this creature\'s power and toughness.'
+    },
+    'Adaptive': {
+        icon: 'img/adaptive.png',
+        description: 'Whenever you cast a spell that targets only this creature, copy it.'
+    },
+    'Prowess': {
+        icon: 'img/prowess.png',
+        description: 'Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.'
+    },
+    'Chivalry': {
+        icon: 'img/chivalry.png',
+        description: 'If the creature directly to the right of this creature has less base power, buff it and this creature can\'t attack.'
+    },
+    'Battle cry': {
+        icon: 'img/battle-cry.png',
+        description: 'Whenever this creature attacks, each other creature you control gets +1/+0 until end of turn.'
+    }
+};
 
-    // --- OO CARD SYSTEM ---
+// --- OO CARD SYSTEM ---
 
 const targetedNames = ['To Battle', 'Faith in Darkness', 'Might and Mane', 'Way of the Bygone', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion'];
 const complexTargetedNames = ['Executioner\'s Madness', 'Warrior\'s Ways', 'Whispers of the Dead', 'Ceremony of Tribes', 'Up in Arms'];
@@ -283,6 +315,13 @@ class BaseCard {
             if (!this.rules_text) return false;
             if (['Magnific Wilderkin', 'Bwema, the Ruthless'].includes(this.card_name)) return false;
             const kw = keyword.toLowerCase();
+            
+            // SPECIAL CASE KEYWORDS
+            if (kw === 'adaptive') return this.rules_text.toLowerCase().includes('adaptive');
+            if (kw === 'prowess') return this.rules_text.toLowerCase().includes('prowess');
+            if (kw === 'chivalry') return this.rules_text.toLowerCase().includes('chivalry');
+            if (kw === 'battle cry') return this.rules_text.toLowerCase().includes('battle cry');
+            
             if (kw === 'first strike' && this.rules_text.toLowerCase().includes('agile')) return true;
             const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
             return regex.test(this.rules_text);
@@ -302,6 +341,29 @@ class BaseCard {
             if (kw === 'hexproof' && this.hexproofCounters > 0) return true;
             if (kw === 'double strike' && this.doubleStrikeCounters > 0) return true;
             if (kw === 'deathtouch' && this.deathtouchCounters > 0) return true;
+
+            // SPECIAL CASE KEYWORDS
+            if (kw === 'adaptive') {
+                if (this.hasInherentKeyword('adaptive')) return true;
+                if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes('adaptive'))) return true;
+                if (this.equipment && this.equipment.rules_text?.toLowerCase().includes('adaptive')) return true;
+                return false;
+            }
+            if (kw === 'prowess') {
+                if (this.hasInherentKeyword('prowess')) return true;
+                if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes('prowess'))) return true;
+                return false;
+            }
+            if (kw === 'chivalry') {
+                if (this.hasInherentKeyword('chivalry')) return true;
+                if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes('chivalry'))) return true;
+                return false;
+            }
+            if (kw === 'battle cry') {
+                if (this.hasInherentKeyword('battle cry')) return true;
+                if (this.enchantments?.some(e => e.rules_text?.toLowerCase().includes('battle cry'))) return true;
+                return false;
+            }
             
             // STATIC BOARD EFFECTS
             const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
@@ -6863,10 +6925,25 @@ class BaseCard {
         const icon = document.createElement('img');
         icon.className = 'hero-power-icon';
         icon.src = hp.icon;
-        icon.title = `${hp.name}: ${hp.text}`;
         
         clipper.appendChild(icon);
         circle.appendChild(clipper);
+
+        // CUSTOM TOOLTIP
+        const tooltip = document.createElement('div');
+        tooltip.className = 'hero-power-tooltip';
+        
+        const tooltipName = document.createElement('div');
+        tooltipName.className = 'hero-power-tooltip-name';
+        tooltipName.textContent = hp.name;
+        
+        const tooltipText = document.createElement('div');
+        tooltipText.className = 'hero-power-tooltip-text';
+        tooltipText.innerHTML = hp.text; // InnerHTML to support potential formatting like [i] or line breaks
+        
+        tooltip.appendChild(tooltipName);
+        tooltip.appendChild(tooltipText);
+        circle.appendChild(tooltip);
 
         // Show gem if passive, OR if Arietta hasn't leveled up yet (locked indicator)
         const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
@@ -7720,6 +7797,26 @@ class BaseCard {
         ghostContainer.className = 'ghost-indicator-container';
         cardEl.appendChild(ghostContainer);
 
+        const addKeywordTooltip = (element, name) => {
+            const data = KEYWORD_DATA[name];
+            if (!data && name !== 'plus-one') return;
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'keyword-tooltip';
+            
+            const tooltipName = document.createElement('div');
+            tooltipName.className = 'keyword-tooltip-name';
+            tooltipName.textContent = name === 'plus-one' ? '+1/+1 Counter' : name;
+            
+            const tooltipText = document.createElement('div');
+            tooltipText.className = 'keyword-tooltip-text';
+            tooltipText.textContent = name === 'plus-one' ? KEYWORD_DATA['plus-one'].description : data.description;
+            
+            tooltip.appendChild(tooltipName);
+            tooltip.appendChild(tooltipText);
+            element.appendChild(tooltip);
+        };
+
         const tempKeywords = new Set();
         if (isCreature) {
             const keywordMap = {
@@ -7736,7 +7833,11 @@ class BaseCard {
                 'Haste': 'img/haste.png',
                 'Shield': 'img/shield.png',
                 'Deathtouch': 'img/skull.png',
-                'Decayed': 'img/decayed.png'
+                'Decayed': 'img/decayed.png',
+                'Adaptive': 'img/adaptive.png',
+                'Prowess': 'img/prowess.png',
+                'Chivalry': 'img/chivalry.png',
+                'Battle cry': 'img/battle-cry.png'
             };
 
             Object.keys(keywordMap).forEach(kw => {
@@ -7746,18 +7847,14 @@ class BaseCard {
                     return;
                 }
 
-                // 1. Check if it's inherent (printed on the card)
-                if (instance.hasInherentKeyword(kw)) return; // Skip if they have it naturally
-
-                // 2. Check if it's from a counter (already shown via bubble)
+                // CHECK IF SHOWN VIA COUNTER BUBBLE
                 let counterProp = kw.toLowerCase().replace(' ', '') + 'Counters';
                 if (kw === 'First strike') counterProp = 'firstStrikeCounters';
                 if (kw === 'Double strike') counterProp = 'doubleStrikeCounters';
                 const hasSpecificCounter = instance[counterProp] > 0;
-                if (hasSpecificCounter) return; // Skip if shown via counter bubble
-
-                // 3. If they HAVE the keyword now, it must be temporary/dynamic
-                if (instance.hasKeyword(kw)) {
+                
+                // IF WE HAVE IT AND IT'S NOT A COUNTER -> SHOW AS GHOST
+                if (!hasSpecificCounter && instance.hasKeyword(kw)) {
                     tempKeywords.add(kw);
                 }
             });
@@ -7771,6 +7868,8 @@ class BaseCard {
                 img.src = keywordMap[kw];
                 img.alt = kw;
                 indicator.appendChild(img);
+                
+                addKeywordTooltip(indicator, kw);
                 ghostContainer.appendChild(indicator);
             });
         }
@@ -7808,6 +7907,17 @@ class BaseCard {
                 });
             }
 
+            // Map counter type back to display name for description lookup
+            let displayName = type;
+            if (type === 'plus-one') displayName = 'plus-one';
+            else if (type === 'first-strike') displayName = 'First strike';
+            else if (type === 'double-strike') displayName = 'Double strike';
+            else {
+                // Capitalize first letter (flying -> Flying)
+                displayName = type.charAt(0).toUpperCase() + type.slice(1);
+            }
+
+            addKeywordTooltip(bubble, displayName);
             counterStackEl.appendChild(bubble);
         };
 

@@ -718,6 +718,109 @@
             z-index: 11;
         }
 
+        .hero-power-tooltip {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 240px;
+            background: rgba(20, 20, 25, 0.9);
+            border: 2px solid #add8e6;
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            font-size: 14px;
+            line-height: 1.4;
+            pointer-events: none;
+            display: none;
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(8px);
+            text-align: center;
+        }
+
+        .hero-power-circle:hover .hero-power-tooltip {
+            display: block;
+            animation: tooltip-fade-in 0.2s ease-out;
+        }
+
+        /* ELEVATE CONTAINER ON HOVER: This is the fix for the stacking context issue */
+        .avatar-box:has(.hero-power-circle:hover) {
+            z-index: 100000 !important;
+        }
+
+        @keyframes tooltip-fade-in {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .hero-power-tooltip-name {
+            color: #add8e6;
+            font-family: 'Beleren Small Caps', sans-serif;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 1px solid rgba(100, 215, 255, 0.4);
+            padding-bottom: 4px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .hero-power-tooltip-text {
+            font-family: 'Beleren', sans-serif;
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .keyword-tooltip {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            background: rgba(20, 20, 25, .9);
+            border: 1px solid #add8e6;
+            border-radius: 8px;
+            padding: 8px;
+            color: white;
+            font-size: 13px;
+            line-height: 1.3;
+            pointer-events: none;
+            display: none;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            backdrop-filter: blur(4px);
+            text-align: center;
+        }
+
+        .counter-bubble:hover .keyword-tooltip,
+        .ghost-indicator:hover .keyword-tooltip {
+            display: block;
+            animation: tooltip-fade-in 0.15s ease-out;
+        }
+
+        .card:has(.counter-bubble:hover),
+        .card:has(.ghost-indicator:hover) {
+            z-index: 1000 !important;
+        }
+
+        .keyword-tooltip-name {
+            color: #add8e6;
+            font-family: 'Beleren Small Caps', sans-serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 4px;
+            border-bottom: 1px solid rgba(100, 215, 255, 0.3);
+            padding-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .keyword-tooltip-text {
+            font-family: 'Beleren', sans-serif;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
         #player-zone { 
             grid-row: 2;
             display: flex;
@@ -1427,42 +1530,46 @@
             gap: 2px;
             width: auto;
             max-height: 188px; /* 5 indicators * 36px + 4 gaps * 2px */
-            pointer-events: none;
+            pointer-events: auto;
             z-index: 5;
         }
 
         .ghost-indicator {
             width: 36px;
             height: 36px;
-            opacity: 0.8;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.1);
-            mask-image: radial-gradient(circle, black 50%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
+            pointer-events: auto;
+            position: relative;
         }
 
-        /* GHOST COLORS */
-        .ghost-indicator.flying { background-color: #87ceeb; }
-        .ghost-indicator.menace { background-color: #ffcccb; }
-        .ghost-indicator.first-strike { background-color: #ffff99; }
-        .ghost-indicator.double-strike { background-color: #ffff99; }
-        .ghost-indicator.vigilance { background-color: #90ee90; }
-        .ghost-indicator.lifelink { background-color: #fffdd0; }
-        .ghost-indicator.shield, .ghost-indicator.indestructible { background-color: #b0b0b0; }
-        .ghost-indicator.hexproof { background-color: #e0b0ff; }
-        .ghost-indicator.reach { background-color: #dfff00; }
-        .ghost-indicator.trample { background-color: #77dd77; }
-        .ghost-indicator.haste { background-color: #ff4500; }
-        .ghost-indicator.deathtouch { background-color: #d4a5ff; }
+        /* GHOST COLORS using rgba for translucent background but opaque children */
+        .ghost-indicator.flying { background-color: rgba(135, 206, 235, 0.8); }
+        .ghost-indicator.menace { background-color: rgba(255, 204, 203, 0.8); }
+        .ghost-indicator.first-strike { background-color: rgba(255, 255, 153, 0.8); }
+        .ghost-indicator.double-strike { background-color: rgba(255, 255, 153, 0.8); }
+        .ghost-indicator.vigilance { background-color: rgba(144, 238, 144, 0.8); }
+        .ghost-indicator.lifelink { background-color: rgba(255, 253, 208, 0.8); }
+        .ghost-indicator.shield, .ghost-indicator.indestructible { background-color: rgba(176, 176, 176, 0.8); }
+        .ghost-indicator.hexproof { background-color: rgba(224, 176, 255, 0.8); }
+        .ghost-indicator.reach { background-color: rgba(240, 255, 180, 0.8); }
+        .ghost-indicator.trample { background-color: rgba(119, 221, 119, 0.8); }
+        .ghost-indicator.haste { background-color: rgba(255, 69, 0, 0.8); }
+        .ghost-indicator.deathtouch { background-color: rgba(212, 165, 255, 0.8); }
+        .ghost-indicator.adaptive { background-color: rgba(180, 255, 255, 0.8); }
+        .ghost-indicator.prowess { background-color: rgba(255, 200, 230, 0.8); }
+        .ghost-indicator.chivalry { background-color: rgba(255, 240, 150, 0.8); }
+        .ghost-indicator.battle-cry { background-color: rgba(255, 180, 130, 0.8); }
 
         .ghost-indicator img {
             width: 65%;
             height: 65%;
             object-fit: contain;
             filter: drop-shadow(0 0 2px black);
+            opacity: 0.8;
         }
 
         .ghost-indicator-container > :nth-child(3n+1):nth-last-child(-n+3),
