@@ -14,6 +14,7 @@ const mockElement = () => ({
         contains: () => false
     },
     style: {},
+    dataset: {},
     innerHTML: '',
     setAttribute: () => {},
     content: {
@@ -44,7 +45,7 @@ if (typeof document === 'undefined') {
 
 const { 
     state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES
-} = require('../scripts/autobattler.js');
+} = require('../scripts/coliseum.js');
 const assert = require('assert');
 
 function resetState() {
@@ -60,7 +61,8 @@ function resetState() {
         spellGraveyard: [],
         hero: HEROES.HEPING,
         usedHeroPower: false,
-        heroPowerActivations: 0
+        heroPowerActivations: 0,
+        deadServantsCount: 0
     };
     state.opponents = [
         { id: 0, name: "Opponent", overallHp: 20, fightHp: 10, board: [], hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0 }

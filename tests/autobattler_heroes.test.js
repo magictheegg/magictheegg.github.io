@@ -17,6 +17,7 @@ const mockElement = (parent = null) => {
             contains: () => false
         },
         style: {},
+        dataset: {},
         innerHTML: '',
         textContent: '',
         children: [],
@@ -57,7 +58,7 @@ const {
     processDeaths, tierUp, setAvailableCards, useCardFromHand, 
     startShopTurn, buyCard, queueTargetingEffect, queueDiscovery,
     rerollShop, applySpell, checkAutumnReward
-} = require('../scripts/autobattler.js');
+} = require('../scripts/coliseum.js');
 const assert = require('assert');
 
 function resetState() {
@@ -80,7 +81,8 @@ function resetState() {
         spellsBoughtThisGame: 0,
         herreaRewardCard: null,
         rerollCount: 0,
-        autumnSpellCount: 0
+        autumnSpellCount: 0,
+        deadServantsCount: 0
     };
     state.opponents = [
         { id: 0, name: "Opponent", overallHp: 20, fightHp: 10, board: [], hero: { ...HEROES.MARKETTO, avatar: "sets/SHF-files/img/60.png" }, usedHeroPower: false, heroPowerActivations: 0, crainActive: false }
@@ -405,12 +407,11 @@ async function testAutumn() {
     
     const centaur = CardFactory.create({ card_name: "Centaur", type: "Creature - Centaur", tier: 1 });
     const bird = CardFactory.create({ card_name: "Bird", type: "Creature - Bird", tier: 1 });
-    // Use a real targeting spell like Bushwhack
-    const spellData = { card_name: "Bushwhack", type: "Spell", tier: 1 };
-    
+    // Use a real targeting spell like To Battle
+    const spellData = { card_name: "To Battle", type: "Spell", tier: 1 };
+
     state.player.board = [centaur, bird];
     availableCards.push({ card_name: "Reward Centaur", type: "Creature - Centaur", tier: 1 }, spellData);
-
     // 1. Target non-centaur
     const s1 = CardFactory.create(spellData);
     state.player.hand = [s1];

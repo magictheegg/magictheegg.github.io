@@ -17,6 +17,7 @@ const mockElement = (parent = null) => {
             contains: () => false
         },
         style: {},
+        dataset: {},
         innerHTML: '',
         children: [],
         setAttribute: () => {},
@@ -53,13 +54,13 @@ const {
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerMiengFerocious, triggerLifeGain, processDeaths,
     applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
     toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB, HEROES
-} = require('../scripts/autobattler.js');
+} = require('../scripts/coliseum.js');
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
 // Load full card list once for all tests
-const fullCardPool = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/autobattler-cards.json'), 'utf8')).cards;
+const fullCardPool = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/coliseum-cards.json'), 'utf8')).cards;
 
 // SYNC THE POOL TO THE ENGINE
 setAvailableCards(fullCardPool);
@@ -82,7 +83,8 @@ function resetState() {
         hero: HEROES.HEPING,
         usedHeroPower: false,
         heroPowerActivations: 0,
-        plane: null
+        plane: null,
+        deadServantsCount: 0
     };
     state.opponents = [
         { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hero: { ...HEROES.MARKETTO, avatar: "sets/SHF-files/img/60.png" }, usedHeroPower: false, heroPowerActivations: 0 },
@@ -102,7 +104,6 @@ function resetState() {
     state.battleBoards = null;
     state.creaturesDiedThisShopPhase = false;
     state.shopDeathsCount = 0;
-    state.deadServantsCount = 0;
     state.spellsCastThisTurn = 0;
     state.triumphantTacticsActive = false;
     state.panharmoniconActive = false;
@@ -382,19 +383,42 @@ function testToBattle() {
     assert.strictEqual(target.getDisplayStats([]).p, 3, "2 base + 1 counter = 3 power");
 }
 
-function testByBloodAndVenom() {
-    resetState();
-    const spell = CardFactory.create({ card_name: "By Blood and Venom" });
-    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
-    spell.onApply(target, []);
-    assert.strictEqual(target.enchantments.length, 1);
-}
-
 function testDivination() {
     resetState();
     const spell = CardFactory.create({ card_name: "Divination" });
     spell.onCast(state.player.board);
     assert.strictEqual(state.shop.cards.length, 2);
+}
+
+function testMightAndMane() {
+    resetState();
+    const spell = CardFactory.create({ card_name: "Might and Mane" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    state.player.board = [target];
+    spell.onApply(target, state.player.board);
+    
+    assert.strictEqual(target.hasKeyword('menace'), true, "Target should have menace");
+    assert.strictEqual(state.shop.cards.length, 1, "Should add a card to the shop");
+    assert.strictEqual(state.shop.cards[0].costReduction, 1, "Added card should be discounted");
+}
+
+function testWayOfTheBygone() {
+    resetState();
+    const spell = CardFactory.create({ card_name: "Way of the Bygone" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    state.player.board = [target];
+    spell.onApply(target, state.player.board);
+    
+    const stats = target.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 4, "Should get +3/+0");
+    assert.strictEqual(target.hasKeyword('first strike'), true, "Should have first strike");
+    assert.ok(state.scrying, "Should trigger scry");
+}
+
+function testMossViper() {
+    resetState();
+    const viper = CardFactory.create({ card_name: "Moss Viper", rules_text: "Deathtouch" });
+    assert.strictEqual(viper.hasKeyword('deathtouch'), true, "Viper should have deathtouch");
 }
 
 // --- TIER 2 TESTS ---
@@ -411,6 +435,31 @@ function testExoticGameHunter() {
     state.creaturesDiedThisShopPhase = true;
     hunter.onShopEndStep(state.player.board);
     assert.strictEqual(hunter.counters, 1, "Should gain counter if death occurred");
+}
+
+function testRestlessOppressor() {
+    resetState();
+    const oppressor = CardFactory.create({ card_name: "Restless Oppressor", pt: "2/2" });
+    const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    state.player.board = [oppressor, teammate];
+    oppressor.owner = 'player';
+    teammate.owner = 'player';
+    
+    // Shop death
+    state.phase = 'SHOP';
+    oppressor.onOtherCreatureDeath(teammate, state.player.board);
+    assert.strictEqual(oppressor.counters, 1, "Should gain counter in shop");
+    
+    // Battle death
+    resetState();
+    const oppressor2 = CardFactory.create({ card_name: "Restless Oppressor", pt: "2/2" });
+    const teammate2 = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    state.player.board = [oppressor2, teammate2];
+    oppressor2.owner = 'player';
+    teammate2.owner = 'player';
+    state.phase = 'BATTLE';
+    oppressor2.onOtherCreatureDeath(teammate2, state.player.board);
+    assert.strictEqual(oppressor2.counters, 0, "Should NOT gain counter in battle");
 }
 
 function testCankerousHog() {
@@ -695,13 +744,23 @@ function testMiengWhoDancesWithDragons() {
     assert.strictEqual(mieng.hasKeyword('flying'), true, "Should have flying");
 }
 
-function testDraconicCinderlance() {
+async function testDraconicCinderlance() {
     resetState();
     const lance = CardFactory.create({ card_name: "Draconic Cinderlance", pt: "2/1", rules_text: "Menace" });
     const bigGuy = CardFactory.create({ card_name: "Big Guy", pt: "4/4" });
+    lance.owner = 'player';
+    bigGuy.owner = 'player';
     state.player.board = [lance, bigGuy];
+    state.opponents[0].board = [CardFactory.create({ card_name: "Target", pt: "1/10" })];
+    
+    state.battleBoards = { player: state.player.board, opponent: state.opponents[0].board };
+    state.battleQueues = { player: [bigGuy], opponent: [...state.opponents[0].board] };
+
     assert.strictEqual(bigGuy.hasKeyword('menace'), false, "Before attacking");
-    bigGuy.onAttack(state.player.board);
+    
+    // performAttack(attacker, defender, isFirstStrike = false)
+    await performAttack(bigGuy, state.opponents[0].board[0]);
+    
     assert.strictEqual(bigGuy.hasKeyword('menace'), true, "After attacking");
     state.player.board = [bigGuy];
     assert.strictEqual(bigGuy.hasKeyword('menace'), true, "After Lance dies");
@@ -781,31 +840,6 @@ function testEdgeOfTheirSeats() {
 
 // --- TIER 3 TESTS ---
 
-function testDevilsChild() {
-    resetState();
-    const child = CardFactory.create({ card_name: "Devil's Child", pt: "2/2" });
-    const friendly = CardFactory.create({ card_name: "Friendly", pt: "1/1" });
-    const opponent = CardFactory.create({ card_name: "Opponent", pt: "1/1" });
-    
-    state.player.board = [child, friendly];
-    state.opponents[0].board = [opponent];
-    state.battleBoards = {
-        player: [child, friendly],
-        opponent: [opponent]
-    };
-    state.phase = 'BATTLE';
-
-    // 1. Friendly dies
-    friendly.isDying = true;
-    processDeaths(state.battleBoards.player, 'player');
-    assert.strictEqual(child.counters, 1, "Should gain counter when teammate dies via processDeaths");
-
-    // 2. Opponent dies
-    opponent.isDying = true;
-    processDeaths(state.battleBoards.opponent, 'opponent');
-    assert.strictEqual(child.counters, 2, "Should gain counter when opponent dies via processDeaths broadcast");
-}
-
 function testRazorbackTrenchrunner() {
     resetState();
     const runner = CardFactory.create({ card_name: "Razorback Trenchrunner", pt: "5/1", rules_text: "Haste" });
@@ -832,24 +866,6 @@ function testSporegraftSlime() {
     } finally {
         Math.random = oldRandom;
     }
-}
-
-function testPungentBeetle() {
-    resetState();
-    state.shopDeathsCount = 3;
-    const beetle = CardFactory.create({ card_name: "Pungent Beetle", pt: "2/2" });
-    beetle.onETB(state.player.board);
-    assert.strictEqual(beetle.counters, 3);
-}
-
-function testBushwhack() {
-    resetState();
-    const spell = CardFactory.create({ card_name: "Bushwhack" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
-    spell.onApply(target, []);
-    assert.strictEqual(target.tempPower, 4);
-    assert.strictEqual(target.tempToughness, 2);
-    assert.strictEqual(target.hasKeyword('trample'), true);
 }
 
 function testMoonlightStag() {
@@ -1501,24 +1517,23 @@ function testServantsOfDydren() {
 
     // 2. Full board -> no resurrection
     resetState();
-    state.deadServantsCount = 2;
+    state.player.deadServantsCount = 2;
     for(let i=0; i<7; i++) state.player.board.push(CardFactory.create({card_name: "Full", pt: "1/1"}));
     const s3 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
     s3.owner = 'player';
-    s3.onETB(state.player.board); 
-    assert.strictEqual(state.deadServantsCount, 2, "Counter should not be touched on full board");
+    s3.onETB(state.player.board);
+    assert.strictEqual(state.player.deadServantsCount, 2, "Counter should not be touched on full board");
 
     // 3. Partial resurrection
     resetState();
-    state.deadServantsCount = 2;
+    state.player.deadServantsCount = 2;
     // Fill to 6
     for(let i=0; i<6; i++) state.player.board.push(CardFactory.create({card_name: "Full", pt: "1/1"}));
     const s4 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
     s4.owner = 'player';
     s4.onETB(state.player.board);
     assert.strictEqual(state.player.board.length, 7, "Should only resurrect one to fill board");
-    assert.strictEqual(state.deadServantsCount, 1, "Counter should decrement by one");
-}
+    assert.strictEqual(state.player.deadServantsCount, 1, "Counter should decrement by one");}
 
 function testHoltunBandElder() {
     resetState();
@@ -1593,47 +1608,30 @@ function testWhispersOfTheDead() {
     resolveDiscovery(state.discovery.cards[0]);
     resolveDiscovery(state.discovery.cards[0]); // Pick A and B
     
-    assert.strictEqual(state.deadServantsCount, 1, "Unselected Servant should go to GY/Count");
-}
-
-function testRuinSkink() {
-    resetState();
-    const skink = CardFactory.create({ card_name: "Ruin Skink", pt: "*/3" });
-    state.player.board = [skink];
-    skink.owner = 'player';
-
-    assert.strictEqual(skink.getDisplayStats(state.player.board).p, 0, "Power should be 0 with empty graveyard");
-
-    state.player.spellGraveyard = [
-        CardFactory.create({ card_name: "S1", type: "Instant" }),
-        CardFactory.create({ card_name: "S2", type: "Sorcery" })
-    ];
-    
-    assert.strictEqual(skink.getDisplayStats(state.player.board).p, 2, "Power should be 2 with 2 spells in graveyard");
+    assert.strictEqual(state.player.deadServantsCount, 1, "Unselected Servant should go to GY/Count");
 }
 
 function testMurkbornMammoth() {
     resetState();
     const mam = CardFactory.create({ card_name: "Murkborn Mammoth", pt: "7/7", rules_text: "Trample, adaptive" });
-    const bush = CardFactory.create({ card_name: "Bushwhack", type: "Instant" });
+    const toBattle = CardFactory.create({ card_name: "To Battle", type: "Instant" });
     state.player.board = [mam];
-    state.player.hand = [bush];
+    state.player.hand = [toBattle];
     mam.owner = 'player';
 
     assert.strictEqual(mam.hasKeyword('trample'), true);
     assert.strictEqual(mam.hasKeyword('adaptive'), true);
 
     // Enter casting mode
-    useCardFromHand(bush.id);
-    assert.strictEqual(state.castingSpell.id, bush.id);
+    useCardFromHand(toBattle.id);
+    assert.strictEqual(state.castingSpell.id, toBattle.id);
 
     // Apply spell via engine
     applySpell(mam.id);
-    
-    // Adaptive should trigger copy
-    assert.strictEqual(mam.tempPower, 8, "Bushwhack (+4) should be doubled (+8) by adaptive");
-}
 
+    // Adaptive should trigger copy
+    assert.strictEqual(mam.counters, 2, "To Battle (+1/+1 counter) should be doubled (2 counters) by adaptive");
+}
 function testHissingSunspitter() {
     resetState();
     const spit = CardFactory.create({ card_name: "Hissing Sunspitter", pt: "3/3" });
@@ -2213,34 +2211,6 @@ function testNdengoBrutalizer() {
     const fs3 = state.discovery.cards.find(c => c.rules_text === 'First strike');
     resolveDiscovery(fs3);
     assert.strictEqual(brut3.counters, 1, "Should get counter because it already has FS");
-}
-
-function testFeralExemplar() {
-    resetState();
-    const exemplar = CardFactory.create({ card_name: "Feral Exemplar", pt: "2/2" });
-    state.player.board = [exemplar];
-    exemplar.owner = 'player';
-    
-    // 3 Gold for +2/+2
-    state.player.gold = 3;
-    exemplar.onAction();
-    assert.strictEqual(exemplar.getDisplayStats(state.player.board).p, 4);
-    assert.strictEqual(exemplar.actionUsed, true, "Action should be marked as used");
-    
-    // Simulate turn reset
-    startShopTurn();
-    assert.strictEqual(exemplar.actionUsed, false, "Action should be reset at start of shop turn");
-    
-    // Self-trigger check
-    state.battleBoards = { player: [exemplar], opponent: [] };
-    const stats = exemplar.getDisplayStats(state.battleBoards.player);
-    if (stats.p >= 4) {
-        exemplar.tempPower += stats.p;
-        exemplar.tempToughness += stats.p;
-    }
-    
-    assert.strictEqual(exemplar.getDisplayStats(state.battleBoards.player).p, 8, "Should gain +4/+4");
-    assert.strictEqual(exemplar.getDisplayStats(state.battleBoards.player).t, 8);
 }
 
 function testPyrewrightTrainee() {
@@ -2972,16 +2942,6 @@ function testCitadelColossus() {
     assert.strictEqual(stats.t, 12);
 }
 
-function testVirulentCactaipan() {
-    resetState();
-    const cactus = CardFactory.create({ card_name: "Virulent Cactaipan", pt: "2/4", rules_text: "Vigilance, deathtouch" });
-    assert.strictEqual(cactus.hasKeyword('vigilance'), true, "Cactus has Vigilance");
-    assert.strictEqual(cactus.hasKeyword('deathtouch'), true, "Cactus has Deathtouch");
-    const stats = cactus.getDisplayStats([]);
-    assert.strictEqual(stats.p, 2);
-    assert.strictEqual(stats.t, 4);
-}
-
 function testDewdropPools() {
     resetState();
     const oldAvailable = [...availableCards];
@@ -3013,6 +2973,130 @@ function testDewdropPools() {
     setAvailableCards(oldAvailable);
 }
 
+function testSongOfWindAndFire() {
+    resetState();
+    const spell = CardFactory.create({ card_name: "Song of Wind and Fire" });
+    spell.onCast(state.player.board);
+    assert.strictEqual(state.player.board.length, 2, "Should spawn two tokens");
+    assert.ok(state.player.board.some(c => c.card_name === "Dragon"));
+    assert.ok(state.player.board.some(c => c.card_name === "Bard"));
+}
+
+async function testBard() {
+    resetState();
+    const bard = CardFactory.create({ card_name: "Bard", pt: "2/2" });
+    const xali = CardFactory.create({ card_name: "Earthrattle Xali", pt: "3/3", rules_text: "Prowess" });
+    state.player.board = [bard, xali];
+    bard.owner = xali.owner = 'player';
+    state.phase = 'BATTLE';
+    state.battleQueues = { player: [bard, xali], opponent: [] };
+    
+    assert.strictEqual(state.spellsCastThisTurn, 0);
+    
+    await bard.onAttack(state.player.board);
+    
+    assert.strictEqual(state.spellsCastThisTurn, 1, "Should increment spell count");
+    assert.strictEqual(xali.tempPower, 1, "Prowess (Xali) should trigger");
+    assert.strictEqual(state.player.board.length, 3, "Should spawn a Dragon");
+    assert.strictEqual(state.player.board[1].card_name, "Dragon", "Dragon should be to the right of Bard");
+    assert.strictEqual(state.battleQueues.player[0].card_name, "Dragon", "Dragon should be at front of queue");
+}
+
+async function testDecoratedWarrior() {
+    resetState();
+    const warrior = CardFactory.create({ card_name: "Decorated Warrior", pt: "2/2", rules_text: "Vigilance" });
+    state.player.board = [warrior];
+    warrior.owner = 'player';
+    
+    assert.strictEqual(warrior.hasKeyword('vigilance'), true, "Should have vigilance");
+
+    // 1. Attack
+    await warrior.onAttack(state.player.board);
+    assert.strictEqual(warrior.counters, 1, "Should gain counter on attack");
+
+    // 2. Block (Being Attacked)
+    // Note: This relies on the engine triggering onAttack for the defender.
+    // If the engine doesn't do it, this test might need updating or the engine might need fixing.
+    const enemy = CardFactory.create({ card_name: "Enemy", pt: "2/2" });
+    enemy.owner = 'opponent';
+    state.opponents[0].board = [enemy];
+    state.battleBoards = { player: [warrior], opponent: [enemy] };
+    
+    // Simulating performAttack call to see if it triggers defender.onAttack
+    await performAttack(enemy, warrior);
+    assert.strictEqual(warrior.counters, 2, "Should gain counter on block/being attacked");
+}
+
+async function testWildBearmaster() {
+    resetState();
+    const master = CardFactory.create({ card_name: "Wild Bearmaster", pt: "2/2" });
+    const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    state.player.board = [master, teammate];
+    master.owner = teammate.owner = 'player';
+    
+    // Base power (2/2)
+    await master.onAttack(state.player.board);
+    assert.strictEqual(teammate.tempPower, 2, "Teammate should get +2/+2 at base");
+    
+    // With counters
+    resetState();
+    const master2 = CardFactory.create({ card_name: "Wild Bearmaster", pt: "2/2" });
+    const teammate2 = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    state.player.board = [master2, teammate2];
+    master2.owner = teammate2.owner = 'player';
+    master2.counters = 3; // Now a 5/5
+    
+    await master2.onAttack(state.player.board);
+    assert.strictEqual(teammate2.tempPower, 5, "Teammate should get +5/+5 with counters");
+}
+
+function testWaspbackBandit() {
+    resetState();
+    const bandit = CardFactory.create({ card_name: "Waspback Bandit", pt: "3/3", rules_text: "Flying, hexproof" });
+    state.player.board = [bandit];
+    bandit.owner = 'player';
+    
+    assert.strictEqual(bandit.hasKeyword('flying'), true);
+    assert.strictEqual(bandit.hasKeyword('hexproof'), true);
+    
+    bandit.onNoncreatureCast(false, state.player.board);
+    assert.strictEqual(state.player.treasures, 1, "Should generate treasure on noncreature cast");
+}
+
+function testStridingCascade() {
+    resetState();
+    const cascade = CardFactory.create({ card_name: "Striding Cascade", pt: "2/2" });
+    const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    state.player.board = [cascade, teammate];
+    cascade.owner = teammate.owner = 'player';
+    
+    // 1. First trigger in shop
+    cascade.onCounterPlaced(1, 'plus-one', teammate, state.player.board);
+    assert.strictEqual(cascade.counters, 1, "Should trigger first time in shop");
+    
+    // 2. Second trigger same phase (shop)
+    cascade.onCounterPlaced(1, 'plus-one', teammate, state.player.board);
+    assert.strictEqual(cascade.counters, 1, "Should NOT trigger second time in shop");
+    
+    // 3. Trigger in battle after triggering in shop
+    state.phase = 'BATTLE';
+    cascade.onCounterPlaced(1, 'plus-one', teammate, state.player.board);
+    assert.strictEqual(cascade.counters, 1, "Should NOT trigger in battle if already triggered in shop");
+    
+    // 4. Simultaneous counters (reset first)
+    resetState();
+    const cascade2 = CardFactory.create({ card_name: "Striding Cascade", pt: "2/2" });
+    const t1 = CardFactory.create({ card_name: "T1", pt: "1/1" });
+    const t2 = CardFactory.create({ card_name: "T2", pt: "1/1" });
+    state.player.board = [cascade2, t1, t2];
+    cascade2.owner = t1.owner = t2.owner = 'player';
+    
+    // Triggering on multiple creatures in same 'event'
+    cascade2.onCounterPlaced(1, 'plus-one', t1, state.player.board);
+    cascade2.onCounterPlaced(1, 'plus-one', t2, state.player.board);
+    assert.strictEqual(cascade2.counters, 1, "Should only gain ONE counter from simultaneous placements");
+}
+
 async function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -3034,12 +3118,15 @@ async function runTests() {
         { tier: 1, name: "Faith in Darkness", fn: testFaithInDarkness },
         { tier: 1, name: "Scientific Inquiry", fn: testScientificInquiry },
         { tier: 1, name: "To Battle", fn: testToBattle },
-        { tier: 1, name: "By Blood and Venom", fn: testByBloodAndVenom },
+        { tier: 1, name: "Might and Mane", fn: testMightAndMane },
+        { tier: 1, name: "Way of the Bygone", fn: testWayOfTheBygone },
+        { tier: 1, name: "Moss Viper", fn: testMossViper },
         { tier: 1, name: "Divination", fn: testDivination }
     ];
 
     const t2Tests = [
         { tier: 2, name: "Exotic Game Hunter", fn: testExoticGameHunter },
+        { tier: 2, name: "Restless Oppressor", fn: testRestlessOppressor },
         { tier: 2, name: "Cankerous Hog", fn: testCankerousHog },
         { tier: 2, name: "Shrieking Pusbag", fn: testShriekingPusbag },
         { tier: 2, name: "Executioner's Madness", fn: testExecutionersMadness },
@@ -3059,7 +3146,6 @@ async function runTests() {
         { tier: 2, name: "Draconic Cinderlance", fn: testDraconicCinderlance },
         { tier: 2, name: "Cabracan's Familiar", fn: testCabracansFamiliar },
         { tier: 2, name: "Cabracan's Familiar (Shield)", fn: testCabracansFamiliar_Shield },
-        { tier: 2, name: "Bushwhack", fn: testBushwhack },
         { tier: 2, name: "Moonlight Stag", fn: testMoonlightStag },
         { tier: 2, name: "Sleepless Spirit", fn: testSleeplessSpirit },
         { tier: 2, name: "Silken Spinner", fn: testSilkenSpinner },
@@ -3072,10 +3158,10 @@ async function runTests() {
     ];
 
     const t3Tests = [
-        { tier: 3, name: "Devil's Child", fn: testDevilsChild },
         { tier: 3, name: "Razorback Trenchrunner", fn: testRazorbackTrenchrunner },
+        { tier: 3, name: "Song of Wind and Fire", fn: testSongOfWindAndFire },
+        { tier: 3, name: "Bard", fn: testBard },
         { tier: 3, name: "Sporegraft Slime", fn: testSporegraftSlime },
-        { tier: 3, name: "Pungent Beetle", fn: testPungentBeetle },
         { tier: 3, name: "Covetous Wechuge", fn: testCovetousWechuge },
         { tier: 3, name: "Finwing Drake", fn: testFinwingDrake },
         { tier: 3, name: "Shrewd Parliament", fn: testShrewdParliament },
@@ -3110,7 +3196,10 @@ async function runTests() {
         { tier: 4, name: "Servants of Dydren", fn: testServantsOfDydren },
         { tier: 4, name: "Holtun-Band Elder", fn: testHoltunBandElder },
         { tier: 4, name: "Whispers of the Dead", fn: testWhispersOfTheDead },
-        { tier: 4, name: "Ruin Skink", fn: testRuinSkink },
+        { tier: 4, name: "Decorated Warrior", fn: testDecoratedWarrior },
+        { tier: 4, name: "Wild Bearmaster", fn: testWildBearmaster },
+        { tier: 4, name: "Waspback Bandit", fn: testWaspbackBandit },
+        { tier: 4, name: "Striding Cascade", fn: testStridingCascade },
         { tier: 4, name: "Murkborn Mammoth", fn: testMurkbornMammoth },
         { tier: 4, name: "Hissing Sunspitter", fn: testHissingSunspitter },
         { tier: 4, name: "Ceremony of Tribes", fn: testCeremonyOfTribes },
@@ -3134,7 +3223,6 @@ async function runTests() {
         { tier: 4, name: "Earthcore Elemental", fn: testEarthcoreElemental },
         { tier: 4, name: "Savage Congregation", fn: testSavageCongregation },
         { tier: 4, name: "Ndengo Brutalizer", fn: testNdengoBrutalizer },
-        { tier: 4, name: "Feral Exemplar", fn: testFeralExemplar },
         { tier: 4, name: "Pyrewright Trainee", fn: testPyrewrightTrainee },
         { tier: 4, name: "Lagoon Logistics", fn: testLagoonLogistics },
         { tier: 4, name: "Flaunt Luxury", fn: testFlauntLuxury },
@@ -3166,8 +3254,7 @@ async function runTests() {
         { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
         { tier: 5, name: "Architect of Wisdom", fn: testArchitectOfWisdom },
         { tier: 5, name: "Merciless Xun Huang", fn: testMercilessXunHuang },
-        { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
-        { tier: 5, name: "Virulent Cactaipan", fn: testVirulentCactaipan }
+        { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus }
     ];
 
     console.log("\nUNIT TEST RESULTS");
