@@ -7752,7 +7752,8 @@ class BaseCard {
             element.appendChild(tooltip);
         };
 
-        const isPermutate1 = state.targetingEffect?.effect === 'permutate_step1' || (state.targetingEffect?.effect === 'cloudline_sovereign_step1' && instance.shieldCounters === 0);
+        const isCounterTargetingMode = state.targetingEffect?.effect === 'permutate_step1' || state.targetingEffect?.effect === 'cloudline_sovereign_step1';
+        const isValidCounterTarget = isCounterTargetingMode && (state.targetingEffect.effect === 'permutate_step1' || (state.targetingEffect.effect === 'cloudline_sovereign_step1' && instance.shieldCounters === 0));
 
         const tempKeywords = new Set();
         if (isCreature && !skipIndicators) {
@@ -7802,7 +7803,7 @@ class BaseCard {
                 indicator.className = `ghost-indicator ${keywordClass}`;
                 
                 // PERMUTATE GREYSCALE/DISABLE
-                if (isPermutate1) {
+                if (isCounterTargetingMode) {
                     indicator.classList.add('grayscale');
                     indicator.style.pointerEvents = 'none';
                 }
@@ -7839,13 +7840,16 @@ class BaseCard {
                 }
             }
             
-            if (isPermutate1 && instance.owner === 'player') {
+            if (isValidCounterTarget && instance.owner === 'player') {
                 bubble.classList.add('counter-clickable');
                 bubble.addEventListener('click', (e) => {
                     e.stopPropagation();
                     // Permutate specific resolution logic: we tell the engine which counter we picked
                     applyTargetedEffect(instance.id, type); 
                 });
+            } else if (isCounterTargetingMode) {
+                // If it's counter mode but this specific card isn't a valid target, grey out its counters too
+                bubble.classList.add('grayscale');
             }
 
             // Map counter type back to display name for description lookup
@@ -7928,7 +7932,7 @@ class BaseCard {
             }
         }
         
-        if (isPermutate1) cardEl.classList.add('grayed-out');
+        if (isCounterTargetingMode) cardEl.classList.add('grayed-out');
 
         // Events
         if (isShop) {
