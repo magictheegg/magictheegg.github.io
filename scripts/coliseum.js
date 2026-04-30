@@ -3093,9 +3093,8 @@ class BaseCard {
     const availablePlaymats = ['ancient', 'bleak', 'coastal', 'desolate', 'majestic', 'primal', 'pristine', 'rugged', 'stalwart', 'verdant'];
     const randomPlaymat = `img/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
 
-    // --- GAME STATE ---
-    let state = {
-        player: {
+    function getInitialPlayerState() {
+        return {
             overallHp: 20,
             fightHp: 10,
             gold: 3,
@@ -3108,6 +3107,7 @@ class BaseCard {
             playmat: randomPlaymat,
             plane: null,
             hero: randomHero,
+            isRandomHero: false,
             usedHeroPower: false,
             heroPowerActivations: 0,
             crainActive: false,
@@ -3117,12 +3117,48 @@ class BaseCard {
             rerollCount: 0,
             autumnSpellCount: 0,
             deadServantsCount: 0
-        },
-        opponents: [
-            { id: 0, name: "Marketto", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hand: [], spellGraveyard: [], deadServantsCount: 0, playmat: 'img/playmats/shop.jpg', plane: null, hero: HEROES.MARKETTO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
-            { id: 1, name: "Huitzil", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hand: [], spellGraveyard: [], deadServantsCount: 0, playmat: 'img/playmats/primal.jpg', plane: null, hero: HEROES.XYLO, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 },
-            { id: 2, name: "Raven", overallHp: 20, fightHp: 10, gold: 3, tier: 1, board: [], hand: [], spellGraveyard: [], deadServantsCount: 0, playmat: 'img/playmats/verdant.jpg', plane: null, hero: HEROES.CRAIN, usedHeroPower: false, heroPowerActivations: 0, crainActive: false, spellsBoughtThisGame: 0, blueCardsPlayed: 0, herreaRewardCard: null, rerollCount: 0, autumnSpellCount: 0 }
-        ],
+        };
+    }
+
+    function getInitialOpponents(playerHeroName) {
+        const selectableHeroes = Object.values(HEROES).filter(h => h.name !== 'Marketto' && h.name !== playerHeroName);
+        const shuffled = [...selectableHeroes].sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(0, 7);
+        
+        const availablePlaymats = ['ancient', 'bleak', 'coastal', 'desolate', 'majestic', 'primal', 'pristine', 'rugged', 'stalwart', 'verdant'];
+
+        return selected.map((hero, index) => {
+            const randomPlaymat = `img/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
+            return { 
+                id: index, 
+                name: hero.name, 
+                overallHp: 20, 
+                fightHp: 10, 
+                gold: 3, 
+                tier: 1, 
+                board: [], 
+                hand: [], 
+                spellGraveyard: [], 
+                deadServantsCount: 0, 
+                playmat: randomPlaymat, 
+                plane: null, 
+                hero: hero, 
+                usedHeroPower: false, 
+                heroPowerActivations: 0, 
+                crainActive: false, 
+                spellsBoughtThisGame: 0, 
+                blueCardsPlayed: 0, 
+                herreaRewardCard: null, 
+                rerollCount: 0, 
+                autumnSpellCount: 0 
+            };
+        });
+    }
+
+    // --- GAME STATE ---
+    let state = {
+        player: getInitialPlayerState(),
+        opponents: [], // Initialized in reset/init
         currentOpponentId: 0,
         shop: {
             cards: [],
@@ -3584,6 +3620,220 @@ class BaseCard {
     }
 
     // Initialization
+    function showEndScreen(place) {
+        const resultsScreen = document.getElementById('results-screen');
+        const resultsPlace = document.getElementById('results-place');
+        const resultsBoard = document.getElementById('results-board-cards');
+        const resultsHeroImg = document.getElementById('results-hero-img');
+        const resultsHeroName = document.getElementById('results-hero-name');
+        
+        if (!resultsScreen || !resultsPlace || !resultsBoard) return;
+
+        // Set Background to chosen playmat
+        if (state.player.playmat) {
+            resultsScreen.style.backgroundImage = `url(${state.player.playmat})`;
+        }
+
+        // Set Hero Details
+        if (resultsHeroImg && resultsHeroName) {
+            const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
+            resultsHeroImg.src = skin || state.player.hero.avatar;
+            resultsHeroName.textContent = state.player.hero.name;
+        }
+
+        // Hide the entire game board to show the results clean
+        const gameBoard = document.getElementById('game-board');
+        const rosterSidebar = document.getElementById('roster-sidebar');
+        if (gameBoard) gameBoard.style.display = 'none';
+        if (rosterSidebar) rosterSidebar.style.display = 'none';
+
+        // Set place text
+        let suffix = 'th';
+        const lastDigit = place % 10;
+        const lastTwoDigits = place % 100;
+
+        if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
+            suffix = 'th';
+        } else if (lastDigit === 1) {
+            suffix = 'st';
+        } else if (lastDigit === 2) {
+            suffix = 'nd';
+        } else if (lastDigit === 3) {
+            suffix = 'rd';
+        }
+        resultsPlace.textContent = `${place}${suffix} Place`;
+
+        // Color based on placement
+        if (place <= 2) {
+            resultsPlace.classList.add('gold-placement');
+        } else {
+            resultsPlace.classList.remove('gold-placement');
+        }
+
+        // Render the final warband into the results screen
+        resultsBoard.innerHTML = '';
+        renderBoard(resultsBoard, state.player.board, false, state.player.board, true);
+
+        // Show results screen
+        resultsScreen.style.display = 'flex';
+        setTimeout(() => {
+            resultsScreen.style.opacity = '1';
+        }, 10);
+    }
+
+    function resetGameState() {
+        // 1. Snapshot settings (persistent) and Random Hero Flag
+        const currentSkins = state.settings.heroSkins;
+        const dynamicTraverse = state.settings.dynamicTraverse;
+        const wasRandomHero = state.player.isRandomHero;
+        const currentHero = state.player.hero;
+
+        // 2. Full State Reset
+        const newPlayer = getInitialPlayerState();
+        
+        // Pick new hero if they chose random, otherwise keep current
+        if (wasRandomHero) {
+            const selectableHeroes = Object.values(HEROES).filter(h => h.name !== 'Marketto');
+            newPlayer.hero = selectableHeroes[Math.floor(Math.random() * selectableHeroes.length)];
+            newPlayer.isRandomHero = true;
+        } else {
+            newPlayer.hero = currentHero; 
+            newPlayer.isRandomHero = false;
+        }
+
+        const newOpponents = getInitialOpponents(newPlayer.hero.name);
+
+        state.player = newPlayer;
+        state.opponents = newOpponents;
+        state.settings.heroSkins = currentSkins;
+        state.settings.dynamicTraverse = dynamicTraverse;
+
+        state.turn = 1;
+        state.phase = 'SHOP';
+        state.castingSpell = null;
+        state.targetingEffect = null;
+        state.targetingQueue = [];
+        state.scrying = null;
+        state.discovery = null;
+        state.discoveryQueue = [];
+        state.nextShopBonusCards = [];
+        state.battleBoards = null;
+        state.creaturesDiedThisShopPhase = false;
+        state.shopDeathsCount = 0;
+        state.overallHpReducedThisFight = false;
+        state.spellsCastThisTurn = 0;
+        state.panharmoniconActive = false;
+        state.shop.frozen = false;
+
+        // 3. Restore UI
+        const gameBoard = document.getElementById('game-board');
+        const rosterSidebar = document.getElementById('roster-sidebar');
+        const shopZone = document.getElementById('shop-zone');
+        const endTurnBtn = document.getElementById('end-turn-btn');
+        const handZone = document.getElementById('hand-zone');
+        const playerAvatar = document.getElementById('player-avatar');
+        const playerZone = document.getElementById('player-zone');
+
+        if (gameBoard) gameBoard.style.display = 'grid';
+        if (rosterSidebar) rosterSidebar.style.display = 'flex';
+        if (shopZone) shopZone.style.display = 'flex';
+        if (endTurnBtn) {
+            endTurnBtn.style.display = 'block';
+            endTurnBtn.disabled = false;
+            endTurnBtn.textContent = 'End Turn';
+        }
+        if (handZone) handZone.style.display = 'flex';
+        if (playerAvatar) playerAvatar.style.display = 'flex';
+        if (playerZone) {
+            playerZone.style.height = ''; 
+            playerZone.style.justifyContent = '';
+            playerZone.style.paddingLeft = '';
+        }
+
+        updateTierButton();
+        render();
+    }
+
+    async function playAgain() {
+        const resultsScreen = document.getElementById('results-screen');
+        if (resultsScreen) {
+            resultsScreen.style.opacity = '0';
+            setTimeout(() => resultsScreen.style.display = 'none', 800);
+        }
+
+        resetGameState();
+        startGameLogic();
+    }
+
+    function goToMainMenu() {
+        const resultsScreen = document.getElementById('results-screen');
+        const gameCabinet = document.getElementById('game-cabinet');
+        const frontPage = document.getElementById('front-page');
+
+        if (resultsScreen) {
+            resultsScreen.style.opacity = '0';
+            setTimeout(() => resultsScreen.style.display = 'none', 800);
+        }
+
+        if (gameCabinet) {
+            gameCabinet.style.opacity = '0';
+            setTimeout(() => gameCabinet.style.display = 'none', 500);
+        }
+
+        if (frontPage) {
+            frontPage.style.visibility = 'visible';
+            frontPage.style.opacity = '1';
+        }
+
+        resetGameState();
+        
+        // Update front page UI with potentially new random hero or preserved hero
+        const heroPreviewImg = document.getElementById('current-hero-img');
+        const frontHeroName = document.getElementById('current-hero-name');
+        const frontHeroPreview = document.getElementById('hero-select-preview');
+
+        if (state.player.isRandomHero) {
+            if (heroPreviewImg) heroPreviewImg.style.display = 'none';
+            if (frontHeroName) frontHeroName.textContent = 'Random';
+            let qMark = frontHeroPreview?.querySelector('.random-q');
+            if (qMark) qMark.style.display = 'flex';
+        } else {
+            if (heroPreviewImg) {
+                const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
+                heroPreviewImg.src = skin || state.player.hero.avatar;
+                heroPreviewImg.style.display = 'block';
+            }
+            if (frontHeroName) frontHeroName.textContent = state.player.hero.name;
+            let qMark = frontHeroPreview?.querySelector('.random-q');
+            if (qMark) qMark.style.display = 'none';
+        }
+    }
+
+    function startGameLogic() {
+        // HERO POWER: Herrea (Start of Game Seek 5-Star)
+        if (state.player.hero.name === "Herrea") {
+            const fiveStarPool = availableCards.filter(c => (c.tier === 5) && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
+            if (fiveStarPool.length > 0) {
+                const selected = [];
+                const poolCopy = [...fiveStarPool];
+                for (let i = 0; i < 3; i++) {
+                    if (poolCopy.length === 0) break;
+                    const randIdx = Math.floor(Math.random() * poolCopy.length);
+                    selected.push(CardFactory.create(poolCopy.splice(randIdx, 1)[0]));
+                }
+
+                queueDiscovery({
+                    cards: selected,
+                    title: "CONNECT THE DOTS",
+                    text: "Choose a 5-star creature to get after playing seven blue cards.",
+                    effect: 'herrea_seek'
+                });
+            }
+        }
+        
+        startShopTurn();
+    }
+
     async function init() {
         if (tierUpBtn) tierUpBtn.addEventListener('click', tierUp);
         if (rerollBtn) rerollBtn.addEventListener('click', rerollShop);
@@ -3686,6 +3936,12 @@ class BaseCard {
         if (discoveryCancelBtn) discoveryCancelBtn.addEventListener('click', () => {
             processDiscoveryQueue();
         });
+
+        const playAgainBtn = document.getElementById('play-again-btn');
+        if (playAgainBtn) playAgainBtn.addEventListener('click', playAgain);
+
+        const mainMenuBtn = document.getElementById('main-menu-btn');
+        if (mainMenuBtn) mainMenuBtn.addEventListener('click', goToMainMenu);
 
         updateTierButton();
 
@@ -4200,6 +4456,9 @@ class BaseCard {
                 if (isRandomSelected) {
                     const selectableHeroes = Object.values(HEROES).filter(h => h.name !== 'Marketto');
                     state.player.hero = selectableHeroes[Math.floor(Math.random() * selectableHeroes.length)];
+                    state.player.isRandomHero = true;
+                } else {
+                    state.player.isRandomHero = false;
                 }
 
                 const cabinet = document.getElementById('game-cabinet');
@@ -4216,28 +4475,8 @@ class BaseCard {
                     frontPage.style.visibility = 'hidden';
                 }, 500);
 
-                // HERO POWER: Herrea (Start of Game Seek 5-Star)
-                if (state.player.hero.name === "Herrea") {
-                    const fiveStarPool = availableCards.filter(c => (c.tier === 5) && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
-                    if (fiveStarPool.length > 0) {
-                        const selected = [];
-                        const poolCopy = [...fiveStarPool];
-                        for (let i = 0; i < 3; i++) {
-                            if (poolCopy.length === 0) break;
-                            const randIdx = Math.floor(Math.random() * poolCopy.length);
-                            selected.push(CardFactory.create(poolCopy.splice(randIdx, 1)[0]));
-                        }
-
-                        queueDiscovery({
-                            cards: selected,
-                            title: "CONNECT THE DOTS",
-                            text: "Choose a 5-star creature to get after playing seven blue cards.",
-                            effect: 'herrea_seek'
-                        });
-                    }
-                }
-                
-                startShopTurn();
+                state.opponents = getInitialOpponents(state.player.hero.name);
+                startGameLogic();
             });
         }
     }
@@ -5005,10 +5244,11 @@ class BaseCard {
         // AI Phase: ALL opponents play their hidden turns
         state.opponents.forEach(opp => opponentPlayTurn(opp));
 
-        // Off-screen battle simulation
-        const offScreenOpp1 = state.opponents[(state.currentOpponentId + 1) % 3];
-        const offScreenOpp2 = state.opponents[(state.currentOpponentId + 2) % 3];
-        simulateAIShopBattle(offScreenOpp1, offScreenOpp2);
+        // Off-screen battle simulation for the other opponents
+        const otherOpponents = state.opponents.filter((_, idx) => idx !== state.currentOpponentId);
+        for (let i = 0; i < otherOpponents.length - 1; i += 2) {
+            simulateAIShopBattle(otherOpponents[i], otherOpponents[i+1]);
+        }
 
         const currentOpp = getOpponent();
 
@@ -5152,17 +5392,15 @@ class BaseCard {
         // Linger long enough to see the result, but not too long.
         await new Promise(resolve => setTimeout(resolve, 800));
 
+        const aliveOpponents = state.opponents.filter(opp => opp.overallHp > 0);
         if (state.player.overallHp <= 0) {
-            alert("Game Over! You lost.");
-            document.location.reload();
+            showEndScreen(aliveOpponents.length + 1);
             return; 
         }
         
-        // Remove dead AI opponents from rotation or check for win
-        state.opponents = state.opponents.filter(opp => opp.overallHp > 0);
+        state.opponents = aliveOpponents;
         if (state.opponents.length === 0) {
-            alert("Congratulations! You won the game!");
-            document.location.reload();
+            showEndScreen(1);
             return;
         }
 
@@ -7137,6 +7375,7 @@ class BaseCard {
         
         if (entity.usedHeroPower) circle.classList.add('used');
         if (hp.isPassive) circle.classList.add('passive');
+        if (!isPlayer) circle.classList.add('opponent-hp-circle');
 
         const clipper = document.createElement('div');
         clipper.className = 'hero-power-icon-clipper';
@@ -7184,6 +7423,13 @@ class BaseCard {
                 gem.appendChild(count);
             }
 
+            if (entity.hero.name === "Adelaide") {
+                const count = document.createElement('div');
+                count.className = 'hero-power-passive-gem-count';
+                count.textContent = Math.max(0, 4 - entity.spellsBoughtThisGame);
+                gem.appendChild(count);
+            }
+
             if (entity.hero.name === "Enoch") {
                 const count = document.createElement('div');
                 count.className = 'hero-power-passive-gem-count';
@@ -7226,7 +7472,7 @@ class BaseCard {
         container.appendChild(circle);
     }
 
-    function renderBoard(container, cards, isShop = false, boardContext = []) {
+    function renderBoard(container, cards, isShop = false, boardContext = [], skipIndicators = false) {
         if (!container) return;
 
         // 1. Capture "First" positions
@@ -7326,7 +7572,7 @@ class BaseCard {
                 newEl = oldEl;
             } else {
                 // For everyone else, replace the node so we get fresh targeting listeners
-                newEl = createCardElement(instance, isShop, index, boardContext);
+                newEl = createCardElement(instance, isShop, index, boardContext, skipIndicators);
                 if (instance.isSpawning) newEl.classList.add('spawning');
                 if (oldEl) oldEl.replaceWith(newEl);
             }
@@ -7412,22 +7658,49 @@ class BaseCard {
 
         const rosterSidebar = document.getElementById('roster-sidebar');
         if (rosterSidebar) {
-            rosterSidebar.innerHTML = '';
-            // We show all starting opponents even if dead, but mark them
-            state.opponents.forEach(opp => {
-                const frame = document.createElement('div');
-                frame.className = 'roster-frame';
-                if (opp.overallHp <= 0) frame.classList.add('dead');
-                
-                // SHOP phase always highlights Marketto (index 0), BATTLE phase highlights current target
-                const isActive = (state.phase === 'SHOP') ? (state.opponents.indexOf(opp) === 0) : (state.currentOpponentId === state.opponents.indexOf(opp));
-                if (isActive) frame.classList.add('active');
-
-                const img = document.createElement('img');
-                img.src = opp.hero.avatar;
-                frame.appendChild(img);
-                rosterSidebar.appendChild(frame);
+            // Map existing frames by hero name for stable reuse
+            const existingFrames = new Map();
+            Array.from(rosterSidebar.children).forEach(child => {
+                if (child.dataset.heroName) existingFrames.set(child.dataset.heroName, child);
             });
+
+            state.opponents.forEach((opp, index) => {
+                const heroName = opp.hero?.name || `opp-${opp.id}`;
+                let frame = existingFrames.get(heroName);
+                
+                if (!frame) {
+                    frame = document.createElement('div');
+                    frame.className = 'roster-frame';
+                    frame.dataset.heroName = heroName;
+                    const img = document.createElement('img');
+                    frame.appendChild(img);
+                }
+                
+                // Ensure correct order in the sidebar
+                if (rosterSidebar.children[index] !== frame) {
+                    rosterSidebar.insertBefore(frame, rosterSidebar.children[index]);
+                }
+
+                // Update state-based classes
+                if (opp.overallHp <= 0) frame.classList.add('dead');
+                else frame.classList.remove('dead');
+                
+                // Highlight the opponent we are currently fighting/about to fight
+                const isActive = (state.currentOpponentId === state.opponents.indexOf(opp));
+                if (isActive) frame.classList.add('active');
+                else frame.classList.remove('active');
+
+                const img = frame.querySelector('img');
+                const avatarUrl = opp.hero?.avatar || '';
+                if (avatarUrl && !img.src.includes(avatarUrl)) {
+                    img.src = avatarUrl;
+                }
+            });
+
+            // Remove any leftover frames
+            while (rosterSidebar.children.length > state.opponents.length) {
+                rosterSidebar.removeChild(rosterSidebar.lastChild);
+            }
         }
 
         const currentOpp = getOpponent();
@@ -7465,9 +7738,9 @@ class BaseCard {
             shopZone.style.opacity = '1';
             shopZone.style.pointerEvents = 'auto';
 
-            // Ensure shop avatar is always Marketto (or the first opponent's hero)
+            // Ensure shop avatar is always Marketto
             const shopAvatarImg = document.querySelector('#shop-zone .avatar-img');
-            if (shopAvatarImg && state.opponents[0].hero) shopAvatarImg.src = state.opponents[0].hero.avatar;
+            if (shopAvatarImg) shopAvatarImg.src = HEROES.MARKETTO.avatar;
 
             const oppBg = document.getElementById('opponent-bg');
             const oppPlaneBg = document.getElementById('opponent-plane-bg');
@@ -8026,6 +8299,7 @@ class BaseCard {
         // Ghost Indicators for temporary keywords
         const ghostContainer = document.createElement('div');
         ghostContainer.className = 'ghost-indicator-container';
+        if (skipIndicators) ghostContainer.style.display = 'none';
         cardEl.appendChild(ghostContainer);
 
         const addKeywordTooltip = (element, name) => {
