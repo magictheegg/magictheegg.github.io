@@ -1822,7 +1822,7 @@ function testTriumphantTactics() {
     assert.strictEqual(attacker.counters, 1, "Should gain a counter on damage");
 }
 
-function testSavageCongregation() {
+async function testSavageCongregation() {
     resetState();
     const sc = CardFactory.create({ card_name: "Savage Congregation", type: "Sorcery" });
     const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", tier: 2, type: "Creature - Centaur" });
@@ -1843,7 +1843,7 @@ function testSavageCongregation() {
 
     // Select Recruiter
     state.discovery.selected = [recruiter];
-    confirmDiscovery();
+    await confirmDiscovery();
     
     // Board should have: Big (4/4), Recruiter (3/3), Token (2/2)
     assert.strictEqual(state.player.board.length, 3, "Recruiter and its token should both be on board");
@@ -1858,9 +1858,14 @@ function testSavageCongregation() {
 
 async function testNdengoBrutalizer() {
     resetState();
-    const brut = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4" });
+    const rulesText = "When Ndengo Brutalizer enters the battlefield, choose it and another target creature you control. Teach one first strike and the other trample.";
+    const brut = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: rulesText });
     state.player.board = [brut];
     brut.owner = 'player';
+
+    // Verify inherent keyword exclusion (Catch the bug)
+    assert.strictEqual(brut.hasKeyword('first strike'), false, "Ndengo should NOT inherently have first strike from rules text");
+    assert.strictEqual(brut.hasKeyword('trample'), false, "Ndengo should NOT inherently have trample from rules text");
 
     // Case 1: Solo
     brut.onETB(state.player.board);
@@ -1872,7 +1877,7 @@ async function testNdengoBrutalizer() {
 
     // Case 2: Duo
     resetState();
-    const brut2 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4" });
+    const brut2 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: rulesText });
     const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
     state.player.board = [brut2, target];
     brut2.owner = target.owner = 'player';
@@ -1894,7 +1899,7 @@ async function testNdengoBrutalizer() {
     
     // Case 3: Teach (already has it)
     resetState();
-    const brut3 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: "First strike" });
+    const brut3 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: "First strike, " + rulesText });
     state.player.board = [brut3];
     brut3.owner = 'player';
     
@@ -1921,7 +1926,7 @@ function testPyrewrightTrainee() {
     assert.strictEqual(trainee.tempPower, 0, "Attacker should not buff itself");
 }
 
-function testLagoonLogistics() {
+async function testLagoonLogistics() {
     resetState();
     const ll = CardFactory.create({ card_name: "Lagoon Logistics" });
     // Use a creature with an ETB to verify double trigger
@@ -1933,7 +1938,7 @@ function testLagoonLogistics() {
     // Need this for the blink recreation
     availableCards.push({ card_name: "Dewdrop Oracle", pt: "1/1", set: "SHF" });
     
-    ll.onApply(oracle, state.player.board);
+    await ll.onApply(oracle, state.player.board);
     
     assert.strictEqual(state.panharmoniconActive, true, "Panharmonicon flag should be set");
     
@@ -2911,7 +2916,7 @@ function testTouchOfTheOmen() {
     assert.strictEqual(state.player.gold, 3, "Gold should not be spent");
 }
 
-function testFacelessFaction() {
+async function testFacelessFaction() {
     resetState();
     const lord = CardFactory.create({ card_name: "Faceless Faction", pt: "3/3", type: "Creature - Zombie Pirate" });
     const zombie = CardFactory.create({ card_name: "Zombie", pt: "2/2", type: "Creature - Zombie" });
@@ -2924,7 +2929,7 @@ function testFacelessFaction() {
 
     // End turn token (Shop death)
     state.creaturesDiedThisShopPhase = true;
-    lord.onShopEndStep(state.player.board);
+    await lord.onShopEndStep(state.player.board);
     assert.strictEqual(state.player.board.length, 3, "Should create a Zombie token");
     // Insertion is at myIdx + 1. Lord was at 0, so token is at 1.
     assert.strictEqual(state.player.board[1].isDecayed, true, "Token should be decayed");
@@ -2943,7 +2948,7 @@ function testFacelessFaction() {
     
     startShopTurn();
     assert.strictEqual(state.creaturesDiedThisShopPhase, false, "Should be reset at start of shop");
-    lord2.onShopEndStep(state.player.board);
+    await lord2.onShopEndStep(state.player.board);
     assert.strictEqual(state.player.board.length, 1, "Should NOT create a token if no shop deaths");
 }
 
