@@ -35,7 +35,9 @@ def create_coliseum_card_list():
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
         "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
-        "Citadel Colossus", "Triumphant Tactics"
+        "Citadel Colossus", "Triumphant Tactics",
+        "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun",
+        "Jiayin, the Harmonious", "Gallant Centaur", "Holtun-Band Emissary", "Nacreous Hydra"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -58,7 +60,8 @@ def create_coliseum_card_list():
         "Stratus Traveler", "Rapacious Sprite", "Up in Arms",
         "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Silken Spinner", "Gnomish Skirmisher",
-        "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker"
+        "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker",
+        "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun"
     ]
     tier_3_names = [
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
@@ -67,7 +70,8 @@ def create_coliseum_card_list():
         "Windsong Apprentice", "Cauther Hellkite", "Lingering Lunatic",
         "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician",
         "Qinhana Cavalry", "Frontier Markswomen", "Festival Celebrants",
-        "Restless Oppressor", "Striding Cascade", "Waspback Bandit"
+        "Restless Oppressor", "Striding Cascade", "Waspback Bandit",
+        "Jiayin, the Harmonious", "Gallant Centaur"
     ]
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
@@ -77,7 +81,7 @@ def create_coliseum_card_list():
         "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
-        "Song of Wind and Fire", "Shrewd Parliament"
+        "Song of Wind and Fire", "Shrewd Parliament", "Holtun-Band Emissary"
     ]
     tier_5_names = [
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
@@ -85,11 +89,22 @@ def create_coliseum_card_list():
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
         "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
-        "Citadel Colossus", "Triumphant Tactics", "Decorated Warrior"
+        "Citadel Colossus", "Triumphant Tactics", "Decorated Warrior", "Nacreous Hydra"
     ]
 
     for name in card_names_to_include:
-        match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token'), None)
+        # Special case: prioritize specific sets if needed
+        preferred_set = None
+        if name == "Nacreous Hydra":
+            preferred_set = "WAS"
+            
+        if preferred_set:
+            match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token' and c.get('set') == preferred_set), None)
+            if not match:
+                match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token'), None)
+        else:
+            match = next((c for c in cards if c.get('card_name') == name and c.get('shape') != 'token'), None)
+            
         if match:
             # Create a copy so we don't modify the source data multiple times if names repeat
             card_copy = dict(match)

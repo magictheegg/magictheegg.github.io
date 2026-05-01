@@ -129,6 +129,16 @@ class BaseCard {
             this.displayedEnchantments = [...this.enchantments];
         }
 
+        get isChangeling() {
+            return this.rules_text?.toLowerCase().includes('changeling') || false;
+        }
+
+        isType(typeName) {
+            if (this.isChangeling) return true;
+            const normalizedType = this.type?.replace(/[\u2013\u2014]/g, "-") || "";
+            return normalizedType.includes(typeName);
+        }
+
         get isEmbattled() {
             return (this.counters > 0) || (this.flyingCounters > 0) || 
                    (this.menaceCounters > 0) || (this.firstStrikeCounters > 0) ||
@@ -223,10 +233,7 @@ class BaseCard {
             let t = 0;
             
             // TRIBAL LORD CHECK (Warband Lieutenant)
-            // Normalize dashes for better type checking
-            const normalizedType = this.type?.replace(/[\u2013\u2014]/g, "-") || "";
-            
-            if (normalizedType.includes('Centaur')) {
+            if (this.isType('Centaur')) {
                 board?.forEach(c => {
                     if (c.card_name === 'Warband Lieutenant' && !c.temporaryHumility && c.id !== this.id) {
                         const multiplier = c.isFoil ? 2 : 1;
@@ -248,7 +255,7 @@ class BaseCard {
             }
 
             // BIRD LORD CHECK (Thunder Raptor)
-            if (normalizedType.includes('Bird')) {
+            if (this.isType('Bird')) {
                 board?.forEach(c => {
                     if (c.card_name === 'Thunder Raptor' && !c.temporaryHumility && c.id !== this.id) {
                         const multiplier = c.isFoil ? 2 : 1;
@@ -278,7 +285,7 @@ class BaseCard {
         onLifeGain(board) { }
 
         // Hook for noncreature spells being cast
-        onNoncreatureCast(isFoilCast, board) { }
+        onNoncreatureCast(spell, board, targets = []) { }
 
         // Hook for the start of the Shop Phase (Upkeep)
         onShopStart(board) { }
@@ -360,8 +367,19 @@ class BaseCard {
             if (kw === 'battle cry') return this.rules_text.toLowerCase().includes('battle cry');
             
             if (kw === 'first strike' && this.rules_text.toLowerCase().includes('agile')) return true;
-            const regex = new RegExp(`(^|[\\n,])\\s*${kw}(\\s*|[\\n,]|$)`, 'i');
-            return regex.test(this.rules_text);
+            
+            // Avoid matching "gains [kw]" or "has [kw]" as inherent keywords
+            const lowerText = this.rules_text.toLowerCase();
+            const regex = new RegExp(`(^|[\\n,\\s])\\s*${kw}(\\s*|[\\n,\\s]|$)`, 'i');
+            const match = lowerText.match(regex);
+            if (!match) return false;
+
+            // Check if the match is preceded by "gains " or "has "
+            const matchIndex = match.index + match[1].length;
+            const precedingText = lowerText.substring(Math.max(0, matchIndex - 6), matchIndex);
+            if (precedingText.includes('gains ') || precedingText.includes('has ')) return false;
+
+            return true;
         }
 
         hasKeyword(keyword, visualOnly = false) {
@@ -455,6 +473,7 @@ class BaseCard {
         }
 
         isType(type) {
+            if (this.isChangeling) return true;
             if (!this.type) return false;
             // Normalize dashes
             const normalizedType = this.type.replace(/[\u2013\u2014]/g, "-");
@@ -643,7 +662,7 @@ class BaseCard {
     class WarClanDowager extends BaseCard {
         getDynamicBuffs(board) {
             const base = super.getDynamicBuffs(board);
-            const hasOtherCentaur = board?.some(c => c.id !== this.id && c.type?.includes('Centaur'));
+            const hasOtherCentaur = board?.some(c => c.id !== this.id && c.isType('Centaur'));
             if (hasOtherCentaur) {
                 const multiplier = this.isFoil ? 2 : 1;
                 base.p += multiplier;
@@ -671,7 +690,8 @@ class BaseCard {
     }
 
     class ClairvoyantKoi extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += (1 * multiplier);
             this.tempToughness += (1 * multiplier);
@@ -680,7 +700,8 @@ class BaseCard {
     }
 
     class BlisteringLunatic extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += (2 * multiplier);
             this.pulse(board);
@@ -852,7 +873,8 @@ class BaseCard {
     class ExecutionersMadness extends BaseCard { }
 
     class EarthrattleXali extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += multiplier;
             this.tempToughness += multiplier;
@@ -861,7 +883,7 @@ class BaseCard {
     }
 
     class DynamicWyvern extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
             if (!this.enchantments) this.enchantments = [];
             this.enchantments.push({ card_name: 'Dynamic Wyvern Grant', rules_text: 'Flying', isTemporary: true });
             this.pulse(board);
@@ -1124,12 +1146,15 @@ class BaseCard {
                 if (hasMichal) return [];
 
                 // Only target "Healthy" creatures without Hexproof
-                const validVictims = opponentBoard.filter(c =>
+                let validVictims = opponentBoard.filter(c =>
                     !c.isDying && !c.isDestroyed && c.getDisplayStats(opponentBoard).t > 0 && !c.hasKeyword('Hexproof')
                 );
 
                 if (validVictims.length > 0) {
-                    const victim = validVictims[Math.floor(Math.random() * validVictims.length)];
+                    // Flagbearer check
+                    const flagbearers = validVictims.filter(c => c.isType('Flagbearer'));
+                    const pool = flagbearers.length > 0 ? flagbearers : validVictims;
+                    const victim = pool[Math.floor(Math.random() * pool.length)];
                     victim.isDestroyed = true;
                 }
             }
@@ -1163,7 +1188,7 @@ class BaseCard {
                 }
             }
         }
-        onNoncreatureCast(isFoil, board) {
+        onNoncreatureCast(spell, board, targets = []) {
             if (state.spellsCastThisTurn === 2) {
                 const multiplier = this.isFoil ? 2 : 1;
                 addCounters(this, multiplier, board);
@@ -1220,7 +1245,7 @@ class BaseCard {
                 }
                 
                 // Trigger triggers
-                board.forEach(c => c.onNoncreatureCast(false, board));
+                board.forEach(c => c.onNoncreatureCast(spell, board, []));
             });
         }
     }
@@ -1356,7 +1381,8 @@ class BaseCard {
     }
 
     class WaspbackBandit extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const entity = getEntity(this.owner);
             if (entity) {
                 const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
@@ -1368,11 +1394,12 @@ class BaseCard {
     class MurkbornMammoth extends BaseCard { }
 
     class HissingSunspitter extends BaseCard {
-        onNoncreatureCast(isFoilCast, board, host = this) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const host = this;
             if (host.owner !== 'player' || !board) return;
             const multiplier = host.isFoil ? 2 : 1;
             
-            const targets = [];
+            const effectTargets = [];
             const spellCount = state.spellsCastThisTurn;
 
             // "if it's the second spell you cast this turn"
@@ -1381,7 +1408,7 @@ class BaseCard {
                     if (c.owner === 'player') {
                         c.tempPower += multiplier;
                         c.tempToughness += multiplier;
-                        targets.push(c);
+                        effectTargets.push(c);
                     }
                 });
             } 
@@ -1392,24 +1419,24 @@ class BaseCard {
                         if (!c.enchantments) c.enchantments = [];
                         if (!c.enchantments.some(e => e.card_name === 'Sunspitter FS')) {
                             c.enchantments.push({ card_name: 'Sunspitter FS', rules_text: 'First strike', isTemporary: true });
-                            targets.push(c);
+                            effectTargets.push(c);
                         }
                     }
                 });
             }
 
-            if (targets.length > 0) {
+            if (effectTargets.length > 0) {
                 const snapshots = new Map();
-                targets.forEach(t => {
-                    t.isPulsing = true;
+                effectTargets.forEach(t => {
                     t.pulseQueueCount = (t.pulseQueueCount || 0) + 1;
+                    t.isPulsing = true;
                     snapshots.set(t.id, t.takeSnapshot());
                 });
 
                 queueAnimation(async () => {
-                    const pulses = targets.map(t => pulseCardElement(t, board, snapshots.get(t.id)));
+                    const pulses = effectTargets.map(t => pulseCardElement(t, board, snapshots.get(t.id)));
                     await Promise.all(pulses);
-                    targets.forEach(t => {
+                    effectTargets.forEach(t => {
                         t.pulseQueueCount--;
                         if (t.pulseQueueCount <= 0) {
                             delete t.isPulsing;
@@ -1485,7 +1512,7 @@ class BaseCard {
 
             // 2. Trigger spellcasts for the board (Prowess etc)
             board.forEach(c => {
-                if (c.id !== this.id) c.onNoncreatureCast(false, board);
+                if (c.id !== this.id) c.onNoncreatureCast(false, board, []);
             });
 
             // Identify creatures that actually changed stats
@@ -2044,7 +2071,7 @@ class BaseCard {
     class HeroOfALostWar extends BaseCard {
         onCombatStart(board, host = this) {
             // "target Centaur you control has base power and toughness 4/4 and gains indestructible until end of turn"
-            const myCentaurs = board.filter(c => c.owner === host.owner && c.type?.includes('Centaur'));
+            const myCentaurs = board.filter(c => c.owner === host.owner && c.isType('Centaur'));
             if (myCentaurs.length > 0) {
                 const target = myCentaurs[Math.floor(Math.random() * myCentaurs.length)];
                 
@@ -2325,7 +2352,7 @@ class BaseCard {
 
     class CybresClanSquire extends BaseCard {
         onOtherCreatureETB(newCard, board) {
-            if (newCard.type?.includes('Centaur') && newCard.owner === this.owner) {
+            if (newCard.isType('Centaur') && newCard.owner === this.owner) {
                 const multiplier = this.isFoil ? 2 : 1;
                 addCounters(this, multiplier, board);
             }
@@ -2334,7 +2361,7 @@ class BaseCard {
 
     class CybresBandLancer extends BaseCard {
         onAttack(board) {
-            const otherCentaurs = board.filter(c => c.id !== this.id && c.type?.includes('Centaur'));
+            const otherCentaurs = board.filter(c => c.id !== this.id && c.isType('Centaur'));
             if (otherCentaurs.length > 0) {
                 const target = otherCentaurs[Math.floor(Math.random() * otherCentaurs.length)];
                 const multiplier = this.isFoil ? 2 : 1;
@@ -2351,7 +2378,8 @@ class BaseCard {
     }
 
     class FinwingDrake extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += multiplier;
             this.tempToughness += multiplier;
@@ -2376,14 +2404,16 @@ class BaseCard {
     }
 
     class PaleDillettante extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             addCounters(this, multiplier, board);
         }
     }
 
     class AetherGuzzler extends BaseCard {
-        onNoncreatureCast(isFoilCast, board) {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             const snapshots = new Map();
             board.forEach(c => {
@@ -2430,6 +2460,105 @@ class BaseCard {
         }
     }
 
+    class ScourgeOfTheSun extends BaseCard {
+        onNoncreatureCast(spell, board, targets = []) {
+            const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
+            const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
+            let buff = 1 * multiplier;
+            if (typeof spell === 'object' && spell.tier) {
+                if (spell.tier >= 4) buff += (1 * multiplier);
+            }
+            this.tempPower += buff;
+            this.pulse(board);
+        }
+    }
+
+    class JiayinTheHarmonious extends BaseCard {
+        onNoncreatureCast(spell, board, targets = []) {
+            const uniqueTargets = [...new Set(targets)];
+            const validTargets = uniqueTargets.filter(t => t.id !== this.id && t.owner === this.owner && t.isType('Creature'));
+            if (validTargets.length > 0) {
+                const multiplier = this.isFoil ? 2 : 1;
+                const snapshots = new Map();
+                validTargets.forEach(t => {
+                    t.tempPower += (3 * multiplier);
+                    t.tempToughness += (3 * multiplier);
+                    t.pulseQueueCount = (t.pulseQueueCount || 0) + 1;
+                    t.isPulsing = true;
+                    snapshots.set(t.id, t.takeSnapshot());
+                });
+
+                queueAnimation(async () => {
+                    const pulses = validTargets.map(t => pulseCardElement(t, board, snapshots.get(t.id)));
+                    await Promise.all(pulses);
+                    validTargets.forEach(t => {
+                        t.pulseQueueCount--;
+                        if (t.pulseQueueCount <= 0) {
+                            delete t.isPulsing;
+                            delete t.pulseQueueCount;
+                        }
+                    });
+                });
+            }
+        }
+    }
+
+    class NacreousHydra extends BaseCard {
+        onETB(board) {
+            addCounters(this, 4, board);
+        }
+        onNoncreatureCast(spell, board, targets = []) {
+            proliferate(board, this.owner, 1);
+        }
+    }
+
+    class BattlefrontLancer extends BaseCard {
+        onCombatStart(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            const myCreatures = board.filter(c => c.owner === this.owner);
+            if (myCreatures.length > 0) {
+                const target = myCreatures[Math.floor(Math.random() * myCreatures.length)];
+                target.tempPower += (2 * multiplier);
+                return [target];
+            }
+            return [];
+        }
+    }
+
+    class GallantCentaur extends BaseCard { }
+
+    class HoltunBandEmissary extends BaseCard {
+        onNoncreatureCast(spell, board, targets = []) {
+            const wasTargeted = targets.some(t => t.id === this.id);
+            if (wasTargeted) {
+                const centaurs = board.filter(c => c.id !== this.id && c.isType('Centaur'));
+                if (centaurs.length > 0) {
+                    const multiplier = this.isFoil ? 2 : 1;
+                    const snapshots = new Map();
+                    centaurs.forEach(c => {
+                        if (!c.enchantments) c.enchantments = [];
+                        c.enchantments.push({ card_name: 'Emissary Protection', rules_text: 'Indestructible', isTemporary: true });
+                        c.pulseQueueCount = (c.pulseQueueCount || 0) + 1;
+                        c.isPulsing = true;
+                        snapshots.set(c.id, c.takeSnapshot());
+                    });
+
+                    queueAnimation(async () => {
+                        const pulses = centaurs.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
+                        await Promise.all(pulses);
+                        centaurs.forEach(c => {
+                            c.pulseQueueCount--;
+                            if (c.pulseQueueCount <= 0) {
+                                delete c.isPulsing;
+                                delete c.pulseQueueCount;
+                            }
+                        });
+                    });
+                }
+            }
+        }
+    }
+
     const CardFactory = {
         create(data) {
             if (!data) return null;
@@ -2448,6 +2577,13 @@ class BaseCard {
                 case 'Consult the Dewdrops': card = new ConsultTheDewdrops(data); break;
                 case 'Envoy of the Pure': card = new EnvoyOfThePure(data); break;
                 case 'Centaur Wayfinder': card = new CentaurWayfinder(data); break;
+                case 'Scourge of the Sun': card = new ScourgeOfTheSun(data); break;
+                case 'Jiayin, the Harmonious': card = new JiayinTheHarmonious(data); break;
+                case 'Marbled Aakriti': card = new BaseCard(data); break;
+                case 'Nacreous Hydra': card = new NacreousHydra(data); break;
+                case 'Battlefront Lancer': card = new BattlefrontLancer(data); break;
+                case 'Gallant Centaur': card = new GallantCentaur(data); break;
+                case 'Holtun-Band Emissary': card = new HoltunBandEmissary(data); break;
                 case 'Warband Lieutenant': card = new WarbandLieutenant(data); break;
                 case 'Warrior\'s Ways': card = new WarriorsWays(data); break;
                 case 'Stratus Traveler': card = new StratusTraveler(data); break;
@@ -2930,6 +3066,7 @@ class BaseCard {
         shopDeathsCount: 0,
         overallHpReducedThisFight: false,
         spellsCastThisTurn: 0,
+        currentSpellTargets: [],
         panharmoniconActive: false,
         animationQueue: [],
         activeAttackerId: null,
@@ -3060,7 +3197,9 @@ class BaseCard {
             if (handIdx !== -1) {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
-                state.player.board.forEach(c => c.onNoncreatureCast(spell.isFoil, state.player.board));
+                const targets = [...state.currentSpellTargets];
+                state.currentSpellTargets = [];
+                state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
             }
             processDiscoveryQueue();
             await resolveAnimations();
@@ -3258,7 +3397,7 @@ class BaseCard {
             if (handIdx !== -1) {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
-                board.forEach(c => c.onNoncreatureCast(state.discovery.isFoil, board));
+                board.forEach(c => c.onNoncreatureCast(spell, board, []));
             }
             processDiscoveryQueue();
             await resolveAnimations();
@@ -5504,12 +5643,15 @@ class BaseCard {
         // If this source already counted for Autumn, don't count it again (multi-phase spells)
         if (source.autumnTriggered) return;
 
-        if (target.type?.includes('Centaur')) {
+        if (target.isType('Centaur')) {
             state.player.autumnSpellCount++;
             source.autumnTriggered = true; // Mark this specific play as already counted
 
             if (state.player.autumnSpellCount >= 3) {
-                const centaurPool = availableCards.filter(c => c.type?.includes('Centaur') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+                const centaurPool = availableCards.filter(c => {
+                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
+                    return inst.isType('Centaur') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier;
+                });
                 if (centaurPool.length > 0) {
                     const rand = centaurPool[Math.floor(Math.random() * centaurPool.length)];
                     const reward = CardFactory.create(rand);
@@ -5528,6 +5670,7 @@ class BaseCard {
 
     async function useCardFromHand(cardId, targetIndex = -1) {
         if (state.phase !== 'SHOP' || state.castingSpell || state.targetingEffect) return;
+        state.currentSpellTargets = [];
         const cardIndex = state.player.hand.findIndex(c => c.id === cardId);
         if (cardIndex === -1) return;
         const card = state.player.hand[cardIndex];
@@ -5598,7 +5741,9 @@ class BaseCard {
                 instance.onCast(state.player.board);
                 state.player.hand.splice(cardIndex, 1);
                 state.player.spellGraveyard.push(instance);
-                state.player.board.forEach(c => c.onNoncreatureCast(instance.isFoil, state.player.board));
+                const targets = [...state.currentSpellTargets];
+                state.currentSpellTargets = [];
+                state.player.board.forEach(c => c.onNoncreatureCast(instance, state.player.board, targets));
                 
                 // HERO POWER: Herrea (Blue card tracking & Reward) - NO TARGETING
                 if (!state.targetingEffect && !state.discovery) {
@@ -5646,11 +5791,11 @@ class BaseCard {
 
                 hasTargets = currentBoard.length > 1; 
             } else if (effect.effect === 'warband_rallier_counters') {
-                hasTargets = currentBoard.some(c => c.type?.includes('Centaur'));
+                hasTargets = currentBoard.some(c => c.isType('Centaur'));
             } else if (effect.effect === 'permutate_step1') {
                 hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
             } else if (effect.effect === 'nightfall_raptor_bounce') {
-                hasTargets = currentBoard.some(c => !c.type?.toLowerCase().includes('enchantment'));
+                hasTargets = currentBoard.some(c => !c.isType('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
                 hasTargets = currentBoard.some(c => (c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0) && c.shieldCounters === 0);
             } else if (effect.effect === 'artful_coercion_gain_control') {
@@ -5697,10 +5842,10 @@ class BaseCard {
                         validTargets = state.player.hand.filter(c => c.id !== effect.sourceId);
                     } else if (effect.effect === 'warband_rallier_counters') {
                         const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
-                        validTargets = board.filter(c => c.type?.includes('Centaur'));
+                        validTargets = board.filter(c => c.isType('Centaur'));
                     } else if (effect.effect === 'nightfall_raptor_bounce') {
                         const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
-                        validTargets = board.filter(c => !c.type?.includes('Enchantment'));
+                        validTargets = board.filter(c => !c.isType('Enchantment'));
                     } else {
                         // Default: friendly board
                         validTargets = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
@@ -5774,6 +5919,9 @@ class BaseCard {
         }
         
         if (target) {
+            // Track target for end-of-spell triggers
+            state.currentSpellTargets.push(target);
+
             // Finalize Hero Power if applicable (Generic case)
             // Note: hero_power_xylo handles its own cost because it might defer to a nested effect
             if (state.targetingEffect.isHeroPower && state.targetingEffect.owner === 'player' && state.targetingEffect.heroPowerCost > 0 && state.targetingEffect.effect !== 'hero_power_xylo') {
@@ -5882,7 +6030,7 @@ class BaseCard {
                 }
             } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
 
-                if (target.type?.includes('Centaur')) {
+                if (target.isType('Centaur')) {
                     const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
                     const multiplier = state.targetingEffect.isFoil ? 2 : 1;
                     addCounters(target, 2 * multiplier, board);
@@ -5980,7 +6128,7 @@ class BaseCard {
                     if (handIdx !== -1) {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
-                        state.player.board.forEach(c => c.onNoncreatureCast(state.targetingEffect.cardInstance.isFoil, state.player.board));
+                        state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, []));
                     }
 
                     clearTargetingEffect(true);
@@ -6099,14 +6247,15 @@ class BaseCard {
 
                 // 3. Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
-                const isFoilCast = state.targetingEffect.cardInstance.isFoil;
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
+                    
+                    // TRIGGER NONCREATURE CAST
+                    const targets = [...state.currentSpellTargets];
+                    state.currentSpellTargets = [];
+                    state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
                 }
-                
-                // TRIGGER NONCREATURE CAST
-                state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
                 clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'warrior_ways_step1') {
@@ -6114,7 +6263,7 @@ class BaseCard {
                 checkAutumnReward(target, state.targetingEffect.cardInstance);
                 
                 // If there are NO Centaurs to target for Step 2, skip it!
-                const centaurs = state.player.board.filter(c => c.type?.includes('Centaur'));
+                const centaurs = state.player.board.filter(c => c.isType('Centaur'));
                 if (centaurs.length === 0) {
                     const isFoilCast = state.targetingEffect.isFoil || (state.targetingEffect.cardInstance && state.targetingEffect.cardInstance.isFoil);
                     const multiplier = isFoilCast ? 2 : 1;
@@ -6135,10 +6284,12 @@ class BaseCard {
                     if (handIdx !== -1) {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
+                        
+                        // TRIGGER NONCREATURE CAST
+                        const targets = [...state.currentSpellTargets];
+                        state.currentSpellTargets = [];
+                        state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
                     }
-                    
-                    // TRIGGER NONCREATURE CAST
-                    state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
                     clearTargetingEffect(true);
                 } else {
@@ -6183,10 +6334,12 @@ class BaseCard {
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
+                    
+                    // TRIGGER NONCREATURE CAST
+                    const targets = [...state.currentSpellTargets];
+                    state.currentSpellTargets = [];
+                    state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
                 }
-
-                // TRIGGER NONCREATURE CAST
-                state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
 
                 clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'ceremony_step1' || state.targetingEffect.effect === 'ceremony_step2') {
@@ -6214,14 +6367,16 @@ class BaseCard {
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
                 const isFoilCast = state.targetingEffect.cardInstance.isFoil;
 
-                // Resolve "spell cast" triggers
-                state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
-                
                 // Cleanup spell
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                 if (handIdx !== -1) {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
+                    
+                    // TRIGGER NONCREATURE CAST
+                    const targets = [...state.currentSpellTargets];
+                    state.currentSpellTargets = [];
+                    state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
                 }
 
                 const createdTokens = [];
@@ -6359,13 +6514,16 @@ class BaseCard {
 
                 // Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
+                let spell = state.targetingEffect.cardInstance;
                 if (handIdx !== -1) {
-                    const [spell] = state.player.hand.splice(handIdx, 1);
+                    [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
                 }
 
                 // TRIGGER NONCREATURE CAST ONLY ONCE AT END
-                state.player.board.forEach(c => c.onNoncreatureCast(isFoilCast, state.player.board));
+                const targets = [...state.currentSpellTargets];
+                state.currentSpellTargets = [];
+                state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
 
                 clearTargetingEffect(true);
             }
@@ -6832,6 +6990,7 @@ class BaseCard {
 
     async function applySpell(targetId) {
         if (!state.castingSpell) return;
+        state.currentSpellTargets = [];
         const target = state.player.board.find(c => c.id === targetId) || 
                        state.player.hand.find(c => c.id === targetId) ||
                        state.shop.cards.find(c => c.id === targetId);
@@ -6839,7 +6998,7 @@ class BaseCard {
 
         // Safety check for Lagoon Logistics
         if (state.castingSpell.card_name === 'Lagoon Logistics') {
-            if (!target.type?.toLowerCase().includes('creature') || target.id === state.castingSpell.id) {
+            if (!target.isType('Creature') || target.id === state.castingSpell.id) {
                 return;
             }
         }
@@ -6848,6 +7007,9 @@ class BaseCard {
         if (state.castingSpell.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
             return; 
         }
+
+        // Track target for end-of-spell triggers
+        state.currentSpellTargets.push(target);
 
         state.castingSpell.onApply(target, state.player.board);
         checkAutumnReward(target, state.castingSpell);
@@ -6866,8 +7028,11 @@ class BaseCard {
         // HERO POWER: Herrea (Blue card tracking & Reward)
         checkHerreaReward(state.castingSpell);
 
+        const currentSpell = state.castingSpell;
+        const targets = [...state.currentSpellTargets];
         state.castingSpell = null;
-        state.player.board.forEach(c => c.onNoncreatureCast(isFoil, state.player.board));
+        state.currentSpellTargets = [];
+        state.player.board.forEach(c => c.onNoncreatureCast(currentSpell, state.player.board, targets));
         render();
         await resolveAnimations();
     }
@@ -6978,7 +7143,7 @@ class BaseCard {
                         cardToBuy.onApply(target, opp.board);
                         
                         // AI-specific noncreature cast effects using OO hook
-                        opp.board.forEach(c => c.onNoncreatureCast(false, opp.board));
+                        opp.board.forEach(c => c.onNoncreatureCast(false, opp.board, []));
 
                         opp.gold -= cost;
                     } else break;
@@ -8418,13 +8583,13 @@ class BaseCard {
                         // Not targetable
                     } else if (state.targetingEffect.effect === 'permutate_step2' && instance.id === state.targetingEffect.sourceCreatureId) {
                         // Not targetable (must be different creature)
-                    } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.type?.includes('Centaur')) {
+                    } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.isType('Centaur')) {
                         // Not targetable if not a Centaur
-                    } else if (state.targetingEffect.effect === 'warband_rallier_counters' && !instance.type?.includes('Centaur')) {
+                    } else if (state.targetingEffect.effect === 'warband_rallier_counters' && !instance.isType('Centaur')) {
                         // Not targetable if not a Centaur
                     } else if (state.targetingEffect.effect === 'ceremony_step2' && instance.id === state.targetingEffect.target1Id) {
                         // Not targetable (cannot select same creature twice)
-                    } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce' && instance.type?.toLowerCase().includes('enchantment')) {
+                    } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce' && instance.isType('Enchantment')) {
                         // Not targetable if it's an enchantment creature
                     } else if (state.targetingEffect.effect === 'hero_power_xylo' && !instance.hasETB()) {
                         // Not targetable if it doesn't have an ETB

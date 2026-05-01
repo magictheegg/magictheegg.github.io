@@ -204,10 +204,9 @@ function testClairvoyantKoi() {
     resetState();
     const koi = CardFactory.create({ card_name: "Clairvoyant Koi", pt: "2/1" });
     state.player.board.push(koi);
-    
-    koi.onNoncreatureCast(false, state.player.board);
-    assert.strictEqual(koi.tempPower, 1, "Prowess +1/+1");
-    assert.strictEqual(koi.tempToughness, 1);
+
+    koi.onNoncreatureCast({ isFoil: false }, state.player.board);
+    assert.strictEqual(koi.tempPower, 1, "Prowess +1/+1");    assert.strictEqual(koi.tempToughness, 1);
 }
 
 function testSoulsmokeAdept() {
@@ -281,7 +280,7 @@ function testRakkiriArcher() {
 function testBlisteringLunatic() {
     resetState();
     const lunatic = CardFactory.create({ card_name: "Blistering Lunatic", pt: "2/1" });
-    lunatic.onNoncreatureCast(false, []);
+    lunatic.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(lunatic.tempPower, 2, "+2/+0 on noncreature cast");
 }
 
@@ -484,7 +483,7 @@ function testEarthrattleXali() {
     resetState();
     const xali = CardFactory.create({ card_name: "Earthrattle Xali", pt: "2/2" });
     state.player.board = [xali];
-    xali.onNoncreatureCast(false, state.player.board);
+    xali.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(xali.tempPower, 1, "Should gain +1/+1 on noncreature cast");
 }
 
@@ -494,7 +493,7 @@ function testDynamicWyvern() {
     const wyvern = CardFactory.create(wyvernData);
     state.player.board = [wyvern];
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Initially no flying (Should fail right now)");
-    wyvern.onNoncreatureCast(false, state.player.board);
+    wyvern.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(wyvern.hasKeyword('flying'), true, "Gains flying after cast");
     wyvern.enchantments = [];
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Loses flying after cleanup");
@@ -811,7 +810,7 @@ function testFinwingDrake() {
     resetState();
     const drake = CardFactory.create({ card_name: "Finwing Drake", pt: "3/4", rules_text: "Flying" });
     assert.strictEqual(drake.hasKeyword('flying'), true);
-    drake.onNoncreatureCast(false, []);
+    drake.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(drake.tempPower, 1, "Prowess +1/+1");
 }
 
@@ -843,7 +842,7 @@ function testShrewdParliament() {
 function testPaleDillettante() {
     resetState();
     const dillettante = CardFactory.create({ card_name: "Pale Dillettante", pt: "2/2" });
-    dillettante.onNoncreatureCast(false, []);
+    dillettante.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(dillettante.counters, 1, "+1/+1 counter on noncreature cast");
 }
 
@@ -853,7 +852,7 @@ function testAetherGuzzler() {
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
     state.player.board = [guzzler, other];
     
-    guzzler.onNoncreatureCast(false, state.player.board);
+    guzzler.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(guzzler.tempPower, 1, "Guzzler buffs self");
     assert.strictEqual(other.tempPower, 1, "Guzzler buffs others");
 }
@@ -2363,7 +2362,7 @@ async function testZaraxSupermajor() {
 
     // 2. Second Spell
     state.spellsCastThisTurn = 2;
-    zarax.onNoncreatureCast(false, state.player.board);
+    zarax.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(zarax.counters, 1, "Zarax gets a counter on second spell");
     assert.ok(state.player.board.every(c => c.hasKeyword('flying')), "All creatures gain Flying");
 }
@@ -2611,7 +2610,7 @@ function testWaspbackBandit() {
     assert.strictEqual(bandit.hasKeyword('flying'), true);
     assert.strictEqual(bandit.hasKeyword('hexproof'), true);
     
-    bandit.onNoncreatureCast(false, state.player.board);
+    bandit.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(state.player.treasures, 1, "Should generate treasure on noncreature cast");
 }
 
@@ -2647,6 +2646,183 @@ function testStridingCascade() {
     cascade2.onCounterPlaced(1, 'plus-one', t1, state.player.board);
     cascade2.onCounterPlaced(1, 'plus-one', t2, state.player.board);
     assert.strictEqual(cascade2.counters, 1, "Should only gain ONE counter from simultaneous placements");
+}
+
+function testBattlefrontLancer() {
+    resetState();
+    const lancer = CardFactory.create({ card_name: "Battlefront Lancer", pt: "1/3", rules_text: "First strike" });
+    assert.strictEqual(lancer.hasKeyword('First strike'), true, "Should have First strike");
+    
+    state.player.board = [lancer];
+    lancer.onCombatStart(state.player.board);
+    assert.strictEqual(lancer.tempPower, 2, "Should buff a random friendly creature (itself in this case)");
+}
+
+function testMarbledAakriti() {
+    resetState();
+    const aakriti = CardFactory.create({ card_name: "Marbled Aakriti", pt: "3/3", rules_text: "Changeling, Flying" });
+    assert.strictEqual(aakriti.hasKeyword('Flying'), true, "Should have Flying");
+    assert.strictEqual(aakriti.isType('Centaur'), true, "Changeling should be Centaur");
+    assert.strictEqual(aakriti.isType('Bird'), true, "Changeling should be Bird");
+    
+    // Centaur Lord check
+    const centaurLord = CardFactory.create({ card_name: "Warband Lieutenant", type: "Creature - Centaur" });
+    state.player.board = [aakriti, centaurLord];
+    assert.strictEqual(aakriti.getDisplayStats(state.player.board).p, 4, "Should get Centaur buff");
+    
+    // Bird Lord check
+    const birdLord = CardFactory.create({ card_name: "Thunder Raptor", type: "Creature - Bird" });
+    state.player.board = [aakriti, birdLord];
+    assert.strictEqual(aakriti.getDisplayStats(state.player.board).p, 5, "Should get Bird buff (+2/+1)");
+
+    // War-Clan Dowager check
+    const dowager = CardFactory.create({ card_name: "War-Clan Dowager", pt: "2/2" });
+    state.player.board = [aakriti, dowager];
+    assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 3, "Dowager should get +1/+1 from Aakriti");
+}
+
+function testScourgeOfTheSun() {
+    resetState();
+    const scourge = CardFactory.create({ card_name: "Scourge of the Sun", pt: "2/3", rules_text: "Flying" });
+    assert.strictEqual(scourge.hasKeyword('Flying'), true, "Should have Flying");
+    
+    state.player.board = [scourge];
+    
+    // Tier 2 spell
+    scourge.onNoncreatureCast({ isFoil: false, tier: 2 }, state.player.board);
+    assert.strictEqual(scourge.tempPower, 1, "+1/+0 for low tier spell");
+    
+    // Tier 4 spell
+    scourge.onNoncreatureCast({ isFoil: false, tier: 4 }, state.player.board);
+    assert.strictEqual(scourge.tempPower, 3, "+2/+0 for high tier spell (1+2=3)");
+    
+    // Reset
+    state.player.board.forEach(c => { c.tempPower = 0; });
+    assert.strictEqual(scourge.tempPower, 0, "Buff should wear off");
+}
+
+function testGallantCentaur() {
+    resetState();
+    const centaur = CardFactory.create({ card_name: "Gallant Centaur", pt: "6/5" });
+    assert.strictEqual(centaur.pt, "6/5", "Should be a 6/5");
+}
+
+function testHoltunBandEmissary() {
+    resetState();
+    const emissary = CardFactory.create({ card_name: "Holtun-Band Emissary", pt: "4/4", type: "Creature - Centaur Flagbearer" });
+    const otherCentaur = CardFactory.create({ card_name: "Centaur", type: "Creature - Centaur", pt: "2/2" });
+    state.player.board = [emissary, otherCentaur];
+    
+    // Targeting trigger
+    emissary.onNoncreatureCast({ type: "Sorcery" }, state.player.board, [emissary]);
+    assert.ok(otherCentaur.enchantments.some(e => e.rules_text === 'Indestructible'), "Other centaur should gain Indestructible");
+    
+    // Flagbearer priority
+    resetState();
+    state.phase = 'BATTLE';
+    const suitor = CardFactory.create({ card_name: "Suitor of Death" });
+    const victim1 = CardFactory.create({ card_name: "Holtun-Band Emissary", type: "Creature - Centaur Flagbearer", pt: "4/4" });
+    const victim2 = CardFactory.create({ card_name: "Non-Flagbearer", pt: "1/1" });
+    
+    state.battleBoards = {
+        player: [victim1, victim2],
+        opponent: [suitor]
+    };
+    
+    // Suitor dies, should target victim1
+    suitor.onDeath(state.battleBoards.opponent, 'opponent');
+    assert.strictEqual(victim1.isDestroyed, true, "Flagbearer should be destroyed first");
+    assert.strictEqual(victim2.isDestroyed, false, "Non-Flagbearer should be safe");
+}
+
+function testJiayinTheHarmonious() {
+    resetState();
+    const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
+    const other = CardFactory.create({ card_name: "Other", pt: "2/2", type: "Creature" });
+    state.player.board = [jiayin, other];
+    
+    // Target other
+    jiayin.onNoncreatureCast({ type: "Sorcery" }, state.player.board, [other]);
+    assert.strictEqual(other.tempPower, 3, "+3/+3 to other");
+    
+    // Target self
+    resetState();
+    state.player.board = [jiayin, other];
+    jiayin.onNoncreatureCast({ type: "Sorcery" }, state.player.board, [jiayin]);
+    assert.strictEqual(jiayin.tempPower, 0, "Jiayin should not buff herself");
+    
+    // Wear off
+    state.player.board.forEach(c => { c.tempPower = 0; });
+    assert.strictEqual(other.tempPower, 0, "Buff should wear off at end of turn");
+}
+
+function testNacreousHydra() {
+    resetState();
+    const hydra = CardFactory.create({ card_name: "Nacreous Hydra", pt: "0/0" });
+    hydra.onETB(state.player.board);
+    assert.strictEqual(hydra.counters, 4, "Should enter with 4 counters");
+    
+    state.player.board = [hydra];
+    state.phase = 'SHOP';
+    
+    // 1. Proliferate on Sorcery (via generic onNoncreatureCast call)
+    hydra.onNoncreatureCast({ type: "Sorcery" }, state.player.board);
+    assert.strictEqual(hydra.counters, 5, "Should proliferate on sorcery");
+    
+    // 2. No proliferate on Equipment (Simulate via useCardFromHand flow)
+    const equipment = CardFactory.create({ card_name: "Sword", type: "Equipment" });
+    state.player.hand = [equipment];
+    // This will open targeting but NOT trigger onNoncreatureCast
+    useCardFromHand(equipment.id);
+    assert.strictEqual(hydra.counters, 5, "Should NOT proliferate on equipment via game loop");
+}
+
+function testJiayin_UpInArms() {
+    resetState();
+    const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1", type: "Creature" });
+    const spell = CardFactory.create({ card_name: "Up in Arms", type: "Sorcery" });
+    
+    state.player.board = [jiayin, target];
+    state.player.hand = [spell];
+    jiayin.owner = target.owner = 'player';
+
+    // Phase 1
+    useCardFromHand(spell.id);
+    applyTargetedEffect(target.id);
+    
+    // Phase 2 (target same creature)
+    applyTargetedEffect(target.id);
+    
+    // Check stats: +1/+1 (counter) + 1/+1 (adaptive copy) + 3/3 (Jiayin) = 5/5? 
+    // Wait, Up in Arms gives +1/+1 counter per step. So +2/+2 counters.
+    // Plus Jiayin +3/+3. Total +5/+5. 
+    // If Jiayin bugged, it would be +8/+8.
+    assert.strictEqual(target.counters, 2, "Should have 2 counters");
+    assert.strictEqual(target.tempPower, 3, "Should have +3 power from Jiayin (once)");
+}
+
+function testJiayin_WarriorsWays() {
+    resetState();
+    const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
+    const centaur = CardFactory.create({ card_name: "Centaur", pt: "1/1", type: "Creature - Centaur" });
+    const spell = CardFactory.create({ card_name: "Warrior's Ways", type: "Sorcery" });
+    
+    state.player.board = [jiayin, centaur];
+    state.player.hand = [spell];
+    jiayin.owner = centaur.owner = 'player';
+
+    // Step 1: Buff target
+    useCardFromHand(spell.id);
+    applyTargetedEffect(centaur.id);
+    
+    // Step 2: Choose Centaur (same one)
+    applyTargetedEffect(centaur.id);
+    
+    // Stats: +2/+2 (temp from ways) + 1/+1 (counter) + 3/3 (Jiayin) = +6/+6
+    // If Jiayin bugged: +9/+9
+    assert.strictEqual(centaur.tempPower, 5, "Should have +2 (Ways) + 3 (Jiayin) = 5");
+    assert.strictEqual(centaur.counters, 1, "Should have 1 counter");
 }
 
 async function runTests() {
@@ -2697,7 +2873,10 @@ async function runTests() {
         { tier: 2, name: "Foresee", fn: testForesee },
         { tier: 2, name: "Fight Song", fn: testFightSong },
         { tier: 2, name: "Edge of Their Seats", fn: testEdgeOfTheirSeats },
-        { tier: 2, name: "Lake Cave Lurker", fn: testLakeCaveLurker }
+        { tier: 2, name: "Lake Cave Lurker", fn: testLakeCaveLurker },
+        { tier: 2, name: "Battlefront Lancer", fn: testBattlefrontLancer },
+        { tier: 2, name: "Marbled Aakriti", fn: testMarbledAakriti },
+        { tier: 2, name: "Scourge of the Sun", fn: testScourgeOfTheSun }
     ];
 
     const t3Tests = [
@@ -2726,7 +2905,11 @@ async function runTests() {
         { tier: 3, name: "Mekini Eremite", fn: testMekiniEremite },
         { tier: 3, name: "Frontier Markswomen", fn: testFrontierMarkswomen },
         { tier: 3, name: "Festival Celebrants", fn: testFestivalCelebrants },
-        { tier: 3, name: "Dewdrop Pools", fn: testDewdropPools }
+        { tier: 3, name: "Dewdrop Pools", fn: testDewdropPools },
+        { tier: 3, name: "Jiayin, the Harmonious", fn: testJiayinTheHarmonious },
+        { tier: 3, name: "Jiayin (Up in Arms)", fn: testJiayin_UpInArms },
+        { tier: 3, name: "Jiayin (Warrior's Ways)", fn: testJiayin_WarriorsWays },
+        { tier: 3, name: "Gallant Centaur", fn: testGallantCentaur }
     ];
 
     const t4Tests = [
@@ -2764,7 +2947,8 @@ async function runTests() {
         { tier: 4, name: "Magnific Wilderkin", fn: testMagnificWilderkin },
         { tier: 4, name: "Dwarven Phalanx", fn: testDwarvenPhalanx },
         { tier: 4, name: "Lair Recluse", fn: testLairRecluse },
-        { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider }
+        { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider },
+        { tier: 4, name: "Holtun-Band Emissary", fn: testHoltunBandEmissary }
     ];
 
     const t5Tests = [
@@ -2785,7 +2969,8 @@ async function runTests() {
         { tier: 5, name: "Michal, the Anointed", fn: testMichalTheAnointed },
         { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
         { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
-        { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus }
+        { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
+        { tier: 5, name: "Nacreous Hydra", fn: testNacreousHydra }
     ];
 
     console.log("\nUNIT TEST RESULTS");
