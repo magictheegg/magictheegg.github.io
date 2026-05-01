@@ -15,7 +15,9 @@ const mockElement = () => ({
     },
     style: {},
     dataset: {},
+    src: '',
     innerHTML: '',
+    matches: () => false,
     setAttribute: () => {},
     content: {
         cloneNode: () => ({

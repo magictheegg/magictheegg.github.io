@@ -4,38 +4,38 @@ import os
 def create_coliseum_card_list():
     card_names_to_include = [
         "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Intli Assaulter",
-        "Impressible Cub", "Gore Swine", "Sanctuary Centaur", "War-Clan Dowager",
+        "Sanctuary Centaur", "War-Clan Dowager",
         "Clairvoyant Koi", "Blistering Lunatic", "Dutiful Camel", "Frontline Cavalier",
         "Sparring Campaigner", "Soulsmoke Adept", "Rakkiri Archer", "Lake Cave Lurker",
         "Faith in Darkness", "Scientific Inquiry", "To Battle", "Might and Mane", "Divination",
-        "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
+        "Exotic Game Hunter", "Shrieking Pusbag", "Executioner's Madness",
         "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
         "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
-        "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
-        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Way of the Bygone",
-        "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats",
+        "Stratus Traveler", "Rapacious Sprite", "Up in Arms",
+        "Cabracan's Familiar", "Way of the Bygone",
+        "Moonlight Stag", "Silken Spinner", "Gnomish Skirmisher",
+        "Foresee", "Fight Song", "Edge of Their Seats",
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
-        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
-        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
-        "Qinhana Cavalry", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
-        "Restless Oppressor", "Moss Viper", "Striding Cascade", "Waspback Bandit",
+        "Windsong Apprentice", "Cauther Hellkite", "Lingering Lunatic",
+        "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician",
+        "Qinhana Cavalry", "Frontier Markswomen", "Festival Celebrants",
+        "Restless Oppressor", "Striding Cascade", "Waspback Bandit",
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
         "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
-        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
+        "Hero of a Lost War", "Hero of Hedria", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Mekini Eremite",
-        "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
+        "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
         "Song of Wind and Fire", "Decorated Warrior",
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
-        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
-        "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom",
-        "Merciless Xun Huang", "Citadel Colossus", "Triumphant Tactics", "Wild Bearmaster"
+        "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
+        "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
+        "Citadel Colossus", "Triumphant Tactics"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -52,29 +52,29 @@ def create_coliseum_card_list():
     
     final_cards = []
     tier_2_names = [
-        "Exotic Game Hunter", "Cankerous Hog", "Shrieking Pusbag", "Executioner's Madness",
+        "Exotic Game Hunter", "Shrieking Pusbag", "Executioner's Madness",
         "Earthrattle Xali", "Dynamic Wyvern", "Bristled Direbear", "Consult the Dewdrops",
         "Envoy of the Pure", "Centaur Wayfinder", "Warband Lieutenant", "Warrior's Ways",
-        "Stratus Traveler", "Alluring Wisps", "Rapacious Sprite", "Up in Arms",
-        "Mieng, Who Dances With Dragons", "Draconic Cinderlance", "Cabracan's Familiar", "Way of the Bygone",
-        "Moonlight Stag", "Sleepless Spirit", "Silken Spinner", "Gnomish Skirmisher",
-        "Siege Falcon", "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker"
+        "Stratus Traveler", "Rapacious Sprite", "Up in Arms",
+        "Cabracan's Familiar", "Way of the Bygone",
+        "Moonlight Stag", "Silken Spinner", "Gnomish Skirmisher",
+        "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker"
     ]
     tier_3_names = [
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
         "Finwing Drake", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
-        "Windsong Apprentice", "Cauther Hellkite", "Vivid Griffin", "Nest Matriarch", "Lingering Lunatic",
-        "Wilderkin Zealot", "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician", "Scarhorn Cleaver",
-        "Qinhana Cavalry", "Frontier Markswomen", "Dragonfist Axeman", "Festival Celebrants",
-        "Restless Oppressor", "Moss Viper", "Striding Cascade", "Waspback Bandit"
+        "Windsong Apprentice", "Cauther Hellkite", "Lingering Lunatic",
+        "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician",
+        "Qinhana Cavalry", "Frontier Markswomen", "Festival Celebrants",
+        "Restless Oppressor", "Striding Cascade", "Waspback Bandit"
     ]
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
         "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
-        "Hero of a Lost War", "Hero of Hedria", "Holtun-Clan Eldhand", "Ghessian Memories",
+        "Hero of a Lost War", "Hero of Hedria", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Mekini Eremite",
-        "Earthcore Elemental", "Ndengo Brutalizer", "Savage Congregation",
+        "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
         "Song of Wind and Fire", "Shrewd Parliament"
@@ -83,9 +83,9 @@ def create_coliseum_card_list():
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
         "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
-        "Kai'Long, Dark Immolator", "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
-        "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility", "Architect of Wisdom",
-        "Merciless Xun Huang", "Citadel Colossus", "Triumphant Tactics", "Wild Bearmaster", "Decorated Warrior"
+        "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
+        "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
+        "Citadel Colossus", "Triumphant Tactics", "Decorated Warrior"
     ]
 
     for name in card_names_to_include:
