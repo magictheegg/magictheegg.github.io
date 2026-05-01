@@ -79,7 +79,7 @@ const KEYWORD_DATA = {
 
 // --- OO CARD SYSTEM ---
 
-const targetedNames = ['To Battle', 'Faith in Darkness', 'Might and Mane', 'Way of the Bygone', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion'];
+const targetedNames = ['To Battle', 'Faith in Darkness', 'Might and Mane', 'Way of the Bygone', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion', 'Touch of the Omen'];
 const complexTargetedNames = ['Executioner\'s Madness', 'Warrior\'s Ways', 'Whispers of the Dead', 'Ceremony of Tribes', 'Up in Arms'];
 
 class BaseCard {
@@ -265,6 +265,17 @@ class BaseCard {
                 });
             }
 
+            // ZOMBIE LORD CHECK (Faceless Faction)
+            if (this.isType('Zombie')) {
+                board?.forEach(c => {
+                    if (c.card_name === 'Faceless Faction' && !c.temporaryHumility && c.id !== this.id) {
+                        const multiplier = c.isFoil ? 2 : 1;
+                        p += multiplier;
+                        t += multiplier;
+                    }
+                });
+            }
+
             return { p, t };
         }
         // Hook for ETB effects
@@ -291,7 +302,7 @@ class BaseCard {
         onShopStart(board) { }
 
         // Hook for the "End of Shop Phase" (End Step)
-        onShopEndStep(board) { }
+        async onShopEndStep(board) { }
 
         takeSnapshot() {
             return {
@@ -849,7 +860,7 @@ class BaseCard {
     }
 
     class ExoticGameHunter extends BaseCard {
-        onShopEndStep(board) {
+        async onShopEndStep(board) {
             if (state.creaturesDiedThisShopPhase) {
                 const multiplier = this.isFoil ? 2 : 1;
                 addCounters(this, multiplier, board);
@@ -2512,6 +2523,133 @@ class BaseCard {
         }
     }
 
+    class AmAtambisWildkin extends BaseCard {
+        onDeath(board, owner) {
+            const validTargets = board.filter(c => c.id !== this.id && c.owner === owner);
+            if (validTargets.length > 0) {
+                const target = validTargets[Math.floor(Math.random() * validTargets.length)];
+                if (target.hasKeyword('Reach')) {
+                    addCounters(target, 1, board);
+                } else {
+                    addKeywordCounter(target, 'Reach', 1, board);
+                }
+            }
+            return [];
+        }
+    }
+
+    class PestilentLeopardfly extends BaseCard {
+        onOtherCreatureDeath(card, board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            this.tempPower += (1 * multiplier);
+            this.pulse(board);
+        }
+    }
+
+    class TouchOfTheOmen extends BaseCard {
+        effect_text = 'Gain control of target creature in the shop. Put a decayed counter on it.';
+        onApply(target, board) {
+            const idx = state.shop.cards.indexOf(target);
+            if (idx !== -1 && state.player.board.length < boardLimit) {
+                const [stolen] = state.shop.cards.splice(idx, 1);
+                stolen.owner = 'player';
+                if (!stolen.enchantments) stolen.enchantments = [];
+                stolen.enchantments.push({ card_name: 'Touch of the Omen', rules_text: 'Decayed', isTemporary: false });
+                stolen.isDecayed = true;
+                state.player.board.push(stolen);
+                triggerETB(stolen, state.player.board);
+                state.player.board.forEach(c => {
+                    if (c.id !== stolen.id) c.onOtherCreatureETB(stolen, state.player.board);
+                });
+            }
+        }
+    }
+
+    class FacelessFaction extends BaseCard {
+        async onShopEndStep(board) {
+            if (state.creaturesDiedThisShopPhase) {
+                const pool = availableCards.filter(c => c.card_name === 'Zombie' && c.shape === 'token');
+                if (pool.length > 0 && state.player.board.length < boardLimit) {
+                    const multiplier = this.isFoil ? 2 : 1;
+                    const newTokens = [];
+                    const myIdx = state.player.board.indexOf(this);
+                    for (let i = 0; i < multiplier; i++) {
+                        if (state.player.board.length < boardLimit) {
+                            const zombie = CardFactory.create(pool[0]);
+                            zombie.owner = 'player';
+                            zombie.isDecayed = true;
+                            zombie.isSpawning = true;
+                            zombie.isJustChained = true; // Use the chain animation for spawn pop
+                            if (!zombie.enchantments) zombie.enchantments = [];
+                            zombie.enchantments.push({ card_name: 'Faceless Faction', rules_text: 'Decayed', isTemporary: false });
+                            
+                            // Insert to the right
+                            if (myIdx !== -1) {
+                                state.player.board.splice(myIdx + 1 + i, 0, zombie);
+                            } else {
+                                state.player.board.push(zombie);
+                            }
+
+                            newTokens.push(zombie);
+                            triggerETB(zombie, state.player.board);
+                            state.player.board.forEach(c => {
+                                if (c.id !== zombie.id) c.onOtherCreatureETB(zombie, state.player.board);
+                            });
+                        }
+                    }
+                    if (newTokens.length > 0) {
+                        render();
+                        await new Promise(r => setTimeout(r, 600));
+                        newTokens.forEach(t => {
+                            delete t.isSpawning;
+                            delete t.isJustChained;
+                        });
+                        render();
+                    }
+                }
+            }
+        }
+    }
+
+    class DuskbornHunter extends BaseCard {
+        onOtherCreatureDeath(card, board) {
+            if (card.owner === this.owner) {
+                if (!this.enchantments) this.enchantments = [];
+                if (!this.enchantments.some(e => e.card_name === 'Duskborn Hunter' && e.rules_text === 'Deathtouch')) {
+                    this.enchantments.push({ card_name: 'Duskborn Hunter', rules_text: 'Deathtouch', isTemporary: true });
+                    this.pulse(board);
+                }
+            }
+        }
+    }
+
+    class NightmareHarpy extends BaseCard {
+        constructor(data) {
+            super(data);
+            this.actionCost = 1;
+        }
+        onAction() {
+            if (state.player.gold >= 1 && state.player.board.length > 1) {
+                queueTargetingEffect({
+                    sourceId: this.id,
+                    title: "Cannibalize",
+                    text: "Sacrifice another creature to put two +1/+1 counters on Nightmare Harpy and gain lifelink.",
+                    effect: 'harpy_cannibalize',
+                    isMandatory: true
+                });
+            }
+        }
+    }
+
+    class SanguineAnaconda extends BaseCard {
+        onOtherPermanentSacrificed(card, board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            this.tempPower += (3 * multiplier);
+            this.tempToughness += (3 * multiplier);
+            this.pulse(board);
+        }
+    }
+
     class BattlefrontLancer extends BaseCard {
         onCombatStart(board) {
             const multiplier = this.isFoil ? 2 : 1;
@@ -2559,6 +2697,134 @@ class BaseCard {
         }
     }
 
+    function resetTemporaryStats() {
+        state.player.board = state.player.board.filter(c => !c.isCrainToken);
+        state.player.board.forEach(c => { 
+            c.tempPower = 0; 
+            c.tempToughness = 0; 
+            c.isLockedByChivalry = false;
+            c.damageTaken = 0;
+            c.isDestroyed = false;
+            c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary); 
+        });
+        state.opponents.forEach(opp => {
+            opp.board = opp.board.filter(c => !c.isCrainToken);
+            opp.board.forEach(c => { 
+                c.tempPower = 0; 
+                c.tempToughness = 0; 
+                c.isLockedByChivalry = false;
+                c.damageTaken = 0;
+                c.isDestroyed = false;
+                c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary); 
+            });
+            opp.fightHp = 5 + (5 * opp.tier);
+        });
+    }
+
+    function showKeywordBubble(targetOrId, keyword) {
+        if (!targetOrId || !keyword) return;
+        const cabinet = document.getElementById('game-cabinet');
+        if (!cabinet) return;
+
+        let targetEl = (typeof targetOrId === 'string') ? document.getElementById(`card-${targetOrId}`) : targetOrId;
+        if (!targetEl) return;
+
+        const data = KEYWORD_DATA[keyword];
+        if (!data) return;
+
+        const bubble = document.createElement('div');
+        const kwClass = keyword.toLowerCase().replace(' ', '-');
+        bubble.className = `keyword-icon-bubble ${kwClass}`;
+        
+        const img = document.createElement('img');
+        img.src = data.icon;
+        img.alt = keyword;
+        bubble.appendChild(img);
+        
+        cabinet.appendChild(bubble);
+
+        const startTime = Date.now();
+        const duration = 1200;
+
+        function updateBubblePosition() {
+            const elapsed = Date.now() - startTime;
+            if (elapsed >= duration) {
+                bubble.remove();
+                return;
+            }
+
+            if (typeof targetOrId === 'string') {
+                targetEl = document.getElementById(`card-${targetOrId}`);
+            }
+            if (!targetEl) {
+                bubble.remove();
+                return;
+            }
+
+            const rect = targetEl.getBoundingClientRect();
+            const cabRect = cabinet.getBoundingClientRect();
+            const style = window.getComputedStyle(cabinet);
+            const matrix = new WebKitCSSMatrix(style.transform);
+            const currentScale = matrix.a || 1;
+
+            const x = ((rect.left + rect.width / 2) - cabRect.left) / currentScale;
+            const y = ((rect.top + rect.height / 2) - cabRect.top) / currentScale;
+
+            bubble.style.left = `${x}px`;
+            bubble.style.top = `${y}px`;
+
+            requestAnimationFrame(updateBubblePosition);
+        }
+
+        requestAnimationFrame(updateBubblePosition);
+    }
+
+    function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
+        if (!target || amount <= 0) return;
+        
+        let prop = type.toLowerCase().replace(' ', '') + 'Counters';
+        if (type === 'First strike') prop = 'firstStrikeCounters';
+        if (type === 'Double strike') prop = 'doubleStrikeCounters';
+
+        if (target[prop] === undefined) target[prop] = 0;
+        target[prop] += amount;
+
+        if (!skipAnimation) {
+            target.pulse(board);
+        }
+
+        if (board && !skipNotification) {
+            board.forEach(c => {
+                if (c.id !== target.id) {
+                    c.onCounterPlaced(amount, type, target, board);
+                }
+            });
+        }
+    }
+
+    function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
+        if (!target || amount <= 0) return;
+        
+        let prop = type.toLowerCase().replace(' ', '') + 'Counters';
+        if (type === 'First strike') prop = 'firstStrikeCounters';
+        if (type === 'Double strike') prop = 'doubleStrikeCounters';
+
+        if (target[prop] === undefined) target[prop] = 0;
+        target[prop] += amount;
+
+        if (!skipAnimation) {
+            target.pulse(board);
+        }
+
+        if (board && !skipNotification) {
+            board.forEach(c => {
+                if (c.id !== target.id) {
+                    c.onCounterPlaced(amount, type, target, board);
+                }
+            });
+        }
+    }
+
     const CardFactory = {
         create(data) {
             if (!data) return null;
@@ -2581,6 +2847,13 @@ class BaseCard {
                 case 'Jiayin, the Harmonious': card = new JiayinTheHarmonious(data); break;
                 case 'Marbled Aakriti': card = new BaseCard(data); break;
                 case 'Nacreous Hydra': card = new NacreousHydra(data); break;
+                case 'Am\'Atambi\'s Wildkin': card = new AmAtambisWildkin(data); break;
+                case 'Pestilent Leopardfly': card = new PestilentLeopardfly(data); break;
+                case 'Touch of the Omen': card = new TouchOfTheOmen(data); break;
+                case 'Faceless Faction': card = new FacelessFaction(data); break;
+                case 'Duskborn Hunter': card = new DuskbornHunter(data); break;
+                case 'Nightmare Harpy': card = new NightmareHarpy(data); break;
+                case 'Sanguine Anaconda': card = new SanguineAnaconda(data); break;
                 case 'Battlefront Lancer': card = new BattlefrontLancer(data); break;
                 case 'Gallant Centaur': card = new GallantCentaur(data); break;
                 case 'Holtun-Band Emissary': card = new HoltunBandEmissary(data); break;
@@ -3753,7 +4026,7 @@ class BaseCard {
     async function init() {
         if (tierUpBtn) tierUpBtn.addEventListener('click', tierUp);
         if (rerollBtn) rerollBtn.addEventListener('click', rerollShop);
-        if (endTurnBtn) endTurnBtn.addEventListener('click', () => {
+        if (endTurnBtn) endTurnBtn.addEventListener('click', async () => {
             if (state.castingSpell || state.targetingEffect) {
                 // Cancel Action Logic
                 if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast && !state.targetingEffect.isHeroPower) {
@@ -3799,7 +4072,11 @@ class BaseCard {
                 render();
             } else {
                 // End Shop Phase triggers
-                state.player.board.forEach(c => c.onShopEndStep(state.player.board));
+                for (const c of state.player.board) {
+                    await c.onShopEndStep(state.player.board);
+                }
+                await resolveAnimations();
+
                 state.creaturesDiedThisShopPhase = false; 
                 state.shopDeathsCount = 0; // Reset for next shop turn
 
@@ -4497,6 +4774,8 @@ class BaseCard {
     function startShopTurn() {
         state.phase = 'SHOP';
         state.spellsCastThisTurn = 0;
+        state.creaturesDiedThisShopPhase = false;
+        state.shopDeathsCount = 0;
         state.panharmoniconActive = false;
 
         // Reset Hero Powers (Except for one-time or limited effects)
@@ -5297,27 +5576,7 @@ class BaseCard {
         }
 
         // --- End of Combat Cleanup ---
-        state.player.board = state.player.board.filter(c => !c.isCrainToken);
-        state.player.board.forEach(c => { 
-            c.tempPower = 0; 
-            c.tempToughness = 0; 
-            c.isLockedByChivalry = false;
-            c.damageTaken = 0;
-            c.isDestroyed = false;
-            c.enchantments = c.enchantments.filter(e => !e.isTemporary); 
-        });
-        state.opponents.forEach(opp => {
-            opp.board = opp.board.filter(c => !c.isCrainToken);
-            opp.board.forEach(c => { 
-                c.tempPower = 0; 
-                c.tempToughness = 0; 
-                c.isLockedByChivalry = false;
-                c.damageTaken = 0;
-                c.isDestroyed = false;
-                c.enchantments = c.enchantments.filter(e => !e.isTemporary); 
-            });
-            opp.fightHp = 5 + (5 * opp.tier);
-        });
+        resetTemporaryStats();
 
         state.player.fightHp = 5 + (5 * state.player.tier);
         state.panharmoniconActive = false;
@@ -6027,6 +6286,22 @@ class BaseCard {
                 if (idx !== -1) {
                     resolveShopDeaths(idx, target, true);
                     clearTargetingEffect(true);
+                }
+            } else if (state.targetingEffect.effect === 'harpy_cannibalize') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+                if (source && target.id !== source.id) {
+                    const idx = state.player.board.indexOf(target);
+                    if (idx !== -1) {
+                        state.player.gold -= 1;
+                        resolveShopDeaths(idx, target, true);
+                        
+                        const multiplier = source.isFoil ? 2 : 1;
+                        addCounters(source, 2 * multiplier, state.player.board);
+                        if (!source.enchantments) source.enchantments = [];
+                        source.enchantments.push({ card_name: 'Cannibalize', rules_text: 'Lifelink', isTemporary: true });
+                        source.pulse(state.player.board);
+                        clearTargetingEffect(true);
+                    }
                 }
             } else if (state.targetingEffect.effect === 'warband_rallier_counters') {
 
@@ -6904,6 +7179,8 @@ class BaseCard {
         if (anyDeadStill) {
             await resolveDeaths();
         }
+        
+        await resolveAnimations();
         return true;
     }
 
@@ -6926,11 +7203,13 @@ class BaseCard {
                 if (entity) entity.deadServantsCount++;
             }
 
-            notifyPool.forEach(c => {
-                if (c.id !== deadCard.id) c.onOtherCreatureDeath(deadCard, board);
-            });
-
             let spawns = deadCard.onDeath(board, owner);
+            
+            for (const c of notifyPool) {
+                if (c.id !== deadCard.id) {
+                    await c.onOtherCreatureDeath(deadCard, board);
+                }
+            }
             if (spawns.length > 0) {
                 // Limit spawns based on boardLimit
                 const availableSpace = boardLimit - (board.length - 1);
@@ -7004,10 +7283,9 @@ class BaseCard {
         }
         
         // Artful Coercion safety: Board must have space
-        if (state.castingSpell.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
-            return; 
+        if ((state.castingSpell.card_name === 'Artful Coercion' || state.castingSpell.card_name === 'Touch of the Omen') && state.player.board.length >= boardLimit) {
+            return;
         }
-
         // Track target for end-of-spell triggers
         state.currentSpellTargets.push(target);
 
@@ -8428,25 +8706,32 @@ class BaseCard {
                 e.stopPropagation();
                 if (instance.isChained) return; // Uninteractable when chained
 
-                if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
+                if (state.castingSpell && (state.castingSpell.card_name === 'Artful Coercion' || state.castingSpell.card_name === 'Touch of the Omen')) {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
-                    if (!isCreature) return; // Cannot target spells with Coercion
+                    if (!isCreature) return; // Cannot target non-creatures
 
-                    // Check if valid power
-                    const currentOpp = getOpponent();
-                    const battlefield = [...state.player.board, ...currentOpp.board];
-                    const shopCreatures = state.shop.cards
-                        .map(c => (c instanceof BaseCard) ? c : CardFactory.create(c))
-                        .filter(c => c.type?.toLowerCase().includes('creature'));
-                    
-                    const allMinPool = [...battlefield, ...shopCreatures];
-                    const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
-                        const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
-                        return c.getDisplayStats(b).p;
-                    })) : Infinity;
+                    if (state.castingSpell.card_name === 'Artful Coercion') {
+                        // Check if valid power for Coercion
+                        const currentOpp = getOpponent();
+                        const battlefield = [...state.player.board, ...currentOpp.board];
+                        const shopCreatures = state.shop.cards
+                            .map(c => (c instanceof BaseCard) ? c : CardFactory.create(c))
+                            .filter(c => c.type?.toLowerCase().includes('creature'));
+                        
+                        const allMinPool = [...battlefield, ...shopCreatures];
+                        const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
+                            const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
+                            return c.getDisplayStats(b).p;
+                        })) : Infinity;
 
-                    if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
-                        applySpell(instance.id);
+                        if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
+                            applySpell(instance.id);
+                        }
+                    } else if (state.castingSpell.card_name === 'Touch of the Omen') {
+                        // Omen targets any shop creature if board has space
+                        if (state.player.board.length < boardLimit) {
+                            applySpell(instance.id);
+                        }
                     }
                 } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
@@ -8490,6 +8775,11 @@ class BaseCard {
                         cardEl.classList.add('targetable');
                     }
                 }
+            } else if (state.castingSpell && state.castingSpell.card_name === 'Touch of the Omen') {
+                const isCreature = instance.type?.toLowerCase().includes('creature');
+                if (isCreature && state.player.board.length < boardLimit) {
+                    cardEl.classList.add('targetable');
+                }
             } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 if (isCreature) {
@@ -8509,7 +8799,7 @@ class BaseCard {
         }
 
         // Actionable check for Intli Assaulter, Covetous Wechuge
-        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge'];
+        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Nightmare Harpy'];
         const hasEnoughGold = (instance.actionCost === undefined || state.player.gold >= instance.actionCost);
         const isCurrentlySource = (state.targetingEffect && state.targetingEffect.sourceId === instance.id);
 
@@ -8558,11 +8848,12 @@ class BaseCard {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 const isLagoon = state.castingSpell.card_name === 'Lagoon Logistics';
                 const isCoercion = state.castingSpell.card_name === 'Artful Coercion';
+                const isOmen = state.castingSpell.card_name === 'Touch of the Omen';
 
                 if (isLagoon && !isCreature) {
                     // Cannot target non-creatures with Lagoon
-                } else if (isCoercion) {
-                    // Artful Coercion targets the SHOP, not the board
+                } else if (isCoercion || isOmen) {
+                    // Artful Coercion and Touch of the Omen target the SHOP, not the board
                 } else {
                     cardEl.classList.add('targetable'); 
                     cardEl.addEventListener('click', () => applySpell(instance.id)); 
@@ -8823,7 +9114,7 @@ if (typeof module !== 'undefined' && module.exports) {
         applyTargetedEffect, applySpell, useCardFromHand, activateHeroPower, clearTargetingEffect, queueTargetingEffect,
         resolveDiscovery, toggleDiscoverySelection, confirmDiscovery, queueDiscovery,
         startShopTurn, tierUp, setAvailableCards, buyCard, pulseCardElement, rerollShop,
-        checkHerreaReward, checkAutumnReward
+        checkHerreaReward, checkAutumnReward, resetTemporaryStats
     };
 }
 

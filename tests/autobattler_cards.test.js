@@ -55,7 +55,8 @@ if (typeof document === 'undefined') {
 const { 
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerLifeGain, processDeaths,
     applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
-    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB, HEROES
+    toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB, HEROES,
+    resetTemporaryStats, buyCard
 } = require('../scripts/coliseum.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -2825,6 +2826,184 @@ function testJiayin_WarriorsWays() {
     assert.strictEqual(centaur.counters, 1, "Should have 1 counter");
 }
 
+function testAmAtambisWildkin() {
+    resetState();
+    const wildkin = CardFactory.create({ card_name: "Am'Atambi's Wildkin", pt: "4/1" });
+    const target1 = CardFactory.create({ card_name: "No Reach", pt: "2/2" });
+    const target2 = CardFactory.create({ card_name: "Has Reach", pt: "2/2", rules_text: "Reach" });
+    
+    // --- Shop Phase Sac ---
+    state.player.board = [wildkin, target1, target2];
+    wildkin.owner = target1.owner = target2.owner = 'player';
+    
+    // Verify Reach gain
+    let reachHits = 0;
+    let counterHits = 0;
+    for(let i=0; i<40; i++) {
+        target1.reachCounters = 0;
+        target2.counters = 0;
+        wildkin.onDeath(state.player.board, 'player');
+        if (target1.reachCounters > 0) reachHits++;
+        if (target2.counters > 0) counterHits++;
+    }
+    assert.ok(reachHits > 0, "Should hit target1 (reach) sometimes");
+    assert.ok(counterHits > 0, "Should hit target2 (counter) sometimes");
+
+    // --- Combat Death ---
+    resetState();
+    state.phase = 'BATTLE';
+    const wildkinBattle = CardFactory.create({ card_name: "Am'Atambi's Wildkin", pt: "4/1" });
+    const ally = CardFactory.create({ card_name: "Ally", pt: "2/2" });
+    state.battleBoards = {
+        player: [wildkinBattle, ally],
+        opponent: [CardFactory.create({ card_name: "Enemy", pt: "1/1" })]
+    };
+    wildkinBattle.owner = ally.owner = 'player';
+    wildkinBattle.onDeath(state.battleBoards.player, 'player');
+    assert.strictEqual(ally.reachCounters, 1, "Ally should gain reach in combat");
+}
+
+function testPestilentLeopardfly() {
+    resetState();
+    const fly = CardFactory.create({ card_name: "Pestilent Leopardfly", pt: "2/2" });
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    state.player.board = [fly, fodder];
+    
+    // Shop Sac
+    fly.onOtherCreatureDeath(fodder, state.player.board);
+    assert.strictEqual(fly.getDisplayStats(state.player.board).p, 3, "Fly gets +1/+0 on death");
+    
+    // Reset (Simulate phase end)
+    resetTemporaryStats();
+    assert.strictEqual(fly.getDisplayStats(state.player.board).p, 2, "Fly resets after phase");
+}
+
+function testTouchOfTheOmen() {
+    resetState();
+    const spellData = fullCardPool.find(c => c.card_name === "Touch of the Omen");
+    const spell = CardFactory.create(spellData);
+    const shopTarget = CardFactory.create({ card_name: "Shop Minion", pt: "3/3", type: "Creature" });
+    state.shop.cards = [spell, shopTarget];
+    state.player.gold = 3;
+
+    // Standard buy and cast
+    buyCard(spell.id);
+    assert.strictEqual(state.player.gold, 1, "Should cost 2 gold (Tier 2)");
+    assert.strictEqual(state.player.hand[0].card_name, "Touch of the Omen");
+    
+    useCardFromHand(state.player.hand[0].id);
+    applySpell(shopTarget.id);
+    
+    assert.strictEqual(state.player.board.length, 1);
+    assert.strictEqual(state.player.board[0].card_name, "Shop Minion");
+    assert.strictEqual(state.player.board[0].isDecayed, true, "Should have decayed");
+
+    // Full board safety
+    resetState();
+    state.player.board = Array(7).fill(0).map(() => CardFactory.create({ card_name: "Fodder", type: "Creature" }));
+    const spell2 = CardFactory.create(spellData);
+    state.player.hand = [spell2];
+    state.shop.cards = [shopTarget];
+    state.player.gold = 3;
+    useCardFromHand(spell2.id);
+    applySpell(shopTarget.id);
+    assert.strictEqual(state.player.board.length, 7, "Board should still be 7");
+    assert.strictEqual(state.player.gold, 3, "Gold should not be spent");
+}
+
+function testFacelessFaction() {
+    resetState();
+    const lord = CardFactory.create({ card_name: "Faceless Faction", pt: "3/3", type: "Creature - Zombie Pirate" });
+    const zombie = CardFactory.create({ card_name: "Zombie", pt: "2/2", type: "Creature - Zombie" });
+    state.player.board = [lord, zombie];
+    lord.owner = zombie.owner = 'player';
+    
+    // Lord buff
+    assert.strictEqual(zombie.getDisplayStats(state.player.board).p, 3, "Zombie gets +1/+1");
+    assert.strictEqual(lord.getDisplayStats(state.player.board).p, 3, "Lord does NOT get its own buff");
+
+    // End turn token (Shop death)
+    state.creaturesDiedThisShopPhase = true;
+    lord.onShopEndStep(state.player.board);
+    assert.strictEqual(state.player.board.length, 3, "Should create a Zombie token");
+    // Insertion is at myIdx + 1. Lord was at 0, so token is at 1.
+    assert.strictEqual(state.player.board[1].isDecayed, true, "Token should be decayed");
+
+    // End turn token (Combat death exclusion)
+    resetState();
+    const lord2 = CardFactory.create({ card_name: "Faceless Faction", pt: "3/3" });
+    lord2.owner = 'player';
+    const fodder = CardFactory.create({ card_name: "Fodder" });
+    state.player.board = [lord2, fodder];
+    state.phase = 'BATTLE';
+    state.creaturesDiedThisShopPhase = false;
+    
+    // Simulate combat death (fodder is at index 1)
+    resolveShopDeaths(1, fodder); 
+    
+    startShopTurn();
+    assert.strictEqual(state.creaturesDiedThisShopPhase, false, "Should be reset at start of shop");
+    lord2.onShopEndStep(state.player.board);
+    assert.strictEqual(state.player.board.length, 1, "Should NOT create a token if no shop deaths");
+}
+
+function testDuskbornHunter() {
+    resetState();
+    const hunter = CardFactory.create({ card_name: "Duskborn Hunter", pt: "1/2" });
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    state.player.board = [hunter, fodder];
+    hunter.owner = fodder.owner = 'player';
+
+    // Shop Sac
+    hunter.onOtherCreatureDeath(fodder, state.player.board);
+    assert.strictEqual(hunter.hasKeyword('deathtouch'), true, "Gains deathtouch on ally death");
+
+    // Reset
+    resetTemporaryStats();
+    assert.strictEqual(hunter.hasKeyword('deathtouch'), false, "Deathtouch removed after phase");
+}
+
+function testNightmareHarpy() {
+    resetState();
+    const harpy = CardFactory.create({ card_name: "Nightmare Harpy", pt: "2/2" });
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    const anaconda = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
+    state.player.board = [harpy, fodder, anaconda];
+    harpy.owner = fodder.owner = anaconda.owner = 'player';
+    state.player.gold = 3;
+
+    // Use Action
+    harpy.onAction();
+    assert.strictEqual(state.targetingEffect.effect, 'harpy_cannibalize');
+    applyTargetedEffect(fodder.id);
+
+    assert.strictEqual(state.player.gold, 2, "Cost 1 gold");
+    assert.strictEqual(state.player.board.includes(fodder), false, "Fodder sacrificed");
+    assert.strictEqual(harpy.counters, 2, "Harpy got 2 counters");
+    assert.strictEqual(harpy.hasKeyword('lifelink'), true, "Harpy got lifelink");
+    assert.strictEqual(anaconda.tempPower, 3, "Anaconda Bloodrite triggered");
+}
+
+function testSanguineAnaconda() {
+    resetState();
+    const anaconda = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    state.player.board = [anaconda, fodder];
+    
+    // Sacrifice
+    anaconda.onOtherPermanentSacrificed(fodder, state.player.board);
+    assert.strictEqual(anaconda.getDisplayStats(state.player.board).p, 5, "Bloodrite +3/+3");
+
+    // Sell exclusion
+    resetState();
+    const anaconda2 = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
+    state.player.board = [anaconda2, fodder];
+    // "Selling" is just splicing and giving gold, doesn't trigger onOtherPermanentSacrificed
+    state.player.board.splice(1, 1);
+    state.player.gold += 1;
+    assert.strictEqual(anaconda2.getDisplayStats(state.player.board).p, 2, "Selling doesn't trigger Bloodrite");
+}
+
 async function runTests() {
     const t1Tests = [
         { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
@@ -2876,7 +3055,10 @@ async function runTests() {
         { tier: 2, name: "Lake Cave Lurker", fn: testLakeCaveLurker },
         { tier: 2, name: "Battlefront Lancer", fn: testBattlefrontLancer },
         { tier: 2, name: "Marbled Aakriti", fn: testMarbledAakriti },
-        { tier: 2, name: "Scourge of the Sun", fn: testScourgeOfTheSun }
+        { tier: 2, name: "Scourge of the Sun", fn: testScourgeOfTheSun },
+        { tier: 2, name: "Am'Atambi's Wildkin", fn: testAmAtambisWildkin },
+        { tier: 2, name: "Pestilent Leopardfly", fn: testPestilentLeopardfly },
+        { tier: 2, name: "Touch of the Omen", fn: testTouchOfTheOmen }
     ];
 
     const t3Tests = [
@@ -2909,7 +3091,9 @@ async function runTests() {
         { tier: 3, name: "Jiayin, the Harmonious", fn: testJiayinTheHarmonious },
         { tier: 3, name: "Jiayin (Up in Arms)", fn: testJiayin_UpInArms },
         { tier: 3, name: "Jiayin (Warrior's Ways)", fn: testJiayin_WarriorsWays },
-        { tier: 3, name: "Gallant Centaur", fn: testGallantCentaur }
+        { tier: 3, name: "Gallant Centaur", fn: testGallantCentaur },
+        { tier: 3, name: "Faceless Faction", fn: testFacelessFaction },
+        { tier: 3, name: "Duskborn Hunter", fn: testDuskbornHunter }
     ];
 
     const t4Tests = [
@@ -2948,7 +3132,9 @@ async function runTests() {
         { tier: 4, name: "Dwarven Phalanx", fn: testDwarvenPhalanx },
         { tier: 4, name: "Lair Recluse", fn: testLairRecluse },
         { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider },
-        { tier: 4, name: "Holtun-Band Emissary", fn: testHoltunBandEmissary }
+        { tier: 4, name: "Holtun-Band Emissary", fn: testHoltunBandEmissary },
+        { tier: 4, name: "Nightmare Harpy", fn: testNightmareHarpy },
+        { tier: 4, name: "Sanguine Anaconda", fn: testSanguineAnaconda }
     ];
 
     const t5Tests = [

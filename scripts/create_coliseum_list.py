@@ -37,7 +37,9 @@ def create_coliseum_card_list():
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
         "Citadel Colossus", "Triumphant Tactics",
         "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun",
-        "Jiayin, the Harmonious", "Gallant Centaur", "Holtun-Band Emissary", "Nacreous Hydra"
+        "Jiayin, the Harmonious", "Gallant Centaur", "Holtun-Band Emissary", "Nacreous Hydra",
+        "Am'Atambi's Wildkin", "Pestilent Leopardfly", "Touch of the Omen", "Faceless Faction",
+        "Duskborn Hunter", "Nightmare Harpy", "Sanguine Anaconda"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -61,7 +63,8 @@ def create_coliseum_card_list():
         "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Silken Spinner", "Gnomish Skirmisher",
         "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker",
-        "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun"
+        "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun",
+        "Am'Atambi's Wildkin", "Pestilent Leopardfly", "Touch of the Omen"
     ]
     tier_3_names = [
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
@@ -71,7 +74,8 @@ def create_coliseum_card_list():
         "Bellowing Giant", "Bwema, the Ruthless", "Silverhorn Tactician",
         "Qinhana Cavalry", "Frontier Markswomen", "Festival Celebrants",
         "Restless Oppressor", "Striding Cascade", "Waspback Bandit",
-        "Jiayin, the Harmonious", "Gallant Centaur"
+        "Jiayin, the Harmonious", "Gallant Centaur",
+        "Faceless Faction", "Duskborn Hunter"
     ]
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
@@ -81,7 +85,8 @@ def create_coliseum_card_list():
         "Ndengo Brutalizer", "Savage Congregation",
         "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
-        "Song of Wind and Fire", "Shrewd Parliament", "Holtun-Band Emissary"
+        "Song of Wind and Fire", "Shrewd Parliament", "Holtun-Band Emissary",
+        "Nightmare Harpy", "Sanguine Anaconda"
     ]
     tier_5_names = [
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
@@ -126,7 +131,8 @@ def create_coliseum_card_list():
     # Add required tokens
     token_names = [
         ("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), 
-        ("Jwanga Djitu", "ACE"), ("Beast", "SHF"), ("Dragon", "NJB"), ("Bard", "NJB")
+        ("Jwanga Djitu", "ACE"), ("Beast", "SHF"), ("Dragon", "NJB"), ("Bard", "NJB"),
+        ("Zombie", "ACE")
     ]
     for t_name, t_set in token_names:
         # For ACE Construct, we want specifically #58
