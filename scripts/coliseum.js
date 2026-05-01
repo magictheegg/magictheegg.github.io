@@ -21,11 +21,11 @@ const KEYWORD_DATA = {
     },
     'First strike': {
         icon: 'img/first-strike.png',
-        description: 'When attacking, deals combat damage before creatures without first strike and double strike.'
+        description: 'When attacking, deals combat damage before creatures without first strike.'
     },
     'Double strike': {
         icon: 'img/double-strike.png',
-        description: 'When attacking, deals both first strike and regular combat damage.'
+        description: 'Attacks twice. Takes no damage after the first attack.'
     },
     'Deathtouch': {
         icon: 'img/skull.png',
@@ -53,7 +53,7 @@ const KEYWORD_DATA = {
     },
     'Decayed': {
         icon: 'img/decayed.png',
-        description: 'This creature can\'t block. When it attacks, sacrifice it at end of combat.'
+        description: 'This creature can\'t block. When it attacks, sacrifice it at end of combat. Worth 0 gold.'
     },
     'plus-one': {
         icon: null,
@@ -326,21 +326,31 @@ class BaseCard {
             };
         }
 
-        pulse(board) {
+        async pulse(board) {
             this.pulseQueueCount = (this.pulseQueueCount || 0) + 1;
             this.isPulsing = true;
             const snapshot = this.takeSnapshot();
-            queueAnimation(async () => {
-                try {
-                    await pulseCardElement(this, board, snapshot);
-                } finally {
-                    this.pulseQueueCount--;
-                    if (this.pulseQueueCount <= 0) {
-                        delete this.isPulsing;
-                        delete this.pulseQueueCount;
-                    }
+            
+            if (state.phase === 'BATTLE') {
+                await pulseCardElement(this, board, snapshot);
+                this.pulseQueueCount--;
+                if (this.pulseQueueCount <= 0) {
+                    delete this.isPulsing;
+                    delete this.pulseQueueCount;
                 }
-            });
+            } else {
+                queueAnimation(async () => {
+                    try {
+                        await pulseCardElement(this, board, snapshot);
+                    } finally {
+                        this.pulseQueueCount--;
+                        if (this.pulseQueueCount <= 0) {
+                            delete this.isPulsing;
+                            delete this.pulseQueueCount;
+                        }
+                    }
+                });
+            }
         }
 
         // Hook for death effects (returns an array of tokens/cards to spawn)
@@ -379,16 +389,20 @@ class BaseCard {
             
             if (kw === 'first strike' && this.rules_text.toLowerCase().includes('agile')) return true;
             
-            // Avoid matching "gains [kw]" or "has [kw]" as inherent keywords
+            // Avoid matching "gains [kw]", "has [kw]", "teach [kw]", etc. as inherent keywords
             const lowerText = this.rules_text.toLowerCase();
             const regex = new RegExp(`(^|[\\n,\\s])\\s*${kw}(\\s*|[\\n,\\s]|$)`, 'i');
             const match = lowerText.match(regex);
             if (!match) return false;
 
-            // Check if the match is preceded by "gains " or "has "
+            // Check the current sentence/block for action words
             const matchIndex = match.index + match[1].length;
-            const precedingText = lowerText.substring(Math.max(0, matchIndex - 6), matchIndex);
-            if (precedingText.includes('gains ') || precedingText.includes('has ')) return false;
+            const precedingText = lowerText.substring(0, matchIndex);
+            const lastBreak = Math.max(precedingText.lastIndexOf('.'), precedingText.lastIndexOf('\\n'), precedingText.lastIndexOf(':'));
+            const currentSentence = precedingText.substring(lastBreak + 1);
+            
+            const exclusionWords = ['gains ', 'has ', 'teach ', 'put '];
+            if (exclusionWords.some(word => currentSentence.includes(word))) return false;
 
             return true;
         }
@@ -2290,25 +2304,13 @@ class BaseCard {
     }
 
     class SporegraftSlime extends BaseCard {
-        onDeath(board, owner) {
+        async onDeath(board, owner) {
             // Both shop and combat: Target random friendly creature (not dying)
             const friends = board.filter(c => c.id !== this.id && c.getDisplayStats(board).t > 0);
             if (friends.length > 0) {
                 const target = friends[Math.floor(Math.random() * friends.length)];
                 const multiplier = this.isFoil ? 2 : 1;
-                addCounters(target, 2 * multiplier, board);
-                
-                // Pulsing feedback if in combat
-                if (state.phase === 'BATTLE') {
-                    const el = document.getElementById(`card-${target.id}`);
-                    if (el) {
-                        const ptBox = el.querySelector('.card-pt');
-                        if (ptBox) {
-                            ptBox.classList.add('pulse-stats');
-                            setTimeout(() => ptBox.classList.remove('pulse-stats'), 500);
-                        }
-                    }
-                }
+                await addCounters(target, 2 * multiplier, board);
             }
             return [];
         }
@@ -2524,14 +2526,14 @@ class BaseCard {
     }
 
     class AmAtambisWildkin extends BaseCard {
-        onDeath(board, owner) {
+        async onDeath(board, owner) {
             const validTargets = board.filter(c => c.id !== this.id && c.owner === owner);
             if (validTargets.length > 0) {
                 const target = validTargets[Math.floor(Math.random() * validTargets.length)];
                 if (target.hasKeyword('Reach')) {
-                    addCounters(target, 1, board);
+                    await addCounters(target, 1, board);
                 } else {
-                    addKeywordCounter(target, 'Reach', 1, board);
+                    await addKeywordCounter(target, 'Reach', 1, board);
                 }
             }
             return [];
@@ -2612,12 +2614,12 @@ class BaseCard {
     }
 
     class DuskbornHunter extends BaseCard {
-        onOtherCreatureDeath(card, board) {
+        async onOtherCreatureDeath(card, board) {
             if (card.owner === this.owner) {
                 if (!this.enchantments) this.enchantments = [];
                 if (!this.enchantments.some(e => e.card_name === 'Duskborn Hunter' && e.rules_text === 'Deathtouch')) {
                     this.enchantments.push({ card_name: 'Duskborn Hunter', rules_text: 'Deathtouch', isTemporary: true });
-                    this.pulse(board);
+                    await this.pulse(board);
                 }
             }
         }
@@ -2802,7 +2804,7 @@ class BaseCard {
         }
     }
 
-    function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
+    async function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
         if (!target || amount <= 0) return;
         
         let prop = type.toLowerCase().replace(' ', '') + 'Counters';
@@ -2813,7 +2815,7 @@ class BaseCard {
         target[prop] += amount;
 
         if (!skipAnimation) {
-            target.pulse(board);
+            await target.pulse(board);
         }
 
         if (board && !skipNotification) {
@@ -3046,7 +3048,6 @@ class BaseCard {
                     if (board.length > 0) {
                         const randomTarget = board[Math.floor(Math.random() * board.length)];
                         addCounters(randomTarget, entity.heroPowerActivations, board);
-                        await pulseCardElement(randomTarget, board);
                     }
                 }
             }
@@ -3177,7 +3178,6 @@ class BaseCard {
                         if (candidates.length > 0) {
                             const target = candidates[Math.floor(Math.random() * candidates.length)];
                             addCounters(target, 1, board);
-                            await pulseCardElement(target, board);
                         }
                     }
                     render();
@@ -3360,15 +3360,15 @@ class BaseCard {
         return null;
     }
 
-    function addCounters(target, amount, board, skipAnimation = false, skipNotification = false) {
+    async function addCounters(target, amount, board, skipAnimation = false, skipNotification = false) {
         if (!target || amount <= 0) return;
         target.counters += amount;
-        
+
         // Animation
         if (!skipAnimation) {
-            target.pulse(board);
+            await target.pulse(board);
         }
-        
+
         // Notify other creatures on the board (e.g., Striding Cascade)
         if (board && !skipNotification) {
             board.forEach(c => {
@@ -3378,7 +3378,6 @@ class BaseCard {
             });
         }
     }
-
     let availableCards = [];
     const handLimit = 7;
     const boardLimit = 7;
@@ -3479,7 +3478,7 @@ class BaseCard {
         }
     }
 
-    function queueDiscovery(discoveryObj) {
+    async function queueDiscovery(discoveryObj) {
         state.discoveryQueue.push(discoveryObj);
         if (!state.discovery) {
             state.discovery = state.discoveryQueue[0];
@@ -3489,7 +3488,7 @@ class BaseCard {
                 const cards = state.discovery.cards;
                 if (cards && cards.length > 0) {
                     const random = cards[Math.floor(Math.random() * cards.length)];
-                    resolveDiscovery(random);
+                    await resolveDiscovery(random);
                 } else {
                     processDiscoveryQueue();
                 }
@@ -3516,25 +3515,18 @@ class BaseCard {
             const source = board.find(c => c.id === state.discovery.sourceId);
             const target = board.find(c => c.id === state.discovery.targetId);
             if (source && target) {
-                const teach = (c, kw) => {
-                    if (c.hasKeyword(kw)) addCounters(c, 1, board);
+                const teach = async (c, kw) => {
+                    if (c.hasKeyword(kw)) await addCounters(c, 1, board);
                     else {
-                        const kwLower = kw.toLowerCase();
-                        if (kwLower === 'first strike') c.firstStrikeCounters++;
-                        else if (kwLower === 'trample') c.trampleCounters++;
-                        else if (kwLower === 'menace') c.menaceCounters++;
-                        else if (kwLower === 'vigilance') c.vigilanceCounters++;
-                        else if (kwLower === 'lifelink') c.lifelinkCounters++;
-                        else if (kwLower === 'flying') c.flyingCounters++;
-                        c.pulse(board);
+                        await addKeywordCounter(c, kw, 1, board);
                     }
                 };
                 if (card.card_name === 'Choice A') {
-                    teach(target, 'First strike');
-                    teach(source, 'Trample');
+                    await teach(target, 'First strike');
+                    await teach(source, 'Trample');
                 } else {
-                    teach(target, 'Trample');
-                    teach(source, 'First strike');
+                    await teach(target, 'Trample');
+                    await teach(source, 'First strike');
                 }
             }
             processDiscoveryQueue();
@@ -3546,16 +3538,9 @@ class BaseCard {
             const source = board.find(c => c.id === state.discovery.sourceId);
             if (source) {
                 const kw = card.rules_text;
-                if (source.hasKeyword(kw)) addCounters(source, 1, board);
+                if (source.hasKeyword(kw)) await addCounters(source, 1, board);
                 else {
-                    const kwLower = kw.toLowerCase();
-                    if (kwLower === 'first strike') source.firstStrikeCounters++;
-                    else if (kwLower === 'trample') source.trampleCounters++;
-                    else if (kwLower === 'menace') source.menaceCounters++;
-                    else if (kwLower === 'vigilance') source.vigilanceCounters++;
-                    else if (kwLower === 'lifelink') source.lifelinkCounters++;
-                    else if (kwLower === 'flying') source.flyingCounters++;
-                    source.pulse(board);
+                    await addKeywordCounter(source, kw, 1, board);
                 }
             }
             processDiscoveryQueue();
@@ -5004,33 +4989,6 @@ class BaseCard {
         // Phase 3: Impact calculations
         let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
 
-        // RETALIATION LOGIC: If Attacker has FS, we check if defender survived. 
-        // If Attacker DOES NOT have FS, damage was already handled simultaneously in resolveCombatImpact.
-        if (isFirstStrike && defender && !trampleTarget) {
-            const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-            const currentDefStats = defender.getDisplayStats(defenderBoard);
-            if (currentDefStats.t > 0) {
-                // Defender survived FS hit, does it have FS itself to hit back now?
-                if (defender.hasKeyword('First strike') || defender.hasKeyword('Double strike')) {
-                    attackerDamageTaken = currentDefStats.p;
-                    
-                    // STEEL BARDING
-                    if (attacker.equipment && attacker.equipment.card_name === 'Steel Barding') {
-                        attackerDamageTaken = 0;
-                    }
-
-                    attacker.damageTaken += attackerDamageTaken;
-
-                    if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
-                        if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
-                            attacker.isDestroyed = true;
-                            showDestroyBubble(attacker.id);
-                        }
-                    }
-                }
-            }
-        }
-
         render(); 
 
         const triggerOverallHpLoss = (side) => {
@@ -5258,12 +5216,12 @@ class BaseCard {
             const oldGhostStack = targetEl.querySelector('.ghost-indicator-container');
             
             // Capture semantic state to avoid brittle HTML comparison
-            const oldCounterStates = oldCounterStack ? Array.from(oldCounterStack.children).map(c => ({
+            const oldCounterStates = (oldCounterStack && oldCounterStack.children) ? Array.from(oldCounterStack.children).map(c => ({
                 type: c.dataset.type,
                 value: c.dataset.value,
                 text: c.textContent
             })) : [];
-            const oldGhostKeywords = oldGhostStack ? Array.from(oldGhostStack.children).map(g => g.dataset.keyword) : [];
+            const oldGhostKeywords = (oldGhostStack && oldGhostStack.children) ? Array.from(oldGhostStack.children).map(g => g.dataset.keyword) : [];
 
             // 2. Sync visual state to the snapshot (staged update)
             if (snapshot) {
@@ -5328,7 +5286,7 @@ class BaseCard {
             delete target.isTransforming;
 
             // Counters pulse if they are new or modified (Match by type, not index, to handle order shifts)
-            if (counterStackEl) {
+            if (counterStackEl && counterStackEl.children) {
                 Array.from(counterStackEl.children).forEach((c) => {
                     const old = oldCounterStates.find(o => o.type === c.dataset.type);
                     const isModified = !old || c.dataset.value !== old.value || c.textContent !== old.text;
@@ -5339,7 +5297,7 @@ class BaseCard {
             }
 
             // Ghosts pulse if they are new or modified (Match by keyword, not index)
-            if (ghostContainer) {
+            if (ghostContainer && ghostContainer.children) {
                 Array.from(ghostContainer.children).forEach((g) => {
                     if (!oldGhostKeywords.includes(g.dataset.keyword)) {
                         elementsToPulse.push(g);
@@ -7011,8 +6969,30 @@ class BaseCard {
                 }
             }
 
+            // RETALIATION LOGIC
+            const defStatsNow = defender.getDisplayStats(defenderBoard);
+            const isDead = defender.isDestroyed || defStatsNow.t <= 0;
+
+            let shouldRetaliate = false;
             if (!isFirstStrike) {
-                attackerDamageTaken = defenderStats.p;
+                shouldRetaliate = true; // Normal combat: simultaneous
+            } else {
+                // This is a "Fast" hit. 
+                const attackerHasDS = attacker.hasKeyword('Double strike');
+                
+                if (attackerHasDS) {
+                    // Double Strike first hit: Defender NEVER hits back in this specific step.
+                    shouldRetaliate = false;
+                } else {
+                    // Normal First Strike keyword: Defender hits back IF they survived.
+                    if (!isDead) {
+                        shouldRetaliate = true;
+                    }
+                }
+            }
+
+            if (shouldRetaliate) {
+                attackerDamageTaken = defStatsNow.p;
 
                 // DEATHTOUCH (Defender Retaliation)
                 if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
@@ -7203,7 +7183,7 @@ class BaseCard {
                 if (entity) entity.deadServantsCount++;
             }
 
-            let spawns = deadCard.onDeath(board, owner);
+            let spawns = await deadCard.onDeath(board, owner);
             
             for (const c of notifyPool) {
                 if (c.id !== deadCard.id) {
@@ -7623,13 +7603,17 @@ class BaseCard {
 
         // 1. Capture "First" positions
         const firstPositions = new Map();
-        Array.from(container.children).forEach(child => {
-            firstPositions.set(child.id, child.getBoundingClientRect());
-        });
+        if (container.children) {
+            Array.from(container.children).forEach(child => {
+                firstPositions.set(child.id, child.getBoundingClientRect());
+            });
+        }
 
         // 2. Reconciliation
         const existingMap = new Map();
-        Array.from(container.children).forEach(child => existingMap.set(child.id, child));
+        if (container.children) {
+            Array.from(container.children).forEach(child => existingMap.set(child.id, child));
+        }
 
         const instanceList = [];
         cards.forEach((card, index) => {
@@ -7717,17 +7701,8 @@ class BaseCard {
                     else oldEl.classList.remove(cls);
                 });
 
-                // Sync activation listener even when busy to allow rapid-fire actions
-                if (dummyCheck.classList.contains('actionable-outline')) {
-                    // Use a property-based listener to avoid stacking addEventListener calls on the reused oldEl
-                    oldEl.onclick = (e) => {
-                        e.stopPropagation();
-                        instance.onAction();
-                        render();
-                    };
-                } else {
-                    oldEl.onclick = null;
-                }
+                // Sync click listener even when busy to allow rapid-fire actions and targeting
+                oldEl.onclick = dummyCheck.onclick;
 
                 // Also sync the lock indicator element itself if it changed
                 const oldLock = oldEl.querySelector('.card-lock-indicator');
@@ -7748,16 +7723,18 @@ class BaseCard {
                 if (oldEl) oldEl.replaceWith(newEl);
             }
 
-            if (container.children[index] !== newEl) {
+            if (container.children && container.children[index] !== newEl) {
                 container.insertBefore(newEl, container.children[index]);
             }
         });
 
         // Remove old nodes
         const cardIds = instanceList.map(c => `card-${c.id}`);
-        Array.from(container.children).forEach(child => {
-            if (!cardIds.includes(child.id)) child.remove();
-        });
+        if (container.children) {
+            Array.from(container.children).forEach(child => {
+                if (!cardIds.includes(child.id)) child.remove();
+            });
+        }
 
         // 3. FLIP "Invert" (Synchronous to avoid snap)
         if (state.phase === 'BATTLE') {
@@ -7828,7 +7805,7 @@ class BaseCard {
         });
 
         const rosterSidebar = document.getElementById('roster-sidebar');
-        if (rosterSidebar) {
+        if (rosterSidebar && rosterSidebar.children) {
             // Map existing frames by hero name for stable reuse
             const existingFrames = new Map();
             Array.from(rosterSidebar.children).forEach(child => {
@@ -7848,7 +7825,7 @@ class BaseCard {
                 }
                 
                 // Ensure correct order in the sidebar
-                if (rosterSidebar.children[index] !== frame) {
+                if (rosterSidebar.children && rosterSidebar.children[index] !== frame) {
                     rosterSidebar.insertBefore(frame, rosterSidebar.children[index]);
                 }
 
@@ -8382,7 +8359,9 @@ class BaseCard {
         if (sold.equipment && state.player.hand.length < handLimit) {
             state.player.hand.push(sold.equipment);
         }
-        state.player.gold += 1;
+        if (!sold.isDecayed) {
+            state.player.gold += 1;
+        }
         render();
     }
 
@@ -8702,7 +8681,7 @@ class BaseCard {
                 cardEl.appendChild(chainIndicator);
             }
 
-            cardEl.addEventListener('click', (e) => {
+            cardEl.onclick = (e) => {
                 e.stopPropagation();
                 if (instance.isChained) return; // Uninteractable when chained
 
@@ -8754,7 +8733,7 @@ class BaseCard {
                         buyCard(instance.id);
                     }
                 }
-            });
+            };
 
             if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
@@ -8805,11 +8784,11 @@ class BaseCard {
 
         if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold && !isCurrentlySource) {
             cardEl.classList.add('actionable-outline');
-            cardEl.addEventListener('click', (e) => {
+            cardEl.onclick = (e) => {
                 e.stopPropagation();
                 instance.onAction();
                 render();
-            });
+            };
         }
 
         if (state.phase === 'SHOP' && !isShop && index !== -1 && !state.castingSpell && !state.targetingEffect) {
@@ -8856,7 +8835,7 @@ class BaseCard {
                     // Artful Coercion and Touch of the Omen target the SHOP, not the board
                 } else {
                     cardEl.classList.add('targetable'); 
-                    cardEl.addEventListener('click', () => applySpell(instance.id)); 
+                    cardEl.onclick = () => applySpell(instance.id); 
                 }
             }
             if (state.targetingEffect) { 
@@ -8888,7 +8867,7 @@ class BaseCard {
                         // Not targetable if already equipped
                     } else {
                         cardEl.classList.add('targetable');
-                        cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
+                        cardEl.onclick = () => applyTargetedEffect(instance.id);
                     }
                 }
             }
@@ -9114,7 +9093,7 @@ if (typeof module !== 'undefined' && module.exports) {
         applyTargetedEffect, applySpell, useCardFromHand, activateHeroPower, clearTargetingEffect, queueTargetingEffect,
         resolveDiscovery, toggleDiscoverySelection, confirmDiscovery, queueDiscovery,
         startShopTurn, tierUp, setAvailableCards, buyCard, pulseCardElement, rerollShop,
-        checkHerreaReward, checkAutumnReward, resetTemporaryStats
+        checkHerreaReward, checkAutumnReward, resetTemporaryStats, sellCard
     };
 }
 

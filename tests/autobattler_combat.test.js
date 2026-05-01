@@ -216,11 +216,14 @@ function testDoubleStrike_Trade() {
     state.battleBoards = { player: [ds], opponent: [blocker] };
     ds.owner = 'player'; blocker.owner = 'opponent';
 
-    resolveCombatImpact(ds, blocker, true);
+    // Hit 1: Double Strike's First Strike pass (isFirstStrike=true)
+    // Decoupled rules: DS first hit NEVER allows retaliation.
+    const impact1 = resolveCombatImpact(ds, blocker, true);
     assert.strictEqual(blocker.damageTaken, 3);
+    assert.strictEqual(impact1.attackerDamageTaken, 0, "DS first hit allows no retaliation");
     
-    // Blocker still alive, proceed to Hit 2
-    resolveCombatImpact(ds, blocker, false);
+    // Blocker still alive, proceed to Hit 2 (Regular strike, simultaneous)
+    const impact2 = resolveCombatImpact(ds, blocker, false);
     assert.strictEqual(blocker.damageTaken, 6);
     assert.strictEqual(ds.damageTaken, 4);
 }
@@ -250,7 +253,7 @@ function testIndestructible() {
     assert.strictEqual(ind.damageTaken, 1, "Should be saved at 1 damage (1 HP)");
 }
 
-function testFirstStrikeLethal() {
+async function testFirstStrikeLethal() {
     resetState();
     const attacker = CardFactory.create({ card_name: "FS Attacker", pt: "2/1", rules_text: "First strike" });
     const defender = CardFactory.create({ card_name: "Defender", pt: "1/1" });
@@ -258,14 +261,19 @@ function testFirstStrikeLethal() {
     defender.owner = 'opponent';
     state.battleBoards = { player: [attacker], opponent: [defender] };
     
-    resolveCombatImpact(attacker, defender, true);
+    // Engine Logic Simulation:
+    // FS vs No-FS = Attacker hits first.
+    const hasFS = attacker.hasKeyword('First strike');
+    const defHasFS = defender && defender.hasKeyword('First strike');
+    const isFirstStrikePass = hasFS && !defHasFS;
+
+    resolveCombatImpact(attacker, defender, isFirstStrikePass);
     assert.strictEqual(defender.damageTaken, 2);
-    if (defender.getDisplayStats(state.battleBoards.opponent).t <= 0) defender.isDying = true;
-    processDeaths(state.battleBoards.opponent, 'opponent');
+    await resolveDeaths();
     assert.strictEqual(state.battleBoards.opponent.length, 0, "Defender should be removed");
 }
 
-function testFirstStrikeNonLethal() {
+async function testFirstStrikeNonLethal() {
     resetState();
     const attacker = CardFactory.create({ card_name: "FS Attacker", pt: "2/1", rules_text: "First strike" });
     const defender = CardFactory.create({ card_name: "Tough Defender", pt: "1/3" });
@@ -273,13 +281,14 @@ function testFirstStrikeNonLethal() {
     defender.owner = 'opponent';
     state.battleBoards = { player: [attacker], opponent: [defender] };
     
-    resolveCombatImpact(attacker, defender, true);
+    // Engine Logic Simulation:
+    const hasFS = attacker.hasKeyword('First strike');
+    const defHasFS = defender && defender.hasKeyword('First strike');
+    const isFirstStrikePass = hasFS && !defHasFS;
+
+    const impact = resolveCombatImpact(attacker, defender, isFirstStrikePass);
     assert.strictEqual(defender.damageTaken, 2);
-    
-    // Manual retaliation check
-    const stats = defender.getDisplayStats(state.battleBoards.opponent);
-    if (stats.t > 0) attacker.damageTaken += stats.p;
-    assert.strictEqual(attacker.damageTaken, 1, "Should take retaliation since defender survived");
+    assert.strictEqual(impact.attackerDamageTaken, 1, "Should take retaliation since defender survived");
 }
 
 function testFirstStrikeOnDefense() {
