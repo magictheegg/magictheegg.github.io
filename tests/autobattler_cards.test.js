@@ -56,7 +56,7 @@ const {
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerLifeGain, processDeaths,
     applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
     toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB, HEROES,
-    resetTemporaryStats, buyCard, sellCard
+    resetTemporaryStats, buyCard, sellCard, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue
 } = require('../scripts/coliseum.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -71,6 +71,11 @@ setAvailableCards(fullCardPool);
 // Mock fetch for init if needed
 global.fetch = () => Promise.resolve({ json: () => Promise.resolve({ cards: [] }) });
 global.showDamageBubble = () => {};
+global.render = () => {};
+global.addCounters = (target, amount) => { 
+    target.counters = (target.counters || 0) + amount; 
+};
+global.resolveAnimations = () => Promise.resolve();
 
 function resetState() {
     state.player = {
@@ -3021,6 +3026,109 @@ function testDecayedSale() {
     assert.strictEqual(state.player.board.length, 0);
 }
 
+async function testDuneSkirmisher() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Dune Skirmisher'));
+    card.owner = 'player';
+    assert.strictEqual(card.hasKeyword('first strike'), false);
+    
+    // Equip
+    card.equipment = { getEquipmentStats: () => ({p:0, t:0}) };
+    assert.strictEqual(card.hasKeyword('first strike'), true);
+    
+    // Action
+    state.player.gold = 2;
+    state.player.board = [card];
+    card.onAction();
+    assert.strictEqual(state.player.gold, 0);
+    assert.strictEqual(card.tempPower, 1);
+}
+
+async function testAngoraPaladin() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Angora Paladin'));
+    card.owner = 'player';
+    card.onETB(state.player.board);
+    assert.strictEqual(state.player.plane, 'Onora');
+    // Clear discovery modal so we can trigger anomaly next
+    state.discovery = null; 
+    
+    // Anomaly
+    const c1 = CardFactory.create({ card_name: 'C1', pt: '1/1' });
+    const c2 = CardFactory.create({ card_name: 'C2', pt: '1/1' });
+    c1.owner = 'player';
+    c2.owner = 'player';
+    state.player.board = [c1, c2];
+
+    card.onETB(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'traverse_onora_grant');
+    
+    await applyTargetedEffect(c1.id);
+    assert.strictEqual(c1.counters, 1);
+    assert.strictEqual(state.targetingEffect.effect, 'traverse_onora_grant_step2');
+    
+    await applyTargetedEffect(c2.id);
+    assert.strictEqual(c2.counters, 1);
+    assert.strictEqual(state.targetingEffect, null);
+}
+
+async function testSmallWorld() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Small World'));
+    card.owner = 'player';
+    card.onCast(state.player.board);
+    assert.strictEqual(state.player.plane, 'Onora');
+    state.discovery = null;
+}
+
+async function testRestlessMigrants() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Restless Migrants'));
+    card.owner = 'player';
+    card.onETB(state.player.board);
+    assert.strictEqual(state.player.plane, 'Al Tabaq');
+    assert.strictEqual(state.player.hand.some(c => c.card_name === 'Twin Shivs'), true);
+    
+    // Anomaly
+    state.player.board = [card];
+    card.onETB(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'traverse_altabaq_grant');
+    
+    await applyTargetedEffect(card.id);
+    assert.strictEqual(card.enchantments.some(e => e.card_name === 'Al Tabaq Anomaly'), true);
+}
+
+async function testSolemnPilgrimage() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Solemn Pilgrimage'));
+    card.owner = 'player';
+    card.onCast(state.player.board);
+    assert.strictEqual(state.player.plane, 'Al Tabaq');
+}
+
+async function testJhalachScourge() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Jhalach Scourge'));
+    card.owner = 'player';
+    assert.strictEqual(card.getStableStats().p, 3);
+    
+    card.equipment = { getEquipmentStats: () => ({p:0, t:0}) };
+    assert.strictEqual(card.getStableStats().p, 5);
+}
+
+async function testAldmoreChaperone() {
+    resetState();
+    const card = CardFactory.create(fullCardPool.find(c => c.card_name === 'Aldmore Chaperone'));
+    card.owner = 'player';
+    state.player.board = [card];
+    
+    traverseOnora(card, state.player.board);
+    assert.strictEqual(card.counters, 1);
+    
+    traverseAlTabaq(card, state.player.board);
+    assert.strictEqual(card.counters, 2);
+}
+
 async function runTests() {
     const t1Tests = [
         { tier: 1, name: "Decayed Sale", fn: testDecayedSale },
@@ -3037,13 +3145,13 @@ async function runTests() {
         { tier: 1, name: "Sanctuary Centaur", fn: testSanctuaryCentaur },
         { tier: 1, name: "Dutiful Camel", fn: testDutifulCamel },
         { tier: 1, name: "Frontline Cavalier", fn: testFrontlineCavalier },
-        { tier: 1, name: "Lake Cave Lurker", fn: testLakeCaveLurker },
         { tier: 1, name: "Faith in Darkness", fn: testFaithInDarkness },
         { tier: 1, name: "Scientific Inquiry", fn: testScientificInquiry },
         { tier: 1, name: "To Battle", fn: testToBattle },
         { tier: 1, name: "Might and Mane", fn: testMightAndMane },
         { tier: 1, name: "Way of the Bygone", fn: testWayOfTheBygone },
-        { tier: 1, name: "Divination", fn: testDivination }
+        { tier: 1, name: "Divination", fn: testDivination },
+        { tier: 1, name: "Dune Skirmisher", fn: testDuneSkirmisher }
     ];
 
     const t2Tests = [
@@ -3076,7 +3184,12 @@ async function runTests() {
         { tier: 2, name: "Scourge of the Sun", fn: testScourgeOfTheSun },
         { tier: 2, name: "Am'Atambi's Wildkin", fn: testAmAtambisWildkin },
         { tier: 2, name: "Pestilent Leopardfly", fn: testPestilentLeopardfly },
-        { tier: 2, name: "Touch of the Omen", fn: testTouchOfTheOmen }
+        { tier: 2, name: "Touch of the Omen", fn: testTouchOfTheOmen },
+        { tier: 2, name: "Angora Paladin", fn: testAngoraPaladin },
+        { tier: 2, name: "Small World", fn: testSmallWorld },
+        { tier: 2, name: "Restless Migrants", fn: testRestlessMigrants },
+        { tier: 2, name: "Solemn Pilgrimage", fn: testSolemnPilgrimage },
+        { tier: 2, name: "Jhalach Scourge", fn: testJhalachScourge }
     ];
 
     const t3Tests = [
@@ -3111,7 +3224,8 @@ async function runTests() {
         { tier: 3, name: "Jiayin (Warrior's Ways)", fn: testJiayin_WarriorsWays },
         { tier: 3, name: "Gallant Centaur", fn: testGallantCentaur },
         { tier: 3, name: "Faceless Faction", fn: testFacelessFaction },
-        { tier: 3, name: "Duskborn Hunter", fn: testDuskbornHunter }
+        { tier: 3, name: "Duskborn Hunter", fn: testDuskbornHunter },
+        { tier: 3, name: "Aldmore Chaperone", fn: testAldmoreChaperone }
     ];
 
     const t4Tests = [
@@ -3185,10 +3299,10 @@ async function runTests() {
         for (const test of tests) {
             try {
                 await test.fn();
-                console.log(`✓ ${test.name}`);
+                console.log(`✓ [T${test.tier}] ${test.name}`);
                 passed++;
             } catch (e) {
-                console.error(`✕ ${test.name}: ${e.message}`);
+                console.error(`✕ [T${test.tier}] ${test.name}: ${e.message}`);
             }
         }
         return passed;

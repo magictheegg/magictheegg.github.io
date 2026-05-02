@@ -370,6 +370,8 @@ class BaseCard {
         // Hook for when a counter is placed on a creature
         onCounterPlaced(count, type, target, board) { }
 
+        onTraverse(board) { }
+
         // Hook for when a spell is cast (for non-targeted spells like Divination)
         onCast(board) { }
 
@@ -607,6 +609,10 @@ class BaseCard {
         }
     }
 
+    function broadcastTraverse(board) {
+        board.forEach(c => c.onTraverse(board));
+    }
+
     function traverseCirrusea(source, board) {
         const owner = source.owner || 'player';
         
@@ -617,6 +623,7 @@ class BaseCard {
             targetEntity = state.opponents.find(opp => opp.board === board) || getOpponent();
         }
 
+        let needsBroadcast = true;
         if (targetEntity.plane !== 'Cirrusea') {
             targetEntity.plane = 'Cirrusea';
             
@@ -643,6 +650,7 @@ class BaseCard {
             }
         } else {
             // Already in Cirrusea: Trigger targeting for Flying or +1/+1
+            needsBroadcast = false;
             queueTargetingEffect({
                 sourceId: source.id,
                 title: source.card_name,
@@ -650,9 +658,132 @@ class BaseCard {
                 effect: 'traverse_cirrusea_grant',
                 wasCast: true,
                 owner: owner,
-                isFoil: source.isFoil
+                isFoil: source.isFoil,
+                cardInstance: source,
+                needsTraverseBroadcast: true
             });
         }
+        if (needsBroadcast) broadcastTraverse(board);
+    }
+
+    function traverseOnora(source, board) {
+        const owner = source.owner || 'player';
+        let targetEntity = state.player;
+        if (owner === 'opponent') {
+            targetEntity = state.opponents.find(opp => opp.board === board) || getOpponent();
+        }
+
+        let needsBroadcast = true;
+        if (targetEntity.plane !== 'Onora') {
+            targetEntity.plane = 'Onora';
+            
+            if (owner === 'player') {
+                // EFFECT: Look at four creatures at or below your tier level, all with power 3 or less. Put one in your hand
+                const pool = availableCards.filter(c => 
+                    c.type?.toLowerCase().includes('creature') && 
+                    (c.tier || 1) <= state.player.tier && 
+                    c.shape !== 'token'
+                );
+                
+                // Parse PT for power filter
+                const filteredPool = pool.filter(c => {
+                    if (!c.pt) return false;
+                    const p = parseInt(c.pt.split('/')[0]);
+                    return p <= 3;
+                });
+
+                const choices = [];
+                const count = Math.min(4, filteredPool.length);
+                for (let i = 0; i < count; i++) {
+                    const idx = Math.floor(Math.random() * filteredPool.length);
+                    choices.push(filteredPool.splice(idx, 1)[0]);
+                }
+
+                queueDiscovery({
+                    cards: choices.map(c => CardFactory.create(c)),
+                    title: "Onora Discovery",
+                    text: "Choose a creature with power 3 or less to add to your hand.",
+                    count: 1,
+                    sourceId: source.id
+                });
+            } else {
+                // Opponent simple logic: add a random eligible creature to hand
+                const pool = availableCards.filter(c => 
+                    c.type?.toLowerCase().includes('creature') && 
+                    (c.tier || 1) <= targetEntity.tier && 
+                    c.shape !== 'token'
+                );
+                const filteredPool = pool.filter(c => {
+                    if (!c.pt) return false;
+                    const p = parseInt(c.pt.split('/')[0]);
+                    return p <= 3;
+                });
+                if (filteredPool.length > 0) {
+                    const chosen = filteredPool[Math.floor(Math.random() * filteredPool.length)];
+                    if (targetEntity.hand.length < handLimit) {
+                        targetEntity.hand.push(CardFactory.create(chosen));
+                    }
+                }
+            }
+
+            const isPlayer = (targetEntity === state.player);
+            if (!isPlayer || state.settings.dynamicTraverse) render();
+        } else {
+            // Already in Onora: put a +1/+1 counter on each of up to two target creatures you control
+            needsBroadcast = false;
+            queueTargetingEffect({
+                sourceId: source.id,
+                title: "Onora Anomaly",
+                text: "Choose up to two creatures to receive +1/+1 counters.",
+                effect: 'traverse_onora_grant',
+                count: 2,
+                wasCast: true,
+                owner: owner,
+                isFoil: source.isFoil,
+                cardInstance: source,
+                needsTraverseBroadcast: true
+            });
+        }
+        if (needsBroadcast) broadcastTraverse(board);
+    }
+
+    function traverseAlTabaq(source, board) {
+        const owner = source.owner || 'player';
+        let targetEntity = state.player;
+        if (owner === 'opponent') {
+            targetEntity = state.opponents.find(opp => opp.board === board) || getOpponent();
+        }
+
+        let needsBroadcast = true;
+        if (targetEntity.plane !== 'Al Tabaq') {
+            targetEntity.plane = 'Al Tabaq';
+            
+            // EFFECT: Create "Twin Shivs" Equipment token (AEX). 
+            if (targetEntity.hand.length < handLimit) {
+                const shivs = createToken('Twin Shivs', 'AEX', owner);
+                if (shivs) {
+                    targetEntity.hand.push(shivs);
+                }
+            }
+
+            const isPlayer = (targetEntity === state.player);
+            if (!isPlayer || state.settings.dynamicTraverse) render();
+        } else {
+            // Already in Al Tabaq: target creature gains double strike until end of turn
+            needsBroadcast = false;
+            queueTargetingEffect({
+                sourceId: source.id,
+                title: "Al Tabaq Anomaly",
+                text: "Target creature gains double strike until end of turn.",
+                effect: 'traverse_altabaq_grant',
+                wasCast: true,
+                owner: owner,
+                isFoil: source.isFoil,
+                cardInstance: source,
+                needsTraverseBroadcast: true
+            });
+        }
+        if (needsBroadcast) broadcastTraverse(board);
     }
 
     // --- Specialized Card Subclasses ---
@@ -2652,6 +2783,77 @@ class BaseCard {
         }
     }
 
+    class DuneSkirmisher extends BaseCard {
+        constructor(data) {
+            super(data);
+            this.actionCost = 2;
+        }
+        onAction() {
+            if (state.player.gold >= 2) {
+                state.player.gold -= 2;
+                const multiplier = this.isFoil ? 2 : 1;
+                this.tempPower += (1 * multiplier);
+                this.pulse(state.player.board);
+                checkAutumnReward(this, this);
+            }
+        }
+        hasKeyword(kw) {
+            if (kw.toLowerCase() === 'first strike') return this.equipment !== null;
+            return super.hasKeyword(kw);
+        }
+    }
+
+    class AngoraPaladin extends BaseCard {
+        onETB(board) {
+            traverseOnora(this, board);
+        }
+    }
+
+    class SmallWorld extends BaseCard {
+        onCast(board) {
+            traverseOnora(this, board);
+        }
+    }
+
+    class RestlessMigrants extends BaseCard {
+        onETB(board) {
+            traverseAlTabaq(this, board);
+        }
+    }
+
+    class SolemnPilgrimage extends BaseCard {
+        onCast(board) {
+            traverseAlTabaq(this, board);
+        }
+    }
+
+    class JhalachScourge extends BaseCard {
+        getStableStats(visualOnly = false) {
+            const base = super.getStableStats(visualOnly);
+            if (this.equipment !== null) {
+                const multiplier = this.isFoil ? 2 : 1;
+                base.p += (2 * multiplier);
+                base.t += (2 * multiplier);
+                base.maxT += (2 * multiplier);
+            }
+            return base;
+        }
+    }
+
+    class AldmoreChaperone extends BaseCard {
+        onTraverse(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            addCounters(this, 1 * multiplier, board);
+        }
+    }
+
+    class TwinShivs extends BaseCard {
+        getEquipmentStats(target) {
+            const multiplier = this.isFoil ? 2 : 1;
+            return { p: 2 * multiplier, t: 0 };
+        }
+    }
+
     class BattlefrontLancer extends BaseCard {
         onCombatStart(board) {
             const multiplier = this.isFoil ? 2 : 1;
@@ -2953,6 +3155,14 @@ class BaseCard {
                 case 'To Battle': card = new ToBattle(data); break;
                 case 'Faith in Darkness': card = new FaithInDarkness(data); break;
                 case 'Might and Mane': card = new MightAndMane(data); break;
+                case 'Dune Skirmisher': card = new DuneSkirmisher(data); break;
+                case 'Angora Paladin': card = new AngoraPaladin(data); break;
+                case 'Small World': card = new SmallWorld(data); break;
+                case 'Restless Migrants': card = new RestlessMigrants(data); break;
+                case 'Solemn Pilgrimage': card = new SolemnPilgrimage(data); break;
+                case 'Jhalach Scourge': card = new JhalachScourge(data); break;
+                case 'Aldmore Chaperone': card = new AldmoreChaperone(data); break;
+                case 'Twin Shivs': card = new TwinShivs(data); break;
                 default: card = new BaseCard(data); break;
             }
             return card;
@@ -3342,6 +3552,7 @@ class BaseCard {
         currentSpellTargets: [],
         panharmoniconActive: false,
         animationQueue: [],
+        isResolvingAnimations: false,
         activeAttackerId: null,
         combatParticipants: [],
         settings: {
@@ -5334,12 +5545,18 @@ class BaseCard {
     }
 
     async function resolveAnimations() {
-        while (state.animationQueue.length > 0) {
-            const anim = state.animationQueue.shift();
-            await anim();
-            if (state.animationQueue.length > 0) {
-                await new Promise(r => setTimeout(r, 100)); // Stagger delay
+        if (state.isResolvingAnimations) return;
+        state.isResolvingAnimations = true;
+        try {
+            while (state.animationQueue.length > 0) {
+                const anim = state.animationQueue.shift();
+                await anim();
+                if (state.animationQueue.length > 0) {
+                    await new Promise(r => setTimeout(r, 100)); // Stagger delay
+                }
             }
+        } finally {
+            state.isResolvingAnimations = false;
         }
     }
 
@@ -5970,7 +6187,9 @@ class BaseCard {
         }
         
         render();
-        await resolveAnimations();
+        if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
+            await resolveAnimations();
+        }
     }
 
     function queueTargetingEffect(effect) {
@@ -5997,7 +6216,9 @@ class BaseCard {
                                  (effect.owner === 'opponent' ? state.battleBoards.opponent : state.battleBoards.player) : 
                                  state.player.board;
 
-            if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant' || effect.effect === 'infuse_spell_resolution') {
+            if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant' || 
+                effect.effect === 'traverse_onora_grant' || effect.effect === 'traverse_altabaq_grant' || 
+                effect.effect === 'infuse_spell_resolution') {
                 hasTargets = currentBoard.length > 0;
             } else if (effect.effect === 'architect_control') {
                 hasTargets = state.shop.cards.some(c => {
@@ -6098,6 +6319,11 @@ class BaseCard {
     }
 
     function clearTargetingEffect(isSuccess = false) {
+        if (state.targetingEffect && state.targetingEffect.needsTraverseBroadcast) {
+            const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+            broadcastTraverse(board);
+        }
+
         if (state.targetingEffect && state.targetingEffect.needsETBBroadcast) {
             const instance = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
             if (instance) {
@@ -6655,8 +6881,30 @@ class BaseCard {
                 }
                 target.pulse(state.player.board);
                 clearTargetingEffect(true);
-                } else if (state.targetingEffect.effect === 'sporegraft_slime_counters') {
-                const multiplier = state.targetingEffect.isDouble ? 2 : 1;
+            } else if (state.targetingEffect.effect === 'traverse_onora_grant') {
+                const multiplier = state.targetingEffect.isFoil ? 2 : 1;
+                addCounters(target, 1 * multiplier, state.player.board);
+
+                // Move to Step 2 for the second counter
+                const otherTargets = state.player.board.filter(c => c.id !== target.id);
+                if (otherTargets.length > 0) {
+                    state.targetingEffect.effect = 'traverse_onora_grant_step2';
+                    state.targetingEffect.text = "Choose a second creature to receive a +1/+1 counter.";
+                    state.targetingEffect.firstTargetId = target.id;
+                    render();
+                } else {
+                    clearTargetingEffect(true);
+                }
+            } else if (state.targetingEffect.effect === 'traverse_onora_grant_step2') {
+                const multiplier = state.targetingEffect.isFoil ? 2 : 1;
+                addCounters(target, 1 * multiplier, state.player.board);
+                clearTargetingEffect(true);
+            } else if (state.targetingEffect.effect === 'traverse_altabaq_grant') {
+                if (!target.enchantments) target.enchantments = [];
+                target.enchantments.push({ card_name: 'Al Tabaq Anomaly', rules_text: 'Double strike', isTemporary: true });
+                target.pulse(state.player.board);
+                clearTargetingEffect(true);
+            } else if (state.targetingEffect.effect === 'sporegraft_slime_counters') {                const multiplier = state.targetingEffect.isDouble ? 2 : 1;
                 addCounters(target, 2 * multiplier, state.player.board);
                 clearTargetingEffect(true);
                 } else if (state.targetingEffect.effect === 'infuse_spell_resolution') {
@@ -7292,7 +7540,9 @@ class BaseCard {
         state.currentSpellTargets = [];
         state.player.board.forEach(c => c.onNoncreatureCast(currentSpell, state.player.board, targets));
         render();
-        await resolveAnimations();
+        if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
+            await resolveAnimations();
+        }
     }
     
     function rerollShop() {
@@ -7866,8 +8116,9 @@ class BaseCard {
             playerBg.style.backgroundImage = `url(${state.player.playmat})`;
         }
         if (playerPlaneBg) {
-            if (state.player.plane === 'Cirrusea' && state.settings.dynamicTraverse) {
-                playerPlaneBg.style.backgroundImage = 'url(img/playmats/cirrusea.jpg)';
+            if (state.settings.dynamicTraverse && (state.player.plane === 'Cirrusea' || state.player.plane === 'Onora' || state.player.plane === 'Al Tabaq')) {
+                const matName = state.player.plane === 'Al Tabaq' ? 'al-tabaq' : state.player.plane.toLowerCase();
+                playerPlaneBg.style.backgroundImage = `url(img/playmats/${matName}.jpg)`;
                 playerPlaneBg.style.opacity = '1';
             } else {
                 playerPlaneBg.style.opacity = '0';
@@ -7924,8 +8175,9 @@ class BaseCard {
                 oppBg.style.backgroundImage = `url(${currentOpp.playmat})`;
             }
             if (oppPlaneBg) {
-                if (currentOpp.plane === 'Cirrusea') {
-                    oppPlaneBg.style.backgroundImage = 'url(img/playmats/cirrusea.jpg)';
+                if (currentOpp.plane === 'Cirrusea' || currentOpp.plane === 'Onora' || currentOpp.plane === 'Al Tabaq') {
+                    const matName = currentOpp.plane === 'Al Tabaq' ? 'al-tabaq' : currentOpp.plane.toLowerCase();
+                    oppPlaneBg.style.backgroundImage = `url(img/playmats/${matName}.jpg)`;
                     oppPlaneBg.style.opacity = '1';
                 } else {
                     oppPlaneBg.style.opacity = '0';
@@ -8778,16 +9030,19 @@ class BaseCard {
         }
 
         // Actionable check for Intli Assaulter, Covetous Wechuge
-        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Nightmare Harpy'];
+        const actionableNames = ['Intli Assaulter', 'Covetous Wechuge', 'Nightmare Harpy', 'Dune Skirmisher'];
         const hasEnoughGold = (instance.actionCost === undefined || state.player.gold >= instance.actionCost);
         const isCurrentlySource = (state.targetingEffect && state.targetingEffect.sourceId === instance.id);
 
         if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold && !isCurrentlySource) {
             cardEl.classList.add('actionable-outline');
-            cardEl.onclick = (e) => {
+            cardEl.onclick = async (e) => {
                 e.stopPropagation();
-                instance.onAction();
+                await instance.onAction();
                 render();
+                if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
+                    await resolveAnimations();
+                }
             };
         }
 
@@ -8857,8 +9112,13 @@ class BaseCard {
                         // Not targetable if not a Centaur
                     } else if (state.targetingEffect.effect === 'warband_rallier_counters' && !instance.isType('Centaur')) {
                         // Not targetable if not a Centaur
-                    } else if (state.targetingEffect.effect === 'ceremony_step2' && instance.id === state.targetingEffect.target1Id) {
-                        // Not targetable (cannot select same creature twice)
+                    } else if (state.targetingEffect.effect === 'ceremony_step2' || state.targetingEffect.effect === 'traverse_onora_grant_step2') {
+                        if (instance.id === (state.targetingEffect.target1Id || state.targetingEffect.firstTargetId)) {
+                             // Not targetable (cannot select same creature twice)
+                        } else {
+                            cardEl.classList.add('targetable');
+                            cardEl.onclick = () => applyTargetedEffect(instance.id);
+                        }
                     } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce' && instance.isType('Enchantment')) {
                         // Not targetable if it's an enchantment creature
                     } else if (state.targetingEffect.effect === 'hero_power_xylo' && !instance.hasETB()) {
@@ -9093,7 +9353,8 @@ if (typeof module !== 'undefined' && module.exports) {
         applyTargetedEffect, applySpell, useCardFromHand, activateHeroPower, clearTargetingEffect, queueTargetingEffect,
         resolveDiscovery, toggleDiscoverySelection, confirmDiscovery, queueDiscovery,
         startShopTurn, tierUp, setAvailableCards, buyCard, pulseCardElement, rerollShop,
-        checkHerreaReward, checkAutumnReward, resetTemporaryStats, sellCard
+        checkHerreaReward, checkAutumnReward, resetTemporaryStats, sellCard,
+        traverseCirrusea, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue
     };
 }
 

@@ -39,7 +39,9 @@ def create_coliseum_card_list():
         "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun",
         "Jiayin, the Harmonious", "Gallant Centaur", "Holtun-Band Emissary", "Nacreous Hydra",
         "Am'Atambi's Wildkin", "Pestilent Leopardfly", "Touch of the Omen", "Faceless Faction",
-        "Duskborn Hunter", "Nightmare Harpy", "Sanguine Anaconda"
+        "Duskborn Hunter", "Nightmare Harpy", "Sanguine Anaconda",
+        "Dune Skirmisher", "Angora Paladin", "Small World", "Restless Migrants",
+        "Jhalach Scourge", "Solemn Pilgrimage", "Aldmore Chaperone"
     ]
 
     all_cards_path = os.path.join('lists', 'all-cards.json')
@@ -64,7 +66,9 @@ def create_coliseum_card_list():
         "Moonlight Stag", "Silken Spinner", "Gnomish Skirmisher",
         "Foresee", "Fight Song", "Edge of Their Seats", "Lake Cave Lurker",
         "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun",
-        "Am'Atambi's Wildkin", "Pestilent Leopardfly", "Touch of the Omen"
+        "Am'Atambi's Wildkin", "Pestilent Leopardfly", "Touch of the Omen",
+        "Angora Paladin", "Small World", "Restless Migrants",
+        "Jhalach Scourge", "Solemn Pilgrimage"
     ]
     tier_3_names = [
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
@@ -75,7 +79,7 @@ def create_coliseum_card_list():
         "Qinhana Cavalry", "Frontier Markswomen", "Festival Celebrants",
         "Restless Oppressor", "Striding Cascade", "Waspback Bandit",
         "Jiayin, the Harmonious", "Gallant Centaur",
-        "Faceless Faction", "Duskborn Hunter"
+        "Faceless Faction", "Duskborn Hunter", "Aldmore Chaperone"
     ]
     tier_4_names = [
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
@@ -132,7 +136,7 @@ def create_coliseum_card_list():
     token_names = [
         ("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), 
         ("Jwanga Djitu", "ACE"), ("Beast", "SHF"), ("Dragon", "NJB"), ("Bard", "NJB"),
-        ("Zombie", "ACE")
+        ("Zombie", "ACE"), ("Twin Shivs", "AEX")
     ]
     for t_name, t_set in token_names:
         # For ACE Construct, we want specifically #58
