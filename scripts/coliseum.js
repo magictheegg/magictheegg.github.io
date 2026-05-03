@@ -3400,6 +3400,21 @@ class BaseCard {
                 isPassive: true
             }
         },
+        DAWSON: {
+            name: "Dawson",
+            fullName: "Dawson, Black-Hearted",
+            avatar: "sets/AEX-files/img/198_Dawson, Black-Hearted.png",
+            skins: [
+                { name: "Dawson, Out for Blood", avatar: "https://schwa77.github.io/sets/KRK-files/img/74.png" }
+            ],
+            heroPower: {
+                name: "Barter in Blood",
+                icon: "sets/GSS-files/img/78.png",
+                cost: 0,
+                text: "Whenever you sacrifice a creature, create a Treasure token.",
+                isPassive: true
+            }
+        },
         CRAIN: {
             name: "Crain",
             fullName: "Crain, Black-Blooded",
@@ -7313,6 +7328,12 @@ class BaseCard {
     function resolveShopDeaths(idx, target, isSacrifice = false) {
         state.creaturesDiedThisShopPhase = true;
         state.shopDeathsCount++;
+
+        if (isSacrifice && state.player.hero.name === 'Dawson') {
+            if (state.phase === 'SHOP') {
+                state.player.gold++;
+            }
+        }
 
         if (target.card_name === 'Servants of Dydren') {
             const entity = getEntity('player');
