@@ -868,6 +868,36 @@
             object-position: center 10%; /* Shift view down to show more of the top */
         }
 
+        /* HEALTH BARS */
+        .health-bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(0,0,0,0.5);
+            border-top: 2px solid #555;
+            border-bottom-left-radius: 9px;
+            border-bottom-right-radius: 9px;
+            overflow: hidden;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .health-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: #c23a22;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+        }
+
+        .roster-frame .health-bar-container {
+            height: 6px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
         .ui-label {
             position: absolute;
             padding: 5px;

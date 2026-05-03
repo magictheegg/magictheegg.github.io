@@ -4070,6 +4070,28 @@ class BaseCard {
         requestAnimationFrame(updateBubblePosition);
     }
 
+    function updateAvatarHealthBar(container, currentHp, maxHp = 20) {
+        if (!container) return;
+
+        let barContainer = container.querySelector('.health-bar-container');
+        if (!barContainer) {
+            barContainer = document.createElement('div');
+            barContainer.className = 'health-bar-container';
+            const barFill = document.createElement('div');
+            barFill.className = 'health-bar-fill';
+            barContainer.appendChild(barFill);
+            container.appendChild(barContainer);
+        }
+
+        const barFill = barContainer.querySelector('.health-bar-fill');
+        const percentage = Math.max(0, Math.min(100, (currentHp / maxHp) * 100));
+        barFill.style.width = `${percentage}%`;
+
+        // Also adjust saturation based on health percentage (follows player icon saturation logic)
+        const saturation = 0.2 + (0.8 * (percentage / 100));
+        barFill.style.filter = `saturate(${saturation})`;
+    }
+
     function showDestroyBubble(targetOrId) {
         if (!targetOrId) return;
         const cabinet = document.getElementById('game-cabinet');
@@ -5413,6 +5435,13 @@ class BaseCard {
                     if (hpSpan) {
                         hpSpan.textContent = (losingAvatarId === 'player-avatar') ? state.player.overallHp : currentOppCombat.overallHp;
                     }
+
+                    // Update health bar only on the sidebar roster frame
+                    if (losingAvatarId !== 'player-avatar') {
+                        const heroName = currentOppCombat.hero?.name;
+                        const rosterFrame = document.querySelector(`.roster-frame[data-hero-name="${heroName}"]`);
+                        if (rosterFrame) updateAvatarHealthBar(rosterFrame, currentOppCombat.overallHp, 20);
+                    }
                 }
             }
         };
@@ -6042,14 +6071,21 @@ class BaseCard {
         unfreezeShop();
         state.shop.cards = state.shop.cards.filter(c => c.isChained);
 
-        const shopTypes = ['triples', 'board_copy', 'discounted', 'high_tier'];
-        let chosenType = shopTypes[Math.floor(Math.random() * shopTypes.length)];
-        
+        // Weighted shop selection
+        const rand = Math.random();
+        let chosenType = 'high_tier'; // Default (40%)
+        if (rand < 0.1) chosenType = 'board_copy'; // 10%
+        else if (rand < 0.3) chosenType = 'triples'; // 20%
+        else if (rand < 0.6) chosenType = 'discounted'; // 30%
+
         // Refinement: board_copy only if board is 5+ NONTOKEN creatures
         const nontokenCount = state.player.board.filter(c => !c.isToken).length;
         if (chosenType === 'board_copy' && nontokenCount < 5) {
-            const others = shopTypes.filter(t => t !== 'board_copy');
-            chosenType = others[Math.floor(Math.random() * others.length)];
+            // Re-roll without board_copy if not enough creatures
+            const fallbackRand = Math.random();
+            if (fallbackRand < 0.44) chosenType = 'high_tier'; // 4/9 (~44%)
+            else if (fallbackRand < 0.77) chosenType = 'discounted'; // 3/9 (~33%)
+            else chosenType = 'triples'; // 2/9 (~22%)
         }
 
         console.log("Enoch triggered special shop:", chosenType);
@@ -6098,6 +6134,7 @@ class BaseCard {
                 clone.tempToughness = 0;
                 clone.damageTaken = 0;
                 clone.isDestroyed = false;
+                clone.isFoil = false;
                 clone.actionUsed = false;
                 clone.equipment = null;
                 clone.enchantments = [];
@@ -7050,7 +7087,9 @@ class BaseCard {
                 const createdTokens = [];
                 const createCopy = (src) => {
                     if (state.player.board.length >= boardLimit) return;
-                    const token = CardFactory.create(src);
+                    // Find base data to ensure a "clean" copy (no counters, not foil, etc)
+                    const baseData = availableCards.find(c => c.card_name === src.card_name && c.shape !== 'token') || src;
+                    const token = CardFactory.create(baseData);
                     token.id = `token-${Date.now()}-${Math.random()}`;
                     token.owner = 'player';
                     token.counters = 0;
@@ -7058,6 +7097,8 @@ class BaseCard {
                     token.tempToughness = 0;
                     token.damageTaken = 0;
                     token.enchantments = [];
+                    token.isFoil = false;
+                    token.equipment = null;
                     state.player.board.push(token);
                     createdTokens.push(token);
                 };
@@ -8311,6 +8352,9 @@ class BaseCard {
                 if (avatarUrl && !img.src.includes(avatarUrl)) {
                     img.src = avatarUrl;
                 }
+
+                // Health Bar for Roster Sidebar
+                updateAvatarHealthBar(frame, opp.overallHp, 20);
             });
 
             // Remove any leftover frames
@@ -8419,9 +8463,14 @@ class BaseCard {
             playerHandEl.appendChild(cardEl);
         });
 
-        const playerBoardEl = document.getElementById('player-board');
-        const boardToRender = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
-        renderBoard(playerBoardEl, boardToRender, false, boardToRender);
+        if (playerBoardEl) {
+            const boardToRender = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+            renderBoard(playerBoardEl, boardToRender, false, boardToRender);
+        }
+
+        const playerAvatarEl = document.getElementById('player-avatar');
+        
+        const oppBattleAvatarEl = document.getElementById('opponent-battle-avatar');
 
         if (playerHpEl()) playerHpEl().textContent = state.player.overallHp;
         if (playerFightHpEl()) playerFightHpEl().textContent = state.player.fightHp;
@@ -8471,7 +8520,6 @@ class BaseCard {
         });
 
         // Specific class for the player's fight HP to enable targeting for animations
-        const playerAvatarEl = document.getElementById('player-avatar');
         if (playerAvatarEl) {
             const fHP = playerAvatarEl.querySelector('.fight-hp');
             if (fHP) fHP.classList.add('player-fight-hp');
@@ -9333,6 +9381,8 @@ class BaseCard {
                     } else if (state.targetingEffect.effect === 'ceremony_step2' || state.targetingEffect.effect === 'traverse_onora_grant_step2') {
                         if (instance.id === (state.targetingEffect.target1Id || state.targetingEffect.firstTargetId)) {
                              // Not targetable (cannot select same creature twice)
+                        } else if ((state.targetingEffect.effect === 'ceremony_step2') && instance.isToken) {
+                             // Not targetable (Ceremony cannot target tokens)
                         } else {
                             cardEl.classList.add('targetable');
                             cardEl.onclick = () => applyTargetedEffect(instance.id);
@@ -9344,8 +9394,13 @@ class BaseCard {
                     } else if (state.targetingEffect.effect === 'equip_creature' && instance.equipment) {
                         // Not targetable if already equipped
                     } else {
-                        cardEl.classList.add('targetable');
-                        cardEl.onclick = () => applyTargetedEffect(instance.id);
+                        // Additional check for Ceremony Step 1
+                        if (state.targetingEffect.effect === 'ceremony_step1' && instance.isToken) {
+                            // Not targetable
+                        } else {
+                            cardEl.classList.add('targetable');
+                            cardEl.onclick = () => applyTargetedEffect(instance.id);
+                        }
                     }
                 }
             }
