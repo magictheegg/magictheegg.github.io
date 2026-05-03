@@ -1553,6 +1553,15 @@
         .roster-frame.dead {
             filter: grayscale(1) opacity(0.4) saturate(0) !important;
         }
+
+        .hero-grid-item[data-hero-name="Panya"] img, #hero-select-preview[data-hero-name="Panya"] img {
+            object-position: center -19% !important;
+        }
+
+        [data-hero-name="Panya"] img {
+            object-position: center 13% !important;
+        }
+
         .card.foil {
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
         }
@@ -1874,7 +1883,6 @@
             overflow-y: scroll;
             padding: 20px;
             background: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -2690,7 +2698,7 @@
 
         .keyword-name {
             font-size: 1.6em;
-            color: #f0f0f0; /* Very light grey */
+            color: #f0f0f0;
             font-weight: bold;
             margin-bottom: 8px;
             display: flex;

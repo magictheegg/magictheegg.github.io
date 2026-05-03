@@ -3382,6 +3382,24 @@ class BaseCard {
                 }
             }
         },
+        PANYA: {
+            name: "Panya",
+            fullName: "Prodigious Panya",
+            avatar: "sets/KOD-files/img/42_Prodigious Panya.jpg",
+            skins: [
+                { name: "Panya, Minikin Hero", avatar: "sets/GSS-files/img/2.png" },
+                { name: "Panya, Swift and Sure", avatar: "sets/ATR-files/img/1.png" },
+                { name: "Panya, Who Dares to Dream", avatar: "sets/NJB-files/img/3.png" },
+                { name: "Panya, the Sojourner", avatar: "sets/KND-files/img/66_Panya, the Sojourner.png" }
+            ],
+            heroPower: {
+                name: "Untold Lands",
+                icon: "sets/SGB-files/img/168_Untold Lands.jpg",
+                cost: 0,
+                text: "Skip your first turn. When you level up to tier 2, get an Aldmore Chaperone.",
+                isPassive: true
+            }
+        },
         CRAIN: {
             name: "Crain",
             fullName: "Crain, Black-Blooded",
@@ -4332,6 +4350,7 @@ class BaseCard {
             if (qMark) qMark.style.display = 'flex';
         } else {
             if (heroPreviewImg) {
+                frontHeroPreview.dataset.heroName = state.player.hero.name;
                 const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
                 heroPreviewImg.src = skin || state.player.hero.avatar;
                 heroPreviewImg.style.display = 'block';
@@ -4641,7 +4660,6 @@ class BaseCard {
                 if (heroPowerBox) heroPowerBox.style.display = 'none';
                 if (heroConfirmBtn) {
                     heroConfirmBtn.style.display = 'block';
-                    heroConfirmBtn.textContent = 'EMBRACE CHAOS';
                 }
                 return;
             }
@@ -4660,6 +4678,8 @@ class BaseCard {
                 const skin = state.settings.heroSkins[hero.name]?.avatar;
                 heroPreviewLargeImg.src = skin || hero.avatar;
                 heroPreviewLargeImg.style.display = 'block';
+                // Set data attribute for CSS-based framing
+                heroPreviewLargeImg.parentElement.dataset.heroName = hero.name;
             }
             if (randomPlaceholder) randomPlaceholder.style.display = 'none';
             if (heroPreviewName) heroPreviewName.textContent = hero.name;
@@ -4769,6 +4789,7 @@ class BaseCard {
             } else if (pendingHero) {
                 state.player.hero = pendingHero;
                 if (frontHeroImg) {
+                    frontHeroPreview.dataset.heroName = state.player.hero.name;
                     const skin = state.settings.heroSkins[pendingHero.name]?.avatar;
                     frontHeroImg.src = skin || pendingHero.avatar;
                     frontHeroImg.style.display = 'block';
@@ -4834,7 +4855,7 @@ class BaseCard {
             const epithet = getEpithet(skinData.name);
 
             item.innerHTML = `
-                <div class="avatar-img-container">
+                <div class="avatar-img-container" data-hero-name="${hero.name}">
                     <img class="avatar-img" src="${skinData.avatar}" alt="${skinData.name}" title="${skinData.name}">
                 </div>
                 <div class="skin-epithet">${epithet}</div>
@@ -4969,9 +4990,13 @@ class BaseCard {
         // FRONT PAGE SETUP
         const frontPage = document.getElementById('front-page');
         const playBtn = document.getElementById('play-button');
+        const heroSelectPreview = document.getElementById('hero-select-preview');
         const heroPreviewImg = document.getElementById('current-hero-img');
         const frontHeroName = document.getElementById('current-hero-name');
         
+        if (heroSelectPreview) {
+            heroSelectPreview.dataset.heroName = state.player.hero.name;
+        }
         if (heroPreviewImg) {
             const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
             heroPreviewImg.src = skin || state.player.hero.avatar;
@@ -5095,6 +5120,22 @@ class BaseCard {
                 }
             }
 
+            // HERO POWER: Panya (Tier 2 get Aldmore Chaperone)
+            if (state.player.hero.name === "Panya" && state.player.tier === 2) {
+                const chaperoneData = availableCards.find(c => c.card_name === 'Aldmore Chaperone');
+                if (chaperoneData) {
+                    const inst = CardFactory.create(chaperoneData);
+                    inst.owner = 'player';
+                    if (state.player.board.length < boardLimit) {
+                        state.player.board.push(inst);
+                        triggerETB(inst, state.player.board);
+                        state.player.board.forEach(c => { if (c.id !== inst.id) c.onOtherCreatureETB(inst, state.player.board); });
+                    } else {
+                        state.player.hand.push(inst);
+                    }
+                }
+            }
+
             render();
         }
     }
@@ -5167,6 +5208,10 @@ class BaseCard {
 
         // TESTING OVERRIDE: 100 gold on Turn 1
         if (state.turn === 1) state.player.gold = 100;
+
+        if (state.turn === 1 && state.player.hero.name === "Panya") {
+            state.player.gold = 0;
+        }
 
         if (state.player.treasures > 0) {
 
@@ -8521,6 +8566,7 @@ class BaseCard {
 
         // Specific class for the player's fight HP to enable targeting for animations
         if (playerAvatarEl) {
+            if (state.player.hero) playerAvatarEl.dataset.heroName = state.player.hero.name;
             const fHP = playerAvatarEl.querySelector('.fight-hp');
             if (fHP) fHP.classList.add('player-fight-hp');
 
@@ -8530,6 +8576,10 @@ class BaseCard {
                 const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
                 playerAvatarImg.src = skin || state.player.hero.avatar;
             }
+        }
+
+        if (oppBattleAvatarEl && currentOpp.hero) {
+            oppBattleAvatarEl.dataset.heroName = currentOpp.hero.name;
         }
 
         updateTierButton();
