@@ -327,6 +327,10 @@ class BaseCard {
         }
 
         async pulse(board) {
+            if (state.isAITurn) {
+                this.syncVisualState();
+                return;
+            }
             this.pulseQueueCount = (this.pulseQueueCount || 0) + 1;
             this.isPulsing = true;
             const snapshot = this.takeSnapshot();
@@ -403,7 +407,7 @@ class BaseCard {
             const lastBreak = Math.max(precedingText.lastIndexOf('.'), precedingText.lastIndexOf('\\n'), precedingText.lastIndexOf(':'));
             const currentSentence = precedingText.substring(lastBreak + 1);
             
-            const exclusionWords = ['gains ', 'has ', 'have ', 'teach ', 'put '];
+            const exclusionWords = ['gains ', 'has ', 'have ', 'teach ', 'put ', 'with ', 'gain '];
             if (exclusionWords.some(word => currentSentence.includes(word))) return false;
 
             return true;
@@ -1332,35 +1336,7 @@ class BaseCard {
         }
     }
 
-    class CautherHellkite extends BaseCard {
-        onAttack(board, host = this) {
-            if (!state.battleBoards) return [];
-            const opponentBoard = (host.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-            const multiplier = host.isFoil ? 2 : 1;
-            
-            opponentBoard.filter(c => !c.hasKeyword('Hexproof')).forEach(c => {
-                let damage = multiplier;
-                if (c.shieldCounters > 0) {
-                    c.shieldCounters--;
-                    damage = 0;
-                } else {
-                    c.damageTaken += multiplier;
-                }
-
-                // Animation
-                setTimeout(() => {
-                    const el = document.getElementById(`card-${c.id}`);
-                    if (el) {
-                        el.classList.add('shake');
-                        setTimeout(() => el.classList.remove('shake'), 300);
-                        if (damage > 0) showDamageBubble(c.id, damage);
-                        else render(); // Re-render to clear shield visual
-                    }
-                }, 100);
-            });
-            return [];
-        }
-    }
+    class CautherHellkite extends BaseCard { }
 
     class QinhanaCavalry extends BaseCard {
         onCombatStart(board) {
@@ -1860,8 +1836,10 @@ class BaseCard {
     class DecoratedWarrior extends BaseCard {
         async onAttack(board) {
             const multiplier = this.isFoil ? 2 : 1;
-            addCounters(this, multiplier, board);
-            return [this];
+            await addCounters(this, multiplier, board);
+            const res = [this];
+            res.animationsHandled = true;
+            return res;
         }
     }
 
@@ -3718,8 +3696,10 @@ class BaseCard {
         target.counters += amount;
 
         // Animation
-        if (!skipAnimation) {
+        if (!skipAnimation && !state.isAITurn) {
             await target.pulse(board);
+        } else if (state.isAITurn) {
+            target.syncVisualState();
         }
 
         // Notify other creatures on the board (e.g., Striding Cascade)
@@ -4413,16 +4393,20 @@ class BaseCard {
                 clearTargetingEffect(false);
                 render();
             } else {
+                // End Turn Logic
+                endTurnBtn.disabled = true;
+
                 // End Shop Phase triggers
                 for (const c of state.player.board) {
                     await c.onShopEndStep(state.player.board);
                 }
                 await resolveAnimations();
+                await waitForBusyCards();
 
                 state.creaturesDiedThisShopPhase = false; 
                 state.shopDeathsCount = 0; // Reset for next shop turn
 
-                // End Turn Logic
+                // Transition to Battle
                 startBattleTurn();
             }
         });
@@ -5289,9 +5273,9 @@ class BaseCard {
             // This handles Xun Huang triggered kills correctly
             const deathsResolved = await resolveDeaths();
 
-            // If we have targets but nobody died (like Ladria), we still need to pause 
-            // for the trigger animations (Battle Cry style)
-            if (attackTargets.length > 0 && !deathsResolved) {
+            // If we have targets, we MUST pause for the trigger animations (Battle Cry style)
+            // even if someone died, to ensure pulses complete before the attack strike.
+            if (attackTargets.length > 0) {
                 await resolveAnimations(); // Staggered pulses for Cascade, etc.
             }
 
@@ -5309,13 +5293,8 @@ class BaseCard {
         // DECORATED WARRIOR BLOCKING
         if (defender && defender.card_name === 'Decorated Warrior' && !defender.temporaryHumility) {
             const multiplier = defender.isFoil ? 2 : 1;
-            addCounters(defender, multiplier, defenderBoard);
-            
-            // Pulse handles the rest of the visual sync
-            // addCounters already calls pulse(board)
-            
-            // Pause the attack for the trigger
-            await resolveAnimations();
+            // Awaiting addCounters ensures the pulse animation finishes before the attack continues
+            await addCounters(defender, multiplier, defenderBoard);
         }
 
         // SPECIAL TRIGGER: Cabracan's Familiar (Pre-fight damage)
@@ -5331,14 +5310,17 @@ class BaseCard {
             }
 
             // Animation for pre-fight damage
-            defender.pulse(defenderBoard);
             if (familiarDamage > 0) {
                 const defenderEl = document.getElementById(`card-${defender.id}`);
                 if (defenderEl) showDamageBubble(defenderEl, familiarDamage);
             }
             
-            // Pause to let player see the damage result
-            await resolveAnimations();
+            // Pulsing both attacker and defender to show the source and result
+            // This also provides the necessary pause for the pre-fight effect
+            await Promise.all([
+                attacker.pulse(attackerBoard),
+                defender.pulse(defenderBoard)
+            ]);
 
             // Now resolve any deaths (this handles Familiar kills correctly)
             const familiarKillResolved = await resolveDeaths();
@@ -5350,6 +5332,42 @@ class BaseCard {
                 if (attackerZone) attackerZone.style.zIndex = "";
                 state.activeAttackerId = null;
                 return; 
+            }
+        }
+
+        // SPECIAL TRIGGER: Cauther Hellkite (Pre-fight board damage)
+        if (attacker.card_name === 'Cauther Hellkite' && !attacker.temporaryHumility) {
+            const multiplier = attacker.isFoil ? 2 : 1;
+            const targets = defenderBoard.filter(c => !c.hasKeyword('Hexproof'));
+
+            if (targets.length > 0) {
+                targets.forEach(c => {
+                    let damage = multiplier;
+                    if (c.shieldCounters > 0) {
+                        c.shieldCounters--;
+                    } else {
+                        c.damageTaken += multiplier;
+                        const el = document.getElementById(`card-${c.id}`);
+                        if (el) showDamageBubble(el, damage);
+                    }
+                });
+
+                // Pulse the attacker to show source, and all targets for result
+                const pulses = [attacker.pulse(attackerBoard)];
+                targets.forEach(t => pulses.push(t.pulse(defenderBoard)));
+                await Promise.all(pulses);
+
+                // Resolve deaths from the board sweep
+                await resolveDeaths();
+
+                // If the specific defender died, cancel the strike
+                if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
+                    attackerEl.style.transform = "";
+                    attackerEl.classList.remove('attacking');
+                    if (attackerZone) attackerZone.style.zIndex = "";
+                    state.activeAttackerId = null;
+                    return;
+                }
             }
         }
 
@@ -5721,6 +5739,22 @@ class BaseCard {
             }
         } finally {
             state.isResolvingAnimations = false;
+        }
+    }
+
+    async function waitForBusyCards() {
+        const startTime = Date.now();
+        const timeout = 10000; // 10s safety timeout
+
+        while (Date.now() - startTime < timeout) {
+            const busyCards = [
+                ...state.player.board,
+                ...state.player.hand
+            ].filter(c => c.isPulsing || c.isSpawning || c.isDying);
+
+            if (busyCards.length === 0 && state.animationQueue.length === 0) break;
+            
+            await new Promise(r => setTimeout(r, 100));
         }
     }
 
@@ -7741,107 +7775,112 @@ class BaseCard {
         if (!opp) opp = getOpponent();
         if (!opp) return;
 
-        // 1. Setup Gold for the turn
-        let gold = Math.min(2 + state.turn, 10);
-        
-        // 2. AI TIER UP Logic
-        const nextTier = opp.tier + 1;
-        if (nextTier <= 5) {
-            const cost = tierCosts[opp.tier];
-            const targetTurns = [0, 0, 2, 6, 10, 14]; // Turn schedule for AI Tiers
-            if (state.turn >= targetTurns[nextTier] && gold >= cost) {
-                gold -= cost;
-                opp.tier = nextTier;
+        state.isAITurn = true;
+        try {
+            // 1. Setup Gold for the turn
+            let gold = Math.min(2 + state.turn, 10);
+            
+            // 2. AI TIER UP Logic
+            const nextTier = opp.tier + 1;
+            if (nextTier <= 5) {
+                const cost = tierCosts[opp.tier];
+                const targetTurns = [0, 0, 2, 6, 10, 14]; // Turn schedule for AI Tiers
+                if (state.turn >= targetTurns[nextTier] && gold >= cost) {
+                    gold -= cost;
+                    opp.tier = nextTier;
+                }
             }
-        }
-        opp.gold = gold;
+            opp.gold = gold;
 
-        // 3. Ensure existing board is instances
-        opp.board = opp.board.map(c => (c instanceof BaseCard) ? c : CardFactory.create(c));
+            // 3. Ensure existing board is instances
+            opp.board = opp.board.map(c => (c instanceof BaseCard) ? c : CardFactory.create(c));
 
-        // 4. Generate a "Virtual Shop" for the AI
-        const shopSize = opp.tier + 3;
-        const availablePool = availableCards.filter(c => c.shape !== 'token' && (c.tier || 1) <= opp.tier); 
-        const virtualShop = [];
-        for (let i = 0; i < shopSize; i++) {
-            const raw = availablePool[Math.floor(Math.random() * availablePool.length)];
-            const inst = CardFactory.create(raw);
-            inst.id = `ai-shop-${i}-${Math.random()}`;
-            virtualShop.push(inst);
-        }
+            // 4. Generate a "Virtual Shop" for the AI
+            const shopSize = opp.tier + 3;
+            const availablePool = availableCards.filter(c => c.shape !== 'token' && (c.tier || 1) <= opp.tier); 
+            const virtualShop = [];
+            for (let i = 0; i < shopSize; i++) {
+                const raw = availablePool[Math.floor(Math.random() * availablePool.length)];
+                const inst = CardFactory.create(raw);
+                inst.id = `ai-shop-${i}-${Math.random()}`;
+                virtualShop.push(inst);
+            }
 
-        // 4. Evaluation Loop
-        while (opp.gold >= 1) {
-            // Score all cards in the virtual shop
-            const rankedShop = virtualShop
-                .map(card => {
-                    let score = scoreCardForAI(card, opp.board);
-                    // AI heuristic: prioritize filling board with creatures before buying spells
-                    if (!card.type.toLowerCase().includes('creature') && opp.board.length < boardLimit && opp.gold >= 3) {
-                        score -= 5;
+            // 4. Evaluation Loop
+            while (opp.gold >= 1) {
+                // Score all cards in the virtual shop
+                const rankedShop = virtualShop
+                    .map(card => {
+                        let score = scoreCardForAI(card, opp.board);
+                        // AI heuristic: prioritize filling board with creatures before buying spells
+                        if (!card.type.toLowerCase().includes('creature') && opp.board.length < boardLimit && opp.gold >= 3) {
+                            score -= 5;
+                        }
+                        return { card, score };
+                    })
+                    .sort((a, b) => b.score - a.score);
+
+                const best = rankedShop[0];
+                if (!best || best.score <= 0) break; // Nothing worth buying
+
+                const cardToBuy = best.card;
+                let cost = 3;
+                if (cardToBuy.type?.toLowerCase().includes('equipment')) {
+                    cost = 5;
+                } else if (!cardToBuy.type?.toLowerCase().includes('creature')) {
+                    cost = cardToBuy.tier || 1;
+                }
+                
+                if (opp.gold >= cost) {
+                    if (cardToBuy.type.toLowerCase().includes('creature')) {
+                        if (opp.board.length < boardLimit) {
+                            // Buy and add
+                            cardToBuy.owner = 'opponent';
+                            opp.board.push(cardToBuy);
+                            opp.gold -= cost;
+                        } else {
+                            // Board full: check if we should replace the weakest
+                            const weakest = [...opp.board].sort((a, b) => a.getDisplayStats(opp.board).p - b.getDisplayStats(opp.board).p)[0];
+                            if (best.score > scoreCardForAI(weakest, opp.board)) {
+                                const idx = opp.board.indexOf(weakest);
+                                cardToBuy.owner = 'opponent';
+                                opp.board[idx] = cardToBuy;
+                                opp.gold -= cost;
+                            } else break; // Best shop card isn't better than our weakest
+                        }
+                    } else if (cardToBuy.type?.toLowerCase().includes('equipment')) {
+                        const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
+                        if (target) {
+                            if (target.equipment) virtualShop.push(target.equipment); // AI tosses old equipment back
+                            target.equipment = cardToBuy;
+                            opp.gold -= cost;
+                        } else break;
+                    } else {
+                        // Spell logic for AI: apply to best target
+                        const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
+                        if (target || ['Divination', 'Scientific Inquiry'].includes(cardToBuy.card_name)) {
+                            cardToBuy.onApply(target, opp.board);
+                            
+                            // AI-specific noncreature cast effects using OO hook
+                            opp.board.forEach(c => c.onNoncreatureCast(false, opp.board, []));
+
+                            opp.gold -= cost;
+                        } else break;
                     }
-                    return { card, score };
-                })
-                .sort((a, b) => b.score - a.score);
-
-            const best = rankedShop[0];
-            if (!best || best.score <= 0) break; // Nothing worth buying
-
-            const cardToBuy = best.card;
-            let cost = 3;
-            if (cardToBuy.type?.toLowerCase().includes('equipment')) {
-                cost = 5;
-            } else if (!cardToBuy.type?.toLowerCase().includes('creature')) {
-                cost = cardToBuy.tier || 1;
+                    // Remove bought card from virtual shop
+                    virtualShop.splice(virtualShop.indexOf(cardToBuy), 1);
+                } else break;
             }
             
-            if (opp.gold >= cost) {
-                if (cardToBuy.type.toLowerCase().includes('creature')) {
-                    if (opp.board.length < boardLimit) {
-                        // Buy and add
-                        cardToBuy.owner = 'opponent';
-                        opp.board.push(cardToBuy);
-                        opp.gold -= cost;
-                    } else {
-                        // Board full: check if we should replace the weakest
-                        const weakest = [...opp.board].sort((a, b) => a.getDisplayStats(opp.board).p - b.getDisplayStats(opp.board).p)[0];
-                        if (best.score > scoreCardForAI(weakest, opp.board)) {
-                            const idx = opp.board.indexOf(weakest);
-                            cardToBuy.owner = 'opponent';
-                            opp.board[idx] = cardToBuy;
-                            opp.gold -= cost;
-                        } else break; // Best shop card isn't better than our weakest
-                    }
-                } else if (cardToBuy.type?.toLowerCase().includes('equipment')) {
-                    const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
-                    if (target) {
-                        if (target.equipment) virtualShop.push(target.equipment); // AI tosses old equipment back
-                        target.equipment = cardToBuy;
-                        opp.gold -= cost;
-                    } else break;
-                } else {
-                    // Spell logic for AI: apply to best target
-                    const target = [...opp.board].sort((a, b) => b.getDisplayStats(opp.board).p - a.getDisplayStats(opp.board).p)[0];
-                    if (target || ['Divination', 'Scientific Inquiry'].includes(cardToBuy.card_name)) {
-                        cardToBuy.onApply(target, opp.board);
-                        
-                        // AI-specific noncreature cast effects using OO hook
-                        opp.board.forEach(c => c.onNoncreatureCast(false, opp.board, []));
-
-                        opp.gold -= cost;
-                    } else break;
-                }
-                // Remove bought card from virtual shop
-                virtualShop.splice(virtualShop.indexOf(cardToBuy), 1);
-            } else break;
+            // Final sort: AI puts biggest units on the left
+            opp.board.sort((a, b) => {
+                const sA = a.getDisplayStats(opp.board);
+                const sB = b.getDisplayStats(opp.board);
+                return (sB.p + sB.t) - (sA.p + sA.t);
+            });
+        } finally {
+            state.isAITurn = false;
         }
-        
-        // Final sort: AI puts biggest units on the left
-        opp.board.sort((a, b) => {
-            const sA = a.getDisplayStats(opp.board);
-            const sB = b.getDisplayStats(opp.board);
-            return (sB.p + sB.t) - (sA.p + sA.t);
-        });
     }
 
     function scoreCardForAI(card, board) {
@@ -8126,8 +8165,12 @@ class BaseCard {
                     else oldEl.classList.remove(cls);
                 });
 
-                // Sync click listener even when busy to allow rapid-fire actions and targeting
+                // Sync click and drag listeners even when busy to allow rapid-fire actions and targeting
                 oldEl.onclick = dummyCheck.onclick;
+                oldEl.draggable = dummyCheck.draggable;
+                oldEl.ondragstart = dummyCheck.ondragstart;
+                oldEl.ondragover = dummyCheck.ondragover;
+                oldEl.ondrop = dummyCheck.ondrop;
 
                 // Also sync the lock indicator element itself if it changed
                 const oldLock = oldEl.querySelector('.card-lock-indicator');
@@ -9223,11 +9266,11 @@ class BaseCard {
 
         if (state.phase === 'SHOP' && !isShop && index !== -1 && !state.castingSpell && !state.targetingEffect) {
             cardEl.draggable = true;
-            cardEl.addEventListener('dragstart', (e) => {
+            cardEl.ondragstart = (e) => {
                 e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'board', index: index, cardId: instance.id }));
-            });
-            cardEl.addEventListener('dragover', (e) => e.preventDefault());
-            cardEl.addEventListener('drop', (e) => { 
+            };
+            cardEl.ondragover = (e) => e.preventDefault();
+            cardEl.ondrop = (e) => { 
                 e.preventDefault(); 
                 e.stopPropagation();
                 try {
@@ -9249,7 +9292,7 @@ class BaseCard {
                 } catch (err) {
                     // Swallow errors from non-card drops
                 }
-            });
+            };
         }
         
         if (index !== -1 && !isShop) {
@@ -9315,25 +9358,25 @@ class BaseCard {
 
                  if (isCreature && isNotSelf) {
                      cardEl.classList.add('targetable');
-                     cardEl.addEventListener('click', (e) => {
+                     cardEl.onclick = (e) => {
                          e.stopPropagation();
                          applySpell(instance.id);
-                     });
+                     };
                  }
              }
              // DISCARD TARGETING
              else if (state.targetingEffect && state.targetingEffect.effect === 'parliament_discard') {
                  cardEl.classList.add('discard-outline');
-                 cardEl.addEventListener('click', () => applyTargetedEffect(instance.id));
+                 cardEl.onclick = () => applyTargetedEffect(instance.id);
              } else {
-                 cardEl.addEventListener('click', () => useCardFromHand(instance.id));
+                 cardEl.onclick = () => useCardFromHand(instance.id);
                  cardEl.draggable = true;
-                 cardEl.addEventListener('dragstart', (e) => {
+                 cardEl.ondragstart = (e) => {
                      e.dataTransfer.setData('text/plain', JSON.stringify({ type: 'hand', cardId: instance.id }));
-                 });
+                 };
                  // Allow buying from shop by dropping on hand cards
-                 cardEl.addEventListener('dragover', (e) => e.preventDefault());
-                 cardEl.addEventListener('drop', (e) => {
+                 cardEl.ondragover = (e) => e.preventDefault();
+                 cardEl.ondrop = (e) => {
                     try {
                         const data = JSON.parse(e.dataTransfer.getData('text/plain'));
                         if (data.type === 'shop') {
@@ -9341,7 +9384,7 @@ class BaseCard {
                             e.stopPropagation();
                         }
                     } catch(err) {}
-                 });
+                 };
              }
         }
         return cardEl;
