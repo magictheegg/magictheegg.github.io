@@ -123,6 +123,7 @@
             overflow: visible !important;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, opacity 0.55s ease;
             z-index: 10;
+            font-size: 10px;
         }
 
         .card.locked-shop-card:not(.already-locked) .card-art,
@@ -156,9 +157,9 @@
         }
 
         .ghost-indicator.decayed {
-            background-color: #5d6b4a; /* Sickly dark bile green */
+            background-color: #8ea07e; /* Pastel sickly green */
             border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(74, 222, 128, 0.2);
+            box-shadow: 0 0 1em 0.2em rgba(255, 255, 255, 0.1);
         }
 
         .card-lock-indicator {
@@ -244,6 +245,7 @@
             transform-origin: bottom center;
             transition: transform 0.15s ease-out, margin 0.15s ease-out, opacity 0.15s ease-out;
             opacity: 0.5;
+            font-size: 6.66px;
         }
 
         .fanned-hand .card:first-child { margin-left: 0; }
@@ -272,6 +274,7 @@
             overflow: visible !important;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, opacity 0.55s ease;
             z-index: 10;
+            font-size: 10px;
         }
 
         .card:hover:not(.attacking):not(.targetable):not(.grayed-out):not(.chained-card) {
@@ -327,8 +330,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            border: 3px solid #333;
+            border-radius: 1.2em;
+            border: 0.3em solid #333;
             box-sizing: border-box;
         }
 
@@ -338,14 +341,14 @@
             right: -8px;
             width: 40px;
             height: 40px;
-            background: #bf360c; /* Deep orange-red matching tier stars */
-            color: #ffd700; /* Yellow stars */
+            background: #bf360c;
+            color: #ffd700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.9em;
+            font-size: 1.5em;
             border: 2px solid #fff;
             z-index: 10;
             box-shadow: 0 2px 6px rgba(0,0,0,0.5);
@@ -365,7 +368,7 @@
         .card-cost.spell-cost {
             background: #ffd700;
             color: #000;
-            font-size: 1.3em;
+            font-size: 2em;
             letter-spacing: normal;
             padding: 0;
             box-sizing: border-box;
@@ -376,33 +379,33 @@
 
         .card-pt {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: 0.3em;
+            right: 0.2em;
             background: #fff;
             color: #000;
-            padding: 5px 14px;
-            border-radius: 6px;
+            padding: 0.2em 0.8em;
+            border-radius: 0.5em;
             font-weight: bold;
-            font-size: 1.4em;
-            border: 2px solid #000;
+            font-size: 2em;
+            border: 0.1em solid #000;
             display: flex;
-            gap: 2px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            gap: 0.2em;
+            box-shadow: 0 0.2em 0.6em rgba(0,0,0,0.5);
         }
 
         .card-t.damaged { color: #e53935; }
 
         .equipment-indicator {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 50px;
-            height: 50px;
+            top: -0.8em;
+            right: -0.8em;
+            width: 5.0em;
+            height: 5.0em;
             border-radius: 50%;
-            border: 3px solid #666;
+            border: 0.3em solid #666;
             background: #000;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+            box-shadow: 0 0.4em 1.0em rgba(0,0,0,0.8);
             z-index: 15;
             opacity: 0.95;
             transition: transform 0.2s;
@@ -410,15 +413,15 @@
 
         .showcase-indicator {
             position: absolute;
-            top: -8px;
-            left: -8px;
-            width: 50px;
-            height: 50px;
+            top: -0.8em;
+            left: -0.8em;
+            width: 5.0em;
+            height: 5.0em;
             border-radius: 50%;
-            border: 3px solid #666;
+            border: 0.3em solid #666;
             background: #000;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+            box-shadow: 0 0.4em 1.0em rgba(0,0,0,0.8);
             z-index: 15;
             opacity: 0.95;
             transition: transform 0.2s;
@@ -430,7 +433,7 @@
             object-fit: cover;
             transform: scale(1.72); /* just enough to fill the circular indicator */
             position: relative;
-            top: 18px;
+            top: 1.8em;
         }
 
         .equipment-indicator:hover, .showcase-indicator:hover {
@@ -440,26 +443,26 @@
 
         .card-counter-stack {
             position: absolute;
-            bottom: 5px;
-            left: 5px;
+            bottom: 0.5em;
+            left: 0.5em;
             display: flex;
             flex-direction: column-reverse; /* +1/+1 on bottom */
-            gap: 4px;
+            gap: 0.4em;
             z-index: 10;
             pointer-events: auto; /* Changed to allow clicking counters */
         }
 
         .counter-bubble {
-            width: 34px;
-            height: 34px;
+            width: 1.8em;
+            height: 1.8em;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1em;
-            border: 3px solid #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            font-size: 1.8em;
+            border: 0.15em solid #fff;
+            box-shadow: 0 0.2em 0.6em rgba(0,0,0,0.5);
             font-weight: bold;
             position: relative;
         }
@@ -473,7 +476,7 @@
         .counter-bubble.flying { background: #87ceeb; }
         .counter-bubble.menace { background-color: #ffcccb; } /* Light Red */
         .counter-bubble.first-strike { background-color: #ffff99; } /* Light Yellow */
-        .counter-bubble.vigilance { background-color: #90ee90; } /* Light Green */
+        .counter-bubble.vigilance { background-color: #dbbcff; } /* Soft Lilac */
         .counter-bubble.lifelink { background-color: #fffdd0; } /* Cream */
         .counter-bubble.shield { background-color: #b0b0b0; } /* Less blue grey */
         .counter-bubble.hexproof { background-color: #e0b0ff; } /* Pastel Mauve */
@@ -755,7 +758,7 @@
 
         /* ELEVATE CONTAINER ON HOVER: This is the fix for the stacking context issue */
         .avatar-box:has(.hero-power-circle:hover) {
-            z-index: 100000 !important;
+            z-index: 500 !important;
         }
 
         @keyframes tooltip-fade-in {
@@ -1316,6 +1319,11 @@
             animation: cloud-pop 0.7s forwards;
         }
 
+        .destroy-bubble.exile-bubble {
+            background: rgba(248, 248, 255, 0.9); /* Misty off-white */
+            box-shadow: 0 0 30px #f0f0f5;
+        }
+
         .destroy-bubble img {
             width: 60%;
             height: 60%;
@@ -1531,28 +1539,28 @@
 
         .ghost-indicator-container {
             position: absolute;
-            bottom: 48px;
-            right: 8px;
+            bottom: 4.4em;
+            right: 0.8em;
             display: flex;
             flex-direction: column-reverse;
             flex-wrap: wrap-reverse;
             align-items: center;
             align-content: center;
-            gap: 2px;
+            gap: 0.2em;
             width: auto;
-            max-height: 188px;
+            max-height: 18.8em;
             pointer-events: auto;
             z-index: 25;
         }
 
         .ghost-indicator {
-            width: 36px;
-            height: 36px;
+            width: 3.6em;
+            height: 3.6em;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 1em 0.2em rgba(255, 255, 255, 0.1);
             pointer-events: auto;
             position: relative;
         }
@@ -1567,13 +1575,13 @@
         .ghost-indicator.menace { background-color: rgba(255, 204, 203, 0.8); }
         .ghost-indicator.first-strike { background-color: rgba(255, 255, 153, 0.8); }
         .ghost-indicator.double-strike { background-color: rgba(255, 255, 153, 0.8); }
-        .ghost-indicator.vigilance { background-color: rgba(144, 238, 144, 0.8); }
+        .ghost-indicator.vigilance { background-color: rgba(219, 188, 255, 0.8); }
         .ghost-indicator.lifelink { background-color: rgba(255, 253, 208, 0.8); }
         .ghost-indicator.shield, .ghost-indicator.indestructible { background-color: rgba(176, 176, 176, 0.8); }
         .ghost-indicator.hexproof { background-color: rgba(224, 176, 255, 0.8); }
         .ghost-indicator.reach { background-color: rgba(240, 255, 180, 0.8); }
         .ghost-indicator.trample { background-color: rgba(119, 221, 119, 0.8); }
-        .ghost-indicator.haste { background-color: rgba(255, 69, 0, 0.8); }
+        .ghost-indicator.haste { background-color: rgba(255, 140, 105, 0.8); }
         .ghost-indicator.deathtouch { background-color: rgba(212, 165, 255, 0.8); }
         .ghost-indicator.adaptive { background-color: rgba(180, 255, 255, 0.8); }
         .ghost-indicator.prowess { background-color: rgba(255, 200, 230, 0.8); }
@@ -2376,6 +2384,7 @@
 
         #results-board-cards .card {
             max-width: 144px;
+            font-size: 8px;
         }
 
         #results-board-cards .ghost-indicator-container {

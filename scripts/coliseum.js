@@ -403,7 +403,7 @@ class BaseCard {
             const lastBreak = Math.max(precedingText.lastIndexOf('.'), precedingText.lastIndexOf('\\n'), precedingText.lastIndexOf(':'));
             const currentSentence = precedingText.substring(lastBreak + 1);
             
-            const exclusionWords = ['gains ', 'has ', 'teach ', 'put '];
+            const exclusionWords = ['gains ', 'has ', 'have ', 'teach ', 'put '];
             if (exclusionWords.some(word => currentSentence.includes(word))) return false;
 
             return true;
@@ -440,6 +440,19 @@ class BaseCard {
                 if (kw === 'deathtouch' && this.deathtouchCounters > 0) return true;
                 if (kw === 'shield' && this.shieldCounters > 0) return true;
                 if (kw === 'indestructible' && this.enchantments?.some(e => e.rules_text?.toLowerCase().includes('indestructible'))) return true;
+            }
+
+            // GLOBAL EFFECTS
+            const entity = getEntity(this.owner);
+            if (kw === 'lifelink') {
+                if (entity?.honorBegetsGloryBonus > 0) return true;
+                // Patron of the Meek: Creatures you control with +1/+1 counters on them have lifelink.
+                if (this.counters > 0) {
+                    const board = (state.phase === 'BATTLE' && state.battleBoards) ? 
+                                  (this.owner === 'player' ? state.battleBoards.player : state.battleBoards.opponent) : 
+                                  (this.owner === 'player' ? state.player.board : (state.opponents.find(o => o.board.some(c => c.id === this.id))?.board || []));
+                    if (board?.some(c => c.card_name === 'Patron of the Meek' && !c.isDying && !c.temporaryHumility)) return true;
+                }
             }
 
             // SPECIAL CASE KEYWORDS
@@ -682,7 +695,8 @@ class BaseCard {
                 const pool = availableCards.filter(c => 
                     c.type?.toLowerCase().includes('creature') && 
                     (c.tier || 1) <= state.player.tier && 
-                    c.shape !== 'token'
+                    c.shape !== 'token' &&
+                    c.card_name !== 'Angora Paladin'
                 );
                 
                 // Parse PT for power filter
@@ -701,7 +715,7 @@ class BaseCard {
 
                 queueDiscovery({
                     cards: choices.map(c => CardFactory.create(c)),
-                    title: "Onora Discovery",
+                    title: source.card_name,
                     text: "Choose a creature with power 3 or less to add to your hand.",
                     count: 1,
                     sourceId: source.id
@@ -711,7 +725,8 @@ class BaseCard {
                 const pool = availableCards.filter(c => 
                     c.type?.toLowerCase().includes('creature') && 
                     (c.tier || 1) <= targetEntity.tier && 
-                    c.shape !== 'token'
+                    c.shape !== 'token' &&
+                    c.card_name !== 'Angora Paladin'
                 );
                 const filteredPool = pool.filter(c => {
                     if (!c.pt) return false;
@@ -733,7 +748,7 @@ class BaseCard {
             needsBroadcast = false;
             queueTargetingEffect({
                 sourceId: source.id,
-                title: "Onora Anomaly",
+                title: source.card_name,
                 text: "Choose up to two creatures to receive +1/+1 counters.",
                 effect: 'traverse_onora_grant',
                 count: 2,
@@ -773,7 +788,7 @@ class BaseCard {
             needsBroadcast = false;
             queueTargetingEffect({
                 sourceId: source.id,
-                title: "Al Tabaq Anomaly",
+                title: source.card_name,
                 text: "Target creature gains double strike until end of turn.",
                 effect: 'traverse_altabaq_grant',
                 wasCast: true,
@@ -920,6 +935,126 @@ class BaseCard {
         }
     }
 
+    class BjarndyrBruiser extends BaseCard {
+        getDynamicBuffs(board) {
+            const base = super.getDynamicBuffs(board);
+            if (this.isEmbattled) {
+                const multiplier = this.isFoil ? 2 : 1;
+                base.p += (2 * multiplier);
+                base.t += (2 * multiplier);
+            }
+            return base;
+        }
+    }
+
+    class GoldGrubber extends BaseCard {
+        onAttack(board) {
+            if (this.owner === 'player') {
+                const multiplier = this.isFoil ? 2 : 1;
+                state.player.treasures += multiplier;
+            }
+            return [this];
+        }
+    }
+
+    class HerdMatron extends BaseCard {
+        onETB(board, isDouble = false) {
+            queueTargetingEffect({
+                sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to get the first +1/+1 counter.",
+                effect: 'herd_matron_counters',
+                step: 1,
+                wasCast: !isDouble,
+                isMandatory: isDouble
+            });
+        }
+    }
+
+    class PatronOfTheMeek extends BaseCard {
+        onETB(board) {
+            traverseOnora(this, board);
+        }
+    }
+
+    class HonorBegetsGlory extends BaseCard {
+        async onCast(board) {
+            traverseAlTabaq(this, board);
+            const entity = getEntity(this.owner);
+            if (entity) {
+                entity.honorBegetsGloryBonus = (entity.honorBegetsGloryBonus || 0) + (this.isFoil ? 2 : 1);
+            }
+        }
+    }
+
+    class UnyieldingEnforcer extends BaseCard {
+        onAttack(board) {
+            const isAdorned = this.enchantments.length > 0 || this.equipment;
+            if (isAdorned) {
+                const opponentBoard = (this.owner === 'player') ? state.battleBoards?.opponent : state.battleBoards?.player;
+                if (opponentBoard && opponentBoard.length > 0) {
+                    const validTargets = opponentBoard.filter(c => !c.hasKeyword('Hexproof') && !c.isDying && !c.isDestroyed);
+                    if (validTargets.length > 0) {
+                        const target = validTargets[Math.floor(Math.random() * validTargets.length)];
+                        target.isDestroyed = true;
+                        target.destroyedReason = 'exile';
+                        return [target];
+                    }
+                }
+            }
+            return [this];
+        }
+    }
+
+    class ThriceClawedTroika extends BaseCard {
+        async onCombatStart(board) {
+            if (this.isToken || board.length >= boardLimit) return [];
+            
+            const multiplier = this.isFoil ? 2 : 1;
+            const newTokens = [];
+            const count = 2 * multiplier;
+            
+            const idx = board.indexOf(this);
+            for (let i = 0; i < count; i++) {
+                if (board.length >= boardLimit) break;
+                
+                const token = this.clone();
+                token.id = `troika-token-${Math.random()}`;
+                token.owner = this.owner;
+                token.isToken = true;
+                token.isTemporary = true; // Mark for cleanup
+                token.shape = this.shape;
+                
+                // clone() handles enchantments and equipment copying
+                token.enchantments.push({ card_name: 'Troika Exile', rules_text: 'Exile at end of combat', isTemporary: true });
+                
+                board.splice(idx + 1 + i, 0, token);
+                newTokens.push(token);
+
+                if (state.phase === 'BATTLE' && state.battleQueues) {
+                    state.battleQueues[this.owner].unshift(token);
+                }
+                
+                board.forEach(c => {
+                    if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                });
+
+                if (typeof document !== 'undefined') {
+                    token.isSpawning = true;
+                }
+            }
+
+            if (typeof document !== 'undefined' && newTokens.length > 0) {
+                render();
+                await new Promise(r => setTimeout(r, 600));
+                newTokens.forEach(t => delete t.isSpawning);
+                render();
+            }
+
+            return newTokens;
+        }
+    }
+
     class LakeCaveLurker extends BaseCard {
         onDeath(board, owner) {
             if (owner === 'player') {
@@ -1050,12 +1185,12 @@ class BaseCard {
 
     class ConsultTheDewdrops extends BaseCard {
         onCast(board) {
-            const noncreatures = availableCards.filter(c => 
-                c.type && !c.type.toLowerCase().includes('creature') && 
+            const noncreatures = availableCards.filter(c =>
+                c.type && !c.type.toLowerCase().includes('creature') &&
                 !c.type.toLowerCase().includes('equipment') &&
-                c.shape !== 'token' && 
+                c.shape !== 'token' &&
                 c.card_name !== 'Consult the Dewdrops' &&
-                (c.tier || 1) <= state.player.tier
+                (c.tier || 1) <= 2
             );
             const selection = [];
             const count = 4;
@@ -1069,7 +1204,6 @@ class BaseCard {
             });
         }
     }
-
     class EnvoyOfThePure extends BaseCard {
         onETB(board) {
             const targets = board.filter(c => c.id !== this.id);
@@ -1904,6 +2038,7 @@ class BaseCard {
             token.tempToughness = host.tempToughness;
             token.enchantments = [...host.enchantments];
             token.equipment = null; 
+            token.isTemporary = true; // Mark for cleanup
             
             // Marked for exile
             token.enchantments.push({ card_name: 'Mirrorblade Exile', rules_text: 'Exile at end of combat', isTemporary: true });
@@ -2585,11 +2720,11 @@ class BaseCard {
 
     class DewdropOracle extends BaseCard {
         onETB(board) {
-            const noncreatures = availableCards.filter(c => 
-                c.type && !c.type.toLowerCase().includes('creature') && 
+            const noncreatures = availableCards.filter(c =>
+                c.type && !c.type.toLowerCase().includes('creature') &&
                 !c.type.toLowerCase().includes('equipment') &&
-                c.shape !== 'token' && 
-                (c.tier || 1) <= state.player.tier
+                c.shape !== 'token' &&
+                (c.tier || 1) <= 2
             );
             const selection = [];
             const multiplier = 1;
@@ -2603,7 +2738,6 @@ class BaseCard {
             });
         }
     }
-
     class ScourgeOfTheSun extends BaseCard {
         onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
@@ -2902,29 +3036,30 @@ class BaseCard {
     }
 
     function resetTemporaryStats() {
-        state.player.board = state.player.board.filter(c => !c.isCrainToken);
-        state.player.board.forEach(c => { 
-            c.tempPower = 0; 
-            c.tempToughness = 0; 
+        state.player.board = state.player.board.filter(c => !c.isCrainToken && !c.isTemporary);
+        state.player.board.forEach(c => {
+            c.tempPower = 0;
+            c.tempToughness = 0;
             c.isLockedByChivalry = false;
             c.damageTaken = 0;
             c.isDestroyed = false;
-            c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary); 
-        });
-        state.opponents.forEach(opp => {
-            opp.board = opp.board.filter(c => !c.isCrainToken);
-            opp.board.forEach(c => { 
-                c.tempPower = 0; 
-                c.tempToughness = 0; 
+            c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary);
+            });
+            state.opponents.forEach(opp => {
+            opp.board = opp.board.filter(c => !c.isCrainToken && !c.isTemporary);
+            opp.board.forEach(c => {
+                c.tempPower = 0;
+                c.tempToughness = 0;
                 c.isLockedByChivalry = false;
                 c.damageTaken = 0;
                 c.isDestroyed = false;
-                c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary); 
+                c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary);
             });
             opp.fightHp = 5 + (5 * opp.tier);
-        });
-    }
-
+            opp.honorBegetsGloryBonus = 0;
+            });
+            state.player.honorBegetsGloryBonus = 0;
+            }
     function showKeywordBubble(targetOrId, keyword) {
         if (!targetOrId || !keyword) return;
         const cabinet = document.getElementById('game-cabinet');
@@ -3163,6 +3298,13 @@ class BaseCard {
                 case 'Jhalach Scourge': card = new JhalachScourge(data); break;
                 case 'Aldmore Chaperone': card = new AldmoreChaperone(data); break;
                 case 'Twin Shivs': card = new TwinShivs(data); break;
+                case 'Bjarndyr Bruiser': card = new BjarndyrBruiser(data); break;
+                case 'Gold Grubber': card = new GoldGrubber(data); break;
+                case 'Herd Matron': card = new HerdMatron(data); break;
+                case 'Patron of the Meek': card = new PatronOfTheMeek(data); break;
+                case 'Honor Begets Glory': card = new HonorBegetsGlory(data); break;
+                case 'Unyielding Enforcer': card = new UnyieldingEnforcer(data); break;
+                case 'Thrice-Clawed Troika': card = new ThriceClawedTroika(data); break;
                 default: card = new BaseCard(data); break;
             }
             return card;
@@ -3953,18 +4095,22 @@ class BaseCard {
         const cabinet = document.getElementById('game-cabinet');
         if (!cabinet) return;
 
-        let targetEl = (typeof targetOrId === 'string') ? document.getElementById(`card-${targetOrId}`) : targetOrId;
+        let targetEl = (typeof targetOrId === 'string') ? document.getElementById(`card-${targetOrId}`) : document.getElementById(`card-${targetOrId.id}`);
         if (!targetEl || targetEl.classList.contains('has-destroy-bubble')) return;
 
         targetEl.classList.add('has-destroy-bubble');
         const bubble = document.createElement('div');
         bubble.className = 'destroy-bubble';
-        
+
         const img = document.createElement('img');
-        img.src = 'img/skull.png';
+        let icon = 'img/skull.png';
+        if (typeof targetOrId === 'object' && targetOrId.destroyedReason === 'exile') {
+            icon = 'img/exile.png';
+            bubble.classList.add('exile-bubble');
+        }
+        img.src = icon;
         img.alt = 'Destroy';
-        bubble.appendChild(img);
-        
+        bubble.appendChild(img);        
         cabinet.appendChild(bubble);
 
         const startTime = Date.now();
@@ -5096,6 +5242,14 @@ class BaseCard {
 
         // Phase 1.5: Attack Triggers
         let attackTargets = await attacker.onAttack(attackerBoard);
+
+        // GLOBAL ATTACK TRIGGERS: Honor Begets Glory
+        const entity = getEntity(attacker.owner);
+        if (entity?.honorBegetsGloryBonus > 0) {
+            await addCounters(attacker, entity.honorBegetsGloryBonus, attackerBoard);
+            if (!attackTargets) attackTargets = [];
+            if (!attackTargets.includes(attacker)) attackTargets.push(attacker);
+        }
         
         if (attackTargets && attackTargets.length > 0) {
             // Only queue automatic pulse if the card didn't handle its own animations
@@ -5103,22 +5257,32 @@ class BaseCard {
             if (!attackTargets.animationsHandled) {
                 const snapshots = new Map();
                 attackTargets.forEach(t => {
+                    // Skip attacker if we already pulsed it for Honor Begets Glory
+                    if (t.id === attacker.id && entity?.honorBegetsGloryBonus > 0) return;
+
                     t.isPulsing = true;
                     t.pulseQueueCount = (t.pulseQueueCount || 0) + 1;
                     snapshots.set(t.id, t.takeSnapshot());
                 });
 
-                queueAnimation(async () => {
-                    const pulses = attackTargets.map(target => pulseCardElement(target, attackerBoard, snapshots.get(target.id)));
-                    await Promise.all(pulses);
-                    attackTargets.forEach(t => {
-                        t.pulseQueueCount--;
-                        if (t.pulseQueueCount <= 0) {
-                            delete t.isPulsing;
-                            delete t.pulseQueueCount;
-                        }
+                if (snapshots.size > 0) {
+                    queueAnimation(async () => {
+                        const pulses = Array.from(snapshots.keys()).map(tid => {
+                            const t = attackTargets.find(at => at.id === tid);
+                            return pulseCardElement(t, attackerBoard, snapshots.get(tid));
+                        });
+                        await Promise.all(pulses);
+                        attackTargets.forEach(t => {
+                            if (snapshots.has(t.id)) {
+                                t.pulseQueueCount--;
+                                if (t.pulseQueueCount <= 0) {
+                                    delete t.isPulsing;
+                                    delete t.pulseQueueCount;
+                                }
+                            }
+                        });
                     });
-                });
+                }
             }
 
             // Now resolve any deaths (this plays the death animations and pauses)
@@ -5396,7 +5560,7 @@ class BaseCard {
 
         // Run player triggers
         for (const card of state.player.board) {
-            const targets = card.onCombatStart(state.player.board);
+            const targets = await card.onCombatStart(state.player.board);
             if (targets && targets.length > 0) {
                 anyTriggers = true;
                 await animateStartOfCombatTrigger(card, targets, state.player.board);
@@ -5404,7 +5568,7 @@ class BaseCard {
         }
         // Run opponent triggers
         for (const card of currentOpp.board) {
-            const targets = card.onCombatStart(currentOpp.board);
+            const targets = await card.onCombatStart(currentOpp.board);
             if (targets && targets.length > 0) {
                 anyTriggers = true;
                 await animateStartOfCombatTrigger(card, targets, currentOpp.board);
@@ -6143,6 +6307,7 @@ class BaseCard {
             }
         } else {
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
+            instance.owner = 'player';
             
             if (instance.card_name === 'Executioner\'s Madness') {
                 state.spellsCastThisTurn++;
@@ -6379,6 +6544,16 @@ class BaseCard {
                 addCounters(target, 1, board);
                 if (state.targetingEffect.isDouble) {
                     state.targetingEffect.isDouble = false;
+                    // Stay in targeting mode
+                } else {
+                    clearTargetingEffect(true);
+                }
+            } else if (state.targetingEffect.effect === 'herd_matron_counters') {
+                const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+                addCounters(target, 1, board);
+                if (state.targetingEffect.step === 1) {
+                    state.targetingEffect.step = 2;
+                    state.targetingEffect.text = "Choose a creature to get the second +1/+1 counter.";
                     // Stay in targeting mode
                 } else {
                     clearTargetingEffect(true);
@@ -7153,7 +7328,7 @@ class BaseCard {
             if (attacker.hasKeyword('Deathtouch') && defenderDamageTaken > 0) {
                 if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
                     defender.isDestroyed = true;
-                    showDestroyBubble(defender.id);
+                    showDestroyBubble(defender);
                 }
             }
 
@@ -7202,7 +7377,7 @@ class BaseCard {
                         if (attacker.hasKeyword('Deathtouch') && overflow > 0) {
                             if (!trampleTarget.isDestroyed) {
                                 trampleTarget.isDestroyed = true;
-                                showDestroyBubble(trampleTarget.id);
+                                showDestroyBubble(trampleTarget);
                             }
                         }
                     }
@@ -7246,7 +7421,7 @@ class BaseCard {
                 if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
                     if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
                         attacker.isDestroyed = true;
-                        showDestroyBubble(attacker.id);
+                        showDestroyBubble(attacker);
                     }
                 }
 
@@ -7346,7 +7521,7 @@ class BaseCard {
             const el = document.getElementById(`card-${c.id}`);
             c.isDying = true;
             if (el && !el.classList.contains('dying')) {
-                if (c.isDestroyed) showDestroyBubble(c.id);
+                if (c.isDestroyed) showDestroyBubble(c);
                 el.classList.add('dying');
             }
         });
@@ -7698,7 +7873,7 @@ class BaseCard {
     }
 
     function addScry(count, callback = null, title = null, text = null) {
-        const creatures = availableCards.filter(c => (c.type.toLowerCase().includes('creature') || c.type.toLowerCase().includes('equipment')) && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
+        const creatures = availableCards.filter(c => c.type?.toLowerCase().includes('creature') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier);
         const newCards = [];
         for (let i = 0; i < count; i++) {
             newCards.push(creatures[Math.floor(Math.random() * creatures.length)]);

@@ -514,15 +514,20 @@ function testBristledDirebear() {
 function testConsultTheDewdrops() {
     resetState();
     const spell = CardFactory.create({ card_name: "Consult the Dewdrops" });
+    availableCards.length = 0;
     availableCards.push(
         { card_name: "Consult the Dewdrops", type: "Instant", tier: 2 },
         { card_name: "Target Creature", type: "Creature", tier: 1 },
-        { card_name: "Findable Spell", type: "Sorcery", tier: 1 }
+        { card_name: "Findable Spell", type: "Sorcery", tier: 1 },
+        { card_name: "Too High Tier", type: "Sorcery", tier: 3 }
     );
+    state.player.tier = 5; // Should still only find Tier 2 or lower
     spell.onCast(state.player.board);
     assert.ok(state.discovery, "Should trigger discovery");
     const foundItself = state.discovery.cards.some(c => c.card_name === "Consult the Dewdrops");
     assert.strictEqual(foundItself, false, "Should not find itself");
+    const foundTooHigh = state.discovery.cards.some(c => c.card_name === "Too High Tier");
+    assert.strictEqual(foundTooHigh, false, "Should not find tier 3+ spells");
     const foundSpell = state.discovery.cards.every(c => !c.type.toLowerCase().includes('creature'));
     assert.strictEqual(foundSpell, true, "Should only find noncreature cards");
 }
@@ -866,11 +871,18 @@ function testAetherGuzzler() {
 function testDewdropOracle() {
     resetState();
     const oracle = CardFactory.create({ card_name: "Dewdrop Oracle", pt: "2/2" });
-    availableCards.push({ card_name: "Findable", type: "Sorcery", tier: 1 });
+    availableCards.length = 0;
+    availableCards.push(
+        { card_name: "Findable", type: "Sorcery", tier: 1 },
+        { card_name: "Too High Tier", type: "Sorcery", tier: 3 }
+    );
+    state.player.tier = 5;
     
     oracle.onETB(state.player.board);
     assert.ok(state.discovery, "Should trigger discovery on ETB");
     assert.strictEqual(state.discovery.cards.length, 4, "Should discover 4 cards");
+    const foundTooHigh = state.discovery.cards.some(c => c.card_name === "Too High Tier");
+    assert.strictEqual(foundTooHigh, false, "Should not find tier 3+ spells");
 }
 
 function testArroydPassShepherd() {
@@ -3129,6 +3141,210 @@ async function testAldmoreChaperone() {
     assert.strictEqual(card.counters, 2);
 }
 
+async function testBjarndyrBruiser() {
+    resetState();
+    const bruiser = CardFactory.create(fullCardPool.find(c => c.card_name === 'Bjarndyr Bruiser'));
+    bruiser.owner = 'player';
+    state.player.board = [bruiser];
+
+    // Base 4/4
+    let stats = bruiser.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 4);
+    assert.strictEqual(stats.t, 4);
+
+    // Add counter -> Embattled (+2/+2)
+    addCounters(bruiser, 1);
+    stats = bruiser.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 7, "Should be 4 + 2 (buff) + 1 (counter)");
+    assert.strictEqual(stats.t, 7, "Should be 4 + 2 (buff) + 1 (counter)");
+
+    // Remove counter -> Not Embattled
+    bruiser.counters = 0;
+    stats = bruiser.getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 4);
+    assert.strictEqual(stats.t, 4);
+}
+
+async function testGoldGrubber() {
+    resetState();
+    const grubber = CardFactory.create(fullCardPool.find(c => c.card_name === 'Gold Grubber'));
+    grubber.owner = 'player';
+    state.player.board = [grubber];
+
+    // Attack -> Hoard
+    grubber.onAttack(state.player.board);
+    assert.strictEqual(state.player.treasures, 1);
+
+    // Shop death -> No gold increase
+    const initialGold = state.player.gold;
+    state.phase = 'SHOP';
+    if (grubber.onDeath) grubber.onDeath(state.player.board, 'player');
+    assert.strictEqual(state.player.gold, initialGold, "Gold Grubber should not give gold on death");
+}
+
+async function testHerdMatron() {
+    resetState();
+    const matron = CardFactory.create(fullCardPool.find(c => c.card_name === 'Herd Matron'));
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    matron.owner = other.owner = 'player';
+    state.player.board = [matron, other];
+
+    // ETB
+    matron.onETB(state.player.board);
+    assert.ok(state.targetingEffect, "Should trigger targeting");
+    assert.strictEqual(state.targetingEffect.effect, 'herd_matron_counters');
+
+    // Step 1: Target other
+    await applyTargetedEffect(other.id);
+    assert.strictEqual(other.counters, 1);
+    assert.ok(state.targetingEffect, "Should still be targeting for step 2");
+
+    // Step 2: Target self
+    await applyTargetedEffect(matron.id);
+    assert.strictEqual(matron.counters, 1);
+    assert.strictEqual(state.targetingEffect, null, "Targeting should be cleared");
+}
+
+async function testPatronOfTheMeek() {
+    resetState();
+    const patron = CardFactory.create(fullCardPool.find(c => c.card_name === 'Patron of the Meek'));
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    patron.owner = other.owner = 'player';
+    state.player.board = [patron, other];
+
+    // ETB -> Onora
+    patron.onETB(state.player.board);
+    assert.strictEqual(state.player.plane, 'Onora');
+
+    // Static Lifelink
+    assert.strictEqual(other.hasKeyword('lifelink'), false, "Other should not have lifelink yet");
+    addCounters(other, 1);
+    assert.strictEqual(other.hasKeyword('lifelink'), true, "Other should have lifelink with a counter");
+    
+    // Patron itself needs a counter for lifelink
+    assert.strictEqual(patron.hasKeyword('lifelink'), false, "Patron should not have lifelink without counter");
+    addCounters(patron, 1);
+    assert.strictEqual(patron.hasKeyword('lifelink'), true, "Patron should have lifelink with counter");
+
+    // Humility
+    patron.temporaryHumility = true;
+    assert.strictEqual(other.hasKeyword('lifelink'), false, "Aura should fail if Patron humbled");
+}
+
+async function testHonorBegetsGlory() {
+    resetState();
+    const spell = CardFactory.create(fullCardPool.find(c => c.card_name === 'Honor Begets Glory'));
+    const creature = CardFactory.create({ card_name: "C1", pt: "1/1" });
+    spell.owner = creature.owner = 'player';
+    state.player.board = [creature];
+
+    // Cast
+    await spell.onCast(state.player.board);
+    assert.strictEqual(state.player.plane, 'Al Tabaq');
+    assert.strictEqual(state.player.honorBegetsGloryBonus, 1);
+
+    // Global Lifelink
+    assert.strictEqual(creature.hasKeyword('lifelink'), true);
+
+    // Counter on Attack (Mocked)
+    const entity = state.player;
+    if (entity.honorBegetsGloryBonus > 0) {
+        addCounters(creature, entity.honorBegetsGloryBonus);
+    }
+    assert.strictEqual(creature.counters, 1);
+
+    // Cleanup
+    resetTemporaryStats();
+    assert.strictEqual(state.player.honorBegetsGloryBonus, 0);
+    assert.strictEqual(creature.hasKeyword('lifelink'), false);
+}
+
+async function testHonorBegetsGlory_Stacking() {
+    resetState();
+    const spell1 = CardFactory.create(fullCardPool.find(c => c.card_name === 'Honor Begets Glory'));
+    const spell2 = CardFactory.create(fullCardPool.find(c => c.card_name === 'Honor Begets Glory'));
+    const creature = CardFactory.create({ card_name: "C1", pt: "1/1" });
+    spell1.owner = spell2.owner = creature.owner = 'player';
+    state.player.board = [creature];
+
+    await spell1.onCast(state.player.board);
+    await spell2.onCast(state.player.board);
+    assert.strictEqual(state.player.honorBegetsGloryBonus, 2);
+
+    // Counter on Attack (Mocked)
+    const entity = state.player;
+    if (entity.honorBegetsGloryBonus > 0) {
+        addCounters(creature, entity.honorBegetsGloryBonus);
+    }
+    assert.strictEqual(creature.counters, 2, "Should get 2 counters from stacked Honor Begets Glory");
+}
+
+async function testUnyieldingEnforcer() {
+    resetState();
+    const enforcer = CardFactory.create(fullCardPool.find(c => c.card_name === 'Unyielding Enforcer'));
+    const victim = CardFactory.create({ card_name: "Victim", pt: "2/2" });
+    enforcer.owner = 'player';
+    victim.owner = 'opponent';
+    state.player.board = [enforcer];
+    state.battleBoards = { player: [enforcer], opponent: [victim] };
+
+    // 1. Not Adorned (just a counter)
+    addCounters(enforcer, 1);
+    enforcer.onAttack(state.player.board);
+    assert.strictEqual(victim.isDestroyed, false, "Should not exile if only embattled by counters");
+
+    // 2. Adorned (Enchantment)
+    enforcer.enchantments.push({ card_name: 'Buff', rules_text: '+1/+1' });
+    enforcer.onAttack(state.player.board);
+    assert.strictEqual(victim.isDestroyed, true, "Should exile if adorned");
+    assert.strictEqual(victim.destroyedReason, 'exile');
+}
+
+async function testThriceClawedTroika() {
+    resetState();
+    const troika = CardFactory.create(fullCardPool.find(c => c.card_name === 'Thrice-Clawed Troika'));
+    troika.owner = 'player';
+    state.player.board = [troika];
+    troika.enchantments.push({ card_name: 'Buff', rules_text: 'Flying' });
+
+    // Combat Start
+    state.phase = 'BATTLE';
+    state.battleQueues = { player: [], opponent: [] };
+    const tokens = await troika.onCombatStart(state.player.board);
+    
+    assert.strictEqual(tokens.length, 2, "Should create 2 tokens");
+    assert.strictEqual(state.player.board.length, 3);
+    assert.strictEqual(state.player.board[1].card_name, 'Thrice-Clawed Troika');
+    assert.strictEqual(state.player.board[1].isToken, true);
+    
+    // Inheritance
+    assert.ok(state.player.board[1].enchantments.some(e => e.card_name === 'Buff'), "Token should inherit enchantments");
+    assert.ok(state.player.board[1].enchantments.some(e => e.card_name === 'Troika Exile'), "Token should have exile clause");
+
+    // Haste check
+    assert.strictEqual(troika.hasKeyword('haste'), true);
+}
+
+async function testOnoraPoolExclusion() {
+    resetState();
+    // Populate availableCards with Angora Paladin and some others
+    availableCards.length = 0;
+    availableCards.push({ card_name: 'Angora Paladin', type: 'Creature', pt: '3/3', tier: 2 });
+    availableCards.push({ card_name: 'Eligible 1', type: 'Creature', pt: '1/1', tier: 1 });
+    availableCards.push({ card_name: 'Eligible 2', type: 'Creature', pt: '2/2', tier: 1 });
+    
+    state.player.tier = 2;
+    
+    const source = { card_name: 'Source', id: 's1' };
+    traverseOnora(source, state.player.board);
+    
+    assert.strictEqual(state.player.plane, 'Onora');
+    assert.ok(state.discoveryQueue.length > 0, "Should have a discovery queued");
+    const choices = state.discoveryQueue[0].cards;
+    const hasPaladin = choices.some(c => c.card_name === 'Angora Paladin');
+    assert.strictEqual(hasPaladin, false, "Angora Paladin should be excluded from Onora pool");
+}
+
 async function runTests() {
     const t1Tests = [
         { tier: 1, name: "Decayed Sale", fn: testDecayedSale },
@@ -3225,7 +3441,10 @@ async function runTests() {
         { tier: 3, name: "Gallant Centaur", fn: testGallantCentaur },
         { tier: 3, name: "Faceless Faction", fn: testFacelessFaction },
         { tier: 3, name: "Duskborn Hunter", fn: testDuskbornHunter },
-        { tier: 3, name: "Aldmore Chaperone", fn: testAldmoreChaperone }
+        { tier: 3, name: "Aldmore Chaperone", fn: testAldmoreChaperone },
+        { tier: 3, name: "Bjarndyr Bruiser", fn: testBjarndyrBruiser },
+        { tier: 3, name: "Gold Grubber", fn: testGoldGrubber },
+        { tier: 3, name: "Herd Matron", fn: testHerdMatron }
     ];
 
     const t4Tests = [
@@ -3266,7 +3485,11 @@ async function runTests() {
         { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider },
         { tier: 4, name: "Holtun-Band Emissary", fn: testHoltunBandEmissary },
         { tier: 4, name: "Nightmare Harpy", fn: testNightmareHarpy },
-        { tier: 4, name: "Sanguine Anaconda", fn: testSanguineAnaconda }
+        { tier: 4, name: "Sanguine Anaconda", fn: testSanguineAnaconda },
+        { tier: 4, name: "Patron of the Meek", fn: testPatronOfTheMeek },
+        { tier: 4, name: "Honor Begets Glory", fn: testHonorBegetsGlory },
+        { tier: 4, name: "Honor Begets Glory (Stacking)", fn: testHonorBegetsGlory_Stacking },
+        { tier: 4, name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion }
     ];
 
     const t5Tests = [
@@ -3288,6 +3511,8 @@ async function runTests() {
         { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
         { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
         { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
+        { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
+        { tier: 5, name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
         { tier: 5, name: "Nacreous Hydra", fn: testNacreousHydra }
     ];
 
