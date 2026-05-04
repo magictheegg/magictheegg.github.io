@@ -276,6 +276,17 @@ class BaseCard {
                 });
             }
 
+            // MAFUA HERO POWER CHECK
+            const ownerHero = (this.owner === 'player') ? state.player.hero : getOpponent()?.hero;
+            if (ownerHero?.name === 'Mafua') {
+                const myTier = this.tier || 1;
+                const sameTierCount = board?.filter(c => (c.tier || 1) === myTier).length || 0;
+                if (sameTierCount >= 5) {
+                    p += 5;
+                    t += 5;
+                }
+            }
+
             return { p, t };
         }
         // Hook for ETB effects
@@ -3415,6 +3426,21 @@ class BaseCard {
                 isPassive: true
             }
         },
+        MAFUA: {
+            name: "Mafua",
+            fullName: "Mafua, Oathseeker",
+            avatar: "sets/KND-files/img/19_Mafua, Oathseeker.png",
+            skins: [
+                { name: "All-Enduring Mafua", avatar: "sets/KOD-files/img/176_All-Enduring Mafua.jpg" }
+            ],
+            heroPower: {
+                name: "Provincial Loyalty",
+                icon: "sets/KOD-files/img/20_Provincial Loyalty.jpg",
+                cost: 0,
+                text: "If you control five or more creatures of the same tier, those creatures get +5/+5.",
+                isPassive: true
+            }
+        },
         CRAIN: {
             name: "Crain",
             fullName: "Crain, Black-Blooded",
@@ -4850,7 +4876,8 @@ class BaseCard {
 
         const EPITHET_OVERRIDES = {
             "Jake and the Gang": "The Gang",
-            "Herrea of the Night Stars": "the Night Star"
+            "Herrea of the Night Stars": "the Night Star",
+            "All-Enduring Mafua": "All-Enduring"
         };
 
         function getEpithet(fullName) {
@@ -5062,7 +5089,7 @@ class BaseCard {
         }
     }
 
-    const tierCosts = [0, 5, 7, 9, 11]; // Base costs for 2, 3, 4, 5
+    const tierCosts = [0, 7, 8, 11, 13]; // Base costs for 2, 3, 4, 5
 
     function updateTierButton() {
         const tierContainer = document.getElementById('tier-container');
@@ -5141,11 +5168,7 @@ class BaseCard {
                 if (chaperoneData) {
                     const inst = CardFactory.create(chaperoneData);
                     inst.owner = 'player';
-                    if (state.player.board.length < boardLimit) {
-                        state.player.board.push(inst);
-                        triggerETB(inst, state.player.board);
-                        state.player.board.forEach(c => { if (c.id !== inst.id) c.onOtherCreatureETB(inst, state.player.board); });
-                    } else {
+                    if (state.player.hand.length < handLimit) {
                         state.player.hand.push(inst);
                     }
                 }
@@ -5662,23 +5685,24 @@ class BaseCard {
             }
         };
 
-        await processCrain(state.player, state.player.board, 'player');
         await processCrain(currentOpp, currentOpp.board, 'opponent');
+        await processCrain(state.player, state.player.board, 'player');
 
-        // Run player triggers
-        for (const card of state.player.board) {
-            const targets = await card.onCombatStart(state.player.board);
-            if (targets && targets.length > 0) {
-                anyTriggers = true;
-                await animateStartOfCombatTrigger(card, targets, state.player.board);
-            }
-        }
-        // Run opponent triggers
+        // Run opponent triggers first
         for (const card of currentOpp.board) {
             const targets = await card.onCombatStart(currentOpp.board);
             if (targets && targets.length > 0) {
                 anyTriggers = true;
                 await animateStartOfCombatTrigger(card, targets, currentOpp.board);
+            }
+        }
+
+        // Run player triggers second
+        for (const card of state.player.board) {
+            const targets = await card.onCombatStart(state.player.board);
+            if (targets && targets.length > 0) {
+                anyTriggers = true;
+                await animateStartOfCombatTrigger(card, targets, state.player.board);
             }
         }
 

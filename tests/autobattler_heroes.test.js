@@ -59,7 +59,7 @@ const {
     performAttack, triggerETB, confirmDiscovery, resolveDiscovery,
     processDeaths, tierUp, setAvailableCards, useCardFromHand, 
     startShopTurn, buyCard, queueTargetingEffect, queueDiscovery,
-    rerollShop, applySpell, checkAutumnReward
+    rerollShop, applySpell, checkAutumnReward, sellCard, resolveShopDeaths
 } = require('../scripts/coliseum.js');
 const assert = require('assert');
 
@@ -446,7 +446,136 @@ async function testAutumn() {
     assert.ok(state.player.hand.some(c => c.card_name === "Reward Centaur"), "Reward Centaur in hand");
 }
 
-async function runTests() {
+async function testPanya() {
+    resetState();
+    state.player.hero = HEROES.PANYA;
+    availableCards.push({ card_name: "Aldmore Chaperone", tier: 5 }); // Needed for tierUp trigger
+
+    // 1. Verify Turn 1 Gold Skip
+    startShopTurn();
+    assert.strictEqual(state.player.gold, 0, "Panya should start Turn 1 with 0 gold");
+
+    // 2. Verify Tier 2 Reward (to hand)
+    state.player.tier = 1;
+    state.player.gold = 10;
+    state.player.hand = [];
+    tierUp();
+    assert.strictEqual(state.player.tier, 2);
+    assert.strictEqual(state.player.hand.length, 1, "Should receive 1 card in hand");
+    assert.strictEqual(state.player.hand[0].card_name, "Aldmore Chaperone", "Should be Aldmore Chaperone");
+
+    // 3. Verify no reward for Tier 3
+    state.player.gold = 10;
+    tierUp();
+    assert.strictEqual(state.player.tier, 3);
+    assert.strictEqual(state.player.hand.length, 1, "Should not receive another card at tier 3");
+}
+
+async function testDawson() {
+    resetState();
+    state.player.hero = HEROES.DAWSON;
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1", tier: 1 });
+    state.player.board = [fodder];
+    fodder.owner = 'player';
+
+    // 1. Shop Sacrifice (Immediate Gold)
+    state.phase = 'SHOP';
+    state.player.gold = 5;
+    resolveShopDeaths(0, fodder, true);
+    assert.strictEqual(state.player.gold, 6, "Dawson should gain 1 gold from shop sacrifice");
+
+    // 2. Battle Sacrifice (No Gold/Treasures)
+    resetState();
+    state.player.hero = HEROES.DAWSON;
+    const battleFodder = CardFactory.create({ card_name: "Battle Fodder", pt: "1/1", tier: 1 });
+    state.player.board = [battleFodder];
+    battleFodder.owner = 'player';
+    state.phase = 'BATTLE';
+    state.player.gold = 5;
+    state.player.treasures = 0;
+
+    // Use the same trigger logic as in code
+    resolveShopDeaths(0, battleFodder, true);
+    assert.strictEqual(state.player.gold, 5, "Dawson should NOT gain gold during battle");
+    assert.strictEqual(state.player.treasures, 0, "Dawson should NOT gain treasure during battle");
+
+    // 3. Non-sacrifice death (No gold)
+    resetState();
+    state.player.hero = HEROES.DAWSON;
+    const dyingUnit = CardFactory.create({ card_name: "Dead", pt: "1/1", tier: 1 });
+    state.player.board = [dyingUnit];
+    state.phase = 'SHOP';
+    state.player.gold = 5;
+    resolveShopDeaths(0, dyingUnit, false); // isSacrifice = false
+    assert.strictEqual(state.player.gold, 5, "No gold for standard deaths");
+}
+
+async function testMafua() {
+    resetState();
+    state.player.hero = HEROES.MAFUA;
+
+    // 1. Basic 5-unit threshold
+    state.player.board = [];
+    for(let i=0; i<5; i++) {
+        const c = CardFactory.create({ card_name: `T1-${i}`, tier: 1, pt: "1/1" });
+        c.owner = 'player';
+        state.player.board.push(c);
+    }
+    let stats = state.player.board[0].getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 6, "Should have +5 power buff (1+5)");
+
+    // 2. Mixed tiers (Failure)
+    state.player.board[4] = CardFactory.create({ card_name: "T2", tier: 2, pt: "1/1" });
+    state.player.board[4].owner = 'player';
+    stats = state.player.board[0].getDisplayStats(state.player.board);
+    assert.strictEqual(stats.p, 1, "Should NOT have buff with only 4 matching tiers");
+
+    // 3. Mixed tiers (Specific buff)
+    // 5x Tier 2, 1x Tier 3, 1x Tier 4
+    state.player.board = [];
+    for(let i=0; i<5; i++) {
+        const c = CardFactory.create({ card_name: `T2-${i}`, tier: 2, pt: "1/1" });
+        c.owner = 'player';
+        state.player.board.push(c);
+    }
+    const t3 = CardFactory.create({ card_name: "T3", tier: 3, pt: "1/1" });
+    t3.owner = 'player';
+    state.player.board.push(t3);
+    const t4 = CardFactory.create({ card_name: "T4", tier: 4, pt: "1/1" });
+    t4.owner = 'player';
+    state.player.board.push(t4);
+
+    assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 6, "T2 should be buffed");
+    assert.strictEqual(state.player.board[5].getDisplayStats(state.player.board).p, 1, "T3 should NOT be buffed");
+    assert.strictEqual(state.player.board[6].getDisplayStats(state.player.board).p, 1, "T4 should NOT be buffed");
+
+    // 4. Over-threshold (7 units)
+    state.player.board = [];
+    for(let i=0; i<7; i++) {
+        const c = CardFactory.create({ card_name: `T1-${i}`, tier: 1, pt: "1/1" });
+        c.owner = 'player';
+        state.player.board.push(c);
+    }
+    assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 6, "All 7 units should get exactly +5");
+
+    // 5. Sell test (Reversion)
+    state.player.board = [];
+    for(let i=0; i<5; i++) {
+        const c = CardFactory.create({ card_name: `T1-${i}`, tier: 1, pt: "1/1" });
+        c.owner = 'player';
+        state.player.board.push(c);
+    }
+    assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 6, "Initially buffed at 5 units");
+    
+    state.phase = 'SHOP';
+    const idToSell = state.player.board[0].id;
+    sellCard(idToSell);
+    
+    assert.strictEqual(state.player.board.length, 4, "Should have 4 units left");
+    assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 1, "Should revert to 1 power after selling below threshold");
+}
+
+async function runHeroTests() {
     const heroTests = [
         { name: "Xylo", fn: testXylo },
         { name: "Xiong Mao", fn: testXiongMao },
@@ -459,7 +588,10 @@ async function runTests() {
         { name: "Seto San", fn: testSetoSan },
         { name: "Kism", fn: testKism },
         { name: "Enoch", fn: testEnoch },
-        { name: "Autumn", fn: testAutumn }
+        { name: "Autumn", fn: testAutumn },
+        { name: "Panya", fn: testPanya },
+        { name: "Dawson", fn: testDawson },
+        { name: "Mafua", fn: testMafua }
     ];
 
     console.log("\nHERO TEST RESULTS");
@@ -486,4 +618,4 @@ async function runTests() {
     }
 }
 
-runTests();
+runHeroTests();
