@@ -6028,18 +6028,6 @@ class BaseCard {
         // Linger long enough to see the result, but not too long.
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        const aliveOpponents = state.opponents.filter(opp => opp.overallHp > 0);
-        if (state.player.overallHp <= 0) {
-            showEndScreen(aliveOpponents.length + 1);
-            return; 
-        }
-        
-        state.opponents = aliveOpponents;
-        if (state.opponents.length === 0) {
-            showEndScreen(1);
-            return;
-        }
-
         // Sync combat counters back to original cards
         if (state.combatParticipants) {
             state.combatParticipants.forEach(battleCard => {
@@ -6063,6 +6051,18 @@ class BaseCard {
 
         // --- End of Combat Cleanup ---
         resetTemporaryStats();
+
+        const aliveOpponents = state.opponents.filter(opp => opp.overallHp > 0);
+        if (state.player.overallHp <= 0) {
+            showEndScreen(aliveOpponents.length + 1);
+            return; 
+        }
+        
+        state.opponents = aliveOpponents;
+        if (state.opponents.length === 0) {
+            showEndScreen(1);
+            return;
+        }
 
         state.player.fightHp = 5 + (5 * state.player.tier);
         state.panharmoniconActive = false;
