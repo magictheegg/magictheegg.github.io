@@ -276,17 +276,6 @@ class BaseCard {
                 });
             }
 
-            // MAFUA HERO POWER CHECK
-            const ownerHero = (this.owner === 'player') ? state.player.hero : getOpponent()?.hero;
-            if (ownerHero?.name === 'Mafua') {
-                const myTier = this.tier || 1;
-                const sameTierCount = board?.filter(c => (c.tier || 1) === myTier).length || 0;
-                if (sameTierCount >= 5) {
-                    p += 5;
-                    t += 5;
-                }
-            }
-
             return { p, t };
         }
         // Hook for ETB effects
@@ -3437,7 +3426,7 @@ class BaseCard {
                 name: "Provincial Loyalty",
                 icon: "sets/KOD-files/img/20_Provincial Loyalty.jpg",
                 cost: 0,
-                text: "If you control five or more creatures of the same tier, those creatures get +5/+5.",
+                text: "At start of combat, if you control five or more creatures of the same tier, those creatures get +5/+5.",
                 isPassive: true
             }
         },
@@ -5247,7 +5236,7 @@ class BaseCard {
         // TESTING OVERRIDE: 100 gold on Turn 1
         if (state.turn === 1) state.player.gold = 100;
 
-        if (state.turn === 1 && state.player.hero.name === "Panya") {
+        if (state.turn <= 2 && state.player.hero.name === "Panya") {
             state.player.gold = 0;
         }
 
@@ -5687,6 +5676,36 @@ class BaseCard {
 
         await processCrain(currentOpp, currentOpp.board, 'opponent');
         await processCrain(state.player, state.player.board, 'player');
+
+        // Hero Power: Mafua
+        const processMafua = async (entity, board) => {
+            if (entity.hero?.name === 'Mafua') {
+                const tierCounts = {};
+                board.forEach(c => {
+                    const t = c.tier || 1;
+                    tierCounts[t] = (tierCounts[t] || 0) + 1;
+                });
+                const dominantTiers = Object.keys(tierCounts).filter(t => tierCounts[t] >= 5).map(Number);
+                if (dominantTiers.length > 0) {
+                    const targets = board.filter(c => dominantTiers.includes(c.tier || 1));
+                    if (targets.length > 0) {
+                        anyTriggers = true;
+                        targets.forEach(c => {
+                            c.tempPower += 5;
+                            c.tempToughness += 5;
+                        });
+                        // Visual Pulse
+                        for (const target of targets) {
+                            pulseCardElement(target, board);
+                        }
+                        await new Promise(r => setTimeout(r, 600));
+                    }
+                }
+            }
+        };
+
+        await processMafua(currentOpp, currentOpp.board);
+        await processMafua(state.player, state.player.board);
 
         // Run opponent triggers first
         for (const card of currentOpp.board) {
@@ -6829,7 +6848,8 @@ class BaseCard {
                 const board = (state.targetingEffect.owner === 'player') ? state.player.board : getOpponent().board;
                 const oldQueueLen = state.targetingQueue.length;
                 
-                target.onETB(board);
+                target.pulse(board);
+                triggerETB(target, board);
                 
                 const queuedSomething = state.targetingQueue.length > oldQueueLen;
 
