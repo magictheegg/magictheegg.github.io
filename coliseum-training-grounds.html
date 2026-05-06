@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coliseum Training Grounds</title>
+    <link rel="icon" type="image/png" href="img/coliseum-favicon.png">
+    <style>
+        @font-face { font-family: 'Beleren Small Caps'; src: url('resources/beleren-caps.ttf') format('truetype'); }
+
+        body {
+            font-family: 'Beleren Small Caps', sans-serif;
+            background-color: #050505;
+            color: #e0e0e0;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column;
+            height: 100vh; overflow: hidden;
+        }
+
+        #header {
+            height: 80px; width: 100%; background: #1a1a1a;
+            border-bottom: 2px solid #555; display: flex;
+            justify-content: space-between; align-items: center;
+            padding: 0 40px; box-sizing: border-box; z-index: 10000;
+        }
+
+        #turn-display { font-size: 32px; color: #ffb300; }
+        
+        .hero-badge {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(0,0,0,0.5); padding: 6px 20px;
+            border-radius: 40px; border: 1px solid #444;
+        }
+
+        .avatar-box-small {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            border: 2px solid #555;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            flex-shrink: 0;
+        }
+        
+        #hero-avatar-small { width: 100%; height: 100%; object-fit: cover; display: block; scale: 2; object-position: center -23%; }
+        #hero-name-display { font-size: 22px; color: #f0f0f0; }
+
+        .btn {
+            padding: 12px 30px; font-family: 'Beleren Small Caps', sans-serif;
+            font-size: 18px; cursor: pointer; border: 2px solid #fff;
+            border-radius: 8px; background: #2e7d32; color: white;
+            text-transform: uppercase;
+        }
+
+        .btn:hover:not(:disabled) { filter: brightness(1.2); }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        #training-grid {
+            flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 20px; padding: 40px; background: #000; overflow-y: auto;
+        }
+
+        .iframe-wrapper {
+            width: 100%; aspect-ratio: 16 / 9; background: #000;
+            border: 3px solid #333; border-radius: 12px;
+            position: relative; overflow: hidden;
+            min-height: 0; /* Prevent grid items from expanding to content height */
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 1600px; height: 900px; border: none;
+            transform-origin: top left;
+        }
+
+        .instance-id {
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(0,0,0,0.8); color: #f0f0f0;
+            padding: 5px 15px; border-radius: 6px; font-size: 18px;
+            z-index: 1000; border: 1px solid #555; pointer-events: none;
+        }
+
+        /* HERO SELECTOR */
+        #hero-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 20000;
+        }
+
+        #hero-modal h1 { font-size: 48px; margin-bottom: 40px; color: #fff; }
+        #hero-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; max-width: 1200px; width: 90%; }
+        .hero-card { background: #1e1e1e; border: 2px solid #444; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; }
+        .hero-card:hover { border-color: #ffd700; background: #222; }
+        
+        /* Avatar Container Logic */
+        .avatar-box {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 3px solid #555;
+            position: relative;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: #000;
+            flex-shrink: 0;
+        }
+        .avatar-img-container {
+            width: 100%; height: 100%;
+            position: relative;
+        }
+        .hero-card img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            display: block;
+            scale: 2;
+            object-position: center -23%;
+        }
+
+        .hero-card .name { font-size: 18px; color: #fff; }
+
+        .hidden { display: none !important; }
+
+        .click-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: flex; justify-content: center;
+            align-items: center; z-index: 5000; cursor: pointer;
+            font-size: 20px; color: #fff; text-transform: uppercase;
+            text-align: center; padding: 20px; box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <div id="turn-display">Turn 1 / 20</div>
+        
+        <div id="hero-display" class="hero-badge hidden">
+            <div class="avatar-box-small">
+                <div class="avatar-img-container">
+                    <img id="hero-avatar-small" src="">
+                </div>
+            </div>
+            <span id="hero-name-display"></span>
+        </div>
+
+        <div style="display: flex; gap: 20px;">
+            <button id="export-btn" class="btn hidden" style="background:#0277bd; border-color:#01579b;">Export Current Logs</button>
+            <button id="start-all-btn" class="btn hidden">Start All Instances</button>
+            <button id="restart-btn" class="btn" style="background:#444; border-color:#666;">Restart</button>
+            <button id="end-turn-btn" class="btn" disabled>Global End Turn</button>
+        </div>
+    </div>
+
+    <div id="training-grid"></div>
+
+    <div id="hero-modal">
+        <h1>Select Your Champion</h1>
+        <div id="hero-grid"></div>
+    </div>
+
+    <script>
+        const HERO_LIST = [
+            { name: "Xylo", avatar: "sets/SHF-files/img/9.png" },
+            { name: "Xiong Mao", avatar: "sets/GNJ-files/img/0_Xiong Mao, Survivalist.jpg" },
+            { name: "Seto San", avatar: "sets/NJB-files/img/17.png" },
+            { name: "Panya", avatar: "sets/KOD-files/img/42_Prodigious Panya.jpg" },
+            { name: "Dawson", avatar: "sets/AEX-files/img/198_Dawson, Black-Hearted.png" },
+            { name: "Mafua", avatar: "sets/KND-files/img/19_Mafua, Oathseeker.png" },
+            { name: "Crain", avatar: "sets/AEX-files/img/196_Crain, Black-Blooded.png" },
+            { name: "Arietta", avatar: "sets/SGB-files/img/3_Arietta, the Blade Foretold.jpg" },
+            { name: "Herrea", avatar: "sets/FAU-files/img/61_Herrea, Celestial Queen.jpg" },
+            { name: "Adelaide", avatar: "sets/SGB-files/img/36_Adelaide, the Soloist.jpg" },
+            { name: "Heping", avatar: "sets/NJB-files/img/1.png" },
+            { name: "Jake", avatar: "sets/ACE-files/img/252_Jake and the Gang.jpg" },
+            { name: "Kism", avatar: "sets/SGB-files/img/154_Kism, Daughter of Fates.jpg" },
+            { name: "Enoch", avatar: "sets/WAS-files/img/189_Enoch, Elder Chronurgist.jpg" },
+            { name: "Autumn", avatar: "sets/ACE-files/img/286_Autumn, Wildwood Queen.jpg" }
+        ];
+
+        let selectedHero = null;
+        let turn = 1;
+        let logs = [];
+        let iframes = [];
+
+        // Setup Hero Modal
+        const modalGrid = document.getElementById('hero-grid');
+        HERO_LIST.forEach(hero => {
+            const card = document.createElement('div');
+            card.className = 'hero-card';
+            card.innerHTML = `
+                <div class="avatar-box">
+                    <div class="avatar-img-container">
+                        <img src="${hero.avatar}">
+                    </div>
+                </div>
+                <div class="name">${hero.name}</div>
+            `;
+            card.onclick = () => selectHero(hero);
+            modalGrid.appendChild(card);
+        });
+
+        function selectHero(hero) {
+            selectedHero = hero;
+            document.getElementById('hero-modal').classList.add('hidden');
+            document.getElementById('hero-avatar-small').src = hero.avatar;
+            document.getElementById('hero-name-display').textContent = hero.name;
+            document.getElementById('hero-display').classList.remove('hidden');
+            document.getElementById('start-all-btn').classList.remove('hidden');
+            document.getElementById('export-btn').classList.remove('hidden');
+            document.getElementById('end-turn-btn').disabled = false;
+            initTraining();
+        }
+
+        document.getElementById('restart-btn').onclick = () => location.reload();
+
+        document.getElementById('export-btn').onclick = () => {
+            if (logs.length === 0) {
+                alert("No logs captured yet!");
+                return;
+            }
+            const blob = new Blob([JSON.stringify(logs, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `training_partial_${selectedHero.name.replace(/\s+/g, '_')}.json`;
+            a.click();
+        };
+
+        function initTraining() {
+            const grid = document.getElementById('training-grid');
+            grid.innerHTML = '';
+            iframes = [];
+            for (let i = 0; i < 8; i++) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'iframe-wrapper';
+                wrapper.innerHTML = `
+                    <div class="instance-id">#${i+1}</div>
+                    <div class="click-overlay" onclick="startInstance(this, ${i})">Waiting for assets...</div>
+                `;
+                const iframe = document.createElement('iframe');
+                iframe.src = 'coliseum.html?training=true';
+                wrapper.appendChild(iframe);
+                grid.appendChild(wrapper);
+                iframes.push(iframe);
+                iframe.onload = () => {
+                    iframe.contentWindow.IS_TRAINING_GROUNDS = true;
+                    setupIframe(iframe, i);
+                };
+            }
+            window.addEventListener('resize', scaleIframes);
+            scaleIframes();
+        }
+
+        function scaleIframes() {
+            const wrappers = document.querySelectorAll('.iframe-wrapper');
+            if (wrappers.length === 0) return;
+            const w = wrappers[0].offsetWidth;
+            const scale = w / 1600;
+            const h = 900 * scale;
+            
+            wrappers.forEach(wrapper => {
+                wrapper.style.height = h + 'px';
+                const f = wrapper.querySelector('iframe');
+                if (f) f.style.transform = `scale(${scale})`;
+            });
+        }
+
+        function setupIframe(iframe, index) {
+            const win = iframe.contentWindow;
+            const doc = iframe.contentDocument;
+
+            const interval = setInterval(() => {
+                // Wait for HEROES and state to be available
+                if (win.HEROES && win.availableCards && win.availableCards.length > 0 && win.state) {
+                    clearInterval(interval);
+
+                    if (win.state.player) win.state.player.overallHp = 100;
+                    
+                    const heroKey = Object.keys(win.HEROES).find(k => {
+                        const h = win.HEROES[k];
+                        return h.name === selectedHero.name || h.fullName?.includes(selectedHero.name);
+                    });
+
+                    if (heroKey) {
+                        const heroObj = JSON.parse(JSON.stringify(win.HEROES[heroKey]));
+                        const originalHero = win.HEROES[heroKey];
+                        if (originalHero.heroPower && originalHero.heroPower.effect) {
+                            heroObj.heroPower.effect = originalHero.heroPower.effect;
+                        }
+
+                        Object.keys(win.HEROES).forEach(key => {
+                            if (key !== 'MARKETTO') Object.assign(win.HEROES[key], heroObj);
+                        });
+
+                        win.getInitialOpponents = () => [];
+                        win.showEndScreen = () => { console.log("End screen suppressed"); };
+                        
+                        const originalStartBattle = win.startBattleTurn;
+                        win.startBattleTurn = async function() {
+                            const state = win.state;
+                            if (!state) return;
+                            const p = state.player;
+
+                            // Serialization for bot re-import (THE IMPORTANT BIT)
+                            const boardSnapshot = p.board.map(c => ({
+                                card_name: c.card_name,
+                                avatar: c.avatar,
+                                set: c.set,
+                                number: c.number,
+                                image_type: c.image_type,
+                                isFoil: !!c.isFoil,
+                                counters: c.counters || 0,
+                                tempPower: c.tempPower || 0,
+                                tempToughness: c.tempToughness || 0,
+                                damageTaken: c.damageTaken || 0,
+                                flyingCounters: c.flyingCounters || 0,
+                                menaceCounters: c.menaceCounters || 0,
+                                firstStrikeCounters: c.firstStrikeCounters || 0,
+                                doubleStrikeCounters: c.doubleStrikeCounters || 0,
+                                vigilanceCounters: c.vigilanceCounters || 0,
+                                lifelinkCounters: c.lifelinkCounters || 0,
+                                deathtouchCounters: c.deathtouchCounters || 0,
+                                trampleCounters: c.trampleCounters || 0,
+                                reachCounters: c.reachCounters || 0,
+                                hexproofCounters: c.hexproofCounters || 0,
+                                shieldCounters: c.shieldCounters || 0,
+                                isDecayed: !!c.isDecayed,
+                                isToken: !!c.isToken,
+                                isLockedByChivalry: !!c.isLockedByChivalry,
+                                temporaryHumility: !!c.temporaryHumility,
+                                temporarySphinx: !!c.temporarySphinx,
+                                indestructibleUsed: !!c.indestructibleUsed,
+                                isDestroyed: !!c.isDestroyed,
+                                equipment: c.equipment ? { card_name: c.equipment.card_name, avatar: c.equipment.avatar, set: c.equipment.set } : null,
+                                enchantments: (c.enchantments || []).map(e => ({
+                                    card_name: e.card_name,
+                                    avatar: e.avatar,
+                                    set: e.set,
+                                    rules_text: e.rules_text,
+                                    isTemporary: !!e.isTemporary
+                                }))
+                            }));
+
+                            // Prepare data for the opponent instance to use
+                            iframe.dataset.combatData = JSON.stringify({
+                                hero: p.hero,
+                                tier: p.tier,
+                                overallHp: p.overallHp,
+                                fightHp: 5 + (5 * p.tier),
+                                board: boardSnapshot,
+                                honorBegetsGloryBonus: p.honorBegetsGloryBonus || 0,
+                                crainActive: !!p.crainActive,
+                                playmat: p.playmat
+                            });
+
+                            iframe.dataset.readyForCombat = "true";
+
+                            // Wait for pairing
+                            while(!iframe.dataset.opponentData) {
+                                await new Promise(r => setTimeout(r, 100));
+                            }
+
+                            const opponentData = JSON.parse(iframe.dataset.opponentData);
+
+                            // Reconstruction logic: Ensure the opponent's board is exactly what was built
+                            const reconstructedBoard = opponentData.board.map(data => {
+                                if (!win.CardFactory || !win.availableCards) {
+                                    console.error("CardFactory or availableCards not found in iframe window!");
+                                    return data; // Fallback to raw data
+                                }
+
+                                // Find base data to ensure we have P/T, rules_text, etc.
+                                const baseData = win.availableCards.find(bc => bc.card_name === data.card_name);
+                                if (!baseData) console.warn("Could not find base data for", data.card_name);
+
+                                const inst = win.CardFactory.create({ ...baseData, ...data });
+
+                                // Explicitly restore all serialized state (in case CardFactory didn't catch everything)
+                                Object.assign(inst, data);
+
+                                // Ensure equipment is also a real instance if it exists
+                                if (data.equipment) {
+                                    const eqBase = win.availableCards.find(bc => bc.card_name === data.equipment.card_name);
+                                    inst.equipment = win.CardFactory.create({ ...eqBase, ...data.equipment });
+                                    Object.assign(inst.equipment, data.equipment);
+                                    if (inst.equipment.syncVisualState) inst.equipment.syncVisualState();
+                                }
+                                // Ensure enchantments are handled
+                                if (data.enchantments) {
+                                    inst.enchantments = data.enchantments.map(e => {
+                                        const encBase = win.availableCards.find(bc => bc.card_name === e.card_name);
+                                        const enc = win.CardFactory.create({ ...encBase, ...e });
+                                        Object.assign(enc, e);
+                                        if (enc.syncVisualState) enc.syncVisualState();
+                                        return enc;
+                                    });
+                                }
+                                inst.owner = 'opponent';
+                                if (inst.syncVisualState) inst.syncVisualState();
+                                return inst;
+                            });
+
+                            state.opponents = [{
+                                ...opponentData,
+                                board: reconstructedBoard,
+                                fightHp: opponentData.fightHp,
+                                tier: opponentData.tier,
+                                hero: opponentData.hero
+                            }];
+                            state.currentOpponentId = 0;
+
+                            // Ensure player board is also synced
+                            p.board.forEach(c => { if (c.syncVisualState) c.syncVisualState(); });
+
+                            // Force the internal state to recognize the new opponent immediately
+                            win.render();
+
+                            // Run real combat
+                            await originalStartBattle.apply(this, arguments);
+
+                            // Capture result
+                            logs.push({
+                                instance: index + 1,
+                                hero: p.hero.name,
+                                turn: state.turn,
+                                tier: p.tier,
+                                honorBegetsGloryBonus: p.honorBegetsGloryBonus || 0,
+                                crainActive: !!p.crainActive,
+                                preCombatBoard: boardSnapshot,
+                                resultFightHp: p.fightHp,
+                                opponentResultFightHp: state.opponents[0].fightHp,
+                                resultOverallHp: p.overallHp,
+                                opponentResultOverallHp: state.opponents[0].overallHp
+                            });
+
+                            delete iframe.dataset.readyForCombat;
+                            delete iframe.dataset.opponentData;
+                            delete iframe.dataset.combatData;
+                        };
+                        
+                        const heroPreviewImg = doc.getElementById('current-hero-img');
+                        const frontHeroName = doc.getElementById('current-hero-name');
+                        if (heroPreviewImg) heroPreviewImg.src = selectedHero.avatar;
+                        if (frontHeroName) frontHeroName.textContent = selectedHero.name;
+                    }
+
+                    const style = doc.createElement('style');
+                    style.id = "training-styles";
+                    style.textContent = `
+                        #roster-sidebar { display: none !important; }
+                        #end-turn-btn { display: none; }
+                        body { overflow: hidden !important; background: #000 !important; }
+                    `;
+                    doc.head.appendChild(style);
+
+                    if (win.Audio) win.Audio = class { play() {} };
+
+                    const overlay = iframe.parentElement.querySelector('.click-overlay');
+                    if (overlay) {
+                        overlay.textContent = "Ready to Start";
+                        overlay.style.background = "rgba(0, 50, 0, 0.8)";
+                        overlay.dataset.ready = "true";
+                    }
+                }
+            }, 100);
+        }
+
+        function startInstance(overlay, index) {
+            const iframe = iframes[index];
+            const win = iframe.contentWindow;
+            const doc = iframe.contentDocument;
+            const playBtn = doc.getElementById('play-button');
+
+            if (playBtn) {
+                // Hide front page only when starting
+                const frontPage = doc.getElementById('front-page');
+                const cabinet = doc.getElementById('game-cabinet');
+                if (frontPage) frontPage.style.display = 'none';
+                if (cabinet) {
+                    cabinet.style.display = 'flex';
+                    cabinet.style.opacity = '1';
+                    cabinet.style.visibility = 'visible';
+                }
+
+                if (win.state && win.state.player) {
+                    win.state.player.overallHp = 100;
+                }
+
+                playBtn.click();
+                overlay.style.display = 'none';
+            }
+        }
+
+        document.getElementById('start-all-btn').onclick = function() {
+            document.querySelectorAll('.click-overlay').forEach((overlay, i) => {
+                if (overlay.dataset.ready === "true") {
+                    startInstance(overlay, i);
+                }
+            });
+            this.classList.add('hidden');
+        };
+
+        document.getElementById('end-turn-btn').onclick = async () => {
+            if (turn >= 20) {
+                finishTraining();
+                return;
+            }
+
+            // 1. Trigger shop end for everyone
+            iframes.forEach(iframe => {
+                const doc = iframe.contentDocument;
+                const internalBtn = doc.getElementById('end-turn-btn');
+                if (internalBtn && !internalBtn.disabled && internalBtn.textContent === 'End Turn') {
+                    internalBtn.click();
+                }
+            });
+
+            // 2. Wait for all to be ready for combat (up to 5s)
+            let attempts = 0;
+            while (attempts < 50) {
+                const readyCount = iframes.filter(f => f.dataset.readyForCombat === "true").length;
+                if (readyCount === iframes.length) break;
+                await new Promise(r => setTimeout(r, 100));
+                attempts++;
+            }
+
+            if (attempts >= 50) {
+                alert("Some instances didn't reach combat ready state. Please check for unfinished actions (targeting, scrying, etc).");
+                return;
+            }
+
+            // 3. Pair them up randomly
+            const shuffled = [...iframes].sort(() => Math.random() - 0.5);
+            for (let i = 0; i < shuffled.length; i += 2) {
+                const f1 = shuffled[i];
+                const f2 = shuffled[i+1];
+
+                const data1 = f1.dataset.combatData;
+                const data2 = f2.dataset.combatData;
+
+                // Inject opponent data to trigger their local patched startBattleTurn loops
+                f1.dataset.opponentData = data2;
+                f2.dataset.opponentData = data1;
+            }
+
+            // 4. Update UI
+            turn++;
+            document.getElementById('turn-display').textContent = `Turn ${turn} / 20`;
+            
+            if (turn >= 20) {
+                // Give combat time to resolve before finishing
+                setTimeout(finishTraining, 5000);
+            }
+        };
+
+        function finishTraining() {
+            const blob = new Blob([JSON.stringify(logs, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `training_${selectedHero.name.replace(/\s+/g, '_')}.json`;
+            a.click();
+            location.reload();
+        }
+    </script>
+</body>
+</html>

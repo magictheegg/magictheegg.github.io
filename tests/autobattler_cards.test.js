@@ -46,7 +46,8 @@ if (typeof document === 'undefined') {
         addEventListener: () => {},
         innerWidth: 1920,
         innerHeight: 1080,
-        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' })
+        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' }),
+        location: { search: '' }
     };
     global.requestAnimationFrame = (cb) => setTimeout(cb, 16);
     global.WebKitCSSMatrix = class { constructor() { this.a = 1; } };
@@ -127,7 +128,7 @@ function resetState() {
 
 // --- TIER 1 TESTS ---
 
-function testHuitzilSkywatch() {
+async function testHuitzilSkywatch() {
     resetState();
     const card = CardFactory.create({ card_name: "Huitzil Skywatch", pt: "1/4", rules_text: "Flying" });
     assert.strictEqual(card.hasKeyword('flying'), true, "Huitzil Skywatch should have Flying");
@@ -136,7 +137,7 @@ function testHuitzilSkywatch() {
     assert.strictEqual(stats.t, 4);
 }
 
-function testGlumvaleRaven() {
+async function testGlumvaleRaven() {
     resetState();
     const raven = CardFactory.create({ card_name: "Glumvale Raven", pt: "1/2", rules_text: `Flying
 Glumvale Raven gets +1/+0 as long as you control another creature with flying.` });
@@ -155,7 +156,7 @@ Glumvale Raven gets +1/+0 as long as you control another creature with flying.` 
     assert.strictEqual(raven.getDisplayStats(state.player.board).p, 1, "Raven should be 1/2 again after flyer removed");
 }
 
-function testRottenCarcass() {
+async function testRottenCarcass() {
     resetState();
     const carcass = CardFactory.create({ card_name: "Rotten Carcass", pt: "1/1", set: "AEX", rules_text: "When Rotten Carcass dies, create a 2/2 colorless Construct artifact creature token." });
     
@@ -191,7 +192,7 @@ function testRottenCarcass() {
     assert.strictEqual(state.player.board[0].card_name, "Rotten Carcass", "Original Carcass still on player board");
 }
 
-function testWarClanDowager() {
+async function testWarClanDowager() {
     resetState();
     const dowager = CardFactory.create({ card_name: "War-Clan Dowager", pt: "2/2", type: "Creature – Centaur Cleric" });
     state.player.board.push(dowager);
@@ -206,7 +207,7 @@ function testWarClanDowager() {
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 2, "2/2 again after centaur removed");
 }
 
-function testClairvoyantKoi() {
+async function testClairvoyantKoi() {
     resetState();
     const koi = CardFactory.create({ card_name: "Clairvoyant Koi", pt: "2/1" });
     state.player.board.push(koi);
@@ -215,7 +216,7 @@ function testClairvoyantKoi() {
     assert.strictEqual(koi.tempPower, 1, "Prowess +1/+1");    assert.strictEqual(koi.tempToughness, 1);
 }
 
-function testSoulsmokeAdept() {
+async function testSoulsmokeAdept() {
     resetState();
     const adept = CardFactory.create({ card_name: "Soulsmoke Adept", pt: "2/2" });
     state.player.board.push(adept);
@@ -232,7 +233,7 @@ function testSoulsmokeAdept() {
     assert.strictEqual(adept.hasKeyword('lifelink'), true, "Counter should trigger lifelink");
 }
 
-function testIntliAssaulter() {
+async function testIntliAssaulter() {
     resetState();
     const intli = CardFactory.create({ card_name: "Intli Assaulter", pt: "2/2" });
     state.player.board = [intli];
@@ -252,13 +253,13 @@ function testIntliAssaulter() {
     assert.strictEqual(effectApplied, false, "Intli Assaulter should not be able to sacrifice itself");
 }
 
-function testSparringCampaigner() {
+async function testSparringCampaigner() {
     resetState();
     const campaigner = CardFactory.create({ card_name: "Sparring Campaigner", pt: "2/2" });
     const target = CardFactory.create({ card_name: "Weakling", pt: "1/1" });
     state.player.board = [campaigner, target];
     
-    campaigner.onCombatStart(state.player.board);
+    await campaigner.onCombatStart(state.player.board);
     assert.strictEqual(target.tempPower, 2, "Target should get +2/+2");
     assert.strictEqual(campaigner.isLockedByChivalry, true, "Campaigner should be locked");
 
@@ -266,12 +267,12 @@ function testSparringCampaigner() {
     const target2 = CardFactory.create({ card_name: "Stronger", pt: "2/2" });
     state.player.board = [campaigner, target2];
     campaigner.isLockedByChivalry = false;
-    campaigner.onCombatStart(state.player.board);
+    await campaigner.onCombatStart(state.player.board);
     assert.strictEqual(target2.tempPower, 0, "Target should not get buff if power >= 2");
     assert.strictEqual(campaigner.isLockedByChivalry, false, "Campaigner should not be locked");
 }
 
-function testRakkiriArcher() {
+async function testRakkiriArcher() {
     resetState();
     const archer = CardFactory.create({ card_name: "Rakkiri Archer", pt: "2/3", rules_text: "Reach" });
     state.player.board = [archer];
@@ -283,20 +284,20 @@ function testRakkiriArcher() {
     assert.strictEqual(archer.getDisplayStats(state.player.board).t, 5, "2/3 + 1 counter + 1 dynamic = 5 toughness");
 }
 
-function testBlisteringLunatic() {
+async function testBlisteringLunatic() {
     resetState();
     const lunatic = CardFactory.create({ card_name: "Blistering Lunatic", pt: "2/1" });
     lunatic.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(lunatic.tempPower, 2, "+2/+0 on noncreature cast");
 }
 
-function testSanctuaryCentaur() {
+async function testSanctuaryCentaur() {
     resetState();
     const centaur = CardFactory.create({ card_name: "Sanctuary Centaur", pt: "3/2", rules_text: "Trample" });
     assert.strictEqual(centaur.hasKeyword('trample'), true);
 }
 
-function testDutifulCamel() {
+async function testDutifulCamel() {
     resetState();
     const camel = CardFactory.create({ card_name: "Dutiful Camel", pt: "1/1" });
     const other = CardFactory.create({ card_name: "Other", pt: "2/2" });
@@ -319,14 +320,14 @@ function testDutifulCamel() {
     assert.strictEqual(camel.counters, 1, "Self should gain counter");
 }
 
-function testFrontlineCavalier() {
+async function testFrontlineCavalier() {
 
     resetState();
     const cavalier = CardFactory.create({ card_name: "Frontline Cavalier", pt: "2/2", rules_text: "Vigilance" });
     assert.strictEqual(cavalier.hasKeyword('vigilance'), true);
 }
 
-function testLakeCaveLurker() {
+async function testLakeCaveLurker() {
     resetState();
     const lurker = CardFactory.create({ card_name: "Lake Cave Lurker", pt: "1/1" });
     
@@ -340,7 +341,7 @@ function testLakeCaveLurker() {
     assert.strictEqual(state.player.treasures, 1, "Should gain 1 treasure in battle");
 }
 
-function testFaithInDarkness() {
+async function testFaithInDarkness() {
     resetState();
     const spell = CardFactory.create({ card_name: "Faith in Darkness" });
     const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
@@ -350,7 +351,7 @@ function testFaithInDarkness() {
     assert.strictEqual(target.getDisplayStats([]).p, 4, "Faith in Darkness gives +2/+2");
 }
 
-function testScientificInquiry() {
+async function testScientificInquiry() {
     resetState();
     const spell = CardFactory.create({ card_name: "Scientific Inquiry" });
     spell.onCast(state.player.board);
@@ -358,7 +359,7 @@ function testScientificInquiry() {
     assert.strictEqual(state.scrying.count, 2);
 }
 
-function testToBattle() {
+async function testToBattle() {
     resetState();
     const spell = CardFactory.create({ card_name: "To Battle" });
     const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
@@ -368,14 +369,14 @@ function testToBattle() {
     assert.strictEqual(target.getDisplayStats([]).p, 3, "2 base + 1 counter = 3 power");
 }
 
-function testDivination() {
+async function testDivination() {
     resetState();
     const spell = CardFactory.create({ card_name: "Divination" });
     spell.onCast(state.player.board);
     assert.strictEqual(state.shop.cards.length, 2);
 }
 
-function testMightAndMane() {
+async function testMightAndMane() {
     resetState();
     const spell = CardFactory.create({ card_name: "Might and Mane" });
     const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
@@ -387,7 +388,7 @@ function testMightAndMane() {
     assert.strictEqual(state.shop.cards[0].costReduction, 1, "Added card should be discounted");
 }
 
-function testWayOfTheBygone() {
+async function testWayOfTheBygone() {
     resetState();
     const spell = CardFactory.create({ card_name: "Way of the Bygone" });
     const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
@@ -402,7 +403,7 @@ function testWayOfTheBygone() {
 
 // --- TIER 2 TESTS ---
 
-function testExoticGameHunter() {
+async function testExoticGameHunter() {
     resetState();
     const hunter = CardFactory.create({ card_name: "Exotic Game Hunter", pt: "2/2" });
     state.player.board = [hunter];
@@ -416,7 +417,7 @@ function testExoticGameHunter() {
     assert.strictEqual(hunter.counters, 1, "Should gain counter if death occurred");
 }
 
-function testRestlessOppressor() {
+async function testRestlessOppressor() {
     resetState();
     const oppressor = CardFactory.create({ card_name: "Restless Oppressor", pt: "2/2" });
     const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
@@ -441,7 +442,7 @@ function testRestlessOppressor() {
     assert.strictEqual(oppressor2.counters, 0, "Should NOT gain counter in battle");
 }
 
-function testShriekingPusbag() {
+async function testShriekingPusbag() {
     resetState();
     const pusbag = CardFactory.create({ card_name: "Shrieking Pusbag", pt: "2/1" });
     state.player.board = [pusbag];
@@ -451,7 +452,7 @@ function testShriekingPusbag() {
     assert.ok(target, "Should be able to find and target self");
 }
 
-function testExecutionersMadness() {
+async function testExecutionersMadness() {
     resetState();
     const spell = CardFactory.create({ card_name: "Executioner's Madness", set: "und", type: "Sorcery" });
     const sacTarget = CardFactory.create({ card_name: "Sacrifice Me", pt: "1/1", type: "Creature" });
@@ -485,7 +486,7 @@ function testExecutionersMadness() {
     assert.strictEqual(adaptiveTarget.tempPower, 10, "Adaptive buff gives double (+10/+6)");
 }
 
-function testEarthrattleXali() {
+async function testEarthrattleXali() {
     resetState();
     const xali = CardFactory.create({ card_name: "Earthrattle Xali", pt: "2/2" });
     state.player.board = [xali];
@@ -493,7 +494,7 @@ function testEarthrattleXali() {
     assert.strictEqual(xali.tempPower, 1, "Should gain +1/+1 on noncreature cast");
 }
 
-function testDynamicWyvern() {
+async function testDynamicWyvern() {
     resetState();
     const wyvernData = fullCardPool.find(c => c.card_name === "Dynamic Wyvern");
     const wyvern = CardFactory.create(wyvernData);
@@ -505,13 +506,13 @@ function testDynamicWyvern() {
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Loses flying after cleanup");
 }
 
-function testBristledDirebear() {
+async function testBristledDirebear() {
     resetState();
     const bear = CardFactory.create({ card_name: "Bristled Direbear", pt: "2/2", rules_text: "Adaptive" });
     assert.strictEqual(bear.hasKeyword('adaptive'), true, "Should have Adaptive");
 }
 
-function testConsultTheDewdrops() {
+async function testConsultTheDewdrops() {
     resetState();
     const spell = CardFactory.create({ card_name: "Consult the Dewdrops" });
     availableCards.length = 0;
@@ -532,7 +533,7 @@ function testConsultTheDewdrops() {
     assert.strictEqual(foundSpell, true, "Should only find noncreature cards");
 }
 
-function testEnvoyOfThePure() {
+async function testEnvoyOfThePure() {
     resetState();
     const envoy = CardFactory.create({ card_name: "Envoy of the Pure", pt: "3/3" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -543,23 +544,23 @@ function testEnvoyOfThePure() {
     assert.strictEqual(envoy.tempPower, 0, "Envoy does not buff self");
 }
 
-function testCentaurWayfinder() {
+async function testCentaurWayfinder() {
     resetState();
     const wayfinder = CardFactory.create({ card_name: "Centaur Wayfinder", pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [wayfinder];
-    const targets = wayfinder.onAttack(state.player.board);
+    const targets = await wayfinder.onAttack(state.player.board);
     assert.strictEqual(targets.length, 1, "Only one target if only one Centaur");
     assert.strictEqual(targets[0].id, wayfinder.id);
     
     resetState();
     const other = CardFactory.create({ card_name: "Other Centaur", pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [wayfinder, other];
-    const targets2 = wayfinder.onAttack(state.player.board);
+    const targets2 = await wayfinder.onAttack(state.player.board);
     assert.strictEqual(targets2.length, 2, "Two targets if two Centaurs");
     assert.notStrictEqual(targets2[0].id, targets2[1].id, "Targets should be unique");
 }
 
-function testWarbandLieutenant() {
+async function testWarbandLieutenant() {
     resetState();
     const lieutenant = CardFactory.create({ card_name: "Warband Lieutenant", pt: "2/2", type: "Creature – Centaur" });
     const other = CardFactory.create({ card_name: "Other Centaur", pt: "2/2", type: "Creature – Centaur" });
@@ -570,7 +571,7 @@ function testWarbandLieutenant() {
     assert.strictEqual(other.getDisplayStats(state.player.board).p, 2, "Buff wears off when Lieutenant is gone");
 }
 
-function testWarriorsWays() {
+async function testWarriorsWays() {
     resetState();
     const spell = CardFactory.create({ card_name: "Warrior's Ways", set: "sur", type: "Instant" });
     const centaur = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature – Centaur" });
@@ -589,7 +590,7 @@ function testWarriorsWays() {
     assert.strictEqual(centaur.counters, 1, "Centaur also got counter");
 }
 
-function testStratusTraveler() {
+async function testStratusTraveler() {
     // 1. Not Cirrusea -> Shift + Bird
     resetState();
     availableCards.push({ card_name: "Bird", shape: "token", pt: "1/2", set: "AEX", type: "Creature", rules_text: "Flying" });
@@ -625,7 +626,7 @@ function testStratusTraveler() {
     assert.strictEqual(targetFly.counters, 1, "Gained +1/+1 counter");
 }
 
-function testRapaciousSprite() {
+async function testRapaciousSprite() {
     resetState();
     const sprite = CardFactory.create({ card_name: "Rapacious Sprite", pt: "1/2", rules_text: "Flying" });
     assert.strictEqual(sprite.hasKeyword('flying'), true);
@@ -633,7 +634,7 @@ function testRapaciousSprite() {
     assert.strictEqual(state.player.treasures, 1);
 }
 
-function testUpInArms() {
+async function testUpInArms() {
     // Case 1: Two targets (Honest call)
     resetState();
     const spell1 = CardFactory.create({ card_name: "Up in Arms", set: "und", type: "Sorcery" });
@@ -661,24 +662,24 @@ function testUpInArms() {
     assert.strictEqual(t3.counters, 2, "One target gets both counters");
 }
 
-function testSilkenSpinner() {
+async function testSilkenSpinner() {
     resetState();
     const spinner = CardFactory.create({ card_name: "Silken Spinner", pt: "3/4", rules_text: "Reach" });
     assert.strictEqual(spinner.hasKeyword('reach'), true);
 }
 
-function testGnomishSkirmisher() {
+async function testGnomishSkirmisher() {
     resetState();
     const gnome = CardFactory.create({ card_name: "Gnomish Skirmisher", pt: "1/4" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
     state.player.board = [gnome, other];
     
-    gnome.onAttack(state.player.board);
+    await gnome.onAttack(state.player.board);
     assert.strictEqual(other.tempPower, 1, "Other gets +1/+0");
     assert.strictEqual(gnome.tempPower, 0, "Gnome does not buff self");
 }
 
-function testForesee() {
+async function testForesee() {
     resetState();
     const spell = CardFactory.create({ card_name: "Foresee" });
     spell.onCast(state.player.board);
@@ -689,7 +690,7 @@ function testForesee() {
     assert.strictEqual(state.shop.cards.length, startShopSize + 2, "Should add 2 cards to shop after scry");
 }
 
-function testFightSong() {
+async function testFightSong() {
     resetState();
     const spell = CardFactory.create({ card_name: "Fight Song" });
     const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
@@ -710,7 +711,7 @@ function testFightSong() {
     assert.strictEqual(target.hasKeyword('indestructible'), false, "Indestructible should wear off after cleanup");
 }
 
-function testEdgeOfTheirSeats() {
+async function testEdgeOfTheirSeats() {
     resetState();
     const spell = CardFactory.create({ card_name: "Edge of Their Seats" });
     const c1 = CardFactory.create({ card_name: "C1", pt: "1/1" });
@@ -723,7 +724,7 @@ function testEdgeOfTheirSeats() {
 
 // --- TIER 3 TESTS ---
 
-function testRazorbackTrenchrunner() {
+async function testRazorbackTrenchrunner() {
     resetState();
     const runner = CardFactory.create({ card_name: "Razorback Trenchrunner", pt: "5/1", rules_text: "Haste" });
     availableCards.push({ card_name: "Ox", shape: "token", pt: "3/3", set: "KOD", type: "Creature" });
@@ -733,7 +734,7 @@ function testRazorbackTrenchrunner() {
     assert.strictEqual(spawns[0].isTrenchrunnerSpawn, true);
 }
 
-function testSporegraftSlime() {
+async function testSporegraftSlime() {
     resetState();
     const slime = CardFactory.create({ card_name: "Sporegraft Slime", pt: "1/3" });
     const healthy = CardFactory.create({ card_name: "Healthy", pt: "2/2" });
@@ -751,7 +752,7 @@ function testSporegraftSlime() {
     }
 }
 
-function testMoonlightStag() {
+async function testMoonlightStag() {
     resetState();
     const stag = CardFactory.create({ card_name: "Moonlight Stag", pt: "2/5", type: "Creature - Elk Spirit" });
     state.player.board = [stag];
@@ -774,7 +775,7 @@ function testMoonlightStag() {
     assert.strictEqual(stag.hasKeyword('vigilance'), false, "Should NOT have vigilance from flying counter");
 }
 
-function testCovetousWechuge() {
+async function testCovetousWechuge() {
     resetState();
     const wechuge = CardFactory.create({ card_name: "Covetous Wechuge", pt: "1/1", rules_text: "Menace" });
     const snack = CardFactory.create({ card_name: "Snack", pt: "1/1" });
@@ -786,7 +787,7 @@ function testCovetousWechuge() {
     assert.strictEqual(targetSelf.id === source.id, true, "IDs should match");
 }
 
-function testCabracansFamiliar() {
+async function testCabracansFamiliar() {
     resetState();
     const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
     assert.strictEqual(familiar.getDisplayStats([]).p, 4);
@@ -817,7 +818,7 @@ async function testCabracansFamiliar_Shield() {
     assert.strictEqual(defender.damageTaken, 4, "Regular combat damage should happen after shield pop");
 }
 
-function testFinwingDrake() {
+async function testFinwingDrake() {
     resetState();
     const drake = CardFactory.create({ card_name: "Finwing Drake", pt: "3/4", rules_text: "Flying" });
     assert.strictEqual(drake.hasKeyword('flying'), true);
@@ -825,7 +826,7 @@ function testFinwingDrake() {
     assert.strictEqual(drake.tempPower, 1, "Prowess +1/+1");
 }
 
-function testShrewdParliament() {
+async function testShrewdParliament() {
     // Case 1: Graveyard and Discardable card (Success)
     resetState();
     const parliament = CardFactory.create({ card_name: "Shrewd Parliament", pt: "2/1", rules_text: "Flying" });
@@ -850,14 +851,14 @@ function testShrewdParliament() {
     assert.strictEqual(state.targetingEffect, null, "Should not trigger if no spells to return");
 }
 
-function testPaleDillettante() {
+async function testPaleDillettante() {
     resetState();
     const dillettante = CardFactory.create({ card_name: "Pale Dillettante", pt: "2/2" });
     dillettante.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(dillettante.counters, 1, "+1/+1 counter on noncreature cast");
 }
 
-function testAetherGuzzler() {
+async function testAetherGuzzler() {
     resetState();
     const guzzler = CardFactory.create({ card_name: "Aether Guzzler", pt: "3/4" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -868,7 +869,7 @@ function testAetherGuzzler() {
     assert.strictEqual(other.tempPower, 1, "Guzzler buffs others");
 }
 
-function testDewdropOracle() {
+async function testDewdropOracle() {
     resetState();
     const oracle = CardFactory.create({ card_name: "Dewdrop Oracle", pt: "2/2" });
     availableCards.length = 0;
@@ -885,7 +886,7 @@ function testDewdropOracle() {
     assert.strictEqual(foundTooHigh, false, "Should not find tier 3+ spells");
 }
 
-function testArroydPassShepherd() {
+async function testArroydPassShepherd() {
     resetState();
     const shepherd = CardFactory.create({ card_name: "Arroyd Pass Shepherd", pt: "1/5", rules_text: "Lifelink", type: "Creature - Centaur Knight" });
     assert.strictEqual(shepherd.getDisplayStats([]).p, 1);
@@ -893,7 +894,7 @@ function testArroydPassShepherd() {
     assert.strictEqual(shepherd.hasKeyword('lifelink'), true);
 }
 
-function testWarbandRallier() {
+async function testWarbandRallier() {
     // 1. Target Another Centaur
     resetState();
     const rallier = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
@@ -935,7 +936,7 @@ function testWarbandRallier() {
     assert.ok(state.targetingEffect, "Targeting should remain active on failure");
 }
 
-function testCybresBandRecruiter() {
+async function testCybresBandRecruiter() {
     resetState();
     availableCards.push({ card_name: "Centaur Knight", shape: "token", pt: "2/2", set: "GSC", type: "Token Creature - Centaur Knight", rules_text: "Vigilance" });
     const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", type: "Creature - Centaur Knight" });
@@ -950,7 +951,7 @@ function testCybresBandRecruiter() {
     assert.strictEqual(token.hasKeyword('vigilance'), true, "Token has Vigilance");
 }
 
-function testCybresClanSquire() {
+async function testCybresClanSquire() {
     resetState();
     const squire = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
     state.player.board = [squire];
@@ -990,7 +991,7 @@ function testCybresClanSquire() {
     assert.strictEqual(squire3.counters, 3, "Squire should have 2 from Rallier effect + 1 from deferred ETB broadcast");
 }
 
-function testCybresBandLancer() {
+async function testCybresBandLancer() {
     resetState();
     const lancer = CardFactory.create({ card_name: "Cybres-Band Lancer", pt: "2/2", rules_text: "First strike", type: "Creature - Centaur Knight" });
     const other = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature - Centaur" });
@@ -1003,13 +1004,13 @@ function testCybresBandLancer() {
 
     assert.strictEqual(lancer.hasKeyword('first strike'), true);
     
-    lancer.onAttack(state.battleBoards.player);
+    await lancer.onAttack(state.battleBoards.player);
     assert.strictEqual(other.tempPower, 1, "Other gets +1/+1");
     assert.strictEqual(other.hasKeyword('first strike'), true, "Other gains First Strike");
     assert.strictEqual(lancer.tempPower, 0, "Lancer does not buff self");
 }
 
-function testWindsongApprentice() {
+async function testWindsongApprentice() {
     resetState();
     const winds = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
     const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying", type: "Creature" });
@@ -1035,7 +1036,7 @@ function testWindsongApprentice() {
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
 }
 
-function testCautherHellkite() {
+async function testCautherHellkite() {
     resetState();
     const hellkite = CardFactory.create({ card_name: "Cauther Hellkite", pt: "4/4", rules_text: "Flying, haste", type: "Creature - Dragon" });
     const e1 = CardFactory.create({ card_name: "E1", pt: "1/1", type: "Creature" });
@@ -1055,14 +1056,14 @@ function testCautherHellkite() {
     assert.strictEqual(hellkite.hasKeyword('flying'), true);
     assert.strictEqual(hellkite.hasKeyword('haste'), true);
     
-    hellkite.onAttack(state.battleBoards.player);
+    await hellkite.onAttack(state.battleBoards.player);
     assert.strictEqual(e1.damageTaken, 1, "Enemy 1 should take 1 damage");
     assert.strictEqual(e2.damageTaken, 1, "Enemy 2 should take 1 damage");
     assert.strictEqual(e3.damageTaken, 0, "Enemy 3 (shielded) should take 0 damage from trigger");
     assert.strictEqual(e3.shieldCounters, 0, "Enemy 3 shield should be popped");
 }
 
-function testLingeringLunatic() {
+async function testLingeringLunatic() {
     resetState();
     const lunatic = CardFactory.create({ card_name: "Lingering Lunatic", pt: "4/5", rules_text: "Vigilance", type: "Creature - Mutant Warlock" });
     const target1 = CardFactory.create({ card_name: "T1", pt: "1/1", type: "Creature" });
@@ -1085,14 +1086,14 @@ function testLingeringLunatic() {
     assert.strictEqual(lunatic.hasKeyword('vigilance'), true, "Lingering Lunatic has Vigilance");
 }
 
-function testBellowingGiant() {
+async function testBellowingGiant() {
     resetState();
     const giant = CardFactory.create({ card_name: "Bellowing Giant", pt: "6/4", rules_text: "Trample" });
     assert.strictEqual(giant.getBasePT().p, 6);
     assert.strictEqual(giant.hasKeyword('trample'), true);
 }
 
-function testBwemaTheRuthless() {
+async function testBwemaTheRuthless() {
     const allProps = ['menaceCounters', 'firstStrikeCounters', 'vigilanceCounters', 'lifelinkCounters'];
     const combos = [
         ['Menace Counter', 'First Strike Counter', 'menaceCounters', 'firstStrikeCounters'],
@@ -1141,7 +1142,7 @@ function testBwemaTheRuthless() {
     });
 }
 
-function testSilverhornTactician() {
+async function testSilverhornTactician() {
     resetState();
     const ox = CardFactory.create({ card_name: "Silverhorn Tactician", pt: "4/4" });
     const source = CardFactory.create({ card_name: "Source", pt: "1/1" });
@@ -1172,13 +1173,13 @@ function testSilverhornTactician() {
     assert.strictEqual(state.targetingEffect, null);
 }
 
-function testQinhanaCavalry() {
+async function testQinhanaCavalry() {
     // 1. Success (Target on right)
     resetState();
     const cavalry = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
     const recruit = CardFactory.create({ card_name: "Recruit", pt: "1/1" });
     state.player.board = [cavalry, recruit];
-    cavalry.onCombatStart(state.player.board);
+    await cavalry.onCombatStart(state.player.board);
     assert.strictEqual(recruit.tempPower, 3, "Target to the right should be buffed");
     assert.strictEqual(cavalry.isLockedByChivalry, true, "Cavalry should be locked");
 
@@ -1187,7 +1188,7 @@ function testQinhanaCavalry() {
     const cavalry2 = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
     const big = CardFactory.create({ card_name: "Big", pt: "4/4" });
     state.player.board = [cavalry2, big];
-    cavalry2.onCombatStart(state.player.board);
+    await cavalry2.onCombatStart(state.player.board);
     assert.strictEqual(big.tempPower, 0);
     assert.strictEqual(cavalry2.isLockedByChivalry, false);
 
@@ -1196,11 +1197,11 @@ function testQinhanaCavalry() {
     const cavalry3 = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
     const leftie = CardFactory.create({ card_name: "Leftie", pt: "1/1" });
     state.player.board = [leftie, cavalry3];
-    cavalry3.onCombatStart(state.player.board);
+    await cavalry3.onCombatStart(state.player.board);
     assert.strictEqual(leftie.tempPower, 0);
 }
 
-function testMekiniEremite() {
+async function testMekiniEremite() {
     resetState();
     const monk = CardFactory.create({ card_name: "Mekini Eremite", pt: "3/1" });
     const attacker = CardFactory.create({ card_name: "Atk", pt: "5/5" });
@@ -1233,14 +1234,14 @@ function testMekiniEremite() {
     assert.strictEqual(target, null, "Should be unblockable with 2 different counter types");
 }
 
-function testFrontierMarkswomen() {
+async function testFrontierMarkswomen() {
     resetState();
     const card = CardFactory.create({ card_name: "Frontier Markswomen", pt: "2/5", rules_text: "Vigilance, reach" });
     assert.strictEqual(card.hasKeyword('vigilance'), true);
     assert.strictEqual(card.hasKeyword('reach'), true);
 }
 
-function testFestivalCelebrants() {
+async function testFestivalCelebrants() {
     resetState();
     const cel = CardFactory.create({ card_name: "Festival Celebrants", pt: "2/2" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -1252,7 +1253,7 @@ function testFestivalCelebrants() {
     assert.strictEqual(cel.counters, 1, "Festival Celebrants should get a counter itself");
 }
 
-function testSuitorOfDeath() {
+async function testSuitorOfDeath() {
     resetState();
     const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
     const healthyVictim = CardFactory.create({ card_name: "Healthy", pt: "1/1" });
@@ -1285,7 +1286,7 @@ function testSuitorOfDeath() {
     assert.ok(true, "Should not crash or trigger sacrifice in shop");
 }
 
-function testServantsOfDydren() {
+async function testServantsOfDydren() {
     // 1. Lord Effect
     resetState();
     const s1 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
@@ -1315,7 +1316,7 @@ function testServantsOfDydren() {
     assert.strictEqual(state.player.board.length, 7, "Should only resurrect one to fill board");
     assert.strictEqual(state.player.deadServantsCount, 1, "Counter should decrement by one");}
 
-function testHoltunBandElder() {
+async function testHoltunBandElder() {
     resetState();
     const elder = CardFactory.create({ card_name: "Holtun-Band Elder", pt: "4/4" });
     state.player.board = [elder];
@@ -1335,7 +1336,7 @@ function testHoltunBandElder() {
     assert.strictEqual(spawns.length, 1, "Should only create one token to respect board limit");
 }
 
-function testWhispersOfTheDead() {
+async function testWhispersOfTheDead() {
     resetState();
     const whispers = CardFactory.create({ card_name: "Whispers of the Dead", type: "Instant" });
     const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
@@ -1391,7 +1392,7 @@ function testWhispersOfTheDead() {
     assert.strictEqual(state.player.deadServantsCount, 1, "Unselected Servant should go to GY/Count");
 }
 
-function testMurkbornMammoth() {
+async function testMurkbornMammoth() {
     resetState();
     const mam = CardFactory.create({ card_name: "Murkborn Mammoth", pt: "7/7", rules_text: "Trample, adaptive" });
     const toBattle = CardFactory.create({ card_name: "To Battle", type: "Instant" });
@@ -1412,7 +1413,7 @@ function testMurkbornMammoth() {
     // Adaptive should trigger copy
     assert.strictEqual(mam.counters, 2, "To Battle (+1/+1 counter) should be doubled (2 counters) by adaptive");
 }
-function testHissingSunspitter() {
+async function testHissingSunspitter() {
     resetState();
     const spit = CardFactory.create({ card_name: "Hissing Sunspitter", pt: "3/3" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -1440,7 +1441,7 @@ function testHissingSunspitter() {
     assert.strictEqual(other.hasKeyword('first strike'), true, "All creatures should gain first strike on 3rd spell");
 }
 
-function testCeremonyOfTribes() {
+async function testCeremonyOfTribes() {
     resetState();
     const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
     const rec = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "2/2" });
@@ -1468,7 +1469,7 @@ function testCeremonyOfTribes() {
     assert.strictEqual(s1.getDisplayStats(state.player.board).p, 4, "S1 should now be 4/4 (2 base + 2 from token copy)");
 }
 
-function testCeremonyOfTribes_NoDoubleTarget() {
+async function testCeremonyOfTribes_NoDoubleTarget() {
     resetState();
     const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
     const rec1 = CardFactory.create({ card_name: "Recruiter 1", pt: "2/2" });
@@ -1488,7 +1489,7 @@ function testCeremonyOfTribes_NoDoubleTarget() {
     assert.strictEqual(state.player.board.length, 2, "Should not create a copy yet");
 }
 
-function testCeremonyOfTribes_SingleTarget() {
+async function testCeremonyOfTribes_SingleTarget() {
     resetState();
     const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
     const rec = CardFactory.create({ card_name: "Lone Recruiter", pt: "2/2" });
@@ -1504,7 +1505,7 @@ function testCeremonyOfTribes_SingleTarget() {
     assert.strictEqual(state.player.board.length, 2, "Should have created a copy of the lone creature");
 }
 
-function testCeremonyOfTribes_NoCastBuffForCopies() {
+async function testCeremonyOfTribes_NoCastBuffForCopies() {
     resetState();
     const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
     const pale = CardFactory.create({ card_name: "Pale Dillettante", pt: "2/2" });
@@ -1525,7 +1526,7 @@ function testCeremonyOfTribes_NoCastBuffForCopies() {
     assert.strictEqual(copyPale.counters, 0, "Copied Pale Dillettante should NOT get a counter from the spell that created it");
 }
 
-function testCeremonyOfTribes_ETBOrder() {
+async function testCeremonyOfTribes_ETBOrder() {
     resetState();
     const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
     const fest = CardFactory.create({ card_name: "Festival Celebrants", pt: "2/2" });
@@ -1547,7 +1548,7 @@ function testCeremonyOfTribes_ETBOrder() {
     assert.strictEqual(tokenLuna.counters, 2, "Lunatic token should receive buff from Celebrants token and then proliferate it");
 }
 
-function testGhessianMemories() {
+async function testGhessianMemories() {
     resetState();
     const gm = CardFactory.create({ card_name: "Ghessian Memories", type: "Instant" });
     const squire = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur" });
@@ -1570,14 +1571,14 @@ function testGhessianMemories() {
     assert.strictEqual(token.hasKeyword('hexproof'), true, "Token gained Hexproof");
 }
 
-function testHeroOfALostWar_Self() {
+async function testHeroOfALostWar_Self() {
     resetState();
     const hero = CardFactory.create({ card_name: "Hero of a Lost War", pt: "3/3", type: "Creature - Centaur Knight" });
     state.player.board = [hero];
     hero.owner = 'player';
     
     // We must pass the board to the trigger
-    hero.onCombatStart(state.player.board);
+    await hero.onCombatStart(state.player.board);
     
     // The hero in the board array has the updated temp stats.
     const updatedHero = state.player.board[0];
@@ -1586,7 +1587,7 @@ function testHeroOfALostWar_Self() {
     assert.strictEqual(updatedHero.hasKeyword('indestructible'), true, "Hero gained Indestructible");
 }
 
-function testHeroOfALostWar_Other() {
+async function testHeroOfALostWar_Other() {
     resetState();
     const hero = CardFactory.create({ card_name: "Hero of a Lost War", pt: "3/3", type: "Creature - Centaur Knight" });
     const otherCentaur = CardFactory.create({ card_name: "Other", pt: "1/1", type: "Creature - Centaur" });
@@ -1595,7 +1596,7 @@ function testHeroOfALostWar_Other() {
 
     const originalRandom = Math.random;
     Math.random = () => 0.99; // Pick 'Other' (index 1)
-    hero.onCombatStart(state.player.board);
+    await hero.onCombatStart(state.player.board);
     Math.random = originalRandom;
 
     const otherStats = otherCentaur.getDisplayStats(state.player.board);
@@ -1603,7 +1604,7 @@ function testHeroOfALostWar_Other() {
     assert.strictEqual(otherCentaur.hasKeyword('indestructible'), true, "Other Centaur gained Indestructible");
 }
 
-function testHeroOfHedria() {
+async function testHeroOfHedria() {
     resetState();
     const hedria = CardFactory.create({ card_name: "Hero of Hedria", pt: "3/3", rules_text: "Double strike" });
     
@@ -1615,7 +1616,7 @@ function testHeroOfHedria() {
     assert.strictEqual(hedria.hasKeyword('double strike'), true, "Should have Double strike keyword");
 }
 
-function testHexproof_SuitorOfDeath_Fizzle() {
+async function testHexproof_SuitorOfDeath_Fizzle() {
     resetState();
     const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
     const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
@@ -1634,7 +1635,7 @@ function testHexproof_SuitorOfDeath_Fizzle() {
     assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed (Fizzled)");
 }
 
-function testHexproof_SuitorOfDeath_Targeting() {
+async function testHexproof_SuitorOfDeath_Targeting() {
     resetState();
     const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
     const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
@@ -1655,7 +1656,7 @@ function testHexproof_SuitorOfDeath_Targeting() {
     assert.strictEqual(normalVictim.isDestroyed, true, "Normal creature MUST be the one destroyed");
 }
 
-function testHexproof_CabracansFamiliar() {
+async function testHexproof_CabracansFamiliar() {
     resetState();
     const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "2/2" });
     const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "2/2", rules_text: "Hexproof" });
@@ -1684,7 +1685,7 @@ function testHexproof_CabracansFamiliar() {
     assert.strictEqual(hexVictim.damageTaken, 2, "Hex Victim trades");
 }
 
-function testHeroOfHedria() {
+async function testHeroOfHedria() {
     resetState();
     const hedria = CardFactory.create({ card_name: "Hero of Hedria", pt: "3/3", rules_text: "Double strike" });
     hedria.owner = 'player';
@@ -1701,7 +1702,7 @@ function testHeroOfHedria() {
     assert.strictEqual(totalDamage, 6, "Double strike should deal double damage to face");
 }
 
-function testHexproof_SuitorOfDeath_Fizzle() {
+async function testHexproof_SuitorOfDeath_Fizzle() {
     resetState();
     const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
     const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
@@ -1712,7 +1713,7 @@ function testHexproof_SuitorOfDeath_Fizzle() {
     assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
 }
 
-function testHexproof_SuitorOfDeath_Targeting() {
+async function testHexproof_SuitorOfDeath_Targeting() {
     resetState();
     const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
     const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
@@ -1725,7 +1726,7 @@ function testHexproof_SuitorOfDeath_Targeting() {
     assert.strictEqual(normalVictim.isDestroyed, true, "Normal creature MUST be destroyed instead");
 }
 
-function testHexproof_CabracansFamiliar() {
+async function testHexproof_CabracansFamiliar() {
     resetState();
     const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "2/2" });
     const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "2/2", rules_text: "Hexproof" });
@@ -1740,7 +1741,7 @@ function testHexproof_CabracansFamiliar() {
     assert.strictEqual(hexVictim.damageTaken, 2);
 }
 
-function testThunderRaptor() {
+async function testThunderRaptor() {
     resetState();
     const raptor = CardFactory.create({ card_name: "Thunder Raptor", pt: "4/4", type: "Creature - Bird Warrior", rules_text: "Flying" });
     const otherBird = CardFactory.create({ card_name: "Other Bird", pt: "1/1", type: "Creature - Bird", rules_text: "Flying" });
@@ -1760,7 +1761,7 @@ function testThunderRaptor() {
     assert.strictEqual(stats.p, 4, "Base 1 + counters 1 + Raptor Lord 2 = 4");
 }
 
-function testCloudlineSovereign() {
+async function testCloudlineSovereign() {
     resetState();
     const sovereign = CardFactory.create({ card_name: "Cloudline Sovereign", pt: "3/3", type: "Enchantment Creature - Bird Wizard" });
     state.player.board = [sovereign];
@@ -1784,7 +1785,7 @@ function testCloudlineSovereign() {
     assert.strictEqual(sovereign.shieldCounters, 0, "Should remain 0 on cancel");
 }
 
-function testNightfallRaptor() {
+async function testNightfallRaptor() {
     resetState();
     const raptor = CardFactory.create({ card_name: "Nightfall Raptor", pt: "3/2", type: "Enchantment Creature - Bird Rogue" });
     const victim = CardFactory.create({ card_name: "Victim", pt: "2/2", type: "Creature - Bear" });
@@ -1819,7 +1820,7 @@ function testNightfallRaptor() {
     assert.strictEqual(state.player.board.length, startSize, "Should not bounce enchantment creature");
 }
 
-function testTriumphantTactics() {
+async function testTriumphantTactics() {
     resetState();
     const tt = CardFactory.create({ card_name: "Triumphant Tactics", type: "Sorcery" });
     const attacker = CardFactory.create({ card_name: "Attacker", pt: "2/2" });
@@ -1926,7 +1927,7 @@ async function testNdengoBrutalizer() {
     assert.strictEqual(brut3.counters, 1, "Should get counter because it already has FS");
 }
 
-function testPyrewrightTrainee() {
+async function testPyrewrightTrainee() {
     resetState();
     const trainee = CardFactory.create({ card_name: "Pyrewright Trainee", pt: "3/3", rules_text: "Flying, haste" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -1938,7 +1939,7 @@ function testPyrewrightTrainee() {
     assert.strictEqual(trainee.hasKeyword('haste'), true);
     
     // 2. Battle Cry
-    trainee.onAttack(state.player.board);
+    await trainee.onAttack(state.player.board);
     assert.strictEqual(other.tempPower, 1, "Other creature should get +1/+0 from Battle Cry");
     assert.strictEqual(trainee.tempPower, 0, "Attacker should not buff itself");
 }
@@ -1966,7 +1967,7 @@ async function testLagoonLogistics() {
     assert.notStrictEqual(newOracle.id, oracle.id, "Creature should be a new instance after blink");
 }
 
-function testFlauntLuxury() {
+async function testFlauntLuxury() {
     resetState();
     const flaunt = CardFactory.create({ card_name: "Flaunt Luxury" });
     state.player.gold = 0;
@@ -1980,7 +1981,7 @@ function testFlauntLuxury() {
     assert.strictEqual(state.shop.cards.length, 3, "Should add 3 cards to the SHOP");
 }
 
-function testArtfulCoercion() {
+async function testArtfulCoercion() {
     resetState();
     const artful = CardFactory.create({ card_name: "Artful Coercion", type: "Sorcery" });
     const myWeak = CardFactory.create({ card_name: "MyWeak", pt: "2/2" });
@@ -2019,7 +2020,7 @@ function testArtfulCoercion() {
     assert.strictEqual(shopWeak.counters, 2, "Weakest creature (ShopWeak) should receive 2 counters");
 }
 
-function testMagnificWilderkin() {
+async function testMagnificWilderkin() {
     resetState();
     const wilderkin = CardFactory.create({ card_name: "Magnific Wilderkin", pt: "3/3" });
     const flyer1 = CardFactory.create({ card_name: "Flyer1", pt: "1/1", rules_text: "Flying" });
@@ -2029,7 +2030,7 @@ function testMagnificWilderkin() {
     state.player.board = [wilderkin, flyer1, flyer2, trampler];
     wilderkin.owner = flyer1.owner = flyer2.owner = trampler.owner = 'player';
     
-    wilderkin.onCombatStart(state.player.board);
+    await wilderkin.onCombatStart(state.player.board);
     
     // Keywords found: Flying (from 2 sources), Trample (from 1 source)
     // Should get +2/+2 and 2 keywords
@@ -2038,14 +2039,14 @@ function testMagnificWilderkin() {
     assert.strictEqual(wilderkin.hasKeyword('trample'), true);
 }
 
-function testDwarvenPhalanx() {
+async function testDwarvenPhalanx() {
     resetState();
     const phalanx = CardFactory.create({ card_name: "Dwarven Phalanx", pt: "4/5" });
     state.player.board = [phalanx];
     phalanx.owner = 'player';
     
     // Case 1: Alone (No targets)
-    phalanx.onCombatStart(state.player.board);
+    await phalanx.onCombatStart(state.player.board);
     assert.strictEqual(phalanx.counters, 0, "Phalanx should not be able to target itself");
     assert.strictEqual(phalanx.hasKeyword('indestructible'), false);
 
@@ -2053,12 +2054,12 @@ function testDwarvenPhalanx() {
     const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
     state.player.board.push(target);
     target.owner = 'player';
-    phalanx.onCombatStart(state.player.board);
+    await phalanx.onCombatStart(state.player.board);
     assert.strictEqual(target.counters, 1);
     assert.strictEqual(target.hasKeyword('indestructible'), true);
 }
 
-function testLairRecluse() {
+async function testLairRecluse() {
     resetState();
     const recluse = CardFactory.create({ card_name: "Lair Recluse", pt: "4/5" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -2098,14 +2099,14 @@ function testLairRecluse() {
     assert.strictEqual(state.targetingEffect, null, "Targeting should be finished");
 }
 
-function testTunnelWebSpider() {
+async function testTunnelWebSpider() {
     resetState();
     const spider = CardFactory.create({ card_name: "Tunnel Web Spider", rules_text: "Reach, deathtouch" });
     assert.strictEqual(spider.hasKeyword('reach'), true);
     assert.strictEqual(spider.hasKeyword('deathtouch'), true);
 }
 
-function testWarhammerKreg() {
+async function testWarhammerKreg() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
     const kreg = CardFactory.create({ card_name: "Warhammer Kreg", type: "Equipment", rules_text: "Equipped creature gets +1/+1 and has double strike." });
@@ -2117,7 +2118,7 @@ function testWarhammerKreg() {
     assert.strictEqual(host.hasKeyword('Double strike'), true, "Host gets Double Strike");
 }
 
-function testDancingMirrorblade() {
+async function testDancingMirrorblade() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
     const mirrorblade = CardFactory.create({ card_name: "Dancing Mirrorblade", type: "Equipment" });
@@ -2149,7 +2150,7 @@ function testDancingMirrorblade() {
     assert.strictEqual(state.battleQueues.player[0].id, token.id, "Token should be at the front of the battle queue");
 }
 
-function testTheExileQueensCrown() {
+async function testTheExileQueensCrown() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
     const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
@@ -2167,7 +2168,7 @@ function testTheExileQueensCrown() {
     assert.strictEqual(host.hasKeyword('Indestructible'), false, "Host should not get Indestructible from the Crown");
 }
 
-function testDragonlordsCarapace() {
+async function testDragonlordsCarapace() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
     const carapace = CardFactory.create({ card_name: "Dragonlord's Carapace", type: "Equipment", rules_text: "Equipped creature gets +8/+8 and has trample." });
@@ -2179,7 +2180,7 @@ function testDragonlordsCarapace() {
     assert.strictEqual(host.hasKeyword('trample'), true, "Host gets Trample");
 }
 
-function testDjitusLithifiedMantle() {
+async function testDjitusLithifiedMantle() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
     const mantle = CardFactory.create({ card_name: "Djitu's Lithified Mantle", type: "Equipment" });
@@ -2208,7 +2209,7 @@ function testDjitusLithifiedMantle() {
     assert.strictEqual(state.player.board[1].card_name, "Jwanga Djitu");
 }
 
-function testAshWitheredCloak() {
+async function testAshWitheredCloak() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
     const cloak = CardFactory.create({ card_name: "Ash-Withered Cloak", type: "Equipment", rules_text: "Equipped creature gets +2/+2." });
@@ -2339,7 +2340,7 @@ async function testRivhasBlessedBladeWithDiscovery() {
     assert.ok(hasKeyword, "Rivha's Blade should trigger host's Discovery and auto-resolve it randomly");
 }
 
-function testBlacksteelLoadout() {
+async function testBlacksteelLoadout() {
     resetState();
     const host = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "" });
     const loadout = CardFactory.create({ 
@@ -2353,7 +2354,7 @@ function testBlacksteelLoadout() {
     assert.strictEqual(host.hasKeyword('trample'), true, "Has Trample");
 }
 
-function testLumberingAncient() {
+async function testLumberingAncient() {
     resetState();
     const ancient = CardFactory.create({ card_name: "Lumbering Ancient", pt: "8/8", rules_text: "Trample" });
     const target1 = CardFactory.create({ card_name: "Target 1", pt: "2/2" });
@@ -2390,7 +2391,7 @@ async function testZaraxSupermajor() {
     assert.ok(state.player.board.every(c => c.hasKeyword('flying')), "All creatures gain Flying");
 }
 
-function testInfuseTheApparatus() {
+async function testInfuseTheApparatus() {
     resetState();
     const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
     state.player.board = [target];
@@ -2418,7 +2419,7 @@ function testInfuseTheApparatus() {
     assert.strictEqual(stats.p, 4, "Target should have received the +2/+2 buff from Faith in Darkness");
 }
 
-function testMichalTheAnointed() {
+async function testMichalTheAnointed() {
     resetState();
     const michal = CardFactory.create({ 
         card_name: "Michal, the Anointed", 
@@ -2455,7 +2456,7 @@ function testMichalTheAnointed() {
     assert.strictEqual(state.player.board.includes(target), false, "Michal should NOT block friendly sacrifice removal");
 }
 
-function testLadriaWindwatcher() {
+async function testLadriaWindwatcher() {
     resetState();
     const ladria = CardFactory.create({ card_name: "Ladria, Windwatcher", pt: "3/3" });
     ladria.owner = 'player';
@@ -2470,13 +2471,13 @@ function testLadriaWindwatcher() {
     assert.strictEqual(state.player.board[2].hasKeyword('flying'), true, "Birds have Flying");
 
     // 2. onAttack - Buffs others
-    ladria.onAttack(state.player.board);
+    await ladria.onAttack(state.player.board);
     assert.strictEqual(ladria.counters, 0, "Ladria should NOT buff herself");
     assert.strictEqual(other.counters, 1, "Other creature should get a counter");
     assert.strictEqual(state.player.board[2].counters, 1, "Bird 1 should get a counter");
 }
 
-function testErinBeaconOfHumility() {
+async function testErinBeaconOfHumility() {
     resetState();
     const erin = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
     erin.owner = 'player';
@@ -2493,7 +2494,7 @@ function testErinBeaconOfHumility() {
     };
 
     // Attack triggers humility
-    erin.onAttack(state.battleBoards.player);
+    await erin.onAttack(state.battleBoards.player);
     
     assert.strictEqual(victim.temporaryHumility, true, "Victim should have humility flag");
     const stats = victim.getDisplayStats(state.battleBoards.opponent);
@@ -2530,7 +2531,7 @@ function testErinBeaconOfHumility() {
     assert.strictEqual(erin2.damageTaken, 0, "Humbled Familiar should NOT deal pre-fight damage");
 }
 
-function testCitadelColossus() {
+async function testCitadelColossus() {
     resetState();
     const colossus = CardFactory.create({ card_name: "Citadel Colossus", pt: "11/12", rules_text: "Indestructible" });
     assert.strictEqual(colossus.hasKeyword('indestructible'), true, "Colossus should have Indestructible");
@@ -2539,7 +2540,7 @@ function testCitadelColossus() {
     assert.strictEqual(stats.t, 12);
 }
 
-function testDewdropPools() {
+async function testDewdropPools() {
     resetState();
     const oldAvailable = [...availableCards];
     const mockPool = [
@@ -2570,7 +2571,7 @@ function testDewdropPools() {
     setAvailableCards(oldAvailable);
 }
 
-function testSongOfWindAndFire() {
+async function testSongOfWindAndFire() {
     resetState();
     const spell = CardFactory.create({ card_name: "Song of Wind and Fire" });
     spell.onCast(state.player.board);
@@ -2624,7 +2625,7 @@ async function testDecoratedWarrior() {
     assert.strictEqual(warrior.counters, 2, "Should gain counter on block/being attacked");
 }
 
-function testWaspbackBandit() {
+async function testWaspbackBandit() {
     resetState();
     const bandit = CardFactory.create({ card_name: "Waspback Bandit", pt: "3/3", rules_text: "Flying, hexproof" });
     state.player.board = [bandit];
@@ -2637,7 +2638,7 @@ function testWaspbackBandit() {
     assert.strictEqual(state.player.treasures, 1, "Should generate treasure on noncreature cast");
 }
 
-function testStridingCascade() {
+async function testStridingCascade() {
     resetState();
     const cascade = CardFactory.create({ card_name: "Striding Cascade", pt: "2/2" });
     const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
@@ -2671,17 +2672,17 @@ function testStridingCascade() {
     assert.strictEqual(cascade2.counters, 1, "Should only gain ONE counter from simultaneous placements");
 }
 
-function testBattlefrontLancer() {
+async function testBattlefrontLancer() {
     resetState();
     const lancer = CardFactory.create({ card_name: "Battlefront Lancer", pt: "1/3", rules_text: "First strike" });
     assert.strictEqual(lancer.hasKeyword('First strike'), true, "Should have First strike");
     
     state.player.board = [lancer];
-    lancer.onCombatStart(state.player.board);
+    await lancer.onCombatStart(state.player.board);
     assert.strictEqual(lancer.tempPower, 2, "Should buff a random friendly creature (itself in this case)");
 }
 
-function testMarbledAakriti() {
+async function testMarbledAakriti() {
     resetState();
     const aakriti = CardFactory.create({ card_name: "Marbled Aakriti", pt: "3/3", rules_text: "Changeling, Flying" });
     assert.strictEqual(aakriti.hasKeyword('Flying'), true, "Should have Flying");
@@ -2704,7 +2705,7 @@ function testMarbledAakriti() {
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 3, "Dowager should get +1/+1 from Aakriti");
 }
 
-function testScourgeOfTheSun() {
+async function testScourgeOfTheSun() {
     resetState();
     const scourge = CardFactory.create({ card_name: "Scourge of the Sun", pt: "2/3", rules_text: "Flying" });
     assert.strictEqual(scourge.hasKeyword('Flying'), true, "Should have Flying");
@@ -2724,13 +2725,13 @@ function testScourgeOfTheSun() {
     assert.strictEqual(scourge.tempPower, 0, "Buff should wear off");
 }
 
-function testGallantCentaur() {
+async function testGallantCentaur() {
     resetState();
     const centaur = CardFactory.create({ card_name: "Gallant Centaur", pt: "6/5" });
     assert.strictEqual(centaur.pt, "6/5", "Should be a 6/5");
 }
 
-function testHoltunBandEmissary() {
+async function testHoltunBandEmissary() {
     resetState();
     const emissary = CardFactory.create({ card_name: "Holtun-Band Emissary", pt: "4/4", type: "Creature - Centaur Flagbearer" });
     const otherCentaur = CardFactory.create({ card_name: "Centaur", type: "Creature - Centaur", pt: "2/2" });
@@ -2758,7 +2759,7 @@ function testHoltunBandEmissary() {
     assert.strictEqual(victim2.isDestroyed, false, "Non-Flagbearer should be safe");
 }
 
-function testJiayinTheHarmonious() {
+async function testJiayinTheHarmonious() {
     resetState();
     const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
     const other = CardFactory.create({ card_name: "Other", pt: "2/2", type: "Creature" });
@@ -2779,7 +2780,7 @@ function testJiayinTheHarmonious() {
     assert.strictEqual(other.tempPower, 0, "Buff should wear off at end of turn");
 }
 
-function testNacreousHydra() {
+async function testNacreousHydra() {
     resetState();
     const hydra = CardFactory.create({ card_name: "Nacreous Hydra", pt: "0/0" });
     hydra.onETB(state.player.board);
@@ -2800,7 +2801,7 @@ function testNacreousHydra() {
     assert.strictEqual(hydra.counters, 5, "Should NOT proliferate on equipment via game loop");
 }
 
-function testJiayin_UpInArms() {
+async function testJiayin_UpInArms() {
     resetState();
     const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
     const target = CardFactory.create({ card_name: "Target", pt: "1/1", type: "Creature" });
@@ -2825,7 +2826,7 @@ function testJiayin_UpInArms() {
     assert.strictEqual(target.tempPower, 3, "Should have +3 power from Jiayin (once)");
 }
 
-function testJiayin_WarriorsWays() {
+async function testJiayin_WarriorsWays() {
     resetState();
     const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
     const centaur = CardFactory.create({ card_name: "Centaur", pt: "1/1", type: "Creature - Centaur" });
@@ -2848,7 +2849,7 @@ function testJiayin_WarriorsWays() {
     assert.strictEqual(centaur.counters, 1, "Should have 1 counter");
 }
 
-function testAmAtambisWildkin() {
+async function testAmAtambisWildkin() {
     resetState();
     const wildkin = CardFactory.create({ card_name: "Am'Atambi's Wildkin", pt: "4/1" });
     const target1 = CardFactory.create({ card_name: "No Reach", pt: "2/2" });
@@ -2885,7 +2886,7 @@ function testAmAtambisWildkin() {
     assert.strictEqual(ally.reachCounters, 1, "Ally should gain reach in combat");
 }
 
-function testPestilentLeopardfly() {
+async function testPestilentLeopardfly() {
     resetState();
     const fly = CardFactory.create({ card_name: "Pestilent Leopardfly", pt: "2/2" });
     const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
@@ -2900,7 +2901,7 @@ function testPestilentLeopardfly() {
     assert.strictEqual(fly.getDisplayStats(state.player.board).p, 2, "Fly resets after phase");
 }
 
-function testTouchOfTheOmen() {
+async function testTouchOfTheOmen() {
     resetState();
     const spellData = fullCardPool.find(c => c.card_name === "Touch of the Omen");
     const spell = CardFactory.create(spellData);
@@ -2969,7 +2970,7 @@ async function testFacelessFaction() {
     assert.strictEqual(state.player.board.length, 1, "Should NOT create a token if no shop deaths");
 }
 
-function testDuskbornHunter() {
+async function testDuskbornHunter() {
     resetState();
     const hunter = CardFactory.create({ card_name: "Duskborn Hunter", pt: "1/2" });
     const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
@@ -2985,7 +2986,7 @@ function testDuskbornHunter() {
     assert.strictEqual(hunter.hasKeyword('deathtouch'), false, "Deathtouch removed after phase");
 }
 
-function testNightmareHarpy() {
+async function testNightmareHarpy() {
     resetState();
     const harpy = CardFactory.create({ card_name: "Nightmare Harpy", pt: "2/2" });
     const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
@@ -3006,7 +3007,7 @@ function testNightmareHarpy() {
     assert.strictEqual(anaconda.tempPower, 3, "Anaconda Bloodrite triggered");
 }
 
-function testSanguineAnaconda() {
+async function testSanguineAnaconda() {
     resetState();
     const anaconda = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
     const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
@@ -3026,7 +3027,7 @@ function testSanguineAnaconda() {
     assert.strictEqual(anaconda2.getDisplayStats(state.player.board).p, 2, "Selling doesn't trigger Bloodrite");
 }
 
-function testDecayedSale() {
+async function testDecayedSale() {
     resetState();
     const decayed = CardFactory.create({ card_name: "Zombie", pt: "2/2" });
     decayed.isDecayed = true;
@@ -3172,7 +3173,7 @@ async function testGoldGrubber() {
     state.player.board = [grubber];
 
     // Attack -> Hoard
-    grubber.onAttack(state.player.board);
+    await grubber.onAttack(state.player.board);
     assert.strictEqual(state.player.treasures, 1);
 
     // Shop death -> No gold increase
@@ -3290,12 +3291,12 @@ async function testUnyieldingEnforcer() {
 
     // 1. Not Adorned (just a counter)
     addCounters(enforcer, 1);
-    enforcer.onAttack(state.player.board);
+    await enforcer.onAttack(state.player.board);
     assert.strictEqual(victim.isDestroyed, false, "Should not exile if only embattled by counters");
 
     // 2. Adorned (Enchantment)
     enforcer.enchantments.push({ card_name: 'Buff', rules_text: '+1/+1' });
-    enforcer.onAttack(state.player.board);
+    await enforcer.onAttack(state.player.board);
     assert.strictEqual(victim.isDestroyed, true, "Should exile if adorned");
     assert.strictEqual(victim.destroyedReason, 'exile');
 }

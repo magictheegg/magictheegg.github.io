@@ -39,7 +39,8 @@ if (typeof document === 'undefined') {
         addEventListener: () => {},
         innerWidth: 1920,
         innerHeight: 1080,
-        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' })
+        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' }),
+        location: { search: '' }
     };
     global.requestAnimationFrame = (cb) => setTimeout(cb, 16);
     global.WebKitCSSMatrix = class { constructor() { this.a = 1; } };

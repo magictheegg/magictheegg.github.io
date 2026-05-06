@@ -77,6 +77,12 @@ const KEYWORD_DATA = {
     }
 };
 
+// --- TRAINING GROUNDS & PATCHING ---
+if (typeof window !== 'undefined') {
+    window.IS_TRAINING_GROUNDS = window.IS_TRAINING_GROUNDS || (new URLSearchParams(window.location.search).get('training') === 'true');
+}
+
+
 // --- OO CARD SYSTEM ---
 
 const targetedNames = ['To Battle', 'Faith in Darkness', 'Might and Mane', 'Way of the Bygone', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion', 'Touch of the Omen'];
@@ -379,6 +385,11 @@ class BaseCard {
         // Hook for when a spell is cast (for non-targeted spells like Divination)
         onCast(board) { }
 
+        // Hook for when a noncreature spell is cast (for Prowess, etc.)
+        onNoncreatureSpellCast(spell, board) { }
+
+        onAction() { }
+
         // Hook for when a spell is applied to a target (for enchantments/targeted spells)
         onApply(target, board) { }
 
@@ -562,7 +573,7 @@ class BaseCard {
         }
     }
 
-    function proliferate(board, owner, multiplier) {
+    async function proliferate(board, owner, multiplier) {
         const modifiedCards = [];
         board.forEach(c => {
             if (c.owner === owner) {
@@ -600,7 +611,7 @@ class BaseCard {
                 snapshots.set(c.id, c.takeSnapshot());
             });
 
-            queueAnimation(async () => {
+            const runPulses = async () => {
                 const pulses = modifiedCards.map(mc => pulseCardElement(mc.card, board, snapshots.get(mc.card.id)));
                 await Promise.all(pulses);
                 modifiedCards.forEach(mc => {
@@ -611,18 +622,24 @@ class BaseCard {
                         delete c.pulseQueueCount;
                     }
                 });
-            });
 
-            // 2. Then notify others (like Striding Cascade) so their animations come AFTER
-            modifiedCards.forEach(mc => {
-                if (mc.addedCounters > 0 && board) {
-                    board.forEach(other => {
-                        if (other.id !== mc.card.id) {
-                            other.onCounterPlaced(mc.addedCounters, 'plus-one', mc.card, board);
+                // Then notify others (like Striding Cascade) so their animations come AFTER
+                for (const mc of modifiedCards) {
+                    if (mc.addedCounters > 0 && board) {
+                        for (const other of board) {
+                            if (other.id !== mc.card.id) {
+                                await other.onCounterPlaced(mc.addedCounters, 'plus-one', mc.card, board);
+                            }
                         }
-                    });
+                    }
                 }
-            });
+            };
+
+            if (state.phase === 'BATTLE') {
+                await runPulses();
+            } else {
+                queueAnimation(runPulses);
+            }
         }
     }
 
@@ -865,21 +882,21 @@ class BaseCard {
     }
 
     class ClairvoyantKoi extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += (1 * multiplier);
             this.tempToughness += (1 * multiplier);
-            this.pulse(board);
+            await this.pulse(board);
         }
     }
 
     class BlisteringLunatic extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += (2 * multiplier);
-            this.pulse(board);
+            await this.pulse(board);
         }
     }
 
@@ -1168,20 +1185,20 @@ class BaseCard {
     class ExecutionersMadness extends BaseCard { }
 
     class EarthrattleXali extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += multiplier;
             this.tempToughness += multiplier;
-            this.pulse(board);
+            await this.pulse(board);
         }
     }
 
     class DynamicWyvern extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             if (!this.enchantments) this.enchantments = [];
             this.enchantments.push({ card_name: 'Dynamic Wyvern Grant', rules_text: 'Flying', isTemporary: true });
-            this.pulse(board);
+            await this.pulse(board);
         }
     }
 
@@ -1336,7 +1353,46 @@ class BaseCard {
         }
     }
 
-    class CautherHellkite extends BaseCard { }
+    class CautherHellkite extends BaseCard {
+        async onAttack(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            let opponentBoard = [];
+
+            if (state.phase === 'BATTLE' && state.battleBoards) {
+                const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
+                opponentBoard = state.battleBoards[opponentOwner];
+            } else if (state.battleBoards) {
+                // If battleBoards exists but we aren't in BATTLE phase (e.g. tests)
+                const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
+                opponentBoard = state.battleBoards[opponentOwner];
+            } else {
+                // For tests or non-battle contexts, try to find an opponent board
+                if (board && board.length > 0 && board[0].owner !== this.owner) {
+                    opponentBoard = board;
+                } else if (this.owner === 'player') {
+                    // Try to find any opponent board in state
+                    const opp = state.opponents?.find(o => o.board.length > 0);
+                    if (opp) opponentBoard = opp.board;
+                }
+            }
+
+            const targets = opponentBoard.filter(c => !c.hasKeyword('Hexproof') && !c.isDying && !c.isDestroyed);
+
+            if (targets.length > 0) {
+                targets.forEach(c => {
+                    if (c.shieldCounters > 0) {
+                        c.shieldCounters--;
+                    } else {
+                        c.damageTaken += multiplier;
+                        const el = document.getElementById(`card-${c.id}`);
+                        if (el) showDamageBubble(el, multiplier);
+                    }
+                });
+                return [this, ...targets];
+            }
+            return [];
+        }
+    }
 
     class QinhanaCavalry extends BaseCard {
         onCombatStart(board) {
@@ -1454,20 +1510,22 @@ class BaseCard {
                 }
             }
         }
-        onNoncreatureCast(spell, board, targets = []) {
-            if (state.spellsCastThisTurn === 2) {
+        async onNoncreatureCast(spell, board, targets = []) {
+            if (state.spellsCastThisTurn === 2 && !this.zaraxTriggeredThisTurn) {
+                this.zaraxTriggeredThisTurn = true;
                 const multiplier = this.isFoil ? 2 : 1;
-                addCounters(this, multiplier, board);
+                await addCounters(this, multiplier, board);
                 board.forEach(c => {
                     if (!c.enchantments) c.enchantments = [];
                     c.enchantments.push({ card_name: 'Galaxian Flight', rules_text: 'Flying', isTemporary: true });
                 });
             }
         }
+        onShopStart() { this.zaraxTriggeredThisTurn = false; }
     }
 
     class InfuseTheApparatus extends BaseCard {
-        onCast(board) {
+        async onCast(board) {
             const uniqueSpells = [];
             const names = new Set();
             state.player.spellGraveyard.forEach(s => {
@@ -1478,7 +1536,7 @@ class BaseCard {
             });
             state.player.spellGraveyard = []; // Exile all
             
-            uniqueSpells.forEach(spell => {
+            for (const spell of uniqueSpells) {
                 const name = spell.card_name;
                 const isEquipment = spell.type?.toLowerCase().includes('equipment');
                 
@@ -1511,8 +1569,10 @@ class BaseCard {
                 }
                 
                 // Trigger triggers
-                board.forEach(c => c.onNoncreatureCast(spell, board, []));
-            });
+                for (const c of board) {
+                    await c.onNoncreatureCast(spell, board, []);
+                }
+            }
         }
     }
 
@@ -1647,7 +1707,7 @@ class BaseCard {
     }
 
     class WaspbackBandit extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const entity = getEntity(this.owner);
             if (entity) {
@@ -1660,7 +1720,7 @@ class BaseCard {
     class MurkbornMammoth extends BaseCard { }
 
     class HissingSunspitter extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const host = this;
             if (host.owner !== 'player' || !board) return;
             const multiplier = host.isFoil ? 2 : 1;
@@ -1699,7 +1759,7 @@ class BaseCard {
                     snapshots.set(t.id, t.takeSnapshot());
                 });
 
-                queueAnimation(async () => {
+                const runPulses = async () => {
                     const pulses = effectTargets.map(t => pulseCardElement(t, board, snapshots.get(t.id)));
                     await Promise.all(pulses);
                     effectTargets.forEach(t => {
@@ -1709,7 +1769,13 @@ class BaseCard {
                             delete t.pulseQueueCount;
                         }
                     });
-                });
+                };
+
+                if (state.phase === 'BATTLE') {
+                    await runPulses();
+                } else {
+                    queueAnimation(runPulses);
+                }
             }
         }
     }
@@ -1736,11 +1802,11 @@ class BaseCard {
     }
 
     class StridingCascade extends BaseCard {
-        onCounterPlaced(count, type, target, board) {
+        async onCounterPlaced(count, type, target, board) {
             if (type === 'plus-one' && !this.cascadeTriggeredThisTurn && this.owner === target.owner) {
                 this.cascadeTriggeredThisTurn = true;
                 const multiplier = this.isFoil ? 2 : 1;
-                addCounters(this, multiplier, board);
+                await addCounters(this, multiplier, board);
             }
         }
         onShopStart() { this.cascadeTriggeredThisTurn = false; }
@@ -1777,9 +1843,11 @@ class BaseCard {
             });
 
             // 2. Trigger spellcasts for the board (Prowess etc)
-            board.forEach(c => {
-                if (c.id !== this.id) c.onNoncreatureCast(false, board, []);
-            });
+            for (const c of board) {
+                if (c.id !== this.id) {
+                    await c.onNoncreatureCast(this, board, []);
+                }
+            }
 
             // Identify creatures that actually changed stats
             const affected = board.filter(c => {
@@ -2296,12 +2364,12 @@ class BaseCard {
     }
 
     class DwarvenPhalanx extends BaseCard {
-        onCombatStart(board, host = this) {
+        async onCombatStart(board, host = this) {
             const others = board.filter(c => c.id !== host.id && c.owner === host.owner);
             if (others.length > 0) {
                 const target = others[Math.floor(Math.random() * others.length)];
                 const multiplier = host.isFoil ? 2 : 1;
-                addCounters(target, multiplier, board);
+                await addCounters(target, multiplier, board);
                 if (!target.enchantments) target.enchantments = [];
                 for (let i = 0; i < multiplier; i++) {
                     target.enchantments.push({ card_name: 'Phalanx Grant', rules_text: 'Indestructible', isTemporary: true });
@@ -2635,12 +2703,12 @@ class BaseCard {
     }
 
     class FinwingDrake extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             this.tempPower += multiplier;
             this.tempToughness += multiplier;
-            this.pulse(board);
+            await this.pulse(board);
         }
     }
 
@@ -2661,15 +2729,15 @@ class BaseCard {
     }
 
     class PaleDillettante extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
-            addCounters(this, multiplier, board);
+            await addCounters(this, multiplier, board);
         }
     }
 
     class AetherGuzzler extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             const snapshots = new Map();
@@ -2681,7 +2749,7 @@ class BaseCard {
             });
 
             if (board.length > 0) {
-                queueAnimation(async () => {
+                const runPulses = async () => {
                     const pulses = board.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
                     await Promise.all(pulses);
                     board.forEach(c => {
@@ -2691,7 +2759,13 @@ class BaseCard {
                             delete c.pulseQueueCount;
                         }
                     });
-                });
+                };
+
+                if (state.phase === 'BATTLE') {
+                    await runPulses();
+                } else {
+                    queueAnimation(runPulses);
+                }
             }
         }
     }
@@ -2717,7 +2791,7 @@ class BaseCard {
         }
     }
     class ScourgeOfTheSun extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const isFoilCast = (typeof spell === 'object') ? spell.isFoil : spell;
             const multiplier = (this.isFoil ? 2 : 1) * (isFoilCast ? 2 : 1);
             let buff = 1 * multiplier;
@@ -2725,12 +2799,12 @@ class BaseCard {
                 if (spell.tier >= 4) buff += (1 * multiplier);
             }
             this.tempPower += buff;
-            this.pulse(board);
+            await this.pulse(board);
         }
     }
 
     class JiayinTheHarmonious extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const uniqueTargets = [...new Set(targets)];
             const validTargets = uniqueTargets.filter(t => t.id !== this.id && t.owner === this.owner && t.isType('Creature'));
             if (validTargets.length > 0) {
@@ -2744,7 +2818,7 @@ class BaseCard {
                     snapshots.set(t.id, t.takeSnapshot());
                 });
 
-                queueAnimation(async () => {
+                const runPulses = async () => {
                     const pulses = validTargets.map(t => pulseCardElement(t, board, snapshots.get(t.id)));
                     await Promise.all(pulses);
                     validTargets.forEach(t => {
@@ -2754,7 +2828,13 @@ class BaseCard {
                             delete t.pulseQueueCount;
                         }
                     });
-                });
+                };
+
+                if (state.phase === 'BATTLE') {
+                    await runPulses();
+                } else {
+                    queueAnimation(runPulses);
+                }
             }
         }
     }
@@ -2763,8 +2843,8 @@ class BaseCard {
         onETB(board) {
             addCounters(this, 4, board);
         }
-        onNoncreatureCast(spell, board, targets = []) {
-            proliferate(board, this.owner, 1);
+        async onNoncreatureCast(spell, board, targets = []) {
+            await proliferate(board, this.owner, 1);
         }
     }
 
@@ -2982,7 +3062,7 @@ class BaseCard {
     class GallantCentaur extends BaseCard { }
 
     class HoltunBandEmissary extends BaseCard {
-        onNoncreatureCast(spell, board, targets = []) {
+        async onNoncreatureCast(spell, board, targets = []) {
             const wasTargeted = targets.some(t => t.id === this.id);
             if (wasTargeted) {
                 const centaurs = board.filter(c => c.id !== this.id && c.isType('Centaur'));
@@ -2997,7 +3077,7 @@ class BaseCard {
                         snapshots.set(c.id, c.takeSnapshot());
                     });
 
-                    queueAnimation(async () => {
+                    const runPulses = async () => {
                         const pulses = centaurs.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
                         await Promise.all(pulses);
                         centaurs.forEach(c => {
@@ -3007,7 +3087,13 @@ class BaseCard {
                                 delete c.pulseQueueCount;
                             }
                         });
-                    });
+                    };
+
+                    if (state.phase === 'BATTLE') {
+                        await runPulses();
+                    } else {
+                        queueAnimation(runPulses);
+                    }
                 }
             }
         }
@@ -3096,7 +3182,7 @@ class BaseCard {
         requestAnimationFrame(updateBubblePosition);
     }
 
-    function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
+    async function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
         if (!target || amount <= 0) return;
         
         let prop = type.toLowerCase().replace(' ', '') + 'Counters';
@@ -3111,34 +3197,11 @@ class BaseCard {
         }
 
         if (board && !skipNotification) {
-            board.forEach(c => {
+            for (const c of board) {
                 if (c.id !== target.id) {
-                    c.onCounterPlaced(amount, type, target, board);
+                    await c.onCounterPlaced(amount, type, target, board);
                 }
-            });
-        }
-    }
-
-    async function addKeywordCounter(target, type, amount, board, skipAnimation = false, skipNotification = false) {
-        if (!target || amount <= 0) return;
-        
-        let prop = type.toLowerCase().replace(' ', '') + 'Counters';
-        if (type === 'First strike') prop = 'firstStrikeCounters';
-        if (type === 'Double strike') prop = 'doubleStrikeCounters';
-
-        if (target[prop] === undefined) target[prop] = 0;
-        target[prop] += amount;
-
-        if (!skipAnimation) {
-            await target.pulse(board);
-        }
-
-        if (board && !skipNotification) {
-            board.forEach(c => {
-                if (c.id !== target.id) {
-                    c.onCounterPlaced(amount, type, target, board);
-                }
-            });
+            }
         }
     }
 
@@ -3658,7 +3721,7 @@ class BaseCard {
     }
 
     function getInitialOpponents(playerHeroName) {
-        const selectableHeroes = Object.values(HEROES).filter(h => h.name !== 'Marketto' && h.name !== playerHeroName);
+        if (typeof window !== 'undefined' && window.IS_TRAINING_GROUNDS) return [];
         const shuffled = [...selectableHeroes].sort(() => Math.random() - 0.5);
         const selected = shuffled.slice(0, 7);
         
@@ -3752,11 +3815,11 @@ class BaseCard {
 
         // Notify other creatures on the board (e.g., Striding Cascade)
         if (board && !skipNotification) {
-            board.forEach(c => {
+            for (const c of board) {
                 if (c.id !== target.id) {
-                    c.onCounterPlaced(amount, 'plus-one', target, board);
+                    await c.onCounterPlaced(amount, 'plus-one', target, board);
                 }
-            });
+            }
         }
     }
     let availableCards = [];
@@ -3852,7 +3915,9 @@ class BaseCard {
                 state.player.spellGraveyard.push(spell);
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
-                state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
+                for (const c of state.player.board) {
+                    await c.onNoncreatureCast(spell, state.player.board, targets);
+                }
             }
             processDiscoveryQueue();
             await resolveAnimations();
@@ -4036,7 +4101,9 @@ class BaseCard {
             if (handIdx !== -1) {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
-                board.forEach(c => c.onNoncreatureCast(spell, board, []));
+                for (const c of board) {
+                    await c.onNoncreatureCast(spell, board, []);
+                }
             }
             processDiscoveryQueue();
             await resolveAnimations();
@@ -4282,7 +4349,7 @@ class BaseCard {
             newPlayer.isRandomHero = false;
         }
 
-        const newOpponents = getInitialOpponents(newPlayer.hero.name);
+        const newOpponents = (window.getInitialOpponents || getInitialOpponents)(newPlayer.hero.name);
 
         state.player = newPlayer;
         state.opponents = newOpponents;
@@ -4478,7 +4545,7 @@ class BaseCard {
                 state.shopDeathsCount = 0; // Reset for next shop turn
 
                 // Transition to Battle
-                startBattleTurn();
+                (window.startBattleTurn || startBattleTurn)();
             }
         });
 
@@ -5040,6 +5107,9 @@ class BaseCard {
             const response = await fetch('lists/coliseum-cards.json');
             const cardData = await response.json();
             availableCards = cardData.cards; 
+            if (typeof window !== 'undefined') {
+                window.availableCards = availableCards;
+            }
             console.log("Coliseum card data loaded successfully.", availableCards.length);
         } catch (error) {
             console.error("Error loading coliseum card data:", error);
@@ -5072,7 +5142,11 @@ class BaseCard {
                     frontPage.style.visibility = 'hidden';
                 }, 500);
 
-                state.opponents = getInitialOpponents(state.player.hero.name);
+                if (window.IS_TRAINING_GROUNDS) {
+                    state.opponents = [];
+                } else {
+                    state.opponents = (window.getInitialOpponents || getInitialOpponents)(state.player.hero.name);
+                }
                 startGameLogic();
             });
         }
@@ -5426,42 +5500,6 @@ class BaseCard {
                 if (attackerZone) attackerZone.style.zIndex = "";
                 state.activeAttackerId = null;
                 return; 
-            }
-        }
-
-        // SPECIAL TRIGGER: Cauther Hellkite (Pre-fight board damage)
-        if (attacker.card_name === 'Cauther Hellkite' && !attacker.temporaryHumility) {
-            const multiplier = attacker.isFoil ? 2 : 1;
-            const targets = defenderBoard.filter(c => !c.hasKeyword('Hexproof'));
-
-            if (targets.length > 0) {
-                targets.forEach(c => {
-                    let damage = multiplier;
-                    if (c.shieldCounters > 0) {
-                        c.shieldCounters--;
-                    } else {
-                        c.damageTaken += multiplier;
-                        const el = document.getElementById(`card-${c.id}`);
-                        if (el) showDamageBubble(el, damage);
-                    }
-                });
-
-                // Pulse the attacker to show source, and all targets for result
-                const pulses = [attacker.pulse(attackerBoard)];
-                targets.forEach(t => pulses.push(t.pulse(defenderBoard)));
-                await Promise.all(pulses);
-
-                // Resolve deaths from the board sweep
-                await resolveDeaths();
-
-                // If the specific defender died, cancel the strike
-                if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
-                    attackerEl.style.transform = "";
-                    attackerEl.classList.remove('attacking');
-                    if (attackerZone) attackerZone.style.zIndex = "";
-                    state.activeAttackerId = null;
-                    return;
-                }
             }
         }
 
@@ -5897,7 +5935,9 @@ class BaseCard {
         rerollBtn.disabled = true;
         
         // AI Phase: ALL opponents play their hidden turns
-        state.opponents.forEach(opp => opponentPlayTurn(opp));
+        for (const opp of state.opponents) {
+            await opponentPlayTurn(opp);
+        }
 
         // Off-screen battle simulation for the other opponents
         const otherOpponents = state.opponents.filter((_, idx) => idx !== state.currentOpponentId);
@@ -6501,7 +6541,6 @@ class BaseCard {
                 // Up in Arms step 1 will be handled in applyTargetedEffect
             } else if (instance.type?.toLowerCase().includes('equipment')) {
                 if (state.player.board.length === 0) return;
-                state.spellsCastThisTurn++;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (targetedNames.includes(instance.card_name)) {
                 if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
@@ -6516,7 +6555,9 @@ class BaseCard {
                 state.player.spellGraveyard.push(instance);
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
-                state.player.board.forEach(c => c.onNoncreatureCast(instance, state.player.board, targets));
+                for (const c of state.player.board) {
+                    await c.onNoncreatureCast(instance, state.player.board, targets);
+                }
                 
                 // HERO POWER: Herrea (Blue card tracking & Reward) - NO TARGETING
                 if (!state.targetingEffect && !state.discovery) {
@@ -6937,7 +6978,9 @@ class BaseCard {
                     if (handIdx !== -1) {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
-                        state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, []));
+                        for (const c of state.player.board) {
+                            await c.onNoncreatureCast(spell, state.player.board, []);
+                        }
                     }
 
                     clearTargetingEffect(true);
@@ -7063,7 +7106,9 @@ class BaseCard {
                     // TRIGGER NONCREATURE CAST
                     const targets = [...state.currentSpellTargets];
                     state.currentSpellTargets = [];
-                    state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
+                    for (const c of state.player.board) {
+                        await c.onNoncreatureCast(spell, state.player.board, targets);
+                    }
                 }
 
                 clearTargetingEffect(true);
@@ -7097,7 +7142,9 @@ class BaseCard {
                         // TRIGGER NONCREATURE CAST
                         const targets = [...state.currentSpellTargets];
                         state.currentSpellTargets = [];
-                        state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
+                        for (const c of state.player.board) {
+                            await c.onNoncreatureCast(spell, state.player.board, targets);
+                        }
                     }
 
                     clearTargetingEffect(true);
@@ -7147,7 +7194,9 @@ class BaseCard {
                     // TRIGGER NONCREATURE CAST
                     const targets = [...state.currentSpellTargets];
                     state.currentSpellTargets = [];
-                    state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
+                    for (const c of state.player.board) {
+                        await c.onNoncreatureCast(spell, state.player.board, targets);
+                    }
                 }
 
                 clearTargetingEffect(true);
@@ -7185,7 +7234,9 @@ class BaseCard {
                     // TRIGGER NONCREATURE CAST
                     const targets = [...state.currentSpellTargets];
                     state.currentSpellTargets = [];
-                    state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
+                    for (const c of state.player.board) {
+                        await c.onNoncreatureCast(spell, state.player.board, targets);
+                    }
                 }
 
                 const createdTokens = [];
@@ -7358,7 +7409,9 @@ class BaseCard {
                 // TRIGGER NONCREATURE CAST ONLY ONCE AT END
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
-                state.player.board.forEach(c => c.onNoncreatureCast(spell, state.player.board, targets));
+                for (const c of state.player.board) {
+                    await c.onNoncreatureCast(spell, state.player.board, targets);
+                }
 
                 clearTargetingEffect(true);
             }
@@ -7425,6 +7478,11 @@ class BaseCard {
         if (attacker.vigilanceCounters > 0) counterTypes++;
         if (attacker.lifelinkCounters > 0) counterTypes++;
         if (attacker.shieldCounters > 0) counterTypes++;
+        if (attacker.trampleCounters > 0) counterTypes++;
+        if (attacker.deathtouchCounters > 0) counterTypes++;
+        if (attacker.doubleStrikeCounters > 0) counterTypes++;
+        if (attacker.reachCounters > 0) counterTypes++;
+        if (attacker.hexproofCounters > 0) counterTypes++;
 
         const isUnblockable = (attacker.card_name === 'Mekini Eremite' && !attacker.temporaryHumility && counterTypes >= 2);
         if (isUnblockable) return null; // Goes straight to face
@@ -7898,7 +7956,9 @@ class BaseCard {
         const targets = [...state.currentSpellTargets];
         state.castingSpell = null;
         state.currentSpellTargets = [];
-        state.player.board.forEach(c => c.onNoncreatureCast(currentSpell, state.player.board, targets));
+        for (const c of state.player.board) {
+            await c.onNoncreatureCast(currentSpell, state.player.board, targets);
+        }
         render();
         if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
             await resolveAnimations();
@@ -7922,7 +7982,8 @@ class BaseCard {
         render();
     }
 
-    function opponentPlayTurn(opp) {
+    async function opponentPlayTurn(opp) {
+        if (typeof window !== 'undefined' && window.IS_TRAINING_GROUNDS) return;
         if (!opp) opp = getOpponent();
         if (!opp) return;
 
@@ -8013,7 +8074,9 @@ class BaseCard {
                             cardToBuy.onApply(target, opp.board);
                             
                             // AI-specific noncreature cast effects using OO hook
-                            opp.board.forEach(c => c.onNoncreatureCast(false, opp.board, []));
+                            for (const c of opp.board) {
+                                await c.onNoncreatureCast(false, opp.board, []);
+                            }
 
                             opp.gold -= cost;
                         } else break;
@@ -8103,8 +8166,9 @@ class BaseCard {
     }
 
     function renderHeroPower(container, entity, isPlayer) {
-        if (!container) return;
-        const isHovered = container.querySelector('.hero-power-circle')?.matches(':hover');
+        if (!container || !entity) return;
+        const circleMatch = container.querySelector('.hero-power-circle');
+        const isHovered = circleMatch && circleMatch.matches && circleMatch.matches(':hover');
         container.innerHTML = '';
         if (!entity.hero || !entity.hero.heroPower) return;
 
@@ -8539,14 +8603,14 @@ class BaseCard {
 
             // Ensure battle avatar matches current opponent's hero
             const opponentAvatarImg = document.querySelector('#opponent-zone .avatar-img');
-            if (opponentAvatarImg && currentOpp.hero) opponentAvatarImg.src = currentOpp.hero.avatar;
+            if (opponentAvatarImg && currentOpp && currentOpp.hero) opponentAvatarImg.src = currentOpp.hero.avatar;
 
             const oppBg = document.getElementById('opponent-bg');
             const oppPlaneBg = document.getElementById('opponent-plane-bg');
-            if (oppBg) {
+            if (oppBg && currentOpp) {
                 oppBg.style.backgroundImage = `url(${currentOpp.playmat})`;
             }
-            if (oppPlaneBg) {
+            if (oppPlaneBg && currentOpp) {
                 if (currentOpp.plane === 'Cirrusea' || currentOpp.plane === 'Onora' || currentOpp.plane === 'Al Tabaq') {
                     const matName = currentOpp.plane === 'Al Tabaq' ? 'al-tabaq' : currentOpp.plane.toLowerCase();
                     oppPlaneBg.style.backgroundImage = `url(img/playmats/${matName}.jpg)`;
@@ -8602,8 +8666,10 @@ class BaseCard {
             }
         }
 
-        if (document.getElementById('opponent-hp')) document.getElementById('opponent-hp').textContent = currentOpp.overallHp;
-        if (document.getElementById('opponent-fight-hp')) document.getElementById('opponent-fight-hp').textContent = currentOpp.fightHp;
+        if (currentOpp) {
+            if (document.getElementById('opponent-hp')) document.getElementById('opponent-hp').textContent = currentOpp.overallHp;
+            if (document.getElementById('opponent-fight-hp')) document.getElementById('opponent-fight-hp').textContent = currentOpp.fightHp;
+        }
 
         // Toggle Reroll button styling
         const isEnochSpecial = state.player.hero.name === "Enoch" && (state.player.rerollCount % 4 === 3);
@@ -8643,13 +8709,13 @@ class BaseCard {
             }
         }
 
-        if (oppBattleAvatarEl && currentOpp.hero) {
+        if (oppBattleAvatarEl && currentOpp && currentOpp.hero) {
             oppBattleAvatarEl.dataset.heroName = currentOpp.hero.name;
         }
 
         updateTierButton();
         const oppTierEl = document.getElementById('opponent-tier');
-        if (oppTierEl) oppTierEl.textContent = currentOpp.tier;
+        if (oppTierEl && currentOpp) oppTierEl.textContent = currentOpp.tier;
 
         // Scry Modal
         const scryModal = document.getElementById('scry-modal');
@@ -8858,11 +8924,13 @@ class BaseCard {
                 endTurnBtn.style.background = 'linear-gradient(to bottom, #c62828, #b71c1c)';
                 document.body.classList.add('overlay-active');
                 endTurnBtn.disabled = false;
+                if (window.IS_TRAINING_GROUNDS) endTurnBtn.style.display = 'block';
             } else if (state.targetingEffect && state.targetingEffect.isMandatory) {
                 endTurnBtn.textContent = 'MUST TARGET';
                 endTurnBtn.style.background = '#555';
                 document.body.classList.add('overlay-active');
                 endTurnBtn.disabled = true;
+                if (window.IS_TRAINING_GROUNDS) endTurnBtn.style.display = 'block';
             }
         } else {
             if (targetingTitleEl) targetingTitleEl.textContent = '';
@@ -8871,6 +8939,7 @@ class BaseCard {
             endTurnBtn.style.background = '';
             document.body.classList.remove('overlay-active');
             endTurnBtn.disabled = state.phase !== 'SHOP';
+            if (window.IS_TRAINING_GROUNDS) endTurnBtn.style.display = 'none';
         }
 
         // Board drop zone
@@ -9564,6 +9633,10 @@ class BaseCard {
         availableCards = cards;
     }
 
+    function getAvailableCards() {
+        return availableCards;
+    }
+
     async function checkTriples() {
         if (state.phase !== 'SHOP' || state.isTripling) return;
 
@@ -9728,6 +9801,20 @@ class BaseCard {
         render();
     }
 
+    if (typeof window !== 'undefined') {
+        window.getInitialOpponents = getInitialOpponents;
+        window.startBattleTurn = startBattleTurn;
+        window.startShopTurn = startShopTurn;
+        window.render = render;
+        window.resetTemporaryStats = resetTemporaryStats;
+        window.BaseCard = BaseCard;
+        window.CardFactory = CardFactory;
+        window.HEROES = HEROES;
+        window.state = state;
+        window.availableCards = availableCards;
+        window.createToken = createToken;
+    }
+
     if (typeof document !== 'undefined' && typeof module === 'undefined') {
         init();
     }
@@ -9737,11 +9824,12 @@ if (typeof module !== 'undefined' && module.exports) {
         state, CardFactory, BaseCard, init, availableCards, HEROES,
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
         resolveShopDeaths, triggerLifeGain, findTarget,
-        resolveCombatImpact, resolveDeaths, processDeaths, performAttack, triggerETB,
+        resolveCombatImpact, resolveDeaths, processDeaths, performAttack, triggerETB, addCounters,
+        resolveStartOfCombatTriggers,
         applyTargetedEffect, applySpell, useCardFromHand, activateHeroPower, clearTargetingEffect, queueTargetingEffect,
         resolveDiscovery, toggleDiscoverySelection, confirmDiscovery, queueDiscovery,
-        startShopTurn, tierUp, setAvailableCards, buyCard, pulseCardElement, rerollShop,
-        checkHerreaReward, checkAutumnReward, resetTemporaryStats, sellCard,
+        startShopTurn, tierUp, tierCosts, setAvailableCards, getAvailableCards, buyCard, pulseCardElement, rerollShop,
+        checkHerreaReward, checkAutumnReward, resetTemporaryStats, sellCard, opponentPlayTurn,
         traverseCirrusea, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue
     };
 }

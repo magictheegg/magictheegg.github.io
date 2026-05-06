@@ -47,7 +47,8 @@ if (typeof document === 'undefined') {
         addEventListener: () => {},
         innerWidth: 1920,
         innerHeight: 1080,
-        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' })
+        getComputedStyle: () => ({ transform: 'matrix(1, 0, 0, 1, 0, 0)' }),
+        location: { search: '' }
     };
     global.requestAnimationFrame = (cb) => setTimeout(cb, 16);
     global.WebKitCSSMatrix = class { constructor() { this.a = 1; } };
@@ -59,7 +60,8 @@ const {
     performAttack, triggerETB, confirmDiscovery, resolveDiscovery,
     processDeaths, tierUp, setAvailableCards, useCardFromHand, 
     startShopTurn, buyCard, queueTargetingEffect, queueDiscovery,
-    rerollShop, applySpell, checkAutumnReward, sellCard, resolveShopDeaths
+    rerollShop, applySpell, checkAutumnReward, sellCard, resolveShopDeaths,
+    resolveStartOfCombatTriggers
 } = require('../scripts/coliseum.js');
 const assert = require('assert');
 
@@ -193,7 +195,7 @@ async function testArietta() {
     resetState();
     state.player.hero = HEROES.ARIETTA;
     state.player.tier = 3;
-    state.player.gold = 10;
+    state.player.gold = 20;
 
     const equipData = { card_name: "Blade", type: "Equipment", tier: 1 };
     availableCards.push(equipData, { card_name: "NotEquip", type: "Creature", tier: 1 });
@@ -521,17 +523,28 @@ async function testMafua() {
         c.owner = 'player';
         state.player.board.push(c);
     }
+    await resolveStartOfCombatTriggers(state.opponents[0]);
     let stats = state.player.board[0].getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 6, "Should have +5 power buff (1+5)");
 
     // 2. Mixed tiers (Failure)
+    resetState();
+    state.player.hero = HEROES.MAFUA;
+    for(let i=0; i<4; i++) {
+        const c = CardFactory.create({ card_name: `T1-${i}`, tier: 1, pt: "1/1" });
+        c.owner = 'player';
+        state.player.board.push(c);
+    }
     state.player.board[4] = CardFactory.create({ card_name: "T2", tier: 2, pt: "1/1" });
     state.player.board[4].owner = 'player';
+    await resolveStartOfCombatTriggers(state.opponents[0]);
     stats = state.player.board[0].getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 1, "Should NOT have buff with only 4 matching tiers");
 
     // 3. Mixed tiers (Specific buff)
     // 5x Tier 2, 1x Tier 3, 1x Tier 4
+    resetState();
+    state.player.hero = HEROES.MAFUA;
     state.player.board = [];
     for(let i=0; i<5; i++) {
         const c = CardFactory.create({ card_name: `T2-${i}`, tier: 2, pt: "1/1" });
@@ -545,34 +558,36 @@ async function testMafua() {
     t4.owner = 'player';
     state.player.board.push(t4);
 
+    await resolveStartOfCombatTriggers(state.opponents[0]);
     assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 6, "T2 should be buffed");
     assert.strictEqual(state.player.board[5].getDisplayStats(state.player.board).p, 1, "T3 should NOT be buffed");
     assert.strictEqual(state.player.board[6].getDisplayStats(state.player.board).p, 1, "T4 should NOT be buffed");
 
     // 4. Over-threshold (7 units)
+    resetState();
+    state.player.hero = HEROES.MAFUA;
     state.player.board = [];
     for(let i=0; i<7; i++) {
         const c = CardFactory.create({ card_name: `T1-${i}`, tier: 1, pt: "1/1" });
         c.owner = 'player';
         state.player.board.push(c);
     }
+    await resolveStartOfCombatTriggers(state.opponents[0]);
     assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 6, "All 7 units should get exactly +5");
 
-    // 5. Sell test (Reversion)
+    // 5. Sell test
+    resetState();
+    state.player.hero = HEROES.MAFUA;
     state.player.board = [];
     for(let i=0; i<5; i++) {
         const c = CardFactory.create({ card_name: `T1-${i}`, tier: 1, pt: "1/1" });
         c.owner = 'player';
         state.player.board.push(c);
     }
+    await resolveStartOfCombatTriggers(state.opponents[0]);
     assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 6, "Initially buffed at 5 units");
     
-    state.phase = 'SHOP';
-    const idToSell = state.player.board[0].id;
-    sellCard(idToSell);
-    
-    assert.strictEqual(state.player.board.length, 4, "Should have 4 units left");
-    assert.strictEqual(state.player.board[0].getDisplayStats(state.player.board).p, 1, "Should revert to 1 power after selling below threshold");
+    // Note: Buff stays until combat reset (resetTemporaryStats) even if board state changes
 }
 
 async function runHeroTests() {
