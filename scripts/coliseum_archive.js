@@ -286,3 +286,58 @@ class SiegeFalcon extends BaseCard {
         return others;
     }
 }
+
+class CeremonyOfTribes extends BaseCard {
+    onApply(target, board) {
+        // This is handled in applyTargetedEffect via ceremony_step1
+    }
+}
+
+class DragonlordsCarapace extends BaseCard {
+    getEquipmentStats(target) {
+        return { p: 8, t: 8 };
+    }
+}
+
+class FlauntLuxury extends BaseCard {
+    onCast(board) {
+        state.player.gold += 3;
+        
+        // Draw 3 creatures to the shop
+        for (let i = 0; i < 3; i++) {
+            if (state.shop.cards.length < 7) {
+                addCardsToShop(1, 'creature', 1);
+            }
+        }
+
+    }
+}
+
+class ArtfulCoercion extends BaseCard {
+    effect_text = 'Choose a creature of which to gain control.';
+    onApply(target, board) {
+        // Target is from the shop
+        const shopIdx = state.shop.cards.indexOf(target);
+        if (shopIdx !== -1) {
+            if (board.length < boardLimit) {
+                state.shop.cards.splice(shopIdx, 1);
+                target.owner = 'player';
+                board.push(target);
+                
+                // Artful Coercion does NOT trigger ETB
+                // But we still broadcast the arrival to others
+                board.forEach(c => {
+                    if (c.id !== target.id) c.onOtherCreatureETB(target, board);
+                });
+
+                // INVIGORATE 2: random choice among your least power
+                const minPower = Math.min(...board.map(c => c.getDisplayStats(board).p));
+                const leastPowerCreatures = board.filter(c => c.getDisplayStats(board).p === minPower);
+                if (leastPowerCreatures.length > 0) {
+                    const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
+                    addCounters(randomTarget, 2, board);
+                }
+            }
+        }
+    }
+}

@@ -85,8 +85,8 @@ if (typeof window !== 'undefined') {
 
 // --- OO CARD SYSTEM ---
 
-const targetedNames = ['To Battle', 'Faith in Darkness', 'Might and Mane', 'Way of the Bygone', 'Fight Song', 'Lagoon Logistics', 'Artful Coercion', 'Touch of the Omen'];
-const complexTargetedNames = ['Executioner\'s Madness', 'Warrior\'s Ways', 'Whispers of the Dead', 'Ceremony of Tribes', 'Up in Arms'];
+const targetedNames = ['To Battle', 'Faith in Darkness', 'Might and Mane', 'Way of the Bygone', 'Fight Song', 'Lagoon Logistics', 'Touch of the Omen'];
+const complexTargetedNames = ['Executioner\'s Madness', 'Warrior\'s Ways', 'Whispers of the Dead', 'Up in Arms'];
 
 class BaseCard {
         constructor(data) {
@@ -157,9 +157,7 @@ class BaseCard {
         // Returns base power/toughness from the 'pt' string
         getBasePT() {
             let p = 0, t = 0;
-            if (this.temporarySphinx) {
-                p = 3; t = 3;
-            } else if (this.pt) {
+            if (this.pt) {
                 const parts = this.pt.split('/');
                 p = parseInt(parts[0]) || 0;
                 t = parseInt(parts[1]) || 0;
@@ -201,6 +199,7 @@ class BaseCard {
         }
 
         syncVisualState() {
+            if (state.isSimulating) return;
             this.displayedCounters = this.counters;
             this.displayedDamageTaken = this.damageTaken;
             this.displayedTempPower = this.tempPower;
@@ -333,6 +332,7 @@ class BaseCard {
         }
 
         async pulse(board) {
+            if (state.isSimulating) return;
             if (state.isAITurn) {
                 this.syncVisualState();
                 return;
@@ -427,8 +427,7 @@ class BaseCard {
         hasKeyword(keyword, visualOnly = false) {
             if (this.temporaryHumility) return false;
             const kw = keyword.toLowerCase();
-            if (kw === 'flying' && this.temporarySphinx) return true;
-            
+
             if (visualOnly) {
                 if (kw === 'flying' && this.displayedFlyingCounters > 0) return true;
                 if (kw === 'menace' && this.displayedMenaceCounters > 0) return true;
@@ -1546,8 +1545,6 @@ class BaseCard {
                     queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: false, cardInstance: spell });
                 } else if (name === 'Whispers of the Dead') {
                     queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: spell });
-                } else if (name === 'Ceremony of Tribes') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, cardInstance: spell });
                 } else if (name === 'Up in Arms') {
                     spell.onApply(null, board);
                 } else if (isEquipment) {
@@ -1777,12 +1774,6 @@ class BaseCard {
                     queueAnimation(runPulses);
                 }
             }
-        }
-    }
-
-    class CeremonyOfTribes extends BaseCard {
-        onApply(target, board) {
-            // This is handled in applyTargetedEffect via ceremony_step1
         }
     }
 
@@ -2159,12 +2150,6 @@ class BaseCard {
         }
     }
 
-    class DragonlordsCarapace extends BaseCard {
-        getEquipmentStats(target) {
-            return { p: 8, t: 8 };
-        }
-    }
-
     class DjitusLithifiedMantle extends BaseCard {
         async onEquippedAttack(host, board) {
             const hasDjitu = board.some(c => c.card_name === 'Jwanga Djitu');
@@ -2246,6 +2231,103 @@ class BaseCard {
         }
     }
 
+    class YamamuraTheWanderer extends BaseCard {
+        async onCombatStart(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            const validTargets = board.filter(c => !c.isDying && !c.isDestroyed);
+            if (validTargets.length > 0) {
+                const target = validTargets[Math.floor(Math.random() * validTargets.length)];
+                if (target.equipment) {
+                    await addCounters(target, 1 * multiplier, board);
+                } else {
+                    target.tempPower += (1 * multiplier);
+                    target.tempToughness += (1 * multiplier);
+                }
+                return [target];
+            }
+            return [];
+        }
+    }
+
+    class BjarndyrMender extends BaseCard {
+        onETB(board) {
+            const multiplier = this.isFoil ? 2 : 1;
+            const others = board.filter(c => c.id !== this.id);
+            
+            const snapshots = new Map();
+            others.forEach(c => {
+                c.tempPower += multiplier;
+                c.tempToughness += multiplier;
+                if (!c.enchantments) c.enchantments = [];
+                c.enchantments.push({ card_name: 'Bjarndyr Protection', rules_text: 'Indestructible', isTemporary: true });
+                
+                c.pulseQueueCount = (c.pulseQueueCount || 0) + 1;
+                c.isPulsing = true;
+                snapshots.set(c.id, c.takeSnapshot());
+            });
+
+            if (others.length > 0) {
+                queueAnimation(async () => {
+                    const pulses = others.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
+                    await Promise.all(pulses);
+                    others.forEach(c => {
+                        c.pulseQueueCount--;
+                        if (c.pulseQueueCount <= 0) {
+                            delete c.isPulsing;
+                            delete c.pulseQueueCount;
+                        }
+                    });
+                });
+            }
+            return others;
+        }
+    }
+
+    class MirrorImage extends BaseCard {
+        onETB(board) {
+            if (this.owner !== 'player') {
+                // AI Logic: Copy the strongest non-token creature
+                const friends = board.filter(c => c.id !== this.id && c.type?.toLowerCase().includes('creature') && !c.isToken);
+                if (friends.length > 0) {
+                    const strongest = friends.sort((a, b) => b.getDisplayStats(board).p - a.getDisplayStats(board).p)[0];
+                    createToken(strongest.card_name, strongest.set, this.owner);
+                    // For AI, createToken doesn't automatically remove Mirror Image. 
+                    // Let's ensure the AI Mirror Image also replaces itself.
+                    const myIdx = board.indexOf(this);
+                    if (myIdx !== -1) board.splice(myIdx, 1);
+                }
+                return;
+            }
+
+            const friends = board.filter(c => c.id !== this.id && c.type?.toLowerCase().includes('creature'));
+            if (friends.length === 0) {
+                // Mirror Image should not be playable on an open board.
+                // If it somehow enters (e.g. blink effect or similar), it just dies or does nothing.
+                // For manual play, useCardFromHand should ideally check this.
+                const myIdx = board.indexOf(this);
+                if (myIdx !== -1) board.splice(myIdx, 1);
+                return;
+            }
+
+            queueTargetingEffect({
+                sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to copy.",
+                effect: 'mirror_image',
+                wasCast: true,
+                isMandatory: true,
+                cardInstance: this
+            });
+        }
+    }
+
+    class HerosSledge extends BaseCard {
+        getEquipmentStats(target) {
+            const multiplier = this.isFoil ? 2 : 1;
+            return { p: 6 * multiplier, t: 6 * multiplier };
+        }
+    }
+
     class LagoonLogistics extends BaseCard {
         effect_text = 'Choose a creature to exile, then return to the battlefield.';
         onApply(target, board) {
@@ -2286,49 +2368,6 @@ class BaseCard {
             board.forEach(c => {
                 if (c.id !== fresh.id) c.onOtherCreatureETB(fresh, board);
             });
-        }
-    }
-
-    class FlauntLuxury extends BaseCard {
-        onCast(board) {
-            state.player.gold += 3;
-            
-            // Draw 3 creatures to the shop
-            for (let i = 0; i < 3; i++) {
-                if (state.shop.cards.length < 7) {
-                    addCardsToShop(1, 'creature', 1);
-                }
-            }
-
-        }
-    }
-
-    class ArtfulCoercion extends BaseCard {
-        effect_text = 'Choose a creature of which to gain control.';
-        onApply(target, board) {
-            // Target is from the shop
-            const shopIdx = state.shop.cards.indexOf(target);
-            if (shopIdx !== -1) {
-                if (board.length < boardLimit) {
-                    state.shop.cards.splice(shopIdx, 1);
-                    target.owner = 'player';
-                    board.push(target);
-                    
-                    // Artful Coercion does NOT trigger ETB
-                    // But we still broadcast the arrival to others
-                    board.forEach(c => {
-                        if (c.id !== target.id) c.onOtherCreatureETB(target, board);
-                    });
-
-                    // INVIGORATE 2: random choice among your least power
-                    const minPower = Math.min(...board.map(c => c.getDisplayStats(board).p));
-                    const leastPowerCreatures = board.filter(c => c.getDisplayStats(board).p === minPower);
-                    if (leastPowerCreatures.length > 0) {
-                        const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
-                        addCounters(randomTarget, 2, board);
-                    }
-                }
-            }
         }
     }
 
@@ -3285,7 +3324,6 @@ class BaseCard {
                 case 'Waspback Bandit': card = new WaspbackBandit(data); break;
                 case 'Murkborn Mammoth': card = new MurkbornMammoth(data); break;
                 case 'Hissing Sunspitter': card = new HissingSunspitter(data); break;
-                case 'Ceremony of Tribes': card = new CeremonyOfTribes(data); break;
                 case 'Hero of a Lost War': card = new HeroOfALostWar(data); break;
                 case 'Hero of Hedria': card = new HeroOfHedria(data); break;
                 case 'Savage Congregation': card = new SavageCongregation(data); break;
@@ -3297,15 +3335,15 @@ class BaseCard {
                 case 'Triumphant Tactics': card = new TriumphantTactics(data); break;
                 case 'Pyrewright Trainee': card = new PyrewrightTrainee(data); break;
                 case 'Lagoon Logistics': card = new LagoonLogistics(data); break;
-                case 'Flaunt Luxury': card = new FlauntLuxury(data); break;
-                case 'Artful Coercion': card = new ArtfulCoercion(data); break;
                 case 'Song of Wind and Fire': card = new SongOfWindAndFire(data); break;
                 case 'Bard': card = new Bard(data); break;
                 case 'Decorated Warrior': card = new DecoratedWarrior(data); break;
+                case 'Yamamura the Wanderer': card = new YamamuraTheWanderer(data); break;
                 case 'Dancing Mirrorblade': card = new DancingMirrorblade(data); break;
+                case 'Mirror Image': card = new MirrorImage(data); break;
                 case 'Warhammer Kreg': card = new WarhammerKreg(data); break;
+                case 'Hero\'s Sledge': card = new HerosSledge(data); break;
                 case 'The Exile Queen\'s Crown': card = new TheExileQueensCrown(data); break;
-                case 'Dragonlord\'s Carapace': card = new DragonlordsCarapace(data); break;
                 case 'Djitu\'s Lithified Mantle': card = new DjitusLithifiedMantle(data); break;
                 case 'Ash-Withered Cloak': card = new AshWitheredCloak(data); break;
                 case 'Steel Barding': card = new SteelBarding(data); break;
@@ -3340,6 +3378,7 @@ class BaseCard {
                 case 'Aldmore Chaperone': card = new AldmoreChaperone(data); break;
                 case 'Twin Shivs': card = new TwinShivs(data); break;
                 case 'Bjarndyr Bruiser': card = new BjarndyrBruiser(data); break;
+                case 'Bjarndyr Mender': card = new BjarndyrMender(data); break;
                 case 'Gold Grubber': card = new GoldGrubber(data); break;
                 case 'Herd Matron': card = new HerdMatron(data); break;
                 case 'Patron of the Meek': card = new PatronOfTheMeek(data); break;
@@ -3560,7 +3599,7 @@ class BaseCard {
             heroPower: {
                 name: "Traveling Symphony",
                 icon: "sets/SGB-files/img/41_Cajoling Chorus.jpg",
-                text: "When you buy your fourth spell this game, get a Pale Dillettante.",
+                text: "When you buy your sixth spell this game, get a Pale Dillettante.",
                 isPassive: true
             }
         },
@@ -3925,6 +3964,7 @@ class BaseCard {
     }
 
     async function queueDiscovery(discoveryObj) {
+        if (state.isSimulating) return;
         state.discoveryQueue.push(discoveryObj);
         if (!state.discovery) {
             state.discovery = state.discoveryQueue[0];
@@ -4134,7 +4174,8 @@ class BaseCard {
         await resolveAnimations();
     }
     function showDamageBubble(targetOrId, amount, className = 'damage-bubble') {
-        if (!targetOrId || amount <= 0) return;
+        if (state.isSimulating) return;
+        if (!amount || amount <= 0) return;
         const cabinet = document.getElementById('game-cabinet');
         if (!cabinet) return;
 
@@ -4208,6 +4249,7 @@ class BaseCard {
     }
 
     function showDestroyBubble(targetOrId) {
+        if (state.isSimulating) return;
         if (!targetOrId) return;
         const cabinet = document.getElementById('game-cabinet');
         if (!cabinet) return;
@@ -5276,7 +5318,7 @@ class BaseCard {
         const isAutumn = state.player.hero.name === "Autumn";
 
         if ((!isArietta || state.player.tier < 4) && 
-            (!isAdelaide || state.player.spellsBoughtThisGame < 4) && 
+            (!isAdelaide || state.player.spellsBoughtThisGame < 6) && 
             (!isHerrea || state.player.blueCardsPlayed < 7) &&
             (!isKism || (state.player.heroPowerActivations || 0) < 3) &&
             (!isAutumn)) {
@@ -5291,7 +5333,7 @@ class BaseCard {
             const oppAutumn = opp.hero && opp.hero.name === "Autumn";
 
             if ((!oppArietta || opp.tier < 4) && 
-                (!oppAdelaide || opp.spellsBoughtThisGame < 4) && 
+                (!oppAdelaide || opp.spellsBoughtThisGame < 6) && 
                 (!oppHerrea || opp.blueCardsPlayed < 7) &&
                 (!oppKism || (opp.heroPowerActivations || 0) < 3) &&
                 (!oppAutumn)) {
@@ -5771,6 +5813,7 @@ class BaseCard {
     }
 
     async function pulseCardElement(target, board, snapshot = null) {
+        if (state.isSimulating) return;
         const targetEl = document.getElementById(`card-${target.id}`);
         if (targetEl) {
             // 1. Capture old state for surgical pulsing
@@ -5893,6 +5936,7 @@ class BaseCard {
     }
 
     function queueAnimation(animationFn) {
+        if (state.isSimulating) return;
         state.animationQueue.push(animationFn);
     }
 
@@ -6403,12 +6447,12 @@ class BaseCard {
         state.player.hand.push(card);
         state.shop.cards.splice(cardIndex, 1);
         
-        // HERO POWER: Adelaide (4th Spell Reward)
+        // HERO POWER: Adelaide (6th Spell Reward)
         if (state.player.hero.name === "Adelaide" && !state.player.usedHeroPower) {
             const isCreature = card.type?.toLowerCase().includes('creature');
             if (!isCreature) {
                 state.player.spellsBoughtThisGame++;
-                if (state.player.spellsBoughtThisGame >= 4) {
+                if (state.player.spellsBoughtThisGame >= 6) {
                     const dillettanteData = availableCards.find(c => c.card_name === 'Pale Dillettante');
                     if (dillettanteData) {
                         const reward = CardFactory.create(dillettanteData);
@@ -6489,6 +6533,9 @@ class BaseCard {
 
         if (card.type.toLowerCase().includes('creature')) {
             if (state.player.board.length >= boardLimit) return;
+
+            // Mirror Image special check: cannot be played on an empty board
+            if (card.card_name === 'Mirror Image' && state.player.board.length === 0) return;
             
             // Remove from hand FIRST to prevent double-counting during tripling checks triggered by ETB
             state.player.hand.splice(cardIndex, 1);
@@ -6532,9 +6579,6 @@ class BaseCard {
             } else if (instance.card_name === 'Whispers of the Dead') {
                 state.spellsCastThisTurn++;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: instance, owner: 'player' });
-            } else if (instance.card_name === 'Ceremony of Tribes') {
-                state.spellsCastThisTurn++;
-                queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose the first creature to copy.", effect: 'ceremony_step1', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Up in Arms') {
                 state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board);
@@ -6543,9 +6587,6 @@ class BaseCard {
                 if (state.player.board.length === 0) return;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (targetedNames.includes(instance.card_name)) {
-                if (instance.card_name === 'Artful Coercion' && state.player.board.length >= boardLimit) {
-                    return; 
-                }
                 state.spellsCastThisTurn++;
                 state.castingSpell = instance;
             } else {
@@ -6573,6 +6614,7 @@ class BaseCard {
     }
 
     function queueTargetingEffect(effect) {
+        if (state.isSimulating) return;
         if (effect.isMandatory === undefined) effect.isMandatory = true;
         
         // If we are currently resolving a hero power, propagate the flag and cost
@@ -6600,14 +6642,6 @@ class BaseCard {
                 effect.effect === 'traverse_onora_grant' || effect.effect === 'traverse_altabaq_grant' || 
                 effect.effect === 'infuse_spell_resolution') {
                 hasTargets = currentBoard.length > 0;
-            } else if (effect.effect === 'architect_control') {
-                hasTargets = state.shop.cards.some(c => {
-                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
-                    return inst.type?.toLowerCase().includes('creature');
-                });
-            } else if (effect.effect === 'nest_matriarch_buff') {
-
-                hasTargets = currentBoard.length > 1; 
             } else if (effect.effect === 'warband_rallier_counters') {
                 hasTargets = currentBoard.some(c => c.isType('Centaur'));
             } else if (effect.effect === 'permutate_step1') {
@@ -6616,26 +6650,6 @@ class BaseCard {
                 hasTargets = currentBoard.some(c => !c.isType('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
                 hasTargets = currentBoard.some(c => (c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0) && c.shieldCounters === 0);
-            } else if (effect.effect === 'artful_coercion_gain_control') {
-                // Find min power on battlefield (yours + opponent + SHOP)
-                const currentOpp = getOpponent();
-                const battlefield = [...state.player.board, ...currentOpp.board];
-                const shopCreatures = state.shop.cards.filter(c => {
-                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
-                    return inst.type?.toLowerCase().includes('creature');
-                }).map(c => (c instanceof BaseCard) ? c : CardFactory.create(c));
-                
-                const allMinPool = [...battlefield, ...shopCreatures];
-                const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
-                    const board = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
-                    return c.getDisplayStats(board).p;
-                })) : Infinity;
-                
-                // Targets are in the SHOP, and board must have space
-                hasTargets = (state.player.board.length < boardLimit) && state.shop.cards.some(c => {
-                    const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
-                    return inst.type?.toLowerCase().includes('creature') && inst.getBasePT().p <= minPower;
-                });
             } else if (effect.effect === 'parliament_discard') {
                 const validHandCards = state.player.hand.filter(c => c.id !== effect.sourceId);
                 hasTargets = state.player.spellGraveyard.length > 0 && validHandCards.length > 0;
@@ -6645,18 +6659,7 @@ class BaseCard {
                 // AUTO-RESOLVE IN BATTLE (No interactive targeting allowed)
                 if (state.phase === 'BATTLE') {
                     let validTargets = [];
-                    if (effect.effect === 'artful_coercion_gain_control') {
-                        // Artful Coercion targets the shop
-                        const currentOpp = getOpponent();
-                        const battlefield = [...state.player.board, ...currentOpp.board];
-                        const shopCreatures = state.shop.cards.filter(c => c.type?.toLowerCase().includes('creature'));
-                        const allMinPool = [...battlefield, ...shopCreatures];
-                        const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
-                            const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
-                            return c.getDisplayStats(b).p;
-                        })) : Infinity;
-                        validTargets = shopCreatures.filter(c => c.getBasePT().p <= minPower);
-                    } else if (effect.effect === 'parliament_discard') {
+                    if (effect.effect === 'parliament_discard') {
                         validTargets = state.player.hand.filter(c => c.id !== effect.sourceId);
                     } else if (effect.effect === 'warband_rallier_counters') {
                         const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
@@ -6684,7 +6687,7 @@ class BaseCard {
                         'up_in_arms_step1', 'up_in_arms_step2',
                         'executioner_sacrifice_step1', 'executioner_sacrifice_step2',
                         'warrior_ways_step1', 'warrior_ways_step2',
-                        'whispers_sacrifice', 'ceremony_step1', 'ceremony_step2',
+                        'whispers_sacrifice', 'mirror_image',
                         'equip_creature'
                     ];
                     effect.isMandatory = !nonMandatoryEffects.includes(effect.effect) && !effect.isHeroPower;
@@ -6728,12 +6731,13 @@ class BaseCard {
 
     async function applyTargetedEffect(targetId, counterType = null) {
         if (!state.targetingEffect) return;
+        const currentEffect = state.targetingEffect.effect;
         
         // Find target in specific pools based on effect
         let target = null;
-        if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control' || state.targetingEffect.effect === 'hero_power_heping' || state.targetingEffect.effect === 'hero_power_kism') {
+        if (currentEffect === 'hero_power_heping' || currentEffect === 'hero_power_kism') {
             target = state.shop.cards.find(c => c.id === targetId);
-        } else if (state.targetingEffect.effect === 'parliament_discard') {
+        } else if (currentEffect === 'parliament_discard') {
             target = state.player.hand.find(c => c.id === targetId);
         } else {
             // Default: Most effects target the player's board
@@ -6773,30 +6777,6 @@ class BaseCard {
                 } else {
                     clearTargetingEffect(true);
                 }
-            } else if (state.targetingEffect.effect === 'artful_coercion_gain_control') {
-                const shopIdx = state.shop.cards.indexOf(target);
-                if (shopIdx !== -1) {
-                    // Gain control from shop
-                    state.shop.cards.splice(shopIdx, 1);
-                    target.owner = 'player';
-                    if (state.player.board.length < boardLimit) {
-                        state.player.board.push(target);
-                        // Artful Coercion does NOT trigger ETB
-                    } else {
-                        // Normally not castable if full, but as safety:
-                        state.player.hand.push(target);
-                    }
-
-                    // INVIGORATE 2: random choice among your least power
-                    const minPower = Math.min(...state.player.board.map(c => c.getDisplayStats(state.player.board).p));
-                    const leastPowerCreatures = state.player.board.filter(c => c.getDisplayStats(state.player.board).p === minPower);
-                    if (leastPowerCreatures.length > 0) {
-                        const randomTarget = leastPowerCreatures[Math.floor(Math.random() * leastPowerCreatures.length)];
-                        addCounters(randomTarget, 2, state.player.board);
-                    }
-
-                    clearTargetingEffect(true);
-                }
             } else if (state.targetingEffect.effect === 'intli_sacrifice') {
                 const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
                 if (source && target.id !== source.id) {
@@ -6810,17 +6790,6 @@ class BaseCard {
                         source.pulse(state.player.board);
                         clearTargetingEffect(true);
                     }
-                }
-            } else if (state.targetingEffect.effect === 'architect_control') {
-                const shopIdx = state.shop.cards.findIndex(c => c.id === target.id);
-                if (shopIdx !== -1) {
-                    state.shop.cards.splice(shopIdx, 1);
-                    target.owner = 'player';
-                    target.temporarySphinx = true;
-                    if (state.player.board.length < boardLimit) {
-                        state.player.board.push(target);
-                    }
-                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'erin_humility') {
                 target.temporaryHumility = true;
@@ -7200,49 +7169,13 @@ class BaseCard {
                 }
 
                 clearTargetingEffect(true);
-            } else if (state.targetingEffect.effect === 'ceremony_step1' || state.targetingEffect.effect === 'ceremony_step2') {
-                const isStep1 = state.targetingEffect.effect === 'ceremony_step1';
-                
-                if (!isStep1 && target.id === state.targetingEffect.target1Id) {
-                    return; // Invalid second target
-                }
-
-                if (isStep1) {
-                    state.targetingEffect.target1Id = target.id;
-                    checkAutumnReward(target, state.targetingEffect.cardInstance);
-                    if (state.player.board.length > 1) {
-                        state.targetingEffect.effect = 'ceremony_step2';
-                        state.targetingEffect.text = "Choose the second creature to copy.";
-                        render();
-                        return;
-                    }
-                }
-
-                // Resolution (Either Step 2, OR Step 1 if only 1 creature)
-                const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
-                const t2 = isStep1 ? null : target;
-                if (t2) checkAutumnReward(t2, state.targetingEffect.cardInstance);
+            } else if (currentEffect === 'mirror_image') {
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
-                const isFoilCast = state.targetingEffect.cardInstance.isFoil;
-
-                // Cleanup spell
-                const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
-                if (handIdx !== -1) {
-                    const [spell] = state.player.hand.splice(handIdx, 1);
-                    state.player.spellGraveyard.push(spell);
-                    
-                    // TRIGGER NONCREATURE CAST
-                    const targets = [...state.currentSpellTargets];
-                    state.currentSpellTargets = [];
-                    for (const c of state.player.board) {
-                        await c.onNoncreatureCast(spell, state.player.board, targets);
-                    }
-                }
-
+                checkAutumnReward(target, state.targetingEffect.cardInstance);
+                
                 const createdTokens = [];
                 const createCopy = (src) => {
                     if (state.player.board.length >= boardLimit) return;
-                    // Find base data to ensure a "clean" copy (no counters, not foil, etc)
                     const baseData = availableCards.find(c => c.card_name === src.card_name && c.shape !== 'token') || src;
                     const token = CardFactory.create(baseData);
                     token.id = `token-${Date.now()}-${Math.random()}`;
@@ -7259,8 +7192,14 @@ class BaseCard {
                 };
 
                 for (let i = 0; i < multiplier; i++) {
-                    if (t1) createCopy(t1);
-                    if (t2) createCopy(t2);
+                    createCopy(target);
+                }
+
+                // Mirror Image replaces itself
+                const sourceId = state.targetingEffect.sourceId;
+                const myIdx = state.player.board.findIndex(c => c.id === sourceId);
+                if (myIdx !== -1) {
+                    state.player.board.splice(myIdx, 1);
                 }
 
                 createdTokens.forEach(token => {
@@ -7271,7 +7210,7 @@ class BaseCard {
                 });
 
                 clearTargetingEffect(true);
-            } else if (state.targetingEffect.effect === 'equip_creature') {
+            } else if (state.targetingEffect?.effect === 'equip_creature') {
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
                 if (handIdx !== -1) {
                     const [equipment] = state.player.hand.splice(handIdx, 1);
@@ -7320,7 +7259,7 @@ class BaseCard {
 
                 // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect
                 const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
-                const isDoubleable = !['Lagoon Logistics', 'Artful Coercion'].includes(spell.card_name);
+                const isDoubleable = !['Lagoon Logistics'].includes(spell.card_name);
                 if (isDoubleable && (target.hasKeyword('Adaptive') || hasCloak)) {
                     spell.onApply(target, board);
                 }
@@ -7928,8 +7867,8 @@ class BaseCard {
             }
         }
         
-        // Artful Coercion safety: Board must have space
-        if ((state.castingSpell.card_name === 'Artful Coercion' || state.castingSpell.card_name === 'Touch of the Omen') && state.player.board.length >= boardLimit) {
+        // Mind control safety: Board must have space
+        if ((state.castingSpell.card_name === 'Touch of the Omen') && state.player.board.length >= boardLimit) {
             return;
         }
         // Track target for end-of-spell triggers
@@ -7940,7 +7879,7 @@ class BaseCard {
         
         // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect (Exclude certain utility spells)
         const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
-        const isDoubleable = !['Lagoon Logistics', 'Artful Coercion'].includes(state.castingSpell.card_name);
+        const isDoubleable = !['Lagoon Logistics'].includes(state.castingSpell.card_name);
         if (isDoubleable && (target.hasKeyword('Adaptive') || hasCloak)) {
             state.castingSpell.onApply(target, state.player.board);
         }
@@ -8210,7 +8149,7 @@ class BaseCard {
 
         // Show gem if passive, OR if Arietta hasn't leveled up yet (locked indicator)
         const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
-        const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
+        const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 6;
         const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
         const isEnochLocked = entity.hero.name === "Enoch" && (entity.rerollCount % 4 !== 3);
         const isAutumnLocked = entity.hero.name === "Autumn"; // Always show gem/count for Autumn as it repeats
@@ -8231,7 +8170,7 @@ class BaseCard {
             if (entity.hero.name === "Adelaide") {
                 const count = document.createElement('div');
                 count.className = 'hero-power-passive-gem-count';
-                count.textContent = Math.max(0, 4 - entity.spellsBoughtThisGame);
+                count.textContent = Math.max(0, 6 - entity.spellsBoughtThisGame);
                 gem.appendChild(count);
             }
 
@@ -8472,6 +8411,8 @@ class BaseCard {
     }
 
     function render() {
+        if (state.isSimulating) return;
+
         // SYNC VISUAL STATE FOR ALL CARDS NOT PULSING
         const allCards = [
             ...state.player.hand,
@@ -9068,6 +9009,7 @@ class BaseCard {
     }
 
     function createCardElement(card, isShop = false, index = -1, boardContext = [], skipIndicators = false) {
+        if (state.isSimulating) return null;
         const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
         const cardEl = cardTemplate.content.cloneNode(true).firstElementChild;
         cardEl.id = `card-${instance.id}`;
@@ -9387,37 +9329,15 @@ class BaseCard {
                 e.stopPropagation();
                 if (instance.isChained) return; // Uninteractable when chained
 
-                if (state.castingSpell && (state.castingSpell.card_name === 'Artful Coercion' || state.castingSpell.card_name === 'Touch of the Omen')) {
+                if (state.castingSpell && (state.castingSpell.card_name === 'Touch of the Omen')) {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
                     if (!isCreature) return; // Cannot target non-creatures
 
-                    if (state.castingSpell.card_name === 'Artful Coercion') {
-                        // Check if valid power for Coercion
-                        const currentOpp = getOpponent();
-                        const battlefield = [...state.player.board, ...currentOpp.board];
-                        const shopCreatures = state.shop.cards
-                            .map(c => (c instanceof BaseCard) ? c : CardFactory.create(c))
-                            .filter(c => c.type?.toLowerCase().includes('creature'));
-                        
-                        const allMinPool = [...battlefield, ...shopCreatures];
-                        const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
-                            const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
-                            return c.getDisplayStats(b).p;
-                        })) : Infinity;
-
-                        if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
-                            applySpell(instance.id);
-                        }
-                    } else if (state.castingSpell.card_name === 'Touch of the Omen') {
+                    if (state.castingSpell.card_name === 'Touch of the Omen') {
                         // Omen targets any shop creature if board has space
                         if (state.player.board.length < boardLimit) {
                             applySpell(instance.id);
                         }
-                    }
-                } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
-                    const isCreature = instance.type?.toLowerCase().includes('creature');
-                    if (isCreature) {
-                        applyTargetedEffect(instance.id);
                     }
                 } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_heping') {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
@@ -9437,33 +9357,9 @@ class BaseCard {
                 }
             };
 
-            if (state.castingSpell && state.castingSpell.card_name === 'Artful Coercion') {
-                const isCreature = instance.type?.toLowerCase().includes('creature');
-                if (isCreature) {
-                    const currentOpp = getOpponent();
-                    const battlefield = [...state.player.board, ...currentOpp.board];
-                    const shopCreatures = state.shop.cards
-                        .map(c => (c instanceof BaseCard) ? c : CardFactory.create(c))
-                        .filter(c => c.type?.toLowerCase().includes('creature'));
-                    
-                    const allMinPool = [...battlefield, ...shopCreatures];
-                    const minPower = allMinPool.length > 0 ? Math.min(...allMinPool.map(c => {
-                        const b = c.owner === 'player' ? state.player.board : (c.owner === 'opponent' ? currentOpp.board : shopCreatures);
-                        return c.getDisplayStats(b).p;
-                    })) : Infinity;
-
-                    if (instance.getBasePT().p <= minPower && state.player.board.length < boardLimit) {
-                        cardEl.classList.add('targetable');
-                    }
-                }
-            } else if (state.castingSpell && state.castingSpell.card_name === 'Touch of the Omen') {
+            if (state.castingSpell && state.castingSpell.card_name === 'Touch of the Omen') {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 if (isCreature && state.player.board.length < boardLimit) {
-                    cardEl.classList.add('targetable');
-                }
-            } else if (state.targetingEffect && state.targetingEffect.effect === 'architect_control') {
-                const isCreature = instance.type?.toLowerCase().includes('creature');
-                if (isCreature) {
                     cardEl.classList.add('targetable');
                 }
             } else if (state.targetingEffect && state.targetingEffect.effect === 'hero_power_heping') {
@@ -9531,13 +9427,12 @@ class BaseCard {
             if (state.castingSpell) { 
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 const isLagoon = state.castingSpell.card_name === 'Lagoon Logistics';
-                const isCoercion = state.castingSpell.card_name === 'Artful Coercion';
                 const isOmen = state.castingSpell.card_name === 'Touch of the Omen';
 
                 if (isLagoon && !isCreature) {
                     // Cannot target non-creatures with Lagoon
-                } else if (isCoercion || isOmen) {
-                    // Artful Coercion and Touch of the Omen target the SHOP, not the board
+                } else if (isOmen) {
+                    // Touch of the Omen targets the SHOP, not the board
                 } else {
                     cardEl.classList.add('targetable'); 
                     cardEl.onclick = () => applySpell(instance.id); 
@@ -9549,11 +9444,11 @@ class BaseCard {
                     // Not targetable on board
                 } else if (state.targetingEffect.effect === 'permutate_step1' || state.targetingEffect.effect === 'cloudline_sovereign_step1') {
                     // Not targetable as a card, only counters are clickable
-                } else if (state.targetingEffect.effect === 'artful_coercion_gain_control' || state.targetingEffect.effect === 'architect_control' || state.targetingEffect.effect === 'hero_power_heping' || state.targetingEffect.effect === 'hero_power_kism') {
+                } else if (state.targetingEffect.effect === 'hero_power_heping' || state.targetingEffect.effect === 'hero_power_kism') {
                     // Not targetable on board (targets shop)
                 } else {
-                    // Special case: Intli Assaulter, Wechuge, Matriarch, Brutalizer can't target themselves
-                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'nest_matriarch_buff', 'ndengo_target'];
+                    // Special case: Intli Assaulter, Wechuge, Brutalizer can't target themselves
+                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'ndengo_target'];
                     if (cannotTargetSelf.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
                         // Not targetable
                     } else if (state.targetingEffect.effect === 'permutate_step2' && instance.id === state.targetingEffect.sourceCreatureId) {
@@ -9562,11 +9457,9 @@ class BaseCard {
                         // Not targetable if not a Centaur
                     } else if (state.targetingEffect.effect === 'warband_rallier_counters' && !instance.isType('Centaur')) {
                         // Not targetable if not a Centaur
-                    } else if (state.targetingEffect.effect === 'ceremony_step2' || state.targetingEffect.effect === 'traverse_onora_grant_step2') {
-                        if (instance.id === (state.targetingEffect.target1Id || state.targetingEffect.firstTargetId)) {
+                    } else if (state.targetingEffect.effect === 'traverse_onora_grant_step2') {
+                        if (instance.id === state.targetingEffect.firstTargetId) {
                              // Not targetable (cannot select same creature twice)
-                        } else if ((state.targetingEffect.effect === 'ceremony_step2') && instance.isToken) {
-                             // Not targetable (Ceremony cannot target tokens)
                         } else {
                             cardEl.classList.add('targetable');
                             cardEl.onclick = () => applyTargetedEffect(instance.id);
@@ -9578,8 +9471,8 @@ class BaseCard {
                     } else if (state.targetingEffect.effect === 'equip_creature' && instance.equipment) {
                         // Not targetable if already equipped
                     } else {
-                        // Additional check for Ceremony Step 1
-                        if (state.targetingEffect.effect === 'ceremony_step1' && instance.isToken) {
+                        // Additional check for Mirror Image or other non-token-targeters
+                        if (state.targetingEffect.effect === 'mirror_image' && (instance.isToken || instance.id === state.targetingEffect.sourceId)) {
                             // Not targetable
                         } else {
                             cardEl.classList.add('targetable');
@@ -9823,7 +9716,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { 
         state, CardFactory, BaseCard, init, availableCards, HEROES,
         playerBoardEl, playerHandEl, shopEl, rerollBtn, freezeBtn, tierUpBtn, tierStarsEl, endTurnBtn, cardTemplate,
-        resolveShopDeaths, triggerLifeGain, findTarget,
+        resolveShopDeaths, triggerLifeGain, findTarget, render, getOpponent,
         resolveCombatImpact, resolveDeaths, processDeaths, performAttack, triggerETB, addCounters,
         resolveStartOfCombatTriggers,
         applyTargetedEffect, applySpell, useCardFromHand, activateHeroPower, clearTargetingEffect, queueTargetingEffect,

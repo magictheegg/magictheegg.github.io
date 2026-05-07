@@ -23,15 +23,15 @@ def create_coliseum_card_list():
         "Qinhana Cavalry", "Frontier Markswomen", "Festival Celebrants",
         "Restless Oppressor", "Striding Cascade", "Waspback Bandit",
         "Suitor of Death", "Servants of Dydren", "Holtun-Band Elder", "Whispers of the Dead",
-        "Murkborn Mammoth", "Hissing Sunspitter", "Ceremony of Tribes",
+        "Murkborn Mammoth", "Hissing Sunspitter", "Mirror Image",
         "Hero of a Lost War", "Hero of Hedria", "Ghessian Memories",
         "Thunder Raptor", "Cloudline Sovereign", "Nightfall Raptor", "Mekini Eremite",
         "Ndengo Brutalizer", "Savage Congregation",
-        "Pyrewright Trainee", "Lagoon Logistics", "Flaunt Luxury", "Artful Coercion",
+        "Pyrewright Trainee", "Lagoon Logistics", "Yamamura the Wanderer", "Bjarndyr Mender",
         "Magnific Wilderkin", "Dwarven Phalanx", "Lair Recluse", "Tunnel Web Spider",
         "Song of Wind and Fire", "Decorated Warrior",
         "Dancing Mirrorblade", "Warhammer Kreg", "The Exile Queen's Crown",
-        "Dragonlord's Carapace", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
+        "Hero's Sledge", "Djitu's Lithified Mantle", "Ash-Withered Cloak",
         "Steel Barding", "Rivha's Blessed Blade", "Blacksteel Loadout",
         "Lumbering Ancient", "Zarax Supermajor", "Infuse the Apparatus",
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
@@ -95,7 +95,8 @@ def create_coliseum_card_list():
         "Warband Lieutenant",
         "Warband Rallier",
         "Warrior's Ways",
-        "Way of the Bygone"
+        "Way of the Bygone",
+        "Yamamura the Wanderer"
     ]
     tier_3_names = [
         "Aether Guzzler",
@@ -103,6 +104,7 @@ def create_coliseum_card_list():
         "Arroyd Pass Shepherd",
         "Bellowing Giant",
         "Bjarndyr Bruiser",
+        "Bjarndyr Mender",
         "Bwema, the Ruthless",
         "Cauther Hellkite",
         "Covetous Wechuge",
@@ -117,6 +119,7 @@ def create_coliseum_card_list():
         "Gallant Centaur",
         "Gold Grubber",
         "Herd Matron",
+        "Hero of a Lost War",
         "Jiayin, the Harmonious",
         "Pale Dillettante",
         "Qinhana Cavalry",
@@ -125,17 +128,12 @@ def create_coliseum_card_list():
         "Silverhorn Tactician",
         "Sporegraft Slime",
         "Striding Cascade",
-        "Waspback Bandit",
         "Windsong Apprentice"
     ]
     tier_4_names = [
-        "Artful Coercion",
-        "Ceremony of Tribes",
         "Dwarven Phalanx",
         "Festival Celebrants",
-        "Flaunt Luxury",
         "Ghessian Memories",
-        "Hero of a Lost War",
         "Hero of Hedria",
         "Hissing Sunspitter",
         "Holtun-Band Elder",
@@ -147,6 +145,7 @@ def create_coliseum_card_list():
         "Magnific Wilderkin",
         "Mekini Eremite",
         "Michal, the Anointed",
+        "Mirror Image",
         "Murkborn Mammoth",
         "Ndengo Brutalizer",
         "Nightfall Raptor",
@@ -160,6 +159,7 @@ def create_coliseum_card_list():
         "Song of Wind and Fire",
         "Thunder Raptor",
         "Tunnel Web Spider",
+        "Waspback Bandit",
         "Whispers of the Dead"
     ]
     tier_5_names = [
@@ -170,8 +170,8 @@ def create_coliseum_card_list():
         "Dancing Mirrorblade",
         "Decorated Warrior",
         "Djitu's Lithified Mantle",
-        "Dragonlord's Carapace",
         "Erin, Beacon of Humility",
+        "Hero's Sledge",
         "Infuse the Apparatus",
         "Ladria, Windwatcher",
         "Lumbering Ancient",
@@ -191,6 +191,10 @@ def create_coliseum_card_list():
         # Special case: prioritize specific sets if needed
         preferred_set = None
         if name == "Nacreous Hydra":
+            preferred_set = "WAS"
+        elif name == "Yamamura the Wanderer":
+            preferred_set = "BLD"
+        elif name == "Mirror Image":
             preferred_set = "WAS"
             
         if preferred_set:

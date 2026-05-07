@@ -128,6 +128,107 @@ function resetState() {
 
 // --- TIER 1 TESTS ---
 
+async function testYamamuraTheWanderer() {
+    resetState();
+    const yamamura = CardFactory.create({ card_name: "Yamamura the Wanderer", pt: "2/1", type: "Legendary Creature – Human Samurai" });
+    const unequipped = CardFactory.create({ card_name: "Unequipped", pt: "1/1" });
+    const equipped = CardFactory.create({ card_name: "Equipped", pt: "1/1" });
+    equipped.equipment = { card_name: "Sledge", getEquipmentStats: () => ({p: 6, t: 6}) };
+    
+    state.player.board = [yamamura, unequipped, equipped];
+    yamamura.owner = unequipped.owner = equipped.owner = 'player';
+
+    // 1. Target unequipped (Randomly selected)
+    const oldRandom = Math.random;
+    Math.random = () => 0.4; // Index 1: Unequipped
+    await yamamura.onCombatStart(state.player.board);
+    assert.strictEqual(unequipped.tempPower, 1, "Unequipped should get temp +1/+1");
+    assert.strictEqual(unequipped.counters, 0);
+
+    // 2. Target equipped (Randomly selected)
+    resetState();
+    state.player.board = [yamamura, unequipped, equipped];
+    Math.random = () => 0.9; // Index 2: Equipped
+    await yamamura.onCombatStart(state.player.board);
+    assert.strictEqual(equipped.counters, 1, "Equipped should get permanent +1/+1 counter");
+    assert.strictEqual(equipped.tempPower, 0);
+
+    Math.random = oldRandom;
+}
+
+async function testBjarndyrMender() {
+    resetState();
+    const mender = CardFactory.create({ card_name: "Bjarndyr Mender", pt: "3/3" });
+    const other = CardFactory.create({ card_name: "Other", pt: "2/2" });
+    state.player.board = [mender, other];
+    mender.owner = other.owner = 'player';
+
+    mender.onETB(state.player.board);
+    
+    assert.strictEqual(other.tempPower, 1, "Other should get +1/+1 temp");
+    assert.strictEqual(other.hasKeyword('indestructible'), true, "Other should have Indestructible");
+    assert.strictEqual(mender.tempPower, 0, "Mender should not buff self");
+
+    // Cleanup end of turn
+    resetTemporaryStats();
+    assert.strictEqual(other.tempPower, 0, "Buff should be removed");
+    assert.strictEqual(other.hasKeyword('indestructible'), false, "Indestructible should be removed");
+}
+
+async function testMirrorImage() {
+    // 1. Copying ETB and Replacing Self
+    resetState();
+    const target = CardFactory.create({ card_name: "Bjarndyr Mender", pt: "3/3", type: "Creature" });
+    const mirror = CardFactory.create({ card_name: "Mirror Image", pt: "0/0", type: "Creature" });
+    const third = CardFactory.create({ card_name: "Third Wheel", pt: "1/1", type: "Creature" });
+    
+    state.player.board = [target, mirror, third];
+    mirror.owner = target.owner = third.owner = 'player';
+
+    // We need target in availableCards for Mirror Image's createCopy to work
+    availableCards.push({ card_name: "Bjarndyr Mender", pt: "3/3", set: target.set });
+
+    mirror.onETB(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'mirror_image');
+
+    applyTargetedEffect(target.id);
+
+    // Mirror Image (idx 1) should be gone. 
+    // New Bjarndyr Mender (idx 2) should be there.    // Total board: [Bjarndyr Mender (original), Third Wheel, Bjarndyr Mender (copy)]
+    assert.strictEqual(state.player.board.length, 3);
+    assert.strictEqual(state.player.board.some(c => c.id === mirror.id), false, "Mirror Image should be removed");
+    
+    const copy = state.player.board.find(c => c.card_name === "Bjarndyr Mender" && c.id !== target.id);
+    assert.ok(copy, "Copy should exist");
+    
+    // Verify ETB trigger (Bjarndyr Mender copy should buff others)
+    assert.strictEqual(target.tempPower, 1, "Original target should have received ETB buff from copy");
+    assert.strictEqual(third.tempPower, 1, "Third creature should have received ETB buff from copy");
+
+    // 2. Not playable on open board
+    resetState();
+    const mirror2 = CardFactory.create({ card_name: "Mirror Image", pt: "0/0", type: "Creature" });
+    state.player.hand = [mirror2];
+    await useCardFromHand(mirror2.id);
+    assert.strictEqual(state.player.board.length, 0, "Mirror Image should not be playable on empty board");
+    assert.strictEqual(state.player.hand.length, 1, "Mirror Image should remain in hand");
+}
+
+async function testHerosSledge() {
+    resetState();
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const sledge = CardFactory.create({ card_name: "Hero's Sledge", type: "Equipment", rules_text: "Equipped creature gets +6/+6." });
+    host.equipment = sledge;
+    state.player.board = [host];
+
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 8, "Host gets +6 Power");
+    assert.strictEqual(host.getDisplayStats(state.player.board).t, 8, "Host gets +6 Toughness");
+    
+    // Removal
+    host.equipment = null;
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 2, "Stats should revert");
+}
+
 async function testHuitzilSkywatch() {
     resetState();
     const card = CardFactory.create({ card_name: "Huitzil Skywatch", pt: "1/4", rules_text: "Flying" });
@@ -1441,113 +1542,6 @@ async function testHissingSunspitter() {
     assert.strictEqual(other.hasKeyword('first strike'), true, "All creatures should gain first strike on 3rd spell");
 }
 
-async function testCeremonyOfTribes() {
-    resetState();
-    const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
-    const rec = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "2/2" });
-    const s1 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
-    
-    state.player.board = [rec, s1];
-    state.player.hand = [cer];
-    rec.owner = s1.owner = 'player';
-
-    // multi-step
-    useCardFromHand(cer.id);
-    assert.strictEqual(state.targetingEffect.effect, 'ceremony_step1');
-    
-    applyTargetedEffect(rec.id);
-    assert.strictEqual(state.targetingEffect.effect, 'ceremony_step2');
-    
-    applyTargetedEffect(s1.id);
-    
-    // rec (initial) + s1 (initial) + token(rec) + token(rec).onETB(centaur) + token(s1) = 5 cards
-    assert.strictEqual(state.player.board.length, 5, "Should have 5 cards total (including Recruiter token's spawn)");
-    assert.strictEqual(state.player.board[2].card_name, "Cybres-Band Recruiter");
-    assert.strictEqual(state.player.board[4].card_name, "Servants of Dydren");
-    
-    // Check ETBs (Servants of Dydren lord effect should update)
-    assert.strictEqual(s1.getDisplayStats(state.player.board).p, 4, "S1 should now be 4/4 (2 base + 2 from token copy)");
-}
-
-async function testCeremonyOfTribes_NoDoubleTarget() {
-    resetState();
-    const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
-    const rec1 = CardFactory.create({ card_name: "Recruiter 1", pt: "2/2" });
-    const rec2 = CardFactory.create({ card_name: "Recruiter 2", pt: "2/2" });
-    
-    state.player.board = [rec1, rec2];
-    state.player.hand = [cer];
-    rec1.owner = rec2.owner = 'player';
-
-    useCardFromHand(cer.id);
-    applyTargetedEffect(rec1.id);
-    
-    // Step 2: Attempt to target the exact same creature again
-    applyTargetedEffect(rec1.id);
-    
-    assert.strictEqual(state.targetingEffect && state.targetingEffect.effect, 'ceremony_step2', "Should remain in step 2 because double targeting is invalid");
-    assert.strictEqual(state.player.board.length, 2, "Should not create a copy yet");
-}
-
-async function testCeremonyOfTribes_SingleTarget() {
-    resetState();
-    const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
-    const rec = CardFactory.create({ card_name: "Lone Recruiter", pt: "2/2" });
-    
-    state.player.board = [rec];
-    state.player.hand = [cer];
-    rec.owner = 'player';
-
-    useCardFromHand(cer.id);
-    applyTargetedEffect(rec.id);
-    
-    assert.strictEqual(state.targetingEffect, null, "Should finish immediately with only one target");
-    assert.strictEqual(state.player.board.length, 2, "Should have created a copy of the lone creature");
-}
-
-async function testCeremonyOfTribes_NoCastBuffForCopies() {
-    resetState();
-    const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
-    const pale = CardFactory.create({ card_name: "Pale Dillettante", pt: "2/2" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
-    
-    state.player.board = [pale, other];
-    state.player.hand = [cer];
-    pale.owner = other.owner = 'player';
-
-    useCardFromHand(cer.id);
-    applyTargetedEffect(pale.id);
-    applyTargetedEffect(other.id);
-    
-    const copyPale = state.player.board.find(c => c.id !== pale.id && c.card_name === "Pale Dillettante");
-    
-    assert.ok(copyPale, "Copied Pale Dillettante should exist");
-    assert.strictEqual(pale.counters, 1, "Original Pale Dillettante gets a counter from the spell cast");
-    assert.strictEqual(copyPale.counters, 0, "Copied Pale Dillettante should NOT get a counter from the spell that created it");
-}
-
-async function testCeremonyOfTribes_ETBOrder() {
-    resetState();
-    const cer = CardFactory.create({ card_name: "Ceremony of Tribes", type: "Sorcery" });
-    const fest = CardFactory.create({ card_name: "Festival Celebrants", pt: "2/2" });
-    const luna = CardFactory.create({ card_name: "Lingering Lunatic", pt: "4/5", rules_text: "Vigilance" });
-    
-    state.player.board = [fest, luna];
-    state.player.hand = [cer];
-    fest.owner = luna.owner = 'player';
-
-    useCardFromHand(cer.id);
-    applyTargetedEffect(fest.id); // Target 1
-    applyTargetedEffect(luna.id); // Target 2
-    
-    const tokenLuna = state.player.board.find(c => c.id !== luna.id && c.card_name === "Lingering Lunatic");
-    
-    assert.ok(tokenLuna, "Lunatic token should be created");
-    // The Festival Celebrants token ETB should give the Lunatic token +1/+1
-    // Then the Lunatic token ETB should proliferate, taking it to 2 counters.
-    assert.strictEqual(tokenLuna.counters, 2, "Lunatic token should receive buff from Celebrants token and then proliferate it");
-}
-
 async function testGhessianMemories() {
     resetState();
     const gm = CardFactory.create({ card_name: "Ghessian Memories", type: "Instant" });
@@ -1967,59 +1961,6 @@ async function testLagoonLogistics() {
     assert.notStrictEqual(newOracle.id, oracle.id, "Creature should be a new instance after blink");
 }
 
-async function testFlauntLuxury() {
-    resetState();
-    const flaunt = CardFactory.create({ card_name: "Flaunt Luxury" });
-    state.player.gold = 0;
-    state.player.tier = 1;
-    
-    // availableCards needs to have something to draw
-    availableCards.push({ card_name: "Test Creature", type: "Creature", shape: "normal", tier: 1 });
-    
-    flaunt.onCast(state.player.board);
-    assert.strictEqual(state.player.gold, 3, "Should get 3 gold (Treasures)");
-    assert.strictEqual(state.shop.cards.length, 3, "Should add 3 cards to the SHOP");
-}
-
-async function testArtfulCoercion() {
-    resetState();
-    const artful = CardFactory.create({ card_name: "Artful Coercion", type: "Sorcery" });
-    const myWeak = CardFactory.create({ card_name: "MyWeak", pt: "2/2" });
-    const shopWeak = CardFactory.create({ card_name: "ShopWeak", pt: "1/1", type: "Creature" });
-    const shopStrong = CardFactory.create({ card_name: "ShopStrong", pt: "5/5", type: "Creature" });
-    
-    state.player.hand = [artful];
-    state.player.board = [myWeak];
-    myWeak.owner = 'player';
-    state.shop.cards = [shopWeak, shopStrong];
-    
-    // Case 1: Board full failure
-    state.player.board = Array(7).fill(myWeak);
-    useCardFromHand(artful.id);
-    assert.strictEqual(state.castingSpell, null, "Should not be castable if board is full");
-
-    // Case 2: Normal resolution
-    resetState();
-    state.player.hand = [artful];
-    state.player.board = [myWeak];
-    myWeak.owner = 'player';
-    state.shop.cards = [shopWeak, shopStrong];
-    
-    useCardFromHand(artful.id);
-    assert.strictEqual(state.castingSpell.card_name, 'Artful Coercion');
-    
-    // Apply to ShopWeak
-    applySpell(shopWeak.id);
-    
-    assert.strictEqual(state.player.board.length, 2, "Should have gained control of ShopWeak");
-    assert.strictEqual(state.player.board.includes(shopWeak), true);
-    assert.strictEqual(shopWeak.owner, 'player');
-    
-    // Invigorate 2: Puts 2 counters on player's weakest creature.
-    // ShopWeak (1/1) was gained, it is now the weakest.
-    assert.strictEqual(shopWeak.counters, 2, "Weakest creature (ShopWeak) should receive 2 counters");
-}
-
 async function testMagnificWilderkin() {
     resetState();
     const wilderkin = CardFactory.create({ card_name: "Magnific Wilderkin", pt: "3/3" });
@@ -2166,18 +2107,6 @@ async function testTheExileQueensCrown() {
     assert.strictEqual(other.tempToughness, 1, "Other creature gets +1 Toughness");
     assert.strictEqual(other.hasKeyword('Indestructible'), true, "Other creature gets Indestructible");
     assert.strictEqual(host.hasKeyword('Indestructible'), false, "Host should not get Indestructible from the Crown");
-}
-
-async function testDragonlordsCarapace() {
-    resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const carapace = CardFactory.create({ card_name: "Dragonlord's Carapace", type: "Equipment", rules_text: "Equipped creature gets +8/+8 and has trample." });
-    host.equipment = carapace;
-    state.player.board = [host];
-
-    assert.strictEqual(host.getDisplayStats(state.player.board).p, 10, "Host gets +8 Power");
-    assert.strictEqual(host.getDisplayStats(state.player.board).t, 10, "Host gets +8 Toughness");
-    assert.strictEqual(host.hasKeyword('trample'), true, "Host gets Trample");
 }
 
 async function testDjitusLithifiedMantle() {
@@ -2386,7 +2315,7 @@ async function testZaraxSupermajor() {
 
     // 2. Second Spell
     state.spellsCastThisTurn = 2;
-    zarax.onNoncreatureCast({ isFoil: false }, state.player.board);
+    await zarax.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(zarax.counters, 1, "Zarax gets a counter on second spell");
     assert.ok(state.player.board.every(c => c.hasKeyword('flying')), "All creatures gain Flying");
 }
@@ -3402,6 +3331,7 @@ async function runTests() {
         { tier: 2, name: "Am'Atambi's Wildkin", fn: testAmAtambisWildkin },
         { tier: 2, name: "Pestilent Leopardfly", fn: testPestilentLeopardfly },
         { tier: 2, name: "Touch of the Omen", fn: testTouchOfTheOmen },
+        { tier: 2, name: "Yamamura the Wanderer", fn: testYamamuraTheWanderer },
         { tier: 2, name: "Angora Paladin", fn: testAngoraPaladin },
         { tier: 2, name: "Small World", fn: testSmallWorld },
         { tier: 2, name: "Restless Migrants", fn: testRestlessMigrants },
@@ -3445,7 +3375,8 @@ async function runTests() {
         { tier: 3, name: "Aldmore Chaperone", fn: testAldmoreChaperone },
         { tier: 3, name: "Bjarndyr Bruiser", fn: testBjarndyrBruiser },
         { tier: 3, name: "Gold Grubber", fn: testGoldGrubber },
-        { tier: 3, name: "Herd Matron", fn: testHerdMatron }
+        { tier: 3, name: "Herd Matron", fn: testHerdMatron },
+        { tier: 3, name: "Bjarndyr Mender", fn: testBjarndyrMender }
     ];
 
     const t4Tests = [
@@ -3458,11 +3389,6 @@ async function runTests() {
         { tier: 4, name: "Striding Cascade", fn: testStridingCascade },
         { tier: 4, name: "Murkborn Mammoth", fn: testMurkbornMammoth },
         { tier: 4, name: "Hissing Sunspitter", fn: testHissingSunspitter },
-        { tier: 4, name: "Ceremony of Tribes", fn: testCeremonyOfTribes },
-        { tier: 4, name: "Ceremony of Tribes (No Double Target)", fn: testCeremonyOfTribes_NoDoubleTarget },
-        { tier: 4, name: "Ceremony of Tribes (Single Target)", fn: testCeremonyOfTribes_SingleTarget },
-        { tier: 4, name: "Ceremony of Tribes (No Copy Buff)", fn: testCeremonyOfTribes_NoCastBuffForCopies },
-        { tier: 4, name: "Ceremony of Tribes (ETB Order)", fn: testCeremonyOfTribes_ETBOrder },
         { tier: 4, name: "Ghessian Memories", fn: testGhessianMemories },
         { tier: 4, name: "Hero of a Lost War (Self)", fn: testHeroOfALostWar_Self },
         { tier: 4, name: "Hero of a Lost War (Other)", fn: testHeroOfALostWar_Other },
@@ -3478,8 +3404,6 @@ async function runTests() {
         { tier: 4, name: "Ndengo Brutalizer", fn: testNdengoBrutalizer },
         { tier: 4, name: "Pyrewright Trainee", fn: testPyrewrightTrainee },
         { tier: 4, name: "Lagoon Logistics", fn: testLagoonLogistics },
-        { tier: 4, name: "Flaunt Luxury", fn: testFlauntLuxury },
-        { tier: 4, name: "Artful Coercion", fn: testArtfulCoercion },
         { tier: 4, name: "Magnific Wilderkin", fn: testMagnificWilderkin },
         { tier: 4, name: "Dwarven Phalanx", fn: testDwarvenPhalanx },
         { tier: 4, name: "Lair Recluse", fn: testLairRecluse },
@@ -3490,14 +3414,14 @@ async function runTests() {
         { tier: 4, name: "Patron of the Meek", fn: testPatronOfTheMeek },
         { tier: 4, name: "Honor Begets Glory", fn: testHonorBegetsGlory },
         { tier: 4, name: "Honor Begets Glory (Stacking)", fn: testHonorBegetsGlory_Stacking },
-        { tier: 4, name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion }
+        { tier: 4, name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion },
+        { tier: 4, name: "Mirror Image", fn: testMirrorImage }
     ];
 
     const t5Tests = [
         { tier: 5, name: "Warhammer Kreg", fn: testWarhammerKreg },
         { tier: 5, name: "Dancing Mirrorblade", fn: testDancingMirrorblade },
         { tier: 5, name: "The Exile Queen's Crown", fn: testTheExileQueensCrown },
-        { tier: 5, name: "Dragonlord's Carapace", fn: testDragonlordsCarapace },
         { tier: 5, name: "Djitu's Lithified Mantle", fn: testDjitusLithifiedMantle },
         { tier: 5, name: "Ash-Withered Cloak", fn: testAshWitheredCloak },
         { tier: 5, name: "Steel Barding", fn: testSteelBarding },
@@ -3514,7 +3438,8 @@ async function runTests() {
         { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
         { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
         { tier: 5, name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
-        { tier: 5, name: "Nacreous Hydra", fn: testNacreousHydra }
+        { tier: 5, name: "Nacreous Hydra", fn: testNacreousHydra },
+        { tier: 5, name: "Hero's Sledge", fn: testHerosSledge }
     ];
 
     console.log("\nUNIT TEST RESULTS");
