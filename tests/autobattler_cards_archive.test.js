@@ -587,3 +587,22 @@ function testDragonlordsCarapace() {
     assert.strictEqual(host.getDisplayStats(state.player.board).t, 10, "Host gets +8 Toughness");
     assert.strictEqual(host.hasKeyword('trample'), true, "Host gets Trample");
 }
+
+async function testBjarndyrMender() {
+    resetState();
+    const mender = CardFactory.create({ card_name: "Bjarndyr Mender", pt: "3/3" });
+    const other = CardFactory.create({ card_name: "Other", pt: "2/2" });
+    state.player.board = [mender, other];
+    mender.owner = other.owner = 'player';
+
+    mender.onETB(state.player.board);
+    
+    assert.strictEqual(other.tempPower, 1, "Other should get +1/+1 temp");
+    assert.strictEqual(other.hasKeyword('indestructible'), true, "Other should have Indestructible");
+    assert.strictEqual(mender.tempPower, 0, "Mender should not buff self");
+
+    // Cleanup end of turn
+    resetTemporaryStats();
+    assert.strictEqual(other.tempPower, 0, "Buff should be removed");
+    assert.strictEqual(other.hasKeyword('indestructible'), false, "Indestructible should be removed");
+}

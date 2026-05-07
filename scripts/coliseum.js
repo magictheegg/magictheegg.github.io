@@ -2249,37 +2249,17 @@ class BaseCard {
         }
     }
 
-    class BjarndyrMender extends BaseCard {
-        onETB(board) {
-            const multiplier = this.isFoil ? 2 : 1;
-            const others = board.filter(c => c.id !== this.id);
-            
-            const snapshots = new Map();
-            others.forEach(c => {
-                c.tempPower += multiplier;
-                c.tempToughness += multiplier;
-                if (!c.enchantments) c.enchantments = [];
-                c.enchantments.push({ card_name: 'Bjarndyr Protection', rules_text: 'Indestructible', isTemporary: true });
-                
-                c.pulseQueueCount = (c.pulseQueueCount || 0) + 1;
-                c.isPulsing = true;
-                snapshots.set(c.id, c.takeSnapshot());
+    class SunspearAngel extends BaseCard {
+        onETB(board, isDouble = false) {
+            queueTargetingEffect({
+                sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to get +2/+2 and gain indestructible until end of turn.",
+                effect: 'sunspear_angel_buff',
+                wasCast: !isDouble,
+                isMandatory: true,
+                cardInstance: this
             });
-
-            if (others.length > 0) {
-                queueAnimation(async () => {
-                    const pulses = others.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
-                    await Promise.all(pulses);
-                    others.forEach(c => {
-                        c.pulseQueueCount--;
-                        if (c.pulseQueueCount <= 0) {
-                            delete c.isPulsing;
-                            delete c.pulseQueueCount;
-                        }
-                    });
-                });
-            }
-            return others;
         }
     }
 
@@ -3378,7 +3358,7 @@ class BaseCard {
                 case 'Aldmore Chaperone': card = new AldmoreChaperone(data); break;
                 case 'Twin Shivs': card = new TwinShivs(data); break;
                 case 'Bjarndyr Bruiser': card = new BjarndyrBruiser(data); break;
-                case 'Bjarndyr Mender': card = new BjarndyrMender(data); break;
+                case 'Sunspear Angel': card = new SunspearAngel(data); break;
                 case 'Gold Grubber': card = new GoldGrubber(data); break;
                 case 'Herd Matron': card = new HerdMatron(data); break;
                 case 'Patron of the Meek': card = new PatronOfTheMeek(data); break;
@@ -5565,14 +5545,18 @@ class BaseCard {
             let amount = 0;
 
             if (side === 'opponent' && currentOppCombat.fightHp <= 0) {
-                currentOppCombat.overallHp -= state.player.tier;
+                const survivors = state.battleBoards.player.filter(c => !c.isDying && !c.isDestroyed).length;
+                const damage = Math.min(state.player.tier + survivors, state.player.tier * 2);
+                currentOppCombat.overallHp -= damage;
                 losingAvatarId = 'opponent-battle-avatar';
-                amount = state.player.tier;
+                amount = damage;
                 state.overallHpReducedThisFight = true;
             } else if (side === 'player' && state.player.fightHp <= 0) {
-                state.player.overallHp -= currentOppCombat.tier;
+                const survivors = state.battleBoards.opponent.filter(c => !c.isDying && !c.isDestroyed).length;
+                const damage = Math.min(currentOppCombat.tier + survivors, currentOppCombat.tier * 2);
+                state.player.overallHp -= damage;
                 losingAvatarId = 'player-avatar';
-                amount = currentOppCombat.tier;
+                amount = damage;
                 state.overallHpReducedThisFight = true;
             }
 
@@ -6190,8 +6174,8 @@ class BaseCard {
             return acc + stats.p + stats.t;
         }, 0);
         
-        if (s1 > s2) opp2.overallHp -= opp1.tier;
-        else if (s2 > s1) opp1.overallHp -= opp2.tier;
+        if (s1 > s2) opp2.overallHp -= Math.min(opp1.tier + opp1.board.length, opp1.tier * 2);
+        else if (s2 > s1) opp1.overallHp -= Math.min(opp2.tier + opp2.board.length, opp2.tier * 2);
     }
 
     function fillShopSlots(creatureBonus = 0, spellBonus = 0) {
@@ -6640,7 +6624,7 @@ class BaseCard {
 
             if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant' || 
                 effect.effect === 'traverse_onora_grant' || effect.effect === 'traverse_altabaq_grant' || 
-                effect.effect === 'infuse_spell_resolution') {
+                effect.effect === 'infuse_spell_resolution' || effect.effect === 'sunspear_angel_buff') {
                 hasTargets = currentBoard.length > 0;
             } else if (effect.effect === 'warband_rallier_counters') {
                 hasTargets = currentBoard.some(c => c.isType('Centaur'));
@@ -6687,7 +6671,7 @@ class BaseCard {
                         'up_in_arms_step1', 'up_in_arms_step2',
                         'executioner_sacrifice_step1', 'executioner_sacrifice_step2',
                         'warrior_ways_step1', 'warrior_ways_step2',
-                        'whispers_sacrifice', 'mirror_image',
+                        'whispers_sacrifice', 'mirror_image', 'sunspear_angel_buff',
                         'equip_creature'
                     ];
                     effect.isMandatory = !nonMandatoryEffects.includes(effect.effect) && !effect.isHeroPower;
@@ -7060,6 +7044,13 @@ class BaseCard {
 
                 // 2. NOW process the death triggers of the card from click 1
                 const sacrificedCard = state.targetingEffect.sacrificedCard;
+                
+                // Trigger death/sacrifice hooks for others
+                state.player.board.forEach(c => {
+                    c.onOtherCreatureDeath(sacrificedCard, state.player.board);
+                    c.onOtherPermanentSacrificed(sacrificedCard, state.player.board);
+                });
+
                 const spawns = sacrificedCard.onDeath(state.player.board, 'player');
                 if (spawns.length > 0) {
                     // Try to put them back where the original died, or just end of board
@@ -7080,6 +7071,14 @@ class BaseCard {
                     }
                 }
 
+                clearTargetingEffect(true);
+            } else if (state.targetingEffect.effect === 'sunspear_angel_buff') {
+                const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
+                target.tempPower += (2 * multiplier);
+                target.tempToughness += (2 * multiplier);
+                if (!target.enchantments) target.enchantments = [];
+                target.enchantments.push({ card_name: 'Sunspear Protection', rules_text: 'Indestructible', isTemporary: true });
+                target.pulse(state.player.board);
                 clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'warrior_ways_step1') {
                 state.targetingEffect.buffTargetId = target.id;
@@ -7171,8 +7170,15 @@ class BaseCard {
                 clearTargetingEffect(true);
             } else if (currentEffect === 'mirror_image') {
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
+                const sourceId = state.targetingEffect.sourceId;
                 checkAutumnReward(target, state.targetingEffect.cardInstance);
                 
+                // 1. Identify where Mirror Image is and remove it first to make room
+                const myIdx = state.player.board.findIndex(c => c.id === sourceId);
+                if (myIdx !== -1) {
+                    state.player.board.splice(myIdx, 1);
+                }
+
                 const createdTokens = [];
                 const createCopy = (src) => {
                     if (state.player.board.length >= boardLimit) return;
@@ -7187,19 +7193,18 @@ class BaseCard {
                     token.enchantments = [];
                     token.isFoil = false;
                     token.equipment = null;
-                    state.player.board.push(token);
+                    
+                    // Re-insert at the same position if possible
+                    if (myIdx !== -1) {
+                        state.player.board.splice(myIdx + createdTokens.length, 0, token);
+                    } else {
+                        state.player.board.push(token);
+                    }
                     createdTokens.push(token);
                 };
 
                 for (let i = 0; i < multiplier; i++) {
                     createCopy(target);
-                }
-
-                // Mirror Image replaces itself
-                const sourceId = state.targetingEffect.sourceId;
-                const myIdx = state.player.board.findIndex(c => c.id === sourceId);
-                if (myIdx !== -1) {
-                    state.player.board.splice(myIdx, 1);
                 }
 
                 createdTokens.forEach(token => {

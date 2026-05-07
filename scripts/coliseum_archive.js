@@ -341,3 +341,37 @@ class ArtfulCoercion extends BaseCard {
         }
     }
 }
+
+class BjarndyrMender extends BaseCard {
+    onETB(board) {
+        const multiplier = this.isFoil ? 2 : 1;
+        const others = board.filter(c => c.id !== this.id);
+        
+        const snapshots = new Map();
+        others.forEach(c => {
+            c.tempPower += multiplier;
+            c.tempToughness += multiplier;
+            if (!c.enchantments) c.enchantments = [];
+            c.enchantments.push({ card_name: 'Bjarndyr Protection', rules_text: 'Indestructible', isTemporary: true });
+            
+            c.pulseQueueCount = (c.pulseQueueCount || 0) + 1;
+            c.isPulsing = true;
+            snapshots.set(c.id, c.takeSnapshot());
+        });
+
+        if (others.length > 0) {
+            queueAnimation(async () => {
+                const pulses = others.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
+                await Promise.all(pulses);
+                others.forEach(c => {
+                    c.pulseQueueCount--;
+                    if (c.pulseQueueCount <= 0) {
+                        delete c.isPulsing;
+                        delete c.pulseQueueCount;
+                    }
+                });
+            });
+        }
+        return others;
+    }
+}

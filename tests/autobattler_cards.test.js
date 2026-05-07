@@ -156,29 +156,42 @@ async function testYamamuraTheWanderer() {
     Math.random = oldRandom;
 }
 
-async function testBjarndyrMender() {
+async function testSunspearAngel() {
     resetState();
-    const mender = CardFactory.create({ card_name: "Bjarndyr Mender", pt: "3/3" });
-    const other = CardFactory.create({ card_name: "Other", pt: "2/2" });
-    state.player.board = [mender, other];
-    mender.owner = other.owner = 'player';
+    const angel = CardFactory.create({ card_name: "Sunspear Angel", pt: "3/4" });
+    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    state.player.board = [angel, target];
+    angel.owner = target.owner = 'player';
 
-    mender.onETB(state.player.board);
+    // Sunspear Angel uses targeting.
+    angel.onETB(state.player.board);
     
-    assert.strictEqual(other.tempPower, 1, "Other should get +1/+1 temp");
-    assert.strictEqual(other.hasKeyword('indestructible'), true, "Other should have Indestructible");
-    assert.strictEqual(mender.tempPower, 0, "Mender should not buff self");
+    // In our test environment, queueTargetingEffect -> processTargetingQueue -> sets state.targetingEffect
+    if (!state.targetingEffect && state.targetingQueue.length > 0) {
+        state.targetingEffect = state.targetingQueue.shift();
+    }
+    
+    // In the real app, SunspearAngel.onETB sets cardInstance: this
+    if (state.targetingEffect) {
+        state.targetingEffect.cardInstance = angel; 
+    }
+    
+    await applyTargetedEffect(target.id);
+    
+    assert.strictEqual(target.tempPower, 2, "Target should get +2/+2 temp");
+    assert.strictEqual(target.hasKeyword('indestructible'), true, "Target should have Indestructible");
+    assert.strictEqual(angel.tempPower, 0, "Angel should not buff self");
 
     // Cleanup end of turn
     resetTemporaryStats();
-    assert.strictEqual(other.tempPower, 0, "Buff should be removed");
-    assert.strictEqual(other.hasKeyword('indestructible'), false, "Indestructible should be removed");
+    assert.strictEqual(target.tempPower, 0, "Buff should be removed");
+    assert.strictEqual(target.hasKeyword('indestructible'), false, "Indestructible should be removed");
 }
 
 async function testMirrorImage() {
     // 1. Copying ETB and Replacing Self
     resetState();
-    const target = CardFactory.create({ card_name: "Bjarndyr Mender", pt: "3/3", type: "Creature" });
+    const target = CardFactory.create({ card_name: "Sunspear Angel", pt: "3/4", type: "Creature" });
     const mirror = CardFactory.create({ card_name: "Mirror Image", pt: "0/0", type: "Creature" });
     const third = CardFactory.create({ card_name: "Third Wheel", pt: "1/1", type: "Creature" });
     
@@ -186,7 +199,7 @@ async function testMirrorImage() {
     mirror.owner = target.owner = third.owner = 'player';
 
     // We need target in availableCards for Mirror Image's createCopy to work
-    availableCards.push({ card_name: "Bjarndyr Mender", pt: "3/3", set: target.set });
+    availableCards.push({ card_name: "Sunspear Angel", pt: "3/4", set: target.set });
 
     mirror.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'mirror_image');
@@ -194,16 +207,19 @@ async function testMirrorImage() {
     applyTargetedEffect(target.id);
 
     // Mirror Image (idx 1) should be gone. 
-    // New Bjarndyr Mender (idx 2) should be there.    // Total board: [Bjarndyr Mender (original), Third Wheel, Bjarndyr Mender (copy)]
+    // New Sunspear Angel (idx 2) should be there. 
     assert.strictEqual(state.player.board.length, 3);
     assert.strictEqual(state.player.board.some(c => c.id === mirror.id), false, "Mirror Image should be removed");
     
-    const copy = state.player.board.find(c => c.card_name === "Bjarndyr Mender" && c.id !== target.id);
+    const copy = state.player.board.find(c => c.card_name === "Sunspear Angel" && c.id !== target.id);
     assert.ok(copy, "Copy should exist");
     
-    // Verify ETB trigger (Bjarndyr Mender copy should buff others)
-    assert.strictEqual(target.tempPower, 1, "Original target should have received ETB buff from copy");
-    assert.strictEqual(third.tempPower, 1, "Third creature should have received ETB buff from copy");
+    // Verify ETB trigger (Sunspear Angel copy should queue its own targeting effect)
+    // In test environment, it stays in queue because state.targetingEffect is still the mirror_image effect
+    // Wait, applyTargetedEffect(mirror_image) calls triggerETB, then clearTargetingEffect(true).
+    // clearTargetingEffect(true) calls processTargetingQueue().
+    // So if Sunspear Angel was in the queue, it should now be state.targetingEffect.
+    assert.ok(state.targetingEffect && state.targetingEffect.effect === 'sunspear_angel_buff', "Copy should have triggered ETB and set targeting effect");
 
     // 2. Not playable on open board
     resetState();
@@ -3376,7 +3392,7 @@ async function runTests() {
         { tier: 3, name: "Bjarndyr Bruiser", fn: testBjarndyrBruiser },
         { tier: 3, name: "Gold Grubber", fn: testGoldGrubber },
         { tier: 3, name: "Herd Matron", fn: testHerdMatron },
-        { tier: 3, name: "Bjarndyr Mender", fn: testBjarndyrMender }
+        { tier: 3, name: "Sunspear Angel", fn: testSunspearAngel }
     ];
 
     const t4Tests = [

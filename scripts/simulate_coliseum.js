@@ -617,7 +617,8 @@ async function runSimulation(iterations = 500, turnsPerGame = 15) {
                     trackHero(p1.hero.name, 'win', t);
                     trackHero(p2.hero.name, 'loss', t);
                     if (!state.overallHpReducedThisFight) {
-                        p2.overallHp -= p1.tier;
+                        const survivors = state.battleBoards.player.filter(c => !c.isDying && !c.isDestroyed).length;
+                        p2.overallHp -= Math.min(p1.tier + survivors, p1.tier * 2);
                     }
                 } else if (result === 'opponent') {
                     // p2 wins, p1 loses
@@ -630,7 +631,8 @@ async function runSimulation(iterations = 500, turnsPerGame = 15) {
                     trackHero(p1.hero.name, 'loss', t);
                     trackHero(p2.hero.name, 'win', t);
                     if (!state.overallHpReducedThisFight) {
-                        p1.overallHp -= p2.tier;
+                        const survivors = state.battleBoards.opponent.filter(c => !c.isDying && !c.isDestroyed).length;
+                        p1.overallHp -= Math.min(p2.tier + survivors, p2.tier * 2);
                     }
                 } else {
                     p1.board.forEach(c => trackCard(c.card_name || c.name, 'draw', t, false));
