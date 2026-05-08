@@ -131,7 +131,7 @@ function testTrampleWithShield() {
     resolveCombatImpact(trampler, defender);
     assert.strictEqual(defender.damageTaken, 0, "Defender damage should be prevented by shield");
     assert.strictEqual(defender.shieldCounters, 0, "Shield counter should be consumed");
-    assert.strictEqual(state.opponents[0].fightHp, 2, "Trample overflow (8) should still be dealt to face");
+    assert.strictEqual(state.opponents[0].fightHp, 10, "Trample overflow should be absorbed by shield");
 }
 
 function testTrampleSplashWithShield() {

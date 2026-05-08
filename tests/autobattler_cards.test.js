@@ -2463,6 +2463,55 @@ async function testErinBeaconOfHumility() {
         erin2.damageTaken += 2;
     }
     assert.strictEqual(erin2.damageTaken, 0, "Humbled Familiar should NOT deal pre-fight damage");
+
+    // Targeting Prioritization Check
+    resetState();
+    const erin3 = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    const humbleVictim = CardFactory.create({ card_name: "Humble Victim", pt: "1/1" });
+    humbleVictim.temporaryHumility = true;
+    const freshVictim = CardFactory.create({ card_name: "Fresh Victim", pt: "2/2" });
+    
+    erin3.owner = 'player';
+    humbleVictim.owner = freshVictim.owner = 'opponent';
+    state.phase = 'BATTLE';
+    state.battleBoards = { player: [erin3], opponent: [humbleVictim, freshVictim] };
+
+    // Should ALWAYS hit the fresh victim since the other is already humble
+    for (let i = 0; i < 10; i++) {
+        freshVictim.temporaryHumility = false;
+        await erin3.onAttack(state.battleBoards.player);
+        assert.strictEqual(freshVictim.temporaryHumility, true, "Should prioritize non-humble target");
+    }
+
+    // Fallback Check: If everyone is humble, it should still work (and not crash)
+    freshVictim.temporaryHumility = true;
+    await erin3.onAttack(state.battleBoards.player);
+    assert.ok(humbleVictim.temporaryHumility && freshVictim.temporaryHumility);
+
+    // Redirect Check
+    resetState();
+    const erin4 = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    // Manually ensure it has flying for the test (it should from CardFactory but good to be sure)
+    erin4.flyingCounters = 1; 
+    
+    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1" });
+    flyer.flyingCounters = 1;
+    const otherFlyer = CardFactory.create({ card_name: "Other Flyer", pt: "1/1" });
+    otherFlyer.flyingCounters = 1;
+    
+    erin4.owner = 'player';
+    flyer.owner = otherFlyer.owner = 'opponent';
+    const dBoard = [flyer, otherFlyer];
+
+    // Initial target is one of the flyers
+    let t = findTarget(erin4, dBoard);
+    assert.ok(t === flyer || t === otherFlyer);
+
+    // Hum the target
+    t.temporaryHumility = true;
+    // Now it's a 1/1 Ground creature. Erin (Flyer) should now target the OTHER flyer.
+    let nt = findTarget(erin4, dBoard);
+    assert.strictEqual(nt, (t === flyer ? otherFlyer : flyer), "Flyer Erin should redirect away from ground creature if other flyers exist");
 }
 
 async function testCitadelColossus() {

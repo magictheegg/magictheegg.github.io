@@ -154,6 +154,12 @@ class BaseCard {
                    (this.equipment !== null);
         }
 
+        get isAdorned() {
+            // Exclude internal "cleanup" enchantments like Mirrorblade Exile, Troika Exile
+            const realEnchantments = this.enchantments.filter(e => !['Mirrorblade Exile', 'Troika Exile'].includes(e.card_name));
+            return realEnchantments.length > 0 || this.equipment !== null;
+        }
+
         // Returns base power/toughness from the 'pt' string
         getBasePT() {
             let p = 0, t = 0;
@@ -215,13 +221,16 @@ class BaseCard {
             this.displayedReachCounters = this.reachCounters;
             this.displayedHexproofCounters = this.hexproofCounters;
             this.displayedShieldCounters = this.shieldCounters;
+            this.displayedHumility = !!this.temporaryHumility;
             this.displayedEnchantments = [...this.enchantments];
         }
 
         // The "Final" stats: Stable + Dynamic Passives (Raven, Dowager, etc.)
         getDisplayStats(board, visualOnly = false) {
-            if (this.temporaryHumility) {
-                const t = 1 - (this.damageTaken || 0);
+            const humility = visualOnly ? this.displayedHumility : this.temporaryHumility;
+            if (humility) {
+                const damage = visualOnly ? (this.displayedDamageTaken || 0) : (this.damageTaken || 0);
+                const t = 1 - damage;
                 return { p: 1, t: t, maxT: 1 };
             }
             const stable = this.getStableStats(visualOnly);
@@ -327,11 +336,12 @@ class BaseCard {
                 hexproofCounters: this.hexproofCounters,
                 shieldCounters: this.shieldCounters,
                 isTransforming: this.isTransforming,
+                humility: !!this.temporaryHumility,
                 enchantments: [...(this.enchantments || [])]
             };
         }
 
-        async pulse(board) {
+        async pulse(board, snapshot = null) {
             if (state.isSimulating) return;
             if (state.isAITurn) {
                 this.syncVisualState();
@@ -339,10 +349,10 @@ class BaseCard {
             }
             this.pulseQueueCount = (this.pulseQueueCount || 0) + 1;
             this.isPulsing = true;
-            const snapshot = this.takeSnapshot();
+            const snapshotToUse = snapshot || this.takeSnapshot();
             
             if (state.phase === 'BATTLE') {
-                await pulseCardElement(this, board, snapshot);
+                await pulseCardElement(this, board, snapshotToUse);
                 this.pulseQueueCount--;
                 if (this.pulseQueueCount <= 0) {
                     delete this.isPulsing;
@@ -351,7 +361,7 @@ class BaseCard {
             } else {
                 queueAnimation(async () => {
                     try {
-                        await pulseCardElement(this, board, snapshot);
+                        await pulseCardElement(this, board, snapshotToUse);
                     } finally {
                         this.pulseQueueCount--;
                         if (this.pulseQueueCount <= 0) {
@@ -1009,8 +1019,7 @@ class BaseCard {
 
     class UnyieldingEnforcer extends BaseCard {
         onAttack(board) {
-            const isAdorned = this.enchantments.length > 0 || this.equipment;
-            if (isAdorned) {
+            if (this.isAdorned) {
                 const opponentBoard = (this.owner === 'player') ? state.battleBoards?.opponent : state.battleBoards?.player;
                 if (opponentBoard && opponentBoard.length > 0) {
                     const validTargets = opponentBoard.filter(c => !c.hasKeyword('Hexproof') && !c.isDying && !c.isDestroyed);
@@ -1387,7 +1396,7 @@ class BaseCard {
                         if (el) showDamageBubble(el, multiplier);
                     }
                 });
-                return [this, ...targets];
+                return targets;
             }
             return [];
         }
@@ -1525,30 +1534,38 @@ class BaseCard {
 
     class InfuseTheApparatus extends BaseCard {
         async onCast(board) {
+            const owner = this.owner || 'player';
+            const entity = getEntity(owner);
+            if (!entity) return;
+
             const uniqueSpells = [];
             const names = new Set();
-            state.player.spellGraveyard.forEach(s => {
+            entity.spellGraveyard.forEach(s => {
                 if (!names.has(s.card_name)) {
                     names.add(s.card_name);
                     uniqueSpells.push(s);
                 }
             });
-            state.player.spellGraveyard = []; // Exile all
+            entity.spellGraveyard = []; // Exile all
             
+            const targetBoard = board || entity.board;
+            if (!targetBoard) return;
+
             for (const spell of uniqueSpells) {
+                state.spellsCastThisTurn++;
                 const name = spell.card_name;
                 const isEquipment = spell.type?.toLowerCase().includes('equipment');
                 
                 if (name === 'Executioner\'s Madness') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: spell, owner: owner });
                 } else if (name === 'Warrior\'s Ways') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: false, cardInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: false, cardInstance: spell, owner: owner });
                 } else if (name === 'Whispers of the Dead') {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: spell, owner: owner });
                 } else if (name === 'Up in Arms') {
-                    spell.onApply(null, board);
+                    spell.onApply(null, targetBoard);
                 } else if (isEquipment) {
-                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: spell });
+                    queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: spell, owner: owner });
                 } else if (targetedNames.includes(name)) {
                     queueTargetingEffect({
                         sourceId: this.id,
@@ -1556,19 +1573,20 @@ class BaseCard {
                         title: name,
                         text: spell.effect_text || spell.rules_text,
                         effect: 'infuse_spell_resolution',
-                        owner: 'player',
+                        owner: owner,
                         wasCast: true,
                         isFoil: false
                     });
                 } else {
                     // Fallback for untargeted spells
-                    spell.onCast(board);
+                    await spell.onCast(targetBoard);
                 }
                 
                 // Trigger triggers
-                for (const c of board) {
-                    await c.onNoncreatureCast(spell, board, []);
+                for (const c of targetBoard) {
+                    await c.onNoncreatureCast(spell, targetBoard, []);
                 }
+                render();
             }
         }
     }
@@ -1637,17 +1655,28 @@ class BaseCard {
     }
 
     class ErinBeaconOfHumility extends BaseCard {
-        onAttack(board) {
+        async onAttack(board) {
             if (state.phase !== 'BATTLE' || !state.battleBoards) return [];
             const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
             const opponentBoard = state.battleBoards[opponentOwner];
             const validTargets = opponentBoard.filter(c => !c.isDying && !c.isDestroyed);
             
             if (validTargets.length > 0) {
-                const victim = validTargets[Math.floor(Math.random() * validTargets.length)];
+                // Prioritize targets that are not already humble
+                let targetsToChooseFrom = validTargets.filter(c => !c.temporaryHumility);
+                if (targetsToChooseFrom.length === 0) {
+                    targetsToChooseFrom = validTargets; // Fallback to all valid targets if all are already humble
+                }
+
+                const victim = targetsToChooseFrom[Math.floor(Math.random() * targetsToChooseFrom.length)];
+                
                 victim.temporaryHumility = true;
                 victim.damageTaken = 0;
-                return [victim];
+                await victim.pulse(opponentBoard);
+                
+                const res = [victim];
+                res.animationsHandled = true;
+                return res;
             }
             return [];
         }
@@ -2051,8 +2080,9 @@ class BaseCard {
         async onEquippedAttack(host, board) {
             if (board.length >= boardLimit) return;
             
-            // Create copy
-            const token = CardFactory.create(host);
+            // Create copy (Strip equipment from the source data so the token doesn't think it's equipped)
+            const tokenData = { ...host, equipment: null };
+            const token = CardFactory.create(tokenData);
             token.id = `mirror-token-${Math.random()}`;
             token.owner = host.owner;
             // DO NOT set shape='token' because that forces a "t" suffix in the image path
@@ -2431,16 +2461,14 @@ class BaseCard {
             if (myCentaurs.length > 0) {
                 const target = myCentaurs[Math.floor(Math.random() * myCentaurs.length)];
                 
-                // Set base P/T to 4/4 via temporary stats
+                // Set base P/T to 4/4 (or 8/8 if foil) via temporary stats
                 const base = target.getBasePT();
-                const multiplier = host.isFoil ? 2 : 1;
-                target.tempPower += ((4 - base.p) * multiplier);
-                target.tempToughness += ((4 - base.t) * multiplier);
+                const targetBase = host.isFoil ? 8 : 4;
+                target.tempPower += (targetBase - base.p);
+                target.tempToughness += (targetBase - base.t);
 
                 if (!target.enchantments) target.enchantments = [];
-                for (let i = 0; i < multiplier; i++) {
-                    target.enchantments.push({ card_name: 'Lost War Grant', rules_text: 'Indestructible', isTemporary: true });
-                }
+                target.enchantments.push({ card_name: 'Lost War Grant', rules_text: 'Indestructible', isTemporary: true });
                 return [target];
             }
             return [];
@@ -2449,16 +2477,17 @@ class BaseCard {
 
     class GhessianMemories extends BaseCard {
         onCast(board) {
-            if (board.length < boardLimit) {
-                const token = createToken('Centaur Knight', 'GSC', 'player');
+            const b = board || state.player.board;
+            if (b && b.length < boardLimit) {
+                const token = createToken('Centaur Knight', 'GSC', this.owner || 'player');
                 if (token) {
                     token.pt = "3/3"; // Override 2/2
                     token.rules_text = ""; // Remove Vigilance
-                    board.push(token);
-                    triggerETB(token, board);
+                    b.push(token);
+                    triggerETB(token, b);
                     // Broadcast ETB
-                    board.forEach(c => {
-                        if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                    b.forEach(c => {
+                        if (c.id !== token.id) c.onOtherCreatureETB(token, b);
                     });
                 }
             }
@@ -2902,10 +2931,7 @@ class BaseCard {
                 stolen.enchantments.push({ card_name: 'Touch of the Omen', rules_text: 'Decayed', isTemporary: false });
                 stolen.isDecayed = true;
                 state.player.board.push(stolen);
-                triggerETB(stolen, state.player.board);
-                state.player.board.forEach(c => {
-                    if (c.id !== stolen.id) c.onOtherCreatureETB(stolen, state.player.board);
-                });
+                render();
             }
         }
     }
@@ -3042,7 +3068,7 @@ class BaseCard {
     class JhalachScourge extends BaseCard {
         getStableStats(visualOnly = false) {
             const base = super.getStableStats(visualOnly);
-            if (this.equipment !== null) {
+            if (this.isAdorned) {
                 const multiplier = this.isFoil ? 2 : 1;
                 base.p += (2 * multiplier);
                 base.t += (2 * multiplier);
@@ -4544,9 +4570,13 @@ class BaseCard {
                             else if (ct === 'flying') source.flyingCounters++;
                             else if (ct === 'menace') source.menaceCounters++;
                             else if (ct === 'first-strike') source.firstStrikeCounters++;
+                            else if (ct === 'double-strike') source.doubleStrikeCounters++;
                             else if (ct === 'vigilance') source.vigilanceCounters++;
                             else if (ct === 'lifelink') source.lifelinkCounters++;
+                            else if (ct === 'deathtouch') source.deathtouchCounters++;
+                            else if (ct === 'trample') source.trampleCounters++;
                             else if (ct === 'reach') source.reachCounters++;
+                            else if (ct === 'hexproof') source.hexproofCounters++;
                         }
                     }
                 }
@@ -5506,12 +5536,9 @@ class BaseCard {
                 if (defenderEl) showDamageBubble(defenderEl, familiarDamage);
             }
             
-            // Pulsing both attacker and defender to show the source and result
+            // Pulsing the defender to show the result
             // This also provides the necessary pause for the pre-fight effect
-            await Promise.all([
-                attacker.pulse(attackerBoard),
-                defender.pulse(defenderBoard)
-            ]);
+            await defender.pulse(defenderBoard);
 
             // Now resolve any deaths (this handles Familiar kills correctly)
             const familiarKillResolved = await resolveDeaths();
@@ -5523,6 +5550,43 @@ class BaseCard {
                 if (attackerZone) attackerZone.style.zIndex = "";
                 state.activeAttackerId = null;
                 return; 
+            }
+        }
+
+        // REDIRECTION LOGIC:
+        // If the board state changed (e.g., via onAttack or Familiar trigger), re-check targeting.
+        // This handles cases like Erin humming a flyer, making it a ground creature she should now bypass.
+        let shouldRedirect = false;
+        const noRedirectCards = ['Cabracan\'s Familiar', 'Cauther Hellkite'];
+        
+        if (!noRedirectCards.includes(attacker.card_name)) {
+            if (attacker.card_name === 'Erin, Beacon of Humility') {
+                shouldRedirect = true; 
+            } else if (defender && (defender.isDying || defender.isDestroyed || !defenderBoard.includes(defender))) {
+                shouldRedirect = true;
+            }
+        }
+
+        if (shouldRedirect) {
+            const potentialNewDefender = findTarget(attacker, defenderBoard);
+            if (potentialNewDefender !== defender) {
+                defender = potentialNewDefender;
+                // Re-calculate deltas for the strike phase
+                if (defender) {
+                    const defenderEl = document.getElementById(`card-${defender.id}`);
+                    if (defenderEl) {
+                        const rectA = attackerEl.getBoundingClientRect();
+                        const rectB = defenderEl.getBoundingClientRect();
+                        deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
+                        deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
+                    }
+                } else {
+                    const oppArea = document.getElementById(attacker.owner === 'player' ? 'opponent-zone' : 'player-zone');
+                    const rectA = attackerEl.getBoundingClientRect();
+                    const rectB = oppArea.getBoundingClientRect();
+                    deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
+                    deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
+                }
             }
         }
 
@@ -5832,6 +5896,7 @@ class BaseCard {
                 target.displayedHexproofCounters = snapshot.hexproofCounters;
                 target.displayedShieldCounters = snapshot.shieldCounters;
                 target.displayedIsTransforming = snapshot.isTransforming;
+                target.displayedHumility = !!snapshot.humility;
                 target.displayedEnchantments = [...snapshot.enchantments];
             } else {
                 target.syncVisualState();
@@ -5865,8 +5930,14 @@ class BaseCard {
             // 4. IDENTIFY MODIFIED ELEMENTS
             const elementsToPulse = [];
 
-            // P/T Box pulses if ANY stat changed OR if it's a transformation
-            const statsChanged = (stats.p !== oldStats.p || stats.t !== oldStats.t || stats.maxT !== oldStats.maxT || target.displayedIsTransforming);
+            // P/T Box pulses if ANY stat changed OR if it's a transformation OR if humility changed
+            const humilityChanged = (target.displayedHumility !== !!oldStats.humility); // Wait, oldStats doesn't have humility yet.
+            // I should use oldStats.p/t check which I already updated to respect humility.
+            // But let's be explicit.
+            const statsChanged = (stats.p !== oldStats.p || stats.t !== oldStats.t || stats.maxT !== oldStats.maxT || target.displayedIsTransforming || target.displayedHumility !== (target._prevDisplayedHumility));
+            
+            target._prevDisplayedHumility = target.displayedHumility;
+
             const ptBox = targetEl.querySelector('.card-pt');
             if (ptBox && statsChanged) {
                 elementsToPulse.push(ptBox);
@@ -6479,14 +6550,18 @@ class BaseCard {
         }
     }
 
-    function checkAutumnReward(target, source) {
-        if (!target || !source || state.player.hero.name !== "Autumn") return;
-        // If this source already counted for Autumn, don't count it again (multi-phase spells)
-        if (source.autumnTriggered) return;
+    function checkAutumnReward(targets, source) {
+        if (!targets || !source || state.player.hero.name !== "Autumn") return;
+        
+        // Only non-creature sources (spells) trigger Autumn
+        const isCreature = source.type?.toLowerCase().includes('creature');
+        if (isCreature) return;
+        
+        // Convert single target to array
+        const targetList = Array.isArray(targets) ? targets : [targets];
 
-        if (target.isType('Centaur')) {
+        if (targetList.some(target => target && target.isType('Centaur'))) {
             state.player.autumnSpellCount++;
-            source.autumnTriggered = true; // Mark this specific play as already counted
 
             if (state.player.autumnSpellCount >= 2) {
                 const centaurPool = availableCards.filter(c => {
@@ -6552,37 +6627,34 @@ class BaseCard {
                 checkHerreaReward(instance);
             }
         } else {
+            state.spellsCastThisTurn++;
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
             instance.owner = 'player';
             
             if (instance.card_name === 'Executioner\'s Madness') {
-                state.spellsCastThisTurn++;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Warrior\'s Ways') {
-                state.spellsCastThisTurn++;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to get +2/+2 until end of turn.", effect: 'warrior_ways_step1', wasCast: true, isFoil: instance.isFoil, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Whispers of the Dead') {
-                state.spellsCastThisTurn++;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'whispers_sacrifice', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Up in Arms') {
-                state.spellsCastThisTurn++;
                 instance.onApply(null, state.player.board);
                 // Up in Arms step 1 will be handled in applyTargetedEffect
             } else if (instance.type?.toLowerCase().includes('equipment')) {
                 if (state.player.board.length === 0) return;
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to equip.", effect: 'equip_creature', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (targetedNames.includes(instance.card_name)) {
-                state.spellsCastThisTurn++;
                 state.castingSpell = instance;
             } else {
-                state.spellsCastThisTurn++;
-                instance.onCast(state.player.board);
+                const castResult = instance.onCast(state.player.board);
+                if (castResult instanceof Promise) await castResult;
+
                 state.player.hand.splice(cardIndex, 1);
                 state.player.spellGraveyard.push(instance);
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
-                    await c.onNoncreatureCast(instance, state.player.board, targets);
+                    c.onNoncreatureCast(instance, state.player.board, targets);
                 }
                 
                 // HERO POWER: Herrea (Blue card tracking & Reward) - NO TARGETING
@@ -6626,15 +6698,19 @@ class BaseCard {
             if (effect.effect === 'dutiful_camel_counter' || effect.effect === 'pusbag_sacrifice' || effect.effect === 'traverse_cirrusea_grant' || 
                 effect.effect === 'traverse_onora_grant' || effect.effect === 'traverse_altabaq_grant' || 
                 effect.effect === 'infuse_spell_resolution' || effect.effect === 'sunspear_angel_buff') {
-                hasTargets = currentBoard.length > 0;
+                if (effect.effect === 'infuse_spell_resolution' && effect.cardInstance?.card_name === 'Touch of the Omen') {
+                    hasTargets = state.shop.cards.some(c => c.type?.toLowerCase().includes('creature'));
+                } else {
+                    hasTargets = currentBoard.length > 0;
+                }
             } else if (effect.effect === 'warband_rallier_counters') {
                 hasTargets = currentBoard.some(c => c.isType('Centaur'));
             } else if (effect.effect === 'permutate_step1') {
-                hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.reachCounters > 0);
+                hasTargets = currentBoard.some(c => c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.doubleStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.deathtouchCounters > 0 || c.trampleCounters > 0 || c.reachCounters > 0 || c.hexproofCounters > 0);
             } else if (effect.effect === 'nightfall_raptor_bounce') {
                 hasTargets = currentBoard.some(c => !c.isType('Enchantment'));
             } else if (effect.effect === 'cloudline_sovereign_step1') {
-                hasTargets = currentBoard.some(c => (c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0) && c.shieldCounters === 0);
+                hasTargets = currentBoard.some(c => (c.counters > 0 || c.flyingCounters > 0 || c.menaceCounters > 0 || c.firstStrikeCounters > 0 || c.doubleStrikeCounters > 0 || c.vigilanceCounters > 0 || c.lifelinkCounters > 0 || c.deathtouchCounters > 0 || c.trampleCounters > 0 || c.reachCounters > 0 || c.hexproofCounters > 0) && c.shieldCounters === 0);
             } else if (effect.effect === 'parliament_discard') {
                 const validHandCards = state.player.hand.filter(c => c.id !== effect.sourceId);
                 hasTargets = state.player.spellGraveyard.length > 0 && validHandCards.length > 0;
@@ -6720,7 +6796,7 @@ class BaseCard {
         
         // Find target in specific pools based on effect
         let target = null;
-        if (currentEffect === 'hero_power_heping' || currentEffect === 'hero_power_kism') {
+        if (currentEffect === 'hero_power_heping' || currentEffect === 'hero_power_kism' || (currentEffect === 'infuse_spell_resolution' && state.targetingEffect.cardInstance?.card_name === 'Touch of the Omen')) {
             target = state.shop.cards.find(c => c.id === targetId);
         } else if (currentEffect === 'parliament_discard') {
             target = state.player.hand.find(c => c.id === targetId);
@@ -6800,6 +6876,11 @@ class BaseCard {
                         clone.owner = 'player';
                         state.player.board.push(clone);
                         
+                        triggerETB(clone, state.player.board);
+                        state.player.board.forEach(c => {
+                            if (c.id !== clone.id) c.onOtherCreatureETB(clone, state.player.board);
+                        });
+
                         if (state.targetingEffect.owner === 'player') {
                             state.player.heroPowerActivations++;
                         } else {
@@ -6973,8 +7054,13 @@ class BaseCard {
                     else if (counterType === 'flying') target.flyingCounters--;
                     else if (counterType === 'menace') target.menaceCounters--;
                     else if (counterType === 'first-strike') target.firstStrikeCounters--;
+                    else if (counterType === 'double-strike') target.doubleStrikeCounters--;
                     else if (counterType === 'vigilance') target.vigilanceCounters--;
                     else if (counterType === 'lifelink') target.lifelinkCounters--;
+                    else if (counterType === 'deathtouch') target.deathtouchCounters--;
+                    else if (counterType === 'trample') target.trampleCounters--;
+                    else if (counterType === 'reach') target.reachCounters--;
+                    else if (counterType === 'hexproof') target.hexproofCounters--;
                     else if (counterType === 'shield') target.shieldCounters--;
 
                     target.shieldCounters = 1;
@@ -6988,9 +7074,13 @@ class BaseCard {
                     else if (counterType === 'flying') target.flyingCounters--;
                     else if (counterType === 'menace') target.menaceCounters--;
                     else if (counterType === 'first-strike') target.firstStrikeCounters--;
+                    else if (counterType === 'double-strike') target.doubleStrikeCounters--;
                     else if (counterType === 'vigilance') target.vigilanceCounters--;
                     else if (counterType === 'lifelink') target.lifelinkCounters--;
+                    else if (counterType === 'deathtouch') target.deathtouchCounters--;
+                    else if (counterType === 'trample') target.trampleCounters--;
                     else if (counterType === 'reach') target.reachCounters--;
+                    else if (counterType === 'hexproof') target.hexproofCounters--;
 
                     target.pulse(state.player.board);
                     state.targetingEffect.sourceCreatureId = target.id;
@@ -7083,7 +7173,6 @@ class BaseCard {
                 clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'warrior_ways_step1') {
                 state.targetingEffect.buffTargetId = target.id;
-                checkAutumnReward(target, state.targetingEffect.cardInstance);
                 
                 // If there are NO Centaurs to target for Step 2, skip it!
                 const centaurs = state.player.board.filter(c => c.isType('Centaur'));
@@ -7145,7 +7234,6 @@ class BaseCard {
                 // Step 2: Apply counter to the click 2 target (Centaur)
                 if (target.type?.includes('Centaur')) {
                     addCounters(target, multiplier, state.player.board);
-                    checkAutumnReward(target, state.targetingEffect.cardInstance);
 
                     // ADAPTIVE or Ash-Withered Cloak
                     const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
@@ -7153,6 +7241,8 @@ class BaseCard {
                         addCounters(target, multiplier, state.player.board);
                     }
                 }
+                
+                checkAutumnReward([buffTarget, target], state.targetingEffect.cardInstance);
 
                 // Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
@@ -7172,7 +7262,6 @@ class BaseCard {
             } else if (currentEffect === 'mirror_image') {
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
                 const sourceId = state.targetingEffect.sourceId;
-                checkAutumnReward(target, state.targetingEffect.cardInstance);
                 
                 // 1. Identify where Mirror Image is and remove it first to make room
                 const myIdx = state.player.board.findIndex(c => c.id === sourceId);
@@ -7324,7 +7413,6 @@ class BaseCard {
                 state.targetingEffect.target1Id = target.id;
                 state.targetingEffect.effect = 'up_in_arms_step2';
                 state.targetingEffect.text = "Choose a creature to get the second +1/+1 counter.";
-                checkAutumnReward(target, state.targetingEffect.cardInstance);
             } else if (state.targetingEffect.effect === 'up_in_arms_step2') {
                 const t1 = state.player.board.find(c => c.id === state.targetingEffect.target1Id);
                 const t2 = target;
@@ -7341,7 +7429,7 @@ class BaseCard {
                     }
                 }
 
-                checkAutumnReward(t2, state.targetingEffect.cardInstance);
+                checkAutumnReward([t1, t2], state.targetingEffect.cardInstance);
 
                 // Remove spell from hand
                 const handIdx = state.player.hand.findIndex(c => c.id === state.targetingEffect.sourceId);
@@ -7478,7 +7566,7 @@ class BaseCard {
         const attackerStats = attacker.getDisplayStats(attackerBoard);
         const damageDealt = attackerStats.p;
 
-        let defenderDamageTaken = damageDealt;
+        let defenderDamageTaken = 0;
         let attackerDamageTaken = 0;
         let trampleOverflow = 0;
         let trampleTarget = null;
@@ -7489,56 +7577,58 @@ class BaseCard {
             const defenderStats = defender.getDisplayStats(defenderBoard);
 
             const hasTrample = attacker.hasKeyword('Trample');
-            const overflow = Math.max(0, damageDealt - defenderStats.t);
-
-            // Cap defender damage for bubbles/assignments if Trample is present
-            if (hasTrample && overflow > 0) {
-                defenderDamageTaken = defenderStats.t;
-            }
-
-            // SHIELD COUNTER PROTECTION (Defender)
-            if (defender.shieldCounters > 0 && defenderDamageTaken > 0) {
+            const hasDeathtouch = attacker.hasKeyword('Deathtouch');
+            
+            if (defender.shieldCounters > 0 && damageDealt > 0) {
+                // SHIELD ABSORBS EVERYTHING (including trample overflow)
                 defenderDamageTaken = 0;
+                trampleOverflow = 0;
                 defender.shieldCounters--;
-                // Note: trample overflow still happens based on original toughness
-            } else if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
-                // INDESTRUCTIBLE PROTECTION (Defender)
-                // Trigger if damage is lethal OR if attacker has Deathtouch and deals any damage
-                if (defenderDamageTaken >= defenderStats.t || (attacker.hasKeyword('Deathtouch') && defenderDamageTaken > 0)) {
-                    defenderDamageTaken = Math.max(0, defenderStats.t - 1);
-                    defender.indestructibleUsed = true;
+            } else {
+                // MTG Rule: Lethal damage is 1 if attacker has Deathtouch, otherwise it's current remaining toughness
+                const lethalThreshold = hasDeathtouch ? 1 : Math.max(0, defenderStats.t - defender.damageTaken);
+                
+                let assignedToBlocker = damageDealt;
+                if (hasTrample) {
+                    assignedToBlocker = Math.min(damageDealt, lethalThreshold);
+                    trampleOverflow = Math.max(0, damageDealt - lethalThreshold);
                 }
-            }
 
-            defender.damageTaken += defenderDamageTaken;
+                defenderDamageTaken = assignedToBlocker;
 
-            // DEATHTOUCH (Attacker)
-            if (attacker.hasKeyword('Deathtouch') && defenderDamageTaken > 0) {
-                if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
-                    defender.isDestroyed = true;
-                    showDestroyBubble(defender);
+                if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
+                    // INDESTRUCTIBLE PROTECTION (Defender)
+                    if ((defender.damageTaken + defenderDamageTaken) >= defenderStats.t || (hasDeathtouch && defenderDamageTaken > 0)) {
+                        const targetDamageTotal = Math.max(0, defenderStats.t - 1);
+                        defenderDamageTaken = Math.max(0, targetDamageTotal - defender.damageTaken);
+                        defender.indestructibleUsed = true;
+                    }
                 }
-            }
 
-            // TRIUMPHANT TACTICS TRIGGER (Permanent +1/+1 on damage)
-            if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && defenderDamageTaken > 0) {
-                const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
-                addCounters(attacker, 1, attackerBoard);
-            }
+                defender.damageTaken += defenderDamageTaken;
 
-            if (attacker.hasKeyword('Lifelink')) {
-                if (attacker.owner === 'player') {
-                    state.player.fightHp += defenderDamageTaken;
-                    triggerLifeGain('player');
-                } else if (currentOppAttack) {
-                    currentOppAttack.fightHp += defenderDamageTaken;
-                    triggerLifeGain('opponent');
+                // DEATHTOUCH (Attacker)
+                if (hasDeathtouch && defenderDamageTaken > 0) {
+                    if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
+                        defender.isDestroyed = true;
+                        showDestroyBubble(defender);
+                    }
+                }
+
+                if (attacker.hasKeyword('Lifelink')) {
+                    const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
+                    if (owner) {
+                        owner.fightHp += defenderDamageTaken;
+                        triggerLifeGain(attacker.owner);
+                    }
+                }
+                if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && defenderDamageTaken > 0) {
+                    addCounters(attacker, 1, attackerBoard);
                 }
             }
 
             // Trample Logic (Adjacent Splash)
-            if (overflow > 0 && hasTrample) {
-                trampleOverflow = overflow;
+            if (trampleOverflow > 0 && hasTrample) {
                 const idx = defenderBoard.indexOf(defender);
                 const adjacents = [];
                 if (idx > 0) adjacents.push(defenderBoard[idx - 1]);
@@ -7546,115 +7636,110 @@ class BaseCard {
 
                 if (adjacents.length > 0) {
                     trampleTarget = adjacents[Math.floor(Math.random() * adjacents.length)];
-                    // Check for shield on splash target
+                    let splashDamage = trampleOverflow;
+
                     if (trampleTarget.shieldCounters > 0) {
                         trampleTarget.shieldCounters--;
-                        trampleOverflow = 0; // Shield absorbs all splash
+                        splashDamage = 0;
                     } else if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
-                        // INDESTRUCTIBLE PROTECTION (Splash Target)
                         const targetStats = trampleTarget.getDisplayStats(defenderBoard);
-                        if (overflow >= targetStats.t || (attacker.hasKeyword('Deathtouch') && overflow > 0)) {
-                            trampleTarget.damageTaken += Math.max(0, targetStats.t - 1);
+                        if ((trampleTarget.damageTaken + splashDamage) >= targetStats.t || (hasDeathtouch && splashDamage > 0)) {
+                            const targetDamageTotal = Math.max(0, targetStats.t - 1);
+                            splashDamage = Math.max(0, targetDamageTotal - trampleTarget.damageTaken);
                             trampleTarget.indestructibleUsed = true;
-                        } else {
-                            trampleTarget.damageTaken += overflow;
-                        }
-                    } else {
-                        trampleTarget.damageTaken += overflow;
-                        // DEATHTOUCH (Splash Target)
-                        if (attacker.hasKeyword('Deathtouch') && overflow > 0) {
-                            if (!trampleTarget.isDestroyed) {
-                                trampleTarget.isDestroyed = true;
-                                showDestroyBubble(trampleTarget);
-                            }
                         }
                     }
-                } else {
-                    if (attacker.owner === 'player') {
-                        if (currentOppAttack) currentOppAttack.fightHp -= overflow;
-                        // TRIUMPHANT TACTICS TRIGGER
-                        if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && overflow > 0) {
-                            addCounters(attacker, 1, state.battleBoards.player);
+                    
+                    trampleTarget.damageTaken += splashDamage;
+                    
+                    if (hasDeathtouch && splashDamage > 0) { 
+                        if (!trampleTarget.isDestroyed && !trampleTarget.hasKeyword('Indestructible')) {
+                            trampleTarget.isDestroyed = true;
+                            showDestroyBubble(trampleTarget);
                         }
-                    } else state.player.fightHp -= overflow;
+                    }
+
+                    if (attacker.hasKeyword('Lifelink')) {
+                        const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
+                        if (owner) {
+                            owner.fightHp += splashDamage;
+                            triggerLifeGain(attacker.owner);
+                        }
+                    }
+                    if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && splashDamage > 0) {
+                        addCounters(attacker, 1, attackerBoard);
+                    }
+                } else {
+                    // Face damage
+                    const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
+                    const enemy = (attacker.owner === 'player') ? currentOppAttack : state.player;
+                    if (enemy) enemy.fightHp -= trampleOverflow;
+                    
+                    if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && trampleOverflow > 0) {
+                        addCounters(attacker, 1, attackerBoard);
+                    }
+                    if (attacker.hasKeyword('Lifelink') && owner) {
+                        owner.fightHp += trampleOverflow;
+                        triggerLifeGain(attacker.owner);
+                    }
                 }
             }
 
             // RETALIATION LOGIC
             const defStatsNow = defender.getDisplayStats(defenderBoard);
-            const isDead = defender.isDestroyed || defStatsNow.t <= 0;
+            const isDead = defender.isDestroyed || (defenderStats.t - defender.damageTaken) <= 0;
 
             let shouldRetaliate = false;
             if (!isFirstStrike) {
-                shouldRetaliate = true; // Normal combat: simultaneous
+                shouldRetaliate = true; 
             } else {
-                // This is a "Fast" hit. 
-                const attackerHasDS = attacker.hasKeyword('Double strike');
-                
-                if (attackerHasDS) {
-                    // Double Strike first hit: Defender NEVER hits back in this specific step.
+                if (attacker.hasKeyword('Double strike')) {
                     shouldRetaliate = false;
-                } else {
-                    // Normal First Strike keyword: Defender hits back IF they survived.
-                    if (!isDead) {
-                        shouldRetaliate = true;
-                    }
+                } else if (!isDead) {
+                    shouldRetaliate = true;
                 }
             }
 
             if (shouldRetaliate) {
                 attackerDamageTaken = defStatsNow.p;
-
-                // DEATHTOUCH (Defender Retaliation)
-                if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
-                    if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
-                        attacker.isDestroyed = true;
-                        showDestroyBubble(attacker);
-                    }
-                }
-
-                // SHIELD COUNTER PROTECTION (Attacker)
-                if (attacker.shieldCounters > 0 && attackerDamageTaken > 0) {
-                    attackerDamageTaken = 0;
-                    attacker.shieldCounters--;
-                } else if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
-                    // INDESTRUCTIBLE PROTECTION (Attacker)
-                    const attackerStats = attacker.getDisplayStats(attackerBoard);
-                    // Trigger if damage is lethal OR if defender has Deathtouch and deals any damage
-                    if (attackerDamageTaken >= attackerStats.t || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
-                        attackerDamageTaken = Math.max(0, attackerStats.t - 1);
-                        attacker.indestructibleUsed = true;
-                    }
-                }
-
-                // STEEL BARDING: Prevent all damage to attacker
+                
                 if (attacker.equipment && attacker.equipment.card_name === 'Steel Barding') {
                     attackerDamageTaken = 0;
                 }
 
-                attacker.damageTaken += attackerDamageTaken;
+                if (attackerDamageTaken > 0) {
+                    if (attacker.shieldCounters > 0) {
+                        attackerDamageTaken = 0;
+                        attacker.shieldCounters--;
+                    } else if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
+                        if ((attacker.damageTaken + attackerDamageTaken) >= attackerStats.t || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
+                            const targetDamageTotal = Math.max(0, attackerStats.t - 1);
+                            attackerDamageTaken = Math.max(0, targetDamageTotal - attacker.damageTaken);
+                            attacker.indestructibleUsed = true;
+                        }
+                    }
+                    attacker.damageTaken += attackerDamageTaken;
+                    
+                    if (defender.hasKeyword('Deathtouch') && !attacker.hasKeyword('Indestructible') && attackerDamageTaken > 0) {
+                        attacker.isDestroyed = true;
+                        showDestroyBubble(attacker);
+                    }
+                }
             }
         } else {
-             const amount = damageDealt;
-             if (attacker.owner === 'player') {
-                if (currentOppAttack) currentOppAttack.fightHp -= amount;
-                // TRIUMPHANT TACTICS TRIGGER
-                if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && amount > 0) {
-                    addCounters(attacker, 1, state.battleBoards.player);
-                }
-             } else state.player.fightHp -= amount;
+             // No blocker: All damage to face
+             const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
+             const enemy = (attacker.owner === 'player') ? currentOppAttack : state.player;
+             if (enemy) enemy.fightHp -= damageDealt;
              
-             if (attacker.hasKeyword('Lifelink')) {
-                if (attacker.owner === 'player') {
-                    state.player.fightHp += amount;
-                    triggerLifeGain('player');
-                } else if (currentOppAttack) {
-                    currentOppAttack.fightHp += amount;
-                    triggerLifeGain('opponent');
-                }
+             if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && damageDealt > 0) {
+                addCounters(attacker, 1, attackerBoard);
              }
-             
-             defenderDamageTaken = amount;
+             if (attacker.hasKeyword('Lifelink') && owner) {
+                owner.fightHp += damageDealt;
+                triggerLifeGain(attacker.owner);
+             }
+             defenderDamageTaken = damageDealt;
         }
 
         return { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget };
@@ -7877,11 +7962,9 @@ class BaseCard {
         if ((state.castingSpell.card_name === 'Touch of the Omen') && state.player.board.length >= boardLimit) {
             return;
         }
-        // Track target for end-of-spell triggers
         state.currentSpellTargets.push(target);
 
         state.castingSpell.onApply(target, state.player.board);
-        checkAutumnReward(target, state.castingSpell);
         
         // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect (Exclude certain utility spells)
         const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
@@ -7890,19 +7973,21 @@ class BaseCard {
             state.castingSpell.onApply(target, state.player.board);
         }
         
-        state.player.hand.splice(state.player.hand.findIndex(c => c.id === state.castingSpell.id), 1);
-        const isFoil = state.castingSpell.isFoil;
-        state.player.spellGraveyard.push(state.castingSpell);
+        const castSpell = state.castingSpell;
+        state.player.hand.splice(state.player.hand.findIndex(c => c.id === castSpell.id), 1);
+        state.player.spellGraveyard.push(castSpell);
+
+        checkAutumnReward(target, castSpell);
 
         // HERO POWER: Herrea (Blue card tracking & Reward)
-        checkHerreaReward(state.castingSpell);
+        checkHerreaReward(castSpell);
 
-        const currentSpell = state.castingSpell;
+        const currentSpell = castSpell;
         const targets = [...state.currentSpellTargets];
         state.castingSpell = null;
         state.currentSpellTargets = [];
         for (const c of state.player.board) {
-            await c.onNoncreatureCast(currentSpell, state.player.board, targets);
+            c.onNoncreatureCast(currentSpell, state.player.board, targets);
         }
         render();
         if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
@@ -8508,10 +8593,12 @@ class BaseCard {
         }
 
         if (state.phase === 'SHOP') {
-            state.player.board = state.player.board.map(c => {
-                const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
-                inst.damageTaken = 0; // Reset damage in shop
-                return inst;
+            state.player.board.forEach((c, i) => {
+                if (!(c instanceof BaseCard)) {
+                    state.player.board[i] = CardFactory.create(c);
+                    state.player.board[i].owner = 'player';
+                }
+                state.player.board[i].damageTaken = 0; // Reset damage in shop
             });
             const shopZone = document.getElementById('shop-zone');
             const opponentZone = document.getElementById('opponent-zone');
@@ -9334,13 +9421,16 @@ class BaseCard {
                 e.stopPropagation();
                 if (instance.isChained) return; // Uninteractable when chained
 
-                if (state.castingSpell && (state.castingSpell.card_name === 'Touch of the Omen')) {
+                const isInfuseOmen = state.targetingEffect && state.targetingEffect.effect === 'infuse_spell_resolution' && state.targetingEffect.cardInstance?.card_name === 'Touch of the Omen';
+                if ((state.castingSpell && state.castingSpell.card_name === 'Touch of the Omen') || isInfuseOmen) {
                     const isCreature = instance.type?.toLowerCase().includes('creature');
                     if (!isCreature) return; // Cannot target non-creatures
 
-                    if (state.castingSpell.card_name === 'Touch of the Omen') {
-                        // Omen targets any shop creature if board has space
-                        if (state.player.board.length < boardLimit) {
+                    // Omen targets any shop creature if board has space
+                    if (state.player.board.length < boardLimit) {
+                        if (isInfuseOmen) {
+                            applyTargetedEffect(instance.id);
+                        } else {
                             applySpell(instance.id);
                         }
                     }
@@ -9362,7 +9452,8 @@ class BaseCard {
                 }
             };
 
-            if (state.castingSpell && state.castingSpell.card_name === 'Touch of the Omen') {
+            const isInfuseOmenHighlight = state.targetingEffect && state.targetingEffect.effect === 'infuse_spell_resolution' && state.targetingEffect.cardInstance?.card_name === 'Touch of the Omen';
+            if ((state.castingSpell && state.castingSpell.card_name === 'Touch of the Omen') || isInfuseOmenHighlight) {
                 const isCreature = instance.type?.toLowerCase().includes('creature');
                 if (isCreature && state.player.board.length < boardLimit) {
                     cardEl.classList.add('targetable');
@@ -9444,10 +9535,14 @@ class BaseCard {
                 }
             }
             if (state.targetingEffect) { 
-                // Special case: Parliament discard targeting is HAND ONLY
-                if (state.targetingEffect.effect === 'parliament_discard') {
+                const currentEffect = state.targetingEffect.effect;
+                const isInfuseOmen = currentEffect === 'infuse_spell_resolution' && state.targetingEffect.cardInstance?.card_name === 'Touch of the Omen';
+                
+                if (currentEffect === 'parliament_discard') {
                     // Not targetable on board
-                } else if (state.targetingEffect.effect === 'permutate_step1' || state.targetingEffect.effect === 'cloudline_sovereign_step1') {
+                } else if (isInfuseOmen) {
+                    // Touch of the Omen targets the SHOP, not the board
+                } else if (currentEffect === 'permutate_step1' || currentEffect === 'cloudline_sovereign_step1') {
                     // Not targetable as a card, only counters are clickable
                 } else if (state.targetingEffect.effect === 'hero_power_heping' || state.targetingEffect.effect === 'hero_power_kism') {
                     // Not targetable on board (targets shop)

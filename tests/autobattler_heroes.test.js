@@ -258,8 +258,8 @@ async function testAdelaide() {
     const dilData = { card_name: "Pale Dillettante", tier: 3, type: "Creature" };
     availableCards.push(spellData, dilData);
 
-    // Buy 3 spells
-    for (let i = 0; i < 3; i++) {
+    // Buy 5 spells
+    for (let i = 0; i < 5; i++) {
         const s = CardFactory.create(spellData);
         state.shop.cards = [s];
         state.player.gold = 10;
@@ -268,20 +268,21 @@ async function testAdelaide() {
         assert.strictEqual(state.player.usedHeroPower, false);
     }
 
-    // Buy 4th spell
-    const s4 = CardFactory.create(spellData);
-    state.shop.cards = [s4];
+    // Buy 6th spell
+    const s6 = CardFactory.create(spellData);
+    state.shop.cards = [s6];
     state.player.gold = 10;
-    buyCard(s4.id);
-    assert.strictEqual(state.player.spellsBoughtThisGame, 4);
+    buyCard(s6.id);
+    assert.strictEqual(state.player.spellsBoughtThisGame, 6);
     assert.strictEqual(state.player.usedHeroPower, true);
     assert.ok(state.player.hand.some(c => c.card_name === 'Pale Dillettante'), "Reward Pale Dillettante in hand");
 
-    // Buy 5th spell - no extra reward
+    // Buy 7th spell - no extra reward
+    state.player.hand.pop(); // Clear space (handLimit is 7)
     const handCount = state.player.hand.length;
-    const s5 = CardFactory.create(spellData);
-    state.shop.cards = [s5];
-    buyCard(s5.id);
+    const s7 = CardFactory.create(spellData);
+    state.shop.cards = [s7];
+    buyCard(s7.id);
     assert.strictEqual(state.player.hand.length, handCount + 1, "Only the spell added");
 }
 
@@ -424,28 +425,43 @@ async function testAutumn() {
     assert.strictEqual(state.player.autumnSpellCount, 0);
 
     // 2. Target centaur
+    const s0 = CardFactory.create(spellData);
+    state.player.hand = [s0];
+    state.castingSpell = s0;
+    applySpell(centaur.id);
+    assert.strictEqual(state.player.autumnSpellCount, 1);
+
+    // 3. Reward on 2nd
     const s2 = CardFactory.create(spellData);
     state.player.hand = [s2];
     state.castingSpell = s2;
     applySpell(centaur.id);
-    assert.strictEqual(state.player.autumnSpellCount, 1);
-
-    // 3. Multi-phase protection (Simulated)
-    const multiSpell = CardFactory.create(spellData);
-    state.player.hand = [multiSpell];
-    state.castingSpell = multiSpell;
-    checkAutumnReward(centaur, multiSpell);
-    checkAutumnReward(centaur, multiSpell); // second call
-    assert.strictEqual(state.player.autumnSpellCount, 2, "Should only increment once per spell instance");
-
-    // 4. Reward on 3rd
-    const s3 = CardFactory.create(spellData);
-    state.player.hand = [s3];
-    state.castingSpell = s3;
-    applySpell(centaur.id);
-    // Count resets to 0 after reward
-    assert.strictEqual(state.player.autumnSpellCount, 0, "Counter should reset after reward");
+    assert.strictEqual(state.player.autumnSpellCount, 0, "Counter should reset after reward at 2");
     assert.ok(state.player.hand.some(c => c.card_name === "Reward Centaur"), "Reward Centaur in hand");
+
+    // 4. Test multi-target (e.g. Up in Arms)
+    resetState();
+    state.player.hero = HEROES.AUTUMN;
+    state.player.tier = 2;
+    state.player.board = [centaur, CardFactory.create({ card_name: "Centaur 2", type: "Creature - Centaur", tier: 1 })];
+    availableCards.push({ card_name: "Reward Centaur", type: "Creature - Centaur", tier: 1 }, spellData);
+    
+    checkAutumnReward(state.player.board, s1); // Pass both centaurs at once
+    assert.strictEqual(state.player.autumnSpellCount, 1, "Counter should only increment once for a multi-target spell");
+    assert.strictEqual(state.player.hand.length, 0, "No reward yet (count is 1)");
+
+    checkAutumnReward(state.player.board, s2); // Second multi-target spell
+    assert.strictEqual(state.player.autumnSpellCount, 0, "Counter should reset to 0 after second spell");
+    assert.ok(state.player.hand.some(c => c.card_name === "Reward Centaur"), "Reward Centaur in hand from second multi-target spell");
+
+    // 5. Test Mirror Image (should NOT trigger)
+    resetState();
+    state.player.hero = HEROES.AUTUMN;
+    const mirror = CardFactory.create({ card_name: "Mirror Image", type: "Creature" });
+    const centaur3 = CardFactory.create({ card_name: "Centaur", type: "Creature - Centaur" });
+    state.player.board = [centaur3, mirror];
+    checkAutumnReward(centaur3, mirror);
+    assert.strictEqual(state.player.autumnSpellCount, 0, "Mirror Image should not trigger Autumn");
 }
 
 async function testPanya() {

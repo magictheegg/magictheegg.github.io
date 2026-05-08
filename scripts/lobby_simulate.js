@@ -52,8 +52,6 @@ coliseum.render = () => {};
 const cardData = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/coliseum-cards.json'), 'utf8'));
 setAvailableCards(cardData.cards);
 
-let hasLoggedTurn10 = false;
-
 async function simulateCombat(p1, p2) {
     state.phase = 'BATTLE';
     state.overallHpReducedThisFight = false;
@@ -75,14 +73,6 @@ async function simulateCombat(p1, p2) {
     state.currentOpponentId = 0;
 
     await resolveStartOfCombatTriggers(simP2);
-
-    if (p1.turn === 10 && !hasLoggedTurn10) {
-        hasLoggedTurn10 = true;
-        console.log("\n--- DEBUG: TURN 10 BOARD STATE (POST-TRIGGERS) ---");
-        console.log(`Player (${p1.heroName}):`, state.battleBoards.player.map(c => `${c.card_name} (${c.getDisplayStats(state.battleBoards.player).p}/${c.getDisplayStats(state.battleBoards.player).t})${c.isCrainToken ? " [CRAIN TOKEN]" : ""}`).join(", "));
-        console.log(`Opponent (${p2.heroName}):`, state.battleBoards.opponent.map(c => `${c.card_name} (${c.getDisplayStats(state.battleBoards.opponent).p}/${c.getDisplayStats(state.battleBoards.opponent).t})${c.isCrainToken ? " [CRAIN TOKEN]" : ""}`).join(", "));
-        console.log("--------------------------------------------------\n");
-    }
 
     state.attackerSide = Math.random() < 0.5 ? 'player' : 'opponent';
     let turnsInCurrentRound = 0;
