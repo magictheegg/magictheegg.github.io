@@ -2418,7 +2418,8 @@ class BaseCard {
             if (others.length > 0) {
                 const target = others[Math.floor(Math.random() * others.length)];
                 const multiplier = host.isFoil ? 2 : 1;
-                await addCounters(target, multiplier, board);
+                // Skip isolated animation to allow unified pulse later
+                await addCounters(target, multiplier, board, true);
                 if (!target.enchantments) target.enchantments = [];
                 for (let i = 0; i < multiplier; i++) {
                     target.enchantments.push({ card_name: 'Phalanx Grant', rules_text: 'Indestructible', isTemporary: true });
