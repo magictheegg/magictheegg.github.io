@@ -7600,8 +7600,8 @@ class BaseCard {
                 if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
                     // INDESTRUCTIBLE PROTECTION (Defender)
                     if ((defender.damageTaken + defenderDamageTaken) >= defenderStats.t || (hasDeathtouch && defenderDamageTaken > 0)) {
-                        const targetDamageTotal = Math.max(0, defenderStats.t - 1);
-                        defenderDamageTaken = Math.max(0, targetDamageTotal - defender.damageTaken);
+                        // Leave at exactly 1 toughness
+                        defenderDamageTaken = (defenderStats.t - 1) - defender.damageTaken;
                         defender.indestructibleUsed = true;
                     }
                 }
@@ -7645,8 +7645,8 @@ class BaseCard {
                     } else if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
                         const targetStats = trampleTarget.getDisplayStats(defenderBoard);
                         if ((trampleTarget.damageTaken + splashDamage) >= targetStats.t || (hasDeathtouch && splashDamage > 0)) {
-                            const targetDamageTotal = Math.max(0, targetStats.t - 1);
-                            splashDamage = Math.max(0, targetDamageTotal - trampleTarget.damageTaken);
+                            // Leave at exactly 1 toughness
+                            splashDamage = (targetStats.t - 1) - trampleTarget.damageTaken;
                             trampleTarget.indestructibleUsed = true;
                         }
                     }
@@ -7714,8 +7714,8 @@ class BaseCard {
                         attacker.shieldCounters--;
                     } else if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
                         if ((attacker.damageTaken + attackerDamageTaken) >= attackerStats.t || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
-                            const targetDamageTotal = Math.max(0, attackerStats.t - 1);
-                            attackerDamageTaken = Math.max(0, targetDamageTotal - attacker.damageTaken);
+                            // Leave at exactly 1 toughness
+                            attackerDamageTaken = (attackerStats.t - 1) - attacker.damageTaken;
                             attacker.indestructibleUsed = true;
                         }
                     }
@@ -7779,8 +7779,8 @@ class BaseCard {
                 c.indestructibleUsed = true;
                 const board = savedPlayer.includes(c) ? state.battleBoards.player : state.battleBoards.opponent;
                 const stats = c.getDisplayStats(board);
-                const currentT = stats.t + c.damageTaken;
-                c.damageTaken = currentT - 1;
+                // Set damageTaken so exactly 1 HP remains
+                c.damageTaken = stats.t - 1;
             }
         });
 

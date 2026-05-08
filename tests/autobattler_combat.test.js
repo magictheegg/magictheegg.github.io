@@ -254,6 +254,21 @@ function testIndestructible() {
     assert.strictEqual(ind.damageTaken, 1, "Should be saved at 1 damage (1 HP)");
 }
 
+function testIndestructible_AlreadyDamaged() {
+    resetState();
+    // 5/5 Indestructible that has already taken 3 damage (2 HP left)
+    const ind = CardFactory.create({ card_name: "Indestructible", pt: "5/5", rules_text: "Indestructible" });
+    ind.damageTaken = 3;
+    ind.owner = 'player';
+    
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "10/10" });
+    state.battleBoards = { player: [ind], opponent: [attacker] };
+
+    // Combat impact should save it at 1 HP (4 damage taken)
+    resolveCombatImpact(attacker, ind);
+    assert.strictEqual(ind.damageTaken, 4, "Indestructible should set damage to 4 to leave it at 1 HP");
+}
+
 async function testFirstStrikeLethal() {
     resetState();
     const attacker = CardFactory.create({ card_name: "FS Attacker", pt: "2/1", rules_text: "First strike" });
