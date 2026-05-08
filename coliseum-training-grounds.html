@@ -85,8 +85,9 @@
         #hero-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98); display: flex;
-            flex-direction: column; justify-content: center; align-items: center;
+            flex-direction: column; align-items: center;
             z-index: 20000;
+            overflow-y: auto;
         }
 
         #hero-modal h1 { font-size: 48px; margin-bottom: 40px; color: #fff; }
@@ -145,6 +146,7 @@
         </div>
 
         <div style="display: flex; gap: 20px;">
+            <input type="file" id="import-input" class="hidden" accept=".json">
             <button id="export-btn" class="btn hidden" style="background:#0277bd; border-color:#01579b;">Export Current Logs</button>
             <button id="start-all-btn" class="btn hidden">Start All Instances</button>
             <button id="restart-btn" class="btn" style="background:#444; border-color:#666;">Restart</button>
@@ -157,6 +159,10 @@
     <div id="hero-modal">
         <h1>Select Your Champion</h1>
         <div id="hero-grid"></div>
+        <div style="margin-top: 40px; border-top: 1px solid #444; padding-top: 30px; width: 100%; text-align: center;">
+            <p style="color: #888; margin-bottom: 20px;">OR CONTINUE FROM PREVIOUS SESSION</p>
+            <button id="import-btn" class="btn" style="background:#6a1b9a; border-color:#4a148c;">Import Logs</button>
+        </div>
     </div>
 
     <script>
@@ -182,6 +188,8 @@
         let turn = 1;
         let logs = [];
         let iframes = [];
+        let importedData = null;
+        let skipNextLog = false;
 
         // Setup Hero Modal
         const modalGrid = document.getElementById('hero-grid');
@@ -214,6 +222,36 @@
 
         document.getElementById('restart-btn').onclick = () => location.reload();
 
+        document.getElementById('import-btn').onclick = () => document.getElementById('import-input').click();
+
+        document.getElementById('import-input').onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    if (!Array.isArray(data) || data.length === 0) throw new Error("Invalid format");
+                    
+                    importedData = data;
+                    logs = [...data]; // Continue from these logs
+                    skipNextLog = true;
+                    
+                    const lastEntry = data[data.length - 1];
+                    const hero = HERO_LIST.find(h => h.name === lastEntry.hero);
+                    if (!hero) throw new Error("Could not identify hero: " + lastEntry.hero);
+
+                    turn = lastEntry.turn;
+                    document.getElementById('turn-display').textContent = `Turn ${turn} / 20`;
+                    
+                    selectHero(hero);
+                } catch (err) {
+                    alert("Failed to import: " + err.message);
+                }
+            };
+            reader.readAsText(file);
+        };
+
         document.getElementById('export-btn').onclick = () => {
             if (logs.length === 0) {
                 alert("No logs captured yet!");
@@ -230,7 +268,10 @@
             const grid = document.getElementById('training-grid');
             grid.innerHTML = '';
             iframes = [];
-            for (let i = 0; i < 4; i++) {
+            // Use instance count from imported data or default to 8
+            const instanceCount = importedData ? Math.max(...importedData.map(d => d.instance)) : 4;
+
+            for (let i = 0; i < instanceCount; i++) {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'iframe-wrapper';
                 wrapper.innerHTML = `
@@ -274,7 +315,12 @@
                 if (win.HEROES && win.availableCards && win.availableCards.length > 0 && win.state) {
                     clearInterval(interval);
 
-                    if (win.state.player) win.state.player.overallHp = 100;
+                    if (win.state.player) {
+                        win.state.player.overallHp = 100;
+                        if (importedData) {
+                            win.state.turn = turn;
+                        }
+                    }
                     
                     const heroKey = Object.keys(win.HEROES).find(k => {
                         const h = win.HEROES[k];
@@ -293,13 +339,29 @@
                         });
 
                         win.getInitialOpponents = () => [];
-                        win.showEndScreen = () => { console.log("End screen suppressed"); };
+                        win.showEndScreen = () => { 
+                            console.log("End screen suppressed, resetting HP and returning to shop");
+                            win.state.player.overallHp = 1;
+                            
+                            // Re-enable shop buttons
+                            const eBtn = doc.getElementById('end-turn-btn');
+                            const rBtn = doc.getElementById('reroll-btn');
+                            if (eBtn) eBtn.disabled = false;
+                            if (rBtn) rBtn.disabled = false;
+
+                            win.startShopTurn();
+                        };
                         
                         const originalStartBattle = win.startBattleTurn;
                         win.startBattleTurn = async function() {
                             const state = win.state;
                             if (!state) return;
                             const p = state.player;
+
+                            // CLEANUP: Clear any lingering flags from previous turns
+                            delete iframe.dataset.combatFinished;
+                            delete iframe.dataset.readyForCombat;
+                            delete iframe.dataset.opponentData;
 
                             // Serialization for bot re-import (THE IMPORTANT BIT)
                             const boardSnapshot = p.board.map(c => ({
@@ -354,6 +416,31 @@
                             });
 
                             iframe.dataset.readyForCombat = "true";
+                            const currentTurn = state.turn;
+
+                            // If this is turn 20, we just want to save the board and stop
+                            // This MUST happen before the opponentData wait, because pairing doesn't happen on T20
+                            if (currentTurn === 20) {
+                                if (!skipNextLog) {
+                                    logs.push({
+                                        instance: index + 1,
+                                        hero: p.hero.name,
+                                        turn: currentTurn,
+                                        tier: p.tier,
+                                        honorBegetsGloryBonus: p.honorBegetsGloryBonus || 0,
+                                        crainActive: !!p.crainActive,
+                                        preCombatBoard: boardSnapshot,
+                                        resultFightHp: p.fightHp,
+                                        opponentResultFightHp: 5 + (5 * p.tier), // Placeholder
+                                        resultOverallHp: p.overallHp,
+                                        opponentResultOverallHp: 20 // Placeholder
+                                    });
+                                }
+                                if (index === iframes.length - 1) skipNextLog = false;
+                                delete iframe.dataset.readyForCombat;
+                                iframe.dataset.combatFinished = "true";
+                                return;
+                            }
 
                             // Wait for pairing
                             while(!iframe.dataset.opponentData) {
@@ -415,24 +502,42 @@
                             // Force the internal state to recognize the new opponent immediately
                             win.render();
 
-                            // Run real combat
-                            await originalStartBattle.apply(this, arguments);
+                            if (skipNextLog) {
+                                // Proceed to combat without logging
+                                await originalStartBattle.apply(this, arguments);
+                            } else {
+                                // Capture result
+                                const logEntry = {
+                                    instance: index + 1,
+                                    hero: p.hero.name,
+                                    turn: currentTurn,
+                                    tier: p.tier,
+                                    honorBegetsGloryBonus: p.honorBegetsGloryBonus || 0,
+                                    crainActive: !!p.crainActive,
+                                    preCombatBoard: boardSnapshot,
+                                    resultFightHp: 0,
+                                    opponentResultFightHp: 0,
+                                    resultOverallHp: 0,
+                                    opponentResultOverallHp: 0
+                                };
+                                logs.push(logEntry);
+                                
+                                // Run real combat
+                                await originalStartBattle.apply(this, arguments);
 
-                            // Capture result
-                            logs.push({
-                                instance: index + 1,
-                                hero: p.hero.name,
-                                turn: state.turn,
-                                tier: p.tier,
-                                honorBegetsGloryBonus: p.honorBegetsGloryBonus || 0,
-                                crainActive: !!p.crainActive,
-                                preCombatBoard: boardSnapshot,
-                                resultFightHp: p.fightHp,
-                                opponentResultFightHp: state.opponents[0].fightHp,
-                                resultOverallHp: p.overallHp,
-                                opponentResultOverallHp: state.opponents[0].overallHp
-                            });
+                                // Immortality check: if combat dropped us to 0 or less, set to 1 to keep sim alive
+                                if (p.overallHp <= 0) p.overallHp = 1;
 
+                                // Update the entry we just pushed
+                                logEntry.resultFightHp = p.fightHp;
+                                logEntry.opponentResultFightHp = state.opponents[0].fightHp;
+                                logEntry.resultOverallHp = p.overallHp;
+                                logEntry.opponentResultOverallHp = state.opponents[0].overallHp;
+                            }
+
+                            if (index === iframes.length - 1) skipNextLog = false;
+
+                            iframe.dataset.combatFinished = "true";
                             delete iframe.dataset.readyForCombat;
                             delete iframe.dataset.opponentData;
                             delete iframe.dataset.combatData;
@@ -484,6 +589,66 @@
 
                 if (win.state && win.state.player) {
                     win.state.player.overallHp = 100;
+
+                    if (importedData) {
+                        const instanceId = index + 1;
+                        const instanceLogs = importedData.filter(d => d.instance === instanceId);
+                        if (instanceLogs.length > 0) {
+                            const lastState = instanceLogs[instanceLogs.length - 1];
+                            const p = win.state.player;
+
+                            p.tier = lastState.tier;
+                            p.overallHp = lastState.resultOverallHp || 100;
+                            p.honorBegetsGloryBonus = lastState.honorBegetsGloryBonus || 0;
+                            p.crainActive = !!lastState.crainActive;
+
+                            // Reconstruct the board
+                            p.board = lastState.preCombatBoard.map(data => {
+                                const baseData = win.availableCards.find(bc => bc.card_name === data.card_name);
+                                const inst = win.CardFactory.create({ ...baseData, ...data });
+                                Object.assign(inst, data);
+                                if (data.equipment) {
+                                    const eqBase = win.availableCards.find(bc => bc.card_name === data.equipment.card_name);
+                                    inst.equipment = win.CardFactory.create({ ...eqBase, ...data.equipment });
+                                    Object.assign(inst.equipment, data.equipment);
+                                }
+                                if (data.enchantments) {
+                                    inst.enchantments = data.enchantments.map(e => {
+                                        const encBase = win.availableCards.find(bc => bc.card_name === e.card_name);
+                                        const enc = win.CardFactory.create({ ...encBase, ...e });
+                                        Object.assign(enc, e);
+                                        return enc;
+                                    });
+                                }
+                                inst.owner = 'player';
+                                return inst;
+                            });
+
+                            win.state.turn = lastState.turn;
+                            
+                            // Manually initialize shop phase to skip triggers
+                            win.state.phase = 'SHOP';
+                            p.gold = 0;
+                            p.treasures = 0;
+                            
+                            if (win.populateShop) win.populateShop();
+                            
+                            p.board.forEach(c => { c.actionUsed = false; });
+                            
+                            win.updateTierButton();
+                            win.render();
+                            overlay.style.display = 'none';
+
+                            // Important: If we imported, the button might say "Wait..." or "End Turn"
+                            // We want it to be ready for the global click
+                            const internalBtn = doc.getElementById('end-turn-btn');
+                            if (internalBtn) {
+                                internalBtn.textContent = 'End Turn';
+                                internalBtn.disabled = false;
+                            }
+                            return;
+                        }
+                    }
                 }
 
                 playBtn.click();
@@ -501,10 +666,10 @@
         };
 
         document.getElementById('end-turn-btn').onclick = async () => {
-            if (turn >= 20) {
-                finishTraining();
-                return;
-            }
+            // Sync internal turns BEFORE triggering end-turn so combat starts with correct turn state
+            iframes.forEach(f => {
+                if (f.contentWindow.state) f.contentWindow.state.turn = turn;
+            });
 
             // 1. Trigger shop end for everyone
             iframes.forEach(iframe => {
@@ -515,10 +680,10 @@
                 }
             });
 
-            // 2. Wait for all to be ready for combat (up to 5s)
+            // 2. Wait for all to be ready for combat or finished (up to 5s)
             let attempts = 0;
             while (attempts < 50) {
-                const readyCount = iframes.filter(f => f.dataset.readyForCombat === "true").length;
+                const readyCount = iframes.filter(f => f.dataset.readyForCombat === "true" || f.dataset.combatFinished === "true").length;
                 if (readyCount === iframes.length) break;
                 await new Promise(r => setTimeout(r, 100));
                 attempts++;
@@ -529,28 +694,43 @@
                 return;
             }
 
+            if (turn >= 20) {
+                // Final turn data has been captured in the iframe override loops
+                // Wait just a moment for logs.push to complete across all instances
+                setTimeout(finishTraining, 1000);
+                return;
+            }
+
             // 3. Pair them up randomly
             const shuffled = [...iframes].sort(() => Math.random() - 0.5);
             for (let i = 0; i < shuffled.length; i += 2) {
                 const f1 = shuffled[i];
                 const f2 = shuffled[i+1];
+                if (!f1 || !f2) continue;
 
                 const data1 = f1.dataset.combatData;
                 const data2 = f2.dataset.combatData;
 
-                // Inject opponent data to trigger their local patched startBattleTurn loops
-                f1.dataset.opponentData = data2;
-                f2.dataset.opponentData = data1;
+                // Safety check: ensure we don't pass undefined strings
+                if (data2) f1.dataset.opponentData = data2;
+                if (data1) f2.dataset.opponentData = data1;
             }
 
-            // 4. Update UI
+            // 4. Wait for combat to finish on all iframes
+            let finishedAttempts = 0;
+            while (finishedAttempts < 300) { // Up to 30s for long combats
+                const finishedCount = iframes.filter(f => f.dataset.combatFinished === "true").length;
+                if (finishedCount === iframes.length) break;
+                await new Promise(r => setTimeout(r, 100));
+                finishedAttempts++;
+            }
+            
+            // Clear finished flags
+            iframes.forEach(f => delete f.dataset.combatFinished);
+
+            // 5. Update UI
             turn++;
             document.getElementById('turn-display').textContent = `Turn ${turn} / 20`;
-            
-            if (turn >= 20) {
-                // Give combat time to resolve before finishing
-                setTimeout(finishTraining, 5000);
-            }
         };
 
         function finishTraining() {

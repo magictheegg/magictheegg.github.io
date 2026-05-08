@@ -68,6 +68,7 @@ global.document = {
     body: mockElement('body'),
     addEventListener: () => {}
 };
+global.pulseCardElement = () => {};
 global.Image = class {};
 global.Audio = class { play() {} };
 global.WebKitCSSMatrix = class {
@@ -338,6 +339,10 @@ async function simulateCombat(p1, p2) {
     
     state.attackerSide = Math.random() < 0.5 ? 'player' : 'opponent';
     let turnsInCurrentRound = 0;
+
+    // Resolve Start of Combat Triggers
+    const { resolveStartOfCombatTriggers } = require('./coliseum.js');
+    await resolveStartOfCombatTriggers(currentOpp);
 
     // 3. MAIN COMBAT LOOP
     let maxTurns = 400; 

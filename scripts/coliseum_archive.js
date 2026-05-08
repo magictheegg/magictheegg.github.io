@@ -375,3 +375,24 @@ class BjarndyrMender extends BaseCard {
         return others;
     }
 }
+
+class NacreousHydra extends BaseCard {
+    onETB(board) {
+        addCounters(this, 4, board);
+    }
+    async onNoncreatureCast(spell, board, targets = []) {
+        await proliferate(board, this.owner, 1);
+    }
+}
+
+class Foresee extends BaseCard {
+    onCast(board) {
+        if (board === state.player.board) {
+            addScry(4, () => {
+                // Add two creatures to shop divination-style (adds to current, uses scry queue)
+                addCardsToShop(2, 'creature', 1);
+                render();
+            }, this.card_name);
+        }
+    }
+}

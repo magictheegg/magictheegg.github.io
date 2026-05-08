@@ -2547,18 +2547,6 @@ class BaseCard {
         }
     }
 
-    class Foresee extends BaseCard {
-        onCast(board) {
-            if (board === state.player.board) {
-                addScry(4, () => {
-                    // Add two creatures to shop divination-style (adds to current, uses scry queue)
-                    addCardsToShop(2, 'creature', 1);
-                    render();
-                }, this.card_name);
-            }
-        }
-    }
-
     class FightSong extends BaseCard {
         effect_text = 'Choose a creature to get a +1/+1 counter and gain indestructible until end of turn.';
         onApply(target, board) {
@@ -2858,12 +2846,25 @@ class BaseCard {
         }
     }
 
-    class NacreousHydra extends BaseCard {
-        onETB(board) {
-            addCounters(this, 4, board);
+    class HelicosGargantua extends BaseCard {
+        async onCombatStart(board) {
+            const stats = this.getDisplayStats(board);
+            const baseP = this.getBasePT().p;
+            if (stats.p > baseP) {
+                const multiplier = this.isFoil ? 2 : 1;
+                // Double current power until end of turn.
+                this.tempPower += (stats.p * multiplier);
+                return [this];
+            }
+            return [];
         }
-        async onNoncreatureCast(spell, board, targets = []) {
-            await proliferate(board, this.owner, 1);
+    }
+
+    class TinWoodsman extends BaseCard {
+        async onDeath(board, owner) {
+            const multiplier = this.isFoil ? 2 : 1;
+            await proliferate(board, owner, multiplier);
+            return [];
         }
     }
 
@@ -3245,7 +3246,8 @@ class BaseCard {
                 case 'Scourge of the Sun': card = new ScourgeOfTheSun(data); break;
                 case 'Jiayin, the Harmonious': card = new JiayinTheHarmonious(data); break;
                 case 'Marbled Aakriti': card = new BaseCard(data); break;
-                case 'Nacreous Hydra': card = new NacreousHydra(data); break;
+                case 'Helicos Gargantua': card = new HelicosGargantua(data); break;
+                case 'Tin Woodsman': card = new TinWoodsman(data); break;
                 case 'Am\'Atambi\'s Wildkin': card = new AmAtambisWildkin(data); break;
                 case 'Pestilent Leopardfly': card = new PestilentLeopardfly(data); break;
                 case 'Touch of the Omen': card = new TouchOfTheOmen(data); break;
@@ -3265,7 +3267,6 @@ class BaseCard {
                 case 'Way of the Bygone': card = new WayOfTheBygone(data); break;
                 case 'Moonlight Stag': card = new MoonlightStag(data); break;
                 case 'Gnomish Skirmisher': card = new GnomishSkirmisher(data); break;
-                case 'Foresee': card = new Foresee(data); break;
                 case 'Fight Song': card = new FightSong(data); break;
                 case 'Edge of Their Seats': card = new EdgeOfTheSeats(data); break;
                 case 'Finwing Drake': card = new FinwingDrake(data); break;
@@ -3692,7 +3693,7 @@ class BaseCard {
             heroPower: {
                 name: "Sound the Blauhorn",
                 icon: "sets/GQC-files/img/211_Sound the Blauhorn.jpg",
-                text: "Every third spell you cast that targets a Centaur, get a random Centaur.",
+                text: "Every second spell you cast that targets a Centaur, get a random Centaur.",
                 isPassive: true
             }
         },
@@ -6487,7 +6488,7 @@ class BaseCard {
             state.player.autumnSpellCount++;
             source.autumnTriggered = true; // Mark this specific play as already counted
 
-            if (state.player.autumnSpellCount >= 3) {
+            if (state.player.autumnSpellCount >= 2) {
                 const centaurPool = availableCards.filter(c => {
                     const inst = (c instanceof BaseCard) ? c : CardFactory.create(c);
                     return inst.isType('Centaur') && c.shape !== 'token' && (c.tier || 1) <= state.player.tier;
@@ -8081,7 +8082,6 @@ class BaseCard {
             state.scrying.cards.push(...newCards);
             if (title) state.scrying.title = title;
             if (text) state.scrying.text = text;
-            // Chain callbacks if needed, though Foresee is the primary user
             const oldCallback = state.scrying.postScry;
             state.scrying.postScry = () => { if (oldCallback) oldCallback(); if (callback) callback(); };
         } else {
@@ -8157,7 +8157,7 @@ class BaseCard {
         const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 6;
         const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
         const isEnochLocked = entity.hero.name === "Enoch" && (entity.rerollCount % 4 !== 3);
-        const isAutumnLocked = entity.hero.name === "Autumn"; // Always show gem/count for Autumn as it repeats
+        const isAutumnLocked = entity.hero.name === "Autumn";
         
         const isKismFinished = entity.hero.name === "Kism" && (entity.heroPowerActivations || 0) >= 3;
         
@@ -8191,7 +8191,7 @@ class BaseCard {
             if (entity.hero.name === "Autumn") {
                 const count = document.createElement('div');
                 count.className = 'hero-power-passive-gem-count';
-                const remaining = 3 - (entity.autumnSpellCount % 3);
+                const remaining = 2 - (entity.autumnSpellCount % 2);
                 count.textContent = remaining;
                 gem.appendChild(count);
             }
@@ -9703,6 +9703,7 @@ class BaseCard {
         window.getInitialOpponents = getInitialOpponents;
         window.startBattleTurn = startBattleTurn;
         window.startShopTurn = startShopTurn;
+        window.populateShop = populateShop;
         window.render = render;
         window.resetTemporaryStats = resetTemporaryStats;
         window.BaseCard = BaseCard;

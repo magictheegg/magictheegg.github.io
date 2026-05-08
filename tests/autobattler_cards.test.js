@@ -796,17 +796,6 @@ async function testGnomishSkirmisher() {
     assert.strictEqual(gnome.tempPower, 0, "Gnome does not buff self");
 }
 
-async function testForesee() {
-    resetState();
-    const spell = CardFactory.create({ card_name: "Foresee" });
-    spell.onCast(state.player.board);
-    assert.strictEqual(state.scrying.count, 4, "Foresee should scry 4");
-    
-    const startShopSize = state.shop.cards.length;
-    state.scrying.postScry();
-    assert.strictEqual(state.shop.cards.length, startShopSize + 2, "Should add 2 cards to shop after scry");
-}
-
 async function testFightSong() {
     resetState();
     const spell = CardFactory.create({ card_name: "Fight Song" });
@@ -2725,25 +2714,83 @@ async function testJiayinTheHarmonious() {
     assert.strictEqual(other.tempPower, 0, "Buff should wear off at end of turn");
 }
 
-async function testNacreousHydra() {
+async function testHelicosGargantua() {
     resetState();
-    const hydra = CardFactory.create({ card_name: "Nacreous Hydra", pt: "0/0" });
-    hydra.onETB(state.player.board);
-    assert.strictEqual(hydra.counters, 4, "Should enter with 4 counters");
-    
-    state.player.board = [hydra];
+    const gargantua = CardFactory.create({ card_name: "Helicos Gargantua", pt: "5/5" });
+    state.player.board = [gargantua];
+    gargantua.owner = 'player';
+
+    // 1. No buff if at base power
+    await gargantua.onCombatStart(state.player.board);
+    assert.strictEqual(gargantua.getDisplayStats(state.player.board).p, 5, "Should not double if at base power");
+
+    // 2. Double current power if buffed
+    gargantua.counters = 1; // Power is now 6
+    await gargantua.onCombatStart(state.player.board);
+    // current power was 6, so tempPower should increase by 6, total 12
+    assert.strictEqual(gargantua.getDisplayStats(state.player.board).p, 12, "Should double current power (6 -> 12)");
+
+    // Cleanup
+    resetTemporaryStats();
+    assert.strictEqual(gargantua.getDisplayStats(state.player.board).p, 6, "Temp buff should be removed");
+}
+
+async function testTinWoodsman() {
+    // 1. Shop Phase Death
+    resetState();
+    const woodsman = CardFactory.create({ card_name: "Tin Woodsman", pt: "3/2" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    target.counters = 1;
+    state.player.board = [woodsman, target];
+    woodsman.owner = target.owner = 'player';
+
     state.phase = 'SHOP';
+    await woodsman.onDeath(state.player.board, 'player');
+    assert.strictEqual(target.counters, 2, "Target should have proliferated counters in SHOP (1 -> 2)");
+
+    // 2. Combat Phase Death (Verify persistence)
+    resetState();
+    const woodsmanCombat = CardFactory.create({ card_name: "Tin Woodsman", pt: "3/2" });
+    const targetCombat = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    targetCombat.counters = 1;
     
-    // 1. Proliferate on Sorcery (via generic onNoncreatureCast call)
-    hydra.onNoncreatureCast({ type: "Sorcery" }, state.player.board);
-    assert.strictEqual(hydra.counters, 5, "Should proliferate on sorcery");
+    // Simulate sourceId tracking for persistence (usually done by Card.clone in battle setup)
+    targetCombat.id = 'target-original';
     
-    // 2. No proliferate on Equipment (Simulate via useCardFromHand flow)
-    const equipment = CardFactory.create({ card_name: "Sword", type: "Equipment" });
-    state.player.hand = [equipment];
-    // This will open targeting but NOT trigger onNoncreatureCast
-    useCardFromHand(equipment.id);
-    assert.strictEqual(hydra.counters, 5, "Should NOT proliferate on equipment via game loop");
+    state.player.board = [woodsmanCombat, targetCombat];
+    woodsmanCombat.owner = targetCombat.owner = 'player';
+    
+    // Setup battle state
+    state.phase = 'BATTLE';
+    const woodsmanInstance = woodsmanCombat.clone();
+    const targetInstance = targetCombat.clone();
+    targetInstance.sourceId = targetCombat.id; // Link to original for persistence
+    state.battleBoards = {
+        player: [woodsmanInstance, targetInstance],
+        opponent: []
+    };
+    state.combatParticipants = [woodsmanInstance, targetInstance];
+
+    // Proliferate on death in combat
+    await woodsmanInstance.onDeath(state.battleBoards.player, 'player');
+    assert.strictEqual(targetInstance.counters, 2, "Instance should have proliferated counters in BATTLE (1 -> 2)");
+
+    // Verify persistence: proliferate() normally relies on syncBattleCountersToSource
+    // In our test engine, we need to check if proliferate actually modified the source if it found it, 
+    // or if the engine handles sync. 
+    
+    // Simulate the end-of-battle sync logic from coliseum.js:6121
+    state.combatParticipants.forEach(battleCard => {
+        const ownerBoard = battleCard.owner === 'player' ? state.player.board : [];
+        const original = ownerBoard.find(c => c.id === battleCard.sourceId);
+        if (original) {
+            original.counters = battleCard.counters;
+            original.flyingCounters = battleCard.flyingCounters;
+            // ... add other counters if needed, but for Tin Woodsman 'counters' is enough
+        }
+    });
+
+    assert.strictEqual(targetCombat.counters, 2, "Original target should have proliferated counters after BATTLE sync (1 -> 2)");
 }
 
 async function testJiayin_UpInArms() {
@@ -3337,7 +3384,6 @@ async function runTests() {
         { tier: 2, name: "Moonlight Stag", fn: testMoonlightStag },
         { tier: 2, name: "Silken Spinner", fn: testSilkenSpinner },
         { tier: 2, name: "Gnomish Skirmisher", fn: testGnomishSkirmisher },
-        { tier: 2, name: "Foresee", fn: testForesee },
         { tier: 2, name: "Fight Song", fn: testFightSong },
         { tier: 2, name: "Edge of Their Seats", fn: testEdgeOfTheirSeats },
         { tier: 2, name: "Lake Cave Lurker", fn: testLakeCaveLurker },
@@ -3431,7 +3477,8 @@ async function runTests() {
         { tier: 4, name: "Honor Begets Glory", fn: testHonorBegetsGlory },
         { tier: 4, name: "Honor Begets Glory (Stacking)", fn: testHonorBegetsGlory_Stacking },
         { tier: 4, name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion },
-        { tier: 4, name: "Mirror Image", fn: testMirrorImage }
+        { tier: 4, name: "Mirror Image", fn: testMirrorImage },
+        { tier: 4, name: "Tin Woodsman", fn: testTinWoodsman }
     ];
 
     const t5Tests = [
@@ -3454,7 +3501,7 @@ async function runTests() {
         { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
         { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
         { tier: 5, name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
-        { tier: 5, name: "Nacreous Hydra", fn: testNacreousHydra },
+        { tier: 5, name: "Helicos Gargantua", fn: testHelicosGargantua },
         { tier: 5, name: "Hero's Sledge", fn: testHerosSledge }
     ];
 

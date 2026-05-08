@@ -14,7 +14,7 @@ def create_coliseum_card_list():
         "Stratus Traveler", "Rapacious Sprite", "Up in Arms",
         "Cabracan's Familiar", "Way of the Bygone",
         "Moonlight Stag", "Silken Spinner", "Gnomish Skirmisher",
-        "Foresee", "Fight Song", "Edge of Their Seats",
+        "Fight Song", "Edge of Their Seats",
         "Razorback Trenchrunner", "Sporegraft Slime", "Covetous Wechuge",
         "Finwing Drake", "Shrewd Parliament", "Pale Dillettante", "Aether Guzzler", "Dewdrop Oracle",
         "Arroyd Pass Shepherd", "Warband Rallier", "Cybres-Band Recruiter", "Cybres-Clan Squire", "Cybres-Band Lancer",
@@ -37,13 +37,13 @@ def create_coliseum_card_list():
         "Michal, the Anointed", "Ladria, Windwatcher", "Erin, Beacon of Humility",
         "Citadel Colossus", "Triumphant Tactics",
         "Battlefront Lancer", "Marbled Aakriti", "Scourge of the Sun",
-        "Jiayin, the Harmonious", "Gallant Centaur", "Holtun-Band Emissary", "Nacreous Hydra",
+        "Jiayin, the Harmonious", "Gallant Centaur", "Holtun-Band Emissary", "Helicos Gargantua",
         "Am'Atambi's Wildkin", "Pestilent Leopardfly", "Touch of the Omen", "Faceless Faction",
         "Duskborn Hunter", "Nightmare Harpy", "Sanguine Anaconda",
         "Dune Skirmisher", "Angora Paladin", "Small World", "Restless Migrants",
         "Jhalach Scourge", "Solemn Pilgrimage", "Aldmore Chaperone",
         "Bjarndyr Bruiser", "Gold Grubber", "Herd Matron",
-        "Patron of the Meek", "Honor Begets Glory",
+        "Patron of the Meek", "Honor Begets Glory", "Tin Woodsman",
         "Unyielding Enforcer", "Thrice-Clawed Troika"
     ]
 
@@ -63,6 +63,7 @@ def create_coliseum_card_list():
     tier_2_names = [
         "Am'Atambi's Wildkin",
         "Angora Paladin",
+        "Arroyd Pass Shepherd",
         "Battlefront Lancer",
         "Bristled Direbear",
         "Cabracan's Familiar",
@@ -75,7 +76,6 @@ def create_coliseum_card_list():
         "Executioner's Madness",
         "Exotic Game Hunter",
         "Fight Song",
-        "Foresee",
         "Gnomish Skirmisher",
         "Jhalach Scourge",
         "Lake Cave Lurker",
@@ -101,7 +101,6 @@ def create_coliseum_card_list():
     tier_3_names = [
         "Aether Guzzler",
         "Aldmore Chaperone",
-        "Arroyd Pass Shepherd",
         "Bellowing Giant",
         "Bjarndyr Bruiser",
         "Sunspear Angel",
@@ -122,6 +121,7 @@ def create_coliseum_card_list():
         "Hero of a Lost War",
         "Jiayin, the Harmonious",
         "Pale Dillettante",
+        "Pyrewright Trainee",
         "Qinhana Cavalry",
         "Razorback Trenchrunner",
         "Restless Oppressor",
@@ -151,13 +151,13 @@ def create_coliseum_card_list():
         "Nightfall Raptor",
         "Nightmare Harpy",
         "Patron of the Meek",
-        "Pyrewright Trainee",
         "Sanguine Anaconda",
         "Savage Congregation",
         "Servants of Dydren",
         "Shrewd Parliament",
         "Song of Wind and Fire",
         "Thunder Raptor",
+        "Tin Woodsman",
         "Tunnel Web Spider",
         "Waspback Bandit",
         "Whispers of the Dead"
@@ -171,11 +171,11 @@ def create_coliseum_card_list():
         "Decorated Warrior",
         "Djitu's Lithified Mantle",
         "Erin, Beacon of Humility",
+        "Helicos Gargantua",
         "Hero's Sledge",
         "Infuse the Apparatus",
         "Ladria, Windwatcher",
         "Lumbering Ancient",
-        "Nacreous Hydra",
         "Rivha's Blessed Blade",
         "Steel Barding",
         "Suitor of Death",
@@ -191,10 +191,6 @@ def create_coliseum_card_list():
         # Special case: prioritize specific sets if needed
         preferred_set = None
         if name == "Nacreous Hydra":
-            preferred_set = "WAS"
-        elif name == "Yamamura the Wanderer":
-            preferred_set = "BLD"
-        elif name == "Mirror Image":
             preferred_set = "WAS"
             
         if preferred_set:

@@ -606,3 +606,35 @@ async function testBjarndyrMender() {
     assert.strictEqual(other.tempPower, 0, "Buff should be removed");
     assert.strictEqual(other.hasKeyword('indestructible'), false, "Indestructible should be removed");
 }
+
+async function testNacreousHydra() {
+    resetState();
+    const hydra = CardFactory.create({ card_name: "Nacreous Hydra", pt: "0/0" });
+    hydra.onETB(state.player.board);
+    assert.strictEqual(hydra.counters, 4, "Should enter with 4 counters");
+    
+    state.player.board = [hydra];
+    state.phase = 'SHOP';
+    
+    // 1. Proliferate on Sorcery (via generic onNoncreatureCast call)
+    hydra.onNoncreatureCast({ type: "Sorcery" }, state.player.board);
+    assert.strictEqual(hydra.counters, 5, "Should proliferate on sorcery");
+    
+    // 2. No proliferate on Equipment (Simulate via useCardFromHand flow)
+    const equipment = CardFactory.create({ card_name: "Sword", type: "Equipment" });
+    state.player.hand = [equipment];
+    // This will open targeting but NOT trigger onNoncreatureCast
+    useCardFromHand(equipment.id);
+    assert.strictEqual(hydra.counters, 5, "Should NOT proliferate on equipment via game loop");
+}
+
+async function testForesee() {
+    resetState();
+    const spell = CardFactory.create({ card_name: "Foresee" });
+    spell.onCast(state.player.board);
+    assert.strictEqual(state.scrying.count, 4, "Foresee should scry 4");
+    
+    const startShopSize = state.shop.cards.length;
+    state.scrying.postScry();
+    assert.strictEqual(state.shop.cards.length, startShopSize + 2, "Should add 2 cards to shop after scry");
+}
