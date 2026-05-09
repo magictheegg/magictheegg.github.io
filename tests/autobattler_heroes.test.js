@@ -258,8 +258,8 @@ async function testAdelaide() {
     const dilData = { card_name: "Pale Dillettante", tier: 3, type: "Creature" };
     availableCards.push(spellData, dilData);
 
-    // Buy 5 spells
-    for (let i = 0; i < 5; i++) {
+    // Buy 3 spells
+    for (let i = 0; i < 3; i++) {
         const s = CardFactory.create(spellData);
         state.shop.cards = [s];
         state.player.gold = 10;
@@ -268,21 +268,21 @@ async function testAdelaide() {
         assert.strictEqual(state.player.usedHeroPower, false);
     }
 
-    // Buy 6th spell
-    const s6 = CardFactory.create(spellData);
-    state.shop.cards = [s6];
+    // Buy 4th spell
+    const s4 = CardFactory.create(spellData);
+    state.shop.cards = [s4];
     state.player.gold = 10;
-    buyCard(s6.id);
-    assert.strictEqual(state.player.spellsBoughtThisGame, 6);
+    buyCard(s4.id);
+    assert.strictEqual(state.player.spellsBoughtThisGame, 4);
     assert.strictEqual(state.player.usedHeroPower, true);
     assert.ok(state.player.hand.some(c => c.card_name === 'Pale Dillettante'), "Reward Pale Dillettante in hand");
 
-    // Buy 7th spell - no extra reward
+    // Buy 5th spell - no extra reward
     state.player.hand.pop(); // Clear space (handLimit is 7)
     const handCount = state.player.hand.length;
-    const s7 = CardFactory.create(spellData);
-    state.shop.cards = [s7];
-    buyCard(s7.id);
+    const s5 = CardFactory.create(spellData);
+    state.shop.cards = [s5];
+    buyCard(s5.id);
     assert.strictEqual(state.player.hand.length, handCount + 1, "Only the spell added");
 }
 
