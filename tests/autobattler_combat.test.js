@@ -290,13 +290,14 @@ async function testIndestructible_TrampleBypass() {
     state.opponents[0].fightHp = 20;
 
     // Trampler has 10 power. Defender has 8 HP left.
-    // Should deal 8 to defender and 2 to face.
+    // Should assign 8 to defender and 2 to face.
+    // Because of the Indestructible Save (1 HP), it actually only takes 7 damage (to reach 14 total on a 15 HP body).
     const impact = resolveCombatImpact(trampler, ind);
-    assert.strictEqual(impact.defenderDamageTaken, 8, "Should take full 8 lethal damage before trample splashes");
+    assert.strictEqual(impact.defenderDamageTaken, 7, "Should take 7 damage to be saved at 1 HP (14 total damage)");
     assert.strictEqual(impact.trampleOverflow, 2, "Only 2 damage should splash to face");
     
     await resolveDeaths();
-    assert.strictEqual(ind.damageTaken, 14, "Should be saved at 1 HP (14 damage) after resolveDeaths");
+    assert.strictEqual(ind.damageTaken, 14, "Should be saved at 1 HP (14 damage)");
 }
 
 async function testIndestructible_AlreadyDamaged() {

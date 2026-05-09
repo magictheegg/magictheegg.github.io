@@ -342,7 +342,7 @@ class BaseCard {
             };
         }
 
-        async pulse(board, snapshot = null) {
+        async pulse(board, snapshot = null, options = {}) {
             if (state.isSimulating) return;
             if (state.isAITurn) {
                 this.syncVisualState();
@@ -353,7 +353,7 @@ class BaseCard {
             const snapshotToUse = snapshot || this.takeSnapshot();
             
             if (state.phase === 'BATTLE') {
-                await pulseCardElement(this, board, snapshotToUse);
+                await pulseCardElement(this, board, snapshotToUse, options);
                 this.pulseQueueCount--;
                 if (this.pulseQueueCount <= 0) {
                     delete this.isPulsing;
@@ -1238,8 +1238,7 @@ class BaseCard {
         onETB(board) {
             const targets = board.filter(c => c.id !== this.id);
             const multiplier = this.isFoil ? 2 : 1;
-            
-            const snapshots = new Map();
+
             targets.forEach(c => {
                 c.tempPower += multiplier;
                 c.tempToughness += multiplier;
@@ -1247,12 +1246,11 @@ class BaseCard {
                 c.enchantments.push({ card_name: 'Envoy Grant', rules_text: 'Vigilance', isTemporary: true });
                 c.pulseQueueCount = (c.pulseQueueCount || 0) + 1;
                 c.isPulsing = true;
-                snapshots.set(c.id, c.takeSnapshot());
             });
 
             if (targets.length > 0) {
                 queueAnimation(async () => {
-                    const pulses = targets.map(c => pulseCardElement(c, board, snapshots.get(c.id)));
+                    const pulses = targets.map(c => pulseCardElement(c, board));
                     await Promise.all(pulses);
                     targets.forEach(c => {
                         c.pulseQueueCount--;
@@ -1388,16 +1386,56 @@ class BaseCard {
             const targets = opponentBoard.filter(c => !c.hasKeyword('Hexproof') && !c.isDying && !c.isDestroyed);
 
             if (targets.length > 0) {
+                const snapshots = new Map();
                 targets.forEach(c => {
+                    snapshots.set(c.id, c.takeSnapshot());
                     if (c.shieldCounters > 0) {
                         c.shieldCounters--;
                     } else {
-                        c.damageTaken += multiplier;
+                        // For Indestructible immediate save:
+                        if (c.hasKeyword('Indestructible') && !c.indestructibleUsed) {
+                            const stats = c.getDisplayStats(opponentBoard);
+                            const lethal = Math.max(0, stats.t);
+                            if (multiplier >= lethal) {
+                                const targetTotalDamage = Math.max(0, stats.maxT - 1);
+                                const needed = Math.max(0, targetTotalDamage - c.damageTaken);
+                                c.damageTaken += needed;
+                                c.indestructibleUsed = true;
+                            } else {
+                                c.damageTaken += multiplier;
+                            }
+                        } else {
+                            c.damageTaken += multiplier;
+                        }
                         const el = document.getElementById(`card-${c.id}`);
-                        if (el) showDamageBubble(el, multiplier);
+                        if (el) {
+                            showDamageBubble(el, multiplier);
+                            // Immediate DOM update for P/T
+                            c.syncVisualState();
+                            const stats = c.getDisplayStats(opponentBoard, true);
+                            const pEl = el.querySelector('.card-p');
+                            const tEl = el.querySelector('.card-t');
+                            if (pEl) pEl.textContent = stats.p;
+                            if (tEl) {
+                                tEl.textContent = stats.t;
+                                if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                                else tEl.classList.remove('damaged');
+                            }
+                            // Shake effect for damage impact
+                            el.classList.add('shake');
+                            setTimeout(() => el.classList.remove('shake'), 300);
+                        }
                     }
                 });
-                return targets;
+
+                queueAnimation(async () => {
+                    const pulses = targets.map(t => pulseCardElement(t, opponentBoard, snapshots.get(t.id), { skipPT: true }));
+                    await Promise.all(pulses);
+                });
+
+                const res = [...targets];
+                res.animationsHandled = true;
+                return res;
             }
             return [];
         }
@@ -1523,11 +1561,37 @@ class BaseCard {
             if (state.spellsCastThisTurn === 2 && !this.zaraxTriggeredThisTurn) {
                 this.zaraxTriggeredThisTurn = true;
                 const multiplier = this.isFoil ? 2 : 1;
-                await addCounters(this, multiplier, board);
-                board.forEach(c => {
+                
+                // 1. Apply all changes first (counter and enchantments)
+                // Use skipAnimation=true to prevent a staggered pulse for the counter
+                await addCounters(this, multiplier, board, true);
+                
+                const affected = board.filter(c => c.owner === this.owner);
+                affected.forEach(c => {
                     if (!c.enchantments) c.enchantments = [];
                     c.enchantments.push({ card_name: 'Galaxian Flight', rules_text: 'Flying', isTemporary: true });
+                    c.pulseQueueCount = (c.pulseQueueCount || 0) + 1;
+                    c.isPulsing = true;
                 });
+
+                // 2. Pulse everyone simultaneously
+                const runPulses = async () => {
+                    const pulses = affected.map(c => pulseCardElement(c, board));
+                    await Promise.all(pulses);
+                    affected.forEach(c => {
+                        c.pulseQueueCount--;
+                        if (c.pulseQueueCount <= 0) {
+                            delete c.isPulsing;
+                            delete c.pulseQueueCount;
+                        }
+                    });
+                };
+
+                if (state.phase === 'BATTLE') {
+                    await runPulses();
+                } else {
+                    queueAnimation(runPulses);
+                }
             }
         }
         onShopStart() { this.zaraxTriggeredThisTurn = false; }
@@ -2556,7 +2620,54 @@ class BaseCard {
         }
     }
 
-    class CabracansFamiliar extends BaseCard { }
+    class CabracansFamiliar extends BaseCard {
+        async onAttack(board, defender) {
+            if (this.temporaryHumility || !defender || defender.hasKeyword('Hexproof')) return [];
+
+            const defenderBoard = (this.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+            const multiplier = this.isFoil ? 2 : 1;
+            let familiarDamage = 2 * multiplier;
+            const snapshot = defender.takeSnapshot();
+            
+            if (defender.shieldCounters > 0) {
+                defender.shieldCounters--;
+                familiarDamage = 0;
+            } else {
+                defender.damageTaken += familiarDamage;
+            }
+
+            const defenderEl = document.getElementById(`card-${defender.id}`);
+            if (defenderEl) {
+                // Immediate DOM update for P/T
+                defender.syncVisualState();
+                const stats = defender.getDisplayStats(defenderBoard, true);
+                const pEl = defenderEl.querySelector('.card-p');
+                const tEl = defenderEl.querySelector('.card-t');
+                if (pEl) pEl.textContent = stats.p;
+                if (tEl) {
+                    tEl.textContent = stats.t;
+                    if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                    else tEl.classList.remove('damaged');
+                }
+                // Shake effect for damage impact
+                defenderEl.classList.add('shake');
+                setTimeout(() => defenderEl.classList.remove('shake'), 300);
+            }
+
+            // Animation for pre-fight damage
+            if (familiarDamage > 0) {
+                if (defenderEl) showDamageBubble(defenderEl, familiarDamage);
+            }
+            
+            // Pulsing the defender to show the result
+            // This also provides the necessary pause for the pre-fight effect
+            await defender.pulse(defenderBoard, snapshot, { skipPT: true });
+
+            const res = [defender];
+            res.animationsHandled = true;
+            return res;
+        }
+    }
 
     class MoonlightStag extends BaseCard {
         hasKeyword(keyword) {
@@ -5450,7 +5561,7 @@ class BaseCard {
         }
 
         // Phase 1.5: Attack Triggers
-        let attackTargets = await attacker.onAttack(attackerBoard);
+        let attackTargets = await attacker.onAttack(attackerBoard, defender);
 
         // GLOBAL ATTACK TRIGGERS: Honor Begets Glory
         const entity = getEntity(attacker.owner);
@@ -5494,15 +5605,15 @@ class BaseCard {
                 }
             }
 
-            // Now resolve any deaths (this plays the death animations and pauses)
-            // This handles Xun Huang triggered kills correctly
-            const deathsResolved = await resolveDeaths();
-
             // If we have targets, we MUST pause for the trigger animations (Battle Cry style)
-            // even if someone died, to ensure pulses complete before the attack strike.
+            // even if someone died, to ensure pulses complete before the death animations start.
             if (attackTargets.length > 0) {
                 await resolveAnimations(); // Staggered pulses for Cascade, etc.
             }
+
+            // Now resolve any deaths (this plays the death animations and pauses)
+            // This handles Xun Huang triggered kills correctly
+            const deathsResolved = await resolveDeaths();
 
             // If the defender died to an ability (Xun Huang), stop the attack
             if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
@@ -5520,41 +5631,6 @@ class BaseCard {
             const multiplier = defender.isFoil ? 2 : 1;
             // Awaiting addCounters ensures the pulse animation finishes before the attack continues
             await addCounters(defender, multiplier, defenderBoard);
-        }
-
-        // SPECIAL TRIGGER: Cabracan's Familiar (Pre-fight damage)
-        if (attacker.card_name === 'Cabracan\'s Familiar' && !attacker.temporaryHumility && defender && !defender.hasKeyword('Hexproof')) {
-            const multiplier = attacker.isFoil ? 2 : 1;
-            let familiarDamage = 2 * multiplier;
-            
-            if (defender.shieldCounters > 0) {
-                defender.shieldCounters--;
-                familiarDamage = 0;
-            } else {
-                defender.damageTaken += familiarDamage;
-            }
-
-            // Animation for pre-fight damage
-            if (familiarDamage > 0) {
-                const defenderEl = document.getElementById(`card-${defender.id}`);
-                if (defenderEl) showDamageBubble(defenderEl, familiarDamage);
-            }
-            
-            // Pulsing the defender to show the result
-            // This also provides the necessary pause for the pre-fight effect
-            await defender.pulse(defenderBoard);
-
-            // Now resolve any deaths (this handles Familiar kills correctly)
-            const familiarKillResolved = await resolveDeaths();
-
-            // If lethal, the Familiar attack is canceled (no fight)
-            if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
-                attackerEl.style.transform = "";
-                attackerEl.classList.remove('attacking');
-                if (attackerZone) attackerZone.style.zIndex = "";
-                state.activeAttackerId = null;
-                return; 
-            }
         }
 
         // REDIRECTION LOGIC:
@@ -5865,10 +5941,11 @@ class BaseCard {
         return anyTriggers;
     }
 
-    async function pulseCardElement(target, board, snapshot = null) {
+    async function pulseCardElement(target, board, snapshot = null, options = {}) {
         if (state.isSimulating) return;
         const targetEl = document.getElementById(`card-${target.id}`);
         if (targetEl) {
+            const skipPT = options.skipPT || false;
             // 1. Capture old state for surgical pulsing
             const oldStats = target.getDisplayStats(board, true);
             const oldCounterStack = targetEl.querySelector('.card-counter-stack');
@@ -5882,39 +5959,20 @@ class BaseCard {
             })) : [];
             const oldGhostKeywords = (oldGhostStack && oldGhostStack.children) ? Array.from(oldGhostStack.children).map(g => g.dataset.keyword) : [];
 
-            // 2. Sync visual state to the snapshot (staged update)
-            if (snapshot) {
-                target.displayedCounters = snapshot.counters;
-                target.displayedDamageTaken = snapshot.damageTaken;
-                target.displayedTempPower = snapshot.tempPower;
-                target.displayedTempToughness = snapshot.tempToughness;
-                target.displayedFlyingCounters = snapshot.flyingCounters;
-                target.displayedMenaceCounters = snapshot.menaceCounters;
-                target.displayedFirstStrikeCounters = snapshot.firstStrikeCounters;
-                target.displayedDoubleStrikeCounters = snapshot.doubleStrikeCounters;
-                target.displayedVigilanceCounters = snapshot.vigilanceCounters;
-                target.displayedLifelinkCounters = snapshot.lifelinkCounters;
-                target.displayedDeathtouchCounters = snapshot.deathtouchCounters;
-                target.displayedTrampleCounters = snapshot.trampleCounters;
-                target.displayedReachCounters = snapshot.reachCounters;
-                target.displayedHexproofCounters = snapshot.hexproofCounters;
-                target.displayedShieldCounters = snapshot.shieldCounters;
-                target.displayedIsTransforming = snapshot.isTransforming;
-                target.displayedHumility = !!snapshot.humility;
-                target.displayedEnchantments = [...snapshot.enchantments];
-            } else {
-                target.syncVisualState();
-            }
+            // 2. Sync visual state to the current REAL state
+            target.syncVisualState();
 
             // 3. Sync visual state to DOM (but don't pulse yet)
             const stats = target.getDisplayStats(board, true);
-            const pEl = targetEl.querySelector('.card-p');
-            const tEl = targetEl.querySelector('.card-t');
-            if (pEl) pEl.textContent = stats.p;
-            if (tEl) {
-                tEl.textContent = stats.t;
-                if (stats.t < stats.maxT) tEl.classList.add('damaged');
-                else tEl.classList.remove('damaged');
+            if (!skipPT) {
+                const pEl = targetEl.querySelector('.card-p');
+                const tEl = targetEl.querySelector('.card-t');
+                if (pEl) pEl.textContent = stats.p;
+                if (tEl) {
+                    tEl.textContent = stats.t;
+                    if (stats.t < stats.maxT) tEl.classList.add('damaged');
+                    else tEl.classList.remove('damaged');
+                }
             }
 
             // Create a fresh dummy element to steal updated UI from
@@ -5943,7 +6001,7 @@ class BaseCard {
             target._prevDisplayedHumility = target.displayedHumility;
 
             const ptBox = targetEl.querySelector('.card-pt');
-            if (ptBox && statsChanged) {
+            if (ptBox && statsChanged && !skipPT) {
                 elementsToPulse.push(ptBox);
             }
             
@@ -5972,25 +6030,25 @@ class BaseCard {
             }
 
             // 5. TRIGGER UNIFIED PULSE
-            if (elementsToPulse.length > 0) {
+            if (elementsToPulse.length > 0 || (statsChanged && skipPT)) {
                 elementsToPulse.forEach(el => {
                     el.classList.remove('pulse-stats');
                     void el.offsetWidth; // Trigger reflow
                     el.classList.add('pulse-stats');
                 });
                 
-                // Wait for animation to finish
+                // Wait for animation to finish (Standard pulse duration)
                 await new Promise(r => setTimeout(r, 600));
                 elementsToPulse.forEach(el => el.classList.remove('pulse-stats'));
             }
         }
     }
 
-    async function animateStartOfCombatTrigger(source, targets, board) {
+    async function animateStartOfCombatTrigger(source, targets, board, options = {}) {
         if (targets && targets.length > 0) {
             const snapshots = new Map();
             targets.forEach(t => snapshots.set(t.id, t.takeSnapshot()));
-            const pulses = targets.map(target => pulseCardElement(target, board, snapshots.get(target.id)));
+            const pulses = targets.map(target => pulseCardElement(target, board, snapshots.get(target.id), options));
             await Promise.all(pulses);
         }
     }
@@ -6658,7 +6716,7 @@ class BaseCard {
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
-                    c.onNoncreatureCast(instance, state.player.board, targets);
+                    await c.onNoncreatureCast(instance, state.player.board, targets);
                 }
                 
                 // HERO POWER: Herrea (Blue card tracking & Reward) - NO TARGETING
@@ -7593,18 +7651,29 @@ class BaseCard {
                 const lethalThreshold = hasDeathtouch ? 1 : Math.max(0, defenderStats.t);
                 
                 let assignedToBlocker = damageDealt;
-                if (hasTrample) {
+                if (hasTrample || (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed)) {
                     assignedToBlocker = Math.min(damageDealt, lethalThreshold);
-                    trampleOverflow = Math.max(0, damageDealt - lethalThreshold);
+                    if (hasTrample) {
+                        trampleOverflow = Math.max(0, damageDealt - lethalThreshold);
+                    }
                 }
 
                 defenderDamageTaken = assignedToBlocker;
+
+                // Indestructible Save logic (UI-friendly: cap at 1 HP)
+                if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
+                    if (defenderDamageTaken >= lethalThreshold || (hasDeathtouch && defenderDamageTaken > 0)) {
+                        const targetTotalDamage = Math.max(0, defenderStats.maxT - 1);
+                        defenderDamageTaken = Math.max(0, targetTotalDamage - defender.damageTaken);
+                        defender.indestructibleUsed = true;
+                    }
+                }
 
                 defender.damageTaken += defenderDamageTaken;
 
                 // DEATHTOUCH (Attacker)
                 if (hasDeathtouch && defenderDamageTaken > 0) {
-                    if (!defender.isDestroyed) {
+                    if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
                         defender.isDestroyed = true;
                         showDestroyBubble(defender);
                     }
@@ -7638,6 +7707,17 @@ class BaseCard {
                         splashDamage = 0;
                     }
                     
+                    // Indestructible Save for splash target
+                    if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
+                        const ttStats = trampleTarget.getDisplayStats(defenderBoard);
+                        const ttLethal = hasDeathtouch ? 1 : Math.max(0, ttStats.t);
+                        if (splashDamage >= ttLethal || (hasDeathtouch && splashDamage > 0)) {
+                            const targetTotalDamage = Math.max(0, ttStats.maxT - 1);
+                            splashDamage = Math.max(0, targetTotalDamage - trampleTarget.damageTaken);
+                            trampleTarget.indestructibleUsed = true;
+                        }
+                    }
+
                     trampleTarget.damageTaken += splashDamage;
                     
                     if (hasDeathtouch && splashDamage > 0) { 
@@ -7700,11 +7780,24 @@ class BaseCard {
                         attackerDamageTaken = 0;
                         attacker.shieldCounters--;
                     }
+
+                    // Attacker Indestructible Save
+                    if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
+                        const attackerLethal = (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) ? 1 : Math.max(0, attackerStats.t);
+                        if (attackerDamageTaken >= attackerLethal || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
+                            const targetTotalDamage = Math.max(0, attackerStats.maxT - 1);
+                            attackerDamageTaken = Math.max(0, targetTotalDamage - attacker.damageTaken);
+                            attacker.indestructibleUsed = true;
+                        }
+                    }
+
                     attacker.damageTaken += attackerDamageTaken;
                     
                     if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
-                        attacker.isDestroyed = true;
-                        showDestroyBubble(attacker);
+                        if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
+                            attacker.isDestroyed = true;
+                            showDestroyBubble(attacker);
+                        }
                     }
                 }
             }
@@ -7976,7 +8069,7 @@ class BaseCard {
         state.castingSpell = null;
         state.currentSpellTargets = [];
         for (const c of state.player.board) {
-            c.onNoncreatureCast(currentSpell, state.player.board, targets);
+            await c.onNoncreatureCast(currentSpell, state.player.board, targets);
         }
         render();
         if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
