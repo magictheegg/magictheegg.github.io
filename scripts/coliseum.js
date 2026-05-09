@@ -5333,7 +5333,7 @@ class BaseCard {
         const isAutumn = state.player.hero.name === "Autumn";
 
         if ((!isArietta || state.player.tier < 4) && 
-            (!isAdelaide || state.player.spellsBoughtThisGame < 6) && 
+            (!isAdelaide || state.player.spellsBoughtThisGame < 4) && 
             (!isHerrea || state.player.blueCardsPlayed < 7) &&
             (!isKism || (state.player.heroPowerActivations || 0) < 3) &&
             (!isAutumn)) {
@@ -5348,7 +5348,7 @@ class BaseCard {
             const oppAutumn = opp.hero && opp.hero.name === "Autumn";
 
             if ((!oppArietta || opp.tier < 4) && 
-                (!oppAdelaide || opp.spellsBoughtThisGame < 6) && 
+                (!oppAdelaide || opp.spellsBoughtThisGame < 4) && 
                 (!oppHerrea || opp.blueCardsPlayed < 7) &&
                 (!oppKism || (opp.heroPowerActivations || 0) < 3) &&
                 (!oppAutumn)) {
@@ -6507,12 +6507,12 @@ class BaseCard {
         state.player.hand.push(card);
         state.shop.cards.splice(cardIndex, 1);
         
-        // HERO POWER: Adelaide (6th Spell Reward)
+        // HERO POWER: Adelaide (4th Spell Reward)
         if (state.player.hero.name === "Adelaide" && !state.player.usedHeroPower) {
             const isCreature = card.type?.toLowerCase().includes('creature');
             if (!isCreature) {
                 state.player.spellsBoughtThisGame++;
-                if (state.player.spellsBoughtThisGame >= 6) {
+                if (state.player.spellsBoughtThisGame >= 4) {
                     const dillettanteData = availableCards.find(c => c.card_name === 'Pale Dillettante');
                     if (dillettanteData) {
                         const reward = CardFactory.create(dillettanteData);
@@ -8228,7 +8228,7 @@ class BaseCard {
 
         // Show gem if passive, OR if Arietta hasn't leveled up yet (locked indicator)
         const isAriettaLocked = entity.hero.name === "Arietta" && entity.tier < 4;
-        const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 6;
+        const isAdelaideLocked = entity.hero.name === "Adelaide" && entity.spellsBoughtThisGame < 4;
         const isHerreaLocked = entity.hero.name === "Herrea" && entity.blueCardsPlayed < 7;
         const isEnochLocked = entity.hero.name === "Enoch" && (entity.rerollCount % 4 !== 3);
         const isAutumnLocked = entity.hero.name === "Autumn";
@@ -8249,7 +8249,7 @@ class BaseCard {
             if (entity.hero.name === "Adelaide") {
                 const count = document.createElement('div');
                 count.className = 'hero-power-passive-gem-count';
-                count.textContent = Math.max(0, 6 - entity.spellsBoughtThisGame);
+                count.textContent = Math.max(0, 4 - entity.spellsBoughtThisGame);
                 gem.appendChild(count);
             }
 
