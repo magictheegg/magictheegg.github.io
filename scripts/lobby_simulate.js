@@ -144,7 +144,7 @@ function getCombinations(array, k) {
     return results;
 }
 
-async function runLobby(h1Instances, h2Instances, hero1Name, hero2Name, allBoards1, allBoards2, verbose = false) {
+async function runLobby(playerConfigs, verbose = false) {
     elementCache.clear();
     Object.keys(state).forEach(key => {
         if (Array.isArray(state[key])) state[key] = [];
@@ -158,20 +158,20 @@ async function runLobby(h1Instances, h2Instances, hero1Name, hero2Name, allBoard
     state.player = { overallHp: 100, hand: [], spellGraveyard: [], treasures: 0 };
     state.isSimulating = true;
 
-    const players = [];
-    h1Instances.forEach(id => {
-        players.push({ id: `H1-${id}`, heroName: hero1Name, instanceId: id, overallHp: 20, isH1: true, data: allBoards1[id] });
-    });
-    h2Instances.forEach(id => {
-        players.push({ id: `H2-${id}`, heroName: hero2Name, instanceId: id, overallHp: 20, isH1: false, data: allBoards2[id] });
-    });
+    const players = playerConfigs.map(config => ({
+        id: config.id,
+        heroName: config.heroName,
+        instanceId: config.instanceId,
+        overallHp: 20,
+        data: config.data,
+        hero: HEROES[config.heroName.toUpperCase()]
+    }));
 
     let turn = 1;
     let deadPlayers = [];
     let consecutiveDraws = 0;
 
     while (players.filter(p => p.overallHp > 0).length > 1) {
-        if (verbose) console.log(`\n--- TURN ${turn - 1} (Active: ${players.filter(p => p.overallHp > 0).length}) ---`);
         const active = players.filter(p => p.overallHp > 0);
         const shuffled = [...active].sort(() => Math.random() - 0.5);
         const pairs = [];
@@ -186,8 +186,8 @@ async function runLobby(h1Instances, h2Instances, hero1Name, hero2Name, allBoard
             const b1Data = p1.data[turn] || p1.data[p1.data.maxTurn];
             const b2Data = p2.data[turn] || p2.data[p2.data.maxTurn];
 
-            const simP1 = { ...p1, hero: HEROES[p1.heroName.toUpperCase()], tier: b1Data.tier, fightHp: 5 + (5 * b1Data.tier), board: b1Data.preCombatBoard, crainActive: b1Data.crainActive, turn: turn };
-            const simP2 = { ...p2, hero: HEROES[p2.heroName.toUpperCase()], tier: b2Data.tier, fightHp: 5 + (5 * b2Data.tier), board: b2Data.preCombatBoard, crainActive: b2Data.crainActive, turn: turn };
+            const simP1 = { ...p1, tier: b1Data.tier, fightHp: 5 + (5 * b1Data.tier), board: b1Data.preCombatBoard, crainActive: b1Data.crainActive, turn: turn };
+            const simP2 = { ...p2, tier: b2Data.tier, fightHp: 5 + (5 * b2Data.tier), board: b2Data.preCombatBoard, crainActive: b2Data.crainActive, turn: turn };
             
             const result = await simulateCombat(simP1, simP2);
             if (result.winner !== 'draw') roundHasWinner = true;
@@ -195,22 +195,16 @@ async function runLobby(h1Instances, h2Instances, hero1Name, hero2Name, allBoard
             if (result.winner === 'player') {
                 if (!p2.isGhost) {
                     p2.overallHp -= result.tier;
-                    if (verbose) console.log(`  ${p1.id} beat ${p2.id} (Dealt ${result.tier} damage)`);
                 }
             } else if (result.winner === 'opponent') {
                 if (!p1.isGhost) {
                     p1.overallHp -= result.tier;
-                    if (verbose) console.log(`  ${p2.id} beat ${p1.id} (Dealt ${result.tier} damage)`);
                 }
-            } else if (verbose) console.log(`  ${p1.id} and ${p2.id} Drew`);
+            }
         }
 
-        if (verbose) {
-            const hpLog = players.map(p => `${p.id}:${p.overallHp}`).join(', ');
-            console.log(`  Lobby HP: ${hpLog}`);
-        }
         if (!roundHasWinner) consecutiveDraws++; else consecutiveDraws = 0;
-        if (consecutiveDraws >= 3 || turn > 100) return { placements: [], hero: 'Draw', turnCount: turn };
+        if (consecutiveDraws >= 3 || turn > 100) return { placements: [], winnerHero: 'Draw', turnCount: turn };
 
         active.forEach(p => { if (p.overallHp <= 0 && !deadPlayers.includes(p)) deadPlayers.push(p); });
         turn++;
@@ -218,18 +212,18 @@ async function runLobby(h1Instances, h2Instances, hero1Name, hero2Name, allBoard
 
     const finalPlacements = players.sort((a,b) => b.overallHp - a.overallHp);
     const winner = finalPlacements.find(p => p.overallHp > 0);
-    return { placements: finalPlacements, hero: winner ? (winner.isH1 ? hero1Name : hero2Name) : 'Draw', turnCount: turn };
+    return { placements: finalPlacements, winnerHero: winner ? winner.heroName : 'Draw', turnCount: turn };
 }
 
 async function run() {
     const args = process.argv.slice(2);
-    if (args.length < 2) { console.log("Usage: node lobby_simulate.js <h1.json> <h2.json>"); process.exit(1); }
+    if (args.length !== 2 && args.length !== 4) {
+        console.log("Usage: node lobby_simulate.js <hero1> <hero2> [hero3 hero4]");
+        process.exit(1);
+    }
 
-    const data1 = JSON.parse(fs.readFileSync(args[0], 'utf8'));
-    const data2 = JSON.parse(fs.readFileSync(args[1], 'utf8'));
-
-    const hero1Name = data1[0].hero;
-    const hero2Name = data2[0].hero;
+    const heroNames = args;
+    const allHeroesData = [];
 
     const organize = (data) => {
         const allCards = coliseum.getAvailableCards();
@@ -252,60 +246,119 @@ async function run() {
     };
 
     console.log("Preparing board instances...");
-    const allBoards1 = organize(data1);
-    const allBoards2 = organize(data2);
-    const h1Instances = Object.keys(allBoards1).filter(k => k !== 'maxTurn').map(Number);
-    const h2Instances = Object.keys(allBoards2).filter(k => k !== 'maxTurn').map(Number);
+    for (const name of heroNames) {
+        const file = path.join(__dirname, `../resources/training-data/training_${name}.json`);
+        const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const boards = organize(data);
+        const instances = Object.keys(boards).filter(k => k !== 'maxTurn').map(Number);
+        allHeroesData.push({ name, boards, instances });
+    }
 
-    state.isSimulating = true;
-    const numSimulations = 1000;
-    console.log(`Simulating ${numSimulations} games: ${hero1Name} vs ${hero2Name} (8-player lobby)`);
-    
     const placementStats = {};
-    h1Instances.forEach(i => placementStats[`H1-${i}`] = Array(8).fill(0));
-    h2Instances.forEach(i => placementStats[`H2-${i}`] = Array(8).fill(0));
+    allHeroesData.forEach(h => {
+        h.instances.forEach(id => placementStats[`${h.name}-${id}`] = Array(8).fill(0));
+    });
 
     const gameLengthDistribution = {};
-    let successfulGames = 0;
-    const startTime = process.hrtime();
+    const heroWins = {};
+    heroNames.forEach(name => heroWins[name] = 0);
+    
     let totalCombatTime = 0;
+    let iterations = 0;
+    const startTime = process.hrtime();
 
-    for (let i = 0; i < numSimulations; i++) {
-        const lobbyStart = process.hrtime();
-        const res = await runLobby(h1Instances, h2Instances, hero1Name, hero2Name, allBoards1, allBoards2, false);
-        const lobbyDiff = process.hrtime(lobbyStart);
-        const lobbyMs = (lobbyDiff[0] * 1e9 + lobbyDiff[1]) / 1e6;
-        totalCombatTime += lobbyMs;
+    if (heroNames.length === 2) {
+        const numSimulations = 1000;
+        console.log(`Simulating ${numSimulations} games: ${heroNames[0]} vs ${heroNames[1]} (8-player lobby)`);
         
-        if (res.hero !== 'Draw' && res.placements.length > 0) {
-            successfulGames++;
-            gameLengthDistribution[res.turnCount] = (gameLengthDistribution[res.turnCount] || 0) + 1;
-            res.placements.forEach((p, idx) => {
-                if(placementStats[p.id]) placementStats[p.id][idx]++;
+        for (let i = 0; i < numSimulations; i++) {
+            const lobbyStart = process.hrtime();
+            const playerConfigs = [];
+            allHeroesData[0].instances.forEach(id => {
+                playerConfigs.push({ id: `${heroNames[0]}-${id}`, heroName: heroNames[0], instanceId: id, data: allHeroesData[0].boards[id] });
             });
+            allHeroesData[1].instances.forEach(id => {
+                playerConfigs.push({ id: `${heroNames[1]}-${id}`, heroName: heroNames[1], instanceId: id, data: allHeroesData[1].boards[id] });
+            });
+
+            const res = await runLobby(playerConfigs, false);
+            const lobbyDiff = process.hrtime(lobbyStart);
+            totalCombatTime += (lobbyDiff[0] * 1e9 + lobbyDiff[1]) / 1e6;
+            
+            if (res.winnerHero !== 'Draw') {
+                heroWins[res.winnerHero]++;
+                gameLengthDistribution[res.turnCount] = (gameLengthDistribution[res.turnCount] || 0) + 1;
+                res.placements.forEach((p, idx) => {
+                    if(placementStats[p.id]) placementStats[p.id][idx]++;
+                });
+            }
+            iterations++;
+            if (iterations % 100 === 0) reportProgress(iterations, numSimulations, startTime, totalCombatTime);
         }
-        
-        if ((i + 1) % 100 === 0) {
-            const elapsed = process.hrtime(startTime);
-            const elapsedSec = (elapsed[0] + elapsed[1] / 1e9).toFixed(1);
-            const avgMs = (totalCombatTime / (i + 1)).toFixed(2);
-            const mem = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(1);
-            console.log(`Progress: ${i + 1}/${numSimulations}... [${elapsedSec}s, avg ${avgMs}ms, mem ${mem}MB]`);
+    } else if (heroNames.length === 4) {
+        const pairs1 = getCombinations(allHeroesData[0].instances, 2);
+        const pairs2 = getCombinations(allHeroesData[1].instances, 2);
+        const pairs3 = getCombinations(allHeroesData[2].instances, 2);
+        const pairs4 = getCombinations(allHeroesData[3].instances, 2);
+
+        const totalCombinations = pairs1.length * pairs2.length * pairs3.length * pairs4.length;
+        console.log(`Simulating 4-hero lobby: ${heroNames.join(', ')}`);
+        console.log(`Total combinations: ${totalCombinations}. Running each twice for ${totalCombinations * 2} games.`);
+
+        for (const p1 of pairs1) {
+            for (const p2 of pairs2) {
+                for (const p3 of pairs3) {
+                    for (const p4 of pairs4) {
+                        for (let n = 0; n < 2; n++) {
+                            const playerConfigs = [];
+                            p1.forEach(id => playerConfigs.push({ id: `${heroNames[0]}-${id}`, heroName: heroNames[0], instanceId: id, data: allHeroesData[0].boards[id] }));
+                            p2.forEach(id => playerConfigs.push({ id: `${heroNames[1]}-${id}`, heroName: heroNames[1], instanceId: id, data: allHeroesData[1].boards[id] }));
+                            p3.forEach(id => playerConfigs.push({ id: `${heroNames[2]}-${id}`, heroName: heroNames[2], instanceId: id, data: allHeroesData[2].boards[id] }));
+                            p4.forEach(id => playerConfigs.push({ id: `${heroNames[3]}-${id}`, heroName: heroNames[3], instanceId: id, data: allHeroesData[3].boards[id] }));
+
+                            const lobbyStart = process.hrtime();
+                            const res = await runLobby(playerConfigs, false);
+                            const lobbyDiff = process.hrtime(lobbyStart);
+                            totalCombatTime += (lobbyDiff[0] * 1e9 + lobbyDiff[1]) / 1e6;
+
+                            if (res.winnerHero !== 'Draw') {
+                                heroWins[res.winnerHero]++;
+                                gameLengthDistribution[res.turnCount] = (gameLengthDistribution[res.turnCount] || 0) + 1;
+                                res.placements.forEach((p, idx) => {
+                                    if(placementStats[p.id]) placementStats[p.id][idx]++;
+                                });
+                            }
+                            iterations++;
+                            if (iterations % 100 === 0) reportProgress(iterations, totalCombinations * 2, startTime, totalCombatTime);
+                        }
+                    }
+                }
+            }
         }
     }
 
+    reportFinalResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime);
+}
+
+function reportProgress(iterations, total, startTime, totalCombatTime) {
+    const elapsed = process.hrtime(startTime);
+    const elapsedSec = (elapsed[0] + elapsed[1] / 1e9).toFixed(1);
+    const avgMs = (totalCombatTime / iterations).toFixed(2);
+    const mem = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(1);
+    console.log(`Progress: ${iterations}/${total}... [${elapsedSec}s, avg ${avgMs}ms, mem ${mem}MB]`);
+}
+
+function reportFinalResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime) {
     const totalElapsed = process.hrtime(startTime);
     const totalSec = (totalElapsed[0] + totalElapsed[1] / 1e9).toFixed(2);
-    const h1Wins = Object.keys(placementStats).filter(k => k.startsWith('H1')).reduce((sum, k) => sum + placementStats[k][0], 0);
-    const h2Wins = Object.keys(placementStats).filter(k => k.startsWith('H2')).reduce((sum, k) => sum + placementStats[k][0], 0);
+    const totalSuccessfulGames = Object.values(gameLengthDistribution).reduce((a, b) => a + b, 0);
     const totalTurns = Object.entries(gameLengthDistribution).reduce((sum, [len, count]) => sum + (Number(len) * count), 0);
-    
+
     console.log("\n--- LOBBY SIMULATION SUMMARY ---");
-    console.log(`Total Time: ${totalSec}s | Avg: ${(totalCombatTime / successfulGames).toFixed(2)}ms`);
-    
-    const h1Placements = Object.keys(placementStats).filter(k => k.startsWith('H1')).map(k => placementStats[k]);
-    const h2Placements = Object.keys(placementStats).filter(k => k.startsWith('H2')).map(k => placementStats[k]);
-    const calcHeroAvg = (placements) => {
+    console.log(`Total Time: ${totalSec}s | Avg: ${(totalCombatTime / iterations).toFixed(2)}ms`);
+
+    const heroStats = heroNames.map(name => {
+        const placements = Object.keys(placementStats).filter(k => k.startsWith(name)).map(k => placementStats[k]);
         let totalSum = 0;
         let totalCount = 0;
         placements.forEach(p => {
@@ -314,30 +367,23 @@ async function run() {
                 totalCount += count;
             });
         });
-        return totalCount > 0 ? (totalSum / totalCount).toFixed(2) : "0.00";
-    };
+        const avg = totalCount > 0 ? (totalSum / totalCount) : 8.00;
+        return { name, wins: heroWins[name], avg: avg.toFixed(2), rawAvg: avg };
+    }).sort((a, b) => a.rawAvg - b.rawAvg);
 
-    console.log(`${hero1Name} lobby wins: ${h1Wins}`);
-    console.log(`${hero1Name} avg pos: ${calcHeroAvg(h1Placements)}`);
-    console.log(`${hero2Name} lobby wins: ${h2Wins}`);
-    console.log(`${hero2Name} avg pos: ${calcHeroAvg(h2Placements)}`);
-    
+    heroStats.forEach(h => {
+        console.log(`${h.name} lobby wins: ${h.wins}`);
+        console.log(`${h.name} avg pos: ${h.avg}`);
+    });
+
     console.log("\nGame Length Distribution:");
     Object.entries(gameLengthDistribution).sort((a,b) => Number(a[0]) - Number(b[0])).forEach(([len, count]) => {
         console.log(`  ${len - 1} turns: ${count} games`);
     });
-    console.log(`Average Game Length: ${(totalTurns / successfulGames - 1).toFixed(1)} turns`);
-    
-    function getOrdinalSuffix(i) {
-        const j = i % 10, k = i % 100;
-        if (j == 1 && k != 11) return "st";
-        if (j == 2 && k != 12) return "nd";
-        if (j == 3 && k != 13) return "rd";
-        return "th";
-    }
+    console.log(`Average Game Length: ${(totalTurns / totalSuccessfulGames - 1).toFixed(1)} turns`);
 
     console.log("\nIndividual Board Placements (Sorted by Avg Placement):");
-    const sortedBoards = Object.entries(placementStats).sort((a,b) => {
+    const sortedBoards = Object.entries(placementStats).filter(([id, placements]) => placements.reduce((s, c) => s + c, 0) > 0).sort((a,b) => {
         const aTotalGames = a[1].reduce((s, c) => s + c, 0);
         const bTotalGames = b[1].reduce((s, c) => s + c, 0);
         const aAvg = a[1].reduce((s, c, i) => s + c * (i + 1), 0) / aTotalGames;
@@ -346,14 +392,11 @@ async function run() {
     });
 
     sortedBoards.forEach(([id, placements]) => {
-        const hero = id.startsWith('H1') ? hero1Name : hero2Name;
-        const instance = id.split('-')[1];
         const totalGames = placements.reduce((s, c) => s + c, 0);
         const avgPlacement = (placements.reduce((s, c, i) => s + c * (i + 1), 0) / totalGames).toFixed(2);
-
-        console.log(`\n${hero} #${instance}:`);
+        console.log(`\n${id}:`);
         console.log(`  Average Placement: ${avgPlacement}`);
-        const placementsStr = placements.map((count, i) => `${i+1}${getOrdinalSuffix(i+1)}: ${count}`).join(', ');
+        const placementsStr = placements.map((count, i) => `${i+1}: ${count}`).join(', ');
         console.log(`  ${placementsStr}`);
     });
 }
