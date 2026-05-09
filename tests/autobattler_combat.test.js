@@ -49,6 +49,8 @@ if (typeof document === 'undefined') {
 const { 
     state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES
 } = require('../scripts/coliseum.js');
+const coliseum = require('../scripts/coliseum.js');
+coliseum.render = () => {}; 
 const assert = require('assert');
 
 function resetState() {
@@ -243,7 +245,7 @@ function testTrample() {
     assert.strictEqual(neighbor.damageTaken, 4, "Trample should splash 4 to neighbor");
 }
 
-function testIndestructible() {
+async function testIndestructible() {
     resetState();
     const ind = CardFactory.create({ card_name: "Indestructible", pt: "2/2", rules_text: "Indestructible" });
     const attacker = CardFactory.create({ card_name: "Attacker", pt: "5/5" });
@@ -251,10 +253,53 @@ function testIndestructible() {
     state.battleBoards = { player: [ind], opponent: [attacker] };
     
     resolveCombatImpact(attacker, ind);
-    assert.strictEqual(ind.damageTaken, 1, "Should be saved at 1 damage (1 HP)");
+    await resolveDeaths();
+    assert.strictEqual(ind.damageTaken, 1, "Should be saved at 1 damage (1 HP) after resolveDeaths");
 }
 
-function testIndestructible_AlreadyDamaged() {
+async function testIndestructible_SecondHitDeath() {
+    resetState();
+    const ind = CardFactory.create({ card_name: "Indestructible", pt: "2/2", rules_text: "Indestructible" });
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "5/5" });
+    ind.owner = 'player';
+    state.battleBoards = { player: [ind], opponent: [attacker] };
+    
+    // Hit 1: Should use save and go to 1 HP
+    resolveCombatImpact(attacker, ind);
+    await resolveDeaths();
+    assert.strictEqual(ind.damageTaken, 1, "First hit should leave it at 1 HP");
+    assert.strictEqual(ind.indestructibleUsed, true, "Should have used its save");
+
+    // Hit 2: Should now die because save is used
+    resolveCombatImpact(attacker, ind);
+    await resolveDeaths();
+    assert.strictEqual(state.battleBoards.player.length, 0, "Should be dead after second lethal hit");
+}
+
+async function testIndestructible_TrampleBypass() {
+    resetState();
+    // 15/15 with 7 damage taken (8 HP left)
+    const ind = CardFactory.create({ card_name: "Big Guy", pt: "15/15", rules_text: "Indestructible" });
+    ind.damageTaken = 7;
+    ind.owner = 'opponent';
+    
+    const trampler = CardFactory.create({ card_name: "Trampler", pt: "10/10", rules_text: "Trample" });
+    trampler.owner = 'player';
+    
+    state.battleBoards = { player: [trampler], opponent: [ind] };
+    state.opponents[0].fightHp = 20;
+
+    // Trampler has 10 power. Defender has 8 HP left.
+    // Should deal 8 to defender and 2 to face.
+    const impact = resolveCombatImpact(trampler, ind);
+    assert.strictEqual(impact.defenderDamageTaken, 8, "Should take full 8 lethal damage before trample splashes");
+    assert.strictEqual(impact.trampleOverflow, 2, "Only 2 damage should splash to face");
+    
+    await resolveDeaths();
+    assert.strictEqual(ind.damageTaken, 14, "Should be saved at 1 HP (14 damage) after resolveDeaths");
+}
+
+async function testIndestructible_AlreadyDamaged() {
     resetState();
     // 5/5 Indestructible that has already taken 3 damage (2 HP left)
     const ind = CardFactory.create({ card_name: "Indestructible", pt: "5/5", rules_text: "Indestructible" });
@@ -264,9 +309,25 @@ function testIndestructible_AlreadyDamaged() {
     const attacker = CardFactory.create({ card_name: "Attacker", pt: "10/10" });
     state.battleBoards = { player: [ind], opponent: [attacker] };
 
-    // Combat impact should save it at 1 HP (4 damage taken)
+    // Combat impact should deal full damage, then resolveDeaths saves at 1 HP (4 damage)
     resolveCombatImpact(attacker, ind);
+    await resolveDeaths();
     assert.strictEqual(ind.damageTaken, 4, "Indestructible should set damage to 4 to leave it at 1 HP");
+}
+
+async function testIndestructibleAttacker() {
+    resetState();
+    const attacker = CardFactory.create({ card_name: "Indestructible Attacker", pt: "2/2", rules_text: "Indestructible" });
+    const blocker = CardFactory.create({ card_name: "Big Blocker", pt: "5/5" });
+    attacker.owner = 'player';
+    blocker.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [blocker] };
+    
+    resolveCombatImpact(attacker, blocker);
+    await resolveDeaths();
+    assert.strictEqual(attacker.damageTaken, 1, "Attacker should be saved at 1 HP");
+    assert.strictEqual(attacker.indestructibleUsed, true, "Attacker should have used its save");
+    assert.strictEqual(state.battleBoards.player.length, 1, "Attacker should still be on board");
 }
 
 async function testFirstStrikeLethal() {
@@ -523,7 +584,7 @@ function testTriumphantTactics_FaceDamage() {
     assert.strictEqual(attacker.counters, 1, "Attacker should gain a counter when dealing damage to face");
 }
 
-function testDeathtouch() {
+async function testDeathtouch() {
     resetState();
     const attacker = CardFactory.create({ card_name: "Deathtouch Attacker", pt: "1/1", rules_text: "Deathtouch" });
     const defender = CardFactory.create({ card_name: "Big Defender", pt: "1/5" });
@@ -534,6 +595,7 @@ function testDeathtouch() {
 
     // Case 1: Attacker with Deathtouch kills big blocker
     resolveCombatImpact(attacker, defender);
+    await resolveDeaths();
     assert.strictEqual(defender.isDestroyed, true, "Big defender should be marked as isDestroyed by Deathtouch");
 
     // Case 2: Defender with Deathtouch kills big attacker (retaliation)
@@ -545,6 +607,7 @@ function testDeathtouch() {
     state.battleBoards = { player: [bigAttacker], opponent: [dtDefender] };
     
     resolveCombatImpact(bigAttacker, dtDefender);
+    await resolveDeaths();
     assert.strictEqual(bigAttacker.isDestroyed, true, "Big attacker should be marked as isDestroyed by Deathtouch retaliation");
 
     // Case 3: First Strike + Deathtouch kills before retaliation
@@ -557,6 +620,7 @@ function testDeathtouch() {
     
     // Impact 1: FS hits
     resolveCombatImpact(fsDtAttacker, bigDefender2, true);
+    await resolveDeaths();
     assert.strictEqual(bigDefender2.isDestroyed, true, "Big defender should be marked isDestroyed by FS DT hit");
 
     // Case 4: Deathtouch vs Shield Counter
@@ -568,6 +632,7 @@ function testDeathtouch() {
     state.battleBoards = { player: [dtAttacker], opponent: [shieldDefender] };
     
     resolveCombatImpact(dtAttacker, shieldDefender);
+    await resolveDeaths();
     assert.strictEqual(shieldDefender.shieldCounters, 0, "Shield should be removed");
     assert.strictEqual(shieldDefender.isDestroyed, false, "Should NOT be marked isDestroyed after shield save");
 
@@ -580,6 +645,7 @@ function testDeathtouch() {
     state.battleBoards = { player: [dtAttacker2], opponent: [indestructibleDefender] };
     
     resolveCombatImpact(dtAttacker2, indestructibleDefender);
+    await resolveDeaths();
     assert.strictEqual(indestructibleDefender.isDestroyed, false, "Indestructible should save from DT");
     assert.strictEqual(indestructibleDefender.indestructibleUsed, true, "Indestructible should be marked as used");
     assert.strictEqual(indestructibleDefender.getDisplayStats(state.battleBoards.opponent).t, 1, "Toughness should be reduced to 1 by the save");
@@ -596,11 +662,12 @@ function testDeathtouch() {
     
     // Blocker has 3 toughness, 4 power trampler deals 3 to blocker, 1 to neighbor
     resolveCombatImpact(dtTrampler, blocker);
+    await resolveDeaths();
     assert.strictEqual(blocker.isDestroyed, true, "Blocker killed by DT");
     assert.strictEqual(neighbor.isDestroyed, true, "Neighbor killed by DT splash damage (1 damage)");
 }
 
-function runTests() {
+async function runTests() {
     const allTests = [
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
         { name: "Vigilance (Taunt) Targeting", fn: testVigilanceTargeting },
@@ -613,6 +680,10 @@ function runTests() {
         { name: "Lifelink (Attack/Face)", fn: testLifelink },
         { name: "Trample Splash", fn: testTrample },
         { name: "Indestructible Save", fn: testIndestructible },
+        { name: "Indestructible Second Hit", fn: testIndestructible_SecondHitDeath },
+        { name: "Indestructible Trample Math", fn: testIndestructible_TrampleBypass },
+        { name: "Indestructible Already Damaged", fn: testIndestructible_AlreadyDamaged },
+        { name: "Indestructible Attacker", fn: testIndestructibleAttacker },
         { name: "First Strike (Lethal)", fn: testFirstStrikeLethal },
         { name: "First Strike (Non-Lethal)", fn: testFirstStrikeNonLethal },
         { name: "First Strike (On Defense)", fn: testFirstStrikeOnDefense },
@@ -627,14 +698,14 @@ function runTests() {
     ];
 
     const results = [];
-    allTests.forEach(test => {
+    for (const test of allTests) {
         try {
-            test.fn();
+            await test.fn();
             results.push({ ...test, passed: true });
         } catch (e) {
             results.push({ ...test, passed: false, error: e.message });
         }
-    });
+    }
 
     console.log("COMBAT MECHANIC RESULTS");
     console.log("=======================");

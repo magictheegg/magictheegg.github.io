@@ -114,6 +114,7 @@ class BaseCard {
             this.isDecayed = this.isDecayed || false;
             this.isToken = this.isToken || (this.shape?.toLowerCase().includes('token')) || false;
             this.isDestroyed = false;
+            this.indestructibleUsed = false;
             this.equipment = this.equipment || null;
 
             // Visual state tracking for staggered animations - Assigned LAST after normalization
@@ -435,7 +436,7 @@ class BaseCard {
         }
 
         hasKeyword(keyword, visualOnly = false) {
-            if (this.temporaryHumility) return false;
+            if (this.temporaryHumility && !visualOnly) return false;
             const kw = keyword.toLowerCase();
 
             if (visualOnly) {
@@ -3154,6 +3155,7 @@ class BaseCard {
             c.isLockedByChivalry = false;
             c.damageTaken = 0;
             c.isDestroyed = false;
+            c.indestructibleUsed = false;
             c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary);
             });
             state.opponents.forEach(opp => {
@@ -3164,6 +3166,7 @@ class BaseCard {
                 c.isLockedByChivalry = false;
                 c.damageTaken = 0;
                 c.isDestroyed = false;
+                c.indestructibleUsed = false;
                 c.enchantments = (c.enchantments || []).filter(e => !e.isTemporary);
             });
             opp.fightHp = 5 + (5 * opp.tier);
@@ -5206,7 +5209,7 @@ class BaseCard {
         }
     }
 
-    const tierCosts = [0, 7, 8, 11, 13]; // Base costs for 2, 3, 4, 5
+    const tierCosts = [0, 7, 8, 11, 12]; // Base costs for 2, 3, 4, 5
 
     function updateTierButton() {
         const tierContainer = document.getElementById('tier-container');
@@ -7587,7 +7590,7 @@ class BaseCard {
                 defender.shieldCounters--;
             } else {
                 // MTG Rule: Lethal damage is 1 if attacker has Deathtouch, otherwise it's current remaining toughness
-                const lethalThreshold = hasDeathtouch ? 1 : Math.max(0, defenderStats.t - defender.damageTaken);
+                const lethalThreshold = hasDeathtouch ? 1 : Math.max(0, defenderStats.t);
                 
                 let assignedToBlocker = damageDealt;
                 if (hasTrample) {
@@ -7597,20 +7600,11 @@ class BaseCard {
 
                 defenderDamageTaken = assignedToBlocker;
 
-                if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
-                    // INDESTRUCTIBLE PROTECTION (Defender)
-                    if ((defender.damageTaken + defenderDamageTaken) >= defenderStats.t || (hasDeathtouch && defenderDamageTaken > 0)) {
-                        // Leave at exactly 1 toughness
-                        defenderDamageTaken = (defenderStats.t - 1) - defender.damageTaken;
-                        defender.indestructibleUsed = true;
-                    }
-                }
-
                 defender.damageTaken += defenderDamageTaken;
 
                 // DEATHTOUCH (Attacker)
                 if (hasDeathtouch && defenderDamageTaken > 0) {
-                    if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
+                    if (!defender.isDestroyed) {
                         defender.isDestroyed = true;
                         showDestroyBubble(defender);
                     }
@@ -7642,13 +7636,6 @@ class BaseCard {
                     if (trampleTarget.shieldCounters > 0) {
                         trampleTarget.shieldCounters--;
                         splashDamage = 0;
-                    } else if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
-                        const targetStats = trampleTarget.getDisplayStats(defenderBoard);
-                        if ((trampleTarget.damageTaken + splashDamage) >= targetStats.t || (hasDeathtouch && splashDamage > 0)) {
-                            // Leave at exactly 1 toughness
-                            splashDamage = (targetStats.t - 1) - trampleTarget.damageTaken;
-                            trampleTarget.indestructibleUsed = true;
-                        }
                     }
                     
                     trampleTarget.damageTaken += splashDamage;
@@ -7712,16 +7699,10 @@ class BaseCard {
                     if (attacker.shieldCounters > 0) {
                         attackerDamageTaken = 0;
                         attacker.shieldCounters--;
-                    } else if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
-                        if ((attacker.damageTaken + attackerDamageTaken) >= attackerStats.t || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
-                            // Leave at exactly 1 toughness
-                            attackerDamageTaken = (attackerStats.t - 1) - attacker.damageTaken;
-                            attacker.indestructibleUsed = true;
-                        }
                     }
                     attacker.damageTaken += attackerDamageTaken;
                     
-                    if (defender.hasKeyword('Deathtouch') && !attacker.hasKeyword('Indestructible') && attackerDamageTaken > 0) {
+                    if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
                         attacker.isDestroyed = true;
                         showDestroyBubble(attacker);
                     }
@@ -7747,7 +7728,7 @@ class BaseCard {
     }
 
     async function resolveDeaths() {
-        const isProtected = (c, board) => c.hasKeyword('Indestructible') && !c.indestructibleUsed;
+        const isProtected = (c, board) => c.hasKeyword('indestructible') && !c.indestructibleUsed;
 
         // 1. Identify everyone who would die (Lethal damage OR Marked as Destroyed)
         const deadPlayerCards = state.battleBoards.player.filter(c => {
@@ -7761,15 +7742,21 @@ class BaseCard {
             return (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)) || c.isDestroyed;
         });
 
-        // 2. Handle Saves (Indestructible from damage, and Shields from isDestroyed)
-        const savedPlayer = state.battleBoards.player.filter(c => 
-            (c.getDisplayStats(state.battleBoards.player).t <= 0 && isProtected(c, state.battleBoards.player) && !c.isDestroyed) || 
-            (c.isDestroyed && c.shieldCounters > 0)
-        );
-        const savedOpponent = state.battleBoards.opponent.filter(c => 
-            (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && isProtected(c, state.battleBoards.opponent) && !c.isDestroyed) || 
-            (c.isDestroyed && c.shieldCounters > 0)
-        );
+        // 2. Handle Saves (Indestructible from damage/destroy, and Shields from isDestroyed)
+        const savedPlayer = state.battleBoards.player.filter(c => {
+            const isProt = isProtected(c, state.battleBoards.player);
+            const isLethal = c.getDisplayStats(state.battleBoards.player).t <= 0;
+            const isToDestroy = c.isDestroyed;
+            return (!c.isDying && (isLethal || isToDestroy) && isProt) || 
+                   (!c.isDying && isToDestroy && c.shieldCounters > 0);
+        });
+        const savedOpponent = state.battleBoards.opponent.filter(c => {
+            const isProt = isProtected(c, state.battleBoards.opponent);
+            const isLethal = c.getDisplayStats(state.battleBoards.opponent).t <= 0;
+            const isToDestroy = c.isDestroyed;
+            return (!c.isDying && (isLethal || isToDestroy) && isProt) || 
+                   (!c.isDying && isToDestroy && c.shieldCounters > 0);
+        });
         
         [...savedPlayer, ...savedOpponent].forEach(c => {
             if (c.isDestroyed && c.shieldCounters > 0) {
@@ -7777,10 +7764,11 @@ class BaseCard {
                 c.isDestroyed = false;
             } else {
                 c.indestructibleUsed = true;
+                c.isDestroyed = false; // RESET isDestroyed here too!
                 const board = savedPlayer.includes(c) ? state.battleBoards.player : state.battleBoards.opponent;
                 const stats = c.getDisplayStats(board);
-                // Set damageTaken so exactly 1 HP remains
-                c.damageTaken = stats.t - 1;
+                // Set damageTaken so exactly 1 HP remains (Max - 1)
+                c.damageTaken = Math.max(0, stats.maxT - 1);
             }
         });
 
