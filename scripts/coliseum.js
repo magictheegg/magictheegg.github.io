@@ -5613,7 +5613,7 @@ class BaseCard {
 
             // Now resolve any deaths (this plays the death animations and pauses)
             // This handles Xun Huang triggered kills correctly
-            const deathsResolved = await resolveDeaths();
+            const deathsResolved = await resolveDeaths(true);
 
             // If the defender died to an ability (Xun Huang), stop the attack
             if (defender && (defender.isDestroyed || !defenderBoard.includes(defender))) {
@@ -5633,49 +5633,65 @@ class BaseCard {
             await addCounters(defender, multiplier, defenderBoard);
         }
 
-        // REDIRECTION LOGIC:
-        // If the board state changed (e.g., via onAttack or Familiar trigger), re-check targeting.
-        // This handles cases like Erin humming a flyer, making it a ground creature she should now bypass.
-        let shouldRedirect = false;
+        // Redirection check: re-target if the defender died or board changed
+        // Hellkite and Familiar also need to re-check if their target died, though they won't redirect to face
+        const isDeadOrMissing = (defender && (defender.isDying || defender.isDestroyed || !defenderBoard.includes(defender)));
         const noRedirectCards = ['Cabracan\'s Familiar', 'Cauther Hellkite'];
-        
-        if (!noRedirectCards.includes(attacker.card_name)) {
-            if (attacker.card_name === 'Erin, Beacon of Humility') {
-                shouldRedirect = true; 
-            } else if (defender && (defender.isDying || defender.isDestroyed || !defenderBoard.includes(defender))) {
-                shouldRedirect = true;
+
+        if (isDeadOrMissing || attacker.card_name === 'Erin, Beacon of Humility') {
+            const potentialNewDefender = findTarget(attacker, defenderBoard);
+            
+            // Hellkite and Familiar strictly strike creatures; if their target is gone and no others exist, they abort
+            const mustHaveTarget = noRedirectCards.includes(attacker.card_name);
+            
+            if (potentialNewDefender !== defender) {
+                if (mustHaveTarget && !potentialNewDefender) {
+                    // Abort Hellkite/Familiar strike if no creatures left
+                    const finalAttackerEl = document.getElementById(`card-${attacker.id}`);
+                    if (finalAttackerEl) {
+                        finalAttackerEl.style.transform = "";
+                        finalAttackerEl.classList.remove('attacking');
+                    }
+                    if (attackerZone) attackerZone.style.zIndex = "";
+                    state.activeAttackerId = null;
+                    return;
+                }
+                defender = potentialNewDefender;
             }
         }
 
-        if (shouldRedirect) {
-            const potentialNewDefender = findTarget(attacker, defenderBoard);
-            if (potentialNewDefender !== defender) {
-                defender = potentialNewDefender;
-                // Re-calculate deltas for the strike phase
-                if (defender) {
-                    const defenderEl = document.getElementById(`card-${defender.id}`);
-                    if (defenderEl) {
-                        const rectA = attackerEl.getBoundingClientRect();
-                        const rectB = defenderEl.getBoundingClientRect();
-                        deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
-                        deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
-                    }
-                } else {
-                    const oppArea = document.getElementById(attacker.owner === 'player' ? 'opponent-zone' : 'player-zone');
-                    const rectA = attackerEl.getBoundingClientRect();
-                    const rectB = oppArea.getBoundingClientRect();
-                    deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
-                    deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
-                }
+        // WAIT for the browser to settle the layout before the final dash calculation
+        if (typeof document !== 'undefined') {
+            await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+        }
+
+        // RE-FETCH ATTACKER EL and calculate the dash from its REAL current position
+        let currentAttackerEl = document.getElementById(`card-${attacker.id}`);
+        if (!currentAttackerEl) return;
+
+        // Re-calculate deltas for the strike phase from the card's real settled position
+        if (defender) {
+            const defenderEl = document.getElementById(`card-${defender.id}`);
+            if (defenderEl) {
+                const rectA = currentAttackerEl.getBoundingClientRect();
+                const rectB = defenderEl.getBoundingClientRect();
+                deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
+                deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
             }
+        } else {
+            const oppArea = document.getElementById(attacker.owner === 'player' ? 'opponent-zone' : 'player-zone');
+            const rectA = currentAttackerEl.getBoundingClientRect();
+            const rectB = oppArea.getBoundingClientRect();
+            deltaX = (rectB.left + rectB.width/2) - (rectA.left + rectA.width/2);
+            deltaY = (rectB.top + rectB.height/2) - (rectA.top + rectA.height/2);
         }
 
         const attackerStats = attacker.getDisplayStats(attackerBoard);
         const damageDealt = attackerStats.p;
 
-        // Phase 2: Attack Strike (FASTER movement)
-        attackerEl.style.transition = "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)";
-        attackerEl.style.transform = `translate(${deltaX * 0.6}px, ${deltaY * 0.6}px) scale(1.3)`;
+        // Phase 2: Attack Strike
+        currentAttackerEl.style.transition = "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)";
+        currentAttackerEl.style.transform = `translate(${deltaX * 0.6}px, ${deltaY * 0.6}px) scale(1.3)`;
         await new Promise(r => setTimeout(r, 180));
 
         // Phase 3: Impact calculations
@@ -5766,7 +5782,7 @@ class BaseCard {
         }
 
         // AFTER RENDER: Re-fetch the attacker and restore its position
-        const currentAttackerEl = document.getElementById(`card-${attacker.id}`);
+        // We reuse currentAttackerEl which was fetched above before the strike
         if (currentAttackerEl) {
             currentAttackerEl.style.transition = "none";
             currentAttackerEl.style.zIndex = "2000";
@@ -7820,7 +7836,29 @@ class BaseCard {
         return { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget };
     }
 
-    async function resolveDeaths() {
+    async function handleTrenchrunnerSpawns(skipImmediateAttacks) {
+        if (state.phase === 'BATTLE' && !skipImmediateAttacks) {
+            const allBoardCards = state.battleBoards.player.concat(state.battleBoards.opponent);
+            for (const spawn of allBoardCards) {
+                if (spawn.isTrenchrunnerSpawn) {
+                    delete spawn.isTrenchrunnerSpawn;
+                    const defenderBoard = (spawn.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
+                    const target = findTarget(spawn, defenderBoard);
+                    
+                    if (typeof document !== 'undefined') {
+                        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+                    }
+
+                    await performAttack(spawn, target, false);
+                    await resolveDeaths(); 
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    async function resolveDeaths(skipImmediateAttacks = false) {
         const isProtected = (c, board) => c.hasKeyword('indestructible') && !c.indestructibleUsed;
 
         // 1. Identify everyone who would die (Lethal damage OR Marked as Destroyed)
@@ -7867,6 +7905,8 @@ class BaseCard {
 
         if (deadPlayerCards.length === 0 && deadOpponentCards.length === 0) {
             if (savedPlayer.length > 0 || savedOpponent.length > 0) render();
+            const attacked = await handleTrenchrunnerSpawns(skipImmediateAttacks);
+            if (attacked) return true;
             return false;
         }
 
@@ -7894,8 +7934,9 @@ class BaseCard {
             await new Promise(r => setTimeout(r, 600)); // Wait for spawn animations
             
             // Protect upcoming spawn attackers from FLIP disruption
+            // ONLY if there isn't already an active attacker (e.g. don't clobber Hellkite mid-attack)
             const nextSpawnAttacker = allNewSpawns.find(s => s.isTrenchrunnerSpawn);
-            if (nextSpawnAttacker) {
+            if (nextSpawnAttacker && !state.activeAttackerId) {
                 state.activeAttackerId = nextSpawnAttacker.id;
             }
 
@@ -7904,25 +7945,8 @@ class BaseCard {
         }
 
         // 5. Special Case: Trenchrunner spawns need to attack immediately
-        if (state.phase === 'BATTLE') {
-            const allBoardCards = state.battleBoards.player.concat(state.battleBoards.opponent);
-            for (const spawn of allBoardCards) {
-                if (spawn.isTrenchrunnerSpawn) {
-                    delete spawn.isTrenchrunnerSpawn;
-                    const defenderBoard = (spawn.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
-                    const target = findTarget(spawn, defenderBoard);
-                    
-                    // Settle time for browser layout before the dash starts
-                    if (typeof document !== 'undefined') {
-                        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-                    }
-
-                    await performAttack(spawn, target, false);
-                    await resolveDeaths(); 
-                    break;
-                }
-            }
-        }
+        await handleTrenchrunnerSpawns(skipImmediateAttacks);
+        
         await new Promise(r => setTimeout(r, 200));
 
         // 6. Recurse if processDeaths created NEW dead creatures (e.g. Hog debuff or sacrifice)
@@ -7935,7 +7959,7 @@ class BaseCard {
         });
         
         if (anyDeadStill) {
-            await resolveDeaths();
+            await resolveDeaths(skipImmediateAttacks);
         }
         
         await resolveAnimations();
@@ -8582,6 +8606,12 @@ class BaseCard {
                         // If someone else (like performAttack) has already started a new transition 
                         // on the attacker, do NOT clobber it with the old layout state.
                         if (state.activeAttackerId === instance.id && el.style.transition !== 'none' && el.style.transition !== '') {
+                            return;
+                        }
+
+                        // We also skip if the card is explicitly marked as busy (spawning/dying)
+                        const isBusy = (instance.isSpawning || instance.isDying || instance.isPulsing);
+                        if (isBusy && el.style.transition !== 'none' && el.style.transition !== '') {
                             return;
                         }
 
