@@ -8051,8 +8051,19 @@ class BaseCard {
         // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect (Exclude certain utility spells)
         const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
         const isDoubleable = !['Lagoon Logistics'].includes(state.castingSpell.card_name);
-        if (isDoubleable && (target.hasKeyword('Adaptive') || hasCloak)) {
-            state.castingSpell.onApply(target, state.player.board);
+        
+        if (isDoubleable) {
+            let extraCopies = 0;
+            if (target.hasKeyword('Adaptive')) {
+                extraCopies += (target.isFoil ? 2 : 1);
+            }
+            if (hasCloak) {
+                extraCopies += 1;
+            }
+
+            for (let i = 0; i < extraCopies; i++) {
+                state.castingSpell.onApply(target, state.player.board);
+            }
         }
         
         const castSpell = state.castingSpell;

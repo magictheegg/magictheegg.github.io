@@ -1509,15 +1509,20 @@ async function testMurkbornMammoth() {
     assert.strictEqual(mam.hasKeyword('trample'), true);
     assert.strictEqual(mam.hasKeyword('adaptive'), true);
 
-    // Enter casting mode
+    // 1. Normal Adaptive -> 2 triggers
     useCardFromHand(toBattle.id);
-    assert.strictEqual(state.castingSpell.id, toBattle.id);
+    await applySpell(mam.id);
+    assert.strictEqual(mam.counters, 2, "Adaptive should give 2 triggers total (+2 counters)");
 
-    // Apply spell via engine
-    applySpell(mam.id);
-
-    // Adaptive should trigger copy
-    assert.strictEqual(mam.counters, 2, "To Battle (+1/+1 counter) should be doubled (2 counters) by adaptive");
+    // 2. Foil Adaptive -> 3 triggers
+    resetState();
+    const foilMam = CardFactory.create({ card_name: "Murkborn Mammoth", pt: "7/7", rules_text: "Adaptive", isFoil: true });
+    state.player.board = [foilMam];
+    const toBattle2 = CardFactory.create({ card_name: "To Battle", type: "Instant" });
+    state.player.hand = [toBattle2];
+    useCardFromHand(toBattle2.id);
+    await applySpell(foilMam.id);
+    assert.strictEqual(foilMam.counters, 3, "Foil Adaptive should give 3 triggers total (+3 counters)");
 }
 async function testHissingSunspitter() {
     resetState();
@@ -2145,24 +2150,33 @@ async function testDjitusLithifiedMantle() {
 
 async function testAshWitheredCloak() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
+    const host = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "Adaptive" });
     const cloak = CardFactory.create({ card_name: "Ash-Withered Cloak", type: "Equipment", rules_text: "Equipped creature gets +2/+2." });
     host.equipment = cloak;
     host.owner = 'player';
     state.player.board = [host];
 
-    // Stats check
-    assert.strictEqual(host.getDisplayStats(state.player.board).p, 4, "Host gets +2/+2");
+    // 1. Adaptive + Cloak -> 3 triggers
+    const faith = CardFactory.create({ card_name: "Faith in Darkness", type: "Sorcery" });
+    state.player.hand = [faith];
+    useCardFromHand(faith.id);
+    await applySpell(host.id);
+    // Faith gives +2/+2. 2 (base) + 2 (cloak) + 3 * 2 (faith x3) = 10
+    assert.strictEqual(host.getDisplayStats(state.player.board).p, 10, "Faith in Darkness should be triggered 3 times (Base + Adaptive + Cloak)");
 
-    // Spell copying (Faith in Darkness)
-    const faith = CardFactory.create({ card_name: "Faith in Darkness" });
-    state.castingSpell = faith;
-    state.player.hand.push(faith); // Required for applySpell cleanup
-    applySpell(host.id);
-
-    // Host 2/2 + Cloak 2/2 + Faith 2/2 + Faith Copy 2/2 = 8/8
-    assert.strictEqual(host.getDisplayStats(state.player.board).p, 8, "Faith in Darkness should be copied");
-    assert.strictEqual(state.scrying.count, 2, "Scry 1 should be copied to Scry 2");
+    // 2. Foil Adaptive + Cloak -> 4 triggers (1 original + 2 foil adaptive + 1 cloak)
+    resetState();
+    const foilHost = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "Adaptive", isFoil: true });
+    foilHost.equipment = cloak;
+    foilHost.owner = 'player';
+    state.player.board = [foilHost];
+    const faith2 = CardFactory.create({ card_name: "Faith in Darkness", type: "Sorcery" });
+    state.player.hand = [faith2];
+    useCardFromHand(faith2.id);
+    await applySpell(foilHost.id);
+    // 4 (base p for foil) + 2 (cloak) + 4 * 2 (faith x4) = 14
+    assert.strictEqual(foilHost.getDisplayStats(state.player.board).p, 14, "Faith in Darkness should be triggered 4 times (Base + Foil Adaptive + Cloak)");
+    assert.strictEqual(state.scrying.count, 4, "Scry 1 should be triggered 4 times");
 }
 
 async function testSteelBarding() {
