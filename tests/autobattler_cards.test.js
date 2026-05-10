@@ -204,7 +204,7 @@ async function testMirrorImage() {
     mirror.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'mirror_image');
 
-    applyTargetedEffect(target.id);
+    await applyTargetedEffect(target.id);
 
     // Mirror Image (idx 1) should be gone. 
     // New Sunspear Angel (idx 2) should be there. 
@@ -216,7 +216,7 @@ async function testMirrorImage() {
     
     // Verify ETB trigger (Sunspear Angel copy should queue its own targeting effect)
     // In test environment, it stays in queue because state.targetingEffect is still the mirror_image effect
-    // Wait, applyTargetedEffect(mirror_image) calls triggerETB, then clearTargetingEffect(true).
+    // Wait, await applyTargetedEffect(mirror_image) calls triggerETB, then clearTargetingEffect(true).
     // clearTargetingEffect(true) calls processTargetingQueue().
     // So if Sunspear Angel was in the queue, it should now be state.targetingEffect.
     assert.ok(state.targetingEffect && state.targetingEffect.effect === 'sunspear_angel_buff', "Copy should have triggered ETB and set targeting effect");
@@ -425,7 +425,7 @@ async function testDutifulCamel() {
     assert.strictEqual(state.targetingEffect.effect, 'dutiful_camel_counter');
 
     // 1. Target Other (Honest call)
-    applyTargetedEffect(other.id);
+    await applyTargetedEffect(other.id);
     assert.strictEqual(other.counters, 1, "Other should gain counter");
     assert.strictEqual(state.targetingEffect, null, "Effect should clear");
 
@@ -433,7 +433,7 @@ async function testDutifulCamel() {
     resetState();
     state.player.board = [camel];
     camel.onETB(state.player.board);
-    applyTargetedEffect(camel.id);
+    await applyTargetedEffect(camel.id);
     assert.strictEqual(camel.counters, 1, "Self should gain counter");
 }
 
@@ -580,16 +580,16 @@ async function testExecutionersMadness() {
     state.player.hand = [spell];
 
     // Use from hand correctly sets up the targeting state
-    useCardFromHand(spell.id);
+    await useCardFromHand(spell.id);
     assert.strictEqual(state.targetingEffect.effect, 'executioner_sacrifice_step1');
 
     // 1. Target Sacrifice (Honest call)
-    applyTargetedEffect(sacTarget.id);
+    await applyTargetedEffect(sacTarget.id);
     assert.strictEqual(state.player.board.includes(sacTarget), false, "Target should be sacrificed");
     assert.strictEqual(state.targetingEffect.effect, 'executioner_buff_step2');
 
     // 2. Target Buff (Honest call)
-    applyTargetedEffect(buffTarget.id);
+    await applyTargetedEffect(buffTarget.id);
     assert.strictEqual(buffTarget.tempPower, 5, "Standard buff gives +5/+3");
     assert.strictEqual(buffTarget.hasKeyword('trample'), true, "Gains trample");
 
@@ -597,9 +597,9 @@ async function testExecutionersMadness() {
     resetState();
     state.player.board = [sacTarget, adaptiveTarget];
     state.player.hand = [spell];
-    useCardFromHand(spell.id);
-    applyTargetedEffect(sacTarget.id);
-    applyTargetedEffect(adaptiveTarget.id);
+    await useCardFromHand(spell.id);
+    await applyTargetedEffect(sacTarget.id);
+    await applyTargetedEffect(adaptiveTarget.id);
     assert.strictEqual(adaptiveTarget.tempPower, 10, "Adaptive buff gives double (+10/+6)");
 }
 
@@ -696,12 +696,12 @@ async function testWarriorsWays() {
     state.player.hand = [spell];
     
     // Step 1: Target Centaur for +2/+2 (Honest call)
-    useCardFromHand(spell.id);
-    applyTargetedEffect(centaur.id);
+    await useCardFromHand(spell.id);
+    await applyTargetedEffect(centaur.id);
     assert.strictEqual(state.targetingEffect.effect, 'warrior_ways_step2');
     
     // Step 2: Target same Centaur for counter (Honest call)
-    applyTargetedEffect(centaur.id);
+    await applyTargetedEffect(centaur.id);
     
     assert.strictEqual(centaur.tempPower, 2, "Centaur got temp buff");
     assert.strictEqual(centaur.counters, 1, "Centaur also got counter");
@@ -728,7 +728,7 @@ async function testStratusTraveler() {
     traveler2.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
     
-    applyTargetedEffect(targetNoFly.id);
+    await applyTargetedEffect(targetNoFly.id);
     assert.strictEqual(targetNoFly.flyingCounters, 1, "Gained flying counter");
 
     // 3. Already Cirrusea, HAS flying -> +1/+1 Counter (Honest call)
@@ -739,7 +739,7 @@ async function testStratusTraveler() {
     state.player.board = [traveler3, targetFly];
     traveler3.onETB(state.player.board);
     
-    applyTargetedEffect(targetFly.id);
+    await applyTargetedEffect(targetFly.id);
     assert.strictEqual(targetFly.counters, 1, "Gained +1/+1 counter");
 }
 
@@ -760,9 +760,9 @@ async function testUpInArms() {
     state.player.board = [t1, t2];
     state.player.hand = [spell1];
     
-    useCardFromHand(spell1.id);
-    applyTargetedEffect(t1.id); // Target 1
-    applyTargetedEffect(t2.id); // Target 2
+    await useCardFromHand(spell1.id);
+    await applyTargetedEffect(t1.id); // Target 1
+    await applyTargetedEffect(t2.id); // Target 2
     assert.strictEqual(t1.counters, 1, "Target 1 should have 1 counter");
     assert.strictEqual(t2.counters, 1, "Target 2 should have 1 counter");
     
@@ -773,9 +773,9 @@ async function testUpInArms() {
     state.player.board = [t3];
     state.player.hand = [spell2];
     
-    useCardFromHand(spell2.id);
-    applyTargetedEffect(t3.id); // Click 1
-    applyTargetedEffect(t3.id); // Click 2
+    await useCardFromHand(spell2.id);
+    await applyTargetedEffect(t3.id); // Click 1
+    await applyTargetedEffect(t3.id); // Click 2
     assert.strictEqual(t3.counters, 2, "One target gets both counters");
 }
 
@@ -1010,10 +1010,10 @@ async function testWarbandRallier() {
     rallier.owner = 'player';
     target.owner = 'player';
 
-    useCardFromHand(rallier.id);
+    await useCardFromHand(rallier.id);
     assert.strictEqual(state.targetingEffect.effect, 'warband_rallier_counters');
     
-    applyTargetedEffect(target.id);
+    await applyTargetedEffect(target.id);
     assert.strictEqual(target.counters, 2, "Centaur should get 2 counters");
     assert.strictEqual(state.targetingEffect, null, "Mode should clear");
 
@@ -1024,8 +1024,8 @@ async function testWarbandRallier() {
     state.player.hand = [rallier2];
     rallier2.owner = 'player';
 
-    useCardFromHand(rallier2.id);
-    applyTargetedEffect(rallier2.id);
+    await useCardFromHand(rallier2.id);
+    await applyTargetedEffect(rallier2.id);
     assert.strictEqual(rallier2.counters, 2, "Should be able to target itself");
 
     // 3. Target Non-Centaur (Fail)
@@ -1036,8 +1036,8 @@ async function testWarbandRallier() {
     state.player.hand = [rallier3];
     rallier3.owner = 'player';
 
-    useCardFromHand(rallier3.id);
-    applyTargetedEffect(human.id);
+    await useCardFromHand(rallier3.id);
+    await applyTargetedEffect(human.id);
     assert.strictEqual(human.counters, 0, "Non-Centaur should not get counters");
     assert.ok(state.targetingEffect, "Targeting should remain active on failure");
 }
@@ -1050,7 +1050,7 @@ async function testCybresBandRecruiter() {
     state.player.hand = [recruiter];
     recruiter.owner = 'player';
     
-    useCardFromHand(recruiter.id);
+    await useCardFromHand(recruiter.id);
     assert.strictEqual(state.player.board.length, 2, "Recruiter and token should be on board");
     const token = state.player.board.find(c => c.card_name === 'Centaur Knight');
     assert.ok(token, "Token exists");
@@ -1067,7 +1067,7 @@ async function testCybresClanSquire() {
     const centaur = CardFactory.create({ card_name: "Friend", pt: "1/1", type: "Creature - Centaur" });
     centaur.owner = 'player';
     state.player.hand = [centaur];
-    useCardFromHand(centaur.id);
+    await useCardFromHand(centaur.id);
     assert.strictEqual(squire.counters, 1, "Should gain counter on friendly centaur ETB");
 
     // 2. Interaction: Recruiter (should give 2 counters)
@@ -1079,7 +1079,7 @@ async function testCybresClanSquire() {
     state.player.hand = [recruiter];
     squire2.owner = 'player';
     
-    useCardFromHand(recruiter.id);
+    await useCardFromHand(recruiter.id);
     assert.strictEqual(squire2.counters, 2, "Should get 2 counters from Recruiter + Token");
 
     // 3. Timing: Rallier (Deferred Broadcast)
@@ -1090,10 +1090,10 @@ async function testCybresClanSquire() {
     state.player.hand = [rallier];
     squire3.owner = 'player';
     
-    useCardFromHand(rallier.id);
+    await useCardFromHand(rallier.id);
     assert.strictEqual(squire3.counters, 0, "Squire should NOT have ETB counter yet (rallier still targeting)");
     
-    applyTargetedEffect(squire3.id); // Picking squire for the +1/+1 counters
+    await applyTargetedEffect(squire3.id); // Picking squire for the +1/+1 counters
     assert.strictEqual(squire3.counters, 3, "Squire should have 2 from Rallier effect + 1 from deferred ETB broadcast");
 }
 
@@ -1138,7 +1138,7 @@ async function testWindsongApprentice() {
     state.player.plane = 'Cirrusea';
     const winds2 = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
     state.player.hand = [winds2];
-    useCardFromHand(winds2.id);
+    await useCardFromHand(winds2.id);
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
 }
 
@@ -1184,7 +1184,7 @@ async function testLingeringLunatic() {
     state.player.hand = [lunatic];
     lunatic.owner = target1.owner = target2.owner = flyer.owner = 'player';
     
-    useCardFromHand(lunatic.id);
+    await useCardFromHand(lunatic.id);
     
     assert.strictEqual(target1.counters, 2, "Target 1 (already had counter) should proliferate to 2");
     assert.strictEqual(target2.counters, 0, "Target 2 (had no counters) should remain at 0");
@@ -1210,7 +1210,7 @@ async function testBwemaTheRuthless() {
         ['Vigilance Counter', 'Lifelink Counter', 'vigilanceCounters', 'lifelinkCounters']
     ];
 
-    combos.forEach(([c1Name, c2Name, prop1, prop2]) => {
+    for (const [c1Name, c2Name, prop1, prop2] of combos) {
         resetState();
         const bwema = CardFactory.create({ card_name: "Bwema, the Ruthless", pt: "4/4", type: "Legendary Creature - Hound Warrior" });
         state.player.board = [bwema];
@@ -1218,9 +1218,9 @@ async function testBwemaTheRuthless() {
         bwema.onETB(state.player.board);
 
         const c1 = state.discovery.cards.find(c => c.card_name === c1Name);
-        resolveDiscovery(c1);
+        await resolveDiscovery(c1);
         const c2 = state.discovery.cards.find(c => c.card_name === c2Name);
-        resolveDiscovery(c2);
+        await resolveDiscovery(c2);
 
         assert.strictEqual(bwema[prop1], 1, `Should have ${prop1}`);
         assert.strictEqual(bwema[prop2], 1, `Should have ${prop2}`);
@@ -1245,7 +1245,7 @@ async function testBwemaTheRuthless() {
         });
 
         assert.strictEqual(state.discovery, null);
-    });
+    }
 }
 
 async function testSilverhornTactician() {
@@ -1262,7 +1262,7 @@ async function testSilverhornTactician() {
     ox.onETB(state.player.board);
     
     // 1. Remove Flying (Must specify counter type now), verify +1/+1 stays
-    applyTargetedEffect(source.id, 'flying');
+    await applyTargetedEffect(source.id, 'flying');
     assert.strictEqual(state.targetingEffect.effect, 'permutate_step2');
     
     // Source should have lost Flying (flyingCounters was 1, should be 0)
@@ -1270,11 +1270,11 @@ async function testSilverhornTactician() {
     assert.strictEqual(source.counters, 1, "+1/+1 counter stays");
 
     // 2. Pick same creature (Fail)
-    applyTargetedEffect(source.id);
+    await applyTargetedEffect(source.id);
     assert.ok(state.targetingEffect, "Should not accept same creature as target 2");
 
     // 3. Pick different creature (Success)
-    applyTargetedEffect(other.id);
+    await applyTargetedEffect(other.id);
     assert.strictEqual(other.counters, 2, "Destination gets two +1/+1 counters");
     assert.strictEqual(state.targetingEffect, null);
 }
@@ -1456,9 +1456,9 @@ async function testWhispersOfTheDead() {
     state.nextShopBonusCards = [bonus];
 
     // Trigger sacrifice
-    useCardFromHand(whispers.id);
+    await useCardFromHand(whispers.id);
     assert.strictEqual(state.targetingEffect.effect, 'whispers_sacrifice');
-    applyTargetedEffect(fodder.id);
+    await applyTargetedEffect(fodder.id);
     
     // Check Discovery state
     assert.ok(state.discovery, "Should enter Discovery mode");
@@ -1472,12 +1472,12 @@ async function testWhispersOfTheDead() {
     const card3 = state.discovery.cards[2];
     
     // Pick 1
-    resolveDiscovery(card1);
+    await resolveDiscovery(card1);
     assert.ok(state.discovery, "Still in discovery for pick 2");
     assert.strictEqual(state.player.hand.includes(card1), true);
 
     // Pick 2
-    resolveDiscovery(card2);
+    await resolveDiscovery(card2);
     assert.strictEqual(state.discovery, null, "Discovery finished");
     assert.strictEqual(state.player.hand.includes(card2), true);
     
@@ -1492,8 +1492,8 @@ async function testWhispersOfTheDead() {
         remaining: 2,
         sourceId: 'none'
     };
-    resolveDiscovery(state.discovery.cards[0]);
-    resolveDiscovery(state.discovery.cards[0]); // Pick A and B
+    await resolveDiscovery(state.discovery.cards[0]);
+    await resolveDiscovery(state.discovery.cards[0]); // Pick A and B
     
     assert.strictEqual(state.player.deadServantsCount, 1, "Unselected Servant should go to GY/Count");
 }
@@ -1510,7 +1510,7 @@ async function testMurkbornMammoth() {
     assert.strictEqual(mam.hasKeyword('adaptive'), true);
 
     // 1. Normal Adaptive -> 2 triggers
-    useCardFromHand(toBattle.id);
+    await useCardFromHand(toBattle.id);
     await applySpell(mam.id);
     assert.strictEqual(mam.counters, 2, "Adaptive should give 2 triggers total (+2 counters)");
 
@@ -1520,7 +1520,7 @@ async function testMurkbornMammoth() {
     state.player.board = [foilMam];
     const toBattle2 = CardFactory.create({ card_name: "To Battle", type: "Instant" });
     state.player.hand = [toBattle2];
-    useCardFromHand(toBattle2.id);
+    await useCardFromHand(toBattle2.id);
     await applySpell(foilMam.id);
     assert.strictEqual(foilMam.counters, 3, "Foil Adaptive should give 3 triggers total (+3 counters)");
 }
@@ -1537,17 +1537,17 @@ async function testHissingSunspitter() {
     spit.owner = other.owner = 'player';
 
     // 1st spell
-    useCardFromHand(spell1.id);
+    await useCardFromHand(spell1.id);
     assert.strictEqual(state.spellsCastThisTurn, 1);
     assert.strictEqual(spit.tempPower, 0);
 
     // 2nd spell
-    useCardFromHand(spell2.id);
+    await useCardFromHand(spell2.id);
     assert.strictEqual(state.spellsCastThisTurn, 2);
     assert.strictEqual(other.tempPower, 1, "All creatures should get +1/+1 on 2nd spell");
 
     // 3rd spell
-    useCardFromHand(spell3.id);
+    await useCardFromHand(spell3.id);
     assert.strictEqual(state.spellsCastThisTurn, 3);
     assert.strictEqual(other.hasKeyword('first strike'), true, "All creatures should gain first strike on 3rd spell");
 }
@@ -1560,7 +1560,7 @@ async function testGhessianMemories() {
     state.player.hand = [gm];
     squire.owner = 'player';
     
-    useCardFromHand(gm.id);
+    await useCardFromHand(gm.id);
     
     // Check Token Creation and ETB
     assert.strictEqual(state.player.board.length, 2, "Should create one token");
@@ -1569,7 +1569,7 @@ async function testGhessianMemories() {
     assert.strictEqual(squire.counters, 1, "Squire should trigger ETB off token");
 
     const hexproofCard = state.discovery.cards.find(c => c.card_name === 'Hexproof');
-    resolveDiscovery(hexproofCard);
+    await resolveDiscovery(hexproofCard);
     
     assert.strictEqual(squire.hasKeyword('hexproof'), true, "Squire gained Hexproof");
     assert.strictEqual(token.hasKeyword('hexproof'), true, "Token gained Hexproof");
@@ -1759,7 +1759,7 @@ async function testThunderRaptor() {
     // Case 2: Already in Cirrusea (should queue counter grant)
     raptor.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
-    applyTargetedEffect(otherBird.id);
+    await applyTargetedEffect(otherBird.id);
     
     const stats = otherBird.getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 4, "Base 1 + counters 1 + Raptor Lord 2 = 4");
@@ -1776,7 +1776,7 @@ async function testCloudlineSovereign() {
     
     // Test Success
     sovereign.onShopStart(state.player.board);
-    applyTargetedEffect(sovereign.id, 'plus-one');
+    await applyTargetedEffect(sovereign.id, 'plus-one');
     assert.strictEqual(sovereign.counters, 0);
     assert.strictEqual(sovereign.shieldCounters, 1);
 
@@ -1801,13 +1801,13 @@ async function testNightfallRaptor() {
     
     // Case 1: Bounce normal creature
     raptor.onETB(state.player.board);
-    applyTargetedEffect(victim.id);
+    await applyTargetedEffect(victim.id);
     assert.strictEqual(state.player.hand.includes(victim), true, "Normal creature bounced to hand");
     assert.strictEqual(state.player.board.length, 3);
 
     // Case 2: Bounce token (Should also go to hand in this game)
     raptor.onETB(state.player.board);
-    applyTargetedEffect(token.id);
+    await applyTargetedEffect(token.id);
     assert.strictEqual(state.player.hand.includes(token), true, "Token bounced to hand");
 
     // Case 3: Cancel
@@ -1820,7 +1820,7 @@ async function testNightfallRaptor() {
     // (Logic check: applyTargetedEffect should ignore enchantment creatures for this effect)
     raptor.onETB(state.player.board);
     const startSize = state.player.board.length;
-    applyTargetedEffect(enchantmentCreature.id); 
+    await applyTargetedEffect(enchantmentCreature.id); 
     assert.strictEqual(state.player.board.length, startSize, "Should not bounce enchantment creature");
 }
 
@@ -1854,7 +1854,7 @@ async function testSavageCongregation() {
     state.player.board = [big];
     big.owner = 'player';
 
-    useCardFromHand(sc.id);
+    await useCardFromHand(sc.id);
     
     // Verify pool constraints
     const pool = state.discovery.cards;
@@ -1907,10 +1907,10 @@ async function testNdengoBrutalizer() {
     brut2.onETB(state.player.board);
     
     // Attempt self-target
-    applyTargetedEffect(brut2.id);
+    await applyTargetedEffect(brut2.id);
     assert.strictEqual(state.targetingEffect.effect, 'ndengo_target', "Should still be in targeting mode after self-target attempt");
 
-    applyTargetedEffect(target.id);
+    await applyTargetedEffect(target.id);
     assert.strictEqual(state.discovery.effect, 'ndengo_choice');
     
     const choiceA = state.discovery.cards.find(c => c.card_name === 'Choice A');
@@ -2032,7 +2032,7 @@ async function testLairRecluse() {
     assert.strictEqual(state.targetingEffect.isMandatory, false, "Step 1 should be optional");
     
     // 3. Counter Removal (Reach)
-    applyTargetedEffect(recluse.id, 'reach');
+    await applyTargetedEffect(recluse.id, 'reach');
     assert.strictEqual(recluse.reachCounters, 0, "Reach counter should be removed");
     assert.strictEqual(state.targetingEffect.effect, 'permutate_step2');
     assert.strictEqual(state.targetingEffect.isMandatory, true, "Step 2 should be mandatory once counter removed");
@@ -2040,12 +2040,12 @@ async function testLairRecluse() {
     // 4. Hand Targeting Check: Should NOT be able to target card in hand
     const handCard = CardFactory.create({ card_name: "Hand Card", pt: "2/2" });
     state.player.hand = [handCard];
-    applyTargetedEffect(handCard.id); // Should fail to find target and do nothing
+    await applyTargetedEffect(handCard.id); // Should fail to find target and do nothing
     assert.strictEqual(state.targetingEffect.effect, 'permutate_step2', "Targeting should still be active");
     assert.strictEqual(handCard.counters, 0, "Hand card should not have received counters");
 
     // 5. Board targeting (Valid)
-    applyTargetedEffect(other.id);
+    await applyTargetedEffect(other.id);
     assert.strictEqual(other.counters, 2, "Other board creature should have received counters");
     assert.strictEqual(state.targetingEffect, null, "Targeting should be finished");
 }
@@ -2159,7 +2159,7 @@ async function testAshWitheredCloak() {
     // 1. Adaptive + Cloak -> 3 triggers
     const faith = CardFactory.create({ card_name: "Faith in Darkness", type: "Sorcery" });
     state.player.hand = [faith];
-    useCardFromHand(faith.id);
+    await useCardFromHand(faith.id);
     await applySpell(host.id);
     // Faith gives +2/+2. 2 (base) + 2 (cloak) + 3 * 2 (faith x3) = 10
     assert.strictEqual(host.getDisplayStats(state.player.board).p, 10, "Faith in Darkness should be triggered 3 times (Base + Adaptive + Cloak)");
@@ -2172,7 +2172,7 @@ async function testAshWitheredCloak() {
     state.player.board = [foilHost];
     const faith2 = CardFactory.create({ card_name: "Faith in Darkness", type: "Sorcery" });
     state.player.hand = [faith2];
-    useCardFromHand(faith2.id);
+    await useCardFromHand(faith2.id);
     await applySpell(foilHost.id);
     // 4 (base p for foil) + 2 (cloak) + 4 * 2 (faith x4) = 14
     assert.strictEqual(foilHost.getDisplayStats(state.player.board).p, 14, "Faith in Darkness should be triggered 4 times (Base + Foil Adaptive + Cloak)");
@@ -2357,7 +2357,7 @@ async function testInfuseTheApparatus() {
     assert.strictEqual(state.targetingEffect.effect, 'infuse_spell_resolution');
     
     // 2. Resolve targeting
-    applyTargetedEffect(target.id);
+    await applyTargetedEffect(target.id);
     
     // 3. Verify spell effects
     assert.ok(state.scrying, "Targeting resolution should trigger the spell's effect (Scry)");
@@ -2400,7 +2400,7 @@ async function testMichalTheAnointed() {
     state.phase = 'SHOP';
     const pusbag = CardFactory.create({ card_name: "Shrieking Pusbag" });
     pusbag.onETB(state.player.board);
-    applyTargetedEffect(target.id);
+    await applyTargetedEffect(target.id);
     assert.strictEqual(state.player.board.includes(target), false, "Michal should NOT block friendly sacrifice removal");
 }
 
@@ -2867,11 +2867,11 @@ async function testJiayin_UpInArms() {
     jiayin.owner = target.owner = 'player';
 
     // Phase 1
-    useCardFromHand(spell.id);
-    applyTargetedEffect(target.id);
+    await useCardFromHand(spell.id);
+    await applyTargetedEffect(target.id);
     
     // Phase 2 (target same creature)
-    applyTargetedEffect(target.id);
+    await applyTargetedEffect(target.id);
     
     // Check stats: +1/+1 (counter) + 1/+1 (adaptive copy) + 3/3 (Jiayin) = 5/5? 
     // Wait, Up in Arms gives +1/+1 counter per step. So +2/+2 counters.
@@ -2892,11 +2892,11 @@ async function testJiayin_WarriorsWays() {
     jiayin.owner = centaur.owner = 'player';
 
     // Step 1: Buff target
-    useCardFromHand(spell.id);
-    applyTargetedEffect(centaur.id);
+    await useCardFromHand(spell.id);
+    await applyTargetedEffect(centaur.id);
     
     // Step 2: Choose Centaur (same one)
-    applyTargetedEffect(centaur.id);
+    await applyTargetedEffect(centaur.id);
     
     // Stats: +2/+2 (temp from ways) + 1/+1 (counter) + 3/3 (Jiayin) = +6/+6
     // If Jiayin bugged: +9/+9
@@ -2969,8 +2969,8 @@ async function testTouchOfTheOmen() {
     assert.strictEqual(state.player.gold, 1, "Should cost 2 gold (Tier 2)");
     assert.strictEqual(state.player.hand[0].card_name, "Touch of the Omen");
     
-    useCardFromHand(state.player.hand[0].id);
-    applySpell(shopTarget.id);
+    await useCardFromHand(state.player.hand[0].id);
+    await applySpell(shopTarget.id);
     
     assert.strictEqual(state.player.board.length, 1);
     assert.strictEqual(state.player.board[0].card_name, "Shop Minion");
@@ -2983,8 +2983,8 @@ async function testTouchOfTheOmen() {
     state.player.hand = [spell2];
     state.shop.cards = [shopTarget];
     state.player.gold = 3;
-    useCardFromHand(spell2.id);
-    applySpell(shopTarget.id);
+    await useCardFromHand(spell2.id);
+    await applySpell(shopTarget.id);
     assert.strictEqual(state.player.board.length, 7, "Board should still be 7");
     assert.strictEqual(state.player.gold, 3, "Gold should not be spent");
 }
@@ -3053,7 +3053,7 @@ async function testNightmareHarpy() {
     // Use Action
     harpy.onAction();
     assert.strictEqual(state.targetingEffect.effect, 'harpy_cannibalize');
-    applyTargetedEffect(fodder.id);
+    await applyTargetedEffect(fodder.id);
 
     assert.strictEqual(state.player.gold, 2, "Cost 1 gold");
     assert.strictEqual(state.player.board.includes(fodder), false, "Fodder sacrificed");
@@ -3349,8 +3349,8 @@ async function testUnyieldingEnforcer() {
     await enforcer.onAttack(state.player.board);
     assert.strictEqual(victim.isDestroyed, false, "Should not exile if only embattled by counters");
 
-    // 2. Adorned (Enchantment)
-    enforcer.enchantments.push({ card_name: 'Buff', rules_text: '+1/+1' });
+    // 2. Adorned (Equipment)
+    enforcer.equipment = { card_name: 'Buff', getEquipmentStats: () => ({p:0, t:0}) };
     await enforcer.onAttack(state.player.board);
     assert.strictEqual(victim.isDestroyed, true, "Should exile if adorned");
     assert.strictEqual(victim.destroyedReason, 'exile');

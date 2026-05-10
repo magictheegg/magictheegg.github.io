@@ -156,9 +156,7 @@ class BaseCard {
         }
 
         get isAdorned() {
-            // Exclude internal "cleanup" enchantments like Mirrorblade Exile, Troika Exile
-            const realEnchantments = this.enchantments.filter(e => !['Mirrorblade Exile', 'Troika Exile'].includes(e.card_name));
-            return realEnchantments.length > 0 || this.equipment !== null;
+            return !!this.equipment;
         }
 
         // Returns base power/toughness from the 'pt' string
@@ -1606,7 +1604,7 @@ class BaseCard {
             const uniqueSpells = [];
             const names = new Set();
             entity.spellGraveyard.forEach(s => {
-                if (!names.has(s.card_name)) {
+                if (!names.has(s.card_name) && s.card_name !== 'Infuse the Apparatus') {
                     names.add(s.card_name);
                     uniqueSpells.push(s);
                 }
@@ -1650,9 +1648,13 @@ class BaseCard {
                 // Trigger triggers
                 for (const c of targetBoard) {
                     await c.onNoncreatureCast(spell, targetBoard, []);
+                    await resolveAnimations();
                 }
                 render();
             }
+
+            // Exile Infuse the Apparatus itself (it's currently in the graveyard because useCardFromHand pushed it)
+            entity.spellGraveyard = [];
         }
     }
 
@@ -4078,6 +4080,7 @@ class BaseCard {
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
                     await c.onNoncreatureCast(spell, state.player.board, targets);
+                    await resolveAnimations();
                 }
             }
             processDiscoveryQueue();
@@ -4259,15 +4262,18 @@ class BaseCard {
                 });
             }
 
-            const handIdx = state.player.hand.findIndex(c => c.id === state.discovery.sourceId);
+            const sourceId = state.discovery.sourceId;
+            processDiscoveryQueue();
+
+            const handIdx = state.player.hand.findIndex(c => c.id === sourceId);
             if (handIdx !== -1) {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
                 for (const c of board) {
                     await c.onNoncreatureCast(spell, board, []);
+                    await resolveAnimations();
                 }
             }
-            processDiscoveryQueue();
             await resolveAnimations();
             return;
         }
@@ -6724,21 +6730,29 @@ class BaseCard {
             } else if (targetedNames.includes(instance.card_name)) {
                 state.castingSpell = instance;
             } else {
-                const castResult = instance.onCast(state.player.board);
-                if (castResult instanceof Promise) await castResult;
-
+                // Non-targeted spells (like Infuse the Apparatus) are removed immediately
                 state.player.hand.splice(cardIndex, 1);
                 state.player.spellGraveyard.push(instance);
+
+                if (instance.card_name === 'Infuse the Apparatus') render();
+
+                const castResult = instance.onCast(state.player.board);
+                if (castResult instanceof Promise) await castResult;
+            }
+
+            // UNIFIED SPELLCAST TRIGGERS: Only for non-targeted, non-modal spells
+            if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
                     await c.onNoncreatureCast(instance, state.player.board, targets);
+                    await resolveAnimations();
                 }
-                
-                // HERO POWER: Herrea (Blue card tracking & Reward) - NO TARGETING
-                if (!state.targetingEffect && !state.discovery) {
-                    checkHerreaReward(instance);
-                }
+            }
+
+            // HERO POWER: Herrea (Blue card tracking & Reward)
+            if (!state.targetingEffect && !state.discovery) {
+                checkHerreaReward(instance);
             }
         }
         
@@ -6777,7 +6791,7 @@ class BaseCard {
                 effect.effect === 'traverse_onora_grant' || effect.effect === 'traverse_altabaq_grant' || 
                 effect.effect === 'infuse_spell_resolution' || effect.effect === 'sunspear_angel_buff') {
                 if (effect.effect === 'infuse_spell_resolution' && effect.cardInstance?.card_name === 'Touch of the Omen') {
-                    hasTargets = state.shop.cards.some(c => c.type?.toLowerCase().includes('creature'));
+                    hasTargets = (state.player.board.length < boardLimit) && state.shop.cards.some(c => c.type?.toLowerCase().includes('creature'));
                 } else {
                     hasTargets = currentBoard.length > 0;
                 }
@@ -6792,6 +6806,10 @@ class BaseCard {
             } else if (effect.effect === 'parliament_discard') {
                 const validHandCards = state.player.hand.filter(c => c.id !== effect.sourceId);
                 hasTargets = state.player.spellGraveyard.length > 0 && validHandCards.length > 0;
+            } else if (effect.effect === 'hero_power_heping') {
+                hasTargets = state.shop.cards.some(c => c.type?.toLowerCase().includes('creature') && !c.isChained);
+            } else if (effect.effect === 'hero_power_kism') {
+                hasTargets = (state.player.board.length < boardLimit) && state.shop.cards.some(c => c.type?.toLowerCase().includes('creature'));
             }
 
             if (hasTargets) {
@@ -6886,7 +6904,9 @@ class BaseCard {
         
         if (target) {
             // Track target for end-of-spell triggers
-            state.currentSpellTargets.push(target);
+            if (!state.currentSpellTargets.includes(target)) {
+                state.currentSpellTargets.push(target);
+            }
 
             // Finalize Hero Power if applicable (Generic case)
             // Note: hero_power_xylo handles its own cost because it might defer to a nested effect
@@ -7091,12 +7111,16 @@ class BaseCard {
                     if (handIdx !== -1) {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
+
+                        clearTargetingEffect(true);
+
                         for (const c of state.player.board) {
                             await c.onNoncreatureCast(spell, state.player.board, []);
+                            await resolveAnimations();
                         }
+                    } else {
+                        clearTargetingEffect(true);
                     }
-
-                    clearTargetingEffect(true);
                 }
             } else if (state.targetingEffect.effect === 'nightfall_raptor_bounce') {
                 if (!target.type?.toLowerCase().includes('enchantment')) {
@@ -7232,15 +7256,19 @@ class BaseCard {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
                     
-                    // TRIGGER NONCREATURE CAST
                     const targets = [...state.currentSpellTargets];
                     state.currentSpellTargets = [];
+
+                    clearTargetingEffect(true);
+
+                    // TRIGGER NONCREATURE CAST
                     for (const c of state.player.board) {
                         await c.onNoncreatureCast(spell, state.player.board, targets);
+                        await resolveAnimations();
                     }
+                } else {
+                    clearTargetingEffect(true);
                 }
-
-                clearTargetingEffect(true);
             } else if (state.targetingEffect.effect === 'sunspear_angel_buff') {
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
                 target.tempPower += (2 * multiplier);
@@ -7261,6 +7289,7 @@ class BaseCard {
                     // Manually trigger Step 1 buff application here and end
                     const buffTarget = state.player.board.find(c => c.id === state.targetingEffect.buffTargetId);
                     if (buffTarget) {
+                        state.currentSpellTargets.push(buffTarget);
                         buffTarget.tempPower += (2 * multiplier);
                         buffTarget.tempToughness += (2 * multiplier);
                         const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
@@ -7275,15 +7304,19 @@ class BaseCard {
                         const [spell] = state.player.hand.splice(handIdx, 1);
                         state.player.spellGraveyard.push(spell);
                         
-                        // TRIGGER NONCREATURE CAST
                         const targets = [...state.currentSpellTargets];
                         state.currentSpellTargets = [];
+
+                        clearTargetingEffect(true);
+
+                        // TRIGGER NONCREATURE CAST
                         for (const c of state.player.board) {
                             await c.onNoncreatureCast(spell, state.player.board, targets);
+                            await resolveAnimations();
                         }
+                    } else {
+                        clearTargetingEffect(true);
                     }
-
-                    clearTargetingEffect(true);
                 } else {
                     state.targetingEffect.effect = 'warrior_ways_step2';
                     state.targetingEffect.text = "Choose a Centaur to get a +1/+1 counter.";
@@ -7294,9 +7327,11 @@ class BaseCard {
                 
                 const isOnlyTarget = (state.targetingEffect.buffTargetId === target.id);
 
-                // Step 1: Apply initial buff to the click 1 target
                 const buffTarget = state.player.board.find(c => c.id === state.targetingEffect.buffTargetId);
                 if (buffTarget) {
+                    if (!state.currentSpellTargets.includes(buffTarget)) {
+                        state.currentSpellTargets.push(buffTarget);
+                    }
                     buffTarget.tempPower += (2 * multiplier);
                     buffTarget.tempToughness += (2 * multiplier);
                     
@@ -7311,6 +7346,9 @@ class BaseCard {
 
                 // Step 2: Apply counter to the click 2 target (Centaur)
                 if (target.type?.includes('Centaur')) {
+                    if (!state.currentSpellTargets.includes(target)) {
+                        state.currentSpellTargets.push(target);
+                    }
                     addCounters(target, multiplier, state.player.board);
 
                     // ADAPTIVE or Ash-Withered Cloak
@@ -7328,15 +7366,19 @@ class BaseCard {
                     const [spell] = state.player.hand.splice(handIdx, 1);
                     state.player.spellGraveyard.push(spell);
                     
-                    // TRIGGER NONCREATURE CAST
                     const targets = [...state.currentSpellTargets];
                     state.currentSpellTargets = [];
+
+                    clearTargetingEffect(true);
+
+                    // TRIGGER NONCREATURE CAST
                     for (const c of state.player.board) {
                         await c.onNoncreatureCast(spell, state.player.board, targets);
+                        await resolveAnimations();
                     }
+                } else {
+                    clearTargetingEffect(true);
                 }
-
-                clearTargetingEffect(true);
             } else if (currentEffect === 'mirror_image') {
                 const multiplier = state.targetingEffect.cardInstance.isFoil ? 2 : 1;
                 const sourceId = state.targetingEffect.sourceId;
@@ -7517,14 +7559,16 @@ class BaseCard {
                     state.player.spellGraveyard.push(spell);
                 }
 
-                // TRIGGER NONCREATURE CAST ONLY ONCE AT END
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
-                for (const c of state.player.board) {
-                    await c.onNoncreatureCast(spell, state.player.board, targets);
-                }
 
                 clearTargetingEffect(true);
+
+                // TRIGGER NONCREATURE CAST ONLY ONCE AT END
+                for (const c of state.player.board) {
+                    await c.onNoncreatureCast(spell, state.player.board, targets);
+                    await resolveAnimations();
+                }
             }
         }
 
@@ -8103,10 +8147,15 @@ class BaseCard {
         const targets = [...state.currentSpellTargets];
         state.castingSpell = null;
         state.currentSpellTargets = [];
-        for (const c of state.player.board) {
-            await c.onNoncreatureCast(currentSpell, state.player.board, targets);
-        }
+
         render();
+        await resolveAnimations(); // Resolve spell effect animation FIRST
+
+        for (const c of state.player.board) {
+            await c.onNoncreatureCast(castSpell, state.player.board, targets);
+            await resolveAnimations(); // Resolve each trigger animation sequentially
+        }
+
         if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
             await resolveAnimations();
         }
