@@ -1645,6 +1645,8 @@ class BaseCard {
                     await spell.onCast(targetBoard);
                 }
                 
+                render(); // Ensure Discovery window pops up immediately
+
                 // Trigger triggers
                 for (const c of targetBoard) {
                     await c.onNoncreatureCast(spell, targetBoard, []);
@@ -6081,8 +6083,12 @@ class BaseCard {
     }
 
     async function resolveAnimations() {
+        if (state.isSimulating) return;
         if (state.isResolvingAnimations) return;
         state.isResolvingAnimations = true;
+        
+        render(); // Update UI to show any newly opened modals before starting animations
+        
         try {
             while (state.animationQueue.length > 0) {
                 const anim = state.animationQueue.shift();
@@ -6093,6 +6099,7 @@ class BaseCard {
             }
         } finally {
             state.isResolvingAnimations = false;
+            render(); // Final render to sync everything
         }
     }
 
@@ -6738,10 +6745,10 @@ class BaseCard {
 
                 const castResult = instance.onCast(state.player.board);
                 if (castResult instanceof Promise) await castResult;
-            }
 
-            // UNIFIED SPELLCAST TRIGGERS: Only for non-targeted, non-modal spells
-            if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
+                render(); // Ensure Discovery window pops up immediately
+
+                // TRIGGER NONCREATURE CAST: Only for non-targeted, non-modal spells
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
@@ -8472,6 +8479,50 @@ class BaseCard {
         container.appendChild(circle);
     }
 
+    function renderHand(container, cards) {
+        if (!container) return;
+
+        // 1. Capture existing elements
+        const existingMap = new Map();
+        if (container.children) {
+            Array.from(container.children).forEach(child => existingMap.set(child.id, child));
+        }
+
+        const total = cards.length;
+        const mid = (total - 1) / 2;
+        const anglePerCard = 6; 
+
+        // 2. Reconciliation: Update or Create
+        const newIds = new Set();
+        cards.forEach((card, i) => {
+            const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
+            const id = `card-${instance.id}`;
+            newIds.add(id);
+            let el = existingMap.get(id);
+
+            if (!el) {
+                el = createCardElement(instance, false, -1, []);
+                container.appendChild(el);
+            } else {
+                // If it exists, update its visual state if not busy
+                if (!instance.isPulsing) instance.syncVisualState();
+            }
+
+            // Update layout if not currently hovered (to prevent snapping)
+            const isHovered = el.matches(':hover');
+            if (!isHovered) {
+                const rotation = (i - mid) * anglePerCard;
+                const yOffset = Math.abs(i - mid) * 8; 
+                el.style.transform = `rotate(${rotation}deg) translateY(${yOffset}px)`;
+            }
+        });
+
+        // 3. Remove elements no longer in hand
+        Array.from(container.children).forEach(child => {
+            if (!newIds.has(child.id)) container.removeChild(child);
+        });
+    }
+
     function renderBoard(container, cards, isShop = false, boardContext = [], skipIndicators = false) {
         if (!container) return;
 
@@ -8830,17 +8881,7 @@ class BaseCard {
         }
 
         const playerHandEl = document.getElementById('player-hand');
-        playerHandEl.innerHTML = '';
-        state.player.hand.forEach((card, i) => {
-            const cardEl = createCardElement(card, false, -1, []);
-            const total = state.player.hand.length;
-            const mid = (total - 1) / 2;
-            const anglePerCard = 6; 
-            const rotation = (i - mid) * anglePerCard;
-            const yOffset = Math.abs(i - mid) * 8; 
-            cardEl.style.transform = `rotate(${rotation}deg) translateY(${yOffset}px)`;
-            playerHandEl.appendChild(cardEl);
-        });
+        renderHand(playerHandEl, state.player.hand);
 
         if (playerBoardEl) {
             const boardToRender = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
@@ -9111,7 +9152,9 @@ class BaseCard {
         const targetingTitleEl = document.getElementById('targeting-title');
         const targetingSubtitleEl = document.getElementById('targeting-subtitle');
 
-        if (state.castingSpell || state.targetingEffect) {
+        const isModalOpen = !!(state.scrying || state.discovery);
+
+        if ((state.castingSpell || state.targetingEffect) && !isModalOpen) {
             let title = "";
             let text = "";
             if (state.castingSpell) {
@@ -9140,11 +9183,18 @@ class BaseCard {
         } else {
             if (targetingTitleEl) targetingTitleEl.textContent = '';
             if (targetingSubtitleEl) targetingSubtitleEl.textContent = '';
-            endTurnBtn.textContent = 'End Turn';
-            endTurnBtn.style.background = '';
-            document.body.classList.remove('overlay-active');
-            endTurnBtn.disabled = state.phase !== 'SHOP';
-            if (window.IS_TRAINING_GROUNDS) endTurnBtn.style.display = 'none';
+            
+            if (!isModalOpen) {
+                endTurnBtn.textContent = 'End Turn';
+                endTurnBtn.style.background = '';
+                document.body.classList.remove('overlay-active');
+                endTurnBtn.disabled = state.phase !== 'SHOP';
+                if (window.IS_TRAINING_GROUNDS) endTurnBtn.style.display = 'none';
+            } else {
+                // Modal is open: Hide targeting UI but DON'T reset button to 'End Turn' yet
+                // The modal itself handles its own buttons/interactions
+                document.body.classList.remove('overlay-active');
+            }
         }
 
         // Board drop zone
