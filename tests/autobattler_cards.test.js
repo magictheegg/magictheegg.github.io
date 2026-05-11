@@ -2337,6 +2337,32 @@ async function testZaraxSupermajor() {
     await zarax.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(zarax.counters, 1, "Zarax gets a counter on second spell");
     assert.ok(state.player.board.every(c => c.hasKeyword('flying')), "All creatures gain Flying");
+
+    // 3. Equipment Exclusion Test
+    resetState();
+    const equipment = CardFactory.create({ card_name: "Yamamura's Blade", type: "Artifact - Equipment" });
+    const spell1 = CardFactory.create({ card_name: "Divination", type: "Sorcery" });
+    const spell2 = CardFactory.create({ card_name: "To Battle", type: "Instant" });
+    const zarax2 = CardFactory.create({ card_name: "Zarax Supermajor", pt: "1/1" });
+    zarax2.owner = 'player';
+    
+    // Zarax must be on board to see the spells and be a target for equipment
+    state.player.board = [zarax2];
+    state.player.hand = [spell1, equipment, spell2];
+    
+    await useCardFromHand(spell1.id);
+    assert.strictEqual(state.spellsCastThisTurn, 1, "Spell 1: count=1");
+    
+    await useCardFromHand(equipment.id);
+    await applyTargetedEffect(zarax2.id); // Targeted equipment doesn't count as a spell
+    assert.strictEqual(state.spellsCastThisTurn, 1, "Equipment should NOT increment spell counter");
+    
+    await useCardFromHand(spell2.id);
+    await applySpell(zarax2.id); // Resolve targeting for "To Battle"
+    assert.strictEqual(state.spellsCastThisTurn, 2, "Spell 2: count=2");
+    
+    // 2 counters: 1 from To Battle, 1 from Zarax trigger
+    assert.strictEqual(zarax2.counters, 2, "Zarax should trigger on second actual spell even if Equipment was played");
 }
 
 async function testInfuseTheApparatus() {

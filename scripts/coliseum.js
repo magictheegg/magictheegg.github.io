@@ -1615,9 +1615,12 @@ class BaseCard {
             if (!targetBoard) return;
 
             for (const spell of uniqueSpells) {
-                state.spellsCastThisTurn++;
                 const name = spell.card_name;
                 const isEquipment = spell.type?.toLowerCase().includes('equipment');
+                
+                if (!isEquipment) {
+                    state.spellsCastThisTurn++;
+                }
                 
                 if (name === 'Executioner\'s Madness') {
                     queueTargetingEffect({ sourceId: this.id, title: name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: spell, owner: owner });
@@ -6718,10 +6721,14 @@ class BaseCard {
                 checkHerreaReward(instance);
             }
         } else {
-            state.spellsCastThisTurn++;
             const instance = (card instanceof BaseCard) ? card : CardFactory.create(card);
             instance.owner = 'player';
             
+            const isEquipment = instance.type?.toLowerCase().includes('equipment');
+            if (!isEquipment) {
+                state.spellsCastThisTurn++;
+            }
+
             if (instance.card_name === 'Executioner\'s Madness') {
                 queueTargetingEffect({ sourceId: instance.id, title: instance.card_name, text: "Choose a creature to sacrifice.", effect: 'executioner_sacrifice_step1', wasCast: true, cardInstance: instance, owner: 'player' });
             } else if (instance.card_name === 'Warrior\'s Ways') {
@@ -7238,7 +7245,11 @@ class BaseCard {
                 
                 // ADAPTIVE or Ash-Withered Cloak: Copy the spell effect
                 const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
-                if (target.hasKeyword('Adaptive') || hasCloak) {
+                let extraCopies = 0;
+                if (target.hasKeyword('Adaptive')) extraCopies += (target.isFoil ? 2 : 1);
+                if (hasCloak) extraCopies += 1;
+
+                for (let i = 0; i < extraCopies; i++) {
                     applyMadnessBuff(target);
                 }
 
@@ -7300,7 +7311,11 @@ class BaseCard {
                         buffTarget.tempPower += (2 * multiplier);
                         buffTarget.tempToughness += (2 * multiplier);
                         const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
-                        if (buffTarget.hasKeyword('Adaptive') || hasCloak) {
+                        let extraCopies = 0;
+                        if (buffTarget.hasKeyword('Adaptive')) extraCopies += (buffTarget.isFoil ? 2 : 1);
+                        if (hasCloak) extraCopies += 1;
+
+                        for (let i = 0; i < extraCopies; i++) {
                             buffTarget.tempPower += (2 * multiplier);
                             buffTarget.tempToughness += (2 * multiplier);
                         }
@@ -7345,8 +7360,13 @@ class BaseCard {
                     // ADAPTIVE or Ash-Withered Cloak
                     const hasCloak = buffTarget.equipment && buffTarget.equipment.card_name === 'Ash-Withered Cloak';
                     if (isOnlyTarget && (buffTarget.hasKeyword('Adaptive') || hasCloak)) {
-                        buffTarget.tempPower += (2 * multiplier);
-                        buffTarget.tempToughness += (2 * multiplier);
+                        let extraCopies = 0;
+                        if (buffTarget.hasKeyword('Adaptive')) extraCopies += (buffTarget.isFoil ? 2 : 1);
+                        if (hasCloak) extraCopies += 1;
+                        for (let i = 0; i < extraCopies; i++) {
+                            buffTarget.tempPower += (2 * multiplier);
+                            buffTarget.tempToughness += (2 * multiplier);
+                        }
                     }
                     buffTarget.pulse(state.player.board);
                 }
@@ -7361,7 +7381,12 @@ class BaseCard {
                     // ADAPTIVE or Ash-Withered Cloak
                     const hasCloak = target.equipment && target.equipment.card_name === 'Ash-Withered Cloak';
                     if (isOnlyTarget && (target.hasKeyword('Adaptive') || hasCloak)) {
-                        addCounters(target, multiplier, state.player.board);
+                        let extraCopies = 0;
+                        if (target.hasKeyword('Adaptive')) extraCopies += (target.isFoil ? 2 : 1);
+                        if (hasCloak) extraCopies += 1;
+                        for (let i = 0; i < extraCopies; i++) {
+                            addCounters(target, multiplier, state.player.board);
+                        }
                     }
                 }
                 
@@ -7549,7 +7574,12 @@ class BaseCard {
                 if (t1 && t2) {
                     const hasCloak = t1.equipment && t1.equipment.card_name === 'Ash-Withered Cloak';
                     if (t1.id === t2.id && (t1.hasKeyword('Adaptive') || hasCloak)) {
-                        addCounters(t1, 4 * multiplier, state.player.board);
+                        let extraCopies = 0;
+                        if (t1.hasKeyword('Adaptive')) extraCopies += (t1.isFoil ? 2 : 1);
+                        if (hasCloak) extraCopies += 1;
+                        
+                        const totalCasts = 1 + extraCopies;
+                        addCounters(t1, 2 * totalCasts * multiplier, state.player.board);
                     } else {
                         addCounters(t1, 1 * multiplier, state.player.board);
                         addCounters(t2, 1 * multiplier, state.player.board);
@@ -8502,11 +8532,13 @@ class BaseCard {
 
             if (!el) {
                 el = createCardElement(instance, false, -1, []);
-                container.appendChild(el);
             } else {
                 // If it exists, update its visual state if not busy
                 if (!instance.isPulsing) instance.syncVisualState();
             }
+            
+            // ALWAYS re-append to ensure DOM order matches hand order
+            container.appendChild(el);
 
             // Update layout if not currently hovered (to prevent snapping)
             const isHovered = el.matches(':hover');
