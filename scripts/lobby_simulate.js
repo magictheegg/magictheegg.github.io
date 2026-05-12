@@ -119,12 +119,14 @@ async function simulateCombat(p1, p2) {
 
     if (opp.fightHp <= 0 && state.player.fightHp > 0) {
         const survivors = state.battleBoards.player.filter(c => !c.isDying).length;
-        const damage = Math.min(simP1.tier + survivors, simP1.tier * 2);
+        damage = simP1.tier + 1;
+        // const damage = Math.min(simP1.tier + survivors, simP1.tier * 2);
         return { winner: 'player', tier: damage };
     }
     if (state.player.fightHp <= 0 && opp.fightHp > 0) {
         const survivors = state.battleBoards.opponent.filter(c => !c.isDying).length;
-        const damage = Math.min(simP2.tier + survivors, simP2.tier * 2);
+        damage = simP2.tier + 1;
+        // const damage = Math.min(simP2.tier + survivors, simP2.tier * 2);
         return { winner: 'opponent', tier: damage };
     }
     return { winner: 'draw', tier: 0 };

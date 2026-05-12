@@ -979,7 +979,7 @@ class BaseCard {
                 const multiplier = this.isFoil ? 2 : 1;
                 state.player.treasures += multiplier;
             }
-            return [this];
+            return [];
         }
     }
 
@@ -3639,7 +3639,7 @@ class BaseCard {
                 name: "Untold Lands",
                 icon: "sets/SGB-files/img/168_Untold Lands.jpg",
                 cost: 0,
-                text: "Skip your first turn. When you level up to tier 2, get an Aldmore Chaperone.",
+                text: "Start with an Aldmore Chaperone. Panya returns from her adventure on turn 3.",
                 isPassive: true
             }
         },
@@ -3755,7 +3755,7 @@ class BaseCard {
             heroPower: {
                 name: "Armistice Chains",
                 icon: "sets/SUR-files/img/4_Cai Lan, the Chained.jpg",
-                cost: 1,
+                cost: 0,
                 text: "Lock a creature in the shop and put a +1/+1 counter on it. It costs 1 less next turn.",
                 isPassive: false,
                 effect: (owner, board) => {
@@ -3766,7 +3766,7 @@ class BaseCard {
                         effect: 'hero_power_heping',
                         owner: owner,
                         isHeroPower: true,
-                        heroPowerCost: 1,
+                        heroPowerCost: 0,
                         isMandatory: false
                     });
                 }
@@ -4666,6 +4666,19 @@ class BaseCard {
                 });
             }
         }
+
+        // HERO POWER: Panya (Start of Game Chaperone)
+        if (state.player.hero.name === "Panya") {
+            const chaperoneData = availableCards.find(c => c.card_name === 'Aldmore Chaperone');
+            if (chaperoneData) {
+                const inst = CardFactory.create(chaperoneData);
+                inst.owner = 'player';
+                if (state.player.board.length < boardLimit) {
+                    state.player.board.push(inst);
+                    triggerETB(inst, state.player.board);
+                }
+            }
+        }
         
         startShopTurn();
     }
@@ -5413,18 +5426,6 @@ class BaseCard {
                         text: "Choose an Equipment to add to your hand.",
                         effect: 'arietta_seek'
                     });
-                }
-            }
-
-            // HERO POWER: Panya (Tier 2 get Aldmore Chaperone)
-            if (state.player.hero.name === "Panya" && state.player.tier === 2) {
-                const chaperoneData = availableCards.find(c => c.card_name === 'Aldmore Chaperone');
-                if (chaperoneData) {
-                    const inst = CardFactory.create(chaperoneData);
-                    inst.owner = 'player';
-                    if (state.player.hand.length < handLimit) {
-                        state.player.hand.push(inst);
-                    }
                 }
             }
 
@@ -6947,7 +6948,7 @@ class BaseCard {
 
             // Finalize Hero Power if applicable (Generic case)
             // Note: hero_power_xylo handles its own cost because it might defer to a nested effect
-            if (state.targetingEffect.isHeroPower && state.targetingEffect.owner === 'player' && state.targetingEffect.heroPowerCost > 0 && state.targetingEffect.effect !== 'hero_power_xylo') {
+            if (state.targetingEffect.isHeroPower && state.targetingEffect.owner === 'player' && state.targetingEffect.effect !== 'hero_power_xylo') {
                 state.player.gold -= state.targetingEffect.heroPowerCost;
                 state.player.usedHeroPower = true;
                 // Important: clear the cost so subsequent steps (like Dutiful Camel's second counter) don't charge again
@@ -7066,7 +7067,7 @@ class BaseCard {
 
                 if (!queuedSomething) {
                     // It didn't trigger more targeting, so spend the gold now
-                    if (state.targetingEffect.owner === 'player' && state.targetingEffect.heroPowerCost > 0) {
+                    if (state.targetingEffect.owner === 'player') {
                         state.player.gold -= state.targetingEffect.heroPowerCost;
                         state.player.usedHeroPower = true;
                     }
@@ -7090,11 +7091,6 @@ class BaseCard {
                         if (state.targetingEffect.owner === 'player') {
                             if (state.player.hand.length < handLimit) {
                                 state.player.hand.push(reward);
-                            }
-                            // Charge gold (Hero Power confirmation)
-                            if (state.targetingEffect.heroPowerCost > 0) {
-                                state.player.gold -= state.targetingEffect.heroPowerCost;
-                                state.player.usedHeroPower = true;
                             }
                         } else {
                             // Opponent logic (simplified)
@@ -7751,6 +7747,7 @@ class BaseCard {
         let defenderDamageTaken = 0;
         let attackerDamageTaken = 0;
         let trampleOverflow = 0;
+        let splashDamageTaken = 0;
         let trampleTarget = null;
         const currentOppAttack = getOpponent();
 
@@ -7784,15 +7781,20 @@ class BaseCard {
                 if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
                     if (defenderDamageTaken >= lethalThreshold || (hasDeathtouch && defenderDamageTaken > 0)) {
                         const targetTotalDamage = Math.max(0, defenderStats.maxT - 1);
-                        defenderDamageTaken = Math.max(0, targetTotalDamage - defender.damageTaken);
+                        // The "Shatter" effect: Force HP to 1, but the bubble only shows what was dealt
+                        defender.damageTaken = targetTotalDamage;
                         defender.indestructibleUsed = true;
+                        // Since we just set damageTaken, we don't want to add defenderDamageTaken again
+                        defenderDamageTaken = 0; 
                     }
                 }
 
                 defender.damageTaken += defenderDamageTaken;
+                // Actually, let's keep the bubble value separate.
+                const bubbleVal = (defenderDamageTaken === 0 && defender.indestructibleUsed) ? assignedToBlocker : defenderDamageTaken;
 
                 // DEATHTOUCH (Attacker)
-                if (hasDeathtouch && defenderDamageTaken > 0) {
+                if (hasDeathtouch && (bubbleVal > 0 || assignedToBlocker > 0)) {
                     if (!defender.isDestroyed && !defender.hasKeyword('Indestructible')) {
                         defender.isDestroyed = true;
                         showDestroyBubble(defender);
@@ -7802,10 +7804,13 @@ class BaseCard {
                 if (attacker.hasKeyword('Lifelink')) {
                     const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
                     if (owner) {
-                        owner.fightHp += defenderDamageTaken;
+                        owner.fightHp += (defenderDamageTaken || assignedToBlocker);
                         triggerLifeGain(attacker.owner);
                     }
                 }
+                
+                defenderDamageTaken = bubbleVal; // Return the correct amount for the bubble
+                
                 if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && defenderDamageTaken > 0) {
                     addCounters(attacker, 1, attackerBoard);
                 }
@@ -7824,23 +7829,33 @@ class BaseCard {
 
                     if (trampleTarget.shieldCounters > 0) {
                         trampleTarget.shieldCounters--;
-                        splashDamage = 0;
-                    }
-                    
-                    // Indestructible Save for splash target
-                    if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
+                        splashDamageTaken = 0;
+                    } else {
                         const ttStats = trampleTarget.getDisplayStats(defenderBoard);
                         const ttLethal = hasDeathtouch ? 1 : Math.max(0, ttStats.t);
-                        if (splashDamage >= ttLethal || (hasDeathtouch && splashDamage > 0)) {
-                            const targetTotalDamage = Math.max(0, ttStats.maxT - 1);
-                            splashDamage = Math.max(0, targetTotalDamage - trampleTarget.damageTaken);
-                            trampleTarget.indestructibleUsed = true;
+                        
+                        splashDamageTaken = splashDamage;
+
+                        // Indestructible Save for splash target
+                        if (trampleTarget.hasKeyword('Indestructible') && !trampleTarget.indestructibleUsed) {
+                            if (splashDamageTaken >= ttLethal || (hasDeathtouch && splashDamage > 0)) {
+                                const targetTotalDamage = Math.max(0, ttStats.maxT - 1);
+                                trampleTarget.damageTaken = targetTotalDamage;
+                                trampleTarget.indestructibleUsed = true;
+                                splashDamageTaken = 0; // Handled by set
+                                // Return the assigned amount for the bubble
+                                splashDamageTaken = splashDamage; 
+                            }
+                        }
+                        
+                        if (splashDamageTaken === splashDamage && trampleTarget.indestructibleUsed) {
+                            // Already handled
+                        } else {
+                            trampleTarget.damageTaken += splashDamageTaken;
                         }
                     }
-
-                    trampleTarget.damageTaken += splashDamage;
                     
-                    if (hasDeathtouch && splashDamage > 0) { 
+                    if (hasDeathtouch && splashDamageTaken > 0) { 
                         if (!trampleTarget.isDestroyed && !trampleTarget.hasKeyword('Indestructible')) {
                             trampleTarget.isDestroyed = true;
                             showDestroyBubble(trampleTarget);
@@ -7850,18 +7865,21 @@ class BaseCard {
                     if (attacker.hasKeyword('Lifelink')) {
                         const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
                         if (owner) {
-                            owner.fightHp += splashDamage;
+                            owner.fightHp += splashDamageTaken;
                             triggerLifeGain(attacker.owner);
                         }
                     }
-                    if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && splashDamage > 0) {
+                    if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && splashDamageTaken > 0) {
                         addCounters(attacker, 1, attackerBoard);
                     }
                 } else {
                     // Face damage
                     const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
                     const enemy = (attacker.owner === 'player') ? currentOppAttack : state.player;
-                    if (enemy) enemy.fightHp -= trampleOverflow;
+                    if (enemy) {
+                        enemy.fightHp -= trampleOverflow;
+                        faceDamageTaken = trampleOverflow;
+                    }
                     
                     if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && trampleOverflow > 0) {
                         addCounters(attacker, 1, attackerBoard);
@@ -7875,7 +7893,7 @@ class BaseCard {
 
             // RETALIATION LOGIC
             const defStatsNow = defender.getDisplayStats(defenderBoard);
-            const isDead = defender.isDestroyed || (defenderStats.t - defender.damageTaken) <= 0;
+            const isDead = defender.isDestroyed || (defStatsNow.t) <= 0;
 
             let shouldRetaliate = false;
             if (!isFirstStrike) {
@@ -7899,19 +7917,19 @@ class BaseCard {
                     if (attacker.shieldCounters > 0) {
                         attackerDamageTaken = 0;
                         attacker.shieldCounters--;
-                    }
-
-                    // Attacker Indestructible Save
-                    if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
-                        const attackerLethal = (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) ? 1 : Math.max(0, attackerStats.t);
-                        if (attackerDamageTaken >= attackerLethal || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
-                            const targetTotalDamage = Math.max(0, attackerStats.maxT - 1);
-                            attackerDamageTaken = Math.max(0, targetTotalDamage - attacker.damageTaken);
-                            attacker.indestructibleUsed = true;
+                    } else {
+                        // Attacker Indestructible Save
+                        if (attacker.hasKeyword('Indestructible') && !attacker.indestructibleUsed) {
+                            const attackerLethal = (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) ? 1 : Math.max(0, attackerStats.t);
+                            if (attackerDamageTaken >= attackerLethal || (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0)) {
+                                const targetTotalDamage = Math.max(0, attackerStats.maxT - 1);
+                                attacker.damageTaken = targetTotalDamage;
+                                attacker.indestructibleUsed = true;
+                                attackerDamageTaken = 0; 
+                            }
                         }
+                        attacker.damageTaken += attackerDamageTaken;
                     }
-
-                    attacker.damageTaken += attackerDamageTaken;
                     
                     if (defender.hasKeyword('Deathtouch') && attackerDamageTaken > 0) {
                         if (!attacker.isDestroyed && !attacker.hasKeyword('Indestructible')) {
@@ -7923,9 +7941,12 @@ class BaseCard {
             }
         } else {
              // No blocker: All damage to face
-             const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
              const enemy = (attacker.owner === 'player') ? currentOppAttack : state.player;
-             if (enemy) enemy.fightHp -= damageDealt;
+             const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
+             if (enemy) {
+                enemy.fightHp -= damageDealt;
+                faceDamageTaken = damageDealt;
+             }
              
              if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && damageDealt > 0) {
                 addCounters(attacker, 1, attackerBoard);
@@ -7937,7 +7958,7 @@ class BaseCard {
              defenderDamageTaken = damageDealt;
         }
 
-        return { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget };
+        return { defenderDamageTaken, attackerDamageTaken, trampleOverflow, splashDamageTaken, trampleTarget };
     }
 
     async function handleTrenchrunnerSpawns(skipImmediateAttacks) {
