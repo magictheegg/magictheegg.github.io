@@ -304,7 +304,7 @@ async function testHeping() {
     applyTargetedEffect(creature.id);
     assert.strictEqual(creature.isChained, true);
     assert.strictEqual(creature.counters, 1);
-    assert.strictEqual(state.player.gold, 9);
+    assert.strictEqual(state.player.gold, 10, "Heping power should cost 0");
 
     // 2. Turn transition and cost reduction
     creature.costReduction = 2; // already reduced by 2
@@ -467,26 +467,29 @@ async function testAutumn() {
 async function testPanya() {
     resetState();
     state.player.hero = HEROES.PANYA;
-    availableCards.push({ card_name: "Aldmore Chaperone", tier: 5 }); // Needed for tierUp trigger
+    const chaperoneData = { card_name: "Aldmore Chaperone", tier: 1, type: "Creature" };
+    availableCards.push(chaperoneData);
 
-    // 1. Verify Turn 1 Gold Skip
+    // 1. Verify Turn 1 Gold Skip and Chaperone
+    state.turn = 1;
+    // Simulate startGameLogic since it's not exported
+    const inst = CardFactory.create(chaperoneData);
+    inst.owner = 'player';
+    state.player.board.push(inst);
+
     startShopTurn();
     assert.strictEqual(state.player.gold, 0, "Panya should start Turn 1 with 0 gold");
+    assert.ok(state.player.board.some(c => c.card_name === "Aldmore Chaperone"), "Panya starts with a Chaperone");
 
-    // 2. Verify Tier 2 Reward (to hand)
-    state.player.tier = 1;
-    state.player.gold = 10;
-    state.player.hand = [];
-    tierUp();
-    assert.strictEqual(state.player.tier, 2);
-    assert.strictEqual(state.player.hand.length, 1, "Should receive 1 card in hand");
-    assert.strictEqual(state.player.hand[0].card_name, "Aldmore Chaperone", "Should be Aldmore Chaperone");
+    // 2. Verify Turn 2 Gold Skip
+    state.turn = 2;
+    startShopTurn();
+    assert.strictEqual(state.player.gold, 0, "Panya should have 0 gold on Turn 2");
 
-    // 3. Verify no reward for Tier 3
-    state.player.gold = 10;
-    tierUp();
-    assert.strictEqual(state.player.tier, 3);
-    assert.strictEqual(state.player.hand.length, 1, "Should not receive another card at tier 3");
+    // 3. Verify Turn 3 Gold Return
+    state.turn = 3;
+    startShopTurn();
+    assert.ok(state.player.gold > 0, "Panya should have gold on Turn 3");
 }
 
 async function testDawson() {

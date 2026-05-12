@@ -376,8 +376,54 @@ class BaseCard {
         onDeath(board, owner) { return []; }
 
         hasETB() {
+            if (this.temporaryHumility) return false;
             // Check if the current instance's onETB is different from the base prototype
             return this.onETB !== BaseCard.prototype.onETB;
+        }
+
+        hasAttack() {
+            if (this.temporaryHumility) return false;
+            return this.onAttack !== BaseCard.prototype.onAttack;
+        }
+
+        hasDeath() {
+            if (this.temporaryHumility) return false;
+            return this.onDeath !== BaseCard.prototype.onDeath;
+        }
+
+        hasNoncreatureCast() {
+            if (this.temporaryHumility) return false;
+            return this.onNoncreatureCast !== BaseCard.prototype.onNoncreatureCast;
+        }
+
+        hasCombatStart() {
+            if (this.temporaryHumility) return false;
+            return this.onCombatStart !== BaseCard.prototype.onCombatStart;
+        }
+
+        hasLifeGain() {
+            if (this.temporaryHumility) return false;
+            return this.onLifeGain !== BaseCard.prototype.onLifeGain;
+        }
+
+        hasShopStart() {
+            if (this.temporaryHumility) return false;
+            return this.onShopStart !== BaseCard.prototype.onShopStart;
+        }
+
+        hasShopEndStep() {
+            if (this.temporaryHumility) return false;
+            return this.onShopEndStep !== BaseCard.prototype.onShopEndStep;
+        }
+
+        hasTraverse() {
+            if (this.temporaryHumility) return false;
+            return this.onTraverse !== BaseCard.prototype.onTraverse;
+        }
+
+        hasAction() {
+            if (this.temporaryHumility) return false;
+            return this.onAction !== BaseCard.prototype.onAction;
         }
 
         // Hook for when another creature on the same board dies
@@ -652,7 +698,11 @@ class BaseCard {
     }
 
     function broadcastTraverse(board) {
-        board.forEach(c => c.onTraverse(board));
+        board.forEach(c => {
+            if (c.hasTraverse()) {
+                c.onTraverse(board);
+            }
+        });
     }
 
     function traverseCirrusea(source, board) {
@@ -680,7 +730,7 @@ class BaseCard {
                     triggerETB(bird, board);
                     // Broadcast ETB to others
                     board.forEach(c => {
-                        if (c.id !== bird.id) c.onOtherCreatureETB(bird, board);
+                        if (c.id !== bird.id && !c.temporaryHumility) c.onOtherCreatureETB(bird, board);
                     });
                 }
             }
@@ -1067,7 +1117,7 @@ class BaseCard {
                 }
                 
                 board.forEach(c => {
-                    if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                    if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, board);
                 });
 
                 if (typeof document !== 'undefined') {
@@ -1502,7 +1552,7 @@ class BaseCard {
                 // Manual Notification AFTER queuing the pulse
                 targets.forEach(c => {
                     board.forEach(other => {
-                        if (other.id !== c.id) {
+                        if (other.id !== c.id && !other.temporaryHumility) {
                             other.onCounterPlaced(1, 'plus-one', c, board);
                         }
                     });
@@ -1561,7 +1611,7 @@ class BaseCard {
                     board.push(token);
                     triggerETB(token, board);
                     board.forEach(c => {
-                        if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                        if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, board);
                     });
                 }
             }
@@ -1664,8 +1714,10 @@ class BaseCard {
 
                 // Trigger triggers
                 for (const c of targetBoard) {
-                    await c.onNoncreatureCast(spell, targetBoard, []);
-                    await resolveAnimations();
+                    if (c.hasNoncreatureCast()) {
+                        await c.onNoncreatureCast(spell, targetBoard, []);
+                        await resolveAnimations();
+                    }
                 }
                 render();
             }
@@ -1688,7 +1740,7 @@ class BaseCard {
                     triggerETB(bird, board);
                     // Trigger ETB for others
                     board.forEach(c => {
-                        if (c.id !== bird.id) c.onOtherCreatureETB(bird, board);
+                        if (c.id !== bird.id && !c.temporaryHumility) c.onOtherCreatureETB(bird, board);
                     });
                 }
             }
@@ -1721,7 +1773,7 @@ class BaseCard {
                 // Manual Notification AFTER queuing the pulse
                 targets.forEach(c => {
                     board.forEach(other => {
-                        if (other.id !== c.id) {
+                        if (other.id !== c.id && !other.temporaryHumility) {
                             other.onCounterPlaced(multiplier, 'plus-one', c, board);
                         }
                     });
@@ -1923,13 +1975,13 @@ class BaseCard {
             if (dragon && board.length < boardLimit) {
                 board.push(dragon);
                 triggerETB(dragon, board);
-                board.forEach(c => { if (c.id !== dragon.id) c.onOtherCreatureETB(dragon, board); });
+                board.forEach(c => { if (c.id !== dragon.id && !c.temporaryHumility) c.onOtherCreatureETB(dragon, board); });
             }
             const bard = createToken('Bard', 'NJB', 'player');
             if (bard && board.length < boardLimit) {
                 board.push(bard);
                 triggerETB(bard, board);
-                board.forEach(c => { if (c.id !== bard.id) c.onOtherCreatureETB(bard, board); });
+                board.forEach(c => { if (c.id !== bard.id && !c.temporaryHumility) c.onOtherCreatureETB(bard, board); });
             }
         }
     }
@@ -1949,7 +2001,9 @@ class BaseCard {
             // 2. Trigger spellcasts for the board (Prowess etc)
             for (const c of board) {
                 if (c.id !== this.id) {
-                    await c.onNoncreatureCast(this, board, []);
+                    if (c.hasNoncreatureCast()) {
+                        await c.onNoncreatureCast(this, board, []);
+                    }
                 }
             }
 
@@ -1992,7 +2046,7 @@ class BaseCard {
             // 6. Trigger ETB
             triggerETB(dragon, board);
             board.forEach(c => {
-                if (c.id !== dragon.id) c.onOtherCreatureETB(dragon, board);
+                if (c.id !== dragon.id && !c.temporaryHumility) c.onOtherCreatureETB(dragon, board);
             });
 
             // 7. Animation Pause
@@ -2210,7 +2264,7 @@ class BaseCard {
                 
                 // Broadast entry for other effects (not ETB triggers for the token itself)
                 board.forEach(c => {
-                    if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                    if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, board);
                 });
             }
 
@@ -2282,7 +2336,7 @@ class BaseCard {
 
             triggerETB(token, board);
             board.forEach(c => {
-                if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, board);
             });
 
             // Move to front of combat queue so it attacks next (after opponent)
@@ -2307,7 +2361,7 @@ class BaseCard {
 
             // Broadast ETB
             board.forEach(c => {
-                if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, board);
             });
         }
     }
@@ -2460,7 +2514,7 @@ class BaseCard {
             
             // Broadcast to others
             board.forEach(c => {
-                if (c.id !== fresh.id) c.onOtherCreatureETB(fresh, board);
+                if (c.id !== fresh.id && !c.temporaryHumility) c.onOtherCreatureETB(fresh, board);
             });
         }
     }
@@ -2572,7 +2626,7 @@ class BaseCard {
                     triggerETB(token, b);
                     // Broadcast ETB
                     b.forEach(c => {
-                        if (c.id !== token.id) c.onOtherCreatureETB(token, b);
+                        if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, b);
                     });
                 }
             }
@@ -2835,7 +2889,7 @@ class BaseCard {
                         triggerETB(token, board);
                         // Broadcast ETB
                         board.forEach(c => {
-                            if (c.id !== token.id) c.onOtherCreatureETB(token, board);
+                            if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, board);
                         });
                     }
                 }
@@ -3096,7 +3150,7 @@ class BaseCard {
                             newTokens.push(zombie);
                             triggerETB(zombie, state.player.board);
                             state.player.board.forEach(c => {
-                                if (c.id !== zombie.id) c.onOtherCreatureETB(zombie, state.player.board);
+                                if (c.id !== zombie.id && !c.temporaryHumility) c.onOtherCreatureETB(zombie, state.player.board);
                             });
                         }
                     }
@@ -3378,7 +3432,7 @@ class BaseCard {
 
         if (board && !skipNotification) {
             for (const c of board) {
-                if (c.id !== target.id) {
+                if (c.id !== target.id && !c.temporaryHumility) {
                     await c.onCounterPlaced(amount, type, target, board);
                 }
             }
@@ -3996,7 +4050,7 @@ class BaseCard {
         // Notify other creatures on the board (e.g., Striding Cascade)
         if (board && !skipNotification) {
             for (const c of board) {
-                if (c.id !== target.id) {
+                if (c.id !== target.id && !c.temporaryHumility) {
                     await c.onCounterPlaced(amount, 'plus-one', target, board);
                 }
             }
@@ -4051,7 +4105,7 @@ class BaseCard {
             newArrivals.forEach(card => {
                 triggerETB(card, state.player.board);
                 state.player.board.forEach(c => {
-                    if (c.id !== card.id) c.onOtherCreatureETB(card, state.player.board);
+                    if (c.id !== card.id && !c.temporaryHumility) c.onOtherCreatureETB(card, state.player.board);
                 });
             });
 
@@ -4081,7 +4135,7 @@ class BaseCard {
                 // Notifications AFTER queuing the pulse
                 state.player.board.forEach(c => {
                     state.player.board.forEach(other => {
-                        if (other.id !== c.id) {
+                        if (other.id !== c.id && !other.temporaryHumility) {
                             other.onCounterPlaced(1, 'plus-one', c, state.player.board);
                         }
                     });
@@ -4096,9 +4150,12 @@ class BaseCard {
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
-                    await c.onNoncreatureCast(spell, state.player.board, targets);
-                    await resolveAnimations();
+                    if (c.hasNoncreatureCast()) {
+                        await c.onNoncreatureCast(spell, state.player.board, targets);
+                        await resolveAnimations();
+                    }
                 }
+                checkHerreaReward(spell);
             }
             processDiscoveryQueue();
             await resolveAnimations();
@@ -4287,8 +4344,10 @@ class BaseCard {
                 const [spell] = state.player.hand.splice(handIdx, 1);
                 state.player.spellGraveyard.push(spell);
                 for (const c of board) {
-                    await c.onNoncreatureCast(spell, board, []);
-                    await resolveAnimations();
+                    if (c.hasNoncreatureCast()) {
+                        await c.onNoncreatureCast(spell, board, []);
+                        await resolveAnimations();
+                    }
                 }
             }
             await resolveAnimations();
@@ -4740,7 +4799,9 @@ class BaseCard {
 
                 // End Shop Phase triggers
                 for (const c of state.player.board) {
-                    await c.onShopEndStep(state.player.board);
+                    if (c.hasShopEndStep()) {
+                        await c.onShopEndStep(state.player.board);
+                    }
                 }
                 await resolveAnimations();
                 await waitForBusyCards();
@@ -5436,18 +5497,20 @@ class BaseCard {
     function triggerETB(instance, board) {
         if (!instance) return;
         
-        // FOIL + PANHARMONICON COORDINATION
-        // Only the very first trigger of a sequence can be cancelled (bounced).
-        instance.onETB(board, false); 
+        if (instance.hasETB()) {
+            // FOIL + PANHARMONICON COORDINATION
+            // Only the very first trigger of a sequence can be cancelled (bounced).
+            instance.onETB(board, false); 
 
-        if (instance.isFoil) {
-            instance.onETB(board, true); 
-        }
-
-        if (state.panharmoniconActive && instance.owner === 'player') {
-            instance.onETB(board, true); 
             if (instance.isFoil) {
                 instance.onETB(board, true); 
+            }
+
+            if (state.panharmoniconActive && instance.owner === 'player') {
+                instance.onETB(board, true); 
+                if (instance.isFoil) {
+                    instance.onETB(board, true); 
+                }
             }
         }
     }
@@ -5532,7 +5595,9 @@ class BaseCard {
             }
         });
         state.player.board.forEach(c => {
-            c.onShopStart(state.player.board);
+            if (c.hasShopStart()) {
+                c.onShopStart(state.player.board);
+            }
             c.actionUsed = false;
         });
         render();
@@ -5584,8 +5649,11 @@ class BaseCard {
             await attacker.equipment.onEquippedAttack(attacker, attackerBoard);
         }
 
-        // Phase 1.5: Attack Triggers
-        let attackTargets = await attacker.onAttack(attackerBoard, defender);
+        // 1. Attack Trigger
+        let attackTargets = [];
+        if (attacker.hasAttack()) {
+            attackTargets = await attacker.onAttack(attackerBoard, defender);
+        }
 
         // GLOBAL ATTACK TRIGGERS: Honor Begets Glory
         const entity = getEntity(attacker.owner);
@@ -5958,19 +6026,23 @@ class BaseCard {
 
         // Run opponent triggers first
         for (const card of currentOpp.board) {
-            const targets = await card.onCombatStart(currentOpp.board);
-            if (targets && targets.length > 0) {
-                anyTriggers = true;
-                await animateStartOfCombatTrigger(card, targets, currentOpp.board);
+            if (card.hasCombatStart()) {
+                const targets = await card.onCombatStart(currentOpp.board);
+                if (targets && targets.length > 0) {
+                    anyTriggers = true;
+                    await animateStartOfCombatTrigger(card, targets, currentOpp.board);
+                }
             }
         }
 
         // Run player triggers second
         for (const card of state.player.board) {
-            const targets = await card.onCombatStart(state.player.board);
-            if (targets && targets.length > 0) {
-                anyTriggers = true;
-                await animateStartOfCombatTrigger(card, targets, state.player.board);
+            if (card.hasCombatStart()) {
+                const targets = await card.onCombatStart(state.player.board);
+                if (targets && targets.length > 0) {
+                    anyTriggers = true;
+                    await animateStartOfCombatTrigger(card, targets, state.player.board);
+                }
             }
         }
 
@@ -6539,7 +6611,11 @@ class BaseCard {
                       (owner === 'player' ? state.battleBoards.player : state.battleBoards.opponent) : 
                       state.player.board;
         if (board) {
-            board.forEach(c => c.onLifeGain(board));
+            board.forEach(c => {
+                if (c.hasLifeGain()) {
+                    c.onLifeGain(board);
+                }
+            });
         }
 
         // Animation
@@ -6736,12 +6812,12 @@ class BaseCard {
             } else {
                 // Broadcast ETB to OTHERS
                 state.player.board.forEach(c => {
-                    if (c.id !== instance.id) c.onOtherCreatureETB(instance, state.player.board);
+                    if (c.id !== instance.id && !c.temporaryHumility) c.onOtherCreatureETB(instance, state.player.board);
                 });
             }
 
             // HERO POWER: Herrea (Blue card tracking & Reward) - ONLY if no targeting Modal was opened
-            if (!state.targetingEffect && !state.discovery) {
+            if (!state.targetingEffect && !state.discovery && !state.castingSpell) {
                 checkHerreaReward(instance);
             }
         } else {
@@ -6783,13 +6859,15 @@ class BaseCard {
                 const targets = [...state.currentSpellTargets];
                 state.currentSpellTargets = [];
                 for (const c of state.player.board) {
-                    await c.onNoncreatureCast(instance, state.player.board, targets);
-                    await resolveAnimations();
+                    if (c.hasNoncreatureCast()) {
+                        await c.onNoncreatureCast(instance, state.player.board, targets);
+                        await resolveAnimations();
+                    }
                 }
             }
 
             // HERO POWER: Herrea (Blue card tracking & Reward)
-            if (!state.targetingEffect && !state.discovery) {
+            if (!state.targetingEffect && !state.discovery && !state.castingSpell) {
                 checkHerreaReward(instance);
             }
         }
@@ -6906,18 +6984,13 @@ class BaseCard {
             const instance = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
             if (instance) {
                 state.player.board.forEach(c => {
-                    if (c.id !== instance.id) c.onOtherCreatureETB(instance, state.player.board);
+                    if (c.id !== instance.id && !c.temporaryHumility) c.onOtherCreatureETB(instance, state.player.board);
                 });
             }
         }
 
-        // HERO POWER: Herrea (Blue card tracking & Reward) - AFTER resolution
-        if (isSuccess && state.targetingEffect && state.targetingEffect.wasCast) {
-            // ONLY check Herrea reward if we are NOT about to open another Modal (like discovery)
-            // Cards that open a Discovery after targeting will set wasCast on the discovery object instead.
-            if (!state.discoveryQueue.length) {
-                checkHerreaReward(state.targetingEffect.cardInstance);
-            }
+        if (isSuccess && state.targetingEffect && state.targetingEffect.wasCast && state.targetingEffect.cardInstance && !state.discovery && state.discoveryQueue.length === 0) {
+            checkHerreaReward(state.targetingEffect.cardInstance);
         }
 
         state.targetingEffect = null;
@@ -7014,7 +7087,7 @@ class BaseCard {
                         
                         triggerETB(clone, state.player.board);
                         state.player.board.forEach(c => {
-                            if (c.id !== clone.id) c.onOtherCreatureETB(clone, state.player.board);
+                            if (c.id !== clone.id && !c.temporaryHumility) c.onOtherCreatureETB(clone, state.player.board);
                         });
 
                         if (state.targetingEffect.owner === 'player') {
@@ -7148,8 +7221,10 @@ class BaseCard {
                         clearTargetingEffect(true);
 
                         for (const c of state.player.board) {
-                            await c.onNoncreatureCast(spell, state.player.board, []);
-                            await resolveAnimations();
+                            if (c.hasNoncreatureCast()) {
+                                await c.onNoncreatureCast(spell, state.player.board, []);
+                                await resolveAnimations();
+                            }
                         }
                     } else {
                         clearTargetingEffect(true);
@@ -7277,8 +7352,10 @@ class BaseCard {
                 
                 // Trigger death/sacrifice hooks for others
                 state.player.board.forEach(c => {
-                    c.onOtherCreatureDeath(sacrificedCard, state.player.board);
-                    c.onOtherPermanentSacrificed(sacrificedCard, state.player.board);
+                    if (!c.temporaryHumility) {
+                        c.onOtherCreatureDeath(sacrificedCard, state.player.board);
+                        c.onOtherPermanentSacrificed(sacrificedCard, state.player.board);
+                    }
                 });
 
                 const spawns = sacrificedCard.onDeath(state.player.board, 'player');
@@ -7471,7 +7548,7 @@ class BaseCard {
                 createdTokens.forEach(token => {
                     triggerETB(token, state.player.board);
                     state.player.board.forEach(c => {
-                        if (c.id !== token.id) c.onOtherCreatureETB(token, state.player.board);
+                        if (c.id !== token.id && !c.temporaryHumility) c.onOtherCreatureETB(token, state.player.board);
                     });
                 });
 
@@ -7655,8 +7732,10 @@ class BaseCard {
 
         // 1. Trigger survivor deaths
         state.player.board.forEach(c => {
-            c.onOtherCreatureDeath(target, state.player.board);
-            if (isSacrifice) c.onOtherPermanentSacrificed(target, state.player.board);
+            if (!c.temporaryHumility) {
+                c.onOtherCreatureDeath(target, state.player.board);
+                if (isSacrifice) c.onOtherPermanentSacrificed(target, state.player.board);
+            }
         });
         // 2. Trigger onDeath
         const spawns = target.onDeath(state.player.board, 'player');
@@ -7666,7 +7745,7 @@ class BaseCard {
             spawns.forEach(s => {
                 triggerETB(s, state.player.board);
                 state.player.board.forEach(c => {
-                    if (c.id !== s.id) c.onOtherCreatureETB(s, state.player.board);
+                    if (c.id !== s.id && !c.temporaryHumility) c.onOtherCreatureETB(s, state.player.board);
                 });
             });
         }
@@ -8110,10 +8189,13 @@ class BaseCard {
                 if (entity) entity.deadServantsCount++;
             }
 
-            let spawns = await deadCard.onDeath(board, owner);
+            let spawns = [];
+            if (deadCard.hasDeath()) {
+                spawns = await deadCard.onDeath(board, owner);
+            }
             
             for (const c of notifyPool) {
-                if (c.id !== deadCard.id) {
+                if (c.id !== deadCard.id && !c.temporaryHumility) {
                     await c.onOtherCreatureDeath(deadCard, board);
                 }
             }
@@ -8153,7 +8235,7 @@ class BaseCard {
                 validSpawns.forEach(s => {
                     triggerETB(s, board);
                     notifyPool.forEach(c => {
-                        if (c.id !== s.id) c.onOtherCreatureETB(s, board);
+                        if (c.id !== s.id && !c.temporaryHumility) c.onOtherCreatureETB(s, board);
                     });
                 });
                 
@@ -8233,8 +8315,10 @@ class BaseCard {
         await resolveAnimations(); // Resolve spell effect animation FIRST
 
         for (const c of state.player.board) {
-            await c.onNoncreatureCast(castSpell, state.player.board, targets);
-            await resolveAnimations(); // Resolve each trigger animation sequentially
+            if (c.hasNoncreatureCast()) {
+                await c.onNoncreatureCast(castSpell, state.player.board, targets);
+                await resolveAnimations(); // Resolve each trigger animation sequentially
+            }
         }
 
         if (!state.targetingEffect && !state.discovery && state.discoveryQueue.length === 0) {
@@ -9774,7 +9858,7 @@ class BaseCard {
         const hasEnoughGold = (instance.actionCost === undefined || state.player.gold >= instance.actionCost);
         const isCurrentlySource = (state.targetingEffect && state.targetingEffect.sourceId === instance.id);
 
-        if (state.phase === 'SHOP' && !isShop && actionableNames.includes(instance.card_name) && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold && !isCurrentlySource) {
+        if (state.phase === 'SHOP' && !isShop && instance.hasAction() && index !== -1 && !state.castingSpell && !state.targetingEffect && !instance.actionUsed && hasEnoughGold && !isCurrentlySource) {
             cardEl.classList.add('actionable-outline');
             cardEl.onclick = async (e) => {
                 e.stopPropagation();

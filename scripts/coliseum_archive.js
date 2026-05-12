@@ -327,7 +327,7 @@ class ArtfulCoercion extends BaseCard {
                 // Artful Coercion does NOT trigger ETB
                 // But we still broadcast the arrival to others
                 board.forEach(c => {
-                    if (c.id !== target.id) c.onOtherCreatureETB(target, board);
+                    if (c.id !== target.id && !c.temporaryHumility) c.onOtherCreatureETB(target, board);
                 });
 
                 // INVIGORATE 2: random choice among your least power

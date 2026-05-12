@@ -3369,6 +3369,7 @@ async function testUnyieldingEnforcer() {
     victim.owner = 'opponent';
     state.player.board = [enforcer];
     state.battleBoards = { player: [enforcer], opponent: [victim] };
+    state.phase = 'BATTLE';
 
     // 1. Not Adorned (just a counter)
     addCounters(enforcer, 1);
@@ -3380,6 +3381,42 @@ async function testUnyieldingEnforcer() {
     await enforcer.onAttack(state.player.board);
     assert.strictEqual(victim.isDestroyed, true, "Should exile if adorned");
     assert.strictEqual(victim.destroyedReason, 'exile');
+}
+
+async function testHumilitySuppression() {
+    resetState();
+    
+    // 1. Test Ladria (onAttack)
+    const ladria = CardFactory.create({ card_name: "Ladria, Windwatcher", pt: "3/3" });
+    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    ladria.owner = other.owner = 'player';
+    state.player.board = [ladria, other];
+    
+    // Apply Humility
+    ladria.temporaryHumility = true;
+    
+    // Attempt attack (using the engine's check)
+    if (ladria.hasAttack()) {
+        await ladria.onAttack(state.player.board);
+    }
+    assert.strictEqual(other.counters, 0, "Ladria should NOT give counters while humbled");
+
+    // 2. Test Tin Woodsman (onDeath)
+    resetState();
+    const woodsman = CardFactory.create({ card_name: "Tin Woodsman", pt: "3/2" });
+    const hasCounter = CardFactory.create({ card_name: "Countered", pt: "1/1" });
+    hasCounter.counters = 1;
+    woodsman.owner = hasCounter.owner = 'player';
+    state.player.board = [woodsman, hasCounter];
+    
+    // Apply Humility
+    woodsman.temporaryHumility = true;
+    
+    // Attempt death (using the engine's check)
+    if (woodsman.hasDeath()) {
+        await woodsman.onDeath(state.player.board, 'player');
+    }
+    assert.strictEqual(hasCounter.counters, 1, "Woodsman should NOT proliferate while humbled");
 }
 
 async function testThriceClawedTroika() {
@@ -3588,6 +3625,7 @@ async function runTests() {
         { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
         { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
         { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
+        { tier: 5, name: "Humility Suppression", fn: testHumilitySuppression },
         { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
         { tier: 5, name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
         { tier: 5, name: "Helicos Gargantua", fn: testHelicosGargantua },
