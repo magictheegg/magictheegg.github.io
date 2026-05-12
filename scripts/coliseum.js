@@ -700,7 +700,6 @@ class BaseCard {
                 effect: 'traverse_cirrusea_grant',
                 wasCast: true,
                 owner: owner,
-                isFoil: source.isFoil,
                 cardInstance: source,
                 needsTraverseBroadcast: true
             });
@@ -783,7 +782,6 @@ class BaseCard {
                 count: 2,
                 wasCast: true,
                 owner: owner,
-                isFoil: source.isFoil,
                 cardInstance: source,
                 needsTraverseBroadcast: true
             });
@@ -822,7 +820,6 @@ class BaseCard {
                 effect: 'traverse_altabaq_grant',
                 wasCast: true,
                 owner: owner,
-                isFoil: source.isFoil,
                 cardInstance: source,
                 needsTraverseBroadcast: true
             });
@@ -1019,18 +1016,24 @@ class BaseCard {
     class UnyieldingEnforcer extends BaseCard {
         onAttack(board) {
             if (this.isAdorned) {
-                const opponentBoard = (this.owner === 'player') ? state.battleBoards?.opponent : state.battleBoards?.player;
+                const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
+                const opponentBoard = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards[opponentOwner] : [];
+                
                 if (opponentBoard && opponentBoard.length > 0) {
                     const validTargets = opponentBoard.filter(c => !c.hasKeyword('Hexproof') && !c.isDying && !c.isDestroyed);
                     if (validTargets.length > 0) {
                         const target = validTargets[Math.floor(Math.random() * validTargets.length)];
+                        
                         target.isDestroyed = true;
                         target.destroyedReason = 'exile';
-                        return [target];
+                        
+                        const res = [target];
+                        res.animationsHandled = true;
+                        return res;
                     }
                 }
             }
-            return [this];
+            return [];
         }
     }
 
@@ -1405,12 +1408,16 @@ class BaseCard {
                         } else {
                             c.damageTaken += multiplier;
                         }
-                        const el = document.getElementById(`card-${c.id}`);
+                    }
+                });
+
+                queueAnimation(async () => {
+                    targets.forEach(t => {
+                        const el = document.getElementById(`card-${t.id}`);
                         if (el) {
-                            showDamageBubble(el, multiplier);
-                            // Immediate DOM update for P/T
-                            c.syncVisualState();
-                            const stats = c.getDisplayStats(opponentBoard, true);
+                            showDamageBubble(t.id, multiplier);
+                            // Immediate DOM update for P/T (Visual Only)
+                            const stats = t.getDisplayStats(opponentBoard);
                             const pEl = el.querySelector('.card-p');
                             const tEl = el.querySelector('.card-t');
                             if (pEl) pEl.textContent = stats.p;
@@ -1423,13 +1430,16 @@ class BaseCard {
                             el.classList.add('shake');
                             setTimeout(() => el.classList.remove('shake'), 300);
                         }
-                    }
-                });
+                    });
 
-                queueAnimation(async () => {
+                    // Wait for shake to play out
+                    await new Promise(r => setTimeout(r, 400));
+
                     const pulses = targets.map(t => pulseCardElement(t, opponentBoard, snapshots.get(t.id), { skipPT: true }));
                     await Promise.all(pulses);
                 });
+
+                await resolveAnimations();
 
                 const res = [...targets];
                 res.animationsHandled = true;
@@ -1522,6 +1532,7 @@ class BaseCard {
                     const flagbearers = validVictims.filter(c => c.isType('Flagbearer'));
                     const pool = flagbearers.length > 0 ? flagbearers : validVictims;
                     const victim = pool[Math.floor(Math.random() * pool.length)];
+                    
                     victim.isDestroyed = true;
                 }
             }
@@ -1530,13 +1541,13 @@ class BaseCard {
     }
 
     class LumberingAncient extends BaseCard {
-        onDeath(board, owner) {
+        async onDeath(board, owner) {
             // Target random friendly creature (not dying) - matching Sporegraft Slime
             const friends = board.filter(c => c.id !== this.id && c.getDisplayStats(board).t > 0);
             if (friends.length > 0) {
                 const target = friends[Math.floor(Math.random() * friends.length)];
                 const multiplier = this.isFoil ? 2 : 1;
-                addCounters(target, 8 * multiplier, board);
+                await addCounters(target, 8 * multiplier, board);
             }
             return [];
         }
@@ -1641,7 +1652,8 @@ class BaseCard {
                         effect: 'infuse_spell_resolution',
                         owner: owner,
                         wasCast: true,
-                        isFoil: false
+                        isFoil: false,
+                        isMandatory: (name !== 'Lagoon Logistics')
                     });
                 } else {
                     // Fallback for untargeted spells
@@ -2663,7 +2675,7 @@ class BaseCard {
 
             // Animation for pre-fight damage
             if (familiarDamage > 0) {
-                if (defenderEl) showDamageBubble(defenderEl, familiarDamage);
+                if (defenderEl) showDamageBubble(defender.id, familiarDamage);
             }
             
             // Pulsing the defender to show the result
@@ -4312,8 +4324,8 @@ class BaseCard {
         const cabinet = document.getElementById('game-cabinet');
         if (!cabinet) return;
 
-        // If targetOrId is a string, it's an ID (without the card- prefix)
-        let targetEl = (typeof targetOrId === 'string') ? document.getElementById(`card-${targetOrId}`) : targetOrId;
+        // If targetOrId is a string, it's an ID (usually a card ID, but can be avatar)
+        let targetEl = (typeof targetOrId === 'string') ? (document.getElementById(`card-${targetOrId}`) || document.getElementById(targetOrId)) : targetOrId;
         if (!targetEl) return;
 
         const bubble = document.createElement('div');
@@ -4333,7 +4345,7 @@ class BaseCard {
 
             // Re-fetch element by ID if we started with an ID to survive re-renders
             if (typeof targetOrId === 'string') {
-                targetEl = document.getElementById(`card-${targetOrId}`);
+                targetEl = document.getElementById(`card-${targetOrId}`) || document.getElementById(targetOrId);
             }
             if (!targetEl) {
                 bubble.remove();
@@ -5760,7 +5772,7 @@ class BaseCard {
             if (newDefenderEl) {
                 newDefenderEl.classList.add('shake');
                 setTimeout(() => newDefenderEl.classList.remove('shake'), 300);
-                showDamageBubble(newDefenderEl, defenderDamageTaken);
+                showDamageBubble(defender.id, defenderDamageTaken);
             }
 
             // TRAMPLE ANIMATIONS
@@ -5772,7 +5784,7 @@ class BaseCard {
                         if (trampleEl) {
                             trampleEl.classList.add('shake');
                             setTimeout(() => trampleEl.classList.remove('shake'), 300);
-                            showDamageBubble(trampleEl, trampleOverflow);
+                            showDamageBubble(trampleTarget.id, trampleOverflow);
                         }
                     }, 100);
                 } else {
@@ -5780,7 +5792,7 @@ class BaseCard {
                     setTimeout(() => {
                         const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
                         const avatarEl = document.getElementById(avatarId);
-                        showDamageBubble(avatarEl, trampleOverflow);
+                        showDamageBubble(avatarId, trampleOverflow);
                         triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
                     }, 100);
                 }
@@ -5788,7 +5800,7 @@ class BaseCard {
         } else {
             const avatarId = attacker.owner === 'player' ? 'opponent-battle-avatar' : 'player-avatar';
             const avatarEl = document.getElementById(avatarId);
-            showDamageBubble(avatarEl, defenderDamageTaken);
+            showDamageBubble(avatarId, defenderDamageTaken);
             triggerOverallHpLoss(attacker.owner === 'player' ? 'opponent' : 'player');
         }
 
@@ -5801,7 +5813,7 @@ class BaseCard {
             currentAttackerEl.classList.add('attacking');
             
             if (attackerDamageTaken > 0) {
-                showDamageBubble(currentAttackerEl, attackerDamageTaken);
+                showDamageBubble(attacker.id, attackerDamageTaken);
             }
 
             currentAttackerEl.offsetHeight; // Force reflow
@@ -6085,25 +6097,36 @@ class BaseCard {
         state.animationQueue.push(animationFn);
     }
 
+    let animationResolutionPromise = null;
     async function resolveAnimations() {
         if (state.isSimulating) return;
-        if (state.isResolvingAnimations) return;
+        
+        // If already resolving, wait for the existing promise to finish
+        if (state.isResolvingAnimations) {
+            return animationResolutionPromise;
+        }
+
         state.isResolvingAnimations = true;
         
-        render(); // Update UI to show any newly opened modals before starting animations
-        
-        try {
-            while (state.animationQueue.length > 0) {
-                const anim = state.animationQueue.shift();
-                await anim();
-                if (state.animationQueue.length > 0) {
-                    await new Promise(r => setTimeout(r, 100)); // Stagger delay
+        animationResolutionPromise = (async () => {
+            render(); // Update UI to show any newly opened modals before starting animations
+            
+            try {
+                while (state.animationQueue.length > 0) {
+                    const anim = state.animationQueue.shift();
+                    await anim();
+                    if (state.animationQueue.length > 0) {
+                        await new Promise(r => setTimeout(r, 100)); // Stagger delay
+                    }
                 }
+            } finally {
+                state.isResolvingAnimations = false;
+                render(); // Final render to sync everything
             }
-        } finally {
-            state.isResolvingAnimations = false;
-            render(); // Final render to sync everything
-        }
+        })();
+
+        await animationResolutionPromise;
+        animationResolutionPromise = null;
     }
 
     async function waitForBusyCards() {
@@ -9980,7 +10003,7 @@ class BaseCard {
         foil.trampleCounters = tripleItems.reduce((sum, item) => sum + (item.card.trampleCounters || 0), 0);
         foil.reachCounters = tripleItems.reduce((sum, item) => sum + (item.card.reachCounters || 0), 0);
         foil.hexproofCounters = tripleItems.reduce((sum, item) => sum + (item.card.hexproofCounters || 0), 0);
-        foil.shieldCounters = tripleItems.reduce((sum, item) => sum + (item.card.shieldCounters || 0), 0);
+        foil.shieldCounters = tripleItems.some(item => (item.card.shieldCounters || 0) > 0) ? 1 : 0;
 
         state.player.hand.push(foil);
 
