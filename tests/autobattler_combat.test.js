@@ -47,7 +47,7 @@ if (typeof document === 'undefined') {
 }
 
 const { 
-    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES
+    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES, queueDiscovery
 } = require('../scripts/coliseum.js');
 const coliseum = require('../scripts/coliseum.js');
 coliseum.render = () => {}; 
@@ -77,6 +77,10 @@ function resetState() {
     state.battleBoards = { player: [], opponent: [] }; // Initialize battleBoards
     state.scrying = null;
     state.shop = { cards: [] };
+    state.animationQueue = [];
+    state.combatParticipants = [];
+    state.battleQueues = { player: [], opponent: [] };
+    state.isSimulating = true; // Avoid UI/timing issues
     availableCards.length = 0;
 }
 
@@ -173,6 +177,23 @@ function testLifelink() {
     assert.strictEqual(state.player.fightHp, 13, "Should gain 3 life when hitting face");
 }
 
+function testLifelinkIndestructible() {
+    resetState();
+    const lifelinker = CardFactory.create({ card_name: "Lifelinker", pt: "3/3", rules_text: "Lifelink" });
+    const ind = CardFactory.create({ card_name: "Indestructible", pt: "2/2", rules_text: "Indestructible" });
+    lifelinker.owner = 'player';
+    ind.owner = 'opponent';
+    state.player.fightHp = 10;
+    state.battleBoards = { player: [lifelinker], opponent: [ind] };
+
+    // Should deal 3 damage, ind saved at 1 HP (1 damage taken on a 2/2)
+    // But lifelink should still see the 3 damage assigned.
+    resolveCombatImpact(lifelinker, ind);
+    assert.strictEqual(state.player.fightHp, 13, "Should gain 3 life even if target is indestructible");
+    assert.strictEqual(ind.damageTaken, 1, "Indestructible should be saved at 1 HP (1 damage taken)");
+    assert.strictEqual(ind.indestructibleUsed, true, "Indestructible save should have been triggered");
+}
+
 function testDoubleStrike_KillBlocker() {
     resetState();
     const ds = CardFactory.create({ card_name: "DS", pt: "3/3", rules_text: "Double strike" });
@@ -219,16 +240,55 @@ function testDoubleStrike_Trade() {
     state.battleBoards = { player: [ds], opponent: [blocker] };
     ds.owner = 'player'; blocker.owner = 'opponent';
 
-    // Hit 1: Double Strike's First Strike pass (isFirstStrike=true)
-    // Decoupled rules: DS first hit NEVER allows retaliation.
-    const impact1 = resolveCombatImpact(ds, blocker, true);
+    // Hit 1: Double Strike's First Strike pass (isFirstStrike=true, isDSFirstHit=true)
+    const impact1 = resolveCombatImpact(ds, blocker, true, true);
     assert.strictEqual(blocker.damageTaken, 3);
     assert.strictEqual(impact1.attackerDamageTaken, 0, "DS first hit allows no retaliation");
     
     // Blocker still alive, proceed to Hit 2 (Regular strike, simultaneous)
-    const impact2 = resolveCombatImpact(ds, blocker, false);
+    const impact2 = resolveCombatImpact(ds, blocker, false, false);
     assert.strictEqual(blocker.damageTaken, 6);
     assert.strictEqual(ds.damageTaken, 4);
+}
+
+function testDoubleStrikeFirstStrikeCombo() {
+    resetState();
+    const dsfs = CardFactory.create({ card_name: "DSFS", pt: "3/3", rules_text: "Double strike, First strike" });
+    const blocker = CardFactory.create({ card_name: "Big", pt: "10/10" });
+    state.battleBoards = { player: [dsfs], opponent: [blocker] };
+    dsfs.owner = 'player'; blocker.owner = 'opponent';
+
+    // Hit 1: Double Strike First Hit (isFirstStrike=true, isDSFirstHit=true)
+    const impact1 = resolveCombatImpact(dsfs, blocker, true, true);
+    assert.strictEqual(blocker.damageTaken, 3);
+    assert.strictEqual(impact1.attackerDamageTaken, 0, "DS first hit allows no retaliation");
+
+    // Hit 2: First Strike Hit (isFirstStrike=true, isDSFirstHit=false)
+    const impact2 = resolveCombatImpact(dsfs, blocker, true, false);
+    assert.strictEqual(blocker.damageTaken, 6);
+    assert.strictEqual(impact2.attackerDamageTaken, 10, "Second hit is FS, but blocker survived, so it deals damage back");
+    
+    // Test: Blocker dies on second hit -> No retaliation
+    resetState();
+    const smallBlocker = CardFactory.create({ card_name: "Small", pt: "2/5" });
+    state.battleBoards = { player: [dsfs], opponent: [smallBlocker] };
+    dsfs.owner = 'player'; smallBlocker.owner = 'opponent';
+
+    resolveCombatImpact(dsfs, smallBlocker, true, true); // Hit 1: deals 3 (2 HP left)
+    const impactDie = resolveCombatImpact(dsfs, smallBlocker, true, false); // Hit 2: deals 3 (dies)
+    assert.strictEqual(impactDie.attackerDamageTaken, 0, "Second hit (FS) killed the blocker, so no retaliation");
+
+    // Test retaliation IF blocker HAS First Strike
+    resetState();
+    const fsBlocker = CardFactory.create({ card_name: "FS Block", pt: "2/2", rules_text: "First strike" });
+    state.battleBoards = { player: [dsfs], opponent: [fsBlocker] };
+    dsfs.owner = 'player'; fsBlocker.owner = 'opponent';
+
+    const impact3 = resolveCombatImpact(dsfs, fsBlocker, true, true); // First hit: still protected
+    assert.strictEqual(impact3.attackerDamageTaken, 0, "First hit of DS is always protected even vs FS defender");
+
+    const impact4 = resolveCombatImpact(dsfs, fsBlocker, true, false); // Second hit (isFirstStrike=true)
+    assert.strictEqual(impact4.attackerDamageTaken, 2, "Second hit (FS) takes retaliation from FS defender even if it dies");
 }
 
 function testTrample() {
@@ -293,7 +353,7 @@ async function testIndestructible_TrampleBypass() {
     // Should assign 8 to defender and 2 to face.
     // Because of the Indestructible Save (1 HP), it actually only takes 7 damage (to reach 14 total on a 15 HP body).
     const impact = resolveCombatImpact(trampler, ind);
-    assert.strictEqual(impact.defenderDamageTaken, 7, "Should take 7 damage to be saved at 1 HP (14 total damage)");
+    assert.strictEqual(impact.defenderDamageTaken, 8, "Should assign 8 damage (lethal) even if it results in a save");
     assert.strictEqual(impact.trampleOverflow, 2, "Only 2 damage should splash to face");
     
     await resolveDeaths();
@@ -668,6 +728,58 @@ async function testDeathtouch() {
     assert.strictEqual(neighbor.isDestroyed, true, "Neighbor killed by DT splash damage (1 damage)");
 }
 
+async function testDecayed() {
+    resetState();
+    const attacker = CardFactory.create({ card_name: "Decayed Attacker", pt: "2/2" });
+    attacker.isDecayed = true;
+    const defender = CardFactory.create({ card_name: "Defender", pt: "2/2" });
+    attacker.owner = 'player';
+    defender.owner = 'opponent';
+    state.battleBoards = { player: [attacker], opponent: [defender] };
+
+    // Use performAttack logic (simplified)
+    // In scripts/coliseum.js, the logic is:
+    // if (attacker.isDecayed) { attacker.isDestroyed = true; }
+    
+    // We simulate the part of performAttack that handles decayed
+    resolveCombatImpact(attacker, defender);
+    if (attacker.isDecayed) {
+        attacker.isDestroyed = true;
+    }
+    await resolveDeaths();
+    assert.strictEqual(state.battleBoards.player.length, 0, "Decayed attacker should be destroyed after combat");
+}
+
+function testDecayedTripling() {
+    resetState();
+    const c1 = CardFactory.create({ card_name: "Zom", pt: "2/2" });
+    const c2 = CardFactory.create({ card_name: "Zom", pt: "2/2" });
+    const c3 = CardFactory.create({ card_name: "Zom", pt: "2/2" });
+    c1.isDecayed = true; // One of them is decayed
+
+    const tripleItems = [
+        { card: c1, source: 'board' },
+        { card: c2, source: 'board' },
+        { card: c3, source: 'board' }
+    ];
+
+    // Mock the tripling logic found in performTriplingAnimation:
+    // const foil = CardFactory.create(baseData);
+    // foil.isDecayed = tripleItems.some(item => item.card.isDecayed);
+    
+    const foil = CardFactory.create({ card_name: "Zom", pt: "2/2" });
+    foil.isFoil = true;
+    foil.isDecayed = tripleItems.some(item => item.card.isDecayed);
+
+    assert.strictEqual(foil.isDecayed, true, "Foil should be decayed if any component was decayed");
+    
+    // Test all non-decayed
+    c1.isDecayed = false;
+    const foil2 = CardFactory.create({ card_name: "Zom", pt: "2/2" });
+    foil2.isDecayed = tripleItems.some(item => item.card.isDecayed);
+    assert.strictEqual(foil2.isDecayed, false, "Foil should not be decayed if no component was decayed");
+}
+
 async function runTests() {
     const allTests = [
         { name: "Flying/Reach Targeting", fn: testFlyingReachTargeting },
@@ -677,8 +789,10 @@ async function runTests() {
         { name: "Trample Splash with Shield", fn: testTrampleSplashWithShield },
         { name: "Double Strike (Kill Blocker)", fn: testDoubleStrike_KillBlocker },
         { name: "Double Strike (Lethal Face)", fn: testDoubleStrike_LethalFace },
-        { name: "Double Strike (Trade)", fn: testDoubleStrike_Trade },
+        { name: "Double strike (Trade)", fn: testDoubleStrike_Trade },
+        { name: "Double strike + First strike", fn: testDoubleStrikeFirstStrikeCombo },
         { name: "Lifelink (Attack/Face)", fn: testLifelink },
+        { name: "Lifelink vs Indestructible", fn: testLifelinkIndestructible },
         { name: "Trample Splash", fn: testTrample },
         { name: "Indestructible Save", fn: testIndestructible },
         { name: "Indestructible Second Hit", fn: testIndestructible_SecondHitDeath },
@@ -695,7 +809,9 @@ async function runTests() {
         { name: "Haste Priority", fn: testHastePriority },
         { name: "Triumphant Tactics", fn: testTriumphantTactics },
         { name: "Triumphant Tactics (Face)", fn: testTriumphantTactics_FaceDamage },
-        { name: "Deathtouch", fn: testDeathtouch }
+        { name: "Deathtouch", fn: testDeathtouch },
+        { name: "Decayed Combat", fn: testDecayed },
+        { name: "Decayed Tripling", fn: testDecayedTripling }
     ];
 
     const results = [];

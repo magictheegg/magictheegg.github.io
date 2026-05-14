@@ -57,7 +57,7 @@ const {
     state, CardFactory, BaseCard, availableCards, resolveShopDeaths, triggerLifeGain, processDeaths,
     applyTargetedEffect, applySpell, useCardFromHand, resolveDiscovery, resolveCombatImpact, findTarget,
     toggleDiscoverySelection, confirmDiscovery, startShopTurn, setAvailableCards, performAttack, triggerETB, HEROES,
-    resetTemporaryStats, buyCard, sellCard, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue
+    resetTemporaryStats, buyCard, sellCard, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue, resolveDeaths
 } = require('../scripts/coliseum.js');
 const assert = require('assert');
 const fs = require('fs');
@@ -1364,23 +1364,34 @@ async function testSuitorOfDeath() {
     const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
     const healthyVictim = CardFactory.create({ card_name: "Healthy", pt: "1/1" });
     const dyingVictim = CardFactory.create({ card_name: "Dying", pt: "1/1" });
+    const protectedVictim = CardFactory.create({ card_name: "Protected", pt: "1/1" });
+    protectedVictim.shieldCounters = 1;
     
     state.battleBoards = {
         player: [suitor],
-        opponent: [healthyVictim, dyingVictim]
+        opponent: [healthyVictim, dyingVictim, protectedVictim]
     };
     suitor.owner = 'player';
-    healthyVictim.owner = dyingVictim.owner = 'opponent';
+    healthyVictim.owner = dyingVictim.owner = protectedVictim.owner = 'opponent';
     
     dyingVictim.isDying = true; // Already marked for death
     suitor.isDying = true;
     state.phase = 'BATTLE';
 
     // Combat death triggers sacrifice
-    processDeaths(state.battleBoards.player, 'player');
+    // Mocking Math.random to pick the protected victim to test bypass
+    const originalRandom = Math.random;
+    Math.random = () => 0.99; // Should pick last valid (protectedVictim)
     
-    assert.strictEqual(healthyVictim.isDestroyed, true, "Healthy opponent creature should be sacrificed");
-    assert.strictEqual(dyingVictim.isDestroyed, false, "Already dying creature should not be picked");
+    await processDeaths(state.battleBoards.player, 'player');
+    Math.random = originalRandom;
+    
+    assert.strictEqual(protectedVictim.isSacrificed, true, "Opponent creature should be sacrificed");
+    assert.strictEqual(dyingVictim.isSacrificed || dyingVictim.isDestroyed, false, "Already dying creature should not be picked");
+
+    // Verify resolveDeaths clears it despite shield
+    await resolveDeaths();
+    assert.strictEqual(state.battleBoards.opponent.includes(protectedVictim), false, "Sacrifice should bypass shields");
 
     // Shop death (sale) does nothing
     resetState();
@@ -1636,7 +1647,7 @@ async function testHexproof_SuitorOfDeath_Fizzle() {
 
     processDeaths(state.battleBoards.player, 'player');
     
-    assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed (Fizzled)");
+    assert.strictEqual(hexVictim.isSacrificed || hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed (Fizzled)");
 }
 
 async function testHexproof_SuitorOfDeath_Targeting() {
@@ -1656,8 +1667,8 @@ async function testHexproof_SuitorOfDeath_Targeting() {
 
     processDeaths(state.battleBoards.player, 'player');
     
-    assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
-    assert.strictEqual(normalVictim.isDestroyed, true, "Normal creature MUST be the one destroyed");
+    assert.strictEqual(hexVictim.isSacrificed || hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
+    assert.strictEqual(normalVictim.isSacrificed || normalVictim.isDestroyed, true, "Normal creature MUST be the one destroyed");
 }
 
 async function testHexproof_CabracansFamiliar() {
@@ -1714,7 +1725,7 @@ async function testHexproof_SuitorOfDeath_Fizzle() {
     suitor.owner = 'player'; hexVictim.owner = 'opponent';
     suitor.isDying = true; state.phase = 'BATTLE';
     processDeaths(state.battleBoards.player, 'player');
-    assert.strictEqual(hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
+    assert.strictEqual(hexVictim.isSacrificed || hexVictim.isDestroyed, false, "Hexproof creature should NOT be destroyed");
 }
 
 async function testHexproof_SuitorOfDeath_Targeting() {
@@ -1726,8 +1737,8 @@ async function testHexproof_SuitorOfDeath_Targeting() {
     suitor.owner = 'player'; hexVictim.owner = normalVictim.owner = 'opponent';
     suitor.isDying = true; state.phase = 'BATTLE';
     processDeaths(state.battleBoards.player, 'player');
-    assert.strictEqual(hexVictim.isDestroyed, false);
-    assert.strictEqual(normalVictim.isDestroyed, true, "Normal creature MUST be destroyed instead");
+    assert.strictEqual(hexVictim.isSacrificed || hexVictim.isDestroyed, false);
+    assert.strictEqual(normalVictim.isSacrificed || normalVictim.isDestroyed, true, "Normal creature MUST be destroyed instead");
 }
 
 async function testHexproof_CabracansFamiliar() {
@@ -1855,6 +1866,10 @@ async function testSavageCongregation() {
     big.owner = 'player';
 
     await useCardFromHand(sc.id);
+    
+    // Verify discovery parameters
+    assert.strictEqual(state.discovery.maxCount, 4);
+    assert.strictEqual(state.discovery.maxTier, 4);
     
     // Verify pool constraints
     const pool = state.discovery.cards;
@@ -2778,8 +2793,8 @@ async function testHoltunBandEmissary() {
     
     // Suitor dies, should target victim1
     suitor.onDeath(state.battleBoards.opponent, 'opponent');
-    assert.strictEqual(victim1.isDestroyed, true, "Flagbearer should be destroyed first");
-    assert.strictEqual(victim2.isDestroyed, false, "Non-Flagbearer should be safe");
+    assert.strictEqual(victim1.isSacrificed || victim1.isDestroyed, true, "Flagbearer should be destroyed first");
+    assert.strictEqual(victim2.isSacrificed || victim2.isDestroyed, false, "Non-Flagbearer should be safe");
 }
 
 async function testJiayinTheHarmonious() {
@@ -3365,6 +3380,12 @@ async function testUnyieldingEnforcer() {
     resetState();
     const enforcer = CardFactory.create(fullCardPool.find(c => c.card_name === 'Unyielding Enforcer'));
     const victim = CardFactory.create({ card_name: "Victim", pt: "2/2" });
+    
+    // Add a death trigger to victim to verify it doesn't fire
+    victim.hasDeath = () => true;
+    let deathTriggered = false;
+    victim.onDeath = () => { deathTriggered = true; return []; };
+
     enforcer.owner = 'player';
     victim.owner = 'opponent';
     state.player.board = [enforcer];
@@ -3374,13 +3395,18 @@ async function testUnyieldingEnforcer() {
     // 1. Not Adorned (just a counter)
     addCounters(enforcer, 1);
     await enforcer.onAttack(state.player.board);
-    assert.strictEqual(victim.isDestroyed, false, "Should not exile if only embattled by counters");
+    assert.strictEqual(victim.isExiled || victim.isDestroyed, false, "Should not exile if only embattled by counters");
 
     // 2. Adorned (Equipment)
     enforcer.equipment = { card_name: 'Buff', getEquipmentStats: () => ({p:0, t:0}) };
     await enforcer.onAttack(state.player.board);
-    assert.strictEqual(victim.isDestroyed, true, "Should exile if adorned");
+    assert.strictEqual(victim.isExiled, true, "Should exile if adorned");
     assert.strictEqual(victim.destroyedReason, 'exile');
+
+    // 3. Verify death triggers are bypassed
+    state.battleQueues = { player: [enforcer], opponent: [victim] };
+    await resolveDeaths();
+    assert.strictEqual(deathTriggered, false, "On-death effects should not trigger for exiled creatures");
 }
 
 async function testHumilitySuppression() {

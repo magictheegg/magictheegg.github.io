@@ -1074,7 +1074,7 @@ class BaseCard {
                     if (validTargets.length > 0) {
                         const target = validTargets[Math.floor(Math.random() * validTargets.length)];
                         
-                        target.isDestroyed = true;
+                        target.isExiled = true;
                         target.destroyedReason = 'exile';
                         
                         const res = [target];
@@ -1583,7 +1583,7 @@ class BaseCard {
                     const pool = flagbearers.length > 0 ? flagbearers : validVictims;
                     const victim = pool[Math.floor(Math.random() * pool.length)];
                     
-                    victim.isDestroyed = true;
+                    victim.isSacrificed = true;
                 }
             }
             return [];
@@ -2168,7 +2168,7 @@ class BaseCard {
                 effect: 'savage_congregation',
                 multiSelect: true,
                 maxTier: 4,
-                maxCount: 2,
+                maxCount: 4,
                 selected: [],
                 sourceId: this.id
             });
@@ -5605,7 +5605,7 @@ class BaseCard {
     
     // Legacy functions removed in favor of OO methods
 
-    async function performAttack(attacker, defender, isFirstStrike = false) {
+    async function performAttack(attacker, defender, isFirstStrike = false, isDSFirstHit = false) {
         const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
         const defenderBoard = (attacker.owner === 'player') ? state.battleBoards.opponent : state.battleBoards.player;
         const attackerEl = document.getElementById(`card-${attacker.id}`);
@@ -5787,7 +5787,7 @@ class BaseCard {
         await new Promise(r => setTimeout(r, 180));
 
         // Phase 3: Impact calculations
-        let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike);
+        let { defenderDamageTaken, attackerDamageTaken, trampleOverflow, trampleTarget } = resolveCombatImpact(attacker, defender, isFirstStrike, isDSFirstHit);
 
         render(); 
 
@@ -6335,8 +6335,8 @@ class BaseCard {
                     const hasDoubleStrike = attacker.hasKeyword('Double strike');
                     
                     if (hasDoubleStrike) {
-                        // HIT 1: First Strike
-                        await performAttack(attacker, defender, true); // true = isFirstStrike
+                        // HIT 1: First Strike pass AND it's a Double Strike first hit
+                        await performAttack(attacker, defender, true, true); 
                         await resolveDeaths();
                         
                         // Abort if the game is over
@@ -6344,14 +6344,15 @@ class BaseCard {
                             break; 
                         }
                         
-                        // HIT 2: Regular Strike (if attacker survived)
+                        // HIT 2: Regular Strike pass (if attacker survived)
                         if (attackerBoard.includes(attacker) && !attacker.isDying) {
                             // Check if the original defender died or was removed
                             const defenderDied = defender && (!defenderBoard.includes(defender) || defender.isDying || defender.isDestroyed);
                             
                             // Double Strike only hits a SECOND time if the target is still there
                             if (!defenderDied) {
-                                await performAttack(attacker, defender, false);
+                                // HIT 2 now respects the 'First strike' property of the attacker
+                                await performAttack(attacker, defender, attacker.hasKeyword('First strike'), false);
                                 await resolveDeaths();
                             }
                         }
@@ -7818,7 +7819,7 @@ class BaseCard {
         }
     }
 
-    function resolveCombatImpact(attacker, defender, isFirstStrike = false) {
+    function resolveCombatImpact(attacker, defender, isFirstStrike = false, isDSFirstHit = false) {
         const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
         const attackerStats = attacker.getDisplayStats(attackerBoard);
         const damageDealt = attackerStats.p;
@@ -7847,11 +7848,9 @@ class BaseCard {
                 const lethalThreshold = hasDeathtouch ? 1 : Math.max(0, defenderStats.t);
                 
                 let assignedToBlocker = damageDealt;
-                if (hasTrample || (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed)) {
+                if (hasTrample) {
                     assignedToBlocker = Math.min(damageDealt, lethalThreshold);
-                    if (hasTrample) {
-                        trampleOverflow = Math.max(0, damageDealt - lethalThreshold);
-                    }
+                    trampleOverflow = Math.max(0, damageDealt - lethalThreshold);
                 }
 
                 defenderDamageTaken = assignedToBlocker;
@@ -7860,15 +7859,19 @@ class BaseCard {
                 if (defender.hasKeyword('Indestructible') && !defender.indestructibleUsed) {
                     if (defenderDamageTaken >= lethalThreshold || (hasDeathtouch && defenderDamageTaken > 0)) {
                         const targetTotalDamage = Math.max(0, defenderStats.maxT - 1);
-                        // The "Shatter" effect: Force HP to 1, but the bubble only shows what was dealt
+                        // Force HP to 1, but we still track assigned damage for stats/lifelink
                         defender.damageTaken = targetTotalDamage;
                         defender.indestructibleUsed = true;
-                        // Since we just set damageTaken, we don't want to add defenderDamageTaken again
+                        
+                        // We've already set the absolute damageTaken, so we set this to 0 
+                        // just for the `defender.damageTaken += ...` line below.
                         defenderDamageTaken = 0; 
                     }
                 }
 
                 defender.damageTaken += defenderDamageTaken;
+                // Re-sync defenderDamageTaken to assignedToBlocker so it is returned correctly for callers (like Lifelink/Tests)
+                defenderDamageTaken = assignedToBlocker;
                 // Actually, let's keep the bubble value separate.
                 const bubbleVal = (defenderDamageTaken === 0 && defender.indestructibleUsed) ? assignedToBlocker : defenderDamageTaken;
 
@@ -7975,14 +7978,19 @@ class BaseCard {
             const isDead = defender.isDestroyed || (defStatsNow.t) <= 0;
 
             let shouldRetaliate = false;
-            if (!isFirstStrike) {
-                shouldRetaliate = true; 
-            } else {
-                if (attacker.hasKeyword('Double strike')) {
-                    shouldRetaliate = false;
+            if (isDSFirstHit) {
+                // Double Strike first hit: Defender NEVER retaliates
+                shouldRetaliate = false;
+            } else if (isFirstStrike) {
+                // First Strike pass: Defender retaliates if they have First Strike OR if they survive
+                if (defender && defender.hasKeyword('First strike')) {
+                    shouldRetaliate = true;
                 } else if (!isDead) {
                     shouldRetaliate = true;
                 }
+            } else {
+                // Normal pass: Retaliation is simultaneous
+                shouldRetaliate = true;
             }
 
             if (shouldRetaliate) {
@@ -8065,20 +8073,21 @@ class BaseCard {
     async function resolveDeaths(skipImmediateAttacks = false) {
         const isProtected = (c, board) => c.hasKeyword('indestructible') && !c.indestructibleUsed;
 
-        // 1. Identify everyone who would die (Lethal damage OR Marked as Destroyed)
+        // 1. Identify everyone who would die (Lethal damage OR Marked as Destroyed/Exiled/Sacrificed)
         const deadPlayerCards = state.battleBoards.player.filter(c => {
             if (c.isDying) return false;
             if (c.isDestroyed && c.shieldCounters > 0) return false; 
-            return (c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)) || c.isDestroyed;
+            return (c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)) || c.isDestroyed || c.isExiled || c.isSacrificed;
         });
         const deadOpponentCards = state.battleBoards.opponent.filter(c => {
             if (c.isDying) return false;
             if (c.isDestroyed && c.shieldCounters > 0) return false;
-            return (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)) || c.isDestroyed;
+            return (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)) || c.isDestroyed || c.isExiled || c.isSacrificed;
         });
 
         // 2. Handle Saves (Indestructible from damage/destroy, and Shields from isDestroyed)
         const savedPlayer = state.battleBoards.player.filter(c => {
+            if (c.isExiled || c.isSacrificed) return false; // Both bypass protection
             const isProt = isProtected(c, state.battleBoards.player);
             const isLethal = c.getDisplayStats(state.battleBoards.player).t <= 0;
             const isToDestroy = c.isDestroyed;
@@ -8086,6 +8095,7 @@ class BaseCard {
                    (!c.isDying && isToDestroy && c.shieldCounters > 0);
         });
         const savedOpponent = state.battleBoards.opponent.filter(c => {
+            if (c.isExiled || c.isSacrificed) return false; // Both bypass protection
             const isProt = isProtected(c, state.battleBoards.opponent);
             const isLethal = c.getDisplayStats(state.battleBoards.opponent).t <= 0;
             const isToDestroy = c.isDestroyed;
@@ -8120,7 +8130,7 @@ class BaseCard {
             const el = document.getElementById(`card-${c.id}`);
             c.isDying = true;
             if (el && !el.classList.contains('dying')) {
-                if (c.isDestroyed) showDestroyBubble(c);
+                if (c.isDestroyed || c.isSacrificed) showDestroyBubble(c);
                 el.classList.add('dying');
             }
         });
@@ -8156,10 +8166,10 @@ class BaseCard {
         // 6. Recurse if processDeaths created NEW dead creatures (e.g. Hog debuff or sacrifice)
         const anyDeadStill = state.battleBoards.player.some(c => {
             if (c.isDestroyed && c.shieldCounters > 0) return false;
-            return (c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)) || c.isDestroyed;
+            return (c.getDisplayStats(state.battleBoards.player).t <= 0 && !isProtected(c, state.battleBoards.player)) || c.isDestroyed || c.isExiled || c.isSacrificed;
         }) || state.battleBoards.opponent.some(c => {
             if (c.isDestroyed && c.shieldCounters > 0) return false;
-            return (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)) || c.isDestroyed;
+            return (c.getDisplayStats(state.battleBoards.opponent).t <= 0 && !isProtected(c, state.battleBoards.opponent)) || c.isDestroyed || c.isExiled || c.isSacrificed;
         });
         
         if (anyDeadStill) {
@@ -8184,23 +8194,24 @@ class BaseCard {
             const idx = board.indexOf(deadCard);
             if (idx === -1) continue;
 
-            if (deadCard.card_name === 'Servants of Dydren') {
+            if (deadCard.card_name === 'Servants of Dydren' && !deadCard.isExiled) {
                 const entity = getEntity(owner);
                 if (entity) entity.deadServantsCount++;
             }
 
             let spawns = [];
-            if (deadCard.hasDeath()) {
+            if (deadCard.hasDeath() && !deadCard.isExiled) {
                 spawns = await deadCard.onDeath(board, owner);
             }
-            
-            for (const c of notifyPool) {
-                if (c.id !== deadCard.id && !c.temporaryHumility) {
-                    await c.onOtherCreatureDeath(deadCard, board);
+
+            if (!deadCard.isExiled) {
+                for (const c of notifyPool) {
+                    if (c.id !== deadCard.id && !c.temporaryHumility) {
+                        await c.onOtherCreatureDeath(deadCard, board);
+                    }
                 }
             }
-            if (spawns.length > 0) {
-                // Limit spawns based on boardLimit
+            if (spawns.length > 0) {                // Limit spawns based on boardLimit
                 const availableSpace = boardLimit - (board.length - 1);
                 const validSpawns = spawns.filter(Boolean).slice(0, Math.max(0, availableSpace));
                 board.splice(idx, 1, ...validSpawns);
@@ -10109,6 +10120,7 @@ class BaseCard {
         foil.reachCounters = tripleItems.reduce((sum, item) => sum + (item.card.reachCounters || 0), 0);
         foil.hexproofCounters = tripleItems.reduce((sum, item) => sum + (item.card.hexproofCounters || 0), 0);
         foil.shieldCounters = tripleItems.some(item => (item.card.shieldCounters || 0) > 0) ? 1 : 0;
+        foil.isDecayed = tripleItems.some(item => item.card.isDecayed);
 
         state.player.hand.push(foil);
 
