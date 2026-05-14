@@ -2569,6 +2569,26 @@ async function testErinBeaconOfHumility() {
     assert.strictEqual(nt, (t === flyer ? otherFlyer : flyer), "Flyer Erin should redirect away from ground creature if other flyers exist");
 }
 
+async function testErinHexproof() {
+    resetState();
+    const erin = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    erin.owner = 'player';
+    
+    const victim = CardFactory.create({ card_name: "Hexproof Victim", pt: "5/5" });
+    victim.owner = 'opponent';
+    victim.hexproofCounters = 1;
+    
+    state.phase = 'BATTLE';
+    state.battleBoards = {
+        player: [erin],
+        opponent: [victim]
+    };
+
+    // Attack trigger should NOT humble the hexproof victim
+    await erin.onAttack(state.battleBoards.player);
+    assert.strictEqual(victim.temporaryHumility, undefined, "Victim should NOT have humility flag due to Hexproof");
+}
+
 async function testCitadelColossus() {
     resetState();
     const colossus = CardFactory.create({ card_name: "Citadel Colossus", pt: "11/12", rules_text: "Indestructible" });
@@ -3652,6 +3672,7 @@ async function runTests() {
         { tier: 5, name: "Michal, the Anointed", fn: testMichalTheAnointed },
         { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
         { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
+        { tier: 5, name: "Erin (Hexproof Check)", fn: testErinHexproof },
         { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
         { tier: 5, name: "Humility Suppression", fn: testHumilitySuppression },
         { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },

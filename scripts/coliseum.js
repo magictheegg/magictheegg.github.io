@@ -1795,7 +1795,7 @@ class BaseCard {
             if (state.phase !== 'BATTLE' || !state.battleBoards) return [];
             const opponentOwner = (this.owner === 'player') ? 'opponent' : 'player';
             const opponentBoard = state.battleBoards[opponentOwner];
-            const validTargets = opponentBoard.filter(c => !c.isDying && !c.isDestroyed);
+            const validTargets = opponentBoard.filter(c => !c.isDying && !c.isDestroyed && !c.hasKeyword('Hexproof'));
             
             if (validTargets.length > 0) {
                 // Prioritize targets that are not already humble
