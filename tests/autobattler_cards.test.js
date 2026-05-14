@@ -3455,9 +3455,11 @@ async function testThriceClawedTroika() {
     // Combat Start
     state.phase = 'BATTLE';
     state.battleQueues = { player: [], opponent: [] };
-    const tokens = await troika.onCombatStart(state.player.board);
+    await troika.onCombatStart(state.player.board);
     
-    assert.strictEqual(tokens.length, 2, "Should create 2 tokens");
+    // Check board instead of return value (since we return [] now to prevent redundant pulsing)
+    const tokens = state.player.board.filter(c => c.id !== troika.id);
+    assert.strictEqual(tokens.length, 2, "Should create 2 tokens on board");
     assert.strictEqual(state.player.board.length, 3);
     assert.strictEqual(state.player.board[1].card_name, 'Thrice-Clawed Troika');
     assert.strictEqual(state.player.board[1].isToken, true);

@@ -47,7 +47,7 @@ if (typeof document === 'undefined') {
 }
 
 const { 
-    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES, queueDiscovery
+    state, CardFactory, BaseCard, availableCards, findTarget, triggerLifeGain, resolveCombatImpact, resolveDeaths, processDeaths, HEROES, queueDiscovery, addCounters
 } = require('../scripts/coliseum.js');
 const coliseum = require('../scripts/coliseum.js');
 coliseum.render = () => {}; 
@@ -374,6 +374,32 @@ async function testIndestructible_AlreadyDamaged() {
     resolveCombatImpact(attacker, ind);
     await resolveDeaths();
     assert.strictEqual(ind.damageTaken, 4, "Indestructible should set damage to 4 to leave it at 1 HP");
+}
+
+async function testIndestructibleWithToughnessGain() {
+    resetState();
+    const ind = CardFactory.create({ card_name: "Indestructible", pt: "2/2", rules_text: "Indestructible" });
+    const attacker = CardFactory.create({ card_name: "Attacker", pt: "5/5" });
+    ind.owner = 'player';
+    state.battleBoards = { player: [ind], opponent: [attacker] };
+    
+    // 1. Pop the indestructible shield
+    resolveCombatImpact(attacker, ind);
+    await resolveDeaths();
+    assert.strictEqual(ind.damageTaken, 1, "Should be at 1 HP (1 damage taken on 2/2)");
+    assert.strictEqual(ind.indestructibleUsed, true, "Indestructible should be used");
+    assert.strictEqual(ind.getDisplayStats(state.battleBoards.player).t, 1, "Should have 1 HP");
+
+    // 2. Gain +1/+1 counter
+    addCounters(ind, 1, state.battleBoards.player);
+    assert.strictEqual(ind.getDisplayStats(state.battleBoards.player).t, 2, "HP should increase to 2 after gaining counter");
+    assert.strictEqual(ind.indestructibleUsed, true, "Indestructible should still be marked as used");
+
+    // 3. Take lethal damage again
+    const attacker2 = CardFactory.create({ card_name: "Attacker 2", pt: "5/5" });
+    resolveCombatImpact(attacker2, ind);
+    await resolveDeaths();
+    assert.strictEqual(state.battleBoards.player.length, 0, "Should be dead because Indestructible was already used");
 }
 
 async function testIndestructibleAttacker() {
@@ -796,6 +822,7 @@ async function runTests() {
         { name: "Trample Splash", fn: testTrample },
         { name: "Indestructible Save", fn: testIndestructible },
         { name: "Indestructible Second Hit", fn: testIndestructible_SecondHitDeath },
+        { name: "Indestructible with Toughness Gain", fn: testIndestructibleWithToughnessGain },
         { name: "Indestructible Trample Math", fn: testIndestructible_TrampleBypass },
         { name: "Indestructible Already Damaged", fn: testIndestructible_AlreadyDamaged },
         { name: "Indestructible Attacker", fn: testIndestructibleAttacker },

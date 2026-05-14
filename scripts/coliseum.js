@@ -1132,7 +1132,7 @@ class BaseCard {
                 render();
             }
 
-            return newTokens;
+            return [];
         }
     }
 
