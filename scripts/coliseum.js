@@ -3667,6 +3667,17 @@ class BaseCard {
                     if (owner === 'player') {
                         state.player.gold -= 2;
                         state.player.usedHeroPower = true;
+                        
+                        // Update tooltip text for Seto San
+                        const countWords = [
+                            "zero", "a", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+                            "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twenty-one"
+                        ];
+                        const nextCount = entity.heroPowerActivations + 1;
+                        const word = countWords[nextCount] || nextCount.toString();
+                        const plural = nextCount > 1 ? "s" : "";
+                        HEROES.SETO_SAN.heroPower.text = `Put ${word} +1/+1 counter${plural} on a random creature you control. (Then upgrade this ability.)`;
+                        
                         render();
                     } else {
                         entity.usedHeroPower = true;
@@ -4513,6 +4524,68 @@ class BaseCard {
         requestAnimationFrame(updateBubblePosition);
     }
 
+    function showShieldAnimation(owner) {
+        if (state.isSimulating) return;
+        const cabinet = document.getElementById('game-cabinet');
+        if (!cabinet) return;
+
+        const avatarId = (owner === 'player') ? 'player-avatar' : 'opponent-battle-avatar';
+        const avatarEl = document.getElementById(avatarId);
+        if (!avatarEl) return;
+
+        const bubble = document.createElement('div');
+        bubble.className = 'shield-bubble';
+        bubble.style.position = 'absolute';
+        bubble.style.zIndex = '3000';
+        bubble.style.pointerEvents = 'none';
+
+        const img = document.createElement('img');
+        img.src = 'img/shield.png';
+        img.alt = 'Shield';
+        img.style.width = '120px';
+        img.style.height = '120px';
+        bubble.appendChild(img);
+        cabinet.appendChild(bubble);
+
+        const startTime = Date.now();
+        const duration = 1200;
+
+        function updateShieldPosition() {
+            const elapsed = Date.now() - startTime;
+            if (elapsed >= duration) {
+                bubble.remove();
+                return;
+            }
+
+            const rect = avatarEl.getBoundingClientRect();
+            const cabRect = cabinet.getBoundingClientRect();
+            const style = window.getComputedStyle(cabinet);
+            const matrix = new WebKitCSSMatrix(style.transform);
+            const currentScale = matrix.a || 1;
+
+            const x = ((rect.left + rect.width / 2) - cabRect.left) / currentScale;
+            const y = ((rect.top + rect.height / 2) - cabRect.top) / currentScale;
+
+            bubble.style.left = `${x}px`;
+            bubble.style.top = `${y}px`;
+
+            // Animation: Pop in, fade out, float up
+            const progress = elapsed / duration;
+            if (progress < 0.2) {
+                const pop = progress / 0.2;
+                bubble.style.transform = `translate(-50%, -50%) scale(${pop * 1.5})`;
+                bubble.style.opacity = 1;
+            } else {
+                bubble.style.transform = `translate(-50%, calc(-50% - ${progress * 50}px)) scale(${1.5 - (progress - 0.2)})`;
+                bubble.style.opacity = 1 - progress;
+            }
+
+            requestAnimationFrame(updateShieldPosition);
+        }
+
+        requestAnimationFrame(updateShieldPosition);
+    }
+
     // Initialization
     function showEndScreen(place) {
         const resultsScreen = document.getElementById('results-screen');
@@ -4705,6 +4778,9 @@ class BaseCard {
     }
 
     function startGameLogic() {
+        // RESET HERO POWERS
+        HEROES.SETO_SAN.heroPower.text = "Put a +1/+1 counter on a random creature you control. (Then upgrade this ability.)";
+
         // HERO POWER: Herrea (Start of Game Seek 5-Star)
         if (state.player.hero.name === "Herrea") {
             const fiveStarPool = availableCards.filter(c => (c.tier === 5) && c.shape !== 'token' && c.type?.toLowerCase().includes('creature'));
@@ -6239,6 +6315,10 @@ class BaseCard {
 
         state.player.fightHp = 5 + (5 * state.player.tier);
         currentOpp.fightHp = 5 + (5 * currentOpp.tier);
+        state.player.firstFaceDamageSourceId = null;
+        currentOpp.firstFaceDamageSourceId = null;
+        state.player.mercyExhausted = false;
+        currentOpp.mercyExhausted = false;
 
         // 1. Ensure all cards are instances and run combat start hooks
         state.player.board = state.player.board.map(c => {
@@ -6361,6 +6441,12 @@ class BaseCard {
                         const hasFirstStrike = attacker.hasKeyword('First strike');
                         await performAttack(attacker, defender, hasFirstStrike);
                         await resolveDeaths();
+                    }
+
+                    // Exhaust mercy rule if this was the first attacker to deal face damage
+                    const enemy = (state.attackerSide === 'player') ? currentOpp : state.player;
+                    if (enemy.firstFaceDamageSourceId === attacker.id) {
+                        enemy.mercyExhausted = true;
                     }
 
                     // If attacker survived, return to back of queue
@@ -7819,6 +7905,28 @@ class BaseCard {
         }
     }
 
+    function applyFaceDamage(attacker, enemy, damage) {
+        if (!enemy) return 0;
+        let actualDamage = damage;
+        
+        // Mercy Rule: Only applies to the VERY FIRST creature to deal damage this combat.
+        // It covers the entire activation of that creature (e.g. both hits of Double Strike).
+        const canTriggerMercy = !enemy.mercyExhausted && (!enemy.firstFaceDamageSourceId || enemy.firstFaceDamageSourceId === attacker.id);
+        
+        if (canTriggerMercy && actualDamage >= enemy.fightHp && enemy.fightHp > 0) {
+            actualDamage = Math.max(0, enemy.fightHp - 1);
+            if (damage > actualDamage) {
+                showShieldAnimation((attacker.owner === 'player') ? 'opponent' : 'player');
+            }
+        }
+        
+        enemy.fightHp -= actualDamage;
+        if (damage > 0) {
+            enemy.firstFaceDamageSourceId = attacker.id;
+        }
+        return actualDamage;
+    }
+
     function resolveCombatImpact(attacker, defender, isFirstStrike = false, isDSFirstHit = false) {
         const attackerBoard = (attacker.owner === 'player') ? state.battleBoards.player : state.battleBoards.opponent;
         const attackerStats = attacker.getDisplayStats(attackerBoard);
@@ -7959,8 +8067,7 @@ class BaseCard {
                     const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
                     const enemy = (attacker.owner === 'player') ? currentOppAttack : state.player;
                     if (enemy) {
-                        enemy.fightHp -= trampleOverflow;
-                        faceDamageTaken = trampleOverflow;
+                        faceDamageTaken = applyFaceDamage(attacker, enemy, trampleOverflow);
                     }
                     
                     if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && trampleOverflow > 0) {
@@ -8031,8 +8138,7 @@ class BaseCard {
              const enemy = (attacker.owner === 'player') ? currentOppAttack : state.player;
              const owner = (attacker.owner === 'player') ? state.player : currentOppAttack;
              if (enemy) {
-                enemy.fightHp -= damageDealt;
-                faceDamageTaken = damageDealt;
+                faceDamageTaken = applyFaceDamage(attacker, enemy, damageDealt);
              }
              
              if (attacker.enchantments?.some(e => e.card_name === 'Triumphant Tactics') && damageDealt > 0) {

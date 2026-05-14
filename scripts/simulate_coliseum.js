@@ -215,53 +215,11 @@ function castSpell(inst, player) {
 }
 
 // Statistics collection
-const stats = {
-    early: { rounds: 0, cardStats: {}, heroStats: {} },
-    mid:   { rounds: 0, cardStats: {}, heroStats: {} },
-    late:  { rounds: 0, cardStats: {}, heroStats: {} }
+const boardStats = {
+    winners: {},
+    top4: {},
+    bottom4: {}
 };
-
-function getPhase(turn) {
-    if (turn <= 5) return 'early';
-    if (turn <= 10) return 'mid';
-    return 'late';
-}
-
-function trackCard(cardName, result, turn, isPlay = false) {
-    const phase = getPhase(turn);
-    if (!cardName) return;
-
-    if (!stats[phase].cardStats[cardName]) {
-        stats[phase].cardStats[cardName] = { appearances: 0, wins: 0, losses: 0, draws: 0, plays: 0, playWins: 0, playLosses: 0, playDraws: 0 };
-    }
-
-    const cardStats = stats[phase].cardStats[cardName];
-
-    if (isPlay) {
-        cardStats.plays++;
-        if (result === 'win') cardStats.playWins++;
-        else if (result === 'loss') cardStats.playLosses++;
-        else cardStats.playDraws++;
-    } else {
-        cardStats.appearances++;
-        if (result === 'win') cardStats.wins++;
-        else if (result === 'loss') cardStats.losses++;
-        else cardStats.draws++;
-    }
-}
-
-function trackHero(heroName, result, turn) {
-    const phase = getPhase(turn);
-    if (!heroName) return;
-
-    if (!stats[phase].heroStats[heroName]) {
-        stats[phase].heroStats[heroName] = { appearances: 0, wins: 0, losses: 0, draws: 0 };
-    }
-    stats[phase].heroStats[heroName].appearances++;
-    if (result === 'win') stats[phase].heroStats[heroName].wins++;
-    else if (result === 'loss') stats[phase].heroStats[heroName].losses++;
-    else stats[phase].heroStats[heroName].draws++;
-}
 
 function resolveTargetingQueue(p) {
     while (state.targetingQueue && state.targetingQueue.length > 0) {
@@ -608,46 +566,17 @@ async function runSimulation(iterations = 500, turnsPerGame = 15) {
                 if (!p1 || !p2) continue;
                 
                 const result = await simulateCombat(p1, p2);
-                const phase = getPhase(t);
-                stats[phase].rounds++;
 
                 if (result === 'player') {
-                    // p1 wins, p2 loses
-                    p1.board.forEach(c => trackCard(c.card_name || c.name, 'win', t, false));
-                    (p1.cardsPlayedThisTurn || []).forEach(name => trackCard(name, 'win', t, true));
-
-                    p2.board.forEach(c => trackCard(c.card_name || c.name, 'loss', t, false));
-                    (p2.cardsPlayedThisTurn || []).forEach(name => trackCard(name, 'loss', t, true));
-
-                    trackHero(p1.hero.name, 'win', t);
-                    trackHero(p2.hero.name, 'loss', t);
                     if (!state.overallHpReducedThisFight) {
                         const survivors = state.battleBoards.player.filter(c => !c.isDying && !c.isDestroyed).length;
                         p2.overallHp -= Math.min(p1.tier + survivors, p1.tier * 2);
                     }
                 } else if (result === 'opponent') {
-                    // p2 wins, p1 loses
-                    p1.board.forEach(c => trackCard(c.card_name || c.name, 'loss', t, false));
-                    (p1.cardsPlayedThisTurn || []).forEach(name => trackCard(name, 'loss', t, true));
-
-                    p2.board.forEach(c => trackCard(c.card_name || c.name, 'win', t, false));
-                    (p2.cardsPlayedThisTurn || []).forEach(name => trackCard(name, 'win', t, true));
-
-                    trackHero(p1.hero.name, 'loss', t);
-                    trackHero(p2.hero.name, 'win', t);
                     if (!state.overallHpReducedThisFight) {
                         const survivors = state.battleBoards.opponent.filter(c => !c.isDying && !c.isDestroyed).length;
                         p1.overallHp -= Math.min(p2.tier + survivors, p2.tier * 2);
                     }
-                } else {
-                    p1.board.forEach(c => trackCard(c.card_name || c.name, 'draw', t, false));
-                    (p1.cardsPlayedThisTurn || []).forEach(name => trackCard(name, 'draw', t, true));
-
-                    p2.board.forEach(c => trackCard(c.card_name || c.name, 'draw', t, false));
-                    (p2.cardsPlayedThisTurn || []).forEach(name => trackCard(name, 'draw', t, true));
-
-                    trackHero(p1.hero.name, 'draw', t);
-                    trackHero(p2.hero.name, 'draw', t);
                 }
             }
             
@@ -658,41 +587,46 @@ async function runSimulation(iterations = 500, turnsPerGame = 15) {
                 resetTemporaryStats();
             });
         }
+
+        // --- End of Game: Rank Players and Record Board Stats ---
+        const finalRankings = [...players].sort((a, b) => b.overallHp - a.overallHp);
+        finalRankings.forEach((p, index) => {
+            const rank = index + 1;
+            p.board.forEach(card => {
+                const name = card.card_name || card.name;
+                if (!name) return;
+                
+                if (rank === 1) boardStats.winners[name] = (boardStats.winners[name] || 0) + 1;
+                if (rank <= 4) boardStats.top4[name] = (boardStats.top4[name] || 0) + 1;
+                else boardStats.bottom4[name] = (boardStats.bottom4[name] || 0) + 1;
+            });
+        });
     }
 
     // Output Results
-    const phases = ['early', 'mid', 'late'];
-    const finalResults = {};
+    console.log("\n--- SIMULATION COMPLETE ---");
+    
+    const formatStats = (obj) => {
+        return Object.entries(obj)
+            .sort((a, b) => b[1] - a[1])
+            .map(([name, count]) => `${name}: ${count}`)
+            .join('\n');
+    };
 
-    phases.forEach(phase => {
-        const sortedCardsByAppearance = Object.entries(stats[phase].cardStats)
-            .map(([name, s]) => ({ name, winRate: ((s.wins + s.draws * 0.5) / s.appearances * 100).toFixed(2), appearances: s.appearances }))
-            .sort((a, b) => b.winRate - a.winRate);
-        
-        const sortedCardsByPlay = Object.entries(stats[phase].cardStats)
-            .filter(([name, s]) => s.plays > 0)
-            .map(([name, s]) => ({ name, playWinRate: ((s.playWins + s.playDraws * 0.5) / s.plays * 100).toFixed(2), plays: s.plays }))
-            .sort((a, b) => b.playWinRate - a.playWinRate);
+    console.log("\nAll Cards on WINNING Boards (Rank 1):");
+    console.log(formatStats(boardStats.winners));
+    
+    console.log("\nAll Cards on TOP 4 Boards (Ranks 1-4):");
+    console.log(formatStats(boardStats.top4));
 
-        const sortedHeroes = Object.entries(stats[phase].heroStats)
-            .map(([name, s]) => ({ name, winRate: ((s.wins + s.draws * 0.5) / s.appearances * 100).toFixed(2), appearances: s.appearances }))
-            .sort((a, b) => b.winRate - a.winRate);
+    console.log("\nAll Cards on BOTTOM 4 Boards (Ranks 5-8 - The 'Bad' Cards):");
+    console.log(formatStats(boardStats.bottom4));
 
-        console.log(`\n--- RESULTS FOR PHASE: ${phase.toUpperCase()} (Turns ${phase === 'early' ? '1-5' : (phase === 'mid' ? '6-10' : '11-15')}) ---`);
-        console.log("Top 10 Cards by Play Impact:");
-        console.log(sortedCardsByPlay.slice(0, 10));
-        console.log("\nTop 10 Cards by On-Board Win Rate:");
-        console.log(sortedCardsByAppearance.slice(0, 10));
-        console.log("\nHero Performance:");
-        console.log(sortedHeroes);
-
-        finalResults[phase] = {
-            summary: { rounds: stats[phase].rounds },
-            byPlay: sortedCardsByPlay,
-            byAppearance: sortedCardsByAppearance,
-            heroes: sortedHeroes
-        };
-    });
+    const finalResults = {
+        winners: boardStats.winners,
+        top4: boardStats.top4,
+        bottom4: boardStats.bottom4
+    };
 
     fs.writeFileSync('simulation_results.json', JSON.stringify(finalResults, null, 4));
     

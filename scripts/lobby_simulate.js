@@ -52,6 +52,13 @@ coliseum.render = () => {};
 const cardData = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/coliseum-cards.json'), 'utf8'));
 setAvailableCards(cardData.cards);
 
+// Statistics collection
+const finalBoardStats = {
+    winners: {},
+    top4: {},
+    bottom4: {}
+};
+
 async function simulateCombat(p1, p2) {
     state.phase = 'BATTLE';
     state.overallHpReducedThisFight = false;
@@ -72,12 +79,19 @@ async function simulateCombat(p1, p2) {
     state.opponents = [simP2];
     state.currentOpponentId = 0;
 
+    const opp = getOpponent();
+    state.player.firstFaceDamageSourceId = null;
+    state.player.mercyExhausted = false;
+    if (opp) {
+        opp.firstFaceDamageSourceId = null;
+        opp.mercyExhausted = false;
+    }
+
     await resolveStartOfCombatTriggers(simP2);
 
     state.attackerSide = Math.random() < 0.5 ? 'player' : 'opponent';
     let turnsInCurrentRound = 0;
     let maxTurns = 400;
-    const opp = getOpponent();
 
     while (state.player.fightHp > 0 && opp.fightHp > 0 && (state.battleQueues.player.length > 0 || state.battleQueues.opponent.length > 0) && maxTurns > 0) {
         maxTurns--;
@@ -97,6 +111,7 @@ async function simulateCombat(p1, p2) {
             if (attackerBoard.includes(attacker) && !attacker.isDying) {
                 const defenderBoard = state.battleBoards[side === 'player' ? 'opponent' : 'player'];
                 const defender = findTarget(attacker, defenderBoard);
+                
                 if (attacker.hasKeyword('Double strike')) {
                     await performAttack(attacker, defender, true);
                     await resolveDeaths();
@@ -110,6 +125,13 @@ async function simulateCombat(p1, p2) {
                     await performAttack(attacker, defender, attacker.hasKeyword('First strike'));
                     await resolveDeaths();
                 }
+
+                // Exhaust mercy rule if this was the first attacker to deal face damage
+                const enemy = (side === 'player') ? opp : state.player;
+                if (enemy && enemy.firstFaceDamageSourceId === attacker.id) {
+                    enemy.mercyExhausted = true;
+                }
+
                 if (attackerBoard.includes(attacker) && !attacker.isDying) currentQueue.push(attacker);
             }
         }
@@ -195,17 +217,33 @@ async function runLobby(playerConfigs, collector = null) {
             if (collector) {
                 const turnRange = turn <= 5 ? '1-5' : (turn <= 10 ? '6-10' : '11+');
                 
-                // Matchup Analysis
+                // Matchup Analysis & Hero Stats
                 if (!p1.isGhost && !p2.isGhost) {
                     if (!collector.matchups[p1.heroName]) collector.matchups[p1.heroName] = {};
                     if (!collector.matchups[p1.heroName][p2.heroName]) collector.matchups[p1.heroName][p2.heroName] = { wins: 0, total: 0 };
                     if (!collector.matchups[p2.heroName]) collector.matchups[p2.heroName] = {};
                     if (!collector.matchups[p2.heroName][p1.heroName]) collector.matchups[p2.heroName][p1.heroName] = { wins: 0, total: 0 };
                     
+                    if (!collector.heroStats[p1.heroName]) collector.heroStats[p1.heroName] = { wins: 0, losses: 0, ties: 0, total: 0 };
+                    if (!collector.heroStats[p2.heroName]) collector.heroStats[p2.heroName] = { wins: 0, losses: 0, ties: 0, total: 0 };
+
                     collector.matchups[p1.heroName][p2.heroName].total++;
                     collector.matchups[p2.heroName][p1.heroName].total++;
-                    if (result.winner === 'player') collector.matchups[p1.heroName][p2.heroName].wins++;
-                    else if (result.winner === 'opponent') collector.matchups[p2.heroName][p1.heroName].wins++;
+                    collector.heroStats[p1.heroName].total++;
+                    collector.heroStats[p2.heroName].total++;
+
+                    if (result.winner === 'player') {
+                        collector.matchups[p1.heroName][p2.heroName].wins++;
+                        collector.heroStats[p1.heroName].wins++;
+                        collector.heroStats[p2.heroName].losses++;
+                    } else if (result.winner === 'opponent') {
+                        collector.matchups[p2.heroName][p1.heroName].wins++;
+                        collector.heroStats[p2.heroName].wins++;
+                        collector.heroStats[p1.heroName].losses++;
+                    } else {
+                        collector.heroStats[p1.heroName].ties++;
+                        collector.heroStats[p2.heroName].ties++;
+                    }
                 }
 
                 const updateCollector = (board, isWinner, playerConfig, turn) => {
@@ -334,7 +372,9 @@ async function run() {
     const creaturePairs = {}; 
     const equipmentStats = {};
     const heroMatchups = {};
+    const heroStats = {};
     const boardGamePlacements = {}; 
+    const finalBoardStats = { winners: {}, top4: {}, bottom4: {}, totalSeen: {} };
     
     let totalCombatTime = 0;
     let iterations = 0;
@@ -377,10 +417,9 @@ async function run() {
         });
 
         const lobbyStart = process.hrtime();
-        const res = await runLobby(playerConfigs, isDetailed ? { creatures: creatureStats, pairs: creaturePairs, equipment: equipmentStats, matchups: heroMatchups } : null);
+        const res = await runLobby(playerConfigs, isDetailed ? { creatures: creatureStats, pairs: creaturePairs, equipment: equipmentStats, matchups: heroMatchups, heroStats: heroStats } : null);
         const lobbyDiff = process.hrtime(lobbyStart);
         totalCombatTime += (lobbyDiff[0] * 1e9 + lobbyDiff[1]) / 1e6;
-
         if (res.winnerHero !== 'Draw') {
             heroWins[res.winnerHero]++;
             gameLengthDistribution[res.turnCount] = (gameLengthDistribution[res.turnCount] || 0) + 1;
@@ -389,6 +428,24 @@ async function run() {
                 if(isDetailed) {
                     if(!boardGamePlacements[p.id]) boardGamePlacements[p.id] = [];
                     boardGamePlacements[p.id].push(idx + 1);
+
+                    // --- RECORD FINAL BOARD STATS ---
+                    const rank = idx + 1;
+                    const finalBoardData = p.data[res.turnCount] || p.data[p.data.maxTurn];
+                    if (finalBoardData && finalBoardData.preCombatBoard) {
+                        const uniqueNames = [...new Set(finalBoardData.preCombatBoard.map(card => card.card_name || card.name).filter(Boolean))];
+                        uniqueNames.forEach(name => {
+                            if (!finalBoardStats.winners[name]) finalBoardStats.winners[name] = 0;
+                            if (!finalBoardStats.top4[name]) finalBoardStats.top4[name] = 0;
+                            if (!finalBoardStats.bottom4[name]) finalBoardStats.bottom4[name] = 0;
+                            if (!finalBoardStats.totalSeen[name]) finalBoardStats.totalSeen[name] = 0;
+
+                            finalBoardStats.totalSeen[name]++;
+                            if (rank === 1) finalBoardStats.winners[name]++;
+                            if (rank <= 4) finalBoardStats.top4[name]++;
+                            else finalBoardStats.bottom4[name]++;
+                        });
+                    }
                 }
             });
         }
@@ -397,7 +454,7 @@ async function run() {
     }
 
     if (isDetailed) {
-        reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime, creatureStats, creaturePairs, boardGamePlacements, equipmentStats, heroMatchups);
+        reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime, creatureStats, creaturePairs, boardGamePlacements, equipmentStats, heroMatchups, finalBoardStats, heroStats);
     } else {
         reportFinalResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime);
     }
@@ -411,7 +468,7 @@ function reportProgress(iterations, total, startTime, totalCombatTime) {
     console.log(`Progress: ${iterations}/${total}... [${elapsedSec}s, avg ${avgMs}ms, mem ${mem}MB]`);
 }
 
-function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime, creatureStats, creaturePairs, boardGamePlacements, equipmentStats, heroMatchups) {
+function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime, creatureStats, creaturePairs, boardGamePlacements, equipmentStats, heroMatchups, finalBoardStats, heroRoundStats) {
     const totalElapsed = process.hrtime(startTime);
     const totalSec = (totalElapsed[0] + totalElapsed[1] / 1e9).toFixed(2);
     let output = "";
@@ -422,43 +479,57 @@ function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDi
     log("==========================================");
     log(`Total Time: ${totalSec}s | Games: ${iterations}`);
 
-    log("\n--- 1. HERO POWER RANKINGS (OUTLIER RESISTANT) ---");
-    const heroMetrics = heroNames.map(name => {
-        const allPlacements = [];
-        Object.keys(placementStats).filter(k => k.startsWith(name)).forEach(k => {
-            placementStats[k].forEach((count, i) => {
-                for(let c=0; c<count; c++) allPlacements.push(i + 1);
-            });
+    log("\n--- 1. HERO POWER RANKINGS ---");
+    const getHeroMetrics = (excludeBestBoard = false) => {
+        return heroNames.map(name => {
+            const boardKeys = Object.keys(placementStats).filter(k => k.startsWith(name));
+            const boardData = boardKeys.map(k => {
+                const placements = [];
+                placementStats[k].forEach((count, i) => {
+                    for(let c=0; c<count; c++) placements.push(i + 1);
+                });
+                return { key: k, placements, avg: placements.length > 0 ? (placements.reduce((a, b) => a + b, 0) / placements.length) : 8.5 };
+            }).sort((a, b) => a.avg - b.avg); // Sort boards by avg pos (lower is better)
+
+            let selectedPlacements = [];
+            if (excludeBestBoard && boardData.length > 1) {
+                // Exclude the board with the lowest average (best performing)
+                boardData.slice(1).forEach(b => selectedPlacements.push(...b.placements));
+            } else {
+                boardData.forEach(b => selectedPlacements.push(...b.placements));
+            }
+
+            const rawAvg = selectedPlacements.length > 0 ? (selectedPlacements.reduce((a, b) => a + b, 0) / selectedPlacements.length) : 8;
+            const top4Rate = selectedPlacements.length > 0 ? ((selectedPlacements.filter(p => p <= 4).length / selectedPlacements.length) * 100).toFixed(1) : "0.0";
+            const winRate = selectedPlacements.length > 0 ? ((selectedPlacements.filter(p => p === 1).length / selectedPlacements.length) * 100).toFixed(1) : "0.0";
+            
+            const stats = heroRoundStats[name] || { wins: 0, losses: 0, ties: 0, total: 0 };
+            const matchWR = (stats.wins + stats.losses) > 0 ? ((stats.wins / (stats.wins + stats.losses)) * 100).toFixed(1) : "0.0";
+
+            return { name, rawAvg, top4Rate, winRate, matchWR, totalGames: selectedPlacements.length };
+        }).sort((a, b) => a.rawAvg - b.rawAvg);
+    };
+
+    const logHeroTable = (metrics) => {
+        metrics.forEach(h => {
+            let status = "";
+            const avg = h.rawAvg;
+            const t4 = parseFloat(h.top4Rate);
+            const win = parseFloat(h.winRate);
+
+            if (avg < 4.0 || t4 > 60 || win > 20) {
+                status = " [DANGER: TOO STRONG]";
+            } else if (avg > 5.0 || t4 < 40 || win < 1) {
+                status = " [DANGER: TOO WEAK]";
+            }
+            log(`${h.name.padEnd(12)} | Avg Pos: ${avg.toFixed(2)} | Match WR: ${h.matchWR}% | Top4: ${h.top4Rate}% | Win: ${h.winRate}%${status}`);
         });
-        allPlacements.sort((a, b) => a - b);
-        const median = allPlacements.length > 0 ? allPlacements[Math.floor(allPlacements.length / 2)] : 8;
-        const trimCount = Math.floor(allPlacements.length * 0.1);
-        const trimmed = allPlacements.slice(trimCount, allPlacements.length - trimCount);
-        const trimmedAvg = trimmed.length > 0 ? (trimmed.reduce((a, b) => a + b, 0) / trimmed.length) : 8;
-        const top4Rate = ((allPlacements.filter(p => p <= 4).length / allPlacements.length) * 100).toFixed(1);
-        const winRate = ((allPlacements.filter(p => p === 1).length / allPlacements.length) * 100).toFixed(1);
-        return { name, median, trimmedAvg, top4Rate, winRate, totalGames: allPlacements.length };
-    }).sort((a, b) => a.trimmedAvg - b.trimmedAvg);
+    };
 
-    const avgOfTrimmed = heroMetrics.reduce((a, b) => a + b.trimmedAvg, 0) / heroMetrics.length;
-    const stdDevTrimmed = Math.sqrt(heroMetrics.reduce((a, b) => a + Math.pow(b.trimmedAvg - avgOfTrimmed, 2), 0) / heroMetrics.length);
-    heroMetrics.forEach(h => {
-        let status = "";
-        if (h.trimmedAvg < avgOfTrimmed - stdDevTrimmed) status = " [DANGER: TOO STRONG]";
-        else if (h.trimmedAvg > avgOfTrimmed + stdDevTrimmed) status = " [DANGER: TOO WEAK]";
-        log(`${h.name.padEnd(12)} | Avg(Trim): ${h.trimmedAvg.toFixed(2)} | Median: ${h.median} | Top4: ${h.top4Rate}% | Win: ${h.winRate}%${status}`);
-    });
+    logHeroTable(getHeroMetrics(false));
 
-    log("\n--- 2. NEMESIS MATRIX (BEST/WORST MATCHUPS) ---");
-    heroNames.forEach(h => {
-        const matchups = heroMatchups[h];
-        if (!matchups) return;
-        const sorted = Object.entries(matchups).map(([opp, data]) => ({ opp, wr: (data.wins / data.total) * 100, total: data.total }))
-            .sort((a, b) => b.wr - a.wr);
-        log(`Hero: ${h}`);
-        log(`  Best Matchup: ${sorted[0].opp} (${sorted[0].wr.toFixed(1)}% win rate over ${sorted[0].total} rounds)`);
-        log(`  Worst Matchup: ${sorted[sorted.length-1].opp} (${sorted[sorted.length-1].wr.toFixed(1)}% win rate over ${sorted[sorted.length-1].total} rounds)`);
-    });
+    log("\n--- 2. HERO POWER RANKINGS (BEST BOARD REMOVED) ---");
+    logHeroTable(getHeroMetrics(true));
 
     log("\n--- 3. EQUIPMENT POWER RANKINGS ---");
     const eqList = Object.entries(equipmentStats).map(([name, ranges]) => ({
@@ -478,41 +549,33 @@ function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDi
         .sort((a, b) => a.avg - b.avg)
         .forEach(b => log(`  ${b.id.padEnd(25)} | Avg Pos: ${b.avg.toFixed(2)} (${b.count} games)`));
 
-    log("\n--- 5. VALUE STARS (LOW TIER OVERPERFORMERS IN TURN 11+) ---");
-    const creatureList = Object.entries(creatureStats).map(([name, ranges]) => {
-        const card = cardData.cards.find(c => c.card_name === name);
-        return { name, ranges, tier: card ? card.tier : 0, uniqueBoards: ranges.uniqueBoards.size };
-    });
-    creatureList.filter(c => c.tier <= 2 && c.ranges['11+'].total > (iterations / 100))
-        .sort((a, b) => (b.ranges['11+'].wins / b.ranges['11+'].total) - (a.ranges['11+'].wins / a.ranges['11+'].total))
-        .forEach(c => {
-            const wr = ((c.ranges['11+'].wins / c.ranges['11+'].total) * 100).toFixed(1);
-            if (parseFloat(wr) > 45) log(`  ${c.name.padEnd(25)} | Tier ${c.tier} | Late WR: ${wr}% | Boards: ${c.uniqueBoards}`);
-        });
+    log("\n--- 5. ALL CARDS ON WINNING BOARDS (RANK 1) ---");
+    const sortedWinners = Object.entries(finalBoardStats.winners)
+        .map(([name, count]) => ({ name, count, total: finalBoardStats.totalSeen[name], pct: (count / finalBoardStats.totalSeen[name]) * 100 }))
+        .sort((a, b) => b.pct - a.pct);
+    sortedWinners.forEach(c => log(`  ${c.name.padEnd(25)} | ${c.pct.toFixed(1).padStart(5)}% (${c.total})`));
 
-    log("\n--- 6. CREATURE PERFORMANCE BY TURN RANGE ---");
-    ['1-5', '6-10', '11+'].forEach(range => {
-        log(`\nCreature Performance (Turn ${range}):`);
-        creatureList.filter(c => c.ranges[range].total > (iterations / 100))
-            .sort((a, b) => (b.ranges[range].wins / b.ranges[range].total) - (a.ranges[range].wins / a.ranges[range].total))
-            .forEach(c => {
-                const wr = ((c.ranges[range].wins / c.ranges[range].total) * 100).toFixed(1);
-                log(`  ${c.name.padEnd(25)} | WR: ${wr}% | Boards: ${c.uniqueBoards} | Rounds: ${c.ranges[range].total}`);
-            });
-    });
+    log("\n--- 6. ALL CARDS ON TOP 4 BOARDS (RANKS 1-4) ---");
+    const sortedTop4 = Object.entries(finalBoardStats.top4)
+        .map(([name, count]) => ({ name, count, total: finalBoardStats.totalSeen[name], pct: (count / finalBoardStats.totalSeen[name]) * 100 }))
+        .sort((a, b) => b.pct - a.pct);
+    sortedTop4.forEach(c => log(`  ${c.name.padEnd(25)} | ${c.pct.toFixed(1).padStart(5)}% (${c.total})`));
 
-    log("\n--- 7. CREATURE SYNERGY (PAIRS) BY TURN RANGE ---");
-    ['1-5', '6-10', '11+'].forEach(range => {
-        log(`\nTop Performing Pairs (Turn ${range}):`);
-        Object.entries(creaturePairs)
-            .filter(([key, ranges]) => ranges[range].total > (iterations / 50))
-            .sort((a, b) => (b[1][range].wins / b[1][range].total) - (a[1][range].wins / a[1][range].total))
-            .forEach(([pairKey, ranges]) => {
-                const [c1, c2] = pairKey.split('|');
-                const wr = ((ranges[range].wins / ranges[range].total) * 100).toFixed(1);
-                log(`  ${(c1 + " + " + c2).padEnd(45)} | WR: ${wr}% | Boards: ${ranges.uniqueBoards.size} | Rounds: ${ranges[range].total}`);
-            });
+    log("\n--- 7. ALL CARDS ON BOTTOM 4 BOARDS (RANKS 5-8 - THE 'BAD' CARDS) ---");
+    const sortedBottom4 = Object.entries(finalBoardStats.bottom4)
+        .map(([name, count]) => ({ name, count, total: finalBoardStats.totalSeen[name], pct: (count / finalBoardStats.totalSeen[name]) * 100 }))
+        .sort((a, b) => b.pct - a.pct);
+    sortedBottom4.forEach(c => log(`  ${c.name.padEnd(25)} | ${c.pct.toFixed(1).padStart(5)}% (${c.total})`));
+
+    log("\n--- 8. GAME LENGTH DISTRIBUTION ---");
+    let totalTurns = 0;
+    let totalGames = 0;
+    Object.entries(gameLengthDistribution).sort((a, b) => Number(a[0]) - Number(b[0])).forEach(([turn, count]) => {
+        log(`  Turn ${turn.padEnd(2)}: ${count} games`);
+        totalTurns += Number(turn) * count;
+        totalGames += count;
     });
+    if (totalGames > 0) log(`  Average Game Length: ${(totalTurns / totalGames).toFixed(2)} turns`);
 
     log("\n==========================================");
     fs.writeFileSync('simulation_report.txt', output);
@@ -524,6 +587,18 @@ function reportFinalResults(heroNames, placementStats, heroWins, gameLengthDistr
     const totalSec = (totalElapsed[0] + totalElapsed[1] / 1e9).toFixed(2);
     console.log("\n--- LOBBY SIMULATION SUMMARY ---");
     console.log(`Total Time: ${totalSec}s | Avg: ${(totalCombatTime / iterations).toFixed(2)}ms`);
+
+    console.log("\n--- GAME LENGTH DISTRIBUTION ---");
+    let totalTurns = 0;
+    let totalGames = 0;
+    Object.entries(gameLengthDistribution).sort((a, b) => Number(a[0]) - Number(b[0])).forEach(([turn, count]) => {
+        console.log(`  Turn ${turn.padEnd(2)}: ${count} games`);
+        totalTurns += Number(turn) * count;
+        totalGames += count;
+    });
+    if (totalGames > 0) console.log(`  Average Game Length: ${(totalTurns / totalGames).toFixed(2)} turns`);
+
+    console.log("");
     heroNames.map(name => {
         const placements = Object.keys(placementStats).filter(k => k.startsWith(name)).map(k => placementStats[k]);
         let totalSum = 0, totalCount = 0;
