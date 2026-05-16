@@ -2589,6 +2589,114 @@ async function testErinHexproof() {
     assert.strictEqual(victim.temporaryHumility, undefined, "Victim should NOT have humility flag due to Hexproof");
 }
 
+async function testPheresBandHuntmaster() {
+    resetState();
+    const huntmaster = CardFactory.create({ card_name: "Pheres-Band Huntmaster", pt: "4/4" });
+    huntmaster.owner = 'player';
+    state.player.board = [huntmaster];
+    state.player.fightHp = 10;
+    
+    // 1. Basic Trigger (Use Might and Mane which doesn't add counters itself)
+    const spell = CardFactory.create({ card_name: "Might and Mane" });
+    await huntmaster.onNoncreatureCast(spell, state.player.board, [huntmaster]);
+    assert.strictEqual(huntmaster.counters, 1, "Should gain 1 counter from Heroic");
+    assert.strictEqual(state.player.fightHp, 12, "Should gain 2 Fight HP from Heroic");
+    
+    // 2. Multi-Target Prevention
+    resetState();
+    const huntmaster2 = CardFactory.create({ card_name: "Pheres-Band Huntmaster", pt: "4/4" });
+    huntmaster2.owner = 'player';
+    state.player.board = [huntmaster2];
+    state.player.fightHp = 10;
+    const multiSpell = CardFactory.create({ card_name: "Up in Arms" });
+    await huntmaster2.onNoncreatureCast(multiSpell, state.player.board, [huntmaster2, huntmaster2]);
+    assert.strictEqual(huntmaster2.counters, 1, "Should gain only 1 counter despite being targeted twice");
+}
+
+async function testMaleniaGoddessOfRot() {
+    resetState();
+    const malenia = CardFactory.create({ card_name: "Malenia, Goddess of Rot", pt: "3/5" });
+    malenia.owner = 'player';
+    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    fodder.owner = 'player';
+    state.player.board = [malenia];
+    
+    // 1. hasAction Check
+    assert.strictEqual(malenia.hasAction(), false, "Should not have action if solo");
+    state.player.board.push(fodder);
+    assert.strictEqual(malenia.hasAction(), true, "Should have action with fodder");
+    
+    // 2. onAction -> Discovery
+    await malenia.onAction();
+    assert.strictEqual(state.targetingEffect.effect, 'malenia_sacrifice', "Should queue sacrifice");
+    
+    // 3. Resolve Sacrifice -> Choice Modal
+    state.targetingEffect.sourceId = malenia.id;
+    await applyTargetedEffect(fodder.id);
+    assert.ok(!state.player.board.includes(fodder), "Fodder should be sacrificed");
+    assert.strictEqual(state.discovery.effect, 'malenia_choice', "Should open choice modal");
+    
+    // 4. Choice: Indestructible
+    const choiceIndestructible = state.discovery.cards.find(c => c.card_name === 'Indestructible');
+    await resolveDiscovery(choiceIndestructible);
+    assert.ok(malenia.hasKeyword('Indestructible'), "Malenia should be indestructible");
+    assert.ok(!malenia.isLockedByChivalry, "Malenia should NOT be tapped/locked");
+    
+    // 5. Choice: Proliferate (and Auto-Proliferate)
+    resetState();
+    const malenia2 = CardFactory.create({ card_name: "Malenia, Goddess of Rot", pt: "3/5" });
+    malenia2.owner = 'player';
+    const sacTarget = CardFactory.create({ card_name: "Sacrifice Me", pt: "1/1" });
+    sacTarget.owner = 'player';
+    const proliferateTarget = CardFactory.create({ card_name: "Proliferate Me", pt: "1/1" });
+    proliferateTarget.owner = 'player';
+    
+    state.player.board = [malenia2, sacTarget, proliferateTarget];
+    proliferateTarget.counters = 1;
+    
+    // Give her indestructible via enchantment object
+    malenia2.enchantments = [{ card_name: 'Test', rules_text: 'Indestructible' }];
+    assert.ok(malenia2.hasKeyword('Indestructible'), "Setup: Malenia should have indestructible");
+    
+    await malenia2.onAction();
+    // It queues a sacrifice specifically for auto-mode
+    assert.strictEqual(state.targetingEffect.effect, 'malenia_sacrifice_auto');
+    state.targetingEffect.sourceId = malenia2.id;
+    await applyTargetedEffect(sacTarget.id);
+    
+    assert.ok(!state.player.board.includes(sacTarget), "Sacrifice Me should be gone");
+    assert.strictEqual(proliferateTarget.counters, 2, "Proliferate Me should have proliferated");
+    assert.ok(!state.discovery, "Should NOT have opened discovery (auto-proliferated)");
+}
+
+async function testSwiftZulufaa() {
+    resetState();
+    const zulufaa = CardFactory.create({ card_name: "Swift Zulufaa", pt: "2/2" });
+    const source = CardFactory.create({ card_name: "Source", pt: "1/1" });
+    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    
+    source.counters = 2;
+    source.flyingCounters = 1;
+    state.player.board = [zulufaa, source, target];
+    zulufaa.owner = source.owner = target.owner = 'player';
+    
+    // 1. ETB -> Step 1
+    zulufaa.onETB(state.player.board);
+    assert.strictEqual(state.targetingEffect.effect, 'zulufaa_step1');
+    
+    // 2. Step 1 -> Step 2
+    await applyTargetedEffect(source.id);
+    assert.strictEqual(state.targetingEffect.effect, 'zulufaa_step2');
+    assert.strictEqual(state.targetingEffect.fromId, source.id);
+    
+    // 3. Resolve Transfer
+    await applyTargetedEffect(target.id);
+    assert.strictEqual(source.counters, 0, "Source should have 0 counters");
+    assert.strictEqual(source.flyingCounters, 0, "Source should have 0 flying counters");
+    assert.strictEqual(target.counters, 2, "Target should have 2 counters");
+    assert.strictEqual(target.flyingCounters, 1, "Target should have 1 flying counter");
+}
+
 async function testCitadelColossus() {
     resetState();
     const colossus = CardFactory.create({ card_name: "Citadel Colossus", pt: "11/12", rules_text: "Indestructible" });
@@ -3612,7 +3720,8 @@ async function runTests() {
         { tier: 3, name: "Bjarndyr Bruiser", fn: testBjarndyrBruiser },
         { tier: 3, name: "Gold Grubber", fn: testGoldGrubber },
         { tier: 3, name: "Herd Matron", fn: testHerdMatron },
-        { tier: 3, name: "Sunspear Angel", fn: testSunspearAngel }
+        { tier: 3, name: "Sunspear Angel", fn: testSunspearAngel },
+        { tier: 3, name: "Pheres-Band Huntmaster", fn: testPheresBandHuntmaster }
     ];
 
     const t4Tests = [
@@ -3652,7 +3761,8 @@ async function runTests() {
         { tier: 4, name: "Honor Begets Glory (Stacking)", fn: testHonorBegetsGlory_Stacking },
         { tier: 4, name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion },
         { tier: 4, name: "Mirror Image", fn: testMirrorImage },
-        { tier: 4, name: "Tin Woodsman", fn: testTinWoodsman }
+        { tier: 4, name: "Tin Woodsman", fn: testTinWoodsman },
+        { tier: 4, name: "Swift Zulufaa", fn: testSwiftZulufaa }
     ];
 
     const t5Tests = [
@@ -3678,7 +3788,8 @@ async function runTests() {
         { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
         { tier: 5, name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
         { tier: 5, name: "Helicos Gargantua", fn: testHelicosGargantua },
-        { tier: 5, name: "Hero's Sledge", fn: testHerosSledge }
+        { tier: 5, name: "Hero's Sledge", fn: testHerosSledge },
+        { tier: 5, name: "Malenia, Goddess of Rot", fn: testMaleniaGoddessOfRot }
     ];
 
     console.log("\nUNIT TEST RESULTS");

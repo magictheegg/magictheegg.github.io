@@ -986,6 +986,10 @@ class BaseCard {
     }
 
     class IntliAssaulter extends BaseCard {
+        hasAction() { 
+            const board = (this.owner === 'player') ? state.player.board : (getOpponent()?.board || []);
+            return !this.actionUsed && !this.temporaryHumility && board.length > 1; 
+        }
         onAction() {
             queueTargetingEffect({ 
                 sourceId: this.id, 
@@ -2519,6 +2523,59 @@ class BaseCard {
         }
     }
 
+    class PheresBandHuntmaster extends BaseCard {
+        async onNoncreatureCast(spell, board, targets = []) {
+            const wasTargeted = targets.some(t => t.id === this.id);
+            if (wasTargeted) {
+                const multiplier = this.isFoil ? 2 : 1;
+                addCounters(this, 1 * multiplier, board);
+                state.player.fightHp += (2 * multiplier);
+                triggerLifeGain('player');
+            }
+        }
+    }
+
+    class MaleniaGoddessOfRot extends BaseCard {
+        hasAction() { 
+            const board = (this.owner === 'player') ? state.player.board : (getOpponent()?.board || []);
+            return !this.temporaryHumility && board.length > 1; 
+        }
+        async onAction() {
+            const board = (this.owner === 'player') ? state.player.board : (getOpponent()?.board || []);
+            if (board.length <= 1) return;
+            
+            if (this.hasKeyword('Indestructible')) {
+                queueTargetingEffect({
+                    sourceId: this.id,
+                    title: this.card_name,
+                    text: "Sacrifice another creature to proliferate.",
+                    effect: 'malenia_sacrifice_auto'
+                });
+            } else {
+                queueTargetingEffect({
+                    sourceId: this.id,
+                    title: this.card_name,
+                    text: "Sacrifice another creature to gain indestructible or proliferate.",
+                    effect: 'malenia_sacrifice',
+                    isMandatory: false
+                });
+            }
+        }
+    }
+
+    class SwiftZulufaa extends BaseCard {
+        onETB(board, isDouble = false) {
+            if (this.owner !== 'player') return;
+            queueTargetingEffect({
+                sourceId: this.id,
+                title: this.card_name,
+                text: "Choose a creature to move counters FROM.",
+                effect: 'zulufaa_step1',
+                wasCast: !isDouble
+            });
+        }
+    }
+
     class MagnificWilderkin extends BaseCard {
         onCombatStart(board, host = this) {
             const keywords = [
@@ -2851,6 +2908,10 @@ class BaseCard {
     }
 
     class CovetousWechuge extends BaseCard {
+        hasAction() { 
+            const board = (this.owner === 'player') ? state.player.board : (getOpponent()?.board || []);
+            return !this.actionUsed && !this.temporaryHumility && board.length > 1; 
+        }
         onAction() {
             queueTargetingEffect({ 
                 sourceId: this.id, 
@@ -3185,6 +3246,11 @@ class BaseCard {
             super(data);
             this.actionCost = 1;
         }
+        hasAction() {
+            const board = (this.owner === 'player') ? state.player.board : (getOpponent()?.board || []);
+            const hasGold = (this.owner === 'player') ? state.player.gold >= 1 : true;
+            return !this.actionUsed && !this.temporaryHumility && board.length > 1 && hasGold;
+        }
         onAction() {
             if (state.player.gold >= 1 && state.player.board.length > 1) {
                 queueTargetingEffect({
@@ -3463,6 +3529,9 @@ class BaseCard {
                 case 'Helicos Gargantua': card = new HelicosGargantua(data); break;
                 case 'Tin Woodsman': card = new TinWoodsman(data); break;
                 case 'Am\'Atambi\'s Wildkin': card = new AmAtambisWildkin(data); break;
+                case 'Pheres-Band Huntmaster': card = new PheresBandHuntmaster(data); break;
+                case 'Malenia, Goddess of Rot': card = new MaleniaGoddessOfRot(data); break;
+                case 'Swift Zulufaa': card = new SwiftZulufaa(data); break;
                 case 'Pestilent Leopardfly': card = new PestilentLeopardfly(data); break;
                 case 'Touch of the Omen': card = new TouchOfTheOmen(data); break;
                 case 'Faceless Faction': card = new FacelessFaction(data); break;
@@ -4206,6 +4275,24 @@ class BaseCard {
         if (!state.discovery || !card) return;
 
         const board = (state.phase === 'BATTLE' && state.battleBoards) ? state.battleBoards.player : state.player.board;
+
+        if (state.discovery.effect === 'malenia_choice') {
+            const source = board.find(c => c.id === state.discovery.sourceId);
+            if (source) {
+                const choice = card.card_name;
+                const multiplier = source.isFoil ? 2 : 1;
+                if (choice === 'Indestructible') {
+                    if (!source.enchantments) source.enchantments = [];
+                    source.enchantments.push({ card_name: 'Malenia Blessing', rules_text: 'Indestructible', isTemporary: true });
+                    source.pulse(board);
+                } else if (choice === 'Proliferate') {
+                    await proliferate(board, 'player', multiplier);
+                }
+            }
+            processDiscoveryQueue();
+            await resolveAnimations();
+            return;
+        }
 
         if (state.discovery.effect === 'ndengo_choice') {
             const source = board.find(c => c.id === state.discovery.sourceId);
@@ -4967,7 +5054,10 @@ class BaseCard {
             const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
             const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
             const extension = card.image_type || card.set_image_type || "jpg";
-            const imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+            let imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+            if (card.is_remote && card.remote_host) {
+                imgPath = `${card.remote_host}/${imgPath}`;
+            }
             glossaryPreviewImg.src = imgPath;
 
             let html = `<h2>${card.card_name}</h2>`;
@@ -5044,7 +5134,10 @@ class BaseCard {
                     const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
                     const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
                     const extension = card.image_type || card.set_image_type || "jpg";
-                    const imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+                    let imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+                    if (card.is_remote && card.remote_host) {
+                        imgPath = `${card.remote_host}/${imgPath}`;
+                    }
                     item.innerHTML = `<img src="${imgPath}" alt="${card.card_name}">`;
                     item.addEventListener('mouseenter', () => updateGlossaryPreview(card));
                     grid.appendChild(item);
@@ -7048,7 +7141,8 @@ class BaseCard {
                         'executioner_sacrifice_step1', 'executioner_sacrifice_step2',
                         'warrior_ways_step1', 'warrior_ways_step2',
                         'whispers_sacrifice', 'mirror_image', 'sunspear_angel_buff',
-                        'equip_creature'
+                        'equip_creature', 'malenia_sacrifice', 'malenia_sacrifice_auto',
+                        'zulufaa_step1', 'zulufaa_step2'
                     ];
                     effect.isMandatory = !nonMandatoryEffects.includes(effect.effect) && !effect.isHeroPower;
                 }
@@ -7183,6 +7277,84 @@ class BaseCard {
                             getOpponent().heroPowerActivations++;
                         }
                     }
+
+                    clearTargetingEffect(true);
+                }
+            } else if (state.targetingEffect.effect === 'malenia_sacrifice' || state.targetingEffect.effect === 'malenia_sacrifice_auto') {
+                const source = state.player.board.find(c => c.id === state.targetingEffect.sourceId);
+                if (source && target.id !== source.id) {
+                    const idx = state.player.board.indexOf(target);
+                    if (idx !== -1) {
+                        resolveShopDeaths(idx, target, true);
+                        
+                        if (state.targetingEffect.effect === 'malenia_sacrifice_auto' || source.hasKeyword('Indestructible')) {
+                            // Proliferate automatically
+                            const multiplier = source.isFoil ? 2 : 1;
+                            await proliferate(state.player.board, 'player', multiplier);
+                            clearTargetingEffect(true);
+                        } else {
+                            // Open discovery modal for choice
+                            const options = [
+                                { card_name: 'Indestructible', rules_text: 'Indestructible', type: 'Keyword' },
+                                { card_name: 'Proliferate', rules_text: 'Proliferate', type: 'Keyword' }
+                            ];
+                            
+                            // Important: clear the targeting effect FIRST so the UI is ready for Discovery
+                            clearTargetingEffect(true);
+
+                            queueDiscovery({
+                                cards: options.map(o => CardFactory.create(o)),
+                                isKeywordChoice: true,
+                                title: "GODDESS OF ROT",
+                                text: "Choose a blessing.",
+                                effect: 'malenia_choice',
+                                sourceId: source.id
+                            });
+                        }
+                    }
+                }
+            } else if (state.targetingEffect.effect === 'zulufaa_step1') {
+                state.targetingEffect.fromId = target.id;
+                state.targetingEffect.effect = 'zulufaa_step2';
+                state.targetingEffect.text = "Choose a creature to move counters TO.";
+            } else if (state.targetingEffect.effect === 'zulufaa_step2') {
+                const fromCard = state.player.board.find(c => c.id === state.targetingEffect.fromId);
+                if (fromCard && target.id !== fromCard.id) {
+                    const props = [
+                        'counters', 'flyingCounters', 'menaceCounters', 'firstStrikeCounters',
+                        'doubleStrikeCounters', 'vigilanceCounters', 'lifelinkCounters',
+                        'deathtouchCounters', 'trampleCounters', 'reachCounters',
+                        'hexproofCounters', 'shieldCounters'
+                    ];
+
+                    const board = state.player.board;
+                    const snapshotFrom = fromCard.takeSnapshot();
+                    const snapshotTo = target.takeSnapshot();
+
+                    props.forEach(p => {
+                        target[p] = (target[p] || 0) + (fromCard[p] || 0);
+                        fromCard[p] = 0;
+                    });
+
+                    fromCard.pulseQueueCount = (fromCard.pulseQueueCount || 0) + 1;
+                    fromCard.isPulsing = true;
+                    target.pulseQueueCount = (target.pulseQueueCount || 0) + 1;
+                    target.isPulsing = true;
+
+                    queueAnimation(async () => {
+                        await Promise.all([
+                            pulseCardElement(fromCard, board, snapshotFrom),
+                            pulseCardElement(target, board, snapshotTo)
+                        ]);
+                        
+                        [fromCard, target].forEach(c => {
+                            c.pulseQueueCount--;
+                            if (c.pulseQueueCount <= 0) {
+                                delete c.isPulsing;
+                                delete c.pulseQueueCount;
+                            }
+                        });
+                    });
 
                     clearTargetingEffect(true);
                 }
@@ -9362,13 +9534,16 @@ class BaseCard {
                             icon.style.width = '160px';
                             icon.style.height = '160px';
                             icon.style.fontSize = '1.5em';
+
                             const img = document.createElement('img');
                             img.src = `img/${kw.replace(' ', '-')}.png`;
                             img.alt = kw;
                             icon.appendChild(img);
                             const label = document.createElement('div');
                             label.className = 'discovery-item-label';
+                            
                             label.textContent = card.rules_text;
+
                             wrapper.appendChild(icon);
                             wrapper.appendChild(label);
                         }
@@ -9612,7 +9787,12 @@ class BaseCard {
         const imageName = instance.position ? instance.position : `${instance.number}${tokenSuffix}_${instance.card_name}`;
         const doubleSuffix = (instance.shape?.includes('double')) ? "_front" : "";
         const extension = instance.image_type || instance.set_image_type || "jpg";
-        cardEl.querySelector('.card-art').src = `sets/${instance.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+        
+        let artPath = `sets/${instance.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+        if (instance.is_remote && instance.remote_host) {
+            artPath = `${instance.remote_host}/${artPath}`;
+        }
+        cardEl.querySelector('.card-art').src = artPath;
         
         const costEl = cardEl.querySelector('.card-cost');
         const isCreature = instance.type?.toLowerCase().includes('creature');
@@ -9869,7 +10049,14 @@ class BaseCard {
             const eqImageName = instance.equipment.position ? instance.equipment.position : `${instance.equipment.number}${eqTokenSuffix}_${instance.equipment.card_name}`;
             const eqDoubleSuffix = (instance.equipment.shape?.includes('double')) ? "_front" : "";
             const eqExt = instance.equipment.image_type || instance.equipment.set_image_type || "jpg";
-            img.src = `sets/${instance.equipment.set}-files/img/${eqImageName}${eqDoubleSuffix}.${eqExt}`;
+            
+            let eqPath = `sets/${instance.equipment.set}-files/img/${eqImageName}${eqDoubleSuffix}.${eqExt}`;
+            if (instance.equipment.is_remote && instance.equipment.remote_host) {
+                eqPath = `${instance.equipment.remote_host}/${eqPath}`;
+            } else if (instance.is_remote && instance.remote_host) {
+                eqPath = `${instance.remote_host}/${eqPath}`;
+            }
+            img.src = eqPath;
             
             eqContainer.appendChild(img);
             cardEl.appendChild(eqContainer);
@@ -9888,7 +10075,12 @@ class BaseCard {
                 const sImageName = sourceSpell.position ? sourceSpell.position : `${sourceSpell.number}${sTokenSuffix}_${sourceSpell.card_name}`;
                 const sDoubleSuffix = (sourceSpell.shape?.includes('double')) ? "_front" : "";
                 const sExt = sourceSpell.image_type || sourceSpell.set_image_type || "jpg";
-                img.src = `sets/${sourceSpell.set}-files/img/${sImageName}${sDoubleSuffix}.${sExt}`;
+                
+                let sPath = `sets/${sourceSpell.set}-files/img/${sImageName}${sDoubleSuffix}.${sExt}`;
+                if (instance.is_remote && instance.remote_host) {
+                    sPath = `${instance.remote_host}/${sPath}`;
+                }
+                img.src = sPath;
                 showcaseContainer.appendChild(img);
                 cardEl.appendChild(showcaseContainer);
             }
@@ -10047,10 +10239,12 @@ class BaseCard {
                     // Not targetable on board (targets shop)
                 } else {
                     // Special case: Intli Assaulter, Wechuge, Brutalizer can't target themselves
-                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'ndengo_target'];
+                    const cannotTargetSelf = ['intli_sacrifice', 'wechuge_sacrifice', 'ndengo_target', 'malenia_sacrifice', 'malenia_sacrifice_auto'];
                     if (cannotTargetSelf.includes(state.targetingEffect.effect) && instance.id === state.targetingEffect.sourceId) {
                         // Not targetable
                     } else if (state.targetingEffect.effect === 'permutate_step2' && instance.id === state.targetingEffect.sourceCreatureId) {
+                        // Not targetable (must be different creature)
+                    } else if (state.targetingEffect.effect === 'zulufaa_step2' && instance.id === state.targetingEffect.fromId) {
                         // Not targetable (must be different creature)
                     } else if (state.targetingEffect.effect === 'warrior_ways_step2' && !instance.isType('Centaur')) {
                         // Not targetable if not a Centaur

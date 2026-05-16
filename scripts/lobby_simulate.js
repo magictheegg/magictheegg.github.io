@@ -52,6 +52,22 @@ coliseum.render = () => {};
 const cardData = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/coliseum-cards.json'), 'utf8'));
 setAvailableCards(cardData.cards);
 
+// Skiplist configuration: Add card names here to skip any board that contains them between turns 1-20
+const SKIP_LIST = ["Thrice-Clawed Troika", "Aldmore Chaperone"]; 
+
+function shouldSkipBoard(boardData) {
+    if (SKIP_LIST.length === 0) return false;
+    // Check turns 1 to 20
+    for (let t = 1; t <= 20; t++) {
+        const turnData = boardData[t];
+        if (turnData && turnData.preCombatBoard) {
+            const hasSkippedCard = turnData.preCombatBoard.some(c => SKIP_LIST.includes(c.card_name));
+            if (hasSkippedCard) return true;
+        }
+    }
+    return false;
+}
+
 // Statistics collection
 const finalBoardStats = {
     winners: {},
@@ -353,7 +369,11 @@ async function run() {
         const file = path.join(__dirname, `../resources/training-data/training_${name}.json`);
         const data = JSON.parse(fs.readFileSync(file, 'utf8'));
         const boards = organize(data);
-        const instances = Object.keys(boards).filter(k => k !== 'maxTurn').map(Number);
+        const instances = Object.keys(boards)
+            .filter(k => k !== 'maxTurn')
+            .map(Number)
+            .filter(id => !shouldSkipBoard(boards[id]));
+        
         allHeroesData.push({ name, boards, instances });
         totalBoardsCount += instances.length;
     }

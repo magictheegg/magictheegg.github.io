@@ -1,7 +1,15 @@
 import json
 import os
+import urllib.request
 
 def create_coliseum_card_list():
+    # External cards from other sites
+    remote_card_configs = [
+        {"name": "Pheres-Band Huntmaster", "user": "dnazangy", "set": "TRX", "tier": 3},
+        {"name": "Malenia, Goddess of Rot", "user": "Provocativemtg", "set": "EDRC", "tier": 5},
+        {"name": "Swift Zulufaa", "user": "Grapplex", "set": "AKI", "tier": 4},
+    ]
+
     card_names_to_include = [
         "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Intli Assaulter",
         "Sanctuary Centaur", "War-Clan Dowager",
@@ -60,6 +68,36 @@ def create_coliseum_card_list():
     cards = all_cards_data.get('cards', [])
     
     final_cards = []
+    
+    # --- FETCH REMOTE CARDS ---
+    for config in remote_card_configs:
+        url = f"https://{config['user']}.github.io/sets/{config['set']}-files/{config['set']}.json"
+        try:
+            print(f"Fetching remote card '{config['name']}' from {url}...")
+            with urllib.request.urlopen(url) as response:
+                remote_data = json.loads(response.read().decode('utf-8-sig'))
+                match = next((c for c in remote_data.get('cards', []) if c.get('card_name') == config['name']), None)
+                if match:
+                    card_copy = dict(match)
+                    card_copy['tier'] = config['tier']
+                    
+                    # Remote Image Configuration
+                    image_type = remote_data.get('image_type', 'png') # Default to png for remote
+                    card_copy['set_image_type'] = image_type
+                    
+                    # If the set specifies using position for names, ensure it's prioritized
+                    if remote_data.get('image_name') == 'position' and not card_copy.get('position'):
+                        # Fallback if position is missing but requested
+                        card_copy['position'] = str(card_copy.get('number', ''))
+                        
+                    card_copy['is_remote'] = True
+                    card_copy['remote_host'] = f"https://{config['user']}.github.io"
+                    final_cards.append(card_copy)
+                else:
+                    print(f"Warning: Could not find '{config['name']}' in remote set {config['set']}")
+        except Exception as e:
+            print(f"Error fetching remote card {config['name']}: {e}")
+
     tier_2_names = [
         "Am'Atambi's Wildkin",
         "Angora Paladin",
@@ -188,6 +226,10 @@ def create_coliseum_card_list():
     ]
 
     for name in card_names_to_include:
+        # Skip if already added via remote
+        if any(c.get('card_name') == name for c in final_cards):
+            continue
+
         # Special case: prioritize specific sets if needed
         preferred_set = None
         if name == "Nacreous Hydra":
@@ -249,6 +291,10 @@ def create_coliseum_card_list():
     # Add set-level image_type for consistency
     set_img_types = {}
     for card in final_cards:
+        # Don't overwrite if it's remote or already specifically set
+        if card.get('is_remote'):
+            continue
+            
         s = card.get('set')
         if s not in set_img_types:
             set_file = os.path.join('sets', f'{s}-files', f'{s}.json')
