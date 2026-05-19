@@ -126,13 +126,22 @@ function resetState() {
     setAvailableCards(fullCardPool);
 }
 
+function createTestCard(name, overrides = {}) {
+    const cardData = fullCardPool.find(c => c.card_name === name);
+    if (!cardData) {
+        // Fallback to creating a card with just the provided data
+        return CardFactory.create({ card_name: name, ...overrides });
+    }
+    return CardFactory.create({ ...cardData, ...overrides });
+}
+
 // --- TIER 1 TESTS ---
 
 async function testYamamuraTheWanderer() {
     resetState();
-    const yamamura = CardFactory.create({ card_name: "Yamamura the Wanderer", pt: "2/1", type: "Legendary Creature – Human Samurai" });
-    const unequipped = CardFactory.create({ card_name: "Unequipped", pt: "1/1" });
-    const equipped = CardFactory.create({ card_name: "Equipped", pt: "1/1" });
+    const yamamura = createTestCard("Yamamura the Wanderer");
+    const unequipped = createTestCard("Unequipped", { pt: "1/1" });
+    const equipped = createTestCard("Equipped", { pt: "1/1" });
     equipped.equipment = { card_name: "Sledge", getEquipmentStats: () => ({p: 6, t: 6}) };
     
     state.player.board = [yamamura, unequipped, equipped];
@@ -158,8 +167,8 @@ async function testYamamuraTheWanderer() {
 
 async function testSunspearAngel() {
     resetState();
-    const angel = CardFactory.create({ card_name: "Sunspear Angel", pt: "3/4" });
-    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    const angel = createTestCard("Sunspear Angel");
+    const target = createTestCard("Target", { pt: "2/2" });
     state.player.board = [angel, target];
     angel.owner = target.owner = 'player';
 
@@ -191,9 +200,9 @@ async function testSunspearAngel() {
 async function testMirrorImage() {
     // 1. Copying ETB and Replacing Self
     resetState();
-    const target = CardFactory.create({ card_name: "Sunspear Angel", pt: "3/4", type: "Creature" });
-    const mirror = CardFactory.create({ card_name: "Mirror Image", pt: "0/0", type: "Creature" });
-    const third = CardFactory.create({ card_name: "Third Wheel", pt: "1/1", type: "Creature" });
+    const target = createTestCard("Sunspear Angel");
+    const mirror = createTestCard("Mirror Image");
+    const third = createTestCard("Third Wheel", { pt: "1/1", type: "Creature" });
     
     state.player.board = [target, mirror, third];
     mirror.owner = target.owner = third.owner = 'player';
@@ -223,7 +232,7 @@ async function testMirrorImage() {
 
     // 2. Not playable on open board
     resetState();
-    const mirror2 = CardFactory.create({ card_name: "Mirror Image", pt: "0/0", type: "Creature" });
+    const mirror2 = createTestCard("Mirror Image");
     state.player.hand = [mirror2];
     await useCardFromHand(mirror2.id);
     assert.strictEqual(state.player.board.length, 0, "Mirror Image should not be playable on empty board");
@@ -232,8 +241,8 @@ async function testMirrorImage() {
 
 async function testHerosSledge() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const sledge = CardFactory.create({ card_name: "Hero's Sledge", type: "Equipment", rules_text: "Equipped creature gets +6/+6." });
+    const host = createTestCard("Host", { pt: "2/2" });
+    const sledge = createTestCard("Hero's Sledge", { type: "Equipment", rules_text: "Equipped creature gets +6/+6." });
     host.equipment = sledge;
     state.player.board = [host];
 
@@ -247,7 +256,7 @@ async function testHerosSledge() {
 
 async function testHuitzilSkywatch() {
     resetState();
-    const card = CardFactory.create({ card_name: "Huitzil Skywatch", pt: "1/4", rules_text: "Flying" });
+    const card = createTestCard("Huitzil Skywatch");
     assert.strictEqual(card.hasKeyword('flying'), true, "Huitzil Skywatch should have Flying");
     const stats = card.getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 1);
@@ -256,15 +265,14 @@ async function testHuitzilSkywatch() {
 
 async function testGlumvaleRaven() {
     resetState();
-    const raven = CardFactory.create({ card_name: "Glumvale Raven", pt: "1/2", rules_text: `Flying
-Glumvale Raven gets +1/+0 as long as you control another creature with flying.` });
+    const raven = createTestCard("Glumvale Raven");
     state.player.board.push(raven);
     
     // Alone
     assert.strictEqual(raven.getDisplayStats(state.player.board).p, 1, "Raven should be 1/2 alone");
     
     // With another flyer
-    const flyer = CardFactory.create({ card_name: "Huitzil Skywatch", pt: "1/4", rules_text: "Flying" });
+    const flyer = createTestCard("Huitzil Skywatch");
     state.player.board.push(flyer);
     assert.strictEqual(raven.getDisplayStats(state.player.board).p, 2, "Raven should be 2/2 with another flyer");
 
@@ -275,7 +283,7 @@ Glumvale Raven gets +1/+0 as long as you control another creature with flying.` 
 
 async function testRottenCarcass() {
     resetState();
-    const carcass = CardFactory.create({ card_name: "Rotten Carcass", pt: "1/1", set: "AEX", rules_text: "When Rotten Carcass dies, create a 2/2 colorless Construct artifact creature token." });
+    const carcass = createTestCard("Rotten Carcass");
     
     // Populate availableCards
     availableCards.length = 0;
@@ -311,12 +319,12 @@ async function testRottenCarcass() {
 
 async function testWarClanDowager() {
     resetState();
-    const dowager = CardFactory.create({ card_name: "War-Clan Dowager", pt: "2/2", type: "Creature – Centaur Cleric" });
+    const dowager = createTestCard("War-Clan Dowager");
     state.player.board.push(dowager);
     
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 2, "2/2 alone");
     
-    const centaur = CardFactory.create({ card_name: "Other Centaur", type: "Creature – Centaur" });
+    const centaur = createTestCard("Other Centaur", { type: "Creature – Centaur" });
     state.player.board.push(centaur);
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 3, "3/3 with another centaur");
 
@@ -326,7 +334,7 @@ async function testWarClanDowager() {
 
 async function testClairvoyantKoi() {
     resetState();
-    const koi = CardFactory.create({ card_name: "Clairvoyant Koi", pt: "2/1" });
+    const koi = createTestCard("Clairvoyant Koi");
     state.player.board.push(koi);
 
     koi.onNoncreatureCast({ isFoil: false }, state.player.board);
@@ -335,7 +343,7 @@ async function testClairvoyantKoi() {
 
 async function testSoulsmokeAdept() {
     resetState();
-    const adept = CardFactory.create({ card_name: "Soulsmoke Adept", pt: "2/2" });
+    const adept = createTestCard("Soulsmoke Adept");
     state.player.board.push(adept);
     
     assert.strictEqual(adept.getDisplayStats(state.player.board).p, 2, "Not embattled");
@@ -352,7 +360,7 @@ async function testSoulsmokeAdept() {
 
 async function testIntliAssaulter() {
     resetState();
-    const intli = CardFactory.create({ card_name: "Intli Assaulter", pt: "2/2" });
+    const intli = createTestCard("Intli Assaulter");
     state.player.board = [intli];
     intli.onAction();
     
@@ -372,8 +380,8 @@ async function testIntliAssaulter() {
 
 async function testSparringCampaigner() {
     resetState();
-    const campaigner = CardFactory.create({ card_name: "Sparring Campaigner", pt: "2/2" });
-    const target = CardFactory.create({ card_name: "Weakling", pt: "1/1" });
+    const campaigner = createTestCard("Sparring Campaigner");
+    const target = createTestCard("Weakling", { pt: "1/1" });
     state.player.board = [campaigner, target];
     
     await campaigner.onCombatStart(state.player.board);
@@ -381,7 +389,7 @@ async function testSparringCampaigner() {
     assert.strictEqual(campaigner.isLockedByChivalry, true, "Campaigner should be locked");
 
     resetState();
-    const target2 = CardFactory.create({ card_name: "Stronger", pt: "2/2" });
+    const target2 = createTestCard("Stronger", { pt: "2/2" });
     state.player.board = [campaigner, target2];
     campaigner.isLockedByChivalry = false;
     await campaigner.onCombatStart(state.player.board);
@@ -391,7 +399,7 @@ async function testSparringCampaigner() {
 
 async function testRakkiriArcher() {
     resetState();
-    const archer = CardFactory.create({ card_name: "Rakkiri Archer", pt: "2/3", rules_text: "Reach" });
+    const archer = createTestCard("Rakkiri Archer");
     state.player.board = [archer];
     
     assert.strictEqual(archer.hasKeyword('reach'), false, "No reach when not embattled");
@@ -403,21 +411,21 @@ async function testRakkiriArcher() {
 
 async function testBlisteringLunatic() {
     resetState();
-    const lunatic = CardFactory.create({ card_name: "Blistering Lunatic", pt: "2/1" });
+    const lunatic = createTestCard("Blistering Lunatic");
     lunatic.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(lunatic.tempPower, 2, "+2/+0 on noncreature cast");
 }
 
 async function testSanctuaryCentaur() {
     resetState();
-    const centaur = CardFactory.create({ card_name: "Sanctuary Centaur", pt: "3/2", rules_text: "Trample" });
+    const centaur = createTestCard("Sanctuary Centaur");
     assert.strictEqual(centaur.hasKeyword('trample'), true);
 }
 
 async function testDutifulCamel() {
     resetState();
-    const camel = CardFactory.create({ card_name: "Dutiful Camel", pt: "1/1" });
-    const other = CardFactory.create({ card_name: "Other", pt: "2/2" });
+    const camel = createTestCard("Dutiful Camel");
+    const other = createTestCard("Other", { pt: "2/2" });
     state.player.board = [camel, other];
 
     // Trigger ETB
@@ -440,13 +448,13 @@ async function testDutifulCamel() {
 async function testFrontlineCavalier() {
 
     resetState();
-    const cavalier = CardFactory.create({ card_name: "Frontline Cavalier", pt: "2/2", rules_text: "Vigilance" });
+    const cavalier = createTestCard("Frontline Cavalier");
     assert.strictEqual(cavalier.hasKeyword('vigilance'), true);
 }
 
 async function testLakeCaveLurker() {
     resetState();
-    const lurker = CardFactory.create({ card_name: "Lake Cave Lurker", pt: "1/1" });
+    const lurker = createTestCard("Lake Cave Lurker");
     
     state.phase = 'SHOP';
     lurker.onDeath([], 'player');
@@ -460,8 +468,8 @@ async function testLakeCaveLurker() {
 
 async function testFaithInDarkness() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Faith in Darkness" });
-    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    const spell = createTestCard("Faith in Darkness");
+    const target = createTestCard("Target", { pt: "2/2" });
     spell.onApply(target, state.player.board);
     assert.strictEqual(state.scrying.count, 1, "Should scry 1");
     assert.strictEqual(target.enchantments.length, 1);
@@ -470,7 +478,7 @@ async function testFaithInDarkness() {
 
 async function testScientificInquiry() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Scientific Inquiry" });
+    const spell = createTestCard("Scientific Inquiry");
     spell.onCast(state.player.board);
     assert.strictEqual(state.player.treasures, 1);
     assert.strictEqual(state.scrying.count, 2);
@@ -478,8 +486,8 @@ async function testScientificInquiry() {
 
 async function testToBattle() {
     resetState();
-    const spell = CardFactory.create({ card_name: "To Battle" });
-    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    const spell = createTestCard("To Battle");
+    const target = createTestCard("Target", { pt: "2/2" });
     spell.onApply(target, []);
     assert.strictEqual(target.counters, 1);
     assert.strictEqual(target.hasKeyword('haste'), true, "Should gain Haste");
@@ -488,15 +496,15 @@ async function testToBattle() {
 
 async function testDivination() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Divination" });
+    const spell = createTestCard("Divination");
     spell.onCast(state.player.board);
     assert.strictEqual(state.shop.cards.length, 2);
 }
 
 async function testMightAndMane() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Might and Mane" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const spell = createTestCard("Might and Mane");
+    const target = createTestCard("Target", { pt: "1/1" });
     state.player.board = [target];
     spell.onApply(target, state.player.board);
     
@@ -507,8 +515,8 @@ async function testMightAndMane() {
 
 async function testWayOfTheBygone() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Way of the Bygone" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const spell = createTestCard("Way of the Bygone");
+    const target = createTestCard("Target", { pt: "1/1" });
     state.player.board = [target];
     spell.onApply(target, state.player.board);
     
@@ -522,7 +530,7 @@ async function testWayOfTheBygone() {
 
 async function testExoticGameHunter() {
     resetState();
-    const hunter = CardFactory.create({ card_name: "Exotic Game Hunter", pt: "2/2" });
+    const hunter = createTestCard("Exotic Game Hunter");
     state.player.board = [hunter];
     
     state.creaturesDiedThisShopPhase = false;
@@ -536,8 +544,8 @@ async function testExoticGameHunter() {
 
 async function testRestlessOppressor() {
     resetState();
-    const oppressor = CardFactory.create({ card_name: "Restless Oppressor", pt: "2/2" });
-    const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    const oppressor = createTestCard("Restless Oppressor");
+    const teammate = createTestCard("Teammate", { pt: "1/1" });
     state.player.board = [oppressor, teammate];
     oppressor.owner = 'player';
     teammate.owner = 'player';
@@ -549,8 +557,8 @@ async function testRestlessOppressor() {
     
     // Battle death
     resetState();
-    const oppressor2 = CardFactory.create({ card_name: "Restless Oppressor", pt: "2/2" });
-    const teammate2 = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    const oppressor2 = createTestCard("Restless Oppressor");
+    const teammate2 = createTestCard("Teammate", { pt: "1/1" });
     state.player.board = [oppressor2, teammate2];
     oppressor2.owner = 'player';
     teammate2.owner = 'player';
@@ -561,7 +569,7 @@ async function testRestlessOppressor() {
 
 async function testShriekingPusbag() {
     resetState();
-    const pusbag = CardFactory.create({ card_name: "Shrieking Pusbag", pt: "2/1" });
+    const pusbag = createTestCard("Shrieking Pusbag");
     state.player.board = [pusbag];
     pusbag.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'pusbag_sacrifice');
@@ -571,10 +579,10 @@ async function testShriekingPusbag() {
 
 async function testExecutionersMadness() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Executioner's Madness", set: "und", type: "Sorcery" });
-    const sacTarget = CardFactory.create({ card_name: "Sacrifice Me", pt: "1/1", type: "Creature" });
-    const buffTarget = CardFactory.create({ card_name: "Buff Me", pt: "2/2", type: "Creature" });
-    const adaptiveTarget = CardFactory.create({ card_name: "Adaptive Guy", pt: "2/2", rules_text: "Adaptive", type: "Creature" });
+    const spell = createTestCard("Executioner's Madness");
+    const sacTarget = createTestCard("Sacrifice Me", { pt: "1/1", type: "Creature" });
+    const buffTarget = createTestCard("Buff Me", { pt: "2/2", type: "Creature" });
+    const adaptiveTarget = createTestCard("Adaptive Guy", { pt: "2/2", rules_text: "Adaptive", type: "Creature" });
     
     state.player.board = [sacTarget, buffTarget];
     state.player.hand = [spell];
@@ -605,7 +613,7 @@ async function testExecutionersMadness() {
 
 async function testEarthrattleXali() {
     resetState();
-    const xali = CardFactory.create({ card_name: "Earthrattle Xali", pt: "2/2" });
+    const xali = createTestCard("Earthrattle Xali");
     state.player.board = [xali];
     xali.onNoncreatureCast({ isFoil: false }, state.player.board);
     assert.strictEqual(xali.tempPower, 1, "Should gain +1/+1 on noncreature cast");
@@ -613,8 +621,7 @@ async function testEarthrattleXali() {
 
 async function testDynamicWyvern() {
     resetState();
-    const wyvernData = fullCardPool.find(c => c.card_name === "Dynamic Wyvern");
-    const wyvern = CardFactory.create(wyvernData);
+    const wyvern = createTestCard("Dynamic Wyvern");
     state.player.board = [wyvern];
     assert.strictEqual(wyvern.hasKeyword('flying'), false, "Initially no flying (Should fail right now)");
     wyvern.onNoncreatureCast({ isFoil: false }, state.player.board);
@@ -625,13 +632,13 @@ async function testDynamicWyvern() {
 
 async function testBristledDirebear() {
     resetState();
-    const bear = CardFactory.create({ card_name: "Bristled Direbear", pt: "2/2", rules_text: "Adaptive" });
+    const bear = createTestCard("Bristled Direbear");
     assert.strictEqual(bear.hasKeyword('adaptive'), true, "Should have Adaptive");
 }
 
 async function testConsultTheDewdrops() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Consult the Dewdrops" });
+    const spell = createTestCard("Consult the Dewdrops");
     availableCards.length = 0;
     availableCards.push(
         { card_name: "Consult the Dewdrops", type: "Instant", tier: 2 },
@@ -652,8 +659,8 @@ async function testConsultTheDewdrops() {
 
 async function testEnvoyOfThePure() {
     resetState();
-    const envoy = CardFactory.create({ card_name: "Envoy of the Pure", pt: "3/3" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const envoy = createTestCard("Envoy of the Pure");
+    const other = createTestCard("Other", { pt: "1/1" });
     state.player.board = [envoy, other];
     envoy.onETB(state.player.board);
     assert.strictEqual(other.tempPower, 1, "Other gets +1/+1");
@@ -663,14 +670,14 @@ async function testEnvoyOfThePure() {
 
 async function testCentaurWayfinder() {
     resetState();
-    const wayfinder = CardFactory.create({ card_name: "Centaur Wayfinder", pt: "2/2", type: "Creature – Centaur" });
+    const wayfinder = createTestCard("Centaur Wayfinder");
     state.player.board = [wayfinder];
     const targets = await wayfinder.onAttack(state.player.board);
     assert.strictEqual(targets.length, 1, "Only one target if only one Centaur");
     assert.strictEqual(targets[0].id, wayfinder.id);
     
     resetState();
-    const other = CardFactory.create({ card_name: "Other Centaur", pt: "2/2", type: "Creature – Centaur" });
+    const other = createTestCard("Other Centaur", { pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [wayfinder, other];
     const targets2 = await wayfinder.onAttack(state.player.board);
     assert.strictEqual(targets2.length, 2, "Two targets if two Centaurs");
@@ -679,8 +686,8 @@ async function testCentaurWayfinder() {
 
 async function testWarbandLieutenant() {
     resetState();
-    const lieutenant = CardFactory.create({ card_name: "Warband Lieutenant", pt: "2/2", type: "Creature – Centaur" });
-    const other = CardFactory.create({ card_name: "Other Centaur", pt: "2/2", type: "Creature – Centaur" });
+    const lieutenant = createTestCard("Warband Lieutenant");
+    const other = createTestCard("Other Centaur", { pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [lieutenant, other];
     assert.strictEqual(other.getDisplayStats(state.player.board).p, 3, "Other Centaur gets +1/+1");
     assert.strictEqual(lieutenant.getDisplayStats(state.player.board).p, 2, "Lieutenant does not buff self");
@@ -690,8 +697,8 @@ async function testWarbandLieutenant() {
 
 async function testWarriorsWays() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Warrior's Ways", set: "sur", type: "Instant" });
-    const centaur = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature – Centaur" });
+    const spell = createTestCard("Warrior's Ways");
+    const centaur = createTestCard("Centaur", { pt: "2/2", type: "Creature – Centaur" });
     state.player.board = [centaur];
     state.player.hand = [spell];
     
@@ -711,7 +718,7 @@ async function testStratusTraveler() {
     // 1. Not Cirrusea -> Shift + Bird
     resetState();
     availableCards.push({ card_name: "Bird", shape: "token", pt: "1/2", set: "AEX", type: "Creature", rules_text: "Flying" });
-    const traveler = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
+    const traveler = createTestCard("Stratus Traveler");
     state.player.plane = 'Not Cirrusea';
     traveler.onETB(state.player.board);
     assert.strictEqual(state.player.plane, 'Cirrusea');
@@ -722,8 +729,8 @@ async function testStratusTraveler() {
     // 2. Already Cirrusea, no flying -> Flying Counter (Honest call)
     resetState();
     state.player.plane = 'Cirrusea';
-    const traveler2 = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
-    const targetNoFly = CardFactory.create({ card_name: "NoFly", pt: "1/1" });
+    const traveler2 = createTestCard("Stratus Traveler");
+    const targetNoFly = createTestCard("NoFly", { pt: "1/1" });
     state.player.board = [traveler2, targetNoFly];
     traveler2.onETB(state.player.board);
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
@@ -734,8 +741,8 @@ async function testStratusTraveler() {
     // 3. Already Cirrusea, HAS flying -> +1/+1 Counter (Honest call)
     resetState();
     state.player.plane = 'Cirrusea';
-    const traveler3 = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/1" });
-    const targetFly = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying" });
+    const traveler3 = createTestCard("Stratus Traveler");
+    const targetFly = createTestCard("Flyer", { pt: "1/1", rules_text: "Flying" });
     state.player.board = [traveler3, targetFly];
     traveler3.onETB(state.player.board);
     
@@ -745,7 +752,7 @@ async function testStratusTraveler() {
 
 async function testRapaciousSprite() {
     resetState();
-    const sprite = CardFactory.create({ card_name: "Rapacious Sprite", pt: "1/2", rules_text: "Flying" });
+    const sprite = createTestCard("Rapacious Sprite");
     assert.strictEqual(sprite.hasKeyword('flying'), true);
     sprite.onETB([]);
     assert.strictEqual(state.player.treasures, 1);
@@ -754,9 +761,9 @@ async function testRapaciousSprite() {
 async function testUpInArms() {
     // Case 1: Two targets (Honest call)
     resetState();
-    const spell1 = CardFactory.create({ card_name: "Up in Arms", set: "und", type: "Sorcery" });
-    const t1 = CardFactory.create({ card_name: "T1", pt: "1/1", type: "Creature" });
-    const t2 = CardFactory.create({ card_name: "T2", pt: "1/1", type: "Creature" });
+    const spell1 = createTestCard("Up in Arms");
+    const t1 = createTestCard("T1", { pt: "1/1", type: "Creature" });
+    const t2 = createTestCard("T2", { pt: "1/1", type: "Creature" });
     state.player.board = [t1, t2];
     state.player.hand = [spell1];
     
@@ -768,8 +775,8 @@ async function testUpInArms() {
     
     // Case 2: One target (same thing twice) (Honest call)
     resetState();
-    const spell2 = CardFactory.create({ card_name: "Up in Arms", set: "und", type: "Sorcery" });
-    const t3 = CardFactory.create({ card_name: "T3", pt: "1/1", type: "Creature" });
+    const spell2 = createTestCard("Up in Arms");
+    const t3 = createTestCard("T3", { pt: "1/1", type: "Creature" });
     state.player.board = [t3];
     state.player.hand = [spell2];
     
@@ -781,14 +788,14 @@ async function testUpInArms() {
 
 async function testSilkenSpinner() {
     resetState();
-    const spinner = CardFactory.create({ card_name: "Silken Spinner", pt: "3/4", rules_text: "Reach" });
+    const spinner = createTestCard("Silken Spinner");
     assert.strictEqual(spinner.hasKeyword('reach'), true);
 }
 
 async function testGnomishSkirmisher() {
     resetState();
-    const gnome = CardFactory.create({ card_name: "Gnomish Skirmisher", pt: "1/4" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const gnome = createTestCard("Gnomish Skirmisher");
+    const other = createTestCard("Other", { pt: "1/1" });
     state.player.board = [gnome, other];
     
     await gnome.onAttack(state.player.board);
@@ -798,8 +805,8 @@ async function testGnomishSkirmisher() {
 
 async function testFightSong() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Fight Song" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const spell = createTestCard("Fight Song");
+    const target = createTestCard("Target", { pt: "1/1" });
     spell.onApply(target, []);
     assert.strictEqual(target.counters, 1);
     assert.strictEqual(target.hasKeyword('indestructible'), true);
@@ -819,8 +826,8 @@ async function testFightSong() {
 
 async function testEdgeOfTheirSeats() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Edge of Their Seats" });
-    const c1 = CardFactory.create({ card_name: "C1", pt: "1/1" });
+    const spell = createTestCard("Edge of Their Seats");
+    const c1 = createTestCard("C1", { pt: "1/1" });
     state.player.board = [c1];
     state.player.fightHp = 10;
     spell.onCast(state.player.board);
@@ -832,7 +839,7 @@ async function testEdgeOfTheirSeats() {
 
 async function testRazorbackTrenchrunner() {
     resetState();
-    const runner = CardFactory.create({ card_name: "Razorback Trenchrunner", pt: "5/1", rules_text: "Haste" });
+    const runner = createTestCard("Razorback Trenchrunner");
     availableCards.push({ card_name: "Ox", shape: "token", pt: "3/3", set: "KOD", type: "Creature" });
     state.phase = 'BATTLE';
     const spawns = runner.onDeath([], 'player');
@@ -842,9 +849,9 @@ async function testRazorbackTrenchrunner() {
 
 async function testSporegraftSlime() {
     resetState();
-    const slime = CardFactory.create({ card_name: "Sporegraft Slime", pt: "1/3" });
-    const healthy = CardFactory.create({ card_name: "Healthy", pt: "2/2" });
-    const dying = CardFactory.create({ card_name: "Dying", pt: "1/1" });
+    const slime = createTestCard("Sporegraft Slime");
+    const healthy = createTestCard("Healthy", { pt: "2/2" });
+    const dying = createTestCard("Dying", { pt: "1/1" });
     dying.isDying = true;
     state.player.board = [slime, healthy, dying];
     const oldRandom = Math.random;
@@ -860,7 +867,7 @@ async function testSporegraftSlime() {
 
 async function testMoonlightStag() {
     resetState();
-    const stag = CardFactory.create({ card_name: "Moonlight Stag", pt: "2/5", type: "Creature - Elk Spirit" });
+    const stag = createTestCard("Moonlight Stag");
     state.player.board = [stag];
     
     assert.strictEqual(stag.hasKeyword('vigilance'), false, "Should not have vigilance initially");
@@ -883,8 +890,8 @@ async function testMoonlightStag() {
 
 async function testCovetousWechuge() {
     resetState();
-    const wechuge = CardFactory.create({ card_name: "Covetous Wechuge", pt: "1/1", rules_text: "Menace" });
-    const snack = CardFactory.create({ card_name: "Snack", pt: "1/1" });
+    const wechuge = createTestCard("Covetous Wechuge");
+    const snack = createTestCard("Snack", { pt: "1/1" });
     state.player.board = [wechuge, snack];
     wechuge.onAction();
     assert.strictEqual(state.targetingEffect.effect, 'wechuge_sacrifice');
@@ -895,15 +902,15 @@ async function testCovetousWechuge() {
 
 async function testCabracansFamiliar() {
     resetState();
-    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
+    const familiar = createTestCard("Cabracan's Familiar");
     assert.strictEqual(familiar.getDisplayStats([]).p, 4);
     assert.strictEqual(familiar.getDisplayStats([]).t, 2);
 }
 
 async function testCabracansFamiliar_Shield() {
     resetState();
-    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
-    const defender = CardFactory.create({ card_name: "Defender", pt: "2/5" });
+    const familiar = createTestCard("Cabracan's Familiar");
+    const defender = createTestCard("Defender", { pt: "2/5" });
     defender.shieldCounters = 1;
     
     state.battleBoards = {
@@ -926,7 +933,7 @@ async function testCabracansFamiliar_Shield() {
 
 async function testFinwingDrake() {
     resetState();
-    const drake = CardFactory.create({ card_name: "Finwing Drake", pt: "3/4", rules_text: "Flying" });
+    const drake = createTestCard("Finwing Drake");
     assert.strictEqual(drake.hasKeyword('flying'), true);
     drake.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(drake.tempPower, 1, "Prowess +1/+1");
@@ -935,8 +942,8 @@ async function testFinwingDrake() {
 async function testShrewdParliament() {
     // Case 1: Graveyard and Discardable card (Success)
     resetState();
-    const parliament = CardFactory.create({ card_name: "Shrewd Parliament", pt: "2/1", rules_text: "Flying" });
-    const discardable = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const parliament = createTestCard("Shrewd Parliament");
+    const discardable = createTestCard("Other", { pt: "1/1" });
     state.player.spellGraveyard = [{ card_name: "Spell" }];
     state.player.hand = [parliament, discardable]; // simulate in hand
     parliament.onETB([]);
@@ -959,15 +966,15 @@ async function testShrewdParliament() {
 
 async function testPaleDillettante() {
     resetState();
-    const dillettante = CardFactory.create({ card_name: "Pale Dillettante", pt: "2/2" });
+    const dillettante = createTestCard("Pale Dillettante");
     dillettante.onNoncreatureCast({ isFoil: false }, []);
     assert.strictEqual(dillettante.counters, 1, "+1/+1 counter on noncreature cast");
 }
 
 async function testAetherGuzzler() {
     resetState();
-    const guzzler = CardFactory.create({ card_name: "Aether Guzzler", pt: "3/4" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const guzzler = createTestCard("Aether Guzzler");
+    const other = createTestCard("Other", { pt: "1/1" });
     state.player.board = [guzzler, other];
     
     guzzler.onNoncreatureCast({ isFoil: false }, state.player.board);
@@ -977,7 +984,7 @@ async function testAetherGuzzler() {
 
 async function testDewdropOracle() {
     resetState();
-    const oracle = CardFactory.create({ card_name: "Dewdrop Oracle", pt: "2/2" });
+    const oracle = createTestCard("Dewdrop Oracle");
     availableCards.length = 0;
     availableCards.push(
         { card_name: "Findable", type: "Sorcery", tier: 1 },
@@ -994,7 +1001,7 @@ async function testDewdropOracle() {
 
 async function testArroydPassShepherd() {
     resetState();
-    const shepherd = CardFactory.create({ card_name: "Arroyd Pass Shepherd", pt: "1/5", rules_text: "Lifelink", type: "Creature - Centaur Knight" });
+    const shepherd = createTestCard("Arroyd Pass Shepherd");
     assert.strictEqual(shepherd.getDisplayStats([]).p, 1);
     assert.strictEqual(shepherd.getDisplayStats([]).t, 5);
     assert.strictEqual(shepherd.hasKeyword('lifelink'), true);
@@ -1003,8 +1010,8 @@ async function testArroydPassShepherd() {
 async function testWarbandRallier() {
     // 1. Target Another Centaur
     resetState();
-    const rallier = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
-    const target = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature - Centaur" });
+    const rallier = createTestCard("Warband Rallier");
+    const target = createTestCard("Centaur", { pt: "2/2", type: "Creature - Centaur" });
     state.player.board = [rallier, target];
     state.player.hand = [rallier];
     rallier.owner = 'player';
@@ -1019,7 +1026,7 @@ async function testWarbandRallier() {
 
     // 2. Target Self
     resetState();
-    const rallier2 = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
+    const rallier2 = createTestCard("Warband Rallier");
     state.player.board = [rallier2];
     state.player.hand = [rallier2];
     rallier2.owner = 'player';
@@ -1030,8 +1037,8 @@ async function testWarbandRallier() {
 
     // 3. Target Non-Centaur (Fail)
     resetState();
-    const rallier3 = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
-    const human = CardFactory.create({ card_name: "Human", pt: "1/1", type: "Creature" });
+    const rallier3 = createTestCard("Warband Rallier");
+    const human = createTestCard("Human", { pt: "1/1", type: "Creature" });
     state.player.board = [rallier3, human];
     state.player.hand = [rallier3];
     rallier3.owner = 'player';
@@ -1045,7 +1052,7 @@ async function testWarbandRallier() {
 async function testCybresBandRecruiter() {
     resetState();
     availableCards.push({ card_name: "Centaur Knight", shape: "token", pt: "2/2", set: "GSC", type: "Token Creature - Centaur Knight", rules_text: "Vigilance" });
-    const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", type: "Creature - Centaur Knight" });
+    const recruiter = createTestCard("Cybres-Band Recruiter");
     state.player.board = [];
     state.player.hand = [recruiter];
     recruiter.owner = 'player';
@@ -1059,12 +1066,12 @@ async function testCybresBandRecruiter() {
 
 async function testCybresClanSquire() {
     resetState();
-    const squire = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
+    const squire = createTestCard("Cybres-Clan Squire");
     state.player.board = [squire];
     squire.owner = 'player';
     
     // 1. Centaur enters friendly board
-    const centaur = CardFactory.create({ card_name: "Friend", pt: "1/1", type: "Creature - Centaur" });
+    const centaur = createTestCard("Friend", { pt: "1/1", type: "Creature - Centaur" });
     centaur.owner = 'player';
     state.player.hand = [centaur];
     await useCardFromHand(centaur.id);
@@ -1073,8 +1080,8 @@ async function testCybresClanSquire() {
     // 2. Interaction: Recruiter (should give 2 counters)
     resetState();
     availableCards.push({ card_name: "Centaur Knight", shape: "token", pt: "2/2", set: "GSC", type: "Token Creature - Centaur Knight", rules_text: "Vigilance" });
-    const squire2 = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
-    const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", type: "Creature - Centaur Knight" });
+    const squire2 = createTestCard("Cybres-Clan Squire");
+    const recruiter = createTestCard("Cybres-Band Recruiter");
     state.player.board = [squire2];
     state.player.hand = [recruiter];
     squire2.owner = 'player';
@@ -1084,8 +1091,8 @@ async function testCybresClanSquire() {
 
     // 3. Timing: Rallier (Deferred Broadcast)
     resetState();
-    const squire3 = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur Knight" });
-    const rallier = CardFactory.create({ card_name: "Warband Rallier", pt: "1/2", type: "Creature - Centaur Scout" });
+    const squire3 = createTestCard("Cybres-Clan Squire");
+    const rallier = createTestCard("Warband Rallier");
     state.player.board = [squire3];
     state.player.hand = [rallier];
     squire3.owner = 'player';
@@ -1099,8 +1106,8 @@ async function testCybresClanSquire() {
 
 async function testCybresBandLancer() {
     resetState();
-    const lancer = CardFactory.create({ card_name: "Cybres-Band Lancer", pt: "2/2", rules_text: "First strike", type: "Creature - Centaur Knight" });
-    const other = CardFactory.create({ card_name: "Centaur", pt: "2/2", type: "Creature - Centaur" });
+    const lancer = createTestCard("Cybres-Band Lancer", { pt: "2/2", rules_text: "First strike", type: "Creature - Centaur Knight"});
+    const other = createTestCard("Centaur", { pt: "2/2", type: "Creature - Centaur"});
     state.battleBoards = {
         player: [lancer, other],
         opponent: []
@@ -1118,8 +1125,8 @@ async function testCybresBandLancer() {
 
 async function testWindsongApprentice() {
     resetState();
-    const winds = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
-    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", rules_text: "Flying", type: "Creature" });
+    const winds = createTestCard("Windsong Apprentice", { pt: "2/2", type: "Creature - Bird Monk"});
+    const flyer = createTestCard("Flyer", { pt: "1/1", rules_text: "Flying", type: "Creature"});
     state.player.board = [winds, flyer];
     state.player.hand = [winds];
     winds.owner = 'player';
@@ -1136,7 +1143,7 @@ async function testWindsongApprentice() {
     // 3. ETB Traverse (already Cirrusea -> select Flying/Counter)
     resetState();
     state.player.plane = 'Cirrusea';
-    const winds2 = CardFactory.create({ card_name: "Windsong Apprentice", pt: "2/2", type: "Creature - Bird Monk" });
+    const winds2 = createTestCard("Windsong Apprentice", { pt: "2/2", type: "Creature - Bird Monk"});
     state.player.hand = [winds2];
     await useCardFromHand(winds2.id);
     assert.strictEqual(state.targetingEffect.effect, 'traverse_cirrusea_grant');
@@ -1144,10 +1151,10 @@ async function testWindsongApprentice() {
 
 async function testCautherHellkite() {
     resetState();
-    const hellkite = CardFactory.create({ card_name: "Cauther Hellkite", pt: "4/4", rules_text: "Flying, haste", type: "Creature - Dragon" });
-    const e1 = CardFactory.create({ card_name: "E1", pt: "1/1", type: "Creature" });
-    const e2 = CardFactory.create({ card_name: "E2", pt: "1/1", type: "Creature" });
-    const e3 = CardFactory.create({ card_name: "E3", pt: "1/1", type: "Creature" });
+    const hellkite = createTestCard("Cauther Hellkite", { pt: "4/4", rules_text: "Flying, haste", type: "Creature - Dragon"});
+    const e1 = createTestCard("E1", { pt: "1/1", type: "Creature"});
+    const e2 = createTestCard("E2", { pt: "1/1", type: "Creature"});
+    const e3 = createTestCard("E3", { pt: "1/1", type: "Creature"});
     e3.shieldCounters = 1;
     
     state.battleBoards = {
@@ -1171,10 +1178,10 @@ async function testCautherHellkite() {
 
 async function testLingeringLunatic() {
     resetState();
-    const lunatic = CardFactory.create({ card_name: "Lingering Lunatic", pt: "4/5", rules_text: "Vigilance", type: "Creature - Mutant Warlock" });
-    const target1 = CardFactory.create({ card_name: "T1", pt: "1/1", type: "Creature" });
-    const target2 = CardFactory.create({ card_name: "T2", pt: "1/1", type: "Creature" });
-    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1", type: "Creature" });
+    const lunatic = createTestCard("Lingering Lunatic", { pt: "4/5", rules_text: "Vigilance", type: "Creature - Mutant Warlock"});
+    const target1 = createTestCard("T1", { pt: "1/1", type: "Creature"});
+    const target2 = createTestCard("T2", { pt: "1/1", type: "Creature"});
+    const flyer = createTestCard("Flyer", { pt: "1/1", type: "Creature"});
 
     target1.counters = 1;
     target2.counters = 0;
@@ -1194,7 +1201,7 @@ async function testLingeringLunatic() {
 
 async function testBellowingGiant() {
     resetState();
-    const giant = CardFactory.create({ card_name: "Bellowing Giant", pt: "6/4", rules_text: "Trample" });
+    const giant = createTestCard("Bellowing Giant", { pt: "6/4", rules_text: "Trample"});
     assert.strictEqual(giant.getBasePT().p, 6);
     assert.strictEqual(giant.hasKeyword('trample'), true);
 }
@@ -1212,7 +1219,7 @@ async function testBwemaTheRuthless() {
 
     for (const [c1Name, c2Name, prop1, prop2] of combos) {
         resetState();
-        const bwema = CardFactory.create({ card_name: "Bwema, the Ruthless", pt: "4/4", type: "Legendary Creature - Hound Warrior" });
+        const bwema = createTestCard("Bwema, the Ruthless", { pt: "4/4", type: "Legendary Creature - Hound Warrior"});
         state.player.board = [bwema];
         bwema.owner = 'player';
         bwema.onETB(state.player.board);
@@ -1250,9 +1257,9 @@ async function testBwemaTheRuthless() {
 
 async function testSilverhornTactician() {
     resetState();
-    const ox = CardFactory.create({ card_name: "Silverhorn Tactician", pt: "4/4" });
-    const source = CardFactory.create({ card_name: "Source", pt: "1/1" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const ox = createTestCard("Silverhorn Tactician", { pt: "4/4"});
+    const source = createTestCard("Source", { pt: "1/1"});
+    const other = createTestCard("Other", { pt: "1/1"});
     
     source.counters = 1;
     source.flyingCounters = 1; // Two different counters
@@ -1282,8 +1289,8 @@ async function testSilverhornTactician() {
 async function testQinhanaCavalry() {
     // 1. Success (Target on right)
     resetState();
-    const cavalry = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
-    const recruit = CardFactory.create({ card_name: "Recruit", pt: "1/1" });
+    const cavalry = createTestCard("Qinhana Cavalry", { pt: "4/5"});
+    const recruit = createTestCard("Recruit", { pt: "1/1"});
     state.player.board = [cavalry, recruit];
     await cavalry.onCombatStart(state.player.board);
     assert.strictEqual(recruit.tempPower, 3, "Target to the right should be buffed");
@@ -1291,8 +1298,8 @@ async function testQinhanaCavalry() {
 
     // 2. Fail (Target has too much power)
     resetState();
-    const cavalry2 = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
-    const big = CardFactory.create({ card_name: "Big", pt: "4/4" });
+    const cavalry2 = createTestCard("Qinhana Cavalry", { pt: "4/5"});
+    const big = createTestCard("Big", { pt: "4/4"});
     state.player.board = [cavalry2, big];
     await cavalry2.onCombatStart(state.player.board);
     assert.strictEqual(big.tempPower, 0);
@@ -1300,8 +1307,8 @@ async function testQinhanaCavalry() {
 
     // 3. Fail (Target to the left)
     resetState();
-    const cavalry3 = CardFactory.create({ card_name: "Qinhana Cavalry", pt: "4/5" });
-    const leftie = CardFactory.create({ card_name: "Leftie", pt: "1/1" });
+    const cavalry3 = createTestCard("Qinhana Cavalry", { pt: "4/5"});
+    const leftie = createTestCard("Leftie", { pt: "1/1"});
     state.player.board = [leftie, cavalry3];
     await cavalry3.onCombatStart(state.player.board);
     assert.strictEqual(leftie.tempPower, 0);
@@ -1309,9 +1316,9 @@ async function testQinhanaCavalry() {
 
 async function testMekiniEremite() {
     resetState();
-    const monk = CardFactory.create({ card_name: "Mekini Eremite", pt: "3/1" });
-    const attacker = CardFactory.create({ card_name: "Atk", pt: "5/5" });
-    const defender = CardFactory.create({ card_name: "Def", pt: "2/2" });
+    const monk = createTestCard("Mekini Eremite", { pt: "3/1"});
+    const attacker = createTestCard("Atk", { pt: "5/5"});
+    const defender = createTestCard("Def", { pt: "2/2"});
     
     monk.owner = 'player';
     attacker.owner = 'opponent';
@@ -1335,22 +1342,22 @@ async function testMekiniEremite() {
     // 3. Unblockable
     monk.counters = 1;
     monk.shieldCounters = 1; // 2 different types: Plus-One and Shield
-    const oBoard = [CardFactory.create({ card_name: "Blocker", pt: "1/1" })];
+    const oBoard = [createTestCard("Blocker", { pt: "1/1"})];
     const target = findTarget(monk, oBoard);
     assert.strictEqual(target, null, "Should be unblockable with 2 different counter types");
 }
 
 async function testFrontierMarkswomen() {
     resetState();
-    const card = CardFactory.create({ card_name: "Frontier Markswomen", pt: "2/5", rules_text: "Vigilance, reach" });
+    const card = createTestCard("Frontier Markswomen", { pt: "2/5", rules_text: "Vigilance, reach"});
     assert.strictEqual(card.hasKeyword('vigilance'), true);
     assert.strictEqual(card.hasKeyword('reach'), true);
 }
 
 async function testFestivalCelebrants() {
     resetState();
-    const cel = CardFactory.create({ card_name: "Festival Celebrants", pt: "2/2" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const cel = createTestCard("Festival Celebrants", { pt: "2/2"});
+    const other = createTestCard("Other", { pt: "1/1"});
     state.player.board = [cel, other];
     cel.owner = other.owner = 'player';
 
@@ -1361,10 +1368,10 @@ async function testFestivalCelebrants() {
 
 async function testSuitorOfDeath() {
     resetState();
-    const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
-    const healthyVictim = CardFactory.create({ card_name: "Healthy", pt: "1/1" });
-    const dyingVictim = CardFactory.create({ card_name: "Dying", pt: "1/1" });
-    const protectedVictim = CardFactory.create({ card_name: "Protected", pt: "1/1" });
+    const suitor = createTestCard("Suitor of Death", { pt: "3/1"});
+    const healthyVictim = createTestCard("Healthy", { pt: "1/1"});
+    const dyingVictim = createTestCard("Dying", { pt: "1/1"});
+    const protectedVictim = createTestCard("Protected", { pt: "1/1"});
     protectedVictim.shieldCounters = 1;
     
     state.battleBoards = {
@@ -1395,7 +1402,7 @@ async function testSuitorOfDeath() {
 
     // Shop death (sale) does nothing
     resetState();
-    const suitor2 = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
+    const suitor2 = createTestCard("Suitor of Death", { pt: "3/1"});
     state.player.board = [suitor2];
     suitor2.owner = 'player';
     state.phase = 'SHOP';
@@ -1406,8 +1413,8 @@ async function testSuitorOfDeath() {
 async function testServantsOfDydren() {
     // 1. Lord Effect
     resetState();
-    const s1 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
-    const s2 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
+    const s1 = createTestCard("Servants of Dydren", { pt: "2/2"});
+    const s2 = createTestCard("Servants of Dydren", { pt: "2/2"});
     state.player.board = [s1, s2];
     s1.owner = s2.owner = 'player';
 
@@ -1416,8 +1423,8 @@ async function testServantsOfDydren() {
     // 2. Full board -> no resurrection
     resetState();
     state.player.deadServantsCount = 2;
-    for(let i=0; i<7; i++) state.player.board.push(CardFactory.create({card_name: "Full", pt: "1/1"}));
-    const s3 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
+    for(let i=0; i<7; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
+    const s3 = createTestCard("Servants of Dydren", { pt: "2/2"});
     s3.owner = 'player';
     s3.onETB(state.player.board);
     assert.strictEqual(state.player.deadServantsCount, 2, "Counter should not be touched on full board");
@@ -1426,8 +1433,8 @@ async function testServantsOfDydren() {
     resetState();
     state.player.deadServantsCount = 2;
     // Fill to 6
-    for(let i=0; i<6; i++) state.player.board.push(CardFactory.create({card_name: "Full", pt: "1/1"}));
-    const s4 = CardFactory.create({ card_name: "Servants of Dydren", pt: "2/2" });
+    for(let i=0; i<6; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
+    const s4 = createTestCard("Servants of Dydren", { pt: "2/2"});
     s4.owner = 'player';
     s4.onETB(state.player.board);
     assert.strictEqual(state.player.board.length, 7, "Should only resurrect one to fill board");
@@ -1435,7 +1442,7 @@ async function testServantsOfDydren() {
 
 async function testHoltunBandElder() {
     resetState();
-    const elder = CardFactory.create({ card_name: "Holtun-Band Elder", pt: "4/4" });
+    const elder = createTestCard("Holtun-Band Elder", { pt: "4/4"});
     state.player.board = [elder];
     elder.owner = 'player';
     
@@ -1446,24 +1453,24 @@ async function testHoltunBandElder() {
 
     // 2. Partial Spawning (Board has 6 cards, Elder dies -> 1 slot opens)
     resetState();
-    const elder2 = CardFactory.create({ card_name: "Holtun-Band Elder", pt: "4/4" });
+    const elder2 = createTestCard("Holtun-Band Elder", { pt: "4/4"});
     state.player.board = [elder2];
-    for(let i=0; i<6; i++) state.player.board.push(CardFactory.create({card_name: "Full", pt: "1/1"}));
+    for(let i=0; i<6; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
     spawns = elder2.onDeath(state.player.board, 'player');
     assert.strictEqual(spawns.length, 1, "Should only create one token to respect board limit");
 }
 
 async function testWhispersOfTheDead() {
     resetState();
-    const whispers = CardFactory.create({ card_name: "Whispers of the Dead", type: "Instant" });
-    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    const whispers = createTestCard("Whispers of the Dead", { type: "Instant"});
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
     state.player.board = [fodder];
     state.player.hand = [whispers];
     state.player.tier = 4;
     state.phase = 'SHOP';
     
     // 1. Queue preference (Scry)
-    const bonus = CardFactory.create({ card_name: "Bonus", tier: 2, type: "Creature" });
+    const bonus = createTestCard("Bonus", { type: "Creature"});
     state.nextShopBonusCards = [bonus];
 
     // Trigger sacrifice
@@ -1495,10 +1502,10 @@ async function testWhispersOfTheDead() {
     // 3. Servant synergy (if card 3 was a Servant)
     resetState();
     state.player.tier = 4;
-    const servant = CardFactory.create({ card_name: "Servants of Dydren", tier: 4, type: "Creature" });
+    const servant = createTestCard("Servants of Dydren", { type: "Creature"});
     // Mock discovery with Servant as the last one
     state.discovery = {
-        cards: [CardFactory.create({card_name: "A"}), CardFactory.create({card_name: "B"}), servant],
+        cards: [createTestCard("A"), createTestCard("B"), servant],
         effect: 'whispers_pick1',
         remaining: 2,
         sourceId: 'none'
@@ -1511,8 +1518,8 @@ async function testWhispersOfTheDead() {
 
 async function testMurkbornMammoth() {
     resetState();
-    const mam = CardFactory.create({ card_name: "Murkborn Mammoth", pt: "7/7", rules_text: "Trample, adaptive" });
-    const toBattle = CardFactory.create({ card_name: "To Battle", type: "Instant" });
+    const mam = createTestCard("Murkborn Mammoth", { pt: "7/7", rules_text: "Trample, adaptive"});
+    const toBattle = createTestCard("To Battle", { type: "Instant"});
     state.player.board = [mam];
     state.player.hand = [toBattle];
     mam.owner = 'player';
@@ -1527,9 +1534,9 @@ async function testMurkbornMammoth() {
 
     // 2. Foil Adaptive -> 3 triggers
     resetState();
-    const foilMam = CardFactory.create({ card_name: "Murkborn Mammoth", pt: "7/7", rules_text: "Adaptive", isFoil: true });
+    const foilMam = createTestCard("Murkborn Mammoth", { pt: "7/7", rules_text: "Adaptive", isFoil: true});
     state.player.board = [foilMam];
-    const toBattle2 = CardFactory.create({ card_name: "To Battle", type: "Instant" });
+    const toBattle2 = createTestCard("To Battle", { type: "Instant"});
     state.player.hand = [toBattle2];
     await useCardFromHand(toBattle2.id);
     await applySpell(foilMam.id);
@@ -1537,11 +1544,11 @@ async function testMurkbornMammoth() {
 }
 async function testHissingSunspitter() {
     resetState();
-    const spit = CardFactory.create({ card_name: "Hissing Sunspitter", pt: "3/3" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
-    const spell1 = CardFactory.create({ card_name: "S1", type: "Instant" });
-    const spell2 = CardFactory.create({ card_name: "S2", type: "Instant" });
-    const spell3 = CardFactory.create({ card_name: "S3", type: "Instant" });
+    const spit = createTestCard("Hissing Sunspitter", { pt: "3/3"});
+    const other = createTestCard("Other", { pt: "1/1"});
+    const spell1 = createTestCard("S1", { type: "Instant"});
+    const spell2 = createTestCard("S2", { type: "Instant"});
+    const spell3 = createTestCard("S3", { type: "Instant"});
     
     state.player.board = [spit, other];
     state.player.hand = [spell1, spell2, spell3];
@@ -1565,8 +1572,8 @@ async function testHissingSunspitter() {
 
 async function testGhessianMemories() {
     resetState();
-    const gm = CardFactory.create({ card_name: "Ghessian Memories", type: "Instant" });
-    const squire = CardFactory.create({ card_name: "Cybres-Clan Squire", pt: "2/2", type: "Creature - Centaur" });
+    const gm = createTestCard("Ghessian Memories", { type: "Instant"});
+    const squire = createTestCard("Cybres-Clan Squire", { pt: "2/2", type: "Creature - Centaur"});
     state.player.board = [squire];
     state.player.hand = [gm];
     squire.owner = 'player';
@@ -1588,7 +1595,7 @@ async function testGhessianMemories() {
 
 async function testHeroOfALostWar_Self() {
     resetState();
-    const hero = CardFactory.create({ card_name: "Hero of a Lost War", pt: "3/3", type: "Creature - Centaur Knight" });
+    const hero = createTestCard("Hero of a Lost War", { pt: "3/3", type: "Creature - Centaur Knight"});
     state.player.board = [hero];
     hero.owner = 'player';
     
@@ -1604,8 +1611,8 @@ async function testHeroOfALostWar_Self() {
 
 async function testHeroOfALostWar_Other() {
     resetState();
-    const hero = CardFactory.create({ card_name: "Hero of a Lost War", pt: "3/3", type: "Creature - Centaur Knight" });
-    const otherCentaur = CardFactory.create({ card_name: "Other", pt: "1/1", type: "Creature - Centaur" });
+    const hero = createTestCard("Hero of a Lost War", { pt: "3/3", type: "Creature - Centaur Knight"});
+    const otherCentaur = createTestCard("Other", { pt: "1/1", type: "Creature - Centaur"});
     state.player.board = [hero, otherCentaur];
     hero.owner = otherCentaur.owner = 'player';
 
@@ -1621,7 +1628,7 @@ async function testHeroOfALostWar_Other() {
 
 async function testHeroOfHedria() {
     resetState();
-    const hedria = CardFactory.create({ card_name: "Hero of Hedria", pt: "3/3", rules_text: "Double strike" });
+    const hedria = createTestCard("Hero of Hedria", { pt: "3/3", rules_text: "Double strike"});
     
     // Double strike isn't a direct engine keyword yet, but if it acts like First Strike
     // We should verify that Double Strike logic works.
@@ -1633,8 +1640,8 @@ async function testHeroOfHedria() {
 
 async function testHexproof_SuitorOfDeath_Fizzle() {
     resetState();
-    const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
-    const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
+    const suitor = createTestCard("Suitor of Death", { pt: "3/1"});
+    const hexVictim = createTestCard("Hex Victim", { pt: "1/1", rules_text: "Hexproof"});
     
     state.battleBoards = {
         player: [suitor],
@@ -1652,9 +1659,9 @@ async function testHexproof_SuitorOfDeath_Fizzle() {
 
 async function testHexproof_SuitorOfDeath_Targeting() {
     resetState();
-    const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
-    const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
-    const normalVictim = CardFactory.create({ card_name: "Normal Victim", pt: "1/1" });
+    const suitor = createTestCard("Suitor of Death", { pt: "3/1"});
+    const hexVictim = createTestCard("Hex Victim", { pt: "1/1", rules_text: "Hexproof"});
+    const normalVictim = createTestCard("Normal Victim", { pt: "1/1"});
     
     state.battleBoards = {
         player: [suitor],
@@ -1673,8 +1680,8 @@ async function testHexproof_SuitorOfDeath_Targeting() {
 
 async function testHexproof_CabracansFamiliar() {
     resetState();
-    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "2/2" });
-    const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "2/2", rules_text: "Hexproof" });
+    const familiar = createTestCard("Cabracan's Familiar", { pt: "2/2" });
+    const hexVictim = createTestCard("Hex Victim", { pt: "2/2", rules_text: "Hexproof" });
     
     state.battleBoards = {
         player: [familiar],
@@ -1702,7 +1709,7 @@ async function testHexproof_CabracansFamiliar() {
 
 async function testHeroOfHedria() {
     resetState();
-    const hedria = CardFactory.create({ card_name: "Hero of Hedria", pt: "3/3", rules_text: "Double strike" });
+    const hedria = createTestCard("Hero of Hedria", { pt: "3/3", rules_text: "Double strike"});
     hedria.owner = 'player';
     state.battleBoards = { player: [hedria], opponent: [] };
     
@@ -1719,8 +1726,8 @@ async function testHeroOfHedria() {
 
 async function testHexproof_SuitorOfDeath_Fizzle() {
     resetState();
-    const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
-    const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
+    const suitor = createTestCard("Suitor of Death", { pt: "3/1"});
+    const hexVictim = createTestCard("Hex Victim", { pt: "1/1", rules_text: "Hexproof"});
     state.battleBoards = { player: [suitor], opponent: [hexVictim] };
     suitor.owner = 'player'; hexVictim.owner = 'opponent';
     suitor.isDying = true; state.phase = 'BATTLE';
@@ -1730,9 +1737,9 @@ async function testHexproof_SuitorOfDeath_Fizzle() {
 
 async function testHexproof_SuitorOfDeath_Targeting() {
     resetState();
-    const suitor = CardFactory.create({ card_name: "Suitor of Death", pt: "3/1" });
-    const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "1/1", rules_text: "Hexproof" });
-    const normalVictim = CardFactory.create({ card_name: "Normal Victim", pt: "1/1" });
+    const suitor = createTestCard("Suitor of Death", { pt: "3/1"});
+    const hexVictim = createTestCard("Hex Victim", { pt: "1/1", rules_text: "Hexproof"});
+    const normalVictim = createTestCard("Normal Victim", { pt: "1/1"});
     state.battleBoards = { player: [suitor], opponent: [hexVictim, normalVictim] };
     suitor.owner = 'player'; hexVictim.owner = normalVictim.owner = 'opponent';
     suitor.isDying = true; state.phase = 'BATTLE';
@@ -1743,8 +1750,8 @@ async function testHexproof_SuitorOfDeath_Targeting() {
 
 async function testHexproof_CabracansFamiliar() {
     resetState();
-    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "2/2" });
-    const hexVictim = CardFactory.create({ card_name: "Hex Victim", pt: "2/2", rules_text: "Hexproof" });
+    const familiar = createTestCard("Cabracan's Familiar", { pt: "2/2" });
+    const hexVictim = createTestCard("Hex Victim", { pt: "2/2", rules_text: "Hexproof"});
     state.battleBoards = { player: [familiar], opponent: [hexVictim] };
     familiar.owner = 'player'; hexVictim.owner = 'opponent'; state.phase = 'BATTLE';
     if (familiar.card_name === 'Cabracan\'s Familiar' && hexVictim && !hexVictim.hasKeyword('Hexproof')) {
@@ -1758,8 +1765,8 @@ async function testHexproof_CabracansFamiliar() {
 
 async function testThunderRaptor() {
     resetState();
-    const raptor = CardFactory.create({ card_name: "Thunder Raptor", pt: "4/4", type: "Creature - Bird Warrior", rules_text: "Flying" });
-    const otherBird = CardFactory.create({ card_name: "Other Bird", pt: "1/1", type: "Creature - Bird", rules_text: "Flying" });
+    const raptor = createTestCard("Thunder Raptor", { pt: "4/4", type: "Creature - Bird Warrior", rules_text: "Flying"});
+    const otherBird = createTestCard("Other Bird", { pt: "1/1", type: "Creature - Bird", rules_text: "Flying"});
     state.player.board = [raptor, otherBird];
     raptor.owner = otherBird.owner = 'player';
     
@@ -1778,7 +1785,7 @@ async function testThunderRaptor() {
 
 async function testCloudlineSovereign() {
     resetState();
-    const sovereign = CardFactory.create({ card_name: "Cloudline Sovereign", pt: "3/3", type: "Enchantment Creature - Bird Wizard" });
+    const sovereign = createTestCard("Cloudline Sovereign", { pt: "3/3", type: "Enchantment Creature - Bird Wizard"});
     state.player.board = [sovereign];
     sovereign.owner = 'player';
     
@@ -1802,10 +1809,10 @@ async function testCloudlineSovereign() {
 
 async function testNightfallRaptor() {
     resetState();
-    const raptor = CardFactory.create({ card_name: "Nightfall Raptor", pt: "3/2", type: "Enchantment Creature - Bird Rogue" });
-    const victim = CardFactory.create({ card_name: "Victim", pt: "2/2", type: "Creature - Bear" });
-    const token = CardFactory.create({ card_name: "Token", pt: "1/1", type: "Creature - Bird", shape: "token" });
-    const enchantmentCreature = CardFactory.create({ card_name: "Ench", pt: "1/1", type: "Enchantment Creature - Bird" });
+    const raptor = createTestCard("Nightfall Raptor", { pt: "3/2", type: "Enchantment Creature - Bird Rogue"});
+    const victim = createTestCard("Victim", { pt: "2/2", type: "Creature - Bear"});
+    const token = createTestCard("Token", { pt: "1/1", type: "Creature - Bird", shape: "token"});
+    const enchantmentCreature = createTestCard("Ench", { pt: "1/1", type: "Enchantment Creature - Bird"});
     
     state.player.board = [raptor, victim, token, enchantmentCreature];
     raptor.owner = victim.owner = token.owner = enchantmentCreature.owner = 'player';
@@ -1837,9 +1844,9 @@ async function testNightfallRaptor() {
 
 async function testTriumphantTactics() {
     resetState();
-    const tt = CardFactory.create({ card_name: "Triumphant Tactics", type: "Sorcery" });
-    const attacker = CardFactory.create({ card_name: "Attacker", pt: "2/2" });
-    const defender = CardFactory.create({ card_name: "Defender", pt: "2/2" });
+    const tt = createTestCard("Triumphant Tactics", { type: "Sorcery"});
+    const attacker = createTestCard("Attacker", { pt: "2/2"});
+    const defender = createTestCard("Defender", { pt: "2/2"});
 
     attacker.owner = 'player';
     defender.owner = 'opponent';
@@ -1857,9 +1864,9 @@ async function testTriumphantTactics() {
 
 async function testSavageCongregation() {
     resetState();
-    const sc = CardFactory.create({ card_name: "Savage Congregation", type: "Sorcery" });
-    const recruiter = CardFactory.create({ card_name: "Cybres-Band Recruiter", pt: "3/3", tier: 2, type: "Creature - Centaur" });
-    const big = CardFactory.create({ card_name: "Big", pt: "4/4", tier: 2 });
+    const sc = createTestCard("Savage Congregation", { type: "Sorcery"});
+    const recruiter = createTestCard("Cybres-Band Recruiter", { pt: "3/3", type: "Creature - Centaur"});
+    const big = createTestCard("Big", { pt: "4/4"});
     
     state.player.hand = [sc];
     state.player.board = [big];
@@ -1896,7 +1903,7 @@ async function testSavageCongregation() {
 async function testNdengoBrutalizer() {
     resetState();
     const rulesText = "When Ndengo Brutalizer enters the battlefield, choose it and another target creature you control. Teach one first strike and the other trample.";
-    const brut = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: rulesText });
+    const brut = createTestCard("Ndengo Brutalizer", { pt: "5/4", rules_text: rulesText});
     state.player.board = [brut];
     brut.owner = 'player';
 
@@ -1914,8 +1921,8 @@ async function testNdengoBrutalizer() {
 
     // Case 2: Duo
     resetState();
-    const brut2 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: rulesText });
-    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    const brut2 = createTestCard("Ndengo Brutalizer", { pt: "5/4", rules_text: rulesText});
+    const target = createTestCard("Target", { pt: "2/2"});
     state.player.board = [brut2, target];
     brut2.owner = target.owner = 'player';
 
@@ -1936,7 +1943,7 @@ async function testNdengoBrutalizer() {
     
     // Case 3: Teach (already has it)
     resetState();
-    const brut3 = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "5/4", rules_text: "First strike, " + rulesText });
+    const brut3 = createTestCard("Ndengo Brutalizer", { pt: "5/4", rules_text: "First strike, " + rulesText});
     state.player.board = [brut3];
     brut3.owner = 'player';
     
@@ -1948,8 +1955,8 @@ async function testNdengoBrutalizer() {
 
 async function testPyrewrightTrainee() {
     resetState();
-    const trainee = CardFactory.create({ card_name: "Pyrewright Trainee", pt: "3/3", rules_text: "Flying, haste" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const trainee = createTestCard("Pyrewright Trainee", { pt: "3/3", rules_text: "Flying, haste"});
+    const other = createTestCard("Other", { pt: "1/1"});
     state.player.board = [trainee, other];
     trainee.owner = other.owner = 'player';
     
@@ -1965,10 +1972,10 @@ async function testPyrewrightTrainee() {
 
 async function testLagoonLogistics() {
     resetState();
-    const ll = CardFactory.create({ card_name: "Lagoon Logistics" });
+    const ll = createTestCard("Lagoon Logistics");
     // Use a creature with an ETB to verify double trigger
     // Dewdrop Oracle ETB: adds to discoveryQueue
-    const oracle = CardFactory.create({ card_name: "Dewdrop Oracle", pt: "1/1" });
+    const oracle = createTestCard("Dewdrop Oracle", { pt: "1/1"});
     state.player.board = [oracle];
     oracle.owner = 'player';
     
@@ -1988,10 +1995,10 @@ async function testLagoonLogistics() {
 
 async function testMagnificWilderkin() {
     resetState();
-    const wilderkin = CardFactory.create({ card_name: "Magnific Wilderkin", pt: "3/3" });
-    const flyer1 = CardFactory.create({ card_name: "Flyer1", pt: "1/1", rules_text: "Flying" });
-    const flyer2 = CardFactory.create({ card_name: "Flyer2", pt: "1/1", rules_text: "Flying" });
-    const trampler = CardFactory.create({ card_name: "Trampler", pt: "2/2", rules_text: "Trample" });
+    const wilderkin = createTestCard("Magnific Wilderkin", { pt: "3/3"});
+    const flyer1 = createTestCard("Flyer1", { pt: "1/1", rules_text: "Flying"});
+    const flyer2 = createTestCard("Flyer2", { pt: "1/1", rules_text: "Flying"});
+    const trampler = createTestCard("Trampler", { pt: "2/2", rules_text: "Trample"});
     
     state.player.board = [wilderkin, flyer1, flyer2, trampler];
     wilderkin.owner = flyer1.owner = flyer2.owner = trampler.owner = 'player';
@@ -2007,7 +2014,7 @@ async function testMagnificWilderkin() {
 
 async function testDwarvenPhalanx() {
     resetState();
-    const phalanx = CardFactory.create({ card_name: "Dwarven Phalanx", pt: "4/5" });
+    const phalanx = createTestCard("Dwarven Phalanx", { pt: "4/5"});
     state.player.board = [phalanx];
     phalanx.owner = 'player';
     
@@ -2017,7 +2024,7 @@ async function testDwarvenPhalanx() {
     assert.strictEqual(phalanx.hasKeyword('indestructible'), false);
 
     // Case 2: Another target
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const target = createTestCard("Target", { pt: "1/1"});
     state.player.board.push(target);
     target.owner = 'player';
     await phalanx.onCombatStart(state.player.board);
@@ -2027,8 +2034,8 @@ async function testDwarvenPhalanx() {
 
 async function testLairRecluse() {
     resetState();
-    const recluse = CardFactory.create({ card_name: "Lair Recluse", pt: "4/5" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const recluse = createTestCard("Lair Recluse", { pt: "4/5"});
+    const other = createTestCard("Other", { pt: "1/1"});
     state.player.board = [recluse];
     recluse.owner = other.owner = 'player';
     
@@ -2053,7 +2060,7 @@ async function testLairRecluse() {
     assert.strictEqual(state.targetingEffect.isMandatory, true, "Step 2 should be mandatory once counter removed");
 
     // 4. Hand Targeting Check: Should NOT be able to target card in hand
-    const handCard = CardFactory.create({ card_name: "Hand Card", pt: "2/2" });
+    const handCard = createTestCard("Hand Card", { pt: "2/2"});
     state.player.hand = [handCard];
     await applyTargetedEffect(handCard.id); // Should fail to find target and do nothing
     assert.strictEqual(state.targetingEffect.effect, 'permutate_step2', "Targeting should still be active");
@@ -2067,15 +2074,15 @@ async function testLairRecluse() {
 
 async function testTunnelWebSpider() {
     resetState();
-    const spider = CardFactory.create({ card_name: "Tunnel Web Spider", rules_text: "Reach, deathtouch" });
+    const spider = createTestCard("Tunnel Web Spider", { rules_text: "Reach, deathtouch"});
     assert.strictEqual(spider.hasKeyword('reach'), true);
     assert.strictEqual(spider.hasKeyword('deathtouch'), true);
 }
 
 async function testWarhammerKreg() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const kreg = CardFactory.create({ card_name: "Warhammer Kreg", type: "Equipment", rules_text: "Equipped creature gets +1/+1 and has double strike." });
+    const host = createTestCard("Host", { pt: "2/2"});
+    const kreg = createTestCard("Warhammer Kreg", { type: "Equipment", rules_text: "Equipped creature gets +1/+1 and has double strike."});
     host.equipment = kreg;
     state.player.board = [host];
 
@@ -2086,8 +2093,8 @@ async function testWarhammerKreg() {
 
 async function testDancingMirrorblade() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const mirrorblade = CardFactory.create({ card_name: "Dancing Mirrorblade", type: "Equipment" });
+    const host = createTestCard("Host", { pt: "2/2"});
+    const mirrorblade = createTestCard("Dancing Mirrorblade", { type: "Equipment"});
     
     host.equipment = mirrorblade;
     host.counters = 2; // +2/+2
@@ -2118,9 +2125,9 @@ async function testDancingMirrorblade() {
 
 async function testTheExileQueensCrown() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
-    const crown = CardFactory.create({ card_name: "The Exile Queen's Crown", type: "Equipment" });
+    const host = createTestCard("Host", { pt: "2/2"});
+    const other = createTestCard("Other", { pt: "1/1"});
+    const crown = createTestCard("The Exile Queen's Crown", { type: "Equipment" });
     
     host.equipment = crown;
     state.player.board = [host, other];
@@ -2136,8 +2143,8 @@ async function testTheExileQueensCrown() {
 
 async function testDjitusLithifiedMantle() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const mantle = CardFactory.create({ card_name: "Djitu's Lithified Mantle", type: "Equipment" });
+    const host = createTestCard("Host", { pt: "2/2"});
+    const mantle = createTestCard("Djitu's Lithified Mantle", { type: "Equipment" });
     host.equipment = mantle;
     host.owner = 'player';
     state.player.board = [host];
@@ -2165,14 +2172,14 @@ async function testDjitusLithifiedMantle() {
 
 async function testAshWitheredCloak() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "Adaptive" });
-    const cloak = CardFactory.create({ card_name: "Ash-Withered Cloak", type: "Equipment", rules_text: "Equipped creature gets +2/+2." });
+    const host = createTestCard("Host", { pt: "2/2", rules_text: "Adaptive"});
+    const cloak = createTestCard("Ash-Withered Cloak", { type: "Equipment", rules_text: "Equipped creature gets +2/+2."});
     host.equipment = cloak;
     host.owner = 'player';
     state.player.board = [host];
 
     // 1. Adaptive + Cloak -> 3 triggers
-    const faith = CardFactory.create({ card_name: "Faith in Darkness", type: "Sorcery" });
+    const faith = createTestCard("Faith in Darkness", { type: "Sorcery"});
     state.player.hand = [faith];
     await useCardFromHand(faith.id);
     await applySpell(host.id);
@@ -2181,11 +2188,11 @@ async function testAshWitheredCloak() {
 
     // 2. Foil Adaptive + Cloak -> 4 triggers (1 original + 2 foil adaptive + 1 cloak)
     resetState();
-    const foilHost = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "Adaptive", isFoil: true });
+    const foilHost = createTestCard("Host", { pt: "2/2", rules_text: "Adaptive", isFoil: true});
     foilHost.equipment = cloak;
     foilHost.owner = 'player';
     state.player.board = [foilHost];
-    const faith2 = CardFactory.create({ card_name: "Faith in Darkness", type: "Sorcery" });
+    const faith2 = createTestCard("Faith in Darkness", { type: "Sorcery"});
     state.player.hand = [faith2];
     await useCardFromHand(faith2.id);
     await applySpell(foilHost.id);
@@ -2196,8 +2203,8 @@ async function testAshWitheredCloak() {
 
 async function testSteelBarding() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2" });
-    const barding = CardFactory.create({ card_name: "Steel Barding", type: "Equipment" });
+    const host = createTestCard("Host", { pt: "2/2"});
+    const barding = createTestCard("Steel Barding", { type: "Equipment"});
     host.equipment = barding;
     host.owner = 'player';
     state.player.board = [host];
@@ -2205,7 +2212,7 @@ async function testSteelBarding() {
     const stats = host.getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 5, "Host gets +3/+3");
 
-    const enemy = CardFactory.create({ card_name: "Enemy", pt: "10/10" });
+    const enemy = createTestCard("Enemy", { pt: "10/10"});
     enemy.owner = 'opponent';
     state.battleBoards = { player: [host], opponent: [enemy] };
     state.phase = 'BATTLE';
@@ -2223,8 +2230,8 @@ async function testSteelBarding() {
 async function testRivhasBlessedBlade() {
     resetState();
     // Camel has ETB: put a counter on target creature you control
-    const host = CardFactory.create({ card_name: "Dutiful Camel", pt: "2/2" });
-    const blade = CardFactory.create({ card_name: "Rivha's Blessed Blade", type: "Equipment" });
+    const host = createTestCard("Dutiful Camel", { pt: "2/2"});
+    const blade = createTestCard("Rivha's Blessed Blade", { type: "Equipment" });
     host.equipment = blade;
     host.owner = 'player';
     state.player.board = [host];
@@ -2251,8 +2258,8 @@ async function testRivhasBlessedBlade() {
 
 async function testRivhasBlessedBladeWithCirrusea() {
     resetState();
-    const host = CardFactory.create({ card_name: "Stratus Traveler", pt: "2/3" });
-    const blade = CardFactory.create({ card_name: "Rivha's Blessed Blade", type: "Equipment" });
+    const host = createTestCard("Stratus Traveler", { pt: "2/3"});
+    const blade = createTestCard("Rivha's Blessed Blade", { type: "Equipment" });
     host.equipment = blade;
     host.owner = 'player';
     state.player.board = [host];
@@ -2282,8 +2289,8 @@ async function testRivhasBlessedBladeWithCirrusea() {
 async function testRivhasBlessedBladeWithDiscovery() {
     resetState();
     // Brutalizer (Solo) has ETB: Discover a keyword (First Strike or Trample)
-    const host = CardFactory.create({ card_name: "Ndengo Brutalizer", pt: "4/4" });
-    const blade = CardFactory.create({ card_name: "Rivha's Blessed Blade", type: "Equipment" });
+    const host = createTestCard("Ndengo Brutalizer", { pt: "4/4"});
+    const blade = createTestCard("Rivha's Blessed Blade", { type: "Equipment" });
     host.equipment = blade;
     host.owner = 'player';
     state.player.board = [host];
@@ -2305,12 +2312,10 @@ async function testRivhasBlessedBladeWithDiscovery() {
 
 async function testBlacksteelLoadout() {
     resetState();
-    const host = CardFactory.create({ card_name: "Host", pt: "2/2", rules_text: "" });
-    const loadout = CardFactory.create({ 
-        card_name: "Blacksteel Loadout", 
+    const host = createTestCard("Host", { pt: "2/2", rules_text: ""});
+    const loadout = createTestCard("Blacksteel Loadout", { 
         type: "Equipment", 
-        rules_text: "Equipped creature gets +4/+2 and has first strike, vigilance, and trample." 
-    });
+        rules_text: "Equipped creature gets +4/+2 and has first strike, vigilance, and trample."});
     host.equipment = loadout;
     state.player.board = [host];
 
@@ -2319,9 +2324,9 @@ async function testBlacksteelLoadout() {
 
 async function testLumberingAncient() {
     resetState();
-    const ancient = CardFactory.create({ card_name: "Lumbering Ancient", pt: "8/8", rules_text: "Trample" });
-    const target1 = CardFactory.create({ card_name: "Target 1", pt: "2/2" });
-    const target2 = CardFactory.create({ card_name: "Target 2", pt: "2/2" });
+    const ancient = createTestCard("Lumbering Ancient", { pt: "8/8", rules_text: "Trample"});
+    const target1 = createTestCard("Target 1", { pt: "2/2"});
+    const target2 = createTestCard("Target 2", { pt: "2/2"});
     state.player.board = [ancient, target1, target2];
     
     // Keyword check
@@ -2338,7 +2343,7 @@ async function testLumberingAncient() {
 
 async function testZaraxSupermajor() {
     resetState();
-    const zarax = CardFactory.create({ card_name: "Zarax Supermajor", pt: "1/1" });
+    const zarax = createTestCard("Zarax Supermajor", { pt: "1/1"});
     zarax.owner = 'player';
     state.player.board = [zarax];
     
@@ -2355,10 +2360,10 @@ async function testZaraxSupermajor() {
 
     // 3. Equipment Exclusion Test
     resetState();
-    const equipment = CardFactory.create({ card_name: "Yamamura's Blade", type: "Artifact - Equipment" });
-    const spell1 = CardFactory.create({ card_name: "Divination", type: "Sorcery" });
-    const spell2 = CardFactory.create({ card_name: "To Battle", type: "Instant" });
-    const zarax2 = CardFactory.create({ card_name: "Zarax Supermajor", pt: "1/1" });
+    const equipment = createTestCard("Yamamura's Blade", { type: "Artifact - Equipment" });
+    const spell1 = createTestCard("Divination", { type: "Sorcery"});
+    const spell2 = createTestCard("To Battle", { type: "Instant"});
+    const zarax2 = createTestCard("Zarax Supermajor", { pt: "1/1"});
     zarax2.owner = 'player';
     
     // Zarax must be on board to see the spells and be a target for equipment
@@ -2382,14 +2387,14 @@ async function testZaraxSupermajor() {
 
 async function testInfuseTheApparatus() {
     resetState();
-    const target = CardFactory.create({ card_name: "Target", pt: "2/2" });
+    const target = createTestCard("Target", { pt: "2/2"});
     state.player.board = [target];
     
     // Faith in Darkness is a targeted spell with a Scry 1 effect
-    const spell = CardFactory.create({ card_name: "Faith in Darkness" });
+    const spell = createTestCard("Faith in Darkness");
     state.player.spellGraveyard = [spell, spell]; // Duplicates
     
-    const infuse = CardFactory.create({ card_name: "Infuse the Apparatus" });
+    const infuse = createTestCard("Infuse the Apparatus");
     infuse.onCast(state.player.board);
     
     // 1. Check exile and targeting mode
@@ -2410,13 +2415,11 @@ async function testInfuseTheApparatus() {
 
 async function testMichalTheAnointed() {
     resetState();
-    const michal = CardFactory.create({ 
-        card_name: "Michal, the Anointed", 
+    const michal = createTestCard("Michal, the Anointed", { 
         pt: "5/5",
-        rules_text: "Flying, vigilance, trample, lifelink"
-    });
+        rules_text: "Flying, vigilance, trample, lifelink"});
     michal.owner = 'player';
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const target = createTestCard("Target", { pt: "1/1"});
     target.owner = 'player';
     state.player.board = [michal, target];
 
@@ -2432,14 +2435,14 @@ async function testMichalTheAnointed() {
         player: [michal, target],
         opponent: []
     };
-    const suitor = CardFactory.create({ card_name: "Suitor of Death" });
+    const suitor = createTestCard("Suitor of Death");
     suitor.onDeath(state.battleBoards.player, 'opponent'); // Opponent's suitor dies
     assert.strictEqual(state.battleBoards.player.length, 2, "Michal should protect board from Suitor");
     assert.strictEqual(target.isDestroyed || false, false, "Target should NOT be destroyed");
 
     // 3. Does NOT protect from own sacrifice (Shrieking Pusbag)
     state.phase = 'SHOP';
-    const pusbag = CardFactory.create({ card_name: "Shrieking Pusbag" });
+    const pusbag = createTestCard("Shrieking Pusbag");
     pusbag.onETB(state.player.board);
     await applyTargetedEffect(target.id);
     assert.strictEqual(state.player.board.includes(target), false, "Michal should NOT block friendly sacrifice removal");
@@ -2447,9 +2450,9 @@ async function testMichalTheAnointed() {
 
 async function testLadriaWindwatcher() {
     resetState();
-    const ladria = CardFactory.create({ card_name: "Ladria, Windwatcher", pt: "3/3" });
+    const ladria = createTestCard("Ladria, Windwatcher", { pt: "3/3"});
     ladria.owner = 'player';
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const other = createTestCard("Other", { pt: "1/1"});
     state.player.board = [ladria, other];
 
     // 1. ETB - Spawns 2 Birds
@@ -2468,11 +2471,11 @@ async function testLadriaWindwatcher() {
 
 async function testErinBeaconOfHumility() {
     resetState();
-    const erin = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    const erin = createTestCard("Erin, Beacon of Humility", { pt: "5/4"});
     erin.owner = 'player';
     
     // High stat creature with keywords and counters
-    const victim = CardFactory.create({ card_name: "Michal, the Anointed", pt: "5/5" });
+    const victim = createTestCard("Michal, the Anointed", { pt: "5/5"});
     victim.owner = 'opponent';
     victim.counters = 5; 
     
@@ -2499,8 +2502,8 @@ async function testErinBeaconOfHumility() {
 
     // Ability Strip Check (Familiar)
     resetState();
-    const erin2 = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
-    const familiar = CardFactory.create({ card_name: "Cabracan's Familiar", pt: "4/2" });
+    const erin2 = createTestCard("Erin, Beacon of Humility", { pt: "5/4"});
+    const familiar = createTestCard("Cabracan's Familiar", { pt: "4/2" });
     erin2.owner = 'player';
     familiar.owner = 'opponent';
     familiar.damageTaken = 1; // Existing damage
@@ -2521,10 +2524,10 @@ async function testErinBeaconOfHumility() {
 
     // Targeting Prioritization Check
     resetState();
-    const erin3 = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
-    const humbleVictim = CardFactory.create({ card_name: "Humble Victim", pt: "1/1" });
+    const erin3 = createTestCard("Erin, Beacon of Humility", { pt: "5/4"});
+    const humbleVictim = createTestCard("Humble Victim", { pt: "1/1"});
     humbleVictim.temporaryHumility = true;
-    const freshVictim = CardFactory.create({ card_name: "Fresh Victim", pt: "2/2" });
+    const freshVictim = createTestCard("Fresh Victim", { pt: "2/2"});
     
     erin3.owner = 'player';
     humbleVictim.owner = freshVictim.owner = 'opponent';
@@ -2545,13 +2548,13 @@ async function testErinBeaconOfHumility() {
 
     // Redirect Check
     resetState();
-    const erin4 = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    const erin4 = createTestCard("Erin, Beacon of Humility", { pt: "5/4"});
     // Manually ensure it has flying for the test (it should from CardFactory but good to be sure)
     erin4.flyingCounters = 1; 
     
-    const flyer = CardFactory.create({ card_name: "Flyer", pt: "1/1" });
+    const flyer = createTestCard("Flyer", { pt: "1/1"});
     flyer.flyingCounters = 1;
-    const otherFlyer = CardFactory.create({ card_name: "Other Flyer", pt: "1/1" });
+    const otherFlyer = createTestCard("Other Flyer", { pt: "1/1"});
     otherFlyer.flyingCounters = 1;
     
     erin4.owner = 'player';
@@ -2571,10 +2574,10 @@ async function testErinBeaconOfHumility() {
 
 async function testErinHexproof() {
     resetState();
-    const erin = CardFactory.create({ card_name: "Erin, Beacon of Humility", pt: "5/4" });
+    const erin = createTestCard("Erin, Beacon of Humility", { pt: "5/4"});
     erin.owner = 'player';
     
-    const victim = CardFactory.create({ card_name: "Hexproof Victim", pt: "5/5" });
+    const victim = createTestCard("Hexproof Victim", { pt: "5/5"});
     victim.owner = 'opponent';
     victim.hexproofCounters = 1;
     
@@ -2591,33 +2594,33 @@ async function testErinHexproof() {
 
 async function testPheresBandHuntmaster() {
     resetState();
-    const huntmaster = CardFactory.create({ card_name: "Pheres-Band Huntmaster", pt: "4/4" });
+    const huntmaster = createTestCard("Pheres-Band Huntmaster", { pt: "4/4"});
     huntmaster.owner = 'player';
     state.player.board = [huntmaster];
     state.player.fightHp = 10;
     
     // 1. Basic Trigger (Use Might and Mane which doesn't add counters itself)
-    const spell = CardFactory.create({ card_name: "Might and Mane" });
+    const spell = createTestCard("Might and Mane");
     await huntmaster.onNoncreatureCast(spell, state.player.board, [huntmaster]);
     assert.strictEqual(huntmaster.counters, 1, "Should gain 1 counter from Heroic");
     assert.strictEqual(state.player.fightHp, 12, "Should gain 2 Fight HP from Heroic");
     
     // 2. Multi-Target Prevention
     resetState();
-    const huntmaster2 = CardFactory.create({ card_name: "Pheres-Band Huntmaster", pt: "4/4" });
+    const huntmaster2 = createTestCard("Pheres-Band Huntmaster", { pt: "4/4"});
     huntmaster2.owner = 'player';
     state.player.board = [huntmaster2];
     state.player.fightHp = 10;
-    const multiSpell = CardFactory.create({ card_name: "Up in Arms" });
+    const multiSpell = createTestCard("Up in Arms");
     await huntmaster2.onNoncreatureCast(multiSpell, state.player.board, [huntmaster2, huntmaster2]);
     assert.strictEqual(huntmaster2.counters, 1, "Should gain only 1 counter despite being targeted twice");
 }
 
 async function testMaleniaGoddessOfRot() {
     resetState();
-    const malenia = CardFactory.create({ card_name: "Malenia, Goddess of Rot", pt: "3/5" });
+    const malenia = createTestCard("Malenia, Goddess of Rot", { pt: "3/5"});
     malenia.owner = 'player';
-    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
     fodder.owner = 'player';
     state.player.board = [malenia];
     
@@ -2644,11 +2647,11 @@ async function testMaleniaGoddessOfRot() {
     
     // 5. Choice: Proliferate (and Auto-Proliferate)
     resetState();
-    const malenia2 = CardFactory.create({ card_name: "Malenia, Goddess of Rot", pt: "3/5" });
+    const malenia2 = createTestCard("Malenia, Goddess of Rot", { pt: "3/5"});
     malenia2.owner = 'player';
-    const sacTarget = CardFactory.create({ card_name: "Sacrifice Me", pt: "1/1" });
+    const sacTarget = createTestCard("Sacrifice Me", { pt: "1/1"});
     sacTarget.owner = 'player';
-    const proliferateTarget = CardFactory.create({ card_name: "Proliferate Me", pt: "1/1" });
+    const proliferateTarget = createTestCard("Proliferate Me", { pt: "1/1"});
     proliferateTarget.owner = 'player';
     
     state.player.board = [malenia2, sacTarget, proliferateTarget];
@@ -2671,9 +2674,9 @@ async function testMaleniaGoddessOfRot() {
 
 async function testSwiftZulufaa() {
     resetState();
-    const zulufaa = CardFactory.create({ card_name: "Swift Zulufaa", pt: "2/2" });
-    const source = CardFactory.create({ card_name: "Source", pt: "1/1" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const zulufaa = createTestCard("Swift Zulufaa", { pt: "2/2"});
+    const source = createTestCard("Source", { pt: "1/1"});
+    const target = createTestCard("Target", { pt: "1/1"});
     
     source.counters = 2;
     source.flyingCounters = 1;
@@ -2699,7 +2702,7 @@ async function testSwiftZulufaa() {
 
 async function testCitadelColossus() {
     resetState();
-    const colossus = CardFactory.create({ card_name: "Citadel Colossus", pt: "11/12", rules_text: "Indestructible" });
+    const colossus = createTestCard("Citadel Colossus", { pt: "11/12", rules_text: "Indestructible"});
     assert.strictEqual(colossus.hasKeyword('indestructible'), true, "Colossus should have Indestructible");
     const stats = colossus.getDisplayStats([]);
     assert.strictEqual(stats.p, 11);
@@ -2718,7 +2721,7 @@ async function testDewdropPools() {
     state.player.tier = 1;
 
     // 1. Test Dewdrop Oracle
-    const oracle = CardFactory.create({ card_name: "Dewdrop Oracle" });
+    const oracle = createTestCard("Dewdrop Oracle");
     oracle.onETB(state.player.board);
     assert.ok(state.discovery, "Oracle should open discovery");
     assert.strictEqual(state.discovery.cards.length, 4, "Oracle should find 4 cards");
@@ -2727,7 +2730,7 @@ async function testDewdropPools() {
     // 2. Test Consult the Dewdrops
     state.discovery = null;
     state.discoveryQueue = [];
-    const consult = CardFactory.create({ card_name: "Consult the Dewdrops" });
+    const consult = createTestCard("Consult the Dewdrops");
     consult.onCast(state.player.board);
     assert.ok(state.discovery, "Consult should open discovery");
     assert.strictEqual(state.discovery.cards.length, 4, "Consult should find 4 cards");
@@ -2739,7 +2742,7 @@ async function testDewdropPools() {
 
 async function testSongOfWindAndFire() {
     resetState();
-    const spell = CardFactory.create({ card_name: "Song of Wind and Fire" });
+    const spell = createTestCard("Song of Wind and Fire");
     spell.onCast(state.player.board);
     assert.strictEqual(state.player.board.length, 2, "Should spawn two tokens");
     assert.ok(state.player.board.some(c => c.card_name === "Dragon"));
@@ -2748,8 +2751,8 @@ async function testSongOfWindAndFire() {
 
 async function testBard() {
     resetState();
-    const bard = CardFactory.create({ card_name: "Bard", pt: "2/2" });
-    const xali = CardFactory.create({ card_name: "Earthrattle Xali", pt: "3/3", rules_text: "Prowess" });
+    const bard = createTestCard("Bard", { pt: "2/2"});
+    const xali = createTestCard("Earthrattle Xali", { pt: "3/3", rules_text: "Prowess"});
     state.player.board = [bard, xali];
     bard.owner = xali.owner = 'player';
     state.phase = 'BATTLE';
@@ -2768,7 +2771,7 @@ async function testBard() {
 
 async function testDecoratedWarrior() {
     resetState();
-    const warrior = CardFactory.create({ card_name: "Decorated Warrior", pt: "2/2", rules_text: "Vigilance" });
+    const warrior = createTestCard("Decorated Warrior", { pt: "2/2", rules_text: "Vigilance"});
     state.player.board = [warrior];
     warrior.owner = 'player';
     
@@ -2781,7 +2784,7 @@ async function testDecoratedWarrior() {
     // 2. Block (Being Attacked)
     // Note: This relies on the engine triggering onAttack for the defender.
     // If the engine doesn't do it, this test might need updating or the engine might need fixing.
-    const enemy = CardFactory.create({ card_name: "Enemy", pt: "2/2" });
+    const enemy = createTestCard("Enemy", { pt: "2/2"});
     enemy.owner = 'opponent';
     state.opponents[0].board = [enemy];
     state.battleBoards = { player: [warrior], opponent: [enemy] };
@@ -2793,7 +2796,7 @@ async function testDecoratedWarrior() {
 
 async function testWaspbackBandit() {
     resetState();
-    const bandit = CardFactory.create({ card_name: "Waspback Bandit", pt: "3/3", rules_text: "Flying, hexproof" });
+    const bandit = createTestCard("Waspback Bandit", { pt: "3/3", rules_text: "Flying, hexproof"});
     state.player.board = [bandit];
     bandit.owner = 'player';
     
@@ -2806,8 +2809,8 @@ async function testWaspbackBandit() {
 
 async function testStridingCascade() {
     resetState();
-    const cascade = CardFactory.create({ card_name: "Striding Cascade", pt: "2/2" });
-    const teammate = CardFactory.create({ card_name: "Teammate", pt: "1/1" });
+    const cascade = createTestCard("Striding Cascade", { pt: "2/2"});
+    const teammate = createTestCard("Teammate", { pt: "1/1"});
     state.player.board = [cascade, teammate];
     cascade.owner = teammate.owner = 'player';
     
@@ -2826,9 +2829,9 @@ async function testStridingCascade() {
     
     // 4. Simultaneous counters (reset first)
     resetState();
-    const cascade2 = CardFactory.create({ card_name: "Striding Cascade", pt: "2/2" });
-    const t1 = CardFactory.create({ card_name: "T1", pt: "1/1" });
-    const t2 = CardFactory.create({ card_name: "T2", pt: "1/1" });
+    const cascade2 = createTestCard("Striding Cascade", { pt: "2/2"});
+    const t1 = createTestCard("T1", { pt: "1/1"});
+    const t2 = createTestCard("T2", { pt: "1/1"});
     state.player.board = [cascade2, t1, t2];
     cascade2.owner = t1.owner = t2.owner = 'player';
     
@@ -2840,7 +2843,7 @@ async function testStridingCascade() {
 
 async function testBattlefrontLancer() {
     resetState();
-    const lancer = CardFactory.create({ card_name: "Battlefront Lancer", pt: "1/3", rules_text: "First strike" });
+    const lancer = createTestCard("Battlefront Lancer", { pt: "1/3", rules_text: "First strike"});
     assert.strictEqual(lancer.hasKeyword('First strike'), true, "Should have First strike");
     
     state.player.board = [lancer];
@@ -2850,30 +2853,30 @@ async function testBattlefrontLancer() {
 
 async function testMarbledAakriti() {
     resetState();
-    const aakriti = CardFactory.create({ card_name: "Marbled Aakriti", pt: "3/3", rules_text: "Changeling, Flying" });
+    const aakriti = createTestCard("Marbled Aakriti", { pt: "3/3", rules_text: "Changeling, Flying"});
     assert.strictEqual(aakriti.hasKeyword('Flying'), true, "Should have Flying");
     assert.strictEqual(aakriti.isType('Centaur'), true, "Changeling should be Centaur");
     assert.strictEqual(aakriti.isType('Bird'), true, "Changeling should be Bird");
     
     // Centaur Lord check
-    const centaurLord = CardFactory.create({ card_name: "Warband Lieutenant", type: "Creature - Centaur" });
+    const centaurLord = createTestCard("Warband Lieutenant", { type: "Creature - Centaur"});
     state.player.board = [aakriti, centaurLord];
     assert.strictEqual(aakriti.getDisplayStats(state.player.board).p, 4, "Should get Centaur buff");
     
     // Bird Lord check
-    const birdLord = CardFactory.create({ card_name: "Thunder Raptor", type: "Creature - Bird" });
+    const birdLord = createTestCard("Thunder Raptor", { type: "Creature - Bird"});
     state.player.board = [aakriti, birdLord];
     assert.strictEqual(aakriti.getDisplayStats(state.player.board).p, 5, "Should get Bird buff (+2/+1)");
 
     // War-Clan Dowager check
-    const dowager = CardFactory.create({ card_name: "War-Clan Dowager", pt: "2/2" });
+    const dowager = createTestCard("War-Clan Dowager", { pt: "2/2"});
     state.player.board = [aakriti, dowager];
     assert.strictEqual(dowager.getDisplayStats(state.player.board).p, 3, "Dowager should get +1/+1 from Aakriti");
 }
 
 async function testScourgeOfTheSun() {
     resetState();
-    const scourge = CardFactory.create({ card_name: "Scourge of the Sun", pt: "2/3", rules_text: "Flying" });
+    const scourge = createTestCard("Scourge of the Sun", { pt: "2/3", rules_text: "Flying"});
     assert.strictEqual(scourge.hasKeyword('Flying'), true, "Should have Flying");
     
     state.player.board = [scourge];
@@ -2893,14 +2896,14 @@ async function testScourgeOfTheSun() {
 
 async function testGallantCentaur() {
     resetState();
-    const centaur = CardFactory.create({ card_name: "Gallant Centaur", pt: "6/5" });
+    const centaur = createTestCard("Gallant Centaur", { pt: "6/5"});
     assert.strictEqual(centaur.pt, "6/5", "Should be a 6/5");
 }
 
 async function testHoltunBandEmissary() {
     resetState();
-    const emissary = CardFactory.create({ card_name: "Holtun-Band Emissary", pt: "4/4", type: "Creature - Centaur Flagbearer" });
-    const otherCentaur = CardFactory.create({ card_name: "Centaur", type: "Creature - Centaur", pt: "2/2" });
+    const emissary = createTestCard("Holtun-Band Emissary", { pt: "4/4", type: "Creature - Centaur Flagbearer"});
+    const otherCentaur = createTestCard("Centaur", { type: "Creature - Centaur", pt: "2/2"});
     state.player.board = [emissary, otherCentaur];
     
     // Targeting trigger
@@ -2910,9 +2913,9 @@ async function testHoltunBandEmissary() {
     // Flagbearer priority
     resetState();
     state.phase = 'BATTLE';
-    const suitor = CardFactory.create({ card_name: "Suitor of Death" });
-    const victim1 = CardFactory.create({ card_name: "Holtun-Band Emissary", type: "Creature - Centaur Flagbearer", pt: "4/4" });
-    const victim2 = CardFactory.create({ card_name: "Non-Flagbearer", pt: "1/1" });
+    const suitor = createTestCard("Suitor of Death");
+    const victim1 = createTestCard("Holtun-Band Emissary", { type: "Creature - Centaur Flagbearer", pt: "4/4"});
+    const victim2 = createTestCard("Non-Flagbearer", { pt: "1/1"});
     
     state.battleBoards = {
         player: [victim1, victim2],
@@ -2927,8 +2930,8 @@ async function testHoltunBandEmissary() {
 
 async function testJiayinTheHarmonious() {
     resetState();
-    const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
-    const other = CardFactory.create({ card_name: "Other", pt: "2/2", type: "Creature" });
+    const jiayin = createTestCard("Jiayin, the Harmonious", { pt: "3/3"});
+    const other = createTestCard("Other", { pt: "2/2", type: "Creature"});
     state.player.board = [jiayin, other];
     
     // Target other
@@ -2948,7 +2951,7 @@ async function testJiayinTheHarmonious() {
 
 async function testHelicosGargantua() {
     resetState();
-    const gargantua = CardFactory.create({ card_name: "Helicos Gargantua", pt: "5/5" });
+    const gargantua = createTestCard("Helicos Gargantua", { pt: "5/5"});
     state.player.board = [gargantua];
     gargantua.owner = 'player';
 
@@ -2970,8 +2973,8 @@ async function testHelicosGargantua() {
 async function testTinWoodsman() {
     // 1. Shop Phase Death
     resetState();
-    const woodsman = CardFactory.create({ card_name: "Tin Woodsman", pt: "3/2" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const woodsman = createTestCard("Tin Woodsman", { pt: "3/2"});
+    const target = createTestCard("Target", { pt: "1/1"});
     target.counters = 1;
     state.player.board = [woodsman, target];
     woodsman.owner = target.owner = 'player';
@@ -2982,8 +2985,8 @@ async function testTinWoodsman() {
 
     // 2. Combat Phase Death (Verify persistence)
     resetState();
-    const woodsmanCombat = CardFactory.create({ card_name: "Tin Woodsman", pt: "3/2" });
-    const targetCombat = CardFactory.create({ card_name: "Target", pt: "1/1" });
+    const woodsmanCombat = createTestCard("Tin Woodsman", { pt: "3/2"});
+    const targetCombat = createTestCard("Target", { pt: "1/1"});
     targetCombat.counters = 1;
     
     // Simulate sourceId tracking for persistence (usually done by Card.clone in battle setup)
@@ -3027,9 +3030,9 @@ async function testTinWoodsman() {
 
 async function testJiayin_UpInArms() {
     resetState();
-    const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
-    const target = CardFactory.create({ card_name: "Target", pt: "1/1", type: "Creature" });
-    const spell = CardFactory.create({ card_name: "Up in Arms", type: "Sorcery" });
+    const jiayin = createTestCard("Jiayin, the Harmonious", { pt: "3/3"});
+    const target = createTestCard("Target", { pt: "1/1", type: "Creature"});
+    const spell = createTestCard("Up in Arms", { type: "Sorcery"});
     
     state.player.board = [jiayin, target];
     state.player.hand = [spell];
@@ -3052,9 +3055,9 @@ async function testJiayin_UpInArms() {
 
 async function testJiayin_WarriorsWays() {
     resetState();
-    const jiayin = CardFactory.create({ card_name: "Jiayin, the Harmonious", pt: "3/3" });
-    const centaur = CardFactory.create({ card_name: "Centaur", pt: "1/1", type: "Creature - Centaur" });
-    const spell = CardFactory.create({ card_name: "Warrior's Ways", type: "Sorcery" });
+    const jiayin = createTestCard("Jiayin, the Harmonious", { pt: "3/3"});
+    const centaur = createTestCard("Centaur", { pt: "1/1", type: "Creature - Centaur"});
+    const spell = createTestCard("Warrior's Ways", { type: "Sorcery" });
     
     state.player.board = [jiayin, centaur];
     state.player.hand = [spell];
@@ -3075,9 +3078,9 @@ async function testJiayin_WarriorsWays() {
 
 async function testAmAtambisWildkin() {
     resetState();
-    const wildkin = CardFactory.create({ card_name: "Am'Atambi's Wildkin", pt: "4/1" });
-    const target1 = CardFactory.create({ card_name: "No Reach", pt: "2/2" });
-    const target2 = CardFactory.create({ card_name: "Has Reach", pt: "2/2", rules_text: "Reach" });
+    const wildkin = createTestCard("Am'Atambi's Wildkin", { pt: "4/1" });
+    const target1 = createTestCard("No Reach", { pt: "2/2"});
+    const target2 = createTestCard("Has Reach", { pt: "2/2", rules_text: "Reach"});
     
     // --- Shop Phase Sac ---
     state.player.board = [wildkin, target1, target2];
@@ -3099,11 +3102,11 @@ async function testAmAtambisWildkin() {
     // --- Combat Death ---
     resetState();
     state.phase = 'BATTLE';
-    const wildkinBattle = CardFactory.create({ card_name: "Am'Atambi's Wildkin", pt: "4/1" });
-    const ally = CardFactory.create({ card_name: "Ally", pt: "2/2" });
+    const wildkinBattle = createTestCard("Am'Atambi's Wildkin", { pt: "4/1" });
+    const ally = createTestCard("Ally", { pt: "2/2"});
     state.battleBoards = {
         player: [wildkinBattle, ally],
-        opponent: [CardFactory.create({ card_name: "Enemy", pt: "1/1" })]
+        opponent: [createTestCard("Enemy", { pt: "1/1"})]
     };
     wildkinBattle.owner = ally.owner = 'player';
     wildkinBattle.onDeath(state.battleBoards.player, 'player');
@@ -3112,8 +3115,8 @@ async function testAmAtambisWildkin() {
 
 async function testPestilentLeopardfly() {
     resetState();
-    const fly = CardFactory.create({ card_name: "Pestilent Leopardfly", pt: "2/2" });
-    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    const fly = createTestCard("Pestilent Leopardfly", { pt: "2/2"});
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
     state.player.board = [fly, fodder];
     
     // Shop Sac
@@ -3129,7 +3132,7 @@ async function testTouchOfTheOmen() {
     resetState();
     const spellData = fullCardPool.find(c => c.card_name === "Touch of the Omen");
     const spell = CardFactory.create(spellData);
-    const shopTarget = CardFactory.create({ card_name: "Shop Minion", pt: "3/3", type: "Creature" });
+    const shopTarget = createTestCard("Shop Minion", { pt: "3/3", type: "Creature"});
     state.shop.cards = [spell, shopTarget];
     state.player.gold = 3;
 
@@ -3147,7 +3150,7 @@ async function testTouchOfTheOmen() {
 
     // Full board safety
     resetState();
-    state.player.board = Array(7).fill(0).map(() => CardFactory.create({ card_name: "Fodder", type: "Creature" }));
+    state.player.board = Array(7).fill(0).map(() => createTestCard("Fodder", { type: "Creature"}));
     const spell2 = CardFactory.create(spellData);
     state.player.hand = [spell2];
     state.shop.cards = [shopTarget];
@@ -3160,8 +3163,8 @@ async function testTouchOfTheOmen() {
 
 async function testFacelessFaction() {
     resetState();
-    const lord = CardFactory.create({ card_name: "Faceless Faction", pt: "3/3", type: "Creature - Zombie Pirate" });
-    const zombie = CardFactory.create({ card_name: "Zombie", pt: "2/2", type: "Creature - Zombie" });
+    const lord = createTestCard("Faceless Faction", { pt: "3/3", type: "Creature - Zombie Pirate"});
+    const zombie = createTestCard("Zombie", { pt: "2/2", type: "Creature - Zombie"});
     state.player.board = [lord, zombie];
     lord.owner = zombie.owner = 'player';
     
@@ -3178,9 +3181,9 @@ async function testFacelessFaction() {
 
     // End turn token (Combat death exclusion)
     resetState();
-    const lord2 = CardFactory.create({ card_name: "Faceless Faction", pt: "3/3" });
+    const lord2 = createTestCard("Faceless Faction", { pt: "3/3"});
     lord2.owner = 'player';
-    const fodder = CardFactory.create({ card_name: "Fodder" });
+    const fodder = createTestCard("Fodder");
     state.player.board = [lord2, fodder];
     state.phase = 'BATTLE';
     state.creaturesDiedThisShopPhase = false;
@@ -3196,8 +3199,8 @@ async function testFacelessFaction() {
 
 async function testDuskbornHunter() {
     resetState();
-    const hunter = CardFactory.create({ card_name: "Duskborn Hunter", pt: "1/2" });
-    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    const hunter = createTestCard("Duskborn Hunter", { pt: "1/2"});
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
     state.player.board = [hunter, fodder];
     hunter.owner = fodder.owner = 'player';
 
@@ -3212,9 +3215,9 @@ async function testDuskbornHunter() {
 
 async function testNightmareHarpy() {
     resetState();
-    const harpy = CardFactory.create({ card_name: "Nightmare Harpy", pt: "2/2" });
-    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
-    const anaconda = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
+    const harpy = createTestCard("Nightmare Harpy", { pt: "2/2"});
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
+    const anaconda = createTestCard("Sanguine Anaconda", { pt: "2/2"});
     state.player.board = [harpy, fodder, anaconda];
     harpy.owner = fodder.owner = anaconda.owner = 'player';
     state.player.gold = 3;
@@ -3233,8 +3236,8 @@ async function testNightmareHarpy() {
 
 async function testSanguineAnaconda() {
     resetState();
-    const anaconda = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
-    const fodder = CardFactory.create({ card_name: "Fodder", pt: "1/1" });
+    const anaconda = createTestCard("Sanguine Anaconda", { pt: "2/2"});
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
     state.player.board = [anaconda, fodder];
     
     // Sacrifice
@@ -3243,7 +3246,7 @@ async function testSanguineAnaconda() {
 
     // Sell exclusion
     resetState();
-    const anaconda2 = CardFactory.create({ card_name: "Sanguine Anaconda", pt: "2/2" });
+    const anaconda2 = createTestCard("Sanguine Anaconda", { pt: "2/2"});
     state.player.board = [anaconda2, fodder];
     // "Selling" is just splicing and giving gold, doesn't trigger onOtherPermanentSacrificed
     state.player.board.splice(1, 1);
@@ -3253,7 +3256,7 @@ async function testSanguineAnaconda() {
 
 async function testDecayedSale() {
     resetState();
-    const decayed = CardFactory.create({ card_name: "Zombie", pt: "2/2" });
+    const decayed = createTestCard("Zombie", { pt: "2/2"});
     decayed.isDecayed = true;
     state.player.board = [decayed];
     state.player.gold = 3;
@@ -3291,8 +3294,8 @@ async function testAngoraPaladin() {
     state.discovery = null; 
     
     // Anomaly
-    const c1 = CardFactory.create({ card_name: 'C1', pt: '1/1' });
-    const c2 = CardFactory.create({ card_name: 'C2', pt: '1/1' });
+    const c1 = createTestCard("C1", { pt: '1/1'});
+    const c2 = createTestCard("C2", { pt: '1/1'});
     c1.owner = 'player';
     c2.owner = 'player';
     state.player.board = [c1, c2];
@@ -3410,7 +3413,7 @@ async function testGoldGrubber() {
 async function testHerdMatron() {
     resetState();
     const matron = CardFactory.create(fullCardPool.find(c => c.card_name === 'Herd Matron'));
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const other = createTestCard("Other", { pt: "1/1"});
     matron.owner = other.owner = 'player';
     state.player.board = [matron, other];
 
@@ -3433,7 +3436,7 @@ async function testHerdMatron() {
 async function testPatronOfTheMeek() {
     resetState();
     const patron = CardFactory.create(fullCardPool.find(c => c.card_name === 'Patron of the Meek'));
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const other = createTestCard("Other", { pt: "1/1"});
     patron.owner = other.owner = 'player';
     state.player.board = [patron, other];
 
@@ -3459,7 +3462,7 @@ async function testPatronOfTheMeek() {
 async function testHonorBegetsGlory() {
     resetState();
     const spell = CardFactory.create(fullCardPool.find(c => c.card_name === 'Honor Begets Glory'));
-    const creature = CardFactory.create({ card_name: "C1", pt: "1/1" });
+    const creature = createTestCard("C1", { pt: "1/1"});
     spell.owner = creature.owner = 'player';
     state.player.board = [creature];
 
@@ -3488,7 +3491,7 @@ async function testHonorBegetsGlory_Stacking() {
     resetState();
     const spell1 = CardFactory.create(fullCardPool.find(c => c.card_name === 'Honor Begets Glory'));
     const spell2 = CardFactory.create(fullCardPool.find(c => c.card_name === 'Honor Begets Glory'));
-    const creature = CardFactory.create({ card_name: "C1", pt: "1/1" });
+    const creature = createTestCard("C1", { pt: "1/1"});
     spell1.owner = spell2.owner = creature.owner = 'player';
     state.player.board = [creature];
 
@@ -3507,7 +3510,7 @@ async function testHonorBegetsGlory_Stacking() {
 async function testUnyieldingEnforcer() {
     resetState();
     const enforcer = CardFactory.create(fullCardPool.find(c => c.card_name === 'Unyielding Enforcer'));
-    const victim = CardFactory.create({ card_name: "Victim", pt: "2/2" });
+    const victim = createTestCard("Victim", { pt: "2/2"});
     
     // Add a death trigger to victim to verify it doesn't fire
     victim.hasDeath = () => true;
@@ -3541,8 +3544,8 @@ async function testHumilitySuppression() {
     resetState();
     
     // 1. Test Ladria (onAttack)
-    const ladria = CardFactory.create({ card_name: "Ladria, Windwatcher", pt: "3/3" });
-    const other = CardFactory.create({ card_name: "Other", pt: "1/1" });
+    const ladria = createTestCard("Ladria, Windwatcher", { pt: "3/3"});
+    const other = createTestCard("Other", { pt: "1/1"});
     ladria.owner = other.owner = 'player';
     state.player.board = [ladria, other];
     
@@ -3557,8 +3560,8 @@ async function testHumilitySuppression() {
 
     // 2. Test Tin Woodsman (onDeath)
     resetState();
-    const woodsman = CardFactory.create({ card_name: "Tin Woodsman", pt: "3/2" });
-    const hasCounter = CardFactory.create({ card_name: "Countered", pt: "1/1" });
+    const woodsman = createTestCard("Tin Woodsman", { pt: "3/2"});
+    const hasCounter = createTestCard("Countered", { pt: "1/1"});
     hasCounter.counters = 1;
     woodsman.owner = hasCounter.owner = 'player';
     state.player.board = [woodsman, hasCounter];
@@ -3620,219 +3623,215 @@ async function testOnoraPoolExclusion() {
     assert.strictEqual(hasPaladin, false, "Angora Paladin should be excluded from Onora pool");
 }
 
+const allTests = [
+    { tier: 1, card: "Decayed Sale", name: "Decayed Sale", fn: testDecayedSale },
+    { tier: 1, card: "Huitzil Skywatch", name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
+    { tier: 1, card: "Glumvale Raven", name: "Glumvale Raven", fn: testGlumvaleRaven },
+    { tier: 1, card: "Rotten Carcass", name: "Rotten Carcass", fn: testRottenCarcass },
+    { tier: 1, card: "War-Clan Dowager", name: "War-Clan Dowager", fn: testWarClanDowager },
+    { tier: 1, card: "Clairvoyant Koi", name: "Clairvoyant Koi", fn: testClairvoyantKoi },
+    { tier: 1, card: "Soulsmoke Adept", name: "Soulsmoke Adept", fn: testSoulsmokeAdept },
+    { tier: 1, card: "Intli Assaulter", name: "Intli Assaulter", fn: testIntliAssaulter },
+    { tier: 1, card: "Sparring Campaigner", name: "Sparring Campaigner", fn: testSparringCampaigner },
+    { tier: 1, card: "Rakkiri Archer", name: "Rakkiri Archer", fn: testRakkiriArcher },
+    { tier: 1, card: "Blistering Lunatic", name: "Blistering Lunatic", fn: testBlisteringLunatic },
+    { tier: 1, card: "Sanctuary Centaur", name: "Sanctuary Centaur", fn: testSanctuaryCentaur },
+    { tier: 1, card: "Dutiful Camel", name: "Dutiful Camel", fn: testDutifulCamel },
+    { tier: 1, card: "Frontline Cavalier", name: "Frontline Cavalier", fn: testFrontlineCavalier },
+    { tier: 1, card: "Faith in Darkness", name: "Faith in Darkness", fn: testFaithInDarkness },
+    { tier: 1, card: "Scientific Inquiry", name: "Scientific Inquiry", fn: testScientificInquiry },
+    { tier: 1, card: "To Battle", name: "To Battle", fn: testToBattle },
+    { tier: 1, card: "Might and Mane", name: "Might and Mane", fn: testMightAndMane },
+    { tier: 1, card: "Way of the Bygone", name: "Way of the Bygone", fn: testWayOfTheBygone },
+    { tier: 1, card: "Divination", name: "Divination", fn: testDivination },
+    { tier: 1, card: "Dune Skirmisher", name: "Dune Skirmisher", fn: testDuneSkirmisher },
+    { tier: 2, card: "Exotic Game Hunter", name: "Exotic Game Hunter", fn: testExoticGameHunter },
+    { tier: 2, card: "Restless Oppressor", name: "Restless Oppressor", fn: testRestlessOppressor },
+    { tier: 2, card: "Shrieking Pusbag", name: "Shrieking Pusbag", fn: testShriekingPusbag },
+    { tier: 2, card: "Earthrattle Xali", name: "Earthrattle Xali", fn: testEarthrattleXali },
+    { tier: 2, card: "Dynamic Wyvern", name: "Dynamic Wyvern", fn: testDynamicWyvern },
+    { tier: 2, card: "Bristled Direbear", name: "Bristled Direbear", fn: testBristledDirebear },
+    { tier: 2, card: "Consult the Dewdrops", name: "Consult the Dewdrops", fn: testConsultTheDewdrops },
+    { tier: 2, card: "Envoy of the Pure", name: "Envoy of the Pure", fn: testEnvoyOfThePure },
+    { tier: 2, card: "Centaur Wayfinder", name: "Centaur Wayfinder", fn: testCentaurWayfinder },
+    { tier: 2, card: "Warband Lieutenant", name: "Warband Lieutenant", fn: testWarbandLieutenant },
+    { tier: 2, card: "Stratus Traveler", name: "Stratus Traveler", fn: testStratusTraveler },
+    { tier: 2, card: "Rapacious Sprite", name: "Rapacious Sprite", fn: testRapaciousSprite },
+    { tier: 2, card: "Up in Arms", name: "Up in Arms", fn: testUpInArms },
+    { tier: 2, card: "Moonlight Stag", name: "Moonlight Stag", fn: testMoonlightStag },
+    { tier: 2, card: "Silken Spinner", name: "Silken Spinner", fn: testSilkenSpinner },
+    { tier: 2, card: "Gnomish Skirmisher", name: "Gnomish Skirmisher", fn: testGnomishSkirmisher },
+    { tier: 2, card: "Fight Song", name: "Fight Song", fn: testFightSong },
+    { tier: 2, card: "Edge of Their Seats", name: "Edge of Their Seats", fn: testEdgeOfTheirSeats },
+    { tier: 2, card: "Lake Cave Lurker", name: "Lake Cave Lurker", fn: testLakeCaveLurker },
+    { tier: 2, card: "Battlefront Lancer", name: "Battlefront Lancer", fn: testBattlefrontLancer },
+    { tier: 2, card: "Marbled Aakriti", name: "Marbled Aakriti", fn: testMarbledAakriti },
+    { tier: 2, card: "Scourge of the Sun", name: "Scourge of the Sun", fn: testScourgeOfTheSun },
+    { tier: 2, card: "Pestilent Leopardfly", name: "Pestilent Leopardfly", fn: testPestilentLeopardfly },
+    { tier: 2, card: "Touch of the Omen", name: "Touch of the Omen", fn: testTouchOfTheOmen },
+    { tier: 2, card: "Yamamura the Wanderer", name: "Yamamura the Wanderer", fn: testYamamuraTheWanderer },
+    { tier: 2, card: "Angora Paladin", name: "Angora Paladin", fn: testAngoraPaladin },
+    { tier: 2, card: "Small World", name: "Small World", fn: testSmallWorld },
+    { tier: 2, card: "Restless Migrants", name: "Restless Migrants", fn: testRestlessMigrants },
+    { tier: 2, card: "Solemn Pilgrimage", name: "Solemn Pilgrimage", fn: testSolemnPilgrimage },
+    { tier: 2, card: "Jhalach Scourge", name: "Jhalach Scourge", fn: testJhalachScourge },
+    { tier: 3, card: "Razorback Trenchrunner", name: "Razorback Trenchrunner", fn: testRazorbackTrenchrunner },
+    { tier: 3, card: "Song of Wind and Fire", name: "Song of Wind and Fire", fn: testSongOfWindAndFire },
+    { tier: 4, card: "Bard", name: "Bard", fn: testBard },
+    { tier: 3, card: "Sporegraft Slime", name: "Sporegraft Slime", fn: testSporegraftSlime },
+    { tier: 3, card: "Covetous Wechuge", name: "Covetous Wechuge", fn: testCovetousWechuge },
+    { tier: 3, card: "Finwing Drake", name: "Finwing Drake", fn: testFinwingDrake },
+    { tier: 3, card: "Shrewd Parliament", name: "Shrewd Parliament", fn: testShrewdParliament },
+    { tier: 3, card: "Pale Dillettante", name: "Pale Dillettante", fn: testPaleDillettante },
+    { tier: 3, card: "Aether Guzzler", name: "Aether Guzzler", fn: testAetherGuzzler },
+    { tier: 3, card: "Dewdrop Oracle", name: "Dewdrop Oracle", fn: testDewdropOracle },
+    { tier: 3, card: "Arroyd Pass Shepherd", name: "Arroyd Pass Shepherd", fn: testArroydPassShepherd },
+    { tier: 3, card: "Warband Rallier", name: "Warband Rallier", fn: testWarbandRallier },
+    { tier: 3, card: "Cybres-Band Recruiter", name: "Cybres-Band Recruiter", fn: testCybresBandRecruiter },
+    { tier: 3, card: "Cybres-Clan Squire", name: "Cybres-Clan Squire", fn: testCybresClanSquire },
+    { tier: 3, card: "Cybres-Band Lancer", name: "Cybres-Band Lancer", fn: testCybresBandLancer },
+    { tier: 3, card: "Windsong Apprentice", name: "Windsong Apprentice", fn: testWindsongApprentice },
+    { tier: 3, card: "Cauther Hellkite", name: "Cauther Hellkite", fn: testCautherHellkite },
+    { tier: 3, card: "Lingering Lunatic", name: "Lingering Lunatic", fn: testLingeringLunatic },
+    { tier: 3, card: "Bellowing Giant", name: "Bellowing Giant", fn: testBellowingGiant },
+    { tier: 3, card: "Bwema, the Ruthless", name: "Bwema, the Ruthless", fn: testBwemaTheRuthless },
+    { tier: 3, card: "Silverhorn Tactician", name: "Silverhorn Tactician", fn: testSilverhornTactician },
+    { tier: 3, card: "Qinhana Cavalry", name: "Qinhana Cavalry", fn: testQinhanaCavalry },
+    { tier: 3, card: "Mekini Eremite", name: "Mekini Eremite", fn: testMekiniEremite },
+    { tier: 3, card: "Frontier Markswomen", name: "Frontier Markswomen", fn: testFrontierMarkswomen },
+    { tier: 3, card: "Festival Celebrants", name: "Festival Celebrants", fn: testFestivalCelebrants },
+    { tier: 3, card: "Dewdrop Pools", name: "Dewdrop Pools", fn: testDewdropPools },
+    { tier: 3, card: "Jiayin, the Harmonious", name: "Jiayin, the Harmonious", fn: testJiayinTheHarmonious },
+    { tier: 3, card: "Jiayin, the Harmonious", name: "Jiayin (Up in Arms)", fn: testJiayin_UpInArms },
+    { tier: 3, card: "Gallant Centaur", name: "Gallant Centaur", fn: testGallantCentaur },
+    { tier: 3, card: "Faceless Faction", name: "Faceless Faction", fn: testFacelessFaction },
+    { tier: 3, card: "Duskborn Hunter", name: "Duskborn Hunter", fn: testDuskbornHunter },
+    { tier: 3, card: "Aldmore Chaperone", name: "Aldmore Chaperone", fn: testAldmoreChaperone },
+    { tier: 3, card: "Bjarndyr Bruiser", name: "Bjarndyr Bruiser", fn: testBjarndyrBruiser },
+    { tier: 3, card: "Gold Grubber", name: "Gold Grubber", fn: testGoldGrubber },
+    { tier: 3, card: "Herd Matron", name: "Herd Matron", fn: testHerdMatron },
+    { tier: 3, card: "Sunspear Angel", name: "Sunspear Angel", fn: testSunspearAngel },
+    { tier: 3, card: "Pheres-Band Huntmaster", name: "Pheres-Band Huntmaster", fn: testPheresBandHuntmaster },
+    { tier: 4, card: "Suitor of Death", name: "Suitor of Death", fn: testSuitorOfDeath },
+    { tier: 4, card: "Servants of Dydren", name: "Servants of Dydren", fn: testServantsOfDydren },
+    { tier: 4, card: "Holtun-Band Elder", name: "Holtun-Band Elder", fn: testHoltunBandElder },
+    { tier: 4, card: "Whispers of the Dead", name: "Whispers of the Dead", fn: testWhispersOfTheDead },
+    { tier: 4, card: "Decorated Warrior", name: "Decorated Warrior", fn: testDecoratedWarrior },
+    { tier: 4, card: "Waspback Bandit", name: "Waspback Bandit", fn: testWaspbackBandit },
+    { tier: 4, card: "Striding Cascade", name: "Striding Cascade", fn: testStridingCascade },
+    { tier: 4, card: "Murkborn Mammoth", name: "Murkborn Mammoth", fn: testMurkbornMammoth },
+    { tier: 4, card: "Hissing Sunspitter", name: "Hissing Sunspitter", fn: testHissingSunspitter },
+    { tier: 4, card: "Ghessian Memories", name: "Ghessian Memories", fn: testGhessianMemories },
+    { tier: 4, card: "Hero of a Lost War", name: "Hero of a Lost War (Self)", fn: testHeroOfALostWar_Self },
+    { tier: 4, card: "Hero of a Lost War", name: "Hero of a Lost War (Other)", fn: testHeroOfALostWar_Other },
+    { tier: 4, card: "Hero of Hedria", name: "Hero of Hedria", fn: testHeroOfHedria },
+    { tier: 4, card: "Suitor of Death", name: "Hexproof (Suitor Fizzle)", fn: testHexproof_SuitorOfDeath_Fizzle },
+    { tier: 4, card: "Suitor of Death", name: "Hexproof (Suitor Targeting)", fn: testHexproof_SuitorOfDeath_Targeting },
+    { tier: 4, card: "Cabracan's Familiar", name: "Hexproof (Familiar)", fn: testHexproof_CabracansFamiliar },
+    { tier: 4, card: "Thunder Raptor", name: "Thunder Raptor", fn: testThunderRaptor },
+    { tier: 4, card: "Cloudline Sovereign", name: "Cloudline Sovereign", fn: testCloudlineSovereign },
+    { tier: 4, card: "Nightfall Raptor", name: "Nightfall Raptor", fn: testNightfallRaptor },
+    { tier: 4, card: "Triumphant Tactics", name: "Triumphant Tactics", fn: testTriumphantTactics },
+    { tier: 4, card: "Savage Congregation", name: "Savage Congregation", fn: testSavageCongregation },
+    { tier: 4, card: "Ndengo Brutalizer", name: "Ndengo Brutalizer", fn: testNdengoBrutalizer },
+    { tier: 4, card: "Pyrewright Trainee", name: "Pyrewright Trainee", fn: testPyrewrightTrainee },
+    { tier: 4, card: "Lagoon Logistics", name: "Lagoon Logistics", fn: testLagoonLogistics },
+    { tier: 4, card: "Magnific Wilderkin", name: "Magnific Wilderkin", fn: testMagnificWilderkin },
+    { tier: 4, card: "Dwarven Phalanx", name: "Dwarven Phalanx", fn: testDwarvenPhalanx },
+    { tier: 4, card: "Lair Recluse", name: "Lair Recluse", fn: testLairRecluse },
+    { tier: 4, card: "Tunnel Web Spider", name: "Tunnel Web Spider", fn: testTunnelWebSpider },
+    { tier: 4, card: "Holtun-Band Emissary", name: "Holtun-Band Emissary", fn: testHoltunBandEmissary },
+    { tier: 4, card: "Nightmare Harpy", name: "Nightmare Harpy", fn: testNightmareHarpy },
+    { tier: 4, card: "Sanguine Anaconda", name: "Sanguine Anaconda", fn: testSanguineAnaconda },
+    { tier: 4, card: "Patron of the Meek", name: "Patron of the Meek", fn: testPatronOfTheMeek },
+    { tier: 4, card: "Honor Begets Glory", name: "Honor Begets Glory", fn: testHonorBegetsGlory },
+    { tier: 4, card: "Honor Begets Glory", name: "Honor Begets Glory (Stacking)", fn: testHonorBegetsGlory_Stacking },
+    { tier: 4, card: "Onora Pool Exclusion", name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion },
+    { tier: 4, card: "Mirror Image", name: "Mirror Image", fn: testMirrorImage },
+    { tier: 4, card: "Tin Woodsman", name: "Tin Woodsman", fn: testTinWoodsman },
+    { tier: 4, card: "Swift Zulufaa", name: "Swift Zulufaa", fn: testSwiftZulufaa },
+    { tier: 5, card: "Warhammer Kreg", name: "Warhammer Kreg", fn: testWarhammerKreg },
+    { tier: 5, card: "Dancing Mirrorblade", name: "Dancing Mirrorblade", fn: testDancingMirrorblade },
+    { tier: 5, card: "Ash-Withered Cloak", name: "Ash-Withered Cloak", fn: testAshWitheredCloak },
+    { tier: 5, card: "Steel Barding", name: "Steel Barding", fn: testSteelBarding },
+    { tier: 5, card: "Blacksteel Loadout", name: "Blacksteel Loadout", fn: testBlacksteelLoadout },
+    { tier: 5, card: "Lumbering Ancient", name: "Lumbering Ancient", fn: testLumberingAncient },
+    { tier: 5, card: "Zarax Supermajor", name: "Zarax Supermajor", fn: testZaraxSupermajor },
+    { tier: 5, card: "Infuse the Apparatus", name: "Infuse the Apparatus", fn: testInfuseTheApparatus },
+    { tier: 5, card: "Michal, the Anointed", name: "Michal, the Anointed", fn: testMichalTheAnointed },
+    { tier: 5, card: "Ladria, Windwatcher", name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
+    { tier: 5, card: "Erin, Beacon of Humility", name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
+    { tier: 5, card: "Erin, Beacon of Humility", name: "Erin (Hexproof Check)", fn: testErinHexproof },
+    { tier: 5, card: "Citadel Colossus", name: "Citadel Colossus", fn: testCitadelColossus },
+    { tier: 5, card: "Humility Suppression", name: "Humility Suppression", fn: testHumilitySuppression },
+    { tier: 5, card: "Unyielding Enforcer", name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
+    { tier: 5, card: "Thrice-Clawed Troika", name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
+    { tier: 5, card: "Helicos Gargantua", name: "Helicos Gargantua", fn: testHelicosGargantua },
+    { tier: 5, card: "Malenia, Goddess of Rot", name: "Malenia, Goddess of Rot", fn: testMaleniaGoddessOfRot },
+    { tier: 5, card: "Hero's Sledge", name: "Hero's Sledge", fn: testHerosSledge },
+    { tier: 2, card: "Executioner's Madness", name: "Executioner's Madness", fn: testExecutionersMadness },
+    { tier: 2, card: "Warrior's Ways", name: "Warrior's Ways", fn: testWarriorsWays },
+    { tier: 2, card: "Cabracan's Familiar", name: "Cabracan's Familiar", fn: testCabracansFamiliar },
+    { tier: 2, card: "Cabracan's Familiar", name: "Cabracan's Familiar (Shield)", fn: testCabracansFamiliar_Shield },
+    { tier: 5, card: "The Exile Queen's Crown", name: "The Exile Queen's Crown", fn: testTheExileQueensCrown },
+    { tier: 5, card: "Djitu's Lithified Mantle", name: "Djitu's Lithified Mantle", fn: testDjitusLithifiedMantle },
+    { tier: 5, card: "Rivha's Blessed Blade", name: "Rivha's Blessed Blade", fn: testRivhasBlessedBlade },
+    { tier: 5, card: "Rivha's Blessed Blade", name: "Rivha's Blessed Blade (Cirrusea)", fn: testRivhasBlessedBladeWithCirrusea },
+    { tier: 5, card: "Rivha's Blessed Blade", name: "Rivha's Blessed Blade (Discovery)", fn: testRivhasBlessedBladeWithDiscovery },
+    { tier: 3, card: "Jiayin, the Harmonious", name: "Jiayin (Warrior's Ways)", fn: testJiayin_WarriorsWays },
+    { tier: 2, card: "Am'Atambi's Wildkin", name: "Am'Atambi's Wildkin", fn: testAmAtambisWildkin }
+];
+
 async function runTests() {
-    const t1Tests = [
-        { tier: 1, name: "Decayed Sale", fn: testDecayedSale },
-        { tier: 1, name: "Huitzil Skywatch", fn: testHuitzilSkywatch },
-        { tier: 1, name: "Glumvale Raven", fn: testGlumvaleRaven },
-        { tier: 1, name: "Rotten Carcass", fn: testRottenCarcass },
-        { tier: 1, name: "War-Clan Dowager", fn: testWarClanDowager },
-        { tier: 1, name: "Clairvoyant Koi", fn: testClairvoyantKoi },
-        { tier: 1, name: "Soulsmoke Adept", fn: testSoulsmokeAdept },
-        { tier: 1, name: "Intli Assaulter", fn: testIntliAssaulter },
-        { tier: 1, name: "Sparring Campaigner", fn: testSparringCampaigner },
-        { tier: 1, name: "Rakkiri Archer", fn: testRakkiriArcher },
-        { tier: 1, name: "Blistering Lunatic", fn: testBlisteringLunatic },
-        { tier: 1, name: "Sanctuary Centaur", fn: testSanctuaryCentaur },
-        { tier: 1, name: "Dutiful Camel", fn: testDutifulCamel },
-        { tier: 1, name: "Frontline Cavalier", fn: testFrontlineCavalier },
-        { tier: 1, name: "Faith in Darkness", fn: testFaithInDarkness },
-        { tier: 1, name: "Scientific Inquiry", fn: testScientificInquiry },
-        { tier: 1, name: "To Battle", fn: testToBattle },
-        { tier: 1, name: "Might and Mane", fn: testMightAndMane },
-        { tier: 1, name: "Way of the Bygone", fn: testWayOfTheBygone },
-        { tier: 1, name: "Divination", fn: testDivination },
-        { tier: 1, name: "Dune Skirmisher", fn: testDuneSkirmisher }
-    ];
-
-    const t2Tests = [
-        { tier: 2, name: "Exotic Game Hunter", fn: testExoticGameHunter },
-        { tier: 2, name: "Restless Oppressor", fn: testRestlessOppressor },
-        { tier: 2, name: "Shrieking Pusbag", fn: testShriekingPusbag },
-        { tier: 2, name: "Executioner's Madness", fn: testExecutionersMadness },
-        { tier: 2, name: "Earthrattle Xali", fn: testEarthrattleXali },
-        { tier: 2, name: "Dynamic Wyvern", fn: testDynamicWyvern },
-        { tier: 2, name: "Bristled Direbear", fn: testBristledDirebear },
-        { tier: 2, name: "Consult the Dewdrops", fn: testConsultTheDewdrops },
-        { tier: 2, name: "Envoy of the Pure", fn: testEnvoyOfThePure },
-        { tier: 2, name: "Centaur Wayfinder", fn: testCentaurWayfinder },
-        { tier: 2, name: "Warband Lieutenant", fn: testWarbandLieutenant },
-        { tier: 2, name: "Warrior's Ways", fn: testWarriorsWays },
-        { tier: 2, name: "Stratus Traveler", fn: testStratusTraveler },
-        { tier: 2, name: "Rapacious Sprite", fn: testRapaciousSprite },
-        { tier: 2, name: "Up in Arms", fn: testUpInArms },
-        { tier: 2, name: "Cabracan's Familiar", fn: testCabracansFamiliar },
-        { tier: 2, name: "Cabracan's Familiar (Shield)", fn: testCabracansFamiliar_Shield },
-        { tier: 2, name: "Moonlight Stag", fn: testMoonlightStag },
-        { tier: 2, name: "Silken Spinner", fn: testSilkenSpinner },
-        { tier: 2, name: "Gnomish Skirmisher", fn: testGnomishSkirmisher },
-        { tier: 2, name: "Fight Song", fn: testFightSong },
-        { tier: 2, name: "Edge of Their Seats", fn: testEdgeOfTheirSeats },
-        { tier: 2, name: "Lake Cave Lurker", fn: testLakeCaveLurker },
-        { tier: 2, name: "Battlefront Lancer", fn: testBattlefrontLancer },
-        { tier: 2, name: "Marbled Aakriti", fn: testMarbledAakriti },
-        { tier: 2, name: "Scourge of the Sun", fn: testScourgeOfTheSun },
-        { tier: 2, name: "Am'Atambi's Wildkin", fn: testAmAtambisWildkin },
-        { tier: 2, name: "Pestilent Leopardfly", fn: testPestilentLeopardfly },
-        { tier: 2, name: "Touch of the Omen", fn: testTouchOfTheOmen },
-        { tier: 2, name: "Yamamura the Wanderer", fn: testYamamuraTheWanderer },
-        { tier: 2, name: "Angora Paladin", fn: testAngoraPaladin },
-        { tier: 2, name: "Small World", fn: testSmallWorld },
-        { tier: 2, name: "Restless Migrants", fn: testRestlessMigrants },
-        { tier: 2, name: "Solemn Pilgrimage", fn: testSolemnPilgrimage },
-        { tier: 2, name: "Jhalach Scourge", fn: testJhalachScourge }
-    ];
-
-    const t3Tests = [
-        { tier: 3, name: "Razorback Trenchrunner", fn: testRazorbackTrenchrunner },
-        { tier: 3, name: "Song of Wind and Fire", fn: testSongOfWindAndFire },
-        { tier: 3, name: "Bard", fn: testBard },
-        { tier: 3, name: "Sporegraft Slime", fn: testSporegraftSlime },
-        { tier: 3, name: "Covetous Wechuge", fn: testCovetousWechuge },
-        { tier: 3, name: "Finwing Drake", fn: testFinwingDrake },
-        { tier: 3, name: "Shrewd Parliament", fn: testShrewdParliament },
-        { tier: 3, name: "Pale Dillettante", fn: testPaleDillettante },
-        { tier: 3, name: "Aether Guzzler", fn: testAetherGuzzler },
-        { tier: 3, name: "Dewdrop Oracle", fn: testDewdropOracle },
-        { tier: 3, name: "Arroyd Pass Shepherd", fn: testArroydPassShepherd },
-        { tier: 3, name: "Warband Rallier", fn: testWarbandRallier },
-        { tier: 3, name: "Cybres-Band Recruiter", fn: testCybresBandRecruiter },
-        { tier: 3, name: "Cybres-Clan Squire", fn: testCybresClanSquire },
-        { tier: 3, name: "Cybres-Band Lancer", fn: testCybresBandLancer },
-        { tier: 3, name: "Windsong Apprentice", fn: testWindsongApprentice },
-        { tier: 3, name: "Cauther Hellkite", fn: testCautherHellkite },
-        { tier: 3, name: "Lingering Lunatic", fn: testLingeringLunatic },
-        { tier: 3, name: "Bellowing Giant", fn: testBellowingGiant },
-        { tier: 3, name: "Bwema, the Ruthless", fn: testBwemaTheRuthless },
-        { tier: 3, name: "Silverhorn Tactician", fn: testSilverhornTactician },
-        { tier: 3, name: "Qinhana Cavalry", fn: testQinhanaCavalry },
-        { tier: 3, name: "Mekini Eremite", fn: testMekiniEremite },
-        { tier: 3, name: "Frontier Markswomen", fn: testFrontierMarkswomen },
-        { tier: 3, name: "Festival Celebrants", fn: testFestivalCelebrants },
-        { tier: 3, name: "Dewdrop Pools", fn: testDewdropPools },
-        { tier: 3, name: "Jiayin, the Harmonious", fn: testJiayinTheHarmonious },
-        { tier: 3, name: "Jiayin (Up in Arms)", fn: testJiayin_UpInArms },
-        { tier: 3, name: "Jiayin (Warrior's Ways)", fn: testJiayin_WarriorsWays },
-        { tier: 3, name: "Gallant Centaur", fn: testGallantCentaur },
-        { tier: 3, name: "Faceless Faction", fn: testFacelessFaction },
-        { tier: 3, name: "Duskborn Hunter", fn: testDuskbornHunter },
-        { tier: 3, name: "Aldmore Chaperone", fn: testAldmoreChaperone },
-        { tier: 3, name: "Bjarndyr Bruiser", fn: testBjarndyrBruiser },
-        { tier: 3, name: "Gold Grubber", fn: testGoldGrubber },
-        { tier: 3, name: "Herd Matron", fn: testHerdMatron },
-        { tier: 3, name: "Sunspear Angel", fn: testSunspearAngel },
-        { tier: 3, name: "Pheres-Band Huntmaster", fn: testPheresBandHuntmaster }
-    ];
-
-    const t4Tests = [
-        { tier: 4, name: "Suitor of Death", fn: testSuitorOfDeath },
-        { tier: 4, name: "Servants of Dydren", fn: testServantsOfDydren },
-        { tier: 4, name: "Holtun-Band Elder", fn: testHoltunBandElder },
-        { tier: 4, name: "Whispers of the Dead", fn: testWhispersOfTheDead },
-        { tier: 4, name: "Decorated Warrior", fn: testDecoratedWarrior },
-        { tier: 4, name: "Waspback Bandit", fn: testWaspbackBandit },
-        { tier: 4, name: "Striding Cascade", fn: testStridingCascade },
-        { tier: 4, name: "Murkborn Mammoth", fn: testMurkbornMammoth },
-        { tier: 4, name: "Hissing Sunspitter", fn: testHissingSunspitter },
-        { tier: 4, name: "Ghessian Memories", fn: testGhessianMemories },
-        { tier: 4, name: "Hero of a Lost War (Self)", fn: testHeroOfALostWar_Self },
-        { tier: 4, name: "Hero of a Lost War (Other)", fn: testHeroOfALostWar_Other },
-        { tier: 4, name: "Hero of Hedria", fn: testHeroOfHedria },
-        { tier: 4, name: "Hexproof (Suitor Fizzle)", fn: testHexproof_SuitorOfDeath_Fizzle },
-        { tier: 4, name: "Hexproof (Suitor Targeting)", fn: testHexproof_SuitorOfDeath_Targeting },
-        { tier: 4, name: "Hexproof (Familiar)", fn: testHexproof_CabracansFamiliar },
-        { tier: 4, name: "Thunder Raptor", fn: testThunderRaptor },
-        { tier: 4, name: "Cloudline Sovereign", fn: testCloudlineSovereign },
-        { tier: 4, name: "Nightfall Raptor", fn: testNightfallRaptor },
-        { tier: 4, name: "Triumphant Tactics", fn: testTriumphantTactics },
-        { tier: 4, name: "Savage Congregation", fn: testSavageCongregation },
-        { tier: 4, name: "Ndengo Brutalizer", fn: testNdengoBrutalizer },
-        { tier: 4, name: "Pyrewright Trainee", fn: testPyrewrightTrainee },
-        { tier: 4, name: "Lagoon Logistics", fn: testLagoonLogistics },
-        { tier: 4, name: "Magnific Wilderkin", fn: testMagnificWilderkin },
-        { tier: 4, name: "Dwarven Phalanx", fn: testDwarvenPhalanx },
-        { tier: 4, name: "Lair Recluse", fn: testLairRecluse },
-        { tier: 4, name: "Tunnel Web Spider", fn: testTunnelWebSpider },
-        { tier: 4, name: "Holtun-Band Emissary", fn: testHoltunBandEmissary },
-        { tier: 4, name: "Nightmare Harpy", fn: testNightmareHarpy },
-        { tier: 4, name: "Sanguine Anaconda", fn: testSanguineAnaconda },
-        { tier: 4, name: "Patron of the Meek", fn: testPatronOfTheMeek },
-        { tier: 4, name: "Honor Begets Glory", fn: testHonorBegetsGlory },
-        { tier: 4, name: "Honor Begets Glory (Stacking)", fn: testHonorBegetsGlory_Stacking },
-        { tier: 4, name: "Onora Pool Exclusion", fn: testOnoraPoolExclusion },
-        { tier: 4, name: "Mirror Image", fn: testMirrorImage },
-        { tier: 4, name: "Tin Woodsman", fn: testTinWoodsman },
-        { tier: 4, name: "Swift Zulufaa", fn: testSwiftZulufaa }
-    ];
-
-    const t5Tests = [
-        { tier: 5, name: "Warhammer Kreg", fn: testWarhammerKreg },
-        { tier: 5, name: "Dancing Mirrorblade", fn: testDancingMirrorblade },
-        { tier: 5, name: "The Exile Queen's Crown", fn: testTheExileQueensCrown },
-        { tier: 5, name: "Djitu's Lithified Mantle", fn: testDjitusLithifiedMantle },
-        { tier: 5, name: "Ash-Withered Cloak", fn: testAshWitheredCloak },
-        { tier: 5, name: "Steel Barding", fn: testSteelBarding },
-        { tier: 5, name: "Rivha's Blessed Blade", fn: testRivhasBlessedBlade },
-        { tier: 5, name: "Rivha's Blessed Blade (Cirrusea)", fn: testRivhasBlessedBladeWithCirrusea },
-        { tier: 5, name: "Rivha's Blessed Blade (Discovery)", fn: testRivhasBlessedBladeWithDiscovery },
-        { tier: 5, name: "Blacksteel Loadout", fn: testBlacksteelLoadout },
-        { tier: 5, name: "Lumbering Ancient", fn: testLumberingAncient },
-        { tier: 5, name: "Zarax Supermajor", fn: testZaraxSupermajor },
-        { tier: 5, name: "Infuse the Apparatus", fn: testInfuseTheApparatus },
-        { tier: 5, name: "Michal, the Anointed", fn: testMichalTheAnointed },
-        { tier: 5, name: "Ladria, Windwatcher", fn: testLadriaWindwatcher },
-        { tier: 5, name: "Erin, Beacon of Humility", fn: testErinBeaconOfHumility },
-        { tier: 5, name: "Erin (Hexproof Check)", fn: testErinHexproof },
-        { tier: 5, name: "Citadel Colossus", fn: testCitadelColossus },
-        { tier: 5, name: "Humility Suppression", fn: testHumilitySuppression },
-        { tier: 5, name: "Unyielding Enforcer", fn: testUnyieldingEnforcer },
-        { tier: 5, name: "Thrice-Clawed Troika", fn: testThriceClawedTroika },
-        { tier: 5, name: "Helicos Gargantua", fn: testHelicosGargantua },
-        { tier: 5, name: "Hero's Sledge", fn: testHerosSledge },
-        { tier: 5, name: "Malenia, Goddess of Rot", fn: testMaleniaGoddessOfRot }
-    ];
-
     console.log("\nUNIT TEST RESULTS");
     console.log("=================");
+    
+    const testsByTier = {};
+    
+    for (const test of allTests) {
+        const cardData = fullCardPool.find(c => c.card_name === test.card);
+        const tier = (cardData && cardData.tier !== undefined) ? cardData.tier : test.tier;
+        
+        if (!testsByTier[tier]) {
+            testsByTier[tier] = [];
+        }
+        testsByTier[tier].push({ ...test, resolvedTier: tier });
+    }
     
     const runBatch = async (tests) => {
         let passed = 0;
         for (const test of tests) {
             try {
                 await test.fn();
-                console.log(`✓ [T${test.tier}] ${test.name}`);
+                console.log(`✓ [T${test.resolvedTier}] ${test.name}`);
                 passed++;
             } catch (e) {
-                console.error(`✕ [T${test.tier}] ${test.name}: ${e.message}`);
+                console.error(`✕ [T${test.resolvedTier}] ${test.name}: ${e.message}`);
             }
         }
         return passed;
     };
-
-    console.log("\nTIER 1");
-    const t1Passed = await runBatch(t1Tests);
     
-    console.log("\nTIER 2");
-    const t2Passed = await runBatch(t2Tests);
-
-    console.log("\nTIER 3");
-    const t3Passed = await runBatch(t3Tests);
-
-    console.log("\nTIER 4");
-    const t4Passed = await runBatch(t4Tests);
-
-    console.log("\nTIER 5");
-    const t5Passed = await runBatch(t5Tests);
-
+    const summary = {};
+    const tiers = Object.keys(testsByTier).sort((a, b) => a - b);
+    
+    for (const tier of tiers) {
+        console.log(`\nTIER ${tier}`);
+        const passed = await runBatch(testsByTier[tier]);
+        summary[tier] = { passed, total: testsByTier[tier].length };
+    }
+    
     console.log("\nFINAL SUMMARY");
     console.log("-------------");
-    console.log(`TIER 1 - Passed: ${t1Passed}/${t1Tests.length}. Failed: ${t1Tests.length - t1Passed}.`);
-    console.log(`TIER 2 - Passed: ${t2Passed}/${t2Tests.length}. Failed: ${t2Tests.length - t2Passed}.`);
-    console.log(`TIER 3 - Passed: ${t3Passed}/${t3Tests.length}. Failed: ${t3Tests.length - t3Passed}.`);
-    console.log(`TIER 4 - Passed: ${t4Passed}/${t4Tests.length}. Failed: ${t4Tests.length - t4Passed}.`);
-    console.log(`TIER 5 - Passed: ${t5Passed}/${t5Tests.length}. Failed: ${t5Tests.length - t5Passed}.`);
-
-    if (t1Passed < t1Tests.length || t2Passed < t2Tests.length || t3Passed < t3Tests.length || t4Passed < t4Tests.length || t5Passed < t5Tests.length) {
+    let totalFailed = 0;
+    for (const tier of tiers) {
+        const { passed, total } = summary[tier];
+        const failed = total - passed;
+        totalFailed += failed;
+        console.log(`TIER ${tier} - Passed: ${passed}/${total}. Failed: ${failed}.`);
+    }
+    
+    if (totalFailed > 0) {
         process.exit(1);
     }
     process.exit(0);
