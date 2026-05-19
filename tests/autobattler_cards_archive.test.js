@@ -638,3 +638,85 @@ async function testForesee() {
     state.scrying.postScry();
     assert.strictEqual(state.shop.cards.length, startShopSize + 2, "Should add 2 cards to shop after scry");
 }
+
+// --- Archived Tests (Moved from active suite) ---
+
+async function testYamamuraTheWanderer() {
+    resetState();
+    const yamamura = createTestCard("Yamamura the Wanderer");
+    const unequipped = createTestCard("Unequipped", { pt: "1/1" });
+    const equipped = createTestCard("Equipped", { pt: "1/1" });
+    equipped.equipment = { card_name: "Sledge", getEquipmentStats: () => ({p: 6, t: 6}) };
+    
+    state.player.board = [yamamura, unequipped, equipped];
+    yamamura.owner = unequipped.owner = equipped.owner = 'player';
+
+    // 1. Target unequipped (Randomly selected)
+    const oldRandom = Math.random;
+    Math.random = () => 0.4; // Index 1: Unequipped
+    await yamamura.onCombatStart(state.player.board);
+    assert.strictEqual(unequipped.tempPower, 1, "Unequipped should get temp +1/+1");
+    assert.strictEqual(unequipped.counters, 0);
+
+    // 2. Target equipped (Randomly selected)
+    resetState();
+    state.player.board = [yamamura, unequipped, equipped];
+    Math.random = () => 0.9; // Index 2: Equipped
+    await yamamura.onCombatStart(state.player.board);
+    assert.strictEqual(equipped.counters, 1, "Equipped should get permanent +1/+1 counter");
+    assert.strictEqual(equipped.tempPower, 0);
+
+    Math.random = oldRandom;
+}
+
+async function testServantsOfDydren() {
+    // 1. Lord Effect
+    resetState();
+    const s1 = createTestCard("Servants of Dydren", { pt: "2/2"});
+    const s2 = createTestCard("Servants of Dydren", { pt: "2/2"});
+    state.player.board = [s1, s2];
+    s1.owner = s2.owner = 'player';
+
+    assert.strictEqual(s1.getDisplayStats(state.player.board).p, 4, "Should get +2/+2 from other servant");
+
+    // 2. Full board -> no resurrection
+    resetState();
+    state.player.deadServantsCount = 2;
+    for(let i=0; i<7; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
+    const s3 = createTestCard("Servants of Dydren", { pt: "2/2"});
+    s3.owner = 'player';
+    s3.onETB(state.player.board);
+    assert.strictEqual(state.player.deadServantsCount, 2, "Counter should not be touched on full board");
+
+    // 3. Partial resurrection
+    resetState();
+    state.player.deadServantsCount = 2;
+    // Fill to 6
+    for(let i=0; i<6; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
+    const s4 = createTestCard("Servants of Dydren", { pt: "2/2"});
+    s4.owner = 'player';
+    s4.onETB(state.player.board);
+    assert.strictEqual(state.player.board.length, 7, "Should only resurrect one to fill board");
+    assert.strictEqual(state.player.deadServantsCount, 1, "Counter should decrement by one");
+}
+
+async function testNightmareHarpy() {
+    resetState();
+    const harpy = createTestCard("Nightmare Harpy", { pt: "2/2"});
+    const fodder = createTestCard("Fodder", { pt: "1/1"});
+    const anaconda = createTestCard("Sanguine Anaconda", { pt: "2/2"});
+    state.player.board = [harpy, fodder, anaconda];
+    harpy.owner = fodder.owner = anaconda.owner = 'player';
+    state.player.gold = 3;
+
+    // Use Action
+    harpy.onAction();
+    assert.strictEqual(state.targetingEffect.effect, 'harpy_cannibalize');
+    await applyTargetedEffect(fodder.id);
+
+    assert.strictEqual(state.player.gold, 2, "Cost 1 gold");
+    assert.strictEqual(state.player.board.includes(fodder), false, "Fodder sacrificed");
+    assert.strictEqual(harpy.counters, 2, "Harpy got 2 counters");
+    assert.strictEqual(harpy.hasKeyword('lifelink'), true, "Harpy got lifelink");
+    assert.strictEqual(anaconda.tempPower, 3, "Anaconda Bloodrite triggered");
+}

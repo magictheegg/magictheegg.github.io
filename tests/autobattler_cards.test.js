@@ -137,33 +137,7 @@ function createTestCard(name, overrides = {}) {
 
 // --- TIER 1 TESTS ---
 
-async function testYamamuraTheWanderer() {
-    resetState();
-    const yamamura = createTestCard("Yamamura the Wanderer");
-    const unequipped = createTestCard("Unequipped", { pt: "1/1" });
-    const equipped = createTestCard("Equipped", { pt: "1/1" });
-    equipped.equipment = { card_name: "Sledge", getEquipmentStats: () => ({p: 6, t: 6}) };
-    
-    state.player.board = [yamamura, unequipped, equipped];
-    yamamura.owner = unequipped.owner = equipped.owner = 'player';
 
-    // 1. Target unequipped (Randomly selected)
-    const oldRandom = Math.random;
-    Math.random = () => 0.4; // Index 1: Unequipped
-    await yamamura.onCombatStart(state.player.board);
-    assert.strictEqual(unequipped.tempPower, 1, "Unequipped should get temp +1/+1");
-    assert.strictEqual(unequipped.counters, 0);
-
-    // 2. Target equipped (Randomly selected)
-    resetState();
-    state.player.board = [yamamura, unequipped, equipped];
-    Math.random = () => 0.9; // Index 2: Equipped
-    await yamamura.onCombatStart(state.player.board);
-    assert.strictEqual(equipped.counters, 1, "Equipped should get permanent +1/+1 counter");
-    assert.strictEqual(equipped.tempPower, 0);
-
-    Math.random = oldRandom;
-}
 
 async function testSunspearAngel() {
     resetState();
@@ -1410,35 +1384,7 @@ async function testSuitorOfDeath() {
     assert.ok(true, "Should not crash or trigger sacrifice in shop");
 }
 
-async function testServantsOfDydren() {
-    // 1. Lord Effect
-    resetState();
-    const s1 = createTestCard("Servants of Dydren", { pt: "2/2"});
-    const s2 = createTestCard("Servants of Dydren", { pt: "2/2"});
-    state.player.board = [s1, s2];
-    s1.owner = s2.owner = 'player';
 
-    assert.strictEqual(s1.getDisplayStats(state.player.board).p, 4, "Should get +2/+2 from other servant");
-
-    // 2. Full board -> no resurrection
-    resetState();
-    state.player.deadServantsCount = 2;
-    for(let i=0; i<7; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
-    const s3 = createTestCard("Servants of Dydren", { pt: "2/2"});
-    s3.owner = 'player';
-    s3.onETB(state.player.board);
-    assert.strictEqual(state.player.deadServantsCount, 2, "Counter should not be touched on full board");
-
-    // 3. Partial resurrection
-    resetState();
-    state.player.deadServantsCount = 2;
-    // Fill to 6
-    for(let i=0; i<6; i++) state.player.board.push(createTestCard("Full", { pt: "1/1"}));
-    const s4 = createTestCard("Servants of Dydren", { pt: "2/2"});
-    s4.owner = 'player';
-    s4.onETB(state.player.board);
-    assert.strictEqual(state.player.board.length, 7, "Should only resurrect one to fill board");
-    assert.strictEqual(state.player.deadServantsCount, 1, "Counter should decrement by one");}
 
 async function testHoltunBandElder() {
     resetState();
@@ -3213,26 +3159,7 @@ async function testDuskbornHunter() {
     assert.strictEqual(hunter.hasKeyword('deathtouch'), false, "Deathtouch removed after phase");
 }
 
-async function testNightmareHarpy() {
-    resetState();
-    const harpy = createTestCard("Nightmare Harpy", { pt: "2/2"});
-    const fodder = createTestCard("Fodder", { pt: "1/1"});
-    const anaconda = createTestCard("Sanguine Anaconda", { pt: "2/2"});
-    state.player.board = [harpy, fodder, anaconda];
-    harpy.owner = fodder.owner = anaconda.owner = 'player';
-    state.player.gold = 3;
 
-    // Use Action
-    harpy.onAction();
-    assert.strictEqual(state.targetingEffect.effect, 'harpy_cannibalize');
-    await applyTargetedEffect(fodder.id);
-
-    assert.strictEqual(state.player.gold, 2, "Cost 1 gold");
-    assert.strictEqual(state.player.board.includes(fodder), false, "Fodder sacrificed");
-    assert.strictEqual(harpy.counters, 2, "Harpy got 2 counters");
-    assert.strictEqual(harpy.hasKeyword('lifelink'), true, "Harpy got lifelink");
-    assert.strictEqual(anaconda.tempPower, 3, "Anaconda Bloodrite triggered");
-}
 
 async function testSanguineAnaconda() {
     resetState();
@@ -3669,7 +3596,7 @@ const allTests = [
     { tier: 2, card: "Scourge of the Sun", name: "Scourge of the Sun", fn: testScourgeOfTheSun },
     { tier: 2, card: "Pestilent Leopardfly", name: "Pestilent Leopardfly", fn: testPestilentLeopardfly },
     { tier: 2, card: "Touch of the Omen", name: "Touch of the Omen", fn: testTouchOfTheOmen },
-    { tier: 2, card: "Yamamura the Wanderer", name: "Yamamura the Wanderer", fn: testYamamuraTheWanderer },
+
     { tier: 2, card: "Angora Paladin", name: "Angora Paladin", fn: testAngoraPaladin },
     { tier: 2, card: "Small World", name: "Small World", fn: testSmallWorld },
     { tier: 2, card: "Restless Migrants", name: "Restless Migrants", fn: testRestlessMigrants },
@@ -3713,7 +3640,7 @@ const allTests = [
     { tier: 3, card: "Sunspear Angel", name: "Sunspear Angel", fn: testSunspearAngel },
     { tier: 3, card: "Pheres-Band Huntmaster", name: "Pheres-Band Huntmaster", fn: testPheresBandHuntmaster },
     { tier: 4, card: "Suitor of Death", name: "Suitor of Death", fn: testSuitorOfDeath },
-    { tier: 4, card: "Servants of Dydren", name: "Servants of Dydren", fn: testServantsOfDydren },
+
     { tier: 4, card: "Holtun-Band Elder", name: "Holtun-Band Elder", fn: testHoltunBandElder },
     { tier: 4, card: "Whispers of the Dead", name: "Whispers of the Dead", fn: testWhispersOfTheDead },
     { tier: 4, card: "Decorated Warrior", name: "Decorated Warrior", fn: testDecoratedWarrior },
@@ -3741,7 +3668,7 @@ const allTests = [
     { tier: 4, card: "Lair Recluse", name: "Lair Recluse", fn: testLairRecluse },
     { tier: 4, card: "Tunnel Web Spider", name: "Tunnel Web Spider", fn: testTunnelWebSpider },
     { tier: 4, card: "Holtun-Band Emissary", name: "Holtun-Band Emissary", fn: testHoltunBandEmissary },
-    { tier: 4, card: "Nightmare Harpy", name: "Nightmare Harpy", fn: testNightmareHarpy },
+
     { tier: 4, card: "Sanguine Anaconda", name: "Sanguine Anaconda", fn: testSanguineAnaconda },
     { tier: 4, card: "Patron of the Meek", name: "Patron of the Meek", fn: testPatronOfTheMeek },
     { tier: 4, card: "Honor Begets Glory", name: "Honor Begets Glory", fn: testHonorBegetsGlory },
