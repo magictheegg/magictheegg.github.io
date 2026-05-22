@@ -5,7 +5,7 @@
 			<name>BLD</name>
 			<longname>Bloodborne</longname>
 			<settype>Custom</settype>
-			<releasedate>2026-04-11</releasedate>
+			<releasedate>2026-05-21</releasedate>
 		</set>
 	</sets>
 	<cards>
@@ -421,10 +421,9 @@ Whenever another creature you control enters, you gain 1 life. If you&apos;ve tr
 		</card>
 		<card>
 			<name>Ascension of the Martyr</name>
-			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)
-I — Each player chooses a creature they control, then sacrifices the rest.
-II — Search your library for an Equipment card, reveal it, put it into your hand, then shuffle.
-III — Put a +1/+1 counter on target creature you control. It gains flying until end of turn.</text>
+			<text>Each player chooses a creature they control, then sacrifices the rest.
+Search your library for an Equipment card, reveal it, put it into your hand, then shuffle.
+Put a +1/+1 counter on target creature you control. It gains flying until end of turn.</text>
 			<set rarity="rare" picurl="https://magictheegg.github.io/sets/BLD-files/img/20.png" num="6">BLD</set>
 			<prop>
 				<layout>saga</layout>
@@ -526,10 +525,9 @@ At the beginning of your end step, if you drew seven or more cards this turn, yo
 		</card>
 		<card>
 			<name>Parting of the Great Veil</name>
-			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)
-I — Tap up to two target creatures. Put two stun counters on each of them.
-II — Create a 3/3 green and blue Alien Horror creature token with &quot;This creature has hexproof as long as it isn&apos;t your turn.&quot;
-III — Create a token that&apos;s a copy of target creature you control.</text>
+			<text>Tap up to two target creatures. Put two stun counters on each of them.
+Create a 3/3 green and blue Alien Horror creature token with &quot;This creature has hexproof as long as it isn&apos;t your turn.&quot;
+Create a token that&apos;s a copy of target creature you control.</text>
 			<set rarity="rare" picurl="https://magictheegg.github.io/sets/BLD-files/img/26.png" num="46">BLD</set>
 			<prop>
 				<layout>saga</layout>
@@ -636,10 +634,9 @@ Whenever Bloody Crow of Cainhurst deals combat damage to a player, if you&apos;v
 		</card>
 		<card>
 			<name>The Hunter&apos;s Lament</name>
-			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)
-I — Each player sacrifices a creature.
-II — Return target creature card from your graveyard to your hand.
-III — Search your library for a card, put it into your hand, then shuffle.</text>
+			<text>Each player sacrifices a creature.
+Return target creature card from your graveyard to your hand.
+Search your library for a card, put it into your hand, then shuffle.</text>
 			<set rarity="rare" picurl="https://magictheegg.github.io/sets/BLD-files/img/32.png" num="63">BLD</set>
 			<prop>
 				<layout>saga</layout>
@@ -744,10 +741,9 @@ Whenever you attack, you may discard your hand. If you do, draw a card for each 
 		</card>
 		<card>
 			<name>Revelation of Old Blood</name>
-			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)
-I — Scry 2.
-II — Create two Blood Vial tokens. (They&apos;re artifacts with &quot;{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.&quot;)
-III — You may sacrifice another permanent. When you do, Revelation of Old Blood deals 2 damage to any target.</text>
+			<text>Scry 2.
+Create two Blood Vial tokens. (They&apos;re artifacts with &quot;{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.&quot;)
+You may sacrifice another permanent. When you do, Revelation of Old Blood deals 2 damage to any target.</text>
 			<set rarity="rare" picurl="https://magictheegg.github.io/sets/BLD-files/img/38.png" num="94">BLD</set>
 			<prop>
 				<layout>saga</layout>
@@ -852,10 +848,9 @@ Each attacking Spider you control assigns combat damage equal to its toughness r
 		</card>
 		<card>
 			<name>The Discovery of Vermin</name>
-			<text>(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)
-I — Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
-II — You may play up to two additional lands this turn.
-III — Spread the Scourge. (Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that&apos;s a copy of it, except it&apos;s a Beast.)</text>
+			<text>Reveal the top four cards of your library. You may put up to two creature or land cards from among them into your hand. Put the rest into your graveyard.
+You may play up to two additional lands this turn.
+Spread the Scourge. (Create a 2/2 green Beast creature token, or sacrifice a non-Beast creature to create a 3/3 token that&apos;s a copy of it, except it&apos;s a Beast.)</text>
 			<set rarity="rare" picurl="https://magictheegg.github.io/sets/BLD-files/img/44.png" num="106">BLD</set>
 			<prop>
 				<layout>saga</layout>
@@ -1233,7 +1228,7 @@ Equip {3}</text>
 		<card>
 			<name>Lumenflower Gardens</name>
 			<text>{T}: Add {C}.
-{3}{G}{U}, {T}: Untap each Forest and each Island you control.</text>
+{3}{G}{U}, {T}: Untap each Forest and each Island you control. Activate only once each turn.</text>
 			<set rarity="rare" picurl="https://magictheegg.github.io/sets/BLD-files/img/66.png" num="187">BLD</set>
 			<prop>
 				<layout>normal</layout>
@@ -1918,19 +1913,20 @@ Insight — Whenever you draw your second card each turn, Djura gets +4/+0 until
 		</card>
 		<card>
 			<name>Arcane Transfusion</name>
-			<text>Draw two cards, then discard a card. Create two Blood Vial tokens. (They&apos;re artifacts with &quot;{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.&quot;)</text>
+			<text>When Arcane Transfusion enters, create two Blood Vial tokens. (They&apos;re artifacts with &quot;{1}, {T}, Sacrifice this, Discard a card or sacrifice another untargeted permanent: Draw a card.&quot;)
+At the beginning of your end step, sacrifice Arcane Transfusion. When you do, it deals damage to up to one target creature or planeswalker equal to the number of cards you&apos;ve drawn this turn.</text>
 			<set rarity="uncommon" picurl="https://magictheegg.github.io/sets/BLD-files/img/105.png" num="126">BLD</set>
 			<prop>
 				<layout>normal</layout>
 				<side>front</side>
-				<type>Sorcery</type>
-				<maintype>Sorcery</maintype>
+				<type>Enchantment</type>
+				<maintype>Enchantment</maintype>
 				<manacost>1UR</manacost>
 				<cmc>3</cmc>
 				<colors>UR</colors>
 				<coloridentity>UR</coloridentity>
 			</prop>
-			<tablerow>3</tablerow>
+			<tablerow>1</tablerow>
 		</card>
 		<card>
 			<name>Graveguard Dores</name>
