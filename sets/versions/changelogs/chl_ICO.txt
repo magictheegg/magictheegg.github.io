@@ -1,4 +1,173 @@
-﻿VERSION 4 CHANGELOG
+﻿VERSION 5 CHANGELOG
+====================
+
+Vidir's Wildwood added.
+Breaching Bellsnout added.
+
+Burgeoning Wildwood removed.
+Breaching Baleen removed.
+
+Sarkhan, Scalebound
+rules_text: When Sarkhan enters, invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+[+1]: Up to one target creature gets +2/+0 and gains menace until end of turn.
+[0]: Discard a card, then exile the top two cards of your library. You may play one of them this turn.
+[-6]: Create a 4/4 red Dragon creature token with flying. Then each Dragon you control deals damage equal to its power to any target. => As Sarkhan enters, invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+[+1]: Up to one target creature gets +2/+0 until end of turn.
+[0]: Discard a card, then exile the top two cards of your library. You may play one of them this turn.
+[-6]: Create a 4/4 red Dragon creature token with flying. Then each Dragon you control deals damage equal to its power to any target.
+special_text: When Sarkhan enters, invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+[+1]: Up to one target creature gets +2/+0 and gains menace until end of turn.
+[0]: Discard a card, then exile the top two cards of your library. You may play one of them this turn.
+[-6]: Create a 4/4 red Dragon creature token with flying. Then each Dragon you control deals damage equal to its power to any target. => As Sarkhan enters, invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+[+1]: Up to one target creature gets +2/+0 until end of turn.
+[0]: Discard a card, then exile the top two cards of your library. You may play one of them this turn.
+[-6]: Create a 4/4 red Dragon creature token with flying. Then each Dragon you control deals damage equal to its power to any target.
+
+Bishop of Sophic Salt
+rules_text: When Bishop of Sophic Salt enters, you may invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Bishop of Sophic Salt has base power and toughness 4/4 and flying and vigilance as long as you've gained life this turn. => When Bishop of Sophic Salt enters, you may invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Bishop of Sophic Salt gets +3/+3 and has flying and vigilance as long as you've gained life this turn.
+
+Faithlight Magister
+cost: {2}{W}{W} => {1}{W}{W}
+pt: 3/5 => 3/3
+
+Antiquities Hoarder
+rules_text: Flying
+Antiquities Hoarder can't attack or block unless it has five or more counters on it.
+Whenever one or more artifacts you control enter, put a +1/+1 counter on Antiquities Hoarder. If one of those artifacts is a Treasure, Antiquities Hoarder deals 1 damage to each opponent. => Flying
+Antiquities Hoarder can't attack or block unless it has three or more counters on it.
+Whenever an artifact you control enters, put a +1/+1 counter on Antiquities Hoarder. This ability triggers only once each turn.
+
+Iron Eye Captain
+cost: {2}{R}{R} => {1}{R}{R}
+rules_text: Double strike
+Whenever Iron Eye Captain attacks for the first time each turn, untap any number of target creatures you control with total power less than or equal to your devotion to red. After this phase, there is an additional combat phase. [i](Each {R} in the mana costs of permanents you control counts toward your devotion to red.)[/i] => Agile [i](This creature deals combat damage first as long as it's attacking.)[/i]
+Whenever Iron Eye Captain attacks for the first time each turn, untap any number of target creatures you control with total power less than or equal to your devotion to red. After this phase, there is an additional combat phase. [i](Each {R} in the mana costs of permanents you control counts toward your devotion to red.)[/i]
+
+Ethella Spreads Faith
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+II — Exile up to one target nonland permanent until you control no Sagas or Angels.
+III — Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Exile up to one target nonland permanent until you control no Sagas or Angels.
+Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+II — Exile up to one target nonland permanent until you control no Sagas or Angels.
+III — Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn. => [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+Invoke the Angels. [i](Begin or advance the Path of the Angel.)[/i]
+Exile up to one target nonland permanent until you control no Sagas or Angels.
+Put a +1/+1 counter on target creature you control. It gains lifelink until end of turn.
+
+Current Distortionist
+cost: {3}{U}{U} => {1}{U}{U}
+rules_text: Flash
+When Current Distortionist enters, exile up to one target instant or sorcery card with mana value less than or equal to your devotion to blue from your graveyard. Until end of turn, you may cast that card without paying its mana cost. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue. Timing rules still apply.)[/i] => Whenever Current Distortionist attacks, exile up to one target blue instant or sorcery card with mana value less than or equal to your devotion to blue from your graveyard. Until end of turn, you may cast that card without paying its mana cost. [i](Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)[/i]
+pt: 3/4 => 3/1
+
+Veritanos Teaches Curiosity
+rules_text: 
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+II — Until your next turn, you can cast spells as though they had flash.
+III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => 
+Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+special_text: 
+I — Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+II — Until your next turn, you can cast spells as though they had flash.
+III — Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order. => 
+Invoke the Sphinxes. [i](Begin or advance the Path of the Sphinx.)[/i]
+Until your next turn, you can cast spells as though they had flash.
+Whenever a creature you control deals combat damage to a player this turn, look at that many cards from the top of your library. Put one into your hand and the rest on the bottom of your library in any order.
+
+Aternox Imparts Humility
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent loses 3 life unless they discard a card or sacrifice a creature. Repeat this process once.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control. => 
+Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+Each opponent loses 3 life unless they discard a card or sacrifice a creature. Repeat this process once.
+Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+II — Each opponent loses 3 life unless they discard a card or sacrifice a creature. Repeat this process once.
+III — Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control. => 
+Invoke the Demons. [i](Begin or advance the Path of the Demon.)[/i]
+Each opponent loses 3 life unless they discard a card or sacrifice a creature. Repeat this process once.
+Put target creature card with mana value 3 or less from a graveyard onto the battlefield under your control.
+
+Shrieking Magmaw
+rules_text: Menace
+Whenever you sacrifice an artifact, put a +1/+1 counter on Shrieking Magmaw. => Menace
+Whenever you sacrifice an artifact, put a +1/+1 counter on Shrieking Magmaw. This ability triggers only once each turn.
+
+Blastburn Salvo
+cost: {R} => {1}{R}
+
+Yadil Exhibits Tenacity
+rules_text: 
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => 
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+special_text: 
+I — Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+II — The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+III — Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}. => 
+Invoke the Dragons. [i](Begin or advance the Path of the Dragon.)[/i]
+The next time a creature you control enters this turn, it deals damage equal to its power to any target.
+Yadil Exhibits Tenacity deals 2 damage to each opponent. Add {R}{R}.
+
+Vidir Manifests Unity
+rules_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Druid creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => 
+Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Druid creature tokens.
+Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+special_text: [i](As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)[/i]
+I — Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Druid creature tokens.
+II, III — Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able. => 
+Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+Create two 1/1 green Druid creature tokens.
+Put four +1/+1 counters on target creature you control. Until end of turn, that creature can't be blocked by more than one creature and must be blocked if able.
+
+Smite the Wretched
+cost: {W} => {1}{W}
+rules_text: Smite the Wretched deals 2 damage to target tapped creature. If you control an Angel, exile that creature instead. => Smite the Wretched deals 3 damage to target tapped creature. If you control an Angel, exile that creature instead.
+
+Pyre Adherent
+rules_text: Whenever a Dragon you control enters, Pyre Adherent deals 1 damage to each opponent, then you create a tapped Treasure token. => Whenever a Dragon you control enters, create a tapped Treasure token.
+
+Expansion's Embrace
+rules_text: Search your library for a Forest card, put it into play tapped, then shuffle.
+Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i] => Search your library for a Forest card, put it onto the battlefield tapped, then shuffle.
+Invoke the Hydras. [i](Begin or advance the Path of the Hydra.)[/i]
+
+Path of the Angel
+rules_text: Search your library for a basic Plains card, reveal it, put it into your hand, then shuffle. => You may search your library for a basic Plains card, reveal it, then shuffle and put that card on top.
+
+Path of the Sphinx
+rules_text: Search your library for a basic Island card, reveal it, put it into your hand, then shuffle. => You may search your library for a basic Island card, reveal it, then shuffle and put that card on top.
+
+Path of the Demon
+rules_text: Search your library for a basic Swamp card, reveal it, put it into your hand, then shuffle. => You may search your library for a basic Swamp card, reveal it, then shuffle and put that card on top.
+
+Path of the Dragon
+rules_text: Search your library for a basic Mountain card, reveal it, put it into your hand, then shuffle. => You may search your library for a basic Mountain card, reveal it, then shuffle and put that card on top.
+
+Path of the Hydra
+rules_text: Search your library for a basic Forest card, reveal it, put it into your hand, then shuffle. => You may search your library for a basic Forest card, reveal it, then shuffle and put that card on top.
+
+
+VERSION 4 CHANGELOG
 ====================
 
 Clenching Jaws added.

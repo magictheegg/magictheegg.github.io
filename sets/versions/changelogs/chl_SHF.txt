@@ -1,4 +1,157 @@
-﻿VERSION 2 CHANGELOG
+﻿VERSION 3 CHANGELOG
+====================
+
+Pestilent Golhound added.
+Ar'Gol Desperado added.
+
+Pestilent Ghelhound removed.
+Ar'Ghel Desperado removed.
+
+Sirocco Cruiser
+rules_text: Flying
+Whenever an opponent draws a card, create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Flying
+Whenever an opponent draws a card, create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Wreckage Ravager
+rules_text: Flying, haste
+Whenever Wreckage Ravager attacks or becomes the target of a spell or ability an opponent controls, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Flying, haste
+Whenever Wreckage Ravager attacks or becomes the target of a spell or ability an opponent controls, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Rusty, Sidewinders Brass
+
+The Starholme Frontier
+rules_text: When The Starholme Frontier enters, if you cast it, shuffle your hand and graveyard into your library, then create seven Junk tokens. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+[i]Frontier[/i] — Once each turn, if there are four or more land types among lands you control, you may cast a creature spell without paying its mana cost. => When The Starholme Frontier enters, if you cast it, shuffle your hand and graveyard into your library, then create seven Junk tokens. [i](They're artifacts with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+[i]Frontier[/i] — Once each turn, if there are four or more land types among lands you control, you may cast a creature spell without paying its mana cost.
+
+The Gallows at Whiskey Bend
+rules_text: When The Gallows at Whiskey Bend enters, target creature gets -4/-4 until end of turn.
+At the beginning of your end step, if a creature died this turn, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => When The Gallows at Whiskey Bend enters, target creature gets -4/-4 until end of turn.
+At the beginning of your end step, if a creature died this turn, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Gearworks Pest
+rules_text: Menace
+Whenever Gearworks Pest attacks, you may sacrifice a non-Junk artifact. If you do, put a +1/+1 counter on Gearworks Pest and create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Menace
+Whenever Gearworks Pest attacks, you may sacrifice a non-Junk artifact. If you do, put a +1/+1 counter on Gearworks Pest and create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Volatile Machinations
+rules_text: At the beginning of your upkeep, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+{3}{R}{R}, Sacrifice ten artifacts: Volatile Machinations deals 20 damage to any target. => At the beginning of your upkeep, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+{3}{R}{R}, Sacrifice ten artifacts: Volatile Machinations deals 20 damage to any target.
+
+The Siege at Cutler's Corral
+
+Make Sense from Scrap
+
+Clementine Cogs Faraday
+rules_text: Whenever you cast a noncreature spell, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Spells you cast from exile cost {1} less to cast. => Whenever you cast a noncreature spell, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Spells you cast from exile cost {1} less to cast.
+
+Gunslinger's Leatherworks
+
+Runaway Freight
+rules_text: Trample, haste
+When Runaway Freight dies, if it's a creature, create three Junk tokens. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Sacrifice another permanent: Runaway Freight becomes a creature until end of turn. => Trample, haste
+When Runaway Freight dies, if it's a creature, create three Junk tokens. [i](They're artifacts with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Sacrifice another permanent: Runaway Freight becomes a creature until end of turn.
+
+Leave in the Dust
+rules_text: Exile target creature or planeswalker. Its controller creates a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Exile target creature or planeswalker. Its controller creates a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Scrapper's Shank
+rules_text: Equipped creature gets +1/+0 and has “Whenever this creature deals combat damage to a player, create a Junk token.” [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Equip {2} => Equipped creature gets +1/+0 and has “Whenever this creature deals combat damage to a player, create a Junk token.” [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Equip {2}
+
+Grim Visionary
+
+Merciless Plunder
+rules_text: Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. Each player creates a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. Each player creates a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Corner the Black Market
+
+Debris Pillager
+rules_text: Whenever Debris Pillager attacks, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Whenever Debris Pillager attacks, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Snatch and Grab
+rules_text: Snatch and Grab deals 1 damage to any target. Create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Snatch and Grab deals 1 damage to any target. Create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Vulture's Bounty
+rules_text: Create a Junk token, then target creature you control gets +1/+1 until end of turn for each nonland permanent you control with mana value 1 or less. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Create a Junk token, then target creature you control gets +1/+1 until end of turn for each nonland permanent you control with mana value 1 or less. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Mesa Interloper
+rules_text: {1}{B}{R}, Sacrifice another creature: Create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Whenever you sacrifice a nonland permanent, Mesa Interloper deals 1 damage to target player or planeswalker and you gain 1 life. => {1}{B}{R}, Sacrifice another creature: Create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Whenever you sacrifice a nonland permanent, Mesa Interloper deals 1 damage to target player or planeswalker and you gain 1 life.
+
+Cosmic Restitcher
+
+Noxian Visage
+rules_text: When Noxian Visage enters, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Whenever you sacrifice a nonland permanent, put a +1/+1 counter on Noxian Visage. => When Noxian Visage enters, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Whenever you sacrifice a nonland permanent, put a +1/+1 counter on Noxian Visage.
+
+Rust Bucket
+rules_text: {3}, {T}: Create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => {3}, {T}: Create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Streets of Sunforge
+rules_text: {T}: Add {C}.
+{3}, {T}, Sacrifice Streets of Sunforge: Create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => {T}: Add {C}.
+{3}, {T}, Sacrifice Streets of Sunforge: Create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Feisty Scrapper
+rules_text: When Feisty Scrapper enters, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => When Feisty Scrapper enters, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Eldoria Sureshot
+
+Tradewind Courier
+rules_text: This spell costs {2} less to cast if you control a Human.
+Flying
+When Tradewind Courier enters, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => This spell costs {2} less to cast if you control a Human.
+Flying
+When Tradewind Courier enters, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Corpus Cobbler
+rules_text: When Corpus Cobbler enters, create a Junk token for each spell you've cast this turn. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => When Corpus Cobbler enters, create a Junk token for each spell you've cast this turn. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Scrapfield Migrant
+rules_text: When Scrapfield Migrant enters, up to one other target creature's owner puts it into their library second from the top. That player creates a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => When Scrapfield Migrant enters, up to one other target creature's owner puts it into their library second from the top. That player creates a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Wreckage of the Starbreaker
+rules_text: Create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Crystallize
+rules_text: Tap up to two target creatures and put a stun counter on each of them. Create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Tap up to two target creatures and put a stun counter on each of them. Create two Junk tokens. [i](They're artifacts with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Junkyard Vulture
+rules_text: Flying
+When Junkyard Vulture enters, mill three cards, then create a Junk token. You lose 1 life. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Flying
+When Junkyard Vulture enters, mill three cards, then create a Junk token. You lose 1 life. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Run Train
+rules_text: Surveil 2, then create a Junk token. You lose 1 life. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Surveil 2, then create a Junk token. You lose 1 life. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Salvage Trafficker
+rules_text: When Salvage Trafficker dies, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => When Salvage Trafficker dies, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Risky Wager
+rules_text: Discard a card, then draw a card. Create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i] => Discard a card, then draw a card. Create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+
+Dynamite in the Cargo Hold
+
+Reedcreeper Posse
+
+Winestago Freighter
+rules_text: Whenever Winestago Freighter enters or attacks, create a Junk token. [i](They're artifacts with “{T}, Sacrifice this: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Crew 4 [i](Tap any number of creatures you control with total power 4 or more: This Vehicle becomes an artifact creature until end of turn.)[/i] => Whenever Winestago Freighter enters or attacks, create a Junk token. [i](It's an artifact with “{T}, Sacrifice this artifact: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.”)[/i]
+Crew 4 [i](Tap any number of creatures you control with total power 4 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+
+Elemental
+
+
+VERSION 2 CHANGELOG
 ====================
 
 Xiong Mao aka Rusty added.
