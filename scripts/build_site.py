@@ -16,6 +16,7 @@ import print_html_for_set
 import print_html_for_sets_page
 import print_html_for_deckbuilder
 import print_html_for_deck_page
+import print_html_for_articles
 
 import markdown
 
@@ -132,6 +133,11 @@ for entry in os.scandir('sets'):
 for entry in os.scandir('lists'):
 	if entry.name != 'README.md' and os.path.isfile(entry):
 		os.remove(entry)
+
+if os.path.exists('articles'):
+	for entry in os.scandir('articles'):
+		if entry.name != 'README.md' and os.path.isfile(entry) and entry.name.endswith('.html'):
+			os.remove(entry)
 
 #CE: remove stale files from set directories
 removeStaleFiles('sets')
@@ -274,3 +280,4 @@ print_html_for_search.generateHTML(set_codes)
 print_html_for_deckbuilder.generateHTML(set_codes)
 print_html_for_deck_page.generateHTML(set_codes)
 print_html_for_index.generateHTML()
+print_html_for_articles.generateHTML()

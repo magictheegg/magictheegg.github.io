@@ -1,0 +1,207 @@
+<html>
+<head>
+    <title>SHIRYEN: SAIL AND STEAM</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../resources/mana.css">
+    <link rel="stylesheet" href="../resources/header.css">
+    <link rel="stylesheet" href="../resources/card-text.css">
+</head>
+<script title="root">
+    const rootPath = "..";
+</script>
+<style>
+    @font-face {
+        font-family: 'Beleren Small Caps';
+        src: url('../resources/beleren-caps.ttf');
+    }
+    @font-face {
+        font-family: Beleren;
+        src: url('../resources/beleren.ttf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Black';
+        src: url('../resources/gotham-narrow-black.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Bold';
+        src: url('../resources/gotham-narrow-bold.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Medium';
+        src: url('../resources/gotham-narrow-medium.otf');
+    }
+    body {
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-image: url('./SAS-prologue/bg.png'); background-size: cover; background-attachment: fixed;
+    }
+    .article-container {
+        width: 80%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .article-content img {
+        width: 80%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+    }
+    h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: right;
+        width: 80%;
+        margin: -15px auto 30px auto;
+        color: #666;
+        font-style: italic;
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-family: "Gotham Narrow Bold", Arial, serif;
+        font-size: 36px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    h2 {
+        font-family: "Gotham Narrow Medium", Arial, serif;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+    }
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 0;
+        border-top: 1px solid #d5d9d9;
+    }
+    </style>
+<body>
+    <div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+    <div class="article-container">
+        <div class="article-content">
+            <h1>SHIRYEN: SAIL AND STEAM</h1>
+<h2>PROLOGUE</h2>
+<hr />
+<p>"Go where no man has before gone."</p>
+<p>Those are the words etched into the back of our dusty charts. The map itself is rudimentary; islands denoted by crude circles, crosses marking ship sightings (I assume as an indicator of where not to go), and currents in the form of hastily drawn dotted lines. Yet I can't help but feel a glimmer of hope. Perhaps simply because this is what the pirate's life is all about? The freedom of exploration, liberation from the land's shackles? Or is there really some magic to these scrolls, dredged up from the bottom of the Greensea?</p>
+<p>It seems only time will tell. Certainly many sailors have returned to port before us with that mad glint in their eyes, the same tale about rising spires of gold, shimmering bountifully in the afternoon sun. Yet none could lead us back to that city, most laughed out of the harbor in shame. Perhaps it's just the sea's final cruel joke, a treasure so alluring it will drive any man to madness, remaining tantalizingly close but just out of reach.</p>
+<p>As for me, it no longer matters. If it is a sickness, it's one I have caught. If these stories hold any semblance of water, then I must find the mythical L'Or. Our crew sets sail tomorrow. We will search every crevice of the three Seas--perhaps one lonely pin prick on this map has yet to be explored, and that is where we will find our prize.</p>
+<p>Or, perhaps (and I would say more likely), the Seas truly hold no more mysteries to their sailors. In that case, I suppose we'll all go mad.</p>
+<p>Until then.</p>
+<p><em>—Lanne of the Seaskipper, Captain's Logbook, Day 0</em></p>
+<hr />
+<p>Is there a term for fatigue from the sea? I never expected to need it, but when you set your sights on places no pirate deems fit to travel, you lose patience for the roil quickly. At least so far, the charts have remained true. Each circle does correspond to an island, with dotted patterns indicating towns and hamlets. We've interpreted "where no man has before gone" as the islands with no dots, yet ... does the fact that these islands are charted not mean that someone has sailed there already?</p>
+<p>We've found few remnants of pirate activity, and in truth few remnants of anything else. Mostly we've found sand, shrubs, and more coconuts than I would hope to consume in a lifetime. Each morning we drop anchor and send a small crew onto a new island, their eyes wide with renewed hope. Each evening, they return, hearts as sunken as their expressions.</p>
+<p>We will continue forward. There are simply too many stories of L'Or. They must have come from somewhere! Is it a mirage, somewhere at the edge of the horizon? An unusual stack of coral that has bleached yellow with the sun? All I know is I must see it, if only to say that I have done so.</p>
+<p>I remain in good health and of sound mind, at least for now. If you stumble upon this journal, some years in the future, flip to the end--a madman's scrawling will mean the city of gold has eluded me, and you can safely turn this book into kindling.</p>
+<p><em>—Lanne of the Seaskipper, Captain's Logbook, Day 86</em></p>
+<p><img alt="JOURNEY TOWARDS L'OR" src="https://i.imgur.com/9I7RNy2.jpeg" /></p>
+<h4>Art by Anthony Avon</h4>
+<hr />
+<p>Something has changed on our horizon.</p>
+<p>We encountered a heavy storm this morning, just barely keeping the Seaskipper upright and above water. It was ... unusual. We were seemingly trapped in a whirlpool, one that swirled and tossed the boat in both directions at once. Rain was coursing down amidst claps of thunder, yet we saw no lightning, and our deck remained mostly dry. I have heard a few stories that include such a detail, of an unending storm that defies the very laws of the seas themselves. That has renewed a small sliver of my dying hope.</p>
+<p>The sea beyond the storm has felt different. The waters have an unnatural stillness, one that you rarely find among the three seas. Every now and again, we will spot a bird or fish racing alongside the ship, yet I recognize neither feather nor fin. I admit I spent much of my life within the Greensea; perhaps this is just how the Silversea feels?</p>
+<p>Or, perhaps we have finally made it into uncharted territory. The crew is bubbling with an energy I've not seen since the day we set sail. I pray that we are finally on brighter tides.</p>
+<p><em>—Lanne of the Seaskipper, Captain's Logbook, Day 104</em></p>
+<hr />
+<p>L'Or is real.</p>
+<p>I will keep this entry brief. The seas have been kind and curious for days, and we are nowhere on these charts. Somewhere we sailed off the edge of the map, and we have found ourselves facing the golden city herself.</p>
+<p>I am bundling these log pages into a bottle and sending them back to sea. If you find them, it is now your turn to discover this legend. Sail beyond the farthest islands on the map. Seek the storm. When the water is once again still, plot a course for true north. Perhaps one day you will find our crew, reveling in this treasured place. Once I step ashore, I shall almost certainly never leave. For why would I?</p>
+<p>Godspeed, and safe travels. May the seas guide you as they did me.</p>
+<p><em>—Lanne, Captain's Logbook, Day 107</em></p>
+<p><img alt="GOLD ON THE HORIZON" src="https://i.imgur.com/aTfIra6.jpeg" /></p>
+<h4>Art by Carlos Cruchaga</h4>
+<hr />
+<p>"So where did you say you came from again, fish-man?"</p>
+<p>Eliot squinted at the being in front of him. He looked human, mostly, though he was bedecked with fins and his skin glistened in the afternoon sun, bearing an almost slimy texture that shifted as he spoke. The being knelt with his head bowed, and he spoke in a deep, rich voice, one that seemed designed to echo through caverns and trenches.</p>
+<p>"I come from the humble palaces of the Greensea, your greatness. We have long been searching for L'Or, and we would be honored to serve in your tutelage as lord of gold."</p>
+<p>Eliot's face scrunched in confusion. "I think I'm lost. Where do you think you are right now?"</p>
+<p>Lanne glanced up with a furrowed brow. "Is this not L'Or? The mythical city of gold?"</p>
+<p>Eliot shook his head. "Look, man, I don't know what part of the world you came from, but I think you've been misled. I've never heard of your Greensea, and I don't know anything about no city of gold." Eliot could sense the fish-man's dismay, so he quickly continued. "But you're welcome to stay here at Port Aurora as long as you'd like. We pride ourselves on connecting the people of the spires, and our halls are open to all."</p>
+<p>Lanne stood, towering over Eliot with an almost otherworldly presence. "But what of your gleaming golden spires? The very same spires in our scrolls of legend? Tell me, how can this not be L'Or?"</p>
+<p>Eliot paused for a second, then it hit him. "Do you mean the brassworks? Yeah, Septech built 'em super tall to help reflect sun down into their greenhouses. They're not gold, though--I mean, brass is expensive enough, but GOLD would have been extravagant even for Septech."</p>
+<p>"Brass... nothing more than brass." Lanne seemed to wilt, a heavy air of defeat descending over him. "Then I suppose we have wasted your time. I thank you for your hospitality, but it appears this was not the end of our journey. Good tidings, friend."</p>
+<p>Lanne strode out of the bursar's post and started back down the dock. Unable to help his curiosity, Eliot followed, and his eyes fell on the Seaskipper. It was rare that he found a ship moored at the lower docks, and this one looked quite worse for wear. Its hull was coated in a thick layer of kelp and barnacles, and the sails were ripped and tattered from heavy weathering. A sly grin crept across his face, and he called after Lanne. "Hey, fish-man, is that your ship?"</p>
+<p>Lanne turned to look over his shoulder. "This is the Seaskipper, my pride and joy! Why, she's the fastest ship in the Greensea, and the only ship fit for a journey to L'Or."</p>
+<p>Eliot waved Lanne back towards him and turned up towards the dock's upper level. "In that case, come with me. I've got a ship to show you that might make your travels worth it after all."</p>
+<p><img alt="H.S.S. Tempest" src="https://i.imgur.com/1EFXVkL.jpeg" /></p>
+<h4>Art by Kevin Sidharta</h4>
+        </div>
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+          }
+        });
+
+        function search() {
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }
+
+        function randomCard() {
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    window.location.href = url.pathname + url.search;
+                }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
