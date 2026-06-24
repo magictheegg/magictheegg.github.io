@@ -80,7 +80,7 @@ def generateHTML():
         article_html = f'''<html>
 <head>
     <title>{title}</title>
-    <link rel="icon" type="image/x-icon" href="../../img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../../img/articles.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -291,7 +291,7 @@ def generate_index_html(article_data, header_snippet):
     index_html = f'''<html>
 <head>
     <title>Articles</title>
-    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="./img/articles.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
