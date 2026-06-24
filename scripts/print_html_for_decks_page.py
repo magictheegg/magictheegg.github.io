@@ -58,10 +58,10 @@ def generateHTML():
     }}
     .filter-container {{
         display: flex;
-        gap: 15px;
+        gap: 10px;
         margin: 0 auto 30px auto;
         align-items: center;
-        width: 85%;
+        width: 90%;
     }}
     .filter-container input, .filter-container select {{
         padding: 8px 12px;
@@ -114,7 +114,7 @@ def generateHTML():
         flex-wrap: wrap;
         gap: 10px;
         margin: -20px auto 20px auto;
-        width: 85%;
+        width: 90%;
     }}
     .chip {{
         display: flex;

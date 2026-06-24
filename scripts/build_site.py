@@ -289,6 +289,40 @@ print_html_for_sets_page.generateHTML()
 print_html_for_search.generateHTML(set_codes)
 print_html_for_deckbuilder.generateHTML(set_codes)
 print_html_for_deck_page.generateHTML(set_codes)
+# Clear existing global pages to ensure they only exist if content is present
+for page in ['all-articles.html', 'decks.html']:
+	if os.path.exists(page):
+		os.remove(page)
+
 print_html_for_index.generateHTML()
-print_html_for_articles.generateHTML()
-print_html_for_decks_page.generateHTML()
+
+# Only generate Articles if content exists
+has_articles = print_html_for_articles.generateHTML()
+if not has_articles:
+	print("No articles found; skipping all-articles.html")
+
+# Only generate Decks if decks exist in Supabase for this hub
+def check_for_decks():
+	try:
+		import urllib.request
+		with open(os.path.join('resources', 'site-config.json'), encoding='utf-8-sig') as f:
+			config = json.load(f)
+			base_url = config.get('base_url', '')
+			hub_name = base_url.split('https://')[1].split('.github.io')[0] if 'https://' in base_url else 'unknown'
+		
+		url = f"https://mtjkkvtcmejzcpjmropd.supabase.co/rest/v1/decks?hub=eq.{hub_name}&select=id&limit=1"
+		req = urllib.request.Request(url)
+		req.add_header('apikey', 'sb_publishable_Hgyr2JJRsJRa1pYwoz-ijQ_ozfwnp9t')
+		req.add_header('Authorization', 'Bearer sb_publishable_Hgyr2JJRsJRa1pYwoz-ijQ_ozfwnp9t')
+		
+		with urllib.request.urlopen(req) as response:
+			data = json.loads(response.read().decode())
+			return len(data) > 0
+	except Exception as e:
+		print(f"Warning: Could not check Supabase for decks: {e}")
+		return True # Default to generating if check fails
+
+if check_for_decks():
+	print_html_for_decks_page.generateHTML()
+else:
+	print("No decks found for this hub; skipping decks.html")

@@ -277,7 +277,10 @@ def generateHTML():
         article_data[category].sort(key=lambda x: x['ctime'], reverse=True)
 
     # Generate all-articles.html (Top level)
-    generate_index_html(article_data, header_snippet)
+    if len(article_data) > 0:
+        generate_index_html(article_data, header_snippet)
+        return True
+    return False
 
 def generate_index_html(article_data, header_snippet):
     # CSS for scrollable gallery

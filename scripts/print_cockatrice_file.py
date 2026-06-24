@@ -32,7 +32,7 @@ def cost_to_cmc(cost):
 	for symbol in symbols:
 		if len(symbol) == 0 or symbol == "X" or symbol == "Y": continue
 		try:
-			num = re.match(r'\d+', symbol).group(0)
+			num = re.match(r'\d+', symbol).group(0)  # type: ignore (that's what the try catch is for)
 			cmc += int(num)
 		except:
 			cmc += 1
@@ -94,8 +94,12 @@ def get_lackeybot_related(notes, instruction):
 					continue
 
 			if state == 'count':
-				count = int(token)
-				related.append(f'<related{' persistent=""' if persistent else ''}{f' count="{count}"' if count > 1 else ''}>{xml_escape(tag)}</related>')
+				try:
+					count = int(token)
+				except:
+					if token != "X": print(f'Warning: LackeyBot instruction {instruction} for token {tag} has count that is neither an integer nor X. Defaulting to X')
+					count = "X"
+				related.append(f'<related{' persistent=""' if persistent else ''}{f' count="{count}"' if count == "X" or count > 1 else ''}>{xml_escape(tag)}</related>')
 				tag = ''
 				persistent = False
 				state = 'tag'
