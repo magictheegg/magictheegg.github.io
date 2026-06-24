@@ -15,36 +15,68 @@ def generateHTML():
         with open(header_path, encoding='utf-8-sig') as f:
             header_snippet = f.read()
 
-    for entry in os.scandir(articles_dir):
-        if entry.is_dir():
-            article_name = entry.name
-            article_path = os.path.join(articles_dir, article_name)
-            md_path = os.path.join(article_path, 'article.md')
-            bg_path = os.path.join(article_path, 'bg.png')
-            output_html_file = os.path.join(articles_dir, article_name + '.html')
+    article_data = {} # Category -> [Article Info]
 
-            if not os.path.exists(md_path):
-                print(f"Skipping article {article_name}: article.md not found.")
-                continue
+    def process_article(article_path, category):
+        md_path = os.path.join(article_path, 'article.md')
+        if not os.path.exists(md_path):
+            return None
 
-            with open(md_path, 'r', encoding='utf-8') as f:
-                md_content = f.read()
+        article_folder_name = os.path.basename(article_path)
+        
+        with open(md_path, 'r', encoding='utf-8') as f:
+            md_content = f.read()
 
-            # Try to extract title from first H1 in markdown
-            title = article_name
-            title_match = re.search(r'^#\s+(.*)', md_content, re.MULTILINE)
-            if title_match:
-                title = title_match.group(1)
+        # Extract info for gallery
+        title = article_folder_name
+        title_match = re.search(r'^#\s+(.*)', md_content, re.MULTILINE)
+        if title_match:
+            title = title_match.group(1)
 
-            html_body = markdown.markdown(md_content)
+        subtitle = ""
+        subtitle_match = re.search(r'^##\s+(.*)', md_content, re.MULTILINE)
+        if subtitle_match:
+            subtitle = subtitle_match.group(1)
 
-            bg_style = ""
-            if os.path.exists(bg_path):
-                bg_style = f"background-image: url('./{article_name}/bg.png'); background-size: cover; background-attachment: fixed;"
-            else:
-                bg_style = "background-color: #ffffff;"
+        first_image = ""
+        image_match = re.search(r'!\[.*?\]\((.*?)\)', md_content)
+        if image_match:
+            first_image = image_match.group(1)
+            # If relative to article folder, we need to adjust path for all-articles.html
+            # all-articles.html is at root, images are in articles/Path/To/Article/img.png
+            if not first_image.startswith('http') and not first_image.startswith('/'):
+                # Assuming image path is relative to article.md
+                rel_article_path = os.path.relpath(article_path, '.')
+                first_image = os.path.join(rel_article_path, first_image).replace('\\', '/')
 
-            html_content = f'''<html>
+        # Generate individual article HTML
+        html_body = markdown.markdown(md_content)
+        
+        # Adjust image paths in html_body for individual articles
+        # They are now in articles/ArticleName.html
+        # Original images were in Category/ArticleName/img.png (relative to articles/)
+        # So from articles/ArticleName.html, we need to go to ./Category/ArticleName/img.png
+        # Wait, if Category is "General", it's just ./ArticleName/img.png
+        
+        rel_base_path = os.path.relpath(article_path, articles_dir).replace('\\', '/')
+        
+        def adjust_img_src(match):
+            src = match.group(2)
+            if not src.startswith('http') and not src.startswith('/') and not src.startswith('data:'):
+                return f'<img {match.group(1)}src="./{rel_base_path}/{src}"'
+            return match.group(0)
+
+        html_body = re.sub(r'<img (.*?)src="(.*?)"', adjust_img_src, html_body)
+
+        bg_path = os.path.join(article_path, 'bg.png')
+        bg_style = ""
+        if os.path.exists(bg_path):
+            bg_style = f"background-image: url('./{rel_base_path}/bg.png'); background-size: cover; background-attachment: fixed;"
+        else:
+            bg_style = "background-color: #ffffff;"
+
+        # Use rootPath = ".." for individual articles in /articles/
+        article_html = f'''<html>
 <head>
     <title>{title}</title>
     <link rel="icon" type="image/x-icon" href="../img/favicon.png">
@@ -137,7 +169,7 @@ def generateHTML():
         border: 0;
         border-top: 1px solid #d5d9d9;
     }}
-    </style>
+</style>
 <body>
     {header_snippet}
     <div class="article-container">
@@ -181,9 +213,233 @@ def generateHTML():
 </body>
 </html>'''
 
-            with open(output_html_file, 'w', encoding='utf-8') as f:
-                f.write(html_content)
-            print(f"Generated article: {output_html_file}")
+        output_html_file = os.path.join('articles', article_folder_name + '.html')
+        with open(output_html_file, 'w', encoding='utf-8') as f:
+            f.write(article_html)
+
+        return {
+            'title': title,
+            'subtitle': subtitle,
+            'image': first_image,
+            'url': f'articles/{article_folder_name}'
+        }
+
+    # Crawl articles directory
+    for entry in os.scandir(articles_dir):
+        if entry.is_dir():
+            # Check if this dir is an article or a category
+            md_path = os.path.join(entry.path, 'article.md')
+            if os.path.exists(md_path):
+                # Top-level article
+                category = "General"
+                info = process_article(entry.path, category)
+                if info:
+                    if category not in article_data: article_data[category] = []
+                    article_data[category].append(info)
+            else:
+                # Potential category folder
+                category = entry.name
+                for subentry in os.scandir(entry.path):
+                    if subentry.is_dir():
+                        info = process_article(subentry.path, category)
+                        if info:
+                            if category not in article_data: article_data[category] = []
+                            article_data[category].append(info)
+
+    # Generate all-articles.html (Top level)
+    generate_index_html(article_data, header_snippet)
+
+def generate_index_html(article_data, header_snippet):
+    # CSS for scrollable gallery
+    # Cards inspired by MTG cards or similar aesthetics? 
+    # User said: "cards in a scrollable gallery (left to right, groups stacked top to bottom)"
+    
+    galleries_html = ""
+    for category, articles in article_data.items():
+        articles_html = ""
+        for article in articles:
+            img_path = article["image"]
+            if img_path and not img_path.startswith('http') and not img_path.startswith('/'):
+                img_path = f"./{img_path}"
+            
+            # Use subtitle as the main card title if it exists, otherwise use the title
+            display_title = article['subtitle'] if article['subtitle'] else article['title']
+            
+            img_html = f'<div class="article-card-img" style="background-image: url(\'{img_path}\');"></div>' if img_path else '<div class="article-card-img no-img"></div>'
+            articles_html += f'''
+            <a href="{article['url']}" class="article-card">
+                {img_html}
+                <div class="article-card-info">
+                    <div class="article-card-title">{display_title}</div>
+                    <div class="article-card-subtitle" style="display: none;">{article['subtitle']}</div>
+                </div>
+            </a>'''
+        
+        galleries_html += f'''
+        <div class="gallery-section">
+            <h2 class="gallery-category">{category}</h2>
+            <div class="gallery-scroll">
+                {articles_html}
+            </div>
+        </div>'''
+
+    index_html = f'''<html>
+<head>
+    <title>Articles</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/mana.css">
+    <link rel="stylesheet" href="./resources/header.css">
+</head>
+<script title="root">
+    const rootPath = ".";
+</script>
+<style>
+    @font-face {{
+        font-family: 'Beleren Small Caps';
+        src: url('./resources/beleren-caps.ttf');
+    }}
+    @font-face {{
+        font-family: Beleren;
+        src: url('./resources/beleren.ttf');
+    }}
+    @font-face {{
+        font-family: 'Gotham Narrow Medium';
+        src: url('./resources/gotham-narrow-medium.otf');
+    }}
+    body {{
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-color: #f3f3f3;
+    }}
+    .articles-page-container {{
+        width: 90%;
+        max-width: 1200px;
+        margin: 40px auto;
+    }}
+    .gallery-section {{
+        margin-bottom: 50px;
+        width: 75%;
+        justify-self: center;
+    }}
+    .gallery-category {{
+        font-family: Beleren;
+        font-size: 32px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #171717;
+        padding-bottom: 10px;
+    }}
+    .gallery-scroll {{
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        scrollbar-width: thin;
+        scrollbar-color: #171717 #e0e0e0;
+    }}
+    .gallery-scroll::-webkit-scrollbar {{
+        height: 8px;
+    }}
+    .gallery-scroll::-webkit-scrollbar-track {{
+        background: #e0e0e0;
+    }}
+    .gallery-scroll::-webkit-scrollbar-thumb {{
+        background-color: #171717;
+        border-radius: 4px;
+    }}
+    .article-card {{
+        flex: 0 0 300px;
+        background-color: white;
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+    }}
+    .article-card:hover {{
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }}
+    .article-card-img {{
+        width: 100%;
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        background-color: #ddd;
+    }}
+    .article-card-img.no-img {{
+        background-image: url('./img/card_back.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }}
+    .article-card-info {{
+        padding: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }}
+    .article-card-title {{
+        font-family: 'Gotham Narrow Medium', sans-serif;
+        font-size: 20px;
+        line-height: 1.2;
+    }}
+    .article-card-subtitle {{
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+    }}
+</style>
+<body>
+    {header_snippet}
+    <div class="articles-page-container">
+        {galleries_html}
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {{
+          if (event.key === "Enter") {{
+                event.preventDefault();
+                search();
+          }}
+        }});
+
+        function search() {{
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }}
+
+        function randomCard() {{
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {{
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {{
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }}
+                    for (const key in params) {{
+                        url.searchParams.append(key, params[key]);
+                    }}
+                    window.location.href = url.pathname + url.search;
+                }}).catch(error => console.error('Error:', error));
+        }}
+    </script>
+</body>
+</html>'''
+
+    with open('all-articles.html', 'w', encoding='utf-8') as f:
+        f.write(index_html)
+    print("Generated all-articles.html")
 
 if __name__ == "__main__":
     generateHTML()

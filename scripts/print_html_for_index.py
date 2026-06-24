@@ -109,8 +109,8 @@ def generateHTML():
 	.button-grid {
 		display: grid;
 		margin: auto;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 20px;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 15px;
 		padding-top: 10px;
 		padding-bottom: 20px;
 	}
@@ -215,6 +215,7 @@ def generateHTML():
 			<input type="text" inputmode="search" placeholder="Search ..." autofocus="autofocus" name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
 			<div class="button-grid">
 				<button onclick="goToSets()"><img src="img/sets.png" class="btn-img">All Sets</button>
+				<button onclick="goToArticles()"><img src="img/sets.png" class="btn-img">Articles</button>
 				<button onclick="goToDeckbuilder()"><img src="img/deck.png" class="btn-img">Deckbuilder</button>
 				<button onclick="randomCard()"><img src="img/random.png" class="btn-img">Random Card</button>
 			</div>
@@ -425,6 +426,10 @@ def generateHTML():
 
 			function goToSets() {
 				window.location = (rootPath + "/all-sets");
+			}
+
+			function goToArticles() {
+				window.location = (rootPath + "/all-articles");
 			}
 
 			function goToDeckbuilder() {
