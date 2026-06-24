@@ -111,7 +111,7 @@ def generateHTML(codes):
 	.deck-columns-container {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		gap: 15px;
+		gap: 0px;
 	}
 	@media (max-width: 1200px) {
 		.deck-columns-container {
@@ -119,7 +119,7 @@ def generateHTML(codes):
 		}
 	}
 	.deck-col {
-		padding: 0 15px;
+		padding: 0 12px;
 	}
 	.deck-section {
 		margin-bottom: 20px;

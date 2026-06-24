@@ -853,7 +853,7 @@ def generateHTML(codes):
 
 				searched = searchAllTokens(card, tokenizeTerms(searchTerms));
 
-				if (searched)
+				if (searched && !containsCard(search_results, card))
 				{
 					search_results.push(card);
 				}
@@ -902,6 +902,19 @@ def generateHTML(codes):
 				imgContainer.appendChild(card_sr);
 				cardGrid.appendChild(imgContainer);
 			}
+		}
+
+		function containsCard(list, card)
+		{
+			for (const li of list)
+			{
+				if (li.card_name == card.card_name && li.cost == card.cost)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		'''

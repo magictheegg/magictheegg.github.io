@@ -58,9 +58,10 @@ def generateHTML():
     }}
     .filter-container {{
         display: flex;
-        gap: 20px;
-        margin-bottom: 30px;
+        gap: 15px;
+        margin: 0 auto 30px auto;
         align-items: center;
+        width: 85%;
     }}
     .filter-container input, .filter-container select {{
         padding: 8px 12px;
@@ -68,13 +69,77 @@ def generateHTML():
         border-radius: 4px;
         font-size: 16px;
     }}
-    .filter-container input {{
-        flex-grow: 1;
+    .filter-container > input, .filter-container > .card-search-container {{
+        flex: 2;
+        min-width: 0;
+    }}
+    .filter-container > select {{
+        flex: 1;
+        min-width: 0;
+    }}
+    .card-search-container {{
+        position: relative;
+        display: flex;
+    }}
+    .card-search-container input {{
+        width: 100%;
+    }}
+    .autocomplete-dropdown {{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #d5d9d9;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        z-index: 100;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }}
+    .autocomplete-item {{
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 14px;
+        border-bottom: 1px solid #f0f0f0;
+    }}
+    .autocomplete-item:hover {{
+        background-color: #f3f3f3;
+    }}
+    .chip-container {{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: -20px auto 20px auto;
+        width: 85%;
+    }}
+    .chip {{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #00bfff;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: 'Gotham Narrow Medium', sans-serif;
+    }}
+    .chip span {{
+        cursor: pointer;
+        font-weight: bold;
+        opacity: 0.8;
+    }}
+    .chip span:hover {{
+        opacity: 1;
     }}
     .decks-grid {{
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, 320px);
         gap: 25px;
+        justify-content: center;
     }}
     .deck-card {{
         background-color: white;
@@ -157,6 +222,30 @@ def generateHTML():
         color: white;
         border-color: #171717;
     }}
+    .no-results {{
+        display: none;
+        text-align: center;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        width: 100%;
+    }}
+    .no-results img {{
+        width: 150px;
+        margin-bottom: 20px;
+        opacity: 0.3;
+        filter: drop-shadow(0 0 4px #000);
+    }}
+    .no-results h1 {{
+        font-family: Beleren;
+        color: #494949;
+        margin: 0;
+        font-size: 40px;
+    }}
+    .no-results p {{
+        color: #797979;
+        font-size: 18px;
+        margin-top: 10px;
+    }}
 </style>
 <body>
 '''
@@ -168,6 +257,10 @@ def generateHTML():
     <div class="decks-page-container">
         <div class="filter-container">
             <input type="text" id="name-filter" placeholder="Filter by deck name..." oninput="handleFilterChange()">
+            <div class="card-search-container">
+                <input type="text" id="card-search" placeholder="Filter by card name..." oninput="handleCardSearch(event)" autocomplete="off">
+                <div id="autocomplete-dropdown" class="autocomplete-dropdown"></div>
+            </div>
             <select id="format-filter" onchange="handleFilterChange()">
                 <option value="">All Formats</option>
                 <option value="Standard">Standard</option>
@@ -178,6 +271,12 @@ def generateHTML():
                 <option value="Primordial">Primordial</option>
                 <option value="Other">Other</option>
             </select>
+        </div>
+        <div id="chip-container" class="chip-container"></div>
+        <div id="no-results" class="no-results">
+            <img src="./img/deck.png">
+            <h1 id="no-results-title">No decks found</h1>
+            <p id="no-results-text">Your search didn't match any decks. Try adjusting your search terms.</p>
         </div>
         <div class="decks-grid" id="decks-grid">
             <!-- Decks will be loaded here -->
@@ -193,9 +292,16 @@ def generateHTML():
         let currentPage = 1;
         const itemsPerPage = 12;
         let cardLookup = {};
+        let allCardsArray = [];
         let setConfigs = {};
+        let selectedCards = [];
 
         async function init() {
+            // Show loading state
+            document.getElementById('no-results').style.display = 'block';
+            document.getElementById('no-results-title').innerText = 'Loading Decks...';
+            document.getElementById('no-results-text').innerText = 'Please wait while we fetch the latest decks from the Hub.';
+
             // Load set configs to know naming conventions
             const setsResponse = await fetch('./lists/all-sets.json');
             const setsData = await setsResponse.json();
@@ -212,6 +318,7 @@ def generateHTML():
             // Load card data for image lookup
             const response = await fetch('./lists/all-cards.json');
             const data = await response.json();
+            allCardsArray = data.cards;
             data.cards.forEach(card => {
                 const key = `${card.set}-${card.number}`;
                 cardLookup[key] = card;
@@ -229,12 +336,103 @@ def generateHTML():
 
             if (error) {
                 console.error('Error fetching decks:', error);
+                document.getElementById('no-results-title').innerText = 'Error Loading Decks';
+                document.getElementById('no-results-text').innerText = 'There was a problem connecting to the database. Please try again later.';
                 return;
             }
 
             allDecks = data;
             filteredDecks = allDecks;
             renderDecks();
+        }
+
+        function handleCardSearch(e) {
+            const query = e.target.value.toLowerCase();
+            const dropdown = document.getElementById('autocomplete-dropdown');
+            dropdown.innerHTML = '';
+
+            if (query.length < 3) {
+                dropdown.style.display = 'none';
+                return;
+            }
+
+            // Filter unique cards by name
+            const matches = [];
+            const seenNames = new Set();
+
+            for (const card of allCardsArray) {
+                if (card.card_name.toLowerCase().includes(query) && !seenNames.has(card.card_name)) {
+                    matches.push(card);
+                    seenNames.add(card.card_name);
+                    if (matches.length >= 10) break;
+                }
+            }
+
+            if (matches.length > 0) {
+                matches.forEach(card => {
+                    const div = document.createElement('div');
+                    div.className = 'autocomplete-item';
+                    div.innerText = card.card_name;
+                    div.onclick = () => selectCard(card);
+                    dropdown.appendChild(div);
+                });
+                dropdown.style.display = 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+        }
+
+        function getCardImgSrc(card) {
+            if (!card) return './img/card_back.png';
+            const setConf = setConfigs[card.set];
+            const isPosition = setConf && setConf.image_name === 'position';
+            const imgType = card.image_type || 'jpg';
+            const isDFC = card.shape && card.shape.includes('double');
+            const suffix = isDFC ? '_front' : '';
+            
+            let namePart = "";
+            if (isPosition) {
+                namePart = card.position + suffix;
+            } else {
+                const connector = card.shape && card.shape.includes('token') ? 't_' : '_';
+                namePart = `${card.number}${connector}${card.card_name}${suffix}`;
+            }
+            
+            return `./sets/${card.set}-files/img/${namePart}.${imgType}`;
+        }
+
+        function selectCard(card) {
+            if (selectedCards.some(c => c.card_name === card.card_name)) {{
+                document.getElementById('card-search').value = '';
+                document.getElementById('autocomplete-dropdown').style.display = 'none';
+                return;
+            }}
+
+            selectedCards.push(card);
+            document.getElementById('card-search').value = '';
+            document.getElementById('autocomplete-dropdown').style.display = 'none';
+            renderChips();
+            handleFilterChange();
+        }
+
+        function renderChips() {
+            const container = document.getElementById('chip-container');
+            container.innerHTML = '';
+            selectedCards.forEach((card, index) => {
+                const chip = document.createElement('div');
+                chip.className = 'chip';
+                chip.innerHTML = `
+                    ${card.card_name}
+                    <span onclick="removeCardFilter(${index})">×</span>
+                `;
+                container.appendChild(chip);
+            });
+        }
+
+        function removeCardFilter(index) {
+            selectedCards.splice(index, 1);
+            renderChips();
+            handleFilterChange();
         }
 
         function handleFilterChange() {
@@ -244,7 +442,20 @@ def generateHTML():
             filteredDecks = allDecks.filter(deck => {
                 const matchesName = deck.name.toLowerCase().includes(nameFilter);
                 const matchesFormat = !formatFilter || deck.format === formatFilter;
-                return matchesName && matchesFormat;
+                
+                let matchesAllCards = true;
+                if (selectedCards.length > 0) {
+                    const deckCards = (deck.mainboard || []).concat(deck.sideboard || []);
+                    const deckCardNames = new Set();
+                    deckCards.forEach(item => {
+                        const c = cardLookup[`${item.set}-${item.num}`];
+                        if (c) deckCardNames.add(c.card_name);
+                    });
+
+                    matchesAllCards = selectedCards.every(sc => deckCardNames.has(sc.card_name));
+                }
+
+                return matchesName && matchesFormat && matchesAllCards;
             });
 
             currentPage = 1;
@@ -253,7 +464,18 @@ def generateHTML():
 
         function renderDecks() {
             const grid = document.getElementById('decks-grid');
+            const noResults = document.getElementById('no-results');
             grid.innerHTML = '';
+
+            if (filteredDecks.length === 0) {
+                noResults.style.display = 'block';
+                document.getElementById('no-results-title').innerText = 'No decks found';
+                document.getElementById('no-results-text').innerText = "Your search didn't match any decks. Try adjusting your search terms.";
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            } else {
+                noResults.style.display = 'none';
+            }
 
             const start = (currentPage - 1) * itemsPerPage;
             const end = start + itemsPerPage;
