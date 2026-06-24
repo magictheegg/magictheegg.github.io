@@ -17,7 +17,7 @@ await fetch(rootPath + '/lists/all-cards.json')
 					if (card.notes) {
 						const tagMatches = card.notes.matchAll(/!tag(?:<\w+>)?\s+([^\s\n\b]+)/g);
 						for (const match of tagMatches) {
-							all_tags.add(match[1]);
+							all_tags.add(match[1].toLowerCase());
 						}
 					}
 				});

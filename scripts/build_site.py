@@ -17,6 +17,7 @@ import print_html_for_sets_page
 import print_html_for_deckbuilder
 import print_html_for_deck_page
 import print_html_for_articles
+import print_html_for_decks_page
 
 import markdown
 
@@ -281,3 +282,4 @@ print_html_for_deckbuilder.generateHTML(set_codes)
 print_html_for_deck_page.generateHTML(set_codes)
 print_html_for_index.generateHTML()
 print_html_for_articles.generateHTML()
+print_html_for_decks_page.generateHTML()

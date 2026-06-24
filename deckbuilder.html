@@ -5,9 +5,23 @@
 	<link rel="stylesheet" href="./resources/mana.css">
 	<link rel="stylesheet" href="./resources/header.css">
 	<link rel="stylesheet" href="./resources/card-text.css">
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <script title="root">
 	const rootPath = ".";
+	const SUPABASE_URL = 'https://mtjkkvtcmejzcpjmropd.supabase.co';
+	const SUPABASE_KEY = 'sb_publishable_Hgyr2JJRsJRa1pYwoz-ijQ_ozfwnp9t';
+	const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+	const hubName = "magictheegg";
+
+	function generateShortId(length = 10) {
+		const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		let result = '';
+		for (let i = 0; i < length; i++) {
+			result += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		return result;
+	}
 </script>
 <style>
 	@font-face {
@@ -280,7 +294,7 @@
 		max-width: 1200px;
 		min-height: 36px;
 		display: grid;
-		grid-template-columns: 1.5fr .65fr .75fr .5fr .75fr;
+		grid-template-columns: 1.5fr 1fr .65fr .75fr .75fr;
 		gap: 3px;
 		padding: 5px 2.5%;
 		border-bottom: 1px solid #898989;
@@ -397,7 +411,9 @@
 			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
 			<img class="sg-icon" id="header-search" onclick="goToSearch()">
 			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
-			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="window.location.href = rootPath + '/all-articles'"><img id="header-articles" class="sg-icon">Articles</a>
+			<a onclick="window.location.href = rootPath + '/decks'"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
 			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
@@ -406,7 +422,9 @@
 			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
 			document.getElementById("header-search").src = rootPath + "/img/search.png";
 			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
-			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
 			document.getElementById("header-random").src = rootPath + "/img/random.png";
 		});
 	</script>
@@ -449,6 +467,17 @@
 			</div>
 			<div class="deck-info-grid">
 				<input type="text" value="Untitled Deck" id="deck-name" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<select name="format-select" class="format-select" id="format-select">
+					<option value="None">Format ...</option>
+					<option value="Standard">Standard</option>
+					<option value="Modern">Modern</option>
+					<option value="Legacy">Legacy</option>
+					<option value="Commander">Commander</option>
+					<option value="Pauper">Pauper</option>
+					<option value="Primordial">Primordial</option>
+					<option value="Other">Other</option>
+					<option value="None">None</option>
+				</select>
 				<div id="deck-count" class="deck-count">
 					(0 / 0)
 				</div>
@@ -456,7 +485,6 @@
 					<option value="text">Text</option>
 					<option value="images">Images</option>
 				</select>
-				<div></div> <!-- empty div for spacing -->
 				<select name="file-menu" class="file-menu" id="file-menu">
 					<option value="default">Actions ...</option>
 					<option value="new">New deck</option>
@@ -464,6 +492,7 @@
 					<option value="import-clipboard">Load from clipboard</option>
 					<option value="clipboard">Copy to clipboard</option>
 					<option value="save">Save deck</option>
+					<option value="save-hash">Open deck page</option>
 					<option value="export-dek">Export .dek</option>
 					<option value="export-txt">Export .txt</option>
 					<option value="export-cod">Export .cod</option>
@@ -555,7 +584,7 @@
 					if (card.notes) {
 						const tagMatches = card.notes.matchAll(/!tag(?:<\w+>)?\s+([^\s\n\b]+)/g);
 						for (const match of tagMatches) {
-							all_tags.add(match[1]);
+							all_tags.add(match[1].toLowerCase());
 						}
 					}
 				});
@@ -688,7 +717,11 @@
 			}
 			else if (option == "save")
 			{
-				saveDeck();
+				saveToCloud();
+			}
+			else if (option == "save-hash")
+			{
+				openHashedDeck();
 			}
 			else if (option == "clipboard" || option.startsWith("export"))
 			{
@@ -1430,6 +1463,16 @@
 				card_loyalty_2 = card_stats.loyalty2;
 			}
 
+			function includesWithPossessive(text, token) {
+				if (!text || !token) return false;
+				if (text.includes(token)) return true;
+				if (token.endsWith('s')) {
+					let possessive = token.slice(0, -1) + "'s";
+					if (text.includes(possessive)) return true;
+				}
+				return false;
+			}
+
 			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('“','').replaceAll('”','');
 
 			const modifierRegex = /[!:<>=][=]*/g;
@@ -1438,8 +1481,12 @@
 			if (match)
 			{
 				const modifier = match[0];
-				const term = token.substring(0, token.indexOf(modifier));
+				const term = token.substring(0, token.indexOf(modifier)).toLowerCase();
 				let check = token.substring(token.indexOf(modifier) + modifier.length);
+				if (!(check.startsWith("/") && check.endsWith("/")))
+				{
+					check = check.toLowerCase();
+				}
 
 				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
@@ -1667,7 +1714,7 @@
 						}
 						else
 						{
-							return card_oracle_text.includes(check);
+							return includesWithPossessive(card_oracle_text, check);
 						}
 					}
 					/* unsupported flows
@@ -1842,7 +1889,7 @@
 				{
 					if (modifier == ":")
 					{
-						return card_name.includes(check) || card_ft.includes(check);
+						return includesWithPossessive(card_name, check) || includesWithPossessive(card_ft, check);
 					}
 				}
 				if (term == "is")
@@ -1907,7 +1954,7 @@
 				{
 					if (modifier == ":")
 					{
-						return card_ft.includes(check);
+						return includesWithPossessive(card_ft, check);
 					}
 				}
 				if (term == "godzilla" || term == "alias") {
@@ -1917,7 +1964,7 @@
 					}
 					else if (modifier == ":")
 					{
-						return card_alias.includes(check);
+						return includesWithPossessive(card_alias, check);
 					}
 					else if (modifier == "<")
 					{
@@ -1934,7 +1981,7 @@
                 }
 			}
 
-			return card_name.includes(token);
+			return includesWithPossessive(card_name, token.toLowerCase());
 		}function isDecimal(char) {
 			return char >= '0' && char <= '9';
 		}
@@ -2591,7 +2638,7 @@
 			}
 		}
 
-		function saveDeck() {
+		function openHashedDeck() {
 			const deckName = document.getElementById("deck-name").value;
 			let mainParts = [];
 			let sideParts = [];
@@ -2614,9 +2661,51 @@
 				sideParts.push(`${card.set}.${card.number}.${count}`);
 			});
 
-			const compactString = `${deckName}|${mainParts.join(',')}|${sideParts.join(',')}`;
+			const compactString = `${deckName}|${document.getElementById("format-select").value}|${mainParts.join(',')}|${sideParts.join(',')}`;
 			const hash = btoa(compactString);
 			window.open(rootPath + "/deck#" + hash, "_blank");
+			document.getElementById("file-menu").value = "default";
+		}
+
+		async function saveToCloud() {
+			const deckName = document.getElementById("deck-name").value;
+			const deckFormat = document.getElementById("format-select").value;
+			const deckId = generateShortId();
+			
+			const mainboardData = [];
+			const mainMap = new Map();
+			deck.forEach(cardStr => {
+				mainMap.set(cardStr, (mainMap.get(cardStr) || 0) + 1);
+			});
+			mainMap.forEach((count, cardStr) => {
+				const card = JSON.parse(cardStr);
+				mainboardData.push({ set: card.set, num: card.number, count: count });
+			});
+
+			const sideboardData = [];
+			const sideMap = new Map();
+			sideboard.forEach(cardStr => {
+				sideMap.set(cardStr, (sideMap.get(cardStr) || 0) + 1);
+			});
+			sideMap.forEach((count, cardStr) => {
+				const card = JSON.parse(cardStr);
+				sideboardData.push({ set: card.set, num: card.number, count: count });
+			});
+
+			const { data, error } = await _supabase
+				.from('decks')
+				.insert([
+					{ id: deckId, name: deckName, format: deckFormat, mainboard: mainboardData, sideboard: sideboardData, hub: hubName }
+				])
+				.select();
+
+			if (error) {
+				console.error('Error saving deck:', error);
+				alert('Failed to save deck to cloud.');
+			} else {
+				const shareUrl = window.location.origin + window.location.pathname.replace('deckbuilder', 'deck') + '?id=' + deckId;
+				window.open(shareUrl, "_blank");
+			}
 			document.getElementById("file-menu").value = "default";
 		}
 

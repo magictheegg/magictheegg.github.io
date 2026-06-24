@@ -109,8 +109,8 @@ def generateHTML():
 	.button-grid {
 		display: grid;
 		margin: auto;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 15px;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 12px;
 		padding-top: 10px;
 		padding-bottom: 20px;
 	}
@@ -118,10 +118,10 @@ def generateHTML():
 		background-color: #171717;
 		border: none;
 		color: #f3f3f3;
-		border-radius: 5px;
+		border-radius: 8px;
 		cursor: pointer;
-		font-size: 15px;
-		width: 150px;
+		font-size: 14px;
+		width: 135px;
 		height: 35px;
 		display: flex;
 		align-items: center;
@@ -215,9 +215,10 @@ def generateHTML():
 			<input type="text" inputmode="search" placeholder="Search ..." autofocus="autofocus" name="search" id="search" spellcheck="false" autocomplete="off" autocorrext="off" spellcheck="false">
 			<div class="button-grid">
 				<button onclick="goToSets()"><img src="img/sets.png" class="btn-img">All Sets</button>
-				<button onclick="goToArticles()"><img src="img/sets.png" class="btn-img">Articles</button>
-				<button onclick="goToDeckbuilder()"><img src="img/deck.png" class="btn-img">Deckbuilder</button>
-				<button onclick="randomCard()"><img src="img/random.png" class="btn-img">Random Card</button>
+				<button onclick="goToArticles()"><img src="img/articles.png" class="btn-img">Articles</button>
+				<button onclick="goToDecks()"><img src="img/deck.png" class="btn-img">Decks</button>
+				<button onclick="goToDeckbuilder()"><img src="img/deckbuilder.png" class="btn-img">Deckbuilder</button>
+				<button onclick="randomCard()"><img src="img/random.png" class="btn-img">Random</button>
 			</div>
 			<div class="two-part-grid">
 				<div class="container" id="preview-container">
@@ -430,6 +431,10 @@ def generateHTML():
 
 			function goToArticles() {
 				window.location = (rootPath + "/all-articles");
+			}
+
+			function goToDecks() {
+				window.location = (rootPath + "/decks");
 			}
 
 			function goToDeckbuilder() {

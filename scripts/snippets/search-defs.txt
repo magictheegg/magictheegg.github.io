@@ -261,6 +261,16 @@ function tokenizeTerms(searchTerms)
 				card_loyalty_2 = card_stats.loyalty2;
 			}
 
+			function includesWithPossessive(text, token) {
+				if (!text || !token) return false;
+				if (text.includes(token)) return true;
+				if (token.endsWith('s')) {
+					let possessive = token.slice(0, -1) + "'s";
+					if (text.includes(possessive)) return true;
+				}
+				return false;
+			}
+
 			token = token.replaceAll("~", card_name).replaceAll("cardname", card_name).replaceAll('"','').replaceAll('“','').replaceAll('”','');
 
 			const modifierRegex = /[!:<>=][=]*/g;
@@ -269,8 +279,12 @@ function tokenizeTerms(searchTerms)
 			if (match)
 			{
 				const modifier = match[0];
-				const term = token.substring(0, token.indexOf(modifier));
+				const term = token.substring(0, token.indexOf(modifier)).toLowerCase();
 				let check = token.substring(token.indexOf(modifier) + modifier.length);
+				if (!(check.startsWith("/") && check.endsWith("/")))
+				{
+					check = check.toLowerCase();
+				}
 
 				// availableTokens = ["mv", "c", "ci", "t", "o", "pow", "tou", "r", "is"]
 
@@ -498,7 +512,7 @@ function tokenizeTerms(searchTerms)
 						}
 						else
 						{
-							return card_oracle_text.includes(check);
+							return includesWithPossessive(card_oracle_text, check);
 						}
 					}
 					/* unsupported flows
@@ -673,7 +687,7 @@ function tokenizeTerms(searchTerms)
 				{
 					if (modifier == ":")
 					{
-						return card_name.includes(check) || card_ft.includes(check);
+						return includesWithPossessive(card_name, check) || includesWithPossessive(card_ft, check);
 					}
 				}
 				if (term == "is")
@@ -738,7 +752,7 @@ function tokenizeTerms(searchTerms)
 				{
 					if (modifier == ":")
 					{
-						return card_ft.includes(check);
+						return includesWithPossessive(card_ft, check);
 					}
 				}
 				if (term == "godzilla" || term == "alias") {
@@ -748,7 +762,7 @@ function tokenizeTerms(searchTerms)
 					}
 					else if (modifier == ":")
 					{
-						return card_alias.includes(check);
+						return includesWithPossessive(card_alias, check);
 					}
 					else if (modifier == "<")
 					{
@@ -765,5 +779,5 @@ function tokenizeTerms(searchTerms)
                 }
 			}
 
-			return card_name.includes(token);
+			return includesWithPossessive(card_name, token.toLowerCase());
 		}

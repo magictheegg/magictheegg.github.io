@@ -5,6 +5,11 @@ import json
 def generateHTML(codes):
 	output_html_file = "deck.html"
 
+	with open(os.path.join('resources', 'site-config.json'), encoding='utf-8-sig') as f:
+		config = json.load(f)
+		base_url = config.get('base_url', '')
+		hub_name = base_url.split('https://')[1].split('.github.io')[0] if 'https://' in base_url else 'unknown'
+
 	# Start creating the HTML file content
 	html_content = '''<html>
 <head>
@@ -14,9 +19,14 @@ def generateHTML(codes):
 	<link rel="stylesheet" href="./resources/header.css">
 	<link rel="stylesheet" href="./resources/card-text.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <script title="root">
 	const rootPath = ".";
+	const SUPABASE_URL = 'https://mtjkkvtcmejzcpjmropd.supabase.co';
+	const SUPABASE_KEY = 'sb_publishable_Hgyr2JJRsJRa1pYwoz-ijQ_ozfwnp9t';
+	const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+	const hubName = "''' + hub_name + '''";
 </script>
 <style>
 	@font-face {
@@ -41,8 +51,8 @@ def generateHTML(codes):
 	.deck-display-container {
 		height: 100%;
 		width: 100%;
-		max-width: 1500px;
-		justify-self: center;
+		max-width: 1200px;
+		margin: auto;
 		border: 1px solid #d5d9d9;
 		border-top: 4px solid #171717;
 		border-bottom: 4px solid #171717;
@@ -316,7 +326,13 @@ def generateHTML(codes):
 		<div class="deck-display-container">
 			<div class="deck-main-area">
 				<div class="deck-header">
-					<div id="deck-title">Loading Deck...</div>
+					<div style="display: flex; flex-direction: column; gap: 2px;">
+						<div style="display: flex; align-items: baseline; gap: 15px;">
+							<div id="deck-title">Loading Deck...</div>
+							<div id="deck-format" style="font-size: 16px; color: #666; font-style: italic;"></div>
+						</div>
+						<div id="deck-hub" style="font-size: 12px; color: #888;"></div>
+					</div>
 					<div class="dropdown-container">
 						View cards as<select id="view-select" onchange="setView(this.value)">
 							<option value="text">Text</option>
@@ -354,7 +370,41 @@ def generateHTML(codes):
 		html_content += f.read()
 
 	html_content += '''
-			loadDeckFromHash();
+			const urlParams = new URLSearchParams(window.location.search);
+			const deckId = urlParams.get('id');
+			
+			if (deckId) {
+				const { data, error } = await _supabase
+					.from('decks')
+					.select('*')
+					.eq('id', deckId)
+					.eq('hub', hubName)
+					.single();
+
+				if (error) {
+					console.error('Error fetching deck:', error);
+					loadDeckFromHash();
+				} else {
+					currentDeck = {
+						name: data.name,
+						format: data.format,
+						main: data.mainboard,
+						side: data.sideboard
+					};
+					document.getElementById("deck-title").innerText = currentDeck.name || "Untitled Deck";
+					document.getElementById("deck-format").innerText = (currentDeck.format && currentDeck.format !== "None") ? currentDeck.format : "";
+					document.title = (currentDeck.name || "Deck") + " - Magic the Egg";
+					render();
+					
+					// Autopopulate first card
+					const allCards = lookupCards(currentDeck.main.concat(currentDeck.side));
+					if (allCards.length > 0) {
+						showCardInGrid(allCards[0].stats);
+					}
+				}
+			} else {
+				loadDeckFromHash();
+			}
 		});
 
 		function loadDeckFromHash() {
@@ -366,11 +416,12 @@ def generateHTML(codes):
 					// Old JSON format
 					currentDeck = JSON.parse(decoded);
 				} else {
-					// New compact format: Name|MainCards|SideCards
+					// New compact format: Name|Format|MainCards|SideCards
 					const parts = decoded.split('|');
 					const name = parts[0];
-					const mainStr = parts[1] || "";
-					const sideStr = parts[2] || "";
+					const format = parts.length > 3 ? parts[1] : "None";
+					const mainStr = parts.length > 3 ? parts[2] : (parts[1] || "");
+					const sideStr = parts.length > 3 ? parts[3] : (parts[2] || "");
 
 					const parsePart = (str) => {
 						if (!str) return [];
@@ -382,11 +433,13 @@ def generateHTML(codes):
 
 					currentDeck = {
 						name: name,
+						format: format,
 						main: parsePart(mainStr),
 						side: parsePart(sideStr)
 					};
 				}
 				document.getElementById("deck-title").innerText = currentDeck.name || "Untitled Deck";
+				document.getElementById("deck-format").innerText = (currentDeck.format && currentDeck.format !== "None") ? currentDeck.format : "";
 				document.title = (currentDeck.name || "Deck") + " - Magic the Egg";
 				render();
 				

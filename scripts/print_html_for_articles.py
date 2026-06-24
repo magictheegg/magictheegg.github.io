@@ -23,6 +23,7 @@ def generateHTML():
             return None
 
         article_folder_name = os.path.basename(article_path)
+        category_slug = category.lower().replace(' ', '-')
         
         with open(md_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
@@ -53,17 +54,17 @@ def generateHTML():
         html_body = markdown.markdown(md_content)
         
         # Adjust image paths in html_body for individual articles
-        # They are now in articles/ArticleName.html
+        # They are now in articles/category-slug/ArticleName.html
         # Original images were in Category/ArticleName/img.png (relative to articles/)
-        # So from articles/ArticleName.html, we need to go to ./Category/ArticleName/img.png
-        # Wait, if Category is "General", it's just ./ArticleName/img.png
+        # So from articles/category-slug/ArticleName.html, we need to go to ../../articles/Category/ArticleName/img.png
+        # rel_base_path is the path from articles/ to the article folder
         
         rel_base_path = os.path.relpath(article_path, articles_dir).replace('\\', '/')
         
         def adjust_img_src(match):
             src = match.group(2)
             if not src.startswith('http') and not src.startswith('/') and not src.startswith('data:'):
-                return f'<img {match.group(1)}src="./{rel_base_path}/{src}"'
+                return f'<img {match.group(1)}src="../../articles/{rel_base_path}/{src}"'
             return match.group(0)
 
         html_body = re.sub(r'<img (.*?)src="(.*?)"', adjust_img_src, html_body)
@@ -71,45 +72,45 @@ def generateHTML():
         bg_path = os.path.join(article_path, 'bg.png')
         bg_style = ""
         if os.path.exists(bg_path):
-            bg_style = f"background-image: url('./{rel_base_path}/bg.png'); background-size: cover; background-attachment: fixed;"
+            bg_style = f"background-image: url('../../articles/{rel_base_path}/bg.png'); background-size: cover; background-attachment: fixed;"
         else:
             bg_style = "background-color: #ffffff;"
 
-        # Use rootPath = ".." for individual articles in /articles/
+        # Use rootPath = "../.." for individual articles in /articles/category/
         article_html = f'''<html>
 <head>
     <title>{title}</title>
-    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../resources/mana.css">
-    <link rel="stylesheet" href="../resources/header.css">
-    <link rel="stylesheet" href="../resources/card-text.css">
+    <link rel="stylesheet" href="../../resources/mana.css">
+    <link rel="stylesheet" href="../../resources/header.css">
+    <link rel="stylesheet" href="../../resources/card-text.css">
 </head>
 <script title="root">
-    const rootPath = "..";
+    const rootPath = "../..";
 </script>
 <style>
     @font-face {{
         font-family: 'Beleren Small Caps';
-        src: url('../resources/beleren-caps.ttf');
+        src: url('../../resources/beleren-caps.ttf');
     }}
     @font-face {{
         font-family: Beleren;
-        src: url('../resources/beleren.ttf');
+        src: url('../../resources/beleren.ttf');
     }}
     @font-face {{
         font-family: 'Gotham Narrow Black';
-        src: url('../resources/gotham-narrow-black.otf');
+        src: url('../../resources/gotham-narrow-black.otf');
     }}
     @font-face {{
         font-family: 'Gotham Narrow Bold';
-        src: url('../resources/gotham-narrow-bold.otf');
+        src: url('../../resources/gotham-narrow-bold.otf');
     }}
     @font-face {{
         font-family: 'Gotham Narrow Medium';
-        src: url('../resources/gotham-narrow-medium.otf');
+        src: url('../../resources/gotham-narrow-medium.otf');
     }}
     body {{
         font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
@@ -213,7 +214,11 @@ def generateHTML():
 </body>
 </html>'''
 
-        output_html_file = os.path.join('articles', article_folder_name + '.html')
+        category_dir = os.path.join('articles', category_slug)
+        if not os.path.exists(category_dir):
+            os.makedirs(category_dir)
+            
+        output_html_file = os.path.join(category_dir, article_folder_name + '.html')
         with open(output_html_file, 'w', encoding='utf-8') as f:
             f.write(article_html)
 
@@ -221,7 +226,7 @@ def generateHTML():
             'title': title,
             'subtitle': subtitle,
             'image': first_image,
-            'url': f'articles/{article_folder_name}'
+            'url': f'articles/{category_slug}/{article_folder_name}'
         }
 
     # Crawl articles directory

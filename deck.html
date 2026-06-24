@@ -6,9 +6,14 @@
 	<link rel="stylesheet" href="./resources/header.css">
 	<link rel="stylesheet" href="./resources/card-text.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <script title="root">
 	const rootPath = ".";
+	const SUPABASE_URL = 'https://mtjkkvtcmejzcpjmropd.supabase.co';
+	const SUPABASE_KEY = 'sb_publishable_Hgyr2JJRsJRa1pYwoz-ijQ_ozfwnp9t';
+	const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+	const hubName = "magictheegg";
 </script>
 <style>
 	@font-face {
@@ -33,8 +38,8 @@
 	.deck-display-container {
 		height: 100%;
 		width: 100%;
-		max-width: 1500px;
-		justify-self: center;
+		max-width: 1200px;
+		margin: auto;
 		border: 1px solid #d5d9d9;
 		border-top: 4px solid #171717;
 		border-bottom: 4px solid #171717;
@@ -306,8 +311,9 @@
 				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
 			</div>
 			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
-			<a onclick="window.location.href = rootPath + '/articles'"><img id="header-articles" class="sg-icon">Articles</a>
-			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deck" class="sg-icon">Deckbuilder</a>
+			<a onclick="window.location.href = rootPath + '/all-articles'"><img id="header-articles" class="sg-icon">Articles</a>
+			<a onclick="window.location.href = rootPath + '/decks'"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
 			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
 		</div>
 	</div>
@@ -317,7 +323,8 @@
 			document.getElementById("header-search").src = rootPath + "/img/search.png";
 			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
 			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
-			document.getElementById("header-deck").src = rootPath + "/img/deck.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
 			document.getElementById("header-random").src = rootPath + "/img/random.png";
 		});
 
@@ -330,7 +337,13 @@
 		<div class="deck-display-container">
 			<div class="deck-main-area">
 				<div class="deck-header">
-					<div id="deck-title">Loading Deck...</div>
+					<div style="display: flex; flex-direction: column; gap: 2px;">
+						<div style="display: flex; align-items: baseline; gap: 15px;">
+							<div id="deck-title">Loading Deck...</div>
+							<div id="deck-format" style="font-size: 16px; color: #666; font-style: italic;"></div>
+						</div>
+						<div id="deck-hub" style="font-size: 12px; color: #888;"></div>
+					</div>
 					<div class="dropdown-container">
 						View cards as<select id="view-select" onchange="setView(this.value)">
 							<option value="text">Text</option>
@@ -381,7 +394,7 @@ await fetch(rootPath + '/lists/all-cards.json')
 					if (card.notes) {
 						const tagMatches = card.notes.matchAll(/!tag(?:<\w+>)?\s+([^\s\n\b]+)/g);
 						for (const match of tagMatches) {
-							all_tags.add(match[1]);
+							all_tags.add(match[1].toLowerCase());
 						}
 					}
 				});
@@ -468,7 +481,41 @@ await fetch(rootPath + '/lists/all-cards.json')
 					});
 				}
 
-			loadDeckFromHash();
+			const urlParams = new URLSearchParams(window.location.search);
+			const deckId = urlParams.get('id');
+			
+			if (deckId) {
+				const { data, error } = await _supabase
+					.from('decks')
+					.select('*')
+					.eq('id', deckId)
+					.eq('hub', hubName)
+					.single();
+
+				if (error) {
+					console.error('Error fetching deck:', error);
+					loadDeckFromHash();
+				} else {
+					currentDeck = {
+						name: data.name,
+						format: data.format,
+						main: data.mainboard,
+						side: data.sideboard
+					};
+					document.getElementById("deck-title").innerText = currentDeck.name || "Untitled Deck";
+					document.getElementById("deck-format").innerText = (currentDeck.format && currentDeck.format !== "None") ? currentDeck.format : "";
+					document.title = (currentDeck.name || "Deck") + " - Magic the Egg";
+					render();
+					
+					// Autopopulate first card
+					const allCards = lookupCards(currentDeck.main.concat(currentDeck.side));
+					if (allCards.length > 0) {
+						showCardInGrid(allCards[0].stats);
+					}
+				}
+			} else {
+				loadDeckFromHash();
+			}
 		});
 
 		function loadDeckFromHash() {
@@ -480,11 +527,12 @@ await fetch(rootPath + '/lists/all-cards.json')
 					// Old JSON format
 					currentDeck = JSON.parse(decoded);
 				} else {
-					// New compact format: Name|MainCards|SideCards
+					// New compact format: Name|Format|MainCards|SideCards
 					const parts = decoded.split('|');
 					const name = parts[0];
-					const mainStr = parts[1] || "";
-					const sideStr = parts[2] || "";
+					const format = parts.length > 3 ? parts[1] : "None";
+					const mainStr = parts.length > 3 ? parts[2] : (parts[1] || "");
+					const sideStr = parts.length > 3 ? parts[3] : (parts[2] || "");
 
 					const parsePart = (str) => {
 						if (!str) return [];
@@ -496,11 +544,13 @@ await fetch(rootPath + '/lists/all-cards.json')
 
 					currentDeck = {
 						name: name,
+						format: format,
 						main: parsePart(mainStr),
 						side: parsePart(sideStr)
 					};
 				}
 				document.getElementById("deck-title").innerText = currentDeck.name || "Untitled Deck";
+				document.getElementById("deck-format").innerText = (currentDeck.format && currentDeck.format !== "None") ? currentDeck.format : "";
 				document.title = (currentDeck.name || "Deck") + " - Magic the Egg";
 				render();
 				
