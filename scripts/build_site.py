@@ -136,9 +136,18 @@ for entry in os.scandir('lists'):
 		os.remove(entry)
 
 if os.path.exists('articles'):
-	for entry in os.scandir('articles'):
-		if entry.name != 'README.md' and os.path.isfile(entry) and entry.name.endswith('.html'):
-			os.remove(entry)
+	# Recursive cleanup of .html files
+	for root, dirs, files in os.walk('articles'):
+		for file in files:
+			if file.endswith('.html'):
+				os.remove(os.path.join(root, file))
+	
+	# Prune empty subdirectories
+	for root, dirs, files in os.walk('articles', topdown=False):
+		for dir in dirs:
+			dir_path = os.path.join(root, dir)
+			if not os.listdir(dir_path):
+				os.rmdir(dir_path)
 
 #CE: remove stale files from set directories
 removeStaleFiles('sets')

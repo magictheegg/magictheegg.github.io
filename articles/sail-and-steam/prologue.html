@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>SHIRYEN: SAIL AND STEAM</title>
+    <title>PROLOGUE</title>
     <link rel="icon" type="image/x-icon" href="../../img/articles.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,10 +50,25 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .article-content img {
-        width: 80%;
+        max-width: 100%;
         height: auto;
         display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .article-content p:has(img) {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
         margin: 20px auto;
+    }
+    .article-content p:has(img) br {
+        display: none;
     }
     h4 {
         font-family: 'Open Sans', sans-serif;

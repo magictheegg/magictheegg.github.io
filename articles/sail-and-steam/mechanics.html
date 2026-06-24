@@ -1,0 +1,213 @@
+<html>
+<head>
+    <title>MECHANICS</title>
+    <link rel="icon" type="image/x-icon" href="../../img/articles.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/mana.css">
+    <link rel="stylesheet" href="../../resources/header.css">
+    <link rel="stylesheet" href="../../resources/card-text.css">
+</head>
+<script title="root">
+    const rootPath = "../..";
+</script>
+<style>
+    @font-face {
+        font-family: 'Beleren Small Caps';
+        src: url('../../resources/beleren-caps.ttf');
+    }
+    @font-face {
+        font-family: Beleren;
+        src: url('../../resources/beleren.ttf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Black';
+        src: url('../../resources/gotham-narrow-black.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Bold';
+        src: url('../../resources/gotham-narrow-bold.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Medium';
+        src: url('../../resources/gotham-narrow-medium.otf');
+    }
+    body {
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-image: url('../../articles/Sail and Steam/mechanics/bg.png'); background-size: cover; background-attachment: fixed;
+    }
+    .article-container {
+        width: 80%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .article-content p:has(img) {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+        margin: 20px auto;
+    }
+    .article-content p:has(img) br {
+        display: none;
+    }
+    h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: right;
+        width: 80%;
+        margin: -15px auto 30px auto;
+        color: #666;
+        font-style: italic;
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-family: "Gotham Narrow Bold", Arial, serif;
+        font-size: 36px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    h2 {
+        font-family: "Gotham Narrow Medium", Arial, serif;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+    }
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 0;
+        border-top: 1px solid #d5d9d9;
+    }
+</style>
+<body>
+    <div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a onclick="window.location.href = rootPath + '/all-articles'"><img id="header-articles" class="sg-icon">Articles</a>
+			<a onclick="window.location.href = rootPath + '/decks'"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+    <div class="article-container">
+        <div class="article-content">
+            <h1>SHIRYEN: SAIL AND STEAM MECHANICS</h1>
+<hr />
+<p>We're back on Shiryen for what is likely the final full-feature set on its shores. The Seaskipper has sailed through an Omenpath and into an entirely new world, with bright brass spires shadowing scrapyards below and galleons soaring through the sunny sky. Today we'll embark on our own journey through the fabled golden shores to see just how our pirate crews have adapted to these brilliant new possibilities.</p>
+<hr />
+<h2>INNOVATE</h2>
+<p>Inventors of the Techs are swimming with big ideas, and they never hesitate to bring those ideas to the world. <em>Innovate</em> provides myriad new options to the seas and the spires, so long as their creators are ready to share them.</p>
+<p><img alt="Pentech Mechanic" src="https://magictheegg.github.io/sets/SAS-files/img/195.png" /><img alt="Kinetic Strike" src="https://magictheegg.github.io/sets/SAS-files/img/134.png" /></p>
+<p>Innovate is an action keyword that impulse-draws cards attached to creatures, letting you gain card advantage at an aggressive rate in exchange for higher risk of losing it. You can play those cards at any time the creature that innovated them is tapped, which can happen in plenty of ways. Whether it's by crewing a Vehicle, activating a tap ability, or simply attacking your opponent, your creatures will be eager to show off the next big thing as soon as you give them the chance.</p>
+<h2>COG TOKENS</h2>
+<p>The clockwork contraptions of the spires are constantly turning, and at their core are a simple mechanism: <em>Cogs</em>. These Cogs let you crank your own machines, should you have them, or simply provide a bit of momentum towards a game-altering spell.</p>
+<p><img alt="Highland Steward" src="https://magictheegg.github.io/sets/SAS-files/img/246.png" /><img alt="Contract Bronzesmith" src="https://magictheegg.github.io/sets/SAS-files/img/113.png" /></p>
+<p>The line of "Add {T}" has been controversial ever since I came up with the idea, but I'm a firm believer in its potential. In essence, you can sacrifice a Cog to replace the tap symbol in an activated ability, which does include tapping lands for mana. This lets them act as Treasures-lite; they provide no mana fixing, but they offer additional mechanical flexibility to make up for it. Of course, sometimes your tap-ability creatures have an innovation to show off, so you WANT them tapped--but in that case, you can just activate the ability again!</p>
+<h2>INCURSION TOKENS</h2>
+<p>Even with seemingly infinite possibilities at their fingertips, some Shiryen pirates have continued to maraud the islands of the Three Seas. After all, the life of the pirate is all they know.</p>
+<p><img alt="Dieu-de-Fer Loyalite" src="https://magictheegg.github.io/sets/SAS-files/img/184.png" /><img alt="Pitburrow Crab" src="https://magictheegg.github.io/sets/SAS-files/img/147.png" /></p>
+<p>Incursion tokens offer late-game relevance to aggro decks in exchange for early-game aggression. There have been a handful of two-defense Battle tokens in custom Magic already, and one of the challenges is always "how do I make defeating a Battle more enticing than dealing damage to the opponent?" In this case, the answer is to immediately refund the lost damage in the form of permanent stats, and it allows decks full of 2/2s and 3/3s to compete once massive sea creatures and Vehicles hit the battlefield.</p>
+<h2>DECAYED</h2>
+<p>Returning from Golden Shores of Shiryen, decayed Zombies continue their assault on the seas. After all, Crain's crew has never been the type to sit by the wayside.</p>
+<p><img alt="Crain's Recruiter" src="https://magictheegg.github.io/sets/SAS-files/img/199.png" /><img alt="Army of the Drowned" src="https://magictheegg.github.io/sets/SAS-files/img/118.png" /></p>
+<p>Decayed is a mechanic most people have played with at this point, and it offers a simple proposition: How do you get value out of a creature that dies as soon as it attacks? Sometimes you just need the two damage to face, but SAS offers plenty of alternatives. Whether your Zombies are picking off Incursions, sailing ships, tapping as fodder for other abilities, or dying for the greater good, you'll never be short of options for your crew of corpses.</p>
+<h2>BESTIARY</h2>
+<p>The seas and skies of Shiryen and the spires are home to many wondrous creatures. A select few of these creatures make an appearance in the SAS via their devotees, here to show you a glimpse of how magnificent the natural world can be.</p>
+<p><img alt="Whitefin Herder" src="https://magictheegg.github.io/sets/SAS-files/img/187.png" /><img alt="Tidal Tremors" src="https://magictheegg.github.io/sets/SAS-files/img/107.png" /></p>
+<p>With a few exceptions, you'll find two different tokens in your bestiary: 3/3 flying Whales and 8/8 Krakens. You'll also find plenty of smaller tokens to fill the world, with Thopters, Fish, Zombies, and Kelp all making an appearance (to name a few). Of course, if you're lucky, when you go fishing you might just dredge up a gargantuan sea beast instead. Just be sure you're ready to tame its wrath!</p>
+<h2>RAID</h2>
+<p>Many sailors were happy to work alongside the inventors of the spires, while others were much more hostile. After all, the pirate's code clearly dictates "what's yours is mine, and what's mine is mine."</p>
+<p><img alt="Ruin Cove Ravager" src="https://magictheegg.github.io/sets/SAS-files/img/217.png" /><img alt="Grizzled Gunner" src="https://magictheegg.github.io/sets/SAS-files/img/130.png" /></p>
+<p>Raid is more of a flavor beat than a mechanical question, though SAS does provide a few more low-investment methods of attack than the average set. With expendable Zombie crews, flocks of flyers, and full warship armadas at your disposal, you'll rarely be lacking for options to trigger Raid, and your cleanup crews will never hesitate to reward you for your hard work.</p>
+<h2>VEHICLES</h2>
+<p>The seas and spires are two very different places, though they're unified by their love for a well-constructed ship. No matter the dock, you'll always find an eager crew ready to set sail on the next adventure.</p>
+<p><img alt="Bayou Excavator" src="https://magictheegg.github.io/sets/SAS-files/img/254.png" /><img alt="Freefire Brigantine" src="https://magictheegg.github.io/sets/SAS-files/img/139.png" /></p>
+<p>In GSS, there was an emphasis on Vehicles, and the resulting limited was ... mediocre. Part of the reason is that I treated Vehicles as creatures, and you simply run out of deck slots to support Vehicles, creatures to crew them, and spells to grease the wheels. In SAS, Vehicles are treated as noncreatures first, and they occupy roughly 30% creature slots and 70% noncreature slots. This lets you overlap the Vehicle and spell slots in your deck, and has made the play pattern much more appealing--as evidenced by Vehicles nearly winning my testing bracket!</p>
+<hr />
+<p>There's one more mechanic that will show up at higher rarities, but now it's just about time to push off. May your travels find gentle tides and clear skies, and I'll eagerly await your return to port!</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+          }
+        });
+
+        function search() {
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }
+
+        function randomCard() {
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    window.location.href = url.pathname + url.search;
+                }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

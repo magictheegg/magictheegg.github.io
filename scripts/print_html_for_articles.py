@@ -28,27 +28,32 @@ def generateHTML():
         with open(md_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
 
-        # Extract info for gallery
-        title = article_folder_name
-        title_match = re.search(r'^#\s+(.*)', md_content, re.MULTILINE)
-        if title_match:
-            title = title_match.group(1)
-
+        # Simplified: Use folder name for title
+        title = article_folder_name.upper()
         subtitle = ""
-        subtitle_match = re.search(r'^##\s+(.*)', md_content, re.MULTILINE)
-        if subtitle_match:
-            subtitle = subtitle_match.group(1)
 
         first_image = ""
-        image_match = re.search(r'!\[.*?\]\((.*?)\)', md_content)
-        if image_match:
-            first_image = image_match.group(1)
-            # If relative to article folder, we need to adjust path for all-articles.html
-            # all-articles.html is at root, images are in articles/Path/To/Article/img.png
-            if not first_image.startswith('http') and not first_image.startswith('/'):
-                # Assuming image path is relative to article.md
+        # Check for card image with priority: png, jpg, jpeg
+        found_card_img = False
+        for ext in ['png', 'jpg', 'jpeg']:
+            card_img_filename = f'card.{ext}'
+            card_img_path = os.path.join(article_path, card_img_filename)
+            if os.path.exists(card_img_path):
                 rel_article_path = os.path.relpath(article_path, '.')
-                first_image = os.path.join(rel_article_path, first_image).replace('\\', '/')
+                first_image = os.path.join(rel_article_path, card_img_filename).replace('\\', '/')
+                found_card_img = True
+                break
+        
+        if not found_card_img:
+            image_match = re.search(r'!\[.*?\]\((.*?)\)', md_content)
+            if image_match:
+                first_image = image_match.group(1)
+                # If relative to article folder, we need to adjust path for all-articles.html
+                # all-articles.html is at root, images are in articles/Path/To/Article/img.png
+                if not first_image.startswith('http') and not first_image.startswith('/'):
+                    # Assuming image path is relative to article.md
+                    rel_article_path = os.path.relpath(article_path, '.')
+                    first_image = os.path.join(rel_article_path, first_image).replace('\\', '/')
 
         # Generate individual article HTML
         html_body = markdown.markdown(md_content)
@@ -129,10 +134,25 @@ def generateHTML():
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }}
     .article-content img {{
-        width: 80%;
+        max-width: 100%;
         height: auto;
         display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }}
+    .article-content p:has(img) {{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
         margin: 20px auto;
+    }}
+    .article-content p:has(img) br {{
+        display: none;
     }}
     h4 {{
         font-family: 'Open Sans', sans-serif;
@@ -226,7 +246,8 @@ def generateHTML():
             'title': title,
             'subtitle': subtitle,
             'image': first_image,
-            'url': f'articles/{category_slug}/{article_folder_name}'
+            'url': f'articles/{category_slug}/{article_folder_name}',
+            'ctime': os.path.getctime(md_path)
         }
 
     # Crawl articles directory
@@ -250,6 +271,10 @@ def generateHTML():
                         if info:
                             if category not in article_data: article_data[category] = []
                             article_data[category].append(info)
+
+    # Sort articles in each category by ctime descending (newest first)
+    for category in article_data:
+        article_data[category].sort(key=lambda x: x['ctime'], reverse=True)
 
     # Generate all-articles.html (Top level)
     generate_index_html(article_data, header_snippet)
