@@ -1,0 +1,213 @@
+<html>
+<head>
+    <title>LIMITED ARCHETYPES, PART 1</title>
+    <link rel="icon" type="image/x-icon" href="../../img/articles.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/mana.css">
+    <link rel="stylesheet" href="../../resources/header.css">
+    <link rel="stylesheet" href="../../resources/card-text.css">
+</head>
+<script title="root">
+    const rootPath = "../..";
+</script>
+<style>
+    @font-face {
+        font-family: 'Beleren Small Caps';
+        src: url('../../resources/beleren-caps.ttf');
+    }
+    @font-face {
+        font-family: Beleren;
+        src: url('../../resources/beleren.ttf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Black';
+        src: url('../../resources/gotham-narrow-black.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Bold';
+        src: url('../../resources/gotham-narrow-bold.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Medium';
+        src: url('../../resources/gotham-narrow-medium.otf');
+    }
+    body {
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-image: url('../../articles/Sail and Steam/limited archetypes, part 1/bg.png'); background-size: cover; background-attachment: fixed;
+    }
+    .article-container {
+        width: 80%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .article-content p:has(img) {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+        margin: 20px auto;
+    }
+    .article-content p:has(img) br {
+        display: none;
+    }
+    h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: right;
+        width: 80%;
+        margin: -15px auto 30px auto;
+        color: #666;
+        font-style: italic;
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-family: "Gotham Narrow Bold", Arial, serif;
+        font-size: 36px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    h2 {
+        font-family: "Gotham Narrow Medium", Arial, serif;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+    }
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 0;
+        border-top: 1px solid #d5d9d9;
+    }
+</style>
+<body>
+    <div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a id="header-articles-link" onclick="window.location.href = rootPath + '/all-articles'" style="display: none;"><img id="header-articles" class="sg-icon">Articles</a>
+			<a id="header-decks-link" onclick="window.location.href = rootPath + '/decks'" style="display: none;"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+
+			// Hide Articles if none exist
+			fetch(rootPath + '/all-articles.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-articles-link').style.display = 'flex';
+				}).catch(() => {});
+
+			// Hide Decks if none exist
+			fetch(rootPath + '/decks.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-decks-link').style.display = 'flex';
+				}).catch(() => {});
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+    <div class="article-container">
+        <div class="article-content">
+            <h1>SHIRYEN: SAIL AND STEAM</h1>
+<h2>Limited Archetypes: Allied colors</h2>
+<hr />
+<p>Sail and Steam is a traditional limited set with ten two-color archetypes. In this article, we'll take a look at the five allied-color archetypes and I'll show off one of their signposts and a couple of the common cards that will make up the core of your draft decks.</p>
+<hr />
+<h2>WHITE/BLUE: SKIES</h2>
+<p>In Azorius, you'll often be taking to the skies to win games of limited. The artificers of the spires have crafted a clever collection of thopters, all whirring at the chance to fly into the fray. Behind them, you'll find a splendid pod of skywhales, lurking in the clouds just waiting to be spotted. Assemble your legion of winged warriors and soar to victory!</p>
+<p><img alt="Breach the Skystream" src="https://magictheegg.github.io/sets/SAS-files/img/191.png" /><img alt="Cloudtide Whale" src="https://magictheegg.github.io/sets/SAS-files/img/201.png" /><img alt="Decatech Forerigger" src="https://magictheegg.github.io/sets/SAS-files/img/156.png" /></p>
+<h2>BLUE/BLACK: DECAYED ZOMBIES</h2>
+<p>In Dimir, you'll build a shambling legion that only grows stronger in undeath. Many of your creatures will bring along token reinforcements, fetid and frothing at the mouth. Use your expendable army to sail ships, sacrifice for value, or simply smash your opponent to bits as the ever-growing undead horde takes the enemy to task.</p>
+<p><img alt="Bathe in Bilge" src="https://magictheegg.github.io/sets/SAS-files/img/208.png" /><img alt="Jolly Flenser" src="https://magictheegg.github.io/sets/SAS-files/img/212.png" /><img alt="Crain's Chum" src="https://magictheegg.github.io/sets/SAS-files/img/157.png" /></p>
+<h2>BLACK/RED: RAID</h2>
+<p>Rakdos in Sail and Steam dares to pose the question: What if I attack my opponent with creatures? Engage with the core game mechanism of Magic and swing, then reap the benefits of your rowdy pirate crew as they plunder and pillage their way to an easy win.</p>
+<p><img alt="Hull Hauler" src="https://magictheegg.github.io/sets/SAS-files/img/218.png" /><img alt="Festering Deckhand" src="https://magictheegg.github.io/sets/SAS-files/img/226.png" /><img alt="Blacksea Marauder" src="https://magictheegg.github.io/sets/SAS-files/img/160.png" /></p>
+<h2>RED/GREEN: COG RAMP</h2>
+<p>Who doesn't love a classic "ramp into big idiots" archetype? In Gruul, you'll get to play the traditional role of the Bigger Fish while adding the side benefit of sometimes comboing your opponents out with the same tap ability six times in a row. Assemble the alpha machine and run your engine straight to the finish line!</p>
+<p><img alt="Port Terra Gadgeteer" src="https://magictheegg.github.io/sets/SAS-files/img/229.png" /><img alt="Skygarden Serpent" src="https://magictheegg.github.io/sets/SAS-files/img/249.png" /><img alt="Trench Thresher" src="https://magictheegg.github.io/sets/SAS-files/img/162.png" /></p>
+<h2>GREEN/WHITE: INCURSION COUNTERS</h2>
+<p>Another classic archetype, Selesnya focuses on fighting small battles to win the larger war. Each time you defeat an Incursion, your army will grow stronger, and plenty of creatures will grant additional bonuses to your beefed-up behemoths. Build the bigger beast and show your opponents no mercy!</p>
+<p><img alt="Hamlet Raiders" src="https://magictheegg.github.io/sets/SAS-files/img/245.png" /><img alt="Gizmotor Operator" src="https://magictheegg.github.io/sets/SAS-files/img/189.png" /><img alt="Snidd Wrangler" src="https://magictheegg.github.io/sets/SAS-files/img/164.png" /></p>
+<hr />
+<p>This concludes our look into the allied-color limited archetypes of Shiryen: Sail and Steam. Join me next time for enemy-color archetypes. Until then, safe sailing!</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+          }
+        });
+
+        function search() {
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }
+
+        function randomCard() {
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    window.location.href = url.pathname + url.search;
+                }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

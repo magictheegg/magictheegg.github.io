@@ -23,6 +23,9 @@ def generateHTML():
             return None
 
         article_folder_name = os.path.basename(article_path)
+        article_slug = re.sub(r'[^a-z0-9\s-]', '', article_folder_name.lower())
+        article_slug = re.sub(r'\s+', '-', article_slug).strip('-')
+
         category_slug = category.lower().replace(' ', '-')
         
         with open(md_path, 'r', encoding='utf-8') as f:
@@ -238,7 +241,7 @@ def generateHTML():
         if not os.path.exists(category_dir):
             os.makedirs(category_dir)
             
-        output_html_file = os.path.join(category_dir, article_folder_name + '.html')
+        output_html_file = os.path.join(category_dir, article_slug + '.html')
         with open(output_html_file, 'w', encoding='utf-8') as f:
             f.write(article_html)
 
@@ -246,7 +249,7 @@ def generateHTML():
             'title': title,
             'subtitle': subtitle,
             'image': first_image,
-            'url': f'articles/{category_slug}/{article_folder_name}',
+            'url': f'articles/{category_slug}/{article_slug}',
             'ctime': os.path.getctime(md_path)
         }
 
@@ -350,7 +353,7 @@ def generate_index_html(article_data, header_snippet):
     }}
     .articles-page-container {{
         width: 90%;
-        max-width: 1200px;
+        max-width: 1350px;
         margin: 40px auto;
     }}
     .gallery-section {{

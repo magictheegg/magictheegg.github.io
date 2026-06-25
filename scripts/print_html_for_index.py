@@ -107,9 +107,9 @@ def generateHTML():
 		border-bottom: 2px solid #171717;
 	}
 	.button-grid {
-		display: grid;
+		display: flex;
+		justify-content: center;
 		margin: auto;
-		grid-template-columns: repeat(5, 1fr);
 		gap: 12px;
 		padding-top: 10px;
 		padding-bottom: 20px;
