@@ -23,7 +23,7 @@ def generateHTML():
         slug = re.sub(pattern, '', t)
         return re.sub(r'\s+', '-', slug).strip('-')
 
-    def process_article(article_path, category):
+    def process_article(article_path, category, rel_base_path):
         md_path = os.path.join(article_path, 'article.md')
         if not os.path.exists(md_path):
             return None
@@ -63,8 +63,7 @@ def generateHTML():
         title = article_folder_name.upper()
         subtitle = ""
 
-        # rel_base_path is the actual path from 'articles/' to the article folder on disk
-        rel_base_path = os.path.relpath(article_path, articles_dir).replace('\\', '/')
+        # Use the provided rel_base_path which already has the correct disk casing
         url_safe_rel_base_path = rel_base_path.replace(' ', '%20')
 
         first_image = ""
@@ -291,7 +290,7 @@ def generateHTML():
             if os.path.exists(md_path):
                 # Top-level article
                 category = "General"
-                info = process_article(entry.path, category)
+                info = process_article(entry.path, category, entry.name)
                 if info:
                     if category not in article_data: article_data[category] = []
                     article_data[category].append(info)
@@ -305,7 +304,8 @@ def generateHTML():
                 
                 for subentry in os.scandir(entry.path):
                     if subentry.is_dir():
-                        info = process_article(subentry.path, category)
+                        rel_path = f"{entry.name}/{subentry.name}"
+                        info = process_article(subentry.path, category, rel_path)
                         if info:
                             if category not in article_data: article_data[category] = []
                             article_data[category].append(info)
