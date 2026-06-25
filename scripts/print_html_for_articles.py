@@ -63,6 +63,10 @@ def generateHTML():
         title = article_folder_name.upper()
         subtitle = ""
 
+        # rel_base_path is the actual path from 'articles/' to the article folder on disk
+        rel_base_path = os.path.relpath(article_path, articles_dir).replace('\\', '/')
+        url_safe_rel_base_path = rel_base_path.replace(' ', '%20')
+
         first_image = ""
         # Check for card image with priority: png, jpg, jpeg
         found_card_img = False
@@ -70,8 +74,8 @@ def generateHTML():
             card_img_filename = f'card.{ext}'
             card_img_path = os.path.join(article_path, card_img_filename)
             if os.path.exists(card_img_path):
-                rel_article_path = os.path.relpath(article_path, '.')
-                first_image = os.path.join(rel_article_path, card_img_filename).replace('\\', '/')
+                # Relative to root (all-articles.html)
+                first_image = f"articles/{url_safe_rel_base_path}/{card_img_filename}"
                 found_card_img = True
                 break
         
@@ -80,27 +84,17 @@ def generateHTML():
             if image_match:
                 first_image = image_match.group(1)
                 # If relative to article folder, we need to adjust path for all-articles.html
-                # all-articles.html is at root, images are in articles/Path/To/Article/img.png
                 if not first_image.startswith('http') and not first_image.startswith('/'):
-                    # Assuming image path is relative to article.md
-                    rel_article_path = os.path.relpath(article_path, '.')
-                    first_image = os.path.join(rel_article_path, first_image).replace('\\', '/')
+                    first_image = f"articles/{url_safe_rel_base_path}/{first_image}"
 
         # Generate individual article HTML with extensions to honor manual <br> tags and newlines
         html_body = markdown.markdown(md_content, extensions=['extra', 'nl2br'])
         
-        # Adjust image paths in html_body for individual articles
-        # They are now in articles/category-slug/ArticleName.html
-        # Original images were in Category/ArticleName/img.png (relative to articles/)
-        # So from articles/category-slug/ArticleName.html, we need to go to ../../articles/Category/ArticleName/img.png
-        # rel_base_path is the path from articles/ to the article folder
-        
-        rel_base_path = os.path.relpath(article_path, articles_dir).replace('\\', '/')
-        
         def adjust_img_src(match):
             src = match.group(2)
             if not src.startswith('http') and not src.startswith('/') and not src.startswith('data:'):
-                return f'<img {match.group(1)}src="../../articles/{rel_base_path}/{src}"'
+                # From articles/category-slug/article-slug.html to articles/Category/ArticleName/src
+                return f'<img {match.group(1)}src="../../articles/{url_safe_rel_base_path}/{src}"'
             return match.group(0)
 
         html_body = re.sub(r'<img (.*?)src="(.*?)"', adjust_img_src, html_body)
@@ -119,7 +113,7 @@ def generateHTML():
         bg_path = os.path.join(article_path, 'bg.png')
         bg_style = ""
         if os.path.exists(bg_path):
-            bg_style = f"background-image: url('../../articles/{rel_base_path}/bg.png'); background-size: cover; background-attachment: fixed;"
+            bg_style = f"background-image: url('../../articles/{url_safe_rel_base_path}/bg.png'); background-size: cover; background-attachment: fixed;"
         else:
             bg_style = "background-color: #ffffff;"
 
