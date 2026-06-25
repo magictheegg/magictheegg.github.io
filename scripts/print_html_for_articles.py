@@ -17,16 +17,19 @@ def generateHTML():
 
     article_data = {} # Category -> [Article Info]
 
+    def slugify(text):
+        slug = re.sub(r'[^a-z0-9\s-]', '', text.lower())
+        return re.sub(r'\s+', '-', slug).strip('-')
+
     def process_article(article_path, category):
         md_path = os.path.join(article_path, 'article.md')
         if not os.path.exists(md_path):
             return None
 
         article_folder_name = os.path.basename(article_path)
-        article_slug = re.sub(r'[^a-z0-9\s-]', '', article_folder_name.lower())
-        article_slug = re.sub(r'\s+', '-', article_slug).strip('-')
+        article_slug = slugify(article_folder_name)
 
-        category_slug = category.lower().replace(' ', '-')
+        category_slug = slugify(category)
         
         with open(md_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
@@ -269,6 +272,11 @@ def generateHTML():
             else:
                 # Potential category folder
                 category = entry.name
+                title_txt_path = os.path.join(entry.path, 'title.txt')
+                if os.path.exists(title_txt_path):
+                    with open(title_txt_path, 'r', encoding='utf-8') as f:
+                        category = f.read().strip()
+                
                 for subentry in os.scandir(entry.path):
                     if subentry.is_dir():
                         info = process_article(subentry.path, category)
