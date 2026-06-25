@@ -67,7 +67,8 @@
         width: 80%;
         margin: 20px auto;
     }
-    .article-content p:has(img) br {
+    /* Only hide BR tags that are immediately between images in a flex row */
+    .article-content p:has(img) img + br {
         display: none;
     }
     h4 {

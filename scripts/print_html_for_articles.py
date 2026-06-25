@@ -58,8 +58,8 @@ def generateHTML():
                     rel_article_path = os.path.relpath(article_path, '.')
                     first_image = os.path.join(rel_article_path, first_image).replace('\\', '/')
 
-        # Generate individual article HTML
-        html_body = markdown.markdown(md_content)
+        # Generate individual article HTML with extensions to honor manual <br> tags and newlines
+        html_body = markdown.markdown(md_content, extensions=['extra', 'nl2br'])
         
         # Adjust image paths in html_body for individual articles
         # They are now in articles/category-slug/ArticleName.html
@@ -154,7 +154,8 @@ def generateHTML():
         width: 80%;
         margin: 20px auto;
     }}
-    .article-content p:has(img) br {{
+    /* Only hide BR tags that are immediately between images in a flex row */
+    .article-content p:has(img) img + br {{
         display: none;
     }}
     h4 {{

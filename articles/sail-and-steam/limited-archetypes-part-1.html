@@ -67,7 +67,8 @@
         width: 80%;
         margin: 20px auto;
     }
-    .article-content p:has(img) br {
+    /* Only hide BR tags that are immediately between images in a flex row */
+    .article-content p:has(img) img + br {
         display: none;
     }
     h4 {
@@ -160,15 +161,19 @@
 <h2>WHITE/BLUE: SKIES</h2>
 <p>In Azorius, you'll often be taking to the skies to win games of limited. The artificers of the spires have crafted a clever collection of thopters, all whirring at the chance to fly into the fray. Behind them, you'll find a splendid pod of skywhales, lurking in the clouds just waiting to be spotted. Assemble your legion of winged warriors and soar to victory!</p>
 <p><img alt="Breach the Skystream" src="https://magictheegg.github.io/sets/SAS-files/img/191.png" /><img alt="Cloudtide Whale" src="https://magictheegg.github.io/sets/SAS-files/img/201.png" /><img alt="Decatech Forerigger" src="https://magictheegg.github.io/sets/SAS-files/img/156.png" /></p>
+<p><br></p>
 <h2>BLUE/BLACK: DECAYED ZOMBIES</h2>
 <p>In Dimir, you'll build a shambling legion that only grows stronger in undeath. Many of your creatures will bring along token reinforcements, fetid and frothing at the mouth. Use your expendable army to sail ships, sacrifice for value, or simply smash your opponent to bits as the ever-growing undead horde takes the enemy to task.</p>
 <p><img alt="Bathe in Bilge" src="https://magictheegg.github.io/sets/SAS-files/img/208.png" /><img alt="Jolly Flenser" src="https://magictheegg.github.io/sets/SAS-files/img/212.png" /><img alt="Crain's Chum" src="https://magictheegg.github.io/sets/SAS-files/img/157.png" /></p>
+<p><br></p>
 <h2>BLACK/RED: RAID</h2>
 <p>Rakdos in Sail and Steam dares to pose the question: What if I attack my opponent with creatures? Engage with the core game mechanism of Magic and swing, then reap the benefits of your rowdy pirate crew as they plunder and pillage their way to an easy win.</p>
 <p><img alt="Hull Hauler" src="https://magictheegg.github.io/sets/SAS-files/img/218.png" /><img alt="Festering Deckhand" src="https://magictheegg.github.io/sets/SAS-files/img/226.png" /><img alt="Blacksea Marauder" src="https://magictheegg.github.io/sets/SAS-files/img/160.png" /></p>
+<p><br></p>
 <h2>RED/GREEN: COG RAMP</h2>
 <p>Who doesn't love a classic "ramp into big idiots" archetype? In Gruul, you'll get to play the traditional role of the Bigger Fish while adding the side benefit of sometimes comboing your opponents out with the same tap ability six times in a row. Assemble the alpha machine and run your engine straight to the finish line!</p>
 <p><img alt="Port Terra Gadgeteer" src="https://magictheegg.github.io/sets/SAS-files/img/229.png" /><img alt="Skygarden Serpent" src="https://magictheegg.github.io/sets/SAS-files/img/249.png" /><img alt="Trench Thresher" src="https://magictheegg.github.io/sets/SAS-files/img/162.png" /></p>
+<p><br></p>
 <h2>GREEN/WHITE: INCURSION COUNTERS</h2>
 <p>Another classic archetype, Selesnya focuses on fighting small battles to win the larger war. Each time you defeat an Incursion, your army will grow stronger, and plenty of creatures will grant additional bonuses to your beefed-up behemoths. Build the bigger beast and show your opponents no mercy!</p>
 <p><img alt="Hamlet Raiders" src="https://magictheegg.github.io/sets/SAS-files/img/245.png" /><img alt="Gizmotor Operator" src="https://magictheegg.github.io/sets/SAS-files/img/189.png" /><img alt="Snidd Wrangler" src="https://magictheegg.github.io/sets/SAS-files/img/164.png" /></p>
