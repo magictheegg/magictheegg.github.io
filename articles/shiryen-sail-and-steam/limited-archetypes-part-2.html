@@ -1,0 +1,218 @@
+<html>
+<head>
+    <title>LIMITED ARCHETYPES, PART 2</title>
+    <link rel="icon" type="image/x-icon" href="../../img/articles.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/mana.css">
+    <link rel="stylesheet" href="../../resources/header.css">
+    <link rel="stylesheet" href="../../resources/card-text.css">
+</head>
+<script title="root">
+    const rootPath = "../..";
+</script>
+<style>
+    @font-face {
+        font-family: 'Beleren Small Caps';
+        src: url('../../resources/beleren-caps.ttf');
+    }
+    @font-face {
+        font-family: Beleren;
+        src: url('../../resources/beleren.ttf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Black';
+        src: url('../../resources/gotham-narrow-black.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Bold';
+        src: url('../../resources/gotham-narrow-bold.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Medium';
+        src: url('../../resources/gotham-narrow-medium.otf');
+    }
+    body {
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-image: url('../../articles/Sail and Steam/limited archetypes, part 2/bg.png'); background-size: cover; background-attachment: fixed;
+    }
+    .article-container {
+        width: 80%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .article-content p.image-paragraph {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+        margin: 20px auto;
+    }
+    /* Only hide BR tags that are immediately between images in a flex row */
+    .article-content p.image-paragraph img + br {
+        display: none;
+    }
+    h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: right;
+        width: 80%;
+        margin: -15px auto 30px auto;
+        color: #666;
+        font-style: italic;
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-family: "Gotham Narrow Bold", Arial, serif;
+        font-size: 36px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    h2 {
+        font-family: "Gotham Narrow Medium", Arial, serif;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+    }
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 0;
+        border-top: 1px solid #d5d9d9;
+    }
+</style>
+<body>
+    <div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a id="header-articles-link" onclick="window.location.href = rootPath + '/all-articles'" style="display: none;"><img id="header-articles" class="sg-icon">Articles</a>
+			<a id="header-decks-link" onclick="window.location.href = rootPath + '/decks'" style="display: none;"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+
+			// Hide Articles if none exist
+			fetch(rootPath + '/all-articles.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-articles-link').style.display = 'flex';
+				}).catch(() => {});
+
+			// Hide Decks if none exist
+			fetch(rootPath + '/decks.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-decks-link').style.display = 'flex';
+				}).catch(() => {});
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+    <div class="article-container">
+        <div class="article-content">
+            <h1>SHIRYEN: SAIL AND STEAM</h1>
+<h2>Limited Archetypes: Enemy colors</h2>
+<hr />
+<p>Continuing on with Sail and Steam's limited archetypes, in this article we'll discover the five enemy-color strategies. If you missed the allied-color archetypes, you can find them <a href="https://magictheegg.github.io/articles/shiryen-sail-and-steam/limited-archetypes-part-1">here</a>.</p>
+<hr />
+<h2>WHITE/BLACK: ARTIFACTS</h2>
+<p>In Orzhov, your charge will be to collect the scraps that every other architect has left behind. As they say, one person's trash is another's treasure, and this archetype is full of value in the form of Thopters, Constructs, and Vehicles ready to click, clack, and whir their way to the top.</p>
+<p class="image-paragraph"><img alt="Greaseworks Mutt" src="https://magictheegg.github.io/sets/SAS-files/img/185.png" /><img alt="Prosthetic Thug" src="https://magictheegg.github.io/sets/SAS-files/img/211.png" /><img alt="Lymph Mechanist" src="https://magictheegg.github.io/sets/SAS-files/img/165.png" /></p>
+<p><br></p>
+<h2>BLUE/RED: INNOVATE</h2>
+<p>Izzet has always been the color pair of scientific insanity, and its role in SAS is no different. Your blue and red creatures will have plenty of big ideas, and your simple task will be to find ways to get them tapped and unlock their full potential.</p>
+<p class="image-paragraph"><img alt="Aspiring Weldwright" src="https://magictheegg.github.io/sets/SAS-files/img/198.png" /><img alt="Decatech Advancements" src="https://magictheegg.github.io/sets/SAS-files/img/236.png" /><img alt="Bonny Lass" src="https://magictheegg.github.io/sets/SAS-files/img/171.png" /></p>
+<p><br></p>
+<h2>BLACK/GREEN: TOKENS</h2>
+<p>In Golgari, the creatures of Sail and Steam care mostly about the little things. You'll be rewarded for every piece of cardboard you put into play, so grab your binoculars and get ready to appreciate the small world of plants, cogs, incursions, and so much more.</p>
+<p class="image-paragraph"><img alt="Port Pearl Curator" src="https://magictheegg.github.io/sets/SAS-files/img/215.png" /><img alt="Sow the Sea's Seed" src="https://magictheegg.github.io/sets/SAS-files/img/240.png" /><img alt="Greensea Savage" src="https://magictheegg.github.io/sets/SAS-files/img/168.png" /></p>
+<p><br></p>
+<h2>RED/WHITE: VEHICLES</h2>
+<p>In perhaps the least surprising twist in Custom Magic history, Boros in Sail and Steam is all about its ships. Whether by sea or by sky, grab a handy crew of helmsmen and bosuns and prepare to sail your all-powerful armada to new horizons!</p>
+<p class="image-paragraph"><img alt="Stalker's Sloop" src="https://magictheegg.github.io/sets/SAS-files/img/234.png" /><img alt="Sovereign Galleon" src="https://magictheegg.github.io/sets/SAS-files/img/192.png" /><img alt="First Fleet Watchtower" src="https://magictheegg.github.io/sets/SAS-files/img/174.png" /></p>
+<p><br></p>
+<h2>GREEN/BLUE: SEA MONSTERS</h2>
+<p>Lurking in the depths of the Three Seas, you'll find Simic and its menagerie of sea beasts. Whether you're casting Leviathans, Octopi, and Serpents, or chasing Krakens sighted from the bestiary, you can rest easy knowing you'll have the full might of the waters just behind you.</p>
+<p class="image-paragraph"><img alt="Crunch" src="https://magictheegg.github.io/sets/SAS-files/img/251.png" /><img alt="Benthic Soothsayer" src="https://magictheegg.github.io/sets/SAS-files/img/200.png" /><img alt="Krill Seekers" src="https://magictheegg.github.io/sets/SAS-files/img/169.png" /></p>
+<hr />
+<p>And with that, we've seen all ten archetypes of Shiryen: Sail and Steam! Look forward to these decks in draft, and may the wind guide your way.</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+          }
+        });
+
+        function search() {
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }
+
+        function randomCard() {
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    window.location.href = url.pathname + url.search;
+                }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

@@ -429,7 +429,7 @@ def generate_index_html(article_data, header_snippet):
         border-radius: 4px;
     }}
     .article-card {{
-        flex: 0 0 300px;
+        flex: 0 0 310px;
         background-color: white;
         border: 1px solid #d5d9d9;
         border-radius: 8px;
