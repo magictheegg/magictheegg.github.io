@@ -105,6 +105,17 @@ def generateHTML():
 
         html_body = re.sub(r'<img (.*?)src="(.*?)"', adjust_img_src, html_body)
 
+        def tag_image_paragraphs(match):
+            content = match.group(1)
+            # Remove all HTML tags and see if any non-whitespace text remains
+            text_only = re.sub(r'<[^>]+>', '', content).strip()
+            
+            if not text_only and '<img' in content:
+                return f'<p class="image-paragraph">{content}</p>'
+            return f'<p>{content}</p>'
+
+        html_body = re.sub(r'<p>(.*?)</p>', tag_image_paragraphs, html_body, flags=re.DOTALL)
+
         bg_path = os.path.join(article_path, 'bg.png')
         bg_style = ""
         if os.path.exists(bg_path):
@@ -173,7 +184,7 @@ def generateHTML():
         flex: 0 1 auto;
         min-width: 0;
     }}
-    .article-content p:has(img) {{
+    .article-content p.image-paragraph {{
         display: flex;
         flex-wrap: nowrap;
         justify-content: center;
@@ -183,7 +194,7 @@ def generateHTML():
         margin: 20px auto;
     }}
     /* Only hide BR tags that are immediately between images in a flex row */
-    .article-content p:has(img) img + br {{
+    .article-content p.image-paragraph img + br {{
         display: none;
     }}
     h4 {{
