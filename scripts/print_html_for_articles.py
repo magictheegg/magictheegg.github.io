@@ -17,8 +17,10 @@ def generateHTML():
 
     article_data = {} # Category -> [Article Info]
 
-    def slugify(text):
-        slug = re.sub(r'[^a-z0-9\s-]', '', text.lower())
+    def slugify(text, keep_case=False):
+        t = text if keep_case else text.lower()
+        pattern = r'[^a-zA-Z0-9\s-]' if keep_case else r'[^a-z0-9\s-]'
+        slug = re.sub(pattern, '', t)
         return re.sub(r'\s+', '-', slug).strip('-')
 
     def process_article(article_path, category):
@@ -29,12 +31,35 @@ def generateHTML():
         article_folder_name = os.path.basename(article_path)
         article_slug = slugify(article_folder_name)
 
-        category_slug = slugify(category)
+        # Use the existing folder's casing if it matches our category name
+        # to ensure links work on case-sensitive filesystems like GitHub Pages.
+        category_slug = slugify(category, keep_case=True)
+        category_dir = os.path.join('articles', category_slug)
+        
+        if os.path.exists(category_dir):
+            # On case-insensitive systems (macOS/Windows), we must find the actual casing
+            # on disk to ensure links work correctly on case-sensitive hosts like GitHub.
+            try:
+                parent_dir = 'articles'
+                for entry in os.scandir(parent_dir):
+                    if entry.name.lower() == category_slug.lower():
+                        category_slug = entry.name
+                        category_dir = os.path.join(parent_dir, category_slug)
+                        break
+            except:
+                pass
+        else:
+            # If the directory doesn't exist yet, we prefer all-lowercase for the new path
+            category_slug = slugify(category, keep_case=False)
+            category_dir = os.path.join('articles', category_slug)
+            if not os.path.exists(category_dir):
+                os.makedirs(category_dir)
         
         with open(md_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
 
         # Simplified: Use folder name for title
+
         title = article_folder_name.upper()
         subtitle = ""
 
@@ -241,10 +266,6 @@ def generateHTML():
 </body>
 </html>'''
 
-        category_dir = os.path.join('articles', category_slug)
-        if not os.path.exists(category_dir):
-            os.makedirs(category_dir)
-            
         output_html_file = os.path.join(category_dir, article_slug + '.html')
         with open(output_html_file, 'w', encoding='utf-8') as f:
             f.write(article_html)

@@ -73,6 +73,21 @@ def genAllCards(codes):
 	with open(os.path.join('lists', 'all-sets.json'), 'w', encoding='utf-8-sig') as f:
 		json.dump(set_input, f, indent=4)
 
+def generateFormats():
+	default_path = os.path.join('resources', 'default-formats.json')
+	custom_path = os.path.join('custom', 'lists', 'formats.json')
+	output_path = os.path.join('lists', 'formats.json')
+
+	with open(default_path, 'r', encoding='utf-8-sig') as f:
+		data = json.load(f)
+
+	if os.path.exists(custom_path):
+		with open(custom_path, 'r', encoding='utf-8-sig') as f:
+			data = json.load(f)
+
+	with open(output_path, 'w', encoding='utf-8-sig') as f:
+		json.dump(data, f, indent=4)
+
 def prettifyJSON(filepath):
 	with open(filepath, encoding='utf-8-sig') as f:
 		js_data = json.load(f)
@@ -134,6 +149,8 @@ for entry in os.scandir('sets'):
 for entry in os.scandir('lists'):
 	if entry.name != 'README.md' and os.path.isfile(entry):
 		os.remove(entry)
+
+generateFormats()
 
 if os.path.exists('articles'):
 	# Recursive cleanup of .html files
