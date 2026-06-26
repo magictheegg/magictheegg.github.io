@@ -58,9 +58,13 @@ def generateHTML():
         with open(md_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
 
-        # Simplified: Use folder name for title
-
+        # Use title.txt if it exists, otherwise use folder name
         title = article_folder_name.upper()
+        title_txt_path = os.path.join(article_path, 'title.txt')
+        if os.path.exists(title_txt_path):
+            with open(title_txt_path, 'r', encoding='utf-8') as f:
+                title = f.read().strip()
+        
         subtitle = ""
 
         # Use the provided rel_base_path which already has the correct disk casing

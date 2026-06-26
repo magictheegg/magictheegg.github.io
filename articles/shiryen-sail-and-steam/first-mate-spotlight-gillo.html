@@ -1,0 +1,219 @@
+<html>
+<head>
+    <title>FIRST MATE SPOTLIGHT: GILLO</title>
+    <link rel="icon" type="image/x-icon" href="../../img/articles.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/mana.css">
+    <link rel="stylesheet" href="../../resources/header.css">
+    <link rel="stylesheet" href="../../resources/card-text.css">
+</head>
+<script title="root">
+    const rootPath = "../..";
+</script>
+<style>
+    @font-face {
+        font-family: 'Beleren Small Caps';
+        src: url('../../resources/beleren-caps.ttf');
+    }
+    @font-face {
+        font-family: Beleren;
+        src: url('../../resources/beleren.ttf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Black';
+        src: url('../../resources/gotham-narrow-black.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Bold';
+        src: url('../../resources/gotham-narrow-bold.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Medium';
+        src: url('../../resources/gotham-narrow-medium.otf');
+    }
+    body {
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-image: url('../../articles/Sail%20and%20Steam/First%20Mate%20spotlight%20Gillo/bg.png'); background-size: cover; background-attachment: fixed;
+    }
+    .article-container {
+        width: 80%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .article-content p.image-paragraph {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+        margin: 20px auto;
+    }
+    /* Only hide BR tags that are immediately between images in a flex row */
+    .article-content p.image-paragraph img + br {
+        display: none;
+    }
+    h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: right;
+        width: 80%;
+        margin: -15px auto 30px auto;
+        color: #666;
+        font-style: italic;
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-family: "Gotham Narrow Bold", Arial, serif;
+        font-size: 36px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    h2 {
+        font-family: "Gotham Narrow Medium", Arial, serif;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+    }
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 0;
+        border-top: 1px solid #d5d9d9;
+    }
+</style>
+<body>
+    <div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a id="header-articles-link" onclick="window.location.href = rootPath + '/all-articles'" style="display: none;"><img id="header-articles" class="sg-icon">Articles</a>
+			<a id="header-decks-link" onclick="window.location.href = rootPath + '/decks'" style="display: none;"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+
+			// Hide Articles if none exist
+			fetch(rootPath + '/all-articles.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-articles-link').style.display = 'flex';
+				}).catch(() => {});
+
+			// Hide Decks if none exist
+			fetch(rootPath + '/decks.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-decks-link').style.display = 'flex';
+				}).catch(() => {});
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+    <div class="article-container">
+        <div class="article-content">
+            <h1>FIRST MATE SPOTLIGHT</h1>
+<h2>Quartermaster Gillo</h2>
+<hr />
+<p>"He doesn't speak much, does he?"</p>
+<p>Ivan just blinked. "I mean ... he's a monkey. He doesn't really speak <em>at all.</em>"</p>
+<p>Yet Ivan knew that wasn't exactly true. While Gillo didn't have much of a grasp on the spoken language of the seas, Ivan had met few pirates in his travels that were as intelligent as the little primate. Gillo had a shocking grasp on seamanship, situational combat, and naval tradition, to name a few--he just preferred to communicate his well of knowledge through his actions.</p>
+<p>Currently, Gillo was perched atop Ivan's shoulder, chirping towards Rae and pointing towards the mainsail. After a few more seconds of relative silence, Ivan sighed and spoke in clearer terms. "Raise that sail by a quarter hoist. It'll only slow us down if the wind keeps turning like this."</p>
+<p>Still, Ivan knew to temper his expectations with new crew members. After all, he had been sailing with Gillo for years. The more time you spent with the monkey, the more you came to understand his unique language. It would only be a matter of time before Rae realized that Gillo was perhaps the best mate sailing the seas.</p>
+<p>And today, they were setting out with one mission in mind: gold, and lots of it. The crew had recently caught wind of a royal stockpile in a low-security fort just off the coast of Homard Isle, and with all the new possibilities on the seas, a fair bit of plunder was more enticing than ever. That morning, they had gathered a ragtag assortment of privateers at Anguille and set off with the ebb tide.</p>
+<p class="image-paragraph"><img alt="Valiant Privateer" src="https://magictheegg.github.io/sets/SAS-files/img/84.png" /></p>
+<p>According to their charts, the fort was around one hundred nautical miles ahead, with calm waters between the ship and its prize. Yet ... something felt off. The sea was far choppier than normal, despite clear skies. Gillo frowned, and pointed back to the mainsail as the wind shifted yet again. In fact, it seemed to be swirling in circles.</p>
+<p>"Gil, what do you make of this atmosphere? Is there a storm on the horizon?" Ivan wasn't sure himself, but he knew if anyone could make sense of these conditions, it was Gillo. Gillo scratched his head and hopped to starboard, peering off into the distance. For a few minutes, he scampered back and forth between the ship's sides, each time adjusting his viewpoint by just a few degrees.</p>
+<p>Eventually, he settled on the port side, squinting his eyes. He stuck out a paw towards Ivan and clicked his tongue. Immediately heeding the request, Ivan pulled out his flintlock and emptied a couple of bullets from its chamber, dropping them into the outstretched paw. Gillo rolled the pellets between his paws a few times, then tossed one straight out into the sea.</p>
+<p>To Ivan's surprise, it skipped off the ocean's surface.</p>
+<p>Gillo hopped up and down and screeched. There was something in the water, lurking just beneath the surface, waiting for their ship. Gillo had sensed it, and Gillo had found it. The creature's camouflage was blown, and now it was angry.</p>
+<p>The surface of the wake broke as a massive creature rose through it, a deep rumble shaking the very bones of the ship itself. Gillo darted to a cannon and took up post right at its lip. Ivan and the rest of the crew watched with bated breath as the creature took form--a gargantuan serpent with aquamarine scales now loomed over them, enraged and ready for lunch.</p>
+<p class="image-paragraph"><img alt="Bane of the Seas" src="https://magictheegg.github.io/sets/SAS-files/img/52.png" /></p>
+<p>As a frenzy fell over the ship, Ivan bolted to Gillo's cannon, ready to fire. He hastily grabbed a cannonball and thrust it into the muzzle, then took aim. <em>Where do I shoot this thing?</em> Ivan had never seen a creature of this stature, and certainly didn't know its weak spots. He took a microsecond to think, then pointed the cannon towards the creature's eye.</p>
+<p>Other crewmates had already lit their cannons, and various shots were raining down on the serpent. Most clinked harmlessly off of its iron-wrought scales, doing nothing but irritating the monster. "Gillo, move!" In his haste, Ivan had barely noticed that Gillo was still latched onto the front of the cannon. Gillo was lost in thought, and time was not on their side. The serpent reared back, ready to strike.</p>
+<p>"Gillo, I have to shoot!" Ivan reached out to grab the monkey, snapping Gillo out of his trance. Gillo chirped and leapt towards the left side of the cannon, evading Ivan's grasp. "Get off the cannon, Gillo. I'm about to fire!" Gillo just chirped again. Then Ivan noticed that Gillo seemed to be trying to <em>pull</em> the cannon, rather than just hang onto it.</p>
+<p>"What are you doing? I'm aimed straight for its eye!" Ivan glanced up. The serpent would strike in just moments, and Ivan had a choice to make. Trust Gillo's instincts, or fire away? In the background, more and more cannon shots dropped harmlessly into the roiling wake. Ivan shook his head; he'd been on this crew for long enough. There was no choice to make.</p>
+<p>Ivan mustered as much composure as he could, and he ever-so-slightly adjusted the cannon's angle to the left. Gillo pointed forwards in the cannon's new direction, then nodded and hopped away. Without missing a beat, Ivan lit the cannon and fired. Just as he did so, the serpent roared and lunged forward. Ivan's cannonball whizzed just past the creature's eye, exploding right by the side of its head. <em>In its ear.</em> Ivan smirked.</p>
+<p>The serpent recoiled and let loose a thunderous roar. That quick motion sent a crushing wave towards the ship. "We need to shift the bow!" Ivan looked around in a panic, but there he was--Gillo, already directing the helmsman just how to angle the rudder. The ship caught the deluge at the perfect angle, and they rode the new current towards the horizon as the temporarily deafened serpent sunk back into the depths.</p>
+<hr />
+<p>That evening, with gold in the hold and a light air among the crew, Ivan sat with Gillo on the top deck. "How did you know what to do today, Gillo?" In all their years, Ivan had never seen a creature nearly that size. Of course, it was a fool's errand to doubt Gillo. Yet Ivan couldn't help but be impressed.</p>
+<p>Gillo just clicked and hopped towards the aft rigging. After all, there was work to be done before tomorrow's journey.</p>
+<p class="image-paragraph"><img alt="Quartermaster Gillo" src="https://magictheegg.github.io/sets/SAS-files/img/10.png" /></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+          }
+        });
+
+        function search() {
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }
+
+        function randomCard() {
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    window.location.href = url.pathname + url.search;
+                }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
