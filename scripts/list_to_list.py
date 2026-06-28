@@ -222,9 +222,9 @@ def convertList(setCode):
 			for x in range(len(cards_arr)):
 				if len(cards_arr[x]) > 0 and 'Basic' not in cards_arr[x][0]['type']:
 					if len(r['cards']) == 1 and (r['cards'][0] in sort_groups or r['cards'][0].startswith('!')):
-						cards_arr[x] = sorted(cards_arr[x], key=lambda x : (x['notes'], x['rarity'], x['number']))
+						cards_arr[x] = sorted(cards_arr[x], key=lambda x : (x['notes'], x['rarity'], x['number'], x['card_name']))
 					else:
-						cards_arr[x] = sorted(cards_arr[x], key=lambda x : (len(x['color']), x['rarity'], x['notes'], x['number'])) # start with len() for 3+c cards
+						cards_arr[x] = sorted(cards_arr[x], key=lambda x : (len(x['color']), x['rarity'], x['notes'], x['number'], x['card_name'])) # start with len() for 3+c cards
 					# otherwise, preserve order of basics from set file
 
 			for row in range(row_count):
@@ -233,7 +233,7 @@ def convertList(setCode):
 						final_list.append(blank1)
 					else:
 						ca = arr[row]
-						final_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape'],'set':code,'rotated':(False if 'rotated' not in ca else ca['rotated']),'position':('' if 'position' not in ca else ca['position'])})
+						final_list.append({'card_name':ca['card_name'],'number':ca['number'],'shape':ca['shape'],'set':code,'rotated':(False if 'token split' in ca['shape'] else True if 'spli' in ca['shape'] else False if 'rotated' not in ca else ca['rotated']),'position':('' if 'position' not in ca else ca['position'])})
 
 			if len(r['cards']) == 1: # single-card categories
 				if not row_count % 5 == 0:

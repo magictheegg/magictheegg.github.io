@@ -1,58 +1,58 @@
 const KEYWORD_DATA = {
     'Flying': {
-        icon: 'img/flying.png',
+        icon: 'img/coliseum/flying.png',
         description: 'Can only be blocked by creatures with flying or reach. Can only be attacked if you only control creatures with flying.'
     },
     'Reach': {
-        icon: 'img/reach.png',
+        icon: 'img/coliseum/reach.png',
         description: 'Can block creatures with flying.'
     },
     'Vigilance': {
-        icon: 'img/vigilance.png',
+        icon: 'img/coliseum/vigilance.png',
         description: 'If a creature attacks, it must target a creature with vigilance if possible.'
     },
     'Menace': {
-        icon: 'img/menace.png',
+        icon: 'img/coliseum/menace.png',
         description: 'Can attack as though defending creatures don\'t have vigilance.'
     },
     'Trample': {
-        icon: 'img/trample.png',
+        icon: 'img/coliseum/trample.png',
         description: 'When attacking a creature, any damage dealt beyond the defender\'s toughness is dealt to that creature\'s neighbor.'
     },
     'First strike': {
-        icon: 'img/first-strike.png',
+        icon: 'img/coliseum/first-strike.png',
         description: 'When attacking, deals combat damage before creatures without first strike.'
     },
     'Double strike': {
-        icon: 'img/double-strike.png',
+        icon: 'img/coliseum/double-strike.png',
         description: 'Attacks twice. Takes no damage after the first attack.'
     },
     'Deathtouch': {
-        icon: 'img/skull.png',
+        icon: 'img/coliseum/skull.png',
         description: 'Any amount of damage this deals to a creature is enough to destroy it.'
     },
     'Lifelink': {
-        icon: 'img/lifelink.png',
+        icon: 'img/coliseum/lifelink.png',
         description: 'Damage dealt by this creature also causes you to gain that much life.'
     },
     'Indestructible': {
-        icon: 'img/indestructible.png',
+        icon: 'img/coliseum/indestructible.png',
         description: 'The first time this creature would be destroyed each combat, it survives at 1 toughness.'
     },
     'Hexproof': {
-        icon: 'img/hexproof.png',
+        icon: 'img/coliseum/hexproof.png',
         description: 'Cannot be targeted by abilities of your opponent\'s attacking creatures.'
     },
     'Haste': {
-        icon: 'img/haste.png',
+        icon: 'img/coliseum/haste.png',
         description: 'This creature always attacks first during its combat turn.'
     },
     'Shield': {
-        icon: 'img/shield.png',
+        icon: 'img/coliseum/shield.png',
         description: 'If this creature would be dealt damage, remove a shield counter instead.'
     },
     'Decayed': {
-        icon: 'img/decayed.png',
+        icon: 'img/coliseum/decayed.png',
         description: 'This creature can\'t block. When it attacks, sacrifice it at end of combat. Worth 0 gold.'
     },
     'plus-one': {
@@ -60,19 +60,19 @@ const KEYWORD_DATA = {
         description: 'Increases this creature\'s power and toughness.'
     },
     'Adaptive': {
-        icon: 'img/adaptive.png',
+        icon: 'img/coliseum/adaptive.png',
         description: 'Whenever you cast a spell that targets only this creature, copy it.'
     },
     'Prowess': {
-        icon: 'img/prowess.png',
+        icon: 'img/coliseum/prowess.png',
         description: 'Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.'
     },
     'Chivalry': {
-        icon: 'img/chivalry.png',
+        icon: 'img/coliseum/chivalry.png',
         description: 'If the creature directly to the right of this creature has less base power, buff it and this creature can\'t attack.'
     },
     'Battle cry': {
-        icon: 'img/battle-cry.png',
+        icon: 'img/coliseum/battle-cry.png',
         description: 'Whenever this creature attacks, each other creature you control gets +1/+0 until end of turn.'
     }
 };
@@ -3767,11 +3767,11 @@ class BaseCard {
                 { name: "Panya, Minikin Hero", avatar: "sets/GSS-files/img/2.png" },
                 { name: "Panya, Swift and Sure", avatar: "sets/ATR-files/img/1.png" },
                 { name: "Panya, Who Dares to Dream", avatar: "sets/NJB-files/img/3.png" },
-                { name: "Panya, the Sojourner", avatar: "sets/KND-files/img/66_Panya, the Sojourner.png" }
+                { name: "Panya, the Sojourner", avatar: "sets/KND-files/img/2.png" }
             ],
             heroPower: {
                 name: "Untold Lands",
-                icon: "sets/SGB-files/img/168_Untold Lands.jpg",
+                icon: "sets/SGB-files/img/88.jpg",
                 cost: 0,
                 text: "Start with an Aldmore Chaperone. Panya returns from her adventure on turn 3.",
                 isPassive: true
@@ -3795,7 +3795,7 @@ class BaseCard {
         MAFUA: {
             name: "Mafua",
             fullName: "Mafua, Oathseeker",
-            avatar: "sets/KND-files/img/19_Mafua, Oathseeker.png",
+            avatar: "sets/KND-files/img/0.png",
             skins: [
                 { name: "All-Enduring Mafua", avatar: "sets/KOD-files/img/176_All-Enduring Mafua.jpg" }
             ],
@@ -3838,7 +3838,7 @@ class BaseCard {
         ARIETTA: {
             name: "Arietta",
             fullName: "Arietta, the Blade Foretold",
-            avatar: "sets/SGB-files/img/3_Arietta, the Blade Foretold.jpg",
+            avatar: "sets/SGB-files/img/151.jpg",
             skins: [
                 { name: "Arietta, Forsworn", avatar: "sets/WAS-files/img/185_Arietta, Forsworn_front.jpg" }
             ],
@@ -3867,13 +3867,13 @@ class BaseCard {
         ADELAIDE: {
             name: "Adelaide",
             fullName: "Adelaide, the Soloist",
-            avatar: "sets/SGB-files/img/36_Adelaide, the Soloist.jpg",
+            avatar: "sets/SGB-files/img/113.jpg",
             skins: [
                 { name: "Mama Kamili", avatar: "sets/WAS-files/img/198_Mama Kamili.jpg" }
             ],
             heroPower: {
                 name: "Traveling Symphony",
-                icon: "sets/SGB-files/img/41_Cajoling Chorus.jpg",
+                icon: "sets/SGB-files/img/107.jpg",
                 text: "When you buy your sixth spell this game, get a Pale Dillettante.",
                 isPassive: true
             }
@@ -3942,14 +3942,14 @@ class BaseCard {
         KISM: {
             name: "Kism",
             fullName: "Kism, Daughter of Fates",
-            avatar: "sets/SGB-files/img/154_Kism, Daughter of Fates.jpg",
+            avatar: "sets/SGB-files/img/195.jpg",
             skins: [
                 { name: "Kism, Threads of Destiny", avatar: "sets/ICO-files/img/19.png" },
                 { name: "Kism, Wild Wunderkind", avatar: "sets/WAS-files/img/162_Kism, Wild Wunderkind.jpg" }
             ],
             heroPower: {
                 name: "Untangle the Weald",
-                icon: "sets/SGB-files/img/169_Weald Trappers.jpg",
+                icon: "sets/SGB-files/img/163.jpg",
                 cost: 3,
                 text: "Create a copy of target creature in the shop. (Three times per game)",
                 isPassive: false,
@@ -4005,7 +4005,7 @@ class BaseCard {
     const randomHero = selectableHeroes[Math.floor(Math.random() * selectableHeroes.length)];
     
     const availablePlaymats = ['ancient', 'bleak', 'coastal', 'desolate', 'majestic', 'primal', 'pristine', 'rugged', 'stalwart', 'verdant'];
-    const randomPlaymat = `img/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
+    const randomPlaymat = `img/coliseum/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
 
     function getInitialPlayerState() {
         return {
@@ -4036,13 +4036,14 @@ class BaseCard {
 
     function getInitialOpponents(playerHeroName) {
         if (typeof window !== 'undefined' && window.IS_TRAINING_GROUNDS) return [];
-        const shuffled = [...selectableHeroes].sort(() => Math.random() - 0.5);
+        const pool = selectableHeroes.filter(h => h.name !== playerHeroName);
+        const shuffled = [...pool].sort(() => Math.random() - 0.5);
         const selected = shuffled.slice(0, 7);
         
         const availablePlaymats = ['ancient', 'bleak', 'coastal', 'desolate', 'majestic', 'primal', 'pristine', 'rugged', 'stalwart', 'verdant'];
 
         return selected.map((hero, index) => {
-            const randomPlaymat = `img/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
+            const randomPlaymat = `img/coliseum/playmats/${availablePlaymats[Math.floor(Math.random() * availablePlaymats.length)]}.jpg`;
             return { 
                 id: index, 
                 name: hero.name, 
@@ -4564,9 +4565,9 @@ class BaseCard {
         bubble.className = 'destroy-bubble';
 
         const img = document.createElement('img');
-        let icon = 'img/skull.png';
+        let icon = 'img/coliseum/skull.png';
         if (typeof targetOrId === 'object' && targetOrId.destroyedReason === 'exile') {
-            icon = 'img/exile.png';
+            icon = 'img/coliseum/exile.png';
             bubble.classList.add('exile-bubble');
         }
         img.src = icon;
@@ -4627,7 +4628,7 @@ class BaseCard {
         bubble.style.pointerEvents = 'none';
 
         const img = document.createElement('img');
-        img.src = 'img/shield.png';
+        img.src = 'img/coliseum/shield.png';
         img.alt = 'Shield';
         img.style.width = '120px';
         img.style.height = '120px';
@@ -4739,21 +4740,15 @@ class BaseCard {
         // 1. Snapshot settings (persistent) and Random Hero Flag
         const currentSkins = state.settings.heroSkins;
         const dynamicTraverse = state.settings.dynamicTraverse;
-        const wasRandomHero = state.player.isRandomHero;
         const currentHero = state.player.hero;
+        const wasRandomHero = state.player.isRandomHero;
 
         // 2. Full State Reset
         const newPlayer = getInitialPlayerState();
         
-        // Pick new hero if they chose random, otherwise keep current
-        if (wasRandomHero) {
-            const selectableHeroes = Object.values(HEROES).filter(h => h.name !== 'Marketto');
-            newPlayer.hero = selectableHeroes[Math.floor(Math.random() * selectableHeroes.length)];
-            newPlayer.isRandomHero = true;
-        } else {
-            newPlayer.hero = currentHero; 
-            newPlayer.isRandomHero = false;
-        }
+        // Preserve current hero and its random status
+        newPlayer.hero = currentHero; 
+        newPlayer.isRandomHero = wasRandomHero;
 
         const newOpponents = (window.getInitialOpponents || getInitialOpponents)(newPlayer.hero.name);
 
@@ -4840,28 +4835,7 @@ class BaseCard {
         }
 
         resetGameState();
-        
-        // Update front page UI with potentially new random hero or preserved hero
-        const heroPreviewImg = document.getElementById('current-hero-img');
-        const frontHeroName = document.getElementById('current-hero-name');
-        const frontHeroPreview = document.getElementById('hero-select-preview');
-
-        if (state.player.isRandomHero) {
-            if (heroPreviewImg) heroPreviewImg.style.display = 'none';
-            if (frontHeroName) frontHeroName.textContent = 'Random';
-            let qMark = frontHeroPreview?.querySelector('.random-q');
-            if (qMark) qMark.style.display = 'flex';
-        } else {
-            if (heroPreviewImg) {
-                frontHeroPreview.dataset.heroName = state.player.hero.name;
-                const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
-                heroPreviewImg.src = skin || state.player.hero.avatar;
-                heroPreviewImg.style.display = 'block';
-            }
-            if (frontHeroName) frontHeroName.textContent = state.player.hero.name;
-            let qMark = frontHeroPreview?.querySelector('.random-q');
-            if (qMark) qMark.style.display = 'none';
-        }
+        syncFrontPageHeroPreview();
     }
 
     function startGameLogic() {
@@ -4903,6 +4877,46 @@ class BaseCard {
         }
         
         startShopTurn();
+    }
+
+    function syncFrontPageHeroPreview() {
+        const frontHeroImg = document.getElementById('current-hero-img');
+        const frontHeroPreview = document.getElementById('hero-select-preview');
+        const frontHeroName = document.getElementById('current-hero-name');
+
+        if (state.player.isRandomHero) {
+            if (frontHeroImg) frontHeroImg.style.display = 'none';
+            if (frontHeroName) frontHeroName.textContent = 'Random';
+            
+            let qMark = frontHeroPreview?.querySelector('.random-q');
+            if (!qMark && frontHeroPreview) {
+                qMark = document.createElement('div');
+                qMark.className = 'random-q';
+                qMark.style.width = '100%';
+                qMark.style.height = '100%';
+                qMark.style.display = 'flex';
+                qMark.style.alignItems = 'center';
+                qMark.style.justifyContent = 'center';
+                qMark.style.fontSize = '100px';
+                qMark.style.color = '#e3e3e3';
+                qMark.style.background = '#111';
+                qMark.style.fontFamily = "'Beleren Small Caps'";
+                qMark.textContent = '?';
+                frontHeroPreview.appendChild(qMark);
+            } else if (qMark) {
+                qMark.style.display = 'flex';
+            }
+        } else {
+            if (frontHeroImg) {
+                if (frontHeroPreview) frontHeroPreview.dataset.heroName = state.player.hero.name;
+                const skin = state.settings.heroSkins[state.player.hero.name]?.avatar;
+                frontHeroImg.src = skin || state.player.hero.avatar;
+                frontHeroImg.style.display = 'block';
+            }
+            if (frontHeroName) frontHeroName.textContent = state.player.hero.name;
+            const qMark = frontHeroPreview?.querySelector('.random-q');
+            if (qMark) qMark.style.display = 'none';
+        }
     }
 
     async function init() {
@@ -4989,7 +5003,7 @@ class BaseCard {
                 freezeBtn.classList.toggle('frozen', state.shop.frozen);
                 const img = document.getElementById('freeze-img');
                 if (img) {
-                    img.src = state.shop.frozen ? 'img/locked.png' : 'img/unlocked.png';
+                    img.src = state.shop.frozen ? 'img/coliseum/locked.png' : 'img/coliseum/unlocked.png';
                 }
 
                 if (wasFrozen && !state.shop.frozen) {
@@ -5290,44 +5304,14 @@ class BaseCard {
         }
 
         function confirmHeroSelection() {
-            const frontHeroImg = document.getElementById('current-hero-img');
-            const frontHeroPreview = document.getElementById('hero-select-preview');
-            const frontHeroName = document.getElementById('current-hero-name');
-
             if (isRandomSelected) {
-                if (frontHeroImg) frontHeroImg.style.display = 'none';
-                if (frontHeroName) frontHeroName.textContent = 'Random';
-                // Add "?" to front page preview if it's not there
-                let qMark = frontHeroPreview.querySelector('.random-q');
-                if (!qMark) {
-                    qMark = document.createElement('div');
-                    qMark.className = 'random-q';
-                    qMark.style.width = '100%';
-                    qMark.style.height = '100%';
-                    qMark.style.display = 'flex';
-                    qMark.style.alignItems = 'center';
-                    qMark.style.justifyContent = 'center';
-                    qMark.style.fontSize = '100px';
-                    qMark.style.color = '#e3e3e3';
-                    qMark.style.background = '#111';
-                    qMark.style.fontFamily = "'Beleren Small Caps'";
-                    qMark.textContent = '?';
-                    frontHeroPreview.appendChild(qMark);
-                } else {
-                    qMark.style.display = 'flex';
-                }
+                state.player.isRandomHero = true;
+                syncFrontPageHeroPreview();
                 heroSelectPage.style.display = 'none';
             } else if (pendingHero) {
                 state.player.hero = pendingHero;
-                if (frontHeroImg) {
-                    frontHeroPreview.dataset.heroName = state.player.hero.name;
-                    const skin = state.settings.heroSkins[pendingHero.name]?.avatar;
-                    frontHeroImg.src = skin || pendingHero.avatar;
-                    frontHeroImg.style.display = 'block';
-                }
-                if (frontHeroName) frontHeroName.textContent = pendingHero.name;
-                const qMark = frontHeroPreview.querySelector('.random-q');
-                if (qMark) qMark.style.display = 'none';
+                state.player.isRandomHero = false;
+                syncFrontPageHeroPreview();
                 heroSelectPage.style.display = 'none';
             }
         }
@@ -5458,7 +5442,7 @@ class BaseCard {
                 playmats.forEach(mat => {
                     const item = document.createElement('div');
                     item.className = 'playmat-item';
-                    const fullPath = `img/playmats/${mat}.jpg`;
+                    const fullPath = `img/coliseum/playmats/${mat}.jpg`;
                     if (state.player.playmat === fullPath) item.classList.add('selected');
                     
                     item.innerHTML = `
@@ -6671,7 +6655,7 @@ class BaseCard {
         state.shop.frozen = false;
         if (freezeBtn) freezeBtn.classList.remove('frozen');
         const img = document.getElementById('freeze-img');
-        if (img) img.src = 'img/unlocked.png';
+        if (img) img.src = 'img/coliseum/unlocked.png';
     }
 
     function populateShop() {
@@ -9257,7 +9241,7 @@ class BaseCard {
         if (playerPlaneBg) {
             if (state.settings.dynamicTraverse && (state.player.plane === 'Cirrusea' || state.player.plane === 'Onora' || state.player.plane === 'Al Tabaq')) {
                 const matName = state.player.plane === 'Al Tabaq' ? 'al-tabaq' : state.player.plane.toLowerCase();
-                playerPlaneBg.style.backgroundImage = `url(img/playmats/${matName}.jpg)`;
+                playerPlaneBg.style.backgroundImage = `url(img/coliseum/playmats/${matName}.jpg)`;
                 playerPlaneBg.style.opacity = '1';
             } else {
                 playerPlaneBg.style.opacity = '0';
@@ -9285,7 +9269,7 @@ class BaseCard {
             const oppBg = document.getElementById('opponent-bg');
             const oppPlaneBg = document.getElementById('opponent-plane-bg');
             if (oppBg) {
-                oppBg.style.backgroundImage = 'url(img/playmats/shop.jpg)';
+                oppBg.style.backgroundImage = 'url(img/coliseum/playmats/shop.jpg)';
             }
             if (oppPlaneBg) {
                 oppPlaneBg.style.opacity = '0'; // Shop always shows shop
@@ -9318,7 +9302,7 @@ class BaseCard {
             if (oppPlaneBg && currentOpp) {
                 if (currentOpp.plane === 'Cirrusea' || currentOpp.plane === 'Onora' || currentOpp.plane === 'Al Tabaq') {
                     const matName = currentOpp.plane === 'Al Tabaq' ? 'al-tabaq' : currentOpp.plane.toLowerCase();
-                    oppPlaneBg.style.backgroundImage = `url(img/playmats/${matName}.jpg)`;
+                    oppPlaneBg.style.backgroundImage = `url(img/coliseum/playmats/${matName}.jpg)`;
                     oppPlaneBg.style.opacity = '1';
                 } else {
                     oppPlaneBg.style.opacity = '0';
@@ -9504,13 +9488,13 @@ class BaseCard {
                             const backIcon = document.createElement('div');
                             backIcon.className = `counter-bubble ${backKw} bubble-back`;
                             const backImg = document.createElement('img');
-                            backImg.src = `img/${backKw}.png`;
+                            backImg.src = `img/coliseum/${backKw}.png`;
                             backIcon.appendChild(backImg);
 
                             const frontIcon = document.createElement('div');
                             frontIcon.className = `counter-bubble ${frontKw} bubble-front`;
                             const frontImg = document.createElement('img');
-                            frontImg.src = `img/${frontKw}.png`;
+                            frontImg.src = `img/coliseum/${frontKw}.png`;
                             frontIcon.appendChild(frontImg);
 
                             containerDiv.appendChild(backIcon);
@@ -9536,7 +9520,7 @@ class BaseCard {
                             icon.style.fontSize = '1.5em';
 
                             const img = document.createElement('img');
-                            img.src = `img/${kw.replace(' ', '-')}.png`;
+                            img.src = `img/coliseum/${kw.replace(' ', '-')}.png`;
                             img.alt = kw;
                             icon.appendChild(img);
                             const label = document.createElement('div');
@@ -9818,7 +9802,7 @@ class BaseCard {
                 const lockIndicator = document.createElement('div');
                 lockIndicator.className = 'card-lock-indicator';
                 const lockImg = document.createElement('img');
-                lockImg.src = 'img/locked.png';
+                lockImg.src = 'img/coliseum/locked.png';
                 lockIndicator.appendChild(lockImg);
                 cardEl.appendChild(lockIndicator);
             }
@@ -9840,7 +9824,7 @@ class BaseCard {
                 const lockIndicator = document.createElement('div');
                 lockIndicator.className = 'card-lock-indicator';
                 const lockImg = document.createElement('img');
-                lockImg.src = 'img/locked.png';
+                lockImg.src = 'img/coliseum/locked.png';
                 lockIndicator.appendChild(lockImg);
                 cardEl.appendChild(lockIndicator);
             }
@@ -9893,24 +9877,24 @@ class BaseCard {
         const tempKeywords = new Set();
         if (isCreature && !skipIndicators) {
             const keywordMap = {
-                'Flying': 'img/flying.png',
-                'Menace': 'img/menace.png',
-                'First strike': 'img/first-strike.png',
-                'Double strike': 'img/double-strike.png',
-                'Vigilance': 'img/vigilance.png',
-                'Lifelink': 'img/lifelink.png',
-                'Trample': 'img/trample.png',
-                'Reach': 'img/reach.png',
-                'Hexproof': 'img/hexproof.png',
-                'Indestructible': 'img/indestructible.png',
-                'Haste': 'img/haste.png',
-                'Shield': 'img/shield.png',
-                'Deathtouch': 'img/skull.png',
-                'Decayed': 'img/decayed.png',
-                'Adaptive': 'img/adaptive.png',
-                'Prowess': 'img/prowess.png',
-                'Chivalry': 'img/chivalry.png',
-                'Battle cry': 'img/battle-cry.png'
+                'Flying': 'img/coliseum/flying.png',
+                'Menace': 'img/coliseum/menace.png',
+                'First strike': 'img/coliseum/first-strike.png',
+                'Double strike': 'img/coliseum/double-strike.png',
+                'Vigilance': 'img/coliseum/vigilance.png',
+                'Lifelink': 'img/coliseum/lifelink.png',
+                'Trample': 'img/coliseum/trample.png',
+                'Reach': 'img/coliseum/reach.png',
+                'Hexproof': 'img/coliseum/hexproof.png',
+                'Indestructible': 'img/coliseum/indestructible.png',
+                'Haste': 'img/coliseum/haste.png',
+                'Shield': 'img/coliseum/shield.png',
+                'Deathtouch': 'img/coliseum/skull.png',
+                'Decayed': 'img/coliseum/decayed.png',
+                'Adaptive': 'img/coliseum/adaptive.png',
+                'Prowess': 'img/coliseum/prowess.png',
+                'Chivalry': 'img/coliseum/chivalry.png',
+                'Battle cry': 'img/coliseum/battle-cry.png'
             };
 
             Object.keys(keywordMap).forEach(kw => {
@@ -10007,27 +9991,27 @@ class BaseCard {
         // 1. +1/+1 Counters
         if (instance.displayedCounters > 0) addCounterBubble('plus-one', instance.displayedCounters);
         // 2. Flying
-        if (instance.displayedFlyingCounters > 0) addCounterBubble('flying', instance.displayedFlyingCounters, 'img/flying.png');
+        if (instance.displayedFlyingCounters > 0) addCounterBubble('flying', instance.displayedFlyingCounters, 'img/coliseum/flying.png');
         // 3. Menace
-        if (instance.displayedMenaceCounters > 0) addCounterBubble('menace', instance.displayedMenaceCounters, 'img/menace.png');
+        if (instance.displayedMenaceCounters > 0) addCounterBubble('menace', instance.displayedMenaceCounters, 'img/coliseum/menace.png');
         // 4. First Strike
-        if (instance.displayedFirstStrikeCounters > 0) addCounterBubble('first-strike', instance.displayedFirstStrikeCounters, 'img/first-strike.png');
+        if (instance.displayedFirstStrikeCounters > 0) addCounterBubble('first-strike', instance.displayedFirstStrikeCounters, 'img/coliseum/first-strike.png');
         // 4b. Double Strike
-        if (instance.displayedDoubleStrikeCounters > 0) addCounterBubble('double-strike', instance.displayedDoubleStrikeCounters, 'img/double-strike.png');
+        if (instance.displayedDoubleStrikeCounters > 0) addCounterBubble('double-strike', instance.displayedDoubleStrikeCounters, 'img/coliseum/double-strike.png');
         // 5. Vigilance
-        if (instance.displayedVigilanceCounters > 0) addCounterBubble('vigilance', instance.displayedVigilanceCounters, 'img/vigilance.png');
+        if (instance.displayedVigilanceCounters > 0) addCounterBubble('vigilance', instance.displayedVigilanceCounters, 'img/coliseum/vigilance.png');
         // 6. Lifelink
-        if (instance.displayedLifelinkCounters > 0) addCounterBubble('lifelink', instance.displayedLifelinkCounters, 'img/lifelink.png');
+        if (instance.displayedLifelinkCounters > 0) addCounterBubble('lifelink', instance.displayedLifelinkCounters, 'img/coliseum/lifelink.png');
         // 6b. Deathtouch
-        if (instance.displayedDeathtouchCounters > 0) addCounterBubble('deathtouch', instance.displayedDeathtouchCounters, 'img/skull.png');
+        if (instance.displayedDeathtouchCounters > 0) addCounterBubble('deathtouch', instance.displayedDeathtouchCounters, 'img/coliseum/skull.png');
         // 7. Trample
-        if (instance.displayedTrampleCounters > 0) addCounterBubble('trample', instance.displayedTrampleCounters, 'img/trample.png');
+        if (instance.displayedTrampleCounters > 0) addCounterBubble('trample', instance.displayedTrampleCounters, 'img/coliseum/trample.png');
         // 8. Reach
-        if (instance.displayedReachCounters > 0) addCounterBubble('reach', instance.displayedReachCounters, 'img/reach.png');
+        if (instance.displayedReachCounters > 0) addCounterBubble('reach', instance.displayedReachCounters, 'img/coliseum/reach.png');
         // 9. Hexproof
-        if (instance.displayedHexproofCounters > 0) addCounterBubble('hexproof', instance.displayedHexproofCounters, 'img/hexproof.png');
+        if (instance.displayedHexproofCounters > 0) addCounterBubble('hexproof', instance.displayedHexproofCounters, 'img/coliseum/hexproof.png');
         // 10. Shield
-        if (instance.displayedShieldCounters > 0) addCounterBubble('shield', instance.displayedShieldCounters, 'img/shield.png');
+        if (instance.displayedShieldCounters > 0) addCounterBubble('shield', instance.displayedShieldCounters, 'img/coliseum/shield.png');
         
         if (instance.pt) {
             const stats = instance.getDisplayStats(boardContext, true); // true = use visual state
@@ -10103,7 +10087,7 @@ class BaseCard {
                     chainIndicator.classList.add('no-animation');
                 }
                 const chainImg = document.createElement('img');
-                chainImg.src = 'img/chained.png';
+                chainImg.src = 'img/coliseum/chained.png';
                 chainIndicator.appendChild(chainImg);
                 cardEl.appendChild(chainIndicator);
             }

@@ -216,6 +216,7 @@ function testDoubleStrike_LethalFace() {
     const ds = CardFactory.create({ card_name: "DS", pt: "3/3", rules_text: "Double strike" });
     state.battleBoards = { player: [ds], opponent: [] };
     state.opponents[0].fightHp = 2;
+    state.opponents[0].mercyExhausted = true; // Bypass mercy rule for this test
     state.currentOpponentId = 0; // ensure getOpponent() finds it
     ds.owner = 'player';
     
