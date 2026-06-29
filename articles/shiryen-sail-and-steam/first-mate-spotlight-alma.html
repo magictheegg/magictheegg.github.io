@@ -1,0 +1,212 @@
+<html>
+<head>
+    <title>FIRST MATE SPOTLIGHT: ALMA</title>
+    <link rel="icon" type="image/x-icon" href="../../img/articles.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/mana.css">
+    <link rel="stylesheet" href="../../resources/header.css">
+    <link rel="stylesheet" href="../../resources/card-text.css">
+</head>
+<script title="root">
+    const rootPath = "../..";
+</script>
+<style>
+    @font-face {
+        font-family: 'Beleren Small Caps';
+        src: url('../../resources/beleren-caps.ttf');
+    }
+    @font-face {
+        font-family: Beleren;
+        src: url('../../resources/beleren.ttf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Black';
+        src: url('../../resources/gotham-narrow-black.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Bold';
+        src: url('../../resources/gotham-narrow-bold.otf');
+    }
+    @font-face {
+        font-family: 'Gotham Narrow Medium';
+        src: url('../../resources/gotham-narrow-medium.otf');
+    }
+    body {
+        font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+        overscroll-behavior: none;
+        margin: 0px;
+        background-image: url('../../articles/Sail%20and%20Steam/First%20Mate%20spotlight%20Alma/bg.png'); background-size: cover; background-attachment: fixed;
+    }
+    .article-container {
+        width: 80%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d5d9d9;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+        object-fit: contain;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .article-content p.image-paragraph {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+        margin: 20px auto;
+    }
+    /* Only hide BR tags that are immediately between images in a flex row */
+    .article-content p.image-paragraph img + br {
+        display: none;
+    }
+    h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: right;
+        width: 80%;
+        margin: -15px auto 30px auto;
+        color: #666;
+        font-style: italic;
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-family: "Gotham Narrow Bold", Arial, serif;
+        font-size: 36px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    h2 {
+        font-family: "Gotham Narrow Medium", Arial, serif;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+    }
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 0;
+        border-top: 1px solid #d5d9d9;
+    }
+</style>
+<body>
+    <div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a id="header-articles-link" onclick="window.location.href = rootPath + '/all-articles'" style="display: none;"><img id="header-articles" class="sg-icon">Articles</a>
+			<a id="header-decks-link" onclick="window.location.href = rootPath + '/decks'" style="display: none;"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+
+			// Hide Articles if none exist
+			fetch(rootPath + '/all-articles.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-articles-link').style.display = 'flex';
+				}).catch(() => {});
+
+			// Hide Decks if none exist
+			fetch(rootPath + '/decks.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-decks-link').style.display = 'flex';
+				}).catch(() => {});
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+    <div class="article-container">
+        <div class="article-content">
+            <h1>FIRST MATE SPOTLIGHT</h1>
+<h2>Alma Bristol</h2>
+<hr />
+<p><em>May they rest eternally in peace.</em></p>
+<p>Crain smirked at the sodden headstone, split in twain and sinking into the morning mud. There was a certain charm to the idea, one that many years ago he too had embraced as he buried crewmates at sea. One that Shiryen had largely forgotten after the Curse had spread across its wards. One that the spires still naively held dear.</p>
+<p>This headstone now marked no grave, but a shallow pit crawling with maggots and permeated by a fetid stench. <em>A familiar sight.</em> Behind Crain, dozens of shambling corpses moaned and lurched their way towards the Fell Reaper. <em>A new crew for a new conquest.</em></p>
+<p class="image-paragraph"><img alt="Army of the Drowned" src="https://i.postimg.cc/TYPwPQrt/image.png" /></p>
+<h4>Art by Dmitriy Druzhkov</h4>
+<p>For years, Crain held a tyrannical control over the Three Seas. He and the royal fleet had an accord: He would do whatever he wanted, and if they intervened, he would send ship after ship to the Deepbrine. It was a life of luxury, pillaging and plundering port after port with little to no opposition. But had the pirate's life become <em>too</em> easy on Shiryen? At this point, it was less piracy and more ... gathering. As if his ship was chartered to collect gilded goblets from Port Pearl and hold them for safekeeping. There was still joy to be found in the hunt, but it was beginning to feel hollow.</p>
+<p>Jorah had promised him unrivaled splendor and unrivaled power. Then Jorah vanished, leaving Crain with nothing more than the taste of a new life, of eternal fame and fortune just out of reach beyond the horizon. "Keep a steady hand until my return." And Crain had done so unflinchingly. But it had been months, and Crain was simply growing <em>bored</em>.</p>
+<p>So when news drifted to him of the discovery of L'Or, there was no hesitation in his mind. Not minutes later, Crain strode aboard the deck of the Fell Reaper, barking orders at his crew with a newfound vigor. Surely Jorah would approve of Crain expanding his domain? Though in truth, it mattered little how some otherworldly priest perceived Crain's actions. This was his life—the life of the undead pirate lord—and he was going to live it to the fullest.</p>
+<p>Crain lingered for mere seconds over the cemetery, freshly emptied. Raindrops thunked into the mud, masking the cacophony of flies buzzing in confusion where nothing now rotted. <em>This is my life.</em> There were new shores to claim, new ships to scuttle, and a fresh crew of cadavers simply waiting for orders. Crain's smirk formed into a wicked smile. <em>Time to live it.</em></p>
+<p class="image-paragraph"><img alt="Sea King Crain" src="https://magictheegg.github.io/sets/SAS-files/img/19.png" /></p>
+<hr />
+<p>"The Silversea is yours now, Alma."</p>
+<p>Crain's words echoed through her mind. He was off to seek greater glory, but someone needed to stay back to keep control of the Seas. And that was where she came in, as Crain's newly appointed second-in-command. She had known Crain for at least a decade; in fact, she was on the Selkie when it was raided by Dawson's crew that fateful night. She watched Crain die, slain in cold blood by the King Shark himself. And she could still remember that cold, hopeless feeling of sea water filling her lungs as she drowned, the Selkie sinking beneath her into the abyss.</p>
+<p>And then she remembered sunlight. Blinding sunlight, and a cold hand on her shoulder. "Welcome back, Bristols." She squinted as her eyes adjusted to the morning shine, and she could make out two figures in front of her: The fleshless bodies of her brother, Egan, and her captain Ellison Crain. From that moment, she knew she owed Crain an eternal debt, and she pledged to sail with his crew forevermore.</p>
+<p>But it was her crew now. Egan had been gifted the Blacksea to rule, and she the Silversea, with the promise of a world that would bow to her might. And a ship, a magnificent ship, freshly dubbed the Lady Calamity. Alma stood at the bow, gazing out into the open sea, and for the first time in years she felt a faint glimmer of hope.</p>
+<p>It was yet another new lease on life. And it was time to set sail.</p>
+<p class="image-paragraph"><img alt="Alma Bristol, Imperatrix" src="https://magictheegg.github.io/sets/SAS-files/img/13.png" /></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("search").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+          }
+        });
+
+        function search() {
+            const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+            url.searchParams.append('search', document.getElementById("search").value);
+            window.location.href = url.pathname + url.search;
+        }
+
+        function randomCard() {
+            fetch(rootPath + '/lists/all-cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cards = data.cards;
+                    const random_card = cards[Math.floor(Math.random() * cards.length)];
+                    const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+                    const params = {
+                        set: random_card.set,
+                        num: random_card.number,
+                        name: random_card.card_name
+                    }
+                    for (const key in params) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                    window.location.href = url.pathname + url.search;
+                }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

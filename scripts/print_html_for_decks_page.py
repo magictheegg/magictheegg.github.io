@@ -263,13 +263,6 @@ def generateHTML():
             </div>
             <select id="format-filter" onchange="handleFilterChange()">
                 <option value="">All Formats</option>
-                <option value="Standard">Standard</option>
-                <option value="Modern">Modern</option>
-                <option value="Legacy">Legacy</option>
-                <option value="Commander">Commander</option>
-                <option value="Pauper">Pauper</option>
-                <option value="Primordial">Primordial</option>
-                <option value="Other">Other</option>
             </select>
         </div>
         <div id="chip-container" class="chip-container"></div>
@@ -295,6 +288,7 @@ def generateHTML():
         let allCardsArray = [];
         let setConfigs = {};
         let selectedCards = [];
+        let specialchars = "";
 
         async function init() {
             // Show loading state
@@ -315,11 +309,27 @@ def generateHTML():
                 }
             }
 
-            // Load card data for image lookup
-            const response = await fetch('./lists/all-cards.json');
-            const data = await response.json();
-            allCardsArray = data.cards;
-            data.cards.forEach(card => {
+            // Load formats dynamically
+            await fetch(rootPath + '/lists/formats.json')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById("format-filter");
+                    // Keep the first option (All Formats)
+                    const firstOption = select.options[0];
+                    select.innerHTML = '';
+                    select.appendChild(firstOption);
+                    
+                    data.formats.forEach(f => {
+                        const option = document.createElement("option");
+                        option.value = f;
+                        option.innerText = f;
+                        select.appendChild(option);
+                    });
+                }).catch(error => console.error('Error loading formats:', error));
+
+            // Initialize card data structures
+            allCardsArray = card_list_arrayified;
+            card_list_arrayified.forEach(card => {
                 const key = `${card.set}-${card.number}`;
                 cardLookup[key] = card;
             });
@@ -327,6 +337,32 @@ def generateHTML():
             await fetchDecks();
         }
 
+        document.addEventListener("DOMContentLoaded", async function () {
+'''
+
+    with open(os.path.join('scripts', 'snippets', 'load-files.txt'), encoding='utf-8-sig') as f:
+        html_content += f.read()
+
+    html_content += '''
+            init();
+        });
+
+        function goToSearch() {
+            window.location.href = rootPath + "/search?search=" + encodeURIComponent(document.getElementById("search").value);
+        }
+
+        document.getElementById("search").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                goToSearch();
+            }
+        });
+'''
+
+    with open(os.path.join('scripts', 'snippets', 'random-card.txt'), encoding='utf-8-sig') as f:
+        html_content += f.read()
+
+    html_content += '''
         async function fetchDecks() {
             const { data, error } = await _supabase
                 .from('decks')
