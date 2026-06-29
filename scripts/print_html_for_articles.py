@@ -283,7 +283,7 @@ def generateHTML():
             'subtitle': subtitle,
             'image': first_image,
             'url': f'articles/{category_slug}/{article_slug}',
-            'ctime': os.path.getctime(md_path)
+            'mtime': os.path.getmtime(md_path)
         }
 
     # Crawl articles directory
@@ -314,9 +314,9 @@ def generateHTML():
                             if category not in article_data: article_data[category] = []
                             article_data[category].append(info)
 
-    # Sort articles in each category by ctime descending (newest first)
+    # Sort articles in each category by mtime descending (newest first)
     for category in article_data:
-        article_data[category].sort(key=lambda x: x['ctime'], reverse=True)
+        article_data[category].sort(key=lambda x: x['mtime'], reverse=True)
 
     # Generate all-articles.html (Top level)
     if len(article_data) > 0:
