@@ -1,4 +1,736 @@
-﻿VERSION 1 CHANGELOG
+﻿VERSION 2 CHANGELOG
+====================
+
+
+
+Aku, Blue Sky Magnate
+
+Abyxya, Danithra Baroness
+
+Saffrisa, Callous Empress
+
+Dante, Ruler of Wintertide
+
+Mikkino, Destined for Greatness
+
+Rivha, His Impure Liege
+
+Lady Ilyrana Jhalach
+
+Am'atambi, Silken Poet
+
+Giradrus, the Ashen Inferno
+
+Qayim, God of Valor
+
+Headmaster Rudlington
+
+Seto San, Glorious General
+rules_text:  => [+1]: Create a 1/1 white Warrior creature token. You gain 1 life.
+[0]: Until end of turn, Seto San becomes a 3/3 Human Warrior creature with lifelink and “Whenever this creature attacks, each other attacking creature you control gets +1/+1 until end of turn” that's still a planeswalker. Prevent all damage that would be dealt to her this turn.
+[-7]: Exile all other nonland, nontoken permanents.
+
+Ing'Wei, Aqueous Shaper
+rules_text:  => [+1]: Scry 3, then draw a card.
+[-2]: Exile target creature or planeswalker. Its controller creates a 2/2 colorless Construct artifact creature token. When that token leaves the battlefield, put the exiled card into its owner's hand.
+[-8]: You get an emblem with “If a nonland, nontoken permanent would enter the battlefield under an opponent's control, it enters the battlefield face down as a 2/2 creature instead.”
+
+Xiong Mao, Pathfinder
+rules_text:  => [+1]: Look at the top three cards of your library. You may reveal a creature or planeswalker card from among them and put it on top of your library. Put the rest on the bottom of your library in any order.
+[0]: Sacrifice a creature. If you do, you may put a creature card with mana value less than or equal to the sacrificed creature's mana value plus one from outside the game onto the battlefield.
+[-3]: Destroy target nonbasic permanent.
+
+Sword of Heart and Soul
+
+Blade Savant
+
+Armistice Enforcer
+
+Stalwart Stoat
+
+Archangel of Balance
+
+Crimson Rapture
+
+Gallery of the Lost
+
+Iapetus, Aureate Lord
+rules_text:  => Creatures without flying can't attack you.
+[+1]: Until end of turn, Iapetus and up to one other target creature or planeswalker you control each become a 4/4 white Angel creature with flying, vigilance and indestructible.
+[-3]: Exile target creature.
+
+Graduate Student
+
+Berylscale Mimic
+rules_text: You may have Berylscale Mimic enter the battlefield as a copy of any creature on the battlefield, except it has “When this creature enters the battlefield, venture into Kahembo” and “{W}{U}{B}{R}{G}: Berylscale Mimic becomes a copy of target creature and gains this ability.” => You may have Berylscale Mimic enter the battlefield as a copy of any creature on the battlefield, except it has “When this creature enters the battlefield, traverse Kahembo” and “{W}{U}{B}{R}{G}: Berylscale Mimic becomes a copy of target creature and gains this ability.” [i](Planeswalk to Kahembo. If you're already there, cause {A}.)[/i]
+
+Thunder Raptor
+
+Otter Out of Water
+
+Maritime Order
+
+Mystic Galleon
+
+Herrea, the Star's Muse
+rules_text:  => You may look at the top card of your library any time.
+[+1]: Draw a card, then put a card from your hand on the bottom of your library.
+[-7]: Shuffle all instant, sorcery, and planeswalker cards from your graveyard into a new library. You get an emblem with “Whenever you draw a card from your main library, draw a card from each of your other libraries.”
+
+Murderous Rider
+
+Grave Harmonist
+
+Cankerbough Ritualist
+
+Freyhild Warlord
+
+Initiation Ritual
+
+Tentaclysm
+
+Sora, Shadow Sage
+rules_text:  => Whenever an opponent discards a card, that player loses 2 life, then put a loyalty counter on Sora.
+[0]: Create Horus, Dark Familiar, a legendary 2/2 black Bird creature token with flying and “Whenever this creature deals combat damage to a player, that player discards a card.”
+[-2]: Target opponent gets an emblem with “Your maximum hand size is reduced by two.”
+
+Floe Prowler
+
+Burning Hart
+
+Djinnis of Man's Trials
+
+Summit Crusher
+
+Superconduct
+
+Sea's Spoils
+
+Menna, the Deserter
+rules_text:  => If a source you control would deal damage, it deals that much damage plus 1 instead.
+[+1]: Look at the top card of your library. If it's an instant or sorcery card, you may reveal it and cast it. [i](You still pay its costs.)[/i]
+[-6]: Create seven 1/1 red Sand creature tokens with haste.
+
+Prismpelt Oracle
+
+Attuned Archdruid
+
+Training Hydra
+
+Snowsteppe Sovereign
+
+Graupel Slime
+
+Large as Life
+
+Beastmaster Myrmidon
+rules_text:  => Whenever a creature enters the battlefield under your control, create a green Aura enchantment token named Seal of Myrmidon attached to that creature. The token has enchant creature and “Enchanted creature gets +1/+1 and has hexproof.”
+[+1]: Create a 3/2 green Seal creature token.
+[-2]: Look at the top five cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+
+Trundling Egil
+rules_text:  => Artifacts and creatures your opponents control enter the battlefield tapped.
+[+1]: Tap or untap up to one target permanent. Draw a card at the beginning of the next end step.
+[-6]: You get an emblem with “Whenever an opponent casts a spell, exile it with a time counter on it. They may cast that card from exile without paying its mana cost at the beginning of their next upkeep.”
+
+Arli, Vile Manipulator
+rules_text:  => Creatures your opponents control assign combat damage equal to whichever is lower between their power and toughness.
+[+1]: Up to one target creature's base toughness becomes 1 until your next turn. You gain 2 life.
+[-6]: Take an extra turn after this one. If you cast a spell during that turn, pay life equal to its mana value rather than pay its mana cost.
+
+Sigrid, Lady Ablaze
+rules_text:  => Whenever a player casts a spell, Sigrid deals 1 damage to that player.
+[+1]: Up to one target creature gets +1/-1 and gains menace until end of turn.
+[-6]: Target opponent gets an emblem with “If you would lose life, you lose the game instead.”
+
+Jiu Mao, Academy Elder
+rules_text:  => Whenever a creature enters the battlefield under your control, it deals damage equal to its power to any target.
+[+2]: Create a 3/3 red Panda creature token.
+[-3]: You may put a creature card from your hand onto the battlefield.
+
+Fleet Admiral Otto
+rules_text:  => If one or more counters would be put on another creature or planeswalker you control, that many plus one of each of those kinds of counters are put on that permanent instead.
+[+1]: Create a 2/2 green and white Otter Soldier creature token.
+[-6]: Until end of turn, creatures you control get +2/+2 and gain vigilance and indestructible.
+
+Jorah, the Great Profaner
+rules_text:  => You can't lose the game and your opponents can't win the game.
+[-2]: Exile target nonland permanent. You lose life equal to its mana value.
+[-3]: Create two 3/3 white Angel creature tokens with flying. You lose 3 life.
+
+Pustulous Domino
+rules_text:  => At the beginning of your end step, if a creature died this turn, you may draw a card.
+[+1]: You may sacrifice a permanent. If you do, return target card from your graveyard to your hand.
+[-X]: Destroy each other nonland permanent with mana value X or less.
+
+Suarim, Keeper of the Realm
+rules_text:  => Whenever a permanent enters the battlefield tapped and under your control, untap it.
+[+1]: Look at the top three cards of your library. You may put a land card from among them into your hand. Put the rest on the bottom of your library in any order.
+[-7]: Untap all lands you control. Until end of turn, they become 3/3 Elemental creatures with flying. They're still lands.
+
+Boxue, In Search of a Friend
+rules_text:  => As long as you control exactly one other planeswalker, Boxue has all loyalty abilities of that planeswalker.
+[+2]: Look at the top four cards of your library. You may reveal a noncreature card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+[-X]: The next time you cast an instant or sorcery spell with mana value X this turn, copy it. You may choose new targets for the copy.
+
+Hong Mao, the People's Hero
+rules_text:  => Creatures you control get +1/+0 as long as it's your turn.
+[+1]: Until end of turn, Hong Mao becomes a 1/2 Panda Knight creature with double strike and indestructible.
+[-6]: Creatures you control gain indestructible until end of turn. For each creature you control, you may have that creature fight target creature you don't control.
+
+Dawson, Black-Hearted
+rules_text:  => Whenever an opponent draws a card except the first one they draw in each of their draw steps, that player discards a card.
+[+1]: Dawson deals 2 damage to target player or planeswalker and you gain 2 life. Create a Treasure token.
+[-6]: You get an emblem with “{2}, Sacrifice an artifact, creature, or planeswalker: Each opponent sacrifices a permanent.”
+
+Crain, Black-Blooded
+rules_text:  => Whenever you discard a card, exile it. You may cast that card from exile until the end of your next turn.
+[+1]: Up to one target creature gets -2/-0 until your next turn. Create a tapped Omen token. [i](It's an artifact with “{T}, Discard a card, Sacrifice this artifact: Draw a card.”)[/i]
+[-6]: You get an emblem with “Whenever a permanent an opponent control dies, you may pay {2}. If you do, put that card onto battlefield under your control.”
+
+Turi, the Unfathomable
+rules_text:  => Whenever you cast a creature spell, draw a card.
+[+1]: Mill three cards, then you may return a creature card from your graveyard to your hand.
+[-8]: Create three 8/8 blue Kraken creature tokens. For each of those tokens, you may exile a creature card from your graveyard under it. That token has all abilities of that card.
+
+Sprightly Young Ruchi
+rules_text:  => Spells your opponents cast that target permanents you control cost {2} more to cast.
+[+1]: Until end of turn, up to one target nonland permanent you control gains “Whenever this permanent becomes tapped, draw a card.”
+[-3]: Choose another target nonland permanent. Its owner puts it on the top or bottom of their library.
+
+Jomec Thuruk
+rules_text:  => Whenever a creature you control deals combat damage to a player, put a +1/+1 counter on it.
+[+1]: Up to one target creature gains trample, lifelink, and vigilance until end of turn.
+[-2]: Sacrifice a creature. When you do, Jomec Thuruk deals damage to any target equal to that creature's power and you gain life equal to its toughness.
+
+Valorant
+
+Spectral Cuirass
+
+Aldmore Academy
+
+Onoran Field Marshal
+
+Emissary of Anima
+
+Angora Paladin
+
+Bringer of a New Peace
+
+Kinematics Instructor
+
+Seraph of Sacraments
+
+Mortal Sublimator
+
+Honor Begets Glory
+
+Get Carried Away
+
+Admiraltus, the Reverent King
+rules_text:  => [0]: Until end of turn, Admiraltus becomes a Human Noble creature with indestructible and “This creature's power and toughness are equal to the number of creatures you control” that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
+[-2]: Creatures you control get +2/+1 until end of turn.
+
+Arkemus, Radiant Emperor
+rules_text:  => [-1]: Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 white Human Army creature token with vigilance first.
+[-2]: Exile target nonland permanent. Put a dungeon counter on it. Its controller may cast it by paying {2} in addition to its mana cost for as long as it remains exiled.
+
+Skyskipper
+
+Horizon Diplomat
+
+Cursed Helmsman
+
+Ornithology Instructor
+
+Fabled Scion
+
+Align the Waystones
+
+Bring to the Surface
+
+Tide Over
+
+Between Wind and Water
+
+Froggle, Myopic Prophet
+rules_text:  => [+1]: Look at the top card of target player's library.
+[-1]: Tap target nonland permanent, then you may pay {2}. If you do, that permanent doesn't untap during its controller's next untap step.
+
+Volta, Creation Conduit
+rules_text:  => [+1]: Scry 1. Up to one target creature you control can't be blocked this turn.
+[-2]: Exile the top card of your library face down and look at it. Create a 2/2 colorless Construct artifact creature token. When that token deals combat damage to a player, put the exiled card into your hand.
+
+Skhorvall Horde
+
+Cuxuri Moray
+
+Portent of Blight
+
+Psychology Instructor
+
+Cerebral Flayer
+
+Archbaron of Jhalach
+
+Drink the Dark Blood
+
+Blood for Bones
+
+Pact of Warring Clans
+
+Kalemn, Seeking Freedom
+rules_text:  => [0]: Each opponent loses 2 life unless they discard a card.
+[-3]: Destroy another target creature or planeswalker.
+
+Karaja, Mind Seeker
+rules_text:  => [0]: Until end of turn, you may cast cards exiled with Karaja, and you may spend mana as though it were mana of any type to cast them.
+[-3]: Choose an opponent. Exile up to one target creature that player controls, up to one target card in that player's graveyard, and the top card of that player's library.
+
+Herald of the Onslaught
+
+Redpelt Recruit
+
+Valiant Envoy
+
+Cocksure Swindler
+
+Sleetshrieker
+
+Chemistry Instructor
+
+Shred
+
+Surrender to the Storm
+
+Captain's Chart
+
+Britta, the Sea's Superior
+rules_text:  => [+1]: Create a 1/1 blue and red Pirate creature token with “Whenever this creature attacks, you may draw a card. If you do, discard a card.” Creatures you control gain haste until end of turn.
+[-3]: Gain control of target nonland permanent until end of turn. Untap that permanent. It gains haste until end of turn.
+
+Vashla, Bon Vivant
+rules_text:  => [+1]: Exile the top card of your library. You may cast that card if it has mana value 3 or less. If you don't, put a loyalty counter on Vashla.
+[-5]: Exile the top two cards of your library. Discard your hand, then put all cards exiled with Vashla into your hand.
+
+Rime Leopard
+
+Glade Piper
+
+Tranquil Vanguard
+
+Mottled Agamid
+
+Halcyon Unguloth
+
+Physiology Instructor
+
+Small World
+
+Riverbank Ambush
+
+Turn Loose
+
+Kati, Planar Excursionist
+rules_text:  => [+1]: Whenever one or more creatures deal combat damage to a player this turn, look at that many cards from the top of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+[-2]: Put a +1/+1 counter on each creature you control.
+
+Simul, Esteemed Biomancer
+rules_text:  => [+1]: Create a 0/0 Plant Mutant creature token, then put a +1/+1 counter on it.
+[-2]: Choose any number of other permanents, then give each another counter of each kind already there.
+
+Windsong Apprentice
+
+Nox, Academy Strix
+rules_text:  => [0]: Up to one target creature you control gains flying until end of turn. If it already has flying, it gains hexproof until your next turn instead.
+[0]: Until end of turn, Nox becomes a 2/2 Bird creature with flying that's still a planeswalker. Prevent all damage that would be dealt to her this turn. Whenever she deals combat damage to a player this turn, look at their hand.
+
+Runepearl Diver
+
+Robin, Psychotherapist
+rules_text:  => [0]: Choose target creature. Whenever you cast an instant or sorcery spell this turn, that creature gets -1/-1 until end of turn. When that creature dies this turn, put two loyalty counters on Robin.
+[-2]: Reveal the top four cards of your library. You may put an instant or sorcery card from among them into your hand. Put the rest into your graveyard.
+
+Skhorvall Conscript
+
+Silverback Golobo
+rules_text:  => [0]: Create a colorless artifact token named Banana Peel with “{2}, {T}, Sacrifice this artifact: It deals 1 damage to target creature. That creature can't block this turn.”
+[-1]: Silverback Golobo deals 2 damage to target permanent or player that was dealt damage this turn.
+
+Firn Tracker
+
+Yvara, Nature's Oath
+rules_text:  => [+1]: Add {R} or {G}. If that mana is spent on a snow spell, it can't be countered.
+[-3]: Exile the top three cards of your library. You may put a snow land card from among them onto the battlefield, then choose one of them. You may cast the chosen card this turn.
+
+Patron of the Meek
+
+Kimar, Beacon of Hope
+rules_text:  => [0]: Up to one target creature you control gains vigilance and lifelink until end of turn.
+[-1]: Put a +1/+1 counter on target creature you control.
+
+Immaculate Sisters
+
+Kei, Who Sees Beyond
+rules_text:  => [+1]: Exile up to two target cards in graveyards. If a creature card is exiled this way, create a 1/1 black Cleric creature token with lifelink.
+[-3]: Sacrifice a creature. If you do, return target creature card from your graveyard to the battlefield.
+
+Nightshade Assailant
+
+Nearly Headless Jack
+rules_text:  => [0]: Mill three cards. Put a loyalty counter on Nearly Headless Jack for each nonland card milled this way.
+[-2]: Each player sacrifices a creature, then you may put a creature card from your graveyard on top of your library.
+
+Bushtail Farseer
+
+Helene, Seeking Silence
+rules_text:  => [+1]: Untap up to two other target permanents. They gain hexproof until your next turn.
+[-2]: Until end of turn, Helene becomes a 4/4 Human Warrior creature with hexproof, trample, and “Whenever this creature deals combat damage to a player, draw a card” that's still a planeswalker. Prevent all damage that would be dealt to her this turn.
+
+Salty Seadog
+
+Sheng Fa, Swift Hooligan
+rules_text:  => [+1]: Draw a card, then discard a card unless you pay {2}.
+[-3]: Return up to one target instant card and up to one target sorcery card from your graveyard to your hand.
+
+Alcazar Duelist
+
+Borahm, the Lightforger
+rules_text:  => [+1]: Up to one target creature you control gets +2/+1 until end of turn. If it's equipped, it gains indestructible until end of turn.
+[-3]: Borahm deals 3 damage to any target and you gain 3 life.
+
+Planar Skyship
+rules_text: Flying
+Whenever you venture, Planar Skyship becomes an artifact creature until end of turn.
+Crew 3 [i](Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)[/i] => Flying
+Whenever you traverse, Planar Skyship becomes an artifact creature until end of turn.
+Crew 3 [i](Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+
+Flurry Familiar
+
+Ironscale Scholar
+
+Automatarmor
+
+Frozen Tomb
+
+Aromatherapist
+
+Student of Kinematics
+
+Aerodynamic Aide
+
+Pocket Cadet
+
+Freyhild Infantry
+
+Stratus Traveler
+
+Perimeter Warden
+
+Flatland Escort
+
+Restless Migrants
+
+Metallurgy Assistant
+
+Dawnfeather Eagle
+
+Appointed Vicar
+
+Through the Starry Night
+
+Communion Procession
+
+Feat of Resistance
+
+Enjoy the Little Things
+
+Expel
+
+Assign Detention
+
+Sparring Falchion
+
+Ornate Kingfisher
+
+Adjunct Chronomancer
+
+Aldmore Archivist
+
+Bubble Dancer
+
+Student of Ornithology
+
+Brine Strategist
+
+Glacier Griffin
+
+Plunder Adept
+
+Tawny Scholar
+
+Aetherhunter
+
+Opt
+
+Deep Dive
+
+Anemology Analysis
+
+No Escape
+
+Crow Scare
+
+Interplanar Delivery
+
+Bitter Cold
+
+Lead Them to Water
+
+Left Behind
+
+Shifty Polecat
+
+Rotten Carcass
+
+Student of Psychology
+
+Blind Devotee
+
+Poison-Tip Sniper
+
+Vitality Curator
+
+Pitiless Skinner
+
+Jhalach Cohort
+
+Sentry of the Eaves
+
+Coldhearted Butcher
+
+Fathom Stalker
+
+Spark Harvest
+
+Purge the Heretics
+
+Defy the Shadows
+
+Go Deeper
+
+Out of Your Depth
+
+Humanity's Wreckage
+
+New Lease on Life
+
+Skhorvall Blood-Paint
+
+Hamlet Swordsmith
+
+Eager Sailor
+
+Dune Skirmisher
+
+Nimble Marauder
+
+Tundra Thresher
+
+Mouseketeer
+
+Student of Chemistry
+
+Pastoral Vagrants
+
+Unguloth Herd
+
+Dutiful Sculptor
+
+Frostfield Champion
+
+Might and Mane
+
+Voidflare
+
+Solemn Pilgrimage
+
+Thrill of Possibility
+
+Explosive Miscue
+
+Besiege
+
+Battle Scars
+
+Bloodied Cutlass
+
+Rovian Squire
+
+Polar Bears
+
+Boreal Sibyl
+
+Straight Shooter
+
+Unbudging Badger
+
+Elven Ally
+
+Highland Pioneer
+
+Student of Physiology
+
+Tinyvale Elder
+
+Hinterland Ranger
+
+Roving Mammoth
+
+Chimperial Sentinel
+
+Colossal Dreadmaw
+
+Fields of Gold
+
+Burst of Strength
+
+Weather the Weather
+
+Alchemical Studies
+
+Tussle in the Timber
+
+Ancestral Ornaments
+
+Threaded Glider
+
+Chapel Gargoyle
+
+Aldmore Chaperone
+rules_text: Whenever you venture, put a +1/+1 counter on Aldmore Chaperone. => Whenever you traverse, put a +1/+1 counter on Aldmore Chaperone.
+
+Universal Solvent
+
+Freyhild Memorial
+
+Brumehenge
+
+Citadel of the Aerie
+
+Cuxuri Trench
+
+Freyhild Highlands, Where Legends Fell
+
+Rovia, the Kindled Grove
+
+Tinyvale, Bastion of Bravery
+
+Thorne Chapel, Sanctum of His Dark Blood
+
+Catacombs of Castle Jhalach
+
+Mekini Oasis
+
+Cambaro, Pirate Cove
+
+Ahaban Temple, the Warrior's Tutelage
+
+Arctic River
+
+Frigid Outpost
+
+Desolate Monolith
+
+Alpine Hamlet
+
+Firelit Refuge
+
+Bitter Path
+
+Harsh Copse
+
+Frosted Glen
+
+Brumal Fissure
+
+Abandoned Settlement
+
+Chilling Constellation
+
+Sleeping Cairn
+
+Ravaging Runes
+
+Unshaken Oak
+
+Lumbering Vale
+
+Roaming Remains
+
+Muckroot Falls
+
+Glacial Wonder
+
+Spirit Valley
+
+Sundering Terrain
+
+Human Army
+
+Warrior
+
+Angel
+
+Tentacle
+
+Otter
+
+Bird
+
+Kraken
+
+Cleric
+
+Warrior
+
+Horus, Dark Familiar
+
+Sand
+
+Panda
+
+Hreigr, the Blizzard's Maw
+
+Plant Mutant
+
+Seal
+
+Seal of Myrmidon
+
+Pirate
+
+Elf Archer
+
+Otter Soldier
+
+Spirit
+
+Construct
+
+Azos's Spine
+
+Twin Shivs
+
+Banana Peel
+
+Treasure
+
+Omen
+
+
+VERSION 1 CHANGELOG
 ====================
 
 First version published.
