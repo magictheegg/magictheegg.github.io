@@ -606,8 +606,10 @@
 		let sideboard = [];
 		let active_card = [];
 		let sets_json = {};
+		let contextMenu;
 
 		document.addEventListener("DOMContentLoaded", async function () {
+			contextMenu = document.getElementById("myContextMenu");
 			await fetch(rootPath + '/lists/all-cards.json')
 					.then(response => response.json())
 					.then(json => {
@@ -2475,6 +2477,34 @@
 
 			return regexHTML;
 		}
+		const originalBuildImgContainer = buildImgContainer;
+		buildImgContainer = function(card_stats, hidden_title = false, rotate_card = false) {
+			const container = originalBuildImgContainer(card_stats, hidden_title, rotate_card);
+			if (card_stats.hubURL) {
+				const img = container.querySelector(".card-image");
+				if (img) {
+					img.src = img.src.replace(/^.*\/sets\//, card_stats.hubURL + "/sets/");
+				}
+				const hImg = container.querySelector(".h-img");
+				if (hImg) {
+					hImg.src = hImg.src.replace(/^.*\/sets\//, card_stats.hubURL + "/sets/");
+				}
+				const link = container.querySelector("a");
+				if (link) {
+					const url = new URL(card_stats.hubURL + '/card', card_stats.hubURL);
+					const params = {
+						set: card_stats.set,
+						num: card_stats.number,
+						name: card_stats.card_name
+					}
+					for (const key in params) {
+						url.searchParams.append(key, params[key]);
+					}
+					link.href = url.toString();
+				}
+			}
+			return container;
+		};
 
 		function hasAllChars(strOut, strIn) {
 			let retVal = true;

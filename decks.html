@@ -323,11 +323,16 @@
             // Load set configs to know naming conventions
             const setsResponse = await fetch('./lists/all-sets.json');
             const setsData = await setsResponse.json();
-            
-            for (const set of setsData.sets) {
+            sets_json = setsData; // Ensure sets_json is populated for the loops below
+
+            for (const set of sets_json.sets) {
                 try {
-                    const setConfResp = await fetch(`./sets/${set.set_code}-files/${set.set_code}.json`);
+                    const prefix = set.hubURL ? set.hubURL : ".";
+                    const setConfResp = await fetch(`${prefix}/sets/${set.set_code}-files/${set.set_code}.json`);
                     setConfigs[set.set_code] = await setConfResp.json();
+                    if (set.hubURL) {
+                        setConfigs[set.set_code].hubURL = set.hubURL;
+                    }
                 } catch (e) {
                     console.error("Could not load config for set:", set.set_code);
                 }
@@ -670,7 +675,8 @@ function randomCard() {
                         namePart = `${card.number}${connector}${card.card_name}${suffix}`;
                     }
                     
-                    imageUrl = `./sets/${card.set}-files/img/${namePart}.${imgType}`;
+                    const prefix = (setConf && setConf.hubURL) ? setConf.hubURL : ".";
+                    imageUrl = `${prefix}/sets/${card.set}-files/img/${namePart}.${imgType}`;
                 }
                 
                 const cardEl = document.createElement('a');
