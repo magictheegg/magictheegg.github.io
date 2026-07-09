@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="../sets/EGG-files/icon.png"/>
+	<link rel="stylesheet" href="../resources/header.css">
+	<title>EGG visual preview</title>
+	<script title="root">
+		const rootPath = "..";
+	</script>
+	<style>
+		@font-face {
+			font-family: Beleren;
+			src: url('../resources/beleren.ttf');
+		}
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 3%;
+			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
+			position: relative;
+		}
+		.sidebar-h-img {
+			opacity: 0;
+			transform: rotateY(0deg) rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+			border-radius: 3.733% / 2.677%;
+		}
+		.sidebar-img {
+			vertical-align: middle;
+			width: 100%;
+			border-radius: 3.733% / 2.677%;
+		}
+		.close-btn {
+			background: url('../img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
+		}
+		.close-btn:hover {
+			background: url('../img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 1%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+			border-radius: 3.733% / 2.677%;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 80px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+			position: relative;
+			width: 100%;
+		}
+		.container img {
+			width: 100%;
+			height: auto;
+			border-radius: 3.733% / 2.677%;
+		}
+		.flip-btn {
+			background: url('../img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			left: 50%;
+			top: 48%;
+			transform: translate(-50%, -50%);
+			opacity: 0.5;
+		}
+		.flip-btn:hover {
+			background: url('../img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.dropdown {
+			background: rgba(23, 23, 23, 0.8);
+			border-radius: 8px;
+			position: absolute;
+			left: 5%;
+			width: fit-content;
+			max-width: 90%;
+			margin: 20px 0;
+			padding: 5px 0;
+			display: grid;
+			grid-template-columns: 1fr;
+			z-index: 3;
+		}
+		.dropdown .set-bar {
+			font-family: Beleren;
+			font-size: 20px;
+			text-decoration: none;
+			color: #e3e3e3;
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			padding: 0 12px;
+			margin: 5px;
+		}
+		.dropdown .set-bar:hover {
+			background: rgba(163, 163, 163, 0.5);
+			color: #f3f3f3;
+		}
+		.dropdown .set-bar img {
+			width: 32px;
+		}
+		.dropdown .inactive {
+			height: 0px;
+			overflow: hidden;
+			margin: 0px 5px;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		.addenda-container {
+			text-align: center;
+			width: fit-content;
+			max-width: 1200px;
+			padding: 0 5%;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<img class="preload-hidden" src="../img/dot.png" />
+	<img class="preload-hidden" src="../sets/EGG-files/logo.png" />
+	<img class="preload-hidden" src="../sets/SAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/BLD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICO-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SHF-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/NJB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AEX-files/icon.png" />
+		<img class="preload-hidden" src="../sets/WAS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SGB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GQC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/DSS-files/icon.png" />
+		<img class="preload-hidden" src="../sets/KOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GHQ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/TWB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAU-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MVA-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ATB-files/icon.png" />
+		<img class="preload-hidden" src="../sets/SUR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GNJ-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GSC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/FAE-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ICH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/AGH-files/icon.png" />
+		<img class="preload-hidden" src="../sets/MSR-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GLC-files/icon.png" />
+		<img class="preload-hidden" src="../sets/GOD-files/icon.png" />
+		<img class="preload-hidden" src="../sets/UND-files/icon.png" />
+		<img class="preload-hidden" src="../sets/ACE-files/icon.png" />
+		<img class="preload-hidden" id="bg" src="../sets/EGG-files/bg.png" />
+
+		<div class="header">
+		<div class="search-grid">
+			<a onclick="window.location.href = rootPath + '/'"><img class="sg-logo" id="header-banner"></a>
+			<img class="sg-icon" id="header-search" onclick="goToSearch()">
+			<div style="position: relative; width: 100%;">
+				<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+				<div id="tag-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #d5d9d9; z-index: 1000; max-height: 200px; overflow-y: auto; color: black; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+			</div>
+			<a onclick="window.location.href = rootPath + '/all-sets'"><img id="header-sets" class="sg-icon">Sets</a>
+			<a id="header-articles-link" onclick="window.location.href = rootPath + '/all-articles'" style="display: none;"><img id="header-articles" class="sg-icon">Articles</a>
+			<a id="header-decks-link" onclick="window.location.href = rootPath + '/decks'" style="display: none;"><img id="header-decks" class="sg-icon">Decks</a>
+			<a onclick="window.location.href = rootPath + '/deckbuilder'"><img id="header-deckbuilder" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img id="header-random" class="sg-icon">Random</a>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("header-banner").src = rootPath + "/img/banner.png";
+			document.getElementById("header-search").src = rootPath + "/img/search.png";
+			document.getElementById("header-sets").src = rootPath + "/img/sets.png";
+			document.getElementById("header-articles").src = rootPath + "/img/articles.png";
+			document.getElementById("header-decks").src = rootPath + "/img/deck.png";
+			document.getElementById("header-deckbuilder").src = rootPath + "/img/deckbuilder.png";
+			document.getElementById("header-random").src = rootPath + "/img/random.png";
+
+			// Hide Articles if none exist
+			fetch(rootPath + '/all-articles.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-articles-link').style.display = 'flex';
+				}).catch(() => {});
+
+			// Hide Decks if none exist
+			fetch(rootPath + '/decks.html', { method: 'HEAD' })
+				.then(response => {
+					if (response.ok) document.getElementById('header-decks-link').style.display = 'flex';
+				}).catch(() => {});
+		});
+
+		function goToSearch() {
+			window.location.href = rootPath + "/search";
+		}
+	</script>
+
+	<div class="dropdown" id="dropdown" onmouseenter="rolldown()" onmouseleave="rollup()">
+	
+		<a class="set-bar" href="../previews/EGG"><img src="../sets/EGG-files/icon.png">Eggacy Masters</a>
+	
+		<a class="set-bar inactive" href="../previews/SAS"><img src="../sets/SAS-files/icon.png">Shiryen: Sail and Steam</a>
+	
+		<a class="set-bar inactive" href="../previews/BLD"><img src="../sets/BLD-files/icon.png">Bloodborne</a>
+	
+		<a class="set-bar inactive" href="../previews/ICO"><img src="../sets/ICO-files/icon.png">Inner Coriansa</a>
+	
+		<a class="set-bar inactive" href="../previews/ATR"><img src="../sets/ATR-files/icon.png">The Shattered Pantheon of Atros</a>
+	
+		<a class="set-bar inactive" href="../previews/SHF"><img src="../sets/SHF-files/icon.png">The Starholme Frontier</a>
+	
+		<a class="set-bar inactive" href="../previews/GSS"><img src="../sets/GSS-files/icon.png">Golden Shores of Shiryen</a>
+	
+		<a class="set-bar inactive" href="../previews/KND"><img src="../sets/KND-files/icon.png">Kahembo: New Dawn</a>
+	
+		<a class="set-bar inactive" href="../previews/NJB"><img src="../sets/NJB-files/icon.png">Nangjiao in Bloom</a>
+	
+		<a class="set-bar inactive" href="../previews/AEX"><img src="../sets/AEX-files/icon.png">Aldmore Explorations</a>
+	
+		<a class="set-bar inactive" href="../previews/WAS"><img src="../sets/WAS-files/icon.png">Weir Astele</a>
+	
+		<a class="set-bar inactive" href="../previews/SGB"><img src="../sets/SGB-files/icon.png">Strombo’s Grand Banquet</a>
+	
+		<a class="set-bar inactive" href="../previews/GQC"><img src="../sets/GQC-files/icon.png">Ghariv, the Quaking City</a>
+	
+		<a class="set-bar inactive" href="../previews/DSS"><img src="../sets/DSS-files/icon.png">Dark Seas of Shiryen</a>
+	
+		<a class="set-bar inactive" href="../previews/KOD"><img src="../sets/KOD-files/icon.png">Kahembo: Olde Dawn</a>
+	
+		<a class="set-bar inactive" href="../previews/GHQ"><img src="../sets/GHQ-files/icon.png">Glacia: Hail to the Queen</a>
+	
+		<a class="set-bar inactive" href="../previews/TWB"><img src="../sets/TWB-files/icon.png">The World Beneath</a>
+	
+		<a class="set-bar inactive" href="../previews/FAU"><img src="../sets/FAU-files/icon.png">Fields of Gold</a>
+	
+		<a class="set-bar inactive" href="../previews/MVA"><img src="../sets/MVA-files/icon.png">Multiverse Academy</a>
+	
+		<a class="set-bar inactive" href="../previews/ATB"><img src="../sets/ATB-files/icon.png">Al Tabaq</a>
+	
+		<a class="set-bar inactive" href="../previews/SUR"><img src="../sets/SUR-files/icon.png">Surging Tide</a>
+	
+		<a class="set-bar inactive" href="../previews/GNJ"><img src="../sets/GNJ-files/icon.png">Goliaths of Nangjiao</a>
+	
+		<a class="set-bar inactive" href="../previews/GSC"><img src="../sets/GSC-files/icon.png">Ghariv, the Sacred City</a>
+	
+		<a class="set-bar inactive" href="../previews/FAE"><img src="../sets/FAE-files/icon.png">Faerie Tales</a>
+	
+		<a class="set-bar inactive" href="../previews/AOD"><img src="../sets/AOD-files/icon.png">Ascent of Deities</a>
+	
+		<a class="set-bar inactive" href="../previews/ICH"><img src="../sets/ICH-files/icon.png">Ichatca</a>
+	
+		<a class="set-bar inactive" href="../previews/AGH"><img src="../sets/AGH-files/icon.png">Aghesh Unraveled</a>
+	
+		<a class="set-bar inactive" href="../previews/MSR"><img src="../sets/MSR-files/icon.png">Realms of Mashara</a>
+	
+		<a class="set-bar inactive" href="../previews/GLC"><img src="../sets/GLC-files/icon.png">Glacia</a>
+	
+		<a class="set-bar inactive" href="../previews/GOD"><img src="../sets/GOD-files/icon.png">Godspine</a>
+	
+		<a class="set-bar inactive" href="../previews/UND"><img src="../sets/UND-files/icon.png">The Underhalls</a>
+	
+		<a class="set-bar inactive" href="../previews/ACE"><img src="../sets/ACE-files/icon.png">Aldmore Cube</a>
+	
+		</div>
+		<div class="banner">
+		<img class="logo" src="../sets/EGG-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+					<div class="container"><img loading="lazy" alt="sets/EGG-files/img/1.png" id="EGG_1" data-flag="@X" onclick="openSidebar('EGG_1',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/5.png" id="EGG_5" data-flag="@X" onclick="openSidebar('EGG_5',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/8.png" id="EGG_8" data-flag="@X" onclick="openSidebar('EGG_8',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/10.png" id="EGG_10" data-flag="@X" onclick="openSidebar('EGG_10',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/12.png" id="EGG_12" data-flag="@X" onclick="openSidebar('EGG_12',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/0.png" id="EGG_0" data-flag="@X" onclick="openSidebar('EGG_0',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/3.png" id="EGG_3" data-flag="@X" onclick="openSidebar('EGG_3',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/6.png" id="EGG_6" data-flag="@X" onclick="openSidebar('EGG_6',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/11.png" id="EGG_11" data-flag="@X" onclick="openSidebar('EGG_11',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/14.png" id="EGG_14" data-flag="@X" onclick="openSidebar('EGG_14',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/2.png" id="EGG_2" data-flag="@X" onclick="openSidebar('EGG_2',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/4.png" id="EGG_4" data-flag="@X" onclick="openSidebar('EGG_4',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/7.png" id="EGG_7" data-flag="@X" onclick="openSidebar('EGG_7',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/9.png" id="EGG_9" data-flag="@X" onclick="openSidebar('EGG_9',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/13.png" id="EGG_13" data-flag="@X" onclick="openSidebar('EGG_13',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/23.png" id="EGG_23" data-flag="@X" onclick="openSidebar('EGG_23',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/27.png" id="EGG_27" data-flag="@X" onclick="openSidebar('EGG_27',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/36.png" id="EGG_36" data-flag="@X" onclick="openSidebar('EGG_36',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/43.png" id="EGG_43" data-flag="@X" onclick="openSidebar('EGG_43',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/53.png" id="EGG_53" data-flag="@X" onclick="openSidebar('EGG_53',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/21.png" id="EGG_21" data-flag="@X" onclick="openSidebar('EGG_21',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/32.png" id="EGG_32" data-flag="@X" onclick="openSidebar('EGG_32',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/35.png" id="EGG_35" data-flag="@X" onclick="openSidebar('EGG_35',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/46.png" id="EGG_46" data-flag="@X" onclick="openSidebar('EGG_46',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/50.png" id="EGG_50" data-flag="@X" onclick="openSidebar('EGG_50',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/20.png" id="EGG_20" data-flag="@X" onclick="openSidebar('EGG_20',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/31.png" id="EGG_31" data-flag="@X" onclick="openSidebar('EGG_31',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/40.png" id="EGG_40" data-flag="@X" onclick="openSidebar('EGG_40',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/42.png" id="EGG_42" data-flag="@X" onclick="openSidebar('EGG_42',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/52.png" id="EGG_52" data-flag="@X" onclick="openSidebar('EGG_52',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/24.png" id="EGG_24" data-flag="@X" onclick="openSidebar('EGG_24',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/30.png" id="EGG_30" data-flag="@X" onclick="openSidebar('EGG_30',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/38.png" id="EGG_38" data-flag="@X" onclick="openSidebar('EGG_38',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/44.png" id="EGG_44" data-flag="@X" onclick="openSidebar('EGG_44',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/51.png" id="EGG_51" data-flag="@X" onclick="openSidebar('EGG_51',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/26.png" id="EGG_26" data-flag="@X" onclick="openSidebar('EGG_26',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/33.png" id="EGG_33" data-flag="@X" onclick="openSidebar('EGG_33',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/37.png" id="EGG_37" data-flag="@X" onclick="openSidebar('EGG_37',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/45.png" id="EGG_45" data-flag="@X" onclick="openSidebar('EGG_45',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/48.png" id="EGG_48" data-flag="@X" onclick="openSidebar('EGG_48',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/25.png" id="EGG_25" data-flag="@X" onclick="openSidebar('EGG_25',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/29.png" id="EGG_29" data-flag="@X" onclick="openSidebar('EGG_29',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/39.png" id="EGG_39" data-flag="@X" onclick="openSidebar('EGG_39',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/47.png" id="EGG_47" data-flag="@X" onclick="openSidebar('EGG_47',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/54.png" id="EGG_54" data-flag="@X" onclick="openSidebar('EGG_54',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/22.png" id="EGG_22" data-flag="@X" onclick="openSidebar('EGG_22',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/28.png" id="EGG_28" data-flag="@X" onclick="openSidebar('EGG_28',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/34.png" id="EGG_34" data-flag="@X" onclick="openSidebar('EGG_34',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/41.png" id="EGG_41" data-flag="@X" onclick="openSidebar('EGG_41',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/49.png" id="EGG_49" data-flag="@X" onclick="openSidebar('EGG_49',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/80.png" id="EGG_80" data-flag="@X" onclick="openSidebar('EGG_80',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/108.png" id="EGG_108" data-flag="@X" onclick="openSidebar('EGG_108',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/115.png" id="EGG_115" data-flag="@X" onclick="openSidebar('EGG_115',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/139.png" id="EGG_139" data-flag="@X" onclick="openSidebar('EGG_139',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/143.png" id="EGG_143" data-flag="@X" onclick="openSidebar('EGG_143',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/84.png" id="EGG_84" data-flag="@X" onclick="openSidebar('EGG_84',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/102.png" id="EGG_102" data-flag="@X" onclick="openSidebar('EGG_102',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/113.png" id="EGG_113" data-flag="@X" onclick="openSidebar('EGG_113',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/126.png" id="EGG_126" data-flag="@X" onclick="openSidebar('EGG_126',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/152.png" id="EGG_152" data-flag="@X" onclick="openSidebar('EGG_152',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/94.png" id="EGG_94" data-flag="@X" onclick="openSidebar('EGG_94',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/101.png" id="EGG_101" data-flag="@X" onclick="openSidebar('EGG_101',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/120.png" id="EGG_120" data-flag="@X" onclick="openSidebar('EGG_120',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/130.png" id="EGG_130" data-flag="@X" onclick="openSidebar('EGG_130',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/146.png" id="EGG_146" data-flag="@X" onclick="openSidebar('EGG_146',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/83.png" id="EGG_83" data-flag="@X" onclick="openSidebar('EGG_83',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/99.png" id="EGG_99" data-flag="@X" onclick="openSidebar('EGG_99',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/124.png" id="EGG_124" data-flag="@X" onclick="openSidebar('EGG_124',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/135.png" id="EGG_135" data-flag="@X" onclick="openSidebar('EGG_135',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/145.png" id="EGG_145" data-flag="@X" onclick="openSidebar('EGG_145',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/82.png" id="EGG_82" data-flag="@X" onclick="openSidebar('EGG_82',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/104.png" id="EGG_104" data-flag="@X" onclick="openSidebar('EGG_104',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/119.png" id="EGG_119" data-flag="@X" onclick="openSidebar('EGG_119',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/132.png" id="EGG_132" data-flag="@X" onclick="openSidebar('EGG_132',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/153.png" id="EGG_153" data-flag="@X" onclick="openSidebar('EGG_153',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/87.png" id="EGG_87" data-flag="@X" onclick="openSidebar('EGG_87',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/106.png" id="EGG_106" data-flag="@X" onclick="openSidebar('EGG_106',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/122.png" id="EGG_122" data-flag="@X" onclick="openSidebar('EGG_122',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/129.png" id="EGG_129" data-flag="@X" onclick="openSidebar('EGG_129',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/148.png" id="EGG_148" data-flag="@X" onclick="openSidebar('EGG_148',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/81.png" id="EGG_81" data-flag="@X" onclick="openSidebar('EGG_81',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/100.png" id="EGG_100" data-flag="@X" onclick="openSidebar('EGG_100',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/114.png" id="EGG_114" data-flag="@X" onclick="openSidebar('EGG_114',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/131.png" id="EGG_131" data-flag="@X" onclick="openSidebar('EGG_131',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/140.png" id="EGG_140" data-flag="@X" onclick="openSidebar('EGG_140',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/86.png" id="EGG_86" data-flag="@X" onclick="openSidebar('EGG_86',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/109.png" id="EGG_109" data-flag="@X" onclick="openSidebar('EGG_109',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/110.png" id="EGG_110" data-flag="@X" onclick="openSidebar('EGG_110',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/127.png" id="EGG_127" data-flag="@X" onclick="openSidebar('EGG_127',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/142.png" id="EGG_142" data-flag="@X" onclick="openSidebar('EGG_142',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/93.png" id="EGG_93" data-flag="@X" onclick="openSidebar('EGG_93',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/97.png" id="EGG_97" data-flag="@X" onclick="openSidebar('EGG_97',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/123.png" id="EGG_123" data-flag="@X" onclick="openSidebar('EGG_123',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/137.png" id="EGG_137" data-flag="@X" onclick="openSidebar('EGG_137',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/151.png" id="EGG_151" data-flag="@X" onclick="openSidebar('EGG_151',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/88.png" id="EGG_88" data-flag="@X" onclick="openSidebar('EGG_88',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/96.png" id="EGG_96" data-flag="@X" onclick="openSidebar('EGG_96',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/116.png" id="EGG_116" data-flag="@X" onclick="openSidebar('EGG_116',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/133.png" id="EGG_133" data-flag="@X" onclick="openSidebar('EGG_133',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/147.png" id="EGG_147" data-flag="@X" onclick="openSidebar('EGG_147',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/92.png" id="EGG_92" data-flag="@X" onclick="openSidebar('EGG_92',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/105.png" id="EGG_105" data-flag="@X" onclick="openSidebar('EGG_105',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/118.png" id="EGG_118" data-flag="@X" onclick="openSidebar('EGG_118',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/136.png" id="EGG_136" data-flag="@X" onclick="openSidebar('EGG_136',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/144.png" id="EGG_144" data-flag="@X" onclick="openSidebar('EGG_144',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/91.png" id="EGG_91" data-flag="@X" onclick="openSidebar('EGG_91',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/95.png" id="EGG_95" data-flag="@X" onclick="openSidebar('EGG_95',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/111.png" id="EGG_111" data-flag="@X" onclick="openSidebar('EGG_111',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/134.png" id="EGG_134" data-flag="@X" onclick="openSidebar('EGG_134',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/141.png" id="EGG_141" data-flag="@X" onclick="openSidebar('EGG_141',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/89.png" id="EGG_89" data-flag="@X" onclick="openSidebar('EGG_89',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/98.png" id="EGG_98" data-flag="@X" onclick="openSidebar('EGG_98',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/121.png" id="EGG_121" data-flag="@X" onclick="openSidebar('EGG_121',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/138.png" id="EGG_138" data-flag="@X" onclick="openSidebar('EGG_138',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/154.png" id="EGG_154" data-flag="@X" onclick="openSidebar('EGG_154',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/90.png" id="EGG_90" data-flag="@X" onclick="openSidebar('EGG_90',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/107.png" id="EGG_107" data-flag="@X" onclick="openSidebar('EGG_107',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/117.png" id="EGG_117" data-flag="@X" onclick="openSidebar('EGG_117',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/128.png" id="EGG_128" data-flag="@X" onclick="openSidebar('EGG_128',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/150.png" id="EGG_150" data-flag="@X" onclick="openSidebar('EGG_150',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/85.png" id="EGG_85" data-flag="@X" onclick="openSidebar('EGG_85',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/103.png" id="EGG_103" data-flag="@X" onclick="openSidebar('EGG_103',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/112.png" id="EGG_112" data-flag="@X" onclick="openSidebar('EGG_112',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/125.png" id="EGG_125" data-flag="@X" onclick="openSidebar('EGG_125',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/149.png" id="EGG_149" data-flag="@X" onclick="openSidebar('EGG_149',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/191.png" id="EGG_191" data-flag="@X" onclick="openSidebar('EGG_191',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/193.png" id="EGG_193" data-flag="@X" onclick="openSidebar('EGG_193',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/211.png" id="EGG_211" data-flag="@X" onclick="openSidebar('EGG_211',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/223.png" id="EGG_223" data-flag="@X" onclick="openSidebar('EGG_223',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/234.png" id="EGG_234" data-flag="@X" onclick="openSidebar('EGG_234',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/186.png" id="EGG_186" data-flag="@X" onclick="openSidebar('EGG_186',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/200.png" id="EGG_200" data-flag="@X" onclick="openSidebar('EGG_200',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/206.png" id="EGG_206" data-flag="@X" onclick="openSidebar('EGG_206',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/229.png" id="EGG_229" data-flag="@X" onclick="openSidebar('EGG_229',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/243.png" id="EGG_243" data-flag="@X" onclick="openSidebar('EGG_243',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/181.png" id="EGG_181" data-flag="@X" onclick="openSidebar('EGG_181',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/204.png" id="EGG_204" data-flag="@X" onclick="openSidebar('EGG_204',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/213.png" id="EGG_213" data-flag="@X" onclick="openSidebar('EGG_213',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/219.png" id="EGG_219" data-flag="@X" onclick="openSidebar('EGG_219',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/241.png" id="EGG_241" data-flag="@X" onclick="openSidebar('EGG_241',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/188.png" id="EGG_188" data-flag="@X" onclick="openSidebar('EGG_188',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/196.png" id="EGG_196" data-flag="@X" onclick="openSidebar('EGG_196',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/210.png" id="EGG_210" data-flag="@X" onclick="openSidebar('EGG_210',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/222.png" id="EGG_222" data-flag="@X" onclick="openSidebar('EGG_222',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/237.png" id="EGG_237" data-flag="@X" onclick="openSidebar('EGG_237',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/192.png" id="EGG_192" data-flag="@X" onclick="openSidebar('EGG_192',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/199.png" id="EGG_199" data-flag="@X" onclick="openSidebar('EGG_199',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/208.png" id="EGG_208" data-flag="@X" onclick="openSidebar('EGG_208',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/227.png" id="EGG_227" data-flag="@X" onclick="openSidebar('EGG_227',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/232.png" id="EGG_232" data-flag="@X" onclick="openSidebar('EGG_232',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/183.png" id="EGG_183" data-flag="@X" onclick="openSidebar('EGG_183',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/205.png" id="EGG_205" data-flag="@X" onclick="openSidebar('EGG_205',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/215.png" id="EGG_215" data-flag="@X" onclick="openSidebar('EGG_215',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/228.png" id="EGG_228" data-flag="@X" onclick="openSidebar('EGG_228',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/236.png" id="EGG_236" data-flag="@X" onclick="openSidebar('EGG_236',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/184.png" id="EGG_184" data-flag="@X" onclick="openSidebar('EGG_184',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/203.png" id="EGG_203" data-flag="@X" onclick="openSidebar('EGG_203',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/218.png" id="EGG_218" data-flag="@X" onclick="openSidebar('EGG_218',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/231.png" id="EGG_231" data-flag="@X" onclick="openSidebar('EGG_231',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/239.png" id="EGG_239" data-flag="@X" onclick="openSidebar('EGG_239',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/182.png" id="EGG_182" data-flag="@X" onclick="openSidebar('EGG_182',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/197.png" id="EGG_197" data-flag="@X" onclick="openSidebar('EGG_197',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/207.png" id="EGG_207" data-flag="@X" onclick="openSidebar('EGG_207',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/220.png" id="EGG_220" data-flag="@X" onclick="openSidebar('EGG_220',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/244.png" id="EGG_244" data-flag="@X" onclick="openSidebar('EGG_244',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/187.png" id="EGG_187" data-flag="@X" onclick="openSidebar('EGG_187',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/201.png" id="EGG_201" data-flag="@X" onclick="openSidebar('EGG_201',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/216.png" id="EGG_216" data-flag="@X" onclick="openSidebar('EGG_216',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/226.png" id="EGG_226" data-flag="@X" onclick="openSidebar('EGG_226',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/233.png" id="EGG_233" data-flag="@X" onclick="openSidebar('EGG_233',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/190.png" id="EGG_190" data-flag="@X" onclick="openSidebar('EGG_190',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/195.png" id="EGG_195" data-flag="@X" onclick="openSidebar('EGG_195',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/214.png" id="EGG_214" data-flag="@X" onclick="openSidebar('EGG_214',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/230.png" id="EGG_230" data-flag="@X" onclick="openSidebar('EGG_230',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/235.png" id="EGG_235" data-flag="@X" onclick="openSidebar('EGG_235',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/185.png" id="EGG_185" data-flag="@X" onclick="openSidebar('EGG_185',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/202.png" id="EGG_202" data-flag="@X" onclick="openSidebar('EGG_202',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/209.png" id="EGG_209" data-flag="@X" onclick="openSidebar('EGG_209',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/225.png" id="EGG_225" data-flag="@X" onclick="openSidebar('EGG_225',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/242.png" id="EGG_242" data-flag="@X" onclick="openSidebar('EGG_242',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/180.png" id="EGG_180" data-flag="@X" onclick="openSidebar('EGG_180',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/194.png" id="EGG_194" data-flag="@X" onclick="openSidebar('EGG_194',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/217.png" id="EGG_217" data-flag="@X" onclick="openSidebar('EGG_217',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/221.png" id="EGG_221" data-flag="@X" onclick="openSidebar('EGG_221',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/238.png" id="EGG_238" data-flag="@X" onclick="openSidebar('EGG_238',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/189.png" id="EGG_189" data-flag="@X" onclick="openSidebar('EGG_189',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/198.png" id="EGG_198" data-flag="@X" onclick="openSidebar('EGG_198',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/212.png" id="EGG_212" data-flag="@X" onclick="openSidebar('EGG_212',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/224.png" id="EGG_224" data-flag="@X" onclick="openSidebar('EGG_224',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/240.png" id="EGG_240" data-flag="@X" onclick="openSidebar('EGG_240',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div id="gold" class="anchor"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/15.png" id="EGG_15" data-flag="@X" onclick="openSidebar('EGG_15',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/57.png" id="EGG_57" data-flag="@X" onclick="openSidebar('EGG_57',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/60.png" id="EGG_60" data-flag="@X" onclick="openSidebar('EGG_60',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/62.png" id="EGG_62" data-flag="@X" onclick="openSidebar('EGG_62',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/16.png" id="EGG_16" data-flag="@X" onclick="openSidebar('EGG_16',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/56.png" id="EGG_56" data-flag="@X" onclick="openSidebar('EGG_56',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/58.png" id="EGG_58" data-flag="@X" onclick="openSidebar('EGG_58',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/59.png" id="EGG_59" data-flag="@X" onclick="openSidebar('EGG_59',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/61.png" id="EGG_61" data-flag="@X" onclick="openSidebar('EGG_61',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/63.png" id="EGG_63" data-flag="@X" onclick="openSidebar('EGG_63',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/55.png" id="EGG_55" data-flag="@X" onclick="openSidebar('EGG_55',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/158.png" id="EGG_158" data-flag="@X" onclick="openSidebar('EGG_158',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/160.png" id="EGG_160" data-flag="@X" onclick="openSidebar('EGG_160',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/162.png" id="EGG_162" data-flag="@X" onclick="openSidebar('EGG_162',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/64.png" id="EGG_64" data-flag="@X" onclick="openSidebar('EGG_64',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/155.png" id="EGG_155" data-flag="@X" onclick="openSidebar('EGG_155',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/157.png" id="EGG_157" data-flag="@X" onclick="openSidebar('EGG_157',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/159.png" id="EGG_159" data-flag="@X" onclick="openSidebar('EGG_159',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/161.png" id="EGG_161" data-flag="@X" onclick="openSidebar('EGG_161',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/163.png" id="EGG_163" data-flag="@X" onclick="openSidebar('EGG_163',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/156.png" id="EGG_156" data-flag="@X" onclick="openSidebar('EGG_156',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/246.png" id="EGG_246" data-flag="@X" onclick="openSidebar('EGG_246',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/247.png" id="EGG_247" data-flag="@X" onclick="openSidebar('EGG_247',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/248.png" id="EGG_248" data-flag="@X" onclick="openSidebar('EGG_248',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/164.png" id="EGG_164" data-flag="@X" onclick="openSidebar('EGG_164',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/245.png" id="EGG_245" data-flag="@X" onclick="openSidebar('EGG_245',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/249.png" id="EGG_249" data-flag="@X" onclick="openSidebar('EGG_249',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/66.png" id="EGG_66" data-flag="@X" onclick="openSidebar('EGG_66',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/67.png" id="EGG_67" data-flag="@X" onclick="openSidebar('EGG_67',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/69.png" id="EGG_69" data-flag="@X" onclick="openSidebar('EGG_69',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/72.png" id="EGG_72" data-flag="@X" onclick="openSidebar('EGG_72',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/74.png" id="EGG_74" data-flag="@X" onclick="openSidebar('EGG_74',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/65.png" id="EGG_65" data-flag="@X" onclick="openSidebar('EGG_65',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/68.png" id="EGG_68" data-flag="@X" onclick="openSidebar('EGG_68',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/70.png" id="EGG_70" data-flag="@X" onclick="openSidebar('EGG_70',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/71.png" id="EGG_71" data-flag="@X" onclick="openSidebar('EGG_71',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/73.png" id="EGG_73" data-flag="@X" onclick="openSidebar('EGG_73',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/165.png" id="EGG_165" data-flag="@X" onclick="openSidebar('EGG_165',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/168.png" id="EGG_168" data-flag="@X" onclick="openSidebar('EGG_168',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/169.png" id="EGG_169" data-flag="@X" onclick="openSidebar('EGG_169',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/172.png" id="EGG_172" data-flag="@X" onclick="openSidebar('EGG_172',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/174.png" id="EGG_174" data-flag="@X" onclick="openSidebar('EGG_174',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/166.png" id="EGG_166" data-flag="@X" onclick="openSidebar('EGG_166',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/167.png" id="EGG_167" data-flag="@X" onclick="openSidebar('EGG_167',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/170.png" id="EGG_170" data-flag="@X" onclick="openSidebar('EGG_170',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/171.png" id="EGG_171" data-flag="@X" onclick="openSidebar('EGG_171',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/173.png" id="EGG_173" data-flag="@X" onclick="openSidebar('EGG_173',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/250.png" id="EGG_250" data-flag="@X" onclick="openSidebar('EGG_250',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/251.png" id="EGG_251" data-flag="@X" onclick="openSidebar('EGG_251',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/252.png" id="EGG_252" data-flag="@X" onclick="openSidebar('EGG_252',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/253.png" id="EGG_253" data-flag="@X" onclick="openSidebar('EGG_253',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/254.png" id="EGG_254" data-flag="@X" onclick="openSidebar('EGG_254',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/17.png" id="EGG_17" data-flag="@X" onclick="openSidebar('EGG_17',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/18.png" id="EGG_18" data-flag="@X" onclick="openSidebar('EGG_18',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div id="colorless" class="anchor"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/19.png" id="EGG_19" data-flag="@X" onclick="openSidebar('EGG_19',false)"></div>
+				<div class="container"><img loading="lazy" data-alt_src="sets/EGG-files/img/78_back.png" alt="sets/EGG-files/img/78_front.png" id="EGG_78" data-flag="@XD" onclick="openSidebar('EGG_78',false)"><button class="flip-btn" onclick="imgFlip('EGG_78')"></button></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/79.png" id="EGG_79" data-flag="@X" onclick="openSidebar('EGG_79',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/76.png" id="EGG_76" data-flag="@X" onclick="openSidebar('EGG_76',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/77.png" id="EGG_77" data-flag="@X" onclick="openSidebar('EGG_77',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/75.png" id="EGG_75" data-flag="@X" onclick="openSidebar('EGG_75',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/178.png" id="EGG_178" data-flag="@X" onclick="openSidebar('EGG_178',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/177.png" id="EGG_177" data-flag="@X" onclick="openSidebar('EGG_177',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/176.png" id="EGG_176" data-flag="@X" onclick="openSidebar('EGG_176',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/175.png" id="EGG_175" data-flag="@X" onclick="openSidebar('EGG_175',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/256.png" id="EGG_256" data-flag="@X" onclick="openSidebar('EGG_256',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/259.png" id="EGG_259" data-flag="@X" onclick="openSidebar('EGG_259',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/255.png" id="EGG_255" data-flag="@X" onclick="openSidebar('EGG_255',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/260.png" id="EGG_260" data-flag="@X" onclick="openSidebar('EGG_260',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/258.png" id="EGG_258" data-flag="@X" onclick="openSidebar('EGG_258',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/257.png" id="EGG_257" data-flag="@X" onclick="openSidebar('EGG_257',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/316.png" id="EGG_316" data-flag="@X" onclick="openSidebar('EGG_316',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/327.png" id="EGG_327" data-flag="@X" onclick="openSidebar('EGG_327',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/328.png" id="EGG_328" data-flag="@X" onclick="openSidebar('EGG_328',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/319.png" id="EGG_319" data-flag="@X" onclick="openSidebar('EGG_319',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/330.png" id="EGG_330" data-flag="@X" onclick="openSidebar('EGG_330',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/326.png" id="EGG_326" data-flag="@X" onclick="openSidebar('EGG_326',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/317.png" id="EGG_317" data-flag="@X" onclick="openSidebar('EGG_317',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/318.png" id="EGG_318" data-flag="@X" onclick="openSidebar('EGG_318',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/329.png" id="EGG_329" data-flag="@X" onclick="openSidebar('EGG_329',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/320.png" id="EGG_320" data-flag="@X" onclick="openSidebar('EGG_320',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/321.png" id="EGG_321" data-flag="@X" onclick="openSidebar('EGG_321',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/324.png" id="EGG_324" data-flag="@X" onclick="openSidebar('EGG_324',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/322.png" id="EGG_322" data-flag="@X" onclick="openSidebar('EGG_322',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/335.png" id="EGG_335" data-flag="@X" onclick="openSidebar('EGG_335',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/323.png" id="EGG_323" data-flag="@X" onclick="openSidebar('EGG_323',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/331.png" id="EGG_331" data-flag="@X" onclick="openSidebar('EGG_331',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/334.png" id="EGG_334" data-flag="@X" onclick="openSidebar('EGG_334',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/332.png" id="EGG_332" data-flag="@X" onclick="openSidebar('EGG_332',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/325.png" id="EGG_325" data-flag="@X" onclick="openSidebar('EGG_325',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/333.png" id="EGG_333" data-flag="@X" onclick="openSidebar('EGG_333',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/179.png" id="EGG_179" data-flag="@X" onclick="openSidebar('EGG_179',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/e.png" id="EGG_e" data-flag="@E" onclick="openSidebar('EGG_e',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div id="masterpiece" class="anchor"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/290.png" id="EGG_290" data-flag="@X" onclick="openSidebar('EGG_290',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/284.png" id="EGG_284" data-flag="@X" onclick="openSidebar('EGG_284',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/282.png" id="EGG_282" data-flag="@X" onclick="openSidebar('EGG_282',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/281.png" id="EGG_281" data-flag="@X" onclick="openSidebar('EGG_281',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/288.png" id="EGG_288" data-flag="@X" onclick="openSidebar('EGG_288',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/286.png" id="EGG_286" data-flag="@X" onclick="openSidebar('EGG_286',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/285.png" id="EGG_285" data-flag="@X" onclick="openSidebar('EGG_285',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/280.png" id="EGG_280" data-flag="@X" onclick="openSidebar('EGG_280',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/289.png" id="EGG_289" data-flag="@X" onclick="openSidebar('EGG_289',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/287.png" id="EGG_287" data-flag="@X" onclick="openSidebar('EGG_287',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/283.png" id="EGG_283" data-flag="@X" onclick="openSidebar('EGG_283',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/299.png" id="EGG_299" data-flag="@X" onclick="openSidebar('EGG_299',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/303.png" id="EGG_303" data-flag="@X" onclick="openSidebar('EGG_303',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/296.png" id="EGG_296" data-flag="@X" onclick="openSidebar('EGG_296',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/298.png" id="EGG_298" data-flag="@X" onclick="openSidebar('EGG_298',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/301.png" id="EGG_301" data-flag="@X" onclick="openSidebar('EGG_301',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/309.png" id="EGG_309" data-flag="@X" onclick="openSidebar('EGG_309',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/313.png" id="EGG_313" data-flag="@X" onclick="openSidebar('EGG_313',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/294.png" id="EGG_294" data-flag="@X" onclick="openSidebar('EGG_294',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/300.png" id="EGG_300" data-flag="@X" onclick="openSidebar('EGG_300',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/306.png" id="EGG_306" data-flag="@X" onclick="openSidebar('EGG_306',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/308.png" id="EGG_308" data-flag="@X" onclick="openSidebar('EGG_308',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/307.png" id="EGG_307" data-flag="@X" onclick="openSidebar('EGG_307',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/310.png" id="EGG_310" data-flag="@X" onclick="openSidebar('EGG_310',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/297.png" id="EGG_297" data-flag="@X" onclick="openSidebar('EGG_297',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/312.png" id="EGG_312" data-flag="@X" onclick="openSidebar('EGG_312',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/315.png" id="EGG_315" data-flag="@X" onclick="openSidebar('EGG_315',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/305.png" id="EGG_305" data-flag="@X" onclick="openSidebar('EGG_305',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/311.png" id="EGG_311" data-flag="@X" onclick="openSidebar('EGG_311',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/302.png" id="EGG_302" data-flag="@X" onclick="openSidebar('EGG_302',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/293.png" id="EGG_293" data-flag="@X" onclick="openSidebar('EGG_293',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/314.png" id="EGG_314" data-flag="@X" onclick="openSidebar('EGG_314',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/304.png" id="EGG_304" data-flag="@X" onclick="openSidebar('EGG_304',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/295.png" id="EGG_295" data-flag="@X" onclick="openSidebar('EGG_295',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/292.png" id="EGG_292" data-flag="@X" onclick="openSidebar('EGG_292',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/291.png" id="EGG_291" data-flag="@X" onclick="openSidebar('EGG_291',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/262.png" id="EGG_262" data-flag="@X" onclick="openSidebar('EGG_262',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/263.png" id="EGG_263" data-flag="@X" onclick="openSidebar('EGG_263',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/261.png" id="EGG_261" data-flag="@X" onclick="openSidebar('EGG_261',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/265.png" id="EGG_265" data-flag="@X" onclick="openSidebar('EGG_265',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/264.png" id="EGG_264" data-flag="@X" onclick="openSidebar('EGG_264',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/266.png" id="EGG_266" data-flag="@X" onclick="openSidebar('EGG_266',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/267.png" id="EGG_267" data-flag="@X" onclick="openSidebar('EGG_267',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/270.png" id="EGG_270" data-flag="@X" onclick="openSidebar('EGG_270',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/269.png" id="EGG_269" data-flag="@X" onclick="openSidebar('EGG_269',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/268.png" id="EGG_268" data-flag="@X" onclick="openSidebar('EGG_268',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/271.png" id="EGG_271" data-flag="@X" onclick="openSidebar('EGG_271',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/273.png" id="EGG_273" data-flag="@X" onclick="openSidebar('EGG_273',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/272.png" id="EGG_272" data-flag="@X" onclick="openSidebar('EGG_272',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/274.png" id="EGG_274" data-flag="@X" onclick="openSidebar('EGG_274',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/276.png" id="EGG_276" data-flag="@X" onclick="openSidebar('EGG_276',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/275.png" id="EGG_275" data-flag="@X" onclick="openSidebar('EGG_275',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/277.png" id="EGG_277" data-flag="@X" onclick="openSidebar('EGG_277',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/278.png" id="EGG_278" data-flag="@X" onclick="openSidebar('EGG_278',false)"></div>
+				<div class="container"><img loading="lazy" alt="sets/EGG-files/img/279.png" id="EGG_279" data-flag="@X" onclick="openSidebar('EGG_279',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+				<div class="container"><img loading="lazy" alt="img/er.png" id="EGG_er" data-flag="@E" onclick="openSidebar('EGG_er',false)"></div>
+	</div>
+	</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-container">
+			<img id="sidebar_img" class="sidebar-img">
+			<img id="sidebar_h_img" class="sidebar-h-img">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
+
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+		let specialchars = "";
+
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch(rootPath + '/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch(rootPath + '/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+				let all_tags = new Set();
+				card_list_arrayified.forEach(card => {
+					if (card.notes) {
+						const tagMatches = card.notes.matchAll(/!tag(?:<\w+>)?\s+([^\s\n\b]+)/g);
+						for (const match of tagMatches) {
+							all_tags.add(match[1].toLowerCase());
+						}
+					}
+				});
+
+				const searchInput = document.getElementById("search");
+				const tagDropdown = document.getElementById("tag-dropdown");
+
+				// Create a mirror element for position calculation
+				const mirror = document.createElement("div");
+				Object.assign(mirror.style, {
+					position: "absolute",
+					visibility: "hidden",
+					whiteSpace: "pre",
+					font: getComputedStyle(searchInput).font,
+					padding: "0", // No padding for pure text measurement
+					border: "none",
+					boxSizing: "content-box"
+				});
+				document.body.appendChild(mirror);
+
+				if (searchInput && tagDropdown) {
+					tagDropdown.style.width = "auto";
+					tagDropdown.style.minWidth = "75px";
+					tagDropdown.style.maxWidth = "300px";
+					tagDropdown.style.maxHeight = "200px";
+					tagDropdown.style.overflowY = "auto";
+
+					const updateDropdown = function() {
+						const value = searchInput.value;
+						const cursorPosition = searchInput.selectionStart;
+						
+						// Find the tag: prefix immediately preceding the cursor
+						const lastTagIndex = value.substring(0, cursorPosition).lastIndexOf("tag:");
+						
+						if (lastTagIndex !== -1) {
+							const queryStart = lastTagIndex + 4;
+							const query = value.substring(queryStart, cursorPosition);
+							
+							if (!query.includes(" ")) {
+								const filteredTags = Array.from(all_tags).filter(tag => tag.toLowerCase().startsWith(query.toLowerCase())).sort();
+								if (filteredTags.length > 0) {
+									tagDropdown.innerHTML = "";
+									filteredTags.forEach(tag => {
+										const div = document.createElement("div");
+										div.innerText = tag;
+										div.style.padding = "5px 10px";
+										div.style.cursor = "pointer";
+										div.style.whiteSpace = "nowrap";
+										div.onmouseover = () => div.style.background = "#f0f0f0";
+										div.onmouseout = () => div.style.background = "white";
+										div.onclick = () => {
+											const newValue = value.substring(0, queryStart) + tag + " " + value.substring(cursorPosition);
+											searchInput.value = newValue;
+											tagDropdown.style.display = "none";
+											searchInput.focus();
+											const newCursorPos = queryStart + tag.length + 1;
+											searchInput.setSelectionRange(newCursorPos, newCursorPos);
+										};
+										tagDropdown.appendChild(div);
+									});
+
+									// Calculate position
+									mirror.textContent = value.substring(0, lastTagIndex + 4);
+									const textWidth = mirror.getBoundingClientRect().width;
+									const inputPaddingLeft = parseFloat(getComputedStyle(searchInput).paddingLeft) || 0;
+									
+									tagDropdown.style.left = Math.min(textWidth + inputPaddingLeft, searchInput.offsetWidth - tagDropdown.offsetWidth) + "px";
+									tagDropdown.style.display = "block";
+									return;
+								}
+							}
+						}
+						tagDropdown.style.display = "none";
+					};
+
+					searchInput.addEventListener("input", updateDropdown);
+					searchInput.addEventListener("click", updateDropdown);
+					searchInput.addEventListener("keyup", updateDropdown);
+
+					document.addEventListener("click", function(e) {
+						if (e.target !== searchInput && e.target !== tagDropdown) {
+							tagDropdown.style.display = "none";
+						}
+					});
+				}
+
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+
+		let images_loaded = [];
+
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
+
+		document.body.style.backgroundImage = 'url(' + document.getElementById("bg").src + ')';
+		loadImages();
+	});
+
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
+
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
+
+			if (flag === '@N') {
+				img.src = rootPath + '/img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = rootPath + '/' + img.alt;
+				if (img.dataset.alt_src) {
+					img.dataset.alt_src = rootPath + '/' + img.dataset.alt_src;
+				}
+
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
+
+			img.style.visibility = 'visible';
+		});
+	}
+
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
+
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
+
+	let horizontal = false;
+
+	function imgFlip(num) {
+		const img = document.getElementById(num);
+		const seconds = 0.2;
+		const rotated_img = document.getElementById('sidebar_h_img');
+
+        img.style.transition = seconds.toString() + "s";
+        img.style.transform = "rotateY(90deg)";
+
+        if (num == 'sidebar_img')
+		{
+			const sidebar_img = document.getElementById('sidebar_img');
+
+			if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(90deg) rotate(90deg)";
+
+           		if (rotated_img.style.opacity != "0") {
+		            setTimeout(() => {
+		                rotated_img.style.opacity = "0";
+		                img.style.filter = "none";
+		            }, (seconds / 2) * 1000);
+		        }
+		        else {
+		        	setTimeout(() => {
+		                rotated_img.style.opacity = "1";
+		                img.style.filter = "blur(2px) brightness(0.7)";
+		            }, (seconds / 2) * 1000);
+		        }
+            }
+		}
+
+         setTimeout(function() {
+            tmp = document.getElementById(num).src;
+			document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+			document.getElementById(num).dataset.alt_src = tmp;
+
+            img.style.transition = seconds.toString() + "s";
+            img.style.transform = "rotateY(0deg)";
+
+            if (horizontal)
+            {
+            	rotated_img.style.transition = seconds.toString() + "s";
+           		rotated_img.style.transform = "rotateY(0deg) rotate(90deg)";
+            }
+        }, seconds * 1000);
+	}
+
+	function openSidebar(id, h = false) {
+		horizontal = h;
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'grid';
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.style.transition = "none";
+		rotated_img.style.transition = "none";
+		sidebar_img.src = document.getElementById(id).src;
+		rotated_img.src = document.getElementById(id).src.replace("_back", "_front");
+
+		if (horizontal && !sidebar_img.src.includes("_back"))
+		{
+			rotated_img.style.opacity = "1";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.opacity = "0";
+			sidebar_img.style.filter = "";
+		}
+
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
+		document.getElementById('main-content').style.width = '60%';
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
+
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	function rolldown() {
+		dropdown.style.gridTemplateColumns = "repeat(3, 1fr)";
+		var sets = document.querySelectorAll('.inactive');
+		for(const set of sets)
+		{
+			set.style.height = "auto";
+			set.style.margin = "5px";
+		}
+	}
+
+	function rollup() {
+		dropdown.style.gridTemplateColumns = "1fr";
+		var sets = document.querySelectorAll('.inactive');
+		for(const set of sets)
+		{
+			set.style.height = "0px";
+			set.style.margin = "0px 5px";
+		}
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			search();
+		}
+	});
+
+	function search() {
+		const url = new URL(rootPath + '/search', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+		url.searchParams.append('search', document.getElementById("search").value);
+		window.location.href = url.pathname + url.search;
+	}
+
+		function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let random_card = card_list_arrayified[i];
+
+				const url = new URL(rootPath + '/card', window.location.href.split('?')[0].split('/').slice(0, -1).join('/') + '/');
+				const params = {
+					set: random_card.set,
+					num: random_card.number,
+					name: random_card.card_name
+				}
+				for (const key in params) {
+					url.searchParams.append(key, params[key]);
+				}
+
+				window.location.href = url.pathname + url.search;
+			}
+	</script>
+</body>
+</html>
