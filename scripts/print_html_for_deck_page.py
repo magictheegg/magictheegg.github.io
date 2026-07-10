@@ -603,15 +603,7 @@ def generateHTML(codes):
 
 				const spoilerCont = container.querySelector(".spoiler-container");
 				if (spoilerCont) {
-					const originalBackground = spoilerCont.style.background;
-					const originalPadding = spoilerCont.style.padding;
-					const originalWidth = spoilerCont.style.width;
-					const originalMargin = spoilerCont.style.marginRight;
-					
-					spoilerCont.style.background = "#f3f3f3";
-					spoilerCont.style.padding = "20px";
-					spoilerCont.style.width = "fit-content";
-					spoilerCont.style.marginRight = "0"; 
+					const currentWidth = spoilerCont.offsetWidth;
 
 					html2canvas(spoilerCont, {
 						useCORS: true,
@@ -619,21 +611,20 @@ def generateHTML(codes):
 						backgroundColor: "#f3f3f3",
 						scale: 2,
 						logging: false,
-						width: spoilerCont.scrollWidth,
-						height: spoilerCont.scrollHeight,
-						windowWidth: spoilerCont.scrollWidth + 100,
-						windowHeight: spoilerCont.scrollHeight + 100
+						onclone: (clonedDoc) => {
+							const cloned = clonedDoc.querySelector(".spoiler-container");
+							if (cloned) {
+								cloned.style.marginRight = "0";
+								cloned.style.padding = "20px";
+								cloned.style.background = "#f3f3f3";
+								cloned.style.width = currentWidth + "px";
+							}
+						}
 					}).then(canvas => {
 						const link = document.createElement('a');
 						link.download = deck_name + ".png";
 						link.href = canvas.toDataURL("image/png");
 						link.click();
-
-						// Restore styles
-						spoilerCont.style.background = originalBackground;
-						spoilerCont.style.padding = originalPadding;
-						spoilerCont.style.width = originalWidth;
-						spoilerCont.style.marginRight = originalMargin;
 					});
 				}
 
@@ -718,7 +709,6 @@ def generateHTML(codes):
 					}
 					const card_img = document.createElement("img");
 					card_img.src = getCardImgSrc(card_stats);
-					card_img.loading = "lazy";
 					
 					const fx1 = document.createElement("div"); fx1.className = "card-fx";
 					const fx2 = document.createElement("div"); fx2.className = "card-fx";
@@ -760,7 +750,7 @@ def generateHTML(codes):
 				const div = document.createElement("div");
 				div.className = "spoiler-card";
 				div.style.width = "140px";
-				div.innerHTML = `<div class="spoiler-count">${card.count}</div><img loading="lazy" src="${getCardImgSrc(card.stats)}">`;
+				div.innerHTML = `<div class="spoiler-count">${card.count}</div><img src="${getCardImgSrc(card.stats)}">`;
 				div.onmouseover = () => showCardInGrid(card.stats);
 				div.onclick = () => window.open(getCardUrl(card.stats), '_blank');
 				grid.appendChild(div);
