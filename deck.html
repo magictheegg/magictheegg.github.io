@@ -689,26 +689,29 @@ await fetch(rootPath + '/lists/all-cards.json')
 					document.getElementById("view-select").value = "images";
 				}
 
-				// Wait for images to potentially load
-				await new Promise(resolve => setTimeout(resolve, 500));
+					// Wait for images to potentially load and layout to stabilize
+					await new Promise(resolve => setTimeout(resolve, 1000));
 
-				const spoilerCont = container.querySelector(".spoiler-container");
-				if (spoilerCont) {
-					// Temporary style changes for better capture
 					const originalBackground = spoilerCont.style.background;
 					const originalPadding = spoilerCont.style.padding;
 					const originalWidth = spoilerCont.style.width;
+					const originalMargin = spoilerCont.style.marginRight;
 					
 					spoilerCont.style.background = "#f3f3f3";
 					spoilerCont.style.padding = "20px";
 					spoilerCont.style.width = "fit-content";
-					spoilerCont.style.marginRight = "0"; // remove the negative margin trick for capture
+					spoilerCont.style.marginRight = "0"; 
 
 					html2canvas(spoilerCont, {
 						useCORS: true,
 						allowTaint: true,
 						backgroundColor: "#f3f3f3",
-						scale: 2 // Higher quality
+						scale: 2,
+						logging: false,
+						width: spoilerCont.scrollWidth,
+						height: spoilerCont.scrollHeight,
+						windowWidth: spoilerCont.scrollWidth + 100,
+						windowHeight: spoilerCont.scrollHeight + 100
 					}).then(canvas => {
 						const link = document.createElement('a');
 						link.download = deck_name + ".png";
@@ -719,9 +722,8 @@ await fetch(rootPath + '/lists/all-cards.json')
 						spoilerCont.style.background = originalBackground;
 						spoilerCont.style.padding = originalPadding;
 						spoilerCont.style.width = originalWidth;
-						spoilerCont.style.marginRight = "-70px";
+						spoilerCont.style.marginRight = originalMargin;
 					});
-				}
 
 				document.getElementById("export-menu").value = "default";
 				return;
