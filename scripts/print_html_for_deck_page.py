@@ -598,9 +598,11 @@ def generateHTML(codes):
 					document.getElementById("view-select").value = "images";
 				}
 
-					// Wait for images to potentially load and layout to stabilize
-					await new Promise(resolve => setTimeout(resolve, 1000));
+				// Wait for images to potentially load and layout to stabilize
+				await new Promise(resolve => setTimeout(resolve, 1000));
 
+				const spoilerCont = container.querySelector(".spoiler-container");
+				if (spoilerCont) {
 					const originalBackground = spoilerCont.style.background;
 					const originalPadding = spoilerCont.style.padding;
 					const originalWidth = spoilerCont.style.width;
@@ -633,6 +635,7 @@ def generateHTML(codes):
 						spoilerCont.style.width = originalWidth;
 						spoilerCont.style.marginRight = originalMargin;
 					});
+				}
 
 				document.getElementById("export-menu").value = "default";
 				return;
