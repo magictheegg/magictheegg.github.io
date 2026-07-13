@@ -1,4 +1,169 @@
-﻿VERSION 4 CHANGELOG
+﻿VERSION 5 CHANGELOG
+====================
+
+Ol' Rustblade Morris added.
+Moldin' Retriever added.
+Pneumatics Specialist added.
+Harriet's Markswoman added.
+Aura Curse added.
+
+Old Rustblade Morris removed.
+Moldin' Retreiver removed.
+Hydraulics Specialist removed.
+Harriet's Gunner removed.
+
+Cora, Windwoken
+rules_text: [+2]: Create an Incursion token. [i](It's a battle with 2 defense and “When this battle is defeated, put two +1/+1 counters on target creature you control.”)[/i]
+[+1]: Target creature you control gets +2/+2 and gains flying until end of turn.
+[-2]: Reveal the top four cards of your library. You may put a creature card with mana value 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+[-8]: Put two +1/+1 counters on each creature you control. Those creatures gain flying, vigilance, and lifelink until end of turn. => [+2]: Create an Incursion token. [i](It's a battle with 2 defense and “When this battle is defeated, put two +1/+1 counters on target creature you control.”)[/i]
+[+1]: Target creature you control gets +1/+1 and gains flying until end of turn.
+[-2]: Reveal the top four cards of your library. You may put a creature card with mana value 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+[-8]: Put two +1/+1 counters on each creature you control. Those creatures gain flying, vigilance, and lifelink until end of turn.
+special_text: [+2]: Create an Incursion token. [i](It's a battle with 2 defense and “When this battle is defeated, put two +1/+1 counters on target creature you control.”)[/i]
+[+1]: Target creature you control gets +2/+2 and gains flying until end of turn.
+[-2]: Reveal the top four cards of your library. You may put a creature card with mana value 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+[-8]: Put two +1/+1 counters on each creature you control. Those creatures gain flying, vigilance, and lifelink until end of turn. => [+2]: Create an Incursion token. [i](It's a battle with 2 defense and “When this battle is defeated, put two +1/+1 counters on target creature you control.”)[/i]
+[+1]: Target creature you control gets +1/+1 and gains flying until end of turn.
+[-2]: Reveal the top four cards of your library. You may put a creature card with mana value 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+[-8]: Put two +1/+1 counters on each creature you control. Those creatures gain flying, vigilance, and lifelink until end of turn.
+
+Valus Harbor Flagship
+rules_text: Flying, vigilance
+When Valus Harbor Flagship enters, draw two cards, then discard a card.
+Whenever Valus Harbor Flagship attacks, exile up to one target instant or sorcery card from your graveyard. You may cast a copy of it.
+Crew 2 => Flying, vigilance
+When Valus Harbor Flagship enters, draw two cards, then discard a card.
+Whenever Valus Harbor Flagship attacks, exile up to one target instant or sorcery card from your graveyard. You may cast a copy of it. [i](You still pay its costs.)[/i]
+Crew 2
+
+Onyx Armada Flagship
+rules_text: Menace, lifelink
+When Onyx Armada Flagship enters, target opponent exiles a creature they control unless they exile a nonland card from their hand.
+Whenever Onyx Armada Flagship attacks, defending player loses life equal to the greatest mana value among permanents they control.
+Crew 2 => Menace, lifelink
+When Onyx Armada Flagship enters, target opponent reveals their hand, then exiles a creature they control or a nonland card from their hand.
+Whenever Onyx Armada Flagship attacks, defending player loses life equal to the greatest mana value among permanents they control.
+Crew 2
+
+Sun Fleet Flagship
+rules_text: Menace, trample
+When Sun Fleet Flagship enters, it deals 5 damage to target creature or planeswalker.
+Whenever Sun Fleet Flagship attacks, it deals 1 damage to each creature and planeswalker defending player controls.
+Crew 2 => Menace, trample
+When Sun Fleet Flagship enters, it deals 5 damage to up to to one target creature or planeswalker.
+Whenever Sun Fleet Flagship attacks, it deals 1 damage to each creature and planeswalker defending player controls.
+Crew 2
+
+Harriet, the Sea's Darling
+rules_text: First mate — Your starting deck contains an artifact card with each mana value among 1, 2, 3, 4, and 5. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+At the beginning of combat on your turn, you may put an artifact card with mana value 5 or less from your hand onto the battlefield. If it's a Vehicle, it gains haste. Put it on the bottom of your library at end of combat. If you do, draw a card. => First mate — Your starting deck contains an artifact card with each mana value among 1, 2, 3, 4, and 5. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+At the beginning of combat on your turn, you may have target Vehicle you control become an artifact creature until end of turn. It gains haste and “When this Vehicle dies, draw a card” until end of turn. Sacrifice it at end of combat.
+pt: 3/4 => 4/4
+
+Alma Bristol, Imperatrix
+rules_text: First mate — Each creature card in your starting deck is a Zombie card. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Other Zombies you control get +1/+1.
+During each of your turns, you may cast one Zombie spell from your graveyard. => First mate — Each creature card in your starting deck is a Zombie card. [i](If this card outside the game is your chosen first mate, you may swap it with a card in your opening hand.)[/i]
+Other Zombies you control get +1/+1.
+During each of your turns, you may cast a Zombie spell from your graveyard. A card cast this way enters with a finality counter on it.
+pt: 2/3 => 3/2
+
+Welkin Rayfin
+rules_text: Flying
+[i]Landfall[/i] — Whenever a land you control enters, create a 2/2 colorless Vehicle artifact token with crew 1.
+Vehicles you control with crew 1 are artifact creatures. => Flying
+[i]Landfall[/i] — Whenever a land you control enters, create a 2/2 colorless Vehicle artifact token with crew 1.
+At the beginning of each combat, each Vehicle you control with crew 1 becomes an artifact creature until end of turn.
+
+Port Aurora Bureaucrat
+rules_text: When Port Aurora Bureaucrat enters, create two 1/1 colorless Thopter artifact creature tokens with flying.
+{T}: Creatures you control get +1/+1 until end of turn. => Whenever you attack, create a 1/1 colorless Thopter artifact creature token with flying that's tapped and attacking.
+{T}: Creatures you control get +1/+1 until end of turn.
+pt: 3/3 => 4/4
+
+Chief Aerialist Florence
+rules_text: Flash
+Flying
+Whenever you draw a card, Florence innovates. [i](Exile the top card of your library face down. You may look at it at any time, and you may play it at any time this creature is tapped.)[/i] => Flash
+Flying
+Whenever you draw your second card each turn, Florence innovates. [i](Exile the top card of your library face down. You may look at it at any time, and you may play it at any time this creature is tapped.)[/i]
+
+Queen of Cerulean Tides
+pt: 3/4 => 3/3
+
+Crain's Soulchaser
+rules_text: When Crain's Soulchaser enters, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+Whenever Crain's Soulchaser attacks, create a token that's a copy of target nonartifact creature you control except it has decayed.
+Crew 3 => When Crain's Soulchaser enters, create a 2/2 black Zombie creature token with decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+Whenever Crain's Soulchaser attacks, create a token that's a copy of target nonartifact creature you control, except it has decayed.
+Crew 3
+
+Unsparing Brute
+rules_text: [i]Raid[/i] — At the beginning of your end step, reveal the top card of your library and put it into your hand. You lose life equal to its mana value. If you attacked this turn, instead each opponent loses life equal to that card's mana value. => Menace
+[i]Raid[/i] — At the beginning of your end step, if you attacked this turn, each opponent loses 4 life and you gain 4 life.
+pt: 5/4 => 4/5
+
+F.S.S. Venture
+rules_text: Whenever F.S.S. Venture or another Vehicle you control enters, if you cast it from your hand, discover 3. [i](Exile cards from the top of your library until you exile a nonland card with mana value 3 or less. Cast it without paying its mana cost or put it into your hand. Put the rest on the bottom in a random order.)[/i]
+Crew 2 => Whenever F.S.S. Venture or another Vehicle you control enters, if you cast it from your hand, discover 3. [i](Exile cards from the top of your library until you exile a nonland card with mana value 3 or less. Cast it without paying its mana cost or put it into your hand. Put the rest on the bottom in a random order.)[/i]
+Crew 3
+
+H.S.S. Tempest
+rules_text: Flash
+Flying
+When H.S.S. Tempest enters, exile up to one target creature an opponent controls, then create a token that's a copy of that permanent except it has decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+Crew 4 => Flash
+Flying
+When H.S.S. Tempest enters, exile up to one target creature an opponent controls, then create a token that's a copy of that permanent, except it has decayed. [i](It can't block. When it attacks, sacrifice it at end of combat.)[/i]
+Crew 4
+
+Haughty Mutineer
+rules_text: [i]Raid[/i] — At the beginning of your end step, you may discard a card. If you do, exile cards from the top of your library until you reveal a nonland card. If you attacked this turn, you may cast that card without paying its mana cost. If you don't, put it into your hand. => [i]Raid[/i] — At the beginning of your end step, you may discard a card. If you do, exile cards from the top of your library until you reveal a nonland card.You may cast that card without paying its mana cost if you attacked this turn. If you don't cast the card this way, put it into your hand.
+
+Port Terra Overseer
+rules_text: At the beginning of your second main phase, target creature you control innovates. [i](Exile the top card of your library face down. You may look at it at any time, and you may play it at any time this creature is tapped.)[/i] => At the beginning of your second main phase, target creature you control innovates. [i](Exile the top card of your library face down. You may look at it at any time, and you may play it at any time that creature is tapped.)[/i]
+
+Dieu-de-Fer Navire
+rules_text: {T}: Add two mana in any combination of colors.
+Whenever Dieu-de-Fer Navire attacks, you may pay {W}{U}{B}{R}{G}. If you do, draw three cards, then Dieu-de-Fer Navire deals 3 damage to any target and you gain 3 life.
+Crew 3 => {T}: Add two mana in any combination of colors.
+Whenever Dieu-de-Fer Navire attacks, you may pay {W}{U}{B}{R}{G}. When you do, target player draws three cards, then Dieu-de-Fer Navire deals 3 damage to any target and you gain 3 life.
+Crew 3
+
+Valiant Privateer
+cost: {2}{W} => {3}{W}
+pt: 1/2 => 2/3
+
+Dancing Mantas
+cost: {3}{W} => {2}{W}
+pt: 3/4 => 2/4
+
+Blacksea Marauder
+type: Creature — Merfolk Pirate => Creature — Sark Merfolk Pirate
+
+Dieu-de-Fer Loyalite
+rules_text: Agile [i](This creature deals combat damage first as long as it's attacking.)[/i]
+When Dieu-de-Fer Loyalite enters, create a Incursion token. [i](It's a battle with 2 defense and “When this battle is defeated, put two +1/+1 counters on target creature you control.”)[/i] => Agile [i](This creature deals combat damage first as long as it's attacking.)[/i]
+When Dieu-de-Fer Loyalite enters, create an Incursion token. [i](It's a battle with 2 defense and “When this battle is defeated, put two +1/+1 counters on target creature you control.”)[/i]
+
+Wave-Crowned Crane
+pt: 2/1 => 2/2
+
+Entangle
+cost: {3}{U} => {1}{U}
+rules_text: This spell costs {2} less to cast if you control a Kraken, Leviathan, Octopus, or Serpent.
+Counter target spell unless its controller pays {8}. => Counter target spell unless its controller pays {2}. If you control a Kraken, Leviathan, Octopus, or Serpent, counter that spell unless its controller pays {8} instead.
+
+Plunging Marlin
+rules_text: {3}{U}{U}: Plunging Marlin can't be blocked this turn.
+Crew 2 [i](Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+Islandcycling {2} [i]({2}, Discard this card: Search your library for an Island card, reveal it, put it into your hand, then shuffle.)[/i] => {5}: Plunging Marlin can't be blocked this turn.
+Crew 2 [i](Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+Islandcycling {2} [i]({2}, Discard this card: Search your library for an Island card, reveal it, put it into your hand, then shuffle.)[/i]
+
+
+VERSION 4 CHANGELOG
 ====================
 
 F.S.S. Venture added.
