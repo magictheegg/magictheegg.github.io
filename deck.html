@@ -709,6 +709,33 @@ await fetch(rootPath + '/lists/all-cards.json')
 								cloned.style.padding = "20px";
 								cloned.style.background = "#f3f3f3";
 								cloned.style.width = currentWidth + "px";
+
+								// Add Title to the image
+								const header = clonedDoc.createElement("div");
+								header.style.marginBottom = "20px";
+								header.style.width = "100%";
+								header.style.borderBottom = "1px solid #898989";
+								header.style.paddingBottom = "10px";
+								header.style.display = "flex";
+								header.style.alignItems = "baseline";
+								header.style.gap = "15px";
+
+								const title = clonedDoc.createElement("div");
+								title.innerText = currentDeck.name || "Untitled Deck";
+								title.style.fontFamily = "Beleren";
+								title.style.fontSize = "32px";
+								header.appendChild(title);
+
+								if (currentDeck.format && currentDeck.format !== "None") {
+									const format = clonedDoc.createElement("div");
+									format.innerText = currentDeck.format;
+									format.style.fontSize = "20px";
+									format.style.color = "#666";
+									format.style.fontStyle = "italic";
+									header.appendChild(format);
+								}
+
+								cloned.prepend(header);
 							}
 						}
 					}).then(canvas => {
