@@ -285,6 +285,7 @@ def generateHTML():
         let currentPage = 1;
         const itemsPerPage = 12;
         let cardLookup = {};
+        let cardLookupMap = new Map();
         let allCardsArray = [];
         let setConfigs = {};
         let selectedCards = [];
@@ -376,11 +377,18 @@ def generateHTML():
 
             // Initialize card data structures
             allCardsArray = card_list_arrayified;
-            card_list_arrayified.forEach(card => {
-                const key = `${card.set}-${card.number}`;
+            cardLookupMap.clear();
+            allCardsArray.forEach(card => {
                 const isToken = card.shape && card.shape.includes('token');
+                const key = `${card.set}-${card.number}`;
                 if (!cardLookup[key] || (!isToken && cardLookup[key].shape && cardLookup[key].shape.includes('token'))) {
                     cardLookup[key] = card;
+                }
+                
+                if (!isToken) {
+                    const name = (card.card_name || "").trim().toLowerCase();
+                    cardLookupMap.set(`${card.set}:${card.number}`, card);
+                    cardLookupMap.set(`${card.set}:${name}`, card);
                 }
             });
 
@@ -388,32 +396,11 @@ def generateHTML():
         }
 
         function getCardStats(item) {
-            const name = item.name || item.card_name;
+            const name = (item.name || item.card_name || "").trim().toLowerCase();
             const num = item.num || item.number;
             const set = item.set;
 
-            const findFunc = (c) => {
-                const notToken = !c.shape || !c.shape.includes("token");
-                const matchSet = c.set === set;
-                if (name && num) {
-                    return matchSet && c.card_name === name && c.number == num && notToken;
-                } else if (name) {
-                    return matchSet && c.card_name === name && notToken;
-                } else {
-                    return matchSet && c.number == num && notToken;
-                }
-            };
-
-            let stats = allCardsArray.find(findFunc);
-            if (!stats && name && num) {
-                stats = allCardsArray.find(c => c.set === set && c.card_name === name && (!c.shape || !c.shape.includes("token")));
-                if (!stats) {
-                    stats = cardLookup[`${set}-${num}`];
-                }
-            } else if (!stats) {
-                stats = cardLookup[`${set}-${num}`];
-            }
-            return stats;
+            return cardLookupMap.get(`${set}:${num}`) || cardLookupMap.get(`${set}:${name}`);
         }
 
         document.addEventListener("DOMContentLoaded", async function () {

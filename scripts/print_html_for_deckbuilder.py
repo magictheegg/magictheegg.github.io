@@ -881,6 +881,7 @@ def generateHTML(codes):
 	<script>
 		let search_results = [];
 		let card_list_arrayified = [];
+		let cardLookupIndex = new Map();
 		let specialchars = "";
 		let deck = [];
 		let sideboard = [];
@@ -889,6 +890,17 @@ def generateHTML(codes):
 		let currentDeckId = null;
 		let isAdmin = false;
 		let contextMenu;
+
+		function buildCardIndex() {
+			cardLookupIndex.clear();
+			card_list_arrayified.forEach(c => {
+				const name = (c.card_name || "").trim().toLowerCase();
+				// Index by Set+Num
+				cardLookupIndex.set(`${c.set}:${c.number}`, c);
+				// Index by Set+Name (for fallback)
+				cardLookupIndex.set(`${c.set}:${name}`, c);
+			});
+		}
 
 		function getCardImgSrc(card_stats) {
 			const prefix = card_stats.hubURL ? card_stats.hubURL : rootPath;
@@ -900,14 +912,13 @@ def generateHTML(codes):
 
 		function getCardStats(item) {
 			if (!item) return null;
-			const name = (item.name || item.card_name || "").trim();
+			const name = (item.name || item.card_name || "").trim().toLowerCase();
 			const num = item.num || item.number;
 			const set = item.set;
 
-			// Hierarchical match
-			let stats = card_list_arrayified.find(c => c.set === set && (c.card_name || "").trim() === name && c.number == num);
-			if (!stats) stats = card_list_arrayified.find(c => c.set === set && (c.card_name || "").trim() === name);
-			if (!stats) stats = card_list_arrayified.find(c => c.set === set && c.number == num);
+			// $O(1)$ Lookup Map
+			let stats = cardLookupIndex.get(`${set}:${num}`);
+			if (!stats) stats = cardLookupIndex.get(`${set}:${name}`);
 			
 			return stats;
 		}
@@ -1033,6 +1044,7 @@ def generateHTML(codes):
 
 			cardGrid = document.getElementById("imagesOnlyGrid");
 			card_list_arrayified.sort(compareFunction);
+			buildCardIndex();
 
 			gridified_card = gridifyCard(card_list_arrayified[0], true);
 			gridified_card.getElementsByTagName("img")[0].id = "image-grid-card";
