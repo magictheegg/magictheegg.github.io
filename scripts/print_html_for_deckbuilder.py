@@ -912,13 +912,24 @@ def generateHTML(codes):
 
 		function getCardStats(item) {
 			if (!item) return null;
-			const name = (item.name || item.card_name || "").trim().toLowerCase();
+			const name = (item.name || item.card_name || "").trim();
 			const num = item.num || item.number;
 			const set = item.set;
 
-			// $O(1)$ Lookup Map
-			let stats = cardLookupIndex.get(`${set}:${num}`);
-			if (!stats) stats = cardLookupIndex.get(`${set}:${name}`);
+			const notToken = (c) => !c.shape || !c.shape.includes("token");
+
+			// 1. Try Set + Name + Number
+			let stats = card_list_arrayified.find(c => c.set === set && (c.card_name || "").trim() === name && c.number == num && notToken(c));
+			
+			// 2. Try Set + Name
+			if (!stats) {
+				stats = card_list_arrayified.find(c => c.set === set && (c.card_name || "").trim() === name && notToken(c));
+			}
+			
+			// 3. Try Set + Number
+			if (!stats) {
+				stats = card_list_arrayified.find(c => c.set === set && c.number == num && notToken(c));
+			}
 			
 			return stats;
 		}
