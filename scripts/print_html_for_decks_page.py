@@ -344,18 +344,20 @@ def generateHTML():
 '''
 
     html_content += '''
-            for (const set of sets_json.sets) {
+            const setPromises = sets_json.sets.map(async (set) => {
                 try {
                     const prefix = set.hubURL ? set.hubURL : ".";
                     const setConfResp = await fetch(`${prefix}/sets/${set.set_code}-files/${set.set_code}.json`);
-                    setConfigs[set.set_code] = await setConfResp.json();
+                    const setConfig = await setConfResp.json();
                     if (set.hubURL) {
-                        setConfigs[set.set_code].hubURL = set.hubURL;
+                        setConfig.hubURL = set.hubURL;
                     }
+                    setConfigs[set.set_code] = setConfig;
                 } catch (e) {
                     console.error("Could not load config for set:", set.set_code);
                 }
-            }
+            });
+            await Promise.all(setPromises);
 
             // Load formats dynamically
             await fetch(rootPath + '/lists/formats.json')
