@@ -1,4 +1,58 @@
-﻿VERSION 3 CHANGELOG
+﻿VERSION 4 CHANGELOG
+====================
+
+
+
+Bygone Mariner
+rules_text: When Bygone Mariner enters the battlefield, draw two cards, then discard three cards.
+{5}: Exile target creature card from your graveyard. Create a token that's a copy of that card except it has decayed and “Tap this creature: Target artifact you control named Bygone Mariner becomes an artifact creature until end of turn.” => When Bygone Mariner enters, draw two cards, then discard three cards.
+{5}: Exile target creature card from your graveyard. Create a token that's a copy of that card except it has decayed and “Tap this creature: Target artifact you control named Bygone Mariner becomes an artifact creature until end of turn.”
+
+Draco Ligneus
+rules_text: Flying
+When [i]Draco Ligneus[/i] enters the battlefield or attacks, exile the top card of your library. You may cast that card. When you don't, [i]Draco Ligneus[/i] deals 3 damage to up to one target creature, planeswalker, or battle.
+Crew 3 => Flying
+Whenever [i]Draco Ligneus[/i] enters or attacks, exile the top card of your library. You may cast that card. When you don't, [i]Draco Ligneus[/i] deals 3 damage to up to one target creature, planeswalker, or battle.
+Crew 3
+
+The Fell Reaper
+rules_text: Whenever The[i] Fell Reaper[/i] enters the battlefield or attacks, search your library for a Curse card that doesn't share a name with a Curse attached to target opponent and put it onto the battlefield attached to that player, then shuffle.
+You may tap an untapped planeswalker you control rather than pay The[i] Fell Reaper[/i]'s crew cost.
+Crew 4 => Whenever The[i] Fell Reaper[/i] enters or attacks, search your library for a Curse card that doesn't share a name with a Curse attached to target opponent and put it onto the battlefield attached to that player, then shuffle.
+You may tap an untapped planeswalker you control rather than pay The[i] Fell Reaper[/i]'s crew cost.
+Crew 4
+
+The Sun and the Spirit
+rules_text: Whenever [i]The Sun and the Spirit[/i] attacks, choose any number —
+• Pay {1}{R}. When you do, create two 1/1 red Pirate creature tokens that are tapped and attacking. Exile them at end of combat.
+• Pay {2}{W}. When you do, creatures you control get +1/+1 until end of turn.
+Crew 2 => Whenever [i]The Sun and the Spirit[/i] attacks, choose any number —
+• Pay {1}{R}. When you do, create two 1/1 white Dwarf creature tokens that are tapped and attacking. Exile them at end of combat.
+• Pay {2}{W}. When you do, creatures you control get +1/+1 until end of turn.
+Crew 2
+
+Jolly Drifter
+rules_text: When Jolly Drifter enters the battlefield, create two 1/1 blue and red Pirate creature tokens.
+Crew 2 [i](Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)[/i] => When Jolly Drifter enters, create two 1/1 white Pirate creature tokens with “This creature crews Vehicles as though its power were 2 greater.”
+Crew 3 [i](Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+
+Relentless Destroyer
+rules_text: When Relentless Destroyer enters the battlefield, destroy target nonland permanent an opponent controls.
+Crew 1 [i](Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)[/i] => When Relentless Destroyer enters, destroy target nonland permanent an opponent controls.
+Crew 1 [i](Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+
+Agile Catamaran
+rules_text: When Agile Catamaran enters the battlefield under your control, you may search your library for a basic land card, reveal it, then shuffle and put that card on top.
+Crew 1 [i](Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)[/i] => When Agile Catamaran enters, you may search your library for a basic land card, reveal it, then shuffle and put that card on top.
+Crew 1 [i](Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+
+Blood Flag Convoy
+rules_text: When Blood Flag Convoy enters the battlefield, create a 4/4 colorless Vehicle artifact token with crew 1.
+Crew 2 [i](Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)[/i] => When Blood Flag Convoy enters, create a 4/4 colorless Vehicle artifact token with crew 1.
+Crew 2 [i](Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)[/i]
+
+
+VERSION 3 CHANGELOG
 ====================
 
 
