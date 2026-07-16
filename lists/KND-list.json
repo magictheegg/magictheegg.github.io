@@ -2209,7 +2209,7 @@
         "position": "267"
     },
     {
-        "card_name": "Shackled Depths",
+        "card_name": "Shackled Chasm",
         "number": 274,
         "shape": "normal",
         "set": "KND",
@@ -2217,7 +2217,7 @@
         "position": "268"
     },
     {
-        "card_name": "Blistered Quarry",
+        "card_name": "Blistering Flats",
         "number": 263,
         "shape": "normal",
         "set": "KND",
@@ -2484,8 +2484,16 @@
     },
     "a->token",
     {
-        "card_name": "Copy",
+        "card_name": "Bestiary",
         "number": 1,
+        "shape": "token",
+        "set": "KND",
+        "rotated": false,
+        "position": "312"
+    },
+    {
+        "card_name": "Copy",
+        "number": 2,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2493,7 +2501,7 @@
     },
     {
         "card_name": "Army",
-        "number": 14,
+        "number": 15,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2501,7 +2509,7 @@
     },
     {
         "card_name": "Equipment",
-        "number": 18,
+        "number": 19,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2509,7 +2517,7 @@
     },
     {
         "card_name": "Jwanga Djitu",
-        "number": 19,
+        "number": 20,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2517,7 +2525,7 @@
     },
     {
         "card_name": "Razor's Edge",
-        "number": 20,
+        "number": 21,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2525,7 +2533,7 @@
     },
     {
         "card_name": "Sand Construct",
-        "number": 21,
+        "number": 22,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2533,7 +2541,7 @@
     },
     {
         "card_name": "Scarecrow",
-        "number": 22,
+        "number": 23,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2541,7 +2549,7 @@
     },
     {
         "card_name": "Treasure",
-        "number": 23,
+        "number": 24,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2549,7 +2557,7 @@
     },
     {
         "card_name": "Desert",
-        "number": 24,
+        "number": 25,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2557,7 +2565,7 @@
     },
     {
         "card_name": "Bird",
-        "number": 2,
+        "number": 3,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2565,7 +2573,7 @@
     },
     {
         "card_name": "Bird Knight",
-        "number": 3,
+        "number": 4,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2573,7 +2581,7 @@
     },
     {
         "card_name": "Mouse",
-        "number": 4,
+        "number": 5,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2581,7 +2589,7 @@
     },
     {
         "card_name": "Bird Warrior",
-        "number": 5,
+        "number": 6,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2589,7 +2597,7 @@
     },
     {
         "card_name": "Shade",
-        "number": 6,
+        "number": 7,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2597,7 +2605,7 @@
     },
     {
         "card_name": "Snake",
-        "number": 7,
+        "number": 8,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2605,7 +2613,7 @@
     },
     {
         "card_name": "Bird Soldier",
-        "number": 8,
+        "number": 9,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2613,7 +2621,7 @@
     },
     {
         "card_name": "Cat",
-        "number": 9,
+        "number": 10,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2621,7 +2629,7 @@
     },
     {
         "card_name": "Sand",
-        "number": 10,
+        "number": 11,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2629,7 +2637,7 @@
     },
     {
         "card_name": "All-Mother's Soul",
-        "number": 11,
+        "number": 12,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2637,7 +2645,7 @@
     },
     {
         "card_name": "Elephant",
-        "number": 12,
+        "number": 13,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2645,7 +2653,7 @@
     },
     {
         "card_name": "Spider",
-        "number": 13,
+        "number": 14,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2653,7 +2661,7 @@
     },
     {
         "card_name": "Frog",
-        "number": 15,
+        "number": 16,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2661,7 +2669,7 @@
     },
     {
         "card_name": "Rebel",
-        "number": 16,
+        "number": 17,
         "shape": "token",
         "set": "KND",
         "rotated": false,
@@ -2669,14 +2677,11 @@
     },
     {
         "card_name": "Sand Shark",
-        "number": 17,
+        "number": 18,
         "shape": "token",
         "set": "KND",
         "rotated": false,
         "position": "301"
-    },
-    {
-        "card_name": "e"
     },
     {
         "card_name": "er"
