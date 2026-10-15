@@ -58,13 +58,9 @@ def generateHTML():
         with open(md_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
 
-        # Use title.txt if it exists, otherwise use folder name
+        # Simplified: Use folder name for title
+
         title = article_folder_name.upper()
-        title_txt_path = os.path.join(article_path, 'title.txt')
-        if os.path.exists(title_txt_path):
-            with open(title_txt_path, 'r', encoding='utf-8') as f:
-                title = f.read().strip()
-        
         subtitle = ""
 
         # Use the provided rel_base_path which already has the correct disk casing
@@ -171,6 +167,7 @@ def generateHTML():
         border: 1px solid #d5d9d9;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow-x: auto;
     }}
     .article-content img {{
         max-width: 100%;
@@ -230,6 +227,26 @@ def generateHTML():
         border: 0;
         border-top: 1px solid #d5d9d9;
     }}
+    table {{
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }}
+    th, td {{
+        border: 1px solid #d5d9d9;
+        padding: 12px;
+        text-align: center;
+    }}
+    th {{
+        background-color: #f8f8f8;
+        font-family: "Gotham Narrow Bold", Arial, serif;
+    }}
+    td img {{
+        display: inline-block !important;
+        float: none !important;
+        vertical-align: middle;
+    }}
 </style>
 <body>
     {header_snippet}
@@ -283,7 +300,7 @@ def generateHTML():
             'subtitle': subtitle,
             'image': first_image,
             'url': f'articles/{category_slug}/{article_slug}',
-            'mtime': os.path.getmtime(md_path)
+            'ctime': os.path.getctime(md_path)
         }
 
     # Crawl articles directory
@@ -314,9 +331,9 @@ def generateHTML():
                             if category not in article_data: article_data[category] = []
                             article_data[category].append(info)
 
-    # Sort articles in each category by mtime descending (newest first)
+    # Sort articles in each category by ctime descending (newest first)
     for category in article_data:
-        article_data[category].sort(key=lambda x: x['mtime'], reverse=True)
+        article_data[category].sort(key=lambda x: x['ctime'], reverse=True)
 
     # Generate all-articles.html (Top level)
     if len(article_data) > 0:

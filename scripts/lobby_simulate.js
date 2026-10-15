@@ -53,7 +53,7 @@ const cardData = JSON.parse(fs.readFileSync(path.join(__dirname, '../lists/colis
 setAvailableCards(cardData.cards);
 
 // Skiplist configuration: Add card names here to skip any board that contains them between turns 1-20
-const SKIP_LIST = ["Thrice-Clawed Troika", "Aldmore Chaperone"]; 
+const SKIP_LIST = []; 
 
 function shouldSkipBoard(boardData) {
     if (SKIP_LIST.length === 0) return false;
@@ -104,6 +104,12 @@ async function simulateCombat(p1, p2) {
     }
 
     await resolveStartOfCombatTriggers(simP2);
+
+    // Refresh battleQueues after start of combat triggers so any spawned clones (e.g. Crain) participate in combat
+    state.battleQueues = {
+        player: [...state.battleBoards.player].filter(c => !c.isLockedByChivalry),
+        opponent: [...state.battleBoards.opponent].filter(c => !c.isLockedByChivalry)
+    };
 
     state.attackerSide = Math.random() < 0.5 ? 'player' : 'opponent';
     let turnsInCurrentRound = 0;
@@ -387,7 +393,7 @@ async function run() {
     const heroWins = {};
     heroNames.forEach(name => heroWins[name] = 0);
 
-    const isDetailed = process.argv.includes('--detailed');
+    const isDetailed = process.argv.includes('--detailed') || args.length === 0;
     const creatureStats = {}; 
     const creaturePairs = {}; 
     const equipmentStats = {};
@@ -400,8 +406,8 @@ async function run() {
     let iterations = 0;
     const startTime = process.hrtime();
 
-    const targetGamesPerBoard = args.length === 0 ? 800 : (heroNames.length === 8 ? 500 : 1000); 
-    const numSimulations = args.length === 0 ? (totalBoardsCount * targetGamesPerBoard) / 8 : 
+    const targetGamesPerBoard = args.length === 0 ? 500 : (heroNames.length === 8 ? 500 : 1000); 
+    const numSimulations = args.length === 0 ? Math.round((totalBoardsCount * targetGamesPerBoard) / 8) : 
                           (heroNames.length === 8 ? 4000 : 1000);
 
     console.log(`Simulation Mode: ${args.length === 0 ? 'Full Registry' : heroNames.length + '-Hero Lobby'}`);
@@ -513,7 +519,6 @@ function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDi
 
             let selectedPlacements = [];
             if (excludeBestBoard && boardData.length > 1) {
-                // Exclude the board with the lowest average (best performing)
                 boardData.slice(1).forEach(b => selectedPlacements.push(...b.placements));
             } else {
                 boardData.forEach(b => selectedPlacements.push(...b.placements));
@@ -546,7 +551,8 @@ function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDi
         });
     };
 
-    logHeroTable(getHeroMetrics(false));
+    const heroTable = getHeroMetrics(false);
+    logHeroTable(heroTable);
 
     log("\n--- 2. HERO POWER RANKINGS (BEST BOARD REMOVED) ---");
     logHeroTable(getHeroMetrics(true));
@@ -557,37 +563,104 @@ function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDi
         totalWins: ranges['1-5'].wins + ranges['6-10'].wins + ranges['11+'].wins,
         totalGames: ranges['1-5'].total + ranges['6-10'].total + ranges['11+'].total,
         uniqueBoards: ranges.uniqueBoards.size
-    })).sort((a, b) => (b.totalWins / b.totalGames) - (a.totalWins / a.totalGames));
+    })).filter(e => e.totalGames > 0)
+       .sort((a, b) => (b.totalWins / b.totalGames) - (a.totalWins / a.totalGames));
 
     eqList.forEach(e => {
         const wr = ((e.totalWins / e.totalGames) * 100).toFixed(1);
         log(`  ${e.name.padEnd(25)} | WR: ${wr}% | Boards: ${e.uniqueBoards} | Rounds: ${e.totalGames}`);
     });
 
-    log("\n--- 4. ALL BOARD PERFORMANCE ---");
+    const allCards = coliseum.getAvailableCards();
+    const creatureList = Object.entries(creatureStats).map(([name, ranges]) => {
+        const cardObj = allCards.find(c => c.card_name === name);
+        const tier = cardObj ? cardObj.tier : '?';
+        const totalWins = ranges['1-5'].wins + ranges['6-10'].wins + ranges['11+'].wins;
+        const totalGames = ranges['1-5'].total + ranges['6-10'].total + ranges['11+'].total;
+        const winRate = totalGames > 0 ? (totalWins / totalGames) * 100 : 0;
+        const earlyWR = ranges['1-5'].total > 0 ? ((ranges['1-5'].wins / ranges['1-5'].total) * 100).toFixed(1) : '-';
+        const midWR = ranges['6-10'].total > 0 ? ((ranges['6-10'].wins / ranges['6-10'].total) * 100).toFixed(1) : '-';
+        const lateWR = ranges['11+'].total > 0 ? ((ranges['11+'].wins / ranges['11+'].total) * 100).toFixed(1) : '-';
+        return {
+            name,
+            tier,
+            ranges,
+            totalWins,
+            totalGames,
+            winRate,
+            earlyWR,
+            midWR,
+            lateWR,
+            uniqueBoards: ranges.uniqueBoards.size
+        };
+    }).filter(c => c.totalGames > 0)
+      .sort((a, b) => b.winRate - a.winRate);
+
+    log("\n--- 4. LATE-GAME CREATURE POWER RANKINGS (TURNS 11+) ---");
+    const lateGameSorted = [...creatureList].filter(c => c.ranges['11+'].total >= 50)
+        .sort((a, b) => (b.ranges['11+'].wins / b.ranges['11+'].total) - (a.ranges['11+'].wins / a.ranges['11+'].total));
+
+    lateGameSorted.forEach(c => {
+        const lateWR = ((c.ranges['11+'].wins / c.ranges['11+'].total) * 100).toFixed(1);
+        log(`  ${c.name.padEnd(25)} | T${c.tier} | Late WR: ${lateWR.padStart(5)}% | Rounds: ${String(c.ranges['11+'].total).padStart(6)} | Boards: ${String(c.uniqueBoards).padStart(2)}`);
+    });
+
+    log("\n--- 4.1. ALL-ROUND CREATURE WIN RATES ---");
+    creatureList.forEach(c => {
+        log(`  ${c.name.padEnd(25)} | T${c.tier} | Total WR: ${c.winRate.toFixed(1).padStart(5)}% | Rounds: ${String(c.totalGames).padStart(6)} | Boards: ${String(c.uniqueBoards).padStart(2)} | Early: ${c.earlyWR}% | Mid: ${c.midWR}% | Late: ${c.lateWR}%`);
+    });
+
+    log("\n--- 5. TOP CREATURE PAIR SYNERGIES ---");
+    const pairList = Object.entries(creaturePairs).map(([pairKey, ranges]) => {
+        const totalWins = ranges['1-5'].wins + ranges['6-10'].wins + ranges['11+'].wins;
+        const totalGames = ranges['1-5'].total + ranges['6-10'].total + ranges['11+'].total;
+        return {
+            pairKey,
+            totalWins,
+            totalGames,
+            winRate: totalGames > 0 ? (totalWins / totalGames) * 100 : 0,
+            uniqueBoards: ranges.uniqueBoards.size
+        };
+    }).filter(p => p.totalGames >= 100 && p.uniqueBoards >= 3)
+      .sort((a, b) => b.winRate - a.winRate)
+      .slice(0, 30);
+
+    pairList.forEach(p => {
+        log(`  ${p.pairKey.padEnd(50)} | WR: ${p.winRate.toFixed(1).padStart(5)}% | Rounds: ${String(p.totalGames).padStart(6)} | Boards: ${p.uniqueBoards}`);
+    });
+
+    log("\n--- 6. VALUE STARS (TIER 1-2 OVERPERFORMERS IN LATE GAME T11+) ---");
+    creatureList.filter(c => c.tier <= 2 && c.ranges['11+'].total >= 50)
+        .sort((a, b) => (b.ranges['11+'].wins / b.ranges['11+'].total) - (a.ranges['11+'].wins / a.ranges['11+'].total))
+        .forEach(c => {
+            const wr = ((c.ranges['11+'].wins / c.ranges['11+'].total) * 100).toFixed(1);
+            log(`  ${c.name.padEnd(25)} | Tier ${c.tier} | Late WR: ${wr}% | Boards: ${c.uniqueBoards} | Rounds: ${c.ranges['11+'].total}`);
+        });
+
+    log("\n--- 7. ALL BOARD PERFORMANCE ---");
     Object.entries(boardGamePlacements).map(([id, placements]) => ({ id, avg: placements.reduce((a, b) => a + b, 0) / placements.length, count: placements.length }))
         .sort((a, b) => a.avg - b.avg)
         .forEach(b => log(`  ${b.id.padEnd(25)} | Avg Pos: ${b.avg.toFixed(2)} (${b.count} games)`));
 
-    log("\n--- 5. ALL CARDS ON WINNING BOARDS (RANK 1) ---");
+    log("\n--- 8. ALL CARDS ON WINNING BOARDS (RANK 1) ---");
     const sortedWinners = Object.entries(finalBoardStats.winners)
         .map(([name, count]) => ({ name, count, total: finalBoardStats.totalSeen[name], pct: (count / finalBoardStats.totalSeen[name]) * 100 }))
         .sort((a, b) => b.pct - a.pct);
     sortedWinners.forEach(c => log(`  ${c.name.padEnd(25)} | ${c.pct.toFixed(1).padStart(5)}% (${c.total})`));
 
-    log("\n--- 6. ALL CARDS ON TOP 4 BOARDS (RANKS 1-4) ---");
+    log("\n--- 9. ALL CARDS ON TOP 4 BOARDS (RANKS 1-4) ---");
     const sortedTop4 = Object.entries(finalBoardStats.top4)
         .map(([name, count]) => ({ name, count, total: finalBoardStats.totalSeen[name], pct: (count / finalBoardStats.totalSeen[name]) * 100 }))
         .sort((a, b) => b.pct - a.pct);
     sortedTop4.forEach(c => log(`  ${c.name.padEnd(25)} | ${c.pct.toFixed(1).padStart(5)}% (${c.total})`));
 
-    log("\n--- 7. ALL CARDS ON BOTTOM 4 BOARDS (RANKS 5-8 - THE 'BAD' CARDS) ---");
+    log("\n--- 10. ALL CARDS ON BOTTOM 4 BOARDS (RANKS 5-8 - THE 'BAD' CARDS) ---");
     const sortedBottom4 = Object.entries(finalBoardStats.bottom4)
         .map(([name, count]) => ({ name, count, total: finalBoardStats.totalSeen[name], pct: (count / finalBoardStats.totalSeen[name]) * 100 }))
         .sort((a, b) => b.pct - a.pct);
     sortedBottom4.forEach(c => log(`  ${c.name.padEnd(25)} | ${c.pct.toFixed(1).padStart(5)}% (${c.total})`));
 
-    log("\n--- 8. GAME LENGTH DISTRIBUTION ---");
+    log("\n--- 11. GAME LENGTH DISTRIBUTION ---");
     let totalTurns = 0;
     let totalGames = 0;
     Object.entries(gameLengthDistribution).sort((a, b) => Number(a[0]) - Number(b[0])).forEach(([turn, count]) => {
@@ -599,7 +672,35 @@ function reportDetailedResults(heroNames, placementStats, heroWins, gameLengthDi
 
     log("\n==========================================");
     fs.writeFileSync('simulation_report.txt', output);
-    console.log("\nFull report saved to simulation_report.txt");
+    
+    // Console Summary
+    console.log("\n==========================================");
+    console.log("       LOBBY SIMULATION RESULTS");
+    console.log("==========================================");
+    console.log(`Total Matches: ${iterations} | Time: ${totalSec}s | Avg: ${(totalCombatTime / iterations).toFixed(2)}ms`);
+
+    console.log("\n--- HERO POWER RANKINGS ---");
+    heroTable.forEach((h, idx) => {
+        console.log(`  ${String(idx + 1).padStart(2)}. ${h.name.padEnd(12)} | Avg: ${h.rawAvg.toFixed(2)} | Top4: ${h.top4Rate.padStart(5)}% | Win: ${h.winRate.padStart(5)}% | Match WR: ${h.matchWR}%`);
+    });
+
+    console.log("\n--- TOP 10 LATE-GAME CREATURES (TURN 11+ WIN RATE) ---");
+    lateGameSorted.slice(0, 10).forEach((c, idx) => {
+        const wr = ((c.ranges['11+'].wins / c.ranges['11+'].total) * 100).toFixed(1);
+        console.log(`  ${String(idx + 1).padStart(2)}. ${c.name.padEnd(25)} | T${c.tier} | Late WR: ${wr}% (${c.ranges['11+'].total} rounds, ${c.uniqueBoards} boards)`);
+    });
+
+    console.log("\n--- TOP 10 CREATURES ON 1ST PLACE WINNING BOARDS ---");
+    sortedWinners.slice(0, 10).forEach((c, idx) => {
+        console.log(`  ${String(idx + 1).padStart(2)}. ${c.name.padEnd(25)} | Win%: ${c.pct.toFixed(1)}% (${c.count} wins / ${c.total} games)`);
+    });
+
+    console.log("\n--- TOP 5 CREATURE PAIR SYNERGIES ---");
+    pairList.slice(0, 5).forEach((p, idx) => {
+        console.log(`  ${String(idx + 1).padStart(2)}. ${p.pairKey.padEnd(45)} | WR: ${p.winRate.toFixed(1)}% (${p.totalGames} rounds)`);
+    });
+
+    console.log("\nFull detailed report saved to simulation_report.txt");
 }
 
 function reportFinalResults(heroNames, placementStats, heroWins, gameLengthDistribution, iterations, totalCombatTime, startTime) {

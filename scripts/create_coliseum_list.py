@@ -6,9 +6,37 @@ def create_coliseum_card_list():
     # External cards from other sites
     remote_card_configs = [
         {"name": "Pheres-Band Huntmaster", "user": "dnazangy", "set": "TRX", "tier": 3},
-        {"name": "Malenia, Goddess of Rot", "user": "Provocativemtg", "set": "EDRC", "tier": 5},
         {"name": "Swift Zulufaa", "user": "Grapplex", "set": "AKI", "tier": 4},
     ]
+
+    # Deprecated cards preserved locally
+    deprecated_cards = [
+        {
+            "card_name": "Malenia, Goddess of Rot",
+            "color": "WBR",
+            "rarity": "mythic",
+            "type": "Legendary Creature \u2014 God",
+            "number": 430,
+            "color_identity": "WBR",
+            "cost": "{2}{R}{W}{B}",
+            "rules_text": "Flying, double strike\nSacrifice another creature: Choose one\u2014\n\u2022 Malenia gains indestructible until end of turn. Tap her.\n\u2022 Proliferate. [i](Choose any number of permanents and/or players, then give each another counter of each kind already there.)[/i]",
+            "flavor_text": "[i]\u201cYou will witness true horror.\u201d[/i]",
+            "pt": "3/5",
+            "special_text": "",
+            "shape": "normal",
+            "set": "EDRC",
+            "loyalty": "",
+            "artist": "aix-wxy",
+            "alias": "",
+            "position": "110",
+            "notes": "",
+            "tier": 5,
+            "set_image_type": "png",
+            "is_remote": False,
+            "image_url": "img/coliseum/deprecated/110_Malenia, Goddess of Rot.png"
+        }
+    ]
+
 
     card_names_to_include = [
         "Huitzil Skywatch", "Glumvale Raven", "Rotten Carcass", "Intli Assaulter",
@@ -97,6 +125,8 @@ def create_coliseum_card_list():
                     print(f"Warning: Could not find '{config['name']}' in remote set {config['set']}")
         except Exception as e:
             print(f"Error fetching remote card {config['name']}: {e}")
+
+    final_cards.extend(deprecated_cards)
 
     tier_2_names = [
         "Am'Atambi's Wildkin",
@@ -259,37 +289,22 @@ def create_coliseum_card_list():
 
     # Add required tokens
     token_names = [
-        ("Bird", "AEX"), ("Construct", "ACE"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), 
-        ("Jwanga Djitu", "ACE"), ("Beast", "SHF"), ("Dragon", "NJB"), ("Bard", "NJB"),
-        ("Zombie", "ACE"), ("Twin Shivs", "AEX")
+        ("Bird", "AEX"), ("Construct", "AEX"), ("Ox", "KOD"), ("Centaur Knight", "GSC"), 
+        ("Jwanga Djitu", "KND"), ("Beast", "SHF"), ("Dragon", "NJB"), ("Bard", "NJB"),
+        ("Zombie", "WAS"), ("Twin Shivs", "AEX")
     ]
     for t_name, t_set in token_names:
-        # For ACE Construct, we want specifically #58
-        if t_name == "Construct" and t_set == "ACE":
-            token = next((c for c in cards if c.get('card_name') == t_name and c.get('shape') == 'token' and c.get('set') == t_set and str(c.get('number')) == "58"), None)
-        else:
-            token = next((c for c in cards if c.get('card_name') == t_name and c.get('shape') == 'token' and c.get('set') == t_set), None)
-        
+        token = next((c for c in cards if c.get('card_name') == t_name and c.get('shape') == 'token' and c.get('set') == t_set), None)
         if token:
             final_cards.append(dict(token))
-
-    # 2. Get exactly one 1/1 Construct token (ACE #58 for art)
-    construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token' and str(c.get('number')) == "58" and c.get('set') == 'ACE'), None)
-    if not construct:
-        construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token' and c.get('pt') == '1/1'), None)
-    if not construct:
-        construct = next((c for c in cards if c.get('card_name') == 'Construct' and c.get('shape') == 'token'), None)
-    
-    if construct:
-        final_cards.append(dict(construct))
-    else:
-        print("Warning: Could not find a Construct token!")
+        else:
+            print(f"Warning: Could not find token {t_name} in {t_set}!")
 
     # Add set-level image_type for consistency
     set_img_types = {}
     for card in final_cards:
         # Don't overwrite if it's remote or already specifically set
-        if card.get('is_remote'):
+        if card.get('is_remote') or card.get('image_url'):
             continue
             
         s = card.get('set')

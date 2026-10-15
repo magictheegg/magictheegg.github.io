@@ -261,7 +261,7 @@ async function testRottenCarcass() {
     
     // Populate availableCards
     availableCards.length = 0;
-    availableCards.push({ card_name: "Construct", shape: "token", pt: "1/1", set: "ACE", type: "Creature" });
+    availableCards.push({ card_name: "Construct", shape: "token", pt: "2/2", set: "AEX", type: "Creature" });
     
     // --- Shop Phase Death ---
     state.phase = 'SHOP';
@@ -274,7 +274,7 @@ async function testRottenCarcass() {
 
     // --- Battle Phase Death ---
     resetState();
-    availableCards.push({ card_name: "Construct", shape: "token", pt: "1/1", set: "ACE", type: "Creature" });
+    availableCards.push({ card_name: "Construct", shape: "token", pt: "2/2", set: "AEX", type: "Creature" });
     state.phase = 'BATTLE';
     state.player.board = [carcass];
     state.battleBoards = {
@@ -936,6 +936,36 @@ async function testShrewdParliament() {
     state.player.hand = [parliament, discardable];
     parliament.onETB([]);
     assert.strictEqual(state.targetingEffect, null, "Should not trigger if no spells to return");
+
+    // Case 4: Discarding a token (like Twin Shivs) succeeds
+    resetState();
+    const parliament4 = createTestCard("Shrewd Parliament");
+    const tokenShivs = createTestCard("Twin Shivs", { shape: "token", type: "Token Artifact – Equipment" });
+    tokenShivs.isToken = true;
+    const graveSpell = createTestCard("Scientific Inquiry", { type: "Sorcery" });
+    state.player.board = [parliament4];
+    state.player.hand = [tokenShivs];
+    state.player.spellGraveyard = [graveSpell];
+    parliament4.onETB([]);
+    assert.strictEqual(state.targetingEffect?.effect, 'parliament_discard', "Should enter discard targeting mode with token in hand");
+
+    await applyTargetedEffect(tokenShivs.id);
+    assert.strictEqual(state.player.hand.length, 0, "Token should be removed from hand");
+    assert.strictEqual(state.player.spellGraveyard.length, 1, "Token should NOT be added to spell graveyard");
+    assert.strictEqual(state.discovery?.graveyard, true, "Should open graveyard discovery");
+    assert.strictEqual(state.discovery.cards.length, 1, "Should offer the graveyard spell");
+
+    // Case 5: Discarding a noncreature card sends it to graveyard
+    resetState();
+    const parliament5 = createTestCard("Shrewd Parliament");
+    const handSpell = createTestCard("Might and Mane", { type: "Instant" });
+    state.player.board = [parliament5];
+    state.player.hand = [handSpell];
+    state.player.spellGraveyard = [graveSpell];
+    parliament5.onETB([]);
+    await applyTargetedEffect(handSpell.id);
+    assert.strictEqual(state.player.hand.length, 0, "Spell should be removed from hand");
+    assert.strictEqual(state.player.spellGraveyard.length, 2, "Spell should be added to spell graveyard");
 }
 
 async function testPaleDillettante() {
@@ -2357,6 +2387,74 @@ async function testInfuseTheApparatus() {
     
     const stats = target.getDisplayStats(state.player.board);
     assert.strictEqual(stats.p, 4, "Target should have received the +2/+2 buff from Faith in Darkness");
+
+    // 4. Test Infuse with both a targeted spell (To Battle) and Small World (Discovery)
+    resetState();
+    const target2 = createTestCard("Target 2", { pt: "2/2" });
+    target2.owner = 'player';
+    state.player.board = [target2];
+    const toBattle = createTestCard("To Battle");
+    const smallWorld = createTestCard("Small World");
+    state.player.spellGraveyard = [toBattle, smallWorld];
+    
+    const infuse2 = createTestCard("Infuse the Apparatus");
+    infuse2.owner = 'player';
+    await infuse2.onCast(state.player.board);
+    
+    // First prompt should be To Battle targeting; Discovery MUST NOT be open yet!
+    assert.ok(state.targetingEffect, "To Battle should be active targeting effect");
+    assert.strictEqual(state.targetingEffect.title, "To Battle");
+    assert.strictEqual(state.discovery, null, "Discovery modal must NOT be open while targeting is active");
+    assert.strictEqual(state.discoveryQueue.length, 1, "Small World discovery should be waiting in discoveryQueue");
+    
+    // Resolve To Battle targeting
+    await applyTargetedEffect(target2.id);
+    assert.strictEqual(state.targetingEffect, null, "Targeting should be cleared");
+    assert.strictEqual(target2.counters, 1, "Target should have received the +1/+1 counter from To Battle");
+    
+    // Now Discovery modal for Small World should automatically open!
+    assert.ok(state.discovery, "Small World discovery should now be active");
+    assert.strictEqual(state.discovery.title, "Small World");
+    assert.strictEqual(state.discovery.cards.length, 4, "Small World should offer 4 choices");
+    
+    // Resolve Small World discovery
+    const chosenCard = state.discovery.cards[0];
+    await resolveDiscovery(chosenCard);
+    assert.strictEqual(state.discovery, null, "Discovery modal should close after resolution");
+    assert.ok(state.player.hand.some(c => c.id === chosenCard.id), "Chosen creature should be added to hand");
+
+    // 5. Test reverse order: Small World first, then To Battle
+    resetState();
+    const target3 = createTestCard("Target 3", { pt: "2/2" });
+    target3.owner = 'player';
+    state.player.board = [target3];
+    const toBattle2 = createTestCard("To Battle");
+    const smallWorld2 = createTestCard("Small World");
+    state.player.spellGraveyard = [smallWorld2, toBattle2];
+    
+    const infuse3 = createTestCard("Infuse the Apparatus");
+    infuse3.owner = 'player';
+    await infuse3.onCast(state.player.board);
+    
+    // First prompt should be Small World Discovery; Targeting MUST NOT be active yet!
+    assert.ok(state.discovery, "Small World discovery should be active first");
+    assert.strictEqual(state.discovery.title, "Small World");
+    assert.strictEqual(state.targetingEffect, null, "Targeting should NOT be active while discovery is open");
+    assert.strictEqual(state.targetingQueue.length, 1, "To Battle should be waiting in targetingQueue");
+    
+    // Resolve Small World discovery
+    const chosenCard2 = state.discovery.cards[0];
+    await resolveDiscovery(chosenCard2);
+    assert.strictEqual(state.discovery, null, "Discovery should close");
+    
+    // Now To Battle targeting should automatically open!
+    assert.ok(state.targetingEffect, "To Battle targeting should now be active");
+    assert.strictEqual(state.targetingEffect.title, "To Battle");
+    
+    // Resolve To Battle targeting
+    await applyTargetedEffect(target3.id);
+    assert.strictEqual(state.targetingEffect, null, "Targeting should be cleared");
+    assert.strictEqual(target3.counters, 1, "Target should have received the +1/+1 counter");
 }
 
 async function testMichalTheAnointed() {
@@ -3219,6 +3317,7 @@ async function testAngoraPaladin() {
     assert.strictEqual(state.player.plane, 'Onora');
     // Clear discovery modal so we can trigger anomaly next
     state.discovery = null; 
+    state.discoveryQueue = [];
     
     // Anomaly
     const c1 = createTestCard("C1", { pt: '1/1'});
@@ -3246,6 +3345,7 @@ async function testSmallWorld() {
     card.onCast(state.player.board);
     assert.strictEqual(state.player.plane, 'Onora');
     state.discovery = null;
+    state.discoveryQueue = [];
 }
 
 async function testRestlessMigrants() {
@@ -3715,7 +3815,10 @@ async function runTests() {
     
     const testsByTier = {};
     
-    for (const test of allTests) {
+    const filter = process.argv[2];
+    const testsToRun = filter ? allTests.filter(t => t.name.toLowerCase().includes(filter.toLowerCase()) || t.card.toLowerCase().includes(filter.toLowerCase())) : allTests;
+
+    for (const test of testsToRun) {
         const cardData = fullCardPool.find(c => c.card_name === test.card);
         const tier = (cardData && cardData.tier !== undefined) ? cardData.tier : test.tier;
         

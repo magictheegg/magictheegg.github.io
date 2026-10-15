@@ -975,7 +975,7 @@ class BaseCard {
             const count = this.isFoil ? 2 : 1;
             const tokens = [];
             for (let i = 0; i < count; i++) {
-                const token = createToken('Construct', 'ACE', owner);
+                const token = createToken('Construct', 'AEX', owner);
                 if (token) {
                     token.pt = "2/2"; // Override the 1/1 to be 2/2
                     tokens.push(token);
@@ -2327,7 +2327,7 @@ class BaseCard {
             const hasDjitu = board.some(c => c.card_name === 'Jwanga Djitu');
             if (hasDjitu || board.length >= boardLimit) return;
 
-            const token = createToken('Jwanga Djitu', 'ACE', host.owner);
+            const token = createToken('Jwanga Djitu', 'KND', host.owner);
             if (!token) return;
 
             // Add to board to the right of host
@@ -3719,7 +3719,7 @@ class BaseCard {
             skins: [
                 { name: "Seto San, Dragonblade", avatar: "sets/DSS-files/img/32_Seto San, the Dragonblade.jpg" },
                 { name: "Seto San, Forlorn Savior", avatar: "sets/GHQ-files/img/31_Seto San, Forlorn Savior.jpg" },
-                { name: "Seto San, Glorious General", avatar: "sets/AEX-files/img/33_Seto San, Glorious General.png" },
+                { name: "Seto San, Glorious General", avatar: "sets/AEX-files/img/11.jpg" },
                 { name: "Seto San, Summer Blossom", avatar: "sets/ATB-files/img/31_Seto San, Summer Blossom.jpg" },
                 { name: "Seto San, the Sacred Hand", avatar: "sets/SUR-files/img/25_Seto San, the Sacred Hand.jpg" }
             ],
@@ -3780,7 +3780,7 @@ class BaseCard {
         DAWSON: {
             name: "Dawson",
             fullName: "Dawson, Black-Hearted",
-            avatar: "sets/AEX-files/img/198_Dawson, Black-Hearted.png",
+            avatar: "sets/AEX-files/img/60.jpg",
             skins: [
                 { name: "Dawson, Out for Blood", avatar: "https://schwa77.github.io/sets/KRK-files/img/74.png" }
             ],
@@ -3810,7 +3810,7 @@ class BaseCard {
         CRAIN: {
             name: "Crain",
             fullName: "Crain, Black-Blooded",
-            avatar: "sets/AEX-files/img/196_Crain, Black-Blooded.png",
+            avatar: "sets/AEX-files/img/61.jpg",
             skins: [
                 { name: "Captain Crain", avatar: "sets/GSS-files/img/14.png" },
                 { name: "Lord Ellison Crain", avatar: "sets/DSS-files/img/219_Lord Ellison Crain.jpg" }
@@ -3855,7 +3855,7 @@ class BaseCard {
             avatar: "sets/FAU-files/img/61_Herrea, Celestial Queen.jpg",
             skins: [
                 { name: "Herrea of the Night Stars", avatar: "sets/FAE-files/img/60_Herrea of the Night Stars.jpg" },
-                { name: "Herrea, the Star's Muse", avatar: "sets/AEX-files/img/57_Herrea, the Star's Muse.png" }
+                { name: "Herrea, the Star's Muse", avatar: "sets/AEX-files/img/28.jpg" }
             ],
             heroPower: {
                 name: "Connect the Dots",
@@ -3909,7 +3909,7 @@ class BaseCard {
         JAKE: {
             name: "Jake",
             fullName: "Jake and the Gang",
-            avatar: "sets/ACE-files/img/252_Jake and the Gang.jpg",
+            avatar: "img/coliseum/deprecated/252_Jake and the Gang.jpg",
             skins: [],
             heroPower: {
                 name: "Worldbraiding",
@@ -3974,7 +3974,7 @@ class BaseCard {
             skins: [],
             heroPower: {
                 name: "Timestreaming",
-                icon: "sets/ACE-files/img/108_Turn Back the Clock.jpg",
+                icon: "img/coliseum/deprecated/108_Turn Back the Clock.jpg",
                 text: "Every fourth reroll, Enoch augments the shop.",
                 isPassive: true
             }
@@ -3982,7 +3982,7 @@ class BaseCard {
         AUTUMN: {
             name: "Autumn",
             fullName: "Autumn, Wildwood Queen",
-            avatar: "sets/ACE-files/img/286_Autumn, Wildwood Queen.jpg",
+            avatar: "img/coliseum/deprecated/286_Autumn, Wildwood Queen.jpg",
             skins: [],
             heroPower: {
                 name: "Sound the Blauhorn",
@@ -4089,6 +4089,7 @@ class BaseCard {
         scrying: null,
         discovery: null,
         discoveryQueue: [],
+        promptSeq: 0,
         nextShopBonusCards: [],
         battleBoards: null,
         creaturesDiedThisShopPhase: false,
@@ -4243,33 +4244,76 @@ class BaseCard {
         }
     }
 
+    function processNextPrompt() {
+        if (state.targetingEffect || state.discovery || state.scrying) {
+            return;
+        }
+
+        const hasTargeting = state.targetingQueue.length > 0;
+        const hasDiscovery = state.discoveryQueue.length > 0;
+
+        if (!hasTargeting && !hasDiscovery) {
+            render();
+            return;
+        }
+
+        let nextType = null;
+        if (hasTargeting && !hasDiscovery) {
+            nextType = 'targeting';
+        } else if (!hasTargeting && hasDiscovery) {
+            nextType = 'discovery';
+        } else {
+            const targetingSeq = state.targetingQueue[0].queueSeq ?? 0;
+            const discoverySeq = state.discoveryQueue[0].queueSeq ?? 0;
+            if (targetingSeq <= discoverySeq) {
+                nextType = 'targeting';
+            } else {
+                nextType = 'discovery';
+            }
+        }
+
+        if (nextType === 'targeting') {
+            processTargetingQueue();
+        } else if (nextType === 'discovery') {
+            triggerNextDiscovery();
+        }
+    }
+
+    async function triggerNextDiscovery() {
+        if (state.discoveryQueue.length === 0) return;
+        if (state.targetingEffect || state.scrying) return;
+        state.discovery = state.discoveryQueue[0];
+
+        // AUTO-RESOLVE IN BATTLE (No interactive choices allowed)
+        while (state.phase === 'BATTLE' && state.discovery) {
+            const cards = state.discovery.cards;
+            if (cards && cards.length > 0) {
+                const random = cards[Math.floor(Math.random() * cards.length)];
+                await resolveDiscovery(random);
+            } else {
+                processDiscoveryQueue();
+            }
+        }
+
+        render();
+    }
+
     async function queueDiscovery(discoveryObj) {
         if (state.isSimulating) return;
-        state.discoveryQueue.push(discoveryObj);
-        if (!state.discovery) {
-            state.discovery = state.discoveryQueue[0];
-            
-            // AUTO-RESOLVE IN BATTLE (No interactive choices allowed)
-            while (state.phase === 'BATTLE' && state.discovery) {
-                const cards = state.discovery.cards;
-                if (cards && cards.length > 0) {
-                    const random = cards[Math.floor(Math.random() * cards.length)];
-                    await resolveDiscovery(random);
-                } else {
-                    processDiscoveryQueue();
-                }
-            }
-
-            render();
+        if (!discoveryObj.queueSeq) {
+            state.promptSeq = (state.promptSeq || 0) + 1;
+            discoveryObj.queueSeq = state.promptSeq;
         }
+        state.discoveryQueue.push(discoveryObj);
+        processNextPrompt();
     }
 
     function processDiscoveryQueue() {
         if (state.discoveryQueue.length > 0) {
             state.discoveryQueue.shift();
         }
-        state.discovery = state.discoveryQueue.length > 0 ? state.discoveryQueue[0] : null;
-        render();
+        state.discovery = null;
+        processNextPrompt();
     }
 
     async function resolveDiscovery(card) {
@@ -4759,12 +4803,16 @@ class BaseCard {
 
         state.turn = 1;
         state.phase = 'SHOP';
+        if (typeof document !== 'undefined' && document.body) {
+            document.body.classList.remove('in-battle');
+        }
         state.castingSpell = null;
         state.targetingEffect = null;
         state.targetingQueue = [];
         state.scrying = null;
         state.discovery = null;
         state.discoveryQueue = [];
+        state.promptSeq = 0;
         state.nextShopBonusCards = [];
         state.battleBoards = null;
         state.creaturesDiedThisShopPhase = false;
@@ -4926,10 +4974,10 @@ class BaseCard {
             if (state.castingSpell || state.targetingEffect) {
                 // Cancel Action Logic
                 if (state.targetingEffect && state.targetingEffect.sourceId && state.targetingEffect.wasCast && !state.targetingEffect.isHeroPower) {
-                    // Exception: Nightfall Raptor stays on board even if cancelled
-                    const isRaptor = (state.targetingEffect.effect === 'nightfall_raptor_bounce');
+                    // Exception: Optional ETBs (Nightfall Raptor, Shrewd Parliament) stay on board even if cancelled
+                    const isOptionalETB = (state.targetingEffect.effect === 'nightfall_raptor_bounce' || state.targetingEffect.effect === 'parliament_discard');
                     
-                    if (!isRaptor) {
+                    if (!isOptionalETB) {
                         // 1. If it's a creature already on the board (like Pusbag or Camel), return it to hand
                         const boardIndex = state.player.board.findIndex(c => c.id === state.targetingEffect.sourceId);
                         if (boardIndex !== -1) {
@@ -5064,13 +5112,16 @@ class BaseCard {
                 return;
             }
 
-            const tokenSuffix = (card.shape?.includes('token')) ? "t" : "";
-            const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
-            const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
-            const extension = card.image_type || card.set_image_type || "jpg";
-            let imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
-            if (card.is_remote && card.remote_host) {
-                imgPath = `${card.remote_host}/${imgPath}`;
+            let imgPath = card.image_url;
+            if (!imgPath) {
+                const tokenSuffix = (card.shape?.includes('token')) ? "t" : "";
+                const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
+                const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
+                const extension = card.image_type || card.set_image_type || "jpg";
+                imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+                if (card.is_remote && card.remote_host) {
+                    imgPath = `${card.remote_host}/${imgPath}`;
+                }
             }
             glossaryPreviewImg.src = imgPath;
 
@@ -5144,13 +5195,16 @@ class BaseCard {
                 tierCards.forEach(card => {
                     const item = document.createElement('div');
                     item.className = 'glossary-card-item';
-                    const tokenSuffix = (card.shape?.includes('token')) ? "t" : "";
-                    const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
-                    const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
-                    const extension = card.image_type || card.set_image_type || "jpg";
-                    let imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
-                    if (card.is_remote && card.remote_host) {
-                        imgPath = `${card.remote_host}/${imgPath}`;
+                    let imgPath = card.image_url;
+                    if (!imgPath) {
+                        const tokenSuffix = (card.shape?.includes('token')) ? "t" : "";
+                        const imageName = card.position ? card.position : `${card.number}${tokenSuffix}_${card.card_name}`;
+                        const doubleSuffix = (card.shape?.includes('double')) ? "_front" : "";
+                        const extension = card.image_type || card.set_image_type || "jpg";
+                        imgPath = `sets/${card.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+                        if (card.is_remote && card.remote_host) {
+                            imgPath = `${card.remote_host}/${imgPath}`;
+                        }
                     }
                     item.innerHTML = `<img src="${imgPath}" alt="${card.card_name}">`;
                     item.addEventListener('mouseenter', () => updateGlossaryPreview(card));
@@ -5671,6 +5725,9 @@ class BaseCard {
     // Game Loop
     function startShopTurn() {
         state.phase = 'SHOP';
+        if (typeof document !== 'undefined' && document.body) {
+            document.body.classList.remove('in-battle');
+        }
         state.spellsCastThisTurn = 0;
         state.creaturesDiedThisShopPhase = false;
         state.shopDeathsCount = 0;
@@ -6373,6 +6430,9 @@ class BaseCard {
 
     async function startBattleTurn() {
         state.phase = 'BATTLE';
+        if (typeof document !== 'undefined' && document.body) {
+            document.body.classList.add('in-battle');
+        }
         state.overallHpReducedThisFight = false;
         endTurnBtn.disabled = true;
         rerollBtn.disabled = true;
@@ -7053,13 +7113,18 @@ class BaseCard {
             effect.owner = effect.owner || state.targetingEffect.owner;
         }
 
-        state.targetingQueue.push(effect);
-        if (!state.targetingEffect) {
-            processTargetingQueue();
+        if (!effect.queueSeq) {
+            state.promptSeq = (state.promptSeq || 0) + 1;
+            effect.queueSeq = state.promptSeq;
         }
+
+        state.targetingQueue.push(effect);
+        processNextPrompt();
     }
 
     function processTargetingQueue() {
+        if (state.targetingEffect || state.discovery || state.scrying) return;
+
         while (state.targetingQueue.length > 0) {
             const effect = state.targetingQueue.shift();
             let hasTargets = true;
@@ -7113,7 +7178,7 @@ class BaseCard {
                         const randomTarget = validTargets[Math.floor(Math.random() * validTargets.length)];
                         state.targetingEffect = effect;
                         applyTargetedEffect(randomTarget.id);
-                        continue; // Process next in queue
+                        return;
                     }
                 }
 
@@ -7133,10 +7198,13 @@ class BaseCard {
                 state.targetingEffect = effect;
                 render();
                 return;
+            } else {
+                processNextPrompt();
+                return;
             }
         }
         state.targetingEffect = null;
-        render();
+        processNextPrompt();
     }
 
     function clearTargetingEffect(isSuccess = false) {
@@ -7159,7 +7227,7 @@ class BaseCard {
         }
 
         state.targetingEffect = null;
-        processTargetingQueue();
+        processNextPrompt();
     }
 
     async function applyTargetedEffect(targetId, counterType = null) {
@@ -7887,7 +7955,12 @@ class BaseCard {
 
                 const cardIdx = entity.hand.findIndex(c => c.id === targetId);
                 if (cardIdx !== -1) {
-                    entity.hand.splice(cardIdx, 1);
+                    const [discardedCard] = entity.hand.splice(cardIdx, 1);
+                    if (!discardedCard.isToken && discardedCard.shape !== 'token') {
+                        if (discardedCard.type && !discardedCard.type.toLowerCase().includes('creature')) {
+                            entity.spellGraveyard.push(discardedCard);
+                        }
+                    }
                     // Trigger Discovery from Graveyard
                     queueDiscovery({
                         cards: entity.spellGraveyard.map(s => CardFactory.create(s)),
@@ -8794,6 +8867,8 @@ class BaseCard {
             const callback = state.scrying.postScry;
             state.scrying = null;
             if (callback) callback();
+            processNextPrompt();
+            return;
         }
         render();
     }
@@ -8931,11 +9006,24 @@ class BaseCard {
             newIds.add(id);
             let el = existingMap.get(id);
 
+            const freshEl = createCardElement(instance, false, -1, []);
             if (!el) {
-                el = createCardElement(instance, false, -1, []);
+                el = freshEl;
             } else {
                 // If it exists, update its visual state if not busy
                 if (!instance.isPulsing) instance.syncVisualState();
+
+                // ALWAYS sync targeting/discard classes and interaction listeners to the existing element
+                const classesToSync = ['discard-outline', 'targetable', 'actionable-outline', 'grayed-out'];
+                classesToSync.forEach(cls => {
+                    if (freshEl.classList.contains(cls)) el.classList.add(cls);
+                    else el.classList.remove(cls);
+                });
+                el.onclick = freshEl.onclick;
+                el.draggable = freshEl.draggable;
+                el.ondragstart = freshEl.ondragstart;
+                el.ondragover = freshEl.ondragover;
+                el.ondrop = freshEl.ondrop;
             }
             
             // ALWAYS re-append to ensure DOM order matches hand order
@@ -9159,6 +9247,10 @@ class BaseCard {
     function render() {
         if (state.isSimulating) return;
 
+        if (typeof document !== 'undefined' && document.body) {
+            document.body.classList.toggle('in-battle', state.phase === 'BATTLE');
+        }
+
         // SYNC VISUAL STATE FOR ALL CARDS NOT PULSING
         const allCards = [
             ...state.player.hand,
@@ -9351,19 +9443,21 @@ class BaseCard {
         }
 
         // Toggle Reroll button styling
-        const isEnochSpecial = state.player.hero.name === "Enoch" && (state.player.rerollCount % 4 === 3);
-        rerollBtn.classList.toggle('special-reroll', isEnochSpecial);
+        if (rerollBtn) {
+            const isEnochSpecial = state.player?.hero?.name === "Enoch" && (state.player.rerollCount % 4 === 3);
+            rerollBtn.classList.toggle('special-reroll', isEnochSpecial);
 
-        if (state.player.gold < 1) {
-            rerollBtn.style.background = "#555";
-            rerollBtn.style.cursor = "not-allowed";
-        } else if (!isEnochSpecial) {
-            rerollBtn.style.background = "linear-gradient(to bottom, #2e7d32, #1b5e20)";
-            rerollBtn.style.cursor = "pointer";
-        } else {
-            // Background is handled by .special-reroll CSS
-            rerollBtn.style.background = "";
-            rerollBtn.style.cursor = "pointer";
+            if (state.player && state.player.gold < 1) {
+                rerollBtn.style.background = "#555";
+                rerollBtn.style.cursor = "not-allowed";
+            } else if (!isEnochSpecial) {
+                rerollBtn.style.background = "linear-gradient(to bottom, #2e7d32, #1b5e20)";
+                rerollBtn.style.cursor = "pointer";
+            } else {
+                // Background is handled by .special-reroll CSS
+                rerollBtn.style.background = "";
+                rerollBtn.style.cursor = "pointer";
+            }
         }
 
         // Toggle Fight HP visibility
@@ -9772,9 +9866,12 @@ class BaseCard {
         const doubleSuffix = (instance.shape?.includes('double')) ? "_front" : "";
         const extension = instance.image_type || instance.set_image_type || "jpg";
         
-        let artPath = `sets/${instance.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
-        if (instance.is_remote && instance.remote_host) {
-            artPath = `${instance.remote_host}/${artPath}`;
+        let artPath = instance.image_url;
+        if (!artPath) {
+            artPath = `sets/${instance.set}-files/img/${imageName}${doubleSuffix}.${extension}`;
+            if (instance.is_remote && instance.remote_host) {
+                artPath = `${instance.remote_host}/${artPath}`;
+            }
         }
         cardEl.querySelector('.card-art').src = artPath;
         
@@ -10034,11 +10131,14 @@ class BaseCard {
             const eqDoubleSuffix = (instance.equipment.shape?.includes('double')) ? "_front" : "";
             const eqExt = instance.equipment.image_type || instance.equipment.set_image_type || "jpg";
             
-            let eqPath = `sets/${instance.equipment.set}-files/img/${eqImageName}${eqDoubleSuffix}.${eqExt}`;
-            if (instance.equipment.is_remote && instance.equipment.remote_host) {
-                eqPath = `${instance.equipment.remote_host}/${eqPath}`;
-            } else if (instance.is_remote && instance.remote_host) {
-                eqPath = `${instance.remote_host}/${eqPath}`;
+            let eqPath = instance.equipment.image_url;
+            if (!eqPath) {
+                eqPath = `sets/${instance.equipment.set}-files/img/${eqImageName}${eqDoubleSuffix}.${eqExt}`;
+                if (instance.equipment.is_remote && instance.equipment.remote_host) {
+                    eqPath = `${instance.equipment.remote_host}/${eqPath}`;
+                } else if (instance.is_remote && instance.remote_host) {
+                    eqPath = `${instance.remote_host}/${eqPath}`;
+                }
             }
             img.src = eqPath;
             
@@ -10502,7 +10602,8 @@ if (typeof module !== 'undefined' && module.exports) {
         resolveDiscovery, toggleDiscoverySelection, confirmDiscovery, queueDiscovery,
         startShopTurn, tierUp, tierCosts, setAvailableCards, getAvailableCards, buyCard, pulseCardElement, rerollShop,
         checkHerreaReward, checkAutumnReward, resetTemporaryStats, sellCard, opponentPlayTurn,
-        traverseCirrusea, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue
+        traverseCirrusea, traverseOnora, traverseAlTabaq, processTargetingQueue, processDiscoveryQueue,
+        processNextPrompt, triggerNextDiscovery
     };
 }
 

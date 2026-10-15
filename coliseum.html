@@ -250,7 +250,7 @@
 
         .fanned-hand .card:first-child { margin-left: 0; }
 
-        .fanned-hand .card:hover {
+        body:not(.in-battle) .fanned-hand .card:hover {
             transform: scale(1.3) translateY(-50px) rotate(0deg) !important;
             z-index: 2000 !important;
             margin-left: 10px;  /* -50px baseline + 60px push */
@@ -259,7 +259,7 @@
             opacity: 1;
         }
 
-        .fanned-hand .card:first-child:hover {
+        body:not(.in-battle) .fanned-hand .card:first-child:hover {
             margin-left: 60px; /* 0 baseline + 60px push */
         }
 
@@ -277,7 +277,16 @@
             font-size: 10px;
         }
 
-        .card:hover:not(.attacking):not(.targetable):not(.grayed-out):not(.chained-card) {
+        body.in-battle .card {
+            pointer-events: none !important;
+            cursor: default !important;
+        }
+
+        body.in-battle .card:hover {
+            transform: none !important;
+        }
+
+        body:not(.in-battle) .card:hover:not(.attacking):not(.targetable):not(.grayed-out):not(.chained-card) {
             transform: scale(1.15) translateY(-10px);
             z-index: 100 !important;
         }
@@ -811,8 +820,8 @@
             animation: tooltip-fade-in 0.15s ease-out;
         }
 
-        .card:has(.counter-bubble:hover),
-        .card:has(.ghost-indicator:hover) {
+        body:not(.in-battle) .card:has(.counter-bubble:hover),
+        body:not(.in-battle) .card:has(.ghost-indicator:hover) {
             z-index: 1000 !important;
         }
 
@@ -1291,8 +1300,22 @@
         }
 
         .discard-outline {
-            outline: 4px solid #f44336; /* Bright Red */
-            box-shadow: 0 0 15px #f44336;
+            z-index: 600 !important;
+            outline: 4px solid #f44336 !important; /* Bright Red */
+            box-shadow: 0 0 25px #f44336 !important;
+            opacity: 1 !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+
+        .fanned-hand .card.discard-outline {
+            opacity: 1 !important;
+        }
+
+        .discard-outline:hover {
+            outline: 6px solid #ff5252 !important;
+            box-shadow: 0 0 35px #ff5252 !important;
+            opacity: 1 !important;
         }
 
         .damage-bubble {
@@ -1566,7 +1589,7 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
         }
 
-        .fanned-hand .card.foil:hover {
+        body:not(.in-battle) .fanned-hand .card.foil:hover {
             box-shadow: 0 0 50px rgba(255, 215, 0, 1), 0 15px 45px rgba(0,0,0,1);
         }
 
