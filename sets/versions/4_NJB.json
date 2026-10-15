@@ -1,5 +1,5 @@
 ﻿{
-    "name": "Nangjiao in Bloom",
+    "name": "",
     "formats": "standard",
     "image_type": "png",
     "draft_structure": "play booster",
@@ -288,7 +288,7 @@
             "number": 220,
             "color_identity": "UG",
             "cost": "{1}{G}{U}",
-            "rules_text": "Golden age\nGui can't attack or block unless you're in a renaissance.\n{T}: Reveal the top card of your library. If it's a land card, put it onto the battlefield. Otherwise, put it back on top or into your graveyard and you gain 3 life.",
+            "rules_text": "Golden age [i](If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)[/i]\nGui can't attack or block unless you're in a renaissance.\n{T}: Reveal the top card of your library. If it's a land card, put it onto the battlefield. Otherwise, put it back on top or into your graveyard and you gain 3 life.",
             "flavor_text": "[i][/i]",
             "pt": "5/6",
             "special_text": "",
@@ -437,7 +437,7 @@
             "alias2": "",
             "rules_text3": "",
             "rotated": false,
-            "notes": ""
+            "notes": "\n"
         },
         {
             "card_name": "Kiri, Corporeal Conduit",
@@ -447,7 +447,7 @@
             "number": 22,
             "color_identity": "W",
             "cost": "{1}{W}",
-            "rules_text": "Lifelink\nWhenever one or more other creatures with power 2 or less you control enter, you gain 1 life. If your life total is greater than your starting life total, draw a card instead. This ability triggers only once each turn.",
+            "rules_text": "Lifelink\nWhenever one or more other creatures with power 2 you conrol enter, you gain 1 life. If your life total is greater than your starting life total, draw a card instead. This ability triggers only once each turn.",
             "flavor_text": "[i][/i]",
             "pt": "1/4",
             "special_text": "",
@@ -456,7 +456,7 @@
             "loyalty": "",
             "artist": "Kaya Oldaker",
             "alias": "",
-            "position": "20",
+            "position": "21",
             "rotated": false,
             "notes": ""
         },
@@ -477,7 +477,7 @@
             "loyalty": "",
             "artist": "LIN .",
             "alias": "",
-            "position": "21",
+            "position": "22",
             "rotated": false,
             "notes": ""
         },
@@ -498,7 +498,7 @@
             "loyalty": "",
             "artist": "Ninth-art",
             "alias": "",
-            "position": "22",
+            "position": "23",
             "rotated": false,
             "notes": ""
         },
@@ -510,7 +510,7 @@
             "number": 6,
             "color_identity": "W",
             "cost": "{1}{W}{W}",
-            "rules_text": "Vigilance\nWhen Cai Lan enters, exile target nonland permanent an opponent controls with mana value 2 or less. Its controller creates an Idol token.",
+            "rules_text": "Vigilance\nWhen Cai Lan enters, exile target nonland permanent an opponent controls with mana value 2 or less. Its controller creates an Idol token. [i](It's an artifact with \u201c{1}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.\u201d)[/i]",
             "flavor_text": "[i]\u201cStrings are nothing more than chains, except this time [/i]I'm[i] in control.\u201d[/i]",
             "pt": "2/3",
             "special_text": "",
@@ -519,7 +519,7 @@
             "loyalty": "",
             "artist": "Eldar Seydamet",
             "alias": "",
-            "position": "23",
+            "position": "24",
             "rotated": false,
             "notes": ""
         },
@@ -540,7 +540,7 @@
             "loyalty": "",
             "artist": "Truyen Tran",
             "alias": "",
-            "position": "24",
+            "position": "25",
             "rotated": false,
             "notes": ""
         },
@@ -561,7 +561,7 @@
             "loyalty": "",
             "artist": "Darren Tan",
             "alias": "",
-            "position": "25",
+            "position": "26",
             "rotated": false,
             "notes": ""
         },
@@ -582,7 +582,7 @@
             "loyalty": "",
             "artist": "M MEIREN",
             "alias": "",
-            "position": "26",
+            "position": "27",
             "rotated": false,
             "notes": ""
         },
@@ -594,16 +594,16 @@
             "number": 9,
             "color_identity": "W",
             "cost": "{1}{W}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Chronicles of the Kitsune enters, create a 2/1 red and white Fox creature token.\n{2}{W}{W}: [i]Act I: Ascent[/i]\nCreature tokens you control get +1/+1 and have flying.\n{3}{W}{W}: [i]Act II: Descent[/i]\nAt the beginning of your end step, if you control no creatures, create Hu Li, a legendary 4/4 white Fox Spirit creature token with flying and lifelink.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Chronicles of the Kitsune enters, create a 2/1 red and white Fox creature token.\n{2}{W}{W}: [i]Act I: Ascent[/i]\nCreature tokens you control get +1/+1 and have flying.\n{3}{W}{W}: [i]Act II: Descent[/i]\nAt the beginning of your end step, if you control no creatures, create Hu Li, a legendary 4/4 white Fox Spirit creature token with flying and lifelink.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Chronicles of the Kitsune enters, create a 2/1 red and white Fox creature token.\n{2}{W}{W}: [i]Act I: Ascent[/i]\nCreature tokens you control get +1/+1 and have flying.\n{3}{W}{W}: [i]Act II: Descent[/i]\nAt the beginning of your end step, if you control no creatures, create Hu Li, a legendary 4/4 white Fox Spirit creature token with flying and lifelink.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Chronicles of the Kitsune enters, create a 2/1 red and white Fox creature token.\n{2}{W}{W}: [i]Act I: Ascent[/i]\nCreature tokens you control get +1/+1 and have flying.\n{3}{W}{W}: [i]Act II: Descent[/i]\nAt the beginning of your end step, if you control no creatures, create Hu Li, a legendary 4/4 white Fox Spirit creature token with flying and lifelink.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Art of Neight",
             "alias": "",
-            "position": "27",
+            "position": "28",
             "rotated": false,
             "notes": ""
         },
@@ -624,7 +624,7 @@
             "loyalty": "",
             "artist": "Tea Me",
             "alias": "",
-            "position": "28",
+            "position": "29",
             "rotated": false,
             "notes": ""
         },
@@ -645,7 +645,7 @@
             "loyalty": "",
             "artist": "\u5c0f \u4e50",
             "alias": "",
-            "position": "29",
+            "position": "30",
             "rotated": false,
             "notes": ""
         },
@@ -657,7 +657,7 @@
             "number": 251,
             "color_identity": "WUG",
             "cost": "{1}{G}{W}{U}",
-            "rules_text": "Flying\nWhenever another creature you control enters, create an Idol token.\nWhenever you put a +1/+1 counter on Ya'Ling, put a +1/+1 on each other creature you control. This ability triggers only once each turn.",
+            "rules_text": "Flying\nWhenever another creature you control enters, create an Idol token. [i](It's an artifact with \u201c{1}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.\u201d)[/i]\nWhenever you put a +1/+1 counter on Ya'Ling, put a +1/+1 on each other creature you control. This ability triggers only once each turn.",
             "flavor_text": "[i][/i]",
             "pt": "2/2",
             "special_text": "",
@@ -666,7 +666,7 @@
             "loyalty": "",
             "artist": "Ramza Ardyputra",
             "alias": "",
-            "position": "30",
+            "position": "31",
             "rotated": false,
             "notes": ""
         },
@@ -687,7 +687,7 @@
             "loyalty": "",
             "artist": "AZHI",
             "alias": "",
-            "position": "31",
+            "position": "32",
             "rotated": false,
             "notes": ""
         },
@@ -708,7 +708,7 @@
             "loyalty": "",
             "artist": "\u9e7f \u91ce",
             "alias": "",
-            "position": "32",
+            "position": "33",
             "rotated": false,
             "notes": ""
         },
@@ -729,7 +729,7 @@
             "loyalty": "",
             "artist": "lei min",
             "alias": "",
-            "position": "33",
+            "position": "34",
             "rotated": false,
             "notes": ""
         },
@@ -750,7 +750,7 @@
             "loyalty": "",
             "artist": "Cohesion-Eternal",
             "alias": "",
-            "position": "34",
+            "position": "35",
             "rotated": false,
             "notes": ""
         },
@@ -762,7 +762,7 @@
             "number": 78,
             "color_identity": "U",
             "cost": "{2}{U}{U}",
-            "rules_text": "You may have Sun Yun enter as a copy of any creature on the battlefield, except her name is Sun Yun, Master of Man, she's legendary in addition to her other types, and she has \u201c{2}{U}: Exile Sun Yun, then return her to the battlefield under her owner's control.\u201d",
+            "rules_text": "You may have Sun Yun enter as as copy of any creature on the battlefield, except her name is Sun Yun, Master of Man, she's legendary in addition to her other types, and she has \u201c{2}{U}: Exile Sun Yun, then return her to the battlefield under her owner's control.\u201d",
             "flavor_text": "[i][/i]",
             "pt": "1/3",
             "special_text": "",
@@ -771,7 +771,7 @@
             "loyalty": "",
             "artist": "nethvn",
             "alias": "",
-            "position": "35",
+            "position": "36",
             "rotated": false,
             "notes": ""
         },
@@ -792,7 +792,7 @@
             "loyalty": "",
             "artist": "Bason Chen",
             "alias": "",
-            "position": "36",
+            "position": "37",
             "rotated": false,
             "notes": ""
         },
@@ -813,7 +813,7 @@
             "loyalty": "",
             "artist": "Valleyhu",
             "alias": "",
-            "position": "37",
+            "position": "38",
             "rotated": false,
             "notes": ""
         },
@@ -834,7 +834,7 @@
             "loyalty": "",
             "artist": "nurikabenuri",
             "alias": "",
-            "position": "38",
+            "position": "39",
             "rotated": false,
             "notes": ""
         },
@@ -846,16 +846,16 @@
             "number": 59,
             "color_identity": "U",
             "cost": "{1}{U}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Juyu Offering Pool enters, reveal the top five cards of your library. You may put a noncreature card from among them into your hand. Put the rest on the bottom of your library in any order.\n{1}{U}: [i]Scales of Shara[/i]\nWhenever you cast a noncreature spell, put a +1/+1 counter on target creature you control.\n{6}{U}{U}: [i]Eye of Shojiro[/i]\nWhenever you cast a noncreature spell, create an 8/8 blue Kraken creature token.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Juyu Offering Pool enters, reveal the top five cards of your library. You may put a noncreature card from among them into your hand. Put the rest on the bottom of your library in any order.\n{1}{U}: [i]Scales of Shara[/i]\nWhenever you cast a noncreature spell, put a +1/+1 counter on target creature you control.\n{6}{U}{U}: [i]Eye of Shojiro[/i]\nWhenever you cast a noncreature spell, create an 8/8 blue Kraken creature token.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Juyu Offering Pool enters, reveal the top five cards of your library. You may put a noncreature card from among them into your hand. Put the rest on the bottom of your library in any order.\n{1}{U}: [i]Scales of Shara[/i]\nWhenever you cast a noncreature spell, put a +1/+1 counter on target creature you control.\n{6}{U}{U}: [i]Eye of Shojiro[/i]\nWhenever you cast a noncreature spell, create an 8/8 blue Kraken creature token.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Juyu Offering Pool enters, reveal the top five cards of your library. You may put a noncreature card from among them into your hand. Put the rest on the bottom of your library in any order.\n{1}{U}: [i]Scales of Shara[/i]\nWhenever you cast a noncreature spell, put a +1/+1 counter on target creature you control.\n{6}{U}{U}: [i]Eye of Shojiro[/i]\nWhenever you cast a noncreature spell, create an 8/8 blue Kraken creature token.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Alexander Nanitchkov",
             "alias": "",
-            "position": "39",
+            "position": "40",
             "rotated": false,
             "notes": ""
         },
@@ -876,7 +876,7 @@
             "loyalty": "",
             "artist": "Asep Ariyanto",
             "alias": "",
-            "position": "40",
+            "position": "41",
             "rotated": false,
             "notes": ""
         },
@@ -897,7 +897,7 @@
             "loyalty": "",
             "artist": "Shiyao Jiang",
             "alias": "",
-            "position": "41",
+            "position": "42",
             "rotated": false,
             "notes": ""
         },
@@ -918,7 +918,7 @@
             "loyalty": "",
             "artist": "Vera Velichko",
             "alias": "",
-            "position": "42",
+            "position": "43",
             "rotated": false,
             "notes": ""
         },
@@ -939,7 +939,7 @@
             "loyalty": "",
             "artist": "Brooke Huval",
             "alias": "",
-            "position": "43",
+            "position": "44",
             "rotated": false,
             "notes": ""
         },
@@ -960,7 +960,7 @@
             "loyalty": "",
             "artist": "Zeen Chin",
             "alias": "",
-            "position": "44",
+            "position": "45",
             "rotated": false,
             "notes": ""
         },
@@ -972,7 +972,7 @@
             "number": 96,
             "color_identity": "B",
             "cost": "{1}{B}",
-            "rules_text": "Discard a card: Ha'Eng gains deathtouch and lifelink until end of turn.\n[i]Inspired[/i] \u2014 Whenever Ha'Eng becomes untapped, look at the top card of your library and exile it face down. Then you may pay 3 life to put all cards exiled with Ha'Eng into your hand.",
+            "rules_text": "Discard a card: Ha'Eng gains deathtouch until end of turn.\n[i]Inspired[/i] \u2014 Whenever Ha'Eng becomes untapped, look at the top card of your library and exile it face down. Then you may pay 3 life to put all cards exiled with Ha'Eng into your hand.",
             "flavor_text": "[i][/i]",
             "pt": "2/3",
             "special_text": "",
@@ -981,7 +981,7 @@
             "loyalty": "",
             "artist": "zhang bo",
             "alias": "",
-            "position": "45",
+            "position": "46",
             "rotated": false,
             "notes": ""
         },
@@ -1002,7 +1002,7 @@
             "loyalty": "",
             "artist": "Dr_BoYs",
             "alias": "",
-            "position": "46",
+            "position": "47",
             "rotated": false,
             "notes": ""
         },
@@ -1023,7 +1023,7 @@
             "loyalty": "",
             "artist": "Verehin",
             "alias": "",
-            "position": "47",
+            "position": "48",
             "rotated": false,
             "notes": ""
         },
@@ -1044,7 +1044,7 @@
             "loyalty": "",
             "artist": "Nastya-Lehn",
             "alias": "",
-            "position": "48",
+            "position": "49",
             "rotated": false,
             "notes": ""
         },
@@ -1065,7 +1065,7 @@
             "loyalty": "",
             "artist": "Simon Fetscher",
             "alias": "",
-            "position": "49",
+            "position": "50",
             "rotated": false,
             "notes": ""
         },
@@ -1086,7 +1086,7 @@
             "loyalty": "",
             "artist": "Marta Danecka",
             "alias": "",
-            "position": "50",
+            "position": "51",
             "rotated": false,
             "notes": ""
         },
@@ -1098,16 +1098,16 @@
             "number": 121,
             "color_identity": "B",
             "cost": "{1}{B}{B}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Xie'e Amphitheatre enters, search your library for a card and exile it face down, then shuffle. You may cast that card on any turn you sacrificed a permanent.\n{B}: [i]Intro: Together[/i]\nAt the beginning of your upkeep, you lose 1 life and create a 0/1 black Cultist creature token with \u201c{1}{B}{B}, Sacrifice three Cultists: Create a 5/5 black Demon creature token.\u201d\n{2}{B}: [i]Finale: Alone[/i]\nWhenever a Demon you control enters, each opponent loses life equal to its power and you gain that much life.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Xie'e Amphitheatre enters, search your library for a card and exile it face down, then shuffle. You may cast that card on any turn you sacrificed a permanent.\n{B}: [i]Intro: Together[/i]\nAt the beginning of your upkeep, you lose 1 life and create a 0/1 black Cultist creature token with \u201c{1}{B}{B}, Sacrifice three Cultists: Create a 5/5 black Demon creature token.\u201d\n{2}{B}: [i]Finale: Alone[/i]\nWhenever a Demon you control enters, each opponent loses life equal to its power and you gain that much life.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Xie'e Amphitheatre enters, search your library for a card and exile it face down, then shuffle. You may cast that card on any turn you sacrificed a permanent.\n{B}: [i]Intro: Together[/i]\nAt the beginning of your upkeep, you lose 1 life and create a 0/1 black Cultist creature token with \u201c{1}{B}{B}, Sacrifice three Cultists: Create a 5/5 black Demon creature token.\u201d\n{2}{B}: [i]Finale: Alone[/i]\nWhenever a Demon you control enters, each opponent loses life equal to its power and you gain that much life.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Xie'e Amphitheatre enters, search your library for a card and exile it face down, then shuffle. You may cast that card on any turn you sacrificed a permanent.\n{B}: [i]Intro: Together[/i]\nAt the beginning of your upkeep, you lose 1 life and create a 0/1 black Cultist creature token with \u201c{1}{B}{B}, Sacrifice three Cultists: Create a 5/5 black Demon creature token.\u201d\n{2}{B}: [i]Finale: Alone[/i]\nWhenever a Demon you control enters, each opponent loses life equal to its power and you gain that much life.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "u kyoung An",
             "alias": "",
-            "position": "51",
+            "position": "52",
             "rotated": false,
             "notes": ""
         },
@@ -1128,7 +1128,7 @@
             "loyalty": "",
             "artist": "Wei Guan",
             "alias": "",
-            "position": "52",
+            "position": "53",
             "rotated": false,
             "notes": ""
         },
@@ -1149,7 +1149,7 @@
             "loyalty": "",
             "artist": "Kristian N\u00fcsser",
             "alias": "",
-            "position": "53",
+            "position": "54",
             "rotated": false,
             "notes": ""
         },
@@ -1170,7 +1170,7 @@
             "loyalty": "",
             "artist": "Bagoum",
             "alias": "",
-            "position": "54",
+            "position": "55",
             "rotated": false,
             "notes": ""
         },
@@ -1191,7 +1191,7 @@
             "loyalty": "",
             "artist": "Phill-Art",
             "alias": "",
-            "position": "55",
+            "position": "56",
             "rotated": false,
             "notes": ""
         },
@@ -1212,7 +1212,7 @@
             "loyalty": "",
             "artist": "pamansaz",
             "alias": "",
-            "position": "56",
+            "position": "57",
             "rotated": false,
             "notes": ""
         },
@@ -1233,7 +1233,7 @@
             "loyalty": "",
             "artist": "KOOka",
             "alias": "",
-            "position": "57",
+            "position": "58",
             "rotated": false,
             "notes": ""
         },
@@ -1254,7 +1254,7 @@
             "loyalty": "",
             "artist": "Sandara Tang",
             "alias": "",
-            "position": "58",
+            "position": "59",
             "rotated": false,
             "notes": ""
         },
@@ -1275,7 +1275,7 @@
             "loyalty": "",
             "artist": "Joshua Raphael",
             "alias": "",
-            "position": "59",
+            "position": "60",
             "rotated": false,
             "notes": ""
         },
@@ -1296,7 +1296,7 @@
             "loyalty": "",
             "artist": "NIXEU",
             "alias": "",
-            "position": "60",
+            "position": "61",
             "rotated": false,
             "notes": ""
         },
@@ -1317,7 +1317,7 @@
             "loyalty": "",
             "artist": "chevsy",
             "alias": "",
-            "position": "61",
+            "position": "62",
             "rotated": false,
             "notes": ""
         },
@@ -1338,7 +1338,7 @@
             "loyalty": "",
             "artist": "xiachunkun",
             "alias": "",
-            "position": "62",
+            "position": "63",
             "rotated": false,
             "notes": ""
         },
@@ -1350,16 +1350,16 @@
             "number": 124,
             "color_identity": "R",
             "cost": "{1}{R}{R}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Art of War enters, if a source you control would deal damage this turn, it deals double that damage instead.\n{2}{R}{R}: [i]Laying Plans[/i]\nThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.\n{2}{R}{R}: [i]Waging War[/i]\nWhenever a creature you control attacks, create a token copy of it that's tapped and attacking, except the token isn't legendary. Exile those tokens at end of combat.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Art of War enters, if a source you control would deal damage this turn, it deals double that damage instead.\n{2}{R}{R}: [i]Laying Plans[/i]\nThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.\n{2}{R}{R}: [i]Waging War[/i]\nWhenever a creature you control attacks, create a token copy of it that's tapped and attacking, except the token isn't legendary. Exile those tokens at end of combat.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Art of War enters, if a source you control would deal damage this turn, it deals double that damage instead.\n{2}{R}{R}: [i]Laying Plans[/i]\nThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.\n{2}{R}{R}: [i]Waging War[/i]\nWhenever a creature you control attacks, create a token copy of it that's tapped and attacking, except the token isn't legendary. Exile those tokens at end of combat.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Art of War enters, if a source you control would deal damage this turn, it deals double that damage instead.\n{2}{R}{R}: [i]Laying Plans[/i]\nThe first time you attack each turn, untap each creature you control. After this phase, there is an additional combat phase.\n{2}{R}{R}: [i]Waging War[/i]\nWhenever a creature you control attacks, create a token copy of it that's tapped and attacking, except the token isn't legendary. Exile those tokens at end of combat.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Koei Tecmo Games",
             "alias": "",
-            "position": "63",
+            "position": "64",
             "rotated": false,
             "notes": ""
         },
@@ -1380,7 +1380,7 @@
             "loyalty": "",
             "artist": "Lucas Parolin",
             "alias": "",
-            "position": "64",
+            "position": "65",
             "rotated": false,
             "notes": ""
         },
@@ -1401,7 +1401,7 @@
             "loyalty": "",
             "artist": "Nicole Altenhoff",
             "alias": "",
-            "position": "65",
+            "position": "66",
             "rotated": false,
             "notes": ""
         },
@@ -1422,7 +1422,7 @@
             "loyalty": "",
             "artist": "Laurent Renier",
             "alias": "",
-            "position": "66",
+            "position": "67",
             "rotated": false,
             "notes": ""
         },
@@ -1443,7 +1443,7 @@
             "loyalty": "",
             "artist": "Yujin Jung",
             "alias": "",
-            "position": "67",
+            "position": "68",
             "rotated": false,
             "notes": ""
         },
@@ -1464,7 +1464,7 @@
             "loyalty": "",
             "artist": "Kipine",
             "alias": "",
-            "position": "68",
+            "position": "69",
             "rotated": false,
             "notes": ""
         },
@@ -1485,7 +1485,7 @@
             "loyalty": "",
             "artist": "AlectorFencer",
             "alias": "",
-            "position": "69",
+            "position": "70",
             "rotated": false,
             "notes": ""
         },
@@ -1506,7 +1506,7 @@
             "loyalty": "",
             "artist": "Xision Wu",
             "alias": "",
-            "position": "70",
+            "position": "71",
             "rotated": false,
             "notes": ""
         },
@@ -1527,7 +1527,7 @@
             "loyalty": "",
             "artist": "Robson Michel",
             "alias": "",
-            "position": "71",
+            "position": "72",
             "rotated": false,
             "notes": ""
         },
@@ -1548,7 +1548,7 @@
             "loyalty": "",
             "artist": "Sangsoo Jeong",
             "alias": "",
-            "position": "72",
+            "position": "73",
             "rotated": false,
             "notes": ""
         },
@@ -1569,7 +1569,7 @@
             "loyalty": "",
             "artist": "Lukasz Jaskolski",
             "alias": "",
-            "position": "73",
+            "position": "74",
             "rotated": false,
             "notes": ""
         },
@@ -1590,7 +1590,7 @@
             "loyalty": "",
             "artist": "Rui Li",
             "alias": "",
-            "position": "74",
+            "position": "75",
             "rotated": false,
             "notes": ""
         },
@@ -1602,16 +1602,16 @@
             "number": 204,
             "color_identity": "G",
             "cost": "{G}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Wildlife Sketches enters, reveal the top five cards of your library. Put a creature card from among them into your hand and the rest on the bottom in any order.\n{1}{G}: [i]Carnation Petals[/i]\nYou may cast creature spells as though they had flash.\n{3}{G}: [i]Pecking Order[/i]\nAt the beginning of your upkeep, you may sacrifice a creature. If you do, search your library for a creature card with mana value 1 greater than the sacrificed creature's and put it onto the battlefield, then shuffle.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Wildlife Sketches enters, reveal the top five cards of your library. Put a creature card from among them into your hand and the rest on the bottom in any order.\n{1}{G}: [i]Carnation Petals[/i]\nYou may cast creature spells as though they had flash.\n{3}{G}: [i]Pecking Order[/i]\nAt the beginning of your upkeep, you may sacrifice a creature. If you do, search your library for a creature card with mana value 1 greater than the sacrificed creature's mana value, put it onto the battlefield, then shuffle.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Wildlife Sketches enters, reveal the top five cards of your library. Put a creature card from among them into your hand and the rest on the bottom in any order.\n{1}{G}: [i]Carnation Petals[/i]\nYou may cast creature spells as though they had flash.\n{3}{G}: [i]Pecking Order[/i]\nAt the beginning of your upkeep, you may sacrifice a creature. If you do, search your library for a creature card with mana value 1 greater than the sacrificed creature's and put it onto the battlefield, then shuffle.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Wildlife Sketches enters, reveal the top five cards of your library. Put a creature card from among them into your hand and the rest on the bottom in any order.\n{1}{G}: [i]Carnation Petals[/i]\nYou may cast creature spells as though they had flash.\n{3}{G}: [i]Pecking Order[/i]\nAt the beginning of your upkeep, you may sacrifice a creature. If you do, search your library for a creature card with mana value 1 greater than the sacrificed creature's mana value, put it onto the battlefield, then shuffle.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Vicky Brago-Michelle",
             "alias": "",
-            "position": "75",
+            "position": "76",
             "rotated": false,
             "notes": ""
         },
@@ -1632,7 +1632,7 @@
             "loyalty": "",
             "artist": "\u4e0d\u77e5\u6709\u82b1",
             "alias": "",
-            "position": "76",
+            "position": "77",
             "rotated": false,
             "notes": ""
         },
@@ -1653,7 +1653,7 @@
             "loyalty": "",
             "artist": "Bob Eggleton",
             "alias": "",
-            "position": "77",
+            "position": "78",
             "rotated": false,
             "notes": ""
         },
@@ -1674,7 +1674,7 @@
             "loyalty": "",
             "artist": "QQPaoPao",
             "alias": "",
-            "position": "78",
+            "position": "79",
             "rotated": false,
             "notes": ""
         },
@@ -1695,7 +1695,7 @@
             "loyalty": "",
             "artist": "Moregames Studio",
             "alias": "",
-            "position": "79",
+            "position": "80",
             "rotated": false,
             "notes": ""
         },
@@ -1716,7 +1716,7 @@
             "loyalty": "",
             "artist": "Dreamplay Games",
             "alias": "",
-            "position": "80",
+            "position": "81",
             "rotated": false,
             "notes": ""
         },
@@ -1737,9 +1737,9 @@
             "loyalty": "",
             "artist": "Dat Pham",
             "alias": "",
-            "position": "81",
+            "position": "82",
             "rotated": false,
-            "notes": ""
+            "notes": "nerfed version"
         },
         {
             "card_name": "Xueyang San",
@@ -1758,7 +1758,7 @@
             "loyalty": "",
             "artist": "changyang",
             "alias": "",
-            "position": "82",
+            "position": "83",
             "rotated": false,
             "notes": ""
         },
@@ -1779,7 +1779,7 @@
             "loyalty": "",
             "artist": "Lockheed",
             "alias": "",
-            "position": "83",
+            "position": "84",
             "rotated": false,
             "notes": ""
         },
@@ -1800,7 +1800,7 @@
             "loyalty": "",
             "artist": "Nadia Kim",
             "alias": "",
-            "position": "84",
+            "position": "85",
             "rotated": false,
             "notes": ""
         },
@@ -1821,7 +1821,7 @@
             "loyalty": "",
             "artist": "Vawie-Art",
             "alias": "",
-            "position": "85",
+            "position": "86",
             "rotated": false,
             "notes": ""
         },
@@ -1842,7 +1842,7 @@
             "loyalty": "",
             "artist": "3Q Studio",
             "alias": "",
-            "position": "86",
+            "position": "87",
             "rotated": false,
             "notes": ""
         },
@@ -1863,7 +1863,7 @@
             "loyalty": "",
             "artist": "Vawie-Art",
             "alias": "",
-            "position": "87",
+            "position": "88",
             "rotated": false,
             "notes": ""
         },
@@ -1884,7 +1884,7 @@
             "loyalty": "",
             "artist": "fongshader",
             "alias": "",
-            "position": "88",
+            "position": "89",
             "rotated": false,
             "notes": ""
         },
@@ -1905,7 +1905,7 @@
             "loyalty": "",
             "artist": "Chenbin Zheng",
             "alias": "",
-            "position": "89",
+            "position": "90",
             "rotated": false,
             "notes": ""
         },
@@ -1926,7 +1926,7 @@
             "loyalty": "",
             "artist": "Wei Yu Han Yan",
             "alias": "",
-            "position": "90",
+            "position": "91",
             "rotated": false,
             "notes": ""
         },
@@ -1947,7 +1947,7 @@
             "loyalty": "",
             "artist": "Hazem Ameen",
             "alias": "",
-            "position": "91",
+            "position": "92",
             "rotated": false,
             "notes": ""
         },
@@ -1968,7 +1968,7 @@
             "loyalty": "",
             "artist": "Sylvain Sarrailh",
             "alias": "",
-            "position": "92",
+            "position": "93",
             "rotated": false,
             "notes": ""
         },
@@ -1989,7 +1989,7 @@
             "loyalty": "",
             "artist": "Dong Jingchen",
             "alias": "",
-            "position": "93",
+            "position": "94",
             "rotated": false,
             "notes": ""
         },
@@ -2010,7 +2010,7 @@
             "loyalty": "",
             "artist": "Anato Finnstark",
             "alias": "",
-            "position": "94",
+            "position": "95",
             "rotated": false,
             "notes": ""
         },
@@ -2031,7 +2031,7 @@
             "loyalty": "",
             "artist": "Noel Peang",
             "alias": "",
-            "position": "95",
+            "position": "96",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -2052,7 +2052,7 @@
             "loyalty": "",
             "artist": "Heng Tang",
             "alias": "",
-            "position": "96",
+            "position": "97",
             "rotated": false,
             "notes": ""
         },
@@ -2073,7 +2073,7 @@
             "loyalty": "",
             "artist": "WalkingMelons",
             "alias": "",
-            "position": "97",
+            "position": "98",
             "rotated": false,
             "notes": ""
         },
@@ -2094,7 +2094,7 @@
             "loyalty": "",
             "artist": "7thOrange",
             "alias": "",
-            "position": "98",
+            "position": "99",
             "rotated": false,
             "notes": ""
         },
@@ -2106,7 +2106,7 @@
             "number": 64,
             "color_identity": "U",
             "cost": "{6}{U}{U}",
-            "rules_text": "Trample\nGolden age [i](If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)[/i]\nWhen Nonpareil of the Abyss enters, create an Idol token.\nNonpareil of the Abyss has ward {8} as long as you're in a renaissance.",
+            "rules_text": "Trample\nGolden age [i](If you cast an instant or sorcery spell, activated a nonmana ability, and attacked this turn, enter a renaissance for this game.)[/i]\nWhen Nonpareil of the Abyss enters, create an Idol token. [i](It's an artifact with \u201c{1}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.\u201d)[/i]\nNonpareil of the Abyss has ward {8} as long as you're in a renaissance.",
             "flavor_text": "[i][/i]",
             "pt": "8/8",
             "special_text": "",
@@ -2115,7 +2115,7 @@
             "loyalty": "",
             "artist": "Takamatsu",
             "alias": "",
-            "position": "99",
+            "position": "100",
             "rotated": false,
             "notes": ""
         },
@@ -2136,7 +2136,7 @@
             "loyalty": "",
             "artist": "Simone Torcasio",
             "alias": "",
-            "position": "100",
+            "position": "101",
             "rotated": false,
             "notes": ""
         },
@@ -2157,7 +2157,7 @@
             "loyalty": "",
             "artist": "Hu Mengyin",
             "alias": "",
-            "position": "101",
+            "position": "102",
             "rotated": false,
             "notes": ""
         },
@@ -2178,7 +2178,7 @@
             "loyalty": "",
             "artist": "Lei Kongsheng",
             "alias": "",
-            "position": "102",
+            "position": "103",
             "rotated": false,
             "notes": ""
         },
@@ -2199,7 +2199,7 @@
             "loyalty": "",
             "artist": "Stephen Joto",
             "alias": "",
-            "position": "103",
+            "position": "104",
             "rotated": false,
             "notes": ""
         },
@@ -2220,7 +2220,7 @@
             "loyalty": "",
             "artist": "Hou China",
             "alias": "",
-            "position": "104",
+            "position": "105",
             "rotated": false,
             "notes": ""
         },
@@ -2241,7 +2241,7 @@
             "loyalty": "",
             "artist": "Liu Yu",
             "alias": "",
-            "position": "105",
+            "position": "106",
             "rotated": false,
             "notes": ""
         },
@@ -2262,7 +2262,7 @@
             "loyalty": "",
             "artist": "Adam Paquette",
             "alias": "",
-            "position": "106",
+            "position": "107",
             "rotated": false,
             "notes": ""
         },
@@ -2283,7 +2283,7 @@
             "loyalty": "",
             "artist": "Joshua Cairos",
             "alias": "",
-            "position": "107",
+            "position": "108",
             "rotated": false,
             "notes": ""
         },
@@ -2304,7 +2304,7 @@
             "loyalty": "",
             "artist": "Yuanyuan Wang",
             "alias": "",
-            "position": "108",
+            "position": "109",
             "rotated": false,
             "notes": ""
         },
@@ -2325,7 +2325,7 @@
             "loyalty": "",
             "artist": "iamagri",
             "alias": "",
-            "position": "109",
+            "position": "110",
             "rotated": false,
             "notes": ""
         },
@@ -2346,7 +2346,7 @@
             "loyalty": "",
             "artist": "Heo yeyoung",
             "alias": "",
-            "position": "110",
+            "position": "111",
             "rotated": false,
             "notes": ""
         },
@@ -2367,7 +2367,7 @@
             "loyalty": "",
             "artist": "Dong Geon Son",
             "alias": "",
-            "position": "111",
+            "position": "112",
             "rotated": false,
             "notes": ""
         },
@@ -2388,7 +2388,7 @@
             "loyalty": "",
             "artist": "Amber Ye",
             "alias": "",
-            "position": "112",
+            "position": "113",
             "rotated": false,
             "notes": ""
         },
@@ -2409,7 +2409,7 @@
             "loyalty": "",
             "artist": "Hua Lu",
             "alias": "",
-            "position": "113",
+            "position": "114",
             "rotated": false,
             "notes": ""
         },
@@ -2430,7 +2430,7 @@
             "loyalty": "",
             "artist": "Tomasz Kwiatkowski",
             "alias": "",
-            "position": "114",
+            "position": "115",
             "rotated": false,
             "notes": ""
         },
@@ -2451,7 +2451,7 @@
             "loyalty": "",
             "artist": "Song Nan Li",
             "alias": "",
-            "position": "115",
+            "position": "116",
             "rotated": false,
             "notes": ""
         },
@@ -2472,7 +2472,7 @@
             "loyalty": "",
             "artist": "Nicholas Jiang",
             "alias": "",
-            "position": "116",
+            "position": "117",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -2493,7 +2493,7 @@
             "loyalty": "",
             "artist": "huang power",
             "alias": "",
-            "position": "117",
+            "position": "118",
             "rotated": false,
             "notes": ""
         },
@@ -2514,7 +2514,7 @@
             "loyalty": "",
             "artist": "Valeriy Vegera",
             "alias": "",
-            "position": "118",
+            "position": "119",
             "rotated": false,
             "notes": ""
         },
@@ -2535,7 +2535,7 @@
             "loyalty": "",
             "artist": "Kuri Huang",
             "alias": "",
-            "position": "119",
+            "position": "120",
             "rotated": false,
             "notes": ""
         },
@@ -2556,7 +2556,7 @@
             "loyalty": "",
             "artist": "Vawie-Art",
             "alias": "",
-            "position": "120",
+            "position": "121",
             "rotated": false,
             "notes": ""
         },
@@ -2577,7 +2577,7 @@
             "loyalty": "",
             "artist": "Ben Lawrence",
             "alias": "",
-            "position": "121",
+            "position": "122",
             "rotated": false,
             "notes": ""
         },
@@ -2598,7 +2598,7 @@
             "loyalty": "",
             "artist": "Feimo",
             "alias": "",
-            "position": "122",
+            "position": "123",
             "rotated": false,
             "notes": ""
         },
@@ -2619,7 +2619,7 @@
             "loyalty": "",
             "artist": "JamesinChina",
             "alias": "",
-            "position": "123",
+            "position": "124",
             "rotated": false,
             "notes": ""
         },
@@ -2640,7 +2640,7 @@
             "loyalty": "",
             "artist": "Edward Aldrich",
             "alias": "",
-            "position": "124",
+            "position": "125",
             "rotated": false,
             "notes": ""
         },
@@ -2661,7 +2661,7 @@
             "loyalty": "",
             "artist": "Crista Forest",
             "alias": "",
-            "position": "125",
+            "position": "126",
             "rotated": false,
             "notes": ""
         },
@@ -2682,7 +2682,7 @@
             "loyalty": "",
             "artist": "kazashino",
             "alias": "",
-            "position": "126",
+            "position": "127",
             "rotated": false,
             "notes": ""
         },
@@ -2703,7 +2703,7 @@
             "loyalty": "",
             "artist": "FenghuaZhongg",
             "alias": "",
-            "position": "127",
+            "position": "128",
             "rotated": false,
             "notes": ""
         },
@@ -2724,7 +2724,7 @@
             "loyalty": "",
             "artist": "Chen Dong",
             "alias": "",
-            "position": "128",
+            "position": "129",
             "rotated": false,
             "notes": ""
         },
@@ -2745,7 +2745,7 @@
             "loyalty": "",
             "artist": "M MEIREN",
             "alias": "",
-            "position": "129",
+            "position": "130",
             "rotated": false,
             "notes": ""
         },
@@ -2766,7 +2766,7 @@
             "loyalty": "",
             "artist": "Alexander Mokhov",
             "alias": "",
-            "position": "130",
+            "position": "131",
             "rotated": false,
             "notes": ""
         },
@@ -2787,7 +2787,7 @@
             "loyalty": "",
             "artist": "Da Congjun",
             "alias": "",
-            "position": "131",
+            "position": "132",
             "rotated": false,
             "notes": ""
         },
@@ -2808,7 +2808,7 @@
             "loyalty": "",
             "artist": "Caesty",
             "alias": "",
-            "position": "132",
+            "position": "133",
             "rotated": false,
             "notes": ""
         },
@@ -2829,7 +2829,7 @@
             "loyalty": "",
             "artist": "Hu Mengyin",
             "alias": "",
-            "position": "133",
+            "position": "134",
             "rotated": false,
             "notes": ""
         },
@@ -2842,7 +2842,7 @@
             "color_identity": "G",
             "cost": "{2}{G}",
             "rules_text": "Reach\nWhen Chaparral Hunter enters, if a permanent you controlled died this turn, draw a card and you gain 3 life.",
-            "flavor_text": "[i]At lost last, Lan returned to the hunting fields\u2014not for necessity nor fear, but for the glory of the Wild.[/i]",
+            "flavor_text": "[i]At long last, Lan returned to the hunting fields\u2014not for necessity, nor fear, but for the glory of the Wild.[/i]",
             "pt": "2/3",
             "special_text": "",
             "shape": "normal",
@@ -2850,7 +2850,7 @@
             "loyalty": "",
             "artist": "Wenjun Lin",
             "alias": "",
-            "position": "134",
+            "position": "135",
             "rotated": false,
             "notes": ""
         },
@@ -2871,7 +2871,7 @@
             "loyalty": "",
             "artist": "linkense7en",
             "alias": "",
-            "position": "135",
+            "position": "136",
             "rotated": false,
             "notes": ""
         },
@@ -2892,7 +2892,7 @@
             "loyalty": "",
             "artist": "Hou China",
             "alias": "",
-            "position": "136",
+            "position": "137",
             "rotated": false,
             "notes": ""
         },
@@ -2913,7 +2913,7 @@
             "loyalty": "",
             "artist": "Maxa-art",
             "alias": "",
-            "position": "137",
+            "position": "138",
             "rotated": false,
             "notes": ""
         },
@@ -2934,7 +2934,7 @@
             "loyalty": "",
             "artist": "Red Pencil Art",
             "alias": "",
-            "position": "138",
+            "position": "139",
             "rotated": false,
             "notes": ""
         },
@@ -2955,7 +2955,7 @@
             "loyalty": "",
             "artist": "Turkiish",
             "alias": "",
-            "position": "139",
+            "position": "140",
             "rotated": false,
             "notes": ""
         },
@@ -2976,7 +2976,7 @@
             "loyalty": "",
             "artist": "Jarold Sng",
             "alias": "",
-            "position": "140",
+            "position": "141",
             "rotated": false,
             "notes": ""
         },
@@ -2997,7 +2997,7 @@
             "loyalty": "",
             "artist": "iamagri",
             "alias": "",
-            "position": "141",
+            "position": "142",
             "rotated": false,
             "notes": ""
         },
@@ -3018,7 +3018,7 @@
             "loyalty": "",
             "artist": "Dhaval Desai",
             "alias": "",
-            "position": "142",
+            "position": "143",
             "rotated": false,
             "notes": ""
         },
@@ -3039,7 +3039,7 @@
             "loyalty": "",
             "artist": "Dan Zhao",
             "alias": "",
-            "position": "143",
+            "position": "144",
             "rotated": false,
             "notes": ""
         },
@@ -3051,7 +3051,7 @@
             "number": 219,
             "color_identity": "WU",
             "cost": "{2}{W}{U}",
-            "rules_text": "Flying\nWhen Gemscale Drake enters, create a Treasure token.\nWhenever Gemscale Drake deals combat damage to a player, scry 1. If you control three or more artifacts, draw a card instead.",
+            "rules_text": "Flying\nWhen Gemscale Drake enters, create a Treasure token. [i](It's an artifact with \u201c{T}, Sacrifice this token: Add one mana of any color.\u201d)[/i]\nWhenever Gemscale Drake deals combat damage to a player, scry 1. If you control three or more artifacts, draw a card instead.",
             "flavor_text": "[i][/i]",
             "pt": "3/2",
             "special_text": "",
@@ -3060,7 +3060,7 @@
             "loyalty": "",
             "artist": "Svetlana Lazogreeva",
             "alias": "",
-            "position": "144",
+            "position": "145",
             "rotated": false,
             "notes": ""
         },
@@ -3072,16 +3072,16 @@
             "number": 245,
             "color_identity": "WU",
             "cost": "{W}{U}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Those Lost to the Waves enters, search your library for an artifact card with mana value 3 or less, reveal it, put it into your hand, then shuffle.\n{1}{W}: [i]Fight the Current[/i]\nEquipped creatures you control get +1/+1.\n{3}{U}: [i]Soul of the Sea[/i]\nAt the beginning of combat on your turn, you may have target noncreature artifact become a 3/3 artifact creature until end of turn.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Those Lost to the Waves enters, search your library for an artifact card with mana value 3 or less, reveal it, put it into your hand, then shuffle.\n{1}{W}: [i]Fight the Current[/i]\nEquipped creatures you control get +1/+1.\n{3}{U}: [i]Soul of the Sea[/i]\nAt the beginning of combat on your turn, you may have target noncreature artifact become a 3/3 artifact creature until end of turn.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Those Lost to the Waves enters, search your library for an artifact card with mana value 3 or less, reveal it, put it into your hand, then shuffle.\n{1}{W}: [i]Fight the Current[/i]\nEquipped creatures you control get +1/+1.\n{3}{U}: [i]Soul of the Sea[/i]\nAt the beginning of combat on your turn, you may have target noncreature artifact become a 3/3 artifact creature until end of turn.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Those Lost to the Waves enters, search your library for an artifact card with mana value 3 or less, reveal it, put it into your hand, then shuffle.\n{1}{W}: [i]Fight the Current[/i]\nEquipped creatures you control get +1/+1.\n{3}{U}: [i]Soul of the Sea[/i]\nAt the beginning of combat on your turn, you may have target noncreature artifact become a 3/3 artifact creature until end of turn.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Tomasz Alen Kopera",
             "alias": "",
-            "position": "145",
+            "position": "146",
             "rotated": false,
             "notes": ""
         },
@@ -3102,7 +3102,7 @@
             "loyalty": "",
             "artist": "Li zi",
             "alias": "",
-            "position": "146",
+            "position": "147",
             "rotated": false,
             "notes": ""
         },
@@ -3114,16 +3114,16 @@
             "number": 235,
             "color_identity": "UB",
             "cost": "{3}{U}{B}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Path of the Outsider enters, return target creature to its owner's hand, then each opponent sacrifices a creature.\n{2}{U}: [i]Evanescence[/i]\n{0}: Target creature phases out. Activate only during your turn and only once each turn.\n{2}{B}: [i]Anguish[/i]\nWhenever a creature attacks you, it gets -1/-1 until end of turn.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Path of the Outsider enters, return target creature to its owner's hand, then each opponent sacrifices a creature.\n{2}{U}: [i]Evanescence[/i]\n{0}: Target creature phases out. Activate only during your turn and only once each turn.\n{2}{B}: [i]Anguish[/i]\nWhenever a creature attacks you, it gets -1/-1 until end of turn.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Path of the Outsider enters, return target creature to its owner's hand, then each opponent sacrifices a creature.\n{2}{U}: [i]Evanescence[/i]\n{0}: Target creature phases out. Activate only during your turn and only once each turn.\n{2}{B}: [i]Anguish[/i]\nWhenever a creature attacks you, it gets -1/-1 until end of turn.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Path of the Outsider enters, return target creature to its owner's hand, then each opponent sacrifices a creature.\n{2}{U}: [i]Evanescence[/i]\n{0}: Target creature phases out. Activate only during your turn and only once each turn.\n{2}{B}: [i]Anguish[/i]\nWhenever a creature attacks you, it gets -1/-1 until end of turn.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Wei Wangwei",
             "alias": "",
-            "position": "147",
+            "position": "148",
             "rotated": false,
             "notes": ""
         },
@@ -3144,7 +3144,7 @@
             "loyalty": "",
             "artist": "Yanmo Zhang",
             "alias": "",
-            "position": "148",
+            "position": "149",
             "rotated": false,
             "notes": ""
         },
@@ -3156,16 +3156,16 @@
             "number": 206,
             "color_identity": "BR",
             "cost": "{1}{B}{R}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Altar of Twisted Piety enters, return target creature card with mana value 3 or less from your graveyard to the battlefield.\n{2}{B}: [i]Shadows Bind Us[/i]\n{B}, Sacrifice three creatures: Create a 5/5 black Demon creature token. Put your choice of a flying counter or a lifelink counter on it. It can't block this turn.\n{2}{R}: [i]Hellfire Fills Us[/i]\n{R}, Sacrifice a creature: Altar of Twisted Piety deals 2 damage to any target.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Altar of Twisted Piety enters, return target creature card with mana value 3 or less from your graveyard to the battlefield.\n{2}{B}: [i]Shadows Bind Us[/i]\n{B}, Sacrifice three creatures: Create a 5/5 black Demon creature token. Put your choice of a flying counter or a lifelink counter on it. It can't block this turn.\n{2}{R}: [i]Hellfire Fills Us[/i]\n{R}, Sacrifice a creature: Altar of Twisted Piety deals 2 damage to any target.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Altar of Twisted Piety enters, return target creature card with mana value 3 or less from your graveyard to the battlefield.\n{2}{B}: [i]Shadows Bind Us[/i]\n{B}, Sacrifice three creatures: Create a 5/5 black Demon creature token. Put your choice of a flying counter or a lifelink counter on it. It can't block this turn.\n{2}{R}: [i]Hellfire Fills Us[/i]\n{R}, Sacrifice a creature: Altar of Twisted Piety deals 2 damage to any target.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Altar of Twisted Piety enters, return target creature card with mana value 3 or less from your graveyard to the battlefield.\n{2}{B}: [i]Shadows Bind Us[/i]\n{B}, Sacrifice three creatures: Create a 5/5 black Demon creature token. Put your choice of a flying counter or a lifelink counter on it. It can't block this turn.\n{2}{R}: [i]Hellfire Fills Us[/i]\n{R}, Sacrifice a creature: Altar of Twisted Piety deals 2 damage to any target.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Daena Key",
             "alias": "",
-            "position": "149",
+            "position": "150",
             "rotated": false,
             "notes": ""
         },
@@ -3186,7 +3186,7 @@
             "loyalty": "",
             "artist": "Geng Kun",
             "alias": "",
-            "position": "150",
+            "position": "151",
             "rotated": false,
             "notes": ""
         },
@@ -3198,16 +3198,16 @@
             "number": 211,
             "color_identity": "RG",
             "cost": "{R}{G}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Celebrations of Ferocity enters, add {R}{G}. Spend this mana only to cast creature spells.\n{4}{R}{R}: [i]Hao'Tai's Wake[/i]\nAt the beginning of combat on your turn, target creature you control becomes a 4/4 red Dragon with flying until end of turn.\n{1}{G}: [i]Portrait of Qiyan[/i]\nCreatures you control enter with an additional +1/+1 counter on them.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Celebrations of Ferocity enters, add {R}{G}. Spend this mana only to cast creature spells.\n{4}{R}{R}: [i]Hao'Tai's Wake[/i]\nAt the beginning of combat on your turn, target creature you control becomes a 4/4 red Dragon with flying until end of turn.\n{1}{G}: [i]Portrait of Qiyan[/i]\nCreatures you control enter with an additional +1/+1 counter on them.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Celebrations of Ferocity enters, add {R}{G}. Spend this mana only to cast creature spells.\n{4}{R}{R}: [i]Hao'Tai's Wake[/i]\nAt the beginning of combat on your turn, target creature you control becomes a 4/4 red Dragon with flying until end of turn.\n{1}{G}: [i]Portrait of Qiyan[/i]\nCreatures you control enter with an additional +1/+1 counter on them.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Celebrations of Ferocity enters, add {R}{G}. Spend this mana only to cast creature spells.\n{4}{R}{R}: [i]Hao'Tai's Wake[/i]\nAt the beginning of combat on your turn, target creature you control becomes a 4/4 red Dragon with flying until end of turn.\n{1}{G}: [i]Portrait of Qiyan[/i]\nCreatures you control enter with an additional +1/+1 counter on them.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Lv Ming Gang",
             "alias": "",
-            "position": "151",
+            "position": "152",
             "rotated": false,
             "notes": ""
         },
@@ -3228,7 +3228,7 @@
             "loyalty": "",
             "artist": "Yintion J",
             "alias": "",
-            "position": "152",
+            "position": "153",
             "rotated": false,
             "notes": ""
         },
@@ -3240,16 +3240,16 @@
             "number": 224,
             "color_identity": "WG",
             "cost": "{G}{W}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Kanghyae Forum enters, you may return another permanent you control to its owner's hand. If you don't, draw a card.\n{2}{G}: [i]A Common Good[/i]\nIf an effect would create one or more tokens under your control, it creates that many of those tokens plus one instead.\n{2}{W}: [i]Rebuilding Trust[/i]\nIf an effect would put one or more counters on a permanent you control, it puts that many of those counters plus one on that permanent instead.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Kanghyae Forum enters, you may return another permanent you control to its owner's hand. If you don't, draw a card.\n{2}{G}: [i]A Common Good[/i]\nIf an effect would create one or more tokens under your control, it creates that many of those tokens plus one instead.\n{2}{W}: [i]Rebuilding Trust[/i]\nIf an effect would put one or more counters on a permanent you control, it puts that many of those counters plus one on that permanent instead.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Kanghyae Forum enters, you may return another permanent you control to its owner's hand. If you don't, draw a card.\n{2}{G}: [i]A Common Good[/i]\nIf an effect would create one or more tokens under your control, it creates that many of those tokens plus one instead.\n{2}{W}: [i]Rebuilding Trust[/i]\nIf an effect would put one or more counters on a permanent you control, it puts that many of those counters plus one on that permanent instead.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Kanghyae Forum enters, you may return another permanent you control to its owner's hand. If you don't, draw a card.\n{2}{G}: [i]A Common Good[/i]\nIf an effect would create one or more tokens under your control, it creates that many of those tokens plus one instead.\n{2}{W}: [i]Rebuilding Trust[/i]\nIf an effect would put one or more counters on a permanent you control, it puts that many of those counters plus one on that permanent instead.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Heng Tang",
             "alias": "",
-            "position": "153",
+            "position": "154",
             "rotated": false,
             "notes": ""
         },
@@ -3270,7 +3270,7 @@
             "loyalty": "",
             "artist": "Jin Guangyao",
             "alias": "",
-            "position": "154",
+            "position": "155",
             "rotated": false,
             "notes": ""
         },
@@ -3282,16 +3282,16 @@
             "number": 229,
             "color_identity": "WB",
             "cost": "{1}{W}{B}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Memorial Plaza enters, create two 1/1 colorless Spirit creature tokens with flying.\n{2}{W}: [i]The Warrior[/i]\nAt the beginning of combat on your turn, put a +1/+1 counter on target creature you control.\n{1}{B}: [i]Rhapsody in Black[/i]\nAt the beginning of your end step, you may sacrifice a creature. If you do, draw a card.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Memorial Plaza enters, create two 1/1 colorless Spirit creature tokens with flying.\n{2}{W}: [i]The Warrior[/i]\nAt the beginning of combat on your turn, put a +1/+1 counter on target creature you control.\n{1}{B}: [i]Rhapsody in Black[/i]\nAt the beginning of your end step, you may sacrifice a creature. If you do, draw a card.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Memorial Plaza enters, create two 1/1 colorless Spirit creature tokens with flying.\n{2}{W}: [i]The Warrior[/i]\nAt the beginning of combat on your turn, put a +1/+1 counter on target creature you control.\n{1}{B}: [i]Rhapsody in Black[/i]\nAt the beginning of your end step, you may sacrifice a creature. If you do, draw a card.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Memorial Plaza enters, create two 1/1 colorless Spirit creature tokens with flying.\n{2}{W}: [i]The Warrior[/i]\nAt the beginning of combat on your turn, put a +1/+1 counter on target creature you control.\n{1}{B}: [i]Rhapsody in Black[/i]\nAt the beginning of your end step, you may sacrifice a creature. If you do, draw a card.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Marie Magny",
             "alias": "",
-            "position": "155",
+            "position": "156",
             "rotated": false,
             "notes": ""
         },
@@ -3312,7 +3312,7 @@
             "loyalty": "",
             "artist": "Shinotamar",
             "alias": "",
-            "position": "156",
+            "position": "157",
             "rotated": false,
             "notes": ""
         },
@@ -3324,16 +3324,16 @@
             "number": 238,
             "color_identity": "UR",
             "cost": "{1}{U}{R}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Royal Vignettes enters, exile target instant or sorcery card from your graveyard. Until your next turn, you may cast that card.\n{1}{U}: [i]Ju, the Artisan[/i]\nWhenever you cast an instant spell, draw a card, then discard a card.\n{1}{R}: [i]Lan, the Poet[/i]\nWhenever you cast a sorcery spell, create a 1/1 red Bard creature token.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Royal Vignettes enters, exile target instant or sorcery card from your graveyard. Until your next turn, you may cast that card.\n{1}{U}: [i]Ju, the Artisan[/i]\nWhenever you cast an instant spell, draw a card, then discard a card.\n{1}{R}: [i]Lan, the Poet[/i]\nWhenever you cast a sorcery spell, create a 1/1 red Bard creature token.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Royal Vignettes enters, exile target instant or sorcery card from your graveyard. Until your next turn, you may cast that card.\n{1}{U}: [i]Ju, the Artisan[/i]\nWhenever you cast an instant spell, draw a card, then discard a card.\n{1}{R}: [i]Lan, the Poet[/i]\nWhenever you cast a sorcery spell, create a 1/1 red Bard creature token.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen The Royal Vignettes enters, exile target instant or sorcery card from your graveyard. Until your next turn, you may cast that card.\n{1}{U}: [i]Ju, the Artisan[/i]\nWhenever you cast an instant spell, draw a card, then discard a card.\n{1}{R}: [i]Lan, the Poet[/i]\nWhenever you cast a sorcery spell, create a 1/1 red Bard creature token.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Changan-moon",
             "alias": "",
-            "position": "157",
+            "position": "158",
             "rotated": false,
             "notes": ""
         },
@@ -3354,7 +3354,7 @@
             "loyalty": "",
             "artist": "Geng Kun",
             "alias": "",
-            "position": "158",
+            "position": "159",
             "rotated": false,
             "notes": ""
         },
@@ -3366,16 +3366,16 @@
             "number": 216,
             "color_identity": "BG",
             "cost": "{2}{B}{G}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Fables of the Ill-Fated enters, destroy target nonland permanent.\n{B}: [i]The Witch's Temple[/i]\nWhenever a nonland permanent you control dies, each opponent loses 1 life.\n{3}{G}: [i]Enter the Nest[/i]\n{3}{G}, Sacrifice two lands: Create a 0/0 green Wurm creature token with \u201cThis creature gets +1/+1 for each permanent card in your graveyard.\u201d Activate only as a sorcery.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Fables of the Ill-Fated enters, destroy target nonland permanent.\n{B}: [i]The Witch's Temple[/i]\nWhenever a nonland permanent you control dies, each opponent loses 1 life.\n{3}{G}: [i]Enter the Nest[/i]\n{3}{G}, Sacrifice two lands: Create a 0/0 green Wurm creature token with \u201cThis creature gets +1/+1 for each permanent card in your graveyard.\u201d Activate only as a sorcery.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Fables of the Ill-Fated enters, destroy target nonland permanent.\n{B}: [i]The Witch's Temple[/i]\nWhenever a nonland permanent you control dies, each opponent loses 1 life.\n{3}{G}: [i]Enter the Nest[/i]\n{3}{G}, Sacrifice two lands: Create a 0/0 green Wurm creature token with \u201cThis creature gets +1/+1 for each permanent card in your graveyard.\u201d Activate only as a sorcery.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Fables of the Ill-Fated enters, destroy target nonland permanent.\n{B}: [i]The Witch's Temple[/i]\nWhenever a nonland permanent you control dies, each opponent loses 1 life.\n{3}{G}: [i]Enter the Nest[/i]\n{3}{G}, Sacrifice two lands: Create a 0/0 green Wurm creature token with \u201cThis creature gets +1/+1 for each permanent card in your graveyard.\u201d Activate only as a sorcery.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Suiren_Arcelor",
             "alias": "",
-            "position": "159",
+            "position": "160",
             "rotated": false,
             "notes": ""
         },
@@ -3396,7 +3396,7 @@
             "loyalty": "",
             "artist": "Marie",
             "alias": "",
-            "position": "160",
+            "position": "161",
             "rotated": false,
             "notes": ""
         },
@@ -3408,16 +3408,16 @@
             "number": 241,
             "color_identity": "WR",
             "cost": "{2}{R}{W}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Seto's Private Collection enters, creatures you control get +2/+1 until end of turn. \n{1}{R}: [i]Bloodline[/i]\nAttacking creatures you control have first strike.\n{2}{W}: [i]Hope's Savior[/i]\nAttacking creatures you control have lifelink.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Seto's Private Collection enters, creatures you control get +2/+1 until end of turn. \n{1}{R}: [i]Bloodline[/i]\nAttacking creatures you control have first strike.\n{2}{W}: [i]Hope's Savior[/i]\nAttacking creatures you control have lifelink.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Seto's Private Collection enters, creatures you control get +2/+1 until end of turn. \n{1}{R}: [i]Bloodline[/i]\nAttacking creatures you control have first strike.\n{2}{W}: [i]Hope's Savior[/i]\nAttacking creatures you control have lifelink.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Seto's Private Collection enters, creatures you control get +2/+1 until end of turn. \n{1}{R}: [i]Bloodline[/i]\nAttacking creatures you control have first strike.\n{2}{W}: [i]Hope's Savior[/i]\nAttacking creatures you control have lifelink.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Antti Hakosaari",
             "alias": "",
-            "position": "161",
+            "position": "162",
             "rotated": false,
             "notes": ""
         },
@@ -3438,7 +3438,7 @@
             "loyalty": "",
             "artist": "Win J",
             "alias": "",
-            "position": "162",
+            "position": "163",
             "rotated": false,
             "notes": ""
         },
@@ -3450,16 +3450,16 @@
             "number": 236,
             "color_identity": "UG",
             "cost": "{3}{G}{U}",
-            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Peacetime Murals enters, draw three cards and you gain 3 life.\n{2}{G}: [i]Grow as Two[/i]\nWhenever you activate an ability of a creature you control, create a token that's a copy of that creature except it isn't legendary. This ability triggers only once each turn.\n{2}{U}: [i]A Better Mankind[/i]\nWhenever a creature you control enters, you may activate one of its abilities without paying its costs. This ability triggers only once each turn.",
+            "rules_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Peacetime Murals enters, draw three cards and you gain 3 life.\n{2}{G}: [i]Grow as Two[/i]\nWhenever you activate an ability of a creature you control, create a token that's a copy of that creature except it isn't legendary. This ability triggers only once each turn.\n{2}{U}: [i]A Better Mankind[/i]\nWhenever a creature you control enters, you may activate one of its abilities without paying its costs. This ability triggers only once each turn.\n",
             "flavor_text": "[i][/i]",
             "pt": "",
-            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Peacetime Murals enters, draw three cards and you gain 3 life.\n{2}{G}: [i]Grow as Two[/i]\nWhenever you activate an ability of a creature you control, create a token that's a copy of that creature except it isn't legendary. This ability triggers only once each turn.\n{2}{U}: [i]A Better Mankind[/i]\nWhenever a creature you control enters, you may activate one of its abilities without paying its costs. This ability triggers only once each turn.",
+            "special_text": "[i](Choose only one work as a sorcery to add its ability.)[/i]\nWhen Peacetime Murals enters, draw three cards and you gain 3 life.\n{2}{G}: [i]Grow as Two[/i]\nWhenever you activate an ability of a creature you control, create a token that's a copy of that creature except it isn't legendary. This ability triggers only once each turn.\n{2}{U}: [i]A Better Mankind[/i]\nWhenever a creature you control enters, you may activate one of its abilities without paying its costs. This ability triggers only once each turn.\n",
             "shape": "class",
             "set": "NJB",
             "loyalty": "",
             "artist": "Caroline R. Young",
             "alias": "",
-            "position": "163",
+            "position": "164",
             "rotated": false,
             "notes": ""
         },
@@ -3480,7 +3480,7 @@
             "loyalty": "",
             "artist": "Chaoyuan Xu",
             "alias": "",
-            "position": "164",
+            "position": "165",
             "rotated": false,
             "notes": ""
         },
@@ -3501,7 +3501,7 @@
             "loyalty": "",
             "artist": "Shaun Gorea",
             "alias": "",
-            "position": "165",
+            "position": "166",
             "rotated": false,
             "notes": ""
         },
@@ -3522,7 +3522,7 @@
             "loyalty": "",
             "artist": "\u4e09\u53f6\u8349\u9752\u9752",
             "alias": "",
-            "position": "166",
+            "position": "167",
             "rotated": false,
             "notes": ""
         },
@@ -3543,7 +3543,7 @@
             "loyalty": "",
             "artist": "Wayne Chan",
             "alias": "",
-            "position": "167",
+            "position": "168",
             "rotated": false,
             "notes": ""
         },
@@ -3564,7 +3564,7 @@
             "loyalty": "",
             "artist": "Yang Ningyuan",
             "alias": "",
-            "position": "168",
+            "position": "169",
             "rotated": false,
             "notes": ""
         },
@@ -3585,7 +3585,7 @@
             "loyalty": "",
             "artist": "Noctualis",
             "alias": "",
-            "position": "169",
+            "position": "170",
             "rotated": false,
             "notes": ""
         },
@@ -3606,7 +3606,7 @@
             "loyalty": "",
             "artist": "Derrick Song",
             "alias": "",
-            "position": "170",
+            "position": "171",
             "rotated": false,
             "notes": ""
         },
@@ -3627,7 +3627,7 @@
             "loyalty": "",
             "artist": "Amelie Hutt",
             "alias": "",
-            "position": "171",
+            "position": "172",
             "rotated": false,
             "notes": ""
         },
@@ -3648,7 +3648,7 @@
             "loyalty": "",
             "artist": "Ma Ke",
             "alias": "",
-            "position": "172",
+            "position": "173",
             "rotated": false,
             "notes": ""
         },
@@ -3669,7 +3669,7 @@
             "loyalty": "",
             "artist": "Pa Gao",
             "alias": "",
-            "position": "173",
+            "position": "174",
             "rotated": false,
             "notes": ""
         },
@@ -3690,7 +3690,7 @@
             "loyalty": "",
             "artist": "Kenket",
             "alias": "",
-            "position": "174",
+            "position": "175",
             "rotated": false,
             "notes": ""
         },
@@ -3711,7 +3711,7 @@
             "loyalty": "",
             "artist": "Hou China",
             "alias": "",
-            "position": "175",
+            "position": "176",
             "rotated": false,
             "notes": ""
         },
@@ -3732,7 +3732,7 @@
             "loyalty": "",
             "artist": "Greg Beecham",
             "alias": "",
-            "position": "176",
+            "position": "177",
             "rotated": false,
             "notes": ""
         },
@@ -3753,7 +3753,7 @@
             "loyalty": "",
             "artist": "Miyazaki Y\u00fbzensai",
             "alias": "",
-            "position": "177",
+            "position": "178",
             "rotated": false,
             "notes": ""
         },
@@ -3774,7 +3774,7 @@
             "loyalty": "",
             "artist": "Lee Wi",
             "alias": "",
-            "position": "178",
+            "position": "179",
             "rotated": false,
             "notes": ""
         },
@@ -3795,7 +3795,7 @@
             "loyalty": "",
             "artist": "Arae Aryhra",
             "alias": "",
-            "position": "179",
+            "position": "180",
             "rotated": false,
             "notes": ""
         },
@@ -3816,7 +3816,7 @@
             "loyalty": "",
             "artist": "Amelie Hutt",
             "alias": "",
-            "position": "180",
+            "position": "181",
             "rotated": false,
             "notes": ""
         },
@@ -3837,7 +3837,7 @@
             "loyalty": "",
             "artist": "\u75be\u901f k",
             "alias": "",
-            "position": "181",
+            "position": "182",
             "rotated": false,
             "notes": ""
         },
@@ -3858,7 +3858,7 @@
             "loyalty": "",
             "artist": "Da Congjun",
             "alias": "",
-            "position": "182",
+            "position": "183",
             "rotated": false,
             "notes": ""
         },
@@ -3879,7 +3879,7 @@
             "loyalty": "",
             "artist": "Alexander Mokhov",
             "alias": "",
-            "position": "183",
+            "position": "184",
             "rotated": false,
             "notes": ""
         },
@@ -3900,7 +3900,7 @@
             "loyalty": "",
             "artist": "Asep Ariyanto",
             "alias": "",
-            "position": "184",
+            "position": "185",
             "rotated": false,
             "notes": ""
         },
@@ -3921,7 +3921,7 @@
             "loyalty": "",
             "artist": "Da Congjun",
             "alias": "",
-            "position": "185",
+            "position": "186",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -3942,7 +3942,7 @@
             "loyalty": "",
             "artist": "Ronnie Wong",
             "alias": "",
-            "position": "186",
+            "position": "187",
             "rotated": false,
             "notes": ""
         },
@@ -3963,7 +3963,7 @@
             "loyalty": "",
             "artist": "Zao Youxi",
             "alias": "",
-            "position": "187",
+            "position": "188",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -3984,7 +3984,7 @@
             "loyalty": "",
             "artist": "\u7eff\u6bdb\u7684\u4e4c\u9f9f",
             "alias": "",
-            "position": "188",
+            "position": "189",
             "rotated": false,
             "notes": ""
         },
@@ -4005,7 +4005,7 @@
             "loyalty": "",
             "artist": "Hiliuyun",
             "alias": "",
-            "position": "189",
+            "position": "190",
             "rotated": false,
             "notes": ""
         },
@@ -4026,7 +4026,7 @@
             "loyalty": "",
             "artist": "LIN .",
             "alias": "",
-            "position": "190",
+            "position": "191",
             "rotated": false,
             "notes": ""
         },
@@ -4047,7 +4047,7 @@
             "loyalty": "",
             "artist": "Azany",
             "alias": "",
-            "position": "191",
+            "position": "192",
             "rotated": false,
             "notes": ""
         },
@@ -4068,7 +4068,7 @@
             "loyalty": "",
             "artist": "Kevin Sidharta",
             "alias": "",
-            "position": "192",
+            "position": "193",
             "rotated": false,
             "notes": ""
         },
@@ -4089,7 +4089,7 @@
             "loyalty": "",
             "artist": "M B Y K",
             "alias": "",
-            "position": "193",
+            "position": "194",
             "rotated": false,
             "notes": ""
         },
@@ -4110,7 +4110,7 @@
             "loyalty": "",
             "artist": "Cristi-B",
             "alias": "",
-            "position": "194",
+            "position": "195",
             "rotated": false,
             "notes": ""
         },
@@ -4131,7 +4131,7 @@
             "loyalty": "",
             "artist": "Logan Feliciano",
             "alias": "",
-            "position": "195",
+            "position": "196",
             "rotated": false,
             "notes": ""
         },
@@ -4152,7 +4152,7 @@
             "loyalty": "",
             "artist": "Pan An",
             "alias": "",
-            "position": "196",
+            "position": "197",
             "rotated": false,
             "notes": ""
         },
@@ -4173,7 +4173,7 @@
             "loyalty": "",
             "artist": "Ma Ke",
             "alias": "",
-            "position": "197",
+            "position": "198",
             "rotated": false,
             "notes": ""
         },
@@ -4194,7 +4194,7 @@
             "loyalty": "",
             "artist": "yang ningyuan",
             "alias": "",
-            "position": "198",
+            "position": "199",
             "rotated": false,
             "notes": ""
         },
@@ -4215,7 +4215,7 @@
             "loyalty": "",
             "artist": "\u6708\u6cb3\u56fe\u96c6\u96c6",
             "alias": "",
-            "position": "199",
+            "position": "200",
             "rotated": false,
             "notes": ""
         },
@@ -4236,7 +4236,7 @@
             "loyalty": "",
             "artist": "Caffe Tylo",
             "alias": "",
-            "position": "200",
+            "position": "201",
             "rotated": false,
             "notes": ""
         },
@@ -4257,7 +4257,7 @@
             "loyalty": "",
             "artist": "Qiao Shan",
             "alias": "",
-            "position": "201",
+            "position": "202",
             "rotated": false,
             "notes": ""
         },
@@ -4278,7 +4278,7 @@
             "loyalty": "",
             "artist": "Mi Lu",
             "alias": "",
-            "position": "202",
+            "position": "203",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -4299,7 +4299,7 @@
             "loyalty": "",
             "artist": "Zeen Chin",
             "alias": "",
-            "position": "203",
+            "position": "204",
             "rotated": false,
             "notes": ""
         },
@@ -4320,7 +4320,7 @@
             "loyalty": "",
             "artist": "Yang Ningyuan",
             "alias": "",
-            "position": "204",
+            "position": "205",
             "rotated": false,
             "notes": ""
         },
@@ -4341,7 +4341,7 @@
             "loyalty": "",
             "artist": "Jid-V",
             "alias": "",
-            "position": "205",
+            "position": "206",
             "rotated": false,
             "notes": ""
         },
@@ -4362,7 +4362,7 @@
             "loyalty": "",
             "artist": "Xiao Botong",
             "alias": "",
-            "position": "206",
+            "position": "207",
             "rotated": false,
             "notes": ""
         },
@@ -4383,7 +4383,7 @@
             "loyalty": "",
             "artist": "Diego Cunha",
             "alias": "",
-            "position": "207",
+            "position": "208",
             "rotated": false,
             "notes": ""
         },
@@ -4404,7 +4404,7 @@
             "loyalty": "",
             "artist": "Justice Wong",
             "alias": "",
-            "position": "208",
+            "position": "209",
             "rotated": false,
             "notes": ""
         },
@@ -4425,7 +4425,7 @@
             "loyalty": "",
             "artist": "Ronnie Wong",
             "alias": "",
-            "position": "209",
+            "position": "210",
             "rotated": false,
             "notes": ""
         },
@@ -4446,7 +4446,7 @@
             "loyalty": "",
             "artist": "LI HH",
             "alias": "",
-            "position": "210",
+            "position": "211",
             "rotated": false,
             "notes": ""
         },
@@ -4467,7 +4467,7 @@
             "loyalty": "",
             "artist": "Cap Nhat",
             "alias": "",
-            "position": "211",
+            "position": "212",
             "rotated": false,
             "notes": ""
         },
@@ -4488,7 +4488,7 @@
             "loyalty": "",
             "artist": "Nele Diel",
             "alias": "",
-            "position": "212",
+            "position": "213",
             "rotated": false,
             "notes": ""
         },
@@ -4509,7 +4509,7 @@
             "loyalty": "",
             "artist": "Ronnie Wong",
             "alias": "",
-            "position": "213",
+            "position": "214",
             "rotated": false,
             "notes": ""
         },
@@ -4530,7 +4530,7 @@
             "loyalty": "",
             "artist": "Ma Ke",
             "alias": "",
-            "position": "214",
+            "position": "215",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -4551,7 +4551,7 @@
             "loyalty": "",
             "artist": "Chenbin Zheng",
             "alias": "",
-            "position": "215",
+            "position": "216",
             "rotated": false,
             "notes": ""
         },
@@ -4572,7 +4572,7 @@
             "loyalty": "",
             "artist": "Ma Ke",
             "alias": "",
-            "position": "216",
+            "position": "217",
             "rotated": false,
             "notes": ""
         },
@@ -4593,7 +4593,7 @@
             "loyalty": "",
             "artist": "Heng Tang",
             "alias": "",
-            "position": "217",
+            "position": "218",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -4614,7 +4614,7 @@
             "loyalty": "",
             "artist": "Heng Tang",
             "alias": "",
-            "position": "218",
+            "position": "219",
             "rotated": false,
             "notes": ""
         },
@@ -4635,7 +4635,7 @@
             "loyalty": "",
             "artist": "Xiao Botong",
             "alias": "",
-            "position": "219",
+            "position": "220",
             "rotated": false,
             "notes": ""
         },
@@ -4656,7 +4656,7 @@
             "loyalty": "",
             "artist": "Dao Trong Le",
             "alias": "",
-            "position": "220",
+            "position": "221",
             "rotated": false,
             "notes": ""
         },
@@ -4677,7 +4677,7 @@
             "loyalty": "",
             "artist": "SEGA",
             "alias": "",
-            "position": "221",
+            "position": "222",
             "rotated": false,
             "notes": ""
         },
@@ -4698,7 +4698,7 @@
             "loyalty": "",
             "artist": "VladMRK",
             "alias": "",
-            "position": "222",
+            "position": "223",
             "rotated": false,
             "notes": ""
         },
@@ -4719,7 +4719,7 @@
             "loyalty": "",
             "artist": "Hou China",
             "alias": "",
-            "position": "223",
+            "position": "224",
             "rotated": false,
             "notes": ""
         },
@@ -4740,7 +4740,7 @@
             "loyalty": "",
             "artist": "Jun Lei",
             "alias": "",
-            "position": "224",
+            "position": "225",
             "rotated": false,
             "notes": ""
         },
@@ -4761,7 +4761,7 @@
             "loyalty": "",
             "artist": "Sun Xu",
             "alias": "",
-            "position": "225",
+            "position": "226",
             "rotated": false,
             "notes": ""
         },
@@ -4782,7 +4782,7 @@
             "loyalty": "",
             "artist": "Titan Forge Games",
             "alias": "",
-            "position": "226",
+            "position": "227",
             "rotated": false,
             "notes": ""
         },
@@ -4803,7 +4803,7 @@
             "loyalty": "",
             "artist": "Bonnie Marris",
             "alias": "",
-            "position": "227",
+            "position": "228",
             "rotated": false,
             "notes": ""
         },
@@ -4824,7 +4824,7 @@
             "loyalty": "",
             "artist": "kenket",
             "alias": "",
-            "position": "228",
+            "position": "229",
             "rotated": false,
             "notes": ""
         },
@@ -4845,7 +4845,7 @@
             "loyalty": "",
             "artist": "Darren Tan",
             "alias": "",
-            "position": "229",
+            "position": "230",
             "rotated": false,
             "notes": ""
         },
@@ -4857,7 +4857,7 @@
             "number": 140,
             "color_identity": "R",
             "cost": "{2}{R}",
-            "rules_text": "When Fox of the Juniper Vale, create an Idol token. [i](It's an artifact with \u201c{1}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.\u201d)[/i]",
+            "rules_text": "When Fox of the Juniper Vale enters, create an Idol token. [i](It's an artifact with \u201c{1}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.\u201d)[/i]",
             "flavor_text": "[i]Foxes dart through Nangjiao's forests like flames dancing in the wind.[/i]",
             "pt": "3/2",
             "special_text": "",
@@ -4866,7 +4866,7 @@
             "loyalty": "",
             "artist": "Pihguinolog",
             "alias": "",
-            "position": "230",
+            "position": "231",
             "rotated": false,
             "notes": ""
         },
@@ -4887,7 +4887,7 @@
             "loyalty": "",
             "artist": "Nekoemonn",
             "alias": "",
-            "position": "231",
+            "position": "232",
             "rotated": false,
             "notes": ""
         },
@@ -4908,7 +4908,7 @@
             "loyalty": "",
             "artist": "Robin Ruan",
             "alias": "",
-            "position": "232",
+            "position": "233",
             "rotated": false,
             "notes": ""
         },
@@ -4929,7 +4929,7 @@
             "loyalty": "",
             "artist": "Jianyachi L",
             "alias": "",
-            "position": "233",
+            "position": "234",
             "rotated": false,
             "notes": ""
         },
@@ -4950,7 +4950,7 @@
             "loyalty": "",
             "artist": "\u77e5\u4e4e",
             "alias": "",
-            "position": "234",
+            "position": "235",
             "rotated": false,
             "notes": ""
         },
@@ -4971,7 +4971,7 @@
             "loyalty": "",
             "artist": "Shuxing Li",
             "alias": "",
-            "position": "235",
+            "position": "236",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -4992,7 +4992,7 @@
             "loyalty": "",
             "artist": "Yu Qiong Yuan",
             "alias": "",
-            "position": "236",
+            "position": "237",
             "rotated": false,
             "notes": ""
         },
@@ -5004,7 +5004,7 @@
             "number": 163,
             "color_identity": "R",
             "cost": "{1}{R}",
-            "rules_text": "Create a 2/1 red and white Fox creature token. If you're attacking, that token enters tapped and attacking.\nShowcase {4}{R} [i](Then if you cast this for its showcase cost, create a 1/1 red Bard creature token that can't block and exile this. When that token attacks, you may cast a free copy of this.)[/i]",
+            "rules_text": "Create a 2/1 red and white Fox creature token. If you're attacking, that token enters the battlefield tapped and attacking.\nShowcase {4}{R} [i](Then if you cast this for its showcase cost, create a 1/1 red Bard creature token that can't block and exile this. When that token attacks, you may cast a free copy of this.)[/i]",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -5013,7 +5013,7 @@
             "loyalty": "",
             "artist": "Samuel King",
             "alias": "",
-            "position": "237",
+            "position": "238",
             "rotated": false,
             "notes": ""
         },
@@ -5034,7 +5034,7 @@
             "loyalty": "",
             "artist": "Hou China",
             "alias": "",
-            "position": "238",
+            "position": "239",
             "rotated": false,
             "notes": ""
         },
@@ -5055,7 +5055,7 @@
             "loyalty": "",
             "artist": "Indah Siregar",
             "alias": "",
-            "position": "239",
+            "position": "240",
             "rotated": false,
             "notes": ""
         },
@@ -5076,7 +5076,7 @@
             "loyalty": "",
             "artist": "Ma Ke",
             "alias": "",
-            "position": "240",
+            "position": "241",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -5097,7 +5097,7 @@
             "loyalty": "",
             "artist": "deaload",
             "alias": "",
-            "position": "241",
+            "position": "242",
             "rotated": false,
             "notes": ""
         },
@@ -5118,7 +5118,7 @@
             "loyalty": "",
             "artist": "3Q Studio",
             "alias": "",
-            "position": "242",
+            "position": "243",
             "rotated": false,
             "notes": ""
         },
@@ -5139,7 +5139,7 @@
             "loyalty": "",
             "artist": "Youxiandaxia",
             "alias": "",
-            "position": "243",
+            "position": "244",
             "rotated": false,
             "notes": ""
         },
@@ -5160,7 +5160,7 @@
             "loyalty": "",
             "artist": "Kelley McMorris",
             "alias": "",
-            "position": "244",
+            "position": "245",
             "rotated": false,
             "notes": ""
         },
@@ -5181,7 +5181,7 @@
             "loyalty": "",
             "artist": "Junhuang Gao",
             "alias": "",
-            "position": "245",
+            "position": "246",
             "rotated": false,
             "notes": ""
         },
@@ -5202,7 +5202,7 @@
             "loyalty": "",
             "artist": "Yakun Wang",
             "alias": "",
-            "position": "246",
+            "position": "247",
             "rotated": false,
             "notes": ""
         },
@@ -5223,7 +5223,7 @@
             "loyalty": "",
             "artist": "Markella Stav",
             "alias": "",
-            "position": "247",
+            "position": "248",
             "rotated": false,
             "notes": ""
         },
@@ -5244,7 +5244,7 @@
             "loyalty": "",
             "artist": "dtjun",
             "alias": "",
-            "position": "248",
+            "position": "249",
             "rotated": false,
             "notes": ""
         },
@@ -5265,7 +5265,7 @@
             "loyalty": "",
             "artist": "Sarah Webb",
             "alias": "",
-            "position": "249",
+            "position": "250",
             "rotated": false,
             "notes": ""
         },
@@ -5286,7 +5286,7 @@
             "loyalty": "",
             "artist": "Kipine",
             "alias": "",
-            "position": "250",
+            "position": "251",
             "rotated": false,
             "notes": ""
         },
@@ -5307,7 +5307,7 @@
             "loyalty": "",
             "artist": "Hua Lu",
             "alias": "",
-            "position": "251",
+            "position": "252",
             "rotated": false,
             "notes": ""
         },
@@ -5320,7 +5320,7 @@
             "color_identity": "G",
             "cost": "{4}{G}",
             "rules_text": "When Suitor of the Glade enters, put two +1/+1 counters on target creature you control. It gains vigilance until end of turn.",
-            "flavor_text": "[i]\u201cThe network of life runs through all of Nangjiao, but it is rooted in the Wild.\u201d[/i]",
+            "flavor_text": "[i]\u201cLife's network runs through Nangjiao, but it is rooted in the Wild.\u201d[/i]",
             "pt": "3/3",
             "special_text": "",
             "shape": "normal",
@@ -5328,7 +5328,7 @@
             "loyalty": "",
             "artist": "Julie Dillon",
             "alias": "",
-            "position": "252",
+            "position": "253",
             "rotated": false,
             "notes": ""
         },
@@ -5349,7 +5349,7 @@
             "loyalty": "",
             "artist": "Istrandar",
             "alias": "",
-            "position": "253",
+            "position": "254",
             "rotated": false,
             "notes": ""
         },
@@ -5370,7 +5370,7 @@
             "loyalty": "",
             "artist": "Lu Xueqi",
             "alias": "",
-            "position": "254",
+            "position": "255",
             "rotated": false,
             "notes": ""
         },
@@ -5391,7 +5391,7 @@
             "loyalty": "",
             "artist": "Ley Bowen",
             "alias": "",
-            "position": "255",
+            "position": "256",
             "rotated": false,
             "notes": ""
         },
@@ -5412,7 +5412,7 @@
             "loyalty": "",
             "artist": "Jiuyou",
             "alias": "",
-            "position": "256",
+            "position": "257",
             "rotated": false,
             "notes": ""
         },
@@ -5433,7 +5433,7 @@
             "loyalty": "",
             "artist": "Hou China",
             "alias": "",
-            "position": "257",
+            "position": "258",
             "rotated": false,
             "notes": ""
         },
@@ -5454,7 +5454,7 @@
             "loyalty": "",
             "artist": "Julien Gauthier",
             "alias": "",
-            "position": "258",
+            "position": "259",
             "rotated": false,
             "notes": ""
         },
@@ -5475,7 +5475,7 @@
             "loyalty": "",
             "artist": "Diego Cunha",
             "alias": "",
-            "position": "259",
+            "position": "260",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -5496,7 +5496,7 @@
             "loyalty": "",
             "artist": "Tommy Suhartono",
             "alias": "",
-            "position": "260",
+            "position": "261",
             "rotated": false,
             "notes": ""
         },
@@ -5517,7 +5517,7 @@
             "loyalty": "",
             "artist": "Ya Iun",
             "alias": "",
-            "position": "261",
+            "position": "262",
             "rotated": false,
             "notes": ""
         },
@@ -5538,7 +5538,7 @@
             "loyalty": "",
             "artist": "Cygames, Inc.",
             "alias": "",
-            "position": "262",
+            "position": "263",
             "rotated": false,
             "notes": ""
         },
@@ -5559,7 +5559,7 @@
             "loyalty": "",
             "artist": "Brenda van Vugt",
             "alias": "",
-            "position": "263",
+            "position": "264",
             "rotated": false,
             "notes": ""
         },
@@ -5580,7 +5580,7 @@
             "loyalty": "",
             "artist": "Ibuki Satsuki",
             "alias": "",
-            "position": "264",
+            "position": "265",
             "rotated": false,
             "notes": ""
         },
@@ -5601,7 +5601,7 @@
             "loyalty": "",
             "artist": "Yury Solntsev",
             "alias": "",
-            "position": "265",
+            "position": "266",
             "rotated": false,
             "notes": ""
         },
@@ -5622,7 +5622,7 @@
             "loyalty": "",
             "artist": "Michael Chang",
             "alias": "",
-            "position": "266",
+            "position": "267",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -5643,7 +5643,7 @@
             "loyalty": "",
             "artist": "Ito Yuhan",
             "alias": "",
-            "position": "267",
+            "position": "268",
             "rotated": false,
             "notes": ""
         },
@@ -5664,7 +5664,7 @@
             "loyalty": "",
             "artist": "Koho Shoda",
             "alias": "",
-            "position": "268",
+            "position": "269",
             "rotated": false,
             "notes": ""
         },
@@ -5685,7 +5685,7 @@
             "loyalty": "",
             "artist": "Kawase Hasui",
             "alias": "",
-            "position": "269",
+            "position": "270",
             "rotated": false,
             "notes": ""
         },
@@ -5706,7 +5706,7 @@
             "loyalty": "",
             "artist": "William Hays",
             "alias": "",
-            "position": "270",
+            "position": "271",
             "rotated": false,
             "notes": ""
         },
@@ -5727,7 +5727,7 @@
             "loyalty": "",
             "artist": "Tsuchiya Koitsu",
             "alias": "",
-            "position": "271",
+            "position": "272",
             "rotated": false,
             "notes": ""
         },
@@ -5748,7 +5748,7 @@
             "loyalty": "",
             "artist": "Kobayashi Kiyochika",
             "alias": "",
-            "position": "272",
+            "position": "273",
             "rotated": false,
             "notes": ""
         },
@@ -5769,7 +5769,7 @@
             "loyalty": "",
             "artist": "Koukei Kojima",
             "alias": "",
-            "position": "273",
+            "position": "274",
             "rotated": false,
             "notes": ""
         },
@@ -5790,7 +5790,7 @@
             "loyalty": "",
             "artist": "Ando Hiroshige",
             "alias": "",
-            "position": "274",
+            "position": "275",
             "rotated": false,
             "notes": ""
         },
@@ -5811,7 +5811,7 @@
             "loyalty": "",
             "artist": "Utagawa Hiroshige",
             "alias": "",
-            "position": "275",
+            "position": "276",
             "rotated": false,
             "notes": ""
         },
@@ -5832,7 +5832,7 @@
             "loyalty": "",
             "artist": "Koho Shoda",
             "alias": "",
-            "position": "276",
+            "position": "277",
             "rotated": false,
             "notes": ""
         },
@@ -5853,7 +5853,7 @@
             "loyalty": "",
             "artist": "Koho Shoda",
             "alias": "",
-            "position": "277",
+            "position": "278",
             "rotated": false,
             "notes": ""
         },
@@ -5874,7 +5874,7 @@
             "loyalty": "",
             "artist": "Daisyart_lab",
             "alias": "",
-            "position": "278",
+            "position": "279",
             "rotated": false,
             "notes": ""
         },
@@ -5895,7 +5895,7 @@
             "loyalty": "",
             "artist": "Kawase Hasui",
             "alias": "",
-            "position": "279",
+            "position": "280",
             "rotated": false,
             "notes": ""
         },
@@ -5916,7 +5916,7 @@
             "loyalty": "",
             "artist": "Kawase Hasui",
             "alias": "",
-            "position": "280",
+            "position": "281",
             "rotated": false,
             "notes": ""
         },
@@ -5937,7 +5937,7 @@
             "loyalty": "",
             "artist": "Yoshida Hiroshi",
             "alias": "",
-            "position": "281",
+            "position": "282",
             "rotated": false,
             "notes": ""
         },
@@ -5958,7 +5958,7 @@
             "loyalty": "",
             "artist": "Kijiermono",
             "alias": "",
-            "position": "282",
+            "position": "283",
             "rotated": false,
             "notes": ""
         },
@@ -5979,7 +5979,7 @@
             "loyalty": "",
             "artist": "Kawase Hasui",
             "alias": "",
-            "position": "283",
+            "position": "284",
             "rotated": false,
             "notes": ""
         },
@@ -6000,7 +6000,7 @@
             "loyalty": "",
             "artist": "Kawase Hasui",
             "alias": "",
-            "position": "284",
+            "position": "285",
             "rotated": false,
             "notes": ""
         },
@@ -6021,7 +6021,7 @@
             "loyalty": "",
             "artist": "Yoshida Hiroshi",
             "alias": "",
-            "position": "285",
+            "position": "286",
             "rotated": false,
             "notes": ""
         },
@@ -6042,7 +6042,7 @@
             "loyalty": "",
             "artist": "Yoshida Hiroshi",
             "alias": "",
-            "position": "286",
+            "position": "287",
             "rotated": false,
             "notes": ""
         },
@@ -6054,7 +6054,7 @@
             "number": 275,
             "color_identity": "WU",
             "cost": "",
-            "rules_text": "Tranquil Cove enters tapped. When it does, you gain 1 life.\n{T}: Add {W} or {U}.",
+            "rules_text": "Tranquil Cove enters tapped.\nWhen Tranquil Cove enters, you gain 1 life.\n{T}: Add {W} or {U}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6063,7 +6063,7 @@
             "loyalty": "",
             "artist": "LIUWW",
             "alias": "",
-            "position": "287",
+            "position": "288",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6075,7 +6075,7 @@
             "number": 266,
             "color_identity": "UB",
             "cost": "",
-            "rules_text": "Dismal Backwater enters tapped. When it does, you gain 1 life.\n{T}: Add {U} or {B}.",
+            "rules_text": "Dismal Backwater enters tapped.\nWhen Dismal Backwater enters, you gain 1 life.\n{T}: Add {U} or {B}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6084,7 +6084,7 @@
             "loyalty": "",
             "artist": "Lebonkers Studios",
             "alias": "",
-            "position": "288",
+            "position": "289",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6096,7 +6096,7 @@
             "number": 264,
             "color_identity": "BR",
             "cost": "",
-            "rules_text": "Bloodfell Caves enters tapped. When it does, you gain 1 life.\n{T}: Add {B} or {R}.",
+            "rules_text": "Bloodfell Caves enters tapped.\nWhen Bloodfell Caves enters, you gain 1 life.\n{T}: Add {B} or {R}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6105,7 +6105,7 @@
             "loyalty": "",
             "artist": "Valinakova",
             "alias": "",
-            "position": "289",
+            "position": "290",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6117,7 +6117,7 @@
             "number": 270,
             "color_identity": "RG",
             "cost": "",
-            "rules_text": "Rugged Highlands enters tapped. When it does, you gain 1 life.\n{T}: Add {R} or {G}.",
+            "rules_text": "Rugged Highlands enters tapped.\nWhen Rugged Highlands enters, you gain 1 life.\n{T}: Add {R} or {G}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6126,7 +6126,7 @@
             "loyalty": "",
             "artist": "hongqi zhang",
             "alias": "",
-            "position": "290",
+            "position": "291",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6138,7 +6138,7 @@
             "number": 265,
             "color_identity": "WG",
             "cost": "",
-            "rules_text": "Blossoming Sands enters tapped. When it does, you gain 1 life.\n{T}: Add {G} or {W}.",
+            "rules_text": "Blossoming Sands enters tapped.\nWhen Blossoming Sands enters, you gain 1 life.\n{T}: Add {G} or {W}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6147,7 +6147,7 @@
             "loyalty": "",
             "artist": "Edward Pustovoitov",
             "alias": "",
-            "position": "291",
+            "position": "292",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6159,7 +6159,7 @@
             "number": 271,
             "color_identity": "WB",
             "cost": "",
-            "rules_text": "Scoured Barrens enters tapped. When it does, you gain 1 life.\n{T}: Add {W} or {B}.",
+            "rules_text": "Scoured Barrens enters tapped.\nWhen Scoured Barrens enters, you gain 1 life.\n{T}: Add {W} or {B}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6168,7 +6168,7 @@
             "loyalty": "",
             "artist": "Maxim Lingert",
             "alias": "",
-            "position": "292",
+            "position": "293",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6180,7 +6180,7 @@
             "number": 268,
             "color_identity": "BG",
             "cost": "",
-            "rules_text": "Jungle Hollow enters tapped. When it does, you gain 1 life.\n{T}: Add {B} or {G}.",
+            "rules_text": "Jungle Hollow enters tapped.\nWhen Jungle Hollow enters, you gain 1 life.\n{T}: Add {B} or {G}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6189,7 +6189,7 @@
             "loyalty": "",
             "artist": "Lyno3ghe",
             "alias": "",
-            "position": "293",
+            "position": "294",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6201,7 +6201,7 @@
             "number": 274,
             "color_identity": "UG",
             "cost": "",
-            "rules_text": "Thornwood Falls enters tapped. When it does, you gain 1 life.\n{T}: Add {G} or {U}.",
+            "rules_text": "Thornwood Falls enters tapped.\nWhen Thornwood Falls enters, you gain 1 life.\n{T}: Add {G} or {U}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6210,7 +6210,7 @@
             "loyalty": "",
             "artist": "Ninjatic",
             "alias": "",
-            "position": "294",
+            "position": "295",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6222,7 +6222,7 @@
             "number": 273,
             "color_identity": "UR",
             "cost": "",
-            "rules_text": "Swiftwater Cliffs enters tapped. When it does, you gain 1 life.\n{T}: Add {U} or {R}.",
+            "rules_text": "Swiftwater Cliffs enters tapped.\nWhen Swiftwater Cliffs enters, you gain 1 life.\n{T}: Add {U} or {R}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6231,7 +6231,7 @@
             "loyalty": "",
             "artist": "somatonic",
             "alias": "",
-            "position": "295",
+            "position": "296",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6243,7 +6243,7 @@
             "number": 277,
             "color_identity": "WR",
             "cost": "",
-            "rules_text": "Wind-Scarred Crag enters tapped. When it does, you gain 1 life.\n{T}: Add {R} or {W}.",
+            "rules_text": "Wind-Scarred Crag enters tapped.\nWhen Wind-Scarred Crag enters, you gain 1 life.\n{T}: Add {R} or {W}.",
             "flavor_text": "[i][/i]",
             "pt": "",
             "special_text": "",
@@ -6252,7 +6252,7 @@
             "loyalty": "",
             "artist": "Zp Zhang",
             "alias": "",
-            "position": "296",
+            "position": "297",
             "rotated": false,
             "notes": "f!reprint"
         },
@@ -6261,7 +6261,7 @@
             "color": "W",
             "rarity": "common",
             "type": "Token Creature \u2014 Warrior",
-            "number": 5,
+            "number": 4,
             "color_identity": "W",
             "cost": "",
             "rules_text": "",
@@ -6273,16 +6273,16 @@
             "loyalty": "",
             "artist": "Qingbilige H",
             "alias": "",
-            "position": "297",
+            "position": "298",
             "rotated": false,
-            "notes": "!related Diao of the Opal Infantry<2>;Elder General Hatsuo;Kiyoko of the Silver Mist;Seto San, Divine Heroine<3>;"
+            "notes": ""
         },
         {
             "card_name": "Bird",
             "color": "W",
             "rarity": "common",
             "type": "Token Creature \u2014 Bird",
-            "number": 3,
+            "number": 2,
             "color_identity": "W",
             "cost": "",
             "rules_text": "Flying",
@@ -6294,16 +6294,16 @@
             "loyalty": "",
             "artist": "Tou Tiao",
             "alias": "",
-            "position": "298",
+            "position": "299",
             "rotated": false,
-            "notes": "!related Aerie Aria<2>;Outcast of the Folded Fan;Papier-M\u00e2ch\u00e9 Marvel;Yujei, Zephyr Melodist;"
+            "notes": ""
         },
         {
             "card_name": "Hu Li",
             "color": "W",
             "rarity": "common",
             "type": "Legendary Token Creature \u2014 Fox Spirit",
-            "number": 4,
+            "number": 3,
             "color_identity": "W",
             "cost": "",
             "rules_text": "",
@@ -6315,16 +6315,16 @@
             "loyalty": "",
             "artist": "Tun Walai",
             "alias": "",
-            "position": "299",
+            "position": "300",
             "rotated": false,
-            "notes": "!related Chronicles of the Kitsune;"
+            "notes": ""
         },
         {
             "card_name": "Drake",
             "color": "U",
             "rarity": "common",
             "type": "Token Creature \u2014 Drake",
-            "number": 6,
+            "number": 5,
             "color_identity": "U",
             "cost": "",
             "rules_text": "Flying",
@@ -6336,16 +6336,16 @@
             "loyalty": "",
             "artist": "Asur-Misoa",
             "alias": "",
-            "position": "300",
+            "position": "301",
             "rotated": false,
-            "notes": "!related Budding Couturier;Elder Soothsayer Chian;Shuilong Technique;"
+            "notes": ""
         },
         {
             "card_name": "Kraken",
             "color": "U",
             "rarity": "common",
             "type": "Token Creature \u2014 Kraken",
-            "number": 7,
+            "number": 6,
             "color_identity": "U",
             "cost": "",
             "rules_text": "",
@@ -6357,16 +6357,16 @@
             "loyalty": "",
             "artist": "omer tunc",
             "alias": "",
-            "position": "301",
+            "position": "302",
             "rotated": false,
-            "notes": "!related Aftermath of the Surge;Ing'Wei, Azure Empress<2>;Juyu Offering Pool;Wealth of the Flood;"
+            "notes": ""
         },
         {
             "card_name": "Cultist",
             "color": "B",
             "rarity": "common",
             "type": "Token Creature \u2014 Cultist",
-            "number": 8,
+            "number": 7,
             "color_identity": "B",
             "cost": "",
             "rules_text": "{1}{B}{B}, Sacrifice three Cultists: Create a 5/5 black Demon creature token.",
@@ -6378,16 +6378,16 @@
             "loyalty": "",
             "artist": "Damian Audino",
             "alias": "",
-            "position": "302",
+            "position": "303",
             "rotated": false,
-            "notes": "!related Arrogant Orator;Bearer of Vile Incense;Sable Evangelist;Theatre of Cruelty;Xie'e Amphitheatre;Yenzu Melodrama;"
+            "notes": ""
         },
         {
             "card_name": "Demon",
             "color": "B",
             "rarity": "common",
             "type": "Token Creature \u2014 Demon",
-            "number": 9,
+            "number": 8,
             "color_identity": "B",
             "cost": "",
             "rules_text": "",
@@ -6399,16 +6399,16 @@
             "loyalty": "",
             "artist": "VladMRK",
             "alias": "",
-            "position": "303",
+            "position": "304",
             "rotated": false,
-            "notes": "!related Altar of Twisted Piety;Lizhao, Last Breath of the Yenzu;"
+            "notes": ""
         },
         {
             "card_name": "Bard",
             "color": "R",
             "rarity": "common",
             "type": "Token Creature \u2014 Bard",
-            "number": 10,
+            "number": 9,
             "color_identity": "R",
             "cost": "",
             "rules_text": "This creature can't block.",
@@ -6420,16 +6420,16 @@
             "loyalty": "",
             "artist": "\u53c1\u4e54\u5c45 3QSTUDIO",
             "alias": "",
-            "position": "304",
+            "position": "305",
             "rotated": false,
-            "notes": "!related Air of Vernal Tidings;Ballad of the Forgotten;Bian Lian Opera;Chords of Conflict;Dance of Dragons;Dirge of the Damned;Filigree Fan Dance;Harmony of Blossoms;Kuoshu Martial Arts;Nichang Yuyi;Ode to the Red Wind;Papier-M\u00e2ch\u00e9 Marvel;Song of Wind and Fire;Stroke of Fortune;Tale of Tranquility;The People's Anthem;The Royal Vignettes;Timberland Hymn;Vulpine Verse;"
+            "notes": ""
         },
         {
             "card_name": "Panda",
             "color": "R",
             "rarity": "common",
             "type": "Token Creature \u2014 Panda",
-            "number": 12,
+            "number": 11,
             "color_identity": "R",
             "cost": "",
             "rules_text": "",
@@ -6441,16 +6441,16 @@
             "loyalty": "",
             "artist": "Tiago Kogi",
             "alias": "",
-            "position": "305",
+            "position": "306",
             "rotated": false,
-            "notes": "!related Foster the Future;"
+            "notes": ""
         },
         {
             "card_name": "Dragon",
             "color": "R",
             "rarity": "common",
             "type": "Token Creature \u2014 Dragon",
-            "number": 11,
+            "number": 10,
             "color_identity": "R",
             "cost": "",
             "rules_text": "Flying",
@@ -6462,16 +6462,16 @@
             "loyalty": "",
             "artist": "Asur San",
             "alias": "",
-            "position": "306",
+            "position": "307",
             "rotated": false,
-            "notes": "!related Dragon Emperor's Chariot;Mieng of the Pyre Waltz;Old Lord Xiusheng;Papier-M\u00e2ch\u00e9 Marvel;Song of Wind and Fire;"
+            "notes": ""
         },
         {
             "card_name": "Hydra",
             "color": "G",
             "rarity": "common",
             "type": "Token Creature \u2014 Hydra",
-            "number": 14,
+            "number": 13,
             "color_identity": "G",
             "cost": "",
             "rules_text": "",
@@ -6483,16 +6483,16 @@
             "loyalty": "",
             "artist": "Sheppi-ArtHouse",
             "alias": "",
-            "position": "307",
+            "position": "308",
             "rotated": false,
-            "notes": "!related Qiyan, Great Progenitor;"
+            "notes": ""
         },
         {
             "card_name": "Wurm",
             "color": "G",
             "rarity": "common",
             "type": "Token Creature \u2014 Wurm",
-            "number": 18,
+            "number": 17,
             "color_identity": "G",
             "cost": "",
             "rules_text": "This creature gets +1/+1 for each permanent card in your graveyard.",
@@ -6504,16 +6504,16 @@
             "loyalty": "",
             "artist": "Jehan Choo",
             "alias": "",
-            "position": "308",
+            "position": "309",
             "rotated": false,
-            "notes": "!related Fables of the Ill-Fated;Ruchong Awakening;"
+            "notes": ""
         },
         {
             "card_name": "Plant",
             "color": "G",
             "rarity": "common",
             "type": "Token Creature \u2014 Plant",
-            "number": 16,
+            "number": 15,
             "color_identity": "G",
             "cost": "",
             "rules_text": "",
@@ -6525,16 +6525,16 @@
             "loyalty": "",
             "artist": "CD Projekt Red",
             "alias": "",
-            "position": "309",
+            "position": "310",
             "rotated": false,
-            "notes": "!related Bai of the Royal Gardens;Till the Queen's Gardens<x>;"
+            "notes": ""
         },
         {
             "card_name": "Panda Bear Monk",
             "color": "G",
             "rarity": "common",
             "type": "Token Creature \u2014 Panda Bear Monk",
-            "number": 15,
+            "number": 14,
             "color_identity": "G",
             "cost": "",
             "rules_text": "When this creature dies, put a loyalty counter on a Ji planeswalker you control.",
@@ -6546,16 +6546,16 @@
             "loyalty": "",
             "artist": "qiu",
             "alias": "",
-            "position": "310",
+            "position": "311",
             "rotated": false,
-            "notes": "!related Wei Ji, Life's Rhythm;"
+            "notes": ""
         },
         {
             "card_name": "Beast",
             "color": "G",
             "rarity": "common",
             "type": "Token Creature \u2014 Beast",
-            "number": 13,
+            "number": 12,
             "color_identity": "G",
             "cost": "",
             "rules_text": "",
@@ -6567,16 +6567,16 @@
             "loyalty": "",
             "artist": "Kei Acedera",
             "alias": "",
-            "position": "311",
+            "position": "312",
             "rotated": false,
-            "notes": "!related Forerunner of the Briar;"
+            "notes": ""
         },
         {
             "card_name": "Shimaru, the Unfading",
             "color": "G",
             "rarity": "common",
             "type": "Legendary Token Creature \u2014 Wolf Spirit",
-            "number": 17,
+            "number": 16,
             "color_identity": "G",
             "cost": "",
             "rules_text": "Trample",
@@ -6588,16 +6588,16 @@
             "loyalty": "",
             "artist": "Safiru",
             "alias": "",
-            "position": "312",
+            "position": "313",
             "rotated": false,
-            "notes": "!related Chiu, Hand of the Pack;"
+            "notes": ""
         },
         {
             "card_name": "Fox",
             "color": "WR",
             "rarity": "common",
             "type": "Token Creature \u2014 Fox",
-            "number": 19,
+            "number": 18,
             "color_identity": "WR",
             "cost": "",
             "rules_text": "",
@@ -6609,16 +6609,16 @@
             "loyalty": "",
             "artist": "Anton Weinberger",
             "alias": "",
-            "position": "313",
+            "position": "314",
             "rotated": false,
-            "notes": "!related Chronicles of the Kitsune;Cou Ling of the Lunar Den<2>;Dignitary's Rickshaw;Fox of a Brisk Autumn;Frisky Denmates;Leave the Den<3>;Lijing, the Great Partisan;Russet Denmother;Vulpine Verse;"
+            "notes": ""
         },
         {
             "card_name": "Spirit",
             "color": "",
             "rarity": "common",
             "type": "Token Creature \u2014 Spirit",
-            "number": 2,
+            "number": 1,
             "color_identity": "C",
             "cost": "",
             "rules_text": "Flying",
@@ -6630,16 +6630,16 @@
             "loyalty": "",
             "artist": "sasorainster",
             "alias": "",
-            "position": "314",
+            "position": "315",
             "rotated": false,
-            "notes": "!related Heping's Acolyte;Memorial Plaza<2>;Zou Meili, Cruel Justice;"
+            "notes": ""
         },
         {
             "card_name": "Treasure",
             "color": "",
             "rarity": "common",
             "type": "Token Artifact \u2014 Treasure",
-            "number": 21,
+            "number": 20,
             "color_identity": "C",
             "cost": "",
             "rules_text": "{T}, Sacrifice this artifact: Add one mana of any color.",
@@ -6651,16 +6651,16 @@
             "loyalty": "",
             "artist": "Jeremy Chong",
             "alias": "",
-            "position": "315",
+            "position": "316",
             "rotated": false,
-            "notes": "!related Aftermath of the Surge<2>;Gemscale Drake;Grim Bounty;Lin, the Opportunist;Boxue, Imperial Ally;Prince Crab;Stroke of Fortune;Wealth of the Flood;"
+            "notes": ""
         },
         {
             "card_name": "Idol",
             "color": "",
             "rarity": "common",
             "type": "Token Artifact \u2014 Idol",
-            "number": 20,
+            "number": 19,
             "color_identity": "C",
             "cost": "",
             "rules_text": "{1}, Sacrifice this artifact: Put a +1/+1 counter on target creature. Activate only as a sorcery.",
@@ -6672,30 +6672,9 @@
             "loyalty": "",
             "artist": "Zeen Chin",
             "alias": "",
-            "position": "316",
-            "rotated": false,
-            "notes": "!related Adept Lieutenant;Apogee Cranes;Armament Exhibition;Ascetic of the Folded Fan;Cai Lan, the Puppeteer;Called Shot;Crooning Eulogist;Demon of Hubris;Descendant of Shimaru;Fox of the Juniper Vale;Hang Up Your Lanterns;Hero's Journey;Ing'Wei's Admonition;Keen Redtail;Li's Moonblades;Nonpareil of the Abyss;Pious Flutist;Prince Crab;Rampaging Xiangshe;Red-Crowned Admiral;Scatter Memories as Ashes;Shifu of Xiangyin Temple;Trophy Collector;Ushi Yun, the Curator;Violent Devotion;Viridian Townships<2>;Walk the Ancestral Path;Ya'Lin, the Rune-Drake;"
-        },
-        {
-            "card_name": "Renaissance",
-            "color": "",
-            "rarity": "common",
-            "type": "Token \u2014 Reminder",
-            "number": 1,
-            "color_identity": "C",
-            "cost": "",
-            "rules_text": "[i](Enter a renaissance by activating a nonmana ability, casting an instant or sorcery, and attacking in the same turn.)[/i]",
-            "flavor_text": "[i][/i]",
-            "pt": "",
-            "special_text": "",
-            "shape": "token",
-            "set": "NJB",
-            "loyalty": "",
-            "artist": "hanfu_artists",
-            "alias": "",
             "position": "317",
             "rotated": false,
-            "notes": "!related Baptism by Fire;Birth of the Yaozu;Burning of Xiangyin Temple;Ceremonial Jian;Consign to Old Diyu;Da'Lang, Timberheart;Dare to Dream;Exquisite Slash;Festival Centrum;Fox of a Radiant Meadow;Gilded Sell-Sword;Grotesque Defiler;Gui, the Brinebearer;Hang Up Your Lanterns;Harmonic Recruit;Horizon Glider;Imperious Aristocrat;Ing'Wei, Azure Empress;Lady of the Nymphaeas;Lunar Flock;Lunar Shachuan;Mercenary of the Folded Fan;Mieng of the Pyre Waltz;Mighty Xioshu;Nonpareil of the Abyss;Pack Savagery;Savage Convergence;Seal the Gateway;Spear Flourish;Spirited Florist;Sponsor of the Folded Fan;Sword Dance;The Great War Ends;Trawl the Annals;Tzelin, Cabal Liturgist;Ushi Yun, the Curator;Verdant Druid;Visit from Aunti;Yenzu Blood Pact;Zihao, Song of the Glade;"
+            "notes": ""
         }
     ]
 }
